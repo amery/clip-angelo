@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------*/
 /*   This is a part of CLIP-UI library									   */
 /*																		   */
-/*   Copyright (C) 2003-2006 by E/AS Software Foundation 				   */
+/*   Copyright (C) 2003-2007 by E/AS Software Foundation 				   */
 /*   Authors: 															   */
 /*  	     Andrey Cherepanov <skull@eas.lrn.ru>						   */
 /*           Igor Satsyuk <satsyuk@tut.by>                                 */
@@ -18,7 +18,7 @@
 static driver := getDriver()
 
 /* Interface form class */
-function UIForm( fileName, parent )
+function UIForm( fileName, parent, context )
 	local obj	:= map()
 	obj:parent	:= parent
 	obj:className	:= "UIForm"
@@ -29,6 +29,7 @@ function UIForm( fileName, parent )
 	obj:actions	:= array(0)
 	obj:src		:= NIL
 	obj:locale	:= map()
+	obj:context := context
 	_recover_UIFORM(obj)
 return obj
 
@@ -44,6 +45,7 @@ function _recover_UIFORM( obj )
 	obj:actionHandler 	:= @ui_actionHandler()
 	obj:subActionHandler := @ui_subActionHandler()
 	obj:i18n 			:= @ui_form_i18n()
+	obj:setValues		:= @ui_setValues()
 return obj
 
 /* Parse form from file */
@@ -89,23 +91,46 @@ return self:parse()
 
 /* Parse form */
 static function ui_parse(self)
-	local win := NIL, res, t, i
+	local win := NIL, res, t, i, oErr, err
 
+ 	oErr := ErrorBlock({|e| break(e) })
+    begin sequence
+	
 	if DEBUG
 		?? "UIForm: form parsing...&\n"
 	endif
 	if self:oXml:getRoot() == NIL
 		?? "ERROR: there isn't root element.&\n"
-		return win
+		return NIL
 	else
 		self:root := self:oXml:getRoot()
+	endif
+
+	// Check version
+	if lower(self:root:getName()) == "glade-interface"
+		
+		// Clade 3.x form support
+		self:root := ui_convertFromGlade3( self:root )
+	
+	elseif lower(self:root:getName()) == "ui" .and. left(self:root:attribute("version",""), 2) == "3."
+		
+		// Qt Designer 3.x form support
+		self:root := ui_convertFromUI3( self:root )
+	
+	elseif lower(self:root:getName()) == "form"
+	
+		// Noting do: native format
+		
+	else
+		?? "ERROR: Unknown form format.&\n"
+		return NIL
 	endif
 
 	/* Locale */
 	self:locale := getLocaleStrings(self:root)
 
 	/* Root widget */
-	res := self:oXml:XPath("/interface/widget")
+	res := self:root:XPath("/interface/widget")
 	if empty(res) .or. len(res) == 0
 		?? "ERROR: no root widget!&\n"
 		return NIL
@@ -124,16 +149,26 @@ static function ui_parse(self)
 	endif
 
 	/* Set properties */
-	t := self:oXml:XPath("/style/*")
+	t := self:root:XPath("/style/*")
 	for i in t
 		ui_setProperty(self, i, NIL)
+	next
+
+	if DEBUG
+		?? "UIForm: set value names...&\n"
+	endif
+
+	/* Set value format */
+	t := self:root:XPath("/data/*")
+	for i in t
+		ui_setValues(self, win, i)
 	next
 
 	if DEBUG
 		?? "UIForm: set actions...&\n"
 	endif
 	/* Set actions */
-	t := self:oXml:XPath("/actions/*")
+	t := self:root:XPath("/actions/*")
 	for i in t
 		ui_setAction(self, i, NIL)
 	next
@@ -142,7 +177,7 @@ static function ui_parse(self)
 		?? "UIForm: set preliminary actions...&\n"
 	endif
 	/* Set pre actions */
-	res := self:oXml:XPath("/head")
+	res := self:root:XPath("/head")
 	if empty(res) .or. len(res) == 0
 		?? "ERROR: no <head> tag!&\n"
 		return NIL
@@ -152,14 +187,98 @@ static function ui_parse(self)
 	if DEBUG
 		?? "UIForm: form parsing complete&\n"
 	endif
+	
+	// Error hangle
+	recover using oErr
+		?? "ERROR: UIForm form creation: " + errorMessage(oErr) + "&\n"
+		return NIL
+	end sequence
 
 return win
+
+/**/
+static function ui_TableColumns(self, t)
+	local a, e, i, o
+	local p_a, p_col, p_name, p_value, p_block
+	
+	// Get columns
+	a := array(0)
+	for e in t:getChilds()
+		if e:getName() == "column"
+			aadd( a, UITableColumn( e:attribute("name"), self:i18n(e:attribute("title","")), TABLE_COLUMN_TEXT)  )
+		endif
+	next
+	
+	// Get column attributes
+	for e in t:getChilds()
+		if e:getName() == "property"
+			if .not. "." $ e:attribute("name")
+				loop
+			endif
+			p_a     := split(e:attribute("name"), '\.')
+			p_col   := p_a[1]
+			p_name  := p_a[2]
+			p_value := e:attribute("value")
+			i := ascan(a, {|e| e:name == p_col })
+			if i>0
+				o := a[i]
+				switch lower(p_name)
+					case 'caption'
+						o:caption := self:i18n(p_value)
+					case "type"
+						switch lower(p_value)
+							case 'text'
+								o:type := TABLE_COLUMN_TEXT
+							case 'choice'
+								o:type := TABLE_COLUMN_CHOICE
+							case 'combobox'
+								o:type := TABLE_COLUMN_COMBO
+							case 'number'
+								o:type := TABLE_COLUMN_NUMBER
+								o:default := iif(empty(o:default), 0, o:default)
+								o:format := iif(empty(o:format), "%'.2f", o:format)
+							case 'date'
+								o:type := TABLE_COLUMN_DATE
+							case 'boolean'
+								o:type := TABLE_COLUMN_CHECK
+								o:default := iif(empty(o:default), .F., o:default)
+							case 'counter'
+								o:type := TABLE_COLUMN_COUNTER
+								o:default := iif(empty(o:default), 0, o:default)
+							otherwise
+								?? "EditTable widget doesn't support column type '"+p_value+"'.&\n"
+						endswitch
+					case 'editable'
+						o:editable := iif( lower(p_value)=='false' .or. lower(p_value)=='no', .F., .T. )
+					case 'format'
+						o:format := p_value
+					case 'source'
+						if "," $ p_value
+							p_value := strtran(p_value, chr(10), "")
+							p_block := "{|| {"+p_value+"} }"
+							p_value := eval(&p_block)
+						endif
+						o:source := UISource(p_value)
+					case 'lookup'
+						o:lookup := iif( lower(p_value)=='false' .or. lower(p_value)=='no', .F., .T. )
+					case 'default'
+						o:default := p_value
+					otherwise
+						?? "EditTable widget doesn't support property '"+p_name+"'.&\n"
+				endswitch
+			endif
+		endif
+	next
+return a
+
 
 /* Return created widget from tag */
 static function ui_createWidget(self, tag, parent )
 	local o:=NIL, class, name, label, c, i, a, e, w, box, t:=tag
-	local add:=.F., gCol:=1, gRow:=1, gClass, rule, expanded:=.F.
+	local add:=.F., gCol:=1, gRow:=1, gClass, rule, expanded:=.F., oErr
 
+ 	oErr := ErrorBlock({|e| break(e) })
+    begin sequence
 	class := t:attribute("class","")
 	name  := t:attribute("name","")
 	label := self:i18n( t:attribute("label","") )
@@ -235,6 +354,9 @@ static function ui_createWidget(self, tag, parent )
 		case "MENUSEPARATOR"
 			parent:addSeparator()
 			return NIL
+		case "TOOLBARSEPARATOR"
+			parent:addSeparator()
+			return NIL
 		case "TOOLBAR"
 			o := UIToolBar()
 			parent:setPanels(,o,)
@@ -246,42 +368,35 @@ static function ui_createWidget(self, tag, parent )
 			parent:setPanels(,,o)
 			o:setText(label)
 		case "TABLE"
-			a := array(0)
-			for e in t:getChilds()
-				if e:getName() == "column"
-					aadd( a, self:i18n(e:attribute("title","")))
-				endif
-			next
+			// Get columns
+			a := ui_TableColumns(self, t)
+			// Create table
 			if len(a) > 0
 				o := UITable( a )
 				add = .T.
 			else
-				?? "No defined columns for Table widget&\n"
+				?? "No defined columns for UITable widget&\n"
 			endif
 		case "TREE"
-			a := array(0)
-			for e in t:getChilds()
-				if e:getName() == "column"
-					aadd( a, self:i18n(e:attribute("title","")))
-				endif
-			next
+			// Get columns
+			a := ui_TableColumns(self, t)
+			// Create tree
 			if len(a) > 0
-				o := UITree( 1, a )
+				o := UITree( a, 1 )
 				add = .T.
 			else
-				?? "No defined columns for Tree widget&\n"
+				?? "No defined columns for UITree widget&\n"
 			endif
-/*
-		case "SHEET"
-			a := array(0)
-			for e in t:childs
-				if e:name == "COLUMN"
-					aadd( a, self:i18n(e:attr["TITLE"]))
-				endif
-			next
-			o := UISheet( a )
-			add = .T.
-*/
+		case "EDITTABLE"
+			// Get columns
+			a := ui_TableColumns(self, t)
+			// Create table
+			if len(a) > 0
+				o := UIEditTable( a )
+				add = .T.
+			else
+				?? "No defined columns for UIEditTable widget&\n"
+			endif
 		case "BUTTONBAR"
 			if "ACTIONS" $ parent
 				o := parent:actions
@@ -343,8 +458,16 @@ static function ui_createWidget(self, tag, parent )
 		case "SLIDER"
 			o := UISlider()
 			add = .T.
+		case "TABAREA"
+			o := UITabArea()
+			add = .T.
+		case "TAB"
+			o := UITab(label, name)
+			add = .T.
+
 		otherwise
 			?? "WARNING: Unknown class:",class,chr(10)
+	
 	endswitch
 	if .not. empty(name)
 		aadd(self:names,name)
@@ -364,20 +487,28 @@ static function ui_createWidget(self, tag, parent )
 	if add == .T.
 		gClass := iif("O" $ parent, parent:o, parent)
 		box    := iif("USERSPACE" $ parent,parent:userSpace,parent)
-		if gClass:className == "UIGrid" .or. gClass:className == "UILayout"
-			gRow := t:attribute("pos","")
-			parent:add( o, gRow )
-		elseif gClass:className == "UISplitter"
-			if empty( parent:first )
-				parent:add( o )
+		if "ADD" $ box
+			if gClass:className == "UIGrid" .or. gClass:className == "UILayout"
+				gRow := t:attribute("pos","")
+				parent:add( o, gRow )
+			elseif gClass:className == "UISplitter"
+				if empty( parent:first )
+					parent:add( o )
+				else
+					parent:addEnd( o )
+				endif
 			else
-				parent:addEnd( o )
-			endif
-		else
-			if class=="table" .or. o:className=="UISplitter" .or. o:className=="UIEditText" .or. expanded
-				box:add( o, .T., .T. )
-			else
-				box:add( o, .F., iif(box:className=="UIButtonBar",.T.,.F.) )
+				if 	     o:className=="UISplitter" ;
+					.or. o:className=="UITabArea" ;
+					.or. o:className=="UIEditText" ;
+					.or. o:className=="UITable" ;
+					.or. o:className=="UITree" ;
+					.or. o:className=="UIEditTable" ;
+					.or. expanded
+					box:add( o, .T., .T. )
+				else
+					box:add( o, .F., iif(box:className=="UIButtonBar",.T.,.F.) )
+				endif
 			endif
 		endif
 	endif
@@ -400,6 +531,12 @@ static function ui_createWidget(self, tag, parent )
 			?? "WARNING: tag "+c:getName()+" is ignored&\n"
 		endif
 	next
+	
+	// Error hangle
+	recover using oErr
+		?? "ERROR: UIForm widget creation: " + errorMessage(oErr) + "&\n"
+		return NIL
+	end sequence
 
 return o
 
@@ -426,10 +563,12 @@ static function ui_setProperty(self, tag, obj, value)
 	if obj == NIL
 		return .F.
 	endif
+	
+	if (obj:className == "UITable" .or. obj:className == "UIEditTable") .and. lower(name) != 'row'
+		return .F.
+	endif
+	
 	switch name
-		case "altColor"
-			if .not. "SETALTROWCOLOR" $ obj; return .F.; endif
-			obj:setAltRowColor(value)
 		case "label"
 			if .not. "SETTEXT" $ obj; return .F.; endif
 			obj:setText(value)
@@ -466,20 +605,18 @@ static function ui_setProperty(self, tag, obj, value)
 			if .not. "SETPADDING" $ obj; return .F.; endif
 			obj:setPadding(val(value))
 		case "position"
-			if .not. "SETPLACEMENT" $ obj; return .F.; endif
-			if value == "center"
+			if "SETPLACEMENT" $ obj .and. value == "center"
 				obj:setPlacement( .T. )
+			elseif "SETPOSITION" $ obj
+				obj:setPosition(val(value))
+			else
+				return .F.
 			endif
 		case "readOnly"
 			if .not. "READONLY" $ obj; return .F.; endif
 			if value == "true"
 				obj:readOnly( .T. )
 			endif
-		case "values"
-			if .not. "SETLIST" $ obj; return .F.; endif
-			block := "{|| {"+value+"} }"
-			row := eval(&block)
-			obj:setList( row )
 		case "selection"
 			if obj:className != "UIComboBox"; return .F.; endif
 			obj:setValue( val(value) )
@@ -502,11 +639,11 @@ static function ui_setProperty(self, tag, obj, value)
 			obj:setIcon(UIImage( iif(isfunction("GETRESOURCE"), ;
 				clip("GETRESOURCE", value), value) ) )
 		case "row"
-			if obj:className != 'UITable' .and. obj:className != 'UITree'; return .F.; endif
+			if obj:className != 'UITable' .and. obj:className != 'UITree' .and. obj:className != 'UIEditTable'; return .F.; endif
 			block := "{|| {"+value+"} }"
 			row   := eval(&block)
 			elem  := t:attribute("element",NIL)
-			if obj:className == 'UITable'
+			if obj:className == 'UITable' .or. obj:className == 'UIEditTable'
 				obj:addRow( row, elem )
 			else
 				if .not. 'NODENAMES' $ obj
@@ -537,6 +674,14 @@ static function ui_setProperty(self, tag, obj, value)
 		case "step"
 			if obj:className != "UISlider"; return .F.; endif
 			obj:setStep(value)
+		case "source"
+			if .not. "SETSOURCE" $ obj; return .F.; endif
+			if "," $ value
+				value := strtran(value, chr(10), "")
+				block := "{|| {"+value+"} }"
+				value := eval(&block)
+			endif
+			obj:setSource(value)
 
 		otherwise
 			driver:setStyle(obj, name, value, t:attribute("element",NIL))
@@ -572,6 +717,7 @@ static function ui_getPropertyValue(self, tagObj)
 	widget := tagObj:attribute("widget","")
 	prop   := tagObj:attribute("name","")
 	obj    := mapget(self:widgets,widget,NIL)
+	if DEBUG; ?? 'GET PROPERTY:', prop, chr(10); endif 
 
 	if empty(obj)
 		?? "ERROR get property for widget '"+widget+"': widget not found&\n"
@@ -585,13 +731,24 @@ static function ui_getPropertyValue(self, tagObj)
 	if obj:className == "UIMenuItem" .and. prop == "isChecked"
 		return driver:isCheckedMenuItem( obj )
 	endif
+	
+	if prop == "context"
+		if DEBUG; ?? 'CONTEXT:', self:context, chr(10); endif
+		return self:context
+	endif
+
+	if prop == "value" .and. "GETVALUE" $ obj
+		if DEBUG; ?? 'VALUE:', obj:getValue(), chr(10); endif
+		return obj:getValue()
+	endif
+
 
 return val
 
 /* Set action for widget */
 static function ui_setAction(self, tag, lObj)
 	local e, obj, widget, signal, events, actions, j, id, labelRule, t:=tag
-	local cWidget
+	local cWidget, a, column
 
 	if t:getName() != "rule"
 		?? "WARNING: rule tag must be <rule>. Rule is ignored.&\n"
@@ -614,14 +771,20 @@ static function ui_setAction(self, tag, lObj)
 	for e in t:getChilds()
 		if e:getName() == "event"
 			// Event condition
+			column := NIL
 			widget := e:attribute("widget","")
+			if ':' $ widget
+				a := split(widget, '\:')
+				widget := a[1]
+				column := a[2]
+			endif
 			signal := e:attribute("signal","")
 			obj := iif(lObj==NIL,mapget(self:widgets,widget,NIL),lObj)
 			if obj == NIL .or. empty(widget) .or. empty(signal)
 				?? "WARNING: widget '"+widget+"' is not found. Ignored&\n"
 				return .F.
 			endif
-			aadd(events,{ obj, signal })
+			aadd(events,{ obj, signal, column })
 		elseif e:getName() == "action"
 			// Actions
 			if len(events) == 0
@@ -655,9 +818,13 @@ static function ui_setAction(self, tag, lObj)
 		obj := e[1]
 		signal := e[2]
 		if "SETACTION" $ obj
-			obj:setAction(signal,{|| self:actionHandler( id ) })
+			if empty(e[3])
+				obj:setAction(signal,{|| self:actionHandler( id ) })
+			else
+				obj:setAction(signal,{|| self:actionHandler( id ) }, e[3])
+			endif
 		else
-			?? "WARNING: cannot link action to widget class '",obj,"'&\n"
+			//?? "WARNING: cannot link action to widget class '"+obj:className+"'&\n"
 		endif
 	next
 
@@ -718,11 +885,11 @@ return NIL
 /* Recursive action execution */
 static function ui_subActionHandler(self, tag, addVal)
 	local widget, method, ret, subItem, retAction, value, i, condVal, chkVal
-	local iArr
-	local e, c, p, params:=array(0)
+	local iArr, widgetname
+	local e, c, p, params:=array(0), tmp
 
 	if tag:getName() == "returnedvalue"
-//		?? "returned value:", addVal, chr(10)
+		if DEBUG; ?? "returned value:", addVal, chr(10); endif
 		return addVal
 	endif
 	if tag:getName() == "property"
@@ -762,10 +929,10 @@ static function ui_subActionHandler(self, tag, addVal)
 		return NIL
 	endif
 
-	widget := tag:attribute("widget","")
+	widgetname := tag:attribute("widget","")
 	method 	:= upper(tag:attribute("method",""))
 	
-	//?? "call "+iif(valtype(widget)=='C',widget,"")+":"+method+"()",tag:getAttributes(),"&\n"
+	//?? "call "+iif(valtype(widgetname)=='C',widgetname,"")+":"+method+"()",tag:getAttributes(),"&\n"
 	
 	c := tag:getChilds()
 	for p in c
@@ -800,11 +967,11 @@ static function ui_subActionHandler(self, tag, addVal)
 	next
 
 	outlog("CALL", method, "...")
-	if valtype(widget) == "C"
-		widget := mapget(self:widgets, widget, NIL)
+	if valtype(widgetname) == "C"
+		widget := mapget(self:widgets, widgetname, NIL)
 	endif
 
-	//?? "call widget: ", valtype(widget), iif(valtype(widget)=='O',widget:className,""),chr(10)
+	?? "call widget: ", widgetname, valtype(widget), iif(valtype(widget)=='O',widget:className,""),chr(10)
 	if widget != NIL .and. valtype(widget) == "O"
 		if method $ widget .and. valtype(widget[method]) == "B"
 			/* TODO: use clipa() or similar function
@@ -830,7 +997,7 @@ static function ui_subActionHandler(self, tag, addVal)
 					ret := eval(widget[method], widget)
 			endswitch
 		else
-			?? "ERROR: no method '"+method+"'&\n"
+			?? "ERROR: no method '"+method+"' or unknown widget '"+widgetname+"'&\n"
 			return NIL
 		endif
 	else
@@ -859,3 +1026,19 @@ static function ui_form_i18n(self, str)
 	endif
 //	?? "i18n:",str,"=>",lstr,chr(10)
 return lstr
+
+/* Set value format */
+static function ui_setValues(self, win, t)
+	if valtype(win) != 'O' .or. .not. 'SETFORMAT' $ win .or. valtype(t) != 'O'
+		return NIL
+	endif
+	// name, type, length, decLen, format, add
+	win:setFormat( 	t:attribute('widget'), ;
+					t:attribute('name'), ;
+					t:attribute('type'), ;
+					t:attribute('length'), ;
+					t:attribute('decLen'), ;
+					t:attribute('format'), ;
+					t:attribute('flags') ;
+				 )
+return NIL

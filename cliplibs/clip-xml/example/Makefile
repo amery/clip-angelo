@@ -9,7 +9,7 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 CLIPINCLUDE = -I$(CLIPROOT)/include
-CLIP = $(CLIPROOT)/bin/clip
+CLIP = clip$(EXESUFF)
 C_FLAGS=-g
 
 .SUFFIXES: .prg .o .po
@@ -18,7 +18,7 @@ C_FLAGS=-g
 # Widget tests
 LIBS=-lclip-xml
 
-PROGS=test_xml test
+PROGS=test_xml$(EXESUFF) test$(EXESUFF)
 
 EXTRALIBS=
 
@@ -29,9 +29,9 @@ clean:
 	rm -f *.exe *.c *.o *.a *.so *.po *.log *.pa *.b *.BAK *.bak *~ core* *core
 	rm -rf *.ex *.nm
 
-test_xml: test_xml.prg
-	$(CLIP) -ewsln  $(C_FLAGS) $(CLIPINCLUDE) test_xml.prg $(LIBS) $(EXTRALIBS)
+test_xml$(EXESUFF): test_xml.prg
+	$(CLIP) -o$@ -ewsln  $(C_FLAGS) $(CLIPINCLUDE) test_xml.prg $(LIBS) $(EXTRALIBS)
 
-test: test.prg
-	clip -esg test.prg $(LIBS)
+test$(EXESUFF): test.prg
+	clip$(EXESUFF) -o$@ -esg test.prg $(LIBS)
 

@@ -1,4 +1,4 @@
-PRG=my_isql
+PRG=my_isql$(EXESUFF)
 all: $(PRG)
 
 clean:
@@ -6,5 +6,5 @@ clean:
 		*~ core* *core $(PRG) *.ex *.nm
 
 $(PRG): $(PRG).prg
-	clip -eMs $(PRG).prg -lclip-odbc
+	clip$(EXESUFF) -o$@ -eMs $(PRG).prg -lclip-odbc
 

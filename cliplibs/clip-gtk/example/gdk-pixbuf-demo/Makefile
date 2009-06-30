@@ -1,4 +1,4 @@
-SRC=pixbuf_demo pixbuf_scale zoomimage
+SRC=pixbuf_demo$(EXESUFF) pixbuf_scale$(EXESUFF) zoomimage$(EXESUFF)
 
 all: $(SRC)
 
@@ -7,12 +7,12 @@ clean:
 	rm -f $(SRC)
 	rm -rf *.ex *.nm
 
-pixbuf_demo: pixbuf_demo.prg
-	clip -ews pixbuf_demo.prg -lclip-gtk
+pixbuf_demo$(EXESUFF) : pixbuf_demo.prg
+	clip$(EXESUFF) -o$@ -ews pixbuf_demo.prg -lclip-gtk
 
-pixbuf_scale: pixbuf_scale.prg
-	clip -ews pixbuf_scale.prg -lclip-gtk
+pixbuf_scale$(EXESUFF) : pixbuf_scale.prg
+	clip$(EXESUFF) -o$@ -ews pixbuf_scale.prg -lclip-gtk
 
-zoomimage: zoomimage.prg
-	clip -ews zoomimage.prg -lclip-gtk
+zoomimage$(EXESUFF) : zoomimage.prg
+	clip$(EXESUFF) -o$@ -ews zoomimage.prg -lclip-gtk
 

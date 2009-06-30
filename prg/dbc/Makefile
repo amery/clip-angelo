@@ -9,5 +9,5 @@ clean:
 	cd procs && $(MAKE) clean
 	cd dbc  && $(MAKE) clean
 	rm -rf *.bak *.ex *.nm *.a
-install:
+install:all
 	cd dbc  && $(MAKE) install

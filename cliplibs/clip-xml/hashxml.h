@@ -1,1 +1,1 @@
-#define	HASH_HANDLE                     	0xD0BA46FC
+#define	HASH_HANDLE                     	-793098500 /*-793098500,-793098500*/

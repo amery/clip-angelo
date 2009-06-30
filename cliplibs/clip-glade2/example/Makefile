@@ -5,7 +5,7 @@ ifndef CLIPROOT
         CLIPROOT=/usr/local/clip
 endif
 
-CCLIP=$(CLIPROOT)/bin/clip
+CCLIP=$(CLIPROOT)/bin/clip$(EXESUFF)
 
 include $(CLIPROOT)/include/Makefile.inc
 
@@ -18,14 +18,14 @@ OBJS=dlgopen.o dlgsave.o dlgselfont.o dlgabout.o
 
 .SUFFIXES: .prg .o
 
-all: eglade
+all: eglade$(EXESUFF)
 
 
-eglade: eglade.prg  $(OBJS)
-	 $(CCLIP) $(PRGFLAGS) -e $^  $(PRGLIBS)
+eglade$(EXESUFF): eglade.prg  $(OBJS)
+	 $(CCLIP) $(PRGFLAGS) -o$@ -e $^  $(PRGLIBS)
 
 clean:
-	rm -f eglade *.o *.log *~ *.ex *.nm *.po *core
+	rm -f eglade$(EXESUFF) *.o *.log *~ *.ex *.nm *.po *core
 
 
 .prg.o:

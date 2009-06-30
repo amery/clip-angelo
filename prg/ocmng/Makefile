@@ -1,8 +1,8 @@
 ifdef CLIPROOT
 include $(CLIPROOT)/include/Makefile.inc
 endif
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -alwO
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -lwO
 CLIPLIBS  = -lclip-codb
 OBJS = funcs_a.o funcs_c.o funcs_d.o funcs_i.o funcs_w.o funcs_x.o funcs_r.o
 INCS = funcs_s.prg ocmng.ch
@@ -19,12 +19,12 @@ clean:
 	./cleanxmo.sh
 
 ocmng$(EXESUFF): ocmng.prg  $(OBJS) $(INCS)
-	$(CLIP) $(CLIPFLAGS) -esM ocmng.prg $(OBJS) $(CLIPLIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -esM ocmng.prg $(OBJS) $(CLIPLIBS)
 
 xml2xmo$(EXESUFF): xml2xmo.prg  $(OBJS) $(INCS)
-	$(CLIP) $(CLIPFLAGS) -esM xml2xmo.prg $(OBJS) $(CLIPLIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -esM xml2xmo.prg $(OBJS) $(CLIPLIBS)
 
-install:
+install: all
 	cp $(PROGS) cleanxmo.sh $(DESTDIR)$(CLIPROOT)/bin
 
 .prg.o:

@@ -1,5 +1,5 @@
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -a -O -b -n
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -O -b -n
 CLIPLIBS  =
 OBJS  =  procs1.o procs3.o procs5.o procs7.o \
 	 procs8.o procini.o procscri.o \
@@ -8,7 +8,7 @@ OBJS  =  procs1.o procs3.o procs5.o procs7.o \
 .SUFFIXES: .prg .o
 
 all:    $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib ../procs.a *.o
+	clip_makelib$(SCRIPTSUFF) ../procs.a *.o
 	rm -rf *.c
 
 clean:

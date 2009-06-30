@@ -1,0 +1,287 @@
+##
+##										init/Makefile.gen.ini
+##
+##				called from all Makefile files
+##
+
+ATARGET 		= 		$(TARGET)$(DLLLIBSUFF)
+STARGET 		= 		$(TARGET)$(DLLSUFF)
+RTARGET 		= 		$(TARGET)$(DLLREALSUFF)
+
+ATARGET2 		= 		$(TARGET2)$(DLLLIBSUFF)
+STARGET2 		= 		$(TARGET2)$(DLLSUFF)
+RTARGET2 		= 		$(TARGET2)$(DLLREALSUFF)
+
+.SUFFIXES : .o .c .po .prg
+
+export
+##########################################################
+##
+## 															no parameter
+##
+##########################################################
+
+all :
+	$(Trace_o)
+	$(E_cd)cd $(Clip_M_Dir) \
+		&& exec $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS)
+	$(E_xx)exit 1
+
+#configure : $(DIRS_TO_SCAN) FORCE
+#	$(CONFIGURE)
+
+FORCE:
+
+##########################################################
+##
+## 																environment section
+##
+
+shell :
+	$(Trace_o)
+	sh
+
+Makefile : 	$(CONFIGURE) ./configure.in ../configure.ini ../Makefile.ini
+	$(Trace_o)
+	$(E_rm)rm -f$(V) $(CONFIGURE_SH)
+	$(E_xx)$(CONFIGURE_DIR)
+
+#./configure : $(CONFIGURE_SH)
+#	$(Trace_o)
+#	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+Makefile.01 : ./configure.in $(CONFIGURE)
+	$(Trace_o)
+	$(E_rm)rm -f$(V) $(CONFIGURE)
+	$(E_xx)$(CONFIGURE_DIR)
+
+Makefile.ini : ./configure.in $(CONFIGURE)
+	$(Trace_o)
+	$(E_rm)rm -f$(V) $(CONFIGURE)
+	$(E_xx)$(CONFIGURE_DIR)
+
+configure.ini : ./configure.in $(CONFIGURE)
+	$(Trace_o)
+	$(E_rm)rm -f$(V) $(CONFIGURE)
+	$(E_xx)$(CONFIGURE_DIR)
+
+$(CONFIGURE) : ./configure.in ../configure.ini ../Makefile.ini
+	$(Trace_o)
+	$(E_rm)rm -f$(V) $(CONFIGURE)
+	$(E_xx)$(CONFIGURE_DIR)
+
+##########################################################
+##
+## 																configure section
+##
+hash1 : Makefile DIR links $(DIRS_TO_SCAN) example
+	$(Trace_o)
+
+##########################################################
+##
+## 																obj's section
+##
+
+%.o : %.c Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(CFLAGS) -c $<
+
+%.o : %.prg Makefile
+	$(Trace_prg)
+	$(E_clip)$(Clip) $(CLIP_FLAGS) $<
+
+%.po : %.prg Makefile
+	$(Trace_prg)
+	$(E_clip)$(Clip) $(CLIP_FLAGS) -p $<
+
+##########################################################
+##
+## 																clean section
+##
+## 		cleanc must be defined in each Makefile
+##
+
+clean : Makefile DIR $(DIRS_TO_SCAN) cleanc
+	$(E_rm)rm -f$(V) *~ *.a *.BAK *.bak *.cdx *.config.txt *.dll 						|| true
+	$(E_rm)rm -f$(V) *.ex *.exe *.EXE *.export *.idx *.nm *.ntx 						|| true
+	$(E_rm)rm -f$(V) *.o *.output *.pa *.po *.ppo *.s *.so *.t *.sav 					|| true
+	$(E_rm)rm -f$(V) *.tmp *.uri a.out compile.*.sh set.txt *.set.txt 				|| true
+	$(E_rm)rm -f$(V) *.log Makefile configure.ini Makefile.ini 							|| true
+	$(E_rm)rm -f$(V) Makefile.01 Makefile.02 make2 include locale.po charsets 		|| true
+	$(E_rm)rm -f$(V) $(BIN) $(BINS) $(PROGS) $(OBJS) $(OBJS2) 							|| true
+	$(E_rm)rm -f$(V) $(TARGET).* $(TARGET2).* $(CONFIGURE_SH) 							|| true
+	$(E_rm)rm -f$(V) dummy.c  											 							|| true
+
+
+distclean : Makefile $(DIRS_TO_SCAN) distcleanc clean
+
+##########################################################
+##
+## 																libraries section
+##
+
+../libclip/$(ATARGET) : $(ATARGET) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) *.o ../libclip/
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* ../libclip/
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+
+## 																first library
+##
+
+$(ATARGET) : $(OBJS) $(ADDOBJS) Makefile
+	$(Trace_lib)
+	$(E_rm)rm -f$(V) $(TARGET).*
+	$(E_c_mkl)$(Clip_makelib) $@ $(OBJS) $(ADDOBJS) $(ADDLIBS)
+
+$(RTARGET) : $(ATARGET) Makefile
+	$(Trace_lib)
+	$(E_rm)rm -f$(V) $@
+	$(E_c_mkSl)$(Clip_makeslib) $@ $< $(ADDLIBS)
+
+ifneq ($(RTARGET), $(STARGET))
+
+$(STARGET) : $(RTARGET) Makefile
+	$(Trace_lib)
+	$(E_rm)rm -f$(V) $@
+	$(E_c_mkSl)$(Clip_makeslib) $@ $(ATARGET) $(ADDLIBS)
+endif
+
+$(Clip_L_Dir)/$(ATARGET) : $(ATARGET) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
+
+$(Clip_L_Dir)/$(RTARGET) : $(RTARGET) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
+
+ifneq ($(RTARGET), $(STARGET))
+
+$(Clip_L_Dir)/$(STARGET) : $(Clip_L_Dir)/$(RTARGET) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
+
+endif
+
+##
+##							second library
+##
+
+$(ATARGET2) : $(OBJS2) $(ADDOBJS2) Makefile
+	$(Trace_lib2)
+	$(E_rm)rm -f$(V) $(TARGET2).*
+	$(E_c_mkSl)$(Clip_makelib) $@ $(OBJS2) $(ADDOBJS2) $(ADDLIBS2)
+
+$(RTARGET2) : $(ATARGET2) $(LocalDepend) Makefile
+	$(Trace_lib2)
+	$(E_rm)rm -f$(V) $@
+	$(E_c_mkSl)$(Clip_makeslib) $@ $< $(ADDLIBS2)
+
+ifneq ($(RTARGET2), $(STARGET2))
+
+$(STARGET2) : $(RTARGET2) $(LocalDepend) Makefile
+	$(Trace_lib2)
+	$(E_rm)rm -f$(V) $@
+	$(E_c_mkSl)$(Clip_makeslib) $@ $< $(ADDLIBS2)
+	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
+
+endif
+
+$(Clip_L_Dir)/$(ATARGET2) : $(ATARGET2) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
+
+$(Clip_L_Dir)/$(RTARGET2) : $(RTARGET2) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
+
+ifneq ($(RTARGET2), $(STARGET2))
+
+$(Clip_L_Dir)/$(STARGET2) : $(Clip_L_Dir)/$(RTARGET2) Makefile
+	$(Trace_o)
+#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
+
+endif
+
+##########################################################
+##
+## 																cvs section
+##
+
+commit :
+	_cvs commit
+
+ucommit :
+	_cvs update -dP && _cvs commit
+
+update :
+	_cvs update -dP
+
+CVS_commit : commit
+
+CVS_ucommit : ucommit
+
+CVS_update : update
+
+##########################################################
+##
+## 																dependencies section
+##
+
+depend :
+	makedepend -Y -v  -m $(INCLUDE_FLAGS)  $(wildcard *.c) $(wildcard *.prg )
+
+
+##########################################################
+##
+## 																packages section
+##
+
+deb : clean
+	$(E_xx)./mkdeb
+
+##########################################################
+##
+## 																sub dir  section
+##
+
+
+DIR : Makefile
+	$(TITLE)
+
+$(DIRS_TO_SCAN) example : Makefile FORCE
+	$(Trace_o)
+	$(E_if)if [ -d $@ ] ; then 																			\
+					cd $@  																						\
+					&& ( ( [ -f Makefile ] && [ -f $(CONFIGURE) ] ) || $(CONFIGURE_DIR) ) 	\
+					&& $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ; 				\
+		fi
+
+#example : FORCE
+#	$(Trace_o)
+#	$(E_if)[ -f example ] \
+#		&& cd example \
+#		&& ( ( [ -f Makefile ] && [ -f $(CONFIGURE) ] ) || $(CONFIGURE_DIR) ) \
+#		&& $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS)
+
+##########################################################
+##
+## 																standard rules  section
+##
+## 		links DIRS_TO_SCAN new_sequence install must be defined in each subdir Makefile
+## 		even if blank
+##
+
+#system 			: DIR links $(DIRS_TO_SCAN) $(new_sequence) install
+#system-debug 	: DIR links $(DIRS_TO_SCAN) $(new_sequence) install
+#local 			: DIR links $(DIRS_TO_SCAN) $(new_sequence) install
+#local-debug 	: DIR links $(DIRS_TO_SCAN) $(new_sequence) install
+
+system system-debug local local-debug 	: DIR links $(DIRS_TO_SCAN) $(new_sequence) install
+

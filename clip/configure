@@ -1,24 +1,43 @@
-#!/bin/sh
+#!/bin/sh -u
 #
 #	Configure script for clip
 #	Paul Lasarev - 2000.
 #
 
-DEBUGFLAGS="-g"
+#
+# added by Angelo for 64 bits compilation
+#
+#
+# added
+#
+FORCEALIGN=""
+MLIB=""
+MDBG=""
+osname="LINUX"
+OPTFLAGS=""
+STATICLINK=""
+NO_GETTEXT=""
+CC=""
+AS_PRG=""
+NM_PRG=""
+CHECK_STACK=""
+PO_COMPAT=""
+SCRIPTSUFF=$C64.sh
+DEBUGFLAGS=""
 STD_LIBDIR=''
-STD_LIB_DIR=/usr/lib
+STD_LIB_DIR=/usr/lib$C64
 DLLSUFF='.so'
 DLLREALSUFF='.so'
 CLIP_DLLIMPORT=''
 CLIP_DLLEXPORT=''
 NM_UNDERSCORE=''
-EXESUFF=''
+EXESUFF=$C64
 USE_WCHARS=yes
 USE_TASKS=yes
-if [ "$CLIP_TASKS" ]
-then
-	USE_TASKS=$CLIP_TASKS
-fi
+#if [ "$CLIP_TASKS" ]
+#then
+#	USE_TASKS=$CLIP_TASKS
+#fi
 USE_LD=no
 USE_AS=yes
 XCLIP=''
@@ -31,7 +50,7 @@ else
 	opts="$*"
 fi
 
-
+#read -p "Parameters : $opts"
 echo $opts > configure.flags
 
 rm -f Makefile Makefile.inc clipcfg.sh
@@ -63,6 +82,8 @@ xoneof()
 	return 0
 }
 
+USE_MEMDBG=no
+MEMDEBUG_LEVEL=0
 
 for opt in $opts
 do
@@ -80,7 +101,7 @@ do
 		#rm -f Makefile.inc clipcfg.sh
 		;;
 	-[oO]*)
-		rm -f Makefile.inc
+		rm -fv Makefile.inc
 		OPTFLAGS=-O2
 		;;
 	-[cC]*)
@@ -129,6 +150,8 @@ do
 		STD_LIBDIR='yes'
 		OSNAME=MINGW
 		;;
+	0)
+		;;
 	*)
 		echo "usage: ./configure [-o] [-m] [-c] [-r] [-s] [-t]"
 		echo "	-o  for optimisation"
@@ -161,7 +184,8 @@ then
 fi
 
 #arch="$HOSTTYPE"
-[ -z "$arch" ] && arch=`uname -m 2>/dev/null`
+#[ -z "$arch" ] &&
+arch=`uname -m 2>/dev/null`
 [ -z "$arch" ] && arch=`uname -p 2>/dev/null`
 [ -z "$arch" ] && arch=unknown
 
@@ -176,12 +200,14 @@ esac
 
 
 [ -z "$CLIPROOT" ] && CLIPROOT=`cd ../..;pwd`/cliproot
-[ -z "$BINDIR" ] && BINDIR=$HOME/bin
+#[ -z "$BINDIR" ] &&
+BINDIR=$HOME/bin
 
 #	initial CFLAGS
 #
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
-C_FLAGS="-Wall -I. -I./include $DEBUGFLAGS $OPTFLAGS -O0"
+C_FLAGS="-Wall -fPIC -I$CLIPROOT/include $DEBUGFLAGS $OPTFLAGS"
+C_LIBS="-L$CLIPROOT/lib -lclip"
 ADD_CFLAGS="-fPIC"
 
 uname=`uname -s`
@@ -287,7 +313,7 @@ CYGWIN)
 	DLLIB=''
 	DLLSUFF='.dll.a'
 	DLLREALSUFF='.dll'
-	EXESUFF='.exe'
+	EXESUFF=$EXESUFF.exe
 	CLIP_DLLIMPORT='__declspec(dllimport)'
 	CLIP_DLLEXPORT='__declspec(dllexport)'
 	NM_UNDERSCORE=yes
@@ -304,7 +330,7 @@ MINGW)
 	DLLIB='-lltdl'
 	DLLSUFF='.dll.a'
 	DLLREALSUFF='.dll'
-	EXESUFF='.exe'
+	EXESUFF=$EXESUFF.exe
 	CLIP_DLLIMPORT='__declspec(dllimport)'
 	CLIP_DLLEXPORT='__declspec(dllexport)'
 	NM_UNDERSCORE=yes
@@ -318,10 +344,16 @@ MINGW)
 	FORCEALIGN=4
 	;;
 LINUX)
-	LD_PRG='ld -Bdynamic -dynamic-linker /lib/ld-linux.so.2 /usr/lib/crt1.o /usr/lib/crti.o'
-	LD_END='/usr/lib/crtn.o -lc'
-	LDS_PRG='ld -Bstatic /usr/lib/crt1.o /usr/lib/crti.o'
-	LDS_END='/usr/lib/crtn.o -lc -lc_pic'
+	if [[ $C64 = "64" ]] ; then
+		LD_PRG="ld -A x86_64 -Bdynamic --dynamic-linker --libexecdir=/usr/lib$C64 -L/usr/lib$C64 /lib$C64/ld-linux-x86_64.so.2 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
+	else
+		LD_PRG="ld -A i586 -Bdynamic --dynamic-linker -L/usr/lib$C64 /lib$C64/ld-linux.so.2 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
+	fi
+	LD_END="-L/usr/lib$C64 /usr/lib$C64/crtn.o -lc"
+	ADDLIBS="-L/usr/lib$C64 -ldl -lm"
+	LDS_PRG="ld -Bstatic -L/usr/lib$C64 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
+	LDS_END="-L/usr/lib$C64 /usr/lib$C64/crtn.o -lc -lc_pic"
+
 	USE_LD=yes
 	USE_AS=yes
 	if [ -f /usr/include/gpm.h ]
@@ -342,7 +374,7 @@ then
 #
 if [ -f ./clipcfg.sh ]
 then
-	. ./clipcfg.sh
+	source tools/clipcfg.sh
 fi
 
 
@@ -370,11 +402,11 @@ then
 	#exit 1
 fi
 
-if [ "$USE_TASKS" = yes -a ! -f task/task.o ]
+if [ "$USE_TASKS" = yes -a ! -f libcliptask/task.o ]
 then
-	cd task
+	cd libcliptask
 	./configure
-	make clean task.o >/dev/null 2>&1
+	#	make clean std_tst >/dev/null 2>&1
 	if [ $? = 0 ]
 	then
 		USE_TASKS=yes
@@ -385,21 +417,26 @@ then
 	cd ..
 fi
 
+if [ "$USE_TASKS" = yes -a -f libcliptask/USE_PTH ]
+then
+    ADDLIBS="$ADDLIBS -lpth"
+fi
 
-cd xclip
-	if xmkmf >/dev/null 2>&1
-	then
-		if make xclip >/dev/null 2>&1
-		then
-			XCLIP=xclip/xclip
-		fi
-	fi
-cd ..
-
+#cd xclip
+#	if xmkmf >/dev/null 2>&1
+#	then
+#		if make xclip >/dev/null 2>&1
+#		then
+#			XCLIP=xclip/xclip
+#		fi
+#	fi
+#cd ..
 
 printf "configure: Makefile creating.."
 
 exec 3>Makefile.incl
+
+CLIP=clip$EXESUFF
 
 echo "#	Created automatically by 'configure'" >&3
 echo '#' >&3
@@ -410,9 +447,10 @@ echo '#' >&3
 echo "OSNAME='$osname'" >&3
 echo "DLLIB='$DLLIB'" >&3
 echo "ARCH='$arch'" >&3
-echo "ADDLIBS='$ADDLIBS'" >&3
 echo "ADD_CFLAGS='$ADD_CFLAGS'" >&3
+echo "CLIP=$CLIP" >&3
 echo "DLLSUFF='$DLLSUFF'" >&3
+echo "CLIP=clip$EXESUFF"
 echo "EXESUFF='$EXESUFF'" >&3
 echo "DLLREALSUFF='$DLLREALSUFF'" >&3
 if [ -n "$FORCEALIGN" ]
@@ -432,12 +470,15 @@ echo "STATICLINK='$STATICLINK'" >&3
 echo "CLIP_ROOT='$CLIPROOT'" >&3
 echo "BINDIR='$BINDIR'" >&3
 echo "INSTDIR='$CLIPROOT'" >&3
+echo "CLIPFLAGS=-w "
 echo "DLLSUFF='$DLLSUFF'" >&3
 echo "EXESUFF='$EXESUFF'" >&3
+echo "SCRIPTSUFF='$SCRIPTSUFF'" >&3
 echo "DLLREALSUFF='$DLLREALSUFF'" >&3
 echo "OS_$osname=yes" >&3
 
 echo "C_FLAGS='$C_FLAGS'" >&3
+echo "C_LIBS='$C_LIBS'" >&3
 fi
 if [ -f /usr/include/readline/readline.h ]
 then
@@ -464,7 +505,7 @@ fi
 if [ "$USE_TASKS" = yes ]
 then
 	echo 'USE_TASKS=yes' >&3
-	echo 'TASK=task/task.a' >&3
+	echo 'TASK=libcliptask/libcliptask.a' >&3
 fi
 
 echo "NO_GETTEXT=$NO_GETTEXT" >&3
@@ -506,26 +547,60 @@ then
 fi
 
 echo '
-#include <iconv.h>
+#include "/opt/iconv/include/iconv.h"
 int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
 ' > /tmp/$$.c
-$CC -o /tmp/$$ /tmp/$$.c -liconv 2>/dev/null 1>&2
+$CC --verbose -o /tmp/$$ /tmp/$$.c -L/opt/liconv/lib -liconv  2>/dev/null 1>&2
 if [ $? = 0 ]
 then
-	echo 'ICONV_LIB=-liconv' >&3
+	ICONV_LIB="-L/opt/iconv/lib -liconv"
+	echo "ICONV_LIB=$ICONV_LIB" >&1
+	echo "PO_BINS='po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF'" >&1
+	echo "ICONV_LIB=\"$ICONV_LIB\"" >&3
+	ICONV_INC="/opt/iconv/include/iconv.h"
+	echo ICONV_INC=$ICONV_INC >&3
 	echo "PO_BINS='po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF'" >&3
 	HAVE_ICONV=yes
+	echo "#include \"$ICONV_INC\"" >include.h/cl_iconv.h
 else
-	$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
+	echo '
+	#include "/usr/local/include/iconv.h"
+	int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
+	' > /tmp/$$.c
+	$CC --verbose -o /tmp/$$ /tmp/$$.c -L/usr/local/lib -liconv  2>/dev/null 1>&2
 	if [ $? = 0 ]
 	then
-		echo 'ICONV_LIB=' >&3
+		ICONV_LIB="-L/usr/local/lib -liconv"
+		echo "ICONV_LIB=$ICONV_LIB" >&1
+		echo "PO_BINS='po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF'" >&1
+		echo "ICONV_LIB=\"$ICONV_LIB\"" >&3
+		ICONV_INC="/usr/local/include/iconv.h"
+		echo ICONV_INC=$ICONV_INC >&3
 		echo "PO_BINS='po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF'" >&3
 		HAVE_ICONV=yes
+		echo "#include \"$ICONV_INC\"" >include.h/cl_iconv.h
 	else
-		echo 'NO ICONV library found, doc building will have problems'
-		echo "PO_BINS='po_extr$EXESUFF po_compat$EXESUFF'" >&3
-		HAVE_ICONV=
+		echo '
+		#include <iconv.h>"
+		int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
+		' > /tmp/$$.c
+		$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
+		if [ $? = 0 ]
+		then
+			echo 'ICONV_LIB=' >&3
+			echo "PO_BINS='po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF'" >&3
+			ICONV_INC="<iconv.h>"
+			echo ICONV_INC=$ICONV_INC >&3
+			HAVE_ICONV=yes
+			echo "#include $ICONV_INC" >include.h/cl_iconv.h
+		else
+			ICONV_INC="<iconv.h>"
+			echo ICONV_INC=$ICONV_INC >&3
+			echo 'NO ICONV library found, doc building will have problems'
+			echo "PO_BINS='po_extr$EXESUFF po_compat$EXESUFF'" >&3
+			HAVE_ICONV=
+			echo "#include $ICONV_INC" >include.h/cl_iconv.h
+		fi
 	fi
 fi
 rm -f /tmp/$$*
@@ -551,23 +626,31 @@ else
 	PO_TO_COMPAT='$CLIPROOT/bin/po_compat -t'
 	echo 'PO_COMPAT=yes' >&3
 fi
+ADDLIBS="$ADDLIBS $ICONV_LIB $READLINE_LIBS"
+
+echo "ADDLIBS='$ADDLIBS'" >&3
+#echo "export ">&3
 
 echo >&3
 
 rm -f /tmp/$$msg
 
-
 exec 3>&-
 
-tr -d \' <./Makefile.incl >Makefile.inc
+tr -d \' <./Makefile.incl >./Makefile.inc
+tr -d \" <./Makefile.inc >./Makefile.tmp
+cat ./Makefile.tmp >./Makefile.inc
 cat ./Makefile.inc ./Makefile.in >Makefile
 
+cp Makefile.inc ../Makefile.ini
+mkdir -p$V $CLIPROOT/include
+cp Makefile.inc $CLIPROOT/include/Makefile.inc
 echo ". done."
 
 cp Makefile.incl clipcfg.sh
 echo export `cat Makefile.incl | grep '^[A-Z_][A-Z_]*=' | cut -d'=' -f1` >> clipcfg.sh
 
-rm Makefile.incl
+rm -f Makefile.incl
 
 
 printf "configure: creating clipcfg.h .."
@@ -578,7 +661,9 @@ echo "/* Created automatically by 'configure' */" >&3
 echo "#ifndef CLIP_CONFIG_H" >&3
 echo "#define CLIP_CONFIG_H" >&3
 echo >&3
-echo '#define CLIP_VERSION "'`cat release_version`'"' >&3
+exec 3>&-
+exec 3>temp$$1$$2
+echo '#define CLIP_VERSION "'`cat tools/release_version`'"' >&3
 echo '#define DLLIB "'$DLLIB'"' >&3
 echo '#define ADDLIBS "'$ADDLIBS'"' >&3
 echo '#define ADD_CFLAGS "'$ADD_CFLAGS'"' >&3
@@ -588,6 +673,7 @@ echo '#define DLLREALSUFF "'$DLLREALSUFF'"' >&3
 echo "#define CLIP_DLLEXPORT $CLIP_DLLEXPORT" >&3
 echo "#define CLIP_DLLIMPORT $CLIP_DLLIMPORT" >&3
 echo '#define NM_PRG '$NM_PRG'' >&3
+USE_AS=no
 if [ "$USE_AS" = no ]
 then
 	echo '#undef USE_AS' >&3
@@ -791,6 +877,7 @@ fi
 if [ "$HAVE_ICONV" = yes ]
 then
 	echo '#define HAVE_ICONV 1' >&3
+	echo "#include \"$ICONV_INC\"" >$CLIPROOT/include/cl_iconv.h
 else
 	echo '#undef HAVE_ICONV' >&3
 fi
@@ -809,163 +896,21 @@ case "$osname" in
 		;;
 esac
 
-echo >&3
-echo "#endif" >&3
 exec 3>&-
+#exec 3>./temp$$1$$2
+sort -u -d <temp$$1$$2 -o temp$$1$$2.out
+
+cat temp$$1$$2.out																>>clipcfg.h
+echo >>clipcfg.h
+echo "#endif" >>clipcfg.h
 echo ". done."
 
-
-if [ -f clip_msgmerge.in ]
-then
-
-printf "configure: creating clip_msgmerge .."
-exec 3>clip_msgmerge
-
-echo '#!/bin/sh' >&3
-echo "# Created automatically by 'configure'" >&3
-echo >&3
-echo 'test  -n "$CLIPROOT" || '"CLIPROOT=$CLIPROOT" >&3
-echo "NO_GETTEXT=$NO_GETTEXT" >&3
-if [ "$PO_COMPAT" = yes ]
-then
-	echo "PO_COMPAT=yes" >&3
-fi
-echo "PO_FROM_COMPAT=\"$PO_FROM_COMPAT\"" >&3
-echo "PO_TO_COMPAT=\"$PO_TO_COMPAT\"" >&3
-cat clip_msgmerge.in >&3
-
-exec 3>&-
-echo ". done."
-
-chmod +x clip_msgmerge
-
-fi
-
-if [ -f clip_msgfmt.in ]
-then
-
-printf "configure: creating clip_msgfmt .."
-exec 3>clip_msgfmt
-
-echo '#!/bin/sh' >&3
-echo "# Created automatically by 'configure'" >&3
-echo >&3
-echo '[ -z "$CLIPROOT" ] && '"CLIPROOT=$CLIPROOT" >&3
-echo "NO_GETTEXT=$NO_GETTEXT" >&3
-if [ "$PO_COMPAT" = yes ]
-then
-	echo "PO_COMPAT=yes" >&3
-fi
-echo "PO_FROM_COMPAT=\"$PO_FROM_COMPAT\"" >&3
-echo "PO_TO_COMPAT=\"$PO_TO_COMPAT\"" >&3
-cat clip_msgfmt.in >&3
-
-exec 3>&-
-echo ". done."
-
-chmod +x clip_msgfmt
-
-fi
-
-if [ -f clip_makeslib.in ]
-then
-
-printf "configure: creating clip_makeslib .."
-exec 3>clip_makeslib
-
-echo '#!/bin/sh' >&3
-echo "# Created automatically by 'configure'" >&3
-echo >&3
-echo 'test -n "$CLIPROOT" || '"CLIPROOT=$CLIPROOT" >&3
-echo "CLIP_ROOT=$CLIPROOT" >&3
-echo "ADDLIBS='$ADDLIBS'" >&3
-echo "ADD_CFLAGS='$ADD_CFLAGS'" >&3
-echo "DLLSUFF=$DLLSUFF" >&3
-echo "EXESUFF=$EXESUFF" >&3
-echo "DLLREALSUFF=$DLLREALSUFF" >&3
-echo "STD_LIBDIR=$STD_LIBDIR" >&3
-echo "NM_PRG=$NM_PRG" >&3
-echo "NM_UNDERSCORE=$NM_UNDERSCORE" >&3
-echo "OS_$osname=yes" >&3
-echo "OSNAME=$osname" >&3
-echo "CC=$CC" >&3
-if [ "$USE_TASKS" = yes ]
-then
-	echo 'USE_TASKS=yes' >&3
-fi
-
-cat clip_makeslib.in >&3
-
-exec 3>&-
-echo ". done."
-
-chmod +x clip_makeslib
-
-fi
-
-if [ -f clip_cp.in ]
-then
-
-printf "configure: creating clip_cp .."
-exec 3>clip_cp
-
-echo '#!/bin/sh' >&3
-echo "# Created automatically by 'configure'" >&3
-echo >&3
-echo '[ -z "$CLIPROOT" ] && '"CLIPROOT=$CLIPROOT" >&3
-echo "CLIP_ROOT=$CLIPROOT" >&3
-echo "ADDLIBS='$ADDLIBS'" >&3
-echo "ADD_CFLAGS='$ADD_CFLAGS'" >&3
-echo "DLLSUFF=$DLLSUFF" >&3
-echo "EXESUFF=$EXESUFF" >&3
-echo "DLLREALSUFF=$DLLREALSUFF" >&3
-echo "STD_LIBDIR=$STD_LIBDIR" >&3
-echo "NM_PRG=$NM_PRG" >&3
-echo "NM_UNDERSCORE=$NM_UNDERSCORE" >&3
-echo "OS_$osname=yes" >&3
-echo "OSNAME=$osname" >&3
-echo "CC=$CC" >&3
-
-cat clip_cp.in >&3
-
-exec 3>&-
-echo ". done."
-
-chmod +x clip_cp
-
-fi
-
-if [ -f clip_makelib.in ]
-then
-
-printf "configure: creating clip_makelib .."
-exec 3>clip_makelib
-
-echo '#!/bin/sh' >&3
-echo "# Created automatically by 'configure'" >&3
-echo >&3
-echo '[ -z "$CLIPROOT" ] && '"CLIPROOT=$CLIPROOT" >&3
-echo "CLIP_ROOT=$CLIPROOT" >&3
-echo "ADDLIBS='$ADDLIBS'" >&3
-echo "ADD_CFLAGS='$ADD_CFLAGS'" >&3
-echo "DLLSUFF=$DLLSUFF" >&3
-echo "EXESUFF=$EXESUFF" >&3
-echo "DLLREALSUFF=$DLLREALSUFF" >&3
-echo "STD_LIBDIR=$STD_LIBDIR" >&3
-echo "NM_PRG=$NM_PRG" >&3
-echo "NM_UNDERSCORE=$NM_UNDERSCORE" >&3
-echo "OS_$osname=yes" >&3
-echo "OSNAME=$osname" >&3
-echo "CC=$CC" >&3
-
-cat clip_makelib.in >&3
-
-exec 3>&-
-echo ". done."
-
-chmod +x clip_makelib
-
-fi
+cd $pwd/tools
+source clip_msgmerge.in.sh
+source clip_msgfmt.in.sh
+source clip_makelib.in.sh
+source clip_makeslib.in.sh
+source clip_cp.in.sh
 
 reg=1
 if [ -f registration ]

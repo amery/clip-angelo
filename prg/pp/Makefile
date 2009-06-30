@@ -2,14 +2,14 @@ ifndef CLIPROOT
 CLIPROOT:=$(shell cd ../../../cliproot;pwd)
 endif
 include $(CLIPROOT)/include/Makefile.inc
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -a -O
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -O
 CLIPLIBS  =
 
 pp$(EXESUFF):	pp.prg
-	$(CLIP) $(CLIPFLAGS) -e -s pp.prg $(CLIPLIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e -s pp.prg $(CLIPLIBS)
 
-install:
+install:pp$(EXESUFF)
 	cp pp$(EXESUFF) $(DESTDIR)$(CLIPROOT)/bin/pp_ron$(EXESUFF)
 	cp *.ch $(DESTDIR)$(CLIPROOT)/include
 

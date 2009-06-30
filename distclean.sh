@@ -14,6 +14,7 @@ else
 fi
 
 export MAKE
+#source config/gen.in
 #unset CLIPROOT
 pwd=`pwd`
 
@@ -29,5 +30,14 @@ cd cliplibs
 $MAKE distclean
 rm -f clip-dev.spec _lst _nlst
 cd $pwd
+
+# Clear documentation
+if test -d doc
+then
+	cd doc
+	$MAKE distclean
+	cd $pwd
+fi
+
 #find . -name '*.ex' -or -name '*.nm' |  xargs rm -f
 

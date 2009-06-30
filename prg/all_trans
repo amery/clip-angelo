@@ -49,6 +49,10 @@ if [ -d udb ]
 then
 	cd udb ; $comm $CPsource $CPtarget *.ch *.prg ; cd ..
 fi
+if [ -d udbx ]
+then
+	cd udbx ; $comm $CPsource $CPtarget *.ch *.prg ; cd ..
+fi
 if [ -d utils ]
 then
 	cd utils ; $comm $CPsource $CPtarget *.ch *.prg ; cd ..

@@ -1,9 +1,9 @@
 include $(CLIPROOT)/include/Makefile.inc
 
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -a -O -n -I .. -I ../include
+#CLIP	= $(CLIPROOT)/bin/clip
+# CLIPFLAGS = -a -O -n -I .. -I ../include
 CLIPLIBS  =
-OBJS  = aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o \
+OBJS  = $(sort aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o \
 	acctyear.o adessort.o aemaxlen.o aeminlen.o amedian.o \
 	ach2tb.o \
 	anomatch.o any2any.o aredit.o asum.o at2.o bitclr.o bitset.o \
@@ -23,14 +23,14 @@ OBJS  = aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o \
 	xbox.o year.o \
 	dosver.o floptst.o isshare.o mouse1.o nwlstat.o nwsem.o \
 	page.o scancode.o  vidcur.o  vidmode.o \
-	clrsel.o menuto.o ftext.o
+	clrsel.o menuto.o ftext.o )
 	# dfile.o
 
 
 .SUFFIXES: .prg .o
 
 all:    $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib ../libclip-nanfor.a *.o
+	clip_makelib$(SCRIPTSUFF) ../libclip-nanfor.a *.o
 	rm -rf *.c
 
 clean:

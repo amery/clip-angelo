@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <tcpd.h>
-
+#include <string.h>
 #define BUFSIZE 8192
 
 #define ACCESS_DENIED  0

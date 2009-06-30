@@ -13,17 +13,12 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 
-CLIPINCLUDE = -I$(CLIPROOT)/include
-CLIP = $(CLIPROOT)/bin/clip
+#CLIP = $(CLIPROOT)/bin/clip
 
 .SUFFIXES: .prg .o .po
 
-COMPILER=gcc
-C_FLAGS=-Wall -g -I. -I$(CLIPROOT)/include -I/usr/include
-LIBS= -lexpat
-CC = $(COMPILER)
-CFLAGS  = $(C_FLAGS)
-
+LIBS= -lexpat $(C_LIBS)
+CFLAGS  = -I. $(C_FLAGS) $(XCFLAGS)
 
 XLIB=libclip-xml.a
 XSLIB=libclip-xml$(DLLSUFF)
@@ -41,26 +36,27 @@ HASHSRCS = $(SRC) $(HDRS)
 
 .PHONY: all clean uninstall distclean
 
-all: hash $(SRC) $(OBJS) $(XTARGETS)
+all : hash $(SRC) $(OBJS) $(XTARGETS)
 
 hash: _hashxml.h
 
 _hashxml.h: $(HASHSRCS)
-	$(CLIPROOT)/bin/clip_hashextract $(HASHSRCS) | sort -u > _hashxml.h
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashxml.h
 	cmp _hashxml.h hashxml.h 2>/dev/null || cp _hashxml.h hashxml.h
 
 
 $(XLIB): $(XLIBOBJS)  $(OBJS)
 	rm -f $(XLIB)
-	$(CLIPROOT)/bin/clip_makelib $(XLIB) $(XLIBOBJS)  $(OBJS)
+	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)  $(OBJS)
 	ranlib $(XLIB)
 
 $(XSLIB): $(XLIB)  $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(XSLIB) $(XLIB) $(LIBS)  $(OBJS)
+	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)  $(OBJS)
+	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib/
 
 
-install: all
-	$(CLIPROOT)/bin/clip_cp $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
+install : all
+	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib/
 	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
 	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
 	cp clip-expat.ch $(DESTDIR)$(CLIPROOT)/include/
@@ -85,10 +81,10 @@ shell:
 	sh
 
 .prg.o:
-	$(CLIP) -wn $(CLIPINCLUDE) $<
+	$(CLIP) -wn $<
 
 .c.o:
-	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
-	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
+	@echo $(CC) $(CFLAGS) -c $<
+	@$(CC) $(CFLAGS) -c $<
 
 

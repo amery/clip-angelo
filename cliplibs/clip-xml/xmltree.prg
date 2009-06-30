@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------*/
 /*   This is a part of CLIP-XML library                                    */
 /*                                                                         */
-/*   Copyright (C) 2003-2005 by E/AS Software Foundation                   */
+/*   Copyright (C) 2003-2006 by E/AS Software Foundation                   */
 /*   Author: Andrey Cherepanov <skull@eas.lrn.ru>                          */
 /*                                                                         */
 /*   This program is free software; you can redistribute it and/or modify  */
@@ -26,7 +26,7 @@ function _recover_XMLTREE( obj )
 	obj:parseFile 	:= @xml_ParseFile()
 	obj:parseString := @xml_ParseString()
 	obj:getRoot		:= @xml_GetRoot()
-	obj:setRoot		:= @xml_setRoot()
+	obj:setRoot		:= @xml_SetRoot()
 	obj:getError	:= @xml_GetError()
 	obj:XPath		:= @xml_GetXPath()
 	obj:dump		:= @xml_Dump()
@@ -44,6 +44,7 @@ static function xml_ParseFile( self, filename )
 	var:ct := NIL
 	var:pt := NIL
 	var:root := NIL
+	var:parser := parser
 	xml_SetUserData(parser, @var)
 	xml_SetCharacterDataHandler( parser, @xml_handleText() )
 	xml_SetElementHandler( parser, @xml_handleElementStart(), @xml_handleElementEnd() )
@@ -81,6 +82,7 @@ static function xml_ParseString( self, string )
 	var:ct := NIL
 	var:pt := NIL
 	var:root := NIL
+	var:parser := parser
 	xml_SetUserData(parser, @var)
 	xml_SetCharacterDataHandler( parser, @xml_handleText() )
 	xml_SetElementHandler( parser, @xml_handleElementStart(), @xml_handleElementEnd() )
@@ -163,6 +165,7 @@ function xml_handleElementStart( vUser, name, aAttr )
 	// Create new XMLTag object
 	//?? "<"+name+">&\n"
 	vUser:ct := XMLTag( name )
+	vUser:ct:pos := xml_GetCurrentByteIndex( vUser:parser )
 	vUser:ct:parent := vUser:pt
 	
 	aeval( aAttr, {|e| e[2]:=translate_charset( "utf-8", host_charset(), e[2]) } )
@@ -186,14 +189,23 @@ return
 
 /* Handler function for text processing */
 function xml_handleText( vUser, sStr, nLen )
-	local s
-	s := translate_charset( "utf-8", host_charset(), alltrim(sStr) )
-/*	
-	if .not. empty(sStr)
-		?? "TEXT:", host_charset(), sStr, translate_charset( "utf-8", "koi8-r", alltrim(sStr) ), chr(10)
-	endif
-*/
-	if .not. empty(s) .and. .not. empty(vUser:ct)
+	local s, i:=1, sTrimmed
+	
+	s := translate_charset( "utf-8", host_charset(), sStr )
+	if .not. empty(vUser:ct)
+		// Remove lead spaces and tabs (for empty string)
+		sTrimmed := alltrim(s)
+		if len(sTrimmed) == 0
+			s := sTrimmed
+		endif
+					
+		//?? "==="+s+"===",len(s), right(s,1) == chr(10),"&\n"
+		if len(s) == 1 .and. right(s,1) == chr(10)
+			if right(vUser:ct:text,1) == chr(10) .or. len(vUser:ct:text) == 0
+				s := ""
+			endif
+		endif
+		//s := strtran( sn, chr(9), '' )
 		vUser:ct:text += s
 	endif
 return

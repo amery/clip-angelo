@@ -12,8 +12,7 @@
 SRCS  = sheet.c fontcombo.c bordercombo.c colorcombo.c togglecombo.c \
 	combobox.c itementry.c
 
-OBJS  = sheet.o fontcombo.o bordercombo.o colorcombo.o togglecombo.o \
-	combobox.o itementry.o
+OBJS  = bordercombo.o colorcombo.o combobox.o fontcombo.o itementry.o sheet.o togglecombo.o
 
 HDRS	= clip-gtkextra.ch clip-gtkextra.h ../clip-gtk/clip-gtk.ch
 
@@ -35,7 +34,7 @@ DEFS	=
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
 
 CC = $(COMPILER)
-CFLAGS  = $(C_FLAGS) $(DEFS) $(MEMDBGFLAGS) -I../clip-gtk
+CFLAGS  = -fPIC $(C_FLAGS) $(DEFS) $(MEMDBGFLAGS) -I../clip-gtk
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 
 export CC CFLAGS
@@ -54,16 +53,16 @@ Makefile: Makefile.in configure
 hash: _hashcode.h
 
 _hashcode.h: $(HASHSRCS)
-	$(CLIPROOT)/bin/clip_hashextract $(HASHSRCS) | sort -u > _hashcode.h
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashcode.h
 	cmp _hashcode.h hashcode.h 2>/dev/null || cp _hashcode.h hashcode.h
 
 $(XLIB): $(XLIBOBJS)
 	rm -f $(XLIB)
-	$(CLIPROOT)/bin/clip_makelib $(XLIB) $(XLIBOBJS)
+	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)
 	ranlib $(XLIB)
 
 $(XSLIB): $(XLIB)
-	$(CLIPROOT)/bin/clip_makeslib $(XSLIB) $(XLIB) $(LIBS)
+	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)
 
 test: install
 	cd example && $(MAKE)
@@ -76,8 +75,8 @@ distclean: clean
 	rm -rf clip-gtkextracfg.h hashcode.h _hashcode.h Makefile
 	cd example && $(MAKE) clean
 
-install: $(XTARGETS)
-	$(CLIPROOT)/bin/clip_cp $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
+install: all $(XTARGETS)
+	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
 	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
 	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
 	#[ "$(XSLIBREAL)" = "$(XSLIB)" ] || cp $(XSLIBREAL) $(DESTDIR)$(CLIPROOT)/lib

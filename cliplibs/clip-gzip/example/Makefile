@@ -1,4 +1,4 @@
-PRG=gz
+PRG=gz$(EXESUFF)
 all: $(PRG)
 
 clean:
@@ -6,5 +6,5 @@ clean:
 		*~ core* *core $(PRG) *.gz *.ex *.nm
 
 gz: gz.prg
-	clip -e -s -l -M gz.prg -lclip-gzip
+	clip$(EXESUFF) -o$@ -e -s -l -M gz.prg -lclip-gzip
 

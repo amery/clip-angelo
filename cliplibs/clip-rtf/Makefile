@@ -6,7 +6,7 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 
-CLIP	= $(CLIPROOT)/bin/clip
+#CLIP	= $(CLIPROOT)/bin/clip
 CLIPFLAGS = -l -n -w
 CLIPLIBS  =
 OBJS  = richtext.o
@@ -21,16 +21,16 @@ RTFLIBREAL = libclip-rtf$(DLLREALSUFF)
 all:    $(RTFLIB)
 
 $(RTFLIB): $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib $(RTLIB) $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(RTFLIB) $(RTLIB)
+	clip_makelib$(SCRIPTSUFF) $(RTLIB) $(OBJS)
+	clip_makeslib$(SCRIPTSUFF) $(RTFLIB) $(RTLIB) $(C_LIBS)
 
 clean:
 	rm -f *.exe *.c *.s *.o *.po *.log *.bak *.a *.so *.ex *.nm
 	cd test && $(MAKE) clean
 
 install: $(RTFLIB)
-	$(CLIPROOT)/bin/clip_cp $(RTLIB) $(DESTDIR)$(CLIPROOT)/lib
-	$(CLIPROOT)/bin/clip_cp $(RTFLIB) $(DESTDIR)$(CLIPROOT)/lib
+	clip_cp$(SCRIPTSUFF) $(RTLIB) $(DESTDIR)$(CLIPROOT)/lib
+	clip_cp$(SCRIPTSUFF) $(RTFLIB) $(DESTDIR)$(CLIPROOT)/lib
 	chmod 0755 $(DESTDIR)$(CLIPROOT)/lib/$(RTFLIB)
 	#[ "$(RTFLIBREAL)" = "$(RTFLIB)" ] || cp $(RTFLIBREAL) $(CLIPROOT)/lib
 	cp ./richtext.ch $(DESTDIR)$(CLIPROOT)/include

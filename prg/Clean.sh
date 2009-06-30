@@ -1,11 +1,33 @@
-#!/bin/sh
+#!/bin/sh -u
 [ -n "$MAKE" ] || MAKE=make
 export MAKE
+NODBU=""
 rm -f *.bak
 rm -f $CLIPROOT/bin/clip_bl $CLIPROOT/bin/clip_blank $CLIPROOT/bin/clip_run \
       $CLIPROOT/bin/www_clip $CLIPROOT/bin/wcl2prg $CLIPROOT/bin/sqlrun \
       $CLIPROOT/bin/clip_prg $CLIPROOT/bin/clip_we $CLIPROOT/bin/clip_hv \
       $CLIPROOT/bin/clip_cld
+DirName="
+bdbfs
+cobra_clnt
+cobra_serv
+codb
+dbc
+debug
+doc_utils
+hiper
+kamache
+ocmng
+pp
+udb
+udbx
+utils
+"
+for dName in $DirName ; do
+	[ -d $dName ] && cd $dName && $MAKE clean && cd ..
+done
+exit 0
+
 if [ -d brow ]
 then
 	cd brow; $MAKE clean; cd ..

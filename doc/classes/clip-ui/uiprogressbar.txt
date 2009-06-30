@@ -1,0 +1,70 @@
+$CLASSNAME$
+	UIProgressBar
+$SUMMARY$
+	Class UIProgressBar.
+$LANG_RU$
+	Класс UIProgressBar.
+$ABOUT$
+	Progress indicator class.
+$LANG_RU$
+	Класс индикатора хода выполнения.
+$SYNTAX$
+	UIProgressBar(<text>)	--> UIProgressBar object.
+$LANG_RU$
+	UIProgressBar(<text>)	--> Объект UIProgressBar.
+$ATTRIBUTES$
+	<className>	- Class name. Value should be "UIProgressBar".
+$LANG_RU$
+	<className>	- Имя класса. Значение: "UIProgressBar".
+
+
+$METHODNAME$
+	UIProgressBar()
+$SUMMARY$
+	Constructor.
+$LANG_RU$
+	Конструктор.
+$SYNTAX$
+	UIProgressBar(<text>)	--> UIProgressBar object.
+$ARGUMENTS$
+	<text>		- String. Label on progress indicator.
+$LANG_RU$
+	<text>		- Строка. Надпись на индикаторе хода выполнения.
+$ENDMETHOD$
+
+
+$METHODNAME$
+	setValue()
+$SUMMARY$
+	Set status of progress and change label.
+$LANG_RU$
+	Установить статус выполнения и поменять надпись на индикаторе.
+$SYNTAX$
+	setValue(<percent>, [<text>])
+$ARGUMENTS$
+	<percent>	- Number or string. Status of progress (0..1 or 1..100)
+	<text>		- String. Label on progress indicator. If missed, show percent as integer number with suffix '%'.
+$LANG_RU$
+	<percent>	- Число. Статус выполнения (от 0 до 1 или от 1 до 100)
+	<text>		- Строка. Надпись на индикаторе хода выполнения. Если не указан, показывается процент выполнения в виде целого числа с суффиксом '%'.
+$ENDMETHOD$
+
+
+$EXAMPLES$
+	pb := UIProgressBar("Working...")
+	pb:setPercent(0.5, "50 %")
+
+
+$PLATFORMS$
+	No dependies of platform.
+$LANG_RU$
+	Не зависит от платформы.
+$SEEALSO$
+$AUTHOR$
+	Andrey Cherepanov <skull@eas.lrn.ru>
+$LANG_RU$
+	Андрей Черепанов <skull@eas.lrn.ru>
+$LASTDATE$
+
+
+

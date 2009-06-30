@@ -1,17 +1,17 @@
 ifdef CLIPROOT
 include $(CLIPROOT)/include/Makefile.inc
 endif
-CLIP	= $(CLIPROOT)/bin/clip
+#CLIP	= $(CLIPROOT)/bin/clip$(EXESUFF)
 CLIPFLAGS = -pw
 MODULES = hello.po
 .SUFFIXES: .prg .o .po
 
-all: $(MODULES)
+all : $(MODULES)
 
 clean:
 	rm -rf *.ex *.nm *.c *.s *.po *.pa *.log *.uri *.b *.BAK *.bak *~ core* *core
 
-install:
+install : all
 	mkdir -p $(DESTDIR)$(CLIPROOT)/kamache/mod-clip
 	cp Makefile *.po *.prg $(DESTDIR)$(CLIPROOT)/kamache/mod-clip
 

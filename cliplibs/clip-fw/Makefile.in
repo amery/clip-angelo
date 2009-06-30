@@ -1,0 +1,58 @@
+
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -g -w -l -I .. $(INCLUDEDIRS)
+CC = gcc
+CFLAGS = -fPIC -Wall -g -I. -I$(CLIPROOT)/include
+
+CLIPLIBS  =
+FWLIB = libclip-fw.a
+FWINLIB = libclip-fw$(DLLSUFF)
+FWINLIBREAL = libclip-fw$(DLLREALSUFF)
+
+COBJS    = c_funcs.o
+LIBOBJS  = fw_sysgtk.o fw_common.o fw_syscti.o fw_menusys.o\
+	   fw_color.o fw_window.o fw_menu.o fw_menuitem.o \
+	   fw_msg.o fw_font.o fw_msgbar.o fw_bar.o fw_btnbmp.o \
+	   fw_control.o fw_dialog.o fw_combobox.o fw_get.o fw_say.o fw_button.o\
+	   fw_meter.o fw_listbox.o fw_msgitem.o fw_timer.o fw_rect.o\
+	   fw_mdiclien.o fw_mdichild.o fw_mdiframe.o fw_scrllbar.o fw_tabs.o\
+	   fw_wbrowse.o
+
+.SUFFIXES: .prg .o .po
+
+
+all:  links  $(FWINLIB)
+
+links :
+	mkdir -p $(DESTDIR)$(CLIPROOT)/include/fwin
+	cp -fupv ./include/*.ch $(DESTDIR)$(CLIPROOT)/include/fwin
+	cp -fupv ./include/*.h $(DESTDIR)$(CLIPROOT)/include/fwin
+
+$(FWINLIB): $(COBJS) $(LIBOBJS)
+	$(CC) $(CFLAGS) -c c_funcs.c
+	clip_makelib$(SCRIPTSUFF) $(FWLIB) $(LIBOBJS) $(COBJS)
+	clip_makeslib$(SCRIPTSUFF) $(FWINLIB) $(FWLIB)
+
+clean:
+	rm -f *.exe fw*.c *.s *.o *.po *.log *.bak *.so *.a *.ex *.nm
+	cd example && $(MAKE) clean
+
+install: all links $(FWINLIB)
+	clip_cp$(SCRIPTSUFF) $(FWINLIB) $(DESTDIR)$(CLIPROOT)/lib
+	clip_cp$(SCRIPTSUFF) libclip-fw $(DESTDIR)$(CLIPROOT)/lib
+	chmod 0755 $(DESTDIR)$(CLIPROOT)/lib/$(FWINLIB)
+	#[ "$(FWINLIBREAL)" = "$(FWINLIB)" ] || cp $(FWINLIBREAL) $(DESTDIR)$(CLIPROOT)/lib
+	mkdir -p $(DESTDIR)$(CLIPROOT)/include/fwin
+	cp -fpuv ./include/*.ch $(DESTDIR)$(CLIPROOT)/include/fwin
+	cp -fpuv ./include/*.h $(DESTDIR)$(CLIPROOT)/include/fwin
+	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw
+	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw/bitmaps
+	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw/data
+	cp -R test/Makefile test/*.prg test/.clipcharset $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw/
+	cp -R test/bitmaps/*.bmp $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw/bitmaps/
+	cp -R test/data/*.dbf test/data/*.ntx $(DESTDIR)$(CLIPROOT)/doc/example/clip-fw/data/
+
+.prg.o:
+	$(CLIP) $(CLIPFLAGS) $<
+
+

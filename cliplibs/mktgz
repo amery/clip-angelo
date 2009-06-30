@@ -37,8 +37,8 @@ mkdir -p ${DESTDIR}/${SCLIPROOT}/lib \
 cp ${CLIPROOT}/include/clipcfg.sh ${CLIPROOT}/include/Makefile.inc ${DESTDIR}/${SCLIPROOT}/include/
 cp ${CLIPROOT}/bin/clip_cp ${DESTDIR}/${SCLIPROOT}/bin
 $MAKE install DESTDIR="" CLIPROOT=${DESTDIR}/${SCLIPROOT} || cleanup 2
-rm ${DESTDIR}/${SCLIPROOT}/include/clipcfg.sh ${DESTDIR}/${SCLIPROOT}/include/Makefile.inc
-rm ${DESTDIR}/${SCLIPROOT}/bin/clip_cp
+rm -f ${DESTDIR}/${SCLIPROOT}/include/clipcfg.sh ${DESTDIR}/${SCLIPROOT}/include/Makefile.inc
+rm -f ${DESTDIR}/${SCLIPROOT}/bin/clip_cp
 
 mkdir -p ${DESTDIR}/usr/lib
 cd ${DESTDIR}/usr/lib || exit 1

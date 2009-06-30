@@ -1,11 +1,12 @@
 ifdef CLIPROOT
 include $(CLIPROOT)/include/Makefile.inc
 endif
-CLIP	= $(CLIPROOT)/bin/clip
+#CLIP	= $(CLIPROOT)/bin/clip
 CLIPFLAGS = -s -l -w
 
-all:		clip_hindex$(EXESUFF) clip_hseek$(EXESUFF)
-install:	all
+all :		clip_hindex$(EXESUFF) clip_hseek$(EXESUFF)
+
+install :	all
 	cp clip_hindex$(EXESUFF) $(DESTDIR)$(CLIPROOT)/bin/clip_hindex$(EXESUFF)
 	cp clip_hseek$(EXESUFF) $(DESTDIR)$(CLIPROOT)/bin/clip_hseek$(EXESUFF)
 
@@ -15,7 +16,7 @@ clean:
 	rm -rf *.ex *.nm
 
 clip_hindex$(EXESUFF):	clip_hindex.prg
-	$(CLIP) $(CLIPFLAGS) -e clip_hindex.prg
+	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hindex.prg
 
 clip_hseek$(EXESUFF):	clip_hseek.prg
-	$(CLIP) $(CLIPFLAGS) -e clip_hseek.prg
+	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hseek.prg

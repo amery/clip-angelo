@@ -57,7 +57,7 @@ cp ${CLIPROOT}/bin/clip_msgfmt \
 	${DESTDIR}${SCLIPROOT}/bin/
 echo "install to ${DESTDIR}${SCLIPROOT}"
 make install CLIPROOT=${DESTDIR}${SCLIPROOT} || true
-rm ${DESTDIR}${SCLIPROOT}/include/clipcfg.sh \
+rm -f ${DESTDIR}${SCLIPROOT}/include/clipcfg.sh \
 	${DESTDIR}${SCLIPROOT}/include/Makefile.inc \
 	${DESTDIR}${SCLIPROOT}/bin/clip_msgfmt \
 	${DESTDIR}${SCLIPROOT}/bin/clip_msgmerge \

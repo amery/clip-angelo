@@ -9,7 +9,7 @@
 #include <expat.h>
 
 #include "clip.h"
-#include "screen/charset.h"
+#include "libclipscreen/charset.h"
 
 #include "hashxml.h"
 #include "clip-expat.h"
@@ -283,6 +283,18 @@ clip_XML_ERRORSTRING(ClipMachine *cm)
 	CHECKCPARSER(cpar);
 
     _clip_retc(cm,(char *) XML_ErrorString(XML_GetErrorCode(cpar->parser)));
+    return 0;
+err:
+	return 1;
+}
+
+int
+clip_XML_GETCURRENTBYTEINDEX(ClipMachine *cm)
+{
+	C_parser *cpar = _fetch_c_arg(cm);
+	CHECKCPARSER(cpar);
+
+    _clip_retni(cm,XML_GetCurrentByteIndex(cpar->parser));
     return 0;
 err:
 	return 1;

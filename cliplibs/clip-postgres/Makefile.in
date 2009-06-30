@@ -6,15 +6,11 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 
-CLIPINCLUDE=-I$(CLIPROOT)/include
-#C_FLAGS=-Wall -g -I. $(CLIPINCLUDE)
-#CC=gcc
-
 TARGET=libclip-postgres$(DLLSUFF)
 ATARGET=libclip-postgres.a
 RTARGET=libclip-postgres$(DLLREALSUFF)
-PGINC = -I@PGINCDIR@
-PGLIB = -L@PGLIBDIR@
+CFLAGS=$(C_FLAGS) -I@PGINCDIR@
+PGLIB = -L@PGLIBDIR@ -lpq $(C_LIBS)
 OBJS=pg_clip.o pg.o
 
 all:  have_lib	$(TARGET) $(ATARGET)
@@ -23,20 +19,20 @@ have_lib:
 	test -f @PGINCDIR@/libpq-fe.h
 
 $(TARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(OBJS) -lpq $(PGLIB)
+	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(PGLIB)
 
 $(ATARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib $(ATARGET) $(OBJS) -lpq $(PGLIB)
+	clip_makelib$(SCRIPTSUFF) $(ATARGET) $(OBJS) $(PGLIB)
 
 pg_clip.o: pg_clip.c
-	$(CC) $(C_FLAGS) $(CLIPINCLUDE) $(PGINC) -c pg_clip.c
+	$(CC) $(CFLAGS) -c pg_clip.c
 
 pg.o: pg.prg postgres.ch
-	$(CLIPROOT)/bin/clip -l pg.prg
+	$(CLIP) -l pg.prg
 
-install:
-#	$(CLIPROOT)/bin/clip_cp $(TARGET) $(CLIPROOT)/lib
-	$(CLIPROOT)/bin/clip_cp libclip-postgres $(DESTDIR)$(CLIPROOT)/lib
+install:all
+#	$(CLIPROOT)/bin/clip_cp$(SCRIPTSUFF $(TARGET) $(CLIPROOT)/lib
+	clip_cp$(SCRIPTSUFF) libclip-postgres $(DESTDIR)$(CLIPROOT)/lib
 	#[ "$(TARGET)" = "$(RTARGET)" ] || cp $(RTARGET) $(CLIPROOT)/lib
 	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/clip-postgres
 	cp *.html $(DESTDIR)$(CLIPROOT)/doc/clip-postgres

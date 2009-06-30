@@ -1,0 +1,24 @@
+* - to do
++ - done
+- - skipped
+
+
++ один список для всех виджетов в cti_application
++ cti_application:__focus_to_top()
++ cti_menu -> в ZOrder
++ cti_optionmenu widget
++ signal-based mechanism (signal->action vs action->signal)
++ gtk_main() nesting
++ center windows
++ widget:realize() method
++ remove __handle_event from CTI_LIST and add methods set_key,apply_key to CTI_WIDGET
++ containers
+
+* menu, menubar and menuitem must be a containers
+* cti_widget:__cursor_visible(), cti_widget:__visible()
+* styles
+* Window:Maximize, Minimize, borders (set_decorations), system buttons
+* ScrollBars
+* ProgressBars
+* Dialogs
+* Mouse

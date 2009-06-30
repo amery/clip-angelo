@@ -1,0 +1,94 @@
+#
+# use make local NODBU=no to override this
+#
+include Makefile.ini
+
+NODBU=yes
+export NODBU MAKE
+DIRS_TO_SCAN = clip cliplibs prg
+
+all:
+	cat Readme_src | more
+	@echo
+	@echo
+	@echo "choose target: local system deb rpm rpm-opt tgz tbz src"
+	exit 1
+
+install : $(DIRS_TO_SCAN)
+
+clean : $(DIRS_TO_SCAN)
+#	./clean.sh
+
+distclean : $(DIRS_TO_SCAN)
+#	./distclean.sh
+
+cleanroot: clean
+	rm -rf ../cliproot/*
+
+user local: clean $(DIRS_TO_SCAN)
+	./mklocal
+
+system: clean
+	./mklocal -release
+
+packages: clean src tgz rpm deb
+
+lp: NODBU=no
+lp: src cleanroot local deb tgz rpm
+
+deb: clean
+	./mkdeb
+
+rpm: clean
+	./mkrpm
+
+rpm-opt: clean
+	./mkrpm -opt
+
+tgz: clean
+	./mktgz
+
+tbz tbz2 tar.bz2: clean
+	./mktgz -bzip2
+
+src: clean
+	./mksrc
+
+doc: clean
+	./mkdoc
+
+src_p: clean
+	./mksrc_p
+
+ucommit:
+	./cvs_ucommit
+
+commit:
+	./cvs_commit
+
+update:
+	./cvs_update
+
+#doc:
+#	cd tdoc && $(MAKE)
+
+.PHONY: deb rpm
+
+Makefile : Makefile.in clip/configure
+
+Makefile.ini : Makefile.in clip/configure
+	cd clip && ./configure 0
+
+FORCE :
+
+$(DIRS_TO_SCAN) example : Makefile FORCE
+	$(Trace_o)
+	$(E_if)if [ -d $@ ] ; then 																			\
+					cd $@  																						\
+					&& ( [ -f Makefile ] || ( [ -x configure ] && ./configure 0) )	\
+					&& ( $(MAKE) $(MAKECMDGOALS)  		\
+						||  $(MAKE) -f Makefile.in $(MAKECMDGOALS) ) ;				\
+		fi
+#					&& ( $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS)  		\
+#						||  $(MAKE) -f Makefile.in $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ) ;				\
+

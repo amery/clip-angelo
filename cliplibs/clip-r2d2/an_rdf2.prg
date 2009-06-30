@@ -7,7 +7,7 @@ local sDict:="", sDep:=""
 local oDict,oDep, classDesc
 local connect_id:="", connect_data
 local beg_date:=date(),end_date:=date(),account:=""
-local periodic, mPeriod, nPer
+local periodic, mPeriod, nPer,  checkloop:= .t.
 local i,j,k,tmp,obj
 local an_data,an_level:=1, an_values:={" "," "," "," "," "," "}
 local urn:="", xslt:="", host:="", total:="", level:="", union:=""
@@ -93,8 +93,8 @@ local urn:="", xslt:="", host:="", total:="", level:="", union:=""
         if "ACC00" $ _query .and. !empty(_query:acc00)
             set("ACC00",_query:acc00)
         endif
-							
-							
+
+
 	if empty(beg_date) .or. empty(end_date) .or. empty(account)
 		?? "Content-type: text/html"
 		?
@@ -117,8 +117,9 @@ local urn:="", xslt:="", host:="", total:="", level:="", union:=""
 	if len(xslt)>0
 	? '<?xml-stylesheet type="text/xsl" href="http://'+host+'/xslt/'+xslt+'"?>'
 	endif
-	? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
-	? '	xmlns:DOCUM="http://last/cbt_new/rdf#">'
+	//? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	//? '	xmlns:DOCUM="http://last/cbt_new/rdf#">'
+	? '<root xmlns="http://itk.ru/json#">'
 	oDep := cgi_needDepository("ACC01","01")
 	if empty(oDep)
 //		cgi_xml_error( "Depository not found: ACC0101" )
@@ -141,11 +142,13 @@ local urn:="", xslt:="", host:="", total:="", level:="", union:=""
 		    else
 		    periodic := ""
 		endif
+		?? iif(checkloop,"",",")
+		checkloop:=.f.
 		cgi_an_putRdf2(an_data,account,an_level,urn,total,beg_date,end_date,"",periodic,level)
 		//putRdf2(an_data,account,an_level)
 
 	next
-	? ']</items></RDF:RDF>'
+	? ']</items></root>'
 	return
 ******************************
 function cgi_an_putRdf2(bal_data,account,an_level,urn,total,beg_date,end_date,sTree,ext_urn,level)
@@ -162,6 +165,7 @@ function cgi_an_putRdf2(bal_data,account,an_level,urn,total,beg_date,end_date,sT
 	if empty(ext_urn)
 		ext_urn := ""
 	endif
+	/*
 	for i=1 to len(bal_data)
 		tmp:=bal_data[i]
 
@@ -187,30 +191,24 @@ function cgi_an_putRdf2(bal_data,account,an_level,urn,total,beg_date,end_date,sT
 		promt:= iif(tmp:an_value=="total","",tmp:an_value)
 		?? iif(checkloop,"",",")
 		checkloop:=.f.
-		?? "{ a:{level:'"+level+"', "
-		?? " isContainer:false }, "
-		?? " r:{ "+idan+tmp:esse+"account:'"+account+"', unit:'"+tmp:unit_num+"', an_value:'"+tmp:an_value+"'}, "
-		?? " beg_date:'"+dtoc(beg_date)+"', "
-		?? " end_date:'"+dtoc(end_date)+"', "
-		?? " account:'"+cgi_essence(account)+"', "
+		?? "{ a:{level:'"+level+"', isContainer:false }, "
+
 		masan:=split(urn_id,":")
 		stran:=""
 		idan:=""
 
-		for u=1 to len(masan)
-		    stran+="stran"+alltrim(str(u))+":'"+cgi_essence(masan[u])+"', "
-		    idan+="idan"+alltrim(str(u))+":'"+masan[u]+"', "
+		for u=2 to len(masan)
+			sTmp := cgi_essence(masan[u])
+			stran+="stran"+alltrim(str(u))+":'"+sTmp+"', "
 		next
-//		outlog(__FILE__,__LINE__, tmp:esse)
-//		outlog(__FILE__,__LINE__, tmp:attr)
-		?? stran
-
-		 sTmp := tmp:essence
-		 sTmp := strtran(sTmp,'&',"&amp;")
-		 sTmp := strtran(sTmp,'"','\"')
-		 sTmp := strtran(sTmp,"'","\'")
-		 sTmp := strtran(sTmp,'<',"&lt;")
-		 sTmp := strtran(sTmp,'>',"&gt;")
+		?? " r:{ "+tmp:esse+"account:'"+account+"', unit:'"+tmp:unit_num+"', an_value:'"+tmp:an_value+"'}, "
+		//?? stran
+		sTmp := tmp:essence
+		sTmp := strtran(sTmp,'&',"&amp;")
+		sTmp := strtran(sTmp,'"','\"')
+		sTmp := strtran(sTmp,"'","\'")
+		sTmp := strtran(sTmp,'<',"&lt;")
+		sTmp := strtran(sTmp,'>',"&gt;")
 
 		?? " account_name:'"+sTmp+"' ,"
 		?? " id:'"+urn_id+":"+tmp:an_value+"', "+tmp:attr
@@ -225,11 +223,10 @@ function cgi_an_putRdf2(bal_data,account,an_level,urn,total,beg_date,end_date,sT
 		?? " in_num:'" +bal_summa(tmp:in_num)  +"', "
 		?? " out_num:'" +bal_summa(tmp:out_num) +"', "
 		?? " end_num:'" +bal_summa(tmp:end_num) +"', "
-		?? " unit:'"+cgi_essence(tmp:unit_num)  +"' " 
+		?? " unit:'"+cgi_essence(tmp:unit_num)  +"' "
 		?? "}"//+iif(i==len(bal_data),"","")
-		
-
 	next
+	*/
 return
 
 

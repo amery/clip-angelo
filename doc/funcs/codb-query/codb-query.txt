@@ -1,0 +1,465 @@
+$ABOUTCATEG$
+	CODB-QUERY
+$SUMMARY$
+	Library for work with CODB databases by queries.
+$LANG_RU$
+	Библиотека для работы с базами данных CODB посредством запросов.
+$DESCRIPTION$
+	codb-query library provides unified access to CODB databases by
+	queries instead call of	methods of classes <link linkend="classCODBDEPOSITORY">CODBDEPOSITORY</link>, 
+	<link linkend="classCODBDICTIONARY">CODBDICTIONARY</link>, 
+	<link linkend="classCODBLIST">CODBLIST</link> and
+	<link linkend="classCODBIDLIST">CODBIDLIST</link>.
+	
+	Queries are written on CQL language (SQL dialect adapted for CODB). You
+	can use this library in own CLIP program or use console program called codb.
+	
+	<command>Using In Programs.</command>
+	
+	For use codb-query library in programs you should build program with this
+	library. Just append '-lcodb-query' to build command.
+	
+	Typical session of work with database contains following steps:
+<pre>db := codb_connect() // Connect to databases
+e := codb_get_error( db ) // Check error
+if e != NIL
+	?? "ERROR codb_connect(): " + e + chr(10)
+	return 1
+endif
+
+// Query execution
+oRes := codb_execute( db, 'show databases' )
+
+// Process result
+aResult := codb_get_result( oRes )
+
+codb_close( db ) // Close databases</pre>
+	
+	Connect to databases is provided by function 
+	<link linkend="functionCODBCONNECT">codb_connect()</link>. This function
+	opens all available databases. Function 
+	<link linkend="functionCODBCLOSE">codb_close()</link> closes all databases.
+	
+	Real operations with databases are provided by functions:
+	<link linkend="functionCODBEXECUTE">codb_execute()</link>, 
+	<link linkend="functionCODBGETMETAOBJECT">codb_get_metaobject()</link>,
+	<link linkend="functionCODBGETOBJECT">codb_get_object()</link>,
+	<link linkend="functionCODBPUTMETAOBJECT">codb_put_metaobject()</link>,
+	<link linkend="functionCODBPUTOBJECT">codb_put_object()</link>.
+	
+	The difference between these functions is 
+	<link linkend="functionCODBEXECUTE">codb_execute()</link> returns object, from
+	which you can extract data by function 
+	<link linkend="functionCODBGETRESULT">codb_get_result()</link>, but other
+	functions operate only real objects. 
+	
+	For error check use 
+	<link linkend="functionCODBGETANSWER">codb_get_answer()</link> and 
+	<link linkend="functionCODBGETERROR">codb_get_error()</link>.
+	
+	Query result returned from 
+	<link linkend="functionCODBEXECUTE">codb_execute()</link>, you can processed by
+	<link linkend="functionCODBGETRESULT">codb_get_result()</link>, 
+	<link linkend="functionCODBNUMCOLUMNS">codb_num_columns()</link>,
+	<link linkend="functionCODBNUMROWS">codb_num_rows()</link> and 
+	<link linkend="functionCODBGETCOLUMN">codb_get_column()</link>.
+	
+	Besides you can get result as formatted string. Just pass result object in
+	<link linkend="classCODBFORMATTER">CODBFormatter()</link> method show.
+	
+	<command>Using codb.</command>
+	
+	<pre>codb [options] [database[:depository]]</pre>
+	
+	On start codb without any parameters it will be work in interactive mode.
+	
+	codb options:
+	<itemizedlist>
+	<listitem><command>-c 'command'</command> - Execute query and exit.</listitem>
+  	<listitem><command>--hide-titles</command> - Suppress column names.</listitem>
+  	<listitem><command>--delim='DELIM'</command> - Set columns delimiter.</listitem>
+  	</itemizedlist>
+  	
+  	Complete list of options is available on run <command>codb -h</command>.
+  	
+  	Examples:
+  	<pre>codb ETC01 -c 'show classes;'</pre>
+  	Show all classes in database ETC01.
+  	<pre>codb ETC01:ETC0101 -c 'select * from mng_vendor,mng_author;' --delim='|'</pre>
+	Show all fields from all objects of classes mng_vendor and mng_author from
+	database ETC01 and depository ETC0101 with delimiter '|'.
+	
+	Note: All data outputs in formatted mode so fields are accompanied
+	with spaces to maximum width of element in each column.
+  	
+  	<command>CQL Commands.</command>
+  	
+  	Each CODB command should be ended by semicolon. You can write comments
+	begin with '#' character and end with line end ('\n'). String are
+	delimited by single quote ('). If single quote is part of string it should
+	be escaped by backslash (\').
+	
+	You can pass several commands in -c parameter and through pipe:
+  	<pre>echo 'show classes;show indexes;' | codb ETC01</pre>
+
+	Brief CQL Commands Description.
+	
+	<itemizedlist>
+	<listitem><command>help</command> - Help about database commands;</listitem>
+	<listitem><command>create</command> - Create metaobject;</listitem>
+	<listitem><command>delete</command> - Delete object or metaobject;</listitem>
+	<listitem><command>describe</command> - Show class structure;</listitem>
+	<listitem><command>drop</command> - Delete metaobject by its name;</listitem>
+	<listitem><command>get</command> - Get object from depository;</listitem>
+	<listitem><command>metaget</command> - Get metaobject;</listitem>
+	<listitem><command>metaput</command> - Create or update metaobject;</listitem>
+	<listitem><command>put</command> - Create or update object in depository;</listitem>
+	<listitem><command>select</command> - Query object attributes;</listitem>
+	<listitem><command>show</command> - Show list of metaobjects;</listitem>
+	<listitem><command>use</command> - Open database.</listitem>
+	</itemizedlist>
+	
+	There is command <command>quit</command> - quits the program in interactive
+	mode. You can quit from codb to press Esc key.
+
+	Verbose CQL Command Description.
+	
+	<command>help [&lt;command&gt;]</command>
+	Help on command. If 'help' call without command name show all
+	available commands.
+	
+	<command>create <metaclass> (<attr1>=<value1>[,...])</command>
+	or <command>create database <db_name> <path>[<description>]</command>
+	Create database or metaobject.
+	Examples:
+	create database EAS01 /var/lib/db 'E/AS Database';
+	create attribute (name='phone',type='C',len=20);
+	
+	Supported metaclasses: 
+	<itemizedlist>
+	<listitem><command>depository</command> - depository;</listitem>
+	<listitem><command>extent</command> - namespace;</listitem>
+	<listitem><command>attribute</command> - attribute;</listitem>
+	<listitem><command>counter</command> - counter;</listitem>
+	<listitem><command>index</command> - index;</listitem>
+	<listitem><command>class</command> - class;</listitem>
+	<listitem><command>tcolumn</command> - view column;</listitem>
+	<listitem><command>tview</command> - view;</listitem>
+	<listitem><command>report</command> - report;</listitem>
+	<listitem><command>plugin</command> - plugin;</listitem>
+	<listitem><command>user</command> - user;</listitem>
+	<listitem><command>group</command> - group of users.</listitem>
+	</itemizedlist>
+	
+	<command>delete <id></command>
+	Delete object or metaobject by its id.
+	
+	<command>describe <class_name></command>
+	Show class structure by its name.
+	
+	<command>drop <metaclass> <metaobject_name></command>
+	Delete metaobject by its name.
+	
+	Supported metaclasses: 
+	<itemizedlist>
+	<listitem><command>depository</command> - depository;</listitem>
+	<listitem><command>extent</command> - namespace;</listitem>
+	<listitem><command>attribute</command> - attribute;</listitem>
+	<listitem><command>counter</command> - counter;</listitem>
+	<listitem><command>index</command> - index;</listitem>
+	<listitem><command>class</command> - class;</listitem>
+	<listitem><command>tcolumn</command> - view column;</listitem>
+	<listitem><command>tview</command> - view;</listitem>
+	<listitem><command>report</command> - report;</listitem>
+	<listitem><command>plugin</command> - plugin;</listitem>
+	<listitem><command>user</command> - user;</listitem>
+	<listitem><command>group</command> - group of users.</listitem>
+	</itemizedlist>
+	
+	<command>get <id></command>
+	Get object content from depository by its id.
+	
+	<command>metaget <id></command>
+	Get metaobject content from dictionary by its id.
+	
+	<command>metaput (<attr1>=<value1>[, ...])</command>
+	Create or change metaobject in dictionary. If 'id' is defined in attributes
+	list, exist object will be replaced by new values.
+	
+	<command>put (<attr1>=<value1>[, ...])</command>
+	Create or change metaobject in depository. If 'id' is defined in
+	attributes list, exist object will be replaced by new values.
+	
+	<command>select <attributes> from <class> [where <condition>]</command>
+	Get list of attribute values matched condition. 
+	
+	<attributes> - list of attribute names delimited by comma. Names with
+	spaces put in single quotes. You can use * for all attribute names for all
+	specified classes.
+	
+	<class> - list of class names delimited by comma. Names with
+	spaces put in single quotes.
+	
+	<condition> - condition by CLIP rules. There are supported
+	operators: '==', '!=', '>', '>=', '<=', '<' and logical operators
+	'.not.', '.and.', '.or.'. Value should be put in double quotes and
+	there are no spaces between operators.
+	
+	Example:
+	<pre>select id,author_name,email from mng_author where code=="Uri";</pre>
+	
+	<command>show <metaclass></command>
+	Show metaobject list.
+	
+	Supported metaclasses: 
+	<itemizedlist>
+	<listitem><command>databases</command> - databases;</listitem> 
+	<listitem><command>depositories</command> - depositories;</listitem>
+	<listitem><command>extents</command> - namespaces;</listitem>
+	<listitem><command>attributes</command> - attributes;</listitem>
+	<listitem><command>counters</command> - counters;</listitem>
+	<listitem><command>indexes</command> - indices;</listitem>
+	<listitem><command>classes</command> - classes;</listitem>
+	<listitem><command>tcolumns</command> - view columns;</listitem>
+	<listitem><command>tviews</command> - views;</listitem>
+	<listitem><command>reports</command> - reports;</listitem>
+	<listitem><command>plugins</command> - plugins;</listitem>
+	<listitem><command>users</command> - users;</listitem>
+	<listitem><command>groups</command> - user groups;</listitem>
+	<listitem><command>statistics</command> - total statistics with number metaobjects in each metaclass.</listitem>
+	</itemizedlist>
+	
+	<command>use <db> [<depository>]</command>
+	Change current work database and depository.
+
+$LANG_RU$
+	Библиотека codb-query предоставляет унифицированный способ работы с базами 
+	данным CODB посредством запросов вместо вызовов методов классов 
+	<link linkend="classCODBDEPOSITORY">CODBDEPOSITORY</link>, 
+	<link linkend="classCODBDICTIONARY">CODBDICTIONARY</link>, 
+	<link linkend="classCODBLIST">CODBLIST</link> и
+	<link linkend="classCODBIDLIST">CODBIDLIST</link>.
+	
+	Запросы строятся на языке CQL (диалекте SQL, адаптированном для CODB). Вы
+	можете задействовать эту библиотеку как программно, так и используя
+	консольный клиент codb.
+	
+	<command>Использование в программах.</command>
+	
+	Для использования библиотеки codb-query в программах вы должны собрать свою
+	программу с этой библиотекой. Укажите при сборке '-lcodb-query'.
+	
+	Типичный сеанс работы состоит из следующих этапов:
+<pre>db := codb_connect() // Подключение к базам данных
+e := codb_get_error( db ) // Проверка ошибок
+if e != NIL
+	?? "ERROR codb_connect(): " + e + chr(10)
+	return 1
+endif
+
+// Выполнение запроса
+oRes := codb_execute( db, 'show databases' )
+
+// Обработка результата
+aResult := codb_get_result( oRes )
+
+codb_close( db ) // Закрытие баз данных</pre>
+	
+	Подключение к базам данных обеспечивает функция 
+	<link linkend="functionCODBCONNECT">codb_connect()</link>. При этом открываются
+	все доступные базы данных. Закрытие баз данных обеспечивается функцией 
+	<link linkend="functionCODBCLOSE">codb_close()</link>.
+	
+	Собственно операции с базой данных обеспечивают функции:
+	<link linkend="functionCODBEXECUTE">codb_execute()</link>, 
+	<link linkend="functionCODBGETMETAOBJECT">codb_get_metaobject()</link>,
+	<link linkend="functionCODBGETOBJECT">codb_get_object()</link>,
+	<link linkend="functionCODBPUTMETAOBJECT">codb_put_metaobject()</link>,
+	<link linkend="functionCODBPUTOBJECT">codb_put_object()</link>.
+	
+	Отличие этих функций в том, что 
+	<link linkend="functionCODBEXECUTE">codb_execute()</link> возвращает объект, из
+	которого собственно данные можно получить функцией 
+	<link linkend="functionCODBGETRESULT">codb_get_result()</link>, а
+	остальные функции оперируют готовыми объектами. 
+	
+	Для контроля ошибок используются функции 
+	<link linkend="functionCODBGETANSWER">codb_get_answer()</link> и 
+	<link linkend="functionCODBGETERROR">codb_get_error()</link>.
+	
+	Результат запроса, полученный при выполнении 
+	<link linkend="functionCODBEXECUTE">codb_execute()</link>, можно обработать,
+	используя функции 
+	<link linkend="functionCODBGETRESULT">codb_get_result()</link>, 
+	<link linkend="functionCODBNUMCOLUMNS">codb_num_columns()</link>,
+	<link linkend="functionCODBNUMROWS">codb_num_rows()</link> и 
+	<link linkend="functionCODBGETCOLUMN">codb_get_column()</link>.
+	
+	Кроме этого, результат можно получить в отформатированном виде. Для этого
+	объект результата передаётся в метод 'show' объекта класса 
+	<link linkend="classCODBFORMATTER">CODBFormatter()</link>.
+	
+	<command>Использование консоли codb.</command>
+	
+	<pre>codb [параметры] [словарь[:депозитарий]]</pre>
+	При запуске codb без параметров, он будет работать в интерактивном режиме.
+	
+	Параметры codb:
+	<itemizedlist>
+	<listitem><command>-c 'команда'</command> - Выполнить запрос и выйти.</listitem>
+  	<listitem><command>--hide-titles</command> - Не показывать заголовки столбцов.</listitem>
+  	<listitem><command>--delim='DELIM'</command> - Установить разделитель между столбцами.</listitem>
+  	</itemizedlist>
+  	
+  	Полный перечень команд можно посмотреть, запустив <command>codb -h</command>.
+  	
+  	Примеры:
+  	<pre>codb ETC01 -c 'show classes;'</pre>
+  	Будет выведен список классов в базе данных ETC01.
+  	<pre>codb ETC01:ETC0101 -c 'select * from mng_vendor,mng_author;' --delim='|'</pre>
+	Будет выведены все поля объектов классов mng_vendor и mng_author из базы 
+	данных ETC01 и депозитария ETC0101 с разделителем '|'.
+	
+	Примечание: данные выводятся в табличном виде, то есть поля дополняются 
+	пробелами до ширины максимального элемента.
+  	
+  	<command>Команды CQL.</command>
+  	
+  	Каждая команда должна заканчиваться точкой с запятой. Вы можете
+	использовать комментарии, начинающиеся с символа '#' до конца строки
+	(символа '\n'). Строки ограничиваются одинарными кавычками ('). При
+	употреблении кавычки в строке она экранируется обратной косой чертой (\').	
+	
+	Вы можете также передать несколько команд как в параметре -c, так и через
+	каналы:
+  	<pre>echo 'show classes;show indexes;' | codb ETC01</pre>
+
+	Краткое описание команд CQL.
+	
+	<itemizedlist>
+	<listitem><command>help</command> - помощь по команде;</listitem>
+	<listitem><command>create</command> - создать базу данных или метаобъект;</listitem>
+	<listitem><command>delete</command> - удалить объект или метаобъект;</listitem>
+	<listitem><command>describe</command> - показать структуру класса;</listitem>
+	<listitem><command>drop</command> - удалить метаобъект по его имени;</listitem>
+	<listitem><command>get</command> - получить содержимое объекта из депозитария;</listitem>
+	<listitem><command>metaget</command> - получить метаобъект;</listitem>
+	<listitem><command>metaput</command> - создать или изменить метаобъект;</listitem>
+	<listitem><command>put</command> - создать или изменить объект в депозитарии;</listitem>
+	<listitem><command>select</command> - получить список полей объектов;</listitem>
+	<listitem><command>show</command> - показать список метаобъектов;</listitem>
+	<listitem><command>use</command> - изменить текущую базу данных и депозитарий.</listitem>
+	</itemizedlist>
+	
+	В интерактивном режиме доступна команда <command>quit</command> - выход из
+	консоли. Вы можете также выйти из консоли, нажав клавишу Esc.
+
+	Подробное описание команд CQL:
+	
+	<command>help [<команда>]</command>
+	Помощь по команде. Если команда не указывается, показывается список
+	доступных команд с их кратким описанием.
+	
+	<command>create <метакласс> (<поле1>=<значение1>[, ...])</command>
+	или <command>create database <имя> <путь> [<описание>]</command>
+	Создать базу данных или метаобъект.
+	Примеры:
+	create database EAS01 /var/lib/db 'База данных E/AS';
+	create attribute (name='phone',type='C',len=20);
+	
+	Доступные классы метаобъектов: 
+	<itemizedlist>
+	<listitem><command>depository</command> - депозитарий;</listitem>
+	<listitem><command>extent</command> - пространство имён;</listitem>
+	<listitem><command>attribute</command> - атрибут;</listitem>
+	<listitem><command>counter</command> - счётчик;</listitem>
+	<listitem><command>index</command> - индекс;</listitem>
+	<listitem><command>class</command> - класс;</listitem>
+	<listitem><command>tcolumn</command> - столбец вида;</listitem>
+	<listitem><command>tview</command> - вид;</listitem>
+	<listitem><command>report</command> - отчёт;</listitem>
+	<listitem><command>plugin</command> - подключаемый модуль;</listitem>
+	<listitem><command>user</command> - пользователь;</listitem>
+	<listitem><command>group</command> - группа пользователей.</listitem>
+	</itemizedlist>
+	
+	<command>delete <id></command>
+	Удалить объект или метаобъект по его идентификатору.
+	
+	<command>describe <имя_класса></command>
+	Показать структуру класса по его имени.
+	
+	<command>drop <метакласс> <имя_метаобъекта></command>
+	Удалить метаобъект по его имени.
+	
+	Доступные классы метаобъектов: 
+	<itemizedlist>
+	<listitem><command>depository</command> - депозитарий;</listitem>
+	<listitem><command>extent</command> - пространство имён;</listitem>
+	<listitem><command>attribute</command> - атрибут;</listitem>
+	<listitem><command>counter</command> - счётчик;</listitem>
+	<listitem><command>index</command> - индекс;</listitem>
+	<listitem><command>class</command> - класс;</listitem>
+	<listitem><command>tcolumn</command> - столбец вида;</listitem>
+	<listitem><command>tview</command> - вид;</listitem>
+	<listitem><command>report</command> - отчёт;</listitem>
+	<listitem><command>plugin</command> - подключаемый модуль;</listitem>
+	<listitem><command>user</command> - пользователь;</listitem>
+	<listitem><command>group</command> - группа пользователей.</listitem>
+	</itemizedlist>
+	
+	<command>get <id></command>
+	Получить содержимое объекта из депозитария по его идентификатору.
+	
+	<command>metaget <id></command>
+	Получить метаобъект из словаря по его идентификатору.
+	
+	<command>metaput (<поле1>=<значение1>[, ...])</command>
+	Создать или изменить метаобъект в словаре. Если в списке полей указан
+	идентификатор (id), будет заменён существующий объект.
+	
+	<command>put (<поле1>=<значение1>[, ...])</command>
+	Создать или изменить объект в депозитарии. Если в списке полей указан
+	идентификатор (id), будет заменён существующий объект.
+	
+	<command>select <поля> from <класс> [where <условия>]</command>
+	Получить список полей объектов, удовлетворяющих указанным критериям. 
+	
+	<поля> - список полей, разделённых запятыми. Поля с пробелами 
+	заключаются в кавычки. Вы можете указать * для показа всех полей всех 
+	указанных классов.
+	
+	<класс> - список имён классов, разделённых запятыми. Имена классов с 
+	пробелами заключаются в кавычки.
+	
+	<условия> - условие по правилам CLIP. Поддерживаются операции 
+	сравнения '==', '!=', '>', '>=', '<=', '<' и логические операции
+	'.not.', '.and.', '.or.'. Значения должны заключаться в двойные кавычки ("),
+	а между условиями не должно быть пробелов.
+	
+	Пример:
+	<pre>select id,author_name,email from mng_author where code=="Uri";</pre>
+	
+	<command>show <метакласс></command>
+	Показать список метаобъектов.
+	
+	Доступные классы метаобъектов: 
+	<itemizedlist>
+	<listitem><command>databases</command> - базы данных;</listitem> 
+	<listitem><command>depositories</command> - депозитарии;</listitem>
+	<listitem><command>extents</command> - пространства имён;</listitem>
+	<listitem><command>attributes</command> - атрибуты;</listitem>
+	<listitem><command>counters</command> - счётчики;</listitem>
+	<listitem><command>indexes</command> - индексы;</listitem>
+	<listitem><command>classes</command> - классы;</listitem>
+	<listitem><command>tcolumns</command> - столбцы видов;</listitem>
+	<listitem><command>tviews</command> - виды;</listitem>
+	<listitem><command>reports</command> - отчёты;</listitem>
+	<listitem><command>plugins</command> - подключаемые модули;</listitem>
+	<listitem><command>users</command> - пользователи;</listitem>
+	<listitem><command>groups</command> - группы пользователей;</listitem>
+	<listitem><command>statistics</command> - общая статистика по количеству метаобъектов.</listitem>
+	</itemizedlist>
+	
+	<command>use <база_данных> [<депозитарий>]</command>
+	Изменить текущую базу данных и депозитарий.

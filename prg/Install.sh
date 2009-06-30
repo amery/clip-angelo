@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/sh -u
 WRKDIR=`pwd`
 echo $WRKDIR
 echo $CLIPROOT
+NODBU=""
+export DESTDIR=""
 
 [ -n "$MAKE" ] || MAKE=make
 export MAKE
@@ -20,6 +22,32 @@ do
 		;;
 	esac
 done
+DirName="
+bdbfs
+cobra_clnt
+cobra_serv
+codb
+dbc
+debug
+doc_utils
+hiper
+kamache
+ocmng
+pp
+udb
+udbx
+utils
+"
+for dName in $DirName ; do
+	[ -d $dName ] && cd $dName && $MAKE install && cd ..
+done
+if [ "$CLIPROOT" != "$WRKDIR" ]
+then
+	cp -R locale.po $DESTDIR$CLIPROOT
+fi
+$CLIPROOT/bin/clip_msgmerge$SCRIPTSUFF
+$CLIPROOT/bin/clip_msgfmt$SCRIPTSUFF
+exit 0
 
 if [ -d utils ]
 then
@@ -104,7 +132,7 @@ fi
 if [ -d udbx ]
 then
 	cd udbx
-	#$MAKE install
+	$MAKE install
 	cd ..
 fi
 if [ -d ocmng ]
@@ -124,6 +152,6 @@ if [ "$CLIPROOT" != "$WRKDIR" ]
 then
 	cp -R locale.po $DESTDIR$CLIPROOT
 fi
-$CLIPROOT/bin/clip_msgmerge
-$CLIPROOT/bin/clip_msgfmt
+$CLIPROOT/bin/clip_msgmerge$SCRIPTSUFF
+$CLIPROOT/bin/clip_msgfmt$SCRIPTSUFF
 

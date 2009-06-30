@@ -4,12 +4,11 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 
-CLIPINCLUDE=-I$(CLIPROOT)/include
-
 TARGET=libclip-fcgi$(DLLSUFF)
 ATARGET=libclip-fcgi.a
 RTARGET=libclip-fcgi$(DLLREALSUFF)
 OBJS=fcgi.o
+LIBS= -lfcgi $(C_LIBS)
 
 all: have_lib	$(TARGET) $(ATARGET)
 
@@ -18,19 +17,19 @@ have_lib:
 	test -f /usr/include/fcgi_config.h
 
 $(TARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(OBJS) -lfcgi
+	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(LIBS)
 
 $(ATARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib $(ATARGET) $(OBJS) -lfcgi
+	clip_makelib$(SCRIPTSUFF) $(ATARGET) $(OBJS) $(LIBS)
 
 fcgi.o: fcgi.c hashcode.h
-	$(CC) $(C_FLAGS) $(CLIPINCLUDE) -c fcgi.c
+	$(CC) $(C_FLAGS) -c fcgi.c
 
 hashcode.h:
-	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
 
-install:
-	$(CLIPROOT)/bin/clip_cp $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
+install:all
+	clip_cp$(SCRIPTSUFF) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
 	#[ "$(TARGET)" = "$(RTARGET)" ] || cp $(RTARGET) $(DESTDIR)$(CLIPROOT)/lib
 	cp *.ch $(DESTDIR)$(CLIPROOT)/include/
 	#mkdir -p $(CLIPROOT)/doc/clip-fcgi

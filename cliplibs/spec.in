@@ -56,7 +56,7 @@ cp ${CLIPROOT}/bin/clip_cp ${CLIPROOT}/bin/clip_makelib \
 	 ${DESTDIR}${SCLIPROOT}/bin/
 echo "install to ${DESTDIR}${SCLIPROOT}"
 make install CLIPROOT=${DESTDIR}${SCLIPROOT} DESTDIR='' || true
-rm ${DESTDIR}${SCLIPROOT}/include/clipcfg.sh \
+rm -f ${DESTDIR}${SCLIPROOT}/include/clipcfg.sh \
 	${DESTDIR}${SCLIPROOT}/include/Makefile.inc \
 	${DESTDIR}${SCLIPROOT}/include/Makefile.tdoc \
 	${DESTDIR}${SCLIPROOT}/bin/clip_cp \

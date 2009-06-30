@@ -1,0 +1,104 @@
+$CLASSNAME$
+	UIComboBox
+$SUMMARY$
+	Class UIComboBox.
+$LANG_RU$
+	Класс UIComboBox.
+$ABOUT$
+	Class of combo box.
+$LANG_RU$
+	Класс поля с выпадающим списком.
+$SYNTAX$
+	UIComboBox(<source>,[<defaultItem>])	--> UIComboBox object
+$LANG_RU$
+	UIComboBox(<source>,[<defaultItem>])	--> Объект UIComboBox
+$ATTRIBUTES$
+	<className>	- Class name. Value should be "UIComboBox".
+	<source>	- Type supported <link linkend="classuisource">UISource</link> constructor. 
+	Source of list.
+$LANG_RU$
+	<className>	- Имя класса. Значение: "UIComboBox".
+	<source>	- Тип, поддерживаемый конструктором <link linkend="classuisource">UISource</link>.
+	Источник значений.
+
+
+$METHODNAME$
+	UIComboBox()
+$SUMMARY$
+	Constructor.
+$LANG_RU$
+	Конструктор.
+$SYNTAX$
+	UIComboBox([<source>],[<defaultItem>])
+$ARGUMENTS$
+	<source>		- Type supported for <link linkend="classuisource">UISource</link> constructor. Source for drop-down list.
+	<defaultItem>	- String. Selected element by its id.
+$LANG_RU$
+	<source>		- Тип, поддерживаемый конструктором класса <link linkend="classuisource">UISource</link>. Источник данных для списка.
+	<defaultItem>	- Строка. Выбранный элемент по его идентификатору.
+
+
+$METHODNAME$
+	setSource()
+$SUMMARY$
+	Set source for drop-down list.
+$LANG_RU$
+	Установить источник данных для списка.
+$SYNTAX$
+	setSource(<source>)
+$ARGUMENTS$
+	<source>		- Type supported for <link linkend="classuisource">UISource</link> constructor. 
+	Source for drop-down list.
+$LANG_RU$
+	<source>		- Тип, поддерживаемый конструктором 
+	класса <link linkend="classuisource">UISource</link>. Источник данных для списка.
+$ENDMETHOD$
+
+
+$METHODNAME$
+	setValue()
+$SUMMARY$
+	Select element by id.
+$LANG_RU$
+	Выбрать элемент по идентификатору.
+$SYNTAX$
+	setValue(<value>)
+$ARGUMENTS$
+	<value>		- String. Id of list element.
+$LANG_RU$
+	<value>		- Строка. Идентификатор элемента списка.
+$ENDMETHOD$
+
+
+$METHODNAME$
+	getValue()
+$SUMMARY$
+	Get id of selected string from combo box.
+$LANG_RU$
+	Вернуть идентификатор выбранной строки из списка значений.
+$SYNTAX$
+	getValue()	--> <sValue>
+$RETURNS$
+	Selected item id from combo box. Returned value is string.
+$LANG_RU$
+	Идентификатор выбранной строки из списка значений. Возвращаемое значение: строка.
+$ENDMETHOD$
+
+
+$EXAMPLES$
+	   cb1 := UIComboBox({"cat","dog"},"2")
+	   cb2 := UIComboBox()
+	   cb2:setSource({ { "apple", "1" }, { "banana", "2" } })
+	   cb2:setValue("1")
+
+$PLATFORMS$
+	No dependies of platform.
+$LANG_RU$
+	Не зависит от платформы.
+$SEEALSO$
+	UISOURCE
+$AUTHOR$
+	Andrey Cherepanov <skull@eas.lrn.ru>
+$LANG_RU$
+	Андрей Черепанов <skull@eas.lrn.ru>
+$LASTDATE$

@@ -360,14 +360,14 @@ v24_vsnprintf(char *str, size_t size, const char *fmt, va_list ap)
     char *sp;
     char *bep;
     int cc = 0;
-    int i;
+    int i=0;
 
-    char *s;
-    char *q;
-    int s_len;
+    char *s="";
+    char *q="";
+    int s_len=0;
 
-    int min_width;
-    int precision;
+    int min_width=0;
+    int precision=0;
     enum {
 	LEFT, RIGHT
     } adjust;
@@ -375,7 +375,7 @@ v24_vsnprintf(char *str, size_t size, const char *fmt, va_list ap)
     char prefix_char;
 
     double fp_num;
-    wide_int i_num;
+    wide_int i_num=0;
     u_wide_int ui_num;
 
     char num_buf[NUM_BUF_SIZE];

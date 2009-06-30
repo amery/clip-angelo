@@ -14,7 +14,7 @@
 #define CLIP_GTK_MAX_COLOR	65535
 
 
-/* события */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 /*
  *   Nothing: No event occurred.
  *   Delete: A window delete event was sent by the window manager.
@@ -80,6 +80,7 @@
 #define GTK_SELECT_CURSOR_ITEM_SIGNAL	HASH___GTK_SELECT_CURSOR_ITEM_SIGNAL
 #define GTK_ITEM_ACTIVATED_SIGNAL	HASH___GTK_ITEM_ACTIVATED_SIGNAL
 #define GTK_ACTIVATE_CURSOR_ITEM_SIGNAL	HASH___GTK_ACTIVATE_CURSOR_ITEM_SIGNAL
+#define GTK_EDITING_STARTED_SIGNAL	HASH___GTK_EDITING_STARTED_SIGNAL
 #define GTK_EDITING_CANCELED_SIGNAL	HASH___GTK_EDITING_CANCELED_SIGNAL
 #define GTK_ACTION_ACTIVATED_SIGNAL	HASH___GTK_ACTION_ACTIVATED_SIGNAL
 #define GTK_MATCH_SELECTED_SIGNAL	HASH___GTK_MATCH_SELECTED_SIGNAL
@@ -340,7 +341,7 @@
 
 
 
-/* клавиатурные состояния */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 /* GdkModifierType */
 
 #define GDK_SHIFT_MASK		    1
@@ -368,7 +369,7 @@
 #define GTK_ACCEL_LOCKED		2
 #define GTK_ACCEL_MASK			7
 
-/* объекты */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 #define GTK_OBJ_OBJECT			HASH___GTK_OBJ_OBJECT
 #define GDK_OBJECT_FONT			HASH___GDK_OBJECT_FONT
 #define GDK_OBJECT_GC			HASH___GDK_OBJECT_GC
@@ -384,7 +385,7 @@
 
 #define GDK_TYPE_ATOM			HASH___GDK_TYPE_ATOM
 #define GTK_TYPE_TARGET_PAIR		HASH___GTK_TYPE_TARGET_PAIR
-#define GTK_TYPE_TARGET_LIST		HASH___GTK_TYPE_TARGET_LIST
+/* #define GTK_TYPE_TARGET_LIST		HASH___GTK_TYPE_TARGET_LIST */
 #define GTK_TYPE_TARGET_ENTRY		HASH___GTK_TYPE_TARGET_ENTRY
 
 #ifndef GTK_TYPE_CLIPBOARD
@@ -477,7 +478,7 @@
 #define GTK_OBJECT_CTREE_NODE		HASH___GTK_OBJECT_CTREE_NODE
 #define GTK_OBJ_WIDGET			HASH___GTK_OBJ_WIDGET
 
-/* типы виджетов */
+/* О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 #define GTK_WIDGET_OBJECT		HASH___GTK_WIDGET_OBJECT
 #define GTK_WIDGET_WIDGET		HASH___GTK_WIDGET_WIDGET
 #define GTK_WIDGET_UNKNOWN		HASH___GTK_WIDGET_UNKNOWN

@@ -1,3 +1,5 @@
+CLIP=clip$(C64)$(EXESUFF)
+export CLIP
 all: clip_prg
 
 clip_prg:

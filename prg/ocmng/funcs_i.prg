@@ -415,11 +415,12 @@ static function __install_object(oDep,oClass,obj,nLevel)
 		attr := oClass:attr_list[i]
 		name := upper(attr:name)
 		j := ascan(obj, {|x| upper(x:name) == name} )
+		//? "a2",name,x
 		if j <= 0
 			loop
 		endif
 		data := ___convertData(oDep,obj[j],attr:type,oClass:name,nLevel+1)
-		//? "a1",name,data
+		//? "a3",name,data
 		if data == NIL
 			loop
 		endif
@@ -437,6 +438,8 @@ static function __install_object(oDep,oClass,obj,nLevel)
 		if empty(data)
 		else
 			id := oDep:id4primaryKey(oClass:id,oClass:unique_key,data)
+			//? oData
+			//? name,data,id
 			oData:id := id
 		endif
 	endif
@@ -726,16 +729,7 @@ static function __install_meta1(oDict,oMeta,mType,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oMeta
-			oData[s] := oMeta[s1]
-		else
-			oData[s] := ""
-		endif
-	next
+	__trans_meta_names(stru,odata,oMeta,trans)
 	if empty(oData:name)
 		oData:name := oMeta:cdata
 	endif
@@ -769,15 +763,7 @@ static function __install_attribute(oDict,oAttr,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oAttr
-			oData[s] := oAttr[s1]
-		else
-			oData[s] := ""
-		endif
-	next
+	__trans_meta_names(stru,odata,oAttr,trans)
 
 	if empty(oData:name)
 		error := [Bad name of ATTRIBUTE]
@@ -833,6 +819,7 @@ static function __install_class(oDict,oClass,nLevel)
 	trans:ATTR_FIND  := "FINDATTRS"
 	trans:CLASS_ID   := "CLASS"
 	trans:TCOL_LIST   := "COLUMNS"
+	trans:TCOL_LIST   := "TCOLLIST"
 
 	if valtype(oClass) == "O"
 	else
@@ -840,15 +827,7 @@ static function __install_class(oDict,oClass,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oClass
-			oData[s] := oClass[s1]
-		else
-			oData[s] := ""
-		endif
-	next
+	__trans_meta_names(stru,odata,oClass,trans)
 
 	if empty(oData:name)
 		error := [Bad name of CLASS]
@@ -910,15 +889,7 @@ static function __install_plugin(oDict,oPlug,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oPlug
-			oData[s] := oPlug[s1]
-		else
-			oData[s] := ""
-		endif
-	next
+	__trans_meta_names(stru,odata,oPlug,trans)
 	if "SOURCEFILE" $ oPlug
 		oData:sourceFile := oPlug:sourceFile
 	endif
@@ -995,16 +966,7 @@ static function __install_tcolumn(oDict,oTcol,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oTcol
-			oData[s] := oTcol[s1]
-		else
-			oData[s] := ""
-		endif
-	next
-
+	__trans_meta_names(stru,odata,oTcol,trans)
 	if empty(oData:name)
 		error := [Bad name of TCOLUMN]
 		ocmngMessage(error,nLevel)
@@ -1039,15 +1001,7 @@ static function __install_tview(oDict,oTv,nLevel)
 		ocmngMessage(error,nLevel)
 		return error
 	endif
-	for i=1 to len(stru)
-		s := stru[i][1]
-		s1 := iif( s $ trans, trans[s],s)
-		if s1 $ oTv
-			oData[s] := oTv[s1]
-		else
-			oData[s] := ""
-		endif
-	next
+	__trans_meta_names(stru,odata,oTv,trans)
 
 	if empty(oData:name)
 		error := [Bad name of TVIEW]
@@ -1315,6 +1269,21 @@ static function __check_dependence_exist(oDep)
 		endif
 	next
 return ret
+*****************************************
+static function __trans_meta_names(stru,odata,oObj,trans)
+	local i, s, s1
+	for i=1 to len(stru)
+		s := stru[i][1]
+		s1 := iif( s $ trans, trans[s],s)
+		oData[s] := ""
+		if s1 $ oObj
+			oData[s] := oObj[s1]
+		endif
+		if empty(oData[s]) .and. s $ oObj
+			oData[s] := oObj[s]
+		endif
+	next
+return
 *****************************************
 static function __decoding(cVal)
 return	translate_charset(set("COMPONENT_ENCODING"),host_charset(),cVal)

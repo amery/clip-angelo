@@ -1,0 +1,72 @@
+$CLASSNAME$
+	CODBFORMATTER
+$SUMMARY$
+	Class CODBFORMATTER format output for result of <link linkend="functionCODBEXECUTE">codb_execute()</link>.
+$LANG_RU$
+	Класс CODBFORMATTER предназначен для форматирования результатов запросов <link linkend="functionCODBEXECUTE">codb_execute()</link>.
+$ABOUT$
+	Class CODBFORMATTER format output for result in codb-query library.
+$LANG_RU$
+	Class CODBFORMATTER format output for result in codb-query library.
+$SYNTAX$
+	CODBFormatter() --> CODBFORMATTER object
+
+$METHODNAME$
+	CODBFormatter()
+$SUMMARY$
+	Constructor CODBFORMATTER class.
+$LANG_RU$
+	Конструктор класса CODBFORMATTER.
+$SYNTAX$
+	CODBFormatter() --> CODBFORMATTER object
+$RETURNS$
+	Method returns new CODBFORMATTER object.
+$LANG_RU$
+	Метод возвращает новый объект CODBFORMATTER.
+$DESCRIPTION$
+	CODBFormatter() inits new CODBFORMATTER object and returns it. Object have two internal formatting parameters: <obj:options:hide_titles> - hide column titles and <obj:options:delim> - string for separation of columns.
+$LANG_RU$
+	CODBFormatter() инициализирует новый объект CODBFORMATTER и возвращает его. Объект имеет два внутренних параметра форматирования: <obj:options:hide_titles> - флаг скрытия заголовков столбцов и <obj:options:delim> - строк-разделитель столбцов.
+$ENDMETHOD$
+
+$METHODNAME$
+	show()
+$SUMMARY$
+	Format <link linkend="functionCODBEXECUTE">codb_execute()</link> result.
+$LANG_RU$
+	Отформатировать результат запроса <link linkend="functionCODBEXECUTE">codb_execute()</link>.
+$SYNTAX$
+	show(<res>) --> sResult
+$ARGUMENTS$
+	<res>		- Object. Result of <link linkend="functionCODBEXECUTE">codb_execute()</link> call.
+$LANG_RU$
+	<res>		- Объект. Результат вызова функции <link linkend="functionCODBEXECUTE">codb_execute()</link>.
+$RETURNS$
+	String. Formatted result.
+$LANG_RU$
+	Строка. Отформатированный результат.
+$ENDMETHOD$
+
+$EXAMPLES$
+db := codb_connect()
+e := codb_get_error( db )
+if e != NIL
+	?? "ERROR codb_connect(): " + e + chr(10)
+	return 1
+endif
+fmt := CODBFormatter()
+fmt:obj:options:hide_titles := .T.
+res := codb_execute( db, 'show databases' )
+? fmt:show()
+codb_close( db )
+
+$PLATFORMS$
+	No depends of platform.
+$LANG_RU$
+	Не зависит от платформы.
+$SEEALSO$
+$AUTHOR$
+	Andrey Cherepanov <skull@eas.lrn.ru>
+$LANG_RU$
+	Андрей Черепанов <skull@eas.lrn.ru>
+$LASTDATE$

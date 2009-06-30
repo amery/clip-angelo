@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------*/
 /*   This is a part of CLIP-UI library									   */
 /*																		   */
-/*   Copyright (C) 2005 by E/AS Software Foundation						   */
+/*   Copyright (C) 2005-2007 by E/AS Software Foundation				   */
 /*   Authors: 															   */
 /*  	     Andrey Cherepanov <skull@eas.lrn.ru>						   */
 /*           Igor Satsyuk <satsyuk@tut.by>                                 */
@@ -30,6 +30,7 @@ function initGTK2Driver()
 	drv:driver     := "gtk2"
 
 	/* WorkSpace */
+	drv:getName		:= @ui_getName()
 	drv:createInstance 	:= @ui_createInstance()
 	drv:run 		:= @ui_run()
 	drv:quit		:= @ui_quit()
@@ -83,12 +84,12 @@ function initGTK2Driver()
 	/* Grid */
 	drv:createVBox		:= @ui_createVBox()
 	drv:createHBox		:= @ui_createHBox()
-	drv:addBox		:= @ui_addBox()
+	drv:addBox			:= @ui_addBox()
 	drv:addBoxEnd		:= @ui_addBoxEnd()
 	drv:setBoxSpacing	:= @ui_setBoxSpacing()
 	drv:getBoxSpacing	:= @ui_getBoxSpacing()
 	drv:createGrid		:= @ui_createGrid()
-	drv:addGrid		:= @ui_addGrid()
+	drv:addGrid			:= @ui_addGrid()
 	drv:setBoxAlignment	:= @ui_setBoxAlignment()
 	drv:setBoxElemEqualSize	:= @ui_setBoxElemEqualSize()
 	drv:createSplitter	:= @ui_createSplitter()
@@ -104,12 +105,16 @@ function initGTK2Driver()
 	/* Table*/
 	drv:createTable		:= @ui_createTable()
 	drv:addTableRow		:= @ui_addTableRow()
+	drv:setTableRow		:= @ui_setTableRow()
+	drv:getTableRow		:= @ui_getTableRow()
+	drv:removeTableRow	:= @ui_removeTableRow()
 	drv:clearTable		:= @ui_clearTable()
-	drv:setTableSelectAction := @ui_setTableSelectAction()
-	drv:getTableSelection	:= @ui_getTableSelection()
+	drv:setTableSelectAction    := @ui_setTableSelectAction()
+	drv:getTableSelection	    := @ui_getTableSelection()
+	drv:setTableSelection	    := @ui_setTableSelection()
 	drv:conditionTableSelection := @ui_conditionTableSelection()
-	drv:getTablePosition	:= @ui_getTablePosition()
-	drv:setTablePosition	:= @ui_setTablePosition()
+	drv:getTablePosition	    := @ui_getTablePosition()
+	drv:setTablePosition	    := @ui_setTablePosition()
 
 	/* Edit */
 	drv:createEdit		:= @ui_createEdit()
@@ -130,7 +135,6 @@ function initGTK2Driver()
 	/* ComboBox*/
 	drv:createComboBox	:= @ui_createComboBox()
 	drv:setComboBoxList	:= @ui_setComboBoxList()
-	drv:setComboBoxValueInList := @ui_setComboBoxValueInList()
 
 	/* RadioGroup and RadioButton */
 	drv:createRadioGroup  := @ui_createRadioGroup()
@@ -154,9 +158,13 @@ function initGTK2Driver()
 	/* Tree */
 	drv:createTree    	:= @ui_createTree()
 	drv:addTreeNode   	:= @ui_addTreeNode()
+	drv:setTreeRow		:= @ui_setTreeRow()
+	drv:getTreeRow		:= @ui_getTreeRow()
+	drv:removeTreeRow	:= @ui_removeTreeRow()
 	drv:clearTree     	:= @ui_clearTree()
 	drv:setTreeSelectAction := @ui_setTreeSelectAction()
 	drv:getTreeSelection 	:= @ui_getTreeSelection()
+	drv:setTreeSelection 	:= @ui_setTreeSelection()
 	drv:conditionTreeSelection := @ui_conditionTreeSelection()
 	drv:getTreePosition	:= @ui_getTreePosition()
 	drv:setTreePosition	:= @ui_setTreePosition()
@@ -173,9 +181,9 @@ function initGTK2Driver()
 	drv:setProgressBarPercent := @ui_setProgressBarPercent()
 
 	/* Layout */
-	drv:createLayout         := @ui_createLayout()
-	drv:addLayout            := @ui_addLayout()
-	drv:moveLayout           := @ui_moveLayout()
+	drv:createLayout        := @ui_createLayout()
+	drv:addLayout           := @ui_addLayout()
+	drv:moveLayout          := @ui_moveLayout()
 
 	/* Slider */
 	drv:createSlider        := @ui_createSlider()
@@ -189,7 +197,29 @@ function initGTK2Driver()
 	drv:selectFileName      := @ui_selectFileName()
 
 	/* Color Dialog */
-	drv:selectColor 	:= @ui_selectColor()
+	drv:selectColor 		:= @ui_selectColor()
+
+	/* EditTable*/
+	drv:createEditTable		:= @ui_createEditTable()
+	drv:addEditTableRow		:= @ui_addEditTableRow()
+	drv:setEditTableRow		:= @ui_setEditTableRow()
+	drv:getEditTableRow		:= @ui_getEditTableRow()
+	drv:removeEditTableRow	:= @ui_removeEditTableRow()
+	drv:clearEditTable		:= @ui_clearEditTable()
+	drv:setEditTableField		:= @ui_setEditTableField()
+	drv:getEditTableField		:= @ui_getEditTableField()
+	drv:setEditTableCursor 		:= @ui_setEditTableCursor()
+	drv:getEditTableRowCount 	:= @ui_getEditTableRowCount()
+	drv:getEditTableColumnCount := @ui_getEditTableColumnCount()
+	drv:getEditTableSelectedRow := @ui_getEditTableSelectedRow()
+	drv:getEditTableSelectedColumn := @ui_getEditTableSelectedColumn()
+
+	/* TabArea and Tab */
+	drv:createTabArea		:= @ui_createTabArea()
+	drv:createTab			:= @ui_createTab()
+	drv:addTab				:= @ui_addTab()
+	drv:activateTab			:= @ui_activateTab()
+	drv:setTabCaption		:= @ui_setTabCaption()
 
 return drv
 
@@ -199,6 +229,8 @@ function getGTK2Driver( params )
 	endif
 return drv
 
+static function ui_getName( self )
+return self:driver
 
 /** Application **/
 
@@ -415,6 +447,7 @@ return NIL
 static function ui_setDefault(self, window, widget)
 	gtk_WindowSetDefault(window, widget)
 	window:setFocus( widget )
+	gtk_SignalConnect(window, "key-press-event", {|w, e| iif(e:keyval==13, gtk_SignalEmit(widget, "activate"), .F.) })
 return NIL
 
 static function ui_setModal(self, window, modal)
@@ -632,7 +665,7 @@ static function ui_showWidget( self, obj, flag )
 	else
 		widget := obj
 	endif
-	if flag == .T.
+	if flag
 		gtk_WidgetShow( widget )
 	else
 		gtk_WidgetHide( widget )
@@ -728,6 +761,9 @@ return o
 
 static function ui_addBox(self, box, obj, expand, fill, padding)
 	local vBox, hBox
+	if valtype(obj) != 'O'
+		return NIL
+	endif
 	if "LAYOUT" $ obj
 		if "SCROLL" $ obj:layout
 			gtk_ScrolledWindowAddWithViewport( obj:layout, obj )
@@ -764,6 +800,9 @@ return 0
 
 static function ui_addBoxEnd(self, box, obj, expand, fill, padding)
 	local vBox, hBox
+	if valtype(obj) != 'O'
+		return NIL
+	endif
 	if "LAYOUT" $ obj
 		if "SCROLL" $ obj:layout
 			gtk_ScrolledWindowAddWithViewport( obj:layout, obj )
@@ -817,13 +856,16 @@ static function ui_createGrid(self, parent, row, col, spacing, padding)
 	if .not. empty(parent)
 		gtk_ContainerAdd( parent, o )
 	endif
-	obj := gtk_alignmentNew( , 0, 0, 1, 1 )
+	obj := gtk_AlignmentNew( , 0, 0, 1, 1 )
 	o:layout := obj
 return o
 
 static function ui_addGrid(self, box, obj, pos, h_expand, v_expand)
 	local vBox, hBox, padding:=box:padding
 	local a, cl, rw, l, r, t, b, hflags := GTK_FILL, vflags := GTK_FILL
+	if valtype(obj) != 'O'
+		return NIL
+	endif
 	if valtype(pos) == "U"
 		?? "ERROR: bad grid position&\n"
 		return .F.
@@ -1030,14 +1072,54 @@ return 0
 /** Table **/
 
 static function ui_createTable(self, columns)
-	local o, i, cc, store, model, renderer, c, frame
-
+	local o, i, cc, store, model, renderer, c, frame, column, ic
+	local t, types:={}, x, searchColumn:=0, addColumns:=0
 	frame := gtk_ScrolledWindowNew()
 	gtk_ScrolledWindowSetPolicy( frame, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC )
 	gtk_ScrolledWindowSetShadowType( frame, GTK_SHADOW_IN )
 
 	cc := len(columns)
-	store := gtk_ListStoreNew(, cc)
+	for column in columns
+		if valtype(column) == 'O' .and. 'TYPE' $ column
+			if 'LOOKUP' $ column .and. column:lookup .and. searchColumn == 0
+				searchColumn := len(types) + 1
+			endif
+			switch column:type
+				case TABLE_COLUMN_TEXT
+					t := TREE_TYPE_STRING
+				case TABLE_COLUMN_CHOICE
+					t := TREE_TYPE_STRING
+					addColumns++
+				case TABLE_COLUMN_COMBO
+					t := TREE_TYPE_STRING
+				case TABLE_COLUMN_NUMBER
+					t := TREE_TYPE_NUMERIC_FLOAT
+				case TABLE_COLUMN_DATE
+					t := TREE_TYPE_DATE
+				case TABLE_COLUMN_CHECK
+					t := TREE_TYPE_LOGICAL
+				case TABLE_COLUMN_COUNTER
+					t := TREE_TYPE_NUMERIC
+				otherwise
+					t := TREE_TYPE_STRING
+			endswitch
+		else
+			t := TREE_TYPE_STRING
+		endif
+		aadd( types, t )
+	next
+	aadd( types, TREE_TYPE_LOGICAL )
+	aadd( types, TREE_TYPE_NUMERIC_FLOAT )
+	aadd( types, TREE_TYPE_STRING )
+	
+	// Create columns for choice cell text 
+	if addColumns > 0
+		for i:=1 to addColumns
+			aadd( types, TREE_TYPE_STRING )
+		next
+	endif
+	
+	store := gtk_ListStoreNew(, len(types), types)
 	if empty(store)
 		return NIL
 	endif
@@ -1046,35 +1128,128 @@ static function ui_createTable(self, columns)
 
 	gtk_TreeViewSetHeadersVisible(o, .T.)
 	gtk_TreeViewSetRulesHint (o, .T.)
+	gtk_TreeSelectionSetMode(gtk_TreeViewGetSelection(o), GTK_SELECTION_SINGLE)
 
 	o:store := store
-	renderer = gtk_CellRendererTextNew ()
-
+	o:model := model
+	addColumns := cc + 3
 	// Append columns
 	for i:=1 to cc
-		c := gtk_TreeViewInsertColumnWithAttributes(o, -1, columns[i], renderer, "text", i)
-		gtk_TreeViewColumnSetResizable(gtk_TreeViewGetColumn(o, c), .T.)
-		gtk_TreeViewColumnSetSizing(gtk_TreeViewGetColumn(o, c), CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE)
+		column := columns[i]
+		if column:type == TABLE_COLUMN_CHECK
+			renderer = gtk_CellRendererToggleNew ()
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"active", i)
+			ic := gtk_TreeViewGetColumn(o, c)
+		else
+			renderer = gtk_CellRendererTextNew ()
+			if column:type == TABLE_COLUMN_CHOICE
+				addColumns++
+				columns[i]:__text := addColumns
+				c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+						"text", addColumns)
+			else
+				c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+						"text", i)
+			endif
+			ic := gtk_TreeViewGetColumn(o, c)
+			if .not. empty(column:format) .and. column:type == TABLE_COLUMN_NUMBER
+				gtk_TreeViewColumnSetFormat(ic, renderer, c, column:format)
+			endif
+			if column:type == TABLE_COLUMN_NUMBER .or. column:type == TABLE_COLUMN_COUNTER
+				gtk_TreeViewColumnSetAttributes(ic, renderer, "text", i, "xalign", cc+2)
+			endif
+		endif
+		gtk_TreeViewColumnSetResizable(ic, .T.)
+		//gtk_TreeViewColumnSetExpand(ic, .T.)
+		columns[i]:__obj := ic
 	next
+	//	gtk_TreeViewSetExpanderColumn(o, NIL)
+	//	gtk_TreeViewSetHoverSelection(o, .T.) // Cool effect!
+	if searchColumn != 0
+		gtk_TreeViewSetSearchColumn(o, searchColumn)
+	endif
+	o:columns := columns
+	o:columnId := cc+3
 	o:layout := frame
-	frame:scroll := .T.
 return o
 
-static function ui_addTableRow(self, table, data)
+static function ui_addTableRow(self, table, data, id)
 	local row, i, item:=map()
 	row := gtk_ListStoreAppend(table:store)
+	//?? 'add table row:', data, chr(10)
 	for i:=1 to len( data )
-		gtk_ListStoreSetValue(table:store, row, i, data[i])
+		ui_setTableValue(table, row, i, data[i])
 	next
-	item:id := row
-return item
+	i := len(table:columns)
+	gtk_ListStoreSetValue(table:store, row, i+1, .T.)
+	gtk_ListStoreSetValue(table:store, row, i+2, 1.0)
+	gtk_ListStoreSetValue(table:store, row, table:columnId, id)
+return row
+
+/* Set data for table row */
+static function ui_setTableRow(self, table, row, data, id)
+	local i, c
+	if valtype(row) == 'N'
+		row := ltrim(str(row-1))
+	endif
+	if valtype(data) == 'A'
+		for i:=1 to len( data )
+			ui_setTableValue(table, row, i, data[i])
+		next
+	elseif valtype(data) == 'O'
+		for i:=1 to len( table:columns )
+			c := upper(table:columns[i]:name)
+			ui_setTableValue(table, row, i, data[c])
+		next
+	endif
+	gtk_ListStoreSetValue(table:store, row, table:columnId, id)
+return NIL
+
+/* Get data from table row as object */
+static function ui_getTableRow(self, table, row)
+	local o:=map(), i, cc, c, v:=''
+	
+	// Normalize row
+	if valtype(row) == 'N'
+		row := ltrim(str(row-1))
+	elseif valtype(row) == 'U'
+		row := ui_getEditTableSelection(self, table)
+	endif
+	
+	if valtype(row) == 'U' // If there is no selected row in table
+		return NIL
+	endif
+	
+	// Get row as object
+	cc := len( table:columns )
+	for i:=1 to cc
+		c := table:columns[i]:name
+		o[upper(c)] := ui_getTableValue(table, row, i, v)
+	next
+return o
+
+/* Remove table row */
+static function ui_removeTableRow(self, table, row)
+	local num, total
+	if valtype(row) == 'N'
+		num := row
+		row := ltrim(str(row-1))
+	else
+		num := 0 + row
+	endif
+	total := self:getEditTableRowCount(table)
+	if num <= total
+		gtk_ListStoreRemove(table:store, row)
+	endif
+return NIL
 
 static function ui_clearTable(self, table)
 	gtk_ListStoreClear( table:store )
 return NIL
 
-static function ui_getTableSelection(self, table)
-	local s, iter, path, pathstr
+static function ui_getTableSelection(self, table, needId)
+	local s, iter, path, pathstr, v:=''
 	s := gtk_TreeViewGetSelection( table )
 	gtk_TreeSelectionGetSelected(s, NIL, @iter)
 	if iter == NIL
@@ -1082,7 +1257,33 @@ static function ui_getTableSelection(self, table)
 	endif
 	path := gtk_TreeModelGetPath(gtk_TreeViewGetModel( table ), iter)
 	pathstr := gtk_TreePathToString(path)
+	if valtype(needId) == 'L' .and. needId
+		gtk_TreeModelGetFromPathString( gtk_TreeViewGetModel( table ), pathstr, table:columnId, @v, -1 )
+		return v
+	endif
 return pathstr
+
+static function ui_setTableSelection( self, table, id )
+	local t, i, r:=NIL, v
+	
+	if valtype(id) != 'C'
+		return
+	endif
+	
+	t := 0 + gtk_TreeModelIterNChildren( gtk_TreeViewGetModel( table ), NIL )
+	for i:=1 to t
+		v := ''
+		gtk_TreeModelGetFromPathString( gtk_TreeViewGetModel( table ), ltrim(str(i-1)), table:columnId, @v, -1 )
+		if v == id
+			r := ltrim(str(i-1))
+			exit
+		endif
+	next
+	if .not. empty(r)
+		gtk_TreeViewSetCursor(table, gtk_TreePathNewFromString(r), NIL, .F.)
+	endif
+return
+
 
 static function ui_setTableSelectAction( self, table, action )
 	self:setAction( table, "row-activated", action )
@@ -1095,7 +1296,7 @@ static function ui_getTablePosition(self, table)
 	local pos
 	pos := array(2)
 	pos[1] := table:getSelection()
-	pos[2] := table:getSelectionId()
+	pos[2] := table:getValue()
 return pos
 
 static function ui_setTablePosition(self, table, pos)
@@ -1126,7 +1327,6 @@ static function ui_createEditText(self, defValue)
 	buf := gtk_TextBufferNew()
 	o := gtk_TextViewNewWithBuffer(, buf )
 	o:layout := frame
-	frame:scroll := .T.
 
 	gtk_TextViewSetEditable(o, .T.)
 	gtk_TextViewSetLeftMargin(o, 2)
@@ -1158,7 +1358,7 @@ static function ui_createLabel(self, defValue)
 	endif
 	o := gtk_LabelNew(, defValue, "&")
 	gtk_LabelSetJustify( o, GTK_JUSTIFY_LEFT)
-	gtk_MiscSetAlignment( o, 0, 0)
+	gtk_MiscSetAlignment( o, 0, 0.5)
 return o
 
 static function ui_setLabelText(self, label, text)
@@ -1192,23 +1392,17 @@ return NIL
 static function ui_createComboBox(self, values)
 	local o
 
-	o := gtk_ComboBoxNew()
-	o:edit := gtk_ComboBoxNewText( o )
-
-	self:setComboBoxList(o, values)
+	//o := gtk_ComboBoxEntryNewText() // Editable combobox
+	o := gtk_ComboBoxNewText()
+	gtk_ComboBoxSetFocusOnClick(o, .T.)
+	// self:setComboBoxList(o, values)
 return o
 
 static function ui_setComboBoxList(self, o, values)
 	local i, row
-	if valtype(values) == 'A'
-		for i in values
-			gtk_ComboBoxAppendText(o,i)
-		next
-	endif
-return o
-
-static function ui_setComboBoxValueInList(self, o, flag)
-//TIP:	in GTK2 you can select only list values
+	for i in values
+		gtk_ComboBoxAppendText(o,i[1])
+	next
 return o
 
 /** RadioGroup **/
@@ -1242,6 +1436,9 @@ static function ui_setValue(self, o, value, append)
 		case "UILabel"
 			o:setValue( value )
 
+		case "UIChoice"
+			gtk_EntrySetText( o, value )
+		
 		case "UIEdit"
 			if append
 				gtk_EntryAppendText( o, value )
@@ -1258,9 +1455,6 @@ static function ui_setValue(self, o, value, append)
 			endif
 
 		case "UIComboBox"
-			if valtype(value) == "C"
-				value := ascan( o:list, value )
-			endif
 			gtk_ComboBoxSetActive( o, value )
 
 		case "UICheckBox"
@@ -1272,6 +1466,12 @@ static function ui_setValue(self, o, value, append)
 		case "UISlider"
 			a := gtk_ScaleGetAdjustment(o)
 			gtk_AdjustmentSetValue(a, val(value))
+			
+		case "UIEditTable"
+			o:clear()
+			for iter in value
+				o:addRow( iter )
+			next
 
 		otherwise
 			?? "ERROR: couldn't set value to non-valued widget: "+o:className+CHR(10)
@@ -1328,8 +1528,10 @@ static function ui_setStyle(self, o, style, value, element)
 		switch upper(style)
 			case 'FG'
 				gtk_WidgetModifyFG(o, UIColor(value), GTK_STATE_NORMAL )
+				gtk_WidgetModifyText(o, UIColor(value), GTK_STATE_NORMAL )
 			case 'BG'
 				gtk_WidgetModifyBG(o, UIColor(value), GTK_STATE_NORMAL )
+				gtk_WidgetModifyBase(o, UIColor(value), GTK_STATE_NORMAL )
 			case 'TEXT'
 				gtk_WidgetModifyText(o, UIColor(value), GTK_STATE_NORMAL )
 			case 'BASE'
@@ -1350,11 +1552,14 @@ static function ui_setStyle(self, o, style, value, element)
 return .F.
 
 static function ui_getValue(self, o)
-	local val, a, i, j, rows, cols, start, end
+	local val:=NIL, a, i, rows, cols, start, end
 	switch o:className
 		case "UILabel"
 			val := o:getValue()
 
+		case "UIChoice"
+			val := gtk_EntryGetText( o )
+		
 		case "UIEdit"
 			val := gtk_EntryGetText( o )
 
@@ -1364,11 +1569,6 @@ static function ui_getValue(self, o)
 
 		case "UIComboBox"
 			val := gtk_ComboBoxGetActive( o )
-			if val>0 .and. val<=len(o:list)
-				val := o:list[val]
-			else
-				val := NIL
-			endif
 
 		case "UICheckBox"
 			val := gtk_ToggleButtonGetActive( o )
@@ -1380,6 +1580,13 @@ static function ui_getValue(self, o)
 			a := gtk_ScaleGetAdjustment(o)
 			gtk_AdjustmentGetValue(a, @val)
 
+		case "UIEditTable"
+			rows := o:getRowCount()
+			val := array(rows)
+			for i:=1 to rows
+				val[i] := o:getField(NIL,i)
+			next
+		
 		otherwise
 			?? "ERROR: couldn't get value from non-valued widget: "+o:className+CHR(10)
 			val := NIL
@@ -1387,7 +1594,7 @@ static function ui_getValue(self, o)
 return val
 
 static function ui_setAction(self, o, signal, action)
-	gtk_signalConnectAfter(o,signal,action)
+	gtk_signalConnectAfter(o, signal, action)
 return NIL
 
 static function ui_getChildren(self, o)
@@ -1577,16 +1784,58 @@ return NIL
 
 /** Tree **/
 
-static function ui_createTree(self, nTreeColumn, acNameColumns)
-	local o, i, cc, store, model, renderer, c, frame
+static function ui_createTree(self, columns, nTreeColumn)
+	local o, i, cc, store, model, renderer, c, frame, column, ic
+	local t, types:={}, x, searchColumn:=0, addColumns:=0
+	
 	nTreeColumn := iif(empty(nTreeColumn),1,nTreeColumn)
 
 	frame := gtk_ScrolledWindowNew()
 	gtk_ScrolledWindowSetPolicy( frame, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC )
 	gtk_ScrolledWindowSetShadowType( frame, GTK_SHADOW_IN )
 
-	cc := len(acNameColumns)
-	store := gtk_TreeStoreNew(, cc)
+	cc := len(columns)
+	for column in columns
+		if valtype(column) == 'O' .and. 'TYPE' $ column
+			if 'LOOKUP' $ column .and. column:lookup .and. searchColumn == 0
+				searchColumn := len(types) + 1
+			endif
+			switch column:type
+				case TABLE_COLUMN_TEXT
+					t := TREE_TYPE_STRING
+				case TABLE_COLUMN_CHOICE
+					t := TREE_TYPE_STRING
+					addColumns++
+				case TABLE_COLUMN_COMBO
+					t := TREE_TYPE_STRING
+				case TABLE_COLUMN_NUMBER
+					t := TREE_TYPE_NUMERIC_FLOAT
+				case TABLE_COLUMN_DATE
+					t := TREE_TYPE_DATE
+				case TABLE_COLUMN_CHECK
+					t := TREE_TYPE_LOGICAL
+				case TABLE_COLUMN_COUNTER
+					t := TREE_TYPE_NUMERIC
+				otherwise
+					t := TREE_TYPE_STRING
+			endswitch
+		else
+			t := TREE_TYPE_STRING
+		endif
+		aadd( types, t )
+	next
+	aadd( types, TREE_TYPE_LOGICAL )
+	aadd( types, TREE_TYPE_NUMERIC_FLOAT )
+	aadd( types, TREE_TYPE_STRING )
+	
+	// Create columns for choice cell text 
+	if addColumns > 0
+		for i:=1 to addColumns
+			aadd( types, TREE_TYPE_STRING )
+		next
+	endif
+	
+	store := gtk_TreeStoreNew(, len(types), types)
 	if empty(store)
 		return NIL
 	endif
@@ -1595,45 +1844,156 @@ static function ui_createTree(self, nTreeColumn, acNameColumns)
 
 	gtk_TreeViewSetHeadersVisible(o, .T.)
 	gtk_TreeViewSetRulesHint (o, .T.)
+	gtk_TreeSelectionSetMode(gtk_TreeViewGetSelection(o), GTK_SELECTION_SINGLE)
 
 	o:store := store
-	renderer = gtk_CellRendererTextNew ()
-
+	o:model := model
+	
+	addColumns := cc + 3
 	// Append columns
 	for i:=1 to cc
-		c := gtk_TreeViewInsertColumnWithAttributes(o, -1, acNameColumns[i], renderer, "text", i)
-		gtk_TreeViewColumnSetResizable(gtk_TreeViewGetColumn(o, c), .T.)
-		gtk_TreeViewColumnSetSizing(gtk_TreeViewGetColumn(o, c), CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE)
-		if i == nTreeColumn
-			 gtk_TreeViewSetExpanderColumn(o, gtk_TreeViewGetColumn(o, c))
+		column := columns[i]
+		if column:type == TABLE_COLUMN_CHECK
+			renderer = gtk_CellRendererToggleNew ()
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"active", i)
+			ic := gtk_TreeViewGetColumn(o, c)
+		else
+			renderer = gtk_CellRendererTextNew ()
+			if column:type == TABLE_COLUMN_CHOICE
+				addColumns++
+				columns[i]:__text := addColumns
+				c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+						"text", addColumns)
+			else
+				c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+						"text", i)
+			endif
+			ic := gtk_TreeViewGetColumn(o, c)
+			if .not. empty(column:format) .and. column:type == TABLE_COLUMN_NUMBER
+				gtk_TreeViewColumnSetFormat(ic, renderer, c, column:format)
+			endif
+			if column:type == TABLE_COLUMN_NUMBER .or. column:type == TABLE_COLUMN_COUNTER
+					gtk_TreeViewColumnSetAttributes(ic, renderer, "text", i, "xalign", cc+2)
+			endif
 		endif
+		gtk_TreeViewColumnSetResizable(ic, .T.)
+		//gtk_TreeViewColumnSetExpand(ic, .T.)
+		columns[i]:__obj := ic
 	next
+	//	gtk_TreeViewSetExpanderColumn(o, NIL)
+	//	gtk_TreeViewSetHoverSelection(o, .T.) // Cool effect!
+	if searchColumn != 0
+		gtk_TreeViewSetSearchColumn(o, searchColumn)
+	endif
+	o:columns := columns
+	o:columnId := cc+3
 	o:layout := frame
-	frame:scroll := .T.
 return o
 
-static function ui_addTreeNode(self, tree, parent, sibling, columns, expanded)
-	local row, i, item:=map(), p, major, minor,path
+/* Wrappers for combobox and choice tree cell values */
+static function ui_setTreeValue(tree, row, column, value)
+	local c
+	c := tree:columns[column]
+	
+	if c:type == TABLE_COLUMN_COMBO .and. valtype(c:source) == 'O'
+		value := c:source:getText(value)
+	endif
+	
+	//?? 'set value:', row, column, value, chr(10)
+	gtk_TreeStoreSetValue(tree:store, row, column, value)
+
+	if c:type == TABLE_COLUMN_CHOICE .and. valtype(c:source) == 'O' .and. "__TEXT" $ c
+		gtk_TreeStoreSetValue(tree:store, row, c:__text, c:source:getText(value))
+	endif
+	
+return value
+
+static function ui_getTreeValue(tree, row, column, value)
+	local c, v
+	c := tree:columns[column]
+	v := c:default	
+	
+	gtk_TreeModelGetFromPathString( gtk_TreeViewGetModel( tree ), row, column, @value, -1 )
+	
+	if c:type == TABLE_COLUMN_COMBO .and. valtype(c:source) == 'O'
+		value := c:source:getValueByText(value)
+	endif
+	
+return value
+
+static function ui_addTreeNode(self, tree, parent, sibling, data, expanded, id)
+	local row, i, c, major, minor, path
 	/* TODO: addTreeNode(): sibling */
-	row := gtk_TreeStoreAppend( tree:store, iif(empty(parent),NIL,parent:id) )
-	for i:=1 to len( columns )
-		gtk_TreeStoreSetValue( tree:store, row, i, columns[i] )
-	next
+	row := gtk_TreeStoreAppend( tree:store, parent )
+	
+	if valtype(data) == 'A'
+		for i:=1 to len( data )
+			ui_setTreeValue(tree, row, i, data[i])
+		next
+	elseif valtype(data) == 'O'
+		for i:=1 to len( tree:columns )
+			c := upper(tree:columns[i]:name)
+			ui_setTreeValue(tree, row, i, data[c])
+		next
+	endif
+	gtk_TreeStoreSetValue(tree:store, row, tree:columnId, id)
 	path := gtk_TreePathNewFromString( row )
-	item:id := row
 
 	gtk_Version(@major, @minor)
 	if (expanded == NIL .or. expanded) .and. major>=2 .and. minor>=2
 		gtk_TreeViewExpandToPath( tree, path )
 	endif
-return item
+return row
+
+/* Set data for tree row */
+static function ui_setTreeRow(self, tree, row, data, id)
+	local i, c
+	if valtype(data) == 'A'
+		for i:=1 to len( data )
+			ui_setTreeValue(tree, row, i, data[i])
+		next
+	elseif valtype(data) == 'O'
+		for i:=1 to len( tree:columns )
+			c := upper(tree:columns[i]:name)
+			ui_setTreeValue(tree, row, i, data[c])
+		next
+	endif
+	gtk_TreeStoreSetValue(tree:store, row, tree:columnId, id)
+return NIL
+
+/* Get data from tree row as object */
+static function ui_getTreeRow(self, tree, row)
+	local o:=map(), i, cc, c, v:=''
+	
+	// Normalize row
+	if valtype(row) == 'U'
+		row := ui_getTreeSelection(self, tree)
+	endif
+	
+	if valtype(row) == 'U' // If there is no selected row in tree
+		return NIL
+	endif
+	
+	// Get row as object
+	cc := len( tree:columns )
+	for i:=1 to cc
+		c := tree:columns[i]:name
+		o[upper(c)] := ui_getTreeValue(tree, row, i, v)
+	next
+return o
+
+/* Remove tree row */
+static function ui_removeTreeRow(self, tree, row)
+	gtk_TreeStoreRemove(tree:store, row)
+return NIL
 
 static function ui_setTreeSelectAction( self, tree, action )
 	self:setAction( tree, "row-activated", action )
 return
 
-static function ui_getTreeSelection(self, tree)
-	local s, iter, path, pathstr
+static function ui_getTreeSelection(self, tree, needId)
+	local s, iter, path, pathstr, v:=''
 	s := gtk_TreeViewGetSelection( tree )
 	gtk_TreeSelectionGetSelected(s, NIL, @iter)
 	if iter == NIL
@@ -1641,7 +2001,42 @@ static function ui_getTreeSelection(self, tree)
 	endif
 	path := gtk_TreeModelGetPath(gtk_TreeViewGetModel( tree ), iter)
 	pathstr := gtk_TreePathToString(path)
+	if valtype(needId) == 'L' .and. needId
+		gtk_TreeModelGetFromPathString( gtk_TreeViewGetModel( tree ), pathstr, tree:columnId, @v, -1 )
+		return v
+	endif
 return pathstr
+
+function ui_treeForeach( model, path, iter, column, id, result )
+	local v:='', p
+	path := gtk_TreePathToString(path)
+	//?? "node:", path, iter, chr(10)
+	gtk_TreeModelGetFromPathString( model, path, column, @v, -1 )
+	if v == id
+		p := gtk_TreeModelGetPath(model, iter)
+		//?? "FOUND:", p, "&\n"
+		result := p
+		return .T.
+	endif
+return .F.
+
+static function ui_setTreeSelection( self, tree, id )
+	local result:='', c
+	
+	//?? "driver:setTreeSelection(", id, ")&\n"
+	if valtype(id) != 'C'
+		return
+	endif
+	
+	// Lookup id in model for tree path
+	c := tree:columnId 
+	gtk_TreeModelForeach( gtk_TreeViewGetModel( tree ), {|w,p,i| ui_treeForeach( w, p, i, c, id, @result ) } )
+	
+	//?? 'set cursor', result, chr(10)	
+	if .not. empty(result)
+		gtk_TreeViewSetCursor(tree, result, NIL, .F.)
+	endif
+return
 
 static function ui_clearTree(self, tree)
 	gtk_TreeStoreClear( tree:store )
@@ -1654,7 +2049,7 @@ static function ui_getTreePosition(self, tree)
 	local pos
 	pos := array(2)
 	pos[1] := tree:getSelection()
-	pos[2] := tree:getSelectionId()
+	pos[2] := tree:getValue()
 return pos
 
 static function ui_setTreePosition(self, tree, pos)
@@ -1819,3 +2214,584 @@ static function conv_color_to_str(red, green, blue)
 		color += '00'
 	endif
 return color
+
+/** EditTable **/
+
+static function ui_createEditTable(self, columns)
+	local o, i, j, cc, store, model, renderer, c, frame, column, ic
+	local t, types:={}, x, searchColumn:=0
+	local listArray, listStore, listModel, iter, addColumns:=0
+
+	frame := gtk_ScrolledWindowNew()
+	gtk_ScrolledWindowSetPolicy( frame, GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC )
+	gtk_ScrolledWindowSetShadowType( frame, GTK_SHADOW_IN )
+
+	cc := len(columns)
+	for column in columns
+		if 'LOOKUP' $ column .and. column:lookup .and. searchColumn == 0
+			searchColumn := len(types) + 1
+		endif
+		switch column:type
+			case TABLE_COLUMN_TEXT
+				t := TREE_TYPE_STRING
+			case TABLE_COLUMN_CHOICE
+				t := TREE_TYPE_STRING
+				addColumns++
+			case TABLE_COLUMN_COMBO
+					t := TREE_TYPE_STRING
+			case TABLE_COLUMN_NUMBER
+				t := TREE_TYPE_NUMERIC_FLOAT
+			case TABLE_COLUMN_DATE
+				t := TREE_TYPE_DATE
+			case TABLE_COLUMN_CHECK
+				t := TREE_TYPE_LOGICAL
+			case TABLE_COLUMN_COUNTER
+				t := TREE_TYPE_NUMERIC
+			otherwise
+				t := TREE_TYPE_STRING
+		endswitch
+		aadd( types, t )
+		if valtype(column:editable) != 'L'
+			column:editable := .T.
+		endif
+	next
+	aadd( types, TREE_TYPE_LOGICAL )
+	aadd( types, TREE_TYPE_NUMERIC_FLOAT )
+	
+	// Create columns for choice cell text 
+	if addColumns > 0
+		for i:=1 to addColumns
+			aadd( types, TREE_TYPE_STRING )
+		next
+	endif
+	
+	store := gtk_ListStoreNew(, len(types), types)
+	if empty(store)
+		return NIL
+	endif
+	model := gtk_TreeModel(store)
+	o := gtk_TreeViewNewWithModel(, model)
+
+	gtk_TreeViewSetHeadersVisible(o, .T.)
+	gtk_TreeViewSetRulesHint (o, .T.)
+
+	gtk_TreeSelectionSetMode(gtk_TreeViewGetSelection(o), GTK_SELECTION_SINGLE)
+	o:store := store
+	o:model := model
+	
+	addColumns := cc + 2
+	// Append columns
+	for i:=1 to cc
+		
+		column := columns[i]
+		
+		if column:type == TABLE_COLUMN_CHECK
+			
+			renderer = gtk_CellRendererToggleNew()
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"active", i)
+			ic := gtk_TreeViewGetColumn(o, c)
+			if column:editable
+				gtk_TreeViewColumnSetAttributes(ic, renderer, "activatable", cc+1, "active", i)
+				gtk_SignalConnect(renderer, "toggled", {|w, e| ui_EditTableToggled(self, w, e, o)})
+			endif
+		
+		elseif column:type == TABLE_COLUMN_CHOICE
+			addColumns++
+			renderer = gtk_CellRendererTextNew()
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"text", addColumns)
+			ic := gtk_TreeViewGetColumn(o, c)
+			if column:editable
+				gtk_TreeViewColumnSetAttributes(ic, renderer, "text", addColumns, "editable", cc+1)
+				//gtk_SignalConnect(renderer, "edited",           {|w, e| ui_EditTableEdited(self, w, e, o)})
+				gtk_SignalConnect(renderer, "editing-started",  {|w, e| ui_EditTableStartEdit(self, w, e, o, renderer)})
+				//gtk_SignalConnect(renderer, "editing-canceled", {|w, e| ui_EditTableEndEdit(self, w, e, o, renderer)})
+			endif
+			columns[i]:__text := addColumns
+                                             		
+		elseif column:type == TABLE_COLUMN_COMBO
+			
+			// Fill combobox
+			if valtype(column:source) != 'O'
+				listArray := array(0)
+			else
+				listArray := column:source:getList()
+			endif
+			listStore := gtk_ListStoreNew(, 2, TREE_TYPE_STRING, TREE_TYPE_STRING)
+			//?? 'source:', listArray, column:source, chr(10)
+			for j:=1 to len(listArray)
+				iter := gtk_ListStoreAppend(listStore)
+				gtk_ListStoreSet(listStore, iter, 1, listArray[j][1])
+				gtk_ListStoreSet(listStore, iter, 2, listArray[j][2])
+			next
+			listModel := gtk_TreeModel(listStore)
+			columns[i]:__model := listModel
+						
+			// Create renderer
+			renderer = gtk_CellRendererComboNew(, listModel, 1, .F., column:editable)
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"text", i)
+			ic := gtk_TreeViewGetColumn(o, c)
+			if column:editable
+				gtk_SignalConnect(renderer, "edited", {|w, e| ui_EditTableEdited(self, w, e, o)})
+			endif
+			
+		else
+			
+			renderer = gtk_CellRendererTextNew()
+			c := gtk_TreeViewInsertColumnWithAttributes(o, -1, column:caption, renderer, ;
+					"text", i)
+			ic := gtk_TreeViewGetColumn(o, c)
+			if .not. empty(column:format) .and. column:type == TABLE_COLUMN_NUMBER
+				gtk_TreeViewColumnSetFormat(ic, renderer, c, column:format)
+			endif
+			if column:editable .and. column:type != TABLE_COLUMN_COUNTER
+				gtk_TreeViewColumnSetAttributes(ic, renderer, "text", i, "editable", cc+1)
+				gtk_SignalConnect(renderer, "edited", {|w, e| ui_EditTableEdited(self, w, e, o)})
+			endif
+			if column:type == TABLE_COLUMN_NUMBER .or. column:type == TABLE_COLUMN_COUNTER
+				if column:editable .and. column:type != TABLE_COLUMN_COUNTER
+					gtk_TreeViewColumnSetAttributes(ic, renderer, "text", i, "xalign", cc+2, "editable", cc+1)
+				else
+					gtk_TreeViewColumnSetAttributes(ic, renderer, "text", i, "xalign", cc+2)
+				endif
+			endif
+			
+		endif
+		gtk_TreeViewColumnSetResizable(ic, .T.)
+		//gtk_TreeViewColumnSetExpand(ic, .T.)
+		columns[i]:__obj := ic
+	next
+	//gtk_TreeViewSetExpanderColumn(o, gtk_TreeViewGetColumn(o, 2))
+	//gtk_TreeViewSetHoverSelection(o, .T.) // Cool effect!
+	if searchColumn != 0
+		//?? 'Search column:', searchColumn, chr(10)
+		gtk_TreeViewSetSearchColumn(o, searchColumn)
+	endif
+	o:columns := columns
+	o:layout := frame
+	
+	// Set action for delete and append
+	gtk_SignalConnect(o, "key-press-event", {|w, e| ui_EditTableKeyboardHandler(self, w, e, o)})
+	
+return o
+
+/* Key press slot for editable table*/
+static function ui_EditTableKeyboardHandler(self, w, e, o)
+	local r, tRow, key, win
+	r := self:getEditTableSelectedRow(o)
+	tRow := self:getEditTableRowCount(o)
+	key := e:keyVal
+	//?? 'Key pressed:', e, 'row:', r, 'rows:', tRow, chr(10)
+	switch key
+		case 7 // Delete
+			if r != NIL
+				win := getMainWindow()
+				win:dialogBox( [Delete confirmation], ;
+					[Are you sure to delete this record?], ;
+					"'"+[&amp;Delete]+"','"+[&amp;Cancel]+"'", ;
+					"'DELETE','CANCEL'", ;
+					{|gId| iif(gId=='DELETE', o:removeRow( r ), NIL), self:setEditTableCursor(o, r) }, ;
+					IMG_QUESTION )
+			endif
+		case 24 // Down arrow
+			if r == tRow .or. tRow == 0
+				r := self:addEditTableRow(o)
+				self:setEditTableCursor(o, 1+val(r), NIL, .T. )
+				return .T.
+			endif
+		case 22 // Insert
+			r := self:addEditTableRow(o)
+			self:setEditTableCursor(o, 1+val(r), NIL, .T. )
+			return .T.
+	endswitch
+return .F. 
+
+/* Slots for edit choice cell */
+static function ui_EditTableStartEdit(self, wid, ev, o, renderer)
+	local row, column, oldValue, c, ret
+	
+	//row := self:getEditTableSelectedRow(o)
+	row := 1+val(ev:PATHSTRING)
+	column := self:getEditTableSelectedColumn(o)
+	c := o:columns[column]
+	
+	//?? "EditTableStartEdited():", row, column, ev, chr(10)
+	oldValue := self:getEditTableField(o, column, row)
+	//?? 'start edit:', ev, chr(10)
+	
+	if 'ONSELECT' $ c
+		ret := eval( c:onSelect, o, column, row, oldValue )
+		if valtype(ret) == 'L' .and. ret
+			ui_setTableValue(o, ltrim(str(row-1)), column, oldValue)
+			return .T.
+		endif
+	endif
+	//gtk_CellRendererEditingCanceled(renderer)
+	gtk_CellRendererStopEditing(renderer, .T.)
+	?? "end start&\n"
+return .T.
+
+static function ui_EditTableEndEdit(self, wid, ev, o, renderer)
+	//?? 'stop edit:', ev, chr(10)
+return .T.
+
+/* Edit text cell slot */
+static function ui_EditTableEdited(self, wid, ev, o)
+	local row, column, oldValue, c
+	
+	//row := self:getEditTableSelectedRow(o)
+	row := 1+val(ev:PATHSTRING)
+	column := self:getEditTableSelectedColumn(o)
+	c := o:columns[column]
+	
+	//?? "EditTableEdited():", row, column, ev, chr(10)
+	oldValue := self:getEditTableField(o, column, row)
+	
+	if c:type == TABLE_COLUMN_COMBO
+		gtk_ListStoreSetValue(GTK_TREEMODEL(o:model), ltrim(str(row-1)), column, ev:NEWTEXT)
+	else
+		ui_setTableValue(o, ltrim(str(row-1)), column, ev:NEWTEXT)
+	endif
+	
+	//?? "set focus to cell:", row, column, chr(10)
+	ui_setEditTableCursor(self, o, row, column, .F.)
+	
+	if 'ONCHANGED' $ o
+		if eval( o:onChanged, o, column, row, oldValue )
+			ui_setTableValue(o, ltrim(str(row-1)), column, oldValue)
+			return .T.
+		endif
+	endif
+	
+return .F.
+
+/* Toggle checked cell slot */
+static function ui_EditTableToggled(self, wid, ev, o)
+	local row, column, value, oldValue:=.F.
+	
+	row := 1+val(ev:PATHSTRING)
+	column := self:getEditTableSelectedColumn(o)
+  	gtk_TreeModelGetFromPathString(GTK_TREEMODEL(o:model), ltrim(str(row-1)), column, @oldValue, -1)
+	value = !oldValue
+	//?? "EditTableToggled():", row, column, oldValue, chr(10)
+	
+	gtk_ListStoreSetValue(GTK_TREEMODEL(o:model), ltrim(str(row-1)), column, value)
+	if 'ONCHANGED' $ o
+		if eval( o:onChanged, o, column, row, oldValue )
+			gtk_ListStoreSetValue(GTK_TREEMODEL(o:model), ltrim(str(row-1)), column, oldValue)
+			return .T.
+		endif
+	endif
+
+return .F.
+
+/* Add editable table row */
+static function ui_addEditTableRow(self, table, data)
+	local row, i 
+	row := gtk_ListStoreAppend(table:store)
+	self:setEditTableRow(table, row, data)
+	for i:=1 to len(table:columns)
+		if table:columns[i]:type == TABLE_COLUMN_COUNTER
+			gtk_ListStoreSetValue(GTK_TREEMODEL(table:model), row, i, 1+val(row))
+		endif
+	next
+	i := len(table:columns)
+	gtk_ListStoreSetValue(table:store, row, i+1, .T.)
+	gtk_ListStoreSetValue(table:store, row, i+2, 1.0)
+return row
+
+/* Wrappers for combobox and choice cell values */
+static function ui_setTableValue(table, row, column, value)
+	local c, cValue
+	c := table:columns[column]
+	
+	if c:type == TABLE_COLUMN_COMBO .and. valtype(c:source) == 'O'
+		value := c:source:getText(value)
+	endif
+	
+	//?? 'set value:', row, column, value, chr(10)
+	gtk_ListStoreSetValue(table:store, row, column, value)
+
+	if c:type == TABLE_COLUMN_CHOICE .and. valtype(c:source) == 'O' .and. "__TEXT" $ c
+		if empty(value)
+			cValue := ""
+		else
+			cValue := c:source:getText(value)
+		endif
+		gtk_ListStoreSetValue(table:store, row, c:__text, cValue)
+	endif
+	
+return value
+
+static function ui_getTableValue(table, row, column, value)
+	local c, v
+	c := table:columns[column]
+	v := c:default	
+	
+	gtk_TreeModelGetFromPathString( gtk_TreeViewGetModel( table ), row, column, @value, -1 )
+	
+	if c:type == TABLE_COLUMN_COMBO .and. valtype(c:source) == 'O'
+		value := c:source:getValueByText(value)
+	endif
+	
+return value
+
+/* Set data for editable table row */
+static function ui_setEditTableRow(self, table, row, data)
+	local i, c, src, def
+	if valtype(row) == 'N'
+		row := ltrim(str(row-1))
+	endif
+	if valtype(data) == 'A'
+		for i:=1 to len( data )
+			if table:columns[i]:type != TABLE_COLUMN_COUNTER
+				ui_setTableValue(table, row, i, data[i])
+			endif
+		next
+	elseif valtype(data) == 'O'
+		for i:=1 to len( table:columns )
+			c := upper(table:columns[i]:name)
+			if table:columns[i]:type != TABLE_COLUMN_COUNTER
+				ui_setTableValue(table, row, i, data[c])
+			endif
+		next
+	else
+		for i:=1 to len( table:columns )
+			c := table:columns[i]:default
+			if table:columns[i]:type == TABLE_COLUMN_COMBO
+				c := ""
+				if "SOURCE" $ table:columns[i] .and. valtype(table:columns[i]:source) == "O"
+					src := table:columns[i]:source:getList()
+					def := table:columns[i]:source:getValueByText(table:columns[i]:default)
+					if len(src) > 0 .and. empty(def)
+						c := src[1][2]
+					elseif .not. empty(def)
+						c := def
+					endif
+				endif
+			endif
+			if table:columns[i]:type != TABLE_COLUMN_COUNTER
+				ui_setTableValue(table, row, i, c)
+			endif
+		next
+	endif
+return NIL
+
+/* Get data from editable table row as object */
+static function ui_getEditTableRow(self, table, row)
+	local o:=map(), i, cc, c, v:=''
+	
+	// Normalize row
+	if valtype(row) == 'N'
+		if self:getEditTableRowCount(table) < row
+			row := NIL
+		else
+			row := ltrim(str(row-1))
+		endif
+	elseif valtype(row) == 'U'
+		row := ui_getEditTableSelection(self, table)
+	endif
+	
+	if empty(row)
+		return NIL
+	endif
+	
+	// Get row as object
+	cc := len( table:columns )
+	for i:=1 to cc
+		c := table:columns[i]:name
+		v := ui_getTableValue(table, row, i, v)
+		o[upper(c)] := v
+	next
+return o
+
+/* Remove editable table row */
+static function ui_removeEditTableRow(self, table, row)
+	local num, total, i, r
+	if valtype(row) == 'N'
+		num := row
+		row := ltrim(str(row-1))
+	else
+		num := 0 + val(row)
+	endif
+	total := self:getEditTableRowCount(table)
+	//?? 'remove', num, 'from', total, chr(10)
+	if num <= total
+		gtk_ListStoreRemove(table:store, row)
+		// Refresh count
+		for r:=num to total-1
+			for i:=1 to len(table:columns)
+				if table:columns[i]:type == TABLE_COLUMN_COUNTER
+					gtk_ListStoreSetValue(GTK_TREEMODEL(table:model), ltrim(str(r-1)), i, r)
+				endif
+			next
+		next
+	endif
+return NIL
+
+/* Clear all editable table */
+static function ui_clearEditTable(self, table)
+	gtk_ListStoreClear( table:store )
+return NIL
+
+static function ui_getEditTableSelection(self, table)
+	local s, iter, path, pathstr
+
+	s := gtk_TreeViewGetSelection( table )
+	gtk_TreeSelectionGetSelected(s, NIL, @iter)
+	if iter == NIL
+		return NIL
+	endif
+	path := gtk_TreeModelGetPath(gtk_TreeViewGetModel( table ), iter)
+	pathstr := gtk_TreePathToString(path)
+return pathstr
+
+static function ui_setEditTableField(self, table, column, row, value)
+	local c, i
+	
+	if valtype(row) == 'U'
+		row := ui_getEditTableSelection(self, table)
+	endif
+	if valtype(column) == 'C'
+		c := lower(column) 
+		i := ascan(table:columns, {|e| lower(e:name) == c })
+		if i > 0
+			column := i
+		else
+			column := NIL
+		endif
+	endif
+	if valtype(row) == 'U' .or. valtype(column) != 'N'
+		return NIL
+	else
+		if valtype(row) == 'N'
+			if self:getEditTableRowCount(table) < row
+				return NIL
+			endif
+			row := ltrim(str(row-1))
+		endif
+	endif
+	if table:columns[column]:type != TABLE_COLUMN_COUNTER
+		ui_setTableValue(table, row, column, value)
+	endif
+return NIL
+
+static function ui_getEditTableField(self, table, column, row)
+	local o:=array(0), i, c, cc, r:='', v:=''
+	
+	// Normalize row
+	if valtype(row) == 'N'
+		if self:getEditTableRowCount(table) < row
+			row := NIL 
+		else
+			row := ltrim(str(row-1))
+		endif
+	elseif valtype(row) == 'U'
+		row := ui_getEditTableSelection(self, table)
+	endif
+	if empty(row)
+		return NIL
+	endif
+	
+	// Normalize column
+	if valtype(column) == 'C'
+		c := lower(column) 
+		i := ascan(table:columns, {|e| lower(e:name) == c })
+		if i > 0
+			column := i
+		else
+			column := NIL
+		endif
+	endif
+	if valtype(column) == 'N'
+		// Get single value
+		return ui_getTableValue(table, row, column, v)
+	else
+		// Get row as array
+		cc := len( table:columns )
+		for i:=1 to cc
+			c := table:columns[i]:name
+			aadd(o, ui_getTableValue(table, row, i, v))
+		next
+		return o
+	endif
+return NIL
+
+static function ui_setEditTableCursor(self, table, row, column, beginEdit)
+	local r
+	
+	if valtype(beginEdit) == 'U'
+		beginEdit := .F.
+	endif
+	if valtype(column) == 'U'
+		column := self:getEditTableSelectedColumn(table)
+	endif
+	r := self:getEditTableRowCount(table)
+	if row > r
+		row := r
+	endif
+
+	if row > 0
+		// Map indexes to objects
+		row := gtk_TreePathNewFromString( ltrim(str(row-1)) )
+		column := iif(column>0, column, 1)
+		column := gtk_TreeViewGetColumn(table, column)
+		//?? "cursor: ", row, column, beginEdit, chr(10)
+		gtk_TreeViewSetCursor(table, row, column, beginEdit)
+	endif
+return NIL
+
+static function ui_getEditTableRowCount(self, table)
+return 0+gtk_TreeModelIterNChildren( gtk_TreeViewGetModel( table ), NIL )
+
+static function ui_getEditTableColumnCount(self, table)
+return len(table:columns)
+
+static function ui_getEditTableSelectedRow(self, table)
+	local row
+	row := ui_getEditTableSelection(self, table)
+	if row == NIL
+		return NIL
+	endif
+	//?? 'selected row:', row, chr(10)
+return 1 + val( row )
+
+static function ui_getEditTableSelectedColumn(self, table)
+	local c
+	c := gtk_TreeViewGetSelectedColumn(table)
+	//?? 'selected column:', c, chr(10)
+return c
+
+
+/* TabArea and Tab */
+static function ui_createTabArea(self)
+	local o
+	o := gtk_NotebookNew()
+	gtk_NoteBookSetShowBorder( o, .T. )
+	gtk_NoteBookSetScrollable( o, .T. )
+	gtk_NotebookPopupEnable( o )
+return o
+
+static function ui_createTab(self, caption, name)
+	local o
+	o := UIVBox()
+	o:caption := caption
+return o
+
+static function ui_addTab(self, area, tab, pos)
+	tab:parent := area
+	gtk_NoteBookAppendPage( area, tab, tab:caption )
+return NIL
+
+static function ui_activateTab(self, tab)
+	local n
+	n := gtk_NoteBookPageNum(tab:parent, tab)
+	gtk_NoteBookSetPage(tab:parent, n)
+return NIL
+
+static function ui_setTabCaption(self, tab, caption)
+	//w := gtk_NotebookGetNthPage(window:parent:childSpace, n)
+	gtk_NotebookSetTabLabel(tab:parent, tab, caption)
+return NIL

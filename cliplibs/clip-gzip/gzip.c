@@ -5,6 +5,9 @@
  */
 /*
   $Log: gzip.c,v $
+  Revision 1.1  2006/06/22 20:12:11  itk
+  uri: init sf.net
+
   Revision 1.8  2005/08/09 09:45:10  clip
   alena: fix for gcc 4
 

@@ -4,18 +4,18 @@ function r2d2_addinfo_xml(_queryStr)
 
 local err,_query,_queryArr
 local i,j,k,m,obj,id:=""
-local aTree:={}, aRefs:={}
-local connect_id:="", connect_data
+local aTree:=map(), aRefs:={}
+local connect_id:="", acclog_id, connect_data
 local lang:="", sDict:="", sDep:=""
 local oDict,oDep, tmp,tmp1,tmp2, classDesc
 local columns,col,mas:={},objs:={}
 local err_desc:="",keyValue
-local urn,a,b,xmlitem
+local urn,a,b,nodeType
 
 local p_list,pdoc_del:=map()
 local sprname:=""
 
-//#define NEW_ACCPOST
+#define NEW_ACCPOST
 
 	errorblock({|err|error2html(err)})
 
@@ -38,18 +38,13 @@ local sprname:=""
 	if "URN" $ _query
 		URN := _query:URN
 	endif
-	if "XMLITEM" $ _query
-		XMLITEM := _query:xmlitem
+	if "NODETYPE" $ _query
+		NODETYPE := _query:nodetype
 	endif
 	if !empty(connect_id)
 		connect_data := cgi_connect_data(connect_id)
 	endif
-    /*
-	if !empty(connect_data)
-		beg_date := connect_data:beg_date
-		end_date := connect_data:end_date
-	endif
-    */
+
 	if "ACC01" $ _query .and. !empty(_query:acc01)
 		set("ACC01",_query:acc01)
 	endif
@@ -59,7 +54,6 @@ local sprname:=""
 
 	lang := cgi_choice_lang(lang)
 	sDep := cgi_choice_sDep(lang)
-	//sprname := lower(sprname)
 	sDict:= cgi_choice_sDict(@sprname)
 
 	if !empty(id)
@@ -85,7 +79,7 @@ local sprname:=""
 		return
 	endif
 
-	cgi_xml_header()
+//	cgi_xml_header()
 
 	if empty(id)
 		oDep := cgi_needDepository(sDict,sDep)
@@ -106,10 +100,6 @@ local sprname:=""
 
 	columns := cgi_make_columns(oDict,sprname)
 
-	if classDesc:name == "accpost"
-		r2d2_accpost_log(oDep,"CGIADD","",_queryStr)
-	endif
-
 	if "};" $ _queryStr
 		while !empty(_queryStr)
 			i := at("{",_queryStr)
@@ -123,6 +113,9 @@ local sprname:=""
 	endif
 	if !oDict:lockID(classDesc:id,10000)
 		return
+	endif
+	if classDesc:name == "accpost"
+		acclog_id := r2d2_accpost_log_beg(oDep,"CGIADD","",_queryStr)
 	endif
 
 
@@ -229,11 +222,21 @@ local sprname:=""
 				pdoc_del[a+b] := a+b
 			endif
 		endif
+
 		if "CLASS_ID" $ obj
 		else
 			obj:class_id := classDesc:id
 		endif
+		if classDesc:name == "accpost"
+			if !accpost_stop_date(oDep,obj)
+				outlog(__FILE__,__LINE__, odep:error)
+				cgi_xml_error(odep:error)
+				loop
+			endif
+		endif
+
 		if !empty(id)
+
 			obj:id := id
 			if .f. //classDesc:name == "accpost"
 				oDep:error := r2d2_mt_oper("update_accpost",oDep,obj)
@@ -241,6 +244,7 @@ local sprname:=""
 			else
 				oDep:update(obj)
 			endif
+			
 		else
 			if .f. //classDesc:name == "accpost"
 				oDep:error := r2d2_mt_oper("append_accpost",oDep,obj)
@@ -249,8 +253,10 @@ local sprname:=""
 				id := oDep:append(obj,classDesc:id)
 			endif
 		endif
-		if !empty(oDep:error)
 
+		aTree['level0']:={}
+
+		if !empty(oDep:error)
 			if val(oDep:error) != 1143 /* non unique value */
 				outlog(__FILE__,__LINE__, odep:error)
 			cgi_xml_error(odep:error) //не надо выводить xml вне корневого тега!!!!!!!
@@ -261,16 +267,22 @@ local sprname:=""
 			/* seek unique value */
 				keyValue:=oDep:eval(classDesc:unique_key,obj)
 				if empty(keyValue)
-				outlog(__FILE__,__LINE__, odep:error)				
+				outlog(__FILE__,__LINE__, odep:error)
 					cgi_xml_error(err_desc+":"+oDep:error)
-			//		return
 				endif
 				tmp := oDep:id4PrimaryKey(classDesc:name,classDesc:unique_key,keyValue,.t.)
 				for i=1 to len(tmp)
-					k := oDep:getValue(tmp[i])
+					k := cgi_getValue(tmp[i])
 					if !empty(k)
-						aadd(aRefs,{k:id,"",.f.,k})
-						aadd(objs,k)
+					//?'<items id="objectexist">'
+					?'{"id":"objectexist","essence":"object already exist","unique_key":"'
+					if valtype(keyValue)=='N'
+					    ?? alltrim(str(keyValue))
+					else
+					    ?? keyValue					    				
+	    				endif
+					    ??'", "name":"'+classDesc:unique_key+'"}' 
+					    return
 					endif
 				next
 			endif
@@ -279,82 +291,89 @@ local sprname:=""
 				objs := {}
 				p_list := oDep:select(classDesc:id,,,'primary_document=="'+obj:primary_document+'" .and. document_record=="'+obj:document_record+'"')
 				for i=1 to len(p_list)
-					k := oDep:getValue(p_list[i])
+					k := cgi_getValue(p_list[i])
 					if !empty(k)
-						aadd(aRefs,{k:id,"",.f.,k})
-						aadd(objs,k)
+						aadd(aTree['level0'], k)
 					endif
 				next
 			else
-				obj := oDep:getValue(id)
-				aadd(aRefs,{obj:id,"",.f.,obj})
-				aadd(objs,obj)
+				obj := cgi_getValue(id)
+				aadd(aTree['level0'], obj)
+
 			endif
 		endif
 	next
-	oDict:unLockID(classDesc:id)
 
-	if set("XML_OUT")=="NO"
+
+
+	if empty(nodeType)
+		nodeType:='json'
+		cgi_text_header()
 	else
-	    if xmlitem=='yes'
-		? '<xmlitems>'
-		cgi_fillTreeRdf(aRefs,aTree,"",1)
-		if empty(urn)
-			urn := 'urn:'+sprname
-		endif
-		cgi_putArefs2Rdf(aTree,oDep,0,urn,columns,"")
-		? '</xmlitems>'
-	    else
-		? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
-		? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
-		?
-		cgi_fillTreeRdf(aRefs,aTree,"",1)
-
-		if empty(urn)
-			urn := 'urn:'+sprname
-		endif
-		cgi_putArefs2Rdf1(aTree,oDep,0,urn,columns,"")
-		? '</RDF:RDF>'
-	    endif
+		cgi_xml_header()
 	endif
+	if empty(urn)
+		urn := 'urn:'+sprname
+	endif
+	? "{"
+	cgi_putObjJson(obj,columns, urn, aTree, len(columns))
+	
+	//cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,'','',nodeType)
+	?? "}"
 
-?
 return
 
-/************************************************/
-static function put_object(obj,oDep,columns,_queryArr,err_desc)
-	local level:=1,s:=replicate("   ",level),col
-	local i,j, oOut,sout
-	if "ID" $ obj
-		sOut:=s+' <treeitem id="'+obj:id+'" '
+
+****************************************
+function accpost_stop_date(oDep,oData)
+	static stop_dates := map() /* для сервера надо как то иначе */
+	local depEtc,dictEtc
+	local i,tmp,obj,acc_db,stop_date
+	if set("ACCPOST_LOG")=="NO"
+		return .t.
+	endif
+	if !(oDep:id $ stop_dates)
+		depEtc := cgi_needDepository("ETC01","01")
+		if empty(depEtc)
+			outlog(__FILE__,__LINE__,[Can`t open depository]+" ETC0101")
+			return .t.
+		endif
+		if !empty(depEtc:error)
+			outlog(__FILE__,__LINE__,[Error open depository]+" ETC0101:",depEtc:error)
+			return .t.
+		endif
+		dictEtc := depEtc:dictionary()
+		acc_db  := dictEtc:classBodyByName("acc_db")
+		if empty(acc_db)
+			outlog(__FILE__,__LINE__,[Can`t find class]+" acc_db")
+			return .t.
+		endif
+		tmp := depEtc:select(acc_db:id)
+		for i=1 to len(tmp)
+			obj := depEtc:getValue(tmp[i])
+			if empty(obj)
+				loop
+			endif
+			if "STOP_DATE" $ obj
+			else
+				loop
+			endif
+			if obj:acc01 == oDep:id
+				stop_date := obj:stop_date
+				stop_dates[oDep:id] := stop_date
+				exit
+			endif
+		next
 	else
-		sOut:=s+' <treeitem '
+		stop_date := stop_dates[oDep:id]
 	endif
-	if !empty(err_desc)
-		sOut += ' error="true" errmsg="'+err_desc+'"'
+
+	if empty(stop_date)
+		return .t.
 	endif
-	sOut += ' >'
-	? cgi_dataTran(sOut,_queryArr)
-	sOut := s+"   <treerow>"
-	? cgi_dataTran(sOut,_queryArr)
-
-	for j=1 to len(columns)
-		col := columns[j]
-		oOut := cgi_objDesc(obj,col)
-		? s+"      "+'<treecell label="'+oOut:label+'" '
-		if !empty(oOut:obj_id)
-			?? 'obj_id="'+oOut:obj_id+'" '
-		endif
-		if !empty(oOut:obj_name)
-			?? 'obj_name="'+oOut:obj_name+'" '
-		endif
-		if !empty(oOut:Out)
-			?? oOut:out
-		endif
-		?? '/>'
-	next
-
-	? s,"  </treerow>"
-	? s,' </treeitem>'
-return
+	if valtype(stop_date)=="D" .and. oData:odate < stop_date
+		oDep:error := [stop_date limited]
+		return .f.
+	endif
+return .t.
 

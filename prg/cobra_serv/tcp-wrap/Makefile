@@ -2,11 +2,11 @@ LIBS = -lwrap
 CC = gcc
 CFLAGS = -O
 
-all: tcp-wrap
+all: tcp-wrap$(EXESUFF)
 
-tcp-wrap: tcp-wrap.c
-	$(CC) $(CFLAGS) -o tcp-wrap tcp-wrap.c $(LIBS)
+tcp-wrap$(EXESUFF): tcp-wrap.c
+	$(CC) $(CFLAGS) -o $@ tcp-wrap.c $(LIBS)
 
 clean:
-	rm -f tcp-wrap *.bak *.o
+	rm -f$(V) tcp-wrap$(EXESUFF) *.bak *.o
 

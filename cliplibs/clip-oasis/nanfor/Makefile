@@ -4,20 +4,20 @@ TARGET=libclip-nanfor$(DLLSUFF)
 RTARGET=libclip-nanfor$(DLLREALSUFF)
 LIBS=libclip-nanfor.a
 
-all: $(TARGET)
+all : $(TARGET)
 
-$(TARGET):
+$(TARGET) :
 	cd prg && $(MAKE)
-	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(LIBS)
+	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(LIBS)
 
 clean distclean:
 	cd prg && $(MAKE) clean
 	rm -f $(LIBS) $(TARGET) $(RTARGET) *.ex *.nm *.bak
 
-install:  $(TARGET)
-	$(CLIPROOT)/bin/clip_cp $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
+install : all  $(TARGET)
+	clip_cp$(SCRIPTSUFF) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
 	#[ "$(TARGET)" = "$(RTARGET)" ] || cp $(RTARGET) $(CLIPROOT)/lib
-	$(CLIPROOT)/bin/clip_cp $(LIBS) $(DESTDIR)$(CLIPROOT)/lib
+	clip_cp$(SCRIPTSUFF) $(LIBS) $(DESTDIR)$(CLIPROOT)/lib
 	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/clip-oasis/nanfor
 #	cp doc/netto*.* $(CLIPROOT)/doc/clip-oasis/nanfor
 #	cp doc/readme*.* $(CLIPROOT)/doc/clip-oasis/nanfor

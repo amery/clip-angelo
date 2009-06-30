@@ -22,6 +22,7 @@
 
 
 TODO:
+- context for '-' insede nodeset and operations
 - process nodeset
 - full support of full and abbreviated syntax
 - logical operators
@@ -69,7 +70,6 @@ static _xpath_symbols := { ;
 	{ '/',	XPATH_TOKEN_OPERATOR }, ;
 	{ '|',	XPATH_TOKEN_OPERATOR }, ;
 	{ '+',	XPATH_TOKEN_OPERATOR }, ;
-	{ '-',	XPATH_TOKEN_OPERATOR }, ;
 	{ '=',	XPATH_TOKEN_OPERATOR }, ;
 	{ '!=',	XPATH_TOKEN_OPERATOR }, ;
 	{ '<=',	XPATH_TOKEN_OPERATOR }, ;
@@ -78,6 +78,7 @@ static _xpath_symbols := { ;
 	{ '>',	XPATH_TOKEN_OPERATOR }, ;
 	{ '*',	XPATH_TOKEN_OPERATOR } ;
 }
+//	{ '-',	XPATH_TOKEN_OPERATOR }, ;
 
 /* Symbols */
 static _xpath_functions := { ;
@@ -132,8 +133,11 @@ static _xpath_axis := { ;
 
 /* xml_XPath() */
 function xml_XPath( context, path )
-	local i, res, b, t, n
+	local i, res, b, t, n, oErr
 	
+	oErr := errorBlock({|e| break(e) })
+	
+	begin sequence
 	// Split to tokens
 	res := _xpath_splitToken( path )
 	
@@ -183,6 +187,11 @@ function xml_XPath( context, path )
 
 	// Evaluate expression
 	res := _xpath_evaluate( @b, context )
+	
+	recover using oErr
+		?? "XPath error:", errorMessage(oErr), chr(10)		
+		return NIL
+	end sequence
 
 return res
 

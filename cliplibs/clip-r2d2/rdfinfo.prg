@@ -1,6 +1,6 @@
 #include "r2d2lib.ch"
 
-function r2d2_info_rdf(_queryArr)
+function r2d2_rdfinfo(_queryArr, isRDF)
 
 local err,_query
 local i,j,obj,idlist,sErr
@@ -10,6 +10,8 @@ local lang:="", sDict:="", sDep:=""
 local oDict,oDep, tmp,tmp1,tmp2, classDesc, s_select:=""
 local columns,col, id:="", owner_map:=map(),map2:=map(),aData, sId
 local urn, sprname:="", values := "", attr := "", atom:="", iftree
+
+	isRDF := iif( valType(isRDF)=="L", isRDF, .t.)
 
 	errorblock({|err|error2html(err)})
 
@@ -27,7 +29,10 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	endif
 	if "ID" $ _query
 		id := _query:id
+		? id 
+		? '----'
 	endif
+	? 'ssssssss'
 	if "URN" $ _query
 		URN := _query:URN
 	endif
@@ -70,7 +75,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
        if "ACC00" $ _query .and. !empty(_query:acc00)
 	   set("ACC00",_query:acc00)
        endif
-
+? id
 	lang := cgi_choice_lang(lang)
 	sDep := cgi_choice_sDep(lang,sDict)
 	//sprname := lower(sprname)
@@ -112,6 +117,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 		cgi_xml_error( "Depository not found: "+sDict+sDep )
 		return
 	endif
+	? id
 	oDict := oDep:dictionary()
 	classDesc:=oDict:classBodyByName(sprname)
 	if empty(classDesc)
@@ -135,14 +141,18 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 			cgi_xml_error("Error in parameters:"+Serr)
 		endif
 	endif
-
+	? id
 	if aRefs == NIL
 		aRefs := {}
 		idList := {}
 		if !empty(id)
 			idList := split(id,"[,]")
+			?id
+			?idList
 		elseif !empty(values) .and. !empty(attr)
 			for i=1 to len(values)
+			? attr
+			? values[i]
 				s_select := attr+'=="'+values[i]+'"'
 				tmp:=oDep:select(classDesc:id,,,s_select,,needDeleted)
 				for j=1 to len(tmp)
@@ -177,6 +187,9 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	endif
 
 	//asort(aRefs,,,{|x,y| x[3] <= y[3] })
+	if len(aRefs) > 10000
+		asize(aRefs,10000)
+	endif
 	cgi_checkTreeArefs(arefs,oDep)
 
 	if atom .and. "UNIQUE_KEY" $ classDesc .and. !empty(classDesc:unique_key)
@@ -192,10 +205,15 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	if empty(urn)
 		urn := 'urn:'+sprname
 	endif
-	outlog(__FILE__,__LINE__,len(aTree))
-	cgi_putArefs2Rdf1(aTree,oDep,0,urn,columns,"",,atom)
-	?
-	cgi_putArefs2Rdf2(aTree,oDep,0,urn,columns,"",,atom)
+	//outlog(__FILE__,__LINE__,len(aTree))
+	
+	if isRDF
+		cgi_putArefs2Rdf(aTree,oDep,0,urn,columns,"",,atom)
+	else
+		cgi_putArefs2Rdf1(aTree,oDep,0,urn,columns,"",,atom)
+		?
+		cgi_putArefs2Rdf2(aTree,oDep,0,urn,columns,"",,atom)
+	endif
 	? '</RDF:RDF>'
 ?
 return

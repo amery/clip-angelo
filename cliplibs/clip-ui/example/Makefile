@@ -7,27 +7,27 @@ endif
 
 include $(CLIPROOT)/include/Makefile.inc
 CLIPINCLUDE = -I$(CLIPROOT)/include
-CLIP = $(CLIPROOT)/bin/clip
+CLIP = clip$(EXESUFF)
 
 .SUFFIXES: .prg .o .po
 .PHONY: all clean
 
 # Widget tests
-PRG1=test_ui
-PRG2=form_ui
+PRG1=uitest$(EXESUFF)
+PRG2=uiform$(EXESUFF)
 LIBS=-lclip-ui -lclip-xml -lexpat
 EXTRALIBS=
 
 all: $(PRG1) $(PRG2)
 
 clean:
-	rm -f *.o *.bak core* *core $(PRG1) $(PRG2) *.log *.nm *.ex *.exe $(OUTPUT)
+	rm -f *.o *.bak core* *core $(PRG1) $(PRG2) *.log *.nm *.ex *.exe $(OUTPUT) image[0-9]*
 
-$(PRG1): test_ui.prg
-	$(CLIP) -ewslM $(CLIPINCLUDE) test_ui.prg $(LIBS) $(EXTRALIBS)
+$(PRG1): uitest.prg
+	$(CLIP) -o$@ -ewslM $(CLIPINCLUDE) uitest.prg $(LIBS) $(EXTRALIBS)
 
-$(PRG2): form_ui.prg
-	$(CLIP) -ewsl $(CLIPINCLUDE) form_ui.prg $(LIBS) $(EXTRALIBS)
+$(PRG2): uiform.prg
+	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) uiform.prg $(LIBS) $(EXTRALIBS)
 
 #.prg.o:
 #	$(CLIP) -l $(CLIPINCLUDE) $<

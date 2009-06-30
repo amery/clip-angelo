@@ -1,0 +1,12 @@
+#!/bin/sh
+
+LIBGLADE_VER=$(pkg-config --modversion libglade-2.0 2> /dev/null )
+
+CFLAGS=$(pkg-config --cflags libglade-2.0)
+LIBS=$(pkg-config --libs libglade-2.0)
+
+
+echo "LIBS = $LIBS" >Makefile.01
+echo "CFLAGS += $CFLAGS $ADDCFLAGS">>Makefile.01
+echo "LIBGLADE_VER = $LIBGLADE_VER">>Makefile.01
+

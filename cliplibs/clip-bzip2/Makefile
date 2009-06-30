@@ -3,14 +3,12 @@ ifndef CLIPROOT
 endif
 
 include $(CLIPROOT)/include/Makefile.inc
-CLIPINCLUDE=-I$(CLIPROOT)/include
 
-#C_FLAGS=-Wall -g -I. $(CLIPINCLUDE)
-#CC=gcc
 TARGET=libclip-bzip2$(DLLSUFF)
 ATARGET=libclip-bzip2.a
 RTARGET=libclip-bzip2$(DLLREALSUFF)
 OBJS=bzip2.o
+LIBS= -lbz2 $(C_LIBS)
 
 all:  have_lib $(TARGET) $(ATARGET)
 
@@ -26,19 +24,20 @@ bzpref.h:
 	fi
 
 $(TARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(OBJS) -lbz2
+	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(LIBS)
 
 $(ATARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib $(ATARGET) $(OBJS) -lbz2
+	clip_makelib$(SCRIPTSUFF) $(ATARGET) $(OBJS) $(LIBS)
 
-bzip2.o: bzip2.c hashcode.h bzpref.h
-	$(CC) $(C_FLAGS) $(CLIPINCLUDE) -c bzip2.c
+bzip2.o: bzip2.c bzpref.h
+ #hashcode.h
+	$(CC) $(C_FLAGS) -c bzip2.c
 
 hashcode.h:
-	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
 
-install:
-	$(CLIPROOT)/bin/clip_cp libclip-bzip2 $(DESTDIR)$(CLIPROOT)/lib
+install:all
+	clip_cp$(SCRIPTSUFF) libclip-bzip2 $(DESTDIR)$(CLIPROOT)/lib
 	#mkdir -p $(CLIPROOT)/doc/clip-bzip2
 	#cp *.html $(CLIPROOT)/doc/clip-bzip2
 	#-cd tdoc && $(MAKE) install

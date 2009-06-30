@@ -1,0 +1,15 @@
+#!/bin/sh -u
+#
+#	Configure script for clip
+#	<uri@itk.ru>
+#
+if [[ $ARCH = "x86_64" ]] && [[ $C64 = "64" ]] ; then
+	ARCH=x86_64
+	C64=64
+	echo "" >Makefile.01
+else
+	ARCH=i586
+	C64=""
+	echo "dirs += clip-interbase" >Makefile.01
+fi
+

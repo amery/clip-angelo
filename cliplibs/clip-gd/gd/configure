@@ -3,7 +3,6 @@
 #	Configure script for clip
 #	<uri@itk.ru>
 #
-
 uname=`uname -s`
 uver=`uname -r`
 hname=`hostname -f 2>/dev/null`
@@ -31,7 +30,7 @@ case "$uname" in
 		;;
 	[lL]inux*)
 		osname=LINUX
-		stdlibpath=/usr/lib
+		stdlibpath=/usr/lib$C64
 		stdincpath=/usr/include
 		;;
 	FreeBSD*)
@@ -65,7 +64,6 @@ then
 fi
 
 printf "configure: Makefile creating.."
-echo ''
 
 exec 3>Makefile.inc
 
@@ -142,7 +140,6 @@ cat ./Makefile.in >>Makefile
 echo ". done."
 
 printf "configure: creating gdcfg.h .."
-echo ''
 
 exec 3>gdcfg.h
 

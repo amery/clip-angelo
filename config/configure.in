@@ -1,0 +1,158 @@
+#!/bin/bash -ue
+##
+## 															config dir
+##
+
+#
+# 		local variables defined here
+#
+
+echo "export CFLAGS=\"$C_CLIP_FLAGS\"" 			>>configure.ini
+echo "export CLIP_FLAGS=\"$CLIP_CLIP_FLAGS\"" 	>>configure.ini
+echo "export V=$ClipVerbose" 							>>configure.ini
+
+Config_Init_2
+
+export MAKECMDGOALS=$*
+
+echo "export CFLAGS = $C_CLIP_FLAGS" 			>>Makefile.ini
+echo "export CLIP_FLAGS = $CLIP_CLIP_FLAGS" 	>>Makefile.ini
+echo "export V = $ClipVerbose" 					>>Makefile.ini
+
+mkdir -p$V $BINDIR 					|| true
+mkdir -p$V $Clip_B_Dir 				|| true
+mkdir -p$V $Clip_I_Dir 				|| true
+mkdir -p$V $CLIPROOT/charsets 	|| true
+mkdir -p$V $CLIPROOT/cliprc 		|| true
+mkdir -p$V $CLIPROOT/cobra 		|| true
+mkdir -p$V $CLIPROOT/codb_ad 		|| true
+mkdir -p$V $CLIPROOT/doc 			|| true
+mkdir -p$V $CLIPROOT/etc 			|| true
+mkdir -p$V $CLIPROOT/kamache 		|| true
+mkdir -p$V $CLIPROOT/keymaps 		|| true
+mkdir -p$V $CLIPROOT/lang 			|| true
+mkdir -p$V $CLIPROOT/lib$C64 		|| true
+mkdir -p$V $CLIPROOT/locale.mo 	|| true
+mkdir -p$V $CLIPROOT/locale.po 	|| true
+mkdir -p$V $CLIPROOT/locale.pot 	|| true
+mkdir -p$V $CLIPROOT/term 			|| true
+
+cp -fpu$V $Clip_M_Dir/clip/libclipscreen/install/charsets/* $CLIPROOT/charsets || true
+cp -Rfpu$V $Clip_M_Dir/clip/locale.po/* $CLIPROOT/locale.po || true
+echo We NEED to check if certains programs are installed  	>&0
+echo for a user friendly display and compatibility.			>&0
+echo ""																		>&0
+echo ""																		>&0
+#read -p "press <enter> to continue"
+
+Check_Bin banner 			xyz 	clip 			Yes	/usr/bin 			"banner-xx-$ARCH.(rpm/deb)"
+Check_Bin bison 			xyz 	clip 			Yes 	/usr/bin 			"bison-xx-$ARCH.(rpm/deb)"
+Check_Bin cvs 				xyz 	clip 			Yes 	/usr/bin 			"cvs-xx-$ARCH.(rpm/deb)"
+Check_Bin flex 			xyz 	clip 			Yes 	/usr/bin 			"flex-xx-$ARCH.(rpm/deb)"
+Check_Bin gcc 				xyz 	clip 			Yes 	/usr/bin 			"gcc-xx-$ARCH.(rpm/deb)"
+#Check_Bin imake 			xyz 	clip 			Yes 	/usr/bin 			"imake-xx-$ARCH.(rpm/deb)"
+Check_Bin ld 				xyz 	clip 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
+Check_Bin make 			xyz 	clip 			Yes 	/usr/bin 			"make-xx-$ARCH.(rpm/deb)"
+Check_Bin makedepend 	xyz 	clip 			Yes 	/usr/X11R6/bin/ 	"makedepend-xx-$ARCH.(rpm/deb)"
+Check_Bin mplayer 		xyz 	clip 			No 	/usr/X11R6/bin/ 	"mplayer-xx-$ARCH.(rpm/deb)"
+#Check_Bin mrxvt 			xyz 	clip 			Yes 	/usr/bin 			"mrxvt-xx-$ARCH.(rpm/deb)"
+Check_Bin msgfmt 			xyz 	clip 			Yes 	/usr/bin 			"gettext-devel-xx-$ARCH.(rpm/deb)"
+Check_Bin nm 				xyz 	clip 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
+Check_Bin pkg-config 	xyz 	clip 			Yes 	/usr/bin 			"pkgconfig-xx-$ARCH.(rpm/deb)"
+Check_Bin ranlib 			xyz 	clip 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
+#Check_Bin rxvt 			xyz 	clip			Yes 	/usr/bin				"rvxt-unicode-xx-$ARCH.(rpm/deb)"
+Check_Bin strip 			xyz 	clip 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
+#Check_Bin urxvt 			xyz 	clip 			Yes 	/usr/bin 			"rxvt-unicode-xx-$ARCH.(rpm/deb)"
+Check_Library X11 		a 		clip 			Yes	/usr/lib$C64 		"libxorg-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Bin xclip 			xyz 	clip 			No 	/usr/bin 			"http://sourceforge.net/projects/xclip"
+#Check_Bin xterm 			xyz 	clip 			No 	/usr/bin 			xterm-xx-$ARCH.(rpm/deb)
+Check_Bin wget 			xyz 	clip 			Yes 	/usr/bin 			"wget-xx-$ARCH.(rpm/deb)"
+
+Check_Include 	float.h 		xyz 	clip 	Yes 	/usr/lib/gcc/$ARCH 	"gcc4xx-xx-$ARCH.(rpm/deb)"
+Check_Include 	io.h 			xyz 	clip 	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	jpeglib.h 	xyz 	clip	Yes 	/usr/include/sys 		"lib(m)jpeg-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	mman.h 		xyz 	clip	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	png.h 		xyz 	clip	Yes 	/usr/include/sys 		"libpng-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	readline.h 	xyz 	clip 	Yes 	/usr/include 			"libreadline-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	regex.h 		xyz 	clip 	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	vfs.h 		xyz 	clip	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	statvfs.h 	xyz 	clip	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	stropts.h 	xyz 	clip	Yes 	/usr/include/sys 		"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	xpm.h 		xyz 	clip 	Yes 	/usr/X11R6/include 	"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 	zlib.h 		xyz 	clip 	Yes 	/usr/X11R6/include 	"zlib-devel-xx-$ARCH.(rpm/deb)"
+Check_Library BrokenLocale 		.a 	clip 			Yes 	/usr/lib$C64 	"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library c 						xyz 	clip 			Yes 	/usr/lib$C64 	"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library dl 						xyz 	clip 			Yes 	/usr/lib$C64 	"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library gettextlib 			xyz 	clip 			Yes 	/usr/lib$C64 	"gettext-devel-xx-$ARCH.(rpm/deb)"
+Check_Library gpm 					xyz 	clip 			Yes 	/usr/lib$C64 	"gpm-devel-xx-$ARCH.(rpm/deb)"
+Check_Library m 						xyz 	clip 			Yes	/usr/lib$C64 	"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library ncurses 				xyz 	clip 			Yes 	/usr/lib$C64 	"libncurses-devel-xx-$ARCH.(rpm/deb)"
+Check_Library ncursesw 				xyz 	clip 			Yes 	/usr/lib$C64 	"libncursesw-devel-xx-$ARCH.(rpm/deb)"
+Check_Library readline 				xyz 	clip 			Yes 	/usr/lib$C64 	"lib(tcl)readline-devel-xx-$ARCH.(rpm/deb)"
+
+cp -fpu$V $Clip_M_Dir/bin/add_meta_tag 	$Clip_B_Dir/add_meta_tag$Suff_Script
+cp -fpu$V $Clip_M_Dir/bin/clip_bug 			$Clip_B_Dir/clip_bug$Suff_Script
+cp -fpu$V $Clip_M_Dir/bin/inst_end 			$Clip_B_Dir/inst_end$Suff_Script
+cp -fpu$V $Clip_M_Dir/bin/joinlib 			$Clip_B_Dir/joinlib$Suff_Script
+cp -fpu$V $Clip_M_Dir/bin/lowname 			$Clip_B_Dir/lowname$Suff_Script
+cp -fpu$V $Clip_M_Dir/bin/tconv 				$Clip_B_Dir/tconv$Suff_Script
+# || true
+cp -fpu$V $Clip_M_Dir/bin/license.gnu $Clip_B_Dir/
+# || true
+#cp -fpu$V $Clip_M_Dir/config/LinkAllFiles.f $Clip_B_Dir/
+# || true
+cp -fpu$V $Clip_M_Dir/config/* $Clip_B_Dir/ || true
+CurDir="$PWD"
+cd $Clip_B_Dir \
+	&& chmod 0755 	add_meta_tag$Suff_Script 		\
+						joinlib$Suff_Script 				\
+						lowname$Suff_Script 				\
+						tconv$Suff_Script 				\
+						inst_end$Suff_Script 			\
+						clip_msgmerge$Suff_Script 		\
+						clip_msgfmt$Suff_Script 		\
+						clip_makeslib$Suff_Script 		\
+						clip_cp$Suff_Script 				\
+						clip_makelib$Suff_Script  		\
+						clip_bug$Suff_Script
+##
+##      directories to scan and/or application to check.
+##      pay attention to the order
+##         e.g.: clip must be compiled before functions
+##
+cd "$CurDir"
+export ProgName=bin
+export ADDOBJS=""
+export ADDLIBS=
+export c_files=""
+export prg_files=""
+export h_files=""
+export ch_files=""
+export OBJ_files=""
+export BIN=""
+source $Clip_B_Dir/CreateMakefile_01.f
+echo "new_sequence 	= 		\$(DIRS_TO_SCAN) install" 																>>Makefile.01
+echo "LocalDepend 	= 		\$(Depend_h) \$(StandardDepend) \$(Clip_M_Dir)/bin/functions.cfg" 		>>Makefile.01
+echo "Depend_h 		=" 																									>>Makefile.01
+
+CreateMakefile
+
+rm -f$V $Clip_B_Dir/Makefile
+#|| true
+rm -f$V $Clip_B_Dir/Makefile.ini
+#
+#|| true
+rm -f$V $Clip_B_Dir/Makefile.01
+#|| true
+rm -f$V $Clip_B_Dir/Makefile.in
+#|| true
+rm -f$V $Clip_B_Dir/configure
+#|| true
+rm -f$V $Clip_B_Dir/*.in
+#|| true
+[ -L $Clip_B_Dir/include ] && rm -f$V $Clip_B_Dir/include
+[ -L $Clip_B_Dir/locale.po ] && rm -f$V $Clip_B_Dir/locale.po
+[ -L $Clip_B_Dir/charsets ] && rm -f$V $Clip_B_Dir/charsets
+
+#OnScreen 0 Line : $LINENO FILES_TO_REMOVE : $FILES_TO_REMOVE
+./CleanLinks.sh $PWD

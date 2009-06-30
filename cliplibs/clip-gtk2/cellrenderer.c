@@ -17,13 +17,24 @@
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 4)
 
 static gint
+handle_editing_started (GtkCellRenderer *cell, GtkCellEditable *editable, gchar *path, C_signal *cs)
+{
+	OBJECTPREPARECV(cs,cv);
+	_clip_mputn(cs->co->cmachine, &cv, HASH_EDITABLE, (unsigned long)editable);
+	_clip_mputc(cs->co->cmachine, &cv, HASH_PATHSTRING, path, strlen(path));
+	OBJECTINVOKESIGHANDLER(cs,cv);
+}
+
+static gint
 handle_editing_canceled (GtkCellRenderer *cell, C_signal *cs)
 {
 	OBJECTPREPARECV(cs,cv);
 	OBJECTINVOKESIGHANDLER(cs,cv);
 }
+
 static SignalTable cell_renderer_signals[] =
 {
+	{"editing-started",		GSF( handle_editing_started ), ESF( object_emit_signal ), GTK_EDITING_STARTED_SIGNAL},
 	{"editing-canceled",	GSF( handle_editing_canceled ), ESF( object_emit_signal ), GTK_EDITING_CANCELED_SIGNAL},
 	{"", NULL, NULL, 0}
 };
@@ -35,6 +46,7 @@ handle_cell_renderer_text_edited (GtkCellRendererText *cellrenderertext, gchar *
 {
 	OBJECTPREPARECV(cs,cv);
 	_clip_mputc(cs->co->cmachine, &cv, HASH_PATHSTRING, arg1, strlen(arg1));
+	arg2 = (arg2 ? arg2 : "");
 	LOCALE_FROM_UTF(arg2);
 	_clip_mputc(cs->co->cmachine, &cv, HASH_NEWTEXT, arg2, strlen(arg2));
         FREE_TEXT(arg2);
@@ -209,13 +221,27 @@ err:
 int
 clip_GTK_CELLRENDERERCOMBONEW(ClipMachine * cm)
 {
-	ClipVar *cv       = _clip_spar(cm,1);
-        C_object *ccell;
-        GtkCellRenderer *cell;
-
-	CHECKOPT(1,MAP_t);
+	ClipVar  *cv       = _clip_spar(cm, 1);
+	C_object *cmodel   = _fetch_cobject(cm, _clip_spar(cm, 2));
+	gint      column   = _clip_parni(cm, 3);
+	gboolean  contains = _clip_parl(cm, 4);
+	gboolean  editable = _clip_parl(cm, 5);
+	C_object *ccell;
+	GtkCellRenderer *cell;
+        
+	CHECKOPT(1, MAP_t);
+	CHECKOPT2(2,MAP_t,NUMERIC_t); CHECKCOBJOPT(cmodel, GTK_IS_TREE_MODEL(cmodel->object));
+	CHECKOPT(3, NUMERIC_t);
+	CHECKOPT(4,LOGICAL_t);
+	CHECKOPT(5,LOGICAL_t);
 
 	cell = gtk_cell_renderer_combo_new();
+	g_object_set (cell,
+				"model", GTK_TREE_MODEL(cmodel->object),
+				"text-column", column-1,
+                "has-entry", contains,
+                "editable", editable,
+                NULL);
 
 	if (cell)
 	{

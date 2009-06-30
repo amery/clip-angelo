@@ -2,26 +2,26 @@ ifdef CLIPROOT
 include $(CLIPROOT)/include/Makefile.inc
 endif
 #CLIP	= clip
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -a -O -b -l -w
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -O -b -l -w
 CLIPLIBS  = -lclip-codb -lclip-r2d2
 OBJS  = #cobra_conn.o
 CHS  = #corba_serv.ch
 MODULES = module1.po codbtview.po codbdlist.po
 .SUFFIXES: .prg .o .po
 
-all: cobra_serv $(MODULES) AUTH #WRAP
+all: cobra_serv$(EXESUFF) $(MODULES) AUTH WRAP
 
 clean:
-	rm -rf *.exe *.o *.c *.s *.a *.so *.po *.pa *.log *.uri *.b *.BAK *.bak *~ core* *core
-	rm -rf cobra_serv *.ex *.nm *.pro
+	rm -f *.exe *.o *.c *.s *.a *.so *.po *.pa *.log *.uri *.b *.BAK *.bak *~ core* *core
+	rm -f cobra_serv$(EXESUFF) *.ex *.nm *.pro
 	cd mod-ini; $(MAKE) clean
 	cd auth; $(MAKE) clean
 	cd tcp-wrap; $(MAKE) clean
 
-cobra_serv:cobra_serv.prg $(CHS) $(OBJS)
-	$(CLIP) $(CLIPFLAGS) -esl cobra_serv.prg $(OBJS) $(CLIPLIBS)
-	cd mod-ini; clip -pw *.prg
+cobra_serv$(EXESUFF) :cobra_serv.prg $(CHS) $(OBJS)
+	$(CLIP) $(CLIPFLAGS) -esl -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
+	cd mod-ini; $(CLIP) -pw *.prg
 
 AUTH:
 	cd auth; $(MAKE) all
@@ -29,7 +29,7 @@ AUTH:
 WRAP:
 	cd tcp-wrap; $(MAKE) all
 
-install:
+install: all
 	mkdir -p $(DESTDIR)$(CLIPROOT)/cobra
 	cp cobra_serv$(EXESUFF) $(DESTDIR)$(CLIPROOT)/bin
 	cp cobra_serv$(EXESUFF) $(DESTDIR)$(CLIPROOT)/cobra/

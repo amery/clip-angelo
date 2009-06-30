@@ -1,20 +1,20 @@
 INCLUDEDIRS=-I. -I$(CLIPROOT)/include
 
 ifdef CLIPROOT
-	CLIP	= $(CLIPROOT)/bin/clip
+	CLIP	= $(CLIPROOT)/bin/clip$(EXESUFF)
 else
-	CLIP = clip
+	CLIP = clip$(EXESUFF)
 endif
 CLIPFLAGS = -l -n -w
 CLIPLIBS  =
-BINS = rtfdemo
+BINS = rtfdemo$(EXESUFF)
 
 .SUFFIXES: .prg .o .po
 
 all: $(BINS)
 
-rtfdemo: rtfdemo.prg
-	$(CLIP) -e -s -l -M rtfdemo.prg -lclip-rtf
+rtfdemo$(EXESUFF) : rtfdemo.prg
+	$(CLIP) -o$@-e -s -l -M rtfdemo.prg -lclip-rtf
 
 
 clean:

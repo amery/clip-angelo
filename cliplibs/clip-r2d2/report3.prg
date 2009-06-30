@@ -11,9 +11,9 @@ local i,j,k,s,s1,s2,s3,tmp,obj,col,columns
 local acc_list, acc_objs
 local d_data,k_data, d_list,k_list, d_res,k_res
 local d_cache:=map(), k_cache:=map()
-local c_data, aRefs:={},aTree:={}
-local post,post_list,post_objs
-local urn,sprname,type,cache:=map()
+local c_data, aRefs:={},aTree:=map()
+local post,post_list,post_objs, apost:=map()
+local urn,sprname,typenode,cache:=map()
 
 	errorblock({|err|error2html(err)})
 
@@ -42,8 +42,8 @@ local urn,sprname,type,cache:=map()
 	if "URN" $ _query
 		URN := _query:URN
 	endif
-	if "TYPE" $ _query
-		TYPE := _query:TYPE
+	if "TYPENODE" $ _query
+		TYPENODE := _query:TYPENODE
 	endif
 	if !empty(connect_id)
 		connect_data := cgi_connect_data(connect_id)
@@ -73,7 +73,7 @@ local urn,sprname,type,cache:=map()
 		return
 	endif
 
-	cgi_xml_header()
+
 
 	oDep := cgi_needDepository("ACC01","01")
 	if empty(oDep)
@@ -88,6 +88,11 @@ local urn,sprname,type,cache:=map()
 		cgi_xml_error( "Class description not found: "+sprname )
 		return
 	endif
+	
+	
+	if empty(urn)                                                                                                                                        
+	    urn := 'urn:'+sprname                                                                                                                        
+        endif        
 
 	oDep02 := cgi_needDepository("GBL02","01")
 	if empty(oDep)
@@ -104,6 +109,7 @@ local urn,sprname,type,cache:=map()
 
 	/* search account in acc_chart*/
 	acc_list:={}; acc_objs:={}; tmp:={}
+
 	if !empty(account)
 		obj:= oDep02:getValue(account)
 		if !empty(obj)
@@ -150,6 +156,7 @@ local urn,sprname,type,cache:=map()
 		endif
 		s1+='odate<=stod("'+dtos(end_date)+'")'
 	endif
+
 	for i=1 to len(acc_list)
 		s2:=""
 		if !empty(document)
@@ -160,7 +167,6 @@ local urn,sprname,type,cache:=map()
 		endif
 		if empty(acc_list[i])
 			tmp:=oDep:select(accpost:id,,,s1+s2)
-			//outlog(__FILE__,__LINE__, s1+s2,tmp)
 			for j=1 to len(tmp)
 				aadd(post_list,tmp[j])
 			next
@@ -188,7 +194,7 @@ local urn,sprname,type,cache:=map()
 			aadd(post_list,tmp[j])
 		next
 	next
-	//outlog(__FILE__,__LINE__, len(post_list))
+
 	tmp := map()
 	post_objs:={}
 	for i=1 to len(post_list)
@@ -229,80 +235,64 @@ local urn,sprname,type,cache:=map()
 		endif
 		aadd(post_objs,post)
 	next
+	aTree['level0']:={}                                                                                                                    
+
 	if .t. //empty(document)
-		for i=len(post_objs) to 1 step -1
-			tmp := ascan(post_objs,{|x|x:daccount==post_objs[i]:daccount ;
-				.and. x:kaccount==post_objs[i]:kaccount;
-				.and. x:odate==post_objs[i]:odate;
-				.and. x:primary_document==post_objs[i]:primary_document;
-				})
-			if tmp < 0 .or. tmp == i
-				loop
-			endif
-			//outlog(__FILE__,__LINE__,tmp,post_objs[i])
-			post_objs[tmp]:summa += post_objs[i]:summa
-			post_objs[tmp]:dquantity += post_objs[i]:dquantity
-			post_objs[tmp]:kquantity += post_objs[i]:kquantity
-			adel(post_objs,i)
-			asize(post_objs,len(post_objs)-1)
+
+		for i=1 to len(post_objs)
+			tmp:=post_objs[i]
+			k:=tmp:daccount+tmp:kaccount+tmp:primary_document+dtos(tmp:odate)
+			if !(k $ apost)
+            	apost[k]:=tmp
+            	aadd(aTree['level0'], apost[k])
+            else
+            	apost[k]:summa+=tmp:summa
+            	apost[k]:dquantity+=tmp:dquantity
+            	apost[k]:kquantity+=tmp:kquantity
+            endif
+        next
+        /*                                 
+        for k in apost
+        	aadd(aTree['level0'], k)
+        next
+        */
+		asort(aTree['level0'],,,{|x,y| x:odate <= y:odate})
+	else        
+		for i=1 to len(post_objs)
+			aadd(aTree['level0'], post_objs[i])                                                                                                               
 		next
+		asort(aTree['level0'],,,{|x,y| x:odate <= y:odate})
 	endif
 
-	for i=1 to len(post_objs)
-		obj:=post_objs[i]
-		aadd(aRefs,{obj:id,"",dtos(obj:odate)+":"+obj:primary_document,obj})
-	next
+	cgi_xml_header()
 
-#ifndef ___1
-	asort(aRefs,,,{|x,y| x[3] <= y[3] })
-	cgi_fillTreeRdf(aRefs,aTree,"",1)
 
-	? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
-	? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
-	?
+	if typeNode == 'rdf3'                                                                                                                                
+	     ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                             
+	     ? 'xmlns:D="http://itk.ru/D#" '                                                                                                                  
+	     ? 'xmlns:R="http://itk.ru/R#" '                                                                                                                  
+	     ? 'xmlns:S="http://itk.ru/S#">'                                                                                                                  
+	     ?                                                                                                                                                
+	 elseif typeNode == 'rdf'                                                                                                                             
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                               
+	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'                                                                                                        
+	 elseif typeNode == 'xml'                                                                                                                             
+	    ? '<root>'                                                                                                                                         
+	 else                                                                                                                                                 
+	    ? '<root xmlns="http://itk.ru/json#">'                                                                                                             
+	endif                 
+																										                                                                                                                                                               
+		if len(aTree)>0                                                                                                                                      
+			cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode,.f., sprname)                                                                
+		endif                                                                                                                                                
 
-	if empty(beg_date)
-		? '<RDF:beg_date>с самого начала</RDF:beg_date>'
-	else
-		? '<RDF:beg_date>'+dtoc(beg_date)+'</RDF:beg_date>'
-	endif
 
-	if empty(end_date)
-		? '<RDF:end_date>до самого конца</RDF:end_date>'
-	else
-		? '<RDF:end_date>'+dtoc(end_date)+'</RDF:end_date>'
-	endif
-	if empty(account)
-		? '<RDF:account> Все счета</RDF:account>'
-	else
-		? '<RDF:account>'+cgi_essence(account)+'</RDF:account>'
-	endif
-	? '<RDF:an_value>'+cgi_essence(an_value)+'</RDF:an_value>'
-	if empty(type)
-	    if empty(urn)
-		urn := sprname
-		endif
-	    cgi_putArefs2Rdf1(aTree,oDep,0,urn,columns,"")
-		?
-	    cgi_putArefs2Rdf2(aTree,oDep,0,urn,columns,"")
-	else
-	    cgi_putArefs2Rdf(aTree,oDep,0,urn,columns,"")
-	endif
 
-	? '</RDF:RDF>'
-#else
-	cgi_putTreeHeader(columns)
-	? '<treechildren id="data">'
-
-	if !empty(aRefs)
-		//cgi_fillTreeArefs(aRefs,aTree,"",1)
-		atree := aRefs
-		cgi_putTreeArefs(aTree,oDep,0,_queryArr,columns)
-	endif
-
-	? '<treeitem id="end"/>'
-	? '</treechildren>'
-
-	cgi_putTreeFooter()
-#endif
-
+	if typeNode == 'rdf3'                                                                                                                                
+    	    ? '</RDF:RDF>'                                                                                                                                   
+	elseif  typeNode == 'rdf'                                                                                                                            
+	    ? '</RDF:RDF>'                                                                                                                                   
+	else                                                                                                                                                 
+	    ? '</root>'                                                                                                                                      
+	endif                                                                                                                                                
+	?						                                  

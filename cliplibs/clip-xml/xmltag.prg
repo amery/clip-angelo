@@ -19,6 +19,7 @@ function XMLTag( name )
 	obj:name	:= name
 	obj:text	:= ""
 	obj:offset 	:= 0
+	obj:pos		:= 0
 	obj:attributes := array(0)
 	obj:parent	:= NIL
 	obj:childs	:= array(0)
@@ -30,6 +31,7 @@ function _recover_XMLTAG( obj )
 	obj:getName			:= @xml_TagGetName()
 	obj:addChild 		:= @xml_TagAddChild()
 	obj:removeChild 	:= @xml_TagRemoveChild()
+	obj:remove			:= @xml_TagRemove()
 	obj:countChilds 	:= @xml_TagCountChilds()
 	obj:getChild 		:= @xml_TagGetChild()
 	obj:getChilds 		:= @xml_TagGetChilds()
@@ -55,19 +57,37 @@ static function xml_TagAddChild( self, tag, position )
 	endif
 	if empty(position) .or. self:countChilds() < position
 		aadd( self:childs, tag )
-	else
+	elseif valtype(position)=="N" .and. position > 0 .and. position <= len(self:childs)
+		aadd( self:childs, NIL )
+		ains( self:childs, position)
 		self:childs[ position ] := tag
+	else
+		return .F.
 	endif
 	tag:parent := self
 return .T.
 
 /* Remove child tag by its number */
 static function xml_TagRemoveChild( self, position )
-	if empty(position) .or. self:countChilds() > position
+	local t
+	if valtype(position) != 'N' .or. position == 0 .or. self:countChilds() < position
 		return .F.
 	endif
+	t := self:childs[position]
+	t:parent := NIL
 	adel( self:childs, position )
-	asize( self:childs, self:countChilds()-1 )
+	asize( self:childs, len(self:childs)-1 )
+return .T.
+
+/* Remove current tag */
+static function xml_TagRemove( self )
+	local p, off, pos
+	p := self:getParent()
+	off := self:pos
+	pos := ascan(p:getChilds(), {|e| e:pos == off })
+	if valtype(p) == "O" .and. pos > 0
+		p:removeChild( pos )
+	endif
 return .T.
 
 /* Number of child tags */
@@ -152,7 +172,8 @@ return self:parent
 
 /* Dump tag and its childs */
 static function xml_TagDump( self, encoding, level )
-	local indent:='', s:='', a, lastOffset:=1, hasInlineTags:=.F., ct, a2
+	local indent:='', s:='', a, lastOffset:=1, hasInlineTags:=.F.
+	local ct, a2
 	
 	//?? self:name,chr(10)
 	// Set indentation
@@ -180,24 +201,23 @@ static function xml_TagDump( self, encoding, level )
 		endif
 	else
 		s := rtrim(s) + ">"
+		
 		// Look for inline tags (mixed tags and text)
-		for a in self:childs
-			if a:offset > 0
-				hasInlineTags := .T.
-				exit
-			endif
-		next
+		hasInlineTags := .not. empty( alltrim( self:text ) )
+		lastOffset    := 0
+		
 		if hasInlineTags
 			for a in self:childs
-				ct := ltrim( a:dump( encoding, level+1 ) )
+				ct := chr(10) + a:dump( encoding, level+1 ) + chr(10)
 				ct := left( ct, len(ct)-1 )
 				if a:offset > 0
-					s += xmlText( substr( self:text, lastOffset, a:offset-lastOffset+1 ) )
+					s += indent + TAGSPACER + xmlText( substr( self:text, lastOffset+1, a:offset-lastOffset ) )
 					lastOffset := a:offset
 				endif
 				s += ct
 			next
-			s += xmlText( substr(self:text, lastOffset+1 ) ) + "</" + self:name + ">&\n"
+			s += indent + TAGSPACER + xmlText( substr(self:text, lastOffset+1 ) )
+			s += chr(10) + indent + "</" + self:name + ">&\n"
 		
 		else
 			s += "&\n"
@@ -210,6 +230,7 @@ static function xml_TagDump( self, encoding, level )
 return s
 
 static function xmlText( text )
+	text := iif( valtype(text)=='C', text, '' )
 	text := strtran( text, '&', '&amp;' )
 	text := strtran( text, '>', '&gt;' )
 	text := strtran( text, '<', '&lt;' )

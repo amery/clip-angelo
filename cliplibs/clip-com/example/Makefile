@@ -1,4 +1,4 @@
-PRG=com
+PRG=com$(EXESUFF)
 all: $(PRG)
 
 clean:
@@ -6,5 +6,5 @@ clean:
 		*~ core* *core $(PRG) *.bz2 *.ex *.nm
 
 $(PRG): $(PRG).prg
-	clip -e -M $(PRG).prg -lclip-$(PRG)
+	clip$(EXESUFF) -o$@ -e -M $(PRG).prg -lclip-$(PRG)
 

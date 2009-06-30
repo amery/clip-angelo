@@ -3,32 +3,30 @@ ifndef CLIPROOT
 endif
 
 include $(CLIPROOT)/include/Makefile.inc
-CLIPINCLUDE=-I$(CLIPROOT)/include
 
-
-#C_FLAGS=-Wall -g -I. $(CLIPINCLUDE)
-#CC=gcc
 TARGET=libclip-gzip$(DLLSUFF)
 ATARGET=libclip-gzip.a
 RTARGET=libclip-gzip$(DLLREALSUFF)
 OBJS=gzip.o
+LIBS=-lz $(C_LIBS)
 
 all:	$(TARGET) $(ATARGET)
 
 $(TARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(OBJS) -lz
+	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(LIBS)
 
 $(ATARGET): $(OBJS)
-	$(CLIPROOT)/bin/clip_makelib $(ATARGET) $(OBJS) -lz
+	clip_makelib$(SCRIPTSUFF) $(ATARGET) $(OBJS) $(LIBS)
 
-gzip.o: gzip.c hashcode.h
-	$(CC) $(C_FLAGS) $(CLIPINCLUDE) -c gzip.c
+gzip.o: gzip.c
+#hashcode.h
+	$(CC) $(C_FLAGS) -c gzip.c
 
 hashcode.h:
-	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
 
-install:
-	$(CLIPROOT)/bin/clip_cp libclip-gzip $(DESTDIR)$(CLIPROOT)/lib
+install:all
+	clip_cp$(SCRIPTSUFF) libclip-gzip $(DESTDIR)$(CLIPROOT)/lib
 	#mkdir -p $(CLIPROOT)/doc/clip-gzip
 	#cp *.html $(CLIPROOT)/doc/clip-gzip
 	#-cd tdoc && $(MAKE) install

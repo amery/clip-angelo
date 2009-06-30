@@ -1,0 +1,7 @@
+#!/bin/sh
+
+libdir="$CLIPROOT/lib"
+
+cp Makefile.in Makefile
+
+exit 0

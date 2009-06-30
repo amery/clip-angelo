@@ -2,57 +2,56 @@
 TODO
 ====
 
-Last change: 16 Oct 2006
+Last change: 11 Apr 2007
 
-BUGS
-----
- - select from list open from UIChoice with exist value
- - all list widget supports setValue/getValue 
+FIRST
+=====
+ - Set slot functions for window open, activation, close
+ - Lost focus for combobox cell in editable table
 
 
 CLIP-UI
 -------
- - Debug function for UIForm and debug lebel for library (possible, CLIP-wide)
- - Spreadsheet widget 
- - Set slot functions for window open, activation, close
- - New widgets:
-   - UIChoice (for select object)
-   - UITab
+ - Debug function for UIForm and debug level for library (possible, CLIP-wide)
  - DnD methods for UITable/UITree
- - Deletion of widget from comtainers
- - Disallow editing in UIComboBox field
- - Using ID in UIComboBox
- - gtk_ScrolledWindowNew() make child widget too small
- - sent command line parameters to gtk_Init()
- - Default selection needed for UIComboBox in forms
- - usablity issues for UISlider: value should be step multiple, step indication under slider
+ - Delete widget from container
  - icons for UIChildWindow
  - wrong setFocus() behaviour for widgets in UIChildWindow/UIDocument
  - UIEditDate should display calendar in popup window
  - UIEditDate: date should be selected by keyboard
  - add method setProperty() for each widget
  - calendar for UIDateEdit should be placed in popup window with buttons 'select' and 'close'
- 
+ - actions for UITable and UIEditTable (toolbar and keyboard shortcut) 
+ - Restore position for UITree expands collapsed branches
+ - separate global function for message boxes
+
+
 FORM
 ----
- - debug unclosed tags (<form /></form>)
+ - save UIForm as XFL, Glade and UI formats
  - "alignment.vertical" and "alignment.horizonal" widget properties
  - program for test form (include child window too)
- - fix bug in HTTP parser with unknown locales (C, ru_RU.UTF-8) - empty tag names
+
 
 GTK
 ---
- - Input numero sign or typographic quotes
- - unscrollable position of column header (GTK/GTK2)
+ - sent command line parameters to gtk_Init()
+ - Support to lookup on each column in UITable/UITree/UIEditTable
+ - indent of menu items with icons (see gtk_ImageMenuItemNewWithMnemonic() )
+ - specialized widget for choose color and file name
+ - button for choose value in choice cell of UIEditTable
+ - default button decoration and behaviour
+ - PNG icon support
  
+
 Documentation
 -------------
- - separate section "CLIP-UI" in CLIP documentation 
+ - separate section "CLIP-UI" in CLIP documentation for classes
  - XFL format description
- - list support (and any other Docbook tags) in .txt class/funcs description files
  - UIDriver class
  - full attribute list of window classes
  
+
 -------------------------------------------------------------------------------
 See TODOs on web-site: http://eas.lrn.ru/index.php?module=request (on Russian)
 -------------------------------------------------------------------------------

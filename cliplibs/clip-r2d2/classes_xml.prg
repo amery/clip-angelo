@@ -1,20 +1,207 @@
 #include "r2d2lib.ch"
 
-function r2d2_classes_xml()
+function r2d2_classes_xml(flag)
 
-	local m1:={"GBL01","GBL02","ACC00","ACC01","ETC01"}
+	local m1:={"ACC01","ACC00","GBL02","GBL01","ETC01"}
 	local m2:={"Глобальные","Общие","Отдел кадров","Бухгалтерские","Настройки"}
 	local i
+	//local meta:= {"tcolumn","attr","class","index","deposit","extent","plugins","counter"}
 
-	cgi_xml_header()
+	if  flag =='cls3'
+			?? "Content-type: application/x-javascript;charset="+host_charset()
+			?
+			for i=1 to len(m1)
+				put_json(m1[i],m2[i])
+			next
+			?
+			?? 'ATTRIBUT["id"]={id:"", name:"id", label:"ID",datatype:"C",datalen:"12",datadec:"0",datamask:"",dataisindex:true,defvalue:"",dataRefTo:""};'
+	elseif flag == 'cls2'
+			cgi_xml_header()
+			? '<metadata>'
+			for i=1 to len(m1)
+				put_xml(m1[i],m2[i])
+			next
+	    ? '</metadata>'	
+	elseif flag == 'cls4'
+			?? "Content-type: application/x-javascript;charset="+host_charset()
+			?
+			for i=1 to len(m1)
+				put_json2(m1[i])
+			next
+			?
 
-	? '<metadata>'
-	for i=1 to len(m1)
-		put_xml(m1[i],m2[i])
+	endif
+
+return
+
+
+static function put_json2(m1,m2)
+	
+	local i, oDict, list, class2, atrib, tcol, index2, extent,counter
+	local j,tmp
+	oDict := codb_dict_reference(m1)
+	if empty(oDict)
+		return
+	endif
+
+	list := oDict:select("CLASS")
+	//? len(list)
+	for i=1 to len(list)
+		class2 := oDict:getValue(list[i])
+			? 'CLASS["'+class2:id+'"]={id:"'+class2:id
+			?? '",name:"'+class2:name
+			?? '",expr_essence:"'+strtran_json(class2:expr_essence)
+			?? '",super_id:"'+ class2:super_id 
+			?? '",unique_key:"'+class2:unique_key
+			?? '",extent_id:"'+class2:extent_id
+			?? '",dict:"'+m1			
+			?? '",idx_list:['
+				tmp := class2:idx_list
+				for j=1 to len(tmp)
+					?? iif(j==1,'',',')+'"'+tmp[j]+'"'
+				next
+			?? '], tcol_list:['
+				if 'TCOL_LIST' $ class2
+				    tmp := class2:tcol_list   
+				    for j=1 to len(tmp)
+					?? iif(j==1,'',',')+'"'+tmp[j]+'"'
+	    			    next
+				endif
+			??'], attr_list:['
+				tmp := class2:attr_list
+				for j=1 to len(tmp)
+					?? iif(j==1,'',',')+'"'+tmp[j]+'"'
+				next
+	    ??']};'
 	next
-	? '</metadata>'
+
+	list := oDict:select("ATTR")
+	for i=1 to len(list)
+		atrib := oDict:getValue(list[i])
+		? 'ATTRIBUT["'+atrib:id+'"]={id:"'+atrib:id
+		?? '",dict:"'+m1					
+		?? '",name:"'+atrib:name
+		?? '",type:"'+atrib:type
+		?? '",lentype:'+alltrim(str(atrib:lentype))
+		?? ',len:'+alltrim(str(atrib:len))
+		?? ',dec:'+alltrim(str(atrib:dec))
+		?? ',mask:"'+atrib:mask
+		?? '",counter:"'+atrib:counter
+		?? '",defvalue:"'+atrib:defvalue
+		?? '",ref_to:"'+atrib:ref_to+'"};'
+	next
+
+	list := oDict:select("TCOLUMN")
+	for i=1 to len(list)
+		tcol := oDict:getValue(list[i])
+		? 'TCOLUMN["'+tcol:id+'"]={name:"'+tcol:name
+		?? '",id:"'+tcol:id		
+		?? '",dict:"'+m1					
+		?? '",header:"'+strtran_json(tcol:header)
+		?? '",width:'+alltrim(str(tcol:width))
+		?? ',expr:"'+tcol:expr
+		??'"};'
+	next
+
+	list := oDict:select("INDEX")
+	for i=1 to len(list)
+		index2 := oDict:getValue(list[i])
+		? 'INDEX["'+index2:id+'"]={name:"'+index2:name
+		?? '",dict:"'+m1			
+		?? '",expr:"'+index2:expr
+		??'"};'
+	next
+
+	list := oDict:select("EXTENT")
+	for i=1 to len(list)
+		extent := oDict:getValue(list[i])
+		? 'EXTENT["'
+		?? extent:id
+		?? '"]={name:"'
+		?? extent:name
+		?? '",dict:"'+m1					
+		??'"};'
+	next
+
+	list := oDict:select("counter")
+	for i=1 to len(list)
+		counter:= oDict:getValue(list[i])
+		? 'COUNTER["'
+		?? counter:id
+		?? '"]={name:"'
+		?? counter:name
+		?? '",type:"'
+		?? counter:type
+		?? '",dict:"'+m1					
+		??'"};'
+	next
+
 	?
 return
+
+******************
+static function put_json(m1,m2)
+	
+	local i,oDict,list,class2
+	local tColumns,tIndexes
+	local j,tmp,col,atrib
+	oDict := codb_dict_reference(m1)
+	if empty(oDict)
+		return
+	endif
+
+
+	tcolumns := map()
+	tindexes := map()
+	make_tcolumns(oDict,tcolumns)
+	make_indexes(oDict,tIndexes)
+
+
+	list := oDict:select("CLASS")
+	for i=1 to len(list)
+		class2 := oDict:getValue(list[i])
+			? 'CLASS["'+class2:id+'"]={id:"'+class2:id+'",name:"'+class2:name+'",label:"'+iif( class2:name $ tColumns, tColumns[class2:name]:header, class2:name)
+			??'",unique_key:"'+ iif('UNIQUE_KEY' $ class2, class2:unique_key,'')+'",'
+//			??'",unique_key:"'+  class2:unique_key+'",'
+			??'attr_list:['
+			tmp := class2:attr_list
+			for j=1 to len(tmp)
+				?? iif(j==1,'',',')+'"'+tmp[j]+'"'
+	    next
+	    ??']};'
+	next
+
+
+	list := oDict:select("ATTR")
+	for i=1 to len(list)
+		atrib := oDict:getValue(list[i])
+		? 'ATTRIBUT["'+atrib:id+'"]={id:"'+atrib:id+'", name:"'+atrib:name
+		?? '",label:"'+iif( atrib:name $ tColumns, tColumns[atrib:name]:header, atrib:name)
+		?? '",datatype:"'+atrib:type
+		?? '",datalen:"'+iif( atrib:name $ tColumns, alltrim(toString(tColumns[atrib:name]:width)), "12")
+		?? '",datadec:"'+alltrim(str(atrib:dec))+'",datamask:"'+atrib:mask
+		?? '",dataisindex:'+iif(atrib:name $ tIndexes,'true' , 'false')
+		?? ',defvalue:"'+atrib:defvalue+'",dataRefTo:"'+atrib:ref_to+'"};'
+	next
+
+/*
+	list := oDict:select("TVIEW")
+	for i=1 to len(list)
+		tmp := oDict:getValue(list[i])
+		? 'TVIEW["'+tmp:name+'"]={id:"'+tmp:id+'", tcol_list:['				
+		for j=1 to len(tmp:col_list)
+    		    col := oDict:getValue(tmp:col_list[j]) 
+		    if !empty(col)
+			?? iif(j==1,'',',')+'"'+col:name+'"'
+		    endif
+		next
+		??']};'
+	next
+*/	
+	?
+return
+
+
 
 ******************
 static function put_xml(m1,m2)
@@ -99,6 +286,7 @@ static function put_class2(oDict,class,tColumns,tIndexes)
 		? s1+s2+'label="'+iif(!empty(col),col,attr:name)+'" '
 		if "DATALEN" $ attr
 			? s1+s2+'datalen="'+alltrim(toString(attr:datalen))+'" '
+			? s1+s2+'datadec="'+alltrim(toString(attr:datadec))+'" '
 			? s1+s2+'datatype="'+attr:datatype+'"'
 			? s1+s2+'datamask="'+attr:datamask+'"'
 			? s1+s2+'dataisindex="'+iif( !empty(attr:isIndex),"true","false")+'"'
@@ -136,6 +324,7 @@ static function put_class2(oDict,class,tColumns,tIndexes)
 		? s1+s2+'name="'+attr:name+'" '
 		? s1+s2+'label="'+iif(!empty(col),col,attr:name)+'" '
 		? s1+s2+'datalen="'+alltrim(toString(attr:len))+'" '
+		? s1+s2+'datadec="'+alltrim(toString(attr:dec))+'" '
 		? s1+s2+'datatype="'+attr:type+'"'
 		? s1+s2+'datamask="'+attr:mask+'"'
 		lIndex := attr:name $ tIndexes

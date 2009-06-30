@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------*/
 /*   This is a part of CLIP-UI library					   				   */
 /*																		   */
-/*   Copyright (C) 2003-2006 by E/AS Software Foundation 				   */
+/*   Copyright (C) 2003-2007 by E/AS Software Foundation 				   */
 /*   Author: Andrey Cherepanov <skull@eas.lrn.ru>						   */
 /*   																	   */
 /*   This program is free software; you can redistribute it and/or modify  */
@@ -24,7 +24,7 @@ return
 
 /* Connect driver */
 function getDriver( name, params )
-	local drv_file, drv_get
+	local drv_file, drv_get, old
 
 	if .not. empty(currentDriver)
 		return currentDriver
@@ -34,7 +34,8 @@ function getDriver( name, params )
 		name := currentDriverName
 	endif
 
-	drv_file := DRIVERSDIR + '/driver-' + name + '.po'
+	old := set(_SET_TRANSLATE_PATH, .F.) // turn DOS mode off
+	drv_file := cygwinroot() + DRIVERSDIR + PATH_DELIM + 'driver-' + name + '.po'
 	//?? "Loading",drv_file,"...&\n"
 	if file( drv_file )
 		load( drv_file )
@@ -43,6 +44,7 @@ function getDriver( name, params )
 		CANCEL
 		return NIL
 	endif
+	set(_SET_TRANSLATE_PATH, old)
 
 	drv_get  := upper("get"+name+"Driver")
 	//?? "Run",drv_get,"...&\n"
@@ -119,7 +121,6 @@ function getLocaleStrings( parent, locale )
 	if empty(locale)
 		locale := left(getenv("LANG"),2)
 	endif
-
 	// Find appropriate section <locale lang="XX">
 	for tag in parent:getChilds()
 		if tag:getName() == "locale" .and. tag:attribute("lang","") == locale
@@ -142,13 +143,23 @@ function getLocaleStrings( parent, locale )
 
 	// Collect messages inside widgets
 	a := parent:XPath('//msg')
-//	?? valtype(a), len(a),chr(10)
+	//?? valtype(a), len(a),chr(10)
 	
-	for i in a
-		if i:attribute('lang','') == locale .and. .not. ( i:attribute("id","") == "" .and. i:attribute("value","") == "" )
-			mStr[i:attribute("id")] := i:attribute("value")
-//			?? i:attribute("id"), "=>", i:attribute("value"),chr(10)
-		endif
-	next
+	if valtype(a) == 'A' .and. len(a) > 0
+		for i in a
+			if i:attribute('lang','') == locale .and. .not. ( i:attribute("id","") == "" .and. i:attribute("value","") == "" )
+				mStr[i:attribute("id")] := i:attribute("value")
+	//			?? i:attribute("id"), "=>", i:attribute("value"),chr(10)
+			endif
+		next
+	endif
 
 return mStr
+
+/* Dialog box */
+function dialogBox( caption, text, buttons, buttonNames, action, icon )
+	local win := getMainWindow()
+	if valtype(win) != 'O'
+		return NIL
+	endif
+return win:dialogBox( caption, text, buttons, buttonNames, action, icon )

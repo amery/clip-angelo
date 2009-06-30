@@ -6,6 +6,9 @@
 
 /*
    $Log: crypto.c,v $
+   Revision 1.1  2006/06/22 20:12:03  itk
+   uri: init sf.net
+
    Revision 1.2  2005/08/09 08:54:37  clip
    alena: fix for gcc 4
 

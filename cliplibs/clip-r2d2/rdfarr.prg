@@ -1,21 +1,23 @@
 #include "r2d2lib.ch"
 
-function r2d2_array2rdf(_queryArr, isRDF)
+function r2d2_array2rdf(_queryArr, typeNode)
 
 local err,_query
 local aRefs, aTree :={}
-local lang:="", sDict:="", sDep:=""
+local lang:="", sDict:="", sDep:="",connect_id:=""
 local oDict,oDep, tmp,tmp1,tmp2, classDesc, s_select:=""
 local columns,col, id:="",attr:="", owner_map:=map(),map2:=map(),aData, sId
-local i,j,obj,idlist,_idList
+local i,j,obj,idlist,_idList, iftree:=.f., istree:=""
 local urn, sprname:=""
 
-	isRDF := iif( valType(isRDF)=="L", isRDF, ".t.")
 
 	errorblock({|err|error2html(err)})
-
 	_query:=d2ArrToMap(_queryArr)
 	outlog(__FILE__,__LINE__, _query)
+
+	if "CONNECT_ID" $ _query
+	    connect_id := _query:connect_id
+        endif
 
 	if "SPR" $ _query
 		sprname := _query:spr
@@ -36,11 +38,14 @@ local urn, sprname:=""
 		URN := _query:URN
 	endif
 
+	if "__ISTREE" $ _query
+		istree := _query:__istree
+	endif
+
 	lang := cgi_choice_lang(lang)
 
 	if empty(id) .or. empty(attr)
 		?? "Content-type: text/html"
-		?
 		?
 		? "Error: bad parameters ! "
 		? "Usage:"
@@ -49,11 +54,25 @@ local urn, sprname:=""
 		return
 	endif
 
-	cgi_xml_header()
-	? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
-	//? 'xmlns:docum="http://last/cbt_new/rdf#">'
-	? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
-	?
+
+
+	if typeNode == 'rdf3'
+		cgi_xml_header()
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	    ? 'xmlns:D="http://itk.ru/D#" '
+	    ? 'xmlns:R="http://itk.ru/R#" '
+	    ? 'xmlns:S="http://itk.ru/S#">'
+
+	elseif typeNode == 'rdf'
+		cgi_xml_header()
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
+	else
+		cgi_text_header()
+	    ? '{'
+	endif
+
+
 
 	sDep := left(id,codb_info("DICT_ID_LEN")+codb_info("DEPOSIT_ID_LEN"))
 	oDep := codb_needDepository(sDep)
@@ -62,13 +81,17 @@ local urn, sprname:=""
 		return
 	endif
 	oDict := oDep:dictionary()
-
-	obj := oDep:getValue(id,10)
+	//obj := oDep:getValue(id,10)
+	obj:=cgi_getValue(id)
 	if empty(obj)
 		cgi_xml_error("Object ID not found "+id)
 		return
 	endif
-	if attr $ obj .and. valtype(obj[attr])=="A"
+
+
+	if attr $ obj //.and. valtype(obj[attr])=="A"
+
+//Когда создается новый объект у него этот атрибут пустой и возвращается как С!!!!!!
 	else
 		cgi_xml_error(attr+" is not array")
 		return
@@ -81,6 +104,7 @@ local urn, sprname:=""
 		return
 	endif
 
+
 	idList := {}
 	_idList := obj[attr]
 	if classDesc:name == "accpost" .and. left(attr,2)=="AN"
@@ -90,6 +114,9 @@ local urn, sprname:=""
 	else
 		idList := _idList
 	endif
+
+
+
 	for i=1 to len(classDesc:attr_list)
 		tmp := oDict:getValue(classDesc:attr_list[i])
 		if empty(tmp)
@@ -100,10 +127,13 @@ local urn, sprname:=""
 			exit
 		endif
 	next
+
 	classDesc := NIL
 	if !empty(sprname)
+
 		classDesc := cgi_getValue(sprName)
 		sprName := classDesc:name
+
 		if empty(classDesc)
 			cgi_xml_error("Not found class description")
 			return
@@ -111,11 +141,14 @@ local urn, sprname:=""
 		if len(idList) > 0
 			oDep := codb_needDepository(idList[1])
 			oDict := oDep:dictionary()
+
 		else
 			oDict := codb_needDepository(left(classDesc:id,codb_info("DICT_ID_LEN")))
 		endif
+
 		columns := cgi_make_columns(oDict,sprname)
 	else
+	
 		columns :={}
 		col := map()
 		col:datatype := "R"
@@ -133,40 +166,35 @@ local urn, sprname:=""
 		return
 	endif
 
-	aRefs := {}
-	for i=1 to len(idList)
-		obj := cgi_getValue(idList[i])
-		if "OWNER_ID" $ obj
-			aadd(aRefs,{obj:id,obj:owner_id,.f.,obj})
-		elseif !empty(obj)
-			aadd(aRefs,{obj:id,"",.f.,obj})
+	if empty(istree)    
+	    for i=1 to len(columns)
+		if columns[i]:name = 'owner_id'
+	    	    iftree := .t.
+		    exit
 		endif
-	next
+	    next
+	else
+	    iftree:=iif(istree=='false', .f., .t.)
+	endif 
 
-	if empty(arefs) .and. !empty(classDesc)
-		i := map()
-		i:id := "_template_obj_"
-		oDep:checkBody(i,classDesc:id)
-		aadd(aRefs,{i:id,"",.f.,i})
-	endif
-
-	//asort(aRefs,,,{|x,y| x[3] <= y[3] })
-	cgi_checkTreeArefs(arefs,oDep)
-	cgi_fillTreeRdf(aRefs,aTree,"",1)
-
+	aTree:=idlist_atree(idList, iftree, oDep, .f., 'exp')
+//*--------------------В этом месте перескочить
 
 	if empty(urn)
 		urn := 'urn:'+sprname
 	endif
 
-	if isRDF
-		cgi_putArefs2Rdf(aTree,oDep,0,urn,columns,"")
-	//cgi_putArefs2RdfLevels(aTree,oDep,0,urn,columns,"",,atom)
+	if typeNode == 'rdf3'
+	    cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)
+	    ? '</RDF:RDF>'
+	elseif  typeNode == 'rdf'
+	    cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)
+	    ? '</RDF:RDF>'
 	else
-		cgi_putArefs2Rdf1(aTree,oDep,0,urn,columns,"")
-		?
-		cgi_putArefs2Rdf2(aTree,oDep,0,urn,columns,"")
+	    cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)
+	    ? '}'
 	endif
-	? '</RDF:RDF>'
+
+
 ?
 return

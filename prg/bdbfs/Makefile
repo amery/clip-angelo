@@ -1,12 +1,12 @@
 ifdef CLIPROOT
 include $(CLIPROOT)/include/Makefile.inc
 endif
-CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS = -l -b -a -O -n -I .. -I $(CLIPROOT)/include -I $(CLIPROOT)/include/netto
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS = -l -b -O -n -I .. -I $(CLIPROOT)/include -I $(CLIPROOT)/include/netto
 CLIPLIBS  =
 
 LIBS  = -lclip-netto -lclip-nanfor
-OBJS  =	getsys.o common.o \
+OBJS  =	$(sort getsys.o common.o \
 	help.o print.o \
 	mdbedit.o mainmenu.o aktions.o obsolete.o \
 	cliplib.o filer.o viewer.o editor.o foxpro.o \
@@ -14,7 +14,7 @@ OBJS  =	getsys.o common.o \
 	_clip.o modistru.o vkrz.o \
 	nanfor.o nettos.o \
 	errorsys.o \
-	config.o examplep.o
+	config.o examplep.o )
 
 .SUFFIXES: .prg .o
 
@@ -24,13 +24,13 @@ OBJS  =	getsys.o common.o \
 all: bdbf$(EXESUFF)
 
 bdbf$(EXESUFF):	bdbf.prg common.ch bdbfmsg.ch $(OBJS)
-	$(CLIP) $(CLIPFLAGS) -s -e -l bdbf.prg $(OBJS) $(LIBS)
+	$(CLIP) $(CLIPFLAGS) -s -e -l -o$@ bdbf.prg $(OBJS) $(LIBS)
 
 clean:
 	rm -rf *.o *.ppo *.c *.s *.a *.so *.b *.BAK *.bak *.log
 	rm -rf bdbf *.exe *~ core* *core *.nm *.ex test
 
-install:
+install: all
 	cp bdbf$(EXESUFF) $(DESTDIR)$(CLIPROOT)/bin/bdbf$(EXESUFF)
 	cp *.hlp $(DESTDIR)$(CLIPROOT)/bin/
 	tar cf - locale.po | (cd $(DESTDIR)$(CLIPROOT) && tar xf -)

@@ -4,11 +4,11 @@ function r2d2_report1_xml(_queryArr)
 
 local err, _query
 local oDict,oDep, oDep02,oDict02
-local accPost, acc_chart, osb_class
+local accPost,chess, acc_chart, osb_class
 local beg_date:=date(),end_date:=date(), account:=""
 local connect_id:="", connect_data
 local i,j,k,x,s1,s2,summ:=0,tmp,obj
-local acc_list, acc_objs,acc_s
+local acc_list, acc_objs,acc_s,accname:=""
 local post_list, d_data,k_data, d_list,k_list, d_res,k_res
 local d_cache:=map(), k_cache:=map()
 local c_data, itogo:={0.00,0.00,0.00,0.00,0.00,0.00}
@@ -82,6 +82,12 @@ local cache:=map()
 		return
 	endif
 
+	chess := oDict:classBodyByName("chess_balance")
+	if empty(accPost)
+		cgi_html_error( "Class description not found: chess_balance" )
+		return
+	endif
+
 	oDep02 := cgi_needDepository("GBL02","01")
 	if empty(oDep)
 		cgi_xml_error( "Depository not found: GBL0201" )
@@ -97,41 +103,50 @@ local cache:=map()
 
 	/* search account in acc_chart*/
 	acc_list:={}; acc_objs:={}; tmp:=""
-	
-	
+
+
 	obj:= oDep02:getValue(account)
 	if !empty(obj)
 		aadd(acc_objs,obj)
 		aadd(acc_list,account)
 		cache[obj:id] := obj
 	else
+
 		set exact off
 		tmp := oDep02:select(acc_chart:id,,,'code="'+account+'"')
 		set exact on
 	endif
-	if !empty(tmp)
 
+	if !empty(tmp)
 		for i=1 to len(tmp)
 			obj:=oDep02:getValue(tmp[i])
 			if empty(obj)
 				loop
 			endif
-//		outlog(__FILE__,__LINE__,obj:code)			
+//		outlog(__FILE__,__LINE__,obj:code)
 			if (account+'.') $ obj:code
 			aadd(acc_objs,obj)
 			aadd(acc_list,tmp[i])
 			cache[obj:id] := obj
+			else
+			    accname:=obj:smallname
 			endif
-		next
-		
-	endif
 
+		next
+
+	endif
+/*
 	if empty(acc_list)
 		cgi_html_error( "ACCOUNT not found: "+account )
 		return
 	endif
-
+*/
+	d_data := {}; k_data := {}
+	d_list := {}; k_list := {}
 	post_list := {}
+
+#define D20070312
+#ifndef D20070312 /* old code */
 	s1 := 'odate>=stod("'+dtos(beg_date)+'") .and. odate<=stod("'+dtos(end_date)+'")'
 	for i=1 to len(acc_list)
 		s2 := ' .and. (daccount="'+acc_list[i]+'" .or. kaccount="'+acc_list[i]+'")'
@@ -142,12 +157,20 @@ local cache:=map()
 			endif
 		next
 	next
+#else
+	s1 := 'odate>=stod("'+dtos(beg_date)+'") .and. odate<=stod("'+dtos(end_date)+'")'
+	for i=1 to len(acc_list)
+		s2 := ' .and. (daccount="'+acc_list[i]+'" .or. kaccount="'+acc_list[i]+'")'
+		tmp:=oDep:select(chess:id,,,s1+s2)
+		for j=1 to len(tmp)
+			if ascan(post_list,tmp[j])<=0
+				aadd(post_list,tmp[j])
+			endif
+		next
+	next
+#endif
 	//outlog(__FILE__,__LINE__,len(post_list),post_list)
-//	return
-
-	d_data := {}; k_data := {}
-	d_list := {}; k_list := {}
-
+	//return
 	for i=1 to len(post_list)
 		x := .f.
 		obj:=oDep:getValue(post_list[i])
@@ -265,15 +288,20 @@ local cache:=map()
 	//? k_res
 
 	**************
-    acc_s := ""
-    j:=len(acc_objs)
-    for i=1 to j
-	acc_s+=acc_objs[i]:code
-	if i!=j
-		acc_s+=","
+	acc_s := ""
+	j:=len(acc_objs)
+	for i=1 to j
+		acc_s+=acc_objs[i]:code
+		if i!=j
+			acc_s+=","
+		endif
+	next
+	? '<div><span>Ведомость по счету</span>'
+	if len(account)==12
+	? '<span> '+codb_essence(account)+'</span>'
+	else
+	? '<span> '+codb_essence(account)+':'+accname+'</span>'
 	endif
-    next
-	? '<div><span>Справка по оборотам проводок по счету: '+codb_essence(account)+'</span>'
 	? '<span>за период с '+dtoc(beg_date)+' по '+dtoc(end_date)+'</span></div>'
 	? '<table cellpadding="2" cellspacing="0" border="1" width="80%" align="center">'
 	? '<tr>'

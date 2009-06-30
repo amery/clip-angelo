@@ -1,4 +1,4 @@
-PRG=clip_echo.fcgi
+PRG=clip_echo.fcgi$(EXESUFF)
 all: $(PRG)
 
 clean:
@@ -6,5 +6,5 @@ clean:
 		*~ core* *core $(PRG) *.ex *.nm
 
 $(PRG): $(PRG).prg
-	clip -e -M $(PRG).prg -lclip-fcgi
+	clip$(EXESUFF) -o$@ -e -M $(PRG).prg -lclip-fcgi
 
