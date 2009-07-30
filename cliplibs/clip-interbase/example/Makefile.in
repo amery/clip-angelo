@@ -1,0 +1,22 @@
+#
+#                                            clip-interbase/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-interbase.so
+
+PRG=my_isql$(EXESUFF)
+
+all:Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eMs my_isql.prg -lclip-interbase
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

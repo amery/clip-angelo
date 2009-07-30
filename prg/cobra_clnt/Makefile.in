@@ -1,0 +1,37 @@
+#
+#                                            prg/cobra_clnt/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-codb.so
+
+
+#CLIP	= clip
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS += -n
+#CLIPLIBS  = #-lclip-codb
+OBJS  = objbrowse.o tviewbrowse.o
+.SUFFIXES: .prg .o .po
+
+########################################################################################
+
+all: Makefile cobra_clnt1$(EXESUFF)
+
+cfg :
+
+cleanc:
+	rm -rf$(V) *.c *.b
+	rm -rf$(V) cobra_clnt1$(EXESUFF)
+
+cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -es cobra_clnt1.prg $(OBJS)
+#	$(CLIPLIBS)
+
+install : all
+	cp --remove-destination -fu$(V) cobra_clnt1$(EXESUFF) $(Clip_B_Dir)/
+	mkdir -p$(V) $(DESTDIR)/cobra
+	cp --remove-destination -fu$(V) cobra_clnt.ini $(DESTDIR)/cobra
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -4,7 +4,7 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <clip-fw/FiveWin.ch>
 
 #define FW_NORMAL          400
 #define FW_BOLD            700

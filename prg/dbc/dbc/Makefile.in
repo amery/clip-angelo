@@ -1,0 +1,28 @@
+#
+#                                            prg/dbc/dbc/Makefile.in
+#
+Local_Depend = ../dbc/deflist.ch
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -n -O -b
+CLIPLIBS  = ../procs.a
+OBJS  = $(sort move.o modistru.o commands.o view.o query.o pechdbc.o prcmenu.o)
+.SUFFIXES: .prg .o
+
+
+dbc$(EXESUFF): dbc.prg $(OBJS) $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e -s dbc.prg $(OBJS) $(CLIPLIBS)
+
+cfg :
+
+cleanc:
+	rm -rf$(V) dbc$(EXESUFF) *.c dbc dbc.exe *.ntx
+
+install all: dbc$(EXESUFF)
+	cp --remove-destination -fpu$(V) dbc$(EXESUFF) $(DESTDIR)/bin/
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

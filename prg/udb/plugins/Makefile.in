@@ -1,0 +1,35 @@
+#
+#                                            prg/udb/plugins/Makefile.in
+#
+Local_Depend =
+
+#CLIPFLAGS = -p -O -b -w -I ./include
+#CLIPLIBS  =
+#LIBS = ./libclip-codb$(DLLSUFF)
+#CLIPFLAGS += -p
+
+.SUFFIXES: .prg .o .po
+
+MODULES = 	$(sort 	acc_chart.po acc_oper.po attr.po class.po  \
+							counter.po default.po deposit.po extent.po 	\
+							group.po index.po plugins.po report.po 		\
+							tcolumn.po tview.po user.po )
+
+
+install all : Makefile $(DIRS_TO_SCAN) $(MODULES)
+
+cfg :
+
+commit:
+	../_cvs commit
+update:
+	../_cvs update -dP
+
+cleanc : $(DIRS_TO_SCAN)
+	rm -rf$(V) *.c *.b $(MODULES)
+	rm -rf$(V) *.pro $(PROGS) test test2
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

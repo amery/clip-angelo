@@ -1,0 +1,81 @@
+##
+##										cliplibs/Makefile.in
+##
+#
+Local_Depend =
+
+DIRS_TO_SCAN = 	clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
+						clip-cti 		clip-ctcom 														\
+						clip-fcgi 																			\
+						clip-gd 			clip-glade2 													\
+						clip-gtk 																			\
+						clip-gtk2 																			\
+						clip-gtkextra																		\
+						clip-fw 																				\
+						clip-gzip 		clip-mysql 			clip-odbc 								\
+						clip-nanfor 	clip-netto 														\
+						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
+						clip-rtf 		clip-xml 			clip-ui
+
+#
+include Makefile.01
+
+#ifdef CLIPROOT
+#	CLIP = $(CLIPROOT)/bin/clip$(C64)$(EXESUFF)
+#else
+#	CLIP = clip$(C64)$(EXESUFF)
+#endif
+
+#CFLAGS = $(C_FLAGS) -I.
+#CLIPFLAGS = -l -w -O -n -I . -I .. -I ../include -I$(Clip_I_Dir)
+
+export CFLAGS CLIP CLIPFLAGS CLIPROOT
+#clip-cti  clip-ctcom clip-fw clip-gtk clip-gtkextra
+
+all local user system install lib: Makefile $(DIRS_TO_SCAN)
+#	for dir in $(dirs); \
+#	do \
+#		(cd $$dir ;\
+#		[ -x ./configure ] && ./configure ;\
+#		$(MAKE) $@ );\
+#	done
+
+Makefile.01 : configure
+	./configure
+
+cfg :
+
+cleanc : #$(DIRS_TO_SCAN) interbase
+#	for dir in $(dirs); \
+#		do (cd $$dir && $(MAKE) clean || true; rm -rf debian build-stamp $dir.spec);\
+#	done
+#	cd clip-interbase \
+#		&& $(MAKE) -f Makefile.in clean
+	rm -f$(V) Makefile.01
+
+distclean: clean
+#	for dir in $(dirs); \
+#		do (cd $$dir && $(MAKE) distclean || true);\
+#	done
+
+deb: clean
+	for dir in $(DIRS_TO_SCAN); \
+		do ./mkdeb $$dir; \
+	done
+
+rpm:
+	for dir in $(DIRS_TO_SCAN); \
+		do ./mkrpm $$dir; \
+	done
+
+rpm-opt:
+	for dir in $(DIRS_TO_SCAN); \
+		do ./mkrpm -opt $$dir; \
+	done
+
+tgz tbz:
+	for dir in $(DIRS_TO_SCAN); \
+		do ./mktgz $$dir; \
+	done
+
+include $(Makefile_end_in)

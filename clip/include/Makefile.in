@@ -1,0 +1,13 @@
+#
+#                                            clip/include/Makefile.in
+#
+Local_Depend =
+
+install all :
+
+cfg:
+	cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/
+
+cleanc :
+
+include $(Makefile_end_in)

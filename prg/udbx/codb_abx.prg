@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
+#include <clip-gtk.ch>
 #include "abx.ch"
 
 function main()

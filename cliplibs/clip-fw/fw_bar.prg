@@ -5,7 +5,7 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/fivewin.ch>
+#include <clip-fw/fivewin.ch>
 
 #define BAR_HEIGHT           28
 #define GRAY_BRUSH            2

@@ -5,7 +5,7 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/FiveWin.ch>
+#include <clip-fw/FiveWin.ch>
 
 #define COLOR_BTNFACE    15
 #define COLOR_BTNSHADOW  16

@@ -1,0 +1,8 @@
+#!/bin/sh
+source $Clip_M_Dir/functions.f
+
+DbTCP_Path=$(Check_Library libdbftp .a clip-dbtcp Yes /opt "dbftp.tgz")
+
+sed -e "s%@DBTCP_PATH@%$DbTCP_Path%;s%/$%%" < Makefile.in >Makefile.tmp
+
+exit 0

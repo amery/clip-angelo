@@ -1,11 +1,11 @@
-#include <fwin/Objects.ch>
+#include <clip-fw/Objects.ch>
 
 
 #ifndef _REDEFCLS_CH
 #define _REDEFCLS_CH
 
 // La funccion de sobrecarga de metodos de una clase debe llamarse
-// antes de que dicha clase est÷ definida.
+// antes de que dicha clase estï¿½ definida.
 // La variable nClassH debe LLAMARSE ASI OBLIGATORIAMENTE. Esto es necesario
 // para el buen funcionamiento de los comandos DATA, METHOD, ....
 

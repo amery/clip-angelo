@@ -1,0 +1,42 @@
+#
+#                                            clip-ui/drivers/Makefile.in
+#
+# This is a part of CLIP-UI library
+#
+# Copyright (C) 2003-2005 by E/AS Software Foundation
+# Author: Andrey Cherepanov <skull@eas.lrn.ru>
+
+#CLIPINCLUDE = -I$(CLIPROOT)/include
+#CLIP = clip$(EXESUFF)
+CLIP_MODULE = clip-ui
+Local_Depend =
+
+OBJS    = driver-gtk2.po
+
+.PHONY: all clean uninstall distclean
+
+all : Makefile $(OBJS)
+
+cfg :
+
+cleanc:
+
+install: all
+	mkdir -p$(V) $(DESTDIR)/lib/drivers
+	$(CLIP_CP) $(OBJS) $(DESTDIR)/lib/drivers
+
+uninstall:
+	rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)
+
+distclean: clean
+
+dist: distclean
+
+include $(Makefile_o_in)
+
+driver-gtk2.po: driver-gtk2.prg $(CLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -I../../clip-gtk2 -n -p driver-gtk2.prg
+
+include $(Makefile_end_in)
+

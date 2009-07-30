@@ -1,0 +1,27 @@
+#
+#                                            prg/dbc/procs/Makefile.in
+#
+Local_Depend = ../dbc/deflist.ch
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -O -b -n
+CLIPFLAGS += -I../dbc
+CLIPLIBS  =
+OBJS  =  $(sort procs1.o procs3.o procs5.o procs7.o \
+	 procs8.o procini.o procscri.o \
+	 procared.o procsay.o )
+
+.SUFFIXES: .prg .o
+
+install all:    $(OBJS)
+	$(CLIP_MAKELIB) ../procs.a *.o
+
+cfg :
+
+cleanc:
+	rm -rf$(V) *.c *.b
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

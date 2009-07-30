@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/FiveWin.ch>
-#include <fwin/constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/constant.ch>
 
 #define SB_HORZ         0
 #define SB_VERT         1
@@ -214,7 +214,7 @@ static function fw_Redefine( self, nID, nMin, nMax, nPgStep, oWnd, bUpAction, bD
    self:bPageDown  = bPgDown
    self:bPos       = bPos
    self:oWnd       = oWnd
-   self:lIsChild   = .f. // .t. only for Windows with WS_HSCROLL × WS_VSCROLL style
+   self:lIsChild   = .f. // .t. only for Windows with WS_HSCROLL ï¿½ WS_VSCROLL style
    self:lRedraw    = .t.
    self:oWnd       = oWnd
    self:lDrag      = .f.

@@ -20,7 +20,7 @@ PRIVATE	 arAim
 arAim:={}
 FOR i:=1 TO LEN(m->_aDBSTRUCT)
 	aBlock:=m->_aDBSTRUCT[i, 1]
-	IF aBlock>='A' THEN  AADD(arAim, {aBlock, aBlock} ) 
+	IF aBlock>='A' THEN  AADD(arAim, {aBlock, aBlock} )
 NEXT
 
 PUSH KEYS Modi_M_Keys COLOR _im
@@ -61,7 +61,7 @@ IF  _Was_Changes
 		IF 1->(DELETED()) THEN DELETE
 		SELE 1
 		IF !CheckEsc()
-			_Was_Changes:=.F.	//Žâ¬¥­¨âì
+			_Was_Changes:=.F.	//ï¿½â¬¥ï¿½ï¿½ï¿½ï¿½
 			EXIT
 		ENDIF
 	ENDSCAN
@@ -88,13 +88,13 @@ ENDIF
 
 FERASE(_browBase)
 POP KEYS
-RETU 0	// çâ®¡ë ¢®ááâ ­®¢¨âì ¨­¤¥ªáë
+RETU 0	// ï¿½â®¡ï¿½ ï¿½ï¿½ï¿½ï¿½â ­ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 **********
 FUNC MODIBROW(_ptr,_a)
 LOCAL	GetList:={},;
 	aType:={'Character','Numeric','Date','Logical','Memory',;
 		'Float', 'Double', 'Integer',;
-		'VariField','Variant',; 
+		'VariField','Variant',;
 		'DateTime',  'Currency',;
 		'General', 'Picture';
 	},;
@@ -105,21 +105,21 @@ DO CASE
 		DO Case
 			CASE _ptr==1
 				m->_tmp=Field_Name
-				AAdd( GetList, _GET_( _tmp, "_tmp", "@!K", {|| TrueName()} ):Display() )
+				AAdd( GetList, _GET_( m->_tmp, "_tmp", "@!K", {|| TrueName()} ):Display() )
 			CASE _ptr==2
 				Ch_Type(ForAch(9,FLD_TYPE,aType,AT(&(_Pole[_ptr]),cTypes)))
 			CASE _ptr==3 .AND. Field_Type $ 'CNVFX'
 				m->_tmp=IF(Field_Type == 'C',256*Field_dec+Field_Len,Field_Len)
-				AAdd( GetList, _GET_( _tmp, "_tmp", IF(Field_type=="C","9999","999"), {|| TrueLen()} ) )
+				AAdd( GetList, _GET_( m->_tmp, "_tmp", IF(Field_type=="C","9999","999"), {|| TrueLen()} ) )
 			CASE Field_Type $ 'NFB' .AND. Field_len>2
 				m->_tmp=Field_DEC
-				AAdd( GetList, _GET_( _tmp, "_tmp", "999", ;
+				AAdd( GetList, _GET_( m->_tmp, "_tmp", "999", ;
 						{||IF( Between(m->_tmp, 0, Field_len-2),;
 							(_Field->Field_Dec:=m->_tmp,.T.),;
 							(Nfind(BAD_LEN),.F.));
 							} ) )
 			OTHER
-				__KeyBoard()	// ®â § æ¨ª«¨¢ ­¨ï
+				__KeyBoard()	// ï¿½ï¿½ ï¿½ï¿½æ¨ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		EndCASE
 		ReadModal(GetList)
 		GetList:={} ; SetColor(_im)
@@ -196,13 +196,13 @@ RETU 1
 **********
 STATIC FUNC MakeAim(arAim)
 /*
- ‘¤¥« âì ¬ áá¨¢ ¢ëà ¦¥­¨© ¯¥à¥¢®¤  ¤«ï ª ¦¤®£® ¯®«ï
- ¨ ¯à¥®¡à §®¢ âì ¢ ¡«®ª
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½á¨¢ ï¿½ï¿½à ¦ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½à¥¢ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ ï¿½ ï¿½à¥®ï¿½à §ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½
 */
 LOCAL i,_a,aBlock:={},aStr:=m->_aDBSTRUCT
 *Nfind(ArAim)
 FOR i:=1 TO LEN(arAim)
-	IF (_a:=AMScan(aStr,1,arAim[i,1])) <>0 // ¡ë«® â ª®¥ ¯®«¥
+	IF (_a:=AMScan(aStr,1,arAim[i,1])) <>0 // ï¿½ë«® â ªï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		GO i
 		IF (m->_dtype[_a]<>Field_type) .AND. !Field_Type $ 'VX'
 			arAim[i,1]:='XTOY('+TRIM(arAim[i,1])+',['+Field_Type+'])'
@@ -224,9 +224,9 @@ IF _a>0 .AND. (Field_type<>_ft)
 	ELSE
 		VariFieldLen(.t.)
 	ENDIF
-	IF _ft='Y'  
+	IF _ft='Y'
 		REPL Field_dec WITH 4
-	ELSEIF !(_ft $ 'NFB') 
+	ELSEIF !(_ft $ 'NFB')
 		REPL Field_dec WITH 0
 	ENDIF
 ENDIF
@@ -288,7 +288,7 @@ REPL field_Name WITH cFld
 RETU .T.
 **********
 STATIC FUNC  TrueLen
-//‘î¤  ¯®¯ ¤ îâ CNVFX
+//ï¿½î¤  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ CNVFX
 LOCAL _i:=.T., nS:=m->_tmp
 
 IF (nS < 1) .OR. (nS>65534) .OR.;

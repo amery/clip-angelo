@@ -1,0 +1,39 @@
+#
+#                                            prg/doc_utils/Makefile.in
+#
+Local_Depend =
+
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -o$@ -v2 -l -w -O -n -I .. -I $(CLIPROOT)/include
+CLIPLIBS  =
+
+LIBS  =
+OBJS  =
+
+.SUFFIXES: .prg .o
+
+all : Makefile ftosgml$(EXESUFF) ctosgml$(EXESUFF)
+
+cfg :
+
+ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ews ftosgml.prg $(OBJS) $(LIBS)
+
+ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ews ctosgml.prg $(OBJS) $(LIBS)
+
+include $(Makefile_o_in)
+
+cleanc :
+	rm -rf$(V) *.c *.b ftosgml$(EXESUFF) ctosgml$(EXESUFF)
+	rm -rf$(V) sgml/*
+
+install : all
+	cp --remove-destination -fpu$(V) ftosgml$(EXESUFF) $(Clip_B_Dir)/
+	cp --remove-destination -fpu$(V) ctosgml$(EXESUFF) $(Clip_B_Dir)/
+
+include $(Makefile_end_in)
+

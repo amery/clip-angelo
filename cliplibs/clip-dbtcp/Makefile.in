@@ -1,34 +1,37 @@
+#
+#                                            clip-dbtcp/Makefile.in
+#
 #  GNU make makefile
 #
-ifndef CLIPROOT
-	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
-endif
-include $(CLIPROOT)/include/Makefile.inc
+Local_Depend =
 
+PROG = clip-dbtcp
 DBTCP_PATH=@DBTCP_PATH@
-LIBDBTCP=$(DBTCP_PATH)/libs/libdbftp.a
+ADDLIBS=$(DBTCP_PATH)/libs/libdbftp.a
 DBTCPINCLUDE=-I$(DBTCP_PATH) -I$(DBTCP_PATH)/utils
 
-TARGET=libclip-dbtcp$(DLLSUFF)
-RTARGET=libclip-dbtcp$(DLLREALSUFF)
-OBJS=dbtcp_clip.o dbtcp.o
+C_FLAGS += $(DBTCPINCLUDE)
+#TARGET=libclip-dbtcp$(DLLSUFF)
+#RTARGET=libclip-dbtcp$(DLLREALSUFF)
+OBJS= $(sort dbtcp_clip.o dbtcp.o )
 
-all:  $(TARGET)
+all: Makefile  $(STARGET)
 
-$(TARGET): $(OBJS)
-	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(LIBDBTCP)
+cfg :
 
-dbtcp_clip.o: dbtcp_clip.c
-	$(CC) $(C_FLAGS) $(DBTCPINCLUDE) -c dbtcp_clip.c
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBDBTCP)
 
-dbtcp.o: dbtcp.prg
-	clip$(EXESUFF): dbtcp.prg
+include $(Makefile_o_in)
 
-install:all
-	clip_cp$(SCRIPTSUFF) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
+install:all install-lib install-example
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
 
-clean:
-	rm -rf *.o dbtcp.c *.s *.bak *.a *.so *.dll *.exe dbtcp_ref.c *.ex *.nm *.log Makefile
+cleanc:
+	rm -rf$(V) dbtcp.c dbtcp_ref.c $(TARGET).*
 
 distclean: clean
-	rm -f Makefile
+	rm -f$(V) Makefile
+
+include $(Makefile_end_in)
+

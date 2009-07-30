@@ -1,0 +1,21 @@
+#
+#                                            prg/cobra-serv/mod-ini/Makefile.in
+#
+Local_Depend =
+
+#CLIPFLAGS = -pw
+#CLIPFLAGS += -p
+MODULES = cobra_hello.po cobra_codb.po cobra_mod.po mk_tmpdir.po
+.SUFFIXES: .prg .o .po
+
+install all: Makefile $(MODULES)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include "abx.ch"
-#include "clip-gtk2.ch"
+#include "clip-gtk.ch"
 
 function abx_menu_new()
 	local obj := map()

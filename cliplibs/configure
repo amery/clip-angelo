@@ -3,6 +3,7 @@
 #	Configure script for clip
 #	<uri@itk.ru>
 #
+source ../configure.ini
 if [[ $ARCH = "x86_64" ]] && [[ $C64 = "64" ]] ; then
 	ARCH=x86_64
 	C64=64
@@ -12,4 +13,8 @@ else
 	C64=""
 	echo "dirs += clip-interbase" >Makefile.01
 fi
+#echo "CFLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
+#echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
 
+cat Makefile.ini 	>Makefile
+cat Makefile.in 	>>Makefile

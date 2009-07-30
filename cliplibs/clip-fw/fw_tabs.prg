@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/FiveWin.ch>
-#include <fwin/constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/constant.ch>
 
 #define COLOR_INACTIVECAPTION 3
 #define COLOR_WINDOW          5

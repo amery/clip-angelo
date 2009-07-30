@@ -36,16 +36,16 @@ MEMVAR _zif,_iv,_zu,_abort
 **********
 PROC NewRec()
 Keyb _CTRLHOME
-UNLOCK		//специально для MDX
+UNLOCK		//специая┐╜ьно я┐╜я┐╜я┐╜ MDX
 DBAPPEND()
-ClearRec()	//Из-за VFP
+ClearRec()	//я┐╜я┐╜-я┐╜я┐╜ VFP
 IF !EMPTY(_fltrcond).AND. !&_Fltrcond THEN go _tmr
 **********
 PROC SetIndex()
 LOCAL	iExt:=Rdd_Info()[4],aName,;
 	nUniq,nExpr,nExpr2:=0,nMin,nFor,cName
+MemVar _IdxCh
 m->_SetIndFiler:=.T.	//For Filer F10
-
 DO CASE
 	CASE 'ntx' $ iExt
 		nMin:=2048
@@ -124,7 +124,7 @@ ELSE
 	IF _tmp>31 THEN nExpr:=nExpr2
 	cExpr:=ReadFromFile(_handle,nExpr,255)
 	IF EMPTY(lOnlyKey)
-		cRet += IF(aName[1]==_IndexFile,'√ ','- ')
+		cRet += IF(aName[1]==_IndexFile,'я┐╜ ','- ')
 		IF nFor==0 THEN nFor:=nExpr+LEN(cExpr)+1
 		cFor:=ReadFromFile(_handle,nFor,255)
 		IF LEN(cFor)>1 THEN cExpr+=CHR(0)+'<FOR>'+ CHR(0)+cFor
@@ -168,9 +168,9 @@ IF TakeScopeFunc(FUNC_FIND,'_Lcondit',.T.)
   ELSE
 	DBSkip(-1)
 	IF BOF()
-		GO BOTTOM	// все
+		GO BOTTOM	// я┐╜я┐╜я┐╜
 	ELSE
-		DBSkip()	// оставшиеся
+		DBSkip()	// я┐╜я┐╜тавшиея┐╜я┐╜
 	ENDIF
 	__dbBackLocate( Compile(_LCondit))
   ENDIF
@@ -179,7 +179,7 @@ ENDIF
 **********
 PROC PackProg()
 LOCAL nWas:=LASTREC(),cMsg
-*scr save/rest  делается в xBrowse
+*scr save/rest  я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ xBrowse
 IF !EMPTY(m->_aCommon[1]) .AND. m->lWasMemo
 	Nfind(FORCE_PROHIBITED)
 	RETURN
@@ -200,7 +200,7 @@ IF !m->_lPckAsk .OR. Continue(NEED_PACK)
 			IF _Tally>0
 				m->_UndoNew:=.T.
 			ENDIF
-			cMsg:=REMOVED		//удаленных
+			cMsg:=REMOVED		//удая┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 			_Tally:=nWas
 			OpFinish(cMsg)
 		ENDIF
@@ -229,7 +229,7 @@ ELSEIF GetName(I_SEARCH+_Iv+_ik,'_Fcondit',,,,,,,(_tp:=VALTYPE(&_ik)), .T.)
 			Nfind(_ERTIP)
 		ELSE
 			DBSeek(&_tmp)
-// не в одном операторе, чтобы реагировать на Softseek
+// я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜, я┐╜тобя┐╜ реая┐╜я┐╜ровя┐╜я┐╜я┐╜ я┐╜я┐╜ Softseek
 			IF EOF() THEN MessBack(_NFD)
 		ENDIF
 	END
@@ -349,7 +349,7 @@ IF EMPTY(nAuto)
 			_Base_Struct,_flds,1,'H9',AchKeys(.T.,aAct))),;
 		   1,FCOUNT()) .AND.;
 	   ASCAN(_Pole,m->__aDbStruct[_i,1])<>0
-		KEYBOARD(_CTRLHOME+REPL(_RIGHT,_i-1))	//Встать на поле
+		KEYBOARD(_CTRLHOME+REPL(_RIGHT,_i-1))	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 ELSE
 	EVAL(aAct[nAuto,2])
@@ -406,13 +406,13 @@ PUSH KEYS
 
 BEGIN SEQUENCE
 
-	m->lCanFunc:=( __ContentType $ 'CM' )	// для возможности выбора
+	m->lCanFunc:=( __ContentType $ 'CM' )	// я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ыбоя┐╜я┐╜
 
 	IF  !GetName(_ZE+REPL_EXPR+Alltrim(_Works[_ptr]),'_Repl',;
 		,,,,,,__ContentType, .T.) THEN Break
 
 	lCnv:=!(_CurType $ 'VX') .AND.;
-	   !(m->_CurRType=='M'.AND.m->_aCommon[5])	//Возможно преобразуем
+	   !(m->_CurRType=='M'.AND.m->_aCommon[5])	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜реоя┐╜разуем
 
 	IF (__ContentType = 'D') .AND. '{' $ _repl
 		_repl:=STRTRAN(STRTRAN(_repl, '{', 'CTOD("'),'}','")' )
@@ -428,7 +428,7 @@ BEGIN SEQUENCE
 			CheckEsc(.T.)
 			_bEval := Compile(_rcond)
 
-// dbeval нельзя из-за ошибок в размере данных
+// dbeval я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜-я┐╜я┐╜ я┐╜шибя┐╜я┐╜ я┐╜ разя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 			lEnd:=.F.
 			cFld:=RealFldName(_c_f)
 
@@ -498,7 +498,7 @@ ScrRest(@scr)
 IF i==2
 	lQuest:=.F.
 ELSEIF i=4
-	lEnd:=.T.	//прервать цикл
+	lEnd:=.T.	//я┐╜я┐╜я┐╜рвая┐╜я┐╜ цикя┐╜
 ENDIF
 RETURN BETWEEN(i,1,2)
 **********
@@ -588,7 +588,7 @@ IF Continue(NEED_ZAP)
 			REINDEX
 		ENDIF
 		_req:=0
-		m->_UndoNew:=.T.	//Сбросить Undo
+		m->_UndoNew:=.T.	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ Undo
 	RECOVER
 		ElseUse()
 	END
@@ -598,7 +598,7 @@ PROC IndexFor
 LOCAL _idx_ext:=RDD_INFO(1)[4], nRec:=0,_if,_ifb
 BEGIN SEQU
 	IF EMPTY(_NewIndF) THEN _NewIndF:=ClearName()
-	_NewInd:=RealFldName(_C_F)		//скорее всего
+	_NewInd:=RealFldName(_C_F)		//скорее я┐╜сегя┐╜
 
 	IF !GetName(_ZIF+F_INDEXING,'_NewIndF').OR.;
 		!TestWriteFile(@_NewIndF,_Idx_ext).OR.;
@@ -700,7 +700,7 @@ END
 **********
 PROC SelectFlds()
 LOCAL _flds:={},cSel
-
+MemVar _vars
 AEval(m->__aDBStruct,{|el,_i| AADD(_flds,Pad(el[1],17)+;
 		el[2]+Padl(el[3],7)+Padl(el[4],6)+'  [x]')})
 m->alSelect:=Ext_Arr(,m->__dfc,.T.)
@@ -812,12 +812,12 @@ BEGIN SEQUENCE
 End
 **********
 STATIC FUNC DefineTxtDrv(cRdd,cDelim)
-LOCAL _i,nRes:=1	//Предполагаем DBF
+LOCAL _i,nRes:=1	//я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ DBF
 PRIVATE _cDelim
 IF !('.DBF' $ UPPER(_Newfile))
 	IF (_i:=ForAch(10,_MSG_A_SDF_FILE_TYPE,_MSG_A_SDF_A_FILETYPE) )==0
 		nRes:=0		//BREAK
-	ELSEIF _i#4		//для DBF nRes уже определен
+	ELSEIF _i#4		//я┐╜я┐╜я┐╜ DBF nRes уже я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜
 		nRes:=2
 		IF _i=1
 			cRdd:="SDF"
@@ -934,6 +934,7 @@ ENDIF
 **********
 PROC SaveEnv(lObligate)
 LOCAL _i
+MemVar _A, _FRType, _drType
 BEGIN SEQUENCE
 	IF EMPTY(lObligate)
 		IF !GetName(_ZIF+F_ENVIR,'_Vuefile') .OR.;
@@ -944,7 +945,7 @@ BEGIN SEQUENCE
 	ENDIF
 
 	m->__dfc=LEN(m->__adbStruct)
-	IF m->_Replay		// Массивы не сохраняются,ручками
+	IF m->_Replay		// я┐╜я┐╜я┐╜сивя┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜раня┐╜я┐╜я┐╜я┐╜я┐╜,я┐╜я┐╜чкая┐╜я┐╜
 		FOR _i=1 to m->__dfc
 			m->_a=strzero(_i,3)
 
@@ -1000,7 +1001,7 @@ LOCAL aTag:={},cTagFull,aTagInfo,_i,aEl,fPrg:=ClearName()+'.TRG',;
 PRIVATE lAgain
 IsTags()
 
-IF IndexCount()>=1 .AND. Sx_TagCount(1)=0	//Не в текущем каталоге или MDX
+IF IndexCount()>=1 .AND. Sx_TagCount(1)=0	//я┐╜я┐╜ я┐╜ текя┐╜щем я┐╜я┐╜таля┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ MDX
 	OrdSetFocus(1,__CdxName)
 ENDIF
 
@@ -1058,10 +1059,10 @@ BEGIN SEQUENCE
 		OrdListClear()
 		OrdListAdd( _Indexfile )
 		IF !EMPTY(__tagNom) THEN;
-			Set TagOrder TO __tagNom	//Мог быть установлен
+			Set TagOrder TO __tagNom	//я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 	AchKeys(.F.)
-	IF !EMPTY(m->lAgain) THEN SetTag(3)	//Если добавили
+	IF !EMPTY(m->lAgain) THEN SetTag(3)	//я┐╜сли я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
   ENDCASE
 END
 __tagNom:=Sx_TagNo()
@@ -1093,12 +1094,12 @@ BEGIN SEQUENCE
 	USE
 	FERASE(__CdxName)
 	MainUse(M_EXCL,.T.)
-	OrdSetFocus(1,__CdxName)	//Какой-то нужен для Kill
+	OrdSetFocus(1,__CdxName)	//я┐╜я┐╜я┐╜я┐╜я┐╜-я┐╜я┐╜ я┐╜ужея┐╜ я┐╜я┐╜я┐╜ Kill
 *	Sx_KillTag(.t.)
 
 	FOR _i:=1 TO LEN(aTagInfo)
 		aEl:=aTagInfo[_i]
-		IF !aEl[6]	//RYO не перестраиваем
+		IF !aEl[6]	//RYO я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜раия┐╜я┐╜я┐╜я┐╜
 			ScrSave(@scr)
 			AddTag(aEl[1],aEl[2],aEl[3],aEl[4],aEl[5])
 			ScrRest(scr)
@@ -1160,7 +1161,7 @@ Set(_SET_UNIQUE,lUniqSave)
 PROC DelTag(sposob,nTag)
 LOCAL aTag:={},aTagInfo,_i, oldTag, cDelTag
 IsTags()
-IF IndexCount()>=1 .AND. Sx_TagCount()=0	//Не в текущем каталоге или MDX
+IF IndexCount()>=1 .AND. Sx_TagCount()=0	//я┐╜я┐╜ я┐╜ текя┐╜щем я┐╜я┐╜таля┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ MDX
 	OrdSetFocus(1,__CdxName)
 ENDIF
 IF SX_TagCount(1)=0 THEN ReturnMess(NO_ORDER)
@@ -1176,7 +1177,7 @@ BEGIN SEQUENCE
 	IF GetName(_Give+TAG_NAME_DEL,'__tagName')
 		cDelTag:=ALLTRIM(__TagName)
 	ENDIF
-  ELSEIF sposob=1	//из SetTag()
+  ELSEIF sposob=1	//я┐╜я┐╜ SetTag()
 	IF nTag<=LEN(aTag)
 		cDelTag:=aTagInfo[nTag,1]
 	ENDIF
@@ -1227,7 +1228,7 @@ BEGIN SEQUENCE
 
 		_IndexFile:=cName
 		OrdListClear()
-		OrdListAdd( _Indexfile )	// Здесь может брякать
+		OrdListAdd( _Indexfile )	// я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜якая┐╜я┐╜
 		__CdxName:=cName
 		__tagNom:=0
 		_oldInd:=_IndexFile
@@ -1243,7 +1244,7 @@ END
 FUNC Cdx_An(aName)
 LOCAL _handle,cRet:=PAD(UPPER(aName[1]),16)
 IF aName[1]=Sx_IndexName()
-	cRet += ' √ '
+	cRet += ' я┐╜ '
 ELSEIF ((_handle:=FOPEN(aName[1],64))<0) .OR. OpenFileSize(_handle) < 3072
 	cRet += INDEX_CORRUPT
 ENDIF
@@ -1254,7 +1255,7 @@ PROC CopyField(sposob)
 LOCAL _tmp
 IF !m->_IsField THEN ReturnMess(CALC_FIELD)
 DO CASE
-	CASE sposob=1	.OR. sposob=8		//сверху
+	CASE sposob=1	.OR. sposob=8		//свея┐╜я┐╜я┐╜
 		DbSkip(-1)
 		IF !BOF()
 			_tmp=&_C_F
@@ -1263,7 +1264,7 @@ DO CASE
 			MyRepl(_C_F,_tmp)
 		ENDIF
 
-	CASE sposob=2	.OR. sposob=9		//снизу
+	CASE sposob=2	.OR. sposob=9		//сния┐╜я┐╜
 		DBSkip()
 		IF EOF()
 			go _tmr
@@ -1274,10 +1275,10 @@ DO CASE
 			MyRepl(_C_F,_tmp)
 		ENDIF
 
-	CASE sposob=3		//слева
+	CASE sposob=3		//слея┐╜я┐╜
 		MyRepl(_C_F,&(If(_ptr#1,_Pole[_ptr-1],_Pole[_fc]) ))
 
-	CASE sposob=4		//справа
+	CASE sposob=4		//я┐╜я┐╜равя┐╜
 		MyRepl(_C_F,&(IF(_ptr#_fc,_Pole[_ptr+1],_Pole[1]) ))
 
 	CASE sposob=5 .OR. sposob=6
@@ -1303,7 +1304,7 @@ DO CASE
 		Nfind(_ClipText,,,CLIPBOARD)
 
 	CASE sposob=3
-		CopyField(5)	// в поле
+		CopyField(5)	// я┐╜ я┐╜я┐╜я┐╜я┐╜
 
 	CASE sposob=4 .AND. cType<>'L'
 		_ClipText[1] += _val
@@ -1317,7 +1318,7 @@ DO CASE
 	CASE sposob=7 .AND. cType=='N'
 		_ClipText[1] /= _val
 
-	CASE sposob=8	//Для ввода в GET и MEMO
+	CASE sposob=8	//я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ GET я┐╜ MEMO
 		RETURN ALLTRIM(Medi(GetClipBoard(),4096,''))
 
 ENDCASE
@@ -1326,7 +1327,7 @@ PROC WideEdit()
 IF m->_CurrType # 'C' .OR. _CurType == 'V' .OR.;
    !(m->__ContentType $ 'CU')
 	KEYBOARD _ENTER
-ELSE	//U-для незаполненного V
+ELSE	//U-я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ V
 	DoMemo(RealFldName(m->_C_F),MIN(__mcol-6, _Flen[m->_ptr]),m->_IsField)
 ENDIF
 **********
@@ -1339,10 +1340,10 @@ IF nFz<LEN(_bdbfbrow:ColCount)
 
 	SetColSep(nFz+1, '  ')
 	IF nFz==nOldFz
-		SetColSep(nOldFz, ' │')
-		SetColSep(nOldFz+2, ' │')
+		SetColSep(nOldFz, ' я┐╜')
+		SetColSep(nOldFz+2, ' я┐╜')
 	ELSE
-		SetColSep(nOldFz+1, ' │')
+		SetColSep(nOldFz+1, ' я┐╜')
 	ENDIF
 
 	_BdbfBrow:Configure()
@@ -1353,7 +1354,7 @@ LOCAL oTbc:=_BdbfBrow:GetColumn(nCol)
 oTbc:ColSep:=cSep
 _BdbfBrow:SetColumn(nCol, oTbc)
 **********
-PROC ChangeCol(nSm)	//Столбец обмена
+PROC ChangeCol(nSm)	//я┐╜толя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 LOCAL oCol,_ptr:=_BdbfBrow:ColPos
 IF Between(nSm,1,m->_fc)
 	oCol:=_BdbfBrow:GetColumn(nSm)
@@ -1423,7 +1424,7 @@ IF Empty(_ik)
 ELSE
 	CheckEsc(.T.)
 	IniSearching()
-	DO WHILE !EOF() .AND. CheckEsc()	// начнем с текущей записи
+	DO WHILE !EOF() .AND. CheckEsc()	// я┐╜я┐╜чнея┐╜ я┐╜ текя┐╜щей я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 		_var:=&_ik
 		DBSKIP()
 		IF &_ik==_var
@@ -1440,7 +1441,7 @@ LOCAL _tmp,_i
 STATIC cSrch,lCase:=.T.,cAddCond
 
 BEGIN SEQUENCE
-	IF IsShift().AND.!EMPTY(cSrch)	// С Shift- продолжение поиска
+	IF IsShift().AND.!EMPTY(cSrch)	// я┐╜ Shift- я┐╜родя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ска
 		SKIP
 	ELSEIF GetName(_ZE+GLOB_FIND,'_GSearch',,,,,,@cSrch, .T.) ;
 	       .AND. !EMPTY(cSrch)
@@ -1499,11 +1500,11 @@ IF (nSearch:=Len(cSearch))#0
 	IF EMPTY(lCase) THEN	cString:=UPPER(cString)
 	IF (nAt:=AT(cSearch,cString))#0
 		nAtPos:=INT(1+(nCPos+nAt-Header())/RecSize())
-		IF MGoTo(nAtPos) .AND. Eval(Compile(cAddCond))	// найдено !
+		IF MGoTo(nAtPos) .AND. Eval(Compile(cAddCond))	// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ !
 			_Tally:=nAtPos-nCur+1
 			FCLOSE(_MainHandle)
 			RETU .T.
-		ELSE	//не в фильтре или условие не то
+		ELSE	//я┐╜я┐╜ я┐╜ филя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜слоя┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜
 			nBytes:=nAt+nSearch
 		ENDIF
 
@@ -1519,6 +1520,7 @@ RETU .F.
 **********
 PROC CalcExpr
 LOCAL xRes,cInp
+MemVar _tOld
 IF GetName(_ZE+CALC_EXPR,'_Econd', , , , , , @cInp, , .T.)
    BEGIN SEQUENCE
 	TimerOn()
@@ -1545,7 +1547,7 @@ IF Between((_i:=WaitKey(20)-47),1,10)
 	IF nKey=K_CTRL_K
 		m->_StackPos[_i]:=RECNO()
 	ELSE
-		Mgoto(m->_StackPos[_i],.t.) //THEN go _tmr - в самой MgoTo
+		Mgoto(m->_StackPos[_i],.t.) //THEN go _tmr - я┐╜ самя┐╜я┐╜ MgoTo
 	ENDIF
 ELSE
 	__KEYBOARD(chr(_i+47))
@@ -1593,7 +1595,7 @@ LOCAL aView:={, {_MSG_A_MF_F3,{||m->__mfAct:=3,__KeyBoard(_ENTER)}},;
 		}
 LOCAL aFile,cFile:='',i
 DO WHILE .T.
-	m->__mfAct:=0	// признак редакции,просмотра,чтения описания
+	m->__mfAct:=0	// я┐╜ризя┐╜я┐╜я┐╜ редя┐╜я┐╜ции,я┐╜я┐╜я┐╜смоя┐╜я┐╜я┐╜,я┐╜теня┐╜я┐╜ я┐╜я┐╜я┐╜саня┐╜я┐╜
 	aFile:=Filer(,,,,aView,{|_1|Ascan(_1,cFile)},'HF2')
 	IF aFile[1]<>0
 		cFile:=aFile[2]
@@ -1616,7 +1618,7 @@ IF EMPTY(cBase)
 ELSE
 	IF EMPTY(lExit)
 		USE
-		FERASE(m->_base)	//Себя предварительно созданного
+		FERASE(m->_base)	//я┐╜я┐╜я┐╜я┐╜ я┐╜редя┐╜я┐╜я┐╜я┐╜тельно созя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 	m->_NewName:=cBase
 ENDIF
@@ -1631,7 +1633,7 @@ IF TestWriteFile(cBase)
 	DBCREATE(cBase,{{'NEWFIELD','C',10,0}},,.T.,"")
 	IF EMPTY(lExit)
 		_req:=Modify_stru(.F.)
-		m->bAutoExec:=NIL	//Чтоб не выйти
+		m->bAutoExec:=NIL	//я┐╜тоб я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 	lRes:=.T.
 ELSEIF !EMPTY(lExit)
@@ -1641,25 +1643,25 @@ RETURN lRes
 **********
 #IFNDEF ENGLISH
 PROC TakeKr(_sposob)
-LOCAL	_i:=_sposob, cMsg:='Проверяем лицевой счет: ',;
+LOCAL	_i:=_sposob, cMsg:='я┐╜ровя┐╜я┐╜яем я┐╜я┐╜цевя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜: ',;
 	cPictUkr:='@R 9999.x.9.99999999',;
 	cPictRus:='@R 99999.X.99.x.99999999999',nHl:=6
 IF EMPTY(_i)
-	_i:=ForAch(10,[Вычисляем контрольный по:],;
-		{'Счету Украины','Счету России','МФО','ОКПО'})
+	_i:=ForAch(10,[я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜яем я┐╜я┐╜я┐╜я┐╜роля┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜:],;
+		{'я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜раия┐╜я┐╜','я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜сии','я┐╜я┐╜я┐╜','я┐╜я┐╜я┐╜я┐╜'})
 ENDIF
 IF _i==1 .AND.  GetName(cMsg,'_ks',,cPictUkr) .AND. ;
-		GetName('От МФО (5 или 6 знаков)','_kmfo',,'999999')
+		GetName('я┐╜я┐╜ я┐╜я┐╜я┐╜ (5 я┐╜я┐╜я┐╜ 6 я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜)','_kmfo',,'999999')
 	_i:=vkrz14(m->_ks,m->_kmfo)
 	cMsg:=TRANSF(_i,cPictUkr)
 ELSEIF _i==2 .AND. GetName(cMsg,'_ksR',,cPictRus) .AND.;
-		   GetName('От РКЦ (2 или 3 знака)','_krkc')
+		   GetName('я┐╜я┐╜ я┐╜я┐╜я┐╜ (2 я┐╜я┐╜я┐╜ 3 я┐╜я┐╜я┐╜я┐╜я┐╜)','_krkc')
 	_i:=vkrz20(m->_ksr,m->_krkc)
 	cMsg:=TRANSF(_i,cPictRus)
 	nHl:=12
-ELSEIF _i==3 .AND. GetName('МФО (5-знаков)','_kmfo',,'99999')
+ELSEIF _i==3 .AND. GetName('я┐╜я┐╜я┐╜ (5-я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜)','_kmfo',,'99999')
 	cMsg:=_i:=vkrz1(m->_kmfo)
-ELSEIF _i==4 .AND. GetName('ОКПО (8-знаков)','_kokpo',,'99999999')
+ELSEIF _i==4 .AND. GetName('я┐╜я┐╜я┐╜я┐╜ (8-я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜)','_kokpo',,'99999999')
 	cMsg:=_i:=OkpoTst(m->_kokpo)
 	nHl:=8
 ELSE
@@ -1685,7 +1687,7 @@ TimerOn()
 #IFDEF ENGLISH
 	Meter(1,FUNC_FIND,,,nMuch)
 #ELSE
-	Meter(1,'поиск',,,nMuch)
+	Meter(1,'я┐╜я┐╜я┐╜я┐╜я┐╜',,,nMuch)
 #ENDIF
 **********
 PROC UserMenu()
@@ -1715,7 +1717,7 @@ PROC CheckDBFSize()
 LOCAL dbSize, fSize, xSize, scr, i, nRec, _MainHandle
 
 BEGIN SEQU
-    dbSize:=DbfSize()	//Надо определить до эксклюзивного открытия
+    dbSize:=DbfSize()	//я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜склюзия┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
     nRec:=LASTREC()
     MainUse(M_EXCL)
     _MainHandle:=FOPEN(m->base, 2)
@@ -1740,11 +1742,11 @@ BEGIN SEQU
 	ScrRest(scr)
 	IF i % 4 = 0 THEN BREAK
 
-	IF i=2	//по заголовку
-		dbSize:=xSize	//Логический выправится сам
+	IF i=2	//я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+		dbSize:=xSize	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ския┐╜ я┐╜я┐╜я┐╜равя┐╜я┐╜я┐╜я┐╜ сам
 	ELSE
-		IF i=3	//по файлу
-			// Записей - выровненных до ближайшего размера
+		IF i=3	//я┐╜я┐╜ файя┐╜я┐╜
+			// я┐╜я┐╜я┐╜я┐╜сей - я┐╜я┐╜ровя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜шегя┐╜ разя┐╜я┐╜я┐╜я┐╜
 			IF ABS(fSize - dbSize) >1
 				nRec:=INT((fSize-Header()) / RecSize())+1
 				dbSize:=Header() +RecSize()*nRec
@@ -1763,9 +1765,10 @@ END
 **********
 FUNC SelectBase
 LOCAL aNames,cFile
+MemVar _dbfc
 aNames:=Filer(m->_mask,SELECT_BASE,,{_zi},,{|_1|Ascan(_1,{|_a|UPPER(_a)==UPPER(m->_base)} )})
 IF aNames[1]#0
-	IF aNames[3]		// задать файл
+	IF aNames[3]		// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ файя┐╜
 		m->_dbfc=''
 		IF !GetName(m->_ZIF,'_dbfc') .OR.;
 		   !IsFileExist( @_dbfc,'.DBF') THEN;
@@ -1776,12 +1779,12 @@ IF aNames[1]#0
 		cFile:=aNames[2]
 	ENDIF
 
-	IF m->_base# cFile .OR. !USED()	// помогает при блокировке
+	IF m->_base# cFile .OR. !USED()	// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ровя┐╜я┐╜
 		SavePrev()
 		m->__aPrev[1]:=NIL
 		m->_FltrCond:=''
 		m->_base=cFile
-		m->_tmr=1	// во вновь избранной базе встать на 1 запись
+		m->_tmr=1	// я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜раня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ 1 я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 		m->_OldInd=''
 		m->_StackPos:={0,0,0,0,0,0,0,0,0,0}
 		m->_Replay=.f.
@@ -1794,7 +1797,7 @@ RETU .f.
 PROC SavePrev()
 m->__aPrev[2]:={m->_base,m->_NewIndF,m->_oldind,;
 		m->__tagNom,m->__tagName,m->_tmr,m->_FltrCond}
-IF USED() THEN ReadAutoOpen(.T.)	//Секцию закрытия
+IF USED() THEN ReadAutoOpen(.T.)	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 **********
 PROC ReOpenPrev()
 IF !EMPTY(m->__aPrev[2])
@@ -1818,8 +1821,8 @@ BEGIN SEQU
 
 	_i:=Memo_Edit(@_i,{cHead},cFoot,lEd,nWide)
 	IF lEd .AND. _i<>NIL
-		_i:=Exclude(_i,[Н]+_LF)
-		IF lArr	//TYPE(_i)=='A'	// почему-то не всегда работает
+		_i:=Exclude(_i,[я┐╜]+_LF)
+		IF lArr	//TYPE(_i)=='A'	// я┐╜я┐╜чемя┐╜-я┐╜я┐╜ я┐╜я┐╜ я┐╜сегя┐╜я┐╜ рабя┐╜таея┐╜
 			_i:=&(_i)
 		ENDIF
 		IF EMPTY(lNoRepl) THEN MyRepl(_Fld,_i)
@@ -1837,8 +1840,8 @@ IF GetName(_ZU+_txt+IF(EMPTY(lRest),EMPTY_IS_ALL,''),_varu) .AND.;
 	*ScrSave()
 
 	#IFNDEF ENGLISH
-		IF (cSkl:=Substr(_txt,-1)) $ 'яи'
-			_txt:=CHG_EXT(_txt,1,IF(cSkl='я','е','а'))
+		IF (cSkl:=Substr(_txt,-1)) $ 'я┐╜я┐╜'
+			_txt:=CHG_EXT(_txt,1,IF(cSkl='я┐╜','я┐╜','я┐╜'))
 		ELSE
 			_txt:=LEFT(_txt,LEN(_txt)-1)
 		ENDIF

@@ -1,0 +1,22 @@
+#
+#                                            clip-gd/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-gd.so
+
+PRG=gr$(EXESUFF)
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+gr$(EXESUFF): gr.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -s -e -M gr.prg -lclip-gd
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

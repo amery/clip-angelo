@@ -1,0 +1,42 @@
+#
+#                                            clip-xml/example/Makefile.in
+#
+# CLIP-XML library examples Makefile
+# Copyright (C) 2006, E/AS Software Foundation
+# Web: http://eas.lrn.ru
+# Copyright (C) 2006, ITK
+# Web: http://www.itk.ru
+#CLIPINCLUDE = -I$(CLIPROOT)/include
+#C_FLAGS=-g
+Local_Depend = $(Clip_L_Dir)/libclip-xml.so
+
+.SUFFIXES: .prg .o .po
+.PHONY: all clean
+
+# Widget tests
+ADDLIBS=-lclip-xml
+
+PROGS=test_xml$(EXESUFF) test$(EXESUFF)
+
+EXTRALIBS=
+
+all: Makefile $(PROGS)
+
+cfg :
+
+cleanc:
+	rm -f$(V) $(PROGS)
+	rm -f$(V) *.c *.b
+
+test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewsln  $(C_FLAGS) test_xml.prg $(ADDLIBS) $(EXTRALIBS)
+
+test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -esg test.prg $(ADDLIBS)
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

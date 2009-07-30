@@ -86,7 +86,7 @@
 
 #ifdef USE_TASKS
 
-#include "libcliptask/task.h"
+#include "../libcliptask/task.h"
 
 typedef struct
 {

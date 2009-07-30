@@ -1837,16 +1837,16 @@
 #include "clip.h"
 #include "clipvm.h"
 #include "hash.h"
-#include "libclipscreen/screen.h"
+#include "../libclipscreen/screen.h"
 #include "error.ch"
 #include "hashcode.h"
 #include "rational.h"
-#include "libclipscreen/charset.h"
+#include "../libclipscreen/charset.h"
 #include "coll.h"
 #include "license.h"
 
 #ifdef USE_TASKS
-#include "libcliptask/task.h"
+#include "../libcliptask/task.h"
 #endif
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))
@@ -9586,7 +9586,7 @@ CLIP_DLLEXPORT int
 _clip_main(ClipMachine * mp, long hash, int argc, char **argv, char **envp)
 {
 	int ret;
-	
+
 #ifdef USE_TASK
 	if (mp->main_func_level == 0)
 		Task_INIT();
@@ -10637,7 +10637,7 @@ _clip_translate_path(ClipMachine * mp, const char *str, char *buf, int buflen)
 		snprintf(buf,buflen, "%s%s",mp->rootpath,tmp);
 		free(tmp);
 		bl = strlen(buf);
-		
+
 		tmp = strdup(str);
 		_str = (char *)_clip_normalize_path(tmp);
 		free(tmp);

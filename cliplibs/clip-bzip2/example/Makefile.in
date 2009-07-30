@@ -1,0 +1,22 @@
+#
+#                                            clip-bz2/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-bz2.so
+
+
+PRG=bz2$(EXESUFF)
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG) *.bz2
+
+bz2$(EXESUFF): bz2.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -e -s -l -M bz2.prg -lclip-bzip2
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

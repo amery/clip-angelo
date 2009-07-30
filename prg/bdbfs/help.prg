@@ -56,7 +56,7 @@ ENDIF
 RestPos()
 **********
 PROC Information(aFileStr)
-// В aFileStr по ссылке передается информация для File в DispStru
+// я┐╜ aFileStr я┐╜я┐╜ я┐╜я┐╜ылкя┐╜ я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜рмая┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ File я┐╜ DispStru
 LOCAL _a,aTagInfo,aTag,_i,nCnt,_ndb
 dbcommit()
 _Ndb:= {DATE_UPDATE+DTOC(LUpdate()),;
@@ -95,12 +95,12 @@ Panel(nCnt,m->_middlecol-_i,nCnt+4+Len(_Ndb),m->_middlecol+_i,GetPath(),;
 	{m->_im,_HdColor, m->_im})
 
 nCnt+=2
-aEval(_ndb,{|_handle| Hi_String(PADC(_handle,_i*2-3),++nCnt,_middlecol-_i+2)})
+aEval(_ndb,{|_handle| Hi_String(PADC(_handle,_i*2-3),++nCnt,m->_middlecol-_i+2)})
 IF Waitkey(0)<>K_ESC
 
   IF (_a:=Sx_TagCount(1))<>0
-	aTagInfo := TagInfo(1)	// Получить информацию о тегах для текущего .CDX
-				// Теперь нарисуем дисплей
+	aTagInfo := TagInfo(1)	// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜рмая┐╜я┐╜я┐╜ я┐╜ тегя┐╜я┐╜ я┐╜я┐╜я┐╜ текя┐╜щегя┐╜ .CDX
+				// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜уем я┐╜я┐╜спля┐╜я┐╜
 	DispBegin()
 	Panel(4,2,18,77,_MSG_H_TITLE+Rdd_Info(1)[1] + ')',;
 			{_im,_HdColor,_im},2)
@@ -118,9 +118,9 @@ IF Waitkey(0)<>K_ESC
 	Center(17," PgUp  PgDn "+_Abort,,_HdColor)
 	DispEnd()
 
-	nCnt := 1	// Начать с первого тега
+	nCnt := 1	// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜рвоя┐╜я┐╜ тегя┐╜
 
-			//Отобразить информацию о тегах,
+			//я┐╜тобразя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜рмая┐╜я┐╜я┐╜ я┐╜ тегя┐╜я┐╜,
 
 	DO WHILE (.T.)
 	        DispBegin()
@@ -158,7 +158,7 @@ POP KEYS
 
 IF !Empty(m->_IndexFile)
 	ordListClear(); ordListAdd( m->_IndexFile )
-	go _tmr
+	go m->_tmr
 ELSEIF __tagNom<>0
 	Sx_SetTagNo(__tagNom)
 ENDIF

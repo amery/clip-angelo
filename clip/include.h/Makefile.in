@@ -1,0 +1,13 @@
+#
+#                                            clip/include.h/Makefile.in
+#
+Local_Depend =
+
+all install :
+
+cfg :
+	cp --remove-destination -fpu$(V) clip.h _win32.h hashcode.h hash.h $(Clip_I_Dir)/
+
+cleanc :
+
+include $(Makefile_end_in)

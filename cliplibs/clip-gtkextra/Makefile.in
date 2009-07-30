@@ -1,7 +1,11 @@
+#
+#                                            clip-gtkextra/Makefile.in
+#
 # main part
 #
 #
 
+Local_Depend = include/*.ch include/*.h
 #export CC
 #DBGFLAGS	= -g #-DMEMDBG
 #WARNFLAGS	= -Wimplicit -Wall
@@ -12,19 +16,19 @@
 SRCS  = sheet.c fontcombo.c bordercombo.c colorcombo.c togglecombo.c \
 	combobox.c itementry.c
 
-OBJS  = bordercombo.o colorcombo.o combobox.o fontcombo.o itementry.o sheet.o togglecombo.o
+OBJS  = $(sort bordercombo.o colorcombo.o combobox.o fontcombo.o itementry.o sheet.o togglecombo.o )
 
-HDRS	= clip-gtkextra.ch clip-gtkextra.h ../clip-gtk/clip-gtk.ch
+HDRS	= include/clip-gtkextra.ch include/clip-gtkextra.h ../clip-gtk/include/clip-gtk.ch
 
 OBJDIR	= .
 EXTOBJS =
 
 HASHSRCS = $(SRCS) $(HDRS)
-
-XLIB	= libclip-gtkextra.a
-XSLIB	= libclip-gtkextra$(DLLSUFF)
-XSLIBREAL = libclip-gtkextra$(DLLREALSUFF)
-XLIBOBJS= $(OBJS)
+PROG = clip-gtkextra
+#XLIB	= libclip-gtkextra.a
+#XSLIB	= libclip-gtkextra$(DLLSUFF)
+#XSLIBREAL = libclip-gtkextra$(DLLREALSUFF)
+#XLIBOBJS= $(OBJS)
 
 SYS = $OSNAME
 SYSTEM_NAME = $(OSNAME)
@@ -34,60 +38,62 @@ DEFS	=
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
 
 CC = $(COMPILER)
-CFLAGS  = -fPIC $(C_FLAGS) $(DEFS) $(MEMDBGFLAGS) -I../clip-gtk
+C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 
 export CC CFLAGS
 export MEMDBG MEMDBGFLAGS
 
-all: Makefile hash $(XTARGETS)
+all: Makefile include/clip-gtkextracfg.h hash $(STARGET)
+
+cfg :
+	cp --remove-destination -fpu$(V) include/clip-gtkextra.ch $(Clip_I_Dir)/
 
 d: set_dbg
 
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-Makefile: Makefile.in configure
+include/clip-gtkextracfg.h :
+	$(Trace_o)
 	./configure
 
-hash: _hashcode.h
+hash: include/_hashcode.h
 
-_hashcode.h: $(HASHSRCS)
-	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashcode.h
-	cmp _hashcode.h hashcode.h 2>/dev/null || cp _hashcode.h hashcode.h
+include/_hashcode.h: $(HASHSRCS)
+	$(Trace_o)
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
+	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
 
-$(XLIB): $(XLIBOBJS)
-	rm -f $(XLIB)
-	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)
-	ranlib $(XLIB)
+#$(XLIB): $(XLIBOBJS)
+#	rm -f $(XLIB)
+#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
+#	ranlib $(XLIB)
 
-$(XSLIB): $(XLIB)
-	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)
+#$(XSLIB): $(XLIB)
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
 
 test: install
 	cd example && $(MAKE)
 
-clean:
-	rm -rf *.o *.a *.so *.dll *.po *.pa *.b *.BAK *.bak *~ core* \
-	*core Makefile.inc _hashcode.h *.ex *.nm
+cleanc:
+	rm -rf$(V) *.b include/_hashcode.h include/clip-gtkextracfg.h $(TARGET).*
 
 distclean: clean
-	rm -rf clip-gtkextracfg.h hashcode.h _hashcode.h Makefile
-	cd example && $(MAKE) clean
+	rm -rf$(V) include/clip-gtkextracfg.h include/hashcode.h include/_hashcode.h Makefile
 
-install: all $(XTARGETS)
-	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
-	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
-	#[ "$(XSLIBREAL)" = "$(XSLIB)" ] || cp $(XSLIBREAL) $(DESTDIR)$(CLIPROOT)/lib
-	cp clip-gtkextra.ch $(DESTDIR)$(CLIPROOT)/include/
-#	cp -R doc/* $(CLIPROOT)/doc/clip-gtk
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtkextra
-	- cp example/*.prg example/Makefile example/*.ch $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtkextra
+install: all install-lib install-example
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib
+#	chmod 0644  $(DESTDIR)/lib/$(XLIB)
+#	chmod 0755  $(DESTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-gtkextra
+#	cp -fu$(V) example/*.prg example/Makefile example/*.ch $(DESTDIR)/doc/example/clip-gtkextra
 
-.c.o:
-	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
-	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
+include $(Makefile_o_in)
+
+#.c.o:
+#	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
+#	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
 
 depend:
 	$(MAKE) hash
@@ -105,7 +111,5 @@ ucommit:
 shell:
 	sh
 
-# DO NOT DELETE
-
-
+include $(Makefile_end_in)
 

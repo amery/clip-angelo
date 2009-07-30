@@ -5,8 +5,8 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
 
 #define WM_MDICREATE        544   // 0x0220
 #define WM_MDIDESTROY       545   // 0x0221

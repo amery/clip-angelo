@@ -1,4 +1,4 @@
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <clip-fw/FiveWin.ch>
 
 STATIC oWnd, oFont
 

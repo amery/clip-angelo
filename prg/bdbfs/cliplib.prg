@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 /*
-‚ ®á­®¢­®¬, ¬®¤¨ä¨ª æ¨ï áâ ­¤ àâ­ëå ª«¨¯¯¥à®¢áª¨å äã­ªæ¨©,
-  â ª¦¥ à ¡®â  ¢ "ä®àá¨à®¢ ­­®¬" à¥¦¨¬¥.
+ï¿½ ï¿½á­®ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ä¨ªï¿½ï¿½ï¿½ï¿½ ï¿½â ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à®¢áª¨ï¿½ ï¿½ã­ªæ¨©,
+ï¿½ â ªï¿½ï¿½ à ¡ï¿½ï¿½ï¿½ ï¿½ "ï¿½ï¿½ï¿½ï¿½ï¿½à®¢ï¿½ï¿½ï¿½ï¿½ï¿½" à¥¦ï¿½ï¿½ï¿½.
 */
 
 #include "inkey.ch"
@@ -55,7 +55,7 @@ IF _error THEN BREAK(RetError)
 
 RETURN .T.
 **********
-EXTE SDF	// ¤à ©¢¥à SDF
+EXTE SDF	// ï¿½à ©ï¿½ï¿½ï¿½ SDF
 EXTE DELIM
 **********
 /*
@@ -93,7 +93,7 @@ IF (nRec <> Nil)
 	nNext:= 1
 ENDIF
 ErrorSys(.t.)
-CheckEsc(.T.)	//áç¥âç¨ª
+CheckEsc(.T.)	//ï¿½ï¿½ï¿½ï¿½ç¨ª
 IF EMPTY(lRest) THEN GO TOP
 DO WHILE !EOF() .AND. Eval(bWhile) .AND. nNext-- # 0 .AND. CheckEsc(,nfSize)
 	IF EVAL(bFor)
@@ -111,7 +111,7 @@ DO WHILE !EOF() .AND. Eval(bWhile) .AND. nNext-- # 0 .AND. CheckEsc(,nfSize)
 							&cfName)
 			RECOVER
 				lErr:=.T.
-				IF cTdest=='N'	//¯¥à¥¯®«­¥­¨¥
+				IF cTdest=='N'	//ï¿½ï¿½à¥¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				   nDec:=aFld[4]
 				   cTSrc:=REPL('9',aFld[3]-nDec-1)+;
 					  IF(nDec>0,;
@@ -212,7 +212,7 @@ RETURN lRes
 **********
 FUNC __DBLOCATE(_bFor, _bWhile, _next, _rec, _rest, lBack)
 LOCAL _lFound
-CheckEsc(.T.)	//‘ç¥âç¨ª
+CheckEsc(.T.)	//ï¿½ï¿½ï¿½ï¿½ç¨ª
 IF EMPTY(lBack)
 	IF EMPTY(_next) .AND. EMPTY(_rest) THEN DbGoTop()
 	IF_NIL _BFor IS {|| .T.}
@@ -262,10 +262,10 @@ IF EMPTY(lStart)
 	IF _tally >= nLast
 		IF Inkey()==K_ESC THEN RETURN .F.
 		nLast+=m->_sx_step
-		IF !EMPTY(m->_lMeter) THEN Meter(2,,_tally,nTotal)	//nTotal â®«ìª® ¤«ï SDF
+		IF !EMPTY(m->_lMeter) THEN Meter(2,,_tally,nTotal)	//nTotal â®«ìª® ï¿½ï¿½ï¿½ SDF
 	ENDIF
 	_tally++
-ELSE		//®¡­ã«¥­¨¥
+ELSE		//ï¿½ï¿½ï¿½ã«¥ï¿½ï¿½ï¿½
 	nLast:=m->_sx_step
 	m->_tally:=0
 ENDIF
@@ -367,9 +367,9 @@ ENDIF
 RETURN Strip5(aDest)
 **********
 STATIC FUNC Strip5(aDest)
-LOCAL aItem
+LOCAL aItem, I
 IF LEN(aDest)>4
-//…á«¨ ¬ áá¨¢ ­¥ ç¥âëà¥å¬¥à­ë©.
+//ï¿½á«¨ ï¿½ï¿½ï¿½á¨¢ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¬¥ï¿½ï¿½ï¿½ï¿½.
 	FOR i:=1 TO LEN(aDest)
 		aItem:=aDest[i]
 		aDest[i]:={aItem[1], aItem[2], aItem[3], aItem[4]}
@@ -393,7 +393,7 @@ _Tally:=0
 FOR i:=1 TO LEN(aFlds)
 	cF:=UPPER(aFlds[i])
 	IF Parce(cF,' AS ',@cF, @cFn) = 0 THEN cFn:=cF
-	cF:=ALLTRIM(cF)		//  ¢¤àã£ ¯à®¡¥«ë ¯¥à¥¤ AS ¨«¨ ¯®á«¥ § ¯ïâ®©
+	cF:=ALLTRIM(cF)		//ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½à®¡ï¿½ï¿½ï¿½ ï¿½ï¿½à¥¤ AS ï¿½ï¿½ï¿½ ï¿½ï¿½á«¥ ï¿½ï¿½ï¿½ï¿½â®©
 	cFn:=ALLTRIM(cFn)
 
 	IF (j:=AMScan(_aEt,1,cF))<>0
@@ -416,7 +416,7 @@ FOR i:=1 TO LEN(aFlds)
 					_len:=1
 				CASE _type=='D'
 					_len:=8
-				OTHER		//_type=='M' ¨ ¢®§¬®¦­® A
+				OTHER		//_type=='M' ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ A
 					_len:=10
 			END
 			j:=IF(cF==cFN,'EXP_'+NTRIM(i),cFN)
@@ -463,7 +463,7 @@ ENDIF
 IF !lRest THEN dbGoTop()
 OldBase:= Select()
 
-/* ’ ª ¢ áâ ­¤ àâ¥
+/* ï¿½ï¿½ï¿½ ï¿½ ï¿½â ­ï¿½ï¿½ï¿½ï¿½ï¿½
 aTotal:= {}
 Aeval(Dbstruct(), {|_1| IIF(_1[2] == "M", Nil, AAdd(aTotal, _1))})
 
@@ -471,8 +471,8 @@ IF (Empty(aTotal))
 	RETURN .F.
 ENDIF
 */
-aTotal:=DbStruct_()	//¤  ¬ë ¨ Memo ¢®§ì¬¥¬
-CheckEsc(.T.)	//áç¥âç¨ª
+aTotal:=DbStruct_()	//ï¿½ï¿½ ï¿½ï¿½ ï¿½ Memo ï¿½ï¿½ï¿½ì¬¥ï¿½
+CheckEsc(.T.)	//ï¿½ï¿½ï¿½ï¿½ç¨ª
 
 BEGIN SEQUENCE
 	aSumFields:= {}
@@ -547,29 +547,29 @@ LOCAL	aStr:={},i,nStart,nFld,;
 	cNewByte,cNewType,lWasMemo, lCpDBF, lWasVFP
 #define DBASE4 CHR(139)+CHR(142)+CHR(123)+CHR(203)
 #define DBASE7 CHR(4)+CHR(5)
-nFld:=Fseek(_handle,0,2)	// §¬¥à ¤«ï ¯à®¢¥àª¨
+nFld:=Fseek(_handle,0,2)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½à®¢ï¿½àª¨
 FSeek(_handle,0)
 Fread(_handle,@cFld,28)
-//’¨¯ ¡ §ë, CDX_flag,CodePage
+//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, CDX_flag,CodePage
 cNewType:=First(cFld)
-nStart:=Bin2I(SUBSTR(cFld,9,2))		// ç «® ¤ ­­ëå
-IF nStart>nFld .OR. nStart<65 .OR. nFld<65 THEN RETURN aStr	//”¨£­ï ª ª ï-â®
+nStart:=Bin2I(SUBSTR(cFld,9,2))		//ï¿½ï¿½ç «ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+IF nStart>nFld .OR. nStart<65 .OR. nFld<65 THEN RETURN aStr	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½
 
 m->__RealFlds:=ReadBin(_handle,0,nStart-36,1)
 lCpDBF:=BETWEEN(CPDBF(),1200,1299)
-m->_aCommon:={lCpDBF .AND. !EMPTY(m->_lForced),;//‚®®¡é¥ ä®àá¨à®¢ ­­ 
-	      cNewType,;			//Žà¨£¨­ « 1-£® ¡ ©â 
-	      cNewType,;			//ˆ§¬¥­¥­­ë© 1-© ¡ ©â
-	      lCpDBF,;				// ¤® OemToAnsi
-	      .F.;				//…áâì AutoInc
+m->_aCommon:={lCpDBF .AND. !EMPTY(m->_lForced),;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à®¢ï¿½ï¿½ï¿½ï¿½
+	      cNewType,;			//ï¿½à¨£ï¿½ï¿½ï¿½ï¿½ 1-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+	      cNewType,;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1-ï¿½ ï¿½ï¿½ï¿½ï¿½
+	      lCpDBF,;				//ï¿½ï¿½ï¿½ï¿½ OemToAnsi
+	      .F.;				//ï¿½ï¿½ï¿½ï¿½ AutoInc
 	      }
 
 lWasMemo:=.F.
 FSeek(_handle,32)
-DO WHILE .T.	//®ª®­ç ­¨¥ ¯®«¥©
+DO WHILE .T.	//ï¿½ï¿½ï¿½ï¿½ç ­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	IF (Fread(_handle,@cFld,32) <>32) .OR.;
 	   (First(cFld) == _ENTER) .OR.;
-	   (FSeek(_handle,0,1)>nStart) THEN EXIT	//®ª®­ç ­¨¥ ¯®«¥©
+	   (FSeek(_handle,0,1)>nStart) THEN EXIT	//ï¿½ï¿½ï¿½ï¿½ç ­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	cfName:=TRIM(FN_NoNull(cFld))
 	IF lCpDBF
@@ -593,7 +593,7 @@ DO WHILE .T.	//®ª®­ç ­¨¥ ¯®«¥©
 			NeedForced:=2	//bmp D5
 
 		CASE (cfType $ 'CNFLDYTGPBIX') .OR.;
-		     (cfType=='V' .AND. cfLen > 2)	//¨§¢¥áâ­ë¥
+		     (cfType=='V' .AND. cfLen > 2)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			IF cfType=='I' .AND. cfFlag=12
 				cfType:='AI'
 				m->_aCommon[6]:=.T.
@@ -608,8 +608,8 @@ DO WHILE .T.	//®ª®­ç ­¨¥ ¯®«¥©
 			cNewByte:='C'
 
 		CASE cfType=='0' .AND. cFName=='_NullFlags'
-			lWasVFP:=.T.			
-	
+			lWasVFP:=.T.
+
 		OTHER	//Unknown
 			NeedForced:=6
 			cNewByte:='C'
@@ -650,8 +650,8 @@ ENDDO
 IF !EMPTY(m->_lForced)
 	i:=FSeek(_handle,0,1)
 
-	IF i < nStart	//¥ ¢ ­ ç «¥ ¤ ­­ëå, ­-à ª®­â¥©­¥à FoxPro ­ è«¨
-		i:=i-32	//®§¨æ¨ï ENTER
+	IF i < nStart	//ï¿½ï¿½ ï¿½ ï¿½ï¿½ç «ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½-ï¿½ ï¿½ï¿½ï¿½â¥©ï¿½ï¿½ï¿½ FoxPro ï¿½ï¿½è«¨
+		i:=i-32	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ENTER
 		FSEEK(_handle,i)
 
 		cFld:=' '+REPL(CHR(0),10)+'C'+REPL(CHR(0),4)+CHR(1)+;
@@ -664,7 +664,7 @@ IF !EMPTY(m->_lForced)
 		FWRITE(_handle,_ENTER,1)
 	ENDIF
 
-	IF !InList(ASC(cNewType),3,131,245,48,49)	//¨§¢¥áâ­ë¥ RDD
+	IF !InList(ASC(cNewType),3,131,245,48,49)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RDD
 		FSeek(_handle,0)
 
 		cNewType:=IF(cNewType $ DBASE4,;
@@ -676,7 +676,7 @@ IF !EMPTY(m->_lForced)
 		m->_aCommon[3]:=cNewType
 		m->_aCommon[1]:=.t.
 	ENDIF
-	NeedForced:=0	//‡ ä®àá¨à®¢ «¨ ã¦¥
+	NeedForced:=0	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à®¢ï¿½ï¿½ï¿½ ã¦¥
 ELSE
 	IF cNewType $ DBASE4+DBASE7
 		NeedForced:=2
@@ -702,12 +702,13 @@ FOR i:=1 TO LEN(cFld)
 NEXT
 IF cNew < 'A' THEN cNew:='_'+cNew
 lRes:=(cFld<>cNew)
-cFld:=cNew	//® ááë«ª¥
+cFld:=cNew	//ï¿½ï¿½ ï¿½ï¿½ë«ªï¿½
 RETU lRes
 **********
 PROC MakeRealStr(cBase)
 LOCAL hBase
-IF VALTYPE(_aCommon)=='A' .AND. !EMPTY(_aCommon[1])	//ValType ¨§-§  áâ àëå ¬¥¬®
+MemVar _aCommon
+IF VALTYPE(_aCommon)=='A' .AND. !EMPTY(_aCommon[1])	//ValType ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	hBase:=FOPEN(cBase, 2)
 	FSeek(hBase,0)
 	Fwrite(hBase,m->_aCommon[2],1)
@@ -716,6 +717,6 @@ IF VALTYPE(_aCommon)=='A' .AND. !EMPTY(_aCommon[1])	//ValType ¨§-§  áâ àëå ¬¥¬®
 	FCLOSE(hBase)
 ENDIF
 **********
-FUNC DbStruct_()		//‚ CH åã¦¥
+FUNC DbStruct_()		//ï¿½ CH ï¿½ã¦¥
 RETURN IF(SELECT()=1, m->__aDbStruct, DBStruct())
 

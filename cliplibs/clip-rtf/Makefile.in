@@ -1,0 +1,45 @@
+#
+#                                            clip-rtf/Makefile.in
+#
+#  GNU make makefile
+#
+
+Local_Depend = include/*.ch
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS += -n
+CLIPLIBS  =
+OBJS  = richtext.o
+PROG = clip-rtf
+#RTLIB = libclip-rtf.a
+#RTFLIB = libclip-rtf$(DLLSUFF)
+#RTFLIBREAL = libclip-rtf$(DLLREALSUFF)
+
+DOC = readme*
+.SUFFIXES: .prg .o .po
+
+all : Makefile $(STARGET)
+
+cfg :
+	cp --remove-destination -fpu$(V) include/richtext.ch $(Clip_I_Dir)/
+	cp --remove-destination -fpu$(V) include/objects.ch $(Clip_I_Dir)/
+
+#$(RTFLIB): $(OBJS)
+#	$(CLIP_MAKELIB) $(RTLIB) $(OBJS)
+#	$(CLIP_MAKESLIB) $(RTFLIB) $(RTLIB) $(C_LIBS)
+
+cleanc :
+	rm -f$(V) *.c $(TARGET).*
+
+install : all install-lib install-example install-doc
+#	$(CLIP_CP) $(RTLIB) $(DESTDIR)/lib
+#	$(CLIP_CP) $(RTFLIB) $(DESTDIR)/lib
+#	chmod 0755 $(DESTDIR)/lib/$(RTFLIB)
+#	#[ "$(RTFLIBREAL)" = "$(RTFLIB)" ] || cp $(RTFLIBREAL) $(CLIPROOT)/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-rtf
+#	cp -Ruf$(V) example/Makefile* example/*.prg $(DESTDIR)/doc/example/clip-rtf/
+#	cp -Ruf$(V) example/*.dbf example/*.dbt $(DESTDIR)/doc/example/clip-rtf/
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

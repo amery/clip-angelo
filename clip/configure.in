@@ -1,0 +1,2 @@
+
+echo "C_FLAGS += -I $PWD/include.h" >>Makefile.ini

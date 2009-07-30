@@ -1,5 +1,10 @@
+##
+##										doc/Makefile
+##
+##				called from all Makefile files
+##
 ifdef CLIPROOT
-	BIN=$(CLIPROOT)/bin
+	BIN=$(DESTDIR)/bin
 else
 	CLIPROOT:=$(shell cd ../../cliproot; pwd)
 	BIN:=$(shell cd ../clip; pwd)
@@ -22,8 +27,8 @@ all: html
 install:
 	-for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/html-full/$$L ;\
-		cp -R html/$$L/* $(DESTDIR)$(CLIPROOT)/doc/html-full/$$L/ 2>/dev/null || true;\
+		mkdir -p $(DESTDIR)/doc/html-full/$$L ;\
+		cp -R html/$$L/* $(DESTDIR)/doc/html-full/$$L/ 2>/dev/null || true;\
 	done
 
 

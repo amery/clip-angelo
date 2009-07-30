@@ -1,0 +1,49 @@
+#
+#                                            prg/cobra_serv/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-codb.so
+Local_Depend = $(Clip_L_Dir)/libclip-r2d2.so
+
+#CLIP	= clip
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS += -n
+CLIPLIBS  = -lclip-codb -lclip-r2d2
+OBJS  =
+#cobra_conn.o
+CHS  =
+#corba_serv.ch
+MODULES = module1.po codbtview.po codbdlist.po
+.SUFFIXES: .prg .o .po
+
+DIRS_TO_SCAN = auth mod-ini tcp-wrap
+
+all : Makefile $(DIRS_TO_SCAN) cobra_serv$(EXESUFF) $(MODULES)
+
+cfg :
+
+cleanc : $(DIRS_TO_SCAN)
+	rm -f$(V) *.c *.b
+	rm -f$(V) cobra_serv$(EXESUFF) *.pro
+
+cobra_serv$(EXESUFF) :cobra_serv.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -es -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
+
+
+install: all
+	mkdir -p$(V) $(DESTDIR)/cobra
+	cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(Clip_B_Dir)/
+	cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(DESTDIR)/cobra/
+	cp --remove-destination -fpu$(V) cobra_serv.ini $(DESTDIR)/cobra
+	mkdir -p$(V) $(DESTDIR)/cobra/mod-ini
+	cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(DESTDIR)/cobra/mod-ini
+	mkdir -p$(V) $(DESTDIR)/cobra/tcp-wrap
+	cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(DESTDIR)/cobra/tcp-wrap
+	cp --remove-destination -fpu$(V) $(MODULES) $(DESTDIR)/cobra/
+	mkdir -p$(V) $(DESTDIR)/cobra/files
+	cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(DESTDIR)/cobra/files
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

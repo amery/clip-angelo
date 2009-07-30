@@ -5,7 +5,7 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/FiveWin.ch>
+#include <clip-fw/FiveWin.ch>
 
 #define MDIS_ALLCHILDSTYLES   1
 

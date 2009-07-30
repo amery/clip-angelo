@@ -1,0 +1,48 @@
+#
+#                                            prg/bdbfs/Makefile.in
+#
+Local_Depend = *.ch
+
+
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS += -n -I $(Clip_I_Dir)/clip-netto
+CLIPLIBS  =
+
+LIBS  = -lclip-netto -lclip-nanfor
+OBJS  =	$(sort getsys.o common.o \
+	help.o print.o \
+	mdbedit.o mainmenu.o aktions.o obsolete.o \
+	cliplib.o filer.o viewer.o editor.o foxpro.o \
+	tb2html.o menu.o \
+	_clip.o modistru.o vkrz.o \
+	nanfor.o nettos.o \
+	errorsys.o \
+	config.o examplep.o )
+
+.SUFFIXES: .prg .o
+
+#LANG=ru_RU.KOI8-R
+#export LANG
+
+all: Makefile bdbf$(EXESUFF)
+
+cfg :
+
+bdbf$(EXESUFF):	bdbf.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -s -e -o$@ bdbf.prg $(OBJS) $(LIBS)
+
+cleanc:
+	rm -rf$(V) *.c *.b
+	rm -rf$(V) bdbf$(EXESUFF) test$(EXESUFF)
+
+install: all
+	cp --remove-destination -fpu$(V) bdbf$(EXESUFF) $(DESTDIR)/bin/bdbf$(EXESUFF)
+	cp --remove-destination -fpu$(V) *.hlp $(DESTDIR)/bin/
+	cp --remove-destination -Rfpu$(V) locale.po/* $(DESTDIR)/locale.po/
+	rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -5,8 +5,8 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/FiveWin.ch>
-#include <fwin/constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/constant.ch>
 
 #define SC_RESTORE     61728
 #define SC_MINIMIZE    61472

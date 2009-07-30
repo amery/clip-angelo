@@ -1,0 +1,38 @@
+#
+#                                            prg/Makefile.in
+#
+Local_Depend =
+
+DIRS_TO_SCAN=$(sort 	\
+bdbfs 	cobra_clnt 	cobra_serv 	\
+codb 	dbc 	debug 	doc_utils 	hiper 	kamache 	\
+ocmng 	pp 	udb 	udbx 	utils 	\
+)
+
+
+all: $(DIRS_TO_SCAN)
+
+cfg :
+
+install:all
+
+cleanc:
+
+commit:
+	./_cvs commit
+
+update:
+	./_cvs update -dP
+
+deb:
+	./mkdeb
+
+rpm:
+	./mkrpm
+
+tgz:
+	./mktgz
+
+
+include $(Makefile_end_in)
+

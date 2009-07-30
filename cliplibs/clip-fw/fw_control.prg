@@ -1,4 +1,4 @@
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <clip-fw/FiveWin.ch>
 #INCLUDE <Inkey.ch>
 
 #define LTGRAY_BRUSH       1

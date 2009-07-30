@@ -1,0 +1,34 @@
+#
+#                                            prg/hiper/Makefile.in
+#
+Local_Depend =
+
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -s -l -w
+
+BINS = $(sort clip_hindex$(EXESUFF) clip_hseek$(EXESUFF) )
+
+all : Makefile $(BINS)
+
+cfg :
+
+install :	all
+	cp --remove-destination -fpu$(V) clip_hindex$(EXESUFF) $(DESTDIR)/bin/clip_hindex$(EXESUFF)
+	cp --remove-destination -fpu$(V) clip_hseek$(EXESUFF) $(DESTDIR)/bin/clip_hseek$(EXESUFF)
+
+cleanc:
+	rm -rf$(V) $(BINS) *.c *.b
+
+include $(Makefile_o_in)
+
+clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hindex.prg
+
+clip_hseek$(EXESUFF):	clip_hseek.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hseek.prg
+
+include $(Makefile_end_in)
+

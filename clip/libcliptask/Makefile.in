@@ -1,0 +1,81 @@
+#
+#                                            clip/libcliptask/Makefile.in
+#
+
+Local_Depend = ../include/*.ch ../include.h/*.h
+#CC= gcc
+#CFLAGS = -O -g -Wall -fPIC -I$(CLIPROOT)/include
+#CFLAGS = -O -Wall -fPIC
+#CFLAGS = $(C_FLAGS)
+TEST_ADDOBJS = ../compiler/coll.o ../compiler/list.o ../libclipmain/hash.o
+PTH_LIBS= -lpth
+PTH_TEST= pth_tst$(EXESUFF)
+OBJS = pth_task.o
+#LIB = libcliptask.a
+PROG = cliptask
+
+all install : cl_cfg.h Makefile $(ATARGET)
+#all install : cl_cfg.h $(LIB) Makefile
+
+cfg:
+	cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
+
+#$(LIB): $(OBJS) Makefile
+#	rm -f$(V) $(LIB)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
+#	ranlib $(LIB)
+
+include $(Makefile_o_in)
+
+../compiler/coll.o : ../compiler/coll.c Makefile
+	$(Trace_o)
+	cd ../compiler  																	\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
+
+../compiler/list.o : ../compiler/list.c Makefile
+	$(Trace_o)
+	cd ../compiler  																	\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
+
+../libclipmain/hash.o : ../libclipmain/hash.c Makefile
+	$(Trace_o)
+	cd ../libclipmain  																	\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+		&& $(MAKE)  hash.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
+
+cl_cfg.h :
+	$(Trace_o)
+	./cl_conf
+
+pth_task.o: pth_task.c task.h  Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) -c pth_task.c
+
+cl_tst$(EXESUFF): $(OBJS) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) -o $@ cl_tst.o $(OBJS) $(TEST_ADDOBJS) $(ATARGET)
+	$@
+
+task_tst$(EXESUFF) : $(ADDOBJS) task_tst.o $(ATARGET) Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) task_tst.c -o $@ $(TEST_ADDOBJS) $(ATARGET) $(PTH_LIBS)
+
+std_tst: pth_tst$(EXESUFF) Makefile
+
+pth_tst$(EXESUFF): pth_tst.c Makefile
+	$(Trace_c)
+	$(CC) pth_tst.c -o $@ $(PTH_LIBS)
+	$@
+
+test_cl : cl_tst$(EXESUFF)
+test_pth : pth_tst$(EXESUFF)
+
+cleanc:
+	rm -f$(V) $(PTH_TEST) task_tst$(EXESUFF) pth_tst$(EXESUFF)
+	rm -f$(V) USE*
+	rm -f$(V) cl_cfg.h $(ATARGET)
+
+include $(Makefile_end_in)
+

@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#INCLUDE <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
+#INCLUDE <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
 
 #define LTGRAY_BRUSH       1
 #define TRANSPARENT        1

@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\MYDBU\MODISTRU.PRG
 *+
@@ -27,52 +27,54 @@
 *+
 *+    Reformatted by Click! 2.00 on Jun-20-2001 at 12:49 pm
 *+
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #ifdef RDD_AX
-#ifdef __HARBOUR__
-#include "ads.ch"
-#else
-#include "axntxcdx.ch"
-#endif
+	#ifdef __HARBOUR__
+		#include "ads.ch"
+	#else
+		#include "axntxcdx.ch"
+	#endif
 #endif
 #include "deflist.ch"
-
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function StruView()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION StruView
 
 LOCAL m2, m3, m4, i, kolf
 PRIVATE m1
    kolf := FCOUNT()
-   m1   := ARRAY( kolf )
+   m->m1   := ARRAY( kolf )
    m2   := ARRAY( kolf )
    m3   := ARRAY( kolf )
    m4   := ARRAY( kolf )
-   AFIELDS( m1, m2, m3, m4 )
+   AFIELDS( m->m1, m2, m3, m4 )
    FOR i := 1 TO kolf
-      m1[ i ] = PADR( m1[ i ], 10 ) + m2[ i ] + "   " + STR( m3[ i ], 3 ) + "   " + STR( m4[ i ], 1 )
+      m->m1[ i ] = PADR( m->m1[ i ], 10 ) + m2[ i ] + "   " + STR( m3[ i ], 3 ) + "   " + STR( m4[ i ], 1 )
    NEXT
    SET COLOR TO GR+/N,N+/W
    @  5, 22, 20, 46 BOX ORAMKA
-   @ 20, 25 SAY " Alt-P - Print "         
+   @ 20, 25 SAY " Alt-P - Print "
    DO WHILE i <> 0
-      i := MainMenu( 6, 24, 19, 44, m1,, { || PrnStru1() } )
+      i := MainMenu( 6, 24, 19, 44, m->m1,, { || PrnStru1() } )
    ENDDO
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function StruMan()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION StruMan( prnew )
-
+MemVar chng_name, chng_kol, chng_par
+MemVar a1, a2, a3, a4, kolf
+MemVar b1, b2, b3, b4
+MemVar c1, c2, c3, c4
 LOCAL oldimp := improc, vybkey, rez := .T.
 LOCAL nrec, fi1, fi2, fi3, fi4, i := FCOUNT(), j, alsname
 #ifdef ENGLISH
@@ -80,7 +82,7 @@ LOCAL ctrl_ar := { "B/W,W/B", ;
                       { { "ESC - Exit",, 20, 22 }, { "ALT-M - Save",, 20, 37 } } }
 #else
 LOCAL ctrl_ar := { "B/W,W/B", ;
-                      { { "ESC - ‚ëå®¤",, 20, 22 }, { "ALT-M - ‘®åà ­¨âì",, 20, 37 } } }
+                      { { "ESC - ï¿½ï¿½å®¤",, 20, 22 }, { "ALT-M - ï¿½ï¿½ï¿½à ­ï¿½ï¿½ï¿½",, 20, 37 } } }
 #endif
 PRIVATE chng_name := .F., chng_kol := .F., chng_par := .F.
    IF .NOT. prnew
@@ -99,7 +101,7 @@ PRIVATE chng_name := .F., chng_kol := .F., chng_par := .F.
       SELECT 20
       CREATE dbcstru
    ELSE
-      AFIELDS( A1, A2, A3, A4 )
+      AFIELDS( m->A1, m->A2, m->A3, m->A4 )
       COPY STRUCTURE EXTENDED TO dbcstru
    ENDIF
    SELECT 20
@@ -109,24 +111,24 @@ PRIVATE chng_name := .F., chng_kol := .F., chng_par := .F.
 #ifdef ENGLISH
    LI_NAMES := { "Name", "Type", "Lenth", "Dec" }
 #else
-   LI_NAMES := { "ˆ¬ï", "’¨¯", "„«¨­ ", "„¥á." }
+   LI_NAMES := { "ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½." }
 #endif
    LI_MSED       := 3
    LI_LADD       := .T.
    LI_VALID      := ARRAY( 4 )
-   LI_VALID[ 1 ] := { || varbuf := UPPER( varbuf ), VldStru( 1 ) }
-   LI_VALID[ 2 ] := { || varbuf := UPPER( varbuf ), VldStru( 2 ) }
+   LI_VALID[ 1 ] := { || m->varbuf := UPPER( m->varbuf ), VldStru( 1 ) }
+   LI_VALID[ 2 ] := { || m->varbuf := UPPER( m->varbuf ), VldStru( 2 ) }
    LI_VALID[ 3 ] := { || VldStru( 3 ) }
    LI_VALID[ 4 ] := { || VldStru( 4 ) }
    LI_WHEN       := ARRAY( 4 )
-   LI_WHEN[ 3 ]  := { || Field_Type $ "CNV" }
-   LI_WHEN[ 4 ]  := { || Field_Type = "N" }
+   LI_WHEN[ 3 ]  := { || field->Field_Type $ "CNV" }
+   LI_WHEN[ 4 ]  := { || field->Field_Type = "N" }
    SET COLOR TO B/W
    @  3, 17, 21, 58 BOX ORAMKA
 #ifdef ENGLISH
-   @  4, 26 SAY IIF( prnew, "New file creating", "Structure " + msfile[ improc ] )         
+   @  4, 26 SAY IIF( prnew, "New file creating", "Structure " + msfile[ improc ] )
 #else
-   @  4, 26 SAY IIF( prnew, "‘®§¤ ­¨¥ ­®¢®£® ä ©« ", "‘âàãªâãà  " + msfile[ improc ] )         
+   @  4, 26 SAY IIF( prnew, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ä ©ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + msfile[ improc ] )
 #endif
    OutCtrls( ctrl_ar )
    DO WHILE rez
@@ -145,15 +147,15 @@ PRIVATE chng_name := .F., chng_kol := .F., chng_par := .F.
          LI_KOLZ ++
          DO WHILE RECNO() > nrec
             SKIP - 1
-            fi1 := FIELD_NAME
-            fi2 := FIELD_TYPE
-            fi3 := FIELD_LEN
-            fi4 := FIELD_DEC
+            fi1 := Field->FIELD_NAME
+            fi2 := Field->FIELD_TYPE
+            fi3 := Field->FIELD_LEN
+            fi4 := Field->FIELD_DEC
             SKIP
-            REPLACE FIELD_NAME WITH fi1, FIELD_TYPE WITH fi2, FIELD_LEN WITH fi3, FIELD_DEC WITH fi4
+            REPLACE Field->FIELD_NAME WITH fi1, Field->FIELD_TYPE WITH fi2, Field->FIELD_LEN WITH fi3, Field->FIELD_DEC WITH fi4
             SKIP - 1
          ENDDO
-         REPLACE FIELD_NAME WITH "", FIELD_TYPE WITH "", FIELD_LEN WITH 0, FIELD_DEC WITH 0
+         REPLACE Field->FIELD_NAME WITH "", Field->FIELD_TYPE WITH "", Field->FIELD_LEN WITH 0, Field->FIELD_DEC WITH 0
          chng_kol := .T.
       CASE vybkey = 306 .OR. vybkey = 502
          PACK
@@ -252,79 +254,79 @@ PRIVATE chng_name := .F., chng_kol := .F., chng_par := .F.
    SELECT( improc )
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function VldStru()
 *+
 *+    Called from ( modistru.prg )   4 - function struman()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION VldStru( numf )
 
 LOCAL nrec
-   IF varbuf <> FIELDGET( numf )
+   IF m->varbuf <> FIELDGET( numf )
       IF numf > 1
          IF EVAL( LI_BEOF, mslist )
             RETURN .F.
          ELSE
-            chng_par := .T.
+            m->chng_par := .T.
          ENDIF
       ENDIF
       DO CASE
       CASE numf = 1
          nrec := RECNO()
-         LOCATE FOR FIELD_NAME = varbuf
+         LOCATE FOR field->FIELD_NAME = m->varbuf
          IF FOUND()
 #ifdef ENGLISH
             MsgInf( "Fieldname already exists" )
 #else
-            MsgInf( "’ ª®¥ ¨¬ï ã¦¥ ¥áâì" )
+            MsgInf( "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ã¦¥ ï¿½ï¿½ï¿½ï¿½" )
 #endif
             GO nrec
             RETURN .F.
          ENDIF
          GO nrec
-         chng_name := .T.
+         m->chng_name := .T.
          IF EVAL( LI_BEOF, mslist )
          ENDIF
       CASE numf = 2
-         IF .NOT. ( varbuf $ "CNDLM" )
+         IF .NOT. ( m->varbuf $ "CNDLM" )
 #ifdef ENGLISH
             MsgInf( "Wrong data type" )
 #else
-            MsgInf( "¥¢¥à­ë© â¨¯ ¤ ­­ëå" )
+            MsgInf( "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ â¨¯ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" )
 #endif
             RETURN .F.
          ENDIF
-         IF varbuf = "D" .OR. varbuf = "M"
-            REPLACE FIELD_LEN WITH 8, FIELD_DEC WITH 0
-         ELSEIF varbuf = "L"
-            REPLACE FIELD_LEN WITH 1, FIELD_DEC WITH 0
+         IF m->varbuf = "D" .OR. m->varbuf = "M"
+            REPLACE field->FIELD_LEN WITH 8, field->FIELD_DEC WITH 0
+         ELSEIF m->varbuf = "L"
+            REPLACE field->FIELD_LEN WITH 1, field->FIELD_DEC WITH 0
          ENDIF
       CASE numf = 3
          DO CASE
-         CASE FIELD_TYPE = "N" .AND. varbuf > 18
+         CASE field->FIELD_TYPE = "N" .AND. m->varbuf > 18
 #ifdef ENGLISH
             MsgInf( "Wrong lenth" )
 #else
-            MsgInf( "¥¢¥à­ ï ¤«¨­ " )
+            MsgInf( "ï¿½ï¿½ï¿½ï¿½à­ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" )
 #endif
             RETURN .F.
-         CASE FIELD_TYPE = "C" .AND. varbuf > 1024
+         CASE field->FIELD_TYPE = "C" .AND. m->varbuf > 1024
 #ifdef ENGLISH
             MsgInf( "Wrong lenth" )
 #else
-            MsgInf( "¥¢¥à­ ï ¤«¨­ " )
+            MsgInf( "ï¿½ï¿½ï¿½ï¿½à­ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" )
 #endif
             RETURN .F.
          ENDCASE
       CASE numf = 4
-         IF varbuf > 15 .OR. varbuf > FIELD_LEN - 2
+         IF m->varbuf > 15 .OR. m->varbuf > field->FIELD_LEN - 2
 #ifdef ENGLISH
             MsgInf( "Wrong lenth" )
 #else
-            MsgInf( "¥¢¥à­ ï ¤«¨­ " )
+            MsgInf( "ï¿½ï¿½ï¿½ï¿½à­ ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" )
 #endif
             RETURN .F.
          ENDIF
@@ -333,14 +335,14 @@ LOCAL nrec
    MsgInf( "" )
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function SelFiel()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION SelFiel
-
+MemVar ar2len, aNames
 LOCAL oldc, bufscr, arez, i
 PRIVATE ar2len := FCOUNT(), aNames[ FCOUNT() ]
 #ifdef ENGLISH
@@ -349,14 +351,14 @@ PRIVATE ctrl_ar1 := { "+W/RB,+W/B", ;
                          { "Ins - Select field",, 17, 12 }, { "F5 - Select all fields",, 17, 32 } } }
 PRIVATE ctrl_ar2 := { "+W/RB,+W/B", ;
                          { { "",, 7, 13, 15, 21 }, ;
-                         { "Ins - Insert",, 17, 12 }, { "Del - Delete",, 17, 32 }, { "F6 - “¡à âì ¢á¥ ¯®«ï",, 17, 46 } } }
+                         { "Ins - Insert",, 17, 12 }, { "Del - Delete",, 17, 32 }, { "F6 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",, 17, 46 } } }
 #else
 PRIVATE ctrl_ar1 := { "+W/RB,+W/B", ;
                          { { "",, 7, 37, 15, 55 }, ;
-                         { "Ins - ‚ë¡à âì ¯®«¥",, 17, 12 }, { "F5 - Select all fields",, 17, 32 } } }
+                         { "Ins - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",, 17, 12 }, { "F5 - Select all fields",, 17, 32 } } }
 PRIVATE ctrl_ar2 := { "+W/RB,+W/B", ;
                          { { "",, 7, 13, 15, 21 }, ;
-                         { "Ins - ‚áâ ¢¨âì",, 17, 12 }, { "Del - “¤ «¨âì",, 17, 32 }, { "F6 - “¡à âì ¢á¥ ¯®«ï",, 17, 46 } } }
+                         { "Ins - ï¿½ï¿½â ¢ï¿½ï¿½ï¿½",, 17, 12 }, { "Del - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",, 17, 32 }, { "F6 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½",, 17, 46 } } }
 #endif
    bufscr := SAVESCREEN( 05, 10, 18, 68 )
    oldc   := SETCOLOR()
@@ -366,61 +368,61 @@ PRIVATE ctrl_ar2 := { "+W/RB,+W/B", ;
    IF LI_MSF == Nil
       LI_MSF := ARRAY( ar2len )
       AFIELDS( LI_MSF )
-      msexp[ improc ] = ARRAY( ar2len )
-      AFIELDS( msexp[ improc ] )
+      m->msexp[ improc ] = ARRAY( ar2len )
+      AFIELDS( m->msexp[ improc ] )
    ENDIF
    SET COLOR TO +W/N,N/W,,,+W/N
    @  6, 12, 16, 22 BOX ORAMKA
    @  6, 36, 16, 56 BOX ORAMKA
 #ifdef ENGLISH
-   @  6, 13 SAY "All fields"              
-   @  6, 38 SAY "Selected fields"         
+   @  6, 13 SAY "All fields"
+   @  6, 38 SAY "Selected fields"
 #else
-   @  6, 13 SAY "‚á¥ ¯®«ï"               
-   @  6, 38 SAY "‚ë¡à ­­ë¥ ¯®«ï"         
+   @  6, 13 SAY "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"
+   @  6, 38 SAY "ï¿½ï¿½ï¿½à ­ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½"
 #endif
    arez := 1
    KEYBOARD CHR( 9 )
    DO WHILE .T.
       SET COLOR TO +W/RB
       @ 17, 12 CLEAR TO 17, 66
-      Outctrls( ctrl_ar1 )
+      Outctrls( m->ctrl_ar1 )
       SET COLOR TO +W/N,N/W,,,+W/N
       IF ( arez := MainMenu( 7, 13, 15, 21, aNames,, { | p1, p2 | userf1( p1, p2 ) },,,, .T. ) ) = 0
          EXIT
       ENDIF
-      IF msexp[ improc , 1 ] <> Nil
+      IF m->msexp[ improc , 1 ] <> Nil
          SET COLOR TO +W/RB
          @ 17, 12 CLEAR TO 17, 66
-         Outctrls( ctrl_ar2 )
+         Outctrls( m->ctrl_ar2 )
          SET COLOR TO +W/N,N/W,,,+W/N
-         IF ( arez := MainMenu( 7, 37, 15, 55, msexp[ improc ],, { | p1, p2 | userf2( p1, p2 ) },,,, .T. ) ) = 0
+         IF ( arez := MainMenu( 7, 37, 15, 55, m->msexp[ improc ],, { | p1, p2 | userf2( p1, p2 ) },,,, .T. ) ) = 0
             EXIT
          ENDIF
       ENDIF
    ENDDO
-   IF msexp[ improc, 1 ] = Nil
-      AFIELDS( msexp[ improc ] )
+   IF m->msexp[ improc, 1 ] = Nil
+      AFIELDS( m->msexp[ improc ] )
    ENDIF
    SETCOLOR( oldc )
    RESTSCREEN( 05, 10, 18, 68, bufscr )
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Userf1()
 *+
 *+    Called from ( modistru.prg )   1 - function selfiel()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Userf1( nind, key )
 
 LOCAL rez := 2, i, oldc
 #ifdef VER_MOUSE
    IF key = 501
-      oldc := SETCOLOR( ctrl_ar1[ 1 ] )
-      i    := F_CTRL( ctrl_ar1[ 2 ],,,,,, 1, M_YTEXT(), M_XTEXT() )
+      oldc := SETCOLOR( m->ctrl_ar1[ 1 ] )
+      i    := F_CTRL( m->ctrl_ar1[ 2 ],,,,,, 1, M_YTEXT(), M_XTEXT() )
       SETCOLOR( oldc )
    ENDIF
 #endif
@@ -428,34 +430,34 @@ LOCAL rez := 2, i, oldc
    CASE key = 9 .OR. ( key = 501 .AND. i = 1 )
       rez := 1
    CASE key = 22 .OR. ( key = 501 .AND. i = 2 )
-      Addfiel( aNames[ nind ] )
+      Addfiel( m->aNames[ nind ] )
       rez := 1
-      ar2len ++
+      m->ar2len ++
       KEYBOARD CHR( 9 )
    CASE key = - 4 .OR. ( key = 501 .AND. i = 3 )
       rez := 1
       AFIELDS( LI_MSF )
-      AFIELDS( msexp[ improc ] )
+      AFIELDS( m->msexp[ improc ] )
       AFIELDS( LI_NAMES )
-      ar2len := FCOUNT()
+      m->ar2len := FCOUNT()
    ENDCASE
 RETURN rez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Userf2()
 *+
 *+    Called from ( modistru.prg )   1 - function selfiel()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Userf2( nind, key )
 
 LOCAL rez := 2, i, oldc
 #ifdef VER_MOUSE
    IF key = 501
-      oldc := SETCOLOR( ctrl_ar1[ 1 ] )
-      i    := F_CTRL( ctrl_ar2[ 2 ],,,,,, 1, M_YTEXT(), M_XTEXT() )
+      oldc := SETCOLOR( m->ctrl_ar1[ 1 ] )
+      i    := F_CTRL( m->ctrl_ar2[ 2 ],,,,,, 1, M_YTEXT(), M_XTEXT() )
       SETCOLOR( oldc )
    ENDIF
 #endif
@@ -466,36 +468,36 @@ LOCAL rez := 2, i, oldc
       Delfiel( nind )
       @  6, 36, 16, 56 BOX ORAMKA
       rez := 1
-      ar2len --
+      m->ar2len --
       KEYBOARD CHR( 9 )
    CASE key = 22 .OR. ( key = 501 .AND. i = 2 )             // Ins
       IF Insfiel( nind )
-         ar2len ++
+         m->ar2len ++
       ENDIF
       rez := 1
       KEYBOARD CHR( 9 )
    CASE key = - 5 .OR. ( key = 501 .AND. i = 4 )
       AFIELDS( LI_MSF )
       AFIELDS( LI_NAMES )
-      AFILL( msexp[ improc ], Nil )
+      AFILL( m->msexp[ improc ], Nil )
       @  6, 36, 16, 56 BOX ORAMKA
-      ar2len := 0
+      m->ar2len := 0
       rez    := 1
    ENDCASE
 RETURN rez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Addfiel()
 *+
 *+    Called from ( modistru.prg )   1 - function userf1()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Addfiel( finame )
 
-   IF ASCAN( msexp[ improc ], finame ) = 0
-      AADD( msexp[ improc ], finame )
+   IF ASCAN( m->msexp[ improc ], finame ) = 0
+      AADD( m->msexp[ improc ], finame )
       AADD( LI_NAMES, finame )
 
       IF LI_MSTYP != Nil
@@ -520,13 +522,13 @@ FUNCTION Addfiel( finame )
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Insfiel()
 *+
 *+    Called from ( modistru.prg )   1 - function userf2()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Insfiel( numfiel )
 
@@ -538,15 +540,15 @@ LOCAL oldc, bufscr, txname := SPACE( 20 )
    SET COLOR TO +W/RB,B/W,,,+W/RB
    @ 08, 12, 12, 66 BOX ORAMKA
 #ifdef ENGLISH
-   @ 09, 14 SAY "Input expression for column"         
+   @ 09, 14 SAY "Input expression for column"
 #else
-   @ 09, 14 SAY "‚¢¥¤¨â¥ ¢ëà ¦¥­¨¥ ¤«ï áâ®«¡æ "         
+   @ 09, 14 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½à ¦ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½â®«ï¿½ï¿½ï¿½"
 #endif
-   @ 10, 14 GET expfiel PICTURE "@S50"        
+   @ 10, 14 GET expfiel PICTURE "@S50"
 #ifdef ENGLISH
-   @ 11, 14 SAY "Name:" GET txname        
+   @ 11, 14 SAY "Name:" GET txname
 #else
-   @ 11, 14 SAY "ˆ¬ï:" GET txname        
+   @ 11, 14 SAY "ï¿½ï¿½ï¿½:" GET txname
 #endif
    READ
    SETCOLOR( oldc )
@@ -555,17 +557,17 @@ LOCAL oldc, bufscr, txname := SPACE( 20 )
       IF LI_MSF = Nil
          LI_MSF = ARRAY( FCOUNT() + 1 )
          AFIELDS( LI_MSF )
-         msexp[ improc ] = ARRAY( FCOUNT() + 1 )
-         AFIELDS( msexp[ improc ] )
+         m->msexp[ improc ] = ARRAY( FCOUNT() + 1 )
+         AFIELDS( m->msexp[ improc ] )
       ELSE
          AADD( LI_MSF, Nil )
          AADD( LI_NAMES, Nil )
-         AADD( msexp[ improc ], Nil )
+         AADD( m->msexp[ improc ], Nil )
       ENDIF
       AINS( LI_MSF, numfiel )
       AINS( LI_NAMES, numfiel )
-      AINS( msexp[ improc ], numfiel )
-      msexp[ improc, numfiel ] = expfiel
+      AINS( m->msexp[ improc ], numfiel )
+      m->msexp[ improc, numfiel ] = expfiel
       LI_NAMES[ numfiel ] = txname
       IF .NOT. ( VALTYPE( &expfiel ) $ "CM" )
          expfiel := "TRANSFORM(" + expfiel + ",'@(')"
@@ -601,13 +603,13 @@ LOCAL oldc, bufscr, txname := SPACE( 20 )
    ENDIF
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Delfiel()
 *+
 *+    Called from ( modistru.prg )   1 - function userf2()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Delfiel( numfiel )
 
@@ -638,11 +640,11 @@ LOCAL finame
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function Chngfiel()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION Chngfiel( numfiel )
 
@@ -657,17 +659,17 @@ LOCAL oldWidth, nWidth := Iif( LI_MSLEN != Nil .AND. numfiel <= Len( LI_MSLEN ) 
    SET COLOR TO +W/RB,B/W,,,+W/RB
    @ 08, 12, 13, 66 BOX ORAMKA
 #ifdef ENGLISH
-   @ 09, 14 SAY "Name:" GET txname        
-   @ 10, 14 SAY "Expression for column"                   
+   @ 09, 14 SAY "Name:" GET txname
+   @ 10, 14 SAY "Expression for column"
 #else
-   @ 09, 14 SAY "ˆ¬ï:"  GET txname        
-   @ 10, 14 SAY "‚ëà ¦¥­¨¥ ¤«ï áâ®«¡æ "                   
+   @ 09, 14 SAY "ï¿½ï¿½ï¿½:"  GET txname
+   @ 10, 14 SAY "ï¿½ï¿½à ¦ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½â®«ï¿½ï¿½ï¿½"
 #endif
    @ 11, 14 GET expfiel PICTURE "@S50"
 #ifdef ENGLISH
    @ 12, 14 SAY "Width:"  GET nWidth
 #else
-   @ 12, 14 SAY "„«¨­ :"  GET nWidth
+   @ 12, 14 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½:"  GET nWidth
 #endif
    READ
    SETCOLOR( oldc )

@@ -4,25 +4,32 @@ For local installation (binaries linked into $HOME/bin,
 CLIPROOT defaults to ../cliproot, shared libraries with full path
 in executable), just type
 
-./make local
+./local.sh 
+./home               to $HOME/clipXX
+
 
 from user console. Note that $HOME/bin must be in your PATH environment
 variable for easy launch of CLIP binaries.
 
 
-For system-wide installation (binaries linked into /usr/local/bin,
+For system-wide installation (binaries linked into /root/bin,
 CLIPROOT defaults to /usr/local/clip, shared libraries without
-path in executable and are linked into /usr/lib), type
+path in executable , type
 
-./make system
+./usr.local.sh for /usr.local/clipXX install
+
+or
+
+./opt.sh for /opt/clipXX install
 
 from root console.
 
-It is possible set CLIPROOT from command line like this:
+Then from user console type :
 
-./make system CLIPROOT=/usr/local/opt/clip
+./linkall.sh
 
-or set CLIPROOT as environment variable.
+to link them into $HOME/bin
+
 
 
 You can compile system-wide packages in some packager format as:

@@ -1,0 +1,77 @@
+#
+#                                            clip/libcliprdd/Makefile.in
+#
+Local_Depend = ../include/*.ch ../include.h/*.h
+
+#CFLAGS += -I.. -I../include -I../include.h
+#LIB = libcliprdd.a
+OBJS = $(sort rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o )
+#CPPFLAGS=
+#TARGET_ARCH=
+PROG = cliprdd
+#install all: Makefile $(LIB)
+install all: Makefile $(ATARGET)
+
+cfg :
+	cp --remove-destination -fu$(V) btree.h $(Clip_I_Dir)/
+
+cleanc:
+	rm -f$(V) *.b *.tmp \
+	test_ref.c test.c test.log \
+	*.dbf *.ntx *.cdx *.dbt *.fpt \
+	$(ATARGET) test
+
+#$(LIB): $(OBJS) Makefile
+#	rm -f$(V) $(LIB)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS) && ranlib $(LIB)
+
+rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+rdd.o:		rdd.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+dbf.o:		dbf.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+ntx.o:		ntx.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+cdx.o:		cdx.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+dbt.o:		dbt.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+fpt.o:		fpt.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+rushmore.o:	rushmore.c ../include.h/rdd.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+btree.o:	btree.c btree.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+six.o:		six.c ../include.h/rdd.h ../include/six.ch Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+hiper.o:	hiper.c ../include.h/rdd.h btree.h Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+test: test.prg rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o ../include.h/clipbase.h ../libclip/clipbase.c ../libclip/libclip.a $(CLIP)
+	$(Trace_clip)
+	$(CLIP) -e -R test.prg
+
+include $(Makefile_end_in)
+

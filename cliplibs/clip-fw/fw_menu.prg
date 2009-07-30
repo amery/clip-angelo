@@ -5,7 +5,7 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <clip-fw/FiveWin.ch>
 
 #define MF_ENABLED       0
 #define MF_GRAYED        1

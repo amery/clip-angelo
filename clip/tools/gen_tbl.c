@@ -27,9 +27,9 @@
 #include <string.h>
 #include <errno.h>
 
-#include "libclipscreen/charset.h"
+#include "../libclipscreen/charset.h"
 #include "coll.h"
-#include "libclipscreen/screen.h"
+#include "../libclipscreen/screen.h"
 
 /*#define DBG*/
 /*#define DBG1*/

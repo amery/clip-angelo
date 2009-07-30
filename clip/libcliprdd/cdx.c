@@ -464,7 +464,7 @@
 #include "../include.h/rdd.h"
 #include "error.ch"
 #include "./btree.h"
-#include "../clipcfg.h"
+#include "clipcfg.h"
 #ifdef HAVE_REGEX_H
 	#include <regex.h>
 #endif

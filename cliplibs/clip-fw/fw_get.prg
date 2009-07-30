@@ -7,8 +7,8 @@
 
 #include <clip-gtk.ch>
 
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
 #include <Set.ch>
 #include <Inkey.ch>
 
@@ -318,7 +318,7 @@ static function fw_Initiate( self, hDlg )
 return
 ******************
 //---------------------------------------------------------------------------//
-// Actualiza texto y y posici¢n del cursor del EDIT en funci¢n del oGet.
+// Actualiza texto y y posiciï¿½n del cursor del EDIT en funciï¿½n del oGet.
 // Updates the text and the EDIT cursor position depending the oGet
 
 static function fw_EditUpdate(self)

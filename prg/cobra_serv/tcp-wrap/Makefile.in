@@ -1,0 +1,23 @@
+#
+#                                            prg/cobra-serv/tcp-wrap/Makefile.in
+#
+Local_Depend =
+
+LIBS = -lwrap
+#CFLAGS = -O
+
+all install : Makefile tcp-wrap$(EXESUFF)
+
+cfg :
+
+tcp-wrap$(EXESUFF): tcp-wrap.c Makefile
+	$(Trace_c)
+	$(CC) $(C_FLAGS) -o $@ tcp-wrap.c $(LIBS)
+
+cleanc:
+	rm -f$(V) tcp-wrap$(EXESUFF)
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

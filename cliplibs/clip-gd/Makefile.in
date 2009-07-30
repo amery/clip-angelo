@@ -1,0 +1,61 @@
+#
+#                                            clip-gd/Makefile.in
+#
+Local_Depend = include/*.ch include/*.h
+
+#CLIPINCLUDE=-I$(Clip_I_Dir) -I./gd
+#C_FLAGS=-fPIC -Wall -g -I.
+#CC=gcc
+PROG = clip-gd
+#XLIB=libclip-gd.a
+#XSLIB=libclip-gd$(DLLSUFF)
+#XSLIBREAL=libclip-gd$(DLLREALSUFF)
+OBJS = _gd.o gd_obj.o
+DOC = doc/*
+#CFLAGS='-L/usr/X11R6/lib'
+ADDLIBS +=$(LIBDIRS)
+export CFLAGS
+
+cfg :
+	cp --remove-destination -fpu$(V) include/gdinfo.ch $(Clip_I_Dir)/
+
+test_lib :
+	if [ -f /usr/lib$(C64)/libgd.so ] ; then \
+		echo "gdlib ok" ;\
+	else \
+		echo "Warning: Install lib$(C64)gd-static-XX.(rpm/deb) & libgd-tools -$(C64).(rpm/deb)"  ;\
+		error 	;\
+	fi
+
+all : Makefile test_lib $(STARGET)
+#all build_gd: Makefile test_lib
+#	$(CC) $(C_FLAGS) $(CLIPINCLUDE) -c _gd.c
+#	$(CLIP) $(CLIPFLAGS) -l gd_obj.prg
+#	cd bsgraphic && $(MAKE)
+#	rm -f$(V) $(XLIB) $(XSLIB)
+#	$(CLIP_MAKELIB) $(XLIB) _gd.o gd_obj.o -lgd
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
+#	touch build_gd
+
+
+install : all install-lib install-example install-doc
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib
+#	chmod 0644 $(DESTDIR)/lib/$(XLIB)
+#	chmod 0755 $(DESTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(DESTDIR)/doc/clip-gd
+#	mkdir -p$(V) $(DESTDIR)/doc/clip-gd/rus
+#	mkdir -p$(V) $(DESTDIR)/doc/clip-gd/eng
+#	cp -fu$(V) ./doc/rus/*.html $(DESTDIR)/doc/clip-gd/rus
+#	cp -fu$(V) ./doc/rus/*.png $(DESTDIR)/doc/clip-gd/rus
+#	cp -fu$(V) ./doc/eng/*.html $(DESTDIR)/doc/clip-gd/eng
+#	cp -fu$(V) ./doc/eng/*.png $(DESTDIR)/doc/clip-gd/eng
+#	mkdir -p $(DESTDIR)/doc/example/clip-gd
+#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-gd/
+
+cleanc:
+	rm -rf$(V) gd_obj.c $(TARGET).*
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

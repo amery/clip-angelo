@@ -1,0 +1,87 @@
+#
+#                                            prg/utils/Makefile.in
+#
+Local_Depend =
+
+
+#CLIP	= $(CLIPROOT)/bin/clip
+CLIPFLAGS += -o$@
+CLIPLIBS  =
+PGLIBS	= libpgclip.a libpq.a libcrypt.a
+MSLIBS	= libmsclip.a libmysqlclient.a
+ORLIBS	= liborclip.a $(ORACLE_HOME)/lib/libclntsh.so
+# WWWLIBS - links all RDBMS libraries. Remove unused ones.
+#WWWLIBS	= libdbfsql.a $(PGLIBS) $(MSLIBS) $(ORLIBS)
+WWWLIBS	=
+POBJS	= menu.po getfile.po
+PAOBJS	= menu.po getfile.po
+.SUFFIXES: .prg .o .po
+
+BINS = $(sort clip_run$(EXESUFF) clip_prg$(EXESUFF) clip_we$(EXESUFF) clip_bl$(EXESUFF) www_clip$(EXESUFF) wcl2prg$(EXESUFF) clip_blank$(EXESUFF) sqlrun$(EXESUFF) \
+	clip_hv$(EXESUFF) clip_fl$(EXESUFF) clip_dbf2txt$(EXESUFF) )
+
+all: $(BINS)
+
+cfg :
+
+cleanc:
+	rm -rf$(V) *.c *.b
+	rm -rf$(V) $(BINS)
+
+include $(Makefile_o_in)
+
+clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_run.prg $(CLIPLIBS)
+
+install:all
+	cp --remove-destination -fpu$(V) $(BINS) $(DESTDIR)/bin
+	cp --remove-destination -fpu$(V) .macro $(DESTDIR)/etc
+	cp --remove-destination -fpu$(V) .templ $(DESTDIR)/etc
+
+clip_prg$(EXESUFF): clip_prg.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_prg.prg $(CLIPLIBS)
+
+clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_run.prg $(CLIPLIBS)
+
+clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_bl.prg $(CLIPLIBS)
+
+clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_we.prg $(CLIPLIBS)
+
+clip_hv$(EXESUFF): clip_hv.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_hv.prg $(CLIPLIBS)
+
+clip_fl$(EXESUFF): clip_fl.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_fl.prg $(CLIPLIBS)
+
+clip_dbf2txt$(EXESUFF): clip_dbf2txt.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -M clip_dbf2txt.prg $(CLIPLIBS)
+
+clip_blank$(EXESUFF): clip_blank.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e clip_blank.prg $(CLIPLIBS)
+
+www_clip$(EXESUFF): www_clip.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e www_clip.prg $(CLIPLIBS)  $(WWWLIBS)
+
+wcl2prg$(EXESUFF): wcl2prg.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e wcl2prg.prg $(CLIPLIBS)
+
+sqlrun$(EXESUFF): sqlrun.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e sqlrun.prg $(CLIPLIBS)  $(WWWLIBS)
+
+include $(Makefile_end_in)
+

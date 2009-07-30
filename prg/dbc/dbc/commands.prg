@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\MYDBU\COMMANDS.PRG
 *+
@@ -33,7 +33,7 @@
 *+
 *+    Reformatted by Click! 2.00 on Jun-20-2001 at 12:58 pm
 *+
-*+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
 #command DELETE                                   ;
          [FOR <for>]                              ;
@@ -71,40 +71,40 @@
 #endif
 #include "deflist.ch"
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_REPL()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_REPL
 
-LOCAL bufsc, oldc, nrec, blsum, blfor, i
+LOCAL bufsc, oldc, nrec, blsum, blfor, i, GetList :={}
 PRIVATE strfor := SPACE( 120 ), finame := SPACE( 8 ), expstr := SPACE( 80 ), afiel[ FCOUNT() ], nrez
 PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    bufsc := SAVESCREEN( 6, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 14, 70 BOX ORAMKA
-   AFIELDS( afiel )
+   @  6, 20, 14, 70 BOX m->ORAMKA
+   AFIELDS( m->afiel )
    DO WHILE .T.
 #ifdef ENGLISH
-      @  7, 22 SAY "Replace field" GET finame WHEN VLDFIELD( @finame )       
-      @  8, 22 SAY "with"          GET expstr PICTURE "@S42"                 
+      @  7, 22 SAY "Replace field" GET finame WHEN VLDFIELD( @finame )
+      @  8, 22 SAY "with"          GET expstr PICTURE "@S42"
 #else
-      @  7, 22 SAY "Заменить поле" GET finame WHEN VLDFIELD( @finame )       
-      @  8, 22 SAY "на"            GET expstr PICTURE "@S42"                 
+      @  7, 22 SAY "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜" GET finame WHEN VLDFIELD( @finame )
+      @  8, 22 SAY "я┐╜я┐╜"            GET expstr PICTURE "@S42"
 #endif
       VvScope( 9, 22 )
-      @ 12, 22 SAY "FOR"                        
-      @ 13, 22 GET strfor PICTURE "@S46"        
+      @ 12, 22 SAY "FOR"
+      @ 13, 22 GET strfor PICTURE "@S46"
       READ
       IF LASTKEY() <> 27
          IF .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L"
 #ifdef ENGLISH
             MsgSay( "Wrong expression!" )
 #else
-            MsgSay( "Неверное выражение!" )
+            MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
          ELSE
             IF EMPTY( strfor )
@@ -113,20 +113,20 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 #ifdef ENGLISH
             MsgInf( "Wait ..." )
 #else
-            MsgInf( "Ждите ..." )
+            MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
             DO CASE
-            CASE prall = "X"
+            CASE m->prall = "X"
                REPLACE ALL &finame WITH &expstr FOR &strfor
-            CASE prnext = "X"
-               REPLACE NEXT nrest &finame WITH &expstr FOR &strfor
-            CASE prrest = "X"
+            CASE m->prnext = "X"
+               REPLACE NEXT m->nrest &finame WITH &expstr FOR &strfor
+            CASE m->prrest = "X"
                REPLACE REST &finame WITH &expstr FOR &strfor
             ENDCASE
 #ifdef ENGLISH
             MsgInf( "Done !" )
 #else
-            MsgInf( "Готово !" )
+            MsgInf( "я┐╜я┐╜товя┐╜ !" )
 #endif
          ENDIF
       ELSE
@@ -137,36 +137,36 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_DELE()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_DELE( prdel )
 
-LOCAL bufsc, oldc, nrec, fname := SPACE( 45 )
+LOCAL bufsc, oldc, nrec, fname := SPACE( 45 ), GetList := {}
 PRIVATE strfor := SPACE( 120 )
 PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    bufsc := SAVESCREEN( 7, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  7, 20, 14, 70 BOX ORAMKA
+   @  7, 20, 14, 70 BOX m->ORAMKA
 #ifdef ENGLISH
-   @  8, 25 SAY IIF( prdel, "Delete", "Recall" ) + " records"         
+   @  8, 25 SAY IIF( prdel, "Delete", "Recall" ) + " records"
 #else
-   @  8, 25 SAY IIF( prdel, "Удалить", "Восстановить" ) + " записи"         
+   @  8, 25 SAY IIF( prdel, "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜", "я┐╜я┐╜я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜" ) + " я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"
 #endif
    VvScope( 9, 22 )
-   @ 12, 22 SAY "FOR"                        
-   @ 13, 22 GET strfor PICTURE "@S46"        
+   @ 12, 22 SAY "FOR"
+   @ 13, 22 GET strfor PICTURE "@S46"
    READ
    IF LASTKEY() <> 27
       IF .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L"
 #ifdef ENGLISH
          MsgSay( "Wrong expression" )
 #else
-         MsgSay( "Неверное выражение!" )
+         MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
       ELSE
          IF EMPTY( strfor )
@@ -175,7 +175,7 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 #ifdef ENGLISH
          MsgInf( "Wait ..." )
 #else
-         MsgInf( "Ждите ..." )
+         MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
          DO CASE
          CASE prall = "X"
@@ -200,7 +200,7 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 #ifdef ENGLISH
          MsgInf( "Done !" )
 #else
-         MsgInf( "Готово !" )
+         MsgInf( "я┐╜я┐╜товя┐╜ !" )
 #endif
       ENDIF
    ENDIF
@@ -208,37 +208,37 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_COUN()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_COUN
 
-LOCAL bufsc, oldc, nrec, nrez
+LOCAL bufsc, oldc, nrec, nrez, GetList := {}
 PRIVATE strfor := SPACE( 120 )
 PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    bufsc := SAVESCREEN( 6, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 14, 70 BOX ORAMKA
+   @  6, 20, 14, 70 BOX m->ORAMKA
    DO WHILE .T.
 #ifdef ENGLISH
-      @  8, 22 SAY "Count records:"         
+      @  8, 22 SAY "Count records:"
 #else
-      @  8, 22 SAY "Посчитать количество записей:"         
+      @  8, 22 SAY "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜тво я┐╜я┐╜я┐╜я┐╜сей:"
 #endif
       VvScope( 9, 22 )
-      @ 12, 22 SAY "FOR"                        
-      @ 13, 22 GET strfor PICTURE "@S46"        
+      @ 12, 22 SAY "FOR"
+      @ 13, 22 GET strfor PICTURE "@S46"
       READ
       IF LASTKEY() <> 27
          IF .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L"
 #ifdef ENGLISH
             MsgSay( "Wrong expression!" )
 #else
-            MsgSay( "Неверное выражение!" )
+            MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
          ELSE
             IF EMPTY( strfor )
@@ -247,7 +247,7 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 #ifdef ENGLISH
             MsgInf( "Wait ..." )
 #else
-            MsgInf( "Ждите ..." )
+            MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
             DO CASE
             CASE prall = "X"
@@ -261,8 +261,8 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
             MsgInf( "Done !" )
             MsgSay( STR( nrez, 10 ) + " records." )
 #else
-            MsgInf( "Готово !" )
-            MsgSay( STR( nrez, 10 ) + " записей." )
+            MsgInf( "я┐╜я┐╜товя┐╜ !" )
+            MsgSay( STR( nrez, 10 ) + " я┐╜я┐╜я┐╜я┐╜сей." )
 #endif
          ENDIF
       ELSE
@@ -273,39 +273,39 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_SUM()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_SUM
 
-LOCAL bufsc, oldc, nrec, blsum, blfor
+LOCAL bufsc, oldc, nrec, blsum, blfor, GetList := {}
 PRIVATE strfor := SPACE( 120 ), expstr := SPACE( 80 ), nrez
 PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    bufsc := SAVESCREEN( 6, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 14, 70 BOX ORAMKA
+   @  6, 20, 14, 70 BOX m->ORAMKA
    DO WHILE .T.
 #ifdef ENGLISH
-      @  7, 22 SAY "Calculate sum:"                                 
-      @  8, 22 SAY "of"             GET expstr PICTURE "@S42"       
+      @  7, 22 SAY "Calculate sum:"
+      @  8, 22 SAY "of"             GET expstr PICTURE "@S42"
 #else
-      @  7, 22 SAY "Определить сумму:"                                 
-      @  8, 22 SAY "для"               GET expstr PICTURE "@S42"       
+      @  7, 22 SAY "я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜уммя┐╜:"
+      @  8, 22 SAY "я┐╜я┐╜я┐╜"               GET expstr PICTURE "@S42"
 #endif
       VvScope( 9, 22 )
-      @ 12, 22 SAY "FOR"                        
-      @ 13, 22 GET strfor PICTURE "@S46"        
+      @ 12, 22 SAY "FOR"
+      @ 13, 22 GET strfor PICTURE "@S46"
       READ
       IF LASTKEY() <> 27
          IF ( .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L" ) .OR. TYPE( expstr ) <> "N"
 #ifdef ENGLISH
             MsgSay( "Wrong expression!" )
 #else
-            MsgSay( "Неверное выражение!" )
+            MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
          ELSE
             IF EMPTY( strfor )
@@ -317,7 +317,7 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 #ifdef ENGLISH
             MsgInf( "Wait ..." )
 #else
-            MsgInf( "Ждите ..." )
+            MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
             DO CASE
             CASE prall = "X"
@@ -331,8 +331,8 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
             MsgInf( "Done !" )
             MsgSay( "Rezult:" + STR( nrez, 18, 4 ) )
 #else
-            MsgInf( "Готово !" )
-            MsgSay( "Результат:" + STR( nrez, 18, 4 ) )
+            MsgInf( "я┐╜я┐╜товя┐╜ !" )
+            MsgSay( "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜:" + STR( nrez, 18, 4 ) )
 #endif
          ENDIF
       ELSE
@@ -343,38 +343,38 @@ PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_APPE()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_APPE
 
-LOCAL bufsc, oldc, nrec, fname := SPACE( 45 ), fielname := SPACE( 200 ), msfi, blfor, sword
+LOCAL bufsc, oldc, nrec, fname := SPACE( 45 ), fielname := SPACE( 200 ), msfi, blfor, sword, GetList := {}
 PRIVATE strfor := SPACE( 120 ), finame := SPACE( 8 ), expstr := SPACE( 80 )
 PRIVATE stroka, poz1
 PRIVATE prdbf, prsdf, prdelim, cdelim := " ", msknop1 := { "X", " ", " " }
    bufsc := SAVESCREEN( 6, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 14, 70 BOX ORAMKA
-   @  7, 22 SAY "Добавить из" GET fname PICTURE REPLICATE( 'X', 35 )       
+   @  6, 20, 14, 70 BOX m->ORAMKA
+   @  7, 22 SAY "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜" GET fname PICTURE REPLICATE( 'X', 35 )
 #ifdef ENGLISH
-   @  8, 22 SAY "Fields:" GET fielname PICTURE "@S30"       
+   @  8, 22 SAY "Fields:" GET fielname PICTURE "@S30"
 #else
-   @  8, 22 SAY "Поля:" GET fielname PICTURE "@S30"       
+   @  8, 22 SAY "я┐╜я┐╜я┐╜я┐╜:" GET fielname PICTURE "@S30"
 #endif
    VvType( 9, 22 )
-   @ 12, 22 SAY "FOR"                        
-   @ 13, 22 GET strfor PICTURE "@S46"        
+   @ 12, 22 SAY "FOR"
+   @ 13, 22 GET strfor PICTURE "@S46"
    READ
    IF LASTKEY() <> 27
       IF .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L"
 #ifdef ENGLISH
          MsgSay( "Wrong expression" )
 #else
-         MsgSay( "Неверное выражение!" )
+         MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
       ELSE
          IF EMPTY( strfor )
@@ -383,7 +383,7 @@ PRIVATE prdbf, prsdf, prdelim, cdelim := " ", msknop1 := { "X", " ", " " }
 #ifdef ENGLISH
          MsgInf( "Wait ..." )
 #else
-         MsgInf( "Ждите ..." )
+         MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
          IF AT( '\', fname ) = 0
             fname := mypath + IIF( .NOT. EMPTY( mypath ) .AND. RIGHT( mypath, 1 ) <> '\', '\', "" ) + fname
@@ -409,7 +409,7 @@ PRIVATE prdbf, prsdf, prdelim, cdelim := " ", msknop1 := { "X", " ", " " }
 #ifdef ENGLISH
          MsgInf( "Done !" )
 #else
-         MsgInf( "Готово !" )
+         MsgInf( "я┐╜я┐╜товя┐╜ !" )
 #endif
          GO TOP
          LI_NSTR := 1
@@ -419,15 +419,15 @@ PRIVATE prdbf, prsdf, prdelim, cdelim := " ", msknop1 := { "X", " ", " " }
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_COPY()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_COPY
 
-LOCAL bufsc, oldc, nrec, fname := SPACE( 45 ), fielname := SPACE( 200 ), msfi, blfor, sword
+LOCAL bufsc, oldc, nrec, fname := SPACE( 45 ), fielname := SPACE( 200 ), msfi, blfor, sword, GetList := {}
 PRIVATE strfor := SPACE( 120 ), finame := SPACE( 8 ), expstr := SPACE( 80 )
 PRIVATE prall, prnext, prrest, nrest, msknop := { "X", " ", " " }
 PRIVATE prdbf, prsdf, prdelim, cdelim := " ", msknop1 := { "X", " ", " " }
@@ -435,24 +435,24 @@ PRIVATE stroka, poz1
    bufsc := SAVESCREEN( 6, 20, 14, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 14, 70 BOX ORAMKA
-   @  7, 22 SAY "Копировать в" GET fname PICTURE REPLICATE( 'X', 35 )       
+   @  6, 20, 14, 70 BOX m->ORAMKA
+   @  7, 22 SAY "я┐╜я┐╜я┐╜я┐╜ровя┐╜я┐╜я┐╜ я┐╜" GET fname PICTURE REPLICATE( 'X', 35 )
 #ifdef ENGLISH
-   @  8, 22 SAY "Fields:" GET fielname PICTURE "@S30"       
+   @  8, 22 SAY "Fields:" GET fielname PICTURE "@S30"
 #else
-   @  8, 22 SAY "Поля:" GET fielname PICTURE "@S30"       
+   @  8, 22 SAY "я┐╜я┐╜я┐╜я┐╜:" GET fielname PICTURE "@S30"
 #endif
    VvType( 9, 22 )
    VvScope( 9, 45 )
-   @ 12, 22 SAY "FOR"                        
-   @ 13, 22 GET strfor PICTURE "@S46"        
+   @ 12, 22 SAY "FOR"
+   @ 13, 22 GET strfor PICTURE "@S46"
    READ
    IF LASTKEY() <> 27
       IF .NOT. EMPTY( strfor ) .AND. TYPE( strfor ) <> "L"
 #ifdef ENGLISH
          MsgSay( "Wrong expression" )
 #else
-         MsgSay( "Неверное выражение!" )
+         MsgSay( "я┐╜я┐╜я┐╜я┐╜рноя┐╜ я┐╜я┐╜ражя┐╜я┐╜я┐╜я┐╜!" )
 #endif
       ELSE
          IF EMPTY( strfor )
@@ -461,7 +461,7 @@ PRIVATE stroka, poz1
 #ifdef ENGLISH
          MsgInf( "Wait ..." )
 #else
-         MsgInf( "Ждите ..." )
+         MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
          IF AT( '\', fname ) = 0
             fname := mypath + IIF( .NOT. EMPTY( mypath ) .AND. RIGHT( mypath, 1 ) <> '\', '\', "" ) + fname
@@ -499,7 +499,7 @@ PRIVATE stroka, poz1
 #ifdef ENGLISH
          MsgInf( "Done !" )
 #else
-         MsgInf( "Готово !" )
+         MsgInf( "я┐╜я┐╜товя┐╜ !" )
 #endif
          GO TOP
          LI_NSTR := 1
@@ -509,11 +509,11 @@ PRIVATE stroka, poz1
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_REIN()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_REIN
 
@@ -526,28 +526,28 @@ FUNCTION C_REIN
 #ifdef ENGLISH
    MsgInf( "Wait ..." )
 #else
-   MsgInf( "Ждите ..." )
+   MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
    REINDEX
 #ifdef ENGLISH
    MsgInf( "Done !" )
 #else
-   MsgInf( "Готово !" )
+   MsgInf( "я┐╜я┐╜товя┐╜ !" )
 #endif
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_PACK()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_PACK
 
 #ifdef ENGLISH
 LOCAL cPrompt := "Really pack ?"
 #else
-LOCAL cPrompt := "Упаковать ?"
+LOCAL cPrompt := "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ ?"
 #endif
    IF MsgYesNo( cPrompt )
       IF .NOT. msmode[ improc, 1 ]
@@ -559,29 +559,29 @@ LOCAL cPrompt := "Упаковать ?"
 #ifdef ENGLISH
       MsgInf( "Wait ..." )
 #else
-      MsgInf( "Ждите ..." )
+      MsgInf( "я┐╜я┐╜я┐╜я┐╜я┐╜ ..." )
 #endif
       PACK
 #ifdef ENGLISH
       MsgInf( "File packed." )
 #else
-      MsgInf( "Файл упакован." )
+      MsgInf( "я┐╜я┐╜я┐╜я┐╜ упая┐╜я┐╜я┐╜я┐╜я┐╜." )
 #endif
    ENDIF
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_ZAP()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_ZAP
 
 #ifdef ENGLISH
 LOCAL cPrompt := "Really Zap ?"
 #else
-LOCAL cPrompt := "Очистить файл ?"
+LOCAL cPrompt := "я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ файя┐╜ ?"
 #endif
    IF MsgYesNo( cPrompt )
       IF .NOT. msmode[ improc, 1 ]
@@ -594,28 +594,28 @@ LOCAL cPrompt := "Очистить файл ?"
    ENDIF
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function C_SETR()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION C_SETR
 
-LOCAL bufsc, oldc, i, j, expstr := SPACE( 80 ), bexp, fname := SPACE( 10 )
+LOCAL bufsc, oldc, i, j, expstr := SPACE( 80 ), bexp, fname := SPACE( 10 ), GetList := {}
    bufsc := SAVESCREEN( 6, 20, 13, 70 )
    oldc  := SETCOLOR()
    SET COLOR TO +W/GR,N+/W,,,+W/GR
-   @  6, 20, 13, 70 BOX ORAMKA
+   @  6, 20, 13, 70 BOX m->ORAMKA
    FOR i := 1 TO 3
-      @  6 + i, 22 SAY "TO "                                                                                      
-      @  6 + i, 25 SAY PADR( DBRELATION( i ), 30 )                                           COLOR "+W/RB"        
-      @  6 + i, 55 SAY " INTO "                                                                                   
-      @  6 + i, 61 SAY IIF( ( j := DBRSELECT( i ) ) = 0, SPACE( 9 ), PADR( ALIAS( j ), 9 ) ) COLOR "+W/RB"        
+      @  6 + i, 22 SAY "TO "
+      @  6 + i, 25 SAY PADR( DBRELATION( i ), 30 )                                           COLOR "+W/RB"
+      @  6 + i, 55 SAY " INTO "
+      @  6 + i, 61 SAY IIF( ( j := DBRSELECT( i ) ) = 0, SPACE( 9 ), PADR( ALIAS( j ), 9 ) ) COLOR "+W/RB"
    NEXT
    @ 10, 22 TO 10, 68
-   @ 11, 22 SAY "TO  " GET expstr PICTURE "@S40"                
-   @ 12, 22 SAY "INTO" GET fname  WHEN Vldareas( @fname )       
+   @ 11, 22 SAY "TO  " GET expstr PICTURE "@S40"
+   @ 12, 22 SAY "INTO" GET fname  WHEN Vldareas( @fname )
    READ
    IF LASTKEY() <> 27
       expstr := TRIM( expstr )
@@ -634,19 +634,19 @@ LOCAL bufsc, oldc, i, j, expstr := SPACE( 80 ), bexp, fname := SPACE( 10 )
    SETCOLOR( oldc )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function Vldareas()
 *+
 *+    Called from ( commands.prg )   1 - function c_setr()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION Vldareas( varget )
 
 LOCAL i, j, bufsc, msalias[ lenmsf ], rez
    bufsc := SAVESCREEN( 7, 32, 14, 48 )
-   @  7, 32, 14, 48 BOX ORAMKA
+   @  7, 32, 14, 48 BOX m->ORAMKA
    j := 1
    FOR i := 1 TO lenmsf
       IF msfile[ i ] <> Nil
@@ -678,7 +678,7 @@ LOCAL i, j, bufsc, msalias[ lenmsf ], rez
    RESTSCREEN( 7, 32, 14, 48, bufsc )
 RETURN .F.
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function VvScope()
 *+
@@ -688,29 +688,30 @@ RETURN .F.
 *+                                   1 - function c_sum()
 *+                                   1 - function c_copy()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION VvScope( y, x )
+	Local GetList := {}
 
    prall  := "X"
    prnext := prrest := " "
    nrest  := 1
-   @ y, x          SAY "[ ] All"                                                           
-   @ y + 1, x      SAY "[ ] Next"                                                          
-   @ y + 2, x      SAY "[ ] Rest"                                                          
-   @ y, x + 1      GET prall      PICTURE "X"      VALID VldScope( prall, 1, y, x )        
-   @ y + 1, x + 1  GET prnext     PICTURE "X"      VALID VldScope( prnext, 2, y, x )       
-   @ y + 1, x + 10 GET nrest      PICTURE "999999" WHEN prnext == "X"                      
-   @ y + 2, x + 1  GET prrest     PICTURE "X"      VALID VldScope( prrest, 3, y, x )       
+   @ y, x          SAY "[ ] All"
+   @ y + 1, x      SAY "[ ] Next"
+   @ y + 2, x      SAY "[ ] Rest"
+   @ y, x + 1      GET prall      PICTURE "X"      VALID VldScope( prall, 1, y, x )
+   @ y + 1, x + 1  GET prnext     PICTURE "X"      VALID VldScope( prnext, 2, y, x )
+   @ y + 1, x + 10 GET nrest      PICTURE "999999" WHEN prnext == "X"
+   @ y + 2, x + 1  GET prrest     PICTURE "X"      VALID VldScope( prrest, 3, y, x )
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function VldScope()
 *+
 *+    Called from ( commands.prg )   3 - function vvscope()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION VldScope( knopka, iknop, y, x )
 
@@ -723,41 +724,41 @@ FUNCTION VldScope( knopka, iknop, y, x )
       prall  := msknop[ 1 ]
       prnext := msknop[ 2 ]
       prrest := msknop[ 3 ]
-      @ y, x + 1     SAY prall          
-      @ y + 1, x + 1 SAY prnext         
-      @ y + 2, x + 1 SAY prrest         
+      @ y, x + 1     SAY prall
+      @ y + 1, x + 1 SAY prnext
+      @ y + 2, x + 1 SAY prrest
    ENDIF
 RETURN .T.
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function VvType()
 *+
 *+    Called from ( commands.prg )   1 - function c_appe()
 *+                                   1 - function c_copy()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION VvType( y, x )
-
+	Local GetList := {}
    prdbf := "X"
    prsdf := prdelim := " "
-   @ y, x          SAY "[ ] DBF"                                                                              
-   @ y + 1, x      SAY "[ ] SDF"                                                                              
-   @ y + 2, x      SAY "[ ] Delimited"                                                                        
-   @ y, 23         GET prdbf           PICTURE "X" VALID VldType( prdbf, 1, y, x )                            
-   @ y + 1, x + 1  GET prsdf           PICTURE "X" VALID VldType( prsdf, 2, y, x )                            
-   @ y + 2, x + 1  GET prdelim         PICTURE "X" VALID VldType( prdelim, 3, y, x )                          
-   @ y + 2, x + 14 SAY "With"          GET cdelim  PICTURE "X"                       WHEN prdelim == "X"      
+   @ y, x          SAY "[ ] DBF"
+   @ y + 1, x      SAY "[ ] SDF"
+   @ y + 2, x      SAY "[ ] Delimited"
+   @ y, 23         GET prdbf           PICTURE "X" VALID VldType( prdbf, 1, y, x )
+   @ y + 1, x + 1  GET prsdf           PICTURE "X" VALID VldType( prsdf, 2, y, x )
+   @ y + 2, x + 1  GET prdelim         PICTURE "X" VALID VldType( prdelim, 3, y, x )
+   @ y + 2, x + 14 SAY "With"          GET cdelim  PICTURE "X"                       WHEN prdelim == "X"
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function VldType()
 *+
 *+    Called from ( commands.prg )   3 - function vvtype()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION VldType( knopka, iknop, y, x )
 
@@ -770,52 +771,52 @@ FUNCTION VldType( knopka, iknop, y, x )
       prdbf   := msknop1[ 1 ]
       prsdf   := msknop1[ 2 ]
       prdelim := msknop1[ 3 ]
-      @ y, x + 1     SAY prdbf           
-      @ y + 1, x + 1 SAY prsdf           
-      @ y + 2, x + 1 SAY prdelim         
+      @ y, x + 1     SAY prdbf
+      @ y + 1, x + 1 SAY prsdf
+      @ y + 2, x + 1 SAY prdelim
    ENDIF
 RETURN .T.
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function Vldfield()
 *+
 *+    Called from ( commands.prg )   2 - function c_repl()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION Vldfield( varget )
 
 LOCAL i, bufsc
    bufsc := SAVESCREEN( 8, 32, 17, 48 )
-   @  8, 32, 17, 48 BOX ORAMKA
-   i := MainMenu( 9, 33, 16, 47, afiel )
+   @  8, 32, 17, 48 BOX m->ORAMKA
+   i := MainMenu( 9, 33, 16, 47, m->afiel )
    IF i = 0
       KEYBOARD CHR( 27 )
    ELSE
-      varget := afiel[ i ]
+      varget := m->afiel[ i ]
    ENDIF
    RESTSCREEN( 8, 32, 17, 48, bufsc )
 RETURN .F.
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function RUnLock()
 *+
-*+    Called from ( commands.prg )   2 - 
+*+    Called from ( commands.prg )   2 -
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION RUnLock
 
    UNLOCK
 RETURN Nil
 
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 *+    Function MemoFuncs()
 *+
-*+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+*+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 *+
 FUNCTION MemoFuncs
 
@@ -836,7 +837,7 @@ LOCAL fname   := fpath + "____dbc.dbf", memoname
    ENDIF
    DO WHILE .T.
       SET COLOR TO +GR/B,N/BG,,,N/B
-      @ 16, 50, 19, 67 BOX ORAMKA
+      @ 16, 50, 19, 67 BOX m->ORAMKA
       choic := MainMenu( 17, 51, 18, 66, submenu, aDostup,, 1, 1 )
       IF choic = 0 .OR. lenmsf = 0 .OR. choic = 501
          RETURN choic

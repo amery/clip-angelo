@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\MYDBU\QUERY.PRG
 *+
@@ -39,7 +39,7 @@
 *+
 *+    Reformatted by Click! 2.00 on Jul-3-2001 at  9:26 am
 *+
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 
 #ifdef RDD_AX
 #ifdef __HARBOUR__
@@ -49,14 +49,14 @@
 #endif
 #endif
 #include "fileio.ch"
-
+#include "deflist.ch"
 Static msquery, textquery[ 7 ], fileque, que_upd := .F.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function OpenQuery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION OpenQuery( fname )
 
@@ -64,7 +64,7 @@ LOCAL han, poz2, poz3, i
 #ifdef ENGLISH
 LOCAL cMsg1 := "Query was changed! Save?"
 #else
-LOCAL cMsg1 := "‡ ―ΰ®α ΅λ« ¨§¬¥­¥­! ‘®εΰ ­¨βμ?"
+LOCAL cMsg1 := "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½! οΏ½οΏ½οΏ½ΰ ­οΏ½οΏ½οΏ½?"
 #endif
 PRIVATE stroka, poz1, quebuf := "", sword, flen
    IF que_upd
@@ -140,55 +140,54 @@ PRIVATE stroka, poz1, quebuf := "", sword, flen
 #ifdef ENGLISH
       MsgSay( "Can't open " + fname )
 #else
-      MsgSay( "¥ γ¤ «®αμ ®βªΰλβμ " + fname )
+      MsgSay( "οΏ½οΏ½ γ¤ οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ " + fname )
 #endif
       RETURN Nil
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function EditQuery()
 *+
 *+    Called from ( query.prg    )   1 - function creatquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION EditQuery
 
-LOCAL bufc, oldc, i, lkey, prupdt
+LOCAL bufc, oldc, i, lkey, prupdt, GetList := {}
 #ifdef ENGLISH
 LOCAL cMsg1 := "Query was changed! Save?"
 #else
-LOCAL cMsg1 := "‡ ―ΰ®α ΅λ« ¨§¬¥­¥­! ‘®εΰ ­¨βμ?"
+LOCAL cMsg1 := "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½! οΏ½οΏ½οΏ½ΰ ­οΏ½οΏ½οΏ½?"
 #endif
 #ifdef ENGLISH
 PRIVATE Ctrlist := { "+GR/B,+W/RB", { { "F5 - Run query", { || DoQuery() }, 19, 10 } } }
 #else
-PRIVATE Ctrlist := { "+GR/B,+W/RB", { { "F5 - ‚λ―®«­¨βμ § ―ΰ®α", { || DoQuery() }, 19, 10 } } }
+PRIVATE Ctrlist := { "+GR/B,+W/RB", { { "F5 - οΏ½λ―®οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½", { || DoQuery() }, 19, 10 } } }
 #endif
-PRIVATE GetList := {}
-   bufsc := SAVESCREEN( 4, 3, 20, 76 )
+   bufc := SAVESCREEN( 4, 3, 20, 76 )
    oldc  := SETCOLOR()
    SET COLOR TO +GR/B
    @  4,  3, 20, 76 BOX ORAMKA
    OutCtrls( Ctrlist )
-   @  5,  5 SAY "SELECT"           
-   @  7,  5 SAY "FROM"             
-   @  8,  5 SAY "WHERE"            
-   @ 10,  5 SAY "GROUP BY"         
-   @ 11,  5 SAY "HAVING"           
-   @ 13,  5 SAY "ORDER BY"         
-   @ 14,  5 SAY "TO"               
+   @  5,  5 SAY "SELECT"
+   @  7,  5 SAY "FROM"
+   @  8,  5 SAY "WHERE"
+   @ 10,  5 SAY "GROUP BY"
+   @ 11,  5 SAY "HAVING"
+   @ 13,  5 SAY "ORDER BY"
+   @ 14,  5 SAY "TO"
    SET COLOR TO +W/B,N/W,,,+W/B
    SET KEY - 4 TO DoQuery
-   @  6,  5 GET textquery[ 1 ] PICTURE "@S70"        
-   @  7, 14 GET textquery[ 2 ]                       
-   @  9,  5 GET textquery[ 3 ] PICTURE "@S70"        
-   @ 10, 14 GET textquery[ 4 ]                       
-   @ 12,  5 GET textquery[ 5 ]                       
-   @ 13, 14 GET textquery[ 6 ]                       
-   @ 14, 14 GET textquery[ 7 ]                       
+   @  6,  5 GET textquery[ 1 ] PICTURE "@S70"
+   @  7, 14 GET textquery[ 2 ]
+   @  9,  5 GET textquery[ 3 ] PICTURE "@S70"
+   @ 10, 14 GET textquery[ 4 ]
+   @ 12,  5 GET textquery[ 5 ]
+   @ 13, 14 GET textquery[ 6 ]
+   @ 14, 14 GET textquery[ 7 ]
    READ
    SET KEY - 4 TO
    IF UPDATED()
@@ -200,11 +199,11 @@ PRIVATE GetList := {}
       ENDIF
    ENDIF
    SETCOLOR( oldc )
-   RESTSCREEN( 4, 3, 20, 76, bufsc )
+   RESTSCREEN( 4, 3, 20, 76, bufc )
    SET KEY - 4 TO
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function WriteQuery()
 *+
@@ -212,7 +211,7 @@ RETURN Nil
 *+                                   1 - function editquery()
 *+                                   1 - function creatquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION WriteQuery
 
@@ -239,18 +238,18 @@ LOCAL han, fname
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function CreatQuery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION CreatQuery
 
 #ifdef ENGLISH
 LOCAL cMsg1 := "Save previous query?"
 #else
-LOCAL cMsg1 := "‘®εΰ ­¨βμ ―ΰ¥¤λ¤γι¨© § ―ΰ®α?"
+LOCAL cMsg1 := "οΏ½οΏ½οΏ½ΰ ­οΏ½οΏ½οΏ½ οΏ½ΰ¥¤οΏ½οΏ½οΏ½ι¨© οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½?"
 #endif
    IF que_upd
       IF MsgYesNo( cMsg1 )
@@ -269,13 +268,13 @@ LOCAL cMsg1 := "‘®εΰ ­¨βμ ―ΰ¥¤λ¤γι¨© § ―ΰ®α?"
    EditQuery()
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function DoQuery()
 *+
 *+    Called from ( query.prg    )   2 - function editquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION DoQuery()
 
@@ -284,14 +283,14 @@ LOCAL groupexp, groupkey, groupbl, prbegin, msgr, nrec, ocher, msals, msqname :=
 LOCAL distbl, qfname
 PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msaccum
    msquery := ARRAY( 6 )
-   // ®«ο ¨§ SELECT - Ά ¬ αα¨Ά msquery[1]
+   // οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ SELECT - οΏ½ οΏ½οΏ½οΏ½α¨Ά msquery[1]
    stroka       := textquery[ 1 ]
    poz1         := 1
    msquery[ 1 ] := {}
    DO WHILE VALTYPE( sword := EL_NEXT() ) == "C"
       AADD( msquery[ 1 ], UPPER( LTRIM( RTRIM( sword ) ) ) )
    ENDDO
-   // ” ©«λ ¨§ FROM - Ά ¬ αα¨Ά msquery[2]
+   // οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ FROM - οΏ½ οΏ½οΏ½οΏ½α¨Ά msquery[2]
    stroka       := textquery[ 2 ]
    poz1         := 1
    msquery[ 2 ] := {}
@@ -305,7 +304,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
       ENDIF
       AADD( msquery[ 2 ], { sword, sw2, Nil, Nil } )
    ENDDO
-   // βªΰλΆ ¥¬ δ ©«λ ΅ § ¤ ­­λε
+   // οΏ½οΏ½οΏ½οΏ½λΆ οΏ½οΏ½ δ ©οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
    FOR i := 1 TO LEN( msquery[ 2 ] )
       IF( poz1 := SELECT( msquery[ 2 , i , 2 ] ) ) = 0
       IF .NOT. FIOPEN( mypath + msquery[ 2 , i , 1 ], msquery[ 2 , i , 2 ] )
@@ -320,7 +319,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
    msquery[ 2, i, 4 ] := SELECT()
    msquery[ 2, i, 3 ] := DBSTRUCT()
    NEXT
-   // ΅ΰ ΅®βª  WHERE
+   // οΏ½οΏ½ΰ ΅οΏ½βª  WHERE
    IF .NOT. EMPTY( textquery[ 3 ] )
       IF EMPTY( sword := AnaWhere( textquery[ 3 ] ) )
          RETURN Nil
@@ -328,7 +327,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
          msquery[ 3 ] := sword
       ENDIF
    ENDIF
-   // ΅ΰ ΅®βª  GROUP BY
+   // οΏ½οΏ½ΰ ΅οΏ½βª  GROUP BY
    IF .NOT. EMPTY( textquery[ 4 ] )
       groupexp := MainInd( textquery[ 4 ] )
       groupbl  := &( "{||" + groupexp + "}" )
@@ -345,7 +344,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
       ENDIF
    ENDIF
    IF ( i := IsAgr( msquery[ 1 , 1 ] ) ) <> 0 .AND. groupbl = Nil
-      // …α«¨ § ―ΰ θ¨Ά ¥βαο  £ΰ¥£ β­ ο δγ­ªζ¨ο
+      // οΏ½α«¨ οΏ½οΏ½οΏ½οΏ½οΏ½θ¨ΆοΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ΰ¥£οΏ½β­ οΏ½ οΏ½γ­ªοΏ½οΏ½οΏ½
       sword := ALLTRIM( msquery[ 1, 1 ] )
       IF EMPTY( sword := ConvAgr( sword, i ) )
          RETURN Nil
@@ -353,7 +352,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
       msquery[ 1, 1 ] := &( "{|p3|" + sword + "}" )
       pragr           := .T.
    ELSE
-      // ‘®§¤ ­¨¥ Άλε®¤­®£® δ ©« 
+      // οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½ε®¤οΏ½οΏ½οΏ½οΏ½ δ ©οΏ½οΏ½
       SELECT 20
       CREATE Q0STRU
       FOR i := 1 TO LEN( msquery[ 1 ] )
@@ -364,7 +363,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
 #ifdef ENGLISH
                MsgSay( "DISTINCT and GROUP BY in query!" )
 #else
-               MsgSay( "DISTINCT ¨ GROUP BY Ά ®¤­®¬ § ―ΰ®α¥!" )
+               MsgSay( "DISTINCT οΏ½ GROUP BY οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½!" )
 #endif
                RETURN Nil
             ENDIF
@@ -374,9 +373,9 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
             SELECT 20
          ENDIF
          IF IsExp( sword ) <> 0
-            // …α«¨ Ά α―¨αª¥ Άλΰ ¦¥­¨¥
+            // οΏ½α«¨ οΏ½ α―¨αª¥ οΏ½οΏ½ΰ ¦οΏ½οΏ½οΏ½οΏ½
             max_len := max_dec := 0
-            REPLACE Field_Name WITH "EXP_" + NUM_STR( i, 2 )
+            REPLACE field->Field_Name WITH "EXP_" + NUM_STR( i, 2 )
             sw2   := ""
             sword := AnalyzExp( ALLTRIM( sword ), @sw2 )
             IF ( j := IsAgr( sword ) ) <> 0
@@ -386,34 +385,34 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                ENDIF
                REPLACE Field_Type WITH "N"
                IF j = 1
-                  REPLACE Field_Len WITH 10, Field_Dec WITH 0
+                  REPLACE field->Field_Len WITH 10, field->Field_Dec WITH 0
                ELSE
                   j   := AT( "(", sword )
                   sw2 := SUBSTR( sw2, j + 1, LEN( sw2 ) - j - 1 )
                   sw2 := RTRIM( TRANSFORM( &sw2, "@B" ) )
                   j   := MAX( LEN( sw2 ), max_len ) + 1
-                  REPLACE Field_Len WITH IIF( j > 18, 18, j )
+                  REPLACE field->Field_Len WITH IIF( j > 18, 18, j )
                   j := AT( '.', sw2 )
                   j := IIF( j = 0, 0, LEN( sw2 ) - j )
-                  REPLACE Field_Dec WITH MAX( max_dec, j )
+                  REPLACE field->Field_Dec WITH MAX( max_dec, j )
                ENDIF
             ELSE
                vartmp := &sw2
                sw2    := RTRIM( TRANSFORM( vartmp, "@B" ) )
-               REPLACE Field_Type WITH VALTYPE( vartmp ), Field_Len WITH MAX( LEN( sw2 ), max_len )
-               IF Field_Type = "C"
-                  REPLACE Field_Dec WITH 0
+               REPLACE field->Field_Type WITH VALTYPE( vartmp ), field->Field_Len WITH MAX( LEN( sw2 ), max_len )
+               IF field->Field_Type = "C"
+                  REPLACE field->Field_Dec WITH 0
                ELSE
                   j := AT( '.', sw2 )
                   j := IIF( j = 0, 0, LEN( sw2 ) - j )
-                  REPLACE Field_Dec WITH MAX( max_dec, j )
+                  REPLACE field->Field_Dec WITH MAX( max_dec, j )
                ENDIF
             ENDIF
             sw2             := sword
             msquery[ 1, i ] := IIF( groupbl <> Nil .AND. msgr[ i ], &( "{|p3|" + sw2 + "}" ), ;
                    &( "{||" + sw2 + "}" ) )
          ELSE
-            // ­ η¥ (―®«¥)
+            // οΏ½οΏ½οΏ½οΏ½οΏ½ (οΏ½οΏ½οΏ½οΏ½)
             IF .NOT. FindFiel( @sword, @sw2, @poz1, @j )
                RETURN Nil
             ENDIF
@@ -424,8 +423,8 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                   vartmp := LEFT( "X" + vartmp, 10 )
                ENDDO
             ENDIF
-            REPLACE Field_Name WITH vartmp, Field_Type WITH msquery[ 2 , poz1 , 3 , j , 2 ], ;
-                Field_Len WITH msquery[ 2 , poz1 , 3 , j , 3 ], Field_Dec WITH msquery[ 2 , poz1 , 3 , j , 4 ]
+            REPLACE field->Field_Name WITH vartmp, field->Field_Type WITH msquery[ 2 , poz1 , 3 , j , 2 ], ;
+                field->Field_Len WITH msquery[ 2 , poz1 , 3 , j , 3 ], field->Field_Dec WITH msquery[ 2 , poz1 , 3 , j , 4 ]
             msquery[ 1, i ] := &( "{||" + IIF( EMPTY( sword ), "", sword + '->' ) + sw2 + "}" )
             AADD( msqname, vartmp )
          ENDIF
@@ -439,7 +438,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
       ENDIF
       CREATE &qfname FROM Q0STRU
       FERASE( "Q0STRU.DBF" )
-      // ΅ΰ ΅®βª  ORDER BY
+      // οΏ½οΏ½ΰ ΅οΏ½βª  ORDER BY
       IF .NOT. EMPTY( textquery[ 6 ] )
          AADD( msquery[ 2 ], { qfname, qfname, DBSTRUCT() } )
          stroka := textquery[ 6 ]
@@ -452,12 +451,12 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
 #ifdef ENGLISH
          MsgInf( "Indexing " + ALIAS() )
 #else
-         MsgInf( "­¤¥ªα¨ΰγξ " + ALIAS() )
+         MsgInf( "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ " + ALIAS() )
 #endif
          INDEX ON &ordexp TAG "N1" TO &qfname
       ENDIF
    ENDIF
-   // ‚λ―®«­¥­¨¥ § ―ΰ®α 
+   // οΏ½λ―®οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
    SELECT( f_impr )
    IF groupbl <> Nil
       msaccum := ARRAY( LEN( msquery[ 1 ] ) )
@@ -467,7 +466,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
 #ifdef ENGLISH
    MsgInf( "Wait ..." )
 #else
-   MsgInf( "†¤¨β¥ ..." )
+   MsgInf( "οΏ½οΏ½οΏ½οΏ½οΏ½ ..." )
 #endif
    IF .NOT. EMPTY( f_usl )
 #ifndef __HARBOUR__
@@ -475,7 +474,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
 #ifdef ENGLISH
       MsgInf( "Wait ..." + IIF( Ax_ExprValid( f_usl ), " Ok", " Hm.." ) )
 #else
-      MsgInf( "†¤¨β¥ ..." + IIF( Ax_ExprValid( f_usl ), " Ok", " Hm.." ) )
+      MsgInf( "οΏ½οΏ½οΏ½οΏ½οΏ½ ..." + IIF( Ax_ExprValid( f_usl ), " Ok", " Hm.." ) )
 #endif
 #endif
 #endif
@@ -502,8 +501,8 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                SKIP
                LOOP
             ENDIF
-            IF groupbl <> Nil           // …α«¨ γª § ­ GROUP BY
-               IF groupkey <> EVAL( groupbl )               // …α«¨ ­ η¨­ ¥βαο ­®Ά ο £ΰγ―― 
+            IF groupbl <> Nil           // οΏ½α«¨ γª οΏ½οΏ½οΏ½ GROUP BY
+               IF groupkey <> EVAL( groupbl )               // οΏ½α«¨ οΏ½οΏ½η¨­οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½γ――οΏ½
                   IF groupkey <> "~~~" .AND. EVAL( msquery[ 5 ] )
                      SELECT 20
                      APPEND BLANK
@@ -520,7 +519,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                         msaccum[ i ] := EVAL( msquery[ 1, i ] )
                      ENDIF
                   NEXT
-               ELSE                     // …α«¨ ―ΰ®¤®«¦ ¥βαο β¥ªγι ο £ΰγ―― 
+               ELSE                     // οΏ½α«¨ οΏ½ΰ®¤οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ β¥ªοΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½γ――οΏ½
                   FOR i := 1 TO LEN( msgr )
                      IF msgr[ i ]
                         msaccum[ i ] := EVAL( msquery[ 1, i ], msaccum[ i ] )
@@ -528,7 +527,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                   NEXT
                ENDIF
             ELSE    //
-               IF distbl <> Nil         // …α«¨ γª § ­ DISTINCT
+               IF distbl <> Nil         // οΏ½α«¨ γª οΏ½οΏ½οΏ½ DISTINCT
                   IF groupkey <> EVAL( distbl )
                      groupkey := EVAL( distbl )
                      prbegin  := .T.
@@ -554,7 +553,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
          SKIP
          screc ++
          IF screc % 10 = 0
-            @  2, 10 SAY LTRIM( STR( screc, 8 ) ) COLOR "N/W"        
+            @  2, 10 SAY LTRIM( STR( screc, 8 ) ) COLOR "N/W"
          ENDIF
       ENDDO
    ELSE
@@ -574,9 +573,9 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                   nrec := &sw2->( RECNO() )
                ENDIF
                DO WHILE EVAL( msrelat[ ocher , 5 ] )
-                  IF EVAL( msquery[ 3 ] )                   // …α«¨ Άλ―®­ο¥βαο γα«®Ά¨¥ WHERE
-                     IF groupbl <> Nil  // …α«¨ γª § ­ GROUP BY
-                        IF groupkey <> EVAL( groupbl )      // …α«¨ ­ η¨­ ¥βαο ­®Ά ο £ΰγ―― 
+                  IF EVAL( msquery[ 3 ] )                   // οΏ½α«¨ οΏ½λ―®οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½α«®οΏ½οΏ½οΏ½ WHERE
+                     IF groupbl <> Nil  // οΏ½α«¨ γª οΏ½οΏ½οΏ½ GROUP BY
+                        IF groupkey <> EVAL( groupbl )      // οΏ½α«¨ οΏ½οΏ½η¨­οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½γ――οΏ½
                            IF groupkey <> "~~~" .AND. EVAL( msquery[ 5 ] )
                               SELECT 20
                               APPEND BLANK
@@ -593,7 +592,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                                  msaccum[ i ] := EVAL( msquery[ 1, i ] )
                               ENDIF
                            NEXT
-                        ELSE            // …α«¨ ―ΰ®¤®«¦ ¥βαο β¥ªγι ο £ΰγ―― 
+                        ELSE            // οΏ½α«¨ οΏ½ΰ®¤οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ β¥ªοΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½γ――οΏ½
                            FOR i := 1 TO LEN( msgr )
                               IF msgr[ i ]
                                  msaccum[ i ] := EVAL( msquery[ 1, i ], msaccum[ i ] )
@@ -601,7 +600,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
                            NEXT
                         ENDIF
                      ELSE               //
-                        IF distbl <> Nil                    // …α«¨ γª § ­ DISTINCT
+                        IF distbl <> Nil                    // οΏ½α«¨ γª οΏ½οΏ½οΏ½ DISTINCT
                            IF groupkey <> EVAL( distbl )
                               groupkey := EVAL( distbl )
                               prbegin  := .T.
@@ -648,7 +647,7 @@ PRIVATE stroka, poz1, f_impr, f_usl := "", max_len, max_dec, msrelat := {}, msac
          SKIP
       ENDDO
    ENDIF
-   IF groupbl <> Nil                    // …α«¨ γª § ­ GROUP BY
+   IF groupbl <> Nil                    // οΏ½α«¨ γª οΏ½οΏ½οΏ½ GROUP BY
       IF groupkey <> "~~~" .AND. EVAL( msquery[ 5 ] )
          SELECT 20
          APPEND BLANK
@@ -661,13 +660,13 @@ FIELDPUT( i, msaccum[ i ] )
 #ifdef ENGLISH
    MsgInf( "Done!" )
 #else
-   MsgInf( "ƒ®β®Ά®!" )
+   MsgInf( "οΏ½οΏ½β®ΆοΏ½!" )
 #endif
    IF pragr
 #ifdef ENGLISH
       MsgSay( "Rezult: " + TRANSFORM( msaccum, "@(" ), "R/W" )
 #else
-      MsgSay( "¥§γ«μβ β: " + TRANSFORM( msaccum, "@(" ), "R/W" )
+      MsgSay( "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½: " + TRANSFORM( msaccum, "@(" ), "R/W" )
 #endif
    ELSE
       SELECT 20
@@ -688,13 +687,13 @@ FIELDPUT( i, msaccum[ i ] )
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function AnaWhere()
 *+
 *+    Called from ( query.prg    )   1 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION AnaWhere( strexp )
 
@@ -752,13 +751,13 @@ PRIVATE stroka, poz1 := 1
                   alsinusl := MAX( alsinusl, i )
                   IF LEN( msquery[ 2 ] ) > 1
                      IF LEFT( sdop, 1 ) == "=" .AND. ( EMPTY( lastand ) .OR. lastand = "AND" )
-                        //  ©¤¥­  «¥Ά ο η αβμ γα«®Ά¨ο
+                        // οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½α«®οΏ½οΏ½οΏ½
                         ileft   := i
                         swleft2 := sw2
                         leftexi := .T.
                         lastlen := LEN( strrez )
                      ELSEIF leftexi .AND. ( EMPTY( sdop ) .OR. sdop = "|" ) .AND. i <> ileft
-                        // ΰ Ά ο η αβμ
+                        // οΏ½ΰ ΆοΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½
                         IF ileft < i
                            j1      := ileft
                            ileft   := i
@@ -819,13 +818,13 @@ PRIVATE stroka, poz1 := 1
    NEXT
 RETURN IIF( EMPTY( strrez ), ".T.", strrez )
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function AnaHavi()
 *+
 *+    Called from ( query.prg    )   1 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION AnaHavi( strexp )
 
@@ -853,7 +852,7 @@ LOCAL i, strrez := "", sword, sdop
 #ifdef ENGLISH
                MsgSay( sword + " - unknown word in Having!" )
 #else
-               MsgSay( sword + " - ­¥¨§Ά¥αβ­®¥ α«®Ά® Ά Having!" )
+               MsgSay( sword + " - οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½β­®οΏ½ α«®οΏ½οΏ½ οΏ½ Having!" )
 #endif
                RETURN ""
             ELSE
@@ -869,20 +868,20 @@ LOCAL i, strrez := "", sword, sdop
    ENDDO
 RETURN strrez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function ConvAgr()
 *+
 *+    Called from ( query.prg    )   2 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION ConvAgr( sword, i )
 
 LOCAL j
    j := AT( "(", sword )
    IF ( poz1 := j + FIND_Z( SUBSTR( sword, j + 1 ), ')' ) ) = j
-      MsgSay( "βαγβαβΆγ¥β ')'" )
+      MsgSay( "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ ')'" )
       RETURN ""
    ENDIF
    IF SUBSTR( sword, j + 1, 1 ) = "*"
@@ -892,7 +891,7 @@ LOCAL j
 #ifdef ENGLISH
          MsgSay( "* in agregate function!" )
 #else
-         MsgSay( "* Ά  £ΰ¥£ β­®© δγ­ªζ¨¨!" )
+         MsgSay( "* οΏ½ οΏ½οΏ½ΰ¥£οΏ½β­®οΏ½ οΏ½γ­ªζ¨¨!" )
 #endif
          RETURN ""
       ENDIF
@@ -906,13 +905,13 @@ LOCAL j
    ENDIF
 RETURN sword
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function AnalyzExp()
 *+
 *+    Called from ( query.prg    )   1 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION AnalyzExp( strexp, str2 )
 
@@ -960,13 +959,13 @@ PRIVATE stroka, poz1 := 1
    ENDIF
 RETURN strrez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function GetZnach()
 *+
 *+    Called from ( query.prg    )   2 - function analyzexp()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION GetZnach( i, j )
 
@@ -984,13 +983,13 @@ LOCAL strrez
    ENDIF
 RETURN strrez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function IsAgr()
 *+
 *+    Called from ( query.prg    )   2 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION IsAgr( strexp )
 
@@ -1003,7 +1002,7 @@ LOCAL i
    ENDIF
 RETURN 0
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function IsExp()
 *+
@@ -1013,7 +1012,7 @@ RETURN 0
 *+                                   1 - function analyzexp()
 *+                                   1 - function isagr()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION IsExp( sword, shablon )
 
@@ -1025,7 +1024,7 @@ LOCAL i
    NEXT
 RETURN 0
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function FindFiel()
 *+
@@ -1034,7 +1033,7 @@ RETURN 0
 *+                                   2 - function analyzexp()
 *+                                   1 - function indexp()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION FindFiel( sword, sw2, i, j )
 
@@ -1047,7 +1046,7 @@ FUNCTION FindFiel( sword, sw2, i, j )
 #ifdef ENGLISH
          MsgSay( sword + " - Unknown alias" )
 #else
-         MsgSay( sword + " - ¥¨§Ά¥αβ­λ©  «¨ α" )
+         MsgSay( sword + " - οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½" )
 #endif
          RETURN .F.
       ENDIF
@@ -1060,13 +1059,13 @@ FUNCTION FindFiel( sword, sw2, i, j )
 #ifdef ENGLISH
       MsgSay( sw2 + " - Unknown field" )
 #else
-      MsgSay( sw2 + " - ¥¨§Ά¥αβ­®¥ ―®«¥" )
+      MsgSay( sw2 + " - οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½β­®οΏ½ οΏ½οΏ½οΏ½οΏ½" )
 #endif
       RETURN .F.
    ENDIF
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function IndExp()
 *+
@@ -1074,7 +1073,7 @@ RETURN .T.
 *+                                   4 - function anawhere()
 *+                                   1 - function mainind()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION IndExp( finame, prals, inum )
 
@@ -1102,13 +1101,13 @@ LOCAL strind := "", sw2, i, j, vtype, vlen, vdec
    ENDCASE
 RETURN strind
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function MainInd()
 *+
 *+    Called from ( query.prg    )   2 - function doquery()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION MainInd
 
@@ -1129,14 +1128,14 @@ PRIVATE poz1 := 1
    oblg := SELECT()
 RETURN ind_exp
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function SetInd()
 *+
 *+    Called from ( query.prg    )   1 - function anawhere()
 *+                                   1 - function mainind()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION SetInd( ind_exp, indname )
 
@@ -1157,59 +1156,59 @@ LOCAL i := 1, j := LEN( ind_exp ), rezg, sword
 #ifdef ENGLISH
       MsgInf( "Indexing " + ALIAS() )
 #else
-      MsgInf( "­¤¥ªα¨ΰγξ " + ALIAS() )
+      MsgInf( "οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ " + ALIAS() )
 #endif
       INDEX ON &ind_exp TO &indname
       SET INDEX TO &indname
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function COUNT()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION COUNT( p1, p2, p3 )
 
 RETURN p3 + 1
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function SUM()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION SUM( p1, p2, p3 )
 
 RETURN p1 + p3
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function AVG()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION AVG( p1, p2 )
 
 LOCAL rez
 RETURN rez
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function MIN_F()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION MIN_F( p1, p2, p3 )
 
 RETURN IIF( p3 == 0, p1, MIN( p1, p3 ) )
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 *+    Function MAX_F()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½
 *+
 FUNCTION MAX_F( p1, p2, p3 )
 

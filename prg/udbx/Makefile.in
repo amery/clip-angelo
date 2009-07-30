@@ -1,0 +1,42 @@
+#
+#                                            prg/udbx/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-codb.so
+Local_Depend += $(Clip_L_Dir)/libclip-gtk.so
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -Obl -I./include
+CLIPLIBS  = -L$(Clip_L_Dir) -lclip-codb -lclip-gtk -lclip
+
+OBJS  = $(sort abx_obj.o abx_menu.o abx_events.o abx_funcs.o abx_meta_browse.o abx_getobj.o \
+	abx_data_browse.o )
+
+BIN = codb_abx$(EXESUFF)
+
+.SUFFIXES: .prg .o .po
+
+DIRS_TO_SCAN = plugins
+
+all: $(DIRS_TO_SCAN) $(BIN)
+
+cfg :
+
+install: all
+	mkdir -p$(V) $(DESTDIR)/codb_abx/plugins
+	cp --remove-destination -Rfpu$(V) plugins/* $(DESTDIR)/codb_abx/plugins
+	cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(DESTDIR)/bin/
+
+cleanc : $(DIRS_TO_SCAN)
+	rm -rf$(V) *.c *.b $(BIN)
+
+$(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -se $< $(OBJS) $(CLIPLIBS)
+
+commit:
+	_cvs commit
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

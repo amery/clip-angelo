@@ -1,0 +1,23 @@
+#
+#                                            clip-odbc/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-odbc.so $(Clip_L_Dir)/libclip-oob.so
+
+
+PRG=my_isql
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eMs $(PRG).prg -lclip-odbc
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

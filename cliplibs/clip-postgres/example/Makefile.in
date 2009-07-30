@@ -1,0 +1,23 @@
+#
+#                                            clip-postgres/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-postgres.so
+
+
+PRG=my_psql$(EXESUFF)
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eMs my_psql.prg -lclip-postgres
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -1,0 +1,31 @@
+#
+#                                            clip-glade2/example/Makefile.in
+#
+# Make for eglade
+Local_Depend = $(Clip_L_Dir)/libclip-glade2.so $(Clip_L_Dir)/libclip-gtk2.so
+
+#PRGFLAGS=-w -l
+
+PRGLIBS=-lclip-gtk2 -lclip-glade2
+
+OBJS=dlgopen.o dlgsave.o dlgselfont.o dlgabout.o
+
+.SUFFIXES: .prg .o
+
+all: Makefile eglade$(EXESUFF)
+
+cfg :
+
+
+eglade$(EXESUFF): eglade.prg  $(OBJS) $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e $<  $(PRGLIBS)
+
+cleanc:
+	rm -f$(V) eglade$(EXESUFF) *.c
+
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

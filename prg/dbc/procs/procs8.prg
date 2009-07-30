@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\PROCS\PROCS8.PRG
 *+
@@ -20,13 +20,13 @@
 *+
 *+    Reformatted by Click! 2.00 on Apr-12-2001 at  8:15 pm
 *+
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function PCHCYCL()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION PCHCYCL( kolpovt, expres, coor_x )
 
@@ -37,20 +37,20 @@ PRIVATE j1
       strv := &expres
       IF .NOT. EMPTY( strv )
          IF coor_x <> Nil
-            @ nLine, coor_x SAY strv         
+            @ m->nLine, coor_x SAY strv
          ELSE
             ? strv
          ENDIF
-         nLine ++
+         m->nLine ++
       ENDIF
    NEXT
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function ZPLOCK()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION ZPLOCK
 
@@ -59,7 +59,7 @@ LOCAL screenb, oldc
       screenb := SAVESCREEN( 11, 20, 11, 60 )
       oldc    := SETCOLOR()
       SETCOLOR( "+W/R" )
-      @ 11, 23 SAY "†„ˆ’…! ‡€ˆ‘œ ˆ‘Ž‹œ‡“…’‘Ÿ ‚ ‘…’ˆ!"         
+      @ 11, 23 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½!"
       DO WHILE .NOT. RLOCK()
          IF INKEY( 1 ) = - 29
             QUIT
@@ -70,11 +70,11 @@ LOCAL screenb, oldc
    ENDIF
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function FILOCK()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION FILOCK
 
@@ -85,7 +85,7 @@ LOCAL screenb, oldc, prexcl
       screenb := SAVESCREEN( 11, 20, 11, 60 )
       oldc    := SETCOLOR()
       SET COLOR TO +W/R
-      @ 11, 23 SAY "†„ˆ’…! ”€‰‹ ˆ‘Ž‹œ‡“…’‘Ÿ ‚ ‘…’ˆ!"         
+      @ 11, 23 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½!"
       DO WHILE .NOT. FIOPEN()
          IF INKEY( 2 ) = - 29
             QUIT
@@ -97,11 +97,11 @@ LOCAL screenb, oldc, prexcl
    SET( _SET_EXCLUSIVE, prexcl )
 RETURN .T.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Procedure CALCUL()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 PROCEDURE CALCUL
 
@@ -110,17 +110,17 @@ STATIC strchi := "                 0", msmemory := { 0, 0, 0 }, koldec := 2
    bufs := SAVESCREEN( 19, 0, 24, 20 )
    oldc := SETCOLOR()
    SET COLOR TO R/W
-   @ 22,  0, 24, 20 BOX "ÚÄ¿³ÙÄÀ³ "
+   @ 22,  0, 24, 20 BOX "ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ "
    FOR i := 1 TO 3
       IF msmemory[ 4 - i ] <> 0
-         @ 18 + i, 1 SAY Vivchi( msmemory[ 4 - i ], koldec ) + ' '         
+         @ 18 + i, 1 SAY Vivchi( msmemory[ 4 - i ], koldec ) + ' '
       ENDIF
    NEXT
    stroper  := " "
    prnewchi := .T.
    DO WHILE .T.
       prtchk := "." $ strchi
-      @ 23,  1 SAY strchi + stroper         
+      @ 23,  1 SAY strchi + stroper
       nkey := INKEY( 0 )
       ckey := CHR( nkey )
       DO CASE
@@ -172,7 +172,7 @@ STATIC strchi := "                 0", msmemory := { 0, 0, 0 }, koldec := 2
          msmemory[ ABS( nkey ) - 19 ] = VAL( LTRIM( strchi ) )
          FOR i := 1 TO 3
             IF msmemory[ 4 - i ] <> 0
-               @ 18 + i, 1 SAY Vivchi( msmemory[ 4 - i ], koldec ) + ' '         
+               @ 18 + i, 1 SAY Vivchi( msmemory[ 4 - i ], koldec ) + ' '
             ENDIF
          NEXT
       CASE ( nkey <= - 1 .AND. nkey >= - 2 ) .OR. nkey = 28
@@ -181,7 +181,7 @@ STATIC strchi := "                 0", msmemory := { 0, 0, 0 }, koldec := 2
          ENDIF
       CASE nkey = - 8
          @ 23,  1 CLEAR TO 23, 19
-         @ 23,  1 SAY "„¥á.§­ ª®¢: " + STR( koldec, 1 )         
+         @ 23,  1 SAY "ï¿½ï¿½ï¿½.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + STR( koldec, 1 )
          DO WHILE .T.
             DEVPOS( 23, 13 )
             i := INKEY( 0 )
@@ -192,7 +192,7 @@ STATIC strchi := "                 0", msmemory := { 0, 0, 0 }, koldec := 2
                EXIT
             ENDIF
          ENDDO
-         @ 23,  1 SAY strchi + stroper         
+         @ 23,  1 SAY strchi + stroper
       CASE nkey = - 9
          KEYBOARD LTRIM( strchi )
          EXIT
@@ -202,17 +202,17 @@ STATIC strchi := "                 0", msmemory := { 0, 0, 0 }, koldec := 2
    RESTSCREEN( 19, 0, 24, 20, bufs )
 RETURN
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Static Function Vivchi()
 *+
 *+    Called from ( procs8.prg   )   4 - procedure calcul()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 STATIC FUNCTION Vivchi( chi, koldec )
 
-LOCAL i, kolzn
+LOCAL i, kolzn, strc
    strc  := STR( chi, 18, koldec )
    kolzn := koldec
    FOR i := 1 TO koldec
@@ -229,87 +229,87 @@ LOCAL i, kolzn
    ENDIF
 RETURN strc
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Procedure ANIMA()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 PROCEDURE ANIMA( priznak, koll, strviv, y1, x1, x2 )
 
    DO CASE
    CASE priznak = 0 .OR. priznak = 3
       IF priznak = 0
-         MSANIM[ 7 ] = strviv
+         m->MSANIM[ 7 ] = strviv
          IF LEN( strviv ) > x2 - x1 - 1
             strviv := SUBSTR( strviv, 1, x2 - x1 - 4 ) + "..."
          ENDIF
          SET CURSOR OFF
-         MSANIM[ 1 ] = 0
-         MSANIM[ 2 ] = 0
-         MSANIM[ 3 ] = INT( koll / ( x2 - x1 - 4 ) )
-         MSANIM[ 4 ] = y1
-         MSANIM[ 5 ] = x1
-         MSANIM[ 6 ] = x2
+         m->MSANIM[ 1 ] = 0
+         m->MSANIM[ 2 ] = 0
+         m->MSANIM[ 3 ] = INT( koll / ( x2 - x1 - 4 ) )
+         m->MSANIM[ 4 ] = y1
+         m->MSANIM[ 5 ] = x1
+         m->MSANIM[ 6 ] = x2
       ELSE
-         strviv := IIF( LEN( MSANIM[ 7 ] ) > MSANIM[ 6 ] - MSANIM[ 5 ] - 1, ;
-                        SUBSTR( MSANIM[ 7 ], 1, MSANIM[ 6 ] - MSANIM[ 5 ] - 4 ) + "...", MSANIM[ 7 ] )
-         y1 := MSANIM[ 4 ]
-         x1 := MSANIM[ 5 ]
-         x2 := MSANIM[ 6 ]
+         strviv := IIF( LEN( m->MSANIM[ 7 ] ) > m->MSANIM[ 6 ] - m->MSANIM[ 5 ] - 1, ;
+                        SUBSTR( m->MSANIM[ 7 ], 1, m->MSANIM[ 6 ] - m->MSANIM[ 5 ] - 4 ) + "...", m->MSANIM[ 7 ] )
+         y1 := m->MSANIM[ 4 ]
+         x1 := m->MSANIM[ 5 ]
+         x2 := m->MSANIM[ 6 ]
       ENDIF
       SET COLOR TO +W/W
-      @ y1, x1, y1 + 4, x2 BOX "ÛßÛÛÛÜÛÛ "
-      @ y1 + 2, x1 + 2, y1 + 3, x2 - 2 BOX "ÚÄ¿³ÙÄÀ³ "
+      @ y1, x1, y1 + 4, x2 BOX "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "
+      @ y1 + 2, x1 + 2, y1 + 3, x2 - 2 BOX "ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ "
       SET COLOR TO N/W
-      @ y1 + 2, x1 + 2                                SAY "Ú"            
+      @ y1 + 2, x1 + 2                                SAY "ï¿½"
       @ y1 + 2, x1 + 3 TO y1 + 2, x2 - 3
-      @ y1 + 3, x1 + 2                                SAY "À"            
-      @ y1 + 1, INT( ( 80 - LEN( strviv ) ) / 2 ) + 1 SAY strviv         
+      @ y1 + 3, x1 + 2                                SAY "ï¿½"
+      @ y1 + 1, INT( ( 80 - LEN( strviv ) ) / 2 ) + 1 SAY strviv
       IF priznak = 3
          SET COLOR TO +W/W
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 2 SAY "Ú"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 2 SAY "À"         
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 3 TO MSANIM[ 4 ] + 2, MSANIM[ 5 ] + MSANIM[ 2 ] + 1
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 2 SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 2 SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 3 TO m->MSANIM[ 4 ] + 2, m->MSANIM[ 5 ] + m->MSANIM[ 2 ] + 1
          SET COLOR TO N/W
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 2 + MSANIM[ 2 ] SAY "¿"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 2 + MSANIM[ 2 ] SAY "Ù"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 3 TO MSANIM[ 4 ] + 3, MSANIM[ 5 ] + MSANIM[ 2 ] + 1
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 2 + m->MSANIM[ 2 ] SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 2 + m->MSANIM[ 2 ] SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 3 TO m->MSANIM[ 4 ] + 3, m->MSANIM[ 5 ] + m->MSANIM[ 2 ] + 1
       ENDIF
    CASE priznak = 1
-      MSANIM[ 1 ] = MSANIM[ 1 ] + 1
-      IF MSANIM[ 1 ] = MSANIM[ 3 ] .AND. MSANIM[ 2 ] < MSANIM[ 6 ] - MSANIM[ 5 ] - 4
-         MSANIM[ 1 ] = 0
-         MSANIM[ 2 ] = MSANIM[ 2 ] + 1
+      m->MSANIM[ 1 ] = m->MSANIM[ 1 ] + 1
+      IF m->MSANIM[ 1 ] = m->MSANIM[ 3 ] .AND. m->MSANIM[ 2 ] < m->MSANIM[ 6 ] - m->MSANIM[ 5 ] - 4
+         m->MSANIM[ 1 ] = 0
+         m->MSANIM[ 2 ] = m->MSANIM[ 2 ] + 1
          SET COLOR TO +W/W
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 2 SAY "Ú"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 2 SAY "À"         
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 3 TO MSANIM[ 4 ] + 2, MSANIM[ 5 ] + MSANIM[ 2 ] + 1
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 2 SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 2 SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 3 TO m->MSANIM[ 4 ] + 2, m->MSANIM[ 5 ] + m->MSANIM[ 2 ] + 1
          SET COLOR TO N/W
-         @ MSANIM[  4 ] + 2, MSANIM[ 5 ] + 2 + MSANIM[ 2 ] SAY "¿"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 2 + MSANIM[ 2 ] SAY "Ù"         
-         @ MSANIM[  4 ] + 3, MSANIM[ 5 ] + 3 TO MSANIM[ 4 ] + 3, MSANIM[ 5 ] + MSANIM[ 2 ] + 1
+         @ m->MSANIM[  4 ] + 2, m->MSANIM[ 5 ] + 2 + m->MSANIM[ 2 ] SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 2 + m->MSANIM[ 2 ] SAY "ï¿½"
+         @ m->MSANIM[  4 ] + 3, m->MSANIM[ 5 ] + 3 TO m->MSANIM[ 4 ] + 3, m->MSANIM[ 5 ] + m->MSANIM[ 2 ] + 1
       ENDIF
    CASE priznak = 2
       SET COLOR TO N/W
-      @ MSANIM[  4 ] + 1, MSANIM[ 5 ] + 1 CLEAR TO MSANIM[ 4 ] + 1, MSANIM[ 6 ] - 1
-      @ MSANIM[  4 ] + 1, INT( ( 80 - LEN( strviv ) ) / 2 ) + 1 SAY strviv         
+      @ m->MSANIM[  4 ] + 1, m->MSANIM[ 5 ] + 1 CLEAR TO m->MSANIM[ 4 ] + 1, m->MSANIM[ 6 ] - 1
+      @ m->MSANIM[  4 ] + 1, INT( ( 80 - LEN( strviv ) ) / 2 ) + 1 SAY strviv
       INKEY( 2 )
    ENDCASE
    SET CURSOR ON
 RETURN
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function VIVCTRLS()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION VIVCTRLS( mctrl )
 
 LOCAL i
    FOR i := 1 TO LEN( mctrl )
-      @ VAL( LEFT( mctrl[ i ], 2 ) ), VAL( SUBSTR( mctrl[ i ], 3, 2 ) ) SAY SUBSTR( mctrl[ i ], 5 )         
+      @ VAL( LEFT( mctrl[ i ], 2 ) ), VAL( SUBSTR( mctrl[ i ], 3, 2 ) ) SAY SUBSTR( mctrl[ i ], 5 )
    NEXT
 RETURN .T.
 

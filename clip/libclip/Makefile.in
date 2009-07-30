@@ -1,0 +1,249 @@
+#
+#                                            clip/libclip/Makefile.in
+#
+# main parts
+#
+#
+Local_Depend = ../include/*.ch ../include.h/*.h
+
+DBGLIB=
+XINSTALL=
+INST_STD_LIB=
+INST_XCLIP=
+CLIP_CLD=
+INST_MEMDEBUG_H=
+
+CLIPFLAGS	= -g -v2 -N#-O
+#CLIP	= clip$(EXESUFF)
+CVS_RSH = ./ssh.sh
+YACC = bison
+
+export CLIP_NAMES EXESUFF SCRIPTSUFF
+
+.SUFFIXES: .prg .c .po
+.PHONY:	tests screen hash
+
+SRCS	= coll.c list.c hash.c getopt.c getopt1.c clicutil.c \
+	  clic.y clic.lex file.c node.c locale.c \
+	  clip.c clicgt.c _win32.c
+
+OBJDIR	= .
+LIBS	= -lm
+
+LIB	= libclip.a
+SLIB	= libclip$(DLLSUFF)
+SLIBREAL = libclip$(DLLREALSUFF)
+
+EXTOBJS =
+
+RDDBASE = libcliprdd/libcliprdd.a
+CLASSLIB = libclipclasses/libclipclasses.a
+FUNCSLIB = libclipfunctions/libclipfunctions.a
+CODBLIB =
+#codb/libclip-codb.a codb/libcodb-query.a
+SCREEN = libclipscreen/libclipscreen.a
+TERMCAP =
+#screen/libtermcap.a
+SQL = libclipdbfsql/libclipdbfsql.a
+
+BASES =  $(RDDBASE) libclipmain/libclipmain.a
+
+ALIBS = $(BASES) $(SCREEN) $(TASK) $(TERMCAP) $(DBGLIB) $(CLASSLIB) $(FUNCSLIB)\
+	$(SQL)
+DIRS_TO_SCAN = libclipclasses libclipdbfsql libclipfunctions libclipmain libcliprdd libclipscreen libcliptask
+
+SYS = $OSNAME
+
+SYSTEM_NAME = $(OSNAME)
+
+DEFS	=
+
+#CFLAGS  = $(C_FLAGS) $(ADD_CFLAGS) -I. -I$(CLIPROOT)/include -I$(PWD)/include.h $(DEFS) $(MEMDBGFLAGS)
+
+export CC CFLAGS PO_BINS ICONV_LIB ADDLIBS
+export CLIP CLIPFLAGS
+export MEMDBG MEMDBGFLAGS
+export CLIPROOT BINDIR
+
+all: Makefile links $(DIRS_TO_SCAN) $(LIB) $(SLIB)
+
+cfg :
+	[ -d compiler ] 				|| ln -sf$(V) ../compiler ./
+	[ -d libclipclasses ] 		|| ln -sf$(V) ../libclipclasses ./
+	[ -d libclipdbfsql ] 		|| ln -sf$(V) ../libclipdbfsql ./
+	[ -d libclipfunctions ] 	|| ln -sf$(V) ../libclipfunctions ./
+	[ -d libclipmain ] 			|| ln -sf$(V) ../libclipmain ./
+	[ -d libcliprdd ] 			|| ln -sf$(V) ../libcliprdd ./
+	[ -d libclipscreen ] 		|| ln -sf$(V) ../libclipscreen ./
+	[ -d libcliptask ] 			|| ln -sf$(V) ../libcliptask ./
+	[ -d charsets ] 				|| ln -sf$(V) ../libclipscreen/install/charsets .
+
+links: cfg
+
+trans: clip_trans inst_dir inst_screen
+
+clip.1: clip.html
+	htex -o man clip.html
+
+$(LIB): $(ALIBS) $(EXTOBJS) $(MLIB) Makefile $(CLIP)
+	$(Trace_lib)
+	rm -f$(V) $(LIB) $(SLIB) libclip.nm libclip.ex
+	joinlib$(SCRIPTSUFF) $(LIB) $(ALIBS) $(MLIB)
+	ranlib $(LIB)
+
+$(SLIB): $(LIB)  Makefile $(CLIP)#test.o
+	$(Trace_lib)
+#	CLIPROOT=`pwd`
+	$(CLIP_MAKESLIB) $(SLIB) $(LIB)
+
+cleanc :$(DIRS_TO_SCAN)
+	rm -f$(V) charsets
+	rm -Rf$(V) bin libclip*
+	rm -f$(V) $(BINS) *.b test dtest bin locale.pot
+
+distclean: clean
+	rm -f$(V) configure.flags
+	rm -f$(V) Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) \
+		clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) \
+		license.txt license.h
+	rm -f$(V) cliproot
+
+cleantest:
+	rm -f$(V) test dtest *.pa test.o dtest.o
+	cd tests && $(MAKE) clean
+
+pot:
+	mkdir -p locale.pot/clip
+	xgettext --language=C \
+		 --keyword \
+		 --keyword=yyerror \
+		 --keyword=yywarning \
+		 --keyword=v_printf:2 \
+		 --keyword=_clic_gettext \
+		 --keyword=_clic_ngettext:1,2 \
+		 --keyword=_clic_ngettext:2 \
+		 --omit-header --output=locale.pot/clip/clip.pot \
+		 *.c
+	mkdir -p locale.pot/cliprt
+	xgettext --language=C \
+		 --keyword \
+		 --keyword=_clip_gettext \
+		 --keyword=_clip_logg:2 \
+		 --keyword=_clip_trap_str:4 \
+		 --keyword=_clip_trap_printf:4 \
+		 --keyword=_clip_trap_printv:4 \
+		 --omit-header --output=locale.pot/cliprt/cliprt.pot \
+		 *.c libcliprdd/*.c libclipscreen/*.c
+	CLIP_LOCALE_ROOT=`pwd` tools/clip_msgmerge$(SCRIPTSUFF)
+
+
+install: all
+	$(CLIP_CP) $(LIB) $(Clip_L_Dir)/
+#	cp --remove-destination -fpu$(V) $(SLIB) $(DESTDIR)/lib; chmod 0755 $(DESTDIR)/lib/$(SLIB)
+#	[ "$(SLIBREAL)" = "$(SLIB)" ] || cp --remove-destination -fpu$(V) $(SLIBREAL) $(DESTDIR)/lib
+# inst_dir inst_clip $(XINSTALL) inst_lib inst_codb \
+#	 inst_screen inst_ch inst_locale $(INST_STD_LIB) inst_doc \
+#	 inst_end $(INST_XCLIP) $(CLIP_CLD)
+
+inst_dir:
+	mkdir -p$(V) $(INSTDIR)
+	mkdir -p$(V) $(BINDIR)
+	mkdir -p$(V) $(DESTDIR)/keymaps
+	mkdir -p$(V) $(DESTDIR)/include
+	[ ! -d libclipmemdebug ] || mkdir -p$(V) $(DESTDIR)/include/libclipmemdebug
+	mkdir -p$(V) $(DESTDIR)/bin
+	mkdir -p$(V) $(DESTDIR)/lib
+	mkdir -p$(V) $(DESTDIR)/etc
+	mkdir -p$(V) $(DESTDIR)/doc
+	mkdir -p$(V) $(DESTDIR)/cliprc
+	mkdir -p$(V) $(DESTDIR)/locale.pot
+	mkdir -p$(V) $(DESTDIR)/locale.po
+	mkdir -p$(V) $(DESTDIR)/locale.po/ru_RU.KOI8-R
+	mkdir -p$(V) $(DESTDIR)/locale.mo
+
+
+inst_clip:
+	cd $(Clip_B_Dir) && chmod 0755 $(BINS) $(SCRIPTS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
+	if [ "$(OSNAME)" = CYGWIN ] ; then echo "bash lowname %1 %2 %3 %4 %5 %6 %7 %8 %9" > $(Clip_B_Dir)/lowname.bat ; fi
+ifneq ($(BINDIR),$(Clip_B_Dir))
+	ln -sf$(V) $(Clip_B_Dir)/clip$(EXESUFF) 					$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_msgfmt$(SCRIPTSUFF) 		$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_msgmerge$(SCRIPTSUFF) 	$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_makeslib$(SCRIPTSUFF) 	$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_makelib$(SCRIPTSUFF) 	$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_cp$(SCRIPTSUFF) 			$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clipar$(EXESUFF) 				$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/cliphash$(EXESUFF) 				$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_bug$(SCRIPTSUFF) 			$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_dbg$(EXESUFF) 				$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_trans$(EXESUFF) 			$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_conv$(EXESUFF) 			$(BINDIR)/
+	ln -sf$(V) $(Clip_B_Dir)/clip_hashextract$(EXESUFF) 	$(BINDIR)/
+endif
+	touch $(DESTDIR)/cliprc/.notrm
+
+inst_locale:
+	tar cf - locale.po | (cd $(DESTDIR) && tar xf -)
+	rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
+	CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
+
+inst_lib:
+	clip_cp$(SCRIPTSUFF) $(LIB) $(DESTDIR)/lib
+	cp -f$(V) $(SLIB) $(DESTDIR)/lib; chmod 0755 $(DESTDIR)/lib/$(SLIB)
+	[ "$(SLIBREAL)" = "$(SLIB)" ] || cp -f$(V) $(SLIBREAL) $(DESTDIR)/lib
+
+inst_std_lib:
+	mkdir -p $(DESTDIR)$(STD_LIBDIR)
+	ls $(DESTDIR)/lib/*$(DLLSUFF)
+	for i in $(DESTDIR)/lib/*$(DLLSUFF); do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+	for i in $(DESTDIR)/lib/*$(DLLREALSUFF); do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+	for i in $(DESTDIR)/lib/*.a; do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+
+inst_screen:
+	cd libclipscreen/install \
+	&& tar cf - `find . -type f -print |grep -v CVS` \
+	| (cd $(DESTDIR)$ && tar xf -)
+
+inst_codb:
+
+inst_ch: $(INST_MEMDEBUG_H)
+	tar c$(V)f - include.h/clip.h include.h/_win32.h include.h/hash.h Makefile.tdoc libclipscreen/charset.h \
+		| (cd $(DESTDIR)/include && tar x$(V)f -)
+	cd libcliprdd && tar cf - btree.h | (cd $(DESTDIR)/include && tar xf -)
+	cd libclipdbfsql && tar cf - *.h | (cd $(DESTDIR)/include && tar xf -)
+	cd libcliptask && tar cf - *.h | (cd $(DESTDIR)/include && tar xf -)
+	cd include && tar cf - * | (cd $(DESTDIR)/include && tar xf -)
+
+inst_memdebug_h:
+	tar cf - memdebug/malloc.h memdebug/malloc_str.h \
+		| (cd $(DESTDIR)/include && tar xf -)
+
+inst_doc:
+
+inst_xclip:
+
+inst_end:
+	inst_end$(SCRIPTSUFF) $(DESTDIR) $(BINDIR)
+
+depend:
+	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null
+
+commit:
+	./_cvs_commit
+
+update:
+	./_cvs_update
+
+ucommit:
+	./_cvs_commit
+	./_cvs_update
+
+shell:
+	sh
+
+include $(Makefile_end_in)
+
+# DO NOT DELETE
+
+
+

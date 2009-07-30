@@ -1,0 +1,34 @@
+#
+#                                            prg/cobra-serv/auth/Makefile.in
+#
+Local_Depend =
+
+#CLIP	= $(CLIPROOT)/bin/clip
+
+# need package libpam0g-dev
+
+LIBS = -lpam
+#CC = gcc
+#CFLAGS = -O
+
+all: Makefile pam-auth$(EXESUFF)
+
+cfg :
+
+pam-auth$(EXESUFF): pam-auth.c Makefile
+	$(Trace_c)
+	$(CC) $(C_FLAGS) -o$@ pam-auth.c $(LIBS)
+
+cleanc:
+	rm -f$(V)  pam-auth$(EXESUFF)
+
+install:all
+	mkdir -p $(DESTDIR)/cobra/auth
+	cd $(DESTDIR)/cobra/auth; rm -f$(V) pam-auth$(EXESUFF)
+	cp --remove-destination -fpu$(V) Makefile make_mod.sh other pam* $(DESTDIR)/cobra/auth
+	cd $(DESTDIR)/cobra/auth; test -z $(DESTDIR) && sudo ./make_mod.sh || exit 0
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -1,7 +1,10 @@
+#
+#                                            clip-gtk/Makefile.in
+#
 # main part
 #
 #
-
+include Makefile.inc
 #export CC
 #DBGFLAGS	= -g #-DMEMDBG
 #WARNFLAGS	= -Wimplicit -Wall
@@ -9,8 +12,9 @@
 .SUFFIXES: .prg .c .po
 .PHONY:	test screen hash
 
+Local_Depend = include/*.ch include/*.h
 
-HDRS	= clip-gtk.ch clip-gtk.h
+HDRS	= include/clip-gtk.ch include/clip-gtk.h
 
 GDK_SRC = gdk.c gdkfont.c gdkinput.c gdkcolor.c gdkgc.c gdkdraw.c \
 	  gdkwindow.c gdkregion.c $(PIXBUFSRC)
@@ -57,11 +61,11 @@ EXTOBJS =
 
 HASHSRCS = $(SRCS) $(HDRS)
 
-XLIB	= libclip-gtk.a
-XSLIB	= libclip-gtk$(DLLSUFF)
-XSLIBREAL = libclip-gtk$(DLLREALSUFF)
-XLIBOBJS= $(OBJS)
-
+#XLIB	= libclip-gtk.a
+#XSLIB	= libclip-gtk$(DLLSUFF)
+#XSLIBREAL = libclip-gtk$(DLLREALSUFF)
+#XLIBOBJS= $(OBJS)
+PROG = clip-gtk
 SYS = $OSNAME
 SYSTEM_NAME = $(OSNAME)
 
@@ -69,81 +73,74 @@ DEFS	=
 # -DVERSION=\"0.1\"
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
 
-CC = $(COMPILER)
-CFLAGS  = -fPIC $(C_FLAGS) $(DEFS) $(MEMDBGFLAGS)
+#CC = $(COMPILER)
+C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) $(XCFLAGS)
+# $(INCLUDEDIRS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 
 export CC CFLAGS
 export MEMDBG MEMDBGFLAGS
 
-all: Makefile hash $(XTARGETS)
+all: Makefile include/clip-gtkcfg.h hash $(STARGET)
+
+cfg :
+	cp --remove-destination -fpu$(V) clip-gtk.cliprc $(INSTDIR)/cliprc/
+	cp --remove-destination -fpu$(V) include/clip-gtk.ch include/clip-gtk.h $(Clip_I_Dir)/
 
 d: set_dbg
 
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-Makefile: Makefile.in configure
+include/clip-gtkcfg.h :
+	$(Trace_o)
 	./configure
 
-hash: _hashcode.h
+hash: include/_hashcode.h
 
-_hashcode.h: $(HASHSRCS)
-	$(CLIPROOT)/bin/clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashcode.h
-	cmp _hashcode.h hashcode.h 2>/dev/null || cp _hashcode.h hashcode.h
+include/_hashcode.h: $(HASHSRCS)
+	$(Trace_o)
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
+	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cpinclude/ _hashcode.h include/hashcode.h
 
-$(XLIB): $(XLIBOBJS)
-	rm -f $(XLIB)
-	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)
-	ranlib $(XLIB)
+#$(XLIB): $(XLIBOBJS)
+#	rm -f $(XLIB)
+#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
+#	ranlib $(XLIB)
 
-$(XSLIB): $(XLIB)
-	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)
+#$(XSLIB): $(XLIB)
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
 
-clean:
-	rm -rf *.o *.a *.so *.dll *.po *.pa *.b *.BAK *.bak *~ core* \
-	*core Makefile.inc *.ex *.nm \
-	gtkermsg.c
+cleanc:
+	rm -rf$(V) *.b include/clip-gtkcfg.h gtkermsg.c $(TARGET).*
 
 distclean: clean
-	rm -rf clip-gtkcfg.h hashcode.h _hashcode.h Makefile
+	rm -rf$(V) include/clip-gtkcfg.h include/hashcode.h include/_hashcode.h
 	-cd test &&  $(MAKE) clean
 	-cd example && $(MAKE) clean
 
-install:all
-	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
-	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
-	#[ "$(XSLIBREAL)" = "$(XSLIB)" ] || cp $(XSLIBREAL) $(DESTDIR)$(CLIPROOT)/lib
-	cp clip-gtk.cliprc $(DESTDIR)$(CLIPROOT)/cliprc/
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/cliprc/clip-gtk.cliprc
-	cp clip-gtk.ch $(DESTDIR)$(CLIPROOT)/include/
-	cp clip-gtk.h $(DESTDIR)$(CLIPROOT)/include/
-#	mkdir -p $(CLIPROOT)/doc/clip-gtk
-#	cp -R doc/* $(CLIPROOT)/doc/clip-gtk
-	mkdir -p $(CLIPROOT)/doc/example/clip-gtk
-	cp example/clipgtktest.prg example/Makefile example/clip.xpm example/basket.bmp $(CLIPROOT)/doc/example/clip-gtk
-	cp example/tbrow.prg example/tbrow.xpm $(CLIPROOT)/doc/example/clip-gtk
-	cp example/accel.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/test.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/note.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/test_gtk.prg example/x.xpm $(CLIPROOT)/doc/example/clip-gtk
-	cp example/test_list.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/test_image.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/simple.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/winpic.prg $(CLIPROOT)/doc/example/clip-gtk
-	cp example/window.prg $(CLIPROOT)/doc/example/clip-gtk
+install:all install-lib install-example
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(INSTDIR)/lib/
+#	chmod 0644 $(INSTDIR)/lib/$(XLIB)
+#	chmod 0755 $(INSTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(INSTDIR)/doc/example/clip-gtk
+#	cp -fu$(V) example/clipgtktest.prg example/Makefile example/clip.xpm example/basket.bmp $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/tbrow.prg example/tbrow.xpm $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/accel.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/test.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/note.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/test_gtk.prg example/x.xpm $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/test_list.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/test_image.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/simple.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/winpic.prg $(INSTDIR)/doc/example/clip-gtk/
+#	cp -fu$(V) example/window.prg $(INSTDIR)/doc/example/clip-gtk/
 
-.c.o:
-	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
-	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
-
-.prg.o:
-	$(CLIP) -Olnw -I. $<
+include $(Makefile_o_in)
 
 depend:
 	$(MAKE) hash
-	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null
+	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
 
 commit:
 	_cvs commit
@@ -156,4 +153,6 @@ ucommit:
 
 shell:
 	sh
+
+include $(Makefile_end_in)
 

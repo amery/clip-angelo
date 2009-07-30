@@ -1,0 +1,55 @@
+#
+#                                            clip/libclipscreen/Makefile.in
+#
+Local_Depend = ../include/*.ch ../include.h/*.h
+#CC=gcc
+#CFLAGS+= -I../include.h
+#-pg -DMEMDBG
+
+#LIB = libclipscreen.a
+OBJS = $(sort tcaps.o termgoto.o screen.o scankey.o keymap.o)
+# charset.o
+PROG = clipscreen
+PROGS = kbd$(EXESUFF) cmap$(EXESUFF)
+#testscr
+
+KBDOBJS = scankey.o keymap.o kbd.o
+CMAPOBJS = charset.o cmap.o
+
+###################################################################
+
+install all: Makefile $(ATARGET)
+#install all: Makefile $(LIB)
+#$(PROGS)
+
+cfg :
+	mkdir -p$(V) $(Clip_I_Dir)/libclipscreen
+	cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/libclipscreen/
+	cp --remove-destination -fu$(V) charset.h $(Clip_I_Dir)/
+	cp --remove-destination -Rfu$(V) install/* $(DESTDIR)/
+
+kbd$(EXESUFF): $(KBDOBJS) Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) -o kbd $(KBDOBJS)
+
+
+cmap$(EXESUFF):	$(CMAPOBJS) Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
+
+cleanc:
+	rm -f$(V) *.b $(PROGS) $(ATARGET)
+
+testscr$(EXESUFF): testscr.o  Makefile $(ATARGET) charset.o Makefile
+	$(Trace_c)
+	$(CC) $(CFLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm
+
+#$(LIB): $(OBJS)
+#	rm -f$(V) $(LIB)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
+#	ranlib $(LIB)
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

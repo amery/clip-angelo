@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
 
 #define IDI_HAND   32513
 

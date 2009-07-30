@@ -1,0 +1,33 @@
+#
+#                                            init/Makefile.o.in
+#
+##########################################################
+##
+## 																obj's section
+##
+
+%.o : %.c Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+%.o : %.prg Makefile $(CLIP)
+	$(Trace_prg)
+	$(E_clip)$(CLIP) $(CLIPFLAGS) $<
+
+%.po : %.prg Makefile $(CLIP)
+	$(Trace_prg)
+	$(E_clip)$(CLIP) $(CLIPFLAGS) -p $<
+
+.c.o :  Makefile
+	$(Trace_c)
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
+
+.prg.po : Makefile $(CLIP)
+	$(Trace_prg)
+	$(E_clip)$(CLIP) $(CLIPFLAGS) -p $<
+
+.prg.o : Makefile $(CLIP)
+	$(Trace_prg)
+	$(E_clip)$(CLIP) $(CLIPFLAGS) $<
+
+##########################################################

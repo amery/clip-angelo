@@ -1,0 +1,22 @@
+#
+#                                            clip-fcgi/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-fcgi.so
+
+PRG=clip_echo.fcgi
+
+all: Makefile $(PRG)$(EXESUFF)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -e -M $(PRG).prg -lclip-fcgi
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

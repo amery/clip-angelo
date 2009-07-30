@@ -1,0 +1,22 @@
+#
+#                                            clip-oracle/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-oracle.so
+
+PRG=my_sqlplus$(EXESUFF)
+
+all:Makefile  $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+my_sqlplus$(EXESUFF): my_sqlplus.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eMs my_sqlplus.prg -lclip-oracle
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

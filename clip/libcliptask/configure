@@ -1,33 +1,45 @@
-#!/bin/sh
-
-make clean
+#!/bin/sh -u
+if [ -f ../Makefile.ini ] && [[ ../Makefile.ini -nt ./Makefile.ini ]] ; then
+	cp -f ../Makefile.ini ./
+fi
+if [ -f pth_tst$EXESUFF ] || [ -f cl_tst$EXESUFF ] ; then
+	echo "-include Makefile.ini" >Makefile
+	cat Makefile.in >>Makefile
+	exit 0
+fi
+echo "-include ../Makefile.incl" >Makefile
+cat Makefile.in >>Makefile
 ./cl_conf
-cp Makefile.pth Makefile
-make pth_tst
-./pth_tst >/dev/null 2>&1
+cc pth_tst.c -o pth_tst$EXESUFF -lpth
+./pth_tst$EXESUFF
+#>/dev/null 2>&1
 PTH_ERR=$?
-if [ "$PTH_ERR" = 0 ]
-then
-    echo Library PTH detected. CLIP will use it.
-    echo USE_PTH=yes >USE_PTH
+if [ "$PTH_ERR" = 0 ] ; then
+   echo Library PTH detected. CLIP will use it.
+   echo USE_PTH=yes >USE_PTH
+	echo "-include Makefile.ini" >Makefile
+	cat Makefile.in >>Makefile
 #    make clean
     exit 0
 fi
-rm -f USE_PTH pth_tst
-#make clean
+rm -f USE_PTH pth_tst$EXESUFF
+make clean
 ./cl_conf
-cp Makefile.cl Makefile
-make cl_tst
-./cl_tst >/dev/null 2>&1
+echo "-include ../Makefile.incl" >Makefile
+cat Makefile.cl >>Makefile
+make cl_tst$EXESUFF
+./cl_tst$EXESUFF
+#>/dev/null 2>&1
 CL_ERR=$?
-if [ "$CL_ERR" = 0 ]
-then
-    echo Library CL detected. CLIP will use it.
-    echo USE_CL=yes >USE_CL
-    #make clean
-    exit 0
+if [ "$CL_ERR" = 0 ] ; then
+	echo Library CL detected. CLIP will use it.
+	echo USE_CL=yes >USE_CL
+	echo "-include Makefile.ini" >Makefile
+	cat Makefile.cl >>Makefile
+	#make clean
+	exit 0
 fi
-rm -f USE_CL cl_tst
+rm -f USE_CL cl_tst$EXESUFF
 echo Warning:Workable library for tasks not detected.
 echo Please install packages libpth2, libpth-dev
 #make clean

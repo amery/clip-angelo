@@ -1,0 +1,35 @@
+#
+#                                            prg/codb/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-codb.so
+Local_Depend += $(Clip_L_Dir)/libcodb-query.so
+
+
+
+#CLIP	= clip
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -w -O -b -l
+CLIPLIBS  = -lclip-codb -lcodb-query
+TARGET = codb$(EXESUFF)
+OBJS  = codb.o
+.SUFFIXES: .prg .o .po
+
+all : Makefile $(TARGET)
+
+cfg :
+
+cleanc :
+	rm -f$(V) *.c *.b
+	rm -f$(V) $(TARGET)
+
+$(TARGET): $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -esM $(OBJS) $(CLIPLIBS)
+
+install : all
+	cp --remove-destination -fpu$(V) $(TARGET) $(Clip_B_Dir)/
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

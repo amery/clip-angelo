@@ -78,10 +78,10 @@ CFLAGS = $(C_FLAG) $(C_DEFS)
 
 
 # --------------------------------------------------------------------------
-# ANHÄNGIGKEITEN
+# ANHï¿½NGIGKEITEN
 # --------------------------------------------------------------------------
 
-all:		shared static
+all:	$(OBJS)	shared static
 
 shared:		$(NAME)
 
@@ -97,13 +97,15 @@ $(LIBNAME):	$(OBJS)
 		$(RANLIB) $(LIBNAME)
 
 
-# Abhängigkeiten des Source, jedoch dann ohne Generierungsanweisung, wenn
+# Abhï¿½ngigkeiten des Source, jedoch dann ohne Generierungsanweisung, wenn
 # die Extension durch obigen Automatismus abgedeckt wird!
 #
 
 ezV24.o:	ezV24.c ezV24.h ezV24_config.h snprintf.h
+		gcc $(CFLAGS) $<
 
 snprintf.o:	snprintf.c snprintf.h
+		gcc $(CFLAGS) $<
 
 
 

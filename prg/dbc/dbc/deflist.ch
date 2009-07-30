@@ -91,3 +91,13 @@
 #define LI_LADD      mslist[ITEM_LADD]
 #define LI_SEPARATOR mslist[ITEM_SEPARATOR]
 #define LI_UPDATED   mslist[ITEM_UPDATED]
+
+MemVar strfor, prall, prnext, nrest, prrest, expstr, nrez, mypath, stroka, poz1, msexp
+MemVar finame, mslist, msmode, improc, lenmsf, msfile, msknop, msdriv, stra1, stra2, stra3, stra4
+MemVar prdbf, prsdf, prdelim, cdelim, msknop1, prrdonly, numdriv, msmsli, ScrClr, que_simpl
+MemVar ORAMKA, DRAMKA, chng_kol, lWinChar, modesplit, dformat, memownd, slkeys, aMMenu, txtinf, mode43, nServerType
+MemVar x1, x2, y2, _y2, prkorf, prkorst, dbfi_f, dbnumf, prfi, prmemo, impr1, impr2, wndfirst, cdata, prmsf
+MemVar quebuf, sword, flen
+MemVar Ctrlist
+MemVar f_impr, f_usl, max_len, max_dec, msrelat, msaccum
+MemVar han, strbuf, poz

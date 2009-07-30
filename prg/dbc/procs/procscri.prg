@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\PROCS\PROCSCRI.PRG
 *+
@@ -17,7 +17,7 @@
 *+
 *+    Reformatted by Click! 2.00 on Apr-12-2001 at  9:01 pm
 *+
-*+²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²²
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #include "fileio.ch"
 STATIC aModules := {}
@@ -39,11 +39,11 @@ Local i, aScript
 
 RETURN 0
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function RdScript()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION RdScript( scrSource, strbuf, poz )
 
@@ -84,7 +84,7 @@ PRIVATE rezArray := {}, tmpArray := {}
          IF .NOT. EMPTY( stroka ) .AND. LEFT( stroka, 2 ) <> "//"
 
 #ifdef __HARBOUR__
-            IF Left( stroka,1 ) == "#" 
+            IF Left( stroka,1 ) == "#"
                IF UPPER( Left( stroka,7 ) ) != "#ENDSCR"
                   __ppAddRule( stroka )
                   LOOP
@@ -98,56 +98,56 @@ PRIVATE rezArray := {}, tmpArray := {}
             scom := UPPER( SUBSTR( stroka, 1, IIF( poz1 <> 0, poz1 - 1, 999 ) ) )
             DO CASE
             CASE scom = "PRIVATE"
-               IF LEN( rezArray ) == 0 .OR. VALTYPE( ATAIL( rezArray ) ) == "C"
-                  AADD( rezArray, ALLTRIM( SUBSTR( stroka, 9 ) ) )
-                  AADD( tmpArray, "" )
+               IF LEN( m->rezArray ) == 0 .OR. VALTYPE( ATAIL( m->rezArray ) ) == "C"
+                  AADD( m->rezArray, ALLTRIM( SUBSTR( stroka, 9 ) ) )
+                  AADD( m->tmpArray, "" )
                ELSE
                   nLastError := 1
                   RETURN Nil
                ENDIF
             CASE ( scom = "DO" .AND. UPPER( SUBSTR( stroka, 4, 5 ) ) = "WHILE" ) ;
                    .OR. scom == "WHILE"
-               AADD( tmpArray, stroka )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, stroka )
+               AADD( m->rezArray, .F. )
             CASE scom = "ENDDO"
                IF .NOT. Fou_Do()
                   nLastError := 2
                   RETURN Nil
                ENDIF
             CASE scom = "EXIT"
-               AADD( tmpArray, "EXIT" )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, "EXIT" )
+               AADD( m->rezArray, .F. )
             CASE scom = "LOOP"
-               AADD( tmpArray, "LOOP" )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, "LOOP" )
+               AADD( m->rezArray, .F. )
             CASE scom = "IF"
-               AADD( tmpArray, stroka )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, stroka )
+               AADD( m->rezArray, .F. )
             CASE scom = "ELSEIF"
                IF .NOT. Fou_If( .T. )
                   nLastError := 3
                   RETURN Nil
                ENDIF
-               AADD( tmpArray, SUBSTR( stroka, 5 ) )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, SUBSTR( stroka, 5 ) )
+               AADD( m->rezArray, .F. )
             CASE scom = "ELSE"
                IF .NOT. Fou_If( .T. )
                   nLastError := 1
                   RETURN Nil
                ENDIF
-               AADD( tmpArray, "IF .T." )
-               AADD( rezArray, .F. )
+               AADD( m->tmpArray, "IF .T." )
+               AADD( m->rezArray, .F. )
             CASE scom = "ENDIF"
                IF .NOT. Fou_If( .F. )
                   nLastError := 1
                   RETURN Nil
                ENDIF
             CASE scom = "#ENDSCRIPT"
-               RETURN rezArray
+               RETURN m->rezArray
             OTHERWISE
                bOldError := ERRORBLOCK( { | e | MacroError(e,stroka) } )
                BEGIN SEQUENCE
-                  AADD( rezArray, &( "{||" + ALLTRIM( stroka ) + "}" ) )
+                  AADD( m->rezArray, &( "{||" + ALLTRIM( stroka ) + "}" ) )
                RECOVER
                   IF scrSource != Nil .AND. VALTYPE( scrSource ) == "C"
                      WndOut()
@@ -156,7 +156,7 @@ PRIVATE rezArray := {}, tmpArray := {}
                   RETURN Nil
                END SEQUENCE
                ERRORBLOCK( bOldError )
-               AADD( tmpArray, "" )
+               AADD( m->tmpArray, "" )
             ENDCASE
          ENDIF
       ENDDO
@@ -168,12 +168,12 @@ PRIVATE rezArray := {}, tmpArray := {}
 #ifdef ENGLISH
       MsgSay( "Can't open " + scrSource )
 #else
-      MsgSay( "¥ ã¤ «®áì ®âªàëâì " + scrSource )
+      MsgSay( "ï¿½ï¿½ ã¤ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ " + scrSource )
 #endif
       nLastError := -1
       RETURN Nil
    ENDIF
-RETURN rezArray
+RETURN m->rezArray
 
 #ifdef __CLIP__
 STATIC FUNCTION MacroError( e, stroka )
@@ -190,92 +190,92 @@ STATIC FUNCTION MacroError( e, stroka )
 RETURN .T.
 #endif
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Static Function Fou_If()
 *+
 *+    Called from ( procscri.prg )   3 - function rdscript()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 STATIC FUNCTION Fou_If( prju )
 
 LOCAL i, j, bOldError
    IF prju
-      AADD( tmpArray, "JUMP" )
-      AADD( rezArray, .F. )
+      AADD( m->tmpArray, "JUMP" )
+      AADD( m->rezArray, .F. )
    ENDIF
-   j := LEN( rezArray )
+   j := LEN( m->rezArray )
    FOR i := j TO 1 STEP - 1
-      IF .NOT. EMPTY( tmpArray[ i ] ) .AND. UPPER( LEFT( tmpArray[ i ], 2 ) ) = "IF"
-         bOldError := ERRORBLOCK( { | e | MacroError(e,tmpArray[ i ]) } )
+      IF .NOT. EMPTY( m->tmpArray[ i ] ) .AND. UPPER( LEFT( m->tmpArray[ i ], 2 ) ) = "IF"
+         bOldError := ERRORBLOCK( { | e | MacroError(e,m->tmpArray[ i ]) } )
          BEGIN SEQUENCE
-            rezArray[ i ] = &( "{||IIF(" + ALLTRIM( SUBSTR( tmpArray[ i ], 4 ) ) + ;
+            m->rezArray[ i ] = &( "{||IIF(" + ALLTRIM( SUBSTR( m->tmpArray[ i ], 4 ) ) + ;
                  ",.T.,iscr:=" + LTRIM( STR( j, 5 ) ) + ")}" )
          RECOVER
             RETURN .F.
          END SEQUENCE
          ERRORBLOCK( bOldError )
-         tmpArray[ i ] = ""
+         m->tmpArray[ i ] = ""
          i --
-         IF i > 0 .AND. .NOT. EMPTY( tmpArray[ i ] ) .AND. tmpArray[ i ] = "JUMP"
-            rezArray[ i ] = &( "{||iscr:=" + LTRIM( STR( IIF( prju, j - 1, j ), 5 ) ) + "}" )
-            tmpArray[ i ] = ""
+         IF i > 0 .AND. .NOT. EMPTY( m->tmpArray[ i ] ) .AND. m->tmpArray[ i ] = "JUMP"
+            m->rezArray[ i ] = &( "{||iscr:=" + LTRIM( STR( IIF( prju, j - 1, j ), 5 ) ) + "}" )
+            m->tmpArray[ i ] = ""
          ENDIF
          RETURN .T.
       ENDIF
    NEXT
 RETURN .F.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Static Function Fou_Do()
 *+
 *+    Called from ( procscri.prg )   1 - function rdscript()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 STATIC FUNCTION Fou_Do
 
 LOCAL i, j, iloop := 0, iPos, bOldError
-   j := LEN( rezArray )
+   j := LEN( m->rezArray )
    FOR i := j TO 1 STEP - 1
-      IF .NOT. EMPTY( tmpArray[ i ] ) .AND. LEFT( tmpArray[ i ], 4 ) = "EXIT"
-         rezArray[ i ] = &( "{||iscr:=" + LTRIM( STR( j + 1, 5 ) ) + "}" )
-         tmpArray[ i ] = ""
+      IF .NOT. EMPTY( m->tmpArray[ i ] ) .AND. LEFT( m->tmpArray[ i ], 4 ) = "EXIT"
+         m->rezArray[ i ] = &( "{||iscr:=" + LTRIM( STR( j + 1, 5 ) ) + "}" )
+         m->tmpArray[ i ] = ""
       ENDIF
-      IF .NOT. EMPTY( tmpArray[ i ] ) .AND. LEFT( tmpArray[ i ], 4 ) = "LOOP"
+      IF .NOT. EMPTY( m->tmpArray[ i ] ) .AND. LEFT( m->tmpArray[ i ], 4 ) = "LOOP"
          iloop := i
       ENDIF
-      IF .NOT. EMPTY( tmpArray[ i ] ) .AND. ;
-            ( UPPER( LEFT( tmpArray[ i ], 8 ) ) = "DO WHILE" .OR. ;
-              UPPER( LEFT( tmpArray[ i ], 5 ) ) = "WHILE" )
-         bOldError := ERRORBLOCK( { | e | MacroError(e,tmpArray[ i ] ) } )
+      IF .NOT. EMPTY( m->tmpArray[ i ] ) .AND. ;
+            ( UPPER( LEFT( m->tmpArray[ i ], 8 ) ) = "DO WHILE" .OR. ;
+              UPPER( LEFT( m->tmpArray[ i ], 5 ) ) = "WHILE" )
+         bOldError := ERRORBLOCK( { | e | MacroError(e,m->tmpArray[ i ] ) } )
          BEGIN SEQUENCE
-            rezArray[ i ] = &( "{||IIF(" + ALLTRIM( SUBSTR( tmpArray[ i ], ;
-                 IIF( UPPER( LEFT( tmpArray[ i ],1 ) ) == "D",10,7 ) ) ) + ;
+            m->rezArray[ i ] = &( "{||IIF(" + ALLTRIM( SUBSTR( m->tmpArray[ i ], ;
+                 IIF( UPPER( LEFT( m->tmpArray[ i ],1 ) ) == "D",10,7 ) ) ) + ;
                  ",.T.,iscr:=" + LTRIM( STR( j + 1, 5 ) ) + ")}" )
          RECOVER
             RETURN .F.
          END SEQUENCE
          ERRORBLOCK( bOldError )
-         tmpArray[ i ] = ""
-         AADD( rezArray, &( "{||iscr:=" + LTRIM( STR( i - 1, 5 ) ) + "}" ) )
-         AADD( tmpArray, "" )
+         m->tmpArray[ i ] = ""
+         AADD( m->rezArray, &( "{||iscr:=" + LTRIM( STR( i - 1, 5 ) ) + "}" ) )
+         AADD( m->tmpArray, "" )
          IF iloop > 0
-            rezArray[ iloop ] = &( "{||iscr:=" + LTRIM( STR( i - 1, 5 ) ) + "}" )
-            tmpArray[ iloop ] = ""
+            m->rezArray[ iloop ] = &( "{||iscr:=" + LTRIM( STR( i - 1, 5 ) ) + "}" )
+            m->tmpArray[ iloop ] = ""
          ENDIF
          RETURN .T.
       ENDIF
    NEXT
 RETURN .F.
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 *+    Function DoScript()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *+
 FUNCTION DoScript( aScript )
 
@@ -284,8 +284,8 @@ PRIVATE iscr := 1
    IF aScript == Nil .OR. ( arlen := Len( aScript ) ) == 0
       Return Nil
    ENDIF
-   DO WHILE VALTYPE( aScript[ iscr ] ) = "C"
-      stroka := aScript[ iscr ++ ]
+   DO WHILE VALTYPE( aScript[ m->iscr ] ) = "C"
+      stroka := aScript[ m->iscr ++ ]
       DO WHILE !EMPTY( varName := getNextVar( @stroka, @varValue ) )
          PRIVATE &varName
          IF varvalue != Nil
@@ -293,15 +293,15 @@ PRIVATE iscr := 1
          ENDIF
       ENDDO
    ENDDO
-   DO WHILE iscr > 0 .AND. iscr <= arlen
-      EVAL( aScript[ iscr ] )
-      iscr ++
+   DO WHILE m->iscr > 0 .AND. m->iscr <= arlen
+      EVAL( aScript[ m->iscr ] )
+      m->iscr ++
    ENDDO
    WndOut()
 RETURN Nil
 
 FUNCTION EndScript
-   iscr := 0
+   m->iscr := 0
 RETURN Nil
 
 FUNCTION CompileErr( nLine )

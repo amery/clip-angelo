@@ -1,0 +1,32 @@
+#
+#                                            clip-gtk/example/gdk-pixbuf-demo/Makefile.in
+#
+
+Local_Depend = $(Clip_L_Dir)/libclip-gtk.so
+
+SRC=pixbuf_demo$(EXESUFF) pixbuf_scale$(EXESUFF) zoomimage$(EXESUFF)
+
+all: Makefile $(SRC)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c
+	rm -f$(V) $(SRC)
+
+pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ews pixbuf_demo.prg -lclip-gtk
+
+pixbuf_scale$(EXESUFF) : pixbuf_scale.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ews pixbuf_scale.prg -lclip-gtk
+
+zoomimage$(EXESUFF) : zoomimage.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ews zoomimage.prg -lclip-gtk
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

@@ -1,77 +1,73 @@
+#
+#                                            clip-ui/Makefile.in
+#
 # This is a part of CLIP-UI library
 #
 # Copyright (C) 2003-2006 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
-ifndef CLIPROOT
-	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
-endif
+Local_Depend = include/*.ch
 
-include $(CLIPROOT)/include/Makefile.inc
-
-DRIVERSDIR = $(DESTDIR)$(CLIPROOT)/lib/drivers
+DRIVERSDIR = $(DESTDIR)/lib/drivers
 #CLIP = $(CLIPROOT)/bin/clip
 
 .SUFFIXES: .prg .o .po
 
-TARGET  = libclip-ui$(DLLSUFF)
-RTARGET = libclip-ui$(DLLREALSUFF)
+PROG = clip-ui
+#TARGET  = libclip-ui$(DLLSUFF)
+#RTARGET = libclip-ui$(DLLREALSUFF)
 
-OBJS    = button.o checkbox.o choice.o color.o combobox.o edit.o \
+OBJS    = $(sort button.o checkbox.o choice.o color.o combobox.o edit.o \
 		  edittable.o font.o form.o frame.o grid.o image.o label.o \
 		  layout.o menu.o progressbar.o radiobutton.o slider.o source.o \
 		  table.o timer.o toolbar.o tree.o utils.o window.o workspace.o \
-		  glade.o qt_designer.o
+		  glade.o qt_designer.o )
 
 LANGS   = ru_RU.KOI8-R
 
+DIRS_TO_SCAN = drivers
+
 .PHONY: all clean uninstall distclean
 
-all : var.ch drivers $(TARGET)
+all : Makefile var.ch $(DIRS_TO_SCAN) $(STARGET)
 
-var.ch:
+cfg :
+	cp --remove-destination -fpu$(V) include/clip-ui.ch $(Clip_I_Dir)/
+
+var.ch: Makefile $(Clip_L_Dir)/libclip-xml.so
+	$(Trace_o)
 	echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
 
-drivers : FORCE
-	cd drivers && $(MAKE) all
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(C_LIBS)
 
-FORCE :
-
-$(TARGET): $(OBJS)
-	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(C_LIBS)
-
-clean :
-	cd drivers && $(MAKE) clean
-	cd example && $(MAKE) clean
-	rm -f Makefile $(OBJS) $(TARGET) var.ch *.bak *.nm *.ex *.ppo *.dll.a *.log *.dll
+cleanc :
+#	cd drivers && $(MAKE) clean
+#	cd example && $(MAKE) clean
+	rm -f$(V) $(TARGET).* var.ch *.dll.a
 
 clear: clean
 
-install : all
-	cd drivers && $(MAKE) install
-	mkdir -p $(DESTDIR)$(CLIPROOT)/lib
-	mkdir -p $(DESTDIR)$(CLIPROOT)/include
-	clip_cp$(SCRIPTSUFF) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
-	clip_cp$(SCRIPTSUFF) $(RTARGET) $(DESTDIR)$(CLIPROOT)/lib
-	clip_cp$(SCRIPTSUFF) clip-ui.ch $(DESTDIR)$(CLIPROOT)/include
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-ui
-	cp -R example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-ui/
-	mkdir -p $(DESTDIR)$(CLIPROOT)/locale.po
-	cd locale.po && \
-	for i in $(LANGS); do mkdir -p $(DESTDIR)$(CLIPROOT)/locale.po/$$i/ && \
-	clip_cp$(SCRIPTSUFF) $$i/*.po $(DESTDIR)$(CLIPROOT)/locale.po/$$i/; done
-	
-uninstall:
-	cd drivers && $(MAKE) uninstall
-	rm -rf $(CLIPROOT)/lib/$(TARGET) $(CLIPROOT)/lib/$(RTARGET) $(CLIPROOT)/doc/example/clip-ui/
-	rm -f  $(CLIPROOT)/include/clip-ui.ch
+install : all install-lib install-example
+#	mkdir -p$(V) $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/include
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
+#	$(CLIP_CP) $(RTARGET) $(DESTDIR)/lib
+#	mkdir -p $(DESTDIR)/doc/example/clip-ui
+#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-ui/
+	mkdir -p$(V) $(DESTDIR)/locale.po
+	cd locale.po && 																						\
+		for i in $(LANGS); do mkdir -p$(V) $(DESTDIR)/locale.po/$$i/ && 	\
+		$(CLIP_CP) $$i/*.po $(DESTDIR)/locale.po/$$i/; done
 
-distclean: clean
+distclean uninstall: $(DIRS_TO_SCAN)
+#	cd drivers && $(MAKE) uninstall
+	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).* $(Clip_D_Dir)/example/clip-ui/
+	rm -f$(V)  $(Clip_I_Dir)/clip-ui.ch
 
 dist: distclean
 	cd .. && tar cvfz clip-ui.tgz clip-ui
 
-.prg.o: clip-ui.ch
-	$(CLIP) -w $<
+include $(Makefile_o_in)
 
 commit:
 	_cvs commit
@@ -84,3 +80,6 @@ ucommit:
 
 shell:
 	sh
+
+include $(Makefile_end_in)
+

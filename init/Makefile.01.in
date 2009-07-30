@@ -1,5 +1,5 @@
 ##
-##										init/Makefile.01.ini
+##										init/Makefile.01.in
 ##
 ##				called from all Makefile files
 ##
@@ -24,7 +24,7 @@ STARGET 				= 		$(TARGET)$(DLLSUFF)
 STARGET2				= 		$(TARGET2)$(DLLSUFF)
 
 ADDOBJS 			=
-ADDLIBS 			=
+#ADDLIBS 			=
 
 ADDOBJS2 			=
 ADDLIBS2 			=
@@ -33,7 +33,9 @@ BINS 					=
 
 DIRS_TO_SCAN 		=
 
-new_sequence 		= 		$(DIRS_TO_SCAN) install
+DOC =
 
-LocalDepend 		=		$(Depend_h) $(StandardDepend)
+#new_sequence 		= 		$(DIRS_TO_SCAN) install
+
+#LocalDepend 		=		$(Depend_h) $(StandardDepend)
 

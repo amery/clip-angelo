@@ -4,16 +4,16 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   License : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
-#include <fwin/tcbrowse.ch>
-#include <fwin/sysMetrics.ch>
-//#include <fwin/WinApi.ch> |\ includig from fivewin.ch
-//#include <fwin/font.ch>   |/
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
+#include <clip-fw/tcbrowse.ch>
+#include <clip-fw/sysMetrics.ch>
+//#include <clip-fw/WinApi.ch> |\ includig from fivewin.ch
+//#include <clip-fw/font.ch>   |/
 
 #include <clip-gtk.ch>
-#include <fwin/msgxpm.ch>
-#include <fwin/itk.ch>
+#include <clip-fw/msgxpm.ch>
+#include <clip-fw/itk.ch>
 
 #define COLOR_BTNFACE	15
 #define COLOR_BTNSHADOW	16
@@ -629,7 +629,7 @@ local i, item, aItem, val, hFocus, toolt, oRect, style
 return
 *************
 static function UpdateWindow(oWnd)
-// Ëë¨ğêË ¬Åğëµ Êê¦µµ ¬ëÊ. şËë áë‘êëÊË´ ğë§ë÷ ÁëÊµáå
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ëµ ï¿½ê¦µï¿½ï¿½ ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Êµï¿½ï¿½
 return
 ************
 static function WSay( oWnd, nRow, nCol, cText, nClrFore, nClrBack,;
@@ -732,7 +732,7 @@ return ret
 ****************
 static function BringWindowToTop(hWnd)
 local lTop:=.f.
-	// go top ­ HSCROLL or VSCROLL??????
+	// go top ï¿½ HSCROLL or VSCROLL??????
 return lTop
 ************
 static function CloseWindow(hWnd)
@@ -741,14 +741,14 @@ local ret
 return ret
 *************
 static function SetKey(nKey)
-//  ê éµ‘®îë ¬Åğëµ Å ¬ë ¬êáµ, Ëáëµê¬ê á‘´ Ëµ­ÁëËÊÅÁµËÊÅ
+//  ï¿½ éµ‘ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ëµ ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ á‘´ Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 return NIL
 **************
 static function GetKeyState(nKey)
 local lPressed := .f.
 	switch nKey
 	case 0//VK_CONTROL
-		// ª íÊµ §êéµÊêëÊ Êµ‘®¦µ Ë §êËîÅ§ë¬¬µ¨ ¦‘ê­ÅêÊ×§µ¨ :( ???????
+		// ï¿½ ï¿½Êµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Êµï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½Å§ë¬¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×§ï¿½ï¿½ :( ???????
 		lPressed := iif(kbdstat()==0x4, .t., .f.)
 	endswitch
 return lPressed
@@ -814,8 +814,8 @@ local lSuccess:=.f.
 return lSuccess
 *********************
 static function WndPrint( hWnd, hDC, nRow, nCol, nScale )
-* …ê¦ê´-Êµ ¡ëğêÊê‘¦ê ­Å¬áµ­ê´
-* ËÁ. source/WINAPI/WNDPRINT.C Ğ×¬¦öÅä WNDPRINT
+* ï¿½ï¿½ï¿½ï¿½ï¿½-Êµ ï¿½ï¿½ï¿½ï¿½ï¿½ê‘¦ï¿½ ï¿½Å¬áµ­ï¿½ï¿½
+* ï¿½ï¿½. source/WINAPI/WNDPRINT.C ï¿½×¬ï¿½ï¿½ï¿½ï¿½ WNDPRINT
 *
 return
 *******************

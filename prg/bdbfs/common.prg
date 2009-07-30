@@ -3,7 +3,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 /*
-Библиотечные функции ELB.LIB, специально адаптированные для bdbfs.
+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ункции ELB.LIB, специая┐╜ьно я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ровя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ bdbfs.
 */
 
 #include "common.ch"
@@ -21,13 +21,13 @@ PROC Devices
 PUBLIC _mins:=IsMouse(),__mcol:=MaxCol(),__mrow:=MaxRow(),_ms:=0
 PUBLIC _middleCol:=INT(__mcol/2),_middleRow:=INT(__mrow/2)
 IF _mins THEN SetMouseXY(__mcol,__mrow)
-PUBLIC __Menu_Row:=0,__Menu_Col:=0,__Menu_Prom:=''	//Используется в Меню
+PUBLIC __Menu_Row:=0,__Menu_Col:=0,__Menu_Prom:=''	//я┐╜споя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜
 **********
 FUNC NFIND(_mess,_var,_color,_Footer,lNeedTone,nTimeWait,nlShine,nMuch)
 LOCAL i,sc:=SetCursor(0),_r,_c,nStr,aDvd:={},cTst:='',nWide:=__mcol-12,aMess
 IF TYPE('_lPlain')<>'U'
 	? _mess
-	QUIT	//все равно ошибка восстановления при RETURN
+	QUIT	//я┐╜я┐╜я┐╜ равя┐╜я┐╜ я┐╜шибя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ RETURN
 ENDIF
 IF_NIL _color IS m->_im
 IF_NIL _Footer IS ''
@@ -115,21 +115,21 @@ END
 **********
 FUNC ShowButton(_x01,_y01,_x02,_y02,_s,_color,_Frame,_ColorBorder,_Selected)
 /*
- Пpи наличии массива сообщения _s они появляются,начиная с первой строки окна
- Пpи _ColordBorder вокpуг pамки есть тень заданного цвета (в числовом виде)
- При задании _COLOR - устанавливается временно этот цвет
- _FRAME определяет вид рамочки - по умолчанию - одинарная
- Если определена символьная пара _Selected, то она окаймляет все сообщения
- (это используется в меню)
+ я┐╜pя┐╜ я┐╜я┐╜я┐╜я┐╜чии я┐╜я┐╜я┐╜сивя┐╜ сооя┐╜щеня┐╜я┐╜ _s я┐╜я┐╜я┐╜ я┐╜я┐╜явля┐╜я┐╜я┐╜я┐╜я┐╜,я┐╜я┐╜чиня┐╜я┐╜ я┐╜ я┐╜я┐╜рвоя┐╜ я┐╜я┐╜рокя┐╜ я┐╜я┐╜я┐╜я┐╜
+ я┐╜pя┐╜ _ColordBorder я┐╜я┐╜я┐╜pя┐╜я┐╜ pя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ теня┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ цвея┐╜я┐╜ (я┐╜ я┐╜я┐╜слоя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜)
+ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ _COLOR - я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ремя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ цвея┐╜
+ _FRAME я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ рамя┐╜чки - я┐╜я┐╜ умоя┐╜чаня┐╜я┐╜ - я┐╜я┐╜я┐╜я┐╜я┐╜рная┐╜
+ я┐╜сли я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ симя┐╜я┐╜я┐╜ьная┐╜ я┐╜я┐╜я┐╜я┐╜ _Selected, я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ сооя┐╜щеня┐╜я┐╜
+ (я┐╜я┐╜я┐╜ я┐╜споя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜)
 
- Если координаты окна заданы неполностью,то используются максимальные
- размеры.
+ я┐╜сли я┐╜я┐╜я┐╜рдия┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜,я┐╜я┐╜ я┐╜споя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜симя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+ разя┐╜я┐╜я┐╜я┐╜.
 
-	Пример:
-// Рамочка в центре заданного цвета
-	ShowButton(10,10,14,69,[Нажмите что нибудь],NewColor,FRAME2)
+	я┐╜римя┐╜я┐╜:
+// я┐╜я┐╜я┐╜я┐╜чка я┐╜ ценя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ цвея┐╜я┐╜
+	ShowButton(10,10,14,69,[я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜],NewColor,FRAME2)
 
- См.также WaitWindow(),Nfind(),Waiting()
+ я┐╜я┐╜.такя┐╜я┐╜ WaitWindow(),Nfind(),Waiting()
 */
 
 LOCAL	_wide,nX1,_sc,_front,_lft,_i
@@ -140,7 +140,7 @@ IF_NIL _x02 IS __mrow
 IF_NIL _y02 IS __mcol
 IF_NIL _s IS ''
 IF_NIL _color IS SetColor()
-IF_NIL _frame IS '┌─┐│┘─└│ '
+IF_NIL _frame IS 'я┐╜─┐я┐╜я┐╜я┐╜я┐╜ '
 
 _x01:=INT(_x01)
 _x02:=INT(_x02)
@@ -180,8 +180,8 @@ DispEnd()
 RETURN {_x01,_y01,_x02,_y02,_front,_sc,_frame}
 **********
 PROC DownButton(_aHandle,_waiting)
-* Показывает вдавленную кнопку по хэндлу,сохраненному в ShowButton
-* При наличии _waiting ждет указанное время
+* я┐╜я┐╜я┐╜я┐╜я┐╜ывая┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜,я┐╜я┐╜я┐╜раня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ ShowButton
+* я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜чии _waiting я┐╜я┐╜я┐╜я┐╜ укая┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ремя┐╜
 
 LOCAL _i,_front:=_aHandle[5],;
 	_x01 :=_aHandle[1],;
@@ -194,14 +194,14 @@ IF_NIL _waiting IS 0.001
 
 HideMouse()
 DispBegin()
-DispBox(_x01,_y01,_x02,_y02,TRIM(_frame)/*'┌─┐│┘─└│ '*/,_aHandle[6])
-@ _x02,_y01+1 SAY Repl(Substr(_frame,2,1)/*'─'*/,_y02-_y01-1)+;
-		  Substr(_frame,5,1) /*'┘'*/ COLOR _front
+DispBox(_x01,_y01,_x02,_y02,TRIM(_frame)/*'я┐╜─┐я┐╜я┐╜я┐╜я┐╜ '*/,_aHandle[6])
+@ _x02,_y01+1 SAY Repl(Substr(_frame,2,1)/*'я┐╜'*/,_y02-_y01-1)+;
+		  Substr(_frame,5,1) /*'я┐╜'*/ COLOR _front
 
 FOR _i:=_x01+1 To _x02-1
-	@ _i,_y02 Say Substr(_frame,4,1)/*'│'*/ COLOR _front
+	@ _i,_y02 Say Substr(_frame,4,1)/*'я┐╜'*/ COLOR _front
 NEXT
-@ _x01,_y02 SAY Substr(_frame,3,1) /*'┐'*/ COLOR _front
+@ _x01,_y02 SAY Substr(_frame,3,1) /*'я┐╜'*/ COLOR _front
 
 ShowMouse()
 DispEnd()
@@ -248,7 +248,7 @@ ENDDO
 DevOut(cHl,cC)
 **********
 FUNC Medi(_s,_n,_bd,_nc)
-LOCAL	s1,_Decim
+LOCAL	s1,_Decim, _s1
 IF_NIL _bd IS m->_DefaultBorder
 IF_NIL _nc IS .T.
 DO CASE
@@ -258,7 +258,7 @@ DO CASE
 	ELSE				//IF INT(_s)#_S
 		IF '*' $ (s1:=STR(_s))
 			_Decim:=SET(_SET_DECIMALS)
-// Обеспечим отбрасывание дроби при переполнении
+// я┐╜я┐╜я┐╜спечим я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ывая┐╜я┐╜я┐╜ я┐╜робя┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜репя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 			WHILE '*' $ Str(_s,_n,_decim) .AND. _Decim>0
 				_decim--
 			END
@@ -406,7 +406,7 @@ IF EMPTY(lNoMsg) THEN Nfind(PRV_NOFILE+_NameFile)
 RETU .F.
 **********
 FUNC FileExist(cName)
-*Не File(), чтобы с PATH не путалось
+*я┐╜я┐╜ File(), я┐╜тобя┐╜ я┐╜ PATH я┐╜я┐╜ я┐╜я┐╜таля┐╜я┐╜я┐╜
 LOCAL lRes:=.T.
 IF !EMPTY(Directory(cName))
 ELSEIF !EMPTY(Directory(LOWER(cName)))
@@ -484,10 +484,10 @@ FOR _i:=m->_Awt+1 to m->_awb-1 DO @ _i,m->_awr say SCROLL_FILL
 @ m->_awt,m->_awr say SCROLL_UP color _cm
 @ m->_awb,m->_awr say SCROLL_DOWN color _cm
 
-FT_PutKey(260)	&& Чтобы активировать L_ACH
+FT_PutKey(260)	&& я┐╜тобя┐╜ я┐╜я┐╜тивя┐╜ровя┐╜я┐╜я┐╜ L_ACH
 ShowMouse()
 m->lRepeat:=.T.
-m->lAchFinish:=.F.	// Завершить из пользовательской функции
+m->lAchFinish:=.F.	// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜ьзоя┐╜я┐╜теля┐╜скоя┐╜ я┐╜ункции
 WHILE m->lRepeat
 	_i=Achoice(m->_awt+1,m->_awl+1,m->_awb-2,m->_awr-2,;
 		   m->_acItems,,'L_Ach',IF(PCount()<6,1,m->_Current))
@@ -513,24 +513,24 @@ LOCAL bSelect:={|_n,lSlct| m->alSelect[_n]:=lSlct,;
 				Strtran(m->_acItems[_n],'[ ]','[x]'),;
 				Strtran(m->_acItems[_n],'[x]','[ ]'))}
 m->lRepeat:=.F.
-m->nItem:=_numb		//Для SetKey
+m->nItem:=_numb		//я┐╜я┐╜я┐╜ SetKey
 
 DispBegin()
 @ cRowMark,m->_awr SAY SCROLL_MARK COLOR _cm
 IF _nmoves=0 .AND. Between(_a, 1, 31)
 	_search=''
 ENDIF
-@ m->_awb,_left SAY Padc(_search,nWide,'─');
+@ m->_awb,_left SAY Padc(_search,nWide,'я┐╜');
 	COLOR IF(EMPTY(_search), "n/b*", )
 
 IF !EMPTY(m->aDescr)
-	@ m->_awb-1,_left SAY Padc(m->aDescr[_numb],nWide,'─');
+	@ m->_awb-1,_left SAY Padc(m->aDescr[_numb],nWide,'я┐╜');
 		COLOR IF(EMPTY(m->aDescr[_numb]),"w/b*",_HdColor)
 ENDIF
 
 IF _la<>_length
-	@ m->_awb, _right SAY IF(_numb+_length-_posit > _la, '─', '+') COLOR _HdColor
-	@ m->_awt, _right SAY IF(_numb-_posit > 1, '+', '┐') COLOR _HdColor
+	@ m->_awb, _right SAY IF(_numb+_length-_posit > _la, 'я┐╜', '+') COLOR _HdColor
+	@ m->_awt, _right SAY IF(_numb-_posit > 1, '+', 'я┐╜') COLOR _HdColor
 ENDIF
 DispEnd()
 
@@ -541,14 +541,14 @@ DO CASE
 	CASE _a=K_ENTER
 		RETU 1
 
-	CASE _a=K_F8 .OR. (_a=K_CTRL_D .AND. Altf()=2)	//Отличать от ->
+	CASE _a=K_F8 .OR. (_a=K_CTRL_D .AND. Altf()=2)	//я┐╜тлия┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ ->
 		IF m->_lHist
 			A_Del(m->_acItems,_numb)
 			IF m->_lOwn THEN A_Del(m->_ClipText,_numb)
 			RETU 5
 		ELSEIF	'SETTAG' $ CalledFrom()
 			DelTag(1,_numb)
-			m->lAgain:=.T.	//Повторить выбор
+			m->lAgain:=.T.	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ыбоя┐╜
 			RETU 0
 		ENDIF
 
@@ -631,7 +631,7 @@ IF m->_ms=1
 			KEYB _UP
 		ELSEIF _moy==m->_awb
 			KEYB _DOWN
-		ELSEIF Between(_moy, _top, _awb-1)
+		ELSEIF Between(_moy, _top, m->_awb-1)
 			Eval(oTb:SkipBlock, Int((_moy-m->_awt)*(_la)/_Length)-_numb)
 		ENDIF
 	ENDIF
@@ -655,7 +655,7 @@ IF lSet
 	aKeys:={_MSG_F1}
 	AEVAL(abAction,{|_1,i|AADD(aKeys,_1[1]),SETKEY(0 - i,_1[2])})
 ELSE
-	SET KEY K_SH_TAB TO	//где надо
+	SET KEY K_SH_TAB TO	//я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
 	POP KEYS
 ENDIF
 RETURN aKeys
@@ -670,10 +670,10 @@ ShowButton(_middlerow-2,8,;
 **********
 FUNC MENU2(aPrompt,_start,aMsg,cAdd,aKeys)
 /*
-aPrompt - массив альтернатив
-_start -  Нач. элемент выбора
-aMsg - массив заглавия
-cAdd - доп. разъяснение (см.Continue())
+aPrompt - я┐╜я┐╜я┐╜сив я┐╜я┐╜я┐╜я┐╜я┐╜рнатив
+_start -  я┐╜я┐╜я┐╜. я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ыбоя┐╜я┐╜
+aMsg - я┐╜я┐╜я┐╜сив я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+cAdd - я┐╜я┐╜я┐╜. разя┐╜я┐╜снея┐╜я┐╜я┐╜ (я┐╜я┐╜.Continue())
 */
 LOCAL i,_r,aMenu:={},aCol,nLeft, nRight
 aMsg:=FT_XTOY(aMsg,'A')
@@ -709,12 +709,12 @@ FUNC Continue(_Mess,_choice)
 IF_NIL _choice IS 2
 RETU (MSG_MNU_YESNO = 1)
 **********
-* * * * * *  В Ы З Ы В А Е М Ы Е  Ф У Н К Ц И И
+* * * * * *  я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜  я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜ я┐╜
 **********
 FUNC Sum( _Fld,_cond)
 m->__sum := 0
 m->_tally:=0
-M6_DBEval({||__sum+=&(_Fld),_tally++},_cond)	//Compile - в m6
+M6_DBEval({||__sum+=&(_Fld),_tally++},_cond)	//Compile - я┐╜ m6
 
 go _tmr
 RETU __sum
@@ -730,6 +730,7 @@ RETU (m->_tally:=__count)
 **********
 FUNC MGoTo(_ngoto,lMsg)
 LOCAL i,res:=.T.,cMsg
+MemVar _fltrcond
 IF Between(_ngoto,1, LastRec())
 	i:=RECNO()
 	GOTO _ngoto
@@ -825,7 +826,7 @@ IF EMPTY(_fld) THEN _fld:=_C_F
 IF EMPTY(_bFld) THEN _bFld:={|i| IF(VALTYPE(i)=='A',LEN(i), i) }
 lMeter:=!EMPTY(lMeter)
 MaxVal:=Eval(_bFld,&_fld)
-cvt:=VALTYPE(MaxVal)	//из-за V
+cvt:=VALTYPE(MaxVal)	//я┐╜я┐╜-я┐╜я┐╜ V
 CheckEsc(.T.)
 MaxRec:=RecNo()
 IF lMeter THEN IniSearching()
@@ -885,7 +886,7 @@ ELSE
 ENDIF
 **********
 PROC OpFinish(cMsg,xVar)
-NFIND(cMsg,xVar,,IF(EMPTY(_timing),'',TimerOff()))	//в Msg.ch
+NFIND(cMsg,xVar,,IF(EMPTY(_timing),'',TimerOff()))	//я┐╜ Msg.ch
 **********
 PROC OpReady()
 IF !EMPTY(_Timing) THEN OpFinish(READY)
@@ -907,15 +908,15 @@ IF_NIL nCurr IS m->_tally
 DispBegin()
 
 DO CASE
-// Сначала - частая проверка
+// я┐╜я┐╜я┐╜чаля┐╜ - я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ровя┐╜рка
 	CASE lWas .AND. nStep=2 .AND. nCurr>=nLast .AND. !EMPTY(m->_lMeter)
 		nLast:=nCurr
-		IF nMuch==0 THEN nMuch:=KeyCount()	//В Append может проявиться
+		IF nMuch==0 THEN nMuch:=KeyCount()	//я┐╜ Append я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜явия┐╜я┐╜я┐╜я┐╜
 		IF !EMPTY(nTotal) THEN nMuch:=nTotal
 		nCurr:=MIN(nCurr,nMuch-1)
-		@ 13,nL SAY REPL('▄',nCurr*57/nMuch-1) COLOR _im
+		@ 13,nL SAY REPL('я┐╜',nCurr*57/nMuch-1) COLOR _im
 
-		SAY_HERE '│' COLOR _HdColor
+		SAY_HERE 'я┐╜' COLOR _HdColor
 		@ 15,nL+14  SAY NTRIM(nCurr)+'/'+NTRIM(nMuch) +;
 				' ( '+NTRIM(nCurr*100/nMuch)+ ' % ) '+;
 				IF(EMPTY(_timing),'',Ntrim(Seconds()-_tOld)+SEC_M);
@@ -924,13 +925,13 @@ DO CASE
 	CASE nStep==1
 		lWas:=.T.
 		ScrSave(@scr)
-		IF !EMPTY(m->_lMeter)		//Не запрещен бар
+		IF !EMPTY(m->_lMeter)		//я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜щен я┐╜я┐╜я┐╜
 			Panel(8,nL-2,17,_middlecol+30,;
 				{WAIT_WIND+cMsg+'...'+m->_abort},;
 				{_im,_HdColor,_im})
 			@ 11,nL SAY '0 %' COLOR _HdColor
 			@ 11,_middlecol+24 SAY '100 %' COLOR _HdColor
-			@ 13,nL SAY REPL('▀',57) COLOR _im
+			@ 13,nL SAY REPL('я┐╜',57) COLOR _im
 			@ 15,nL SAY PROCESSED COLOR _im
 			nLast:=m->_SX_Step
 			nMuch:=IF(EMPTY(nTotal),KeyCount()-KeyNo()+1,nTotal)
@@ -1032,7 +1033,7 @@ PROC ShowNum(nVal,cMsg)
 Nfind(nVal,,,cMsg)
 **********
 PROC Cdd(cWhere)
-*Переход в каталог,независимо от диска
+*я┐╜я┐╜я┐╜я┐╜ход я┐╜ я┐╜я┐╜таля┐╜я┐╜,я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜симя┐╜ я┐╜я┐╜ я┐╜я┐╜ска
 StripRight(@cWhere,'\')
 ChDisk(cWhere)
 ChDir(cWhere)
@@ -1072,17 +1073,17 @@ RETURN (t1==t2 .OR. (t1 $ 'NFV' .AND. t2 $ 'NFV') .OR. ;
 FUNC Preproc(cExp)
 LOCAL	i,j,jr,cCmd,cFcmd,cPar
 
-cExp:=Sx_SlimFast(ALLTRIM(cExp))	//Сам SlimFast не обрезает последний пробел
+cExp:=Sx_SlimFast(ALLTRIM(cExp))	//я┐╜я┐╜я┐╜ SlimFast я┐╜я┐╜ я┐╜я┐╜резя┐╜я┐╜я┐╜ я┐╜я┐╜слея┐╜я┐╜я┐╜я┐╜ я┐╜робя┐╜я┐╜
 
 FOR i:=1 TO LEN(m->_aCommand)
 	cFcmd:=m->_aCommand[i,1]
 	cCmd:=IF( (j:=AT('<',cFcmd))=0,cFcmd,LEFT(cFcmd,j-1) )
 	IF IsLefts(cExp,UPPER(cCmd)) THEN EXIT
 NEXT
-IF i<=LEN(m->_aCommand)	//найдено
+IF i<=LEN(m->_aCommand)	//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	jr:=AT('>',cFcmd)
 	cPar:=IF(jr==0,'',SUBSTR(cFcmd,j,jr-j+1))	//<x>
-	cFcmd:=m->_aCommand[i,2]	//результат
+	cFcmd:=m->_aCommand[i,2]	//резя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	cExp := ALLTRIM(IF( EMPTY(cPar), cFcmd,;
 				 StrTran(cFcmd,cPar,SUBSTR(cExp,LEN(cCmd)+1)) ))
 
@@ -1091,13 +1092,13 @@ IF i<=LEN(m->_aCommand)	//найдено
 	ENDIF
 ENDIF
 
-* Проверка предопределенных замен
+* я┐╜ровя┐╜рка я┐╜редя┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜
 cPar:=Exclude(cExp,' ')
 DO CASE
-	CASE '{^' $ cExp	//VFP формат
+	CASE '{^' $ cExp	//VFP я┐╜я┐╜рмая┐╜
 		j:= AT('{^',cPar)
 		jr:=AT( '}', SUBSTR(cPar,j+2))
-		IF Between(jr,9,11)	//datetime преобразовывать не будем
+		IF Between(jr,9,11)	//datetime я┐╜реоя┐╜разя┐╜я┐╜ывая┐╜я┐╜ я┐╜я┐╜ я┐╜удея┐╜
 			cFcmd:=SET(_SET_DATEFORMAT)
 			SET DATE JAPAN
 			cCmd:=CTOD(SUBSTR(cPar,j+2,jr-1))
@@ -1115,7 +1116,7 @@ LOCAL key,keyBlock,_timeBegin:=Seconds(),_oldAlt:=-1
 IF PCount()=0
 	_time:=-1
 ELSE
-	IF _time=0 THEN _time:=36000	// 10 часов ожидания
+	IF _time=0 THEN _time:=36000	// 10 я┐╜я┐╜сов я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	ShowMouse();ShowMouse()
 ENDIF
 m->_ms:=0
@@ -1164,7 +1165,7 @@ DO WHILE .T.
 			IF _time>0 THEN HideMouse()
 			RETU key
 		ENDCASE
-		_TimeBegin:=Seconds()	// Что-то все-таки нажато
+		_TimeBegin:=Seconds()	// я┐╜я┐╜я┐╜-я┐╜я┐╜ я┐╜я┐╜я┐╜-такя┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 
 	IF _time>0 .AND. NextKey()=0 .AND. ((key:=KbdStat()) # _OldAlt)
@@ -1174,10 +1175,10 @@ ENDDO
 **********
 PROC Panel(nTop,nLeft,nBottom,nRight,aMess,aColor,nBottomBord)
 /*
- Рисует "3-х мерную" панель.
+ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ "3-я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜.
 
- Пример:
-	Panel(10,10,16,69,'Ошибка записи !',AlarmColor)
+ я┐╜римя┐╜я┐╜:
+	Panel(10,10,16,69,'я┐╜шибя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ !',AlarmColor)
 */
 IF_NIL nBottomBord IS 1
 IF ValType(aColor)=='C' THEN;
@@ -1193,11 +1194,11 @@ ShowMouse()
 ************
 PROC WINDOW(_x01,_y01,_x02,_y02,_s,_Mess)
 /*
- Сообщение _S появляется на pамке
-Упрощенная версия
+ я┐╜я┐╜я┐╜я┐╜щеня┐╜я┐╜ _S я┐╜я┐╜явля┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ pя┐╜я┐╜я┐╜я┐╜
+я┐╜я┐╜я┐╜я┐╜щеня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 */
 LOCAL	_wide:=_y02-_y01
-BoxShadow(_x01,_y01,_x02,_y02,7,'╔═╗║╝═╚║ ' )
+BoxShadow(_x01,_y01,_x02,_y02,7,'я┐╜═╗я┐╜я┐╜я┐╜╚║ ' )
 _s:=LEFT(_s,_wide--)
 @ _x01,_y01+1+Centr(_s,_wide) say _s
 **********
@@ -1254,7 +1255,7 @@ IF EMPTY(anKeys)
 	NEXT
 	anKeys:=Base_M_Keys
 ENDIF
-//названия
+//я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 AADD(_PushKeys,{ACLONE(m->Main_keys),ACLONE(m->Alt_Keys),;
 		ACLONE(m->Ctrl_Keys),ACLONE(m->Shift_Keys),scr,SetColor(color)})
 
@@ -1313,10 +1314,10 @@ ShowMouse()
 **********
 FUNC Parce(cStr,cTest,cBefore,cAfter)
 /*
-Если в строке cStr содержится cTest, то в ссылочные переменные
-cBefore, cAfter записываются соответствующие подстроки cStr.
-Иначе cBefore:=cStr, cAfter:=''
-Возвращает позицию cTest.
+я┐╜сли я┐╜ я┐╜я┐╜рокя┐╜ cStr содя┐╜ржия┐╜я┐╜я┐╜ cTest, я┐╜я┐╜ я┐╜ я┐╜я┐╜ылоя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ремя┐╜я┐╜я┐╜я┐╜я┐╜
+cBefore, cAfter я┐╜я┐╜я┐╜я┐╜я┐╜ывая┐╜я┐╜я┐╜я┐╜ соотвея┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щие я┐╜я┐╜я┐╜я┐╜я┐╜рокя┐╜ cStr.
+я┐╜я┐╜я┐╜я┐╜я┐╜ cBefore:=cStr, cAfter:=''
+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ cTest.
 */
 LOCAL i:=AT(cTest, cStr)
 IF i>0
@@ -1341,7 +1342,7 @@ LOCAL nL:=LEN(cRght)
 IF SUBSTR(cStr, -nL ) == cRght THEN cStr:=Strip(cStr,nL)
 **********
 FUNC RealFldName(cDest)
-IF PAD(cDest,11) $  'ShowVaried( ShowForced('
+IF PAD(cDest,11) $  'ShowVaried(я┐╜ShowForced('
 	Parce(Substr(cDest,12),',',@cDest)
 ENDIF
 RETURN cDest
@@ -1363,10 +1364,10 @@ __KeyBoard()
 SetCursor(cursor)
 RestPos()
 ScrRest(scr)
-SetBlink(.F.)	// почему-то портится
+SetBlink(.F.)	// я┐╜я┐╜чемя┐╜-я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 RETURN error
 **********
-// Для подключения ONIDLE
+// я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜ ONIDLE
 PROC TimeShow()
 STATIC oldTime
 LOCAL cT
@@ -1409,15 +1410,15 @@ ENDIF
 RETURN xRes
 **********
 FUNC HistClip(aClip,lInClip)
-m->_lOwn:=!EMPTY(lInClip)	//Признак вызова GetClipboard
+m->_lOwn:=!EMPTY(lInClip)	//я┐╜ризя┐╜я┐╜я┐╜ я┐╜ызоя┐╜я┐╜ GetClipboard
 RETURN ForAch(10,USE_HISTORY,aClip,1,'H1')
 **********
 FUNC Compile(cBlock)
-ErrorBlock({|e|Break(.T.)})	//Из-за ошибки вложенных блоков
+ErrorBlock({|e|Break(.T.)})	//я┐╜я┐╜-я┐╜я┐╜ я┐╜шибя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 IF_NIL cBlock IS ".T."
 BEGIN SEQU
 	cBlock:=&("{||"+ ALLTRIM(cBlock)+"}")
-// брякнет, если не C
+// я┐╜я┐╜якня┐╜я┐╜, я┐╜сли я┐╜я┐╜ C
 END
 ErrorSys()
 RETURN cBlock
@@ -1458,7 +1459,7 @@ Fseek(_handle,_from,nType) ; Fread(_handle,@cRet,_num)
 RETU cRet
 **********
 FUNC IsLefts(cLong,cShort,lNeedTrim)
-*Проверяет на равенство cShort и соотв.левой подстроки cLong
+*я┐╜ровя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ равя┐╜я┐╜я┐╜тво cShort я┐╜ сооя┐╜я┐╜.я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜рокя┐╜ cLong
 LOCAL i:=LEN(cShort)
 IF IsNILorTRUE(lNeedTrim) THEN cLong:=LTRIM(cLong)
 RETURN (LEFT(cLong,i)==cShort)
@@ -1493,15 +1494,15 @@ RETURN i
 **********
 PROC ScrSave(_var)
 /*
- Сохраняет содержимое экрана и прячет мышь
- Экран сохранненый в переданной по ссылке переменной _var может быть
- восстановлен либо по команде Clipper Rest Screen From,
- либо парной функцией ScrRest().
- Примеры :
+ я┐╜я┐╜я┐╜раня┐╜я┐╜я┐╜ содя┐╜ржия┐╜я┐╜я┐╜ я┐╜я┐╜раня┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
+ я┐╜я┐╜ран я┐╜я┐╜я┐╜раня┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜ылкя┐╜ я┐╜я┐╜ремя┐╜я┐╜я┐╜я┐╜я┐╜ _var я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
+ я┐╜я┐╜я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ Clipper Rest Screen From,
+ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜рноя┐╜ я┐╜ункциея┐╜ ScrRest().
+ я┐╜римя┐╜я┐╜я┐╜ :
 	ScrSave()
 	ScrSave(@current)
 
- См. также SaveEkr() ScrRest()
+ я┐╜я┐╜. такя┐╜я┐╜ SaveEkr() ScrRest()
 */
 HideMouse()
 IF Pcount()=0
@@ -1520,14 +1521,14 @@ ShowMouse()
 **********
 FUNC Ext_Arr(aName,size,Init)
 /*
-	Функция инициализации массива по другому массиву aName
-	Если массив не существует то он образуется (размером size)
-	и заполняется величиной Init
+	я┐╜ункя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜циая┐╜я┐╜я┐╜я┐╜ции я┐╜я┐╜я┐╜сивя┐╜ я┐╜я┐╜ я┐╜я┐╜угоя┐╜я┐╜ я┐╜я┐╜я┐╜сивя┐╜ aName
+	я┐╜сли я┐╜я┐╜я┐╜сив я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜разя┐╜я┐╜я┐╜я┐╜я┐╜ (разя┐╜я┐╜ром size)
+	я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜чиня┐╜я┐╜ Init
 
-	Если массив меньшей длины чем задано в size , то он наращивается
-	и приращенные элементы заполняются init
+	я┐╜сли я┐╜я┐╜я┐╜сив я┐╜я┐╜я┐╜я┐╜шей я┐╜я┐╜я┐╜я┐╜я┐╜ чем я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ size , я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜щивя┐╜я┐╜я┐╜я┐╜я┐╜
+	я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜щеня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ init
 
-	Возвращает полученный массив.
+	я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜ я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜сив.
 */
 LOCAL arr,i
 IF (ValType(aName)=='A')
@@ -1541,15 +1542,15 @@ FOR i:=1 TO size
 NEXT
 RETU arr
 **********
-PROC CenterB(_x,_s,_n,ccolor)		//B, чтобы не путать с тулзами
+PROC CenterB(_x,_s,_n,ccolor)		//B, я┐╜тобя┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜улзя┐╜я┐╜я┐╜
 /*
-*Центрирует строку текста на экране
-_x-Номер строки экрана
-_s-Центрируемая строка
-_n-Ширина "клетки" (умолчание-полный экран)
-_ccolor - цвет вывода (умолчание-текущий)
+*я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜рокя┐╜ текя┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜раня┐╜
+_x-я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜рокя┐╜ я┐╜я┐╜раня┐╜
+_s-я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜уемя┐╜я┐╜ я┐╜я┐╜рокя┐╜
+_n-я┐╜я┐╜риня┐╜ "я┐╜я┐╜я┐╜тки" (умоя┐╜чаня┐╜я┐╜-я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ран)
+_ccolor - цвея┐╜ я┐╜ывоя┐╜я┐╜ (умоя┐╜чаня┐╜я┐╜-текя┐╜щий)
 
-См.также Centr(),Medi(),Pc()
+я┐╜я┐╜.такя┐╜я┐╜ Centr(),Medi(),Pc()
 */
 IF_NIL _n IS m->__mcol
 _s:=LEFT(_s,_n)
@@ -1557,27 +1558,27 @@ _s:=LEFT(_s,_n)
 **********
 FUNC Centr(_s,_n)
 /*
-Центр строки текста
-_s-строка
-_n-Ширина "клетки" (умолчание-полный экран)
+я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜рокя┐╜ текя┐╜я┐╜я┐╜
+_s-я┐╜я┐╜рокя┐╜
+_n-я┐╜я┐╜риня┐╜ "я┐╜я┐╜я┐╜тки" (умоя┐╜чаня┐╜я┐╜-я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ран)
 
-См.также Center(),Medi(),Pc()
+я┐╜я┐╜.такя┐╜я┐╜ Center(),Medi(),Pc()
 */
 IF EMPTY(_n) THEN _n:=m->__mcol
 RETU MAX(0,(_n-Len(_s))/2)
 ************
 Func ReadFromFile(_handle,_from,_num)
 /*
- Читает _num байт с позиции _from из файла с дескрипторм _handle
- Возвращает строку
+ я┐╜я┐╜таея┐╜ _num я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜ции _from я┐╜я┐╜ файя┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜рипя┐╜я┐╜я┐╜я┐╜ _handle
+ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜ я┐╜я┐╜рокя┐╜
 
- Пример : читаем тип базы
+ я┐╜римя┐╜я┐╜ : я┐╜я┐╜таея┐╜ тип я┐╜я┐╜я┐╜я┐╜
 	Handle:=Fopen('base',64)
 	If ReadFromFile(handle,0,1)==chr(245)
-		NFind('Это база FoxPro с мемо-полем.')
+		NFind('я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ FoxPro я┐╜ я┐╜я┐╜я┐╜я┐╜-я┐╜я┐╜я┐╜я┐╜я┐╜.')
 	ENDIF
 
- См.также WriteToFile(),FreadLn()
+ я┐╜я┐╜.такя┐╜я┐╜ WriteToFile(),FreadLn()
 */
 
 Fseek(_handle,_from,0)
@@ -1585,11 +1586,11 @@ RETU FreadStr(_handle,_num)
 **********
 FUNC Rand (nStart)
 /*
- Возвращает последовательность псевдо-случайных чисел от 0.00 до 1.00
- Если указан параметр nStart,то последовательность начинается заново.
- От каждого nStart всегда возвращается одинаковая последовательность.
- Пример:
-	? Rand(seconds()) - первый элемент
+ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜ я┐╜я┐╜слея┐╜я┐╜я┐╜я┐╜тельноя┐╜я┐╜я┐╜ я┐╜севя┐╜я┐╜-я┐╜я┐╜я┐╜чайя┐╜я┐╜я┐╜ я┐╜я┐╜сел я┐╜я┐╜ 0.00 я┐╜я┐╜ 1.00
+ я┐╜сли укая┐╜я┐╜я┐╜ я┐╜я┐╜рамя┐╜я┐╜я┐╜ nStart,я┐╜я┐╜ я┐╜я┐╜слея┐╜я┐╜я┐╜я┐╜тельноя┐╜я┐╜я┐╜ я┐╜я┐╜чиня┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜.
+ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ nStart я┐╜сегя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜слея┐╜я┐╜я┐╜я┐╜тельноя┐╜я┐╜я┐╜.
+ я┐╜римя┐╜я┐╜:
+	? Rand(seconds()) - я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜
 	While !Waitkey(3)<>xbeK_ESC
 		? Rand()
 	end
@@ -1604,7 +1605,7 @@ RETURN  (r_iy/2796203.0)
 **********
 FUNC RandomScope(nMin,nMax)
 LOCAL n1,nDigits
-IF nMin>nMax 
+IF nMin>nMax
 	n1:=nMax
 	nMax:=nMin
 	nMin:=n1
@@ -1627,12 +1628,12 @@ RETURN cRet
 ************
 FUNC SayData(data)
 /*
-	Возвращает строку типа 01 января 1995 года
+	я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щаея┐╜ я┐╜я┐╜рокя┐╜ типя┐╜ 01 янвя┐╜я┐╜я┐╜ 1995 я┐╜я┐╜я┐╜я┐╜
 */
 local Cmth:=Cmonth(data)
 RETURN  NTRIM(day(data))+' '+;
-	IF(SUBSTR(Cmth,-1)=='т', Cmth+'а ', LEFT(Cmth,Len(cmth)-1)+'я ')+;
-	NTRIM(Year(data))+ ' года'
+	IF(SUBSTR(Cmth,-1)=='я┐╜', Cmth+'я┐╜ ', LEFT(Cmth,Len(cmth)-1)+'я┐╜ ')+;
+	NTRIM(Year(data))+ ' я┐╜я┐╜я┐╜я┐╜'
 #ENDIF
 **********
 FUNC ChrTran(c1,c2,c3)
@@ -1648,8 +1649,8 @@ NEXT
 RETURN cRet
 **********
 PROC Hilite(_color,_front,_back)
-* Определяет подсветку и обратный к подсветке цвет ,исходя из текущего цвета,
-* передает их в ссылочных переменных _front,_back
+* я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜свея┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜светке цвея┐╜ ,я┐╜я┐╜ходя┐╜ я┐╜я┐╜ текя┐╜щегя┐╜ цвея┐╜я┐╜,
+* я┐╜я┐╜редя┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜ я┐╜я┐╜ылоя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ремя┐╜я┐╜я┐╜я┐╜я┐╜ _front,_back
 
 LOCAL _lft
 
@@ -1699,7 +1700,7 @@ DO CASE
 		cStr:=Expand(cStr,1,cFill)
 	CASE cJust=='U'
 		cStr:=CharOne(cFill,cStr)
-	OTHER //н-р, просто PAD
+	OTHER //я┐╜-я┐╜, я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ PAD
 		cStr:=PADL(cStr,nLen,cFill)
 ENDCASE
 RETURN cStr

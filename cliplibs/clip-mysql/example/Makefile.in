@@ -1,0 +1,22 @@
+#
+#                                            clip-mysql/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-mysql.so
+
+PRG=my_mysql$(EXESUFF)
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+my_mysql$(EXESUFF): my_mysql.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eMs my_mysql.prg -lclip-mysql
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

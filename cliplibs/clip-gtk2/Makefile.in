@@ -1,6 +1,10 @@
+#
+#                                            clip-gtk2/Makefile.in
+#
 # main part
 #
 #
+Local_Depend = include/*.ch include/*.h
 
 #DBGFLAGS	= -g #-DMEMDBG
 #WARNFLAGS	= -Wimplicit -Wall
@@ -9,7 +13,7 @@
 .PHONY:	test screen hash
 
 
-HDRS	= clip-gtk2.ch clip-gtk2.h
+HDRS	= include/clip-gtk2.ch include/clip-gtk2.h
 
 #GDK_SRC =  gdkinput.c
 GDK_SRC = gdk.c gdkfont.c  gdkcolor.c gdkgc.c gdkdraw.c gdkrgb.c gdkpixbuf.c \
@@ -99,11 +103,11 @@ OBJDIR	= .
 EXTOBJS =
 
 HASHSRCS = $(SRCS) $(HDRS)
-
-XLIB	= libclip-gtk2.a
-XSLIB	= libclip-gtk2$(DLLSUFF)
-XSLIBREAL = libclip-gtk2$(DLLREALSUFF)
-XLIBOBJS= $(OBJS)
+PROG = clip-gtk2
+#XLIB	= libclip-gtk2.a
+#XSLIB	= libclip-gtk2$(DLLSUFF)
+#XSLIBREAL = libclip-gtk2$(DLLREALSUFF)
+#XLIBOBJS= $(OBJS)
 
 SYS = $OSNAME
 SYSTEM_NAME = $(OSNAME)
@@ -112,68 +116,60 @@ DEFS	=
 # -DVERSION=\"0.1\"
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
 
-CFLAGS  = $(C_FLAGS) $(DEFS) $(MEMDBGFLAGS) $(INCLUDEDIRS)
+C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) $(INCLUDEDIRS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 
+CLIPFLAGS += -I. -I$(Clip_I_Dir)
 export CC CFLAGS
 export MEMDBG MEMDBGFLAGS
 
-all: Makefile hash $(XTARGETS)
+all: Makefile include/clip-gtkcfg2.h hash $(STARGET)
+
+cfg :
+	cp --remove-destination -fpu$(V) clip-gtk2.cliprc $(INSTDIR)/cliprc/
+	cp --remove-destination -fpu$(V) include/clip-gtk2.ch include/gtk2-stock.ch include/clip-gtk2.h $(Clip_I_Dir)/
 
 d: set_dbg
 
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-Makefile: Makefile.in configure
+include/clip-gtkcfg2.h :
+	$(Trace_o)
 	./configure
 
-hash: _hashcode.h
+hash: include/_hashcode.h
 
-_hashcode.h: $(HASHSRCS)
-	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashcode.h
-	cmp _hashcode.h hashcode.h 2>/dev/null || cp _hashcode.h hashcode.h
+include/_hashcode.h: $(HASHSRCS)
+	$(Trace_o)
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u >include/_hashcode.h
+	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
 
-$(XLIB): $(XLIBOBJS)
-	rm -f $(XLIB)
-	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)
-	ranlib $(XLIB)
+#$(XLIB): $(XLIBOBJS)
+#	rm -f $(XLIB)
+#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
+#	ranlib $(XLIB)
 
-$(XSLIB): $(XLIB)
-	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)
+#$(XSLIB): $(XLIB)
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
 
-clean:
-	rm -rf *.o *.a *.so *.dll *.po *.pa *.b *.BAK *.bak *~ core* \
-	*core Makefile.inc Makefile *.ex *.nm \
-	gtkermsg.c gtkutil.c #gtkbrowse.c
+cleanc:
+	rm -rf$(V) *.b gtkermsg.c gtkutil.c #gtkbrowse.c
 
 distclean: clean
-	rm -rf clip-gtkcfg2.h hashcode.h _hashcode.h Makefile
-	-cd test &&  $(MAKE) clean
-	-cd example && $(MAKE) clean
+	rm -rf$(V) include/clip-gtkcfg2.h hashcode.h _hashcode.h
 
-install:all
-	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
-	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
-	#[ "$(XSLIBREAL)" = "$(XSLIB)" ] || cp $(XSLIBREAL) $(DESTDIR)$(CLIPROOT)/lib
-	cp clip-gtk2.cliprc $(DESTDIR)$(CLIPROOT)/cliprc/
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/cliprc/clip-gtk2.cliprc
-	cp clip-gtk2.ch $(DESTDIR)$(CLIPROOT)/include/
-	cp gtk2-stock.ch $(DESTDIR)$(CLIPROOT)/include/
-	cp clip-gtk2.h $(DESTDIR)$(CLIPROOT)/include/
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtk2
-	cp example/Makefile example/clip.xpm example/basket.bmp $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtk2
-	cp example/tbrow.xpm $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtk2
-	cp example/banner.gif $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtk2
-	cp example/*.prg  $(DESTDIR)$(CLIPROOT)/doc/example/clip-gtk2
+install:all install-lib install-example
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(INSTDIR)/lib/
+#	chmod 0644  $(INSTDIR)/lib/$(XLIB)
+#	chmod 0755  $(INSTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(INSTDIR)/doc/example/clip-gtk2/
+#	cp -fu$(V) example/Makefile example/clip.xpm example/basket.bmp $(INSTDIR)/doc/example/clip-gtk2/
+#	cp -fu$(V) example/tbrow.xpm $(INSTDIR)/doc/example/clip-gtk2/
+#	cp -fu$(V) example/banner.gif $(INSTDIR)/doc/example/clip-gtk2/
+#	cp -fu$(V) example/*.prg  $(INSTDIR)/doc/example/clip-gtk2/
 
-.c.o:
-	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
-	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
-
-.prg.o:
-	$(CLIP) -Olnw -I. $<
+include $(Makefile_o_in)
 
 depend:
 	$(MAKE) hash
@@ -190,4 +186,6 @@ ucommit:
 
 shell:
 	sh
+
+include $(Makefile_end_in)
 

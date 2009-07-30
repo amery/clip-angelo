@@ -4,11 +4,11 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include "fwin/FiveWin.ch"
+#include "clip-fw/FiveWin.ch"
 #include "InKey.ch"
 #include "Set.ch"
-#include "fwin/Constant.ch"
-#include "fwin/Report.ch"
+#include "clip-fw/Constant.ch"
+#include "clip-fw/Report.ch"
 
 #define GW_HWNDFIRST          0
 #define GW_HWNDLAST           1
@@ -628,7 +628,7 @@ static function fw_Paint(Self)
 	 end
 	 Self:Skip( Self:nRowPos - n )
       #else
-	  // WBrwPane() returns the n¡ of visible rows
+	  // WBrwPane() returns the nï¿½ of visible rows
 	  // WBrwPane recieves at aColSizes the Array or a Block
 	  // to get dinamically the Sizes !!!
 	 Self:Skip( Self:nRowPos - wBrwPane( Self:hWnd, Self:hDC, Self, Self:bLine,;

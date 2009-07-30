@@ -1,56 +1,55 @@
+#
+#                                            clip-postscript/Makefile.in
+#
 # This is a part of clip-postscript library
 #
 # Copyright (C) 2007 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
-ifndef CLIPROOT
-	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
-endif
-
-include $(CLIPROOT)/include/Makefile.inc
 
 #CLIP = $(CLIPROOT)/bin/clip
 
+Local_Depend = include/*.ch
 .SUFFIXES: .prg .o .po
-
-TARGET  = libclip-postscript$(DLLSUFF)
-RTARGET = libclip-postscript$(DLLREALSUFF)
-CLIPFLAGS = -Obwn $(BUILDFLAGS)
+PROG = clip-postscrip
+#TARGET  = libclip-postscript$(DLLSUFF)
+#RTARGET = libclip-postscript$(DLLREALSUFF)
+CLIPFLAGS += -n
 OBJS    = psblock.o pscode.o psform.o pspage.o pspagesettings.o \
 		  psprinter.o psstyle.o pstemplate.o psvariable.o
 
 .PHONY: all clean uninstall distclean
 
-all: $(TARGET)
+all : Makefile $(STARGET)
 
-$(TARGET): $(OBJS)
-	clip_makeslib$(SCRIPTSUFF) $(TARGET) $(OBJS) $(C_LIBS)
+cfg :
+	cp --remove-destination -fpu$(V) include/clip-postscript.ch $(Clip_I_Dir)/
 
-clean:
-	rm -f $(OBJS) $(TARGET) *.bak *.nm *.ex *.ppo *.dll.a *.log *.dll *.so Makefile
-	cd example && $(MAKE) clean
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(C_LIBS)
 
-install: all
-	mkdir -p $(DESTDIR)$(CLIPROOT)/lib
-	mkdir -p $(DESTDIR)$(CLIPROOT)/include
-	clip_cp$(SCRIPTSUFF) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
-	clip_cp$(SCRIPTSUFF) $(RTARGET) $(DESTDIR)$(CLIPROOT)/lib
-	clip_cp$(SCRIPTSUFF) clip-postscript.ch $(DESTDIR)$(CLIPROOT)/include
-	#test -f $(DESTDIR)/usr/lib/$(TARGET) || ln -s $(DESTDIR)$(CLIPROOT)/lib/$(TARGET) $(DESTDIR)/usr/lib
-	#/sbin/ldconfig -n $(DESTDIR)/usr/lib
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-postscript
-	cp -R example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-postscript/
+cleanc:
+	rm -f$(V) $(TARGET).* *.dll.a
+#	cd example && $(MAKE) clean
+
+install: all install-lib install-example
+#	mkdir -p$(V) $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/include
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
+#	$(CLIP_CP) $(RTARGET) $(DESTDIR)/lib
+#test -f $(DESTDIR)/usr/lib/$(TARGET) || ln -s $(DESTDIR)$(CLIPROOT)/lib/$(TARGET) $(DESTDIR)/usr/lib
+#/sbin/ldconfig -n $(DESTDIR)/usr/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-postscript
+#	cp -Ru$(V) example/* $(DESTDIR)/doc/example/clip-postscript/
 
 uninstall:
-	rm -rf $(CLIPROOT)/lib/$(TARGET) $(CLIPROOT)/lib/$(RTARGET)
+	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).*
 
 distclean: clean
-	rm -f Makefile
 
 dist: distclean
 	cd .. && tar cvfz clip-postscript.tgz clip-postscript
 
-.prg.o: clip-postscript.ch
-	$(CLIP) $(CLIPFLAGS) $<
+include $(Makefile_o_in)
 
 commit:
 	_cvs commit
@@ -63,3 +62,6 @@ ucommit:
 
 shell:
 	sh
+
+include $(Makefile_end_in)
+

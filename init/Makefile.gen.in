@@ -1,5 +1,5 @@
 ##
-##										init/Makefile.gen.ini
+##										init/Makefile.gen.in
 ##
 ##				called from all Makefile files
 ##
@@ -122,9 +122,9 @@ distclean : Makefile $(DIRS_TO_SCAN) distcleanc clean
 
 ../libclip/$(ATARGET) : $(ATARGET) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) *.o ../libclip/
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* ../libclip/
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) *.o ../libclip/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET).* ../libclip/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET).* $(Clip_L_Dir)/
 
 ## 																first library
 ##
@@ -149,19 +149,19 @@ endif
 
 $(Clip_L_Dir)/$(ATARGET) : $(ATARGET) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
 
 $(Clip_L_Dir)/$(RTARGET) : $(RTARGET) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
 
 ifneq ($(RTARGET), $(STARGET))
 
 $(Clip_L_Dir)/$(STARGET) : $(Clip_L_Dir)/$(RTARGET) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET).* $(Clip_L_Dir)/
 
 endif
@@ -186,25 +186,24 @@ $(STARGET2) : $(RTARGET2) $(LocalDepend) Makefile
 	$(Trace_lib2)
 	$(E_rm)rm -f$(V) $@
 	$(E_c_mkSl)$(Clip_makeslib) $@ $< $(ADDLIBS2)
-	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
 
 endif
 
 $(Clip_L_Dir)/$(ATARGET2) : $(ATARGET2) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET2).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
 
 $(Clip_L_Dir)/$(RTARGET2) : $(RTARGET2) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET2).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
 
 ifneq ($(RTARGET2), $(STARGET2))
 
 $(Clip_L_Dir)/$(STARGET2) : $(Clip_L_Dir)/$(RTARGET2) Makefile
 	$(Trace_o)
-#	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET2).* $(Clip_L_Dir)/
+#	$(E_cp)cp --remove-destination -fu$(V) $(TARGET2).* $(Clip_L_Dir)/
 	$(E_cp)$(Clip_cp) $(TARGET2).* $(Clip_L_Dir)/
 
 endif

@@ -1,0 +1,33 @@
+#
+#                                            clip-postscript/example/Makefile.in
+#
+# CLIP-POSTSCRIPT library examples Makefile
+# Copyright (C) 2007, E/AS Software Foundation
+# Web: http://eas.lrn.ru
+Local_Depend = $(Clip_L_Dir)/libclip-postscript.so
+
+
+#CLIPINCLUDE = -I$(CLIPROOT)/include
+
+.SUFFIXES: .prg .o .po
+.PHONY: all clean
+
+# Form test
+PRG=testform$(EXESUFF)
+LIBS=-lclip-postscript -lclip-xml -lexpat
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) $(PRG) *.c
+
+$(PRG): testform.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) testform.prg $(LIBS)
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

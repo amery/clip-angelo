@@ -17,7 +17,7 @@
 **********
 PROC Cdbedit(top,left,bottom,right,columns,userfunc,;
 		 colheaders,winheader,aPictures,nFreeze,aWidths)
-MEMVAR _BdbfBrow,_bm,_cm,_MINS
+MEMVAR _BdbfBrow,_bm,_cm,_MINS, _c_f
 LOCAL l_1:=left+1,nMaxColumn,oTbc,cScr,nVs
 LOCAL i, rc,  column, baction, ;
 	_length:=bottom-top-4, _wide:=right-l_1,;
@@ -50,16 +50,16 @@ LOCAL _sp:=Repl(SCROLL_FILL,_wide),;
 IF_NIL aPictures IS {}
 IF_NIL aWidths IS {}
 PRIVATE _BdbfBrow,_c_f
-//  Создаем экземпляр объекта TBROWSE:
+//  я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ъекя┐╜я┐╜ TBROWSE:
 _BdbfBrow:= tbrowseNew(top,left,bottom,right)
 _BdbfBrow:goTopBlock    := {|| DbGoTop() }
 _BdbfBrow:goBottomBlock := {|| DbGoBottom() }
 _BdbfBrow:skipBlock     := {|n| Skipper(n) }
-_BdbfBrow:headSep       := '═╤═'
-_BdbfBrow:colSep        := ' │'
+_BdbfBrow:headSep       := 'я┐╜я┐╜я┐╜'
+_BdbfBrow:colSep        := ' я┐╜'
 _BdbfBrow:colorSpec     := SetColor()
 
-// Строим объекты - столбцы и добавляем к экземпляру объекта TBROWSE:
+// я┐╜я┐╜роия┐╜ я┐╜я┐╜ъекя┐╜я┐╜ - я┐╜толя┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜яем я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ъекя┐╜я┐╜ TBROWSE:
 nMaxColumn:=MIN(_Fc,m->_nBrowMaxField)
 ASIZE(colHeaders,nMaxColumn)
 ASIZE(aPictures,nMaxColumn)
@@ -79,13 +79,13 @@ NEXT
 IF !EMPTY(nFreeze) THEN FreezeFields(nFreeze)
 
 DispBegin()
-// начальная разрисовка экрана
+// я┐╜я┐╜чальная┐╜ разя┐╜я┐╜совя┐╜я┐╜ я┐╜я┐╜раня┐╜
 Window(t_bord,l_bord,b_bord,r_bord,WinHeader)
-@ top+_h,l_bord Say '╠'
-@ top+_h,r_bord Say '╣'
+@ top+_h,l_bord Say 'я┐╜'
+@ top+_h,r_bord Say 'я┐╜'
 _length:=bottom-top-3-_h
 
-// начальная разрисовка скроллингов
+// я┐╜я┐╜чальная┐╜ разя┐╜я┐╜совя┐╜я┐╜ я┐╜я┐╜роля┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
 ClearHScroll()
 DEVOUT( SCROLL_RIGHT, _cm)
@@ -94,24 +94,24 @@ DEVOUT( SCROLL_RIGHT, _cm)
 @ bottom,r_bord say SCROLL_DOWN color _cm
 Fkeys()
 DispEnd()
-// Главный цикл:
+// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ цикя┐╜:
 *_bdbfbrow:ForceStable()
-Keyb(260)	//чтобы 1-й раз нарисовать - незначащий код
+Keyb(260)	//я┐╜тобя┐╜ 1-я┐╜ раз я┐╜я┐╜я┐╜я┐╜совя┐╜я┐╜я┐╜ - я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜щий я┐╜я┐╜я┐╜
 
 _lr:=KeyCount()
 WHILE .T.
    ShowMouse(); ShowMouse(); ShowMouse()
    WHILE .T.
-// Проверяем наличие управляющей клавиши в буфере:
+// я┐╜ровя┐╜я┐╜яем я┐╜я┐╜я┐╜я┐╜чие я┐╜я┐╜равя┐╜я┐╜я┐╜щей я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜:
 	_nKey := INKEY(0.01, 254)
 	IF _nKey>1001
 		WaitMouse0()
 		GetMouseXY()
 
-		cScr:=ScreenString(_tp1,left)		//Для определения координат нажатия
+		cScr:=ScreenString(_tp1,left)		//я┐╜я┐╜я┐╜ я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜рдия┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 		nVs:=0
 		FOR i:=1 TO _mox-1
-			IF SUBSTR(cScr, i, 1)=="╤" THEN nVs++
+			IF SUBSTR(cScr, i, 1)=="я┐╜" THEN nVs++
 		NEXT
 
 		IF (i:=_bdbfbrow:Freeze)>0
@@ -150,7 +150,7 @@ WHILE .T.
 					_mox:=repl(IF(column<nVs,_RIGHT,_LEFT),abs(column-nVs))+_EMP
 					_mox:=_mox+repl(IF(_Moy<_r,_UP,_DOWN),abs(_moy-_r))
 				ENDCASE
-			CASE _moy=b_bord	//гориз.скроллинг
+			CASE _moy=b_bord	//я┐╜я┐╜риз.я┐╜я┐╜роля┐╜я┐╜я┐╜я┐╜
 				IF _mox==left
 					_mox:=_LEFT
 				ELSEIF _mox==Right
@@ -166,7 +166,7 @@ WHILE .T.
 			CASE _moy=_tp1
 				_mox:=K_PGUP
 			CASE _moy=1 .AND. SELECT()=1
-				m->__Menu_Col:=_mox	//в MainMenu() анализ
+				m->__Menu_Col:=_mox	//я┐╜ MainMenu() я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 				_mox:=K_F10
 			CASE _moy=m->__mrow
 				_mox:=Int(_mox/8)
@@ -196,10 +196,10 @@ WHILE .T.
 			SavePos()
 
 			IF SELECT()=1
-				_mox:=	_Ftype[_ptr]+;
-					PAD(IF(_FDr[_ptr]<>0,;
-						NTRIM(_FLen[_ptr])+'.'+NTRIM(_FDr[_ptr]),;
-						_FLen[_ptr]),7)
+				_mox:=	m->_Ftype[_ptr]+;
+					PAD(IF(m->_FDr[_ptr]<>0,;
+						NTRIM(m->_FLen[_ptr])+'.'+NTRIM(m->_FDr[_ptr]),;
+						m->_FLen[_ptr]),7)
 			ELSE
 				_mox:=	DbStruct()[_ptr,2]+;
 					PAD(NTRIM(DbStruct()[_ptr,3]),7)
@@ -222,24 +222,24 @@ WHILE .T.
    ENDDO
 
    rec_no:= recno()
-   _oldCol:=MIN(Max(_BdbfBrow:ColPos,1),nMaxColumn)	//keyboard  не всегда правильно
-							//работает - дает 65535
+   _oldCol:=MIN(Max(_BdbfBrow:ColPos,1),nMaxColumn)	//keyboard  я┐╜я┐╜ я┐╜сегя┐╜я┐╜ я┐╜равя┐╜я┐╜ьно
+							//рабя┐╜таея┐╜ - я┐╜я┐╜я┐╜я┐╜ 65535
 
-   m->_c_f:=m->_Pole[_oldCol]	//здесь, чтобы в SetKey() было
+   m->_c_f:=m->_Pole[_oldCol]	//я┐╜я┐╜я┐╜я┐╜я┐╜, я┐╜тобя┐╜ я┐╜ SetKey() я┐╜ыло
    HideMouse()
    DO CASE
 
-// Обработка ранее назначенных клавиш
+// я┐╜я┐╜рабя┐╜тка раня┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
 	CASE (baction:= setkey(_nkey)) # NIL
-		eval(baction,ProcName(1))	// ProcName() для Help
+		eval(baction,ProcName(1))	// ProcName() я┐╜я┐╜я┐╜ Help
 		_lr:=KeyCount()
 		LOOP
 
 	CASE _nKey==K_CTRL_X .AND. IsCtrlShift() .AND. (VALTYPE(&_c_F) $ 'CM')
 		__KeyBoard(_ENTER+_DOWN+_CTRLEND)
 
-	CASE _nKey==K_CTRL_LEFT .AND. IsCtrlShift() 
+	CASE _nKey==K_CTRL_LEFT .AND. IsCtrlShift()
 		ChangeCol(_oldcol-1)
 		__KeyBoard(_LEFT)
 
@@ -249,10 +249,10 @@ WHILE .T.
 
 	CASE _nKey==K_CTRL_H
 		ColWdt( _oldCol, IF(IsCtrlShift(),;
-				    MAX(_Flen[_oldCol],LEN(_Works[_oldCol])),;
+				    MAX(m->_Flen[_oldCol],LEN(m->_Works[_oldCol])),;
 				    1 ) )
 
-// Обработка стандартных клавиш навигации
+// я┐╜я┐╜рабя┐╜тка я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции
 	CASE (baction:=Ascan(tbKey,{|elem|_nkey=elem[1]}))<>0
 		eval(tbKey[baction,2])
 
@@ -260,10 +260,10 @@ WHILE .T.
 		__KeyBoard(IF(_nkey==K_ALT_PGDN,_PGDN,_PGUP)+;
 				     _EMP+REPL(_UP,_bdbfbrow:rowpos-1))
 
-	CASE TestMacro(_nKey,1)	//Здесь выполнится
+	CASE TestMacro(_nKey,1)	//я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ыпоя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
 	OTHER
-// Обработка исключительных клавиш
+// я┐╜я┐╜рабя┐╜тка я┐╜скля┐╜я┐╜я┐╜теля┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
 		i:=m->Main_Keys
 		rc:=&userfunc.(_oldcol,_nkey)
@@ -279,12 +279,12 @@ WHILE .T.
 			_bdbfbrow:refreshall()
 			_bdbfbrow:cargo:= .F.
 		ELSEIF !EOF()
-// "Освежить" текущую запись
+// "я┐╜свея┐╜я┐╜я┐╜я┐╜" текя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 			_bdbfbrow:refreshcurrent()
 		ENDIF
    ENDCASE
 
-// "Освежить", если переместился указатель:
+// "я┐╜свея┐╜я┐╜я┐╜я┐╜", я┐╜сли я┐╜я┐╜ремя┐╜я┐╜тиля┐╜я┐╜ укая┐╜я┐╜теля┐╜:
    IF NextKey(254)=0
 	Stable()
 	DispBegin()
@@ -304,7 +304,7 @@ WHILE .T.
    ENDIF
 ENDDO
 **********
-// Стандартная функция перехода:
+// я┐╜таня┐╜я┐╜я┐╜тная┐╜ я┐╜ункя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ходя┐╜:
 
 STATIC FUNC Skipper(x)
 LOCAL i:=0

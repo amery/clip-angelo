@@ -29,3 +29,4 @@ fi
 sed -e "s,@PGINCDIR@,${PGINCDIR:-/usr/include},g" \
 	-e "s,@PGLIBDIR@,${PGLIBDIR:-/usr/lib},g" \
 	Makefile.in > Makefile
+mv -f$V Makefile Makefile.tmp

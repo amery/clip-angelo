@@ -1,0 +1,72 @@
+##
+##										example/Makefile.in
+##
+##				called from all Makefile files
+##
+Local_Depend =
+
+PROGS=hello test_dbf pg task task_msg mouse testlock reclock inkey \
+	tcpserv tcpclient
+
+all: $(PROGS)
+
+cfg :
+
+cleanc:
+	rm -f $(PROGS) *.a *.so *.dll *.o *.c *.exe *.dbf *.dbt *.ntx *.cdx *.ndx *.nm *.ex *.bak *.log
+
+include $(Makefile_o_in)
+
+install:
+	cp --remove-destination -Rfpu$(V) * $(Clip_D_Dir)/example/
+strip:
+	strip $(PROGS)
+
+test.dbf: test.dbf.orig
+	cp test.dbf.orig test.dbf
+
+hello$(EXESUFF): hello.prg test.dbf $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM hello.prg
+
+test_dbf$(EXESUFF): test_dbf.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM test_dbf.prg
+
+pg$(EXESUFF): pg.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM pg.prg
+
+task$(EXESUFF): task.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM task.prg
+
+task_msg$(EXESUFF): task_msg.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM task_msg.prg
+
+mouse$(EXESUFF): mouse.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM mouse.prg
+
+testlock$(EXESUFF): testlock.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM testlock.prg
+
+reclock$(EXESUFF): reclock.prg test.dbf $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM reclock.prg
+
+inkey$(EXESUFF): inkey.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -eslM inkey.prg
+
+tcpserv$(EXESUFF): tcpserv.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -esl tcpserv.prg
+
+tcpclient$(EXESUFF): tcpclient.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -esl tcpclient.prg
+
+include $(Makefile_end_in)

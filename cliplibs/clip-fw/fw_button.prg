@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
 
 #define DLGC_DEFPUSHBUTTON    16     //0x0010
 #define DLGC_UNDEFPUSHBUTTON  32     //0x0020

@@ -6,7 +6,7 @@
  *         www - http://www.geocities.com/alkresin/
  * Released to Public Domain
 */
-*+ІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІ
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Source Module => D:\MYAPPS\SOURCE\PROCS\PROCS1.PRG
 *+
@@ -21,7 +21,7 @@
 *+
 *+    Reformatted by Click! 2.00 on Apr-12-2001 at  8:13 pm
 *+
-*+ІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІІ
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #include "fileio.ch"
 #ifdef RDD_AX
@@ -30,11 +30,11 @@
 #include "inkey.ch"
 #include "deflist.ch"
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function DBFLIST()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 #ifdef VER_MOUSE
 FUNCTION DBFLIST( mslist, x1, y1, x2, y2, title, maskey, ctrl_ar )
@@ -54,7 +54,7 @@ PRIVATE varbuf
       mslist := InitList()
    ENDIF
    IF TYPE( "str_bar" ) <> "C"
-      PRIVATE str_bar := "±ю"
+      PRIVATE str_bar := "пїЅпїЅ"
    ENDIF
    LI_Y1 := y1
    LI_X1 := x1
@@ -104,7 +104,7 @@ PRIVATE varbuf
    ENDIF
    oldcolors := SETCOLOR()
    SETCOLOR( LI_CLR )
-   @ LI_Y1, LI_X1, LI_Y2, LI_X2 BOX "ЪДїіЩДАі "
+   @ LI_Y1, LI_X1, LI_Y2, LI_X2 BOX "пїЅДїпїЅпїЅпїЅпїЅ "
    IF title <> Nil
       @ LI_Y1, ( LI_X2 - LI_X1 - 1 - LEN( title ) ) / 2 + LI_X1 SAY " " + title + " "
    ENDIF
@@ -139,9 +139,9 @@ PRIVATE varbuf
    DO WHILE rez
       SETCOLOR( LI_CLR )
       EVAL( LI_B1,mslist )
-      SETCOLOR( LI_CLRV )               // ‚л¤Ґ«Ёвм бва®Єг
+      SETCOLOR( LI_CLRV )               // пїЅл¤ҐпїЅпїЅпїЅпїЅ пїЅпїЅа®ЄпїЅ
       VIVSTR( mslist,LI_NSTR + LI_Y1, IIF( predit > 1, LI_COLPOS, 0 ) )
-      SETCOLOR( LI_CLR )                // “Ўа вм ўл¤Ґ«Ґ­ЁҐ
+      SETCOLOR( LI_CLR )                // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅл¤ҐпїЅпїЅпїЅпїЅпїЅ
       //
 #ifdef RDD_AX
       @ LI_Y1 + 2, LI_X2, LI_Y2 - 2, LI_X2 BOX LEFT( str_bar, 1 )
@@ -158,7 +158,7 @@ PRIVATE varbuf
          fbar2 := "Sx_KeyCount()"
          @ LI_Y1 + 2 + INT( IIF( LI_PRFLT, LI_TEKZP, &fbar1 ) * ( LI_Y2 - LI_Y1 - 4 ) / IIF( LI_PRFLT, LI_KOLZ, &fbar2 ) ), LI_X2 SAY RIGHT( str_bar, 1 )
       ENDIF
-*/      
+*/
 #endif
       //
       IF LI_LVIEW
@@ -205,10 +205,10 @@ PRIVATE varbuf
          xkey := INKEY( 0 )
 #endif
       ENDIF
-      VIVSTR( mslist,LI_NSTR + LI_Y1, 0 )         // бва®ЄЁ
+      VIVSTR( mslist,LI_NSTR + LI_Y1, 0 )         // пїЅпїЅа®ЄпїЅ
       IF xkey < 500
          DO CASE
-         CASE xkey = 24                 // Љгаб®а ў­Ё§
+         CASE xkey = 24                 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             IF ( LI_KOLZ > 0 .OR. LI_LADD ) .AND. ( LI_KOLZ = 0 .OR. .NOT. EVAL( LI_BEOF,mslist ) )
                EVAL( LI_BSKIP, mslist,1 )
                IF EVAL( LI_BEOF,mslist ) .AND. ( !LI_LADD .OR. LI_PRFLT )
@@ -238,7 +238,7 @@ PRIVATE varbuf
                   ENDIF
                ENDIF
             ENDIF
-         CASE xkey = 5 .AND. LI_KOLZ > 0                    // Љгаб®а ўўҐае
+         CASE xkey = 5 .AND. LI_KOLZ > 0                    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             EVAL( LI_BSKIP, mslist,- 1 )
             IF EVAL( LI_BBOF,mslist )
                EVAL( LI_BGTOP,mslist )
@@ -251,7 +251,7 @@ PRIVATE varbuf
                   DrawVSep( mslist )
                ENDIF
             ENDIF
-         CASE xkey = 4 .AND. LI_KOLZ <> 0                   // Љгаб®а ўЇа ў®
+         CASE xkey = 4 .AND. LI_KOLZ <> 0                   // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅа ўпїЅ
             IF predit > 1
                IF LI_COLPOS < LI_NCOLUMNS
                   LI_COLPOS ++
@@ -271,7 +271,7 @@ PRIVATE varbuf
                EVAL( LI_BSKIP, mslist,LI_NSTR - 1 )
                VIVNAMES( mslist )
             ENDIF
-         CASE xkey = 19                 // Љгаб®а ў«Ґў®
+         CASE xkey = 19                 // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             IF predit > 1
                LI_COLPOS --
             ENDIF
@@ -324,10 +324,10 @@ PRIVATE varbuf
             rezproc := xkey
          CASE ( xkey = K_ENTER .OR. ( xkey > 47 .AND. xkey < 58 ) .OR. ( xkey > 64 .AND. xkey < 91 ) ;
                    .OR. ( xkey > 96 .AND. xkey < 123 ) .OR. ( xkey > 127 .AND. xkey < 176 ) .OR. ( xkey > 223 .AND. xkey < 240 ) ) .AND. predit > 1
-            //   ђҐ¤ ЄвЁа®ў ­ЁҐ
+            //   пїЅпїЅпїЅпїЅпїЅпїЅпїЅа®ўпїЅпїЅпїЅпїЅ
             fipos := LI_COLPOS + LI_NLEFT - 1 - LI_FREEZE
             IF LI_WHEN = Nil .OR. LEN( LI_WHEN ) < fipos .OR. LI_WHEN[ fipos ] = Nil .OR. EVAL( LI_WHEN[ fipos ] )
-               lEdErr := .F.
+               m->lEdErr := .F.
                IF VALTYPE( LI_MSED ) != "N"
                   vartmp := IIF( LEN( LI_MSED ) < fipos, 1, LI_MSED[ fipos ] )
                   IF VALTYPE( vartmp ) = "N"
@@ -349,7 +349,7 @@ PRIVATE varbuf
                   ELSEIF LI_MSF != Nil .AND. Valtype( LI_MSF[ fipos ] ) == "B"
                      varbuf := Eval( LI_MSF[ fipos ],mslist )
                      cPicture := LI_MSED[ fipos ]
-                     lEdErr := .T.
+                     m->lEdErr := .T.
                   ELSE
                      LOOP
                   ENDIF
@@ -373,7 +373,7 @@ PRIVATE varbuf
                      APPEND BLANK
                      LI_KOLZ := EVAL( LI_RCOU,mslist )
                   ELSE
-                     IF !lEdErr .AND. !SET( _SET_EXCLUSIVE )
+                     IF !m->lEdErr .AND. !SET( _SET_EXCLUSIVE )
                         RLOCK()
                         IF NETERR()
                            LOOP
@@ -383,12 +383,12 @@ PRIVATE varbuf
                   IF LI_BDESHOUT != Nil .AND. VALTYPE( varbuf ) == "C"
                      varbuf := EVAL( LI_BDESHOUT, mslist,varbuf )
                   ENDIF
-                  IF lEdErr
+                  IF m->lEdErr
                      Eval( LI_MSF[ fipos ],mslist,fipos,varbuf )
                   ELSE
                      FIELDPUT( fipos, varbuf )
                   ENDIF
-                  IF !lEdErr .AND. !SET( _SET_EXCLUSIVE )
+                  IF !m->lEdErr .AND. !SET( _SET_EXCLUSIVE )
                      UNLOCK
                   ENDIF
                ENDIF
@@ -479,13 +479,13 @@ PRIVATE varbuf
    SET CURSOR ON
 RETURN rezproc
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function FLDCOUNT()
 *+
 *+    Called from ( procs1.prg   )   6 - function dbflist()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 FUNCTION FLDCOUNT( mslist, xstrt, xend, fld1 )
 
@@ -504,13 +504,13 @@ LOCAL klf := 0, i := IIF( LI_FREEZE > 0, 1, fld1 )
    ENDDO
 RETURN IIF( klf = 0, 1, klf )
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function VIVNAMES()
 *+
 *+    Called from ( procs1.prg   )   3 - function dbflist()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 FUNCTION VIVNAMES( mslist )
 
@@ -536,13 +536,13 @@ LOCAL i   := 1, x, oldc, fif
    ENDIF
 RETURN Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function WNDVIVOD()
 *+
 *+    Called from ( procs1.prg   )   8 - function dbflist()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 FUNCTION WNDVIVOD( mslist )
 
@@ -579,8 +579,8 @@ Static Function DrawVSep( mslist )
 LOCAL x := LI_X1 + 2, i, fif
    fif := IIF( LI_FREEZE > 0, 1, LI_NLEFT )
    FOR i := 1 TO LI_NCOLUMNS
-      sviv := FLDSTR( mslist,fif )
-      x   += MAX( LEN( sviv ), IIF( LI_NAMES <> Nil .AND. LEN( LI_NAMES ) >= fif, LEN( LI_NAMES[ fif ] ), 0 ) )
+      m->sviv := FLDSTR( mslist,fif )
+      x   += MAX( LEN( m->sviv ), IIF( LI_NAMES <> Nil .AND. LEN( LI_NAMES ) >= fif, LEN( LI_NAMES[ fif ] ), 0 ) )
       fif := IIF( fif == LI_FREEZE, LI_NLEFT, fif + 1 )
       IF fif <= LI_COLCOUNT
          @ LI_Y1+1, x, LI_Y2 - 1, x BOX Replicate( LI_SEPARATOR,9 )
@@ -589,14 +589,14 @@ LOCAL x := LI_X1 + 2, i, fif
    NEXT
 Return Nil
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Static Procedure VIVSTR()
 *+
 *+    Called from ( procs1.prg   )   5 - function dbflist()
 *+                                   1 - function wndvivod()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 STATIC PROCEDURE VIVSTR( mslist,nstroka, vybfld )
 LOCAL x, dx, i, shablon, sviv, fif, slen
@@ -639,7 +639,7 @@ LOCAL x, dx, i, shablon, sviv, fif, slen
    ENDIF
 RETURN
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function FLDSTR()
 *+
@@ -648,7 +648,7 @@ RETURN
 *+                                   1 - function vivnames()
 *+                                   3 - static procedure vivstr()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 FUNCTION FLDSTR( mslist,numf )
 
@@ -692,11 +692,11 @@ RETURN rez
 
 #ifndef __NO_EXTRA__
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Procedure EXT_PRG()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 PROCEDURE EXT_PRG
 
@@ -705,10 +705,10 @@ LOCAL bufs, i, oldc
       bufs := SAVESCREEN( 0, 0, 24, 79 )
       oldc := SETCOLOR()
       SET COLOR TO GR+/N,N/W
-      @ 07, 30, 8 + LEN( ms_ext_n ), 50 BOX "ЪДїіЩДАі "
-      i := ACHOICE( 08, 31, 7 + LEN( ms_ext_n ), 49, ms_ext_n )
+      @ 07, 30, 8 + LEN( m->ms_ext_n ), 50 BOX "пїЅДїпїЅпїЅпїЅпїЅ "
+      i := ACHOICE( 08, 31, 7 + LEN( m->ms_ext_n ), 49, m->ms_ext_n )
       IF i <> 0
-         SWPRUNCMD( ms_ext_p[ i ], 0, "", "" )
+         SWPRUNCMD( m->ms_ext_p[ i ], 0, "", "" )
       ENDIF
       SETCOLOR( oldc )
       RESTSCREEN( 0, 0, 24, 79, bufs )
@@ -716,13 +716,13 @@ LOCAL bufs, i, oldc
    RETURN
 #endif
 
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 *+    Function GetBuf()
 *+
 *+    Called from ( procs1.prg   )   1 - function dbflist()
 *+
-*+±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+*+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 *+
 FUNCTION GetBuf
 

@@ -1,0 +1,22 @@
+#
+#                                            clip-gzip/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-gzip.so
+
+PRG=gz$(EXESUFF)
+
+all:Makefile  $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG) *.gz
+
+gz$(EXESUFF): gz.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -e -s -l -M gz.prg -lclip-gzip
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

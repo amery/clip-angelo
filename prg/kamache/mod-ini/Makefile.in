@@ -1,0 +1,25 @@
+#
+#                                            prg/kamache/mod-ini/Makefile.in
+#
+Local_Depend =
+
+# CLIP	= clip$(EXESUFF)
+#CLIPFLAGS += -p
+MODULES = kmch_hello.po mk_tmpdir.po #kmch_codb.po
+.SUFFIXES: .prg .o .po
+
+all : Makefile $(MODULES)
+
+cfg :
+
+cleanc :
+	rm -rf$(V) *.c *.b $(MODULES)
+
+install : all
+	mkdir -p$(V) $(DESTDIR)/kamache/mod-ini
+	cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-ini
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

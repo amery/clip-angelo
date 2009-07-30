@@ -1,0 +1,196 @@
+#!/bin/sh -u
+uname=`uname -s`
+uver=`uname -r`
+hname=`hostname -f 2>/dev/null`
+oldpwd=`pwd`
+[ -z "$CLIPROOT" ] && CLIPROOT=$(cd ../../../; pwd)/cliproot
+DLLSUFF='.so'
+DLLREALSUFF='.so'
+rm -f Makefile include/_hashcode.h
+if [ $? != 0 ] ; then
+	hname=`hostname 2>/dev/null`
+	if [ $? != 0 ] ; 	then
+		hname=`uname -n 2>/dev/null`
+		if [ $? != 0 ] ; 		then
+			hname=localhost
+		fi
+	fi
+fi
+USE_GTK=yes
+GTK_LIBRARYES=
+
+CalcRealDlls(){
+    # Nedded for CygWin and, i think, for Mingw,,, but for Mingw I'm not sure
+    # TODO: get one library name of more versions
+    REAL_LIBS=""
+    for Onelib in $LIBS; do
+	# skip non-libs
+	if test `echo $Onelib| grep -c '^-l'` -eq 0; then
+	    REAL_LIBS=$REAL_LIBS" "$Onelib
+	    continue
+	fi
+	# calc *.la name
+	lalib="/lib/lib"`echo $Onelib|sed 's/^\-l//'`".la"
+	# check if *.la exists
+	if test ! -f $lalib; then
+	    REAL_LIBS=$REAL_LIBS" "$Onelib
+	    continue
+	fi
+	# get real DLL from *.la
+	realdll=`grep 'dlname=' $lalib |grep -v '^#'|\
+	awk -F \= '{print $2;}'| sed s/\'//g`
+
+	if test -z "$realdll"; then
+	    REAL_LIBS=$REAL_LIBS" "$Onelib
+	else
+	    realdll=`echo $realdll| sed 's/^\.\.//'`
+	    REAL_LIBS=$REAL_LIBS" "$realdll
+	fi
+    done
+    LIBS=$REAL_LIBS
+}
+
+osname=UNIX
+case "$uname" in
+	BSD/OS*|bsdi*)
+		osname=BSDI
+		;;
+	[lL]inux*)
+		osname=LINUX
+		stdlibpath=/usr/lib
+		stdincpath=/usr/include
+		;;
+	FreeBSD*)
+		osname=FREEBSD
+		STATICLINK=-static
+		;;
+	NetBSD*)
+		osname=NETBSD
+		;;
+	SunOS*)
+		osname=SUNOS
+		;;
+	CYGWIN*)
+		osname=CYGWIN
+		stdlibpath=/lib
+		stdincpath=/usr/include
+		DLLSUFF='.dll.a'
+		DLLREALSUFF='.dll'
+esac
+
+
+printf "configure: creating clip-gtkcfg2.h .."
+
+PKGCONFIG=""
+GTK2_VERSION=""
+PKGCONFIG_PRESENT=`which pkg-config >/dev/null 2>&1; echo $?`
+if [ $PKGCONFIG_PRESENT -ne 0 ]; then
+    PKGCONFIG_PRESENT=`whereis pkg-config 2>&1| sed 's|^pkg-config\:||' | grep -c pkg-config`
+    if [ $PKGCONFIG_PRESENT -ne 0 ]; then
+	PKGCONFIG=`whereis pkg-config|awk '{print $2;}'`
+    fi
+else
+    PKGCONFIG=`which pkg-config`
+fi
+if [ -z $PKGCONFIG ]; then
+    echo "ERROR!!!"
+    echo "*****************************************************************"
+    echo "*** The pkg-config not installed                              ***"
+    echo "*****************************************************************"
+    USE_GTK=no
+    echo "System MUST have installed pkg-config first!"
+    exit
+fi
+gtkprefix=`$PKGCONFIG gtk+-2.0 --libs 2>/dev/null`
+if [ $? -ne 0 ]; then
+    echo "ERROR!!!"
+    echo "*****************************************************************"
+    echo "*** The gtk+-2.0 not installed                                ***"
+    echo "*****************************************************************"
+    USE_GTK=no
+    echo "gtk2 not detected"
+    exit
+fi
+LIBS=`$PKGCONFIG gtk+-2.0 --libs`
+EXTRACFLAGS=""
+if [ "$osname" = "CYGWIN" ]; then
+    CalcRealDlls
+    EXTRACFLAGS=''
+fi
+GTK_MAJOR=`$PKGCONFIG gtk+-2.0 --modversion|cut -d. -f1`
+GTK_MINOR=`$PKGCONFIG gtk+-2.0 --modversion|cut -d. -f2`
+if [ ! \( "$GTK_MAJOR" -le 2  \) ]; then
+    echo
+    echo 'Warning: system must have installed GTK+ version 2.0 or above'
+fi
+PANGO_MAJOR=`$PKGCONFIG pango --modversion|cut -d. -f1`
+PANGO_MINOR=`$PKGCONFIG pango --modversion|cut -d. -f2`
+exec 																		3>include/clip-gtkcfg2.h
+echo "/* Created automatically by 'configure' */" 			>&3
+echo "#ifndef CLIPGTK_CONFIG_H" 									>&3
+echo "#define CLIPGTK_CONFIG_H" 									>&3
+echo 																		>&3
+echo '#undef  VERSION ' 											>&3
+echo '#undef  OSNAME ' 												>&3
+echo '#define OSNAME "'$osname'"' 								>&3
+echo "#define OS_$osname" 											>&3
+echo '#define GTK2_VER_MAJOR '$GTK_MAJOR 						>&3
+echo '#define GTK2_VER_MINOR '$GTK_MINOR 						>&3
+echo '#define PANGO_VER_MAJOR '$PANGO_MAJOR 					>&3
+echo '#define PANGO_VER_MINOR '$PANGO_MINOR 					>&3
+echo '#undef  SYSTEM ' 												>&3
+echo '#define SYSTEM "'$uname'"' 								>&3
+echo '' 																	>&3
+echo "done"
+printf "configure: Makefile creating.."
+echo "#endif" 															>&3
+exec 																		3>&-
+echo ". done."
+exec 																					3>Makefile.inc
+echo "#	Created automatically by 'configure'"							>&3
+echo '#' 																			>&3
+echo 																					>&3
+echo '#' 																			>&3
+echo '#	Compile flags' 														>&3
+echo '#' 																			>&3
+#echo "CLIPROOT=$CLIPROOT" 													>&3
+#echo "include $CLIPROOT/include/Makefile.inc"							>&3
+echo "OSNAME='$osname'" 														>&3
+if [ -z "$CC" ] ; then
+	IFS="${IFS= 	}"; save_ifs="$IFS"; IFS=":"
+	for cc_dir in $PATH; do
+		test -z "$cc_dir" && cc_dir=.
+		if test -f $cc_dir/gcc; then
+			CC=gcc
+			break
+		fi
+		if test -f $cc_dir/cc; then
+			CC=cc
+			break
+		fi
+	done
+	IFS="$save_ifs"
+fi
+#echo "DLLSUFF='$DLLSUFF'"														>&3
+#echo "DLLREALSUFF='$DLLREALSUFF'" 											>&3
+echo "INCLUDEDIRS=$EXTRACFLAGS $($PKGCONFIG gtk+-2.0 --cflags)" 	>&3
+echo "XTARGETS=\$(XLIB) \$(XSLIB)" 											>&3
+echo "LIBS=$LIBS \$(C_LIBS)" 													>&3
+if [ \( "$GTK_MAJOR" -ge 2  \) ] ; then
+	if [ \( "$GTK_MINOR" -ge 4  \) ] ; then
+		echo "GTK_24=yes" 														>&3
+	fi
+	if [ \( "$GTK_MINOR" -ge 6  \) ] ; then
+		echo "GTK_26=yes" 														>&3
+	fi
+fi
+if [ "$USE_GTK" = yes ] ; then
+	XCFLAGS=`$PKGCONFIG gtk+-2.0 --cflags`
+	echo "XCFLAGS=$XCFLAGS" 													>&3
+fi
+echo 																					>&3
+exec 																					3>&-
+tr -d \' <./Makefile.inc >Makefile.tmp
+mv -f$V Makefile.tmp Makefile.inc
+rm -f$V Makefile.tmp
+echo ". done."

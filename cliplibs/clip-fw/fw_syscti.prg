@@ -6,15 +6,15 @@
 
 #include <ctievents.ch>
 #include <inkey.ch>
-#include <fwin/FiveWin.ch>
-#include <fwin/Constant.ch>
-#include <fwin/tcbrowse.ch>
-#include <fwin/sysMetrics.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/Constant.ch>
+#include <clip-fw/tcbrowse.ch>
+#include <clip-fw/sysMetrics.ch>
 //#include <fwin/WinApi.ch> |\ includig from fivewin.ch
 //#include <fwin/font.ch>   |/
 
-#include <fwin/msgxpm.ch>
-#include <fwin/itk.ch>
+#include <clip-fw/msgxpm.ch>
+#include <clip-fw/itk.ch>
 
 #define COLOR_BTNFACE	15
 #define COLOR_BTNSHADOW	16

@@ -1,0 +1,25 @@
+#
+#                                            prg/kamache/mod-clip/Makefile.in
+#
+Local_Depend =
+
+#CLIP	= $(CLIPROOT)/bin/clip$(EXESUFF)
+CLIPFLAGS = -p
+MODULES = hello.po
+.SUFFIXES: .prg .o .po
+
+all : $(MODULES)
+
+cfg :
+
+cleanc:
+	rm -rf$(V) *.c *.b $(MODULES)
+
+install : all
+	mkdir -p$(V)  $(DESTDIR)/kamache/mod-clip
+	cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-clip
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

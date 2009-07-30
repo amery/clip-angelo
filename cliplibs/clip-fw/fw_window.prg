@@ -5,9 +5,9 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 #include <clip-gtk.ch>
-#include <fwin/FiveWin.ch>
-#include <fwin/constant.ch>
-#include <fwin/sysMetrics.ch>
+#include <clip-fw/FiveWin.ch>
+#include <clip-fw/constant.ch>
+#include <clip-fw/sysMetrics.ch>
 
 #define MAXCOLOR	65535
 #define SW_NORMAL              1
@@ -549,8 +549,8 @@ local aRect := eval(Selector:GetCoors,self:hWnd)
 return
 ***************
 static function fw_copy(self, lAll)
-// lAll пока почему-то не используется.
-// См сырцы clasess/window.prg, а делается так:
+// lAll О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫.
+// О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ clasess/window.prg, О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫:
 	if self:bCopy != NIL
 		eval(self:bCopy, self)
 	endif
@@ -786,7 +786,7 @@ self:CoorsUpdate()
 return cPrg
 ***************
 static function fw_nGetChrHeight(self)
-	// ?????????? тут нужна функция, определяющая высоту символа в окне
+	// ?????????? О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫
 	self:nChrHeight := nWndChrHeight( self:hWnd, If( self:oFont != nil, self:oFont:hFont,) )
 return
 ***************
@@ -1233,11 +1233,11 @@ static function fw_iconize(self)
 return eval(Selector:CloseWindow,self:hWnd) // for FiveWin - it's MINIMIZED WINDOW!!! FINISH!!!!
 ***************
 static function fw_keyDown(self, nKey, nFlags)
-// тут похоже вызывается функция _SetKey(nKey, bAction) и тк bAction -NIL,
-// то и возвращает эта функция NIL, иначе возвращается кодовый блок, повешанный
-// на эту кнопку. В нашем случае это не надо, поэтому моя функция возвращает
-// только NIL  и больше ничего. Во всех FiveWin классах используется только
-// SetKey() с одним параметром
+// О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ _SetKey(nKey, bAction) О©╫ О©╫О©╫ bAction -NIL,
+// О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NIL, О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+// О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫. О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+// О©╫О©╫О©╫О©╫О©╫О©╫ NIL  О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫. О©╫О©╫ О©╫О©╫О©╫О©╫ FiveWin О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+// SetKey() О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 local bKeyAction := eval(Selector:SetKey, nKey )
 
 	if nKey == VK_TAB .and. self:oWnd != nil

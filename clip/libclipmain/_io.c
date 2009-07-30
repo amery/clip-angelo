@@ -1037,7 +1037,7 @@
 #include <signal.h>
 
 #include "clip.h"
-#include "libclipscreen/screen.h"
+#include "../libclipscreen/screen.h"
 #include "hashcode.h"
 #include "error.ch"
 #include "ctwin.ch"
@@ -1046,7 +1046,7 @@
 #include "coll.h"
 
 #ifdef USE_TASKS
-#include "libcliptask/task.h"
+#include "../libcliptask/task.h"
 #endif
 
 ClipModule IO_module = {

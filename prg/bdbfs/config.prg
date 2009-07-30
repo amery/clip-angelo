@@ -30,7 +30,7 @@ STATIC aPrint:={ "_NeedRec","_RecRight","_NeedCentr","_printZero",;
 		"_NeedMainHead","_NeedPrPage",;
 		"_NeedHeadPage","_lTitleAll",;
 		"_lDgtHdr","_lDHAll",;
-		"_DefaultHBorder","_DefaultBorder",;//В зависимости от места вызова
+		"_DefaultHBorder","_DefaultBorder",;//я┐╜ я┐╜я┐╜я┐╜я┐╜симя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ызоя┐╜я┐╜
 		"_NeedEject","_Printer","_NeedApFile"}
 
 STATIC aSet:={	"EXACT","FIXED","DECIMALS","DATEFORMAT","EPOCH","PATH",;
@@ -87,7 +87,7 @@ FOR i:=1 TO LEN(aColor)
 	cColor:=aColor[i]
 	AADD(Sets, IF(TYPE(cColor)=='C', PAD(&(cColor),42), &(cColor) ) )
 NEXT
-* Конструкция AEVAL(aColor, ... дает больший .о
+* я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ AEVAL(aColor, ... я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ший .я┐╜
 
 Gets:={ {05,05,_MSG_A_C_ED},;
 	{07,05,_MSG_A_C_HLP},;
@@ -156,7 +156,7 @@ IF ConfigWindow(Gets,Sets,_MSG_A_O_TOP,{})
 		ENDIF
 	END
 	IF TYPE(_MemoEditor)=='A' THEN _memoEditor:=&(_MemoEditor)
-	m->_req:=0	//Из-за _lForced,_nBrowMaxField
+	m->_req:=0	//я┐╜я┐╜-я┐╜я┐╜ _lForced,_nBrowMaxField
 ENDIF
 **********
 PROC OtherConf1()
@@ -183,7 +183,7 @@ IF ConfigWindow(Gets,Sets,_MSG_A_O_TOP,{{17,_MSG_A_O_FASS}})
 		aS:=Sets[i]
 		&(aOth1[i]):=IF(VALTYPE(aS)='C',ALLTRIM(as),as)
 	NEXT
-	__aExt:=&(Sets[8])
+	m->__aExt:=&(Sets[8])
 ENDIF
 **********
 PROC Configure(lConcr)
@@ -235,7 +235,7 @@ IF ConfigWindow(Gets,Sets,SELECT_PRINT,{{8,START_CHAR},{10,END_CHAR}})
 	FOR i:=1 TO LEN(aPrint)
 		&(aPrint[i]):=Sets[i]
 	NEXT
-	*AEVAL(Sets, {|el,i| &(aPrint[i]):=el}) //Не работает
+	*AEVAL(Sets, {|el,i| &(aPrint[i]):=el}) //я┐╜я┐╜ рабя┐╜таея┐╜
 	m->_psCode:=TRIM(Sets[7])
 	m->_peCode:=TRIM(Sets[8])
 	m->_Printer:=ALLTRIM(Sets[22])
@@ -323,7 +323,7 @@ IF ((i:=ForAch(5,DRV_DEFAULT,;
 	m->_DefaultMemo:=m->__aMem[i]
 	m->_DefaultCdx:=m->__aCdx[i]
 	RDDSetDefault(m->_DefaultRdd)
-/*Это в CheckDbf сделается
+/*я┐╜я┐╜я┐╜ я┐╜ CheckDbf сдея┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	SX_MemoExt(m->_DefaultMemo)
 	__CdxName:=Sx_FnameParser(_base,.t.)+m->_DefaultCdx
 */
@@ -342,7 +342,7 @@ IF aNames[1]#0
 		m->_req:=0
 		Set("DBF_CHARSET", Sx_FNameParser(aNames[2]))
 	ELSE
-		xCp:=aNames[2]	//по ссылке
+		xCp:=aNames[2]	//я┐╜я┐╜ я┐╜я┐╜ылкя┐╜
 	ENDIF
 	RETU .T.
 ENDIF

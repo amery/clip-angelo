@@ -1,0 +1,22 @@
+#
+#                                            clip-crypto/example/Makefile.in
+#
+Local_Depend = $(Clip_L_Dir)/libclip-crypto.so
+
+PRG=crypto$(EXESUFF)
+
+all: Makefile $(PRG)
+
+cfg :
+
+cleanc:
+	rm -f$(V) *.c *.b $(PRG)
+
+crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) -o$@ -e -s -l -M crypto.prg -lclip-crypto
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

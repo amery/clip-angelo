@@ -1,3 +1,6 @@
+#
+#                                            clip-xml/Makefile.in
+#
 # This is a part of CLIP-XML library
 #
 # Copyright (C) 2006 by E/AS Software Foundation
@@ -7,66 +10,67 @@
 # Author: Alena <alena@itk.ru>
 #
 
-ifndef CLIPROOT
-	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
-endif
+Local_Depend = include/*.h include/*.ch
 
-include $(CLIPROOT)/include/Makefile.inc
 
 #CLIP = $(CLIPROOT)/bin/clip
 
 .SUFFIXES: .prg .o .po
 
 LIBS= -lexpat $(C_LIBS)
-CFLAGS  = -I. $(C_FLAGS) $(XCFLAGS)
+#CFLAGS  = -I. $(C_FLAGS)
+# $(XCFLAGS)
 
-XLIB=libclip-xml.a
-XSLIB=libclip-xml$(DLLSUFF)
-XSLIBREAL=libclip-xml$(DLLREALSUFF)
+#XLIB=libclip-xml.a
+#XSLIB=libclip-xml$(DLLSUFF)
+#XSLIBREAL=libclip-xml$(DLLREALSUFF)
 
-XTARGETS=$(XLIB) $(XSLIB)
-
+#XTARGETS=$(XLIB) $(XSLIB)
+CLIPFLAGS += -n
+PROG= clip-xml
 SRC = expat.c
 OBJ = expat.o
 XLIBOBJS = $(OBJ)
 OBJS    = xmltag.o xmltree.o xpath.o
 
-HDRS	= clip-expat.ch
+HDRS	= include/clip-expat.ch
 HASHSRCS = $(SRC) $(HDRS)
 
 .PHONY: all clean uninstall distclean
 
-all : hash $(SRC) $(OBJS) $(XTARGETS)
+all : Makefile hash $(STARGET)
 
-hash: _hashxml.h
+cfg :
+	cp --remove-destination -fpu$(V) include/clip-expat.ch $(Clip_I_Dir)/
+	cp --remove-destination -fpu$(V) include/clip-expat.h $(Clip_I_Dir)/
 
-_hashxml.h: $(HASHSRCS)
-	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > _hashxml.h
-	cmp _hashxml.h hashxml.h 2>/dev/null || cp _hashxml.h hashxml.h
+hash: include/_hashxml.h
 
-
-$(XLIB): $(XLIBOBJS)  $(OBJS)
-	rm -f $(XLIB)
-	clip_makelib$(SCRIPTSUFF) $(XLIB) $(XLIBOBJS)  $(OBJS)
-	ranlib $(XLIB)
-
-$(XSLIB): $(XLIB)  $(OBJS)
-	clip_makeslib$(SCRIPTSUFF) $(XSLIB) $(XLIB) $(LIBS)  $(OBJS)
-	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib/
+include/_hashxml.h: $(HASHSRCS)
+	$(Trace_o)
+	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashxml.h
+	cmp include/_hashxml.h include/hashxml.h 2>/dev/null || cp -f$(V) include/_hashxml.h include/hashxml.h
 
 
-install : all
-	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)$(CLIPROOT)/lib/
-	chmod 0644  $(DESTDIR)$(CLIPROOT)/lib/$(XLIB)
-	chmod 0755  $(DESTDIR)$(CLIPROOT)/lib/$(XSLIB)
-	cp clip-expat.ch $(DESTDIR)$(CLIPROOT)/include/
-	cp clip-expat.h $(DESTDIR)$(CLIPROOT)/include/
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-xml
-	cp -R example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-xml/
+#$(XLIB): $(XLIBOBJS)  $(OBJS)
+#	rm -f $(XLIB)
+#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)  $(OBJS)
+#	ranlib $(XLIB)
 
-clean:
-	cd example && $(MAKE) clean
-	rm -rf Makefile *.o *.s *.b *.bak *.a *.so *.ex *.nm
+#$(XSLIB): $(XLIB)  $(OBJS)
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)  $(OBJS)
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib/
+
+
+install : all install-lib install-example
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib/
+#	chmod 0644  $(DESTDIR)/lib/$(XLIB)
+#	chmod 0755  $(DESTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(DESTDIR)$/doc/example/clip-xml
+#	cp -fu$(V)R example/* $(DESTDIR)/doc/example/clip-xml/
+
+cleanc:
+	rm -rf$(V) *.b $(TARGET).*
 
 commit:
 	_cvs commit
@@ -80,11 +84,7 @@ ucommit:
 shell:
 	sh
 
-.prg.o:
-	$(CLIP) -wn $<
+include $(Makefile_o_in)
 
-.c.o:
-	@echo $(CC) $(CFLAGS) -c $<
-	@$(CC) $(CFLAGS) -c $<
-
+include $(Makefile_end_in)
 

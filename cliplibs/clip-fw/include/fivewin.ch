@@ -10,23 +10,23 @@
 #define FWLICENCE    "Licence : (GPL) http://www.itk.ru/clipper/licence.html"
 
 
-#include <fwin/Dialog.ch>
-#include <fwin/Font.ch>
-#include <fwin/FwIni.ch>
-#include <fwin/Menu.ch>
-#include <fwin/Print.ch>
+#include <clip-fw/Dialog.ch>
+#include <clip-fw/Font.ch>
+#include <clip-fw/FwIni.ch>
+#include <clip-fw/Menu.ch>
+#include <clip-fw/Print.ch>
 
 //#ifndef CLIPPER501
-   #include <fwin/Colors.ch>
-   #include <fwin/DLL.ch>
-   #include <fwin/Folder.ch>
-//   #include <fwin/Objects.ch>
-   #include <fwin/ODBC.ch>
-   #include <fwin/DDE.ch>
-   #include <fwin/Video.ch>
-   #include <fwin/VKey.ch>
-   #include <fwin/Tree.ch>
-   #include <fwin/WinApi.ch>
+   #include <clip-fw/Colors.ch>
+   #include <clip-fw/DLL.ch>
+   #include <clip-fw/Folder.ch>
+//   #include <clip-fw/Objects.ch>
+   #include <clip-fw/ODBC.ch>
+   #include <clip-fw/DDE.ch>
+   #include <clip-fw/Video.ch>
+   #include <clip-fw/VKey.ch>
+   #include <clip-fw/Tree.ch>
+   #include <clip-fw/WinApi.ch>
 //#endif
 
 #ifndef CRLF

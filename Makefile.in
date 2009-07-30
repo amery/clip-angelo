@@ -1,94 +1,264 @@
 #
-# use make local NODBU=no to override this
+#                                            main Makefile.in
 #
-include Makefile.ini
+export ADDMAKECMDGOALS =
+## 	-i ignore errors
+##
+## 	--no-print-directory
+## 	-s silent
+## 	-r no rules
+##  	-R no variables no rules
+## 	-d debug info
+## 	-p database info (variables)
+## 	-j n  concurrent jobs
+## 	-x read
 
+## 			Issue a warning message whenever `make' sees a reference to an
+## 			undefined variable. 	This can be helpful when you are trying to
+## 			debug makefiles which use variables in complex ways.
+##
+export MAKEFLAGS = --warn-undefined-variables
+#export MAKEFLAGS += -Rr
+#
+Depend_Files = init/*
 NODBU=yes
-export NODBU MAKE
-DIRS_TO_SCAN = clip cliplibs prg
+export NODBU MAKE CONFIGURE_SH
+export Makefile_end_in Makefile_o_in
 
-all:
-	cat Readme_src | more
-	@echo
-	@echo
-	@echo "choose target: local system deb rpm rpm-opt tgz tbz src"
-	exit 1
+DIRS_TO_SCAN = clip cliplibs prg example
 
-install : $(DIRS_TO_SCAN)
+.PHONY: deb rpm
 
-clean : $(DIRS_TO_SCAN)
-#	./clean.sh
 
-distclean : $(DIRS_TO_SCAN)
-#	./distclean.sh
+all : $(Making)
+#	cat Readme_src | more
+#	@echo
+#	@echo
+#	@echo "choose target: local system deb rpm rpm-opt tgz tbz src"
+#	exit 1
 
-cleanroot: clean
-	rm -rf ../cliproot/*
+home : $(Clip_M_Dir)/config/home.ok
+	$(MAKE) install
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+#	touch home
 
-user local: clean $(DIRS_TO_SCAN)
-	./mklocal
+$(Clip_M_Dir)/config/home.ok :
+# $(Clip_M_Dir)/config/config_check.ok
+	[ -f $(Clip_M_Dir)/config/home.ok ] || $(MAKE) -i clean
+	./configure "home"
+	$(MAKE) -i M_config
+	touch $(Clip_M_Dir)/config/home.ok
 
-system: clean
-	./mklocal -release
+opt : $(Clip_M_Dir)/config/opt.ok
+	$(MAKE) install
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+$(Clip_M_Dir)/config/opt.ok :
+# $(Clip_M_Dir)/config/config_check.ok
+	[ -f $(Clip_M_Dir)/config/opt.ok ] || $(MAKE) -i clean
+	./configure "opt"
+	$(MAKE) -i M_config
+	touch $(Clip_M_Dir)/config/opt.ok
+
+local : $(Clip_M_Dir)/config/local.ok
+	$(MAKE) install
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+$(Clip_M_Dir)/config/local.ok :
+#$(Clip_M_Dir)/config/config_check.ok
+	[ -f $(Clip_M_Dir)/config/local.ok ] || $(MAKE) -i clean
+	./configure "local"
+	$(MAKE) -i M_config
+	touch $(Clip_M_Dir)/config/local.ok
+
+usr.local : $(Clip_M_Dir)/config/usr.local.ok
+	$(MAKE) install
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+$(Clip_M_Dir)/config/usr.local.ok :
+#$(Clip_M_Dir)/config/config_check.ok
+	[ -f $(Clip_M_Dir)/config/usr.local.ok ] || $(MAKE) -i clean
+	./configure "usr.local"
+	$(MAKE) -i M_config
+	touch $(Clip_M_Dir)/config/usr.local.ok
+
+#sys : $(Clip_M_Dir)/config/sys.ok
+#	$(MAKE) install
+#	banner $@ ok 	>&0
+
+#$(Clip_M_Dir)/config/sys.ok :
+#$(Clip_M_Dir)/config/config_check.ok
+#	[ -f $(Clip_M_Dir)/config/sys.ok ] || $(MAKE) -i clean
+#	./configure "sys"
+#	$(MAKE) -i M_config
+#	touch $(Clip_M_Dir)/config/sys.ok
+
+M_config : Makefile $(DIRS_TO_SCAN) FORCE
+	$(Trace_o)
+	touch $(Clip_M_Dir)/config/config_check.ok
+	banner $@ ok
+	banner $@ ok 	>&0
+
+$(Clip_M_Dir)/config/config_check.ok : Makefile $(Depend_Files)
+	$(Trace_o)
+	rm -f$(V) $(Clip_M_Dir)/config/*.ok
+	./configure $(MAKECMDGOALS)
+	touch $(Clip_M_Dir)/config/config_check.ok
+	@sleep 1
+	touch $(Clip_M_Dir)/config/$(MAKECMDGOALS).ok
+
+
+install : Makefile $(DIRS_TO_SCAN)
+	$(CLIP_MSGMERGE)
+	$(CLIP_MSGFMT)
+	$(Clip_M_Dir)/init/CleanCVS.sh $(DESTDIR)
+	cd $(DESTDIR) \
+		&& rm -f$(V) */include.clip */*/include.clip */*/*/include.clip */*/*/*/include.clip  */*/*/*/*/include.clip|| true
+	@banner $@ ok 				>&1
+	@banner $@ ok 				>&0
+	@echo bin to 				>&1
+	@echo bin to 				>&0
+	@echo $(Clip_B_Dir) 		>&1
+	@echo $(Clip_B_Dir) 		>&0
+	@echo "lib's to" 			>&1
+	@echo "lib's to" 			>&0
+	@echo $(Clip_L_Dir) 		>&1
+	@echo $(Clip_L_Dir) 		>&0
+	@echo *.h *.ch to 		>&1
+	@echo *.h *.ch to 		>&0
+	@echo $(Clip_I_Dir) 		>&1
+	@echo $(Clip_I_Dir) 		>&0
+	@echo doc examples to 	>&1
+	@echo doc examples to 	>&0
+	@echo $(Clip_D_Dir) 		>&1
+	@echo $(Clip_D_Dir) 		>&0
+
+cleanc :
+	$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
+	rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini || true
+	rm -f$(V) sys home usr.bin config_check configure.flags || true
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+clean : $(DIRS_TO_SCAN) cleanc
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+distcleanc :
+	$(MAKE) -i clean
+
+distclean : $(DIRS_TO_SCAN) example distcleanc
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+cleanroot : clean
+	rm -rf$(V) ../cliproot/*
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 packages: clean src tgz rpm deb
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 lp: NODBU=no
 lp: src cleanroot local deb tgz rpm
 
 deb: clean
 	./mkdeb
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 rpm: clean
 	./mkrpm
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+rpm-home: clean
+	./mkrpm -home
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 rpm-opt: clean
 	./mkrpm -opt
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+rpm-local: clean
+	./mkrpm -local
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
+
+rpm-sys: clean
+	./mkrpm -sys
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 tgz: clean
 	./mktgz
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 tbz tbz2 tar.bz2: clean
 	./mktgz -bzip2
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 src: clean
 	./mksrc
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 doc: clean
 	./mkdoc
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 src_p: clean
 	./mksrc_p
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 ucommit:
 	./cvs_ucommit
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 commit:
 	./cvs_commit
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
 update:
 	./cvs_update
+	banner $@ ok 	>&1
+	banner $@ ok 	>&0
 
-#doc:
-#	cd tdoc && $(MAKE)
+Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
+	$(Trace_o)
+	./configure $(MAKECMDGOALS)
+	$(MAKE) -i M_config
+	@echo $(PWD)/Makefile "is updated" 	>&0
+	@echo $(PWD)/Makefile "is updated" 	>&1
 
-.PHONY: deb rpm
-
-Makefile : Makefile.in clip/configure
-
-Makefile.ini : Makefile.in clip/configure
-	cd clip && ./configure 0
+#Makefile.ini configure.ini : configure
+#	$(Trace_o)
+#	./configure $(MAKECMDGOALS)
+#	$(MAKE) M_config
+#	banner $@ ok 	>&0
 
 FORCE :
 
-$(DIRS_TO_SCAN) example : Makefile FORCE
-	$(Trace_o)
-	$(E_if)if [ -d $@ ] ; then 																			\
-					cd $@  																						\
-					&& ( [ -f Makefile ] || ( [ -x configure ] && ./configure 0) )	\
-					&& ( $(MAKE) $(MAKECMDGOALS)  		\
-						||  $(MAKE) -f Makefile.in $(MAKECMDGOALS) ) ;				\
+$(DIRS_TO_SCAN) : Makefile FORCE
+	@echo "Scanning : " $(PWD) >&0
+	@echo "Scanning : " $(PWD) >&1
+	if [ -d $@ ] ; then 																									\
+					cd $@  																									\
+					&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 			\
+					&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) 0 ) )			\
+					&& $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ; 							\
 		fi
-#					&& ( $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS)  		\
-#						||  $(MAKE) -f Makefile.in $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ) ;				\
 

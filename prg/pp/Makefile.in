@@ -1,0 +1,29 @@
+#
+#                                            prg/pp/Makefile.in
+#
+Local_Depend =
+
+
+##CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -O
+CLIPLIBS  =
+
+BIN = pp$(EXESUFF)
+
+$(BIN):	pp.prg Makefile $(CLIP) $(LIBCLIP)
+	$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -e -s $< $(CLIPLIBS)
+
+cfg :
+
+install all : Makefile  pp$(EXESUFF)
+	cp --remove-destination -fpu$(V) $(BIN) $(DESTDIR)/bin/pp_ron$(EXESUFF)
+	cp --remove-destination -fpu$(V) *.ch $(DESTDIR)/include
+
+cleanc:
+	rm -f$(V) *.c *.ntx $(BIN) *.pp?
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

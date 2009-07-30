@@ -560,7 +560,7 @@
 #include "coll.h"
 
 #ifdef USE_TASKS
-	#include "libcliptask/task.h"
+	#include "../libcliptask/task.h"
 #endif
 #ifndef RTLD_NOW
 	#define RTLD_NOW DL_LAZY

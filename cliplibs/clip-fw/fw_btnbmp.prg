@@ -4,7 +4,7 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <fwin/fivewin.ch>
+#include <clip-fw/fivewin.ch>
 #define LTGRAY_BRUSH        1
 #define RT_BITMAP           2
 

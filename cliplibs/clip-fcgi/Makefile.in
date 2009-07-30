@@ -1,0 +1,43 @@
+#
+#                                            clip-fcgi/Makefile.in
+#
+Local_Depend = include/*.ch
+
+PROG = clip-fcgi
+#TARGET=libclip-fcgi$(DLLSUFF)
+#ATARGET=libclip-fcgi.a
+#RTARGET=libclip-fcgi$(DLLREALSUFF)
+OBJS=fcgi.o
+ADDLIBS= -lfcgi $(C_LIBS)
+
+all: Makefile have_lib $(STARGET)
+
+cfg :
+	cp --remove-destination -fpu$(V) include/*.ch $(Clip_I_Dir)/
+
+have_lib:
+	test -f /usr/include/fcgi_config.h
+
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
+
+#$(ATARGET): $(OBJS)
+#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBS)
+
+include $(Makefile_o_in)
+
+hashcode.h:
+#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+
+install:all install-lib install-example
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-fcgi
+#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-fcgi/
+
+cleanc:
+	rm -rf$(V) hashcode.h $(TARGET).*
+
+distclean: clean
+
+include $(Makefile_end_in)
+

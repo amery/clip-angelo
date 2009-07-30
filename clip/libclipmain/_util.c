@@ -587,9 +587,9 @@
 #include "rational.h"
 #include "coll.h"
 #include "hashcode.h"
-#include "libclipscreen/charset.h"
-#include "libclipscreen/screen.h"
-#include "libcliptask/task.h"
+#include "../libclipscreen/charset.h"
+#include "../libclipscreen/screen.h"
+#include "../libcliptask/task.h"
 
 extern char *CLIPROOT;
 
@@ -2449,7 +2449,7 @@ get_int32(char **buf, long *buflen, long *resp)
 	int res;
 	if (*buflen < 4)
 		return 0;
-	
+
 	res = (ntohl(*((int *) *buf)));
 	*resp = (long) res;
 

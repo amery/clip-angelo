@@ -1,56 +1,60 @@
+#
+#                                            clip-odbc/Makefile.in
+#
 #  GNU make makefile
 #
 
-ifndef CLIPROOT
-	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
-endif
-include $(CLIPROOT)/include/Makefile.inc
+Local_Depend = include/*.ch
 
 LIBODBC=@LIBODBC@ $(C_LIBS)
 # Note: below we check if LIBOOB is empty when library is missed
 LIBOOB=@LIBOOB@
-
-TARGET=libclip-odbc
-ATARGET=libclip-odbc.a
-RTARGET=libclip-odbc$(DLLREALSUFF)
-TARGET1=libclip-oob
-RTARGET1=libclip-oob$(DLLREALSUFF)
+PROG = clip-odbc
+PROG2 = clip-oob
+#TARGET=libclip-odbc
+#ATARGET=libclip-odbc.a
+#RTARGET=libclip-odbc$(DLLREALSUFF)
+#TARGET1=libclip-oob
+#ATARGET1=libclip-oob.a
+#RTARGET1=libclip-oob$(DLLREALSUFF)
+ADDLIBS += $(LIBODBC)
+ADDLIBS2 += $(LIBOOB)
 OBJS=odbc_clip.o odbc.o
+OBJS2= $(OBJS)
+DOC = *.html
 
-install all:  $(RTARGET) $(RTARGET1)
+install all: Makefile  $(STARGET) $(STARGET2)
 
-$(ATARGET): $(OBJS)
-	clip_makelib$(SCRIPTSUFF) $(ATARGET) $(OBJS) $(LIBODBC)
+cfg :
+	cp --remove-destination -fpu$(V) include/odbc.ch $(Clip_I_Dir)/
 
-$(RTARGET): $(ATARGET)
-	clip_makeslib$(SCRIPTSUFF) $(RTARGET) $(ATARGET) $(LIBODBC)
+#$(ATARGET): $(OBJS)
+#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBODBC)
 
-$(ATARGET1): $(OBJS)
-	[ "$(LIBOOB)" = '' ] || clip_makelib$(SCRIPTSUFF) $(ATARGET1) $(OBJS) $(LIBOOB) $(C_LIBS)
+#$(RTARGET): $(ATARGET)
+#	$(CLIP_MAKESLIB) $(RTARGET) $(ATARGET) $(LIBODBC)
 
-$(RTARGET1): $(ATARGET1) $(OBJS)
-	[ "$(LIBOOB)" = '' ] || clip_makeslib$(SCRIPTSUFF) $(RTARGET1) $(ATARGET1) $(LIBOOB) $(C_LIBS)
+#$(ATARGET1): $(OBJS)
+#	[ "$(LIBOOB)" = '' ] || $(CLIP_MAKELIB) $(ATARGET1) $(OBJS) $(LIBOOB) $(C_LIBS)
 
-odbc_clip.o: odbc_clip.c odbc.ch
-	$(CC) $(C_FLAGS) -c odbc_clip.c
+#$(RTARGET1): $(ATARGET1) $(OBJS)
+#	[ "$(LIBOOB)" = '' ] || $(CLIP_MAKESLIB) $(RTARGET1) $(ATARGET1) $(LIBOOB) $(C_LIBS)
 
-odbc.o: odbc.prg odbc.ch
-	$(CLIP) odbc.prg
+include $(Makefile_o_in)
 
-install:all
-	cp -fpuv $(TARGET).* $(DESTDIR)$(CLIPROOT)/lib
-	cp -fpuv $(TARGET1).* $(DESTDIR)$(CLIPROOT)/lib
-#[ "$(TARGET)" = "$(RTARGET)" ] || cp $(RTARGET) $(DESTDIR)$(CLIPROOT)/lib
-#[ "$(TARGET1)" = "$(RTARGET1)" ] || cp $(RTARGET1) $(DESTDIR)$(CLIPROOT)/lib
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/clip-odbc
-	cp *.html $(DESTDIR)$(CLIPROOT)/doc/clip-odbc
-	cp odbc.ch $(DESTDIR)$(CLIPROOT)/include
-	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-odbc
-	cp -R example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-odbc/
-
-clean:
-	rm -rf *.o odbc.c *.s *.bak *.a *.so *.dll *.exe odbc_ref.c *.ex *.nm Makefile
+install:all install-lib install-example install-doc
+#	cp -fu$(V) $(TARGET).* $(DESTDIR)/lib
+#	cp -fu$(V) $(TARGET1).* $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/clip-odbc
+#	cp -fu$(V) *.html $(DESTDIR)/doc/clip-odbc
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-odbc
+#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-odbc/
+#
+cleanc:
+	rm -rf$(V) odbc.c odbc_ref.c $(TARGET).* $(TARGET2)
 
 distclean: clean
-	rm -f Makefile
+	rm -f$(V) Makefile
+
+include $(Makefile_end_in)
 
