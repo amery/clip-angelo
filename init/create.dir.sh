@@ -22,4 +22,4 @@ set >tmp.set
 [ -d $INSTDIR/locale.po ] 		|| mkdir -p$V $INSTDIR/locale.po
 [ -d $INSTDIR/locale.pot ] 	|| mkdir -p$V $INSTDIR/locale.pot
 [ -d $INSTDIR/term ] 			|| mkdir -p$V $INSTDIR/term
-
+[ -d $Clip_M_Dir/temp ] 		|| mkdir -p$V $Clip_M_Dir/temp

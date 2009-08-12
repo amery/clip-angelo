@@ -5,19 +5,19 @@
 Local_Depend =
 
 DIRS_TO_SCAN = 	clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
-						clip-cti 		clip-ctcom 														\
+						clip-cti 		 																	\
 						clip-fcgi 																			\
 						clip-gd 			clip-glade2 													\
 						clip-gtk 																			\
 						clip-gtk2 																			\
-						clip-gtkextra																		\
 						clip-fw 																				\
 						clip-gzip 		clip-mysql 			clip-odbc 								\
 						clip-nanfor 	clip-netto 														\
 						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
 						clip-rtf 		clip-xml 			clip-ui
 
-#
+# 						clip-ctcom 																			\
+#						clip-gtkextra																		\
 include Makefile.01
 
 #ifdef CLIPROOT

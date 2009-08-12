@@ -8,7 +8,7 @@
 #
 beep_on
 
-echo We NEED to check if certains programs are installed  	>&0
+echo We NEED to check if certain programs are installed  	>&0
 echo for a user friendly display and compatibility.			>&0
 echo ""																		>&0
 echo ""																		>&0
@@ -36,7 +36,7 @@ Check_Bin 	bison 			xyz 	all 			Yes 	/usr/bin 			"bison-xx-$ARCH.(rpm/deb)"
 Check_Bin 	cvs 				xyz 	all 			Yes 	/usr/bin 			"cvs-xx-$ARCH.(rpm/deb)"
 Check_Bin 	flex 				xyz 	all 			Yes 	/usr/bin 			"flex-xx-$ARCH.(rpm/deb)"
 Check_Bin 	gcc 				xyz 	all 			Yes 	/usr/bin 			"gcc-xx-$ARCH.(rpm/deb)"
-Check_Bin 	gnubeep 			xyz 	all 			Yes 	/usr/bin 			"gnubeep-xx-$ARCH.(rpm/deb)"
+Check_Bin 	beep 				xyz 	all 			Yes 	/usr/bin 			"beep-xx-$ARCH.(rpm/deb)"
 #Check_Bin 	imake 			xyz 	clip 			Yes 	/usr/bin 			"imake-xx-$ARCH.(rpm/deb)"
 Check_Bin 	ld 				xyz 	all 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
 Check_Bin 	make 				xyz 	all 			Yes 	/usr/bin 			"make-xx-$ARCH.(rpm/deb)"
@@ -50,6 +50,9 @@ Check_Bin 	ranlib 			xyz 	all 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
 #Check_Bin 	rxvt 				xyz 	clip			Yes 	/usr/bin				"rvxt-unicode-xx-$ARCH.(rpm/deb)"
 Check_Bin 	strip 			xyz 	all 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
 #Check_Bin 	urxvt 			xyz 	clip 			Yes 	/usr/bin 			"rxvt-unicode-xx-$ARCH.(rpm/deb)"
+
+Check_Include 		Xmu/Atoms.h 			xyz 	clip/xclip 		yes 	/usr/include/X11 									"libxmu-devel-$ARCH.(rpm/deb)"
+
 Check_Bin xclip 				xyz 	clip 			No 	/usr/bin 			"http://sourceforge.net/projects/xclip"
 #Check_Bin xterm 				xyz 	clip 			No 	/usr/bin 			xterm-xx-$ARCH.(rpm/deb)
 Check_Bin wget 				xyz 	all 			Yes 	/usr/bin 			"wget-xx-$ARCH.(rpm/deb)"
@@ -57,6 +60,7 @@ Check_Bin wget 				xyz 	all 			Yes 	/usr/bin 			"wget-xx-$ARCH.(rpm/deb)"
 Check_Include 		expat.h 					xyz clip-xml 			Yes 	/usr/include 										"libexpat-devel-xx-$ARCH.(rpm/deb)"
 #Check_Include 	float.h 					xyz 	clip 				Yes 	/usr/include 										"gcc4xx-xx-$ARCH.(rpm/deb)"
 Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdk-pixbuf-features.h xyz 	clip-gtk 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
 Check_Include 		sys/io.h 				xyz 	clip 				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		jpeglib.h 				xyz 	clip				Yes 	/usr/include/sys 									"lib(m)jpeg-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		libpq-fe.h 				xyz 	clip-postgres 	Yes 	/usr/include/pgsql 								"postgresql-devel-xx-$ARCH.(rpm/deb)"
@@ -78,8 +82,9 @@ Check_Include 		protocol.h 				xyz 	clip-dbtcp 		Yes 	/opt/dbtcp 											"dbt
 																																				"http://packages.qa.debian.org/d/dbtcp.html"
 Check_Include 		sys/vfs.h 				xyz 	clip				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		sys/statvfs.h 			xyz 	clip				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
-Check_Include 		stropts.h 				xyz 	clip				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+#Check_Include 		stropts.h 				xyz 	clip				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		sys/time.h 				xyz 	clip 				Yes 	/usr/include 										"glibc-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 		tcpd.h 					xyz 	tcp-wrap			Yes 	/usr/include/sys 									"gwrap-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		utmp.h 					xyz 	clip				Yes 	/usr/include/sys 									"glibc-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		X11/xpm.h 				xyz 	libclip-gd 		Yes 	/usr/include 										"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		zlib.h 					xyz 	clip-gzip 		Yes 	/usr/lib$C64 										"zlib-devel-xx-$ARCH.(rpm/deb)"
@@ -124,7 +129,7 @@ Check_Library 		z 						.so 	clip-gzip 		Yes 	/usr/lib$C64 							"zlib-devel-xx
 
 if [[ "$C64" != "64" ]] ; then
 	Check_Include 	ibase.h 	xyz 	clip-interbase 	yes 	/opt/interbase/include 	"ib2009-linux-xx.tar.gz" "can be downloaded at" "http://www.codegear.com/downloads/free/interbase"
-	Check_Library 	gds 		xyz 	clip-interbase 	yes 	/opt/interbase/lib 		"ib2009-linux-xx.tar.gz" "can be downloaded at" "http://www.codegear.com/downloads/free/interbase"
+	Check_Library 	gds 		.so 	clip-interbase 	yes 	/opt/interbase/lib 		"ib2009-linux-xx.tar.gz" "can be downloaded at" "http://www.codegear.com/downloads/free/interbase"
 fi
 
 

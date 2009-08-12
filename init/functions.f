@@ -223,7 +223,10 @@ function banner ()
 
 function beep_on ()
 	{
-		if [ -x /usr/bin/gnubeep ] ;then
+		if [ -x /usr/bin/beep ] ;then
+			echo " beep beep" 	>/dev/null
+			/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
+		elif [ -x /usr/bin/gnubeep ] ;then
 			echo " beep beep" 	>/dev/null
 			/usr/bin/gnubeep -b
 		elif [ -x /usr/bin/mplayer ] ; then
@@ -374,11 +377,11 @@ function Check_Bin ()
 						let ++tptptpt
 					done
 					beep_on
-					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'" 	>&0
-					OnScreen 0 " or install package : $PackName " 			>&0
-					OnScreen 0 " and [R]escan standard directories " 		>&0
-					OnScreen 0 " or [N] skip : " 									>&0
-					OnScreen 0 ${ArrayToFind[@]} 									>&0
+					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
+					OnScreen 0 " or install package : $PackName"
+					OnScreen 0 " and [R]escan standard directories"
+					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
@@ -589,13 +592,13 @@ function Check_Include ()
 					done
 					beep_on
 					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
-					OnScreen 0 " or install package : $PackName "
-					OnScreen 0 " and [R]escan standard directories "
-					OnScreen 0 " or [N] skip : "
+					OnScreen 0 " or install package : $PackName"
+					OnScreen 0 " and [R]escan standard directories"
 					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
-					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
+					read -n 1 -p "Your choice : [Y/N/R] : " varX >&0
 					if [[ $varX = [nN] ]] ; then
 						let ++CurIdx
 						continue
@@ -772,8 +775,8 @@ function Check_Library ()
 					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
 					OnScreen 0 " or install package : $PackName "
 					OnScreen 0 " and [R]escan standard directories "
-					OnScreen 0 " or [N] skip : "
 					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
@@ -958,14 +961,17 @@ function create_var ()
 function deception ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-			#mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
+			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			#play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
+			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty play pitty" 	>&0
 			echo "" 								>&0
 		else
+			beep_on
+			beep_on
+			beep_on
 			echo " pitty pitty" 		>&0
 			echo "" 								>&0
 		fi
@@ -1455,6 +1461,7 @@ function trumpet ()
 			echo " successful play " 		>&0
 			echo "" 								>&0
 		else
+			beep_on
 			echo " successful" 				>&0
 			echo "" 								>&0
 		fi

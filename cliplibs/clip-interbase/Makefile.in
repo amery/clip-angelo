@@ -9,7 +9,7 @@ IBROOT=/opt/interbase
 
 #TARGET=libclip-interbase$(DLLSUFF)
 #RTARGET=libclip-interbase$(DLLREALSUFF)
-C_FLAGS+ = -I$(IBROOT)/include
+C_FLAGS += -I$(IBROOT)/include
 OBJS=ib_clip.o ib.o
 ADDLIBS= -lgds -L$(IBROOT)/lib -lcrypt $(C_LIBS)
 DOC = *.html
@@ -26,7 +26,7 @@ have_lib:
 #$(TARGET): $(OBJS)
 #	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
 
-include $(Makefile_O_in)
+include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
 #	$(CLIP_CP) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib

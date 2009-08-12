@@ -10,6 +10,7 @@
 #
 # added
 #
+$Clip_M_Dir/init/create.dir.sh
 source $Clip_M_Dir/init/functions.f
 if [[ $? != 0 ]] ; then
 	exit 1
@@ -374,6 +375,7 @@ echo "export Clip_L_Dir=$Clip_L_Dir"																	>&3
 echo "export Clip_M_Dir=$Clip_M_Dir"																	>&3
 echo "export Clip_S_Dir=$Clip_S_Dir"																	>&3
 echo "export Clip_T_Dir=$Clip_T_Dir"																	>&3
+echo "export seq_no=$seq_no"																				>&3
 if [ -n "$FORCEALIGN" ] ; then
 	echo "export FORCEALIGN=$FORCEALIGN"																>&3
 fi
