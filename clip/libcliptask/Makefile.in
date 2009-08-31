@@ -27,31 +27,33 @@ cfg:
 
 include $(Makefile_o_in)
 
-../compiler/coll.o : ../compiler/coll.c Makefile
-	$(Trace_o)
-	cd ../compiler  																	\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+../libclipmain/coll.o : ../libclipmain/coll.c Makefile
+	cd ../libclipmain																					\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
-../compiler/list.o : ../compiler/list.c Makefile
-	$(Trace_o)
-	cd ../compiler  																	\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+../libclipmain/list.o : ../libclipmain/list.c Makefile
+	cd ../libclipmain  																				\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ../libclipmain/hash.o : ../libclipmain/hash.c Makefile
-	$(Trace_o)
-	cd ../libclipmain  																	\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+	cd ../libclipmain  																				\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  hash.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 cl_cfg.h :
-	$(Trace_o)
+	$(Trace)
 	./cl_conf
 
 pth_task.o: pth_task.c task.h  Makefile
-	$(Trace_c)
-	$(CC) $(CFLAGS) -c pth_task.c
+	if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 						\
+		$(CC) $(CFLAGS) -g -c $< ; 		\
+	else 											\
+		$(Trace_c) ; 							\
+		$(CC) $(CFLAGS) -c $< ; 			\
+	fi
 
 cl_tst$(EXESUFF): $(OBJS) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
 	$(Trace_c)

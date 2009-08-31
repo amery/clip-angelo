@@ -18,7 +18,7 @@ have_lib:
 	test -f /usr/include/bzlib.h
 
 bzpref.h:
-	$(Trace_o)
+	$(Trace)
 	if grep BZ2_bzopen /usr/include/bzlib.h >/dev/null 2>&1;\
 	then\
 		echo '#define BZPREF(c) BZ2_##c' >bzpref.h;\

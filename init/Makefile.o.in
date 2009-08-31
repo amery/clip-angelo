@@ -7,27 +7,60 @@
 ##
 
 %.o : %.c Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
-
-%.o : %.prg Makefile $(CLIP)
-	$(Trace_prg)
-	$(E_clip)$(CLIP) $(CLIPFLAGS) $<
-
-%.po : %.prg Makefile $(CLIP)
-	$(Trace_prg)
-	$(E_clip)$(CLIP) $(CLIPFLAGS) -p $<
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_c_d) ; 							\
+		$(CC) -g $(C_FLAGS) -c $< ; 	\
+	else 												\
+		$(Trace_c) ; 								\
+		$(CC) $(C_FLAGS) -c $< ; 		\
+	fi
 
 .c.o :  Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_c_d) ; 							\
+		$(CC) -g $(C_FLAGS) -c $< ; 	\
+	else 												\
+		$(Trace_c) ; 								\
+		$(CC) $(C_FLAGS) -c $< ; 		\
+	fi
 
-.prg.po : Makefile $(CLIP)
-	$(Trace_prg)
-	$(E_clip)$(CLIP) $(CLIPFLAGS) -p $<
+%.o : %.prg Makefile $(CLIP)
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
+		$(Trace_prg_d) ; 								\
+		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
+	else 													\
+		$(E_clip)$(CLIP) $(CLIPFLAGS) $< ; 		\
+		$(Trace_prg) ; 								\
+		$(CLIP) $(CLIPFLAGS) $< ;		\
+	fi
 
 .prg.o : Makefile $(CLIP)
-	$(Trace_prg)
-	$(E_clip)$(CLIP) $(CLIPFLAGS) $<
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
+		$(Trace_prg_d) ; 								\
+		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
+	else 													\
+		$(E_clip)$(CLIP) $(CLIPFLAGS) $< ; 		\
+		$(Trace_prg) ; 								\
+		$(CLIP) $(CLIPFLAGS) $< ;		\
+	fi
+
+%.po : %.prg Makefile $(CLIP)
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
+		$(Trace_prg_d) ; 									\
+		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
+	else 														\
+		$(Trace_prg) ; 									\
+		$(CLIP) -p $(CLIPFLAGS) $< ; 		\
+	fi
+
+.prg.po : Makefile $(CLIP)
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
+		$(Trace_prg_d) ; 									\
+		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
+	else 														\
+		$(Trace_prg) ; 									\
+		$(CLIP) -p $(CLIPFLAGS) $< ; 		\
+	fi
+
 
 ##########################################################

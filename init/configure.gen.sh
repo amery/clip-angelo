@@ -32,7 +32,7 @@ NM_PRG=""
 CHECK_STACK=""
 PO_COMPAT=""
 SCRIPTSUFF=$C64.sh
-DEBUGFLAGS=""
+DEBUGFLAGS="-DCLIP_DEBUG"
 STD_LIBDIR=""
 STD_LIB_DIR=/usr/lib$C64
 DLLSUFF=".so"
@@ -178,12 +178,12 @@ CLIP_ROOT="$DESTDIR$CLIPROOT"
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
 C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $DEBUGFLAGS $OPTFLAGS"
 #CFLAGS="-Wall -fPIC -Iinclude.clip"
-CLIPFLAGS="-I include -I include.clip -wlRON"
+CLIPFLAGS="-I include -I include.clip -wlRON $DEBUGFLAGS "
 C_LIBS="-L$Clip_L_Dir -lclip"
 ADD_CFLAGS="-fPIC"
 uname=`uname -s`
 uver=`uname -r`
-seq_no=$(cat $Clip_M_Dir/seq_no.txt)
+seq_no=$(cat $Clip_M_Dir/release.version)
 ####remark from Uri: "hostname -f" on Solaris changed hostname !
 ####                 and "hname" not used in this script.
 #hname=`hostname -f 2>/dev/null`
@@ -572,13 +572,13 @@ cat Makefile.incl_1 											>>./clipcfg.sh
 cp --remove-destination -fu$V Makefile.inc ./Makefile.ini
 mkdir -p$V $Clip_I_Dir
 mv Makefile.ini clipcfg.sh $Clip_I_Dir/
-#rm -f$V Makefile.dtu 		|| true
-#rm -f$V Makefile.dtx 		|| true
-#rm -f$V Makefile.export 	|| true
-#rm -f$V Makefile.inc 		|| true
-#rm -f$V Makefile.incl 		|| true
-#rm -f$V Makefile.ini 		|| true
-#rm -f$V Makefile.tmp 		|| true
+rm -f$V Makefile.dtu 		|| true
+rm -f$V Makefile.dtx 		|| true
+rm -f$V Makefile.export 	|| true
+rm -f$V Makefile.inc 		|| true
+rm -f$V Makefile.incl 		|| true
+rm -f$V Makefile.ini 		|| true
+rm -f$V Makefile.tmp 		|| true
 cp --remove-destination -fu$V $Clip_I_Dir/Makefile.ini $Clip_M_Dir/
 echo ". done."
 printf "configure: creating clipcfg.h .."

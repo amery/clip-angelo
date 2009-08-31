@@ -11,8 +11,13 @@ all install : Makefile tcp-wrap$(EXESUFF)
 cfg :
 
 tcp-wrap$(EXESUFF): tcp-wrap.c Makefile
-	$(Trace_c)
-	$(CC) $(C_FLAGS) -o $@ tcp-wrap.c $(LIBS)
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 						\
+		$(Trace_c_d) ; 											\
+		$(CC) -g $(C_FLAGS) -c $< -o $@ $(LIBS); \
+	else \
+		$(Trace_c) ; 												\
+		$(CC) $(C_FLAGS) -c $< -o $@ $(LIBS); 	\
+	fi
 
 cleanc:
 	rm -f$(V) tcp-wrap$(EXESUFF)

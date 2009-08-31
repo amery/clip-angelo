@@ -98,13 +98,13 @@ $(Clip_M_Dir)/config/usr.local.ok :
 #	touch $(Clip_M_Dir)/config/sys.ok
 
 M_config : Makefile $(DIRS_TO_SCAN) FORCE
-	$(Trace_o)
+	$(Trace)
 	touch $(Clip_M_Dir)/config/config_check.ok
 	banner $@ ok
 	banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/config_check.ok : Makefile $(Depend_Files)
-	$(Trace_o)
+	$(Trace)
 	rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	./configure $(MAKECMDGOALS)
 	touch $(Clip_M_Dir)/config/config_check.ok
@@ -238,7 +238,7 @@ update:
 	banner $@ ok 	>&0
 
 Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
-	$(Trace_o)
+	$(Trace)
 	./configure $(MAKECMDGOALS)
 	$(MAKE) -i M_config
 	@echo $(PWD)/Makefile "is updated" 	>&0
@@ -255,7 +255,7 @@ FORCE :
 $(DIRS_TO_SCAN) : Makefile FORCE
 	@echo "Scanning : " $(PWD) >&0
 	@echo "Scanning : " $(PWD) >&1
-	if [ -d $@ ] ; then 																									\
+	$(E_if)if [ -d $@ ] ; then 																						\
 					cd $@  																									\
 					&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 			\
 					&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) 0 ) )			\

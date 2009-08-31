@@ -13,7 +13,7 @@ INST_XCLIP=
 CLIP_CLD=
 INST_MEMDEBUG_H=
 
-CLIPFLAGS	= -g -v2 -N#-O
+#CLIPFLAGS	= -g -v2 -N#-O
 CLIP	= clip$(EXESUFF)
 CVS_RSH = ./ssh.sh
 YACC = bison
@@ -23,16 +23,16 @@ export CLIP_NAMES EXESUFF SCRIPTSUFF
 .SUFFIXES: .prg .c .po
 .PHONY:	tests screen hash
 
-SRCS	= coll.c list.c hash.c getopt.c getopt1.c clicutil.c \
-	  clic.y clic.lex file.c node.c locale.c \
-	  clip.c clicgt.c _win32.c
+#SRCS	= coll.c list.c hash.c getopt.c getopt1.c clicutil.c \
+#	  clic.y clic.lex file.c node.c locale.c \
+#	  clip.c clicgt.c _win32.c
 
-OBJDIR	= .
+#OBJDIR	= .
 LIBS	= -lm
 
-LIB	= libclip.a
-SLIB	= libclip$(DLLSUFF)
-SLIBREAL = libclip$(DLLREALSUFF)
+#LIB	= libclip.a
+#SLIB	= libclip$(DLLSUFF)
+#SLIBREAL = libclip$(DLLREALSUFF)
 
 EXTOBJS =
 
@@ -100,20 +100,20 @@ cleanc :$(DIRS_TO_SCAN)
 	cd include.h && rm -rf *.bak *.log *core core*
 	[ ! -f tests/Makefile ] || (cd tests ; $(MAKE) clean)
 	[ ! -f libclipmemdebug/Makefile ] || (cd libclipmemdebug ; $(MAKE) clean)
-	rm -f$(V) $(BINS) *.out *.o *.a *.so *.dll *.pa *.b *.BAK *.bak *~ core* *core\
-		*.output test dtest clip$(EXESUFF) clip_dbg$(EXESUFF) clip_trans$(EXESUFF) \
-		bin *.exe locale.pot license.h clipcfg.h clipcfg.sh \
-		clip_cp$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) \
-		calchash$(EXESUFF) genlist$(EXESUFF) hashextract$(EXESUFF) clip_hashextract$(EXESUFF) \
-		clip_msgfmt$(SCRIPTSUFF) clip_msgmerge$(SCRIPTSUFF) Makefile Makefile.inc Makefile.ini Makefile.tmp \
-		Makefile.incl
+	rm -f$(V) 	$(BINS) *.out *.o *.a *.so *.dll *.pa *.b *.BAK *.bak *~ core* *core												\
+					*.output test dtest clip$(EXESUFF) clip_dbg$(EXESUFF) clip_trans$(EXESUFF) 									\
+					bin *.exe locale.pot license.h clipcfg.h clipcfg.sh 																	\
+					clip_cp$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) 										\
+					calchash$(EXESUFF) genlist$(EXESUFF) hashextract$(EXESUFF) clip_hashextract$(EXESUFF) 						\
+					clip_msgfmt$(SCRIPTSUFF) clip_msgmerge$(SCRIPTSUFF) Makefile Makefile.inc Makefile.ini Makefile.tmp 	\
+					Makefile.incl
 
 
 distclean: clean
 	rm -f$(V) configure.flags
-	rm -f$(V) Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) \
-		clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) \
-		license.txt license.h
+	rm -f$(V) 	Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) 											\
+					clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) 	\
+					license.txt license.h
 	rm -f$(V) cliproot
 
 cleantest:

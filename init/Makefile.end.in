@@ -9,35 +9,35 @@
 
 
 Makefile.ini : $(CONFIGURE_SH)
-	$(Trace_o)
+	$(Trace)
 	@cp --remove-destination -fpu$(V) ../Makefile.ini ./
 	@$(CONFIGURE_SH)
 
 Makefile : Makefile.in Makefile.ini ../Makefile.ini $(Local_Depend)
-	$(Trace_o)
+	$(Trace)
 #	cp --remove-destination -fu$(V) ../Makefile.ini ../configure.ini ./
 #	( [ -f Makefile.in ] && $(MAKE) -f Makefile.in clean ) || true
 #	( [ -f Makefile ] && $(MAKE) clean ) || true
-	cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
-	( [ -f Makefile.in ] && $(CONFIGURE_SH) ) || true
+	@cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
+	@( [ -f Makefile.in ] && $(CONFIGURE_SH) ) || true
 	@echo $(PWD)/Makefile "is updated" >&0
 	@echo $(PWD)/Makefile "is updated" >&1
 
 FORCE :
 
 $(DIRS_TO_SCAN) example : Makefile FORCE
-	@echo  "Scanning : " $(PWD) >&0
-	@echo  "Scanning : " $(PWD) >&1
-	$(E_if)if [ -d $@ ] ; then 																			\
-					cd $@  																						\
-					&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 	\
-					&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-					&& $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ;		\
+	$(E_if)if [ -d $@ ] ; then 																						\
+					cd $@  																									\
+						&& echo  "Scanning : " $$PWD >&0																\
+						&& echo  "Scanning : " $$PWD >&1																\
+						&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
+						&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )			\
+						&& $(MAKE) $(MAKEFLAGS) $(ADDMAKECMDGOALS) $(MAKECMDGOALS) ;						\
 		fi
 
 M_config : Makefile cleanc cfg $(DIRS_TO_SCAN) example FORCE
-	[ -d ./include.clip ] || ln -sf$(V) $(Clip_I_Dir) ./include.clip
-	cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
+	$(E_if)[ -d ./include.clip ] || ln -sf$(V) $(Clip_I_Dir) ./include.clip
+	@cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
 	@[ -f Makefile ] || $(CONFIGURE_SH)
 	@echo "Config for " $(PWD) "is Ok" >&0
 	@echo "Config for " $(PWD) "is Ok" >&1
@@ -56,7 +56,7 @@ clean : $(DIRS_TO_SCAN) example cleanc
 							dummy.c include.clip 						 						) 	|| true
 	$(E_if)( [ -f Makefile.in ] && rm -f$(V) Makefile ) 									|| true
 	$(E_if)( [ -f configure.in ] && rm -f$(V) configure ) 								|| true
-	rm -f$(V) Makefile.ini configure.ini
+	$(E_rm)rm -f$(V) Makefile.ini configure.ini
 
 $(ATARGET) : $(OBJS) $(ADDOBJS) Makefile $(CLIP)
 	$(Trace_lib)

@@ -40,61 +40,89 @@ DIRS_TO_SCAN 		=
 
 DOC =
 
+define Trace
+	echo [Making] : $(value PWD)/$@ because of : $?  ; \
+	echo [Making] : $(value PWD)/$@ because of : $? >&0
+endef
 define Trace_o
-	@echo [Making] : $(value PWD)/$@ because of : $?
-	@echo [Making] : $(value PWD)/$@ because of : $? >&0
+error
+	echo [Making] : $(value PWD)/$@ because of : $?  ; \
+	echo [Making] : $(value PWD)/$@ because of : $? >&0
+endef
+
+define Trace_n
+	echo [Making] : $(value PWD)/$@ because of : $?  ; \
+	echo [Making] : $(value PWD)/$@ because of : $? >&0
 endef
 
 define Trace_c
-	$(Trace_o)
-	@echo [CC] $(value PWD)/$@ 	>&0
-	@echo [CC] $(value PWD)/$@
+	$(Trace_n) ;\
+	echo [CC] $(value PWD)/$@ 	>&0 ; \
+	echo [CC] $(value PWD)/$@
+endef
+
+define Trace_c_d
+	$(Trace_n) ; \
+	echo [CC -g] $(value PWD)/$@ 	>&0 ; \
+	echo [CC -g] $(value PWD)/$@
 endef
 
 define Trace_clip
-	$(Trace_o)
-	@echo [clip] $(value PWD)/$@ 	>&0
-	@echo [clip] $(value PWD)/$@
+	$(Trace_n) ; \
+	echo [clip] $(value PWD)/$@ 	>&0 ; \
+	echo [clip] $(value PWD)/$@
+endef
+
+define Trace_clip_d
+	$(Trace_n) ; \
+	echo [clip -g] $(value PWD)/$@ 	>&0 ; \
+	echo [clip -g] $(value PWD)/$@
 endef
 
 define Trace_prg
-	$(Trace_o)
-	@echo [clip] $(value PWD)/$@ 	>&0
-	@echo [clip] $(value PWD)/$@
+	$(Trace_n) ; \
+	echo [clip] $(value PWD)/$@ 	>&0 ; \
+	echo [clip] $(value PWD)/$@
+endef
+
+define Trace_prg_d
+	$(Trace_n) ; \
+	echo [clip -g] $(value PWD)/$@ 	>&0 ; \
+	echo [clip -g] $(value PWD)/$@
 endef
 
 define Trace_yacc
-	$(Trace_o)
+	$(Trace_n)
 	@echo [YACC] $(value PWD)/$@ 	>&0
 	@echo [YACC] $(value PWD)/$@
 endef
 define Trace_flex
-	$(Trace_o)
+	$(Trace_n)
 	@echo [FLEX] $(value PWD)/$@ 	>&0
 	@echo [FLEX] $(value PWD)/$@
 endef
 define Trace_lib
-	$(Trace_o)
+	$(Trace_n)
 	@echo [build] $(value PWD)/$@ 	>&0
 	@echo [build] $(value PWD)/$@
 endef
 define Trace_lib2
-	$(Trace_o)
+	$(Trace_n)
 	@echo [build2] $(value PWD)/$@ 	>&0
 	@echo [build2] $(value PWD)/$@
 endef
-Debug_Make=
-E_c_cp=
-E_c_mkl=
-E_c_mkSl=
-E_cc=
-E_cd=
-E_clip=
-E_cp=
-E_e=
-E_for=
-E_if=
-E_ln=
-E_mkD=
-E_rm=
-E_xx=
+Debug_Make=1
+E_c_cp=@
+E_c_mkl=@
+E_c_mkSl=@
+E_cc=@
+E_cd=@
+E_clip=@
+E_cp=@
+E_e=@
+E_for=@
+E_if=@
+E_ln=@
+E_mkD=@
+E_rm=@
+E_xx=@

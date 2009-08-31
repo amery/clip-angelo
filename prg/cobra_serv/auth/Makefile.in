@@ -16,8 +16,13 @@ all: Makefile pam-auth$(EXESUFF)
 cfg :
 
 pam-auth$(EXESUFF): pam-auth.c Makefile
-	$(Trace_c)
-	$(CC) $(C_FLAGS) -o$@ pam-auth.c $(LIBS)
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) -g $(C_FLAGS) $< -o $@ $(LIBS) ; 	\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(C_FLAGS) $< -o $@ $(LIBS) ; 		\
+	fi
 
 cleanc:
 	rm -f$(V)  pam-auth$(EXESUFF)

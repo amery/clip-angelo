@@ -34,7 +34,7 @@ cfg :
 	cp --remove-destination -fpu$(V) include/clip-ui.ch $(Clip_I_Dir)/
 
 var.ch: Makefile $(Clip_L_Dir)/libclip-xml.so
-	$(Trace_o)
+	$(Trace)
 	echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
 
 #$(TARGET): $(OBJS)

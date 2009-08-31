@@ -26,48 +26,103 @@ cleanc:
 #	$(CLIP_MAKELIB) $(LIB) $(OBJS) && ranlib $(LIB)
 
 rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 rdd.o:		rdd.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 dbf.o:		dbf.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 ntx.o:		ntx.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 cdx.o:		cdx.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 dbt.o:		dbt.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 fpt.o:		fpt.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 rushmore.o:	rushmore.c ../include.h/rdd.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 btree.o:	btree.c btree.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 six.o:		six.c ../include.h/rdd.h ../include/six.ch Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 hiper.o:	hiper.c ../include.h/rdd.h btree.h Makefile
-	$(Trace_c)
-	$(E_cc)$(CC) $(C_FLAGS) -c $<
+	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
+	fi
 
 test: test.prg rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o ../include.h/clipbase.h ../libclip/clipbase.c ../libclip/libclip.a $(CLIP)
 	$(Trace_clip)

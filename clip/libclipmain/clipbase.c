@@ -7,10 +7,10 @@
 	$Log: clipbase.c,v $
 	Revision 1.5  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.4  2007/01/19 08:05:25  itk
 	uri: small fix for gcc4.1
-	
+
 	Revision 1.3  2006/12/29 08:02:25  itk
 	uri: strip alias name from long filename.
 
