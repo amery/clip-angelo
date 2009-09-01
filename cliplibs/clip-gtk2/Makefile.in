@@ -144,7 +144,7 @@ include/_hashcode.h: $(HASHSRCS)
 	$(Trace)
 	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u >include/_hashcode.h
 	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
-	cp -fpu$(V)  include/hashcode.h include/_hashcode.h
+	cp -fp$(V)  include/hashcode.h include/_hashcode.h
 
 #$(XLIB): $(XLIBOBJS)
 #	rm -f $(XLIB)

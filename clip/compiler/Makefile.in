@@ -99,7 +99,7 @@ FORCE :
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
-$(BIN):  $(OBJS) $(ADDOBJS) seq_no.txt $(MLIB) Makefile
+$(BIN):  $(OBJS) $(ADDOBJS) $(MLIB) Makefile
 	$(Trace_c)
 	@echo "seq_no : " $(seq_no)
 	$(CC) $(CFLAGS) $(STATICLINK) -DSEQ_NO=\"$(seq_no)\" 	\
@@ -107,9 +107,6 @@ $(BIN):  $(OBJS) $(ADDOBJS) seq_no.txt $(MLIB) Makefile
 		$(OBJS) $(ADDOBJS) $(LIBS) $(ICONV_LIB) $(MLIB)
 		cp --remove-destination -fuv $@ $(Clip_B_Dir)/
 		ln -sf$(V) $(Clip_B_Dir)/$@ $(BINDIR)/
-
-seq_no.txt:
-	../tools/seq_no.sh
 
 clip_hash.o: ../libclipmain/cliphash.c Makefile
 	if [ -f $(subst .o,.b,$@) ] ; then 									\

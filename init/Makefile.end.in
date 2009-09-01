@@ -15,9 +15,6 @@ Makefile.ini : $(CONFIGURE_SH)
 
 Makefile : Makefile.in Makefile.ini ../Makefile.ini $(Local_Depend)
 	$(Trace)
-#	cp --remove-destination -fu$(V) ../Makefile.ini ../configure.ini ./
-#	( [ -f Makefile.in ] && $(MAKE) -f Makefile.in clean ) || true
-#	( [ -f Makefile ] && $(MAKE) clean ) || true
 	@cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
 	@( [ -f Makefile.in ] && $(CONFIGURE_SH) ) || true
 	@echo $(PWD)/Makefile "is updated" >&0
@@ -47,13 +44,13 @@ distclean:$(DIRS_TO_SCAN) example distcleanc
 uninstall : distclean
 
 clean : $(DIRS_TO_SCAN) example cleanc
-	$(E_rm)rm -f$(V) 	$(sort *~ *.a *.BAK *.bak *.cdx *.config.txt *.dll 			\
-							*.ex *.exe *.EXE *.export *.idx *.nm *.ntx 						\
-							*.o *.output *.pa *.po *.ppo *.s *.so *.t *.sav 				\
-							*.tmp *.uri a.out compile.*.sh set.txt *.set.txt 				\
-							*.log configure.ini Makefile.ini 									\
-							Makefile.01 Makefile.02 make2 include locale.po charsets 	\
-							dummy.c include.clip 						 						) 	|| true
+	$(E_rm)rm -f$(V) 	$(sort 	*~ *.a *.BAK *.bak *.cdx *.config.txt *.dll 						\
+										*.ex *.exe *.EXE *.export *.idx *.nm *.ntx 						\
+										*.o *.output *.pa *.po *.ppo *.s *.so *.t *.sav 				\
+										*.tmp *.uri a.out compile.*.sh set.txt *.set.txt 				\
+										*.log configure.ini Makefile.ini 									\
+										Makefile.01 Makefile.02 make2 include locale.po charsets 	\
+										dummy.c include.clip 						 							) 	|| true
 	$(E_if)( [ -f Makefile.in ] && rm -f$(V) Makefile ) 									|| true
 	$(E_if)( [ -f configure.in ] && rm -f$(V) configure ) 								|| true
 	$(E_rm)rm -f$(V) Makefile.ini configure.ini
