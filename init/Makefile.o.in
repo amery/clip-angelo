@@ -29,7 +29,7 @@
 		$(Trace_prg_d) ; 								\
 		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
 	else 													\
-		$(E_clip)$(CLIP) $(CLIPFLAGS) $< ; 		\
+		$(CLIP) $(CLIPFLAGS) $< ; 		\
 		$(Trace_prg) ; 								\
 		$(CLIP) $(CLIPFLAGS) $< ;		\
 	fi
@@ -39,7 +39,7 @@
 		$(Trace_prg_d) ; 								\
 		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
 	else 													\
-		$(E_clip)$(CLIP) $(CLIPFLAGS) $< ; 		\
+		$(CLIP) $(CLIPFLAGS) $< ; 		\
 		$(Trace_prg) ; 								\
 		$(CLIP) $(CLIPFLAGS) $< ;		\
 	fi

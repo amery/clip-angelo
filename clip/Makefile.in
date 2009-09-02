@@ -167,7 +167,7 @@ inst_dir:
 
 
 inst_clip:
-	cd $(Clip_B_Dir) && chmod 0755 $(BINS) $(SCRIPTS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
+	cd $(Clip_B_Dir) && chmod 0755 $(BINS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
 	if [ "$(OSNAME)" = CYGWIN ] ; then echo "bash lowname %1 %2 %3 %4 %5 %6 %7 %8 %9" > $(Clip_B_Dir)/lowname.bat ; fi
 ifneq ($(BINDIR),$(Clip_B_Dir))
 	ln -sf$(V) $(Clip_B_Dir)/clip$(EXESUFF) 					$(BINDIR)/

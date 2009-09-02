@@ -12,14 +12,15 @@ CLIPLIBS  =
 #LIBS = ./libclip-codb$(DLLSUFF)
 LIBS = -lclip-codb
 AB_OBJS  = $(sort ab_obj.o ab_menu.o ab_brow.o ab_init.o ab_funcs.o \
-		ab_report.o )
+						ab_report.o )
 .SUFFIXES: .prg .o .po
 
-PROGS = codb_pack$(EXESUFF) codb_addobj$(EXESUFF) codb_ab$(EXESUFF) \
-	codb_make$(EXESUFF) codb_load$(EXESUFF) codb_export$(EXESUFF) codb_reindex$(EXESUFF) \
-	codb_arename$(EXESUFF) codb_rcheck$(EXESUFF) #test$(EXESUFF)
+PROGS = 	$(sort 	codb_pack$(EXESUFF) codb_addobj$(EXESUFF) codb_ab$(EXESUFF) 									\
+						codb_make$(EXESUFF) codb_load$(EXESUFF) codb_export$(EXESUFF) codb_reindex$(EXESUFF) 	\
+						codb_arename$(EXESUFF) codb_rcheck$(EXESUFF) )
+#test$(EXESUFF)
 
-all : $(DIRS_TO_SCAN) $(PROGS)
+all : Makefile $(DIRS_TO_SCAN) $(PROGS)
 
 cfg :
 

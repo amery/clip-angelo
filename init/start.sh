@@ -37,6 +37,13 @@ elif [[ "$option" = "1" ]] || [[ "$option" = "home" ]] || [[ "$option" = "clean"
 	export Clip_B_Dir="$INSTDIR/bin/"
 	export Clip_D_Dir="$INSTDIR/doc/"
 	export Clip_L_Dir="$INSTDIR/lib$C64/"
+	mkdir -p$V $Clip_B_Dir || true
+	touch $Clip_B_Dir/0 || true
+	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+		exit 1
+	fi
+	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "2" ]] || [[ "$option" = "local" ]] ; then
 	option="local"
 	DESTDIR="$Clip_H_Dir/"
@@ -45,6 +52,13 @@ elif [[ "$option" = "2" ]] || [[ "$option" = "local" ]] ; then
 	export Clip_B_Dir="$INSTDIR/bin/"
 	export Clip_D_Dir="$INSTDIR/doc/"
 	export Clip_L_Dir="$INSTDIR/lib$C64/"
+	mkdir -p$V $Clip_B_Dir || true
+	touch $Clip_B_Dir/0 || true
+	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+		exit 1
+	fi
+	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "3" ]] || [[ "$option" = "opt" ]] ; then
 	option="opt"
 	DESTDIR="/opt/"
@@ -53,6 +67,13 @@ elif [[ "$option" = "3" ]] || [[ "$option" = "opt" ]] ; then
 	export Clip_B_Dir="$INSTDIR/bin/"
 	export Clip_D_Dir="$INSTDIR/doc/"
 	export Clip_L_Dir="$INSTDIR/lib$C64/"
+	mkdir -p$V $Clip_B_Dir || true
+	touch $Clip_B_Dir/0 || true
+	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+		exit 1
+	fi
+	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 	option="usr.local"
 	DESTDIR="/usr/local/"
@@ -61,6 +82,13 @@ elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 	export Clip_B_Dir="$INSTDIR/bin/"
 	export Clip_D_Dir="$INSTDIR/doc/"
 	export Clip_L_Dir="$INSTDIR/lib$C64/"
+	mkdir -p$V $Clip_B_Dir || true
+	touch $Clip_B_Dir/0 || true
+	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+		exit 1
+	fi
+	rm -f $Clip_B_Dir/0
 #elif [[ "$option" = "5" ]] || [[ "$option" = "sys" ]] ; then
 #	option="sys"
 #	DESTDIR="/usr/bin/"
@@ -69,11 +97,18 @@ elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 #	export Clip_B_Dir="$DESTDIR/"
 #	export Clip_D_Dir="usr/doc/$CLIPROOT"
 #	export Clip_L_Dir="usr/lib$C64/"
+#	mkdir -p$V $Clip_B_Dir || true
+#	touch $Clip_B_Dir/0 || true
+#	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+#		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+#		exit 1
+#	fi
+#	rm -f $Clip_B_Dir/0
 else
 	echo
 	echo "$0 options are : [ '' | home(default) | sys | opt | usr.local ]"
 	exit 1
-fi	
+fi
 #export CONFIGUR_SH=$Clip_M_Dir/init/config.sh
 export ARCH
 export C64
@@ -102,3 +137,4 @@ echo "cd $HOME/bin" 							>>$Clip_B_Dir/linkall.sh
 echo "ln -sf$V $INSTDIR/bin/* ./" 		>>$Clip_B_Dir/linkall.sh
 
 chmod +x $Clip_B_Dir/linkall.sh
+set >start.set.txt

@@ -44,7 +44,6 @@ home : $(Clip_M_Dir)/config/home.ok
 #	touch home
 
 $(Clip_M_Dir)/config/home.ok :
-# $(Clip_M_Dir)/config/config_check.ok
 	[ -f $(Clip_M_Dir)/config/home.ok ] || $(MAKE) -i clean
 	./configure "home"
 	$(MAKE) -i M_config
@@ -56,7 +55,6 @@ opt : $(Clip_M_Dir)/config/opt.ok
 	banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/opt.ok :
-# $(Clip_M_Dir)/config/config_check.ok
 	[ -f $(Clip_M_Dir)/config/opt.ok ] || $(MAKE) -i clean
 	./configure "opt"
 	$(MAKE) -i M_config
@@ -68,7 +66,6 @@ local : $(Clip_M_Dir)/config/local.ok
 	banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/local.ok :
-#$(Clip_M_Dir)/config/config_check.ok
 	[ -f $(Clip_M_Dir)/config/local.ok ] || $(MAKE) -i clean
 	./configure "local"
 	$(MAKE) -i M_config
@@ -80,7 +77,6 @@ usr.local : $(Clip_M_Dir)/config/usr.local.ok
 	banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/usr.local.ok :
-#$(Clip_M_Dir)/config/config_check.ok
 	[ -f $(Clip_M_Dir)/config/usr.local.ok ] || $(MAKE) -i clean
 	./configure "usr.local"
 	$(MAKE) -i M_config
@@ -91,7 +87,6 @@ $(Clip_M_Dir)/config/usr.local.ok :
 #	banner $@ ok 	>&0
 
 #$(Clip_M_Dir)/config/sys.ok :
-#$(Clip_M_Dir)/config/config_check.ok
 #	[ -f $(Clip_M_Dir)/config/sys.ok ] || $(MAKE) -i clean
 #	./configure "sys"
 #	$(MAKE) -i M_config
@@ -139,8 +134,8 @@ install : Makefile $(DIRS_TO_SCAN)
 
 cleanc :
 	$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
-	rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini || true
-	rm -f$(V) sys home usr.bin config_check configure.flags || true
+	rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini
+	rm -f$(V) sys home usr.local opt config_check configure.flags set.txt *.set.txt
 	banner $@ ok 	>&1
 	banner $@ ok 	>&0
 

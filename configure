@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -u
 H_Dir="$HOME/"
 export V=v
 Clip_M_Dir="$PWD"
@@ -29,10 +29,10 @@ if [ -z "$option" ] || [[ "$option" = "-h" ]] || [[ "$option" = "--help" ]] ; th
 	echo "-------------------------------------------------------"
 	echo "  Options            install/destination directory"
 	echo "-------------------------------------------------------"
-	echo "[1] | [home]       : \"$H_Dir$CLIPROOT\""
-	echo "[2] | [local]      : \"$Clip_H_Dir/$CLIPROOT\""
-	echo "[3] | [opt]        : \"/opt/$CLIPROOT\""
-	echo "[4] | [usr.local]  : \"/usr/local/$CLIPROOT\""
+	echo "[1] | [home]       : $H_Dir$CLIPROOT"
+	echo "[2] | [local]      : $Clip_H_Dir/$CLIPROOT"
+	echo "[3] | [opt]        : /opt/$CLIPROOT"
+	echo "[4] | [usr.local]  : /usr/local/$CLIPROOT"
 #	echo "[5] | [sys]        : \"/usr/bin/$CLIPROOT\""
 	echo "-------------------------------------------------------"
 	echo "[0]   ABORT "
@@ -44,6 +44,7 @@ if [ -z "$option" ] || [[ "$option" = "-h" ]] || [[ "$option" = "--help" ]] ; th
 		exit 0
 	fi
 fi
+set >configure.set.txt
 source $Clip_M_Dir/init/start.sh $option
 if [[ $? != 0 ]] ; then
 	error $0 $LINENO

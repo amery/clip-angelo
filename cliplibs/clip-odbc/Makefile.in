@@ -7,8 +7,10 @@
 Local_Depend = include/*.ch
 
 LIBODBC=@LIBODBC@ $(C_LIBS)
+LIBODBC=-lodbc $(C_LIBS)
 # Note: below we check if LIBOOB is empty when library is missed
 LIBOOB=@LIBOOB@
+LIBOOB=-lesoobclient
 PROG = clip-odbc
 PROG2 = clip-oob
 #TARGET=libclip-odbc

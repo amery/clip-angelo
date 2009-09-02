@@ -9,6 +9,8 @@ CLIPLIBS  = ../procs.a
 OBJS  = $(sort move.o modistru.o commands.o view.o query.o pechdbc.o prcmenu.o)
 .SUFFIXES: .prg .o
 
+LIBS = ../procs.a
+
 
 dbc$(EXESUFF):  dbc.prg $(OBJS) $(CLIP) $(LIBCLIP)
 	$(Trace_clip)

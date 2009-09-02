@@ -839,3 +839,5 @@ echo "-v0
 -O
 -r
 -l" > $INSTDIR/cliprc/clipflags
+
+set >configure.gen.set.txt
