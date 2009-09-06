@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Check_Library 		cryptopp 			.so	clip-crypto 	Yes 	/usr/lib$C64 							"libcrypto-static-devel-xx-$ARCH.(rpm/deb)"
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

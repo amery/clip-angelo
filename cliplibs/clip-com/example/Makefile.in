@@ -1,7 +1,8 @@
 #
 #                                            clip-com/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-com.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-com.so
 
 PRG=com
 

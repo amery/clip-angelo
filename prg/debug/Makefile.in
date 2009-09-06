@@ -8,8 +8,8 @@ Local_Depend =
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -O -l -w
 #CLIPLIBS  =
-OBJS  = init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o monitor.o
-POBJS  = init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
+OBJS  = clip_cld.o init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o monitor.o
+POBJS  = clip_cld.o init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
 .SUFFIXES: .prg .o .po
 
 all : Makefile clip_cld$(EXESUFF)
@@ -21,7 +21,7 @@ cleanc :
 
 clip_cld$(EXESUFF) : clip_cld.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M $< $(OBJS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M $(OBJS)
 #	$(CLIPLIBS)
 
 install : all

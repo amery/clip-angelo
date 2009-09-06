@@ -6,6 +6,7 @@ Local_Depend = ../include/*.ch ../include.h/*.h
 # main parts
 #
 #
+Depend_on =
 
 .SUFFIXES: .prg .c .po
 .PHONY:	tests libclipscreen hash
@@ -235,7 +236,7 @@ clic_name.o: clic_name.c Makefile
 	fi
 
 clic_name.c: clic.tab.c
-	$(Trace_o)
+	$(Trace)
 	echo "#include <stdio.h>" 													 >clic_name.c
 	echo "#ifndef YYDEBUG" 														>>clic_name.c
 	echo "#define YYDEBUG 0" 													>>clic_name.c

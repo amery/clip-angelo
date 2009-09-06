@@ -35,6 +35,10 @@ DIRS_TO_SCAN 		=
 
 DOC =
 
+C_Files 				= $(wildcard *.c)
+PRG_Files 			= $(wildcard *.prg)
+
+G_FILES 				= $(subst .c ,.g , $(G_Files)) $(subst .prg , .g , $(PRG_Files))
 #new_sequence 		= 		$(DIRS_TO_SCAN) install
 
 #LocalDepend 		=		$(Depend_h) $(StandardDepend)

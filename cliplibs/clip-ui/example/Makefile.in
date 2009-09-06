@@ -5,7 +5,8 @@
 # Copyright (C) 2003-2006, E/AS Software Foundation
 # Web: http://eas.lrn.ru
 #CLIPINCLUDE = -I$(CLIPROOT)/include
-Local_Depend = $(Clip_L_Dir)/libclip-ui.so $(Clip_L_Dir)/libclip-xml.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-ui.so $(Clip_L_Dir)/libclip-xml.so
 
 .SUFFIXES: .prg .o .po
 .PHONY: all clean
@@ -16,18 +17,20 @@ PRG2=uiform$(EXESUFF)
 LIBS=-lclip-ui -lclip-xml -lexpat
 EXTRALIBS=
 
+Depend_on = $(Clip_L_Dir)/libclip-ui $(Clip_L_Dir)/libclip-xml $(Clip_L_Dir)/libexpat
+
 all: Makefile $(PRG1) $(PRG2)
 
 cfg :
 
 cleanc:
-	rm -f$(V) $(PRG1) $(PRG2) $(OUTPUT) image[0-9]*
+	rm -f$(V) $(PRG1) $(PRG2) image[0-9]*
 
-$(PRG1): uitest.prg $(CLIP) $(LIBCLIP)
+$(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewslM $(CLIPINCLUDE) uitest.prg $(LIBS) $(EXTRALIBS)
 
-$(PRG2): uiform.prg $(CLIP) $(LIBCLIP)
+$(PRG2): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) uiform.prg $(LIBS) $(EXTRALIBS)
 

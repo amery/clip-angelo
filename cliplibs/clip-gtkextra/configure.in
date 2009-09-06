@@ -1,5 +1,6 @@
 #!/bin/sh -u
 
+Check_Include 		gtkextra/gtkextra.h  xyz   clip-gtkextra 	yes 	/usr/include  										"libgtk-extra-devel-$ARCH.(rpm/deb)"
 uname=`uname -s`
 uver=`uname -r`
 hname=`hostname -f 2>/dev/null`

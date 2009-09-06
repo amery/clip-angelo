@@ -1,47 +1,13 @@
 #!/bin/sh -u
 
-exitf()
-{
-	rm -f test_odbc.c test_odbc
-	exit $1
-}
+Check_Include 		sqlext.h 				xyz 	clip-odbc 		Yes 	/usr/include 										"libunixODBC1-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Include 		odbc.h 					xyz 	clip-odbc 		Yes 	/usr/local/easysoft/oob/client/include 	"can be downloaded at" \
+																																				"http://www.easysoft.com/products/data_access"
+LIBODBC=$(Check_Library 		esoobS 				.so 	clip-odbc 		Yes 	/usr/lib$C64							"libunixODBC1-static-devel-xx-$ARCH.(rpm/deb)")
+LIBOOB=$(Check_Library 		esoobclient 		.so	clip-odbc 		Yes 	/usr/local/easysoft/oob/client 	"can be downloaded at" \
+																																"http://www.easysoft.com/products/data_access")
 
-rm Makefile
-cat <<EOF >test_odbc.c
+echo "LIBODBC = $LIBODBC" 	>>Makefile.ini
+echo "LIBOOB = $LIBOOB" 	>>Makefile.ini
 
-#include <sql.h>
-int
-main(int argc, char **argv)
-{
-	SQLHENV henv;
-	SQLAllocEnv(&henv);
-	return 0;
-}
-EOF
-
-LIBODBC=''
-LIBOOB=''
-
-gcc -o test_odbc test_odbc.c -liodbc && LIBODBC='-liodbc' && echo 'iODBC driver manager were found'
- #>/dev/null 2>&1
-if [ -z "$LIBODBC" ]
-then
-	gcc -o test_odbc test_odbc.c -lodbc && LIBODBC='-lodbc' && echo 'unixODBC driver manager were found'
-fi
-
-if [ -z "$LIBODBC" ]
-then
-	echo 'No ODBC driver`s manager were found'
-	exitf 1
-fi
-
-gcc -o test_odbc test_odbc.c -L/usr/local/easysoft/oob/client -lesoobclient  && LIBOOB='-L\/usr\/local\/easysoft\/oob\/client -lesoobclient' && echo 'ODBC-ODBC bridge client were found'
-
-sed -e "s/@LIBODBC@/$LIBODBC/g" < Makefile.in | sed -e "s/@LIBOOB@/$LIBOOB/g" - >Makefile
-if [ -z "$LIBOOB" ]
-then
-	echo 'No ODBC-ODBC bridge client were found'
-fi
-
-
-exitf 0
+cat Makefile.ini Makefile.in >Makefile

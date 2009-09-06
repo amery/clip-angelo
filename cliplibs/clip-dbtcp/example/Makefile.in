@@ -1,7 +1,8 @@
 #
 #                                            clip-dbtcp/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-dbtcp.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-dbtcp.so
 
 PRG=my_dbtcp$(EXESUFF)
 

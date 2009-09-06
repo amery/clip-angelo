@@ -28,7 +28,7 @@ cfg :
 #	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(C_LIBS)
 
 cleanc:
-	rm -f$(V) $(TARGET).* *.dll.a
+	rm -f$(V) $(TARGET).* *.dll.a *.c
 #	cd example && $(MAKE) clean
 
 install: all install-lib install-example

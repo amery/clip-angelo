@@ -1,8 +1,10 @@
 #
 #                                            prg/cobra_serv/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-codb.so
-Local_Depend = $(Clip_L_Dir)/libclip-r2d2.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-codb.so
+Local_Depend +=
+#$(Clip_L_Dir)/libclip-r2d2.so
 
 #CLIP	= clip
 #CLIP	= $(CLIPROOT)/bin/clip

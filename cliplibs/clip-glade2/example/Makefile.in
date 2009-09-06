@@ -2,7 +2,8 @@
 #                                            clip-glade2/example/Makefile.in
 #
 # Make for eglade
-Local_Depend = $(Clip_L_Dir)/libclip-glade2.so $(Clip_L_Dir)/libclip-gtk2.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-glade2.so $(Clip_L_Dir)/libclip-gtk2.so
 
 #PRGFLAGS=-w -l
 

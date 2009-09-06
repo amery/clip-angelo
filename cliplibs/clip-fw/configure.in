@@ -84,3 +84,6 @@ tr -d \' <./Makefile.inc >Makefile
 cat ./Makefile >Makefile.inc
 
 echo ". done."
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

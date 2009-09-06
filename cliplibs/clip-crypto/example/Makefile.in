@@ -1,7 +1,8 @@
 #
 #                                            clip-crypto/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-crypto.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-crypto.so
 
 PRG=crypto$(EXESUFF)
 

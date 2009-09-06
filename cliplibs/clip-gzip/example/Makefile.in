@@ -1,7 +1,8 @@
 #
 #                                            clip-gzip/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-gzip.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-gzip.so
 
 PRG=gz$(EXESUFF)
 

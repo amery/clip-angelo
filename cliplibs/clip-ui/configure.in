@@ -1,5 +1,7 @@
 #!/bin/sh
 
-cp Makefile.in Makefile
+cat Makefile.ini 	>Makefile
+cat Makefile.in 	>>Makefile
+#!/bin/sh
 
-exit 0
+cat Makefile.ini Makefile.in >Makefile

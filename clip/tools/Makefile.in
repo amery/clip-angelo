@@ -5,7 +5,7 @@
 #
 #
 Local_Depend = ../include.h/*.h
-
+Depend_on =
 
 BINS	=	clipar$(EXESUFF) clip_conv$(EXESUFF) clip_dbg$(EXESUFF) clip_trans$(EXESUFF) \
 			clip_hashextract$(EXESUFF) cliphash$(EXESUFF) \

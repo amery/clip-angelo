@@ -1,4 +1,5 @@
 #!/bin/sh
+Check_Library 		glade-2.0 			.so 	clip-glade2 	Yes 	/usr/lib$C64 							"libglade-devel-xx-$ARCH.(rpm/deb)"
 
 LIBGLADE_VER=$(pkg-config --modversion libglade-2.0 2> /dev/null )
 
@@ -11,3 +12,6 @@ echo "C_FLAGS += $CFLAGS $ADDCFLAGS">>Makefile.01
 echo "LIBGLADE_VER = $LIBGLADE_VER">>Makefile.01
 
 cat Makefile.in >Makefile
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

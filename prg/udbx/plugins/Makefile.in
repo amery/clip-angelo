@@ -2,7 +2,8 @@
 #                                            prg/udbx/plugins/Makefile.in
 #
 
-Local_Depend = $(Clip_L_Dir)/libclip-gtk.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-gtk.so
 
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -O -b -w -I ./include

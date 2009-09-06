@@ -1,8 +1,10 @@
 #
 #                                            prg/udbx/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-codb.so
-Local_Depend += $(Clip_L_Dir)/libclip-gtk.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-codb.so
+Local_Depend +=
+# $(Clip_L_Dir)/libclip-gtk.so
 
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -Obl -I./include

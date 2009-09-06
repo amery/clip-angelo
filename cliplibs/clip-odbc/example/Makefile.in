@@ -1,7 +1,8 @@
 #
 #                                            clip-odbc/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-odbc.so $(Clip_L_Dir)/libclip-oob.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-odbc.so $(Clip_L_Dir)/libclip-oob.so
 
 
 PRG=my_isql

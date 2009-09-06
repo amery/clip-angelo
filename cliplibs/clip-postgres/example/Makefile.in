@@ -1,7 +1,8 @@
 #
 #                                            clip-postgres/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-postgres.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-postgres.so
 
 
 PRG=my_psql$(EXESUFF)

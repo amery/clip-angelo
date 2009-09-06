@@ -15,6 +15,33 @@ source $Clip_M_Dir/init/functions.f
 if [[ $? != 0 ]] ; then
 	exit 1
 fi
+cd clip/tools
+reg=1
+if [ -f registration ] ; then
+	./rsa-verify >license.txt <registration
+	reg=$?
+	echo >>license.txt
+	echo "REGISTRATION BEGIN" >>license.txt
+	cat registration >>license.txt
+	echo "REGISTRATION END" >>license.txt
+fi
+if [ "$reg" != 0 ] ; then
+	cp --remove-destination -fu$V license.gnu license.txt
+fi
+echo "Registration info:" >&0
+echo >&0
+cat license.txt >&0
+echo >&0
+exec 																			3>license.h
+echo '#define CLIP_LICENSE "\' 										>&3
+#sed -e 's/"/\\"/g' -e 's/^.*$/"\0\\\n"\\/g' <license.txt 	>&3
+sed -e 's/"/\\"/g' -e 's/^.*$/\0\\n\\/g' <license.txt			>&3
+echo '"'																		>&3
+rm -f license.txt
+exec																			3>&-
+echo ". done."
+mv -f$V license.h $Clip_I_Dir
+cd "$Clip_M_Dir"
 source $Clip_M_Dir/init/check.packages.sh
 if [[ $? != 0 ]] ; then
 	exit 1
@@ -424,24 +451,24 @@ if [ -f /usr/include/readline/readline.h ] ; then
 	echo "export READLINE_LIBS=\"$READLINE_LIBS\""													>&3
 fi
 CurDir="$PWD"
-if [ "$USE_TASKS" = yes -a ! -f libcliptask/task.o ] ; then
-	cd $Clip_M_Dir/clip/libcliptask
-	./cl_conf
+#if [ "$USE_TASKS" = yes -a ! -f libcliptask/task.o ] ; then
+#	cd $Clip_M_Dir/clip/libcliptask
+#	./cl_conf
 	#cat ../Makefile.incl >Makefile
 	#cat Makefile.in >>Makefile
 	#$MAKE test_pth
-	./configure
-	if [ $? = 0 ] ; 	then
-		USE_TASKS=yes
-	else
-		USE_TASKS=no
-		echo "Warning: task not available: unknown system"
-	fi
-	cd "$CurDir"
-fi
-if [ "$USE_TASKS" = yes -a -f $Clip_M_Dir/clip/libcliptask/USE_PTH ] ; then
+#	./configure
+#	if [ $? = 0 ] ; 	then
+#		USE_TASKS=yes
+#	else
+#		USE_TASKS=no
+#		echo "Warning: task not available: unknown system"
+#	fi
+#	cd "$CurDir"
+#fi
+#if [ "$USE_TASKS" = yes -a -f $Clip_M_Dir/clip/libcliptask/USE_PTH ] ; then
     ADDLIBS="$ADDLIBS -lpth"
-fi
+#fi
 if [ "$USE_TASKS" = yes ] ; then
 	echo "export USE_TASKS=yes"																			>&3
 	echo "export TASK=libcliptask/libcliptask.a"														>&3
@@ -577,7 +604,7 @@ rm -f$V Makefile.dtu 		|| true
 rm -f$V Makefile.dtx 		|| true
 rm -f$V Makefile.export 	|| true
 rm -f$V Makefile.inc 		|| true
-rm -f$V Makefile.incl 		|| true
+rm -f$V Makefile.incl* 		|| true
 rm -f$V Makefile.ini 		|| true
 rm -f$V Makefile.tmp 		|| true
 cp --remove-destination -fu$V $Clip_I_Dir/Makefile.ini $Clip_M_Dir/
@@ -590,7 +617,7 @@ echo "#define CLIP_CONFIG_H"										>&3
 echo																		>&3
 exec 																		3>&-
 exec																													3>temp$$1$$2
-echo "#define CLIP_VERSION \"$(cat $Clip_M_Dir/clip/tools/release_version)\""					>&3
+echo "#define CLIP_VERSION \"$(cat $Clip_M_Dir/release.version)\""								>&3
 echo "#define DLLIB \"$DLLIB\""																				>&3
 echo "#define ADDLIBS \"$ADDLIBS\""																			>&3
 echo "#define ADD_CFLAGS \"$ADD_CFLAGS\"" 																>&3
@@ -805,31 +832,6 @@ if [[ $? != 0 ]] ; then
 	error $0 $LINENO
 	exit 1
 fi
-reg=1
-if [ -f registration ] ; then
-	./rsa-verify >license.txt <registration
-	reg=$?
-	echo >>license.txt
-	echo "REGISTRATION BEGIN" >>license.txt
-	cat registration >>license.txt
-	echo "REGISTRATION END" >>license.txt
-fi
-if [ "$reg" != 0 ] ; then
-	cp --remove-destination -fu$V license.gnu license.txt
-fi
-echo "Registration info:"
-echo
-cat license.txt
-echo
-exec 																			3>license.h
-echo '#define CLIP_LICENSE "\' 										>&3
-#sed -e 's/"/\\"/g' -e 's/^.*$/"\0\\\n"\\/g' <license.txt 	>&3
-sed -e 's/"/\\"/g' -e 's/^.*$/\0\\n\\/g' <license.txt			>&3
-echo '"'																		>&3
-rm -f license.txt
-exec																			3>&-
-echo ". done."
-mv -f$V license.h $Clip_I_Dir
 source $Clip_M_Dir/init/create.dir.sh
 if [[ $? != 0 ]] ; then
 	error $0 $LINENO

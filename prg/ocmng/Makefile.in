@@ -1,7 +1,8 @@
 #
 #                                            prg/ocmng/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-codb.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-codb.so
 
 
 #CLIP	= $(CLIPROOT)/bin/clip

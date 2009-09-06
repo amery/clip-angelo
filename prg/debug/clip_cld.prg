@@ -21,6 +21,9 @@ parameters par1,par2
 		script_file:=substr(par2,2)
 		prog_name:=par1
 	endif
+	if !empty(par1) .and. ("-debug" $ par1)
+		AltD(1)
+	endif
 	if script_file==NIL .or. empty(script_file)
 		script_file="init"
 	endif

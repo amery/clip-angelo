@@ -3,18 +3,16 @@
 #
 Local_Depend =
 
-DIRS_TO_SCAN=$(sort 	\
-bdbfs 	cobra_clnt 	cobra_serv 	\
-codb 	dbc 	debug 	doc_utils 	hiper 	kamache 	\
-ocmng 	pp 	udb 	udbx 	utils 	\
-)
+include Makefile.01
 
+all: Makefile $(DIRS_TO_SCAN)
 
-all: $(DIRS_TO_SCAN)
+Makefile.01 : $(CONFIGURE_SH)
+	$(CONFIGURE_SH)
 
 cfg :
 
-install:all
+install : all
 
 cleanc:
 

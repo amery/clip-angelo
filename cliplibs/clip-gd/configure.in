@@ -4,6 +4,31 @@
 #	<uri@itk.ru>
 #
 source ../configure.ini
+Check_Include 		X11/xpm.h 				xyz 	clip-gd 			Yes 	/usr/include 										"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		freetype 			.so 	clip-gd 			Yes	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/dev)"
+Check_Library 		gd 					.so 	clip-gd 			Yes	/usr/lib$C64 							"libgd-static-devel-xx-$ARCH.(rpm/dev)"
+Check_Library 		jpeg 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libjpeg-static-xx-$ARCH.(rpm/deb)"
+Check_Library 		png 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libpng-static-xx-$ARCH.(rpm/deb)"
+Check_Library 		ttf 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gtk-x11-2.0 		.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gdk-x11-2.0 		.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		atk-1.0 				.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gdk_pixbuf-2.0 	.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pangocairo-1.0 	.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pango-1.0 			.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		cairo 				.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gobject-2.0 		.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gmodule-2.0 		.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		dl 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		glib-2.0 			.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		freetype 			.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		fontconfig 			.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		Xrender 				.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		X11 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		Xext 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		png12 				.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		z 						.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		m 						.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 
 uname=`uname -s`
 uver=`uname -r`
@@ -167,3 +192,6 @@ echo "#endif" 																	 				>&3
 exec 																			 					3>&-
 echo ". done."
 
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

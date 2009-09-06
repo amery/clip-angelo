@@ -4,22 +4,21 @@
 #
 Local_Depend =
 
-DIRS_TO_SCAN = 	clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
-						clip-cti 		 																	\
-						clip-fcgi 																			\
-						clip-gd 			clip-glade2 													\
-						clip-gtk 																			\
-						clip-gtk2 																			\
-						clip-fw 																				\
-						clip-gzip 		clip-mysql 			clip-odbc 								\
-						clip-nanfor 	clip-netto 														\
-						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
-						clip-rtf 		clip-xml 			clip-ui
+#clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
+#						clip-cti 		 																	\
+#						clip-fcgi 																			\
+#						clip-gd 			clip-glade2 													\
+#						clip-gtk 																			\
+#						clip-gtk2 																			\
+#						clip-fw 																				\
+#						clip-gzip 		clip-mysql 			clip-odbc 								\
+#						clip-nanfor 	clip-netto 														\
+#						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
+#						clip-rtf 		clip-xml 			clip-ui
 
 # 						clip-ctcom 																			\
 #						clip-gtkextra																		\
-include Makefile.01
-
+#include ./Makefile.01
 #ifdef CLIPROOT
 #	CLIP = $(CLIPROOT)/bin/clip$(C64)$(EXESUFF)
 #else
@@ -32,7 +31,8 @@ include Makefile.01
 export CFLAGS CLIP CLIPFLAGS CLIPROOT
 #clip-cti  clip-ctcom clip-fw clip-gtk clip-gtkextra
 
-all local user system install lib: Makefile $(DIRS_TO_SCAN)
+all local user system install lib : Makefile $(DIRS_TO_SCAN) FORCE
+	echo $@ $<
 #	for dir in $(dirs); \
 #	do \
 #		(cd $$dir ;\
@@ -40,7 +40,7 @@ all local user system install lib: Makefile $(DIRS_TO_SCAN)
 #		$(MAKE) $@ );\
 #	done
 
-Makefile.01 : configure
+./Makefile.01 : ./configure ./configure.in
 	./configure
 
 cfg :
@@ -51,7 +51,6 @@ cleanc : #$(DIRS_TO_SCAN) interbase
 #	done
 #	cd clip-interbase \
 #		&& $(MAKE) -f Makefile.in clean
-	rm -f$(V) Makefile.01
 
 distclean: clean
 #	for dir in $(dirs); \

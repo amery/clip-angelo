@@ -1,8 +1,10 @@
 #
 #                                            prg/codb/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-codb.so
-Local_Depend += $(Clip_L_Dir)/libcodb-query.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-codb.so
+Local_Depend +=
+# $(Clip_L_Dir)/libcodb-query.so
 
 
 

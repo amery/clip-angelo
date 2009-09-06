@@ -1,8 +1,10 @@
 #
 #                                            prg/kamache/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-codb.so
-Local_Depend += $(Clip_L_Dir)/libclip-r2d2.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-codb.so
+Local_Depend +=
+# $(Clip_L_Dir)/libclip-r2d2.so
 
 
 

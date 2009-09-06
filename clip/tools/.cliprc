@@ -1,7 +1,0 @@
--E CLIP_MODULE=sys
--w
-#-l
--U std.ch
-#-U config.ch
-#-U clip.ch
-

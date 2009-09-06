@@ -55,7 +55,7 @@ set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
 include/clip-gtkextracfg.h :
-	$(Trace_o)
+	$(Trace)
 	./configure
 
 hash: include/_hashcode.h

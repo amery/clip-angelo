@@ -38,7 +38,7 @@ HASHSRCS = $(SRC) $(HDRS)
 
 .PHONY: all clean uninstall distclean
 
-all : Makefile hash $(STARGET)
+all : Makefile hash lib $(STARGET)
 
 cfg :
 	cp --remove-destination -fpu$(V) include/clip-expat.ch $(Clip_I_Dir)/
@@ -47,10 +47,13 @@ cfg :
 hash: include/_hashxml.h
 
 include/_hashxml.h: $(HASHSRCS)
-	$(Trace_o)
+	$(Trace)
 	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashxml.h
 	cmp include/_hashxml.h include/hashxml.h 2>/dev/null || cp -f$(V) include/_hashxml.h include/hashxml.h
 
+
+lib :
+	[ -f $(Dir_Lib) ]
 
 #$(XLIB): $(XLIBOBJS)  $(OBJS)
 #	rm -f $(XLIB)

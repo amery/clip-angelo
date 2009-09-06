@@ -434,10 +434,13 @@ function Check_Bin ()
 				read -n 1 varX 	>&0
 				OnScreen 2
 				if [[ $varX = [yY] ]] ; then
-					mkdir -p$V "$Clip_S_Dir/$WhatToFind/"
+					mkdir -p$V "$Clip_S_Dir/$WhatToFind/" >&0
 					echo $Found >"$Clip_S_Dir/$WhatToFind/.set"
 					# sleep $SleepTime
 					# OnScreen 0
+					if [[ "$Found/$WhatToFind" -nt Makefile.in ]] ; then
+						touch Makefile.in
+					fi
 					echo $Found
 					# sleep $SleepTime
 				elif [[ $varX = [sS] ]] ; then
@@ -642,10 +645,13 @@ function Check_Include ()
 				read -n 1 varX 	>&0
 				OnScreen 2
 				if [[ $varX = [yY] ]] ; then
-					mkdir -p$V "$Clip_S_Dir/$WhatToFind/"
+					mkdir -p$V "$Clip_S_Dir/$WhatToFind/" >&0
 					echo $Found >"$Clip_S_Dir/$WhatToFind/.set"
 					# sleep $SleepTime
 					# OnScreen 0
+					if [[ "$Found/$WhatToFind" -nt Makefile.in ]] ; then
+						touch Makefile.in
+					fi
 					echo $Found
 					# sleep $SleepTime
 				elif [[ $varX = [sS] ]] ; then
@@ -842,10 +848,13 @@ function Check_Library ()
 				read -n 1 varX 	>&0
 				OnScreen 2
 				if [[ $varX = [yY] ]] ; then
-					mkdir -p$V "$Clip_S_Dir/$WhatToFind/"
+					mkdir -p$V "$Clip_S_Dir/$WhatToFind/" >&0
 					echo $Found >"$Clip_S_Dir/$WhatToFind/.set"
 					# sleep $SleepTime
 					# OnScreen 0
+					if [[ "$Found/$WhatToFind" -nt Makefile.in ]] ; then
+						touch Makefile.in
+					fi
 					echo $Found
 					# sleep $SleepTime
 				elif [[ $varX = [sS] ]] ; then

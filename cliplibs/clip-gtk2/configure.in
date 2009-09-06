@@ -1,4 +1,7 @@
 #!/bin/sh -u
+
+Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
+
 uname=`uname -s`
 uver=`uname -r`
 hname=`hostname -f 2>/dev/null`
@@ -194,3 +197,6 @@ tr -d \' <./Makefile.inc >Makefile.tmp
 mv -f$V Makefile.tmp Makefile.inc
 rm -f$V Makefile.tmp
 echo ". done."
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

@@ -1,8 +1,10 @@
 #
 #                                            clip-cti/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-cti.so
-Local_Depend += $(Clip_L_Dir)/libclip-fw.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-cti.so
+Local_Depend +=
+# $(Clip_L_Dir)/libclip-fw.so
 
 CLIPFLAGS += -n
 OBJS  =

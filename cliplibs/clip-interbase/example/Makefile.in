@@ -1,7 +1,8 @@
 #
 #                                            clip-interbase/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-interbase.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-interbase.so
 
 PRG=my_isql$(EXESUFF)
 

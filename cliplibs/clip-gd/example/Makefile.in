@@ -1,7 +1,8 @@
 #
 #                                            clip-gd/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-gd.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-gd.so
 
 PRG=gr$(EXESUFF)
 

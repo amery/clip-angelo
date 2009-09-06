@@ -10,8 +10,8 @@ Listname=""
 DirName=""
 Listname="$(ls)"
 [ -f ./configure.in ] || exit 0
-[ -f $CONFIGURE ] && ! [ -f ./configure.in ] && mv -f$V $CONFIGURE ./configure.in
-[ -f $CONFIGURE ] &&  $CONFIGURE && exit 0
+#[ -f $CONFIGURE ] && ! [ -f ./configure.in ] && mv -f$V $CONFIGURE ./configure.in
+[ -f ./configure.in ] && [ ./configure.in -nt $CONFIGURE ] &&  rm -f$V $CONFIGURE
 if ! [ -f $CONFIGURE_SH ] ; then
 	echo "Configuration for $PWD"
 #	[ -f ./configure.in ] && cp -f$V ./configure.in ./configure.sav

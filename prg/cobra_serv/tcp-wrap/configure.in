@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Check_Include 		tcpd.h 					xyz 	tcp-wrap			Yes 	/usr/include/sys 									"gwrap-devel-xx-$ARCH.(rpm/deb)"
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

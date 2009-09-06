@@ -2,7 +2,8 @@
 #                                            clip-gtk/example/gdk-pixbuf-demo/Makefile.in
 #
 
-Local_Depend = $(Clip_L_Dir)/libclip-gtk.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-gtk.so
 
 SRC=pixbuf_demo$(EXESUFF) pixbuf_scale$(EXESUFF) zoomimage$(EXESUFF)
 

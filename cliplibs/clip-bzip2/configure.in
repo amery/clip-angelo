@@ -1,0 +1,6 @@
+#!/bin/sh
+
+Check_Library 		bz2 					.so	clip-bz2 		Yes 	/usr/lib$C64 							"libbzip2-devel-xx-$ARCH.(rpm/deb)"
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

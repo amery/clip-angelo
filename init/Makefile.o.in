@@ -6,7 +6,7 @@
 ## 																obj's section
 ##
 
-%.o : %.c Makefile
+%.o : %.c Makefile $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
 		$(Trace_c_d) ; 							\
 		$(CC) -g $(C_FLAGS) -c $< ; 	\
@@ -15,7 +15,7 @@
 		$(CC) $(C_FLAGS) -c $< ; 		\
 	fi
 
-.c.o :  Makefile
+.c.o :  Makefile $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
 		$(Trace_c_d) ; 							\
 		$(CC) -g $(C_FLAGS) -c $< ; 	\
@@ -24,7 +24,7 @@
 		$(CC) $(C_FLAGS) -c $< ; 		\
 	fi
 
-%.o : %.prg Makefile $(CLIP)
+%.o : %.prg Makefile $(CLIP) $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
 		$(Trace_prg_d) ; 								\
 		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
@@ -34,7 +34,7 @@
 		$(CLIP) $(CLIPFLAGS) $< ;		\
 	fi
 
-.prg.o : Makefile $(CLIP)
+.prg.o : Makefile $(CLIP) $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
 		$(Trace_prg_d) ; 								\
 		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
@@ -44,7 +44,7 @@
 		$(CLIP) $(CLIPFLAGS) $< ;		\
 	fi
 
-%.po : %.prg Makefile $(CLIP)
+%.po : %.prg Makefile $(CLIP) $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
 		$(Trace_prg_d) ; 									\
 		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
@@ -53,7 +53,7 @@
 		$(CLIP) -p $(CLIPFLAGS) $< ; 		\
 	fi
 
-.prg.po : Makefile $(CLIP)
+.prg.po : Makefile $(CLIP) $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
 		$(Trace_prg_d) ; 									\
 		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\

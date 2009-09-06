@@ -1,7 +1,8 @@
 #
 #                                            clip-mysql/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-mysql.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-mysql.so
 
 PRG=my_mysql$(EXESUFF)
 

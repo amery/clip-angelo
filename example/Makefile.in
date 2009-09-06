@@ -18,7 +18,9 @@ cleanc:
 include $(Makefile_o_in)
 
 install:
+	[ -d $(Clip_D_Dir)/example/ ] || mkdir -p$(V) $(Clip_D_Dir)/example/
 	cp --remove-destination -Rfpu$(V) * $(Clip_D_Dir)/example/
+
 strip:
 	strip $(PROGS)
 

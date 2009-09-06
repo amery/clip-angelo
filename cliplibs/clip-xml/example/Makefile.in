@@ -8,7 +8,8 @@
 # Web: http://www.itk.ru
 #CLIPINCLUDE = -I$(CLIPROOT)/include
 #C_FLAGS=-g
-Local_Depend = $(Clip_L_Dir)/libclip-xml.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-xml.so
 
 .SUFFIXES: .prg .o .po
 .PHONY: all clean

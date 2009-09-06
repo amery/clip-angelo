@@ -1,0 +1,7 @@
+#!/bin/sh
+
+Check_Include 		zlib.h 					xyz 	clip-gzip 		Yes 	/usr/lib$C64 										"zlib-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		z 						.so 	clip-gzip 		Yes 	/usr/lib$C64 							"zlib-devel-xx-$ARCH.(rpm/deb)"
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

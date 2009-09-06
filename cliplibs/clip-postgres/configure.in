@@ -1,5 +1,9 @@
 #!/bin/sh
 
+Check_Include 		libpq-fe.h 				xyz 	clip-postgres 	Yes 	/usr/include/pgsql 								"postgresql-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pgtypes 				.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgresql-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pq 					.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgres-devel-xx-$ARCH.(rpm/deb)"
+
 if [ -z "$PGINCDIR" ]; then
 	for x in /usr/include/pgsql \
 		/usr/include/pgsql/server \
@@ -30,3 +34,6 @@ sed -e "s,@PGINCDIR@,${PGINCDIR:-/usr/include},g" \
 	-e "s,@PGLIBDIR@,${PGLIBDIR:-/usr/lib},g" \
 	Makefile.in > Makefile
 mv -f$V Makefile Makefile.tmp
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile

@@ -1,7 +1,8 @@
 #
 #                                            clip-gtkextra/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-gtkextra.so $(Clip_L_Dir)/libclip-gtk.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-gtkextra.so $(Clip_L_Dir)/libclip-gtk.so
 
 
 all:Makefile sheet$(EXESUFF)

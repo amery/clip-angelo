@@ -1,7 +1,8 @@
 #
 #                                            clip-fcgi/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-fcgi.so
+Local_Depend =
+# $(Clip_L_Dir)/libclip-fcgi.so
 
 PRG=clip_echo.fcgi
 

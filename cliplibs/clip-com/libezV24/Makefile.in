@@ -1,0 +1,105 @@
+#
+#                                            clip-com/libezV24/Makefile.in
+#
+
+Local_Depend = *.h
+Depend_on=
+PROG = ezV24
+
+RELEASE =
+INCDIR =
+# the version of the library
+VERSION = 0.1
+# the release of the library; a change here means, that the API has
+# changes. This number is the major number of the above version
+SORELEASE = 0
+# the patchlevel is the lowest release information. It is incremented
+# with each released bugfix.
+PATCHLEVEL = 0
+# the base name of the library
+SOBASE = ezV24
+
+# define the destination OS (currently only linux)
+PLATFORM=__LINUX__
+
+# the base path where the file should be installed to.
+PREFIX = /usr/local
+
+# generate the name of the output file in dependence of the development state.
+#
+ifeq "${RELEASE}" "DEBUG"
+	NAME = lib$(SOBASE).so.$(SORELEASE).dbg
+else
+	NAME = lib$(SOBASE).so.$(VERSION)
+endif
+SONAME = lib$(SOBASE).so.$(SORELEASE)
+LIBNAME = lib$(SOBASE)-$(SORELEASE).a
+PLAINNAME = lib$(SOBASE).so
+
+# basename of the project
+PROJECTNAME = libezV24-$(VERSION).$(PATCHLEVEL)
+
+OBJS = ezV24.o snprintf.o
+LIBS =
+
+
+ifeq "${RELEASE}" "DEBUG"
+	C_FLAG = -c -Wall -fPIC -D$(PLATFORM) $(INCDIR)
+	C_DEFS = -DDEBUG -DBETA
+	LFLAGS = $(LIBDIR)
+else
+	ifeq "${RELEASE}" "BETA"
+		C_FLAG = -c -Wall -fPIC -O2 -D$(PLATFORM) $(INCDIR)
+		C_DEFS = -DBETA
+		LFLAGS = $(LIBDIR)
+	else
+		C_FLAG = -c -Wall  -fPIC -O2 -D$(PLATFORM) $(INCDIR)
+		C_DEFS = -DFINAL
+		LFLAGS = -s $(LIBDIR)
+	endif
+endif
+ARFLAGS = cru
+AR = ar
+RANLIB = ranlib
+
+DOC = manual.dxx doc++.conf api-h*
+CFLAGS = $(C_FLAG) $(C_DEFS)
+
+DIRS_TO_SCAN =
+
+all: Makefile $(OBJS) shared static
+
+shared:		$(NAME)
+
+static:		$(LIBNAME)
+
+include $(Makefile_o_in)
+
+$(NAME):	$(OBJS) Makefile
+		gcc -shared -W1,soname,$(SONAME) -o $(NAME) $(OBJS)
+		ln -sf$(V) $@ $(PLAINNAME)
+
+$(LIBNAME):	$(OBJS) Makefile
+		$(CLIP_MAKELIB) $(LIBNAME) $(OBJS)
+		ranlib $(LIBNAME)
+
+
+ezV24.o:	ezV24.c ezV24.h ezV24_config.h snprintf.h Makefile
+		gcc $(CFLAGS) $<
+
+snprintf.o:	snprintf.c snprintf.h Makefile
+		gcc $(CFLAGS) $<
+
+cfg :
+
+install : all install-doc
+
+cleanc :
+	rm -rf$(V) $(TARGET).* *.a *.so *.so.* *.exe
+#	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
+
+distclean: clean
+
+include $(Makefile_end_in)
+
+

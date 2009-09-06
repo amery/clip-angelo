@@ -1,7 +1,8 @@
 #
 #                                            clip-bz2/example/Makefile.in
 #
-Local_Depend = $(Clip_L_Dir)/libclip-bz2.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-bz2.so
 
 
 PRG=bz2$(EXESUFF)

@@ -1,12 +1,17 @@
-#!/bin/sh 
+#!/bin/sh -u
 
-exitf()
+function exitf()
 {
 	rm -f test_expat.c test_expat
 	exit $1
 }
 
-cp Makefile.empty Makefile
+Dir_Lib=$(Check_Library 		expat 					.so clip-xml 			Yes 	/usr/lib$C64 		"libexpat-devel-xx-$ARCH.(rpm/deb)")
+Dir_Lib="$Dir_Lib/libexpat.so"
+if [ "$Dir_Lib" -nt ./configure.in ] ; then
+	touch Makefile.in
+fi
+#cp Makefile.empty Makefile
 cat <<EOF >test_expat.c
 
 #include <stdio.h>
@@ -47,7 +52,12 @@ then
 	echo "Warning: package expat-dev not installed or have old version"
 	exitf 1
 fi
+echo "Dir_Lib = $Dir_Lib" >>Makefile.ini
 
-cp Makefile.in Makefile
+cat Makefile.ini 	>Makefile
+cat Makefile.in 	>>Makefile
+#!/bin/sh
+
+cat Makefile.ini Makefile.in >Makefile
 
 exitf 0

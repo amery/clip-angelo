@@ -1,6 +1,10 @@
 #!/bin/sh -u
 
 source $Clip_I_Dir/clipcfg.sh
+Check_Include 		gdk-pixbuf-features.h xyz 	clip-gtk 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdk-pixbuf-xlib.h 	xyz 	clip-gtk 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Library 		gdk_pixbuf 			.so 	clip-gtk 		Yes	/usr/lib$C64 							"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
+
 USE_GTK=yes
 
 uname=`uname -s`

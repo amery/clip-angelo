@@ -3,7 +3,8 @@
 #
 
 #INCLUDEDIRS=-I. -I$(CLIPROOT)/include
-Local_Depend = $(Clip_L_Dir)/libclip-rtf.so
+Local_Depend =
+#$(Clip_L_Dir)/libclip-rtf.so
 
 #CLIPFLAGS = -l -n -w
 CLIPLIBS  =
