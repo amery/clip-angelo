@@ -21,12 +21,15 @@ cleanc:
 	*.dbf *.ntx *.cdx *.dbt *.fpt \
 	$(ATARGET) test
 
+distcleanc :
+	rm -rf$(V) *.g
+
 #$(LIB): $(OBJS) Makefile
 #	rm -f$(V) $(LIB)
 #	$(CLIP_MAKELIB) $(LIB) $(OBJS) && ranlib $(LIB)
 
 rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -35,7 +38,7 @@ rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
 	fi
 
 rdd.o:		rdd.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -44,7 +47,7 @@ rdd.o:		rdd.c ../include.h/rdd.h Makefile
 	fi
 
 dbf.o:		dbf.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -53,7 +56,7 @@ dbf.o:		dbf.c ../include.h/rdd.h Makefile
 	fi
 
 ntx.o:		ntx.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -62,7 +65,7 @@ ntx.o:		ntx.c ../include.h/rdd.h Makefile
 	fi
 
 cdx.o:		cdx.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -71,7 +74,7 @@ cdx.o:		cdx.c ../include.h/rdd.h Makefile
 	fi
 
 dbt.o:		dbt.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -80,7 +83,7 @@ dbt.o:		dbt.c ../include.h/rdd.h Makefile
 	fi
 
 fpt.o:		fpt.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -89,7 +92,7 @@ fpt.o:		fpt.c ../include.h/rdd.h Makefile
 	fi
 
 rushmore.o:	rushmore.c ../include.h/rdd.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -98,7 +101,7 @@ rushmore.o:	rushmore.c ../include.h/rdd.h Makefile
 	fi
 
 btree.o:	btree.c btree.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -107,7 +110,7 @@ btree.o:	btree.c btree.h Makefile
 	fi
 
 six.o:		six.c ../include.h/rdd.h ../include/six.ch Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -116,7 +119,7 @@ six.o:		six.c ../include.h/rdd.h ../include/six.ch Makefile
 	fi
 
 hiper.o:	hiper.c ../include.h/rdd.h btree.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\

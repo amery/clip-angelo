@@ -24,44 +24,15 @@ all : Makefile $(STARGET)
 cfg :
 	cp --remove-destination -fpu$(V) include/clip-postscript.ch $(Clip_I_Dir)/
 
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(C_LIBS)
-
 cleanc:
 	rm -f$(V) $(TARGET).* *.dll.a *.c
-#	cd example && $(MAKE) clean
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install: all install-lib install-example
-#	mkdir -p$(V) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/include
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	$(CLIP_CP) $(RTARGET) $(DESTDIR)/lib
-#test -f $(DESTDIR)/usr/lib/$(TARGET) || ln -s $(DESTDIR)$(CLIPROOT)/lib/$(TARGET) $(DESTDIR)/usr/lib
-#/sbin/ldconfig -n $(DESTDIR)/usr/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-postscript
-#	cp -Ru$(V) example/* $(DESTDIR)/doc/example/clip-postscript/
-
-uninstall:
-	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).*
-
-distclean: clean
-
-dist: distclean
-	cd .. && tar cvfz clip-postscript.tgz clip-postscript
 
 include $(Makefile_o_in)
-
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

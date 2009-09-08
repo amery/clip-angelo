@@ -13,6 +13,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 my_sqlplus$(EXESUFF): my_sqlplus.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -eMs my_sqlplus.prg -lclip-oracle

@@ -13,6 +13,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG) *.bz2
 
+distcleanc :
+	rm -rf$(V) *.g
+
 bz2$(EXESUFF): bz2.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -e -s -l -M bz2.prg -lclip-bzip2

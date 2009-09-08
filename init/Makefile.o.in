@@ -45,7 +45,7 @@
 	fi
 
 %.po : %.prg Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
+	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 				\
 		$(Trace_prg_d) ; 									\
 		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
 	else 														\
@@ -54,7 +54,7 @@
 	fi
 
 .prg.po : Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 				\
+	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 				\
 		$(Trace_prg_d) ; 									\
 		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
 	else 														\

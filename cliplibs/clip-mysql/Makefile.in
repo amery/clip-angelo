@@ -39,5 +39,8 @@ install:all install-lib install-example install-doc
 cleanc:
 	rm -rf$(V) ms.c
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_end_in)
 

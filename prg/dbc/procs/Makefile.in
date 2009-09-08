@@ -7,19 +7,24 @@ Local_Depend = ../dbc/deflist.ch
 #CLIPFLAGS = -O -b -n
 CLIPFLAGS += -I../dbc
 CLIPLIBS  =
-OBJS  =  $(sort procs1.o procs3.o procs5.o procs7.o \
-	 procs8.o procini.o procscri.o \
-	 procared.o procsay.o )
+OBJS  =  $(sort 	procs1.o procs3.o procs5.o procs7.o 	\
+	 					procs8.o procini.o procscri.o 			\
+	 					procared.o procsay.o )
 
 .SUFFIXES: .prg .o
 
-install all:    $(OBJS)
+install all:    $(OBJS) ../procs.a
+
+../procs.a : $(OBJS)
 	$(CLIP_MAKELIB) ../procs.a *.o
 
 cfg :
 
 cleanc:
 	rm -rf$(V) *.c *.b
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

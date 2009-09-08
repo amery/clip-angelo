@@ -41,5 +41,8 @@ include $(Makefile_o_in)
 cleanc:
 	rm -rf$(V) *.c *.b $(ATARGET)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_end_in)
 

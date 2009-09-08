@@ -3,22 +3,22 @@
 ##
 #
 Local_Depend =
-
-#clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
-#						clip-cti 		 																	\
-#						clip-fcgi 																			\
-#						clip-gd 			clip-glade2 													\
-#						clip-gtk 																			\
-#						clip-gtk2 																			\
-#						clip-fw 																				\
-#						clip-gzip 		clip-mysql 			clip-odbc 								\
-#						clip-nanfor 	clip-netto 														\
-#						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
-#						clip-rtf 		clip-xml 			clip-ui
-
+include ./Makefile.01
+ifeq ($(MAKECMDGOALS),clean)
+DIRS_TO_SCAN = clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
+						clip-cti 		 																	\
+						clip-fcgi 																			\
+						clip-gd 			clip-glade2 													\
+						clip-gtk 																			\
+						clip-gtk2 																			\
+						clip-fw 																				\
+						clip-gzip 		clip-mysql 			clip-odbc 								\
+						clip-nanfor 	clip-netto 														\
+						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
+						clip-rtf 		clip-xml 			clip-ui
+endif
 # 						clip-ctcom 																			\
 #						clip-gtkextra																		\
-#include ./Makefile.01
 #ifdef CLIPROOT
 #	CLIP = $(CLIPROOT)/bin/clip$(C64)$(EXESUFF)
 #else
@@ -52,7 +52,9 @@ cleanc : #$(DIRS_TO_SCAN) interbase
 #	cd clip-interbase \
 #		&& $(MAKE) -f Makefile.in clean
 
-distclean: clean
+distcleanc:
+	rm -rf$(V) *.g
+	$(E_rm)rm -f$(V) *.o *.n
 #	for dir in $(dirs); \
 #		do (cd $$dir && $(MAKE) distclean || true);\
 #	done

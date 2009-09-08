@@ -22,10 +22,20 @@ cleanc:
 	rm -rf$(V) *.c *.b
 	rm -rf$(V) cobra_clnt1$(EXESUFF)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -es cobra_clnt1.prg $(OBJS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -es cobra_clnt1.prg $(OBJS)
 #	$(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) ;		\
+	fi
 
 install : all
 	cp --remove-destination -fu$(V) cobra_clnt1$(EXESUFF) $(Clip_B_Dir)/

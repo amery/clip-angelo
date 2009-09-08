@@ -9,15 +9,15 @@ CLIPFLAGS += -n -I $(Clip_I_Dir)/clip-netto
 CLIPLIBS  =
 
 LIBS  = -lclip-netto -lclip-nanfor
-OBJS  =	$(sort getsys.o common.o \
-	help.o print.o \
-	mdbedit.o mainmenu.o aktions.o obsolete.o \
-	cliplib.o filer.o viewer.o editor.o foxpro.o \
-	tb2html.o menu.o \
-	_clip.o modistru.o vkrz.o \
-	nanfor.o nettos.o \
-	errorsys.o \
-	config.o examplep.o )
+OBJS  =	$(sort 	getsys.o common.o 										\
+						help.o print.o 											\
+						mdbedit.o mainmenu.o aktions.o obsolete.o 		\
+						cliplib.o filer.o viewer.o editor.o foxpro.o 	\
+						tb2html.o menu.o 											\
+						_clip.o modistru.o vkrz.o 								\
+						nanfor.o nettos.o 										\
+						errorsys.o 													\
+						config.o examplep.o )
 
 .SUFFIXES: .prg .o
 
@@ -29,18 +29,28 @@ all: Makefile bdbf$(EXESUFF)
 cfg :
 
 bdbf$(EXESUFF):	bdbf.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -s -e -o$@ bdbf.prg $(OBJS) $(LIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -s -e -o$@ bdbf.prg $(OBJS) $(LIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -s -g -o $@ -e $< $(OBJS) $(LIBS) ;	\
+	else 																			\
+		$(Trace_clip) ;														\
+		$(CLIP) $(CLIPFLAGS) -s -o $@ -e $< $(OBJS) $(LIBS) ;		\
+	fi
 
 cleanc:
-	rm -rf$(V) *.c *.b
-	rm -rf$(V) bdbf$(EXESUFF) test$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.c *.b
+	$(E_rm)rm -rf$(V) bdbf$(EXESUFF) test$(EXESUFF)
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install: all
-	cp --remove-destination -fpu$(V) bdbf$(EXESUFF) $(DESTDIR)/bin/bdbf$(EXESUFF)
-	cp --remove-destination -fpu$(V) *.hlp $(DESTDIR)/bin/
-	cp --remove-destination -Rfpu$(V) locale.po/* $(DESTDIR)/locale.po/
-	rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
+	$(E_cp)cp --remove-destination -fpu$(V) bdbf$(EXESUFF) $(DESTDIR)/bin/bdbf$(EXESUFF)
+	$(E_rm)cp --remove-destination -fpu$(V) *.hlp $(DESTDIR)/bin/
+	$(E_rm)cp --remove-destination -Rfpu$(V) locale.po/* $(DESTDIR)/locale.po/
+	$(E_rm)rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
 
 include $(Makefile_o_in)
 

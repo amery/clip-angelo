@@ -15,6 +15,9 @@ cfg :
 cleanc :
 	rm -rf$(V) *.c *.b $(MODULES)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 install : all
 	mkdir -p$(V) $(DESTDIR)/kamache/mod-ini
 	cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-ini

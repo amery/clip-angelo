@@ -18,18 +18,31 @@ all : Makefile ftosgml$(EXESUFF) ctosgml$(EXESUFF)
 cfg :
 
 ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews ftosgml.prg $(OBJS) $(LIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+	fi
 
 ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews ctosgml.prg $(OBJS) $(LIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+	fi
 
 include $(Makefile_o_in)
 
 cleanc :
 	rm -rf$(V) *.c *.b ftosgml$(EXESUFF) ctosgml$(EXESUFF)
 	rm -rf$(V) sgml/*
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install : all
 	cp --remove-destination -fpu$(V) ftosgml$(EXESUFF) $(Clip_B_Dir)/

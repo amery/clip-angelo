@@ -3,6 +3,7 @@
 #
 Local_Depend =
 # $(Clip_L_Dir)/libclip-gtk.so
+DIRS_TO_SCAN = gdk-pixbuf-demo
 
 SRC=accel$(EXESUFF) clipgtktest$(EXESUFF) note$(EXESUFF) simple$(EXESUFF) tbrow$(EXESUFF) test$(EXESUFF) test_gtk$(EXESUFF) test_image$(EXESUFF) \
 	test_list$(EXESUFF) window$(EXESUFF)  winpic$(EXESUFF) ifactory$(EXESUFF)
@@ -14,6 +15,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b
 	rm -f$(V) $(SRC)
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

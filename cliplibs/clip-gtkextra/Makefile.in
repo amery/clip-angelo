@@ -54,9 +54,9 @@ d: set_dbg
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-include/clip-gtkextracfg.h :
+include/clip-gtkextracfg.h : $(CONFIGURE_SH)
 	$(Trace)
-	./configure
+	$(CONFIGURE_SH)
 
 hash: include/_hashcode.h
 
@@ -64,7 +64,7 @@ include/_hashcode.h: $(HASHSRCS)
 	$(Trace)
 	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
 	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
-	cp -fpu$(V)  include/hashcode.h include/_hashcode.h
+	cp -fp$(V)  include/hashcode.h include/_hashcode.h
 
 #$(XLIB): $(XLIBOBJS)
 #	rm -f $(XLIB)
@@ -78,10 +78,11 @@ test: install
 	cd example && $(MAKE)
 
 cleanc:
-	rm -rf$(V) *.b include/_hashcode.h include/clip-gtkextracfg.h $(TARGET).*
+	rm -rf$(V) *.b $(TARGET).* Makefile.inc
 
-distclean: clean
-	rm -rf$(V) include/clip-gtkextracfg.h include/hashcode.h include/_hashcode.h Makefile
+distcleanc :
+	rm -rf$(V) *.g
+
 
 install: all install-lib install-example
 #	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib

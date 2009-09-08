@@ -21,13 +21,8 @@ cleanc:
 	rm -rf$(V) *.c *.b
 	rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
 
-commit:
-	cvs commit
-
-update:
-	cvs update -dP
-
-ucommit: update commit
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

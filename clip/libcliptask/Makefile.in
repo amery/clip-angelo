@@ -47,12 +47,12 @@ cl_cfg.h :
 	./cl_conf
 
 pth_task.o: pth_task.c task.h  Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 cl_tst$(EXESUFF): $(OBJS) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
@@ -78,6 +78,9 @@ cleanc:
 	rm -f$(V) $(PTH_TEST) task_tst$(EXESUFF) pth_tst$(EXESUFF)
 	rm -f$(V) USE*
 	rm -f$(V) cl_cfg.h $(ATARGET)
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

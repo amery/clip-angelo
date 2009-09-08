@@ -10,7 +10,7 @@
 #CLIP = clip$(EXESUFF)
 CLIP_MODULE = clip-ui
 Local_Depend =
-
+CLIPFLAGS += -I../../clip-gtk2 -n
 OBJS    = driver-gtk2.po
 
 .PHONY: all clean uninstall distclean
@@ -21,6 +21,9 @@ cfg :
 
 cleanc:
 
+distcleanc :
+	rm -rf$(V) *.g
+
 install: all
 	mkdir -p$(V) $(DESTDIR)/lib/drivers
 	$(CLIP_CP) $(OBJS) $(DESTDIR)/lib/drivers
@@ -28,15 +31,11 @@ install: all
 uninstall:
 	rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)
 
-distclean: clean
-
-dist: distclean
-
 include $(Makefile_o_in)
 
-driver-gtk2.po: driver-gtk2.prg $(CLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -I../../clip-gtk2 -n -p driver-gtk2.prg
+#driver-gtk2.po: driver-gtk2.prg $(CLIP)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -I../../clip-gtk2 -n -p driver-gtk2.prg
 
 include $(Makefile_end_in)
 

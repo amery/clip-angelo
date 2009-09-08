@@ -31,9 +31,19 @@ install: all
 cleanc : $(DIRS_TO_SCAN)
 	rm -rf$(V) *.c *.b $(BIN)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 $(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -se $< $(OBJS) $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -se $< $(OBJS) $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(CLIPLIBS) ;	\
+	else 																				\
+		$(Trace_clip) 		;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+	fi
 
 commit:
 	_cvs commit

@@ -101,12 +101,13 @@ cleanc :$(DIRS_TO_SCAN)
 	rm -Rf$(V) bin libclip*
 	rm -f$(V) $(BINS) *.b test dtest bin locale.pot
 
-distclean: clean
+distcleanc: clean
 	rm -f$(V) configure.flags
 	rm -f$(V) Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) \
 		clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) \
 		license.txt license.h
 	rm -f$(V) cliproot
+	rm -rf$(V) *.g
 
 cleantest:
 	rm -f$(V) test dtest *.pa test.o dtest.o
@@ -186,6 +187,7 @@ inst_locale:
 	tar cf - locale.po | (cd $(DESTDIR) && tar xf -)
 	rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
 	CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
+
 
 inst_lib:
 	clip_cp$(SCRIPTSUFF) $(LIB) $(DESTDIR)/lib

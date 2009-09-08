@@ -10,7 +10,7 @@ Local_Depend =
 
 .SUFFIXES: .prg .o .po
 
-MODULES = 	$(sort 	acc_chart.po acc_oper.po attr.po class.po  \
+MODULES = 	$(sort 	acc_chart.po acc_oper.po attr.po class.po  	\
 							counter.po default.po deposit.po extent.po 	\
 							group.po index.po plugins.po report.po 		\
 							tcolumn.po tview.po user.po )
@@ -28,6 +28,9 @@ update:
 cleanc : $(DIRS_TO_SCAN)
 	rm -rf$(V) *.c *.b $(MODULES)
 	rm -rf$(V) *.pro $(PROGS) test test2
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

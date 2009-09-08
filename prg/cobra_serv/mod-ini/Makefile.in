@@ -15,6 +15,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 include $(Makefile_end_in)

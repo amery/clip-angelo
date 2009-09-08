@@ -5,6 +5,8 @@ Local_Depend =
 
 include Makefile.01
 
+#override DIRS_TO_SCAN := $(sort DIRS_TO_SCAN)
+
 all: Makefile $(DIRS_TO_SCAN)
 
 Makefile.01 : $(CONFIGURE_SH)
@@ -15,6 +17,9 @@ cfg :
 install : all
 
 cleanc:
+
+distcleanc :
+	rm -rf$(V) *.g
 
 commit:
 	./_cvs commit

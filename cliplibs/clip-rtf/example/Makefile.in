@@ -24,6 +24,9 @@ rtfdemo$(EXESUFF) : rtfdemo.prg $(CLIP) $(LIBCLIP)
 cleanc:
 	rm -f$(V) *.c *.rtf $(BINS)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 include $(Makefile_end_in)

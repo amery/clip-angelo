@@ -30,6 +30,9 @@ cleanc:
 	*.dbf *.ntx *.cdx *.dbt *.fpt \
 	test $(ATARGET)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 #../compiler/coll.o : ../compiler/coll.c Makefile
@@ -66,12 +69,12 @@ plural.tab.c: plural.y
 	$(YACC) -bplural -pplural plural.y
 
 plural.tab.o: plural.tab.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 yacc : plural.tab.c

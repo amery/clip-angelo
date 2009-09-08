@@ -41,7 +41,10 @@ links :
 #	$(CLIP_MAKESLIB) $(FWINLIB) $(FWLIB)
 
 cleanc:
-	rm -f$(V) fw*.c $(TARGET).*
+	rm -f$(V) fw*.c $(TARGET).* Makefile.inc
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install: all install-lib install-example
 #	$(CLIP_CP) $(FWINLIB) $(DESTDIR)/lib

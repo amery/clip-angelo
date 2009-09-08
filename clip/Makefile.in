@@ -109,7 +109,7 @@ cleanc :$(DIRS_TO_SCAN)
 					Makefile.incl
 
 
-distclean: clean
+distcleanc: clean
 	rm -f$(V) configure.flags
 	rm -f$(V) 	Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) 											\
 					clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) 	\

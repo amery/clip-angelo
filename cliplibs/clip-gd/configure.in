@@ -88,17 +88,17 @@ esac
 
 printf "configure: Makefile creating.."
 
-exec 																						 3>Makefile.inc
+exec 																												3>Makefile.inc
 
-echo "#	Created automatically by 'configure'" 																						 >&3
-echo '#' 																						 >&3
-echo  																						>&3
-echo '#'  																						>&3
-echo '#	Compile flags' 																						 >&3
-echo '#' 																						 >&3
-echo "OSNAME='$osname'" 																						 >&3
-echo "DLLIB='$DLLIB'" 																						 >&3
-echo "CYGFLAGS='$CYGFLAGS'"  																						>&3
+echo "#	Created automatically by 'configure'" 														>&3
+echo '#' 																										>&3
+echo  																											>&3
+echo '#'  																										>&3
+echo '#	Compile flags' 																					>&3
+echo '#' 																										>&3
+echo "OSNAME='$osname'" 																					>&3
+echo "DLLIB='$DLLIB'" 																						>&3
+echo "CYGFLAGS='$CYGFLAGS'"  																				>&3
 
 if [ -z "$CC" ]
 then
@@ -150,7 +150,7 @@ tr -d \' <./Makefile.inc >Makefile
 cat ./Makefile >Makefile.inc
 echo ". done."
 printf "configure: creating gdcfg.h .."
-exec   																						 	3>gdcfg.h
+exec   																						 	3>include/gdcfg.h
 echo "/* Created automatically by 'configure' */"   								>&3
 echo "#ifndef GD_CONFIG_H"   																>&3
 echo "#define GD_CONFIG_H"   																>&3
@@ -194,4 +194,4 @@ echo ". done."
 
 #!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
+cat Makefile.ini Makefile.inc Makefile.in >Makefile

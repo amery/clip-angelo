@@ -12,6 +12,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b sheet$(EXESUFF)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -e -s -l sheet.prg -lclip-gtkextra -lclip-gtk

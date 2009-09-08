@@ -292,16 +292,16 @@ LOCAL i, han, j, strlen, obl
                EXIT
             ENDIF
          NEXT
-         IF msmsf[ i, 3 ] <> Nil
+         IF m->msmsf[ i, 3 ] <> Nil
             FWRITE( han, "NAMES" )
             strlen := 5
-            FOR j := 1 TO LEN( msmsf[ i, 3 ] )
-               IF msmsf[ i, 3 , j ] <> Nil
+            FOR j := 1 TO LEN( m->msmsf[ i, 3 ] )
+               IF m->msmsf[ i, 3 , j ] <> Nil
                   IF strlen > 90
                      FWRITE( han, "&" + CHR( 13 ) + CHR( 10 ) )
                   ENDIF
-                  FWRITE( han, IIF( j = 1, ' ', ',' ) + msmsf[ i, 2 , j ] )
-                  strlen += LEN( msmsf[ i, 2, j ] ) + 1
+                  FWRITE( han, IIF( j = 1, ' ', ',' ) + m->msmsf[ i, 2 , j ] )
+                  strlen += LEN( m->msmsf[ i, 2, j ] ) + 1
                ELSE
                   EXIT
                ENDIF
@@ -309,13 +309,13 @@ LOCAL i, han, j, strlen, obl
             FWRITE( han, CHR( 13 ) + CHR( 10 ) )
             FWRITE( han, "FIELDS" )
             strlen := 6
-            FOR j := 1 TO LEN( msmsf[ i, 3 ] )
-               IF msmsf[ i, 3 , j ] <> Nil
+            FOR j := 1 TO LEN( m->msmsf[ i, 3 ] )
+               IF m->msmsf[ i, 3 , j ] <> Nil
                   IF strlen > 90
                      FWRITE( han, "&" + CHR( 13 ) + CHR( 10 ) )
                   ENDIF
-                  FWRITE( han, IIF( j = 1, ' ', ',' ) + msmsf[ i, 3 , j ] )
-                  strlen += LEN( msmsf[ i, 3, j ] ) + 1
+                  FWRITE( han, IIF( j = 1, ' ', ',' ) + m->msmsf[ i, 3 , j ] )
+                  strlen += LEN( m->msmsf[ i, 3, j ] ) + 1
                ELSE
                   EXIT
                ENDIF

@@ -59,6 +59,9 @@ install:all install-lib install-example
 
 include $(Makefile_o_in)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 cleanc:
 
 include $(Makefile_end_in)

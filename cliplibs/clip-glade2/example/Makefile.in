@@ -17,7 +17,6 @@ all: Makefile eglade$(EXESUFF)
 
 cfg :
 
-
 eglade$(EXESUFF): eglade.prg  $(OBJS) $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -e $<  $(PRGLIBS)
@@ -25,6 +24,8 @@ eglade$(EXESUFF): eglade.prg  $(OBJS) $(CLIP) $(LIBCLIP)
 cleanc:
 	rm -f$(V) eglade$(EXESUFF) *.c
 
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

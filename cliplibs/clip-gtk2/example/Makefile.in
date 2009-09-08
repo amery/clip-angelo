@@ -3,7 +3,7 @@
 #
 Local_Depend =
 # $(Clip_L_Dir)/libclip-gtk2.so
-
+DIRS_TO_SCAN = gdk-pixbuf-demo
 LIBS= -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangox-1.0 -lpangoxft-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0
 
 SRC =clipgtktest$(EXESUFF) tbrow$(EXESUFF) simple$(EXESUFF)  test_stock$(EXESUFF) test_image$(EXESUFF) accel$(EXESUFF) test_tree$(EXESUFF) test_image$(EXESUFF) \
@@ -18,6 +18,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b
 	rm -f$(V) $(SRC)
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

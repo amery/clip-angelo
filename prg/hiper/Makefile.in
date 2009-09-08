@@ -8,6 +8,8 @@ Local_Depend =
 #CLIPFLAGS = -s -l -w
 
 BINS = $(sort clip_hindex$(EXESUFF) clip_hseek$(EXESUFF) )
+OBJS =
+LIBS =
 
 all : Makefile $(BINS)
 
@@ -20,15 +22,28 @@ install :	all
 cleanc:
 	rm -rf$(V) $(BINS) *.c *.b
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hindex.prg
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+	fi
 
 clip_hseek$(EXESUFF):	clip_hseek.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -e clip_hseek.prg
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+	fi
 
 include $(Makefile_end_in)
 

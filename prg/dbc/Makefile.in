@@ -14,6 +14,9 @@ cfg :
 
 cleanc:
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 install:all

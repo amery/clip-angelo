@@ -13,6 +13,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 gr$(EXESUFF): gr.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -s -e -M gr.prg -lclip-gd

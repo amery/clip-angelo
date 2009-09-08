@@ -40,80 +40,80 @@ all : $(Making)
 #	exit 1
 
 home : $(Clip_M_Dir)/config/home.ok
-	$(MAKE) install
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
-#	touch home
+	@$(MAKE) install
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
+#	@touch home
 
 $(Clip_M_Dir)/config/home.ok :
-	[ -f $(Clip_M_Dir)/config/home.ok ] || $(MAKE) -i clean
-	./configure "home"
-	$(MAKE) M_config
-	touch $(Clip_M_Dir)/config/home.ok
+	@[ -f $(Clip_M_Dir)/config/home.ok ] || $(MAKE) clean
+	@./configure "home"
+	@$(MAKE) M_config
+	@touch $(Clip_M_Dir)/config/home.ok
 
 opt : $(Clip_M_Dir)/config/opt.ok
-	$(MAKE) install
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@$(MAKE) install
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/opt.ok :
-	[ -f $(Clip_M_Dir)/config/opt.ok ] || $(MAKE) -i clean
-	./configure "opt"
-	$(MAKE) M_config
-	touch $(Clip_M_Dir)/config/opt.ok
+	@[ -f $(Clip_M_Dir)/config/opt.ok ] || $(MAKE) clean
+	@./configure "opt"
+	@$(MAKE) M_config
+	@touch $(Clip_M_Dir)/config/opt.ok
 
 local : $(Clip_M_Dir)/config/local.ok
-	$(MAKE) install
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@$(MAKE) install
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/local.ok :
-	[ -f $(Clip_M_Dir)/config/local.ok ] || $(MAKE) -i clean
-	./configure "local"
-	$(MAKE) M_config
-	touch $(Clip_M_Dir)/config/local.ok
+	@[ -f $(Clip_M_Dir)/config/local.ok ] || $(MAKE) clean
+	@./configure "local"
+	@$(MAKE) M_config
+	@touch $(Clip_M_Dir)/config/local.ok
 
 usr.local : $(Clip_M_Dir)/config/usr.local.ok
-	$(MAKE) install
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@$(MAKE) install
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/usr.local.ok :
-	[ -f $(Clip_M_Dir)/config/usr.local.ok ] || $(MAKE) -i clean
-	./configure "usr.local"
-	$(MAKE) M_config
-	touch $(Clip_M_Dir)/config/usr.local.ok
+	@[ -f $(Clip_M_Dir)/config/usr.local.ok ] || $(MAKE) clean
+	@./configure "usr.local"
+	@$(MAKE) M_config
+	@touch $(Clip_M_Dir)/config/usr.local.ok
 
 #sys : $(Clip_M_Dir)/config/sys.ok
-#	$(MAKE) install
-#	banner $@ ok 	>&0
+#	@$(MAKE) install
+#	@banner $@ ok 	>&0
 
 #$(Clip_M_Dir)/config/sys.ok :
-#	[ -f $(Clip_M_Dir)/config/sys.ok ] || $(MAKE) -i clean
-#	./configure "sys"
-#	$(MAKE) M_config
-#	touch $(Clip_M_Dir)/config/sys.ok
+#	@[ -f $(Clip_M_Dir)/config/sys.ok ] || $(MAKE) clean
+#	@./configure "sys"
+#	@$(MAKE) M_config
+#	@touch $(Clip_M_Dir)/config/sys.ok
 
 M_config : Makefile $(DIRS_TO_SCAN) FORCE
 	$(Trace)
-	touch $(Clip_M_Dir)/config/config_check.ok
-	banner $@ ok
-	banner $@ ok 	>&0
+	@touch $(Clip_M_Dir)/config/config_check.ok
+	@banner $@ ok
+	@banner $@ ok 	>&0
 
 $(Clip_M_Dir)/config/config_check.ok : Makefile $(Depend_Files)
-	$(Trace)
-	rm -f$(V) $(Clip_M_Dir)/config/*.ok
-	./configure $(MAKECMDGOALS)
-	touch $(Clip_M_Dir)/config/config_check.ok
+	@$(Trace)
+	@rm -f$(V) $(Clip_M_Dir)/config/*.ok
+	@./configure $(MAKECMDGOALS)
+	@touch $(Clip_M_Dir)/config/config_check.ok
 	@sleep 1
-	touch $(Clip_M_Dir)/config/$(MAKECMDGOALS).ok
+	@touch $(Clip_M_Dir)/config/$(MAKECMDGOALS).ok
 
 
 install : Makefile $(DIRS_TO_SCAN)
 	$(CLIP_MSGMERGE)
 	$(CLIP_MSGFMT)
-	$(Clip_M_Dir)/init/CleanCVS.sh $(DESTDIR)
-	cd $(DESTDIR) \
+	@$(Clip_M_Dir)/init/CleanCVS.sh $(DESTDIR)
+	@cd $(DESTDIR) \
 		&& rm -f$(V) */include.clip */*/include.clip */*/*/include.clip */*/*/*/include.clip  */*/*/*/*/include.clip|| true
 	@banner $@ ok 				>&1
 	@banner $@ ok 				>&0
@@ -135,117 +135,114 @@ install : Makefile $(DIRS_TO_SCAN)
 	@echo $(Clip_D_Dir) 		>&0
 
 cleanc :
-	$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
-	rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini
-	rm -f$(V) sys home usr.local opt config_check configure.flags set.txt *.set.txt *.set
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
+	@rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini
+	@rm -f$(V) sys home usr.local opt config_check configure.flags set.txt *.set.txt *.set
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 clean : $(DIRS_TO_SCAN) cleanc
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 distcleanc :
-	$(MAKE) -i clean
+	@$(MAKE) clean
+	./configure "home"
 
-distclean : $(DIRS_TO_SCAN) example distcleanc
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
-
-cleanroot : clean
-	rm -rf$(V) ../cliproot/*
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+distclean : distcleanc $(DIRS_TO_SCAN) example cleanc
+	$(E_rm)rm -Rf$(V) $(Clip_M_Dir)/config/setup
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 packages: clean src tgz rpm deb
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 lp: NODBU=no
 lp: src cleanroot local deb tgz rpm
 
 deb: clean
-	./mkdeb
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkdeb
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 rpm: clean
-	./mkrpm
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkrpm
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 rpm-home: clean
-	./mkrpm -home
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkrpm -home
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 rpm-opt: clean
-	./mkrpm -opt
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkrpm -opt
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 rpm-local: clean
-	./mkrpm -local
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkrpm -local
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 rpm-sys: clean
-	./mkrpm -sys
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkrpm -sys
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 tgz: clean
-	./mktgz
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mktgz
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 tbz tbz2 tar.bz2: clean
-	./mktgz -bzip2
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mktgz -bzip2
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 src: clean
-	./mksrc
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mksrc
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 doc: clean
-	./mkdoc
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mkdoc
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 src_p: clean
-	./mksrc_p
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./mksrc_p
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 ucommit:
-	./cvs_ucommit
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./cvs_ucommit
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 commit:
-	./cvs_commit
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./cvs_commit
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 update:
-	./cvs_update
-	banner $@ ok 	>&1
-	banner $@ ok 	>&0
+	@./cvs_update
+	@banner $@ ok 	>&1
+	@banner $@ ok 	>&0
 
 Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
-	$(Trace)
-	./configure $(MAKECMDGOALS)
-	$(MAKE) M_config
+	@$(Trace)
+	@./configure $(MAKECMDGOALS)
+	@$(MAKE) M_config
 	@echo $(PWD)/Makefile "is updated" 	>&0
 	@echo $(PWD)/Makefile "is updated" 	>&1
 
 #Makefile.ini configure.ini : configure
-#	$(Trace)
-#	./configure $(MAKECMDGOALS)
-#	$(MAKE) M_config
-#	banner $@ ok 	>&0
+#	@$(Trace)
+#	@./configure $(MAKECMDGOALS)
+#	@$(MAKE) M_config
+#	@banner $@ ok 	>&0
 
 FORCE :
 

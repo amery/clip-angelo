@@ -600,13 +600,20 @@ cat Makefile.incl_1 											>>./clipcfg.sh
 cp --remove-destination -fu$V Makefile.inc ./Makefile.ini
 mkdir -p$V $Clip_I_Dir
 mv Makefile.ini clipcfg.sh $Clip_I_Dir/
-rm -f$V Makefile.dtu 		|| true
-rm -f$V Makefile.dtx 		|| true
-rm -f$V Makefile.export 	|| true
-rm -f$V Makefile.inc 		|| true
-rm -f$V Makefile.incl* 		|| true
-rm -f$V Makefile.ini 		|| true
-rm -f$V Makefile.tmp 		|| true
+rm -f$V Makefile.dtu
+# 		|| true
+rm -f$V Makefile.dtx
+# 		|| true
+rm -f$V Makefile.export
+# 	|| true
+rm -f$V Makefile.inc
+# 		|| true
+rm -f$V Makefile.incl*
+# 		|| true
+rm -f$V Makefile.ini
+# 		|| true
+rm -f$V Makefile.tmp
+# 		|| true
 cp --remove-destination -fu$V $Clip_I_Dir/Makefile.ini $Clip_M_Dir/
 echo ". done."
 printf "configure: creating clipcfg.h .."

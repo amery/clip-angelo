@@ -27,7 +27,8 @@ cleanc : libezV24 example
 	rm -rf$(V) hashcode.h $(TARGET).*
 #	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
 
-distclean: clean
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

@@ -21,24 +21,19 @@ all: Makefile  have_lib	$(STARGET)
 
 cfg :
 	cp --remove-destination -fpu$(V) include/oracle.ch $(Clip_I_Dir)/
-#
+
 have_lib:
 	test -f $(ORACLE_HOME)/rdbms/demo/oci.h
-
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(ORACLE_HOME)/lib/libclntsh.so
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	mkdir -p $(DESTDIR)/doc/clip-oracle
-#	cp -fu$(V) *.html $(DESTDIR)/doc/clip-oracle
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-oracle
-#	cp -Rfu$(V) example/* $(DESTDIR)/doc/example/clip-oracle/
 
 cleanc:
 	rm -rf$(V) or.c $(TARGET).*
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

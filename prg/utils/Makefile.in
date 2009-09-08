@@ -28,11 +28,10 @@ cleanc:
 	rm -rf$(V) *.c *.b
 	rm -rf$(V) $(BINS)
 
-include $(Makefile_o_in)
+distcleanc :
+	rm -rf$(V) *.g
 
-clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_run.prg $(CLIPLIBS)
+include $(Makefile_o_in)
 
 install:all
 	cp --remove-destination -fpu$(V) $(BINS) $(DESTDIR)/bin
@@ -40,48 +39,125 @@ install:all
 	cp --remove-destination -fpu$(V) .templ $(DESTDIR)/etc
 
 clip_prg$(EXESUFF): clip_prg.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_prg.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_prg.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_run.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_run.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_bl.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_bl.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_we.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_we.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_hv$(EXESUFF): clip_hv.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_hv.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_hv.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_fl$(EXESUFF): clip_fl.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_fl.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_fl.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_dbf2txt$(EXESUFF): clip_dbf2txt.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -M clip_dbf2txt.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e -M clip_dbf2txt.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 clip_blank$(EXESUFF): clip_blank.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e clip_blank.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e clip_blank.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 				\
+		$(Trace_clip_d) 	;											\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																	\
+		$(Trace_clip) 		;											\
+		$(CLIP) $(CLIPFLAGS) -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 www_clip$(EXESUFF): www_clip.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e www_clip.prg $(CLIPLIBS)  $(WWWLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e www_clip.prg $(CLIPLIBS)  $(WWWLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 				\
+		$(Trace_clip_d) 	;											\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																	\
+		$(Trace_clip) 		;											\
+		$(CLIP) $(CLIPFLAGS) -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 wcl2prg$(EXESUFF): wcl2prg.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e wcl2prg.prg $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e wcl2prg.prg $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 				\
+		$(Trace_clip_d) 	;											\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																	\
+		$(Trace_clip) 		;											\
+		$(CLIP) $(CLIPFLAGS) -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 sqlrun$(EXESUFF): sqlrun.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e sqlrun.prg $(CLIPLIBS)  $(WWWLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -e sqlrun.prg $(CLIPLIBS)  $(WWWLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 				\
+		$(Trace_clip_d) 	;											\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $< $(CLIPLIBS) ;	\
+	else 																	\
+		$(Trace_clip) 		;											\
+		$(CLIP) $(CLIPFLAGS) -o $@ -e $< $(CLIPLIBS) ;		\
+	fi
 
 include $(Makefile_end_in)
 

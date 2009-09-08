@@ -26,6 +26,8 @@ test_lib :
 		echo "Warning: Install lib$(C64)gd-static-XX.(rpm/deb) & libgd-tools -$(C64).(rpm/deb)"  ;\
 		error 	;\
 	fi
+include/gdcfg.h :
+	$(CONFIGURE_SH)
 
 all : Makefile test_lib $(STARGET)
 #all build_gd: Makefile test_lib
@@ -53,7 +55,10 @@ install : all install-lib install-example install-doc
 #	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-gd/
 
 cleanc:
-	rm -rf$(V) gd_obj.c $(TARGET).*
+	rm -rf$(V) gd_obj.c $(TARGET).* Makefile.inc
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

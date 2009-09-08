@@ -26,6 +26,9 @@ cfg :
 cleanc:
 	rm -f$(V) $(PRG1) $(PRG2) image[0-9]*
 
+distcleanc :
+	rm -rf$(V) *.g
+
 $(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewslM $(CLIPINCLUDE) uitest.prg $(LIBS) $(EXTRALIBS)

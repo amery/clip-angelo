@@ -27,9 +27,19 @@ cleanc : $(DIRS_TO_SCAN)
 	rm -f$(V) *.c *.b
 	rm -f$(V) cobra_serv$(EXESUFF) *.pro
 
+distcleanc :
+	rm -rf$(V) *.g
+
 cobra_serv$(EXESUFF) :cobra_serv.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -es -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -es -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS)  $(CLIPLIBS);	\
+	else 																				\
+		$(Trace_clip) 	;															\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+	fi
 
 
 install: all

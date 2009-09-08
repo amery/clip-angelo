@@ -30,9 +30,19 @@ cleanc :
 	rm -rf$(V) *.c *.b
 	rm -rf$(V) kamache$(EXESUFF) *.pro
 
+distcleanc :
+	rm -rf$(V) *.g
+
 kamache$(EXESUFF) : kamache.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -es kamache.prg $(OBJS) $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -es kamache.prg $(OBJS) $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(CLIPLIBS) ;	\
+	else 																				\
+		$(Trace_clip) 		;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+	fi
 
 install : all
 	mkdir -p$(V) $(DESTDIR)/kamache

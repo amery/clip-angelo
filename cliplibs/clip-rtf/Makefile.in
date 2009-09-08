@@ -23,21 +23,13 @@ cfg :
 	cp --remove-destination -fpu$(V) include/richtext.ch $(Clip_I_Dir)/
 	cp --remove-destination -fpu$(V) include/objects.ch $(Clip_I_Dir)/
 
-#$(RTFLIB): $(OBJS)
-#	$(CLIP_MAKELIB) $(RTLIB) $(OBJS)
-#	$(CLIP_MAKESLIB) $(RTFLIB) $(RTLIB) $(C_LIBS)
-
 cleanc :
 	rm -f$(V) *.c $(TARGET).*
 
+distcleanc :
+	rm -rf$(V) *.g
+
 install : all install-lib install-example install-doc
-#	$(CLIP_CP) $(RTLIB) $(DESTDIR)/lib
-#	$(CLIP_CP) $(RTFLIB) $(DESTDIR)/lib
-#	chmod 0755 $(DESTDIR)/lib/$(RTFLIB)
-#	#[ "$(RTFLIBREAL)" = "$(RTFLIB)" ] || cp $(RTFLIBREAL) $(CLIPROOT)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-rtf
-#	cp -Ruf$(V) example/Makefile* example/*.prg $(DESTDIR)/doc/example/clip-rtf/
-#	cp -Ruf$(V) example/*.dbf example/*.dbt $(DESTDIR)/doc/example/clip-rtf/
 
 include $(Makefile_o_in)
 

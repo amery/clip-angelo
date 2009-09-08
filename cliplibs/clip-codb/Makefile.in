@@ -31,12 +31,16 @@ export CFLAGS
 all:   Makefile  $(STARGET) $(STARGET2)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/ || true
+	cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/ 	|| true
 	cp --remove-destination -Rfpu$(V) ./locale.po/* $(DESTDIR)/locale.po/
 
 cleanc :
-	rm -f$(V) *.c *.b codb_mk clip_ab test || true
+	rm -f$(V) *.c *.b codb_mk clip_ab test
+#|| true
 	rm -rf$(V) $(TARGET).* $(TARGET2).*
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install: all install-lib
 #	$(CLIP_CP) libclip-codb $(DESTDIR)/lib

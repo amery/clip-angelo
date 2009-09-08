@@ -15,6 +15,9 @@ cleanc:
 	rm -f$(V) *.c
 	rm -f$(V) $(SRC)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ews pixbuf_demo.prg -lclip-gtk2

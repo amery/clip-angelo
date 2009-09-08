@@ -41,7 +41,10 @@ cfg :
 #	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
 
 cleanc :
-	rm -f$(V) $(TARGET).*
+	rm -f$(V) $(TARGET).* *.c
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install : all install-lib install-doc
 #	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib

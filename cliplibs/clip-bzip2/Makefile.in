@@ -45,7 +45,8 @@ install:all install-lib install-example
 cleanc:
 	rm -rf$(V) hashcode.h bzpref.h $(TARGET).*
 
-distclean: clean
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

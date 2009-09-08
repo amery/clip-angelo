@@ -23,8 +23,11 @@ cfg :
 #$(TARGET):$(DIRS_TO_SCAN)
 #	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
 
-cleanc distclean*:$(DIRS_TO_SCAN)
-	rm -f$(V) $(TARGET).*
+distcleanc :
+	rm -rf$(V) *.g
+
+cleanc :
+	rm -f$(V) $(TARGET).* *.c
 
 install : all install-lib install-doc
 #	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib

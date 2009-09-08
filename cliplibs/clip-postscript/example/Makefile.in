@@ -24,6 +24,9 @@ cfg :
 cleanc:
 	rm -f$(V) $(PRG) *.c
 
+distcleanc :
+	rm -rf$(V) *.g
+
 $(PRG): testform.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) testform.prg $(LIBS)

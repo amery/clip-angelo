@@ -14,6 +14,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -eMs my_psql.prg -lclip-postgres

@@ -40,6 +40,9 @@ cmap$(EXESUFF):	$(CMAPOBJS) Makefile
 cleanc:
 	rm -f$(V) *.b $(PROGS) $(ATARGET)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 testscr$(EXESUFF): testscr.o  Makefile $(ATARGET) charset.o Makefile
 	$(Trace_c)
 	$(CC) $(CFLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm

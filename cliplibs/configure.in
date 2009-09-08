@@ -8,6 +8,40 @@ beep_on
 OnScreen 2 "DIRS_TO_SCAN = >Makefile.01"
 #echo "DIRS_TO_SCAN =" 												>Makefile.01
 DIRS_TO_SCAN=""
+#echo "CFLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
+#echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
+AllDir="bzip2 gzip com crypto cti fcgi gd glade2 gtk gtk2 gtkextra fw dbtcp codb mysql odbc oracle postgres
+nanfor netto postscript r2d2 rtf xml"
+export DIRS_TO_SCAN
+
+function Get_Check ()
+{
+	local VarX=" "
+	[ -f clip-$1.ok ] && VarX="Y"
+	[ -f clip-$1.no ] && VarX="N"
+	while [[ $VarX != [YyNn] ]] ; do
+		OnScreen 2 "Do you want to install library clip-$1 : [y/n] :"
+		read -n 1 VarX 		>&0
+	done
+	if [[ "$VarX" = [Yy] ]] ; then
+#	echo "DIRS_TO_SCAN += clip-$1" 							>>Makefile.01
+		touch clip-$1.ok
+		echo "$1"
+	else
+		touch clip-$1.no
+	fi
+}
+
+for dName in $AllDir ; do
+	touch clip-$dName.ok
+	VarX=""
+	VarX=$(Get_Check $dName)
+	if ! [[ -z $VarX ]] ; then
+		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-"$VarX
+	fi
+#	OnScreen 1 $DIRS_TO_SCAN
+done
+
 if [[ $ARCH = "x86_64" ]] && [[ $C64 = "64" ]] ; then
 	ARCH=x86_64
 	C64=64
@@ -15,7 +49,8 @@ else
 	ARCH=i586
 	C64=""
 	VarX=" "
-	[ -f clip-interbase.o ] && VarX="Y"
+	[ -f clip-interbase.ok ] && VarX="Y"
+	[ -f clip-interbase.no ] && VarX="N"
 	while [[ $VarX != [YyNn] ]] ; do
 		OnScreen 2 "Do you want to install library clip-interbase : [y/n] :"
 		read -n 1 VarX 		>&0
@@ -23,301 +58,28 @@ else
 	if [[ "$VarX" = [Yy] ]] ; then
 #		echo "DIRS_TO_SCAN += clip-interbase" 					>>Makefile.01
 		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-interbase"
-		touch clip-interbase.o
+		touch clip-interbase.ok
+	else
+		touch clip-interbase.no
 	fi
 fi
-#echo "CFLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
-#echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
-
-VarX=" "
-[ -f clip-bzip2.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-bzip2 : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-bzip2" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-bzip2"
-	touch clip-bzip2.o
-fi
-
-VarX=" "
-[ -f clip-codb.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-codb : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-codb" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-codb"
-	touch clip-codb.o
-fi
-
-VarX=" "
-[ -f clip-com.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-com : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-com" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-com"
-	touch clip-com.o
-fi
-
-VarX=" "
-[ -f clip-crypto.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-crypto : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-crypto" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-crypto"
-	touch clip-crypto.o
-fi
-
-VarX=" "
-[ -f clip-cti.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-cti : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-cti" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-cti"
-	touch clip-cti.o
-fi
-
-VarX=" "
-[ -f clip-fcgi.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-fcgi : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-fcgi" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-fcgi"
-	touch clip-fcgi.o
-fi
-
-VarX=" "
-[ -f clip-gd.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-gd : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-gd" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-gd"
-	touch clip-gd.o
-fi
-
-VarX=" "
-[ -f clip-glade2.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-glade2 : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-glade2" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-glade2"
-	touch clip-glade2.o
-fi
-
-VarX=" "
-[ -f clip-gtk.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-gtk : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-gtk" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-gtk"
-	touch clip-gtk.o
-fi
-
-VarX=" "
-[ -f clip-gtk2.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-gtk2 : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-gtk2" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-gtk2"
-	touch clip-gtk2.o
-fi
-
-VarX=" "
-[ -f clip-gtkextra.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-gtkextra : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-gtkextra" 						>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-gtkextra"
-	touch clip-gtkextra.o
-fi
-
-VarX=" "
-[ -f clip-fw.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-fw : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-fw" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-fw"
-	touch clip-fw.o
-fi
-
-VarX=" "
-[ -f clip-gzip.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-gzip : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-gzip" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-gzip"
-	touch clip-gzip.o
-fi
-
-VarX=" "
-[ -f clip-mysql.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-mysql : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-mysql" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-mysql"
-	touch clip-mysql.o
-fi
-
-VarX=" "
-[ -f clip-odbc.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-odbc : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-odbc" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-odbc"
-	touch clip-odbc.o
-fi
-
-VarX=" "
-[ -f clip-nanfor.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-nanfor : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-nanfor" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-nanfor"
-	touch clip-nanfor.o
-fi
-
-VarX=" "
-[ -f clip-netto.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-netto : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-netto" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-netto"
-	touch clip-netto.o
-fi
-
-VarX=" "
-[ -f clip-oracle.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-oracle : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-oracle" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-oracle"
-	touch clip-oracle.o
-fi
-
-VarX=" "
-[ -f clip-postgres.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-postgres : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-postgres" 						>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-postgres"
-	touch clip-postgres.o
-fi
-
-VarX=" "
-[ -f clip-postscript.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-postscript : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-postscript" 					>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-postscript"
-	touch clip-postscript.o
-fi
-
-VarX=" "
-[ -f clip-r2d2.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-r2d2 : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-r2d2" 							>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-r2d2"
-	touch clip-r2d2.o
-fi
-
-VarX=" "
-[ -f clip-rtf.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-rtf : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-rtf" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-rtf"
-	touch clip-rtf.o
-fi
-
-VarX=" "
-[ -f clip-xml.o ] && VarX="Y"
-while [[ $VarX != [YyNn] ]] ; do
-	OnScreen 2 "Do you want to install library clip-xml : [y/n] :"
-	read -n 1 VarX 		>&0
-done
-if [[ "$VarX" = [Yy] ]] ; then
-#	echo "DIRS_TO_SCAN += clip-xml" 								>>Makefile.01
-	DIRS_TO_SCAN="$DIRS_TO_SCAN clip-xml"
-	touch clip-xml.o
-fi
-
-if [[ -f clip-xml.o ]] ; then
+echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" 							>./Makefile.01
+echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" 							>>./Makefile.01
+if [[ -f clip-xml.ok ]] ; then
 	VarX=" "
-	[ -f clip-ui.o ] && VarX="Y"
+	[ -f clip-ui.ok ] && VarX="Y"
+	[ -f clip-ui.no ] && VarX="N"
 	while [[ $VarX != [YyNn] ]] ; do
 		OnScreen 2 "Do you want to install library clip-ui : [y/n] :"
 		read -n 1 VarX 		>&0
 	done
 	if [[ "$VarX" = [Yy] ]] ; then
-#		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
+		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
+		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
 		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-ui"
-		touch clip-ui.o
+		touch clip-ui.ok
+	else
+		touch clip-ui.no
 	fi
 fi
-echo "DIRS_TO_SCAN = $DIRS_TO_SCAN" 							>./Makefile.01
-echo "DIRS_TO_SCAN = $DIRS_TO_SCAN" 							>>./Makefile.ini
 cat Makefile.ini Makefile.01 Makefile.in >Makefile

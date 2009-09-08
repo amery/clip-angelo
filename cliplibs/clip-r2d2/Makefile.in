@@ -33,18 +33,13 @@ all:  Makefile $(STARGET)
 cfg :
 	cp --remove-destination -fpu$(V) include/r2d2lib.ch $(Clip_I_Dir)/
 
-#$(R2D2FLIB): $(OBJS)
-#	$(CLIP_MAKELIB) $(R2D2LIB) $(OBJS)
-#	$(CLIPROOT)/bin/clip_makeslib$(SCRIPTSUFF) $(R2D2FLIB) $(R2D2LIB) $(C_LIBS)
-#	$(CLIP_MAKESLIB) $(R2D2FLIB)  $(OBJS)
-
 cleanc :
 	rm -f$(V) *.c $(TARGET).*
 
+distcleanc :
+	rm -rf$(V) *.g
+
 install : all install-lib
-#	$(CLIP_CP) $(R2D2LIB) $(DESTDIR)/lib
-#	$(CLIP_CP) $(R2D2FLIB) $(DESTDIR)/lib
-#	chmod 0755 $(DESTDIR)/lib/$(R2D2FLIB)
 
 include $(Makefile_o_in)
 

@@ -6,13 +6,20 @@ Local_Depend =
 
 ##CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -O
-CLIPLIBS  =
-
+LIBS  =
+OBJS =
 BIN = pp$(EXESUFF)
 
 $(BIN):	pp.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -e -s $< $(CLIPLIBS)
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -e -s $< $(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
+	else 																			\
+		$(Trace_clip) ;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
+	fi
 
 cfg :
 
@@ -22,6 +29,9 @@ install all : Makefile  pp$(EXESUFF)
 
 cleanc:
 	rm -f$(V) *.c *.ntx $(BIN) *.pp?
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

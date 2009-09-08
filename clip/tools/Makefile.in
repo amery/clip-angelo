@@ -47,7 +47,7 @@ FORCE :
 include $(Makefile_o_in)
 
 clip_hash.o: ../libclipmain/cliphash.c Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 						\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 						\
 		$(Trace_c_d) ; 														\
 		$(CC) $(CFLAGS) -g -DSTANDALONE -o clip_hash.o -c $< ; 	\
 	else 																			\
@@ -56,7 +56,7 @@ clip_hash.o: ../libclipmain/cliphash.c Makefile
 	fi
 
 lex.hash.o: lex.hash.c Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -69,7 +69,7 @@ lex.hash.c: hasher.lex ../include.h/cliphash.h
 	flex -Phash hasher.lex
 
 clicutil.o: clicutil.c clic.tab.h Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -c $< ; 					\
 	else 														\
@@ -79,12 +79,13 @@ clicutil.o: clicutil.c clic.tab.h Makefile
 
 install : all
 	chmod 755 $(BINS) $(SCRIPTS)
-	cp --remove-destination -fpu$(V) $(BINS) $(SCRIPTS) $(Clip_B_Dir)/ || true
+	cp --remove-destination -fpu$(V) $(BINS) $(SCRIPTS) $(Clip_B_Dir)/
+#|| true
 	cd $(BINDIR) \
 		&& ln -sf$(V) $(Clip_B_Dir)/*$(EXESUFF) $(Clip_B_Dir)/*$(SCRIPTSUFF) $(BINDIR)/
 
 clipar$(EXESUFF) :	clipar.o ../libclipmain/coll.o  Makefile #getopt.o
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 														\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 														\
 		$(Trace_c_d) ; 																						\
 		$(CC) $(CFLAGS) $(STATICLINK) -g -o $@ clipar.o ../libclipmain/coll.o $(MLIB) ; 	\
 	else 																											\
@@ -93,7 +94,7 @@ clipar$(EXESUFF) :	clipar.o ../libclipmain/coll.o  Makefile #getopt.o
 	fi
 
 clip_conv$(EXESUFF) :  clip_conv.o ../libclipscreen/charset.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 												\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 												\
 		$(Trace_c_d) ; 																				\
 		$(CC) $(CFLAGS) -g -o $@ clip_conv.o ../libclipscreen/charset.o $(MLIB) ; 	\
 	else 																									\
@@ -102,7 +103,7 @@ clip_conv$(EXESUFF) :  clip_conv.o ../libclipscreen/charset.o Makefile
 	fi
 
 clip_dbg$(EXESUFF) :  clip_dbg.o ../libclipmain/coll.o ../libclipmain/_win32.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 																			\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 																			\
 		$(Trace_c_d) ; 																											\
 		$(CC) $(CFLAGS) -g -o $@ clip_dbg.o ../libclipmain/coll.o ../libclipmain/_win32.o $(ADDLIBS) ; 	\
 	else 																																\
@@ -111,7 +112,7 @@ clip_dbg$(EXESUFF) :  clip_dbg.o ../libclipmain/coll.o ../libclipmain/_win32.o M
 	fi
 
 clip_trans$(EXESUFF) :  clip_trans.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -o $@ clip_trans.o ; 	\
 	else 														\
@@ -140,7 +141,7 @@ clip_msgfmt$(SCRIPTSUFF) : clip_msgfmt.ini Makefile
 	./clip_msgfmt.in.sh
 
 cliphash$(EXESUFF) : calchash.o clip_hash.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 				\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 				\
 		$(Trace_c_d) ; 												\
 		$(CC) $(CFLAGS) -g -o $@ calchash.o clip_hash.o ; 	\
 	else 																	\
@@ -148,8 +149,8 @@ cliphash$(EXESUFF) : calchash.o clip_hash.o Makefile
 		$(CC) $(CFLAGS) -o $@ calchash.o clip_hash.o ; 		\
 	fi
 
-genlist$(EXESUFF) : genlist.c Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 	\
+genlist$(EXESUFF) : genlist.o Makefile
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 	\
 		$(Trace_c_d) ; 									\
 		$(CC) $(CFLAGS) -g -o $@ genlist.c ; 		\
 	else 														\
@@ -158,7 +159,7 @@ genlist$(EXESUFF) : genlist.c Makefile
 	fi
 
 gen_tbl$(EXESUFF) : gen_tbl.o ../libclipscreen/charset.o ../libclipmain/coll.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 																		\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 																		\
 		$(Trace_c_d) ; 																										\
 		$(CC) $(CFLAGS) -o $@  gen_tbl.o ../libclipscreen/charset.o ../libclipmain/coll.o $(MLIB) ; 	\
 	else 																															\
@@ -167,7 +168,7 @@ gen_tbl$(EXESUFF) : gen_tbl.o ../libclipscreen/charset.o ../libclipmain/coll.o M
 	fi
 
 clip_hashextract$(EXESUFF): lex.hash.o clip_hash.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 		\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 		\
 		$(Trace_c_d) ; 										\
 		$(CC) -O -g -o $@ lex.hash.o clip_hash.o ; 	\
 	else 															\
@@ -176,7 +177,7 @@ clip_hashextract$(EXESUFF): lex.hash.o clip_hash.o Makefile
 	fi
 
 po_extr$(EXESUFF): po_util.o ../libclipmain/coll.o po_extr.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 													\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 													\
 		$(Trace_c_d) ; 																					\
 		$(CC) $(CFLAGS) -g -o $@ po_extr.o po_util.o ../libclipmain/coll.o $(MLIB) ; 	\
 	else 																										\
@@ -185,7 +186,7 @@ po_extr$(EXESUFF): po_util.o ../libclipmain/coll.o po_extr.o Makefile
 	fi
 
 po_subst$(EXESUFF): po_util.o ../libclipmain/coll.o po_subst.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 																		\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 																		\
 		$(Trace_c_d) ; 																										\
 		$(CC) $(CFLAGS) -g -o $@ po_subst.o po_util.o ../libclipmain/coll.o $(ICONV_LIB) $(MLIB) ; 	\
 	else 																															\
@@ -194,7 +195,7 @@ po_subst$(EXESUFF): po_util.o ../libclipmain/coll.o po_subst.o Makefile
 	fi
 
 po_compat$(EXESUFF): po_util.o po_compat.o Makefile
-	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 				\
+	$(E_if)if [ -f $(subst .o,.g,$<) ] ; then 				\
 		$(Trace_c_d) ; 												\
 		$(CC) $(CFLAGS) -g -o $@ po_compat.o po_util.o ; 	\
 	else 																	\
@@ -228,16 +229,20 @@ tconv$(SCRIPTSUFF) : tconv Makefile
 
 cleanc :
 	rm -Rf$(V) bin
-	rm -f$(V) charsets || true
+	rm -f$(V) charsets
+# || true
 	rm -f$(V) $(BINS) $(SCRIPTS) *.b 		\
 		test dtest locale.pot license.h 		\
 		Makefile.inc Makefile.tmp 				\
-		Makefile.incl  || true
-	rm -f$(V) clipcfg.sh clipcfg.h license.txt || true
+		Makefile.incl
+#  || true
+	rm -f$(V) clipcfg.sh clipcfg.h license.txt
+# || true
 
-distclean: clean
-	rm -f$(V) configure.flags
-	rm -f$(V) cliproot || true
+distcleanc: clean
+	rm -f$(V) *.g configure.flags
+	rm -f$(V) cliproot
+# || true
 
 depend:
 	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null

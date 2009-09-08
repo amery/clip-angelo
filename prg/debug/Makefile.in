@@ -8,8 +8,8 @@ Local_Depend =
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -O -l -w
 #CLIPLIBS  =
-OBJS  = clip_cld.o init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o monitor.o
-POBJS  = clip_cld.o init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
+OBJS  = init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o monitor.o
+POBJS  = init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
 .SUFFIXES: .prg .o .po
 
 all : Makefile clip_cld$(EXESUFF)
@@ -19,10 +19,17 @@ cfg :
 cleanc :
 	rm -rf$(V) *.c *.b clip_cld$(EXESUFF) test$(EXESUFF)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 clip_cld$(EXESUFF) : clip_cld.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M $(OBJS)
-#	$(CLIPLIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -esM $< $(OBJS); 	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< $(OBJS);			\
+	fi
 
 install : all
 	cp --remove-destination -fpu$(V) clip_cld$(EXESUFF) $(Clip_B_Dir)/

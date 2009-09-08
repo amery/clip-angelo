@@ -4,12 +4,14 @@ Check_Include 		protocol.h 				xyz 	clip-dbtcp 		Yes 	/opt/dbtcp 											"dbt
 																																				"can be downloaded at" \
 																																				"http://packages.qa.debian.org/d/dbtcp.html"
 
-DbTCP_Path=$(Check_Library 		dbftp 				.a 	clip-dbtcp 		Yes 	/opt/dbtcp 								"dbtcp.xx.tgz" \
+DBTCP_PATH=$(Check_Library 		dbftp 				.a 	clip-dbtcp 		Yes 	/opt/dbtcp 								"dbtcp.xx.tgz" \
 																																"can be downloaded at" \
 																																"http://packages.qa.debian.org/d/dbtcp.html")
 
-sed -e "s%@DBTCP_PATH@%$DbTCP_Path%;s%/$%%" < Makefile.in >Makefile.tmp
-#!/bin/sh
+#sed -e "s%@DBTCP_PATH@%$DbTCP_Path%;s%/$%%" < Makefile.in >Makefile.tmp
+
+echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
+echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
 
 cat Makefile.ini Makefile.in >Makefile
 

@@ -4,7 +4,7 @@
 # main part
 #
 #
-include Makefile.inc
+#include Makefile.inc
 #export CC
 #DBGFLAGS	= -g #-DMEMDBG
 #WARNFLAGS	= -Wimplicit -Wall
@@ -92,17 +92,17 @@ d: set_dbg
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-include/clip-gtkcfg.h :
+include/clip-gtkcfg.h : $(CONFIGURE_SH)
 	$(Trace)
-	./configure
+	$(CONFIGURE_SH)
 
 hash: include/_hashcode.h
 
 include/_hashcode.h: $(HASHSRCS)
 	$(Trace)
 	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
-	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cpinclude/ _hashcode.h include/hashcode.h
-	cp -fp$(V)  include/hashcode.h include/_hashcode.h
+	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp include/_hashcode.h include/hashcode.h
+	cp -fp$(V) include/hashcode.h include/_hashcode.h
 
 #$(XLIB): $(XLIBOBJS)
 #	rm -f $(XLIB)
@@ -113,29 +113,12 @@ include/_hashcode.h: $(HASHSRCS)
 #	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
 
 cleanc:
-	rm -rf$(V) *.b include/clip-gtkcfg.h gtkermsg.c $(TARGET).*
+	rm -rf$(V) *.b gtkermsg.c $(TARGET).* Makefile.inc
 
-distclean: clean
-	rm -rf$(V) include/clip-gtkcfg.h include/hashcode.h include/_hashcode.h
-	-cd test &&  $(MAKE) clean
-	-cd example && $(MAKE) clean
+distcleanc :
+	rm -rf$(V) *.g
 
 install:all install-lib install-example
-#	$(CLIP_CP) $(XLIB) $(XSLIB) $(INSTDIR)/lib/
-#	chmod 0644 $(INSTDIR)/lib/$(XLIB)
-#	chmod 0755 $(INSTDIR)/lib/$(XSLIB)
-#	mkdir -p$(V) $(INSTDIR)/doc/example/clip-gtk
-#	cp -fu$(V) example/clipgtktest.prg example/Makefile example/clip.xpm example/basket.bmp $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/tbrow.prg example/tbrow.xpm $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/accel.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/test.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/note.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/test_gtk.prg example/x.xpm $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/test_list.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/test_image.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/simple.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/winpic.prg $(INSTDIR)/doc/example/clip-gtk/
-#	cp -fu$(V) example/window.prg $(INSTDIR)/doc/example/clip-gtk/
 
 include $(Makefile_o_in)
 

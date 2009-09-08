@@ -71,7 +71,7 @@ all: Makefile links $(BIN)
 links:
 
 cfg:
-	[ -d charsets ] || ln -sf$(V) ../libclipscreen/install/charsets .
+	$(E_if)[ -d charsets ] || ln -sf$(V) ../libclipscreen/install/charsets .
 
 FORCE :
 
@@ -103,27 +103,27 @@ FORCE :
 $(BIN):  $(OBJS) $(ADDOBJS) $(MLIB) Makefile
 	$(Trace_c)
 	@echo "seq_no : " $(seq_no)
-	$(CC) $(CFLAGS) $(STATICLINK) -DSEQ_NO=\"$(seq_no)\" 	\
+	$(CC) $(CFLAGS) $(STATICLINK) -DSEQ_NO=\"$(seq_no)\" 				\
 		-o $@ version.c 															\
 		$(OBJS) $(ADDOBJS) $(LIBS) $(ICONV_LIB) $(MLIB)
-		cp --remove-destination -fuv $@ $(Clip_B_Dir)/
-		ln -sf$(V) $(Clip_B_Dir)/$@ $(BINDIR)/
+	cp --remove-destination -fuv $@ $(Clip_B_Dir)/
+	ln -sf$(V) $(Clip_B_Dir)/$@ $(BINDIR)/
 
 clip_hash.o: ../libclipmain/cliphash.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 									\
-		$(Trace_c_d) ; 														\
-		$(CC) $(CFLAGS) -g -DSTANDALONE -o clip_hash.o -c $< ; 	\
-	else 																			\
-		$(Trace_c) ; 															\
-		$(CC) $(CFLAGS) -DSTANDALONE -o clip_hash.o -c $< ; 		\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 									\
+		$(Trace_c_d) ; 																	\
+		$(CC) $(CFLAGS) -g -DSTANDALONE -o clip_hash.o -c $< ; 				\
+	else 																						\
+		$(Trace_c) ; 																		\
+		$(CC) $(CFLAGS) -DSTANDALONE -o clip_hash.o -c $< ; 					\
 	fi
 
 cleanc :
 	rm -f$(V) charsets
 	rm -f$(V) $(BIN) *.b test dtest locale.pot
 
-distclean : clean
-	rm -f$(V) configure.flags
+distcleanc : clean
+	rm -f$(V) configure.flags *.g
 	rm -f$(V) Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge 	\
 		clip_msgfmt clip_makeslib clip_makelib clip_cp 				\
 		license.txt license.h
@@ -135,57 +135,57 @@ install : all
 include $(Makefile_o_in)
 
 cliprt.o: cliprt.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 		\
-		$(Trace_c_d) ; 							\
-		$(CC) $(CFLAGS) -g -O -c $< ; 		\
-	else 												\
-		$(Trace_c) ; 								\
-		$(CC) $(CFLAGS) -O -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_c_d) ; 										\
+		$(CC) $(CFLAGS) -g -O -c $< ; 					\
+	else 															\
+		$(Trace_c) ; 											\
+		$(CC) $(CFLAGS) -O -c $< ; 						\
 	fi
 
 _ctools_s.o: _ctools_s.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 		\
-		$(Trace_c_d) ; 							\
-		$(CC) $(CFLAGS) -g -O -c $< ; 		\
-	else 												\
-		$(Trace_c) ; 								\
-		$(CC) $(CFLAGS) -O -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_c_d) ; 										\
+		$(CC) $(CFLAGS) -g -O -c $< ; 					\
+	else 															\
+		$(Trace_c) ; 											\
+		$(CC) $(CFLAGS) -O -c $< ; 						\
 	fi
 
 _math.o: _math.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 		\
-		$(Trace_c_d) ; 							\
-		$(CC) $(CFLAGS) -g -O0 -c $< ; 		\
-	else 												\
-		$(Trace_c) ; 								\
-		$(CC) $(CFLAGS) -O0 -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_c_d) ; 										\
+		$(CC) $(CFLAGS) -g -O0 -c $< ; 					\
+	else 															\
+		$(Trace_c) ; 											\
+		$(CC) $(CFLAGS) -O0 -c $< ; 						\
 	fi
 
 clic.tab.o: clic.tab.c ../include.h/clic.h Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 lex.yy.o: lex.yy.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 lex.cl.o: lex.cl.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 clic.tab.c: clic.y ../include.h/clic.h
@@ -200,12 +200,12 @@ plural.tab.c: plural.y
 	$(YACC) -bplural -pplural plural.y
 
 plural.tab.o: plural.tab.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 #note: flex -i for case-insencitive parser
@@ -218,21 +218,21 @@ lex.cl.c: clic_c.lex clic.tab.h Makefile
 	flex -Pcl clic_c.lex
 
 clicutil.o: clicutil.c clic.tab.h Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 clic_name.o: clic_name.c Makefile
-	if [ -f $(subst .o,.b,$@) ] ; then 	\
-		$(Trace_c_d) ; 						\
-		$(CC) $(CFLAGS) -g -c $< ; 		\
-	else 											\
-		$(Trace_c) ; 							\
-		$(CC) $(CFLAGS) -c $< ; 			\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_c_d) ; 									\
+		$(CC) $(CFLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_c) ; 										\
+		$(CC) $(CFLAGS) -c $< ; 						\
 	fi
 
 clic_name.c: clic.tab.c

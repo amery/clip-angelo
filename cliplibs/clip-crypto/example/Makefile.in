@@ -13,6 +13,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -e -s -l -M crypto.prg -lclip-crypto

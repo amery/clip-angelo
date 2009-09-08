@@ -5,28 +5,29 @@ Local_Depend = ../dbc/deflist.ch
 
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -n -O -b
-CLIPLIBS  = ../procs.a
-OBJS  = $(sort move.o modistru.o commands.o view.o query.o pechdbc.o prcmenu.o)
+#CLIPLIBS  = ../procs.a
+OBJS  = $(sort move.o modistru.o commands.o view.o query.o pechdbc.o prcmenu.o )
 .SUFFIXES: .prg .o
 
 LIBS = ../procs.a
 
 
-dbc$(EXESUFF):  dbc.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -s -e -o$@ $< $(OBJS) $(LIBS)
-#	$(E_if)if [ -f $(subst .o,.b,$@) ] ; then 								\
-#		$(Trace_clip_d) 	;															\
-#		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $< $(OBJS) $(CLIPLIBS) ;	\
-#	else 																					\
-#		$(Trace_clip) 																	\
-#		$(CLIP) $(CLIPFLAGS) -o $@ -e $< $(OBJS) $(CLIPLIBS) ;		\
-#	fi
+dbc$(EXESUFF):  dbc.prg $(OBJS) $(CLIP) $(LIBCLIP) $(LIBS)
+	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -se -g -o$@ $< $(OBJS) $(LIBS) ;		\
+	else 																			\
+		$(Trace_clip) 		;													\
+		$(CLIP) $(CLIPFLAGS) -se -o$@ $< $(OBJS) $(LIBS) ;			\
+	fi
 
 cfg :
 
 cleanc:
 	rm -rf$(V) dbc$(EXESUFF) *.c dbc dbc.exe *.ntx
+
+distcleanc :
+	rm -rf$(V) *.g
 
 install all: dbc$(EXESUFF)
 	cp --remove-destination -fpu$(V) dbc$(EXESUFF) $(DESTDIR)/bin/

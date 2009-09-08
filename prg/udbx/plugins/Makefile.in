@@ -28,6 +28,9 @@ cleanc : $(DIRS_TO_SCAN)
 	rm -rf$(V) *.c *.b $(MODULES)
 	rm -rf$(V) *.pro test test2
 
+distcleanc :
+	rm -rf$(V) *.g
+
 install : all
 
 include $(Makefile_o_in)

@@ -29,6 +29,9 @@ cleanc:
 	rm -f$(V) $(PROGS)
 	rm -f$(V) *.c *.b
 
+distcleanc :
+	rm -rf$(V) *.g
+
 test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewsln  $(C_FLAGS) test_xml.prg $(ADDLIBS) $(EXTRALIBS)

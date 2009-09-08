@@ -13,6 +13,9 @@ cfg :
 cleanc:
 	rm -f$(V) *.c *.b $(PRG)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) -o$@ -eMs my_isql.prg -lclip-interbase

@@ -31,7 +31,7 @@ RETURN ret
 
 FUNCTION CLIP2DBTCP(rowset,fieldno,value,totext)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)
-
+	Local ret
 	IF value == NIL
 		RETURN NIL
 	ENDIF

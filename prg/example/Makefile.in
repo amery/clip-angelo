@@ -29,6 +29,9 @@ cleanc:
 	rm -rf$(V) locale.pot locale.mo
 	rm -f$(V) menu$(EXESUFF) getfile$(EXESUFF) big_num$(EXESUFF) tb_test$(EXESUFF) fw_menu$(EXESUFF) multilang$(EXESUFF) pluralmsg$(EXESUFF)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 menu$(EXESUFF):	menu.prg Makefile $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M menu.prg

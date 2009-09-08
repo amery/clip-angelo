@@ -47,6 +47,9 @@ cleanc:
 	rm -f$(V) *.c *.b
 	cd include && rm -f$(V) *.bak cti *.BAK $(TARGET).*
 
+distcleanc :
+	rm -rf$(V) *.g
+
 commit:
 	_cvs commit .
 

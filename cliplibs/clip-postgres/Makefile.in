@@ -22,23 +22,15 @@ cfg :
 have_lib:
 	test -f @PGINCDIR@/libpq-fe.h
 
-##$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(PGLIB)
-
-#$(ATARGET): $(OBJS)
-#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(PGLIB)
-
 include $(Makefile_o_in)
 
 install : all install-lib install-example install-doc
-#	$(CLIP_CP) libclip-postgres $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/clip-postgres
-#	cp -fu$(V) *.html $(DESTDIR)/doc/clip-postgres
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-postgres
-#	cp -Ru$(V) example/* $(DESTDIR)/doc/example/clip-postgres/
 
 cleanc:
 	rm -rf$(V) pg.c $(TARGET).*
+
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

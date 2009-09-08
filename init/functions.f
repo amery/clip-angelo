@@ -318,7 +318,7 @@ function Check_Bin ()
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
 					ArrayToFind[$IdxToFind]=$fName
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in $fName
+					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
 					echo $fName
 					return 0
@@ -386,6 +386,8 @@ function Check_Bin ()
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
 					if [[ $varX = [nN] ]] ; then
+						rm -f$V ../$RequestedBy.ok
+						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
 					elif [[ $varX = [rR] ]] ; then
@@ -399,7 +401,7 @@ function Check_Bin ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind in $WhereToFind requested by : $RequestedBy
+				OnScreen 0 Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy
 				# sleep $SleepTime
 				if [ -f $WhereToFind/$WhatToFind ] ; then
 					Found=$WhereToFind
@@ -427,9 +429,11 @@ function Check_Bin ()
 				for IdxToFind in $PackName ; do
 					echo "Package name(s)" : $IdxToFind 									>>$LogFile
 				done
+				rm -f$V ../$RequestedBy.ok
+				touch ../$RequestedBy.no
 			else
 				beep_on
-				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in $Found
+				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $Found
 				OnScreen 2 "[s]earch path; is it Ok [y/n/s] : "
 				read -n 1 varX 	>&0
 				OnScreen 2
@@ -450,6 +454,8 @@ function Check_Bin ()
 					varX="N"
 					Found=""
 				else
+					rm -f$V ../$RequestedBy.ok
+					touch ../$RequestedBy.no
 					Found=""
 					echo "z" 	>&0
 					varX="N"
@@ -545,7 +551,7 @@ function Check_Include ()
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
 					ArrayToFind[$IdxToFind]=$fName
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in $fName
+					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
 					echo $fName
 					return 0
@@ -603,6 +609,8 @@ function Check_Include ()
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX >&0
 					if [[ $varX = [nN] ]] ; then
+						rm -f$V ../$RequestedBy.ok
+						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
 					elif [[ $varX = [rR] ]] ; then
@@ -616,7 +624,7 @@ function Check_Include ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind in $WhereToFind requested by : $RequestedBy
+				OnScreen 0 Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy
 				if [ -f $WhereToFind/$WhatToFind ] ; then
 					Found=$WhereToFind
 				else
@@ -638,9 +646,11 @@ function Check_Include ()
 				for IdxToFind in $PackName ; do
 					echo "Package name(s)" :  $IdxToFind 									>>$LogFile
 				done
+				rm -f$V ../$RequestedBy.ok
+				touch ../$RequestedBy.no
 			else
 				beep_on
-				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in $Found
+				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $Found
 				OnScreen 2 "[s]earch path; is it Ok [y/n/s] : "
 				read -n 1 varX 	>&0
 				OnScreen 2
@@ -661,6 +671,8 @@ function Check_Include ()
 					Found=""
 					varX="N"
 				else
+					rm -f$V ../$RequestedBy.ok
+					touch ../$RequestedBy.no
 					Found=""
 					echo "z" 	>&0
 					varX="N"
@@ -731,7 +743,7 @@ function Check_Library ()
 			lList="$(cat $CurIdx)"
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in $fName
+					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
 					mkdir -p$V "$Clip_S_Dir/$WhatToFind/"
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
 					echo $fName
@@ -787,6 +799,8 @@ function Check_Library ()
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
 					if [[ $varX = [nN] ]] ; then
+						rm -f$V ../$RequestedBy.ok
+						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
 					elif [[ $varX = [rR] ]] ; then
@@ -800,11 +814,11 @@ function Check_Library ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind$Extension in $WhereToFind requested by : $RequestedBy
+				OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
 				if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 					Found=$WhereToFind
 				else
-					OnScreen 0 Searching for : $WhatToFind$Extension in $WhereToFind requested by : $RequestedBy
+					OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
 					Found=$(Check_Find $WhereToFind $WhatToFind$Extension )
 				fi
 				if [ -z "$Found" ] ; then
@@ -812,7 +826,7 @@ function Check_Library ()
 					if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 						Found=$WhereToFind
 					else
-						OnScreen 0 Searching for : $WhatToFind$Extension in $WhereToFind requested by : $RequestedBy
+						OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
 						Found=$(Check_Find $WhereToFind $WhatToFind$Extension )
 					fi
 					if [ -z "$Found" ] ; then
@@ -820,7 +834,7 @@ function Check_Library ()
 						if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 							Found=$WhereToFind
 						else
-							OnScreen 0 Searching for : $WhatToFind$Extension in $WhereToFind requested by : $RequestedBy
+							OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
 							Found=$(Check_Find $WhereToFind $WhatToFind.so )
 						fi
 					fi
@@ -841,9 +855,11 @@ function Check_Library ()
 				for IdxToFind in $PackName ; do
 					echo "Package name(s)" : $IdxToFind 									>>$LogFile
 				done
+				rm -f$V ../$RequestedBy.ok
+				touch ../$RequestedBy.no
 			else
 				beep_on
-				OnScreen 2 Found : $WhatToFind$Extension requested by : $RequestedBy found in $Found
+				OnScreen 2 Found : $WhatToFind$Extension requested by : $RequestedBy found in : $Found
 				OnScreen 2 "[s]earch path; is it Ok [y/n/s] : "
 				read -n 1 varX 	>&0
 				OnScreen 2
@@ -864,6 +880,8 @@ function Check_Library ()
 					Found=""
 					varX="N"
 				else
+					rm -f$V ../$RequestedBy.ok
+					touch ../$RequestedBy.no
 					Found=""
 					echo "z" 	>&0
 					varX="N"

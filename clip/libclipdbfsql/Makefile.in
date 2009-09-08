@@ -25,6 +25,9 @@ cfg:
 cleanc:
 	rm -f$(V) *.b *.tmp dbfsql_prg_ref.c dbfsql_prg.c dbfsql_prg.log  $(ATARGET)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 #$(LIB): $(OBJS) Makefile

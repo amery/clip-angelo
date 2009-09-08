@@ -15,6 +15,9 @@ cfg :
 cleanc:
 	rm -f $(PROGS) *.a *.so *.dll *.o *.c *.exe *.dbf *.dbt *.ntx *.cdx *.ndx *.nm *.ex *.bak *.log
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 install:

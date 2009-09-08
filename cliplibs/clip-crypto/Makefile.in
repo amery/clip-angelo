@@ -37,7 +37,8 @@ install : all install-lib install-example
 cleanc: example
 	rm -rf$(V) hashcode.h names.h $(TARGET).*
 
-distclean: clean
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

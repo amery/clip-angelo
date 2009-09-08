@@ -37,49 +37,23 @@ var.ch: Makefile $(Clip_L_Dir)/libclip-xml.so
 	$(Trace)
 	echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
 
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(C_LIBS)
-
 cleanc :
-#	cd drivers && $(MAKE) clean
-#	cd example && $(MAKE) clean
-	rm -f$(V) $(TARGET).* var.ch *.dll.a
+	rm -f$(V) $(TARGET).* var.ch *.dll.a *.c
 
-clear: clean
+distcleanc :
+	rm -rf$(V) *.g
 
 install : all install-lib install-example
-#	mkdir -p$(V) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/include
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	$(CLIP_CP) $(RTARGET) $(DESTDIR)/lib
-#	mkdir -p $(DESTDIR)/doc/example/clip-ui
-#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-ui/
 	mkdir -p$(V) $(DESTDIR)/locale.po
 	cd locale.po && 																						\
 		for i in $(LANGS); do mkdir -p$(V) $(DESTDIR)/locale.po/$$i/ && 	\
 		$(CLIP_CP) $$i/*.po $(DESTDIR)/locale.po/$$i/; done
 
-distclean uninstall: $(DIRS_TO_SCAN)
+#distclean uninstall: $(DIRS_TO_SCAN)
 #	cd drivers && $(MAKE) uninstall
-	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).* $(Clip_D_Dir)/example/clip-ui/
-	rm -f$(V)  $(Clip_I_Dir)/clip-ui.ch
-
-dist: distclean
-	cd .. && tar cvfz clip-ui.tgz clip-ui
+#	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).* $(Clip_D_Dir)/example/clip-ui/
+#	rm -f$(V)  $(Clip_I_Dir)/clip-ui.ch
 
 include $(Makefile_o_in)
 
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
-
 include $(Makefile_end_in)
-

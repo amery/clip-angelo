@@ -55,37 +55,13 @@ include/_hashxml.h: $(HASHSRCS)
 lib :
 	[ -f $(Dir_Lib) ]
 
-#$(XLIB): $(XLIBOBJS)  $(OBJS)
-#	rm -f $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)  $(OBJS)
-#	ranlib $(XLIB)
-
-#$(XSLIB): $(XLIB)  $(OBJS)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)  $(OBJS)
-#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib/
-
-
 install : all install-lib install-example
-#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib/
-#	chmod 0644  $(DESTDIR)/lib/$(XLIB)
-#	chmod 0755  $(DESTDIR)/lib/$(XSLIB)
-#	mkdir -p$(V) $(DESTDIR)$/doc/example/clip-xml
-#	cp -fu$(V)R example/* $(DESTDIR)/doc/example/clip-xml/
 
 cleanc:
-	rm -rf$(V) *.b $(TARGET).*
+	rm -rf$(V) *.b $(TARGET).* xmltag.c xmltree.c xpath.c
 
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
+distcleanc :
+	rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

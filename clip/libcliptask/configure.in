@@ -1,27 +1,24 @@
 #!/bin/sh -u
-if [ -f ../Makefile.ini ] && [[ ../Makefile.ini -nt ./Makefile.ini ]] ; then
-	cp -f ../Makefile.ini ./
-fi
+
+cp -f ../Makefile.ini ../configure.ini ./
 if [ -f pth_tst$EXESUFF ] || [ -f cl_tst$EXESUFF ] ; then
-	echo "-include Makefile.ini" >Makefile
-	cat Makefile.in >>Makefile
+	cat Makefile.ini Makefile.in >Makefile
 	exit 0
 fi
-echo "-include ../Makefile.incl" >Makefile
-cat Makefile.in >>Makefile
 ./cl_conf
 cc pth_tst.c -o pth_tst$EXESUFF -lpth
-./pth_tst$EXESUFF
-#>/dev/null 2>&1
+./pth_tst$EXESUFF >/dev/null 2>&1
 PTH_ERR=$?
 if [ "$PTH_ERR" = 0 ] ; then
    echo Library PTH detected. CLIP will use it.
    echo USE_PTH=yes >USE_PTH
-	echo "-include Makefile.ini" >Makefile
-	cat Makefile.in >>Makefile
+	cat Makefile.ini Makefile.in >Makefile
 #    make clean
     exit 0
 fi
+
+
+
 rm -f USE_PTH pth_tst$EXESUFF
 make clean
 ./cl_conf

@@ -19,6 +19,9 @@ cleanc:
 	rm -rf$(V) *.c *.b
 	rm -rf$(V) $(PROGS)
 
+distcleanc :
+	rm -rf$(V) *.g
+
 include $(Makefile_o_in)
 
 my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP)

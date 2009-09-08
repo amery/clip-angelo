@@ -10,4 +10,6 @@ cfg :
 
 cleanc :
 
+distcleanc :
+
 include $(Makefile_end_in)
