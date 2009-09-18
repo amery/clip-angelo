@@ -7,7 +7,7 @@
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 Local_Depend = include/*.ch
 
-DRIVERSDIR = $(DESTDIR)/lib/drivers
+DRIVERSDIR = $(INSTDIR)/lib/drivers
 #CLIP = $(CLIPROOT)/bin/clip
 
 .SUFFIXES: .prg .o .po
@@ -28,31 +28,28 @@ DIRS_TO_SCAN = drivers
 
 .PHONY: all clean uninstall distclean
 
+################################################################################################################
+
 all : Makefile var.ch $(DIRS_TO_SCAN) $(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/clip-ui.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/clip-ui.ch $(Clip_I_Dir)/
 
 var.ch: Makefile $(Clip_L_Dir)/libclip-xml.so
-	$(Trace)
-	echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
+	$(E_e)$(Trace)
+	$(E_e)echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
 
 cleanc :
-	rm -f$(V) $(TARGET).* var.ch *.dll.a *.c
+	$(E_rm)rm -f$(V) $(TARGET).* var.ch *.dll.a *.c
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install : all install-lib install-example
-	mkdir -p$(V) $(DESTDIR)/locale.po
-	cd locale.po && 																						\
-		for i in $(LANGS); do mkdir -p$(V) $(DESTDIR)/locale.po/$$i/ && 	\
-		$(CLIP_CP) $$i/*.po $(DESTDIR)/locale.po/$$i/; done
-
-#distclean uninstall: $(DIRS_TO_SCAN)
-#	cd drivers && $(MAKE) uninstall
-#	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).* $(Clip_D_Dir)/example/clip-ui/
-#	rm -f$(V)  $(Clip_I_Dir)/clip-ui.ch
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.po
+	$(E_cd)cd locale.po && 																\
+		for i in $(LANGS); do mkdir -p$(V) $(INSTDIR)/locale.po/$$i/ && 	\
+		$(CLIP_CP) $$i/*.po $(INSTDIR)/locale.po/$$i/; done
 
 include $(Makefile_o_in)
 

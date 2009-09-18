@@ -6,18 +6,20 @@ Local_Depend =
 
 PRG=crypto$(EXESUFF)
 
+################################################################################################################
+
 all: Makefile $(PRG)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(PRG)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -e -s -l -M crypto.prg -lclip-crypto
 
 include $(Makefile_o_in)

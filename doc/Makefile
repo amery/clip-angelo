@@ -4,7 +4,7 @@
 ##				called from all Makefile files
 ##
 ifdef CLIPROOT
-	BIN=$(DESTDIR)/bin
+	BIN=$(INSTDIR)/bin
 else
 	CLIPROOT:=$(shell cd ../../cliproot; pwd)
 	BIN:=$(shell cd ../clip; pwd)
@@ -22,13 +22,15 @@ DIRS =  clip/doc cliplibs/clip-gzip cliplibs/clip-bzip2 \
 	cliplibs/clip-crypto cliplibs/clip-fcgi \
 	cliplibs/clip-com
 
+################################################################################################################
+
 all: html
 
 install:
 	-for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)/doc/html-full/$$L ;\
-		cp -R html/$$L/* $(DESTDIR)/doc/html-full/$$L/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)/doc/html-full/$$L ;\
+		cp -R html/$$L/* $(INSTDIR)/doc/html-full/$$L/ 2>/dev/null || true;\
 	done
 
 

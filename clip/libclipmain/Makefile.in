@@ -3,69 +3,44 @@
 #
 Local_Depend = ../include/*.ch ../include.h/*.h
 
-#CFLAGS += -I.. -I../include -I../include.h
-#LIB = libclipmain.a
-OBJS = $(sort cliphash.o rt.tab.o 											\
-	   _file1.o _string.o _date.o 											\
-	  clipbase.o _math.o diskutils.o _mem.o 								\
-	  _system.o rational.o integer.o gettext.o _dbg.o 					\
-	  _tcp.o _tcpserv.o _regex.o ncp.o _clipboard.o _depsort.o 		\
-	  _ctools_s.o _file.o  _io.o _thread.o _util.o  					\
-	  clipdbg.o cliprt.o cliptbl.o clipvm.o 								\
-	  hash.o set.o coll.o list.o plural.tab.o _win32.o)
+OBJS = $(sort 	cliphash.o rt.tab.o 														\
+	   			_file1.o _string.o _date.o 											\
+	  				clipbase.o _math.o diskutils.o _mem.o 								\
+	  				_system.o rational.o integer.o gettext.o _dbg.o 				\
+	  				_tcp.o _tcpserv.o _regex.o ncp.o _clipboard.o _depsort.o 	\
+	  				_ctools_s.o _file.o  _io.o _thread.o _util.o  					\
+	  				clipdbg.o cliprt.o cliptbl.o clipvm.o 								\
+	  				hash.o set.o coll.o list.o plural.tab.o _win32.o )
 
 ADDOBJS = ../libclipscreen/charset.o
-#../compiler/coll.o  ../compiler/_win32.o ../compiler/list.o ../compiler/plural.tab.o
 
 PROG = clipmain
-install all: Makefile $(ATARGET)
-#install all: Makefile $(LIB)
 
+################################################################################################################
+
+install all: Makefile $(ATARGET)
 
 cfg :
-	[ -d charsets ] || ln -sf$(V) ../libclipscreen/install/charsets .
+	$(E_if)[ -d charsets ] \
+		|| ln -sf$(V) ../libclipscreen/install/charsets .
 
 cleanc:
-	rm -f$(V) *.b *.tmp test_ref.c test.c test.log \
-	*.dbf *.ntx *.cdx *.dbt *.fpt \
-	test $(ATARGET)
+	$(E_rm)rm -f$(V) 	*.b *.tmp test_ref.c test.c test.log 	\
+							*.dbf *.ntx *.cdx *.dbt *.fpt 			\
+							test $(ATARGET)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
-#../compiler/coll.o : ../compiler/coll.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/list.o : ../compiler/list.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/plural.tab.o : ../compiler/plural.tab.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE) plural.tab.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/_win32.o : ../compiler/_win32.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  _win32.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
 ../libclipscreen/charset.o: ../libclipscreen/charset.c Makefile
-	cd ../libclipscreen  															\
+	$(E_cd)cd ../libclipscreen  															\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 plural.tab.c: plural.y
-	$(Trace_yacc)
+	$(E_e)$(Trace_yacc)
 	$(YACC) -bplural -pplural plural.y
 
 plural.tab.o: plural.tab.c Makefile
@@ -79,9 +54,4 @@ plural.tab.o: plural.tab.c Makefile
 
 yacc : plural.tab.c
 
-#$(LIB): $(OBJS) $(ADDOBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS) $(ADDOBJS) && ranlib $(LIB)
-
 include $(Makefile_end_in)
-

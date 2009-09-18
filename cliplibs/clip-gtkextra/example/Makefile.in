@@ -5,18 +5,20 @@ Local_Depend =
 #$(Clip_L_Dir)/libclip-gtkextra.so $(Clip_L_Dir)/libclip-gtk.so
 
 
+################################################################################################################
+
 all:Makefile sheet$(EXESUFF)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b sheet$(EXESUFF)
+	$(E_rm)rm -f$(V) *.c *.b sheet$(EXESUFF)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -e -s -l sheet.prg -lclip-gtkextra -lclip-gtk
 
 include $(Makefile_o_in)

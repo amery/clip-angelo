@@ -41,54 +41,51 @@ DIRS_TO_SCAN 		=
 DOC =
 
 define Trace
-	echo [Making] : $(value PWD)/$@ because of : $?  ; \
-	echo [Making] : $(value PWD)/$@ because of : $? >&0
+	echo [Making] : $(value PWD)/$@ because of : $?
 endef
 define Trace_o
 error
-	echo [Making] : $(value PWD)/$@ because of : $?  ; \
-	echo [Making] : $(value PWD)/$@ because of : $? >&0
+	echo [Making] : $(value PWD)/$@ because of : $?
 endef
 
 define Trace_n
-	echo [Making] : $(value PWD)/$@ because of : $?  ; \
-	echo [Making] : $(value PWD)/$@ because of : $? >&0
+	echo [Making] : $(value PWD)/$@ because of : $?
 endef
 
 define Trace_c
-	$(Trace_n) ;\
-	echo [CC] $(value PWD)/$@ 	>&0 ; \
-	echo [CC] $(value PWD)/$@
+	$(Trace_n) 								; \
+	echo [CC] $(value PWD)/$@ 	>&0 	; \
+	echo [CC] $(C_FLAGS) $(value PWD)/$@
 endef
 
 define Trace_c_d
-	$(Trace_n) ; \
-	echo [CC -g] $(value PWD)/$@ 	>&0 ; \
-	echo [CC -g] $(value PWD)/$@
+	$(Trace_n) 									; \
+	echo [CC -g] $(value PWD)/$@ 	>&0 	; \
+	echo [CC -g] $(C_FLAGS) $(value PWD)/$@
 endef
 
 define Trace_clip
-	$(Trace_n) ; \
-	echo [clip] $(value PWD)/$@ 	>&0 ; \
-	echo [clip] $(value PWD)/$@
+	$(Trace_n) 									; \
+	echo [CLIP] $(value PWD)/$@ 	>&0 	; \
+	echo [CLIP] $(CLIPFLAGS) $(value PWD)/$@
 endef
 
 define Trace_clip_d
-	$(Trace_n) ; \
-	echo [clip -g] $(value PWD)/$@ 	>&0 ; \
-	echo [clip -g] $(value PWD)/$@
+	$(Trace_n) 										; \
+	echo [CLIP -g] $(value PWD)/$@ 	>&0 	; \
+	echo [CLIP -g] $(CLIPFLAGS) $(value PWD)/$@
 endef
 
 define Trace_prg
-	$(Trace_n) ; \
-	echo [clip] $(value PWD)/$@ 	>&0 ; \
-	echo [clip] $(value PWD)/$@
+	$(Trace_n) 									; \
+	echo [CLIP] $(value PWD)/$@ 	>&0 	; \
+	echo [CLIP] $(CLIPFLAGS) $(value PWD)/$@
 endef
 
 define Trace_prg_d
-	$(Trace_n) ; \
-	echo [clip -g] $(value PWD)/$@ 	>&0 ; \
-	echo [clip -g] $(value PWD)/$@
+	$(Trace_n) 										; \
+	echo [CLIP -g] $(value PWD)/$@ 	>&0 	; \
+	echo [CLIP -g] $(CLIPFLAGS) $(value PWD)/$@
 endef
 
 define Trace_yacc
@@ -103,13 +100,13 @@ define Trace_flex
 endef
 define Trace_lib
 	$(Trace_n)
-	@echo [build] $(value PWD)/$@ 	>&0
-	@echo [build] $(value PWD)/$@
+	@echo [BUILD] $(value PWD)/$@ 	>&0
+	@echo [BUILD] $(value PWD)/$@
 endef
 define Trace_lib2
 	$(Trace_n)
-	@echo [build2] $(value PWD)/$@ 	>&0
-	@echo [build2] $(value PWD)/$@
+	@echo [BUILD2] $(value PWD)/$@ 	>&0
+	@echo [BUILD2] $(value PWD)/$@
 endef
 Debug_Make=1
 E_c_cp=@
@@ -126,3 +123,5 @@ E_ln=@
 E_mkD=@
 E_rm=@
 E_xx=@
+################################################################################################################
+

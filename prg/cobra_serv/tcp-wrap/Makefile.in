@@ -4,7 +4,8 @@
 Local_Depend =
 
 LIBS = -lwrap
-#CFLAGS = -O
+
+################################################################################################################
 
 all install : Makefile tcp-wrap$(EXESUFF)
 
@@ -13,17 +14,17 @@ cfg :
 tcp-wrap$(EXESUFF): tcp-wrap.c Makefile
 	$(E_if)if [ -f $(subst .c,.g,$<) ] ; then 	\
 		$(Trace_c_d) ; 									\
-		$(CC) -g $(C_FLAGS) $< -o $@ $(LIBS); 	\
+		$(CC) -g $(C_FLAGS) $< -o $@ $(LIBS); 		\
 	else 														\
 		$(Trace_c) ; 										\
-		$(CC) $(C_FLAGS) $< -o $@ $(LIBS); 		\
+		$(CC) $(C_FLAGS) $< -o $@ $(LIBS); 			\
 	fi
 
 cleanc:
-	rm -f$(V) tcp-wrap$(EXESUFF)
+	$(E_rm)rm -f$(V) tcp-wrap$(EXESUFF)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

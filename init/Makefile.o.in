@@ -1,65 +1,66 @@
 #
 #                                            init/Makefile.o.in
 #
-##########################################################
+################################################################################################################
+
 ##
 ## 																obj's section
 ##
 
 %.o : %.c Makefile $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
-		$(Trace_c_d) ; 							\
-		$(CC) -g $(C_FLAGS) -c $< ; 	\
-	else 												\
-		$(Trace_c) ; 								\
-		$(CC) $(C_FLAGS) -c $< ; 		\
+		$(Trace_c_d) ; 										\
+		$(CC) -g $(C_FLAGS) -c $< ; 						\
+	else 															\
+		$(Trace_c) ; 											\
+		$(CC) $(C_FLAGS) -c $< ; 							\
 	fi
 
 .c.o :  Makefile $(Depend_on)
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
-		$(Trace_c_d) ; 							\
-		$(CC) -g $(C_FLAGS) -c $< ; 	\
-	else 												\
-		$(Trace_c) ; 								\
-		$(CC) $(C_FLAGS) -c $< ; 		\
+		$(Trace_c_d) ; 										\
+		$(CC) -g $(C_FLAGS) -c $< ; 						\
+	else 															\
+		$(Trace_c) ; 											\
+		$(CC) $(C_FLAGS) -c $< ; 							\
 	fi
 
 %.o : %.prg Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
-		$(Trace_prg_d) ; 								\
-		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
-	else 													\
-		$(CLIP) $(CLIPFLAGS) $< ; 		\
-		$(Trace_prg) ; 								\
-		$(CLIP) $(CLIPFLAGS) $< ;		\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(CLIP) -g $(CLIPFLAGS) $< ; 						\
+	else 															\
+		$(CLIP) $(CLIPFLAGS) $< ; 							\
+		$(Trace_prg) ; 										\
+		$(CLIP) --debug=0 $(CLIPFLAGS) $< ;							\
 	fi
 
 .prg.o : Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 			\
-		$(Trace_prg_d) ; 								\
-		$(CLIP) -g $(CLIPFLAGS) $< ; 	\
-	else 													\
-		$(CLIP) $(CLIPFLAGS) $< ; 		\
-		$(Trace_prg) ; 								\
-		$(CLIP) $(CLIPFLAGS) $< ;		\
+	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(CLIP) -g $(CLIPFLAGS) $< ; 						\
+	else 															\
+		$(CLIP) $(CLIPFLAGS) $< ; 							\
+		$(Trace_prg) ; 										\
+		$(CLIP) --debug=0 $(CLIPFLAGS) $< ;							\
 	fi
 
 %.po : %.prg Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 				\
-		$(Trace_prg_d) ; 									\
-		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
-	else 														\
-		$(Trace_prg) ; 									\
-		$(CLIP) -p $(CLIPFLAGS) $< ; 		\
+	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(CLIP) -g -p $(CLIPFLAGS) $< ; 					\
+	else 															\
+		$(Trace_prg) ; 										\
+		$(CLIP) -p --debug=0 $(CLIPFLAGS) $< ; 						\
 	fi
 
 .prg.po : Makefile $(CLIP) $(Depend_on)
-	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 				\
-		$(Trace_prg_d) ; 									\
-		$(CLIP) -g -p $(CLIPFLAGS) $< ; 	\
-	else 														\
-		$(Trace_prg) ; 									\
-		$(CLIP) -p $(CLIPFLAGS) $< ; 		\
+	$(E_if)if [ -f $(subst .po,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(CLIP) -g -p $(CLIPFLAGS) $< ; 					\
+	else 															\
+		$(Trace_prg) ; 										\
+		$(CLIP) -p --debug=0 $(CLIPFLAGS) $< ; 						\
 	fi
 
 

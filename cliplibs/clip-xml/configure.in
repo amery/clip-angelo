@@ -47,8 +47,7 @@ EXPAT_EXIST=''
 
 gcc -o test_expat test_expat.c -lexpat >/dev/null 2>&1 && EXPAT_EXIST="yes"]
 
-if [ -z $EXPAT_EXIST ]
-then
+if [ -z $EXPAT_EXIST ] ; then
 	echo "Warning: package expat-dev not installed or have old version"
 	exitf 1
 fi

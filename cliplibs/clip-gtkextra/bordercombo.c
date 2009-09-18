@@ -7,7 +7,7 @@
 #include "clip.h"
 #include "clip-gtkextracfg.h"
 
-#include <gtkextra/gtkextra.h>
+#include <gtkextra/gtkbordercombo.h>
 #include <string.h>
 
 #include "clip-gtk.ch"

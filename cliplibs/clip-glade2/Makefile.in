@@ -10,57 +10,35 @@ Local_Depend =
 LIBGLADE_MIN=2.4.2
 
 PROG = clip-glade2
-#XTARGET=$(XLIB) $(XSLIB)
 
 C_FLAGS += -I../clip-gtk2
 
 OBJS=clip_glade.o
-
-
-#XLIB=libclip-glade2.a
-#XSLIB=libclip-glade2$(DLLSUFF)
-
-
 include Makefile.01
 
 .SUFFIXES: .c .o
 
+################################################################################################################
 
 all:Makefile  have_libglade  $(STARGET)
-
 
 cfg :
 
 Makefile.01 : configure
-	./configure
+	$(E_xx)./configure
 
 have_libglade:
-	@ test -n "$(LIBGLADE_VER)" || echo libglade2 not found
-	@ test -n "$(LIBGLADE_VER)" || exit
-	@ test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  || echo libglade detected $(LIBGLADE_VER), needed $(LIBGLADE_MIN) or upper && exit
-	@ test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  && exit
-
-
-
-#$(XLIB): $(OBJS)
-#	rm -f$(V) $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(OBJS)
-#	ranlib $(XLIB)
-
-#$(XSLIB): $(XLIB)
-#	rm -f$(V) $(XSLIB)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
-#
+	$(E_if)test -n "$(LIBGLADE_VER)" || echo libglade2 not found
+	$(E_if)test -n "$(LIBGLADE_VER)" || exit
+	$(E_if)test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  || echo libglade detected $(LIBGLADE_VER), needed $(LIBGLADE_MIN) or upper && exit
+	$(E_if)test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  && exit
 
 install:all install-lib install-example
-#	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)/lib
-#	chmod 0644 $(DESTDIR)/lib/$(XLIB)
-#	chmod 0755 $(DESTDIR)/lib/$(XSLIB)
 
 include $(Makefile_o_in)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 cleanc:
 

@@ -396,7 +396,6 @@ _clip_sigint(int sig)
 	}
 
 	mp = cur_ClipMachine();
-
 	fprintf(_clip_dbg_out, "\nsigint: file %s line %d proc %s", nullstr(mp->fp->filename), mp->fp->line, nullstr(mp->fp->procname));
 	fprintf(_clip_dbg_out, "\n.\n");
 	fflush(_clip_dbg_out);
@@ -418,7 +417,6 @@ _clip_sigint_real(int sig)
 	}
 
 	mp = cur_ClipMachine();
-
 	fprintf(_clip_dbg_out, "\nsigint: file %s line %d proc %s", nullstr(mp->fp->filename), mp->fp->line, nullstr(mp->fp->procname));
 	fprintf(_clip_dbg_out, "\n.\n");
 	fflush(_clip_dbg_out);

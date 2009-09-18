@@ -76,6 +76,8 @@ export ru_charset ua_charset en_charset hu_charset es_charset pt_charset
 export ru_tcharset ua_tcharset en_tcharset hu_tcharset es_tcharset pt_tcharset
 
 
+################################################################################################################
+
 
 pot extract:
 	lst=`cd template; find . -name '*.sgml'` ;\
@@ -229,43 +231,43 @@ rtf: sgml clean-rtf
 install-html:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/html/$$L/$(PACKAGE) ;\
-		cp -R html/$$L/* $(DESTDIR)$(CLIPROOT)/doc/html/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/html/$$L/$(PACKAGE) ;\
+		cp -R html/$$L/* $(INSTDIR)$(CLIPROOT)/doc/html/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 install-sgml:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/sgml/$$L/$(PACKAGE) ;\
-		cp -R sgml/$$L/* $(DESTDIR)$(CLIPROOT)/doc/sgml/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/sgml/$$L/$(PACKAGE) ;\
+		cp -R sgml/$$L/* $(INSTDIR)$(CLIPROOT)/doc/sgml/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 install-ps:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/ps/$$L/$(PACKAGE) ;\
-		cp -R ps/$$L/* $(DESTDIR)$(CLIPROOT)/doc/ps/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/ps/$$L/$(PACKAGE) ;\
+		cp -R ps/$$L/* $(INSTDIR)$(CLIPROOT)/doc/ps/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 install-pdf:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/pdf/$$L/$(PACKAGE) ;\
-		cp -R pdf/$$L/* $(DESTDIR)$(CLIPROOT)/doc/pdf/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/pdf/$$L/$(PACKAGE) ;\
+		cp -R pdf/$$L/* $(INSTDIR)$(CLIPROOT)/doc/pdf/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 install-rtf:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/rtf/$$L/$(PACKAGE) ;\
-		cp -R rtf/$$L/* $(DESTDIR)$(CLIPROOT)/doc/rtf/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/rtf/$$L/$(PACKAGE) ;\
+		cp -R rtf/$$L/* $(INSTDIR)$(CLIPROOT)/doc/rtf/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 install-txt:
 	for L in $(LANGS); \
 	do \
-		mkdir -p $(DESTDIR)$(CLIPROOT)/doc/txt/$$L/$(PACKAGE) ;\
-		cp -R txt/$$L/* $(DESTDIR)$(CLIPROOT)/doc/txt/$$L/$(PACKAGE)/ 2>/dev/null || true;\
+		mkdir -p $(INSTDIR)$(CLIPROOT)/doc/txt/$$L/$(PACKAGE) ;\
+		cp -R txt/$$L/* $(INSTDIR)$(CLIPROOT)/doc/txt/$$L/$(PACKAGE)/ 2>/dev/null || true;\
 	done
 
 #install all what possible

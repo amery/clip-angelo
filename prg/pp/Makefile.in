@@ -3,35 +3,32 @@
 #
 Local_Depend =
 
-
-##CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O
 LIBS  =
 OBJS =
 BIN = pp$(EXESUFF)
 
+################################################################################################################
+
 $(BIN):	pp.prg Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -e -s $< $(CLIPLIBS)
 	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;													\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
 	else 																			\
 		$(Trace_clip) ;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -es $< $(OBJS) $(LIBS) ;		\
 	fi
 
 cfg :
 
 install all : Makefile  pp$(EXESUFF)
-	cp --remove-destination -fpu$(V) $(BIN) $(DESTDIR)/bin/pp_ron$(EXESUFF)
-	cp --remove-destination -fpu$(V) *.ch $(DESTDIR)/include
+	$(E_cp)cp --remove-destination -fpu$(V) $(BIN) $(INSTDIR)/bin/pp_ron$(EXESUFF)
+	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(INSTDIR)/include
 
 cleanc:
-	rm -f$(V) *.c *.ntx $(BIN) *.pp?
+	$(E_rm)rm -f$(V) *.c *.ntx $(BIN) *.pp?
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

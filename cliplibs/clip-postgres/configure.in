@@ -1,8 +1,8 @@
 #!/bin/sh
 
-Check_Include 		libpq-fe.h 				xyz 	clip-postgres 	Yes 	/usr/include/pgsql 								"postgresql-devel-xx-$ARCH.(rpm/deb)"
+PGINCDIR=$(Check_Include 		libpq-fe.h 				xyz 	clip-postgres 	Yes 	/usr/include/pgsql 								"postgresql-devel-xx-$ARCH.(rpm/deb)")
 Check_Library 		pgtypes 				.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgresql-devel-xx-$ARCH.(rpm/deb)"
-Check_Library 		pq 					.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgres-devel-xx-$ARCH.(rpm/deb)"
+PGLIBDIR=$(Check_Library 		pq 					.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgres-devel-xx-$ARCH.(rpm/deb)")
 
 if [ -z "$PGINCDIR" ]; then
 	for x in /usr/include/pgsql \

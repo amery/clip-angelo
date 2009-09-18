@@ -4,78 +4,56 @@
 #
 Local_Depend =
 include ./Makefile.01
-ifeq ($(MAKECMDGOALS),clean)
-DIRS_TO_SCAN = clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
-						clip-cti 		 																	\
-						clip-fcgi 																			\
-						clip-gd 			clip-glade2 													\
-						clip-gtk 																			\
-						clip-gtk2 																			\
-						clip-fw 																				\
-						clip-gzip 		clip-mysql 			clip-odbc 								\
-						clip-nanfor 	clip-netto 														\
-						clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
-						clip-rtf 		clip-xml 			clip-ui
-endif
-# 						clip-ctcom 																			\
-#						clip-gtkextra																		\
-#ifdef CLIPROOT
-#	CLIP = $(CLIPROOT)/bin/clip$(C64)$(EXESUFF)
-#else
-#	CLIP = clip$(C64)$(EXESUFF)
+#ifeq ($(MAKECMDGOALS),clean)
+#DIRS_TO_SCAN = clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
+#					clip-cti 		 																	\
+#					clip-fcgi 																			\
+#					clip-gd 			clip-glade2 													\
+#					clip-gtk2 																			\
+#					clip-dbtcp 																			\
+#					clip-fw 																				\
+#					clip-gzip 		clip-mysql 			clip-odbc 								\
+#					clip-nanfor 	clip-netto 														\
+#					clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
+#					clip-rtf 		clip-xml 			clip-ui
 #endif
-
-#CFLAGS = $(C_FLAGS) -I.
-#CLIPFLAGS = -l -w -O -n -I . -I .. -I ../include -I$(Clip_I_Dir)
-
 export CFLAGS CLIP CLIPFLAGS CLIPROOT
-#clip-cti  clip-ctcom clip-fw clip-gtk clip-gtkextra
+#					clip-gtk 																			\
+#					clip-gtkextra 																			\
+
+################################################################################################################
 
 all local user system install lib : Makefile $(DIRS_TO_SCAN) FORCE
-	echo $@ $<
-#	for dir in $(dirs); \
-#	do \
-#		(cd $$dir ;\
-#		[ -x ./configure ] && ./configure ;\
-#		$(MAKE) $@ );\
-#	done
+	$(E_e)echo $@ $<
 
 ./Makefile.01 : ./configure ./configure.in
-	./configure
+	$(E_xx)./configure
 
 cfg :
 
-cleanc : #$(DIRS_TO_SCAN) interbase
-#	for dir in $(dirs); \
-#		do (cd $$dir && $(MAKE) clean || true; rm -rf debian build-stamp $dir.spec);\
-#	done
-#	cd clip-interbase \
-#		&& $(MAKE) -f Makefile.in clean
+cleanc :
 
 distcleanc:
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 	$(E_rm)rm -f$(V) *.o *.n
-#	for dir in $(dirs); \
-#		do (cd $$dir && $(MAKE) distclean || true);\
-#	done
 
 deb: clean
-	for dir in $(DIRS_TO_SCAN); \
+	$(E_xx)for dir in $(DIRS_TO_SCAN); \
 		do ./mkdeb $$dir; \
 	done
 
 rpm:
-	for dir in $(DIRS_TO_SCAN); \
+	$(E_xx)for dir in $(DIRS_TO_SCAN); \
 		do ./mkrpm $$dir; \
 	done
 
 rpm-opt:
-	for dir in $(DIRS_TO_SCAN); \
+	$(E_xx)for dir in $(DIRS_TO_SCAN); \
 		do ./mkrpm -opt $$dir; \
 	done
 
 tgz tbz:
-	for dir in $(DIRS_TO_SCAN); \
+	$(E_xx)for dir in $(DIRS_TO_SCAN); \
 		do ./mktgz $$dir; \
 	done
 

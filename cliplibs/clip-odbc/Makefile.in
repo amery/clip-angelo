@@ -6,57 +6,35 @@
 
 Local_Depend = include/*.ch
 
-LIBODBC=@LIBODBC@ $(C_LIBS)
-LIBODBC=-lodbc $(C_LIBS)
+#LIBODBC=@LIBODBC@ $(C_LIBS)
+LIBODBC+=-lodbc $(C_LIBS)
 # Note: below we check if LIBOOB is empty when library is missed
-LIBOOB=@LIBOOB@
-LIBOOB=-lesoobclient
+#LIBOOB=@LIBOOB@
+LIBOOB+=-lesoobclient
 PROG = clip-odbc
 PROG2 = clip-oob
-#TARGET=libclip-odbc
-#ATARGET=libclip-odbc.a
-#RTARGET=libclip-odbc$(DLLREALSUFF)
-#TARGET1=libclip-oob
-#ATARGET1=libclip-oob.a
-#RTARGET1=libclip-oob$(DLLREALSUFF)
 ADDLIBS += $(LIBODBC)
 ADDLIBS2 += $(LIBOOB)
 OBJS=odbc_clip.o odbc.o
 OBJS2= $(OBJS)
 DOC = *.html
 
+################################################################################################################
+
 install all: Makefile  $(STARGET) $(STARGET2)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/odbc.ch $(Clip_I_Dir)/
-
-#$(ATARGET): $(OBJS)
-#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBODBC)
-
-#$(RTARGET): $(ATARGET)
-#	$(CLIP_MAKESLIB) $(RTARGET) $(ATARGET) $(LIBODBC)
-
-#$(ATARGET1): $(OBJS)
-#	[ "$(LIBOOB)" = '' ] || $(CLIP_MAKELIB) $(ATARGET1) $(OBJS) $(LIBOOB) $(C_LIBS)
-
-#$(RTARGET1): $(ATARGET1) $(OBJS)
-#	[ "$(LIBOOB)" = '' ] || $(CLIP_MAKESLIB) $(RTARGET1) $(ATARGET1) $(LIBOOB) $(C_LIBS)
+	$(E_cp)cp --remove-destination -fpu$(V) include/odbc.ch $(Clip_I_Dir)/
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
-#	cp -fu$(V) $(TARGET).* $(DESTDIR)/lib
-#	cp -fu$(V) $(TARGET1).* $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/clip-odbc
-#	cp -fu$(V) *.html $(DESTDIR)/doc/clip-odbc
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-odbc
-#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-odbc/
-#
+
 cleanc:
-	rm -rf$(V) odbc.c odbc_ref.c $(TARGET).* $(TARGET2)
+	$(E_rm)rm -rf$(V) odbc.c odbc_ref.c $(TARGET).* $(TARGET2)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

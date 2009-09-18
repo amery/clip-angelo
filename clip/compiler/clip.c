@@ -755,6 +755,7 @@ get_opt(int arg_c, char **arg_v)
 			++syntax_tree_flag;
 			break;
 		case 'g':
+				genDebug = 1;
 		case 'b':
 			if (optarg)
 				genDebug = atoi(optarg);
@@ -1410,7 +1411,7 @@ main(int argc, char **argv)
 	snprintf(buf, sizeof(buf), "%s/include", CLIPROOT);
 	insert_Coll(&includePaths, strdup(buf));
 #ifdef STD_LIBDIR
-	snprintf(buf, sizeof(buf), STD_LIBDIR);
+	snprintf(buf, sizeof(buf), STD_LIB_DIR);
 	insert_Coll(&lib_dirs, strdup(buf));
 #endif
 	snprintf(buf, sizeof(buf), "%s/lib", CLIPROOT);

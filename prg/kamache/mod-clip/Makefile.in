@@ -3,24 +3,25 @@
 #
 Local_Depend =
 
-#CLIP	= $(CLIPROOT)/bin/clip$(EXESUFF)
 CLIPFLAGS = -p
 MODULES = hello.po
 .SUFFIXES: .prg .o .po
+
+################################################################################################################
 
 all : $(MODULES)
 
 cfg :
 
 cleanc:
-	rm -rf$(V) *.c *.b $(MODULES)
+	$(E_rm)rm -rf$(V) *.c *.b $(MODULES)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install : all
-	mkdir -p$(V)  $(DESTDIR)/kamache/mod-clip
-	cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-clip
+	$(E_mkD)mkdir -p$(V)  $(INSTDIR)/kamache/mod-clip
+	$(E_cp)cp --remove-destination -fpu$(V) Makefile *.po *.prg $(INSTDIR)/kamache/mod-clip
 
 include $(Makefile_o_in)
 

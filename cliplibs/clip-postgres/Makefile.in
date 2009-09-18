@@ -14,23 +14,25 @@ OBJS=pg_clip.o pg.o
 CLIPFLAGS += -I@PGINCDIR@
 export CFLAGS
 DOC = *.html
+################################################################################################################
+
 all: Makefile  have_lib $(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/postgres.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/postgres.ch $(Clip_I_Dir)/
 
 have_lib:
-	test -f @PGINCDIR@/libpq-fe.h
+	$(E_if)test -f @PGINCDIR@/libpq-fe.h
 
 include $(Makefile_o_in)
 
 install : all install-lib install-example install-doc
 
 cleanc:
-	rm -rf$(V) pg.c $(TARGET).*
+	$(E_rm)rm -rf$(V) pg.c $(TARGET).*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

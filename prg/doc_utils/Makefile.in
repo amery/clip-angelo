@@ -3,15 +3,14 @@
 #
 Local_Depend =
 
-
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -o$@ -v2 -l -w -O -n -I .. -I $(CLIPROOT)/include
 CLIPLIBS  =
 
 LIBS  =
 OBJS  =
 
 .SUFFIXES: .prg .o
+
+################################################################################################################
 
 all : Makefile ftosgml$(EXESUFF) ctosgml$(EXESUFF)
 
@@ -23,7 +22,7 @@ ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+		$(CLIP) $(CLIPFLAGS) --debug=0 -o$@ -e $< ;					\
 	fi
 
 ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
@@ -32,21 +31,21 @@ ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+		$(CLIP) $(CLIPFLAGS) --debug=0 -o$@ -e $< ;					\
 	fi
 
 include $(Makefile_o_in)
 
 cleanc :
-	rm -rf$(V) *.c *.b ftosgml$(EXESUFF) ctosgml$(EXESUFF)
-	rm -rf$(V) sgml/*
+	$(E_rm)rm -rf$(V) *.c *.b ftosgml$(EXESUFF) ctosgml$(EXESUFF)
+	$(E_rm)rm -rf$(V) sgml/*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install : all
-	cp --remove-destination -fpu$(V) ftosgml$(EXESUFF) $(Clip_B_Dir)/
-	cp --remove-destination -fpu$(V) ctosgml$(EXESUFF) $(Clip_B_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) ftosgml$(EXESUFF) $(Clip_B_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) ctosgml$(EXESUFF) $(Clip_B_Dir)/
 
 include $(Makefile_end_in)
 

@@ -5,35 +5,32 @@
 #
 Local_Depend = include/*.ch
 
-ifndef ORACLE_HOME
-ORACLE_HOME=/usr/local/oracle_home
-endif
 PROG = clip-oracle
-#TARGET=libclip-oracle$(DLLSUFF)
-#RTARGET=libclip-oracle$(DLLREALSUFF)
-ORINC = -I$(ORACLE_HOME)/rdbms/demo -I$(ORACLE_HOME)/network/public -I$(ORACLE_HOME)/rdbms/public
 OBJS=or_clip.o or.o
-C_FLAGS += $(ORINC)
+#ADDLIBS = -L$(OR_LIB) -lclntsh
+C_FLAGS += -I$(OR_INC)
 
 DOC = *.html
+
+################################################################################################################
 
 all: Makefile  have_lib	$(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/oracle.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/oracle.ch $(Clip_I_Dir)/
 
 have_lib:
-	test -f $(ORACLE_HOME)/rdbms/demo/oci.h
+	$(E_if)test -f $(OR_INC)/oci.h
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
 
 cleanc:
-	rm -rf$(V) or.c $(TARGET).*
+	$(E_rm)rm -rf$(V) or.c $(TARGET).*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

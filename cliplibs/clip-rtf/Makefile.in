@@ -5,29 +5,27 @@
 #
 
 Local_Depend = include/*.ch
-#CLIP	= $(CLIPROOT)/bin/clip
 CLIPFLAGS += -n
 CLIPLIBS  =
 OBJS  = richtext.o
 PROG = clip-rtf
-#RTLIB = libclip-rtf.a
-#RTFLIB = libclip-rtf$(DLLSUFF)
-#RTFLIBREAL = libclip-rtf$(DLLREALSUFF)
 
 DOC = readme*
 .SUFFIXES: .prg .o .po
 
+################################################################################################################
+
 all : Makefile $(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/richtext.ch $(Clip_I_Dir)/
-	cp --remove-destination -fpu$(V) include/objects.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/richtext.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/objects.ch $(Clip_I_Dir)/
 
 cleanc :
-	rm -f$(V) *.c $(TARGET).*
+	$(E_rm)rm -f$(V) *.c $(TARGET).*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install : all install-lib install-example install-doc
 

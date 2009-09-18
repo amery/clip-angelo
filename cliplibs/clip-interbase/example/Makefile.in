@@ -6,18 +6,20 @@ Local_Depend =
 
 PRG=my_isql$(EXESUFF)
 
+################################################################################################################
+
 all:Makefile $(PRG)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(PRG)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eMs my_isql.prg -lclip-interbase
 
 include $(Makefile_o_in)

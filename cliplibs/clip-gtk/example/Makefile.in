@@ -8,50 +8,52 @@ DIRS_TO_SCAN = gdk-pixbuf-demo
 SRC=accel$(EXESUFF) clipgtktest$(EXESUFF) note$(EXESUFF) simple$(EXESUFF) tbrow$(EXESUFF) test$(EXESUFF) test_gtk$(EXESUFF) test_image$(EXESUFF) \
 	test_list$(EXESUFF) window$(EXESUFF)  winpic$(EXESUFF) ifactory$(EXESUFF)
 
+################################################################################################################
+
 all: Makefile $(SRC)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b
-	rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) *.c *.b
+	$(E_rm)rm -f$(V) $(SRC)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
 clipgtktest$(EXESUFF): clipgtktest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es clipgtktest.prg -lclip-gtk
 #	$(CLIP) -o$@  -esg clipgtktest.prg ./libclip-gtk.so -lgtk -lgdk
 
 accel$(EXESUFF): accel.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es -M accel.prg -lclip-gtk
 
 note$(EXESUFF): note.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es -M note.prg -lclip-gtk
 
 tbrow$(EXESUFF): tbrow.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es -M tbrow.prg -lclip-gtk
 
 simple$(EXESUFF): simple.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es simple.prg -lclip-gtk
 
 #ext: ext.prg $(CLIP)
-#	$(Trace_clip)
+#	$(E_e)$(Trace_clip)
 #	$(CLIP) -o$@  -es ext.prg -lclip-gtk
 
 winpic$(EXESUFF): winpic.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es winpic.prg -lclip-gtk
 
 #winpic1$(EXESUFF): winpic1.prg $(CLIP)
-#	$(Trace_clip)
+#	$(E_e)$(Trace_clip)
 #	$(CLIP) -o$@  -es winpic1.prg -lclip-gtk
 
 window$(EXESUFF): window.prg $(CLIP) $(LIBCLIP)
@@ -59,24 +61,24 @@ window$(EXESUFF): window.prg $(CLIP) $(LIBCLIP)
 	$(CLIP) -o$@  -es window.prg -lclip-gtk
 
 test_gtk$(EXESUFF): test_gtk.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es test_gtk.prg -lclip-gtk
 #	$(CLIP) -o$@  -esg test_gtk.prg ./libclip-gtk.a -lgtk -lgdk
 
 test_image$(EXESUFF): test_image.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es test_image.prg -lclip-gtk
 
 test_list$(EXESUFF): test_list.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es test_list.prg -lclip-gtk
 
 test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es test.prg -lclip-gtk
 
 ifactory$(EXESUFF): ifactory.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es ifactory.prg -lclip-gtk
 #	$(CLIP) -o$@ -esg ifactory.prg ./libclip-gtk.so -lgtk -lgdk
 

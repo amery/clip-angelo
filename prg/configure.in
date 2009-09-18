@@ -19,10 +19,10 @@ fi
 if [ -f ../cliplibs/clip-codb.ok ] ; then
 	DIRS_TO_SCAN="$DIRS_TO_SCAN ocmng"
 fi
-if [ -f ../cliplibs/clip-gtk.ok ] && [ -f ../cliplibs/clip-codb.ok ] ; then
+if [ -f ../cliplibs/clip-gtk2.ok ] && [ -f ../cliplibs/clip-codb.ok ] ; then
 	DIRS_TO_SCAN="$DIRS_TO_SCAN udb"
 fi
-if [ -f ../cliplibs/clip-gtk.ok ] && [ -f ../cliplibs/clip-codb.ok ] ; then
+if [ -f ../cliplibs/clip-gtk2.ok ] && [ -f ../cliplibs/clip-codb.ok ] ; then
 	DIRS_TO_SCAN="$DIRS_TO_SCAN udbx"
 fi
 DIRS_TO_SCAN="$DIRS_TO_SCAN dbc debug doc_utils hiper pp utils "

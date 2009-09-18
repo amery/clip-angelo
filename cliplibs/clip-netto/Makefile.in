@@ -4,35 +4,28 @@
 
 Local_Depend = include/*.ch
 PROG = clip-netto
-#TARGET=libclip-netto$(DLLSUFF)
-#RTARGET=libclip-netto$(DLLREALSUFF)
-#LIBS=libclip-netto.a
-OBJS  = $(sort fnbin2i.o fnbit.o fndpve.o fnerr.o fnhex.o fnpeek.o \
-	fnpfeval.o is3x.o isnet.o namel.o nonull.o \
-	nwdate.o reg2l.o ssfp.o \
-	ipxinit.o request.o )
+OBJS  = $(sort fnbin2i.o fnbit.o fndpve.o fnerr.o fnhex.o fnpeek.o 	\
+					fnpfeval.o is3x.o isnet.o namel.o nonull.o 				\
+					nwdate.o reg2l.o ssfp.o 										\
+					ipxinit.o request.o )
 
 DOC = doc/*
+
+################################################################################################################
 
 all : Makefile $(STARGET)
 
 cfg :
-	mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
-	cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/$(PROG)
-
-#$(TARGET):$(DIRS_TO_SCAN)
-#	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
+	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
+	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/$(PROG)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 cleanc :
-	rm -f$(V) $(TARGET).* *.c
+	$(E_rm)rm -f$(V) $(TARGET).* *.c
 
 install : all install-lib install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	$(CLIP_CP) $(LIBS) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/include/netto
 
 include $(Makefile_o_in)
 

@@ -1,4 +1,4 @@
-#!/bin/bash -ux
+#!/bin/bash -u
 Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
@@ -25,99 +25,51 @@ if [ -n "$ARCH" ] ; then
 	fi
 fi
 option="$*"
-CLIPROOT=/clip$Clip_Version/
+CLIPROOT=clip$Clip_Version
 if [[ -z "$option" ]] ; then
 	option="home"
-	DESTDIR="$HOME/"
+	DESTDIR="$HOME"
 elif [[ "$option" = "1" ]] || [[ "$option" = "home" ]] || [[ "$option" = "clean" ]] ; then
 	option="home"
-	DESTDIR="$HOME/"
-	INSTDIR=$DESTDIR$CLIPROOT
-	export Clip_I_Dir="$INSTDIR/include/"
-	export Clip_B_Dir="$INSTDIR/bin/"
-	export Clip_D_Dir="$INSTDIR/doc/"
-	export Clip_L_Dir="$INSTDIR/lib$C64/"
-	mkdir -p$V $Clip_B_Dir || true
-	touch $Clip_B_Dir/0 || true
-	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
-		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
-	fi
-	rm -f $Clip_B_Dir/0
+	DESTDIR="$HOME"
 elif [[ "$option" = "2" ]] || [[ "$option" = "local" ]] ; then
 	option="local"
 	DESTDIR="$Clip_H_Dir/"
-	INSTDIR=$DESTDIR$CLIPROOT
-	export Clip_I_Dir="$INSTDIR/include/"
-	export Clip_B_Dir="$INSTDIR/bin/"
-	export Clip_D_Dir="$INSTDIR/doc/"
-	export Clip_L_Dir="$INSTDIR/lib$C64/"
-	mkdir -p$V $Clip_B_Dir || true
-	touch $Clip_B_Dir/0 || true
-	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
-		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
-	fi
-	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "3" ]] || [[ "$option" = "opt" ]] ; then
 	option="opt"
 	DESTDIR="/opt/"
-	INSTDIR=$DESTDIR$CLIPROOT
-	export Clip_I_Dir="$INSTDIR/include/"
-	export Clip_B_Dir="$INSTDIR/bin/"
-	export Clip_D_Dir="$INSTDIR/doc/"
-	export Clip_L_Dir="$INSTDIR/lib$C64/"
-	mkdir -p$V $Clip_B_Dir || true
-	touch $Clip_B_Dir/0 || true
-	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
-		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
-	fi
-	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 	option="usr.local"
 	DESTDIR="/usr/local/"
-	INSTDIR=$DESTDIR$CLIPROOT
-	export Clip_I_Dir="$INSTDIR/include/"
-	export Clip_B_Dir="$INSTDIR/bin/"
-	export Clip_D_Dir="$INSTDIR/doc/"
-	export Clip_L_Dir="$INSTDIR/lib$C64/"
-	mkdir -p$V $Clip_B_Dir || true
-	touch $Clip_B_Dir/0 || true
-	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
-		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
-	fi
-	rm -f $Clip_B_Dir/0
 #elif [[ "$option" = "5" ]] || [[ "$option" = "sys" ]] ; then
 #	option="sys"
 #	DESTDIR="/usr/bin/"
-#	INSTDIR=$DESTDIR$CLIPROOT
-#	export Clip_I_Dir="usr/include/$CLIPROOT"
-#	export Clip_B_Dir="$DESTDIR/"
-#	export Clip_D_Dir="usr/doc/$CLIPROOT"
-#	export Clip_L_Dir="usr/lib$C64/"
-#	mkdir -p$V $Clip_B_Dir || true
-#	touch $Clip_B_Dir/0 || true
-#	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
-#		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-#		exit 1
-#	fi
-#	rm -f $Clip_B_Dir/0
 else
 	echo
 	echo "$0 options are : [ '' | home(default) | sys | opt | usr.local ]"
 	exit 1
 fi
+INSTDIR=$DESTDIR/$CLIPROOT
+export Clip_I_Dir="$INSTDIR/include/"
+export Clip_B_Dir="$INSTDIR/bin/"
+export Clip_D_Dir="$INSTDIR/doc/"
+export Clip_L_Dir="$INSTDIR/lib$C64/"
+mkdir -p$V $Clip_B_Dir || true
+touch $Clip_B_Dir/0 || true
+if ! [[ -f "$Clip_B_Dir/0" ]] ; then
+	echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
+	exit 1
+fi
+rm -f $Clip_B_Dir/0
 #export CONFIGUR_SH=$Clip_M_Dir/init/config.sh
 export ARCH
 export C64
 export CLIP_CONFIGURE_FLAGS
 export CLIP_NAMES
 export CLIPROOT
-export DESTDIR
 export BINDIR=$HOME/bin
-export INSTDIR="$DESTDIR$CLIPROOT"
+export INSTDIR="$DESTDIR/$CLIPROOT"
+export DESTDIR=/error
 export EXESUFF=$Clip_Version
 export MAKE
 export Making="$option"

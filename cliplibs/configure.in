@@ -10,7 +10,7 @@ OnScreen 2 "DIRS_TO_SCAN = >Makefile.01"
 DIRS_TO_SCAN=""
 #echo "CFLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
 #echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
-AllDir="bzip2 gzip com crypto cti fcgi gd glade2 gtk gtk2 gtkextra fw dbtcp codb mysql odbc oracle postgres
+AllDir="bzip2 gzip com crypto cti fcgi gd glade2 gtk2 fw dbtcp codb mysql odbc oracle postgres
 nanfor netto postscript r2d2 rtf xml"
 export DIRS_TO_SCAN
 
@@ -28,12 +28,14 @@ function Get_Check ()
 		touch clip-$1.ok
 		echo "$1"
 	else
+		rm -f clip-$1.ok
 		touch clip-$1.no
 	fi
 }
-
+#echo $AllDir
 for dName in $AllDir ; do
-	touch clip-$dName.ok
+#	touch clip-$dName.ok
+#	echo $dName
 	VarX=""
 	VarX=$(Get_Check $dName)
 	if ! [[ -z $VarX ]] ; then
@@ -64,7 +66,6 @@ else
 	fi
 fi
 echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" 							>./Makefile.01
-echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" 							>>./Makefile.01
 if [[ -f clip-xml.ok ]] ; then
 	VarX=" "
 	[ -f clip-ui.ok ] && VarX="Y"
@@ -74,7 +75,6 @@ if [[ -f clip-xml.ok ]] ; then
 		read -n 1 VarX 		>&0
 	done
 	if [[ "$VarX" = [Yy] ]] ; then
-		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
 		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
 		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-ui"
 		touch clip-ui.ok

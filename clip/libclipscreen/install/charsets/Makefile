@@ -3,6 +3,8 @@
 #
 Local_Depend =
 
+################################################################################################################
+
 all: gen_tbl$(EXESUFF)
 CFLAGS=-g
 
@@ -14,4 +16,4 @@ gen_tbl.o: gen_tbl.c
 
 
 clean:
-	rm -f gen_tbl$(EXESUFF) *.o *.b *.bak *.BAK
+	$(E_rm)rm -f gen_tbl$(EXESUFF) *.o *.b *.bak *.BAK

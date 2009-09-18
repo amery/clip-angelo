@@ -1,4 +1,4 @@
-#!/bin/bash -ue
+#!/bin/bash -u
 #
 ############################################################################################################
 ############################################################################################################
@@ -988,11 +988,11 @@ function create_var ()
 function deception ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
+##			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
+##			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty play pitty" 	>&0
 			echo "" 								>&0
 		else
@@ -1480,11 +1480,11 @@ function TotalFiles ()
 function trumpet ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-			mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav &
+##			mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav &
 			echo " successful mplayer" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav &
+##			play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav &
 			echo " successful play " 		>&0
 			echo "" 								>&0
 		else

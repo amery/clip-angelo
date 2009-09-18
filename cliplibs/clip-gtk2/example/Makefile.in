@@ -11,57 +11,59 @@ SRC =clipgtktest$(EXESUFF) tbrow$(EXESUFF) simple$(EXESUFF)  test_stock$(EXESUFF
         colorbtn$(EXESUFF) pango$(EXESUFF) entrytempl$(EXESUFF) combobox$(EXESUFF) ifactory$(EXESUFF) lines$(EXESUFF) draw$(EXESUFF) lists$(EXESUFF) imgmenu$(EXESUFF)\
         winback$(EXESUFF) test_rc$(EXESUFF) iconview$(EXESUFF)
 
+################################################################################################################
+
 all:Makefile  $(SRC)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b
-	rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) *.c *.b
+	$(E_rm)rm -f$(V) $(SRC)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
 clipgtktest$(EXESUFF): clipgtktest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es clipgtktest.prg -lclip-gtk2
 
 fonttest$(EXESUFF): fonttest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es fonttest.prg -lclip-gtk2
 
 accel$(EXESUFF): accel.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es -M accel.prg -lclip-gtk2
 
 note$(EXESUFF): note.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es note.prg -lclip-gtk2
 
 tbrow$(EXESUFF): tbrow.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es tbrow.prg -lclip-gtk2
 
 simple$(EXESUFF): simple.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es simple.prg -lclip-gtk2
 
 text$(EXESUFF): text.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es text.prg -lclip-gtk2
 
 winpic$(EXESUFF): winpic.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es winpic.prg -lclip-gtk2
 
 test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test.prg -lclip-gtk2
 
 test_gtk$(EXESUFF): test_gtk.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test_gtk.prg -lclip-gtk2
 
 test_stock$(EXESUFF): test_stock.prg $(CLIP) $(LIBCLIP)
@@ -69,7 +71,7 @@ test_stock$(EXESUFF): test_stock.prg $(CLIP) $(LIBCLIP)
 	$(CLIP) -o$@ -es test_stock.prg -lclip-gtk2
 
 test_image$(EXESUFF): test_image.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test_image.prg -lclip-gtk2
 
 test_tree$(EXESUFF): test_tree.prg $(CLIP) $(LIBCLIP)
@@ -77,67 +79,67 @@ test_tree$(EXESUFF): test_tree.prg $(CLIP) $(LIBCLIP)
 	$(CLIP) -o$@ -es test_tree.prg -lclip-gtk2
 
 iconview$(EXESUFF): iconview.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es iconview.prg -lclip-gtk2
 
 test_text$(EXESUFF): test_text.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test_text.prg -lclip-gtk2
 
 container$(EXESUFF): container.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es container.prg -lclip-gtk2
 
 test_dnd$(EXESUFF): test_dnd.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test_dnd.prg -lclip-gtk2
 
 drag_and_drop$(EXESUFF): drag_and_drop.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es drag_and_drop.prg -lclip-gtk2
 
 colorbtn$(EXESUFF): colorbtn.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es colorbtn.prg -lclip-gtk2
 
 pango$(EXESUFF): pango.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es pango.prg -lclip-gtk2
 
 entrytempl$(EXESUFF): entrytempl.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es entrytempl.prg -lclip-gtk2
 
 combobox$(EXESUFF): combobox.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es combobox.prg -lclip-gtk2
 
 ifactory$(EXESUFF): ifactory.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es ifactory.prg -lclip-gtk2
 
 lines$(EXESUFF): lines.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es lines.prg -lclip-gtk2
 
 draw$(EXESUFF): draw.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es draw.prg -lclip-gtk2
 
 lists$(EXESUFF): lists.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es lists.prg -lclip-gtk2
 
 imgmenu$(EXESUFF): imgmenu.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es imgmenu.prg -lclip-gtk2
 
 winback$(EXESUFF): winback.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es winback.prg -lclip-gtk2
 
 test_rc$(EXESUFF): test_rc.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -es test_rc.prg -lclip-gtk2
 
 

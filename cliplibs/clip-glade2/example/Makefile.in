@@ -13,19 +13,21 @@ OBJS=dlgopen.o dlgsave.o dlgselfont.o dlgabout.o
 
 .SUFFIXES: .prg .o
 
+################################################################################################################
+
 all: Makefile eglade$(EXESUFF)
 
 cfg :
 
 eglade$(EXESUFF): eglade.prg  $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -e $<  $(PRGLIBS)
 
 cleanc:
-	rm -f$(V) eglade$(EXESUFF) *.c
+	$(E_rm)rm -f$(V) eglade$(EXESUFF) *.c
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

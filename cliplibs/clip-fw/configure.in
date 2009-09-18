@@ -75,7 +75,7 @@ if [ -z "$CC" ] ; then
 fi
 #echo "DLLSUFF='$DLLSUFF'"  																				>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'"  																	>&3
-echo "INCLUDEDIRS=-I../clip-cti/include -I../clip-gtk" 											>&3
+echo "INCLUDEDIRS=-I../clip-cti/include -I../clip-gtk2/include" 								>&3
 
 echo  	 																										>&3
 exec  																						 					3>&-

@@ -3,10 +3,12 @@
 #
 Local_Depend =
 
+################################################################################################################
+
 all install :
 
 cfg :
-	cp --remove-destination -fpu$(V) clip.h _win32.h hashcode.h hash.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) clip.h _win32.h hashcode.h hash.h $(Clip_I_Dir)/
 
 cleanc :
 

@@ -3,24 +3,23 @@
 #
 Local_Depend =
 
-#CLIPFLAGS = -a -O -b
 CLIPLIBS  = -lclip-codb
-
 PROGS = my001$(EXESUFF) cgi_currency$(EXESUFF)
 
-
 .SUFFIXES: .prg .o .po
+
+################################################################################################################
 
 all: Makefile $(PROGS)
 
 cfg :
 
 cleanc:
-	rm -rf$(V) *.c *.b
-	rm -rf$(V) $(PROGS)
+	$(E_rm)rm -rf$(V) *.c *.b
+	$(E_rm)rm -rf$(V) $(PROGS)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

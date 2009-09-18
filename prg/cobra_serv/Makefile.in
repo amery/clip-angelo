@@ -19,41 +19,40 @@ MODULES = module1.po codbtview.po codbdlist.po
 
 DIRS_TO_SCAN = auth mod-ini tcp-wrap
 
+################################################################################################################
+
 all : Makefile $(DIRS_TO_SCAN) cobra_serv$(EXESUFF) $(MODULES)
 
 cfg :
 
 cleanc : $(DIRS_TO_SCAN)
-	rm -f$(V) *.c *.b
-	rm -f$(V) cobra_serv$(EXESUFF) *.pro
+	$(E_rm)rm -f$(V) *.c *.b
+	$(E_rm)rm -f$(V) cobra_serv$(EXESUFF) *.pro
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 cobra_serv$(EXESUFF) :cobra_serv.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -es -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
 	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS)  $(CLIPLIBS);	\
 	else 																				\
 		$(Trace_clip) 	;															\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
 
 
 install: all
-	mkdir -p$(V) $(DESTDIR)/cobra
-	cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(Clip_B_Dir)/
-	cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(DESTDIR)/cobra/
-	cp --remove-destination -fpu$(V) cobra_serv.ini $(DESTDIR)/cobra
-	mkdir -p$(V) $(DESTDIR)/cobra/mod-ini
-	cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(DESTDIR)/cobra/mod-ini
-	mkdir -p$(V) $(DESTDIR)/cobra/tcp-wrap
-	cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(DESTDIR)/cobra/tcp-wrap
-	cp --remove-destination -fpu$(V) $(MODULES) $(DESTDIR)/cobra/
-	mkdir -p$(V) $(DESTDIR)/cobra/files
-	cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(DESTDIR)/cobra/files
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/files
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/mod-ini
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/tcp-wrap
+	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(Clip_B_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(INSTDIR)/cobra/
+	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv.ini $(INSTDIR)/cobra
+	$(E_cp)cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(INSTDIR)/cobra/mod-ini
+	$(E_cp)cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(INSTDIR)/cobra/tcp-wrap
+	$(E_cp)cp --remove-destination -fpu$(V) $(MODULES) $(INSTDIR)/cobra/
+	$(E_cp)cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(INSTDIR)/cobra/files
 
 include $(Makefile_o_in)
 

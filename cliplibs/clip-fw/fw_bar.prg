@@ -4,7 +4,7 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk.ch>
+#include <clip-gtk2.ch>
 #include <clip-fw/fivewin.ch>
 
 #define BAR_HEIGHT           28

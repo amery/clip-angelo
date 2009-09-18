@@ -32,13 +32,15 @@ CLPFLAGS = -v2 -g -l
 SF = -s
 DBFS = test.dbf ttt.dbf ttt.dbt
 
+################################################################################################################
+
 all: Makefile dbfs $(TESTS)
 
 cfg :
 
 cleanc:
-	rm -rf$(V) *.b *.tab.c *.tab.h lex.*.c
-	rm -f$(V) *.c *.mlog *.pid $(TESTS) $(DBFS) x
+	$(E_rm)rm -rf$(V) *.b *.tab.c *.tab.h lex.*.c
+	$(E_rm)rm -f$(V) *.c *.mlog *.pid $(TESTS) $(DBFS) x
 
 dbfs: $(DBFS)
 
@@ -61,7 +63,7 @@ a$(EXESUFF): a.prg $(CLIPLIB) dbfs Makefile $(CLIP) $(LIBCLIP)
 
 a1.a:   a1.o Makefile
 	$(Trace_lib)
-	rm -f a1.a
+	$(E_rm)rm -f a1.a
 	ar q a1.a a1.o
 
 a1.o:   a1.prg Makefile $(CLIP) $(LIBCLIP)

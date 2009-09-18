@@ -8,6 +8,8 @@ Local_Depend = dbc/deflist.ch
 DIRS_TO_SCAN = procs dbc
 
 
+################################################################################################################
+
 all:$(DIRS_TO_SCAN)
 
 cfg :
@@ -15,7 +17,7 @@ cfg :
 cleanc:
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 

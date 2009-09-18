@@ -1,6 +1,9 @@
 #!/bin/sh -u
 
-Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdkconfig.h  				xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdk-pixbuf-features.h 	xyz 	clip-gtk2 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdk-pixbuf-xlib.h 		xyz 	clip-gtk2 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Library 		gdk_pixbuf 					.so 	clip-gtk2 		Yes	/usr/lib$C64 										"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
 
 uname=`uname -s`
 uver=`uname -r`
@@ -102,7 +105,7 @@ if [ -z $PKGCONFIG ]; then
     echo "*****************************************************************"
     USE_GTK=no
     echo "System MUST have installed pkg-config first!"
-    exit
+    exit 1
 fi
 gtkprefix=`$PKGCONFIG gtk+-2.0 --libs 2>/dev/null`
 if [ $? -ne 0 ]; then
@@ -112,7 +115,7 @@ if [ $? -ne 0 ]; then
     echo "*****************************************************************"
     USE_GTK=no
     echo "gtk2 not detected"
-    exit
+    exit 1
 fi
 LIBS=`$PKGCONFIG gtk+-2.0 --libs`
 EXTRACFLAGS=""

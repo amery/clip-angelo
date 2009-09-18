@@ -6,41 +6,36 @@ Local_Depend =
 Local_Depend +=
 # $(Clip_L_Dir)/libcodb-query.so
 
-
-
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -w -O -b -l
 CLIPLIBS  = -lclip-codb -lcodb-query
 TARGET = codb$(EXESUFF)
 OBJS  =
 # codb.o
 .SUFFIXES: .prg .o .po
 
+################################################################################################################
+
 all : Makefile $(TARGET)
 
 cfg :
 
 cleanc :
-	rm -f$(V) *.c *.b
-	rm -f$(V) $(TARGET)
+	$(E_rm)rm -f$(V) *.c *.b
+	$(E_rm)rm -f$(V) $(TARGET)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 $(TARGET): codb.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -esM $(OBJS) $(CLIPLIBS)
 	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
 
 install : all
-	cp --remove-destination -fpu$(V) $(TARGET) $(Clip_B_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) $(TARGET) $(Clip_B_Dir)/
 
 include $(Makefile_o_in)
 

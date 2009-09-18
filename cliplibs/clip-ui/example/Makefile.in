@@ -4,9 +4,7 @@
 # CLIP-UI library examples Makefile
 # Copyright (C) 2003-2006, E/AS Software Foundation
 # Web: http://eas.lrn.ru
-#CLIPINCLUDE = -I$(CLIPROOT)/include
 Local_Depend =
-# $(Clip_L_Dir)/libclip-ui.so $(Clip_L_Dir)/libclip-xml.so
 
 .SUFFIXES: .prg .o .po
 .PHONY: all clean
@@ -17,17 +15,19 @@ PRG2=uiform$(EXESUFF)
 LIBS=-lclip-ui -lclip-xml -lexpat
 EXTRALIBS=
 
-Depend_on = $(Clip_L_Dir)/libclip-ui $(Clip_L_Dir)/libclip-xml $(Clip_L_Dir)/libexpat
+Depend_on = $(Clip_L_Dir)/libclip-ui.so $(Clip_L_Dir)/libclip-xml.so
+
+################################################################################################################
 
 all: Makefile $(PRG1) $(PRG2)
 
 cfg :
 
 cleanc:
-	rm -f$(V) $(PRG1) $(PRG2) image[0-9]*
+	$(E_rm)rm -f$(V) $(PRG1) $(PRG2) image[0-9]*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 $(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
@@ -36,9 +36,6 @@ $(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 $(PRG2): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
 	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) uiform.prg $(LIBS) $(EXTRALIBS)
-
-#.prg.o:
-#	$(CLIP) -l $(CLIPINCLUDE) $<
 
 include $(Makefile_o_in)
 

@@ -6,14 +6,14 @@
 # Copyright (C) 2003-2005 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-#CLIP = clip$(EXESUFF)
 CLIP_MODULE = clip-ui
 Local_Depend =
 CLIPFLAGS += -I../../clip-gtk2 -n
 OBJS    = driver-gtk2.po
 
 .PHONY: all clean uninstall distclean
+
+################################################################################################################
 
 all : Makefile $(OBJS)
 
@@ -22,20 +22,16 @@ cfg :
 cleanc:
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install: all
-	mkdir -p$(V) $(DESTDIR)/lib/drivers
-	$(CLIP_CP) $(OBJS) $(DESTDIR)/lib/drivers
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/lib/drivers
+	$(E_cp)$(CLIP_CP) $(OBJS) $(INSTDIR)/lib/drivers/
 
 uninstall:
-	rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)
+	$(E_rm)rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)
 
 include $(Makefile_o_in)
-
-#driver-gtk2.po: driver-gtk2.prg $(CLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -I../../clip-gtk2 -n -p driver-gtk2.prg
 
 include $(Makefile_end_in)
 

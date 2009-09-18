@@ -2,9 +2,13 @@
 echo "Configuring $PWD" >&0
 source ../configure.ini
 cp --remove-destination -fu$V ../Makefile.ini ../configure.ini ./
+[ ./Makefile.ini 	-nt ./configure ] && rm -f$V ./configure
+[ ./configure.ini -nt ./configure ] && rm -f$V ./configure
+[ ./configure.in 	-nt ./configure ] && rm -f$V ./configure
+
 if ! [ -f ./configure ] ; then
 	if [ -f ./configure.in ] ; then
-		echo "#!/bin/bash " 										>./configure
+		echo "#!/bin/bash -u" 										>./configure
 		cat ./configure.ini 										>>./configure
 		echo "source $Clip_M_Dir/init/functions.f" 		>>./configure
 		cat ./configure.in  										>>./configure

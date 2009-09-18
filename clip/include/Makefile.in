@@ -3,10 +3,12 @@
 #
 Local_Depend =
 
+################################################################################################################
+
 install all :
 
 cfg:
-	cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/
 
 cleanc :
 

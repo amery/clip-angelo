@@ -11,7 +11,7 @@
 //#include <clip-fw/WinApi.ch> |\ includig from fivewin.ch
 //#include <clip-fw/font.ch>   |/
 
-#include <clip-gtk.ch>
+#include <clip-gtk2.ch>
 #include <clip-fw/msgxpm.ch>
 #include <clip-fw/itk.ch>
 

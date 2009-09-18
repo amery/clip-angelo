@@ -7,6 +7,8 @@
 # 				file called at the end of each Makefile except MAIN Makefile
 #
 
+################################################################################################################
+
 ./configure : ./configure.in
 	$(E_xx)$(CONFIGURE_SH)
 

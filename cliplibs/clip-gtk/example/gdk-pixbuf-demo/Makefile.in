@@ -7,16 +7,18 @@ Local_Depend =
 
 SRC=pixbuf_demo$(EXESUFF) pixbuf_scale$(EXESUFF) zoomimage$(EXESUFF)
 
+################################################################################################################
+
 all: Makefile $(SRC)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c
-	rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) *.c
+	$(E_rm)rm -f$(V) $(SRC)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)

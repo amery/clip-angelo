@@ -7,9 +7,6 @@
 Local_Depend =
 # $(Clip_L_Dir)/libclip-postscript.so
 
-
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-
 .SUFFIXES: .prg .o .po
 .PHONY: all clean
 
@@ -17,18 +14,20 @@ Local_Depend =
 PRG=testform$(EXESUFF)
 LIBS=-lclip-postscript -lclip-xml -lexpat
 
+################################################################################################################
+
 all: Makefile $(PRG)
 
 cfg :
 
 cleanc:
-	rm -f$(V) $(PRG) *.c
+	$(E_rm)rm -f$(V) $(PRG) *.c
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 $(PRG): testform.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) testform.prg $(LIBS)
 
 include $(Makefile_o_in)

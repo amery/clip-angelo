@@ -5,42 +5,30 @@
 #
 Local_Depend = include/*.ch
 PROG = clip-mysql
-#TARGET=libclip-mysql$(DLLSUFF)
-#ATARGET=libclip-mysql.a
-#RTARGET=libclip-mysql$(DLLREALSUFF)
 C_FLAGS += -I/usr/include/mysql -I/usr/local/include/mysql
 OBJS=$(sort ms_clip.o ms.o )
 ADDLIBS=-L/usr/lib/mysql -lmysqlclient $(C_LIBS)
 DOC = *.html
 
+################################################################################################################
+
 all: Makefile  have_lib $(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/mysql.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/mysql.ch $(Clip_I_Dir)/
 
 have_lib:
-	test -f /usr/include/mysql/mysql.h -o -f /usr/local/include/mysql/mysql.h
-
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
-
-#$(ATARGET): $(OBJS)
-#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBS)
+	$(E_if)test -f /usr/include/mysql/mysql.h -o -f /usr/local/include/mysql/mysql.h
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/clip-mysql
-#	cp -fu$(V) *.html $(DESTDIR)/doc/clip-mysql
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-mysql
-#	cp -Rfu$(V) example/* $(DESTDIR)/doc/example/clip-mysql/
 
 cleanc:
-	rm -rf$(V) ms.c
+	$(E_rm)rm -rf$(V) ms.c
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

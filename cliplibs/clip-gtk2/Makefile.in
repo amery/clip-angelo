@@ -16,81 +16,86 @@ Local_Depend = include/*.ch include/*.h
 HDRS	= include/clip-gtk2.ch include/clip-gtk2.h
 
 #GDK_SRC =  gdkinput.c
-GDK_SRC = gdk.c gdkfont.c  gdkcolor.c gdkgc.c gdkdraw.c gdkrgb.c gdkpixbuf.c \
-	  gdkregion.c gdkwindow.c
+GDK_SRC = 	gdk.c gdkfont.c  gdkcolor.c gdkgc.c gdkdraw.c gdkrgb.c gdkpixbuf.c \
+	  			gdkregion.c gdkwindow.c
 
 #GTK_SRC = text.c tree.c treeitem.c
-GTK_SRC = accelgroup.c adjustment.c alignment.c bin.c bmpxpm.c box.c button.c\
-	  buttonbox.c calendar.c cellrenderer.c checkbutton.c \
-	  checkmenuitem.c clipboard.c clist.c colorsel.c combo.c common.c \
-	  container.c ctree.c curve.c dialog.c draganddrop.c drawingarea.c \
-	  editable.c entry.c  filesel.c fixed.c fontsel.c frame.c general.c \
-   	  handlebox.c iconsource.c invisible.c \
-	  image.c imagemenuitem.c imcontext.c item.c itemfactory.c \
-	  label.c layout.c list.c listitem.c liststore.c menu.c menubar.c menuitem.c \
-	  menushell.c misc.c notebook.c object.c optionmenu.c paned.c pango.c\
-	  pixmap.c plug.c progress.c progressbar.c radiobutton.c radiomenuitem.c \
-	  range.c rc.c rulers.c scale.c scrollbar.c scrolledwindow.c separator.c \
-          selections.c  sizegroup.c socket.c spinbutton.c statusbar.c stock.c \
-          table.c textbuffer.c \
-	  textiter.c textmark.c \
-	  texttag.c texttagtable.c textview.c tipsquery.c togglebutton.c \
-	  toolbar.c tooltips.c treemodel.c treeselection.c treestore.c \
-	  treeview.c treeviewcolumn.c style.c viewport.c widget.c window.c windowgroup.c \
-	  gtkermsg.prg gtkutil.prg #gtkbrowse.prg
+GTK_SRC = 	accelgroup.c adjustment.c alignment.c bin.c bmpxpm.c box.c button.c 					\
+	  			buttonbox.c calendar.c cellrenderer.c checkbutton.c 										\
+	  			checkmenuitem.c clipboard.c clist.c colorsel.c combo.c common.c 						\
+	  			container.c ctree.c curve.c dialog.c draganddrop.c drawingarea.c 						\
+	  			editable.c entry.c  filesel.c fixed.c fontsel.c frame.c general.c 					\
+	  			handlebox.c iconsource.c invisible.c 															\
+	  			image.c imagemenuitem.c imcontext.c item.c itemfactory.c 								\
+	  			label.c layout.c list.c listitem.c liststore.c menu.c menubar.c menuitem.c 		\
+	  			menushell.c misc.c notebook.c object.c optionmenu.c paned.c pango.c 					\
+	  			pixmap.c plug.c progress.c progressbar.c radiobutton.c radiomenuitem.c 				\
+	  			range.c rc.c rulers.c scale.c scrollbar.c scrolledwindow.c separator.c 				\
+	  			selections.c  sizegroup.c socket.c spinbutton.c statusbar.c stock.c 					\
+	  			table.c textbuffer.c textiter.c textmark.c 													\
+	  			texttag.c texttagtable.c textview.c tipsquery.c togglebutton.c 						\
+	  			toolbar.c tooltips.c treemodel.c treeselection.c treestore.c 							\
+	  			treeview.c treeviewcolumn.c style.c viewport.c widget.c window.c windowgroup.c 	\
+	  			gtkermsg.prg gtkutil.prg
+#gtkbrowse.prg
 
 GTK_EXTEXT_SRC = #gtkextext.c extext.c
 
-
 #GDK_OBJ = gdkinput.o
-GDK_OBJ = gdk.o gdkfont.o gdkcolor.o gdkgc.o gdkdraw.o gdkrgb.o gdkpixbuf.o \
-	  gdkregion.o gdkwindow.o
+GDK_OBJ = $(subst .c,.o,$(GDK_SRC))
+#
+#gdk.o gdkfont.o gdkcolor.o gdkgc.o gdkdraw.o gdkrgb.o gdkpixbuf.o \
+#	  gdkregion.o gdkwindow.o
 
 #GTK_OBJ = text.o tree.o treeitem.o
-GTK_OBJ = accelgroup.o adjustment.o alignment.o bin.o bmpxpm.o box.o button.o \
-	  buttonbox.o calendar.o cellrenderer.o checkbutton.o \
-	  checkmenuitem.o clipboard.o clist.o colorsel.o combo.o common.o \
-	  container.o ctree.o curve.o dialog.o draganddrop.o drawingarea.o \
-	  editable.o entry.o filesel.o fixed.o fontsel.o frame.o general.o \
-	  handlebox.o iconsource.o invisible.o \
-	  image.o imagemenuitem.o imcontext.o item.o itemfactory.o \
-	  label.o layout.o list.o listitem.o liststore.o menu.o menubar.o menuitem.o \
-	  menushell.o misc.o notebook.o object.o optionmenu.o paned.o pango.o\
-	  pixmap.o plug.o progress.o progressbar.o radiobutton.o radiomenuitem.o \
-	  range.o rc.o rulers.o scale.o scrollbar.o scrolledwindow.o separator.o \
-	  selections.o sizegroup.o socket.o spinbutton.o statusbar.o stock.o \
-	  table.o textbuffer.o \
-	  textiter.o textmark.o \
-	  texttag.o texttagtable.o textview.o tipsquery.o togglebutton.o \
-	  toolbar.o tooltips.o treemodel.o treeselection.o treestore.o \
-	  treeview.o treeviewcolumn.o style.o viewport.o widget.o window.o windowgroup.o \
-	  gtkermsg.o gtkutil.o #gtkbrowse.o
+GTK_OBJ =  $(subst .c,.o,$(GTK_SRC))
+#
+#accelgroup.o adjustment.o alignment.o bin.o bmpxpm.o box.o button.o \
+##	  buttonbox.o calendar.o cellrenderer.o checkbutton.o \
+#	  checkmenuitem.o clipboard.o clist.o colorsel.o combo.o common.o \
+#	  container.o ctree.o curve.o dialog.o draganddrop.o drawingarea.o \
+#	  editable.o entry.o filesel.o fixed.o fontsel.o frame.o general.o \
+#	  handlebox.o iconsource.o invisible.o \
+#	  image.o imagemenuitem.o imcontext.o item.o itemfactory.o \
+#	  label.o layout.o list.o listitem.o liststore.o menu.o menubar.o menuitem.o \
+#	  menushell.o misc.o notebook.o object.o optionmenu.o paned.o pango.o\
+#	  pixmap.o plug.o progress.o progressbar.o radiobutton.o radiomenuitem.o \
+#	  range.o rc.o rulers.o scale.o scrollbar.o scrolledwindow.o separator.o \
+#	  selections.o sizegroup.o socket.o spinbutton.o statusbar.o stock.o \
+#	  table.o textbuffer.o \
+#	  textiter.o textmark.o \
+#	  texttag.o texttagtable.o textview.o tipsquery.o togglebutton.o \
+#	  toolbar.o tooltips.o treemodel.o treeselection.o treestore.o \
+#	  treeview.o treeviewcolumn.o style.o viewport.o widget.o window.o windowgroup.o \
+#	  gtkermsg.o gtkutil.o #gtkbrowse.o
 
 GTK_EXTEXT_OBJ = #gtkextext.o extext.o
 
 ifdef GTK_24
-	GTK_24_SRC = action.c actiongroup.c celllayout.c colorbutton.c \
-	combobox.c \
-	entrycompletion.c filechooser.c fontbutton.c filefilter.c \
-	icontheme.c \
-	radioaction.c toggleaction.c toolbutton.c toolitem.c uimanager.c
+	GTK_24_SRC = 	action.c actiongroup.c celllayout.c colorbutton.c combobox.c 				\
+						entrycompletion.c filechooser.c fontbutton.c filefilter.c icontheme.c 	\
+						radioaction.c toggleaction.c toolbutton.c toolitem.c uimanager.c
 
-	GTK_24_OBJ = action.o actiongroup.o celllayout.o colorbutton.o \
-	combobox.o \
-	entrycompletion.o filechooser.o fontbutton.o filefilter.o \
-	icontheme.o \
-	radioaction.o toggleaction.o toolbutton.o toolitem.o uimanager.o
+	GTK_24_OBJ = $(subst .c,.o,$(GTK_24_SRC))
+#
+#action.o actiongroup.o celllayout.o colorbutton.o \
+#	combobox.o \
+#	entrycompletion.o filechooser.o fontbutton.o filefilter.o \
+#	icontheme.o \
+#	radioaction.o toggleaction.o toolbutton.o toolitem.o uimanager.o
 else
 	GTK_24_SRC =
 	GTK_24_OBJ =
 endif
 
 ifdef GTK_26
-	GTK_26_SRC = aboutdialog.c cellview.c filechooserbutton.c iconview.c \
-        menutoolbutton.c
+	GTK_26_SRC = 	aboutdialog.c cellview.c filechooserbutton.c iconview.c \
+        				menutoolbutton.c
 
-	GTK_26_OBJ = aboutdialog.o cellview.o filechooserbutton.o iconview.o \
-        menutoolbutton.o
+	GTK_26_OBJ =  $(subst .c,.o,$(GTK_26_SRC))
+#
+#	aboutdialog.o cellview.o filechooserbutton.o iconview.o \
+#        menutoolbutton.o
 else
 	GTK_26_SRC =
 	GTK_26_OBJ =
@@ -104,30 +109,23 @@ EXTOBJS =
 
 HASHSRCS = $(SRCS) $(HDRS)
 PROG = clip-gtk2
-#XLIB	= libclip-gtk2.a
-#XSLIB	= libclip-gtk2$(DLLSUFF)
-#XSLIBREAL = libclip-gtk2$(DLLREALSUFF)
-#XLIBOBJS= $(OBJS)
-
 SYS = $OSNAME
 SYSTEM_NAME = $(OSNAME)
-
 DEFS	=
-# -DVERSION=\"0.1\"
-# -DSYSTEM=\"$(SYSTEM_NAME)\"
-
+ADDLIBS = $(LIBS)
 C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) $(INCLUDEDIRS)
-#  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 
 CLIPFLAGS += -I. -I$(Clip_I_Dir)
 export CC CFLAGS
 export MEMDBG MEMDBGFLAGS
 
+################################################################################################################
+
 all: Makefile include/clip-gtkcfg2.h hash $(STARGET)
 
 cfg :
-	cp --remove-destination -fpu$(V) clip-gtk2.cliprc $(INSTDIR)/cliprc/
-	cp --remove-destination -fpu$(V) include/clip-gtk2.ch include/gtk2-stock.ch include/clip-gtk2.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) clip-gtk2.cliprc $(INSTDIR)/cliprc/
+	$(E_cp)cp --remove-destination -fpu$(V) include/clip-gtk2.ch include/gtk2-stock.ch include/clip-gtk2.h $(Clip_I_Dir)/
 
 d: set_dbg
 
@@ -135,42 +133,25 @@ set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
 include/clip-gtkcfg2.h : $(CONFIGURE_SH)
-	$(Trace)
-	$(CONFIGURE_SH)
+	$(E_e)$(Trace)
+	$(E_xx)$(CONFIGURE_SH)
 
 hash: include/_hashcode.h
 
 include/_hashcode.h: $(HASHSRCS)
-	$(Trace)
-	clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u >include/_hashcode.h
-	cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
-	cp -fp$(V)  include/hashcode.h include/_hashcode.h
-
-#$(XLIB): $(XLIBOBJS)
-#	rm -f $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
-#	ranlib $(XLIB)
-
-#$(XSLIB): $(XLIB)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
+	$(E_e)$(Trace)
+	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u >include/_hashcode.h
+	$(E_xx)cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
+	$(E_cp)cp -fp$(V)  include/hashcode.h include/_hashcode.h
 
 cleanc:
-	rm -rf$(V) *.b gtkermsg.c gtkutil.c Makefile.inc
-#gtkbrowse.c
+	$(E_rm)rm -rf$(V) *.b gtkermsg.c gtkutil.c Makefile.inc include/clip-gtkcfg2.h
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 
 install:all install-lib install-example
-#	$(CLIP_CP) $(XLIB) $(XSLIB) $(INSTDIR)/lib/
-#	chmod 0644  $(INSTDIR)/lib/$(XLIB)
-#	chmod 0755  $(INSTDIR)/lib/$(XSLIB)
-#	mkdir -p$(V) $(INSTDIR)/doc/example/clip-gtk2/
-#	cp -fu$(V) example/Makefile example/clip.xpm example/basket.bmp $(INSTDIR)/doc/example/clip-gtk2/
-#	cp -fu$(V) example/tbrow.xpm $(INSTDIR)/doc/example/clip-gtk2/
-#	cp -fu$(V) example/banner.gif $(INSTDIR)/doc/example/clip-gtk2/
-#	cp -fu$(V) example/*.prg  $(INSTDIR)/doc/example/clip-gtk2/
 
 include $(Makefile_o_in)
 

@@ -3,17 +3,14 @@
 #
 
 Local_Depend =
-#$(Clip_L_Dir)/libclip-gtk.so
-
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O -b -w -I ./include
-#CLIPLIBS  =
-#LIBS = ./libclip-codb$(DLLSUFF)
-#CLIPFLAGS += -p
 .SUFFIXES: .prg .o .po
 
-MODULES = 	$(sort attr.po class.po counter.po default.po deposit.po \
-				group.po index.po plugins.po report.po tcolumn.po tview.po user.po )
+MODULES = 	$(sort 	attr.po class.po counter.po default.po deposit.po 							\
+							group.po index.po plugins.po report.po tcolumn.po tview.po user.po )
+
+CLIPFLAGS += -I ../../../cliplibs/clip-gtk2/include
+
+################################################################################################################
 
 all : Makefile $(DIRS_TO_SCAN) $(MODULES)
 
@@ -25,11 +22,11 @@ update:
 	../_cvs update -dP
 
 cleanc : $(DIRS_TO_SCAN)
-	rm -rf$(V) *.c *.b $(MODULES)
-	rm -rf$(V) *.pro test test2
+	$(E_rm)rm -rf$(V) *.c *.b $(MODULES)
+	$(E_rm)rm -rf$(V) *.pro test test2
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 install : all
 

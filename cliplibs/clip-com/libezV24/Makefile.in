@@ -63,9 +63,11 @@ AR = ar
 RANLIB = ranlib
 
 DOC = manual.dxx doc++.conf api-h*
-CFLAGS = $(C_FLAG) $(C_DEFS)
+C_FLAGS += $(C_DEFS)
 
 DIRS_TO_SCAN =
+
+################################################################################################################
 
 all: Makefile $(OBJS) shared static
 
@@ -76,12 +78,12 @@ static:		$(LIBNAME)
 include $(Makefile_o_in)
 
 $(NAME):	$(OBJS) Makefile
-		gcc -shared -W1,soname,$(SONAME) -o $(NAME) $(OBJS)
-		ln -sf$(V) $@ $(PLAINNAME)
+		$(E_cc)gcc -shared -W1,soname,$(SONAME) -o $(NAME) $(OBJS)
+		$(E_ln)ln -sf$(V) $@ $(PLAINNAME)
 
 $(LIBNAME):	$(OBJS) Makefile
-		$(CLIP_MAKELIB) $(LIBNAME) $(OBJS)
-		ranlib $(LIBNAME)
+		$(E_c_mkl)$(CLIP_MAKELIB) $(LIBNAME) $(OBJS)
+		$(E_c_mkl)ranlib $(LIBNAME)
 
 
 ezV24.o:	ezV24.c ezV24.h ezV24_config.h snprintf.h Makefile
@@ -107,11 +109,11 @@ cfg :
 install : all install-doc
 
 cleanc :
-	rm -rf$(V) $(TARGET).* *.a *.so *.so.* *.exe
+	$(E_rm)rm -rf$(V) $(TARGET).* *.a *.so *.so.* *.exe
 #	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 

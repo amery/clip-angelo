@@ -13,38 +13,40 @@ POBJS  =
 
 .SUFFIXES: .prg .o .po
 
+################################################################################################################
+
 all:Makefile  ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
 
 cfg :
 
 cleanc:
-	rm -rf$(V) *.c *.b
-	rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.c *.b
+	$(E_rm)rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
 ctitest$(EXESUFF): ctitest.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swe ctitest.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
 
 ctifd$(EXESUFF): ctifd.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swe -M  ctifd.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
 
 ctit$(EXESUFF): ctit.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) -swe -M  ctit.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
 	$(CLIP) -o$@ -swe  ctit.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS) -lclip-fw
 
 browsecombo$(EXESUFF): browsecombo.prg $(OBJS) $(CLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swe browsecombo.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
 
 depend:
-	makedepend -w80 -- *.prg 2>/dev/null
+	$(E_xx)makedepend -w80 -- *.prg 2>/dev/null
 
 include $(Makefile_end_in)
 

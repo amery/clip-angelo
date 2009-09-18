@@ -16,6 +16,8 @@ CLIP_LOCALE_ROOT=.
 export CLIP_LOCALE_ROOT
 .SUFFIXES: .prg .o .po
 
+################################################################################################################
+
 all : menu$(EXESUFF) fw_menu$(EXESUFF) getfile$(EXESUFF) tb_test$(EXESUFF) big_num$(EXESUFF) multilang$(EXESUFF) pluralmsg$(EXESUFF)
 
 cfg :
@@ -25,47 +27,47 @@ install : all
 include $(Makefile_o_in)
 
 cleanc:
-	rm -rf$(V) *.c *.b
-	rm -rf$(V) locale.pot locale.mo
-	rm -f$(V) menu$(EXESUFF) getfile$(EXESUFF) big_num$(EXESUFF) tb_test$(EXESUFF) fw_menu$(EXESUFF) multilang$(EXESUFF) pluralmsg$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.c *.b
+	$(E_rm)rm -rf$(V) locale.pot locale.mo
+	$(E_rm)rm -f$(V) menu$(EXESUFF) getfile$(EXESUFF) big_num$(EXESUFF) tb_test$(EXESUFF) fw_menu$(EXESUFF) multilang$(EXESUFF) pluralmsg$(EXESUFF)
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 menu$(EXESUFF):	menu.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M menu.prg
 #	$(CLIPLIBS)
 
 fw_menu$(EXESUFF): fw_menu.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$$(E_e)(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M fw_menu.prg
 #	$(CLIPLIBS)
 
 getfile$(EXESUFF): getfile.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M getfile.prg
 #	$(CLIPLIBS)
 
 tb_test$(EXESUFF): tb_test.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M tb_test.prg
 #	$(CLIPLIBS)
 
 big_num$(EXESUFF): big_num.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M big_num.prg
 #	$(CLIPLIBS)
 
 multilang$(EXESUFF): multilang.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -M -E CLIP_MODULE="ml1" multilang.prg
 #	$(CLIPLIBS)
 	$(CLIP_MSGMERGE)
 	$(CLIP_MSGFMT)
 
 pluralmsg$(EXESUFF): pluralmsg.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -E CLIP_MODULE="ml2" pluralmsg.prg
 	$(CLIP) $(CLIPFLAGS) -e -M -E CLIP_MODULE="ml2" pluralmsg.prg
 #	$(CLIPLIBS)
@@ -73,19 +75,19 @@ pluralmsg$(EXESUFF): pluralmsg.prg Makefile $(CLIP) $(LIBCLIP)
 	$(CLIP_MSGFMT)
 
 mypsql$(EXESUFF): mypsql.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e mypsql.prg $(SQLLIB) $(PGLIBS)
 
 mymysql$(EXESUFF): mymysql.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e mymysql.prg $(SQLLIB) $(MSLIBS)
 
 mysqlplus$(EXESUFF): mysqlplus.prg Makefile $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e mysqlplus.prg $(SQLLIB) $(ORLIBS)
 
 #gui_test$(EXESUFF): gui_test.prg $(GUILIB) $(CLIP)
-#	$(Trace_clip)
+#	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLPFLAGS) -e -s -M gui_test.prg `gtk-config --libs` $(GUILIB) -lz
 
 include $(Makefile_end_in)

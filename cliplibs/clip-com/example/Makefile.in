@@ -6,18 +6,20 @@ Local_Depend =
 
 PRG=com
 
+################################################################################################################
+
 all: Makefile $(PRG)(EXESUFF)
 
 cfg :
 
 cleanc:
-	rm -f$(V) *.c *.b $(PRG) *.bz2
+	$(E_rm)rm -f$(V) *.c *.b $(PRG) *.bz2
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 $(PRG)(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -e -M $(PRG).prg -lclip-$(PRG)
 
 include $(Makefile_o_in)

@@ -20,27 +20,30 @@ export CLIP CLIPFLAGS
 export MEMDBG MEMDBGFLAGS Clip_I_Dir
 export CLIPROOT BINDIR
 
+################################################################################################################
+
 all: Makefile links $(DIRS_TO_SCAN) $(BINS) $(SCRIPTS)
 
 links:
 
 cfg :
-	[ -d charsets ] || ln -sf$(V) ../libclipscreen/install/charsets .
+	$(E_if)[ -d charsets ] \
+		|| ln -sf$(V) ../libclipscreen/install/charsets .
 
 FORCE :
 
 ../libclipmain/coll.o: ../libclipmain/coll.c Makefile
-	cd ../libclipmain 																					\
+	$(E_cd)cd ../libclipmain 																			\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )			\
 		&& $(MAKE) coll.o
 
 ../libclipmain/_win32.o: ../libclipmain/_win32.c Makefile
-	cd ../libclipmain 																					\
+	$(E_cd)cd ../libclipmain 																			\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )			\
 		&& $(MAKE) _win32.o
 
 ../libclipscreen/charset.o: ../libclipscreen/charset.c Makefile
-	cd ../libclipscreen  																			\
+	$(E_cd)cd ../libclipscreen  																		\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE) charset.o
 
@@ -66,7 +69,7 @@ lex.hash.o: lex.hash.c Makefile
 
 lex.hash.c: hasher.lex ../include.h/cliphash.h
 	$(Trace_flex)
-	flex -Phash hasher.lex
+	$(E_xx)flex -Phash hasher.lex
 
 clicutil.o: clicutil.c clic.tab.h Makefile
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\
@@ -78,10 +81,10 @@ clicutil.o: clicutil.c clic.tab.h Makefile
 	fi
 
 install : all
-	chmod 755 $(BINS) $(SCRIPTS)
-	cp --remove-destination -fpu$(V) $(BINS) $(SCRIPTS) $(Clip_B_Dir)/
+	$(E_xx)chmod 755 $(BINS) $(SCRIPTS)
+	$(E_cp)cp --remove-destination -fpu$(V) $(BINS) $(SCRIPTS) $(Clip_B_Dir)/
 #|| true
-	cd $(BINDIR) \
+	$(E_cd)cd $(BINDIR) \
 		&& ln -sf$(V) $(Clip_B_Dir)/*$(EXESUFF) $(Clip_B_Dir)/*$(SCRIPTSUFF) $(BINDIR)/
 
 clipar$(EXESUFF) :	clipar.o ../libclipmain/coll.o  Makefile #getopt.o
@@ -121,23 +124,23 @@ clip_trans$(EXESUFF) :  clip_trans.o Makefile
 	fi
 
 clip_msgmerge$(SCRIPTSUFF) : clip_msgmerge.ini Makefile
-	$(Trace)
-	./clip_msgmerge.in.sh
+	$(E_e)$(Trace)
+	$(E_xx)./clip_msgmerge.in.sh
 
 clip_makeslib$(SCRIPTSUFF) : clip_makeslib.ini Makefile
-	$(Trace)
-	./clip_makeslib.in.sh
+	$(E_e)$(Trace)
+	$(E_xx)./clip_makeslib.in.sh
 
 clip_cp$(SCRIPTSUFF) : clip_cp.ini Makefile
-	$(Trace)
-	./clip_cp.in.sh
+	$(E_e)$(Trace)
+	$(E_xx)./clip_cp.in.sh
 
 clip_makelib$(SCRIPTSUFF) : clip_makelib.ini Makefile
-	$(Trace)
-	./clip_makelib.in.sh
+	$(E_e)$(Trace)
+	$(E_xx)./clip_makelib.in.sh
 
 clip_msgfmt$(SCRIPTSUFF) : clip_msgfmt.ini Makefile
-	$(Trace)
+	$(E_e)$(Trace)
 	./clip_msgfmt.in.sh
 
 cliphash$(EXESUFF) : calchash.o clip_hash.o Makefile
@@ -204,61 +207,48 @@ po_compat$(EXESUFF): po_util.o po_compat.o Makefile
 	fi
 
 clip_bug$(SCRIPTSUFF) : Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) clip_bug $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) clip_bug $@
 
 joinlib$(SCRIPTSUFF) : inst_end Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) joinlib  $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) joinlib  $@
 
 inst_end$(SCRIPTSUFF) : inst_end  Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) inst_end  $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) inst_end  $@
 
 add_meta_tag$(SCRIPTSUFF) : add_meta_tag Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) add_meta_tag $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) add_meta_tag $@
 
 lowname$(SCRIPTSUFF) : lowname Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) lowname $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) lowname $@
 
 tconv$(SCRIPTSUFF) : tconv Makefile
-	$(Trace)
-	cp --remove-destination -f$(V) tconv $@
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) tconv $@
 
 cleanc :
-	rm -Rf$(V) bin
-	rm -f$(V) charsets
+	$(E_rm)rm -Rf$(V) bin
+	$(E_rm)rm -f$(V) charsets
 # || true
-	rm -f$(V) $(BINS) $(SCRIPTS) *.b 		\
-		test dtest locale.pot license.h 		\
-		Makefile.inc Makefile.tmp 				\
-		Makefile.incl
+	$(E_rm)rm -f$(V) 	$(BINS) $(SCRIPTS) *.b 					\
+							test dtest locale.pot license.h 		\
+							Makefile.inc Makefile.tmp 				\
+							Makefile.incl
 #  || true
-	rm -f$(V) clipcfg.sh clipcfg.h license.txt
+	$(E_rm)rm -f$(V) clipcfg.sh clipcfg.h license.txt
 # || true
 
 distcleanc: clean
-	rm -f$(V) *.g configure.flags
-	rm -f$(V) cliproot
+	$(E_rm)rm -f$(V) *.g configure.flags
+	$(E_rm)rm -f$(V) cliproot
 # || true
 
 depend:
 	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	./_cvs_commit
-
-update:
-	./_cvs_update
-
-ucommit:
-	./_cvs_commit
-	./_cvs_update
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

@@ -40,14 +40,14 @@ PLAINNAME = lib$(SOBASE).so
 PROJECTNAME = libezV24-$(VERSION).$(PATCHLEVEL)
 
 OBJS = ezV24.o snprintf.o
-LIBS = 
+LIBS =
 
 
 ifeq "${RELEASE}" "DEBUG"
 C_FLAG = -c -Wall -fPIC -D$(PLATFORM) $(INCDIR)
 C_DEFS = -DDEBUG -DBETA
 LFLAGS = $(LIBDIR)
-else 
+else
 ifeq "${RELEASE}" "BETA"
 C_FLAG = -c -Wall -fPIC -O2 -D$(PLATFORM) $(INCDIR)
 C_DEFS = -DBETA
@@ -117,17 +117,17 @@ install:
 		install -m 644 ezV24.h $(PREFIX)/include/$(SOBASE)/
 		install -m 644 -s $(LIBNAME) $(PREFIX)/lib/$(LIBNAME)
 		install -m 755 -s $(NAME) $(PREFIX)/lib/$(NAME)
-		rm -f $(PREFIX)/lib/$(SONAME) $(PREFIX)/lib/$(PLAINNAME)
+		$(E_rm)rm -f $(PREFIX)/lib/$(SONAME) $(PREFIX)/lib/$(PLAINNAME)
 		ln -s $(PREFIX)/lib/$(NAME) $(PREFIX)/lib/$(SONAME);\
 		ln -s $(PREFIX)/lib/$(SONAME) $(PREFIX)/lib/$(PLAINNAME);\
 		ldconfig
 
 uninstall:
-		rm -f $(PREFIX)/include/ezV24/*
-		rmdir $(PREFIX)/include/ezV24
-		rm -f $(PREFIX)/lib/$(LIBNAME)
-		rm -f $(PREFIX)/lib/$(NAME)
-		rm -f $(PREFIX)/lib/$(SONAME) $(PREFIX)/lib/$(PLAINNAME)
+		$(E_rm)rm -f $(PREFIX)/include/ezV24/*
+		$(E_rm)rmdir $(PREFIX)/include/ezV24
+		$(E_rm)rm -f $(PREFIX)/lib/$(LIBNAME)
+		$(E_rm)rm -f $(PREFIX)/lib/$(NAME)
+		$(E_rm)rm -f $(PREFIX)/lib/$(SONAME) $(PREFIX)/lib/$(PLAINNAME)
 		ldconfig
 
 
@@ -146,8 +146,8 @@ tarball:
 		cp doc++.conf manual.dxx $(PROJECTNAME)/
 		cp -r --parents api-html $(PROJECTNAME)/
 		tar cfz $(PROJECTNAME).tar.gz $(PROJECTNAME)
-		rm -fR $(PROJECTNAME)/*
-		rmdir $(PROJECTNAME)
+		$(E_rm)rm -fR $(PROJECTNAME)/*
+		$(E_rm)rmdir $(PROJECTNAME)
 
 # build the api reference
 #
@@ -168,13 +168,13 @@ test-v24:	test-v24.c ezV24.h
 # --------------------------------------------------------------------------
 
 clean:
-		rm -f *.o core
+		$(E_rm)rm -f *.o core
 
 clean-all:
-		rm -f *.o core $(NAME) $(LIBNAME)
-		rm -f $(PROJECTNAME).tar.gz
-		rm -f api-html/*
-		rmdir api-html
+		$(E_rm)rm -f *.o core $(NAME) $(LIBNAME)
+		$(E_rm)rm -f $(PROJECTNAME).tar.gz
+		$(E_rm)rm -f api-html/*
+		$(E_rm)rmdir api-html
 
 
 # --[end of file]-----------------------------------------------------------

@@ -3,30 +3,24 @@
 #
 Local_Depend = ../include/*.ch ../include.h/*.h
 
-#CFLAGS += -I.. -I../include -I../include.h
-#LIB = libcliprdd.a
 OBJS = $(sort rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o )
-#CPPFLAGS=
-#TARGET_ARCH=
 PROG = cliprdd
-#install all: Makefile $(LIB)
+
+################################################################################################################
+
 install all: Makefile $(ATARGET)
 
 cfg :
-	cp --remove-destination -fu$(V) btree.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fu$(V) btree.h $(Clip_I_Dir)/
 
 cleanc:
-	rm -f$(V) *.b *.tmp \
-	test_ref.c test.c test.log \
-	*.dbf *.ntx *.cdx *.dbt *.fpt \
-	$(ATARGET) test
+	$(E_rm)rm -f$(V) 	*.b *.tmp 								\
+							test_ref.c test.c test.log 		\
+							*.dbf *.ntx *.cdx *.dbt *.fpt 	\
+							$(ATARGET) test
 
 distcleanc :
-	rm -rf$(V) *.g
-
-#$(LIB): $(OBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS) && ranlib $(LIB)
+	$(E_rm)rm -rf$(V) *.g
 
 rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
 	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 	\

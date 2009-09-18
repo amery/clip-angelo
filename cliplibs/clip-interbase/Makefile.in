@@ -6,40 +6,30 @@
 Local_Depend = include/*.ch
 PROG = clip-interbase
 IBROOT=/opt/interbase
-
-#TARGET=libclip-interbase$(DLLSUFF)
-#RTARGET=libclip-interbase$(DLLREALSUFF)
 C_FLAGS += -I$(IBROOT)/include
 OBJS=ib_clip.o ib.o
 ADDLIBS= -lgds -L$(IBROOT)/lib -lcrypt $(C_LIBS)
 DOC = *.html
 
+################################################################################################################
+
 all: Makefile  have_lib $(STARGET)
-#all: $(OBJS)
 
 cfg :
-	cp --remove-destination -fpu$(V) include/interbase.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/interbase.ch $(Clip_I_Dir)/
 
 have_lib:
-	test -f $(IBROOT)/include/ibase.h -o -f /usr/include/ibase.h
-
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
+	$(E_if)test -f $(IBROOT)/include/ibase.h -o -f /usr/include/ibase.h
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
-#	mkdir -p$(V) $(DESTDIR)$(CLIPROOT)/doc/clip-interbase
-#	cp -fu$(V) *.html $(DESTDIR)$(CLIPROOT)/doc/clip-interbase
-#	mkdir -p$(V) $(DESTDIR)$(CLIPROOT)/doc/example/clip-interbase
-#	cp -Ruf$(V) example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-interbase/
 
 cleanc:
-	rm -rf$(V) ib.c $(TARGET).*
+	$(E_rm)rm -rf$(V) ib.c $(TARGET).*
 
 distcleanc :
-	rm -rf$(V) *.g
+	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
 
