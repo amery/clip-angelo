@@ -1295,7 +1295,6 @@ write_File(File * file)
 
 	fprintf(out, "};\n");
 
-	/* -g, or -b(1) or -debug=1*/
 	/*if (genDebug) */
 	{
 		char buf[256];
@@ -1303,7 +1302,6 @@ write_File(File * file)
 
 		init_Coll(&coll, free, strcmp);
 
-		fprintf(out,"/* debug mode *\\");
 		fprintf(out, "\nstatic ClipHashBucket _hash_buckets[%d]=\n{\n", file->names.count);
 		for (sum = 0, i = 0; i < file->names.count; ++i)
 		{

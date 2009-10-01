@@ -12,7 +12,9 @@ INST_STD_LIB=
 INST_XCLIP=
 CLIP_CLD=
 INST_MEMDEBUG_H=
+
 CLIPFLAGS	= -g -v2 -N#-O
+#CLIP	= clip$(EXESUFF)
 CVS_RSH = ./ssh.sh
 YACC = bison
 
@@ -21,11 +23,11 @@ export CLIP_NAMES EXESUFF SCRIPTSUFF
 .SUFFIXES: .prg .c .po
 .PHONY:	tests screen hash
 
-#SRCS	= coll.c list.c hash.c getopt.c getopt1.c clicutil.c \
-#	  clic.y clic.lex file.c node.c locale.c \
-#	  clip.c clicgt.c _win32.c
-#
-#OBJDIR	= .
+SRCS	= coll.c list.c hash.c getopt.c getopt1.c clicutil.c \
+	  clic.y clic.lex file.c node.c locale.c \
+	  clip.c clicgt.c _win32.c
+
+OBJDIR	= .
 LIBS	= -lm
 
 LIB	= libclip.a
@@ -37,54 +39,71 @@ EXTOBJS =
 RDDBASE = libcliprdd/libcliprdd.a
 CLASSLIB = libclipclasses/libclipclasses.a
 FUNCSLIB = libclipfunctions/libclipfunctions.a
+CODBLIB =
+#codb/libclip-codb.a codb/libcodb-query.a
 SCREEN = libclipscreen/libclipscreen.a
 TERMCAP =
 #screen/libtermcap.a
 SQL = libclipdbfsql/libclipdbfsql.a
+
 BASES =  $(RDDBASE) libclipmain/libclipmain.a
+
 ALIBS = $(BASES) $(SCREEN) $(TASK) $(TERMCAP) $(DBGLIB) $(CLASSLIB) $(FUNCSLIB)\
 	$(SQL)
 DIRS_TO_SCAN = libclipclasses libclipdbfsql libclipfunctions libclipmain libcliprdd libclipscreen libcliptask
+
 SYS = $OSNAME
+
 SYSTEM_NAME = $(OSNAME)
+
 DEFS	=
+
+#CFLAGS  = $(C_FLAGS) $(ADD_CFLAGS) -I. -I$(CLIPROOT)/include -I$(PWD)/include.h $(DEFS) $(MEMDBGFLAGS)
 
 export CC CFLAGS PO_BINS ICONV_LIB ADDLIBS
 export CLIP CLIPFLAGS
 export MEMDBG MEMDBGFLAGS
 export CLIPROOT BINDIR
 
-################################################################################################################
-
 all: Makefile links $(DIRS_TO_SCAN) $(LIB) $(SLIB)
 
 cfg :
-	$(E_if)[ -d compiler ] 				|| ln -sf$(V) ../compiler ./
-	$(E_if)[ -d libclipclasses ] 		|| ln -sf$(V) ../libclipclasses ./
-	$(E_if)[ -d libclipdbfsql ] 		|| ln -sf$(V) ../libclipdbfsql ./
-	$(E_if)[ -d libclipfunctions ] 	|| ln -sf$(V) ../libclipfunctions ./
-	$(E_if)[ -d libclipmain ] 			|| ln -sf$(V) ../libclipmain ./
-	$(E_if)[ -d libcliprdd ] 			|| ln -sf$(V) ../libcliprdd ./
-	$(E_if)[ -d libclipscreen ] 		|| ln -sf$(V) ../libclipscreen ./
-	$(E_if)[ -d libcliptask ] 			|| ln -sf$(V) ../libcliptask ./
-	$(E_if)[ -d charsets ] 				|| ln -sf$(V) ../libclipscreen/install/charsets .
+	$(E_ln)[ -d compiler ] 				\
+		|| ln -sf$(V) ../compiler ./
+	$(E_ln)[ -d libclipclasses ] 				\
+		|| ln -sf$(V) ../libclipclasses ./
+	$(E_ln)[ -d libclipdbfsql ] 				\
+		|| ln -sf$(V) ../libclipdbfsql ./
+	$(E_ln)[ -d libclipfunctions ] 				\
+		|| ln -sf$(V) ../libclipfunctions ./
+	$(E_ln)[ -d libclipmain ] 				\
+		|| ln -sf$(V) ../libclipmain ./
+	$(E_ln)[ -d libcliprdd ] 				\
+		|| ln -sf$(V) ../libcliprdd ./
+	$(E_ln)[ -d libclipscreen ] 				\
+		|| ln -sf$(V) ../libclipscreen ./
+	$(E_ln)[ -d libcliptask ] 					\
+		|| ln -sf$(V) ../libcliptask ./
+	$(E_ln)[ -d charsets ] 											\
+		|| ln -sf$(V) ../libclipscreen/install/charsets .
 
 links: cfg
 
 trans: clip_trans inst_dir inst_screen
 
 clip.1: clip.html
-	$(E_xx)htex -o man clip.html
+	htex -o man clip.html
 
 $(LIB): $(ALIBS) $(EXTOBJS) $(MLIB) Makefile $(CLIP)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $(LIB) $(SLIB) libclip.nm libclip.ex
-	$(E_c_mkl)joinlib$(SCRIPTSUFF) $(LIB) $(ALIBS) $(MLIB)
-	$(E_c_mkl)ranlib $(LIB)
+	$(E_mkl)joinlib$(SCRIPTSUFF) $(LIB) $(ALIBS) $(MLIB)
+	$(E_mkl)ranlib $(LIB)
 
-$(SLIB): $(LIB)  Makefile $(CLIP)
+$(SLIB): $(LIB)  Makefile $(CLIP)#test.o
 	$(E_e)$(Trace_lib)
-	$(E_c_mkSl)$(CLIP_MAKESLIB) $(SLIB) $(LIB)
+#	CLIPROOT=`pwd`
+	$(E_mkSl)$(CLIP_MAKESLIB) $(SLIB) $(LIB)
 
 cleanc :$(DIRS_TO_SCAN)
 	$(E_rm)rm -f$(V) charsets
@@ -93,15 +112,15 @@ cleanc :$(DIRS_TO_SCAN)
 
 distcleanc: clean
 	$(E_rm)rm -f$(V) configure.flags
-	$(E_rm)rm -f$(V) Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) \
-		clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) clip_cp$(SCRIPTSUFF) \
-		license.txt license.h
+	$(E_rm)rm -f$(V) 	Makefile Makefile.inc clipcfg.sh clipcfg.h clip_msgmerge$(SCRIPTSUFF) 			\
+							clip_msgfmt$(SCRIPTSUFF) clip_makeslib$(SCRIPTSUFF) clip_makelib$(SCRIPTSUFF) \
+							clip_cp$(SCRIPTSUFF) license.txt license.h
 	$(E_rm)rm -f$(V) cliproot
 	$(E_rm)rm -rf$(V) *.g
 
 cleantest:
 	$(E_rm)rm -f$(V) test dtest *.pa test.o dtest.o
-	cd tests && $(MAKE) clean
+	$(E_rm)cd tests && $(MAKE) clean
 
 pot:
 	mkdir -p locale.pot/clip
@@ -130,26 +149,47 @@ pot:
 
 install: all
 	$(E_cp)$(CLIP_CP) $(LIB) $(Clip_L_Dir)/
+#	cp --remove-destination -fpu$(V) $(SLIB) $(DESTDIR)/lib; chmod 0755 $(DESTDIR)/lib/$(SLIB)
+#	[ "$(SLIBREAL)" = "$(SLIB)" ] || cp --remove-destination -fpu$(V) $(SLIBREAL) $(DESTDIR)/lib
+# inst_dir inst_clip $(XINSTALL) inst_lib inst_codb \
+#	 inst_screen inst_ch inst_locale $(INST_STD_LIB) inst_doc \
+#	 inst_end $(INST_XCLIP) $(CLIP_CLD)
 
 inst_dir:
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)
-	$(E_mkD)mkdir -p$(V) $(BINDIR)
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/keymaps
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/include
-	$(E_mkD)[ ! -d libclipmemdebug ] || mkdir -p$(V) $(INSTDIR)/include/libclipmemdebug
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/bin
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/lib
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/etc
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/doc
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cliprc
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.pot
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.po
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.po/ru_RU.KOI8-R
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.mo
+	$(E_mkD)[ -d $(INSTDIR) ] 									\
+		|| mkdir -p$(V) $(INSTDIR)
+	$(E_mkD)[ -d $(BINDIR) ] 									\
+		|| mkdir -p$(V) $(BINDIR)
+	$(E_mkD)[ -d $(DESTDIR)/keymaps ] 						\
+		|| mkdir -p$(V) $(DESTDIR)/keymaps
+	$(E_mkD)[ -d $(DESTDIR)/include ] 						\
+		|| mkdir -p$(V) $(DESTDIR)/include
+	$(E_mkD)[ -d $(DESTDIR)/include/libclipmemdebug ] 	\
+		|| [ ! -d libclipmemdebug ] 							\
+		|| mkdir -p$(V) $(DESTDIR)/include/libclipmemdebug
+	$(E_mkD)[ -d $(DESTDIR)/bin ] 							\
+		|| mkdir -p$(V) $(DESTDIR)/bin
+	$(E_mkD)[ -d $(DESTDIR)/lib ] 							\
+		|| mkdir -p$(V) $(DESTDIR)/lib
+	$(E_mkD)[ -d $(DESTDIR)/etc ] 							\
+		|| mkdir -p$(V) $(DESTDIR)/etc
+	$(E_mkD)[ -d $(DESTDIR)/doc ] 							\
+		|| mkdir -p$(V) $(DESTDIR)/doc
+	$(E_mkD)[ -d $(DESTDIR)/cliprc ] 						\
+		|| mkdir -p$(V) $(DESTDIR)/cliprc
+	$(E_mkD)[ -d $(DESTDIR)/locale.pot ] 					\
+		|| mkdir -p$(V) $(DESTDIR)/locale.pot
+	$(E_mkD)[ -d $(DESTDIR)/locale.po ] 					\
+		|| mkdir -p$(V) $(DESTDIR)/locale.po
+	$(E_mkD)[ -d $(DESTDIR)/locale.po/ru_RU.KOI8-R ] 	\
+		|| mkdir -p$(V) $(DESTDIR)/locale.po/ru_RU.KOI8-R
+	$(E_mkD)[ -d $(DESTDIR)/locale.mo ] 					\
+		|| mkdir -p$(V) $(DESTDIR)/locale.mo
 
 inst_clip:
-	$(E_cd)cd $(Clip_B_Dir) && chmod 0755 $(BINS) $(SCRIPTS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
-	$(E_if)if [ "$(OSNAME)" = CYGWIN ] ; then echo "bash lowname %1 %2 %3 %4 %5 %6 %7 %8 %9" > $(Clip_B_Dir)/lowname.bat ; fi
+	$(E_cd)cd $(Clip_B_Dir) \
+		&& chmod 0755 $(BINS) $(SCRIPTS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
+	if [ "$(OSNAME)" = CYGWIN ] ; then echo "bash lowname %1 %2 %3 %4 %5 %6 %7 %8 %9" > $(Clip_B_Dir)/lowname.bat ; fi
 ifneq ($(BINDIR),$(Clip_B_Dir))
 	$(E_ln)ln -sf$(V) $(Clip_B_Dir)/clip$(EXESUFF) 					$(BINDIR)/
 	$(E_ln)ln -sf$(V) $(Clip_B_Dir)/clip_msgfmt$(SCRIPTSUFF) 		$(BINDIR)/
@@ -165,51 +205,51 @@ ifneq ($(BINDIR),$(Clip_B_Dir))
 	$(E_ln)ln -sf$(V) $(Clip_B_Dir)/clip_conv$(EXESUFF) 			$(BINDIR)/
 	$(E_ln)ln -sf$(V) $(Clip_B_Dir)/clip_hashextract$(EXESUFF) 	$(BINDIR)/
 endif
-	$(E_xx)touch $(INSTDIR)/cliprc/.notrm
+	$(E_xx)touch $(DESTDIR)/cliprc/.notrm
 
 inst_locale:
-	$(E_xx)tar cf - locale.po | (cd $(INSTDIR) && tar xf -)
-	$(E_rm)rm -rf$(V) `find $(INSTDIR)/locale.po -type d -name CVS -print`
+	$(E_xx)tar cf - locale.po | (cd $(DESTDIR) && tar xf -)
+	$(E_rm)rm -rf$(V) `find $(DESTDIR)/locale.po -type d -name CVS -print`
 	$(E_xx)CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
 
 
 inst_lib:
-	$(E_cp)clip_cp$(SCRIPTSUFF) $(LIB) $(INSTDIR)/lib
-	$(E_cp)cp -f$(V) $(SLIB) $(INSTDIR)/lib; chmod 0755 $(INSTDIR)/lib/$(SLIB)
-	$(E_cp)[ "$(SLIBREAL)" = "$(SLIB)" ] || cp -f$(V) $(SLIBREAL) $(INSTDIR)/lib
+	$(E_cp)clip_cp$(SCRIPTSUFF) $(LIB) $(DESTDIR)/lib
+	$(E_cp)cp -f$(V) $(SLIB) $(DESTDIR)/lib; chmod 0755 $(DESTDIR)/lib/$(SLIB)
+	$(E_cp)[ "$(SLIBREAL)" = "$(SLIB)" ] || cp -f$(V) $(SLIBREAL) $(DESTDIR)/lib
 
 inst_std_lib:
-	$(E_mkD)mkdir -p $(INSTDIR)$(STD_LIBDIR)
-	$(E_xx)ls $(INSTDIR)/lib/*$(DLLSUFF)
-	$(E_xx)for i in $(INSTDIR)/lib/*$(DLLSUFF); do ln -$(V)s $$i $(INSTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
-	$(E_xx)for i in $(INSTDIR)/lib/*$(DLLREALSUFF); do ln -$(V)s $$i $(INSTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
-	$(E_xx)for i in $(INSTDIR)/lib/*.a; do ln -$(V)s $$i $(INSTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+	$(E_mkD)mkdir -p $(DESTDIR)$(STD_LIBDIR)
+	$(E_xx)ls $(DESTDIR)/lib/*$(DLLSUFF)
+	$(E_ln)for i in $(DESTDIR)/lib/*$(DLLSUFF); do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+	$(E_ln)for i in $(DESTDIR)/lib/*$(DLLREALSUFF); do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
+	$(E_ln)for i in $(DESTDIR)/lib/*.a; do ln -$(V)s $$i $(DESTDIR)$(STD_LIBDIR) 2>/dev/null || true; done
 
 inst_screen:
-	$(E_cd)cd libclipscreen/install 								\
+	$(E_xx)cd libclipscreen/install 								\
 		&& tar cf - `find . -type f -print |grep -v CVS` 	\
-		| (cd $(INSTDIR)$ && tar xf -)
+		| (cd $(DESTDIR)$ && tar xf -)
 
 inst_codb:
 
 inst_ch: $(INST_MEMDEBUG_H)
 	$(E_xx)tar c$(V)f - include.h/clip.h include.h/_win32.h include.h/hash.h Makefile.tdoc libclipscreen/charset.h \
-		| (cd $(INSTDIR)/include && tar x$(V)f -)
-	$(E_cd)cd libcliprdd && tar cf - btree.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_cd)cd libclipdbfsql && tar cf - *.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_cd)cd libcliptask && tar cf - *.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_cd)cd include && tar cf - * | (cd $(INSTDIR)/include && tar xf -)
+		| (cd $(DESTDIR)/include && tar x$(V)f -)
+	$(E_xx)cd libcliprdd && tar cf - btree.h | (cd $(DESTDIR)/include && tar xf -)
+	$(E_xx)cd libclipdbfsql && tar cf - *.h | (cd $(DESTDIR)/include && tar xf -)
+	$(E_xx)cd libcliptask && tar cf - *.h | (cd $(DESTDIR)/include && tar xf -)
+	$(E_xx)cd include && tar cf - * | (cd $(DESTDIR)/include && tar xf -)
 
 inst_memdebug_h:
 	$(E_xx)tar cf - memdebug/malloc.h memdebug/malloc_str.h \
-		| (cd $(INSTDIR)/include && tar xf -)
+		| (cd $(DESTDIR)/include && tar xf -)
 
 inst_doc:
 
 inst_xclip:
 
 inst_end:
-	$(E_xx)inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
+	$(E_xx)inst_end$(SCRIPTSUFF) $(DESTDIR) $(BINDIR)
 
 depend:
 	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null
@@ -230,4 +270,6 @@ shell:
 include $(Makefile_end_in)
 
 # DO NOT DELETE
+
+
 

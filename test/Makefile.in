@@ -1,0 +1,46 @@
+##
+##										clip/Makefile.in
+##
+# main parts
+#
+#
+Local_Depend =
+################################################################################################################
+
+all: Makefile test$(EXESUFF)
+
+cleanc :$(DIRS_TO_SCAN)
+	$(E_rm)rm -f$(V) *.ex *.nm charsets *.c *.log
+	$(E_rm)rm -Rf$(V) bin test$(EXESUFF)
+
+distcleanc: clean
+
+cfg :
+include $(Makefile_o_in)
+install: all
+
+test$(EXESUFF) : test.prg Makefile
+	$(E_e)$(Trace_clip)
+	$(E_clip)$(CLIP) $(CLIPFLAGS) -es -o $@ $<
+# $(LIBCLIP)
+	./$@
+	$(E_xx)banner Clip 		>&0
+	$(E_xx)banner compiler 	>&0
+	$(E_xx)banner and 			>&0
+	$(E_xx)banner standard 	>&0
+	$(E_xx)banner library 	>&0
+	$(E_xx)banner are OK 		>&0
+	$(E_xx)banner Clip 		>&1
+	$(E_xx)banner compiler 	>&1
+	$(E_xx)banner and 			>&1
+	$(E_xx)banner standard 	>&1
+	$(E_xx)banner library 	>&1
+	$(E_xx)banner are OK 		>&1
+	$(E_xx)banner Clip 		>&2
+	$(E_xx)banner compiler 	>&2
+	$(E_xx)banner and 			>&2
+	$(E_xx)banner standard 	>&2
+	$(E_xx)banner library 	>&2
+	$(E_xx)banner are OK 		>&2
+
+include $(Makefile_end_in)

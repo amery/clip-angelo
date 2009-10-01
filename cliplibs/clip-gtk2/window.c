@@ -229,6 +229,26 @@ err:
 	return 1;
 }
 
+/* Sets resize policy */
+int
+clip_GTK_WINDOWSETPOLICY(ClipMachine * cm)
+{
+	C_widget *cwin = _fetch_cw_arg(cm);
+	gboolean AutoShrink = FALSE, AllowShrink = TRUE, AllowGrow = TRUE;
+	CHECKOPT(2,LOGICAL_t);
+	CHECKOPT(3,LOGICAL_t);
+	CHECKOPT(4,LOGICAL_t);
+	CHECKCWID(cwin,GTK_IS_WINDOW);
+	if (_clip_parinfo(cm,2)==LOGICAL_t) AutoShrink  = _clip_parl(cm,2);
+	if (_clip_parinfo(cm,3)==LOGICAL_t) AllowGrow   = _clip_parl(cm,3);
+	if (_clip_parinfo(cm,4)==LOGICAL_t) AllowShrink = _clip_parl(cm,4);
+	gtk_window_set_policy(GTK_WINDOW(cwin->widget),
+		AllowShrink,AllowGrow,AutoShrink);
+	return 0;
+err:
+	return 1;
+}
+
 /* Raise window */
 int
 clip_GTK_WINDOWRAISE(ClipMachine * cm)

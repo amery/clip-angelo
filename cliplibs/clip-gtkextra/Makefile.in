@@ -6,6 +6,10 @@
 #
 
 Local_Depend = include/*.ch include/*.h
+#export CC
+#DBGFLAGS	= -g #-DMEMDBG
+#WARNFLAGS	= -Wimplicit -Wall
+
 .SUFFIXES: .prg .c .po
 .PHONY:	tests screen hash
 
@@ -21,15 +25,25 @@ EXTOBJS =
 
 HASHSRCS = $(SRCS) $(HDRS)
 PROG = clip-gtkextra
+#XLIB	= libclip-gtkextra.a
+#XSLIB	= libclip-gtkextra$(DLLSUFF)
+#XSLIBREAL = libclip-gtkextra$(DLLREALSUFF)
+#XLIBOBJS= $(OBJS)
+
 SYS = $OSNAME
 SYSTEM_NAME = $(OSNAME)
+
 DEFS	=
+# -DVERSION=\"0.1\"
+# -DSYSTEM=\"$(SYSTEM_NAME)\"
+
 CC = $(COMPILER)
 C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
+#  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
+
 export CC CFLAGS
 export MEMDBG MEMDBGFLAGS
-
-################################################################################################################
+ADDLIBS =
 
 all: Makefile include/clip-gtkextracfg.h hash $(STARGET)
 
@@ -49,23 +63,40 @@ hash: include/_hashcode.h
 
 include/_hashcode.h: $(HASHSRCS)
 	$(E_e)$(Trace)
-	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
-	$(E_xx)cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
+	$(E_if)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
+	$(E_if)cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
 	$(E_cp)cp -fp$(V)  include/hashcode.h include/_hashcode.h
 
+#$(XLIB): $(XLIBOBJS)
+#	rm -f $(XLIB)
+#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
+#	ranlib $(XLIB)
+
+#$(XSLIB): $(XLIB)
+#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
+
 test: install
-	cd example && $(MAKE)
+	$(E_cd)cd example && $(MAKE)
 
 cleanc:
-	$(E_rm)rm -rf$(V) *.b $(TARGET).* Makefile.inc include/clip-gtkextracfg.h
+	$(E_rm)rm -rf$(V) *.b $(TARGET).* Makefile.inc
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 
 install: all install-lib install-example
+#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib
+#	chmod 0644  $(DESTDIR)/lib/$(XLIB)
+#	chmod 0755  $(DESTDIR)/lib/$(XSLIB)
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-gtkextra
+#	cp -fu$(V) example/*.prg example/Makefile example/*.ch $(DESTDIR)/doc/example/clip-gtkextra
 
 include $(Makefile_o_in)
+
+#.c.o:
+#	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
+#	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
 
 depend:
 	$(MAKE) hash

@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=com
 
-################################################################################################################
+all: Makefile $(PRG)$(EXESUFF)
 
-all: Makefile $(PRG)(EXESUFF)
+install : all
 
 cfg :
 
@@ -18,9 +18,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -e -M $(PRG).prg -lclip-$(PRG)
+	$(CLIP) -o$@ -ewNsl -M $(PRG).prg -lclip-$(PRG)
 
 include $(Makefile_o_in)
 

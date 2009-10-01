@@ -3,9 +3,8 @@
 #
 Local_Depend =
 
-################################################################################################################
-
 install all :
+	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/
 
 cfg:
 	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/

@@ -431,6 +431,26 @@ clip_GTK_WIDGETGETTYPENAME(ClipMachine *cm)
 	return 0;
 }
 
+/* Sets a size of the widget */
+int
+clip_GTK_WIDGETSETSIZE(ClipMachine * cm)
+{
+	C_widget *cwid = _fetch_cw_arg(cm);
+	gint     width = _clip_parni(cm, 2);
+	gint    height = _clip_parni(cm, 3);
+
+	CHECKOPT(2, NUMERIC_t);
+	CHECKOPT(3, NUMERIC_t);
+	CHECKCWID(cwid,GTK_IS_WIDGET);
+	if (_clip_parinfo(cm, 2) == NUMERIC_t)
+		gtk_widget_set(cwid->widget,"width",width,NULL);
+	if (_clip_parinfo(cm, 3) == NUMERIC_t)
+		gtk_widget_set(cwid->widget,"height",height,NULL);
+	return 0;
+err:
+	return 1;
+}
+
 /* Checks if an object is a widget */
 int
 clip_GTK_ISWIDGET(ClipMachine *cm)

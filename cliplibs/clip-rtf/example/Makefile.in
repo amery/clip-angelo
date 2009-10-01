@@ -2,22 +2,26 @@
 #                                            clip-rtf/example/Makefile.in
 #
 
+#INCLUDEDIRS=-I. -I$(CLIPROOT)/include
 Local_Depend =
+#$(Clip_L_Dir)/libclip-rtf.so
 
+#CLIPFLAGS = -l -n -w
 CLIPLIBS  =
 BINS = rtfdemo$(EXESUFF)
 
 .SUFFIXES: .prg .o .po
 
-################################################################################################################
-
 all: Makefile $(BINS)
+
+install : all
 
 cfg :
 
 rtfdemo$(EXESUFF) : rtfdemo.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@-e -s -l -M rtfdemo.prg -lclip-rtf
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewslM rtfdemo.prg -lclip-rtf
+
 
 cleanc:
 	$(E_rm)rm -f$(V) *.c *.rtf $(BINS)

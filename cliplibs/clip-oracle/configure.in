@@ -1,19 +1,19 @@
 #!/bin/sh -u
 
-OR_INC=$(Check_Include 		occi.h 					xyz 	clip-oracle 	yes 	/usr/include/oracle/*/client$C64/  			"oracle-instantclient-basic-xx-$ARCH.(deb/rpm)" \
+OR_INC=$(Check_Include 		occi.h 		xyz 	clip-oracle 	yes 	/usr/include/oracle/*/client$C64/  			"oracle-instantclient-basic-xx-$ARCH.(deb/rpm)" 			\
 																																				"oracle-instantclient-devel-xx-$ARCH.(deb/rpm)" 			\
 																																				"can be downloaded at" 												\
 																																				"http://www.oracle.com/ instantclient"	)
-Check_Include 		oci.h 					xyz 	clip				Yes 	/usr/lib/*/client$C64/ 							"libpng-static-devel-xx-$ARCH.(rpm/deb)"
 
-OR_LIB=$(Check_Library 		clntsh 				.so 	clip-oracle		yes 	/usr/lib/oracle/*/client$C64/  	"oracle-instantclient-basic-xx-$ARCH.(deb/rpm)" \
-																																"oracle-instantclient-devel-xx-$ARCH.(deb/rpm)" 			\
-																																"can be downloaded at" 												\
-																																"http://www.oracle.com/ instantclient")
+#Check_Include 		oci.h 					xyz 	clip				Yes 	/usr/include/oracle/*/client$C64/ 			"libpng-static-devel-xx-$ARCH.(rpm/deb)"
+
+OR_LIB=$(Check_Library 		clntsh 		.so 	clip-oracle		yes 	/usr/lib/oracle/*/client$C64/  	"oracle-instantclient-basic-xx-$ARCH.(deb/rpm)" 			\
+																																	"oracle-instantclient-devel-xx-$ARCH.(deb/rpm)" 			\
+																																	"can be downloaded at" 												\
+																																	"http://www.oracle.com/ instantclient")
 
 echo "OR_INC = $OR_INC" 	>>Makefile.ini
 echo "OR_INC = $OR_INC" 	>>Makefile.ini
 echo "OR_LIB = $OR_LIB" 	>>Makefile.ini
 echo "OR_LIB = $OR_LIB" 	>>Makefile.ini
 
-cat Makefile.ini Makefile.in >Makefile

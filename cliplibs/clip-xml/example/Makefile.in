@@ -6,19 +6,24 @@
 # Web: http://eas.lrn.ru
 # Copyright (C) 2006, ITK
 # Web: http://www.itk.ru
-
+#CLIPINCLUDE = -I$(CLIPROOT)/include
+#C_FLAGS=-g
 Local_Depend =
+# $(Clip_L_Dir)/libclip-xml.so
 
 .SUFFIXES: .prg .o .po
 .PHONY: all clean
 
+# Widget tests
 ADDLIBS=-lclip-xml
+
 PROGS=test_xml$(EXESUFF) test$(EXESUFF)
+
 EXTRALIBS=
 
-################################################################################################################
-
 all: Makefile $(PROGS)
+
+install : all
 
 cfg :
 
@@ -35,7 +40,7 @@ test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP)
 
 test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
 	$(Trace_clip)
-	$(CLIP) -o$@ -esg test.prg $(ADDLIBS)
+	$(CLIP) -o$@ -eswlg test.prg $(ADDLIBS)
 
 include $(Makefile_o_in)
 

@@ -9,12 +9,14 @@ PROG = clip-oracle
 OBJS=or_clip.o or.o
 #ADDLIBS = -L$(OR_LIB) -lclntsh
 C_FLAGS += -I$(OR_INC)
+ADDLIBS =
+ADDLIBS2 =
 
 DOC = *.html
 
 ################################################################################################################
 
-all: Makefile  have_lib	$(STARGET)
+all: Makefile  have_lib $(OBJS) $(STARGET)
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/oracle.ch $(Clip_I_Dir)/
@@ -24,7 +26,7 @@ have_lib:
 
 include $(Makefile_o_in)
 
-install:all install-lib install-example install-doc
+install : all install-lib install-example install-doc
 
 cleanc:
 	$(E_rm)rm -rf$(V) or.c $(TARGET).*

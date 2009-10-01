@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash -ux
 ##
 ## 															config dir
 ##
@@ -36,7 +36,7 @@ Check_Bin 	bison 			xyz 	all 			Yes 	/usr/bin 			"bison-xx-$ARCH.(rpm/deb)"
 Check_Bin 	cvs 				xyz 	all 			Yes 	/usr/bin 			"cvs-xx-$ARCH.(rpm/deb)"
 Check_Bin 	flex 				xyz 	all 			Yes 	/usr/bin 			"flex-xx-$ARCH.(rpm/deb)"
 Check_Bin 	gcc 				xyz 	all 			Yes 	/usr/bin 			"gcc-xx-$ARCH.(rpm/deb)"
-Check_Bin 	beep 				xyz 	all 			Yes 	/usr/bin 			"beep-xx-$ARCH.(rpm/deb)"
+#Check_Bin 	beep 				xyz 	all 			Yes 	/usr/bin 			"beep-xx-$ARCH.(rpm/deb)"
 #Check_Bin 	imake 			xyz 	clip 			Yes 	/usr/bin 			"imake-xx-$ARCH.(rpm/deb)"
 Check_Bin 	ld 				xyz 	all 			Yes 	/usr/bin 			"binutils-xx-$ARCH.(rpm/deb)"
 Check_Bin 	make 				xyz 	all 			Yes 	/usr/bin 			"make-xx-$ARCH.(rpm/deb)"

@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=crypto$(EXESUFF)
 
-################################################################################################################
-
 all: Makefile $(PRG)
+
+install : all
 
 cfg :
 
@@ -19,8 +19,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -e -s -l -M crypto.prg -lclip-crypto
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewN -s -l -M crypto.prg -lclip-crypto
 
 include $(Makefile_o_in)
 

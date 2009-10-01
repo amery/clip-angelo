@@ -3,32 +3,33 @@
 #
 Local_Depend = include/*.ch
 PROG = clip-nanfor
-OBJS  = $(sort aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o 		\
-					acctyear.o adessort.o aemaxlen.o aeminlen.o amedian.o 			\
-					ach2tb.o 																		\
-					anomatch.o any2any.o aredit.o asum.o at2.o bitclr.o bitset.o 	\
-					blink.o byt2bit.o byt2hex.o byteand.o byteneg.o bytenot.o 		\
-					byteor.o bytexor.o calendar.o cntryset.o d2e.o 						\
-					datecnfg.o dayofyr.o daytobow.o dectobin.o diskfunc.o 			\
-					dispmsg.o e2d.o easter.o elapmil.o elapsed.o 						\
-					eltime.o findith.o firstday.o gcd.o hex2dec.o 						\
-					invclr.o isbit.o isbiton.o lastday.o linked.o 						\
-					madd.o menu1.o metaph.o miltime.o min2dhm.o month.o 				\
-					netpv.o nooccur.o ntow.o 													\
-					nwuid.o pchr.o pegs.o pending.o pickday.o popadder.o 				\
-					prtesc.o pvid.o qtr.o rand1.o restsets.o round.o 					\
-					savearr.o savesets.o scregion.o setdate.o settime.o 				\
-					sinkey.o sleep.o sqzn.o sysmem.o tbwhile.o tempfile.o 			\
-					vertmenu.o wda.o week.o workdays.o woy.o 								\
-					xbox.o year.o 																	\
-					dosver.o floptst.o isshare.o mouse1.o nwlstat.o nwsem.o 			\
-					page.o scancode.o  vidcur.o  vidmode.o 								\
-					clrsel.o menuto.o ftext.o )
-# dfile.o
-
+#TARGET=libclip-nanfor$(DLLSUFF)
+#RTARGET=libclip-nanfor$(DLLREALSUFF)
+#LIBS=libclip-nanfor.a
+OBJS  = $(sort 	aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o 		\
+						acctyear.o adessort.o aemaxlen.o aeminlen.o amedian.o 			\
+						anomatch.o any2any.o aredit.o asum.o at2.o bitclr.o bitset.o 	\
+						blink.o byt2bit.o byt2hex.o byteand.o byteneg.o bytenot.o 		\
+						byteor.o bytexor.o calendar.o cntryset.o d2e.o 						\
+						datecnfg.o dayofyr.o daytobow.o dectobin.o 							\
+						dispmsg.o e2d.o easter.o elapmil.o elapsed.o 						\
+						eltime.o findith.o firstday.o gcd.o hex2dec.o 						\
+						invclr.o isbit.o isbiton.o lastday.o linked.o 						\
+						madd.o menu1.o metaph.o miltime.o min2dhm.o month.o 				\
+						netpv.o nooccur.o ntow.o 													\
+						pchr.o pegs.o pending.o pickday.o popadder.o 						\
+						prtesc.o pvid.o qtr.o rand1.o restsets.o round.o 					\
+						savearr.o savesets.o scregion.o 											\
+						sinkey.o sleep.o sqzn.o tbwhile.o 										\
+						vertmenu.o wda.o week.o workdays.o woy.o 								\
+						xbox.o year.o nwsem.o 														\
+						clrsel.o menuto.o ftext.o )
+# dfile.o dosver.o nwlstat.o nwuid.o diskfunc.o floptst.o isshare.o mouse1.o
+# page.o scancode.o setdate.o settime.o sysmem.o tempfile.o vidcur.o
+#						vidmode.o \
+#						ach2tb.o \
 DOC = doc/*
-
-################################################################################################################
+ADDLIBS =
 
 all :Makefile $(DIRS_TO_SCAN) $(STARGET)
 
@@ -36,13 +37,20 @@ cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/$(PROG)
 
+#$(TARGET) : $(DIRS_TO_SCAN)
+#	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
+
 cleanc :
 	$(E_rm)rm -f$(V) $(TARGET).* *.c
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-install : all install-lib install-doc
+install : all install-lib
+#install-doc
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
+#	$(CLIP_CP) $(LIBS) $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/clip-oasis/nanfor
 
 include $(Makefile_o_in)
 

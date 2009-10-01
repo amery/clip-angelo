@@ -7,7 +7,9 @@ LOCAL passwd    // -p
 LOCAL db        // -d
 LOCAL port      // -P
 LOCAL cs := NIL // -c
-
+Local tmp
+Local trpars
+MemVar E
 ErrorBlock({|e| SQLError(e)})
 
 DO WHILE param(I) != NIL

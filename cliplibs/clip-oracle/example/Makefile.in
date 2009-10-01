@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=my_sqlplus$(EXESUFF)
 
-################################################################################################################
-
 all:Makefile  $(PRG)
+
+install : all
 
 cfg :
 
@@ -19,8 +19,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_sqlplus$(EXESUFF): my_sqlplus.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eMs my_sqlplus.prg -lclip-oracle
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewMs my_sqlplus.prg -lclip-oracle
 
 include $(Makefile_o_in)
 

@@ -5,10 +5,10 @@
 ##
 Local_Depend =
 
-PROGS=hello test_dbf pg task task_msg mouse testlock reclock inkey \
-	tcpserv tcpclient
-
-################################################################################################################
+PROGS=	$(sort 	hello$(EXESUFF) test_dbf$(EXESUFF) pg$(EXESUFF) task$(EXESUFF) \
+						task_msg$(EXESUFF) mouse$(EXESUFF) testlock$(EXESUFF) reclock$(EXESUFF) inkey$(EXESUFF) \
+						tcpserv$(EXESUFF) tcpclient$(EXESUFF) \
+			)
 
 all: $(PROGS)
 
@@ -22,8 +22,8 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-install:
-	$(E_if)[ -d $(Clip_D_Dir)/example/ ] || mkdir -p$(V) $(Clip_D_Dir)/example/
+install: all
+	$(E_mkD)[ -d $(Clip_D_Dir)/example/ ] || mkdir -p$(V) $(Clip_D_Dir)/example/
 	$(E_cp)cp --remove-destination -Rfpu$(V) * $(Clip_D_Dir)/example/
 
 strip:
@@ -34,11 +34,11 @@ test.dbf: test.dbf.orig
 
 hello$(EXESUFF): hello.prg test.dbf $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM hello.prg
+	$(CLIP) -o$@ -eslwM hello.prg
 
 test_dbf$(EXESUFF): test_dbf.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM test_dbf.prg
+	$(CLIP) -o$@ -eslwM test_dbf.prg
 
 pg$(EXESUFF): pg.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
@@ -46,34 +46,34 @@ pg$(EXESUFF): pg.prg $(CLIP) $(LIBCLIP)
 
 task$(EXESUFF): task.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM task.prg
+	$(CLIP) -o$@ -eswlM task.prg
 
 task_msg$(EXESUFF): task_msg.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM task_msg.prg
+	$(CLIP) -o$@ -eslwM task_msg.prg
 
 mouse$(EXESUFF): mouse.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM mouse.prg
+	$(CLIP) -o$@ -eswlM mouse.prg
 
 testlock$(EXESUFF): testlock.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM testlock.prg
+	$(CLIP) -o$@ -eswlM testlock.prg
 
 reclock$(EXESUFF): reclock.prg test.dbf $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM reclock.prg
+	$(CLIP) -o$@ -eslwM reclock.prg
 
 inkey$(EXESUFF): inkey.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eslM inkey.prg
+	$(CLIP) -o$@ -eslwM inkey.prg
 
 tcpserv$(EXESUFF): tcpserv.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -esl tcpserv.prg
+	$(CLIP) -o$@ -eswl tcpserv.prg
 
 tcpclient$(EXESUFF): tcpclient.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -esl tcpclient.prg
+	$(CLIP) -eswl tcpclient.prg
 
 include $(Makefile_end_in)

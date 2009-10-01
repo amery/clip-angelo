@@ -170,7 +170,7 @@ local urn, sprname:="", values := "", attr := "", atom:=""
 	endif
 
 	//asort(aRefs,,,{|x,y| x[3] <= y[3] })
-	cgi_checkTreeArefs(arefs,oDep)
+//	cgi_checkTreeArefs(arefs,oDep)
 
 	if atom .and. "UNIQUE_KEY" $ classDesc .and. !empty(classDesc:unique_key)
 		j:= classDesc:unique_key

@@ -3,6 +3,9 @@
 #
 Local_Depend =
 
+
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -o$@ -v2 -l -w -O -n -I .. -I $(CLIPROOT)/include
 CLIPLIBS  =
 
 LIBS  =
@@ -10,28 +13,26 @@ OBJS  =
 
 .SUFFIXES: .prg .o
 
-################################################################################################################
-
 all : Makefile ftosgml$(EXESUFF) ctosgml$(EXESUFF)
 
 cfg :
 
 ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o$@ -e $< ;					\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
 ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o$@ -e $< ;					\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
 include $(Makefile_o_in)

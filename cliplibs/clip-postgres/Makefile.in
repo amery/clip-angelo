@@ -14,8 +14,7 @@ OBJS=pg_clip.o pg.o
 CLIPFLAGS += -I@PGINCDIR@
 export CFLAGS
 DOC = *.html
-################################################################################################################
-
+ADDLIBS =
 all: Makefile  have_lib $(STARGET)
 
 cfg :

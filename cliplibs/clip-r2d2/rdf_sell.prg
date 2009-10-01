@@ -384,7 +384,7 @@ static function print_sell(urn,doc_id,oDep,columns)
 	endif
 
 	//asort(aRefs,,,{|x,y| x[3] <= y[3] })
-	cgi_checkTreeArefs(arefs,oDep)
+//	cgi_checkTreeArefs(arefs,oDep)
 	cgi_fillTreeRdf(aRefs,aTree,"",1)
 
 

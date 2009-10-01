@@ -2,26 +2,25 @@
 #                                            clip-cti/example/Makefile.in
 #
 Local_Depend =
-#$(Clip_L_Dir)/libclip-cti.so
-Local_Depend +=
-# $(Clip_L_Dir)/libclip-fw.so
-
-CLIPFLAGS += -n
+Depend_on = $(Clip_L_Dir)/libclip-cti.so
+Depend_on += $(Clip_L_Dir)/libclip-fw.so
+INCDIR = -I$(Clip_M_Dir)/cliplibs/clip-cti/include
+#CLIPFLAGS += -n
 OBJS  =
 ADD_OBJS =
 POBJS  =
 
 .SUFFIXES: .prg .o .po
 
-################################################################################################################
+all:Makefile  $(sort ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF) )
 
-all:Makefile  ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
+install : all
 
 cfg :
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF)
+	$(E_rm)rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF) ctit$(EXESUFF)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
@@ -30,23 +29,23 @@ include $(Makefile_o_in)
 
 ctitest$(EXESUFF): ctitest.prg $(OBJS) $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe ctitest.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
+	$(CLIP) -o$@ -swe $(INCDIR) ctitest.prg $(OBJS) $(ADD_OBJS)
 
 ctifd$(EXESUFF): ctifd.prg $(OBJS) $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe -M  ctifd.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
+	$(CLIP) -o$@ -swe $(INCDIR) -M  ctifd.prg $(OBJS) $(ADD_OBJS)
 
 ctit$(EXESUFF): ctit.prg $(OBJS) $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-#	$(CLIP) -swe -M  ctit.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
-	$(CLIP) -o$@ -swe  ctit.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS) -lclip-fw
+#	$(CLIP) -swe -M  ctit.prg $(OBJS) $(ADD_OBJS)
+	$(CLIP) -o$@ $(INCDIR) -swe  ctit.prg $(OBJS) $(ADD_OBJS) -lclip-fw
 
 browsecombo$(EXESUFF): browsecombo.prg $(OBJS) $(CLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe browsecombo.prg $(OBJS) $(ADD_OBJS) $(CLIPLIBS)
+	$(CLIP) -o$@ $(INCDIR) -swe browsecombo.prg $(OBJS) $(ADD_OBJS)
 
 depend:
-	$(E_xx)makedepend -w80 -- *.prg 2>/dev/null
+	makedepend -w80 -- *.prg 2>/dev/null
 
 include $(Makefile_end_in)
 

@@ -208,7 +208,7 @@ function ft_nwSemOpen( cName, nInitVal, nHandle, nOpenCnt )
   aRegs[ DX ]      := REG_DS
   aRegs[ CX ]      := nInitVal
 
-  ft_int86( INT21, aRegs )
+*  ft__int86( INT21, aRegs )
 
   nHandle  := bin2l( i2bin( aRegs[CX] ) + i2bin( aRegs[DX] ) )
   nOpenCnt := lowbyte( aRegs[ BX ] )
@@ -285,7 +285,7 @@ function ft_nwSemEx( nHandle, nValue, nOpenCnt )
   aRegs[ CX ] :=  bin2i( substr( l2bin( nHandle ), 1, 2 ) )
   aRegs[ DX ] :=  bin2i( substr( l2bin( nHandle ), 3, 2 ) )
 
-  ft_int86( INT21, aRegs )
+*  ft__int86( INT21, aRegs )
 
   #ifdef FT_TEST
 
@@ -432,7 +432,7 @@ static function _ftnwsem( nOp, nHandle, nTimeout )
   aRegs[ BP ] :=  nTimeout
 
 
-  ft_int86( INT21, aRegs )
+*  ft__int86( INT21, aRegs )
   nRet := lowbyte( aRegs[AX] )
   nRet := iif( nRet < 0, nRet + 256, nRet )
 

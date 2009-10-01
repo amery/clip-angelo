@@ -12,8 +12,6 @@ OBJS  = init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o 
 POBJS  = init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
 .SUFFIXES: .prg .o .po
 
-################################################################################################################
-
 all : Makefile clip_cld$(EXESUFF)
 
 cfg :
@@ -25,19 +23,19 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 clip_cld$(EXESUFF) : clip_cld.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -esM $< $(OBJS); 	\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o$@ -esM $< $(OBJS);		\
+		$(CLIP) $(CLIPFLAGS) -o$@ -e $< $(OBJS);			\
 	fi
 
 install : all
 	$(E_cp)cp --remove-destination -fpu$(V) clip_cld$(EXESUFF) $(Clip_B_Dir)/
 
 test$(EXESUFF) : test.prg Makefile
-	$(E_e)$(Trace_clip)
+	$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -s -e -M  $<
 
 include $(Makefile_o_in)

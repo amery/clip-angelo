@@ -1,3 +1,9 @@
 #!/bin/sh
+CurDir="$PWD"
+if ! [ -f ../../cliplibs/clip-gtk2/Makefile.inc ] ; then
+	cd ../../cliplibs/clip-gtk2
+	[ -f $CONFIGURE ] && $CONFIGURE
+fi
+cd $CurDir
+[ -f ../../cliplibs/clip-gtk2/Makefile.inc ] && cp -f$V ../../cliplibs/clip-gtk2/Makefile.inc .
 
-cat Makefile.ini Makefile.in >Makefile

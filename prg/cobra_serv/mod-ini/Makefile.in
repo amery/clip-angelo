@@ -3,10 +3,10 @@
 #
 Local_Depend =
 
+#CLIPFLAGS = -pw
+#CLIPFLAGS += -p
 MODULES = cobra_hello.po cobra_codb.po cobra_mod.po mk_tmpdir.po
 .SUFFIXES: .prg .o .po
-
-################################################################################################################
 
 install all: Makefile $(MODULES)
 

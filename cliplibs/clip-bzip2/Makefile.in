@@ -4,10 +4,12 @@
 Local_Depend =
 
 PROG = clip-bzip2
+#TARGET=libclip-bzip2$(DLLSUFF)
+#ATARGET=libclip-bzip2.a
+#RTARGET=libclip-bzip2$(DLLREALSUFF)
 OBJS=bzip2.o
-ADDLIBS= -lbz2 $(C_LIBS)
-
-################################################################################################################
+ADDLIBS= -lbz2
+# $(C_LIBS)
 
 all: Makefile  bzpref.h have_lib $(STARGET)
 
@@ -18,16 +20,28 @@ have_lib:
 
 bzpref.h:
 	$(E_e)$(Trace)
-	$(E_if)if grep BZ2_bzopen /usr/include/bzlib.h >/dev/null 2>&1;	\
-	then 																					\
-		echo "#define BZPREF(c) BZ2_##c" >bzpref.h;							\
-	else 																					\
-		echo "#define BZPREF(c) c" >bzpref.h; 									\
+	$(E_if)if grep BZ2_bzopen /usr/include/bzlib.h >/dev/null 2>&1;\
+	then\
+		echo '#define BZPREF(c) BZ2_##c' >bzpref.h;\
+	else\
+		echo '#define BZPREF(c) c' >bzpref.h;\
 	fi
+
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
+
+#$(ATARGET): $(OBJS)
+#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBS)
 
 include $(Makefile_o_in)
 
+#hashcode.h:
+#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+
 install:all install-lib install-example
+#	$(CLIP_CP) libclip-bzip2 $(DESTDIR)/lib
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-bzip2
+#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-bzip2/
 
 cleanc:
 	$(E_rm)rm -rf$(V) hashcode.h bzpref.h $(TARGET).*

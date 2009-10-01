@@ -708,7 +708,7 @@ LOCAL bufs, i, oldc
       @ 07, 30, 8 + LEN( m->ms_ext_n ), 50 BOX "�Ŀ���� "
       i := ACHOICE( 08, 31, 7 + LEN( m->ms_ext_n ), 49, m->ms_ext_n )
       IF i <> 0
-         SWPRUNCMD( m->ms_ext_p[ i ], 0, "", "" )
+         RUN( m->ms_ext_p[ i ], 0, "", "" )
       ENDIF
       SETCOLOR( oldc )
       RESTSCREEN( 0, 0, 24, 79, bufs )

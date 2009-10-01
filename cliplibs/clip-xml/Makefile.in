@@ -35,10 +35,9 @@ OBJS    = xmltag.o xmltree.o xpath.o
 
 HDRS	= include/clip-expat.ch
 HASHSRCS = $(SRC) $(HDRS)
+ADDLIBS =
 
 .PHONY: all clean uninstall distclean
-
-################################################################################################################
 
 all : Makefile hash lib $(STARGET)
 
@@ -51,7 +50,7 @@ hash: include/_hashxml.h
 include/_hashxml.h: $(HASHSRCS)
 	$(E_e)$(Trace)
 	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashxml.h
-	$(E_xx)cmp include/_hashxml.h include/hashxml.h 2>/dev/null || cp -f$(V) include/_hashxml.h include/hashxml.h
+	$(E_if)cmp include/_hashxml.h include/hashxml.h 2>/dev/null || cp -f$(V) include/_hashxml.h include/hashxml.h
 
 
 lib :

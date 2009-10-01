@@ -2,20 +2,16 @@
 echo "Configuring $PWD" >&0
 source ../configure.ini
 cp --remove-destination -fu$V ../Makefile.ini ../configure.ini ./
-[ ./Makefile.ini 	-nt ./configure ] && rm -f$V ./configure
-[ ./configure.ini -nt ./configure ] && rm -f$V ./configure
-[ ./configure.in 	-nt ./configure ] && rm -f$V ./configure
-
-if ! [ -f ./configure ] ; then
-	if [ -f ./configure.in ] ; then
-		echo "#!/bin/bash -u" 										>./configure
-		cat ./configure.ini 										>>./configure
-		echo "source $Clip_M_Dir/init/functions.f" 		>>./configure
-		cat ./configure.in  										>>./configure
-		chmod +x ./configure
-	fi
+if [ -f ./configure.in ] ; then
+	echo "#!/bin/bash " 										>./configure
+	cat ./configure.ini 										>>./configure
+	echo "source $Clip_M_Dir/init/functions.f" 		>>./configure
+	cat ./configure.in  										>>./configure
+	chmod +x ./configure
 fi
+sleep .1
 [ -f configure ] && ./configure 0
+sleep .1
 cat ./Makefile.ini 								>Makefile
 [ -f Makefile.inc ] && cat Makefile.inc 	>>Makefile
 if [ -f Makefile.tmp ] ; then
@@ -23,3 +19,7 @@ if [ -f Makefile.tmp ] ; then
 else
 	cat ./Makefile.in 							>>Makefile
 fi
+sleep .1
+echo $PWD/Makefile "is updated" >&0
+echo $PWD/Makefile "is updated" >&1
+echo $PWD/Makefile "is updated" >&2

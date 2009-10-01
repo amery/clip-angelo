@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=my_mysql$(EXESUFF)
 
-################################################################################################################
-
 all: Makefile $(PRG)
+
+install : all
 
 cfg :
 
@@ -19,8 +19,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_mysql$(EXESUFF): my_mysql.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eMs my_mysql.prg -lclip-mysql
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewMs my_mysql.prg -lclip-mysql
 
 include $(Makefile_o_in)
 

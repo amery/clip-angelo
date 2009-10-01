@@ -16,7 +16,7 @@ if [ -f clip_msgfmt.ini ] ; then
 	echo "PO_TO_COMPAT=\"$PO_TO_COMPAT\"" 					>&3
 	cat clip_msgfmt.ini 											>&3
 	exec 																3>&-
-	echo ". done."
+	echo ". done. >&1"
 	chmod +x clip_msgfmt$SCRIPTSUFF
 fi
 

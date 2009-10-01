@@ -6,9 +6,10 @@ Local_Depend =
 
 
 PRG=bz2$(EXESUFF)
-################################################################################################################
 
 all: Makefile $(PRG)
+
+install : all
 
 cfg :
 
@@ -18,9 +19,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-bz2$(EXESUFF): bz2.prg $(CLIP) $(LIBCLIP)
+bz2$(EXESUFF): bz2.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -e -s -l -M bz2.prg -lclip-bzip2
+	$(CLIP) -o$@ -ewN -s -l -M bz2.prg -lclip-bzip2
 
 include $(Makefile_o_in)
 

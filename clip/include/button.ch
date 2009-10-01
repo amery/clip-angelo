@@ -5,21 +5,16 @@
 #define SCROLL_HORIZONTAL       2
 
 /*
-#define MENU_SEPARATOR   translate_charset(__CHARSET__,host_charset(), "ï¿½")
-#define SEPARATOR_DOUBLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
-#define SEPARATOR_SINGLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
-#define SEPARATOR_DOUBLE_SINGLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
+#define MENU_SEPARATOR   translate_charset(__CHARSET__,host_charset(), "€")
+#define SEPARATOR_DOUBLE translate_charset(__CHARSET__,host_charset(), "± µ" )
+#define SEPARATOR_SINGLE translate_charset(__CHARSET__,host_charset(), "†€‡" )
+#define SEPARATOR_DOUBLE_SINGLE translate_charset(__CHARSET__,host_charset(), "°€´" )
 */
-/*
 #define MENU_SEPARATOR   translate_charset("cp437",host_charset(), chr(196))
 #define SEPARATOR_DOUBLE translate_charset("cp437",host_charset(), chr(204)+chr(205)+chr(185) )
 #define SEPARATOR_SINGLE translate_charset("cp437",host_charset(), chr(195)+chr(196)+chr(180))
 #define SEPARATOR_DOUBLE_SINGLE translate_charset("cp437",host_charset(), chr(199)+chr(196)+chr(182))
-*/
-#define MENU_SEPARATOR   "-"
-#define SEPARATOR_DOUBLE "="
-#define SEPARATOR_SINGLE "-"
-#define SEPARATOR_DOUBLE_SINGLE ":"
+
 /* hit test return value constants */
 
 #define HTNOWHERE                0
@@ -69,4 +64,4 @@
 #endif
 
 
-/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+/*€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€*/

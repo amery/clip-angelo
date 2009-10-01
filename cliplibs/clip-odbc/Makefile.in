@@ -13,22 +13,24 @@ LIBODBC+=-lodbc $(C_LIBS)
 LIBOOB+=-lesoobclient
 PROG = clip-odbc
 PROG2 = clip-oob
-ADDLIBS += $(LIBODBC)
-ADDLIBS2 += $(LIBOOB)
+ADDLIBS =
+#+= $(LIBODBC)
+ADDLIBS2 =
+#+= $(LIBOOB)
 OBJS=odbc_clip.o odbc.o
 OBJS2= $(OBJS)
 DOC = *.html
 
 ################################################################################################################
 
-install all: Makefile  $(STARGET) $(STARGET2)
+all : Makefile $(OBJS) $(OBJS2) $(STARGET) $(STARGET2)
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/odbc.ch $(Clip_I_Dir)/
 
 include $(Makefile_o_in)
 
-install:all install-lib install-example install-doc
+install : all install-lib install-example install-doc
 
 cleanc:
 	$(E_rm)rm -rf$(V) odbc.c odbc_ref.c $(TARGET).* $(TARGET2)

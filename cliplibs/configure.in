@@ -5,13 +5,16 @@
 #
 source ../configure.ini
 beep_on
-OnScreen 2 "DIRS_TO_SCAN = >Makefile.01"
+#OnScreen 2 "DIRS_TO_SCAN = >Makefile.01"
 #echo "DIRS_TO_SCAN =" 												>Makefile.01
 DIRS_TO_SCAN=""
 #echo "CFLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
 #echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
-AllDir="bzip2 gzip com crypto cti fcgi gd glade2 gtk2 fw dbtcp codb mysql odbc oracle postgres
+AllDir="bzip2 gzip com crypto fcgi gd gtk2 dbtcp codb mysql odbc oracle postgres
 nanfor netto postscript r2d2 rtf xml"
+
+# fw needs gtk2
+#
 export DIRS_TO_SCAN
 
 function Get_Check ()
@@ -44,42 +47,31 @@ for dName in $AllDir ; do
 #	OnScreen 1 $DIRS_TO_SCAN
 done
 
+OnScreen 1 "clip-interbase only on i386"
 if [[ $ARCH = "x86_64" ]] && [[ $C64 = "64" ]] ; then
 	ARCH=x86_64
 	C64=64
 else
 	ARCH=i586
 	C64=""
-	VarX=" "
-	[ -f clip-interbase.ok ] && VarX="Y"
-	[ -f clip-interbase.no ] && VarX="N"
-	while [[ $VarX != [YyNn] ]] ; do
-		OnScreen 2 "Do you want to install library clip-interbase : [y/n] :"
-		read -n 1 VarX 		>&0
-	done
-	if [[ "$VarX" = [Yy] ]] ; then
-#		echo "DIRS_TO_SCAN += clip-interbase" 					>>Makefile.01
-		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-interbase"
-		touch clip-interbase.ok
-	else
-		touch clip-interbase.no
-	fi
+	Get_Check "interbase"
 fi
 echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" 							>./Makefile.01
+
+OnScreen 1 "clip-fw depends on clip-gtk2"
+if [[ -f clip-gtk2.ok ]] ; then
+	Get_Check "fw"
+fi
+OnScreen 1 "clip-cti depends on clip-gtk2"
+if [[ -f clip-gtk2.ok ]] ; then
+	Get_Check "cti"
+fi
+OnScreen 1 "clip-glade2 depends on clip-gtk2"
+if [[ -f clip-gtk2.ok ]] ; then
+	Get_Check "glade2"
+fi
+OnScreen 1 "clip-ui depends on clip-xml"
 if [[ -f clip-xml.ok ]] ; then
-	VarX=" "
-	[ -f clip-ui.ok ] && VarX="Y"
-	[ -f clip-ui.no ] && VarX="N"
-	while [[ $VarX != [YyNn] ]] ; do
-		OnScreen 2 "Do you want to install library clip-ui : [y/n] :"
-		read -n 1 VarX 		>&0
-	done
-	if [[ "$VarX" = [Yy] ]] ; then
-		echo "DIRS_TO_SCAN += clip-ui" 							>>Makefile.01
-		DIRS_TO_SCAN="$DIRS_TO_SCAN clip-ui"
-		touch clip-ui.ok
-	else
-		touch clip-ui.no
-	fi
+	Get_Check "ui"
 fi
 cat Makefile.ini Makefile.01 Makefile.in >Makefile

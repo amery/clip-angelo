@@ -8,7 +8,7 @@ LIBS=$(pkg-config --libs libglade-2.0)
 
 
 echo "LIBS = $LIBS" >Makefile.01
-echo "C_FLAGS += $CFLAGS $ADD_CFLAGS">>Makefile.01
+echo "C_FLAGS += $CFLAGS $ADDCFLAGS">>Makefile.01
 echo "LIBGLADE_VER = $LIBGLADE_VER">>Makefile.01
 
 cat Makefile.in >Makefile

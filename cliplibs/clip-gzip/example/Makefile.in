@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=gz$(EXESUFF)
 
-################################################################################################################
-
 all:Makefile  $(PRG)
+
+install : all
 
 cfg :
 
@@ -19,8 +19,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 gz$(EXESUFF): gz.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -e -s -l -M gz.prg -lclip-gzip
+	$(Trace_clip)
+	$(CLIP) -o$@ -ew -s -l -M gz.prg -lclip-gzip
 
 include $(Makefile_o_in)
 

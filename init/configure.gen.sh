@@ -46,6 +46,7 @@ source $Clip_M_Dir/init/check.packages.sh
 if [[ $? != 0 ]] ; then
 	exit 1
 fi
+CLIP_CMDSTR="-w,-l,-N"
 FORCEALIGN=""
 MLIB=""
 MDBG=""
@@ -58,19 +59,17 @@ AS_PRG=""
 NM_PRG=""
 CHECK_STACK=""
 PO_COMPAT=""
-SCRIPTSUFF=$EXESUFF.sh
+SCRIPTSUFF=$C64.sh
 DEBUGFLAGS="-DCLIP_DEBUG"
-DEBUGFLAGS="-DDEBUGGING_CLIP"
-#DEBUGFLAGS=""
+DEBUGFLAGS=""
 STD_LIBDIR=""
 STD_LIB_DIR=/usr/lib$C64
-LibDir=lib$C64
 DLLSUFF=".so"
 DLLREALSUFF=".so"
 CLIP_DLLIMPORT=""
 CLIP_DLLEXPORT=""
 NM_UNDERSCORE=""
-#EXESUFF=$C64
+EXESUFF=$C64
 USE_WCHARS=yes
 USE_TASKS=yes
 #if [ "$CLIP_TASKS" ]
@@ -200,15 +199,16 @@ i?86)
 esac
 [ -z "$CLIPROOT" ] && CLIPROOT=`cd ../..;pwd`/cliproot
 #[ -z "$BINDIR" ] &&
-BINDIR=$HOME/bin
+BINDIR="$HOME/bin"
+[ -d "$BINDIR" ] || mkdir -p$V "$BINDIR"
 #rm -Rf$V $DESTDIR$CLIPROOT
-CLIP_ROOT="$INSTDIR"
+CLIP_ROOT="$DESTDIR$CLIPROOT"
 #	initial CFLAGS
 #
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
 C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $DEBUGFLAGS $OPTFLAGS"
 #CFLAGS="-Wall -fPIC -Iinclude.clip"
-CLIPFLAGS="-I include -I include.clip -wRlON $DEBUGFLAGS "
+CLIPFLAGS="-I include -I include.clip -wlRON $DEBUGFLAGS "
 C_LIBS="-L$Clip_L_Dir -lclip"
 ADD_CFLAGS="-fPIC"
 uname=`uname -s`
@@ -373,8 +373,15 @@ CLIP_MAKESLIB=$Clip_B_Dir/clip_makeslib$SCRIPTSUFF
 CLIP_MSGFMT=$Clip_B_Dir/clip_msgfmt$SCRIPTSUFF
 CLIP_MSGMERGE=$Clip_B_Dir/clip_msgmerge$SCRIPTSUFF
 OSNAME=$osname
+Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in
+Makefile_o_in=$Clip_M_Dir/init/Makefile.o.in
+Makefile_01_in=$Clip_M_Dir/init/Makefile.01.in
+Makefile_02_in=$Clip_M_Dir/init/Makefile.02.in
+Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in
+CONFIGURE_SH=/$Clip_M_Dir/init/configure.sh
 echo "export OSNAME=$osname" 																				>&3
 echo "export DLLIB=$DLLIB" 																				>&3
+echo "export CLIP_CMDSTR=\"$CLIP_CMDSTR\"" 															>&3
 echo "export ARCH=$arch"  																					>&3
 echo "export V=$V"  																							>&3
 echo "export C64=$C64"  																					>&3
@@ -388,13 +395,15 @@ echo "export CLIP_MSGFMT=$CLIP_MSGFMT"  																>&3
 echo "export CLIP_MSGMERGE=$CLIP_MSGMERGE"  															>&3
 echo "export Making=$Making"  																			>&3
 echo "export DLLSUFF=$DLLSUFF"  																			>&3
+#echo "export DESTDIR=$DESTDIR"																			>&3
 echo "export EXESUFF=$EXESUFF" 																			>&3
 echo "export DLLREALSUFF=$DLLREALSUFF" 																>&3
-echo "export Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in"									>&3
-echo "export Makefile_o_in=$Clip_M_Dir/init/Makefile.o.in" 										>&3
-echo "export Makefile_02_in=$Clip_M_Dir/init/Makefile.02.in" 									>&3
-echo "export Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in"									>&3
-echo "export CONFIGURE_SH=/$Clip_M_Dir/init/configure.sh"										>&3
+echo "export Makefile_end_in=$Makefile_end_in"														>&3
+echo "export Makefile_o_in=$Makefile_o_in" 															>&3
+echo "export Makefile_01_in=$Makefile_01_in" 														>&3
+echo "export Makefile_02_in=$Makefile_02_in" 														>&3
+echo "export Makefile_end_in=$Makefile_end_in"														>&3
+echo "export CONFIGURE_SH=$CONFIGURE_SH"																>&3
 echo "export Clip_B_Dir=$Clip_B_Dir"																	>&3
 echo "export Clip_C_Dir=$Clip_C_Dir"																	>&3
 echo "export Clip_D_Dir=$Clip_D_Dir"																	>&3
@@ -405,7 +414,6 @@ echo "export Clip_M_Dir=$Clip_M_Dir"																	>&3
 echo "export Clip_S_Dir=$Clip_S_Dir"																	>&3
 echo "export Clip_T_Dir=$Clip_T_Dir"																	>&3
 echo "export seq_no=$seq_no"																				>&3
-echo "export WaitForCheck=$WaitForCheck"																>&3
 if [ -n "$FORCEALIGN" ] ; then
 	echo "export FORCEALIGN=$FORCEALIGN"																>&3
 fi
@@ -416,18 +424,20 @@ if [ -n "$MDBG" ] ; then
 	echo "export INST_MEMDEBUG_H=inst_memdebug_h"													>&3
 fi
 echo "export STATICLINK=$STATICLINK"																	>&3
-echo "export CLIP_ROOT=$CLIP_ROOT"																		>&3
+echo "export CLIP_ROOT=$DESTDIR$CLIPROOT"																>&3
 echo "export CLIPROOT=$CLIP_ROOT"																		>&3
 echo "export BINDIR=$BINDIR"																				>&3
 echo "export STD_LIBDIR=$STD_LIBDIR"																	>&3
-echo "export STD_LIB_DIR=$STD_LIB_DIR"																	>&3
-echo "export INSTDIR=$INSTDIR"																			>&3
-echo "export LibDir=$LibDir"																				>&3
-echo "export DESTDIR=$DESTDIR"																			>&3
+echo "export INSTDIR=$CLIP_ROOT"																			>&3
+echo "export DESTDIR=$CLIP_ROOT"																			>&3
 echo "export CLIPFLAGS=\"$CLIPFLAGS\""																	>&3
+#echo "export DLLSUFF=$DLLSUFF" 																			>&3
+#echo "export EXESUFF=$EXESUFF"																			>&3
 echo "export SCRIPTSUFF=$SCRIPTSUFF"																	>&3
+#echo "export DLLREALSUFF=$DLLREALSUFF"																>&3
 echo "export OS_$osname=yes"																				>&3
 echo "export C_FLAGS=\"$C_FLAGS\""																		>&3
+#echo "export CFLAGS=\"$CFLAGS\""																			>&3
 echo "export C_LIBS=\"$C_LIBS\""																			>&3
 #fi
 if [ -f /usr/include/readline/readline.h ] ; then
@@ -474,22 +484,12 @@ if [ "$USE_TASKS" = yes ] ; then
 	echo "export TASK=libcliptask/libcliptask.a"														>&3
 fi
 echo "export NO_GETTEXT=$NO_GETTEXT" 																	>&3
-#if [ -z "$CC" ] ; then
-#	if [ -x /usr/bin/gcc -o -x /usr/local/bin/gcc ] ; then
-#		CC=gcc
-#	else
-#		CC=cc
-#	fi
-#fi
-#if [ -f "/usr/bin/g++" ] ; then
-#	CC="/usr/bin/g++"
-#el
-if [ -f "/usr/bin/gcc" ] ; then
-	CC="/usr/bin/gcc"
-elif [ -f "/usr/bin/cc" ] ; then
-	CC="/usr/bin/cc"
-else
-	CC="cc"
+if [ -z "$CC" ] ; then
+	if [ -x /usr/bin/gcc -o -x /usr/local/bin/gcc ] ; then
+		CC=gcc
+	else
+		CC=cc
+	fi
 fi
 echo "export NM_UNDERSCORE=$NM_UNDERSCORE"															>&3
 echo "export CC=$CC"																							>&3
@@ -511,41 +511,43 @@ fi
 	#	echo "export XCLIP=$XCLIP"																			>&3
 #fi
 PO_BINS="po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF"
-##echo '
-###include </opt/iconv/include/iconv.h>
-##int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-##' > /tmp/$$.c
-$CC --verbose -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c -L/opt/liconv/lib -liconv  2>/dev/null 1>&2
+echo '
+#include </opt/iconv/include/iconv.h>
+int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
+' > /tmp/$$.c
+$CC -o /tmp/$$ /tmp/$$.c -liconv  -L/opt/liconv/lib
+#2>/dev/null 1>&2
 if [ $? = 0 ] ; then
-	ICONV_LIB="-L/opt/iconv/lib -liconv"
+	ICONV_LIB="-liconv  -L/opt/iconv/lib"
 	ICONV_INC="\"/opt/iconv/include/iconv.h\""
 	HAVE_ICONV=yes
 else
-#	echo '
-#	#include </usr/local/include/iconv.h>
-#	int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-#	' > /tmp/$$.c
-#	$CC --verbose -o /tmp/$$ /tmp/$$.c -L/usr/local/lib -liconv  2>/dev/null 1>&2
-	$CC --verbose -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -L/opt/liconv/lib -liconv  2>/dev/null 1>&2
+	echo '
+	#include </usr/local/include/iconv.h>
+	int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
+	' > /tmp/$$.c
+	$CC -o /tmp/$$ /tmp/$$.c -liconv -L/usr/local/lib
+	# 2>/dev/null 1>&2
 	if [ $? = 0 ] ; 	then
-		ICONV_LIB="-L/usr/local/lib -liconv"
+		ICONV_LIB="-liconv  -L/usr/local/lib"
 		ICONV_INC="\"/usr/local/include/iconv.h\""
 		HAVE_ICONV=yes
 	else
-#		echo '
-#		#include <iconv.h>"
-#		int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-#		' > /tmp/$$.c
-#		$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
-		$CC --verbose -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c -L/opt/liconv/lib -liconv  2>/dev/null 1>&2
+		echo '
+		#include <iconv.h>"
+		int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
+		' > /tmp/$$.c
+		$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
 		if [ $? = 0 ] ; then
 			ICONV_LIB=""
-			ICONV_INC=\"<iconv.h>\"
+			ICONV_INC="<iconv.h>"
 			HAVE_ICONV=yes
 		else
-			ICONV_INC=\"<iconv.h>\"
+			ICONV_INC="<iconv.h>"
 			ICONV_LIB=""
 			echo "NO ICONV library found, doc building will have problems"
+			echo "NO ICONV library found, doc building will have problems" >&1
+			echo "NO ICONV library found, doc building will have problems" >&2
 			PO_BINS="po_extr$EXESUFF po_compat$EXESUFF"
 			HAVE_ICONV=
 		fi
@@ -558,6 +560,10 @@ echo "export ICONV_LIB=\"$ICONV_LIB\""																	>&3
 echo "export PO_BINS=\"$PO_BINS\""																		>&3
 echo "ICONV_INC=$ICONV_INC" >&0
 echo "ICONV_LIB=$ICONV_LIB" >&0
+echo "ICONV_INC=$ICONV_INC" >&1
+echo "ICONV_LIB=$ICONV_LIB" >&1
+echo "ICONV_INC=$ICONV_INC" >&2
+echo "ICONV_LIB=$ICONV_LIB" >&2
 rm -f /tmp/$$*
 echo																												>&3
 echo '
@@ -595,8 +601,9 @@ echo  															>>./Makefile.inc
 echo "#" 														>>./Makefile.inc
 echo "#	Compile flags" 									>>./Makefile.inc
 echo "#" 														>>./Makefile.inc
+cat "$Makefile_01_in" 										>>./Makefile.inc
 cat ./Makefile.incl_3 										>>./Makefile.inc
-echo "include \$(Makefile_02_in)" 						>>./Makefile.inc
+#echo "include \$(Makefile_02_in)" 						>>./Makefile.inc
 echo "#	Created automatically by \"configure\"" 	>./clipcfg.sh
 echo "#" 														>>./clipcfg.sh
 echo 																>>./clipcfg.sh
@@ -773,7 +780,6 @@ if [ -c /dev/ptmx -a -f /usr/include/stropts.h ] ; then
 fi
 if [ -n "$STD_LIBDIR" ] ; then
 	echo "#define STD_LIBDIR \"$STD_LIB_DIR\""															>&3
-	echo "#define STD_LIB_DIR \"$STD_LIB_DIR\""															>&3
 fi
 if [ -n "$USE_WCHARS" ] ; then
 	echo "#define USE_WCHARS"																					>&3

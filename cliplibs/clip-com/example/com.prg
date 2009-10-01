@@ -1,25 +1,25 @@
-port:=1
+m->port:=1
 
 ? 'found', COM_NUM(), 'ports'
 
-IF ! COM_OPEN(port)
+IF ! COM_OPEN(m->port)
      ? "cannot opened port !", FERRORSTR()
      break
 ENDIF
 
-? 'init', COM_INIT(port, 9600, 'N', 8, 1)
+? 'init', COM_INIT(m->port, 9600, 'N', 8, 1)
 
-? COM_SOFT(port, .f.)
-? COM_HARD(port, .f.)
+? COM_SOFT(m->port, .f.)
+? COM_HARD(m->port, .f.)
 
-? COM_TIMEOUT(port, 20)
+? COM_TIMEOUT(m->port, 20)
 
-msg:='Hello, World!'
-? 'send', COM_SEND(port, msg)
+m->msg:='Hello, World!'
+? 'send', COM_SEND(m->port, m->msg)
 
-? 'count', COM_COUNT(port)
-? 'read', COM_READ(port, 10)
+? 'count', COM_COUNT(m->port)
+? 'read', COM_READ(m->port, 10)
 
-? COM_CLOSE(port)
+? COM_CLOSE(m->port)
 
 ?

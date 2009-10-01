@@ -89,4 +89,17 @@ clip_GTK_MENUBARINSERT(ClipMachine * cm)
 err:
 	return 1;
 }
-
+/*
+int
+clip_GTK_MENUBARSETSHADOWTYPE(ClipMachine * cm)
+{
+	C_widget *cmnb  = _fetch_cw_arg(cm);
+        int shadow_type = _clip_parni(cm,2);
+        CHECKCWID(cmnb,GTK_IS_MENU_BAR);
+        CHECKOPT(2,NUMERIC_t);
+        gtk_menu_bar_set_shadow_type(GTK_MENU_BAR(cmnb->widget), shadow_type);
+	return 0;
+err:
+	return 1;
+}
+*/

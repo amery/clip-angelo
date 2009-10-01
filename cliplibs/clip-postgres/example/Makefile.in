@@ -7,9 +7,9 @@ Local_Depend =
 
 PRG=my_psql$(EXESUFF)
 
-################################################################################################################
-
 all: Makefile $(PRG)
+
+install : all
 
 cfg :
 
@@ -20,8 +20,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eMs my_psql.prg -lclip-postgres
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewMs my_psql.prg -lclip-postgres
 
 include $(Makefile_o_in)
 

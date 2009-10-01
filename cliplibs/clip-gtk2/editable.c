@@ -243,7 +243,21 @@ clip_GTK_EDITABLEDELETESELECTION(ClipMachine * cm)
 err:
 	return 1;
 }
+/*
+int
+clip_GTK_EDITABLEGETSELECTION(ClipMachine * cm)
+{
+	C_widget *cedt = _fetch_cw_arg(cm);
+	CHECKCWID(cedt,GTK_IS_EDITABLE);
+	gtk_editable_get_selection(GTK_EDITABLE(cedt->widget));
+	_clip_storni(cm,GTK_EDITABLE(cedt->widget)->selection_start_pos,2,0);
+	_clip_storni(cm,GTK_EDITABLE(cedt->widget)->selection_end_pos,3,0);
+	return 0;
+err:
+	return 1;
+}
 
+*/
 int
 clip_GTK_EDITABLEGETSELECTIONBOUNDS(ClipMachine * cm)
 {

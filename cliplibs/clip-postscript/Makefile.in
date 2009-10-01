@@ -6,16 +6,19 @@
 # Copyright (C) 2007 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 
+#CLIP = $(CLIPROOT)/bin/clip
+
 Local_Depend = include/*.ch
 .SUFFIXES: .prg .o .po
 PROG = clip-postscrip
+#TARGET  = libclip-postscript$(DLLSUFF)
+#RTARGET = libclip-postscript$(DLLREALSUFF)
 CLIPFLAGS += -n
-OBJS    = 	psblock.o pscode.o psform.o pspage.o pspagesettings.o \
-		  		psprinter.o psstyle.o pstemplate.o psvariable.o
+OBJS    = psblock.o pscode.o psform.o pspage.o pspagesettings.o \
+		  psprinter.o psstyle.o pstemplate.o psvariable.o
+ADDLIBS =
 
 .PHONY: all clean uninstall distclean
-
-################################################################################################################
 
 all : Makefile $(STARGET)
 

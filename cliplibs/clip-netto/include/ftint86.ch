@@ -41,7 +41,8 @@
 #define __FTINT86_CH__
 
 #define INT86_MAX_REGS       10
-
+#define FT_INT86 error
+#define ft_int86 error
 #define AX         1
 #define BX         2
 #define CX         3

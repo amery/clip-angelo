@@ -3,7 +3,7 @@ LOCAL sql := ""
 LOCAL I := 1
 LOCAL user		// -u
 LOCAL passwd	// -p
-LOCAL db
+LOCAL db, host, db, e
 
 SET("SQL_CHARSET","cp1251")
 ErrorBlock({|e| SQLError(e)})

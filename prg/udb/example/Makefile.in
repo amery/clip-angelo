@@ -3,12 +3,13 @@
 #
 Local_Depend =
 
+#CLIPFLAGS = -a -O -b
 CLIPLIBS  = -lclip-codb
+
 PROGS = my001$(EXESUFF) cgi_currency$(EXESUFF)
 
-.SUFFIXES: .prg .o .po
 
-################################################################################################################
+.SUFFIXES: .prg .o .po
 
 all: Makefile $(PROGS)
 
@@ -24,12 +25,12 @@ distcleanc :
 include $(Makefile_o_in)
 
 my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -es -M my001.prg $(CLIPLIBS)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -esw -M my001.prg $(CLIPLIBS)
 
 cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -e -M cgi_currency.prg $(CLIPLIBS)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M cgi_currency.prg $(CLIPLIBS)
 
 include $(Makefile_end_in)
 

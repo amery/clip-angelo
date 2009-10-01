@@ -41,7 +41,7 @@
 #ifdef HAVE_ICONV
 #include "cl_iconv.h"
 #else
-#include "libclipscreen/charset.h"
+#include "screen/charset.h"
 #endif
 
 #ifndef O_BINARY
@@ -397,6 +397,7 @@ init_locale(char *module)
 		}
 		snprintf(loc, sizeof(loc), "%s", locale);
 		snprintf(path, sizeof(path), "%s/locale.mo/%s/%s.mo", CLIP_LOCALE_ROOT, loc, module);
+
 
 
 		if (!m_access(path, R_OK))

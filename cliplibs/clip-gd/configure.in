@@ -117,31 +117,26 @@ echo "LIBDIRS='-L. -L$stdlibpath -L/usr/lib/X11 -L/usr/X11R6/lib'" 							>&3
 echo "INCLUDEDIRS='-I. -I/usr/include/freetype2 -I/usr/include/freetype2/freetype -I/usr/include/X11 -I/usr/X11R6/include -I/usr/X11R6/include/X11 -I$stdincpath'" >&3
 
 if [ -f $stdlibpath/libpng${DLLSUFF} ] ; then
-	LIBPNG='-lpng'
 	echo "LIBPNG='-lpng'"  																					>&3
 else
 	echo 'Warning: libpng not installed'
 fi
 if [ -f $stdlibpath/libjpeg${DLLSUFF} ] ; then
-	LIBJPEG='-ljpeg'
 	echo "LIBJPEG='-ljpeg'"  																				>&3
 else
 	echo 'Warning: libjpeg not installed'
 fi
 if [ -f $stdlibpath/libfreetype${DLLSUFF} ] ; then
-	LIBFREETYPE='-lfreetype'
 	echo "LIBFREETYPE='-lfreetype'"  																	>&3
 else
 	echo 'Warning: libfreetype not installed'
 fi
 if [ -f $stdlibpath/libttf${DLLSUFF} ] ; then
-	LIBTTF='-lttf'
 	echo "LIBTTF='-lttf'"  																					>&3
 else
 	echo 'Warning: libttf not installed'
 fi
 if [ -f /usr/X11R6/include/X11/xpm.h -o -f /usr/include/X11/xpm.h ] ; then
-	LIBXPM='$LIBXPM'
 	echo "LIBXPM='$LIBXPM'"  																				>&3
 else
 	echo 'Warning: system do not have installed XPM development'
@@ -153,6 +148,8 @@ exec   																											3>&-
 
 tr -d \' <./Makefile.inc >Makefile
 cat ./Makefile >Makefile.inc
+cp -f$V ./Makefile.inc ./libgd/
+cp -f$V ./Makefile.inc ./example/
 echo ". done."
 printf "configure: creating gdcfg.h .."
 exec   																						 	3>include/gdcfg.h

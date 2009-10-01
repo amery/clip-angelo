@@ -1,6 +1,9 @@
 #
 #                                            prg/udbx/Makefile.in
 #
+#
+# 		from cliplibs/clip-gtk2
+
 Local_Depend =
 #$(Clip_L_Dir)/libclip-codb.so
 Local_Depend +=
@@ -8,7 +11,7 @@ Local_Depend +=
 
 #CLIP	= $(CLIPROOT)/bin/clip
 #CLIPFLAGS = -Obl -I./include
-CLIPLIBS  = -L$(Clip_L_Dir) -lclip-codb -lclip-gtk2 -lclip
+CLIPLIBS  = -L$(Clip_L_Dir) -lclip-codb -lclip-gtk2 -lclip $(LIBS)
 
 OBJS  = $(sort abx_obj.o abx_menu.o abx_events.o abx_funcs.o abx_meta_browse.o abx_getobj.o \
 	abx_data_browse.o )
@@ -19,16 +22,19 @@ BIN = codb_abx$(EXESUFF)
 
 DIRS_TO_SCAN = plugins
 
-################################################################################################################
+include Makefile.inc
 
 all: $(DIRS_TO_SCAN) $(BIN)
 
 cfg :
 
+Makefile.inc :
+	$(E_xx)$(CONFIGURE_SH)
+
 install: all
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/codb_abx/plugins
-	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(INSTDIR)/codb_abx/plugins
-	$(E_cp)cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(INSTDIR)/bin/
+	$(E_mkD)mkdir -p$(V) $(DESTDIR)/codb_abx/plugins
+	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(DESTDIR)/codb_abx/plugins
+	$(E_cp)cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(DESTDIR)/bin/
 
 cleanc : $(DIRS_TO_SCAN)
 	$(E_rm)rm -rf$(V) *.c *.b $(BIN)
@@ -37,13 +43,18 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 $(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -se $< $(OBJS) $(CLIPLIBS)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(CLIPLIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
+
+commit:
+	_cvs commit
 
 include $(Makefile_o_in)
 

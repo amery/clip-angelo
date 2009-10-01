@@ -7,9 +7,9 @@ Local_Depend =
 
 PRG=my_isql
 
-################################################################################################################
-
 all: Makefile $(PRG)
+
+install : all
 
 cfg :
 
@@ -20,8 +20,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 $(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -eMs $(PRG).prg -lclip-odbc
+	$(Trace_clip)
+	$(CLIP) -o$@ -ewMs $(PRG).prg -lclip-odbc
 
 include $(Makefile_o_in)
 

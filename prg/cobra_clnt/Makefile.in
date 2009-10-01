@@ -12,7 +12,7 @@ CLIPFLAGS += -n
 OBJS  = objbrowse.o tviewbrowse.o
 .SUFFIXES: .prg .o .po
 
-################################################################################################################
+########################################################################################
 
 all: Makefile cobra_clnt1$(EXESUFF)
 
@@ -26,18 +26,21 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -es cobra_clnt1.prg $(OBJS)
+#	$(CLIPLIBS)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) ;	\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -es $< $(OBJS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) ;		\
 	fi
 
 install : all
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra
 	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt1$(EXESUFF) $(Clip_B_Dir)/
-	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt.ini $(INSTDIR)/cobra
+	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra
+	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt.ini $(DESTDIR)/cobra
 
 include $(Makefile_o_in)
 

@@ -1,4 +1,4 @@
-/*   Тест библиотеки gd					     */
+/*   О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ gd					     */
 /*   Copyright (C) 2001  ITK                                 */
 /*   Author  : Alena Kornilova (alena@itk.ru)                */
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html  */
@@ -6,25 +6,25 @@
 #define PI		3.14159265358979323846	/* pi */
 #include "gdinfo.ch"
 
-local gd, red, white, black, blue, yellow, fon
+local gd, red, white, black, blue, yellow, fon, im, luch, cx, cy, x1, y1, x2, y2, im2, i
 clear screen
 
 im=GdImageNew(200, 200)
-// создать цвет
-white=im:newColor(255, 255, 255) // белый
-black=im:newColor() // черный
-red=im:newColor(255) // красный
-blue=im:newColor(,,255) // синий
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+white=im:newColor(255, 255, 255) // О©╫О©╫О©╫О©╫О©╫
+black=im:newColor() // О©╫О©╫О©╫О©╫О©╫О©╫
+red=im:newColor(255) // О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+blue=im:newColor(,,255) // О©╫О©╫О©╫О©╫О©╫
 ? im:info( GDINFO_COLORRED, blue)
 ? im:info( GDINFO_COLORGREEN, blue)
 ? im:info( GDINFO_COLORBLUE, blue)
 ?
 yellow=im:newColor(255, 255)
 fon=im:newColor(0xDE,0xEF,0xF5)
-// заполнить все белым цветом
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 im:fill(0, 0, fon)
 im:filledArc(100, 100, 45, 45, yellow)
-// создать brush
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫ brush
 luch=GdImageNew(3, 3)
 luch:fill(0, 0, luch:newColor(255, 255))
 im:setBrush(luch)
@@ -40,7 +40,7 @@ next
 im:filledArc(93, 90, 6, 6, blue)
 im:filledArc(107, 90, 6, 6, blue)
 im:string("Hello world!", 50, 50, GDFONT_LARGE, black)
-im:stringVector("Привет мир!", 50, 150, 300, 0, black)
+im:stringVector("О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫!", 50, 150, 300, 0, black)
 im:filledTruncSector(100, 100, 30, 30, 26, 26, 40, 140, red)
 im:toPNG("asdf.png")
 im:toJPEG("|-")

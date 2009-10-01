@@ -1,0 +1,5 @@
+#
+This package is REQUIRED
+#
+Missing : gtkextra/gtkextra.h requested by : clip-gtkextra
+Package name(s) : libgtk-extra-devel-x86_64.(rpm/deb)

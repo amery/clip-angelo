@@ -6,13 +6,16 @@ Local_Depend =
 Local_Depend +=
 # $(Clip_L_Dir)/libcodb-query.so
 
+
+
+#CLIP	= clip
+#CLIP	= $(CLIPROOT)/bin/clip
+#CLIPFLAGS = -w -O -b -l
 CLIPLIBS  = -lclip-codb -lcodb-query
 TARGET = codb$(EXESUFF)
 OBJS  =
 # codb.o
 .SUFFIXES: .prg .o .po
-
-################################################################################################################
 
 all : Makefile $(TARGET)
 
@@ -26,12 +29,14 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 $(TARGET): codb.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -esM $(OBJS) $(CLIPLIBS)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
 
 install : all

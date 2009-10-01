@@ -1,0 +1,92 @@
+##
+##															hasher/Makefile.in
+##
+
+
+MAKEFLAGS 		+= --warn-undefined-variables -R
+
+##
+##	current directory variables
+##	for subdirectory hasher and sub's
+
+DIRS_TO_SCAN 	=
+
+LocalDepend 	= 		$(StandardDepend)
+
+###################################
+
+all									\
+$(Clipcfg_h)						\
+$(Clip_M_Dir)/Makefile.ini :
+	$(E_cd)cd $(Clip_M_Dir) \
+		&& exec $(MAKE)
+
+Makefile :	../configure.ini 	\
+				../Makefile.ini 	\
+				./configure.in 	\
+				./Makefile.in 		\
+				./configure.ini 	\
+				./Makefile.ini 	\
+# $(LocalDepend)
+	$(Trace_o)
+	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+#Makefile.01 :
+#	$(Trace_o)
+#	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+#Makefile.ini :
+#	$(Trace_o)
+#	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+#configure.ini :
+#	$(Trace_o)
+#	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+#$(CONFIGURE_SH) :
+#	$(Trace_o)
+#	$(E_xx)$(CONFIGURE_DIR) $(MAKECMDGOALS) $(ADDMAKECMDGOALS)
+
+clean :
+	$(E_rm)rm -f$(V) hashed/* Makefile Makefile.01 Makefile.ini configure.ini hashcode.h
+	$(E_rm)rm -f$(V) *.set.txt $(CONFIGURE_SH)
+
+$(Clip_B_Dir)/clip_hashextract$(Suff_Exe) : Makefile
+	$(E_cd)cd $(Clip_M_Dir)/clip/clip_hashextract \
+		&& ( ( [ -f Makefile ] && [ -f $(CONFIGURE) ] ) || $(CONFIGURE_DIR) ) \
+		&& $(MAKE) $(MAKEFLAGS) install $(ADDMAKECMDGOALS)
+
+configuration :
+	$(E_if)[ -d ../temp ] 	|| mkdir ../temp
+	$(E_if)[ -d hashed ] 	|| mkdir hashed
+
+distclean : $(DIRS_TO_SCAN) clean
+	$(E_rm)rm -f$(V) Makefile.ini
+
+distcleanc :
+
+hash : Makefile $(Clip_I_Dir)/hashcode.h
+
+hash1 : Makefile
+
+$(Clip_I_Dir)/hashcode.h : $(Clip_B_Dir)/clip_hashextract$(Suff_Exe) $(wildcard hashed/* ) Makefile
+	$(Trace_o)
+	$(E_cd)cd hashed \
+		&& $(Clip_B_Dir)/clip_hashextract$(Suff_Exe) * >../hashcode.h
+	$(E_xx)sort <hashcode.h >../temp/hash.tmp
+	@sleep 1
+	$(E_xx)sort -u <../temp/hash.tmp -o hashcode.h
+	@sleep 1
+	$(E_rm)rm -f$(V) $(Clip_I_Dir)/hashcode.h
+	$(E_if)[ -d $(Clip_I_Dir) ] || mkdir -p$(V) $(Clip_I_Dir)
+	$(E_e)echo "#ifndef HASH_args" 	> $(Clip_I_Dir)/hashcode.h
+	$(E_xx)cat $(PWD)/hashcode.h >>$(Clip_I_Dir)/hashcode.h
+	$(E_e)echo "#endif" >>$(Clip_I_Dir)/hashcode.h
+
+system :
+
+system-debug :
+
+user :
+
+user-debug :

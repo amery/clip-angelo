@@ -7,7 +7,7 @@
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 Local_Depend = include/*.ch
 
-DRIVERSDIR = $(INSTDIR)/lib/drivers
+DRIVERSDIR = $(DESTDIR)/lib/drivers
 #CLIP = $(CLIPROOT)/bin/clip
 
 .SUFFIXES: .prg .o .po
@@ -25,10 +25,9 @@ OBJS    = $(sort button.o checkbox.o choice.o color.o combobox.o edit.o \
 LANGS   = ru_RU.KOI8-R
 
 DIRS_TO_SCAN = drivers
+ADDLIBS =
 
 .PHONY: all clean uninstall distclean
-
-################################################################################################################
 
 all : Makefile var.ch $(DIRS_TO_SCAN) $(STARGET)
 
@@ -46,10 +45,15 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install : all install-lib install-example
-	$(E_mkD)mkdir -p$(V) $(INSTDIR)/locale.po
-	$(E_cd)cd locale.po && 																\
-		for i in $(LANGS); do mkdir -p$(V) $(INSTDIR)/locale.po/$$i/ && 	\
-		$(CLIP_CP) $$i/*.po $(INSTDIR)/locale.po/$$i/; done
+	$(E_mkD)mkdir -p$(V) $(DESTDIR)/locale.po
+	$(E_mkD)cd locale.po && 																						\
+		for i in $(LANGS); do mkdir -p$(V) $(DESTDIR)/locale.po/$$i/ && 	\
+		$(CLIP_CP) $$i/*.po $(DESTDIR)/locale.po/$$i/; done
+
+#distclean uninstall: $(DIRS_TO_SCAN)
+#	cd drivers && $(MAKE) uninstall
+#	rm -rf$(V) $(Clip_L_Dir)/$(TARGET).* $(Clip_D_Dir)/example/clip-ui/
+#	rm -f$(V)  $(Clip_I_Dir)/clip-ui.ch
 
 include $(Makefile_o_in)
 

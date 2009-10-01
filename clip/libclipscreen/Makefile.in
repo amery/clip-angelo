@@ -2,31 +2,43 @@
 #                                            clip/libclipscreen/Makefile.in
 #
 Local_Depend = ../include/*.ch ../include.h/*.h
+#CC=gcc
+#CFLAGS+= -I../include.h
+#-pg -DMEMDBG
+
+#LIB = libclipscreen.a
 OBJS = $(sort tcaps.o termgoto.o screen.o scankey.o keymap.o)
+# charset.o
 PROG = clipscreen
 PROGS = kbd$(EXESUFF) cmap$(EXESUFF)
+#testscr
 
 KBDOBJS = scankey.o keymap.o kbd.o
 CMAPOBJS = charset.o cmap.o
 
-################################################################################################################
+ADDLIBS =
+
+
+###################################################################
 
 install all: Makefile $(ATARGET)
+#install all: Makefile $(LIB)
+#$(PROGS)
 
 cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/libclipscreen
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/libclipscreen/
 	$(E_cp)cp --remove-destination -fu$(V) charset.h $(Clip_I_Dir)/
-	$(E_cp)cp --remove-destination -Rfu$(V) install/* $(INSTDIR)/
+	$(E_cp)cp --remove-destination -Rfu$(V) install/* $(DESTDIR)/
 
 kbd$(EXESUFF): $(KBDOBJS) Makefile
-	$(E_e)$(Trace_c)
-	$(E_cc)$(CC) $(CFLAGS) -o kbd $(KBDOBJS)
+	$(Trace_cc)
+	$(CC) $(CFLAGS) -o kbd $(KBDOBJS)
 
 
 cmap$(EXESUFF):	$(CMAPOBJS) Makefile
-	$(E_e)$(Trace_c)
-	$(E_cc)$(CC) $(CFLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
+	$(Trace_cc)
+	$(CC) $(CFLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
 
 cleanc:
 	$(E_rm)rm -f$(V) *.b $(PROGS) $(ATARGET)
@@ -35,8 +47,13 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 testscr$(EXESUFF): testscr.o  Makefile $(ATARGET) charset.o Makefile
-	$(E_e)$(Trace_c)
+	$(Trace_cc)
 	$(CC) $(CFLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm
+
+#$(LIB): $(OBJS)
+#	rm -f$(V) $(LIB)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
+#	ranlib $(LIB)
 
 include $(Makefile_o_in)
 

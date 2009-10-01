@@ -7,20 +7,24 @@ PROG = clip-cti
 
 CLIPFLAGS += -n
 
-OBJS  =	$(sort 	ctiapp.o ctibin.o ctibox.o ctibrowsecombo.o cticalendar.o 						\
-						cticheckbox.o cticontainer.o cticontrol.o ctientry.o ctievents.o 				\
-						ctifiled.o ctifuncs.o ctihbox.o ctilabel.o ctilayout.o ctilist.o 				\
-						ctimain.o ctimenubar.o ctimenuitem.o ctimenu.o ctimenushell.o 					\
-						ctiobjectlist.o ctiobject.o ctioptionmenu.o ctipalette.o 						\
-						ctipushbutton.o ctiradiobutton.o ctiradiogroup.o ctisignal.o 					\
-						ctistatusbar.o ctitbrowse.o ctivbox.o ctiwidget.o ctiwindow.o ctizorder.o )
+OBJS  =	$(sort ctiapp.o ctibin.o ctibox.o ctibrowsecombo.o cticalendar.o \
+	cticheckbox.o cticontainer.o cticontrol.o ctientry.o ctievents.o \
+	ctifiled.o ctifuncs.o ctihbox.o ctilabel.o ctilayout.o ctilist.o \
+	ctimain.o ctimenubar.o ctimenuitem.o ctimenu.o ctimenushell.o \
+	ctiobjectlist.o ctiobject.o ctioptionmenu.o ctipalette.o \
+	ctipushbutton.o ctiradiobutton.o ctiradiogroup.o ctisignal.o \
+	ctistatusbar.o ctitbrowse.o ctivbox.o ctiwidget.o ctiwindow.o ctizorder.o \
+)
+#LIB_NAME = libclip-cti
 
 CLIPLIBS =
 ADDOBJS =
+ADDLIBS =
 POBJS	=
+#LIB 	= $(LIB_NAME).a
+#SLIB	= $(LIB_NAME)$(DLLSUFF)
+#SLIBREAL = $(LIB_NAME)$(DLLREALSUFF)
 .SUFFIXES: .prg .o .po
-
-################################################################################################################
 
 all: Makefile links $(STARGET)
 
@@ -28,7 +32,7 @@ cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) include/cti.ch $(Clip_I_Dir)/
-	$(E_cp)cp --remove-destination -fpu$(V) ./.calendar $(INSTDIR)/etc
+	$(E_cp)cp --remove-destination -fpu$(V) ./.calendar $(DESTDIR)/etc
 
 d: set_dbg
 
@@ -47,18 +51,37 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
+commit:
+	_cvs commit .
+
+update:
+	_cvs update -dP
+	make depend
+
+ucommit: update commit
+
 depend:
 	makedepend -w80 -I./include -- *.prg 2>/dev/null
 
 install:all install-lib install-example
+#	$(CLIP_CP) libclip-cti $(DESTDIR)/lib
+#	chmod 0755  $(DESTDIR)/lib/$(SLIB)
+#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-cti
+#	cp -fu$(V) example/*.prg example/Makefile example/test.dbf $(DESTDIR)/doc/example/clip-cti
 
 rm_include:
 	$(E_rm)rm -rf$(V) $(CLIPROOT)/include/cti
 	$(E_rm)rm -f$(V) $(CLIPROOT)/cti.ch
 
 links:
-	$(E_if)[ -d include/cti ] \
-		|| (cd include && ln -sf$(V) . cti)
+	$(E_if)[ -d include/cti ] || (cd include && ln -sf$(V) . cti)
+
+#$(LIB): $(OBJS)
+#	rm -f$(V) $(LIB)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
+
+#$(SLIB): $(LIB)
+#	$(CLIP_MAKESLIB) $(SLIB) $(LIB)
 
 include $(Makefile_o_in)
 

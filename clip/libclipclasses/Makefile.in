@@ -3,7 +3,12 @@
 #
 Local_Depend = ../include/*.ch ../include.h/*.h
 
+#CLIPROOT = ..
+#CLIP	= ../clip
+#CLIPFLAGS = -l -w -O -n -I $(Clip_I_Dir) -I ../include.h
+#CLIPLIBS  =
 CLIPFLAGS += -n
+#LIB = libclipclasses.a
 PROG = clipclasses
 OBJS  = $(sort block.o checkbox.o database.o dbm.o dialbox.o dt_obj.o edit.o 					\
 					err_obj.o field.o fw_time.o get_obj.o history.o hparser.o html_obj.o 		\
@@ -15,11 +20,16 @@ OBJS  = $(sort block.o checkbox.o database.o dbm.o dialbox.o dt_obj.o edit.o 			
 
 .SUFFIXES: .prg .o
 
-################################################################################################################
+ADDLIBS =
 
+#install all: Makefile  $(LIB)
 install all: Makefile  $(ATARGET)
+#ar -r libclipclasses.a *.o
 
 cfg:
+
+#$(LIB) : $(OBJS)
+#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b  $(ATARGET)

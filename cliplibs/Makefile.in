@@ -25,6 +25,15 @@ export CFLAGS CLIP CLIPFLAGS CLIPROOT
 
 all local user system install lib : Makefile $(DIRS_TO_SCAN) FORCE
 	$(E_e)echo $@ $<
+	$(E_xx)banner extended 		>&0
+	$(E_xx)banner libraries 	>&0
+	$(E_xx)banner are OK 		>&0
+	$(E_xx)banner extended 		>&1
+	$(E_xx)banner libraries 	>&1
+	$(E_xx)banner are OK 		>&1
+	$(E_xx)banner extended 		>&2
+	$(E_xx)banner libraries 	>&2
+	$(E_xx)banner are OK 		>&2
 
 ./Makefile.01 : ./configure ./configure.in
 	$(E_xx)./configure

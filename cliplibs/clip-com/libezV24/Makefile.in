@@ -82,27 +82,27 @@ $(NAME):	$(OBJS) Makefile
 		$(E_ln)ln -sf$(V) $@ $(PLAINNAME)
 
 $(LIBNAME):	$(OBJS) Makefile
-		$(E_c_mkl)$(CLIP_MAKELIB) $(LIBNAME) $(OBJS)
-		$(E_c_mkl)ranlib $(LIBNAME)
+		$(E_mkl)$(CLIP_MAKELIB) $(LIBNAME) $(OBJS)
+		$(E_mkl)ranlib $(LIBNAME)
 
 
-ezV24.o:	ezV24.c ezV24.h ezV24_config.h snprintf.h Makefile
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
-		$(Trace_c_d) ; 										\
-		$(CC) -g $(C_FLAGS) -c $< ; 						\
-	else 															\
-		$(Trace_c) ; 											\
-		$(CC) $(C_FLAGS) -c $< ; 							\
-	fi
+#ezV24.o:	ezV24.c ezV24.h ezV24_config.h snprintf.h Makefile
+#	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+#		$(Trace_c_d) ; 										\
+#		$(CC) -g $(C_FLAGS) -c $< ; 						\
+#	else 															\
+#		$(Trace_c) ; 											\
+#		$(CC) $(C_FLAGS) -c $< ; 							\
+#	fi
 
-snprintf.o:	snprintf.c snprintf.h Makefile
-	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
-		$(Trace_c_d) ; 										\
-		$(CC) -g $(C_FLAGS) -c $< ; 						\
-	else 															\
-		$(Trace_c) ; 											\
-		$(CC) $(C_FLAGS) -c $< ; 							\
-	fi
+#snprintf.o:	snprintf.c snprintf.h Makefile
+#	$(E_if)if [ -f $(subst .o,.g,$@) ] ; then 		\
+#		$(Trace_c_d) ; 										\
+#		$(CC) -g $(C_FLAGS) -c $< ; 						\
+#	else 															\
+#		$(Trace_c) ; 											\
+#		$(CC) $(C_FLAGS) -c $< ; 							\
+#	fi
 
 cfg :
 
@@ -110,7 +110,6 @@ install : all install-doc
 
 cleanc :
 	$(E_rm)rm -rf$(V) $(TARGET).* *.a *.so *.so.* *.exe
-#	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

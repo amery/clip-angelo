@@ -15,8 +15,6 @@ PROGS = ocmng$(EXESUFF) xml2xmo$(EXESUFF)
 
 .SUFFIXES: .prg .o .po
 
-################################################################################################################
-
 all: Makefile $(OBJS) $(PROGS)
 	#./xml2xmo --profile components
 
@@ -32,24 +30,29 @@ distcleanc :
 include $(Makefile_o_in)
 
 ocmng$(EXESUFF): ocmng.prg  $(OBJS) $(INCS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -esM ocmng.prg $(OBJS) $(CLIPLIBS)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
 
 xml2xmo$(EXESUFF): xml2xmo.prg  $(OBJS) $(INCS) $(CLIP) $(LIBCLIP)
-	$(E_if)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+#	$(Trace_clip)
+#	$(CLIP) $(CLIPFLAGS) -o$@ -esM xml2xmo.prg $(OBJS) $(CLIPLIBS)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) --debug=0 -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(OBJS) $(CLIPLIBS) ;		\
 	fi
 
 install: all
-	$(E_cp)cp --remove-destination -fpu$(V) $(PROGS) cleanxmo.sh $(INSTDIR)/bin
+	$(E_cp)cp --remove-destination -fpu$(V) $(PROGS) cleanxmo.sh $(DESTDIR)/bin
 
 include $(Makefile_end_in)
+

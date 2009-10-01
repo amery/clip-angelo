@@ -6,9 +6,9 @@ Local_Depend =
 
 PRG=my_dbtcp$(EXESUFF)
 
-################################################################################################################
-
 all:Makefile  $(PRG)
+
+install : all
 
 cfg :
 
@@ -19,8 +19,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_dbtcp$(EXESUFF): my_dbtcp.prg $(CLIP) $(LIBCLIP)
-	$(E_e)$(Trace_clip)
-	$(CLIP) -p$@ -eMs my_dbtcp.prg -lclip-dbtcp
+	$(E_rm)$(Trace_clip)
+	$(CLIP) -o$@ -eMwls my_dbtcp.prg -lclip-dbtcp
 
 include $(Makefile_o_in)
 

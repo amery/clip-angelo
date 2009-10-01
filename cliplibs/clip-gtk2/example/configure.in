@@ -1,3 +1,2 @@
 #!/bin/sh
-
-cat Makefile.ini Makefile.in >Makefile
+cp ../Makefile.inc .

@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash -ue
 #
 ############################################################################################################
 ############################################################################################################
@@ -225,10 +225,10 @@ function beep_on ()
 	{
 		if [ -x /usr/bin/beep ] ;then
 			echo " beep beep" 	>/dev/null
-			/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
+#			/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
 		elif [ -x /usr/bin/gnubeep ] ;then
 			echo " beep beep" 	>/dev/null
-			/usr/bin/gnubeep -b
+#			/usr/bin/gnubeep -b
 		elif [ -x /usr/bin/mplayer ] ; then
 			# mplayer -vo null $Clip_M_Dir/sounds/Kopete_Received.ogg &
 			echo " beep mplayer beep" 	>/dev/null
@@ -988,11 +988,11 @@ function create_var ()
 function deception ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-##			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
+#			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-##			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
+#			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
 			echo " pitty play pitty" 	>&0
 			echo "" 								>&0
 		else
@@ -1480,11 +1480,11 @@ function TotalFiles ()
 function trumpet ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-##			mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav &
+#			mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav &
 			echo " successful mplayer" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-##			play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav &
+#			play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav &
 			echo " successful play " 		>&0
 			echo "" 								>&0
 		else

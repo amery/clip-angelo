@@ -13,8 +13,6 @@ ADDLIBS=libezV24/libezV24-0.a
 
 DIRS_TO_SCAN = libezV24
 
-################################################################################################################
-
 all: Makefile have_lib $(DIRS_TO_SCAN) $(STARGET)
 
 cfg :
@@ -27,6 +25,7 @@ install : all install-lib install-example
 
 cleanc : libezV24 example
 	$(E_rm)rm -rf$(V) hashcode.h $(TARGET).*
+#	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

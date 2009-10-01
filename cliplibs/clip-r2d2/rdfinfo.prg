@@ -190,7 +190,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	if len(aRefs) > 10000
 		asize(aRefs,10000)
 	endif
-	cgi_checkTreeArefs(arefs,oDep)
+//	cgi_checkTreeArefs(arefs,oDep)
 
 	if atom .and. "UNIQUE_KEY" $ classDesc .and. !empty(classDesc:unique_key)
 		j:= classDesc:unique_key

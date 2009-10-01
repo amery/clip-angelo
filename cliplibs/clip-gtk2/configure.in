@@ -1,9 +1,6 @@
 #!/bin/sh -u
 
-Check_Include 		gdkconfig.h  				xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
-Check_Include 		gdk-pixbuf-features.h 	xyz 	clip-gtk2 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
-Check_Include 		gdk-pixbuf-xlib.h 		xyz 	clip-gtk2 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
-Check_Library 		gdk_pixbuf 					.so 	clip-gtk2 		Yes	/usr/lib$C64 										"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
+Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
 
 uname=`uname -s`
 uver=`uname -r`
@@ -105,7 +102,7 @@ if [ -z $PKGCONFIG ]; then
     echo "*****************************************************************"
     USE_GTK=no
     echo "System MUST have installed pkg-config first!"
-    exit 1
+    exit
 fi
 gtkprefix=`$PKGCONFIG gtk+-2.0 --libs 2>/dev/null`
 if [ $? -ne 0 ]; then
@@ -115,7 +112,7 @@ if [ $? -ne 0 ]; then
     echo "*****************************************************************"
     USE_GTK=no
     echo "gtk2 not detected"
-    exit 1
+    exit
 fi
 LIBS=`$PKGCONFIG gtk+-2.0 --libs`
 EXTRACFLAGS=""
@@ -153,6 +150,7 @@ echo "#endif" 															>&3
 exec 																		3>&-
 echo ". done."
 exec 																					3>Makefile.inc
+echo 																					>&3
 echo "#	Created automatically by 'configure'"							>&3
 echo '#' 																			>&3
 echo 																					>&3
@@ -198,7 +196,8 @@ echo 																					>&3
 exec 																					3>&-
 tr -d \' <./Makefile.inc >Makefile.tmp
 mv -f$V Makefile.tmp Makefile.inc
-rm -f$V Makefile.tmp
+cp -f$V ./Makefile.inc ../../prg/udbx/
+cat ./Makefile.inc >>Makefile.ini
 echo ". done."
 #!/bin/sh
 

@@ -6,21 +6,26 @@
 Local_Depend =
 
 PROG = clip-dbtcp
-ADDLIBS=$(DBTCP_PATH)/libdbftp.a
+#DBTCP_PATH=@DBTCP_PATH@
+ADDLIBS = -L$(DBTCP_PATH) -ldbftp
 DBTCPINCLUDE=-I$(DBTCP_PATH)/../include
 
 C_FLAGS += $(DBTCPINCLUDE)
+#TARGET=libclip-dbtcp$(DLLSUFF)
+#RTARGET=libclip-dbtcp$(DLLREALSUFF)
 OBJS= $(sort dbtcp_clip.o dbtcp.o )
-
-################################################################################################################
 
 all: Makefile  $(STARGET)
 
 cfg :
 
+#$(TARGET): $(OBJS)
+#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBDBTCP)
+
 include $(Makefile_o_in)
 
 install:all install-lib install-example
+#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
 
 cleanc:
 	$(E_rm)rm -rf$(V) dbtcp.c dbtcp_ref.c $(TARGET).*

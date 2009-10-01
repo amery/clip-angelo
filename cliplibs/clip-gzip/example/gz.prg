@@ -1,4 +1,5 @@
 
+Local h, msg, msg1
 ? 'gzipped file write/read test: file asdf.gz'
 ? h:=gzipOpen("asdf.gz", "wb")
 
