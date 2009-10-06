@@ -6,15 +6,15 @@
 	$Log: btree.c,v $
 	Revision 1.1  2006/06/22 19:35:30  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.29  2004/05/26 09:52:23  clip
 	rust: some cleanings
-	
+
 	Revision 1.28  2003/09/02 14:27:43  clip
 	changes for MINGW from
 	Mauricio Abre <maurifull@datafull.com>
 	paul
-	
+
 	Revision 1.27  2003/05/07 11:09:46  clip
 	rust: minor fixes
 
@@ -122,7 +122,7 @@
 
 */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -131,9 +131,9 @@
 #if defined(__GNUC__)
    #include <unistd.h>
 #endif
-#include "../include.h/rdd.h"
-#include "./btree.h"
-#include "error.ch"
+#include "../include.h/ci_rdd.h"
+#include "./ci_btree.h"
+#include "ci_error.ch"
 #ifdef HAVE_MMAN_H
    #include <sys/mman.h>
 #endif

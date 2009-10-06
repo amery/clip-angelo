@@ -1,6 +1,6 @@
-#include <inkey.ch>
-#include <clip-gtk.ch>
-#include <fwin/msgxpm.ch>
+#include <ci_inkey.ch>
+#include <ci_clip-gtk.ch>
+#include <ci_msgxpm.ch>
 
 static sItem:=1, rwin:=1, cWin:=1, rows:=1, cols := 6, hideCol:=0
 static items, entry, header, footHeader, headerWidth

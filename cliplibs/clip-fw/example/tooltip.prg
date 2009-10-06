@@ -8,7 +8,7 @@ Description: This sample shows how to easily implement
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 STATIC oWnd
 
@@ -18,28 +18,28 @@ FUNCTION Main()
    LOCAL oBar, oBtn
 
    DEFINE WINDOW oWnd                                           ;
-      TITLE "ToolTips in FiveWin! Ура! Ура! Ура!!!"
+      TITLE "ToolTips in FiveWin! О©╫О©╫О©╫! О©╫О©╫О©╫! О©╫О©╫О©╫!!!"
 
    DEFINE BUTTONBAR oBar 3D SIZE 33, 33 OF oWnd
 
    DEFINE BUTTON OF oBar  FILE ".\bitmaps\Exit.bmp"            ;
-      TOOLTIP "Exit Выход"                                            ;
+      TOOLTIP "Exit О©╫О©╫О©╫О©╫О©╫"                                            ;
       ACTION oWnd:End()
 
    DEFINE BUTTON OF oBar  FILE ".\bitmaps\Plus.bmp"            ;
-      TOOLTIP "Adding tooltips is... добавим tooltip...."                           ;
-      ACTION MsgInfo("... as easy as this! .... действительно легко!")
+      TOOLTIP "Adding tooltips is... О©╫О©╫О©╫О©╫О©╫О©╫О©╫ tooltip...."                           ;
+      ACTION MsgInfo("... as easy as this! .... О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫!")
 
-   @ 10, 8 BUTTON oBtn PROMPT "Where is my tooltip? Где мой tooltip?" SIZE 180, 28 OF oWnd ;
-      ACTION MsgInfo( "Oh! Thanks! О! Спасибо!" )
+   @ 10, 8 BUTTON oBtn PROMPT "Where is my tooltip? О©╫О©╫О©╫ О©╫О©╫О©╫ tooltip?" SIZE 180, 28 OF oWnd ;
+      ACTION MsgInfo( "Oh! Thanks! О©╫! О©╫О©╫О©╫О©╫О©╫О©╫О©╫!" )
 
    // Manipulate directly the cToolTip DATA of other controls than ButtonBitmaps
-   oBtn:cToolTip = "Here it is! А вот он!"
+   oBtn:cToolTip = "Here it is! О©╫ О©╫О©╫О©╫ О©╫О©╫!"
 
 
    SET MESSAGE OF oWnd                                          ;
       TO "FiveWin: Clip for Unix  && "+                    ;
-	 "что-то по-русски!!!"         ;
+	 "О©╫О©╫О©╫-О©╫О©╫ О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫!!!"         ;
       CENTER							;
       DATE ;
       CLOCK ;

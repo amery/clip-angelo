@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "fileio.ch"
-#include "clipcfg.h"
+#include "ci_fileio.ch"
+#include "ci_clipcfg.h"
 
 *************************************************
 function urlNew(prot,host,path,file,params,anchor,port,user,password)

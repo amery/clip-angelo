@@ -1,5 +1,5 @@
 
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 #define TRUE  .t.
 #define FALSE .f.

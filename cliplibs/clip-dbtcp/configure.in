@@ -8,11 +8,8 @@ DBTCP_PATH=$(Check_Library 		dbftp 				.a 	clip-dbtcp 		Yes 	/opt/dbtcp 								
 																																"can be downloaded at" \
 																																"http://packages.qa.debian.org/d/dbtcp.html")
 
-#sed -e "s%@DBTCP_PATH@%$DbTCP_Path%;s%/$%%" < Makefile.in >Makefile.tmp
-
 echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
 echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
+#!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
-
-exit 0
+touch configure.ok

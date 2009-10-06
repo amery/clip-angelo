@@ -1,20 +1,28 @@
 #
 #                                            clip-cti/example/Makefile.in
 #
-Local_Depend =
-Depend_on = $(Clip_L_Dir)/libclip-cti.so
-Depend_on += $(Clip_L_Dir)/libclip-fw.so
-INCDIR = -I$(Clip_M_Dir)/cliplibs/clip-cti/include
-#CLIPFLAGS += -n
-OBJS  =
-ADD_OBJS =
-POBJS  =
+Depend_on 				= 			$(Clip_L_Dir)/libclip-cti.so
+# 		\
+#										$(Clip_L_Dir)/libclip-fw.so
+INCDIR 					= 			-I$(Clip_M_Dir)/cliplibs/clip-cti/include
+LIBS 						= 			-lclip-cti
+ADD_OBJS 				=
+BINS 						= 			$(sort 								\
+												ctitest$(EXESUFF) 		\
+												ctifd$(EXESUFF) 			\
+												browsecombo$(EXESUFF) 	\
+										)
+#												ctit$(EXESUFF) 			\
+export
 
-.SUFFIXES: .prg .o .po
+######################################################################################
+###################################################################################### local rules
 
-all:Makefile  $(sort ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF) )
+all : Makefile
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -27,22 +35,22 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-ctitest$(EXESUFF): ctitest.prg $(OBJS) $(CLIP) $(LIBCLIP)
+ctitest$(EXESUFF): ctitest.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe $(INCDIR) ctitest.prg $(OBJS) $(ADD_OBJS)
+	$(CLIP) -o$@ -swe $(INCDIR) ctitest.prg $(OBJS) $(ADD_OBJS) $(LIBS)
 
-ctifd$(EXESUFF): ctifd.prg $(OBJS) $(CLIP) $(LIBCLIP)
+ctifd$(EXESUFF): ctifd.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe $(INCDIR) -M  ctifd.prg $(OBJS) $(ADD_OBJS)
+	$(CLIP) -o$@ -swe $(INCDIR) -M  ctifd.prg $(OBJS) $(ADD_OBJS) $(LIBS)
 
-ctit$(EXESUFF): ctit.prg $(OBJS) $(CLIP) $(LIBCLIP)
+ctit$(EXESUFF): ctit.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 #	$(CLIP) -swe -M  ctit.prg $(OBJS) $(ADD_OBJS)
-	$(CLIP) -o$@ $(INCDIR) -swe  ctit.prg $(OBJS) $(ADD_OBJS) -lclip-fw
+	$(CLIP) -o$@ $(INCDIR) -swe  ctit.prg $(OBJS) $(ADD_OBJS) -lclip-fw $(LIBS)
 
-browsecombo$(EXESUFF): browsecombo.prg $(OBJS) $(CLIP)
+browsecombo$(EXESUFF): browsecombo.prg $(OBJS) $(CLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ $(INCDIR) -swe browsecombo.prg $(OBJS) $(ADD_OBJS)
+	$(CLIP) -o$@ $(INCDIR) -swe browsecombo.prg $(OBJS) $(ADD_OBJS) $(LIBS)
 
 depend:
 	makedepend -w80 -- *.prg 2>/dev/null

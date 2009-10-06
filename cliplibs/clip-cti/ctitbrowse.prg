@@ -7,11 +7,11 @@
 
 /* CTI_TBROWSE - Provide objects for browsing table-oriented data */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
-#include "inkey.ch"
-#include "dbedit.ch"
+#include "ci_setcurs.ch"
+#include "ci_inkey.ch"
+#include "ci_dbedit.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 

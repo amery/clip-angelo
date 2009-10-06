@@ -1,47 +1,47 @@
 /*
-‚€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ƒ
-        Class: RichText                                                   
-  Description: System for generating simple RTF files.                    
-     Language: Clipper/Fivewin                                            
-      Version: 0.90 -- This is a usable, but incomplete, version that is  
-               being distributed in case anyone cares to use it as-is,    
-               or wants to comment on it.                                 
-         Date: 01/28/97                                                   
-       Author: Tom Marchione                                              
-     Internet: 73313,3626@compuserve.com                                  
-                                                                          
-    Copyright: (C) 1997, Thomas R. Marchione                              
-       Rights: Use/modify freely for applicaton work, under the condition 
-               that you include the original author's credits (i.e., this 
-               header), and you do not offer the source code for sale.    
-               The author may or may not supply updates and revisions     
-               to this code as "freeware".                                
-                                                                          
-   Warranties: None. The code has not been rigorously tested in a formal  
-               development environment, and is offered as-is.  The author 
-               assumes no responsibility for its use.                     
-                                                                          
-    Revisions:                                                            
-                                                                          
-    DATE       AUTHOR  COMMENTS                                           
-€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€
-    01/28/97   TRM     Date of initial release                            
-                                                                          
-                                                                          
-                                                                          
-                                                                          
-                                                                          
-„€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€…
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½        Class: RichText                                                   ï¿½
+ï¿½  Description: System for generating simple RTF files.                    ï¿½
+ï¿½     Language: Clipper/Fivewin                                            ï¿½
+ï¿½      Version: 0.90 -- This is a usable, but incomplete, version that is  ï¿½
+ï¿½               being distributed in case anyone cares to use it as-is,    ï¿½
+ï¿½               or wants to comment on it.                                 ï¿½
+ï¿½         Date: 01/28/97                                                   ï¿½
+ï¿½       Author: Tom Marchione                                              ï¿½
+ï¿½     Internet: 73313,3626@compuserve.com                                  ï¿½
+ï¿½                                                                          ï¿½
+ï¿½    Copyright: (C) 1997, Thomas R. Marchione                              ï¿½
+ï¿½       Rights: Use/modify freely for applicaton work, under the condition ï¿½
+ï¿½               that you include the original author's credits (i.e., this ï¿½
+ï¿½               header), and you do not offer the source code for sale.    ï¿½
+ï¿½               The author may or may not supply updates and revisions     ï¿½
+ï¿½               to this code as "freeware".                                ï¿½
+ï¿½                                                                          ï¿½
+ï¿½   Warranties: None. The code has not been rigorously tested in a formal  ï¿½
+ï¿½               development environment, and is offered as-is.  The author ï¿½
+ï¿½               assumes no responsibility for its use.                     ï¿½
+ï¿½                                                                          ï¿½
+ï¿½    Revisions:                                                            ï¿½
+ï¿½                                                                          ï¿½
+ï¿½    DATE       AUTHOR  COMMENTS                                           ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½    01/28/97   TRM     Date of initial release                            ï¿½
+ï¿½                                                                          ï¿½
+ï¿½                                                                          ï¿½
+ï¿½                                                                          ï¿½
+ï¿½                                                                          ï¿½
+ï¿½                                                                          ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 
 
 #ifdef __CLIP__
-#include "Objects.ch"
+#include "ci_Objects.ch"
 #else
-#include "FiveWin.ch"
+#include "ci_FiveWin.ch"
 #endif
 
-#include "Richtext.ch"
+#include "ci_Richtext.ch"
 
 CLASS RichText
 	DATA cFileName, hFile

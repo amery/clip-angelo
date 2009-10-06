@@ -8,7 +8,7 @@
 /* CTI_VBOX is a container that organizes child widgets into a single column.
    All children are allocated the same width. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_BOX
 

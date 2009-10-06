@@ -6,7 +6,7 @@ Description: Basic MDI application with reporting examples
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "fwin/ci_FiveWin.ch"
 
 #DEFINE ID_FIRST       110
 #DEFINE ID_LAST        120

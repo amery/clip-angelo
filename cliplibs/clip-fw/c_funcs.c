@@ -1,4 +1,4 @@
-#include <clip.h>
+#include <ci_clip.h>
 
 #define HIWORD(l)   ((short) (((long) (l) >> 16) & 0xFFFF))
 #define LOWORD(l)   ((short) (l))

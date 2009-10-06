@@ -24,7 +24,7 @@ if [ -f clip_makeslib.ini ] ; then
 	fi
 	cat clip_makeslib.ini										>&3
 	exec 																3>&-
-	echo ". done."
 	chmod +x clip_makeslib$SCRIPTSUFF
+	echo ". done."
 fi
 

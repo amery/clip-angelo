@@ -1,11 +1,11 @@
-// Drawing lines and some management colors                     ß
+// Drawing lines and some management colors                     ï¿½
 /*
 File Name  : LINES.PRG
 
 Description: Drawing lines and some management colors
 
 */
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 STATIC aPoints, nCount, nColor := 0, oWnd
 

@@ -178,8 +178,8 @@
  *  $END$
  */
 
-#include "SETCURS.CH"
-#include "INKEY.CH"
+#include "ci_SETCURS.CH"
+#include "ci_INKEY.CH"
 
 #xcommand if <true> then <action> => ;
           if <true> ; <action> ; end

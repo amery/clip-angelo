@@ -1,38 +1,61 @@
 #
 #                                            clip-r2d2/Makefile.in
 #
-
-#CLIP	= $(CLIPROOT)/bin/clip
-Local_Depend = include/*.ch
-CLIPFLAGS += -n
-OBJS = $(sort \
-acc_log.o  			accpost.o 			addinfo.o 			an_funcs.o  	an_rdf.o  an_rdf2.o  an_rdf3.o  \
-balance.o 			balance2.o 			bind2.o 				\
-cgi_funcs.o  		cgi_funcs2.o  		classes_rdf.o 		classes_xml.o  connect.o  \
-delobj.o  			\
-getfile.o  \
-memo.o  \
-obj_arr.o 			obj_rass.o  		odfreport.o \
-print.o  \
-rdfarr.o  			rdfinfo.o  			rdfinfo2.o  		rdfinfo3.o 		rdf_sell.o  \
-report1.o  			report3.o  			report4.o  			report5.o  		report6.o \
-report7.o  			report8.o )
-
+Local_Depend 			= 			include/*.ch
+CLIPFLAGS 				+= 		-n
+OBJS 						= 			$(sort 								\
+													acc_log.o  				\
+													accpost.o 				\
+													addinfo.o 				\
+													an_funcs.o  			\
+													an_rdf.o  				\
+													an_rdf2.o  				\
+													an_rdf3.o  				\
+													balance.o 				\
+													balance2.o 				\
+													bind2.o 					\
+													cgi_funcs.o  			\
+													cgi_funcs2.o  			\
+													classes_rdf.o 			\
+													classes_xml.o 			\
+													connect.o  				\
+													delobj.o 				\
+													getfile.o  				\
+													memo.o 					\
+													obj_arr.o 				\
+													obj_rass.o  			\
+													odfreport.o 			\
+													print.o 					\
+													rdfarr.o  				\
+													rdfinfo.o  				\
+													rdfinfo2.o  			\
+													rdfinfo3.o 				\
+													rdf_sell.o  			\
+													report1.o  				\
+													report3.o  				\
+													report4.o  				\
+													report5.o  				\
+													report6.o 				\
+													report7.o  				\
+													report8.o 				\
+										)
 #rdfinfo2.o  balance2.o
+OBJS2 					= 			accpost.o bind.o
+PROG 						= 			clip-r2d2
+ADDLIBS 					=
 
-OBJS2 = accpost.o bind.o
-PROG = clip-r2d2
-#R2D2LIB = libclip-r2d2.a
-#R2D2FLIB = libclip-r2d2$(DLLSUFF)
-#R2D2FLIBREAL = libclip-r2d2$(DLLREALSUFF)
-ADDLIBS =
+export
 
-.SUFFIXES: .prg .o .po
+######################################################################################
+###################################################################################### local rules
 
-all:  Makefile $(STARGET)
+all:  Makefile $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-r2d2
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/r2d2lib.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_r2d2lib.ch $(Clip_I_Dir)/
 
 cleanc :
 	$(E_rm)rm -f$(V) *.c $(TARGET).*

@@ -15,32 +15,6 @@ source $Clip_M_Dir/init/functions.f
 if [[ $? != 0 ]] ; then
 	exit 1
 fi
-cd clip/tools
-reg=1
-if [ -f registration ] ; then
-	./rsa-verify >license.txt <registration
-	reg=$?
-	echo >>license.txt
-	echo "REGISTRATION BEGIN" >>license.txt
-	cat registration >>license.txt
-	echo "REGISTRATION END" >>license.txt
-fi
-if [ "$reg" != 0 ] ; then
-	cp --remove-destination -fu$V license.gnu license.txt
-fi
-echo "Registration info:" >&0
-echo >&0
-cat license.txt >&0
-echo >&0
-exec 																			3>license.h
-echo '#define CLIP_LICENSE "\' 										>&3
-#sed -e 's/"/\\"/g' -e 's/^.*$/"\0\\\n"\\/g' <license.txt 	>&3
-sed -e 's/"/\\"/g' -e 's/^.*$/\0\\n\\/g' <license.txt			>&3
-echo '"'																		>&3
-rm -f license.txt
-exec																			3>&-
-echo ". done."
-mv -f$V license.h $Clip_I_Dir
 cd "$Clip_M_Dir"
 source $Clip_M_Dir/init/check.packages.sh
 if [[ $? != 0 ]] ; then
@@ -61,6 +35,7 @@ CHECK_STACK=""
 PO_COMPAT=""
 SCRIPTSUFF=$C64.sh
 DEBUGFLAGS="-DCLIP_DEBUG"
+DEBUGFLAGS="-DDEBUGGING_CLIP"
 DEBUGFLAGS=""
 STD_LIBDIR=""
 STD_LIB_DIR=/usr/lib$C64
@@ -72,6 +47,8 @@ NM_UNDERSCORE=""
 EXESUFF=$C64
 USE_WCHARS=yes
 USE_TASKS=yes
+LibDir=lib$C64
+YACC="bison"
 #if [ "$CLIP_TASKS" ]
 #then
 #	USE_TASKS=$CLIP_TASKS
@@ -90,91 +67,7 @@ echo $opts > configure.flags
 rm -f$V Makefile Makefile.inc clipcfg.sh
 USE_MEMDBG=no
 MEMDEBUG_LEVEL=0
-################
-################for opt in $opts
-################do
-################	case "$opt" in
-################	-f)
-################		;;
-################	-m=*)
-################		MEMDEBUG_LEVEL=`echo "$opt" | sed -e "s/^-m=//"`
-################		USE_MEMDBG=yes
-################		#rm -f Makefile.inc clipcfg.sh
-################		;;
-################	-m)
-################		MEMDEBUG_LEVEL=3
-################		USE_MEMDBG=yes
-################		#rm -f Makefile.inc clipcfg.sh
-################		;;
-################	-[oO]*)
-################		rm -f$V Makefile.inc
-################		OPTFLAGS=-O2
-################		;;
-################	-[cC]*)
-################		rm -f$V Makefile.inc clipcfg.sh
-################		;;
-################	-[rR]*)
-################		#rm -f$V Makefile.inc
-################		[ -z "$CLIPROOT" ] && CLIPROOT=/usr/local/clip$C4
-################		[ -z "$BINDIR" ] && BINDIR=/usr/local/bin
-################		OPTFLAGS=-O2
-################		DEBUGFLAGS=""
-################		STD_LIBDIR="yes"
-################		USE_WCHARS=""
-################		;;
-################	-[sS])
-################		STD_LIBDIR="yes"
-################		;;
-################	-l)
-################		STD_LIB_DIR=/usr/local/lib
-################		STD_LIBDIR="yes"
-################		;;
-################	-a)
-################		FORCEALIGN=4
-################		;;
-################	-[tT]*)
-################		USE_TASKS="no"
-################		;;
-################	-stack)
-################		CHECK_STACK=yes
-################		;;
-################	-mingw-cross)
-################		CC=`xoneof /usr/bin/i586-mingw32msvc-gcc /opt/cross-tools/bin/i386-mingw32msvc-gcc`
-################		CROSSROOT=`oneofdir /usr/i586-mingw32msvc /opt/cross-tools/i386-mingw32msvc`
-################
-################		test -n "$CROSSROOT" || CROSSROOT=/usr/bin/i586-mingw32msvc-gcc
-################
-################		CC="$CC -mms-bitfields -march=pentium"
-################		AS_PRG="$CROSSROOT/bin/as"
-################
-################		USE_AS=yes
-################		LD_PRG="$CROSSROOT/bin/ld"
-################		USE_LD=yes
-################		NM_PRG="$CROSSROOT/bin/nm"
-################		CLIPROOT=/clip
-################		BINDIR=/windows/command
-################		STD_LIBDIR="yes"
-################		OSNAME=MINGW
-################		;;
-################	0)
-################		;;
-################	*)
-################		echo "usage: ./configure [-o] [-m] [-c] [-r] [-s] [-t]"
-################		echo "	-o  for optimisation"
-################		echo "	-m  for memdebug"
-################		echo "	-m=<LEVEL> for memdebug with level <LEVEL>"
-################		echo "	-c  to clean cache"
-################		echo "	-r  release options"
-################		echo "	-s  use standard libdir (/usr/lib)"
-################		echo "	-l  set standard libdir to /usr/local/lib"
-################		echo "	-a  force align code"
-################		echo "	-t  do NOT use tasks code"
-################		echo "	-stack  enable runtime stack check"
-################		echo "	-mingw-cross  configure for cross-compile on mingw32"
-################		exit 0
-################		;;
-################	esac
-################done
+MEMDBGFLAGS=
 if [ "$USE_MEMDBG" = yes ] ; then
 	rm -f Makefile.inc
 	MEMDEBUG="$MEMDEBUG_LEVEL"
@@ -198,17 +91,16 @@ i?86)
 	;;
 esac
 [ -z "$CLIPROOT" ] && CLIPROOT=`cd ../..;pwd`/cliproot
-#[ -z "$BINDIR" ] &&
 BINDIR="$HOME/bin"
 [ -d "$BINDIR" ] || mkdir -p$V "$BINDIR"
-#rm -Rf$V $DESTDIR$CLIPROOT
-CLIP_ROOT="$DESTDIR$CLIPROOT"
-#	initial CFLAGS
+CLIP_ROOT="$INSTDIR"
+CLIPROOT="$INSTDIR"
+#	initial C_FLAGS
 #
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
 C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $DEBUGFLAGS $OPTFLAGS"
-#CFLAGS="-Wall -fPIC -Iinclude.clip"
-CLIPFLAGS="-I include -I include.clip -wlRON $DEBUGFLAGS "
+#C_FLAGS="-Wall -fPIC -Iinclude.clip"
+CLIPFLAGS="-I include -I include.clip -wlON $DEBUGFLAGS  $OPTFLAGS"
 C_LIBS="-L$Clip_L_Dir -lclip"
 ADD_CFLAGS="-fPIC"
 uname=`uname -s`
@@ -329,13 +221,6 @@ LINUX)
 *)
 	;;
 esac
-#if [ -f ./Makefile.in ]
-#then
-#	read cashed values
-#
-#if [ -f ./clipcfg.sh ] ; then
-#	source tools/clipcfg.sh
-#fi
 msgfmt -V >/dev/null 2>&1
 if [ $? != 0 ] ; then
 	echo "Warning: GETTEXT package does not installed"
@@ -354,18 +239,8 @@ if [ $? != 0 ] ; then
 	echo "Warning: clip compilation may have a problems"
 	#exit 1
 fi
-#cd xclip
-#	if xmkmf >/dev/null 2>&1
-#	then
-#		if make xclip >/dev/null 2>&1
-#		then
-#			XCLIP=xclip/xclip
-#		fi
-#	fi
-#cd ..
 echo "configure: Makefile creating.." >&0
 exec 																												3>Makefile.incl
-#CLIP=clip$EXESUFF
 CLIP=$Clip_B_Dir/clip$EXESUFF
 CLIP_CP=$Clip_B_Dir/clip_cp$SCRIPTSUFF
 CLIP_MAKELIB=$Clip_B_Dir/clip_makelib$SCRIPTSUFF
@@ -377,69 +252,17 @@ Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in
 Makefile_o_in=$Clip_M_Dir/init/Makefile.o.in
 Makefile_01_in=$Clip_M_Dir/init/Makefile.01.in
 Makefile_02_in=$Clip_M_Dir/init/Makefile.02.in
-Makefile_end_in=$Clip_M_Dir/init/Makefile.end.in
+Makefile_gen_in=$Clip_M_Dir/init/Makefile.gen.in
 CONFIGURE_SH=/$Clip_M_Dir/init/configure.sh
-echo "export OSNAME=$osname" 																				>&3
-echo "export DLLIB=$DLLIB" 																				>&3
-echo "export CLIP_CMDSTR=\"$CLIP_CMDSTR\"" 															>&3
-echo "export ARCH=$arch"  																					>&3
-echo "export V=$V"  																							>&3
-echo "export C64=$C64"  																					>&3
-echo "export ADD_CFLAGS=\"$ADD_CFLAGS\""  															>&3
-echo "export CLIP=$CLIP"  																					>&3
-echo "export CLIP_NAMES=$CLIP_NAMES"  																	>&3
-echo "export CLIP_CP=$CLIP_CP"  																			>&3
-echo "export CLIP_MAKELIB=$CLIP_MAKELIB"  															>&3
-echo "export CLIP_MAKESLIB=$CLIP_MAKESLIB"  															>&3
-echo "export CLIP_MSGFMT=$CLIP_MSGFMT"  																>&3
-echo "export CLIP_MSGMERGE=$CLIP_MSGMERGE"  															>&3
-echo "export Making=$Making"  																			>&3
-echo "export DLLSUFF=$DLLSUFF"  																			>&3
-#echo "export DESTDIR=$DESTDIR"																			>&3
-echo "export EXESUFF=$EXESUFF" 																			>&3
-echo "export DLLREALSUFF=$DLLREALSUFF" 																>&3
-echo "export Makefile_end_in=$Makefile_end_in"														>&3
-echo "export Makefile_o_in=$Makefile_o_in" 															>&3
-echo "export Makefile_01_in=$Makefile_01_in" 														>&3
-echo "export Makefile_02_in=$Makefile_02_in" 														>&3
-echo "export Makefile_end_in=$Makefile_end_in"														>&3
-echo "export CONFIGURE_SH=$CONFIGURE_SH"																>&3
-echo "export Clip_B_Dir=$Clip_B_Dir"																	>&3
-echo "export Clip_C_Dir=$Clip_C_Dir"																	>&3
-echo "export Clip_D_Dir=$Clip_D_Dir"																	>&3
-echo "export Clip_H_Dir=$Clip_H_Dir"																	>&3
-echo "export Clip_I_Dir=$Clip_I_Dir"																	>&3
-echo "export Clip_L_Dir=$Clip_L_Dir"																	>&3
-echo "export Clip_M_Dir=$Clip_M_Dir"																	>&3
-echo "export Clip_S_Dir=$Clip_S_Dir"																	>&3
-echo "export Clip_T_Dir=$Clip_T_Dir"																	>&3
-echo "export seq_no=$seq_no"																				>&3
+
 if [ -n "$FORCEALIGN" ] ; then
 	echo "export FORCEALIGN=$FORCEALIGN"																>&3
 fi
-echo "export MLIB=$MLIB"																					>&3
 if [ -n "$MDBG" ] ; then
 	echo "export MALLOC_H=memdebug/malloc.h"															>&3
 	echo "export USE_MEMDEBUG=yes"																		>&3
 	echo "export INST_MEMDEBUG_H=inst_memdebug_h"													>&3
 fi
-echo "export STATICLINK=$STATICLINK"																	>&3
-echo "export CLIP_ROOT=$DESTDIR$CLIPROOT"																>&3
-echo "export CLIPROOT=$CLIP_ROOT"																		>&3
-echo "export BINDIR=$BINDIR"																				>&3
-echo "export STD_LIBDIR=$STD_LIBDIR"																	>&3
-echo "export INSTDIR=$CLIP_ROOT"																			>&3
-echo "export DESTDIR=$CLIP_ROOT"																			>&3
-echo "export CLIPFLAGS=\"$CLIPFLAGS\""																	>&3
-#echo "export DLLSUFF=$DLLSUFF" 																			>&3
-#echo "export EXESUFF=$EXESUFF"																			>&3
-echo "export SCRIPTSUFF=$SCRIPTSUFF"																	>&3
-#echo "export DLLREALSUFF=$DLLREALSUFF"																>&3
-echo "export OS_$osname=yes"																				>&3
-echo "export C_FLAGS=\"$C_FLAGS\""																		>&3
-#echo "export CFLAGS=\"$CFLAGS\""																			>&3
-echo "export C_LIBS=\"$C_LIBS\""																			>&3
-#fi
 if [ -f /usr/include/readline/readline.h ] ; then
 	case "$osname" in
 	FREEBSD*)
@@ -458,27 +281,10 @@ if [ -f /usr/include/readline/readline.h ] ; then
 		READLINE_LIBS="-lreadline"
 		;;
 	esac
-	echo "export READLINE_LIBS=\"$READLINE_LIBS\""													>&3
 fi
+
 CurDir="$PWD"
-#if [ "$USE_TASKS" = yes -a ! -f libcliptask/task.o ] ; then
-#	cd $Clip_M_Dir/clip/libcliptask
-#	./cl_conf
-	#cat ../Makefile.incl >Makefile
-	#cat Makefile.in >>Makefile
-	#$MAKE test_pth
-#	./configure
-#	if [ $? = 0 ] ; 	then
-#		USE_TASKS=yes
-#	else
-#		USE_TASKS=no
-#		echo "Warning: task not available: unknown system"
-#	fi
-#	cd "$CurDir"
-#fi
-#if [ "$USE_TASKS" = yes -a -f $Clip_M_Dir/clip/libcliptask/USE_PTH ] ; then
-    ADDLIBS="$ADDLIBS -lpth"
-#fi
+ADDLIBS="$ADDLIBS -lpth"
 if [ "$USE_TASKS" = yes ] ; then
 	echo "export USE_TASKS=yes"																			>&3
 	echo "export TASK=libcliptask/libcliptask.a"														>&3
@@ -491,17 +297,7 @@ if [ -z "$CC" ] ; then
 		CC=cc
 	fi
 fi
-echo "export NM_UNDERSCORE=$NM_UNDERSCORE"															>&3
-echo "export CC=$CC"																							>&3
-test -n "$AS_PRG" || AS_PRG=as
-echo "export AS_PRG=$AS_PRG"																				>&3
-#test -n "$LD_PRG" || LD_PRG=ld
-echo "export LD_PRG=\"$LD_PRG\"" 																		>&3
-echo "export LD_END=\"$LD_END\""																			>&3
-echo "export LDS_PRG=\"$LDS_PRG\""																		>&3
-echo "export LDS_END=\"$LDS_END\""																		>&3
-test -n "$NM_PRG" || NM_PRG=nm
-echo "export NM_PRG=$NM_PRG"																				>&3
+[ $CC -nt ./configure.gen.sh ] && touch ./configure.gen.sh
 if [ -n "$STD_LIBDIR" ] ; then
 	echo "export INST_STD_LIB=$INST_STD_LIB"															>&3
 	echo "export STD_LIBDIR=$STD_LIB_DIR"																>&3
@@ -511,33 +307,22 @@ fi
 	#	echo "export XCLIP=$XCLIP"																			>&3
 #fi
 PO_BINS="po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF"
-echo '
-#include </opt/iconv/include/iconv.h>
-int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-' > /tmp/$$.c
-$CC -o /tmp/$$ /tmp/$$.c -liconv  -L/opt/liconv/lib
-#2>/dev/null 1>&2
+$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c -liconv  -L/opt/liconv/lib
 if [ $? = 0 ] ; then
 	ICONV_LIB="-liconv  -L/opt/iconv/lib"
 	ICONV_INC="\"/opt/iconv/include/iconv.h\""
 	HAVE_ICONV=yes
 else
-	echo '
-	#include </usr/local/include/iconv.h>
-	int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-	' > /tmp/$$.c
-	$CC -o /tmp/$$ /tmp/$$.c -liconv -L/usr/local/lib
-	# 2>/dev/null 1>&2
+	echo "Error of NO IMPORTANCE" >&0
+	echo "Error of NO IMPORTANCE" >&1
+	echo "Error of NO IMPORTANCE" >&2
+	$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -liconv -L/usr/local/lib
 	if [ $? = 0 ] ; 	then
 		ICONV_LIB="-liconv  -L/usr/local/lib"
 		ICONV_INC="\"/usr/local/include/iconv.h\""
 		HAVE_ICONV=yes
 	else
-		echo '
-		#include <iconv.h>"
-		int main(int argc, char **argv) { iconv_t it; it = iconv_open("utf-8", "utf-8"); return 0;}
-		' > /tmp/$$.c
-		$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
+		$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c
 		if [ $? = 0 ] ; then
 			ICONV_LIB=""
 			ICONV_INC="<iconv.h>"
@@ -555,17 +340,18 @@ else
 fi
 [ -d $Clip_I_Dir ] || mkdir -p$V $Clip_I_Dir
 echo "#include $ICONV_INC" >$Clip_I_Dir/cl_iconv.h
-echo "export ICONV_INC=$ICONV_INC"   																	>&3
-echo "export ICONV_LIB=\"$ICONV_LIB\""																	>&3
-echo "export PO_BINS=\"$PO_BINS\""																		>&3
+
+test -n "$AS_PRG" || AS_PRG=as
+test -n "$NM_PRG" || NM_PRG=nm
+
+
 echo "ICONV_INC=$ICONV_INC" >&0
 echo "ICONV_LIB=$ICONV_LIB" >&0
 echo "ICONV_INC=$ICONV_INC" >&1
 echo "ICONV_LIB=$ICONV_LIB" >&1
 echo "ICONV_INC=$ICONV_INC" >&2
 echo "ICONV_LIB=$ICONV_LIB" >&2
-rm -f /tmp/$$*
-echo																												>&3
+rm -f$V /tmp/$$*
 echo '
 msgid "error"
 msgid_plural "errors"
@@ -581,14 +367,78 @@ else
 	PO_FROM_COMPAT="$Clip_B_Dir/po_compat$EXESUFF -f"
 	PO_TO_COMPAT="$Clip_B_Dir/po_compat$EXESUFF -t"
 fi
+ADDLIBS="$ADDLIBS $ICONV_LIB $READLINE_LIBS"
+rm -f /tmp/$$msg
+echo 																												>&3
+echo "export ADD_CFLAGS=\"$ADD_CFLAGS\""  															>&3
+echo "export ADDLIBS=\"$ADDLIBS\""																		>&3
+echo "export AS_PRG=$AS_PRG"																				>&3
+echo "export ARCH=$arch"  																					>&3
+echo "export BINDIR=$BINDIR"																				>&3
+echo "export C64=$C64"  																					>&3
+echo "export CC=$CC"																							>&3
+echo "export rV=$rV"																							>&3
+echo "export rD=$rD"																							>&3
+echo "export C_FLAGS=\"$C_FLAGS\""																		>&3
+echo "export C_LIBS=\"$C_LIBS\""																			>&3
+echo "export CLIP=$CLIP"  																					>&3
+echo "export Clip_B_Dir=$Clip_B_Dir"																	>&3
+echo "export Clip_C_Dir=$Clip_C_Dir"																	>&3
+echo "export CLIP_CMDSTR=\"$CLIP_CMDSTR\"" 															>&3
+echo "export CLIP_CP=$CLIP_CP"  																			>&3
+echo "export Clip_D_Dir=$Clip_D_Dir"																	>&3
+echo "export CLIPFLAGS=\"$CLIPFLAGS\""																	>&3
+echo "export Clip_H_Dir=$Clip_H_Dir"																	>&3
+echo "export Clip_I_Dir=$Clip_I_Dir"																	>&3
+echo "export Clip_L_Dir=$Clip_L_Dir"																	>&3
+echo "export Clip_M_Dir=$Clip_M_Dir"																	>&3
+echo "export CLIP_MAKELIB=$CLIP_MAKELIB"  															>&3
+echo "export CLIP_MAKESLIB=$CLIP_MAKESLIB"  															>&3
+echo "export CLIP_MSGFMT=$CLIP_MSGFMT"  																>&3
+echo "export CLIP_MSGMERGE=$CLIP_MSGMERGE"  															>&3
+echo "export CLIP_NAMES=$CLIP_NAMES"  																	>&3
+echo "export CLIP_ROOT=$CLIP_ROOT"																		>&3
+echo "export CLIPROOT=$CLIPROOT"																			>&3
+echo "export Clip_S_Dir=$Clip_S_Dir"																	>&3
+echo "export Clip_T_Dir=$Clip_T_Dir"																	>&3
+echo "export CONFIGURE_SH=$CONFIGURE_SH"																>&3
+echo "export DLLIB=$DLLIB" 																				>&3
+echo "export DLLREALSUFF=$DLLREALSUFF" 																>&3
+echo "export DLLSUFF=$DLLSUFF"  																			>&3
+echo "export EXESUFF=$EXESUFF" 																			>&3
+echo "export INSTDIR=$CLIP_ROOT"																			>&3
+echo "export LD_END=\"$LD_END\""																			>&3
+echo "export LD_PRG=\"$LD_PRG\"" 																		>&3
+echo "export LDS_END=\"$LDS_END\""																		>&3
+echo "export LDS_PRG=\"$LDS_PRG\""																		>&3
+echo "export LibDir=\"$LibDir\""																			>&3
+echo "export Makefile_01_in=$Makefile_01_in" 														>&3
+echo "export Makefile_02_in=$Makefile_02_in" 														>&3
+echo "export Makefile_end_in=$Makefile_end_in"														>&3
+echo "export Makefile_gen_in=$Makefile_gen_in"														>&3
+echo "export Makefile_o_in=$Makefile_o_in" 															>&3
+echo "export Making=$Making"  																			>&3
+echo "export MEMDBGFLAGS=\"$MEMDBGFLAGS\""															>&3
+echo "export MLIB=$MLIB"																					>&3
+echo "export NM_PRG=$NM_PRG"																				>&3
+echo "export NM_UNDERSCORE=$NM_UNDERSCORE"															>&3
+echo "export PO_COMPAT=$PO_COMPAT"																		>&3
 echo "export PO_FROM_COMPAT=$PO_FROM_COMPAT"															>&3
 echo "export PO_TO_COMPAT=$PO_TO_COMPAT"																>&3
-echo "export PO_COMPAT=$PO_COMPAT"																		>&3
-ADDLIBS="$ADDLIBS $ICONV_LIB $READLINE_LIBS"
-echo "export ADDLIBS=\"$ADDLIBS\""																		>&3
-#echo "export "																								>&3
-echo 																												>&3
-rm -f /tmp/$$msg
+echo "export READLINE_LIBS=\"$READLINE_LIBS\""														>&3
+echo "export OS_$osname=yes"																				>&3
+echo "export OSNAME=$osname" 																				>&3
+echo "export SCRIPTSUFF=$SCRIPTSUFF"																	>&3
+echo "export seq_no=$seq_no"																				>&3
+echo "export STATICLINK=$STATICLINK"																	>&3
+echo "export STD_LIBDIR=$STD_LIBDIR"																	>&3
+echo "export V=$V"  																							>&3
+echo "export ICONV_INC=$ICONV_INC"   																	>&3
+echo "export ICONV_LIB=\"$ICONV_LIB\""																	>&3
+echo "export PO_BINS=\"$PO_BINS\""																		>&3
+echo "export YACC=$YACC"																		>&3
+echo "export WaitForCheck=$WaitForCheck"																>&3
+echo																												>&3
 exec																												3>&-
 #sort -u -d -t = <Makefile.incl -o Makefile.dtu
 sort -d -t =  <Makefile.incl -o Makefile.incl_1
@@ -636,7 +486,7 @@ rm -f$V Makefile.tmp
 cp --remove-destination -fu$V $Clip_I_Dir/Makefile.ini $Clip_M_Dir/
 echo ". done."
 printf "configure: creating clipcfg.h .."
-exec																		3>clipcfg.h
+exec																		3>ci_clipcfg.h
 echo "/* Created automatically by \"configure\" */"		>&3
 echo "#ifndef CLIP_CONFIG_H"										>&3
 echo "#define CLIP_CONFIG_H"										>&3
@@ -725,7 +575,8 @@ if [ -f /usr/include/readline/readline.h ] ; then
 #include <readline/readline.h>
 int main(int argc, char **argv) { rl_already_prompted=1; return 0;}
 	' > /tmp/$$.c
-	$CC -o /tmp/$$ /tmp/$$.c $READLINE_LIBS 2>/dev/null 1>&2
+	$CC -o /tmp/$$ /tmp/$$.c $READLINE_LIBS
+# 2>/dev/null 1>&2
 	if [ $? = 0 ] ; then
 		echo "#define HAVE_READLINE_ALREADY_PROMPTED" 													>&3
 	else
@@ -826,12 +677,12 @@ esac
 exec 																													3>&-
 #exec 3>./temp$$1$$2
 sort -d <temp$$1$$2 -o temp$$1$$2.out
-cat temp$$1$$2.out >>clipcfg.h
-echo >>clipcfg.h
-echo "#endif" >>clipcfg.h
+cat temp$$1$$2.out >>ci_clipcfg.h
+echo >>ci_clipcfg.h
+echo "#endif" >>ci_clipcfg.h
 echo ". done."
 rm -f$V temp$$1$$2 temp$$1$$2.out
-mv clipcfg.h $Clip_I_Dir/
+mv ci_clipcfg.h $Clip_I_Dir/
 cd $Clip_M_Dir/clip/tools
 source clip_msgmerge.in.sh
 if [[ $? != 0 ]] ; then

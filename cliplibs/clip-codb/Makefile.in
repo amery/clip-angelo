@@ -2,58 +2,56 @@
 #                                            clip-codb/Makefile.in
 #
 
-Local_Depend = include/*.ch
-#CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS += -n
-#CLIPFLAGS2 =
-#CFLAGS = -I.. -I../include -I$(CLIPROOT)
-#CLIPLIBS  =
-OBJS  = $(sort codb_list.o 	\
-					codb.o 			\
-					codb_funcs.o 	\
-					codb_oql.o 		\
-					codb_install.o \
-					codb_err.o 		\
-					codb_cache.o 	\
-					codb_cobra.o 	\
-					codb_uni.o 		\
-					list_id.o 		\
-					codb_dep.o 		\
-					codb_dict.o 	\
-					dict_dbf.o 		\
-					dep_dbf.o 		\
-					ext_dbf.o 		\
-					count_dbf.o 	\
-					dict_all.o 		\
-					dep_all.o 		\
-					codb_sql.o 		\
-					dict_sql.o 		\
-					dict_cobra.o 	\
-					dep_cobra.o 	\
-			)
+Local_Depend 		= 			include/*.ch
+CLIPFLAGS 			+= 		-n
+OBJS  				= 			$(sort 						\
+												codb_list.o 	\
+												codb.o 			\
+												codb_funcs.o 	\
+												codb_oql.o 		\
+												codb_install.o \
+												codb_err.o 		\
+												codb_cache.o 	\
+												codb_cobra.o 	\
+												codb_uni.o 		\
+												list_id.o 		\
+												codb_dep.o 		\
+												codb_dict.o 	\
+												dict_dbf.o 		\
+												dep_dbf.o 		\
+												ext_dbf.o 		\
+												count_dbf.o 	\
+												dict_all.o 		\
+												dep_all.o 		\
+												codb_sql.o 		\
+												dict_sql.o 		\
+												dict_cobra.o 	\
+												dep_cobra.o 	\
+									)
 
-.SUFFIXES: .prg .o .po
+PROG 					= 			clip-codb
+PROG2 				= 			codb-query
+OBJS2 				= 			$(sort 						\
+												codb_query.o 	\
+												formatter.o 	\
+									)
 
-#LIB = libclip-codb.a
-#SLIB = libclip-codb$(DLLSUFF)
-PROG = clip-codb
-PROG2 = codb-query
-#LIB_QUERY = libcodb-query.a
-#SLIB_QUERY = libcodb-query$(DLLSUFF)
-OBJS2 = $(sort 	codb_query.o 	\
-						formatter.o 	\
-			)
+ADDLIBS 				=
 
-ADDLIBS =
+export
 
-export CFLAGS
+######################################################################################
+###################################################################################### local rules
 
-all:   Makefile  $(STARGET) $(STARGET2)
+all:   Makefile  $(OBJS) $(OBJS2) $(STARGET) $(STARGET2)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-codb
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch $(Clip_I_Dir)/. 	|| true
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.h $(Clip_I_Dir)/. 		|| true
-	$(E_cp)cp --remove-destination -Rfpu$(V) ./locale.po/* $(DESTDIR)/locale.po/
+	$(E_cp)cp --remove-destination -Rfpu$(V) ./locale.po/* $(INSTDIR)/locale.po/
 
 cleanc :
 	$(E_rm)rm -f$(V) *.c *.b codb_mk clip_ab test
@@ -64,28 +62,6 @@ distcleanc :
 	rm -rf$(V) *.g
 
 install: all install-lib
-#	$(CLIP_CP) libclip-codb $(DESTDIR)/lib
-#	$(CLIP_CP) libcodb-query $(DESTDIR)/lib
-
-inst_codb:
-#	$(CLIP_CP) libclip-codb $(DESTDIR)/lib
-#	$(CLIP_CP) libcodb-query $(DESTDIR)/lib
-#	tar cf - codb.ch codbcfg.ch codb_dbf.ch | (cd $(DESTDIR)/include && tar xf -)
-
-
-#$(LIB): $(OBJS)
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
-
-#$(SLIB): $(LIB)
-#	$(CLIP_MAKESLIB) $(SLIB) $(LIB)
-
-#$(LIB_QUERY): $(OBJS_QUERY)
-#	rm -f$(V) $(LIB_QUERY)
-#	$(CLIP_MAKELIB) $(LIB_QUERY) $(OBJS_QUERY)
-
-#$(SLIB_QUERY): $(LIB_QUERY)
-#	$(CLIP_MAKESLIB) $(SLIB_QUERY) $(OBJS_QUERY)
 
 include $(Makefile_o_in)
 

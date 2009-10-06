@@ -2,9 +2,9 @@
     Copyright (C) 1998-2004 Yevgen Bondar <elb@lg.bank.gov.ua>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
 MEMVAR _MenuColor,HiddenColor,_im,_bm,_c_f
 STATIC nLevel:=0, _Finish:=.F.
 **********
@@ -244,12 +244,12 @@ _OtherW:={EMPTY(m->_macro),.F.,.F.,;
 	  .F.}
 
 #IFNDEF ENGLISH
-	cTypWhen:='Контрольный разряд '
+	cTypWhen:='я┐╜я┐╜я┐╜я┐╜роля┐╜я┐╜я┐╜я┐╜ разя┐╜я┐╜я┐╜ '
 	AADD(_OtherF,{||SecondMenu(;
-				{cTypWhen+"счета в банке Украины",;
-				 cTypWhen+"счета в банке России",;
-				 cTypWhen+"МФО",;
-				 cTypWhen+"ОКПО"},;
+				{cTypWhen+"я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜раия┐╜я┐╜",;
+				 cTypWhen+"я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜сии",;
+				 cTypWhen+"я┐╜я┐╜я┐╜",;
+				 cTypWhen+"я┐╜я┐╜я┐╜я┐╜"},;
 				{{||TakeKR(1)},;
 				 {||TakeKR(2)},;
 				 {||TakeKR(3)},;
@@ -281,7 +281,7 @@ nLevel:=1
 DO WHILE ch1<>0 .AND. !_Finish
 	IF !EMPTY(m->__Menu_Col)
 		ch1:=MAX(ASCAN(aStart,{|el|el>m->__Menu_Col})-1,1)
-		KEYBOARD _DOWN	//Сразу раскрыть
+		KEYBOARD _DOWN	//я┐╜разя┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	ENDIF
 	READMENU PROMPTS Mp;
 		 MAKE mf STEP 4 ROW 1 COL 1 NOBORDER ;

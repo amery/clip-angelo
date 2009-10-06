@@ -1,11 +1,11 @@
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 
 static cls
 
 function Main()
 	local w,vb,hb,sw,f,CLFrame
 	local clst,clst1,sizes:={}, cols:={},clf:={}
-	local wX,wY, mask
+	local wX,wY, mask, _pix, pix, EFrame, EFx, en2, en3
 	gtk_Init()
 
 	w:= gtk_WindowNew(,"CLIP-GTK test")
@@ -25,7 +25,7 @@ function Main()
 	gtk_WindowSetPolicy(w,.f.,.t.,.t.)
 	gtk_ContainerSetBorderWidth(w,0)
 	gtk_ContainerSetResizeMode(w, GTK_RESIZE_QUEUE)
-//		Обработка "delete-event" окна w
+//		О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ "delete-event" О©╫О©╫О©╫О©╫ w
 	gtk_SignalConnect(w,"delete-event",{|wid,e|gtk_WidgetDestroy(w),gtk_Quit()})
 	vb:= gtk_VBoxNew()
 	vb:name = "VBox 1"

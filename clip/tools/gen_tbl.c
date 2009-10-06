@@ -9,13 +9,13 @@
 	$Log: gen_tbl.c,v $
 	Revision 1.1  2006/06/22 19:01:34  itk
 	uri: initial
-	
+
 	Revision 1.1  2002/01/16 15:29:08  clip
 	chinese patch
 	preproc bugs
 	some pseudographic chars < 32
 	paul
-	
+
 	Revision 1.8  2001/06/06 12:00:00  clip
 	bug in gen_tbl.c. Tnanks to "Marek Paliwoda" <mpaliwoda@nsw.com.pl> for bugreport!
 	paul
@@ -27,9 +27,9 @@
 #include <string.h>
 #include <errno.h>
 
-#include "../libclipscreen/charset.h"
-#include "coll.h"
-#include "../libclipscreen/screen.h"
+#include "../libclipscreen/ci_charset.h"
+#include "ci_coll.h"
+#include "../libclipscreen/ci_screen.h"
 
 /*#define DBG*/
 /*#define DBG1*/

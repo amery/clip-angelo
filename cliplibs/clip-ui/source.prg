@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 /** UISource - class for field source */
 
@@ -18,7 +18,7 @@
 		<source> should has format: 'db:class:attribute'
 		<id> is object id
 
-	If <id> is NIL, getAttributeValue() should returns array with possible 
+	If <id> is NIL, getAttributeValue() should returns array with possible
 	values as pair {'value', 'id'}. If <id> is defined, getAttributeValue()
 	should returns object field values specified by <source>.
 */
@@ -28,19 +28,19 @@ static driver := getDriver()
 /* Field source class */
 function UISource(source)
 	local obj   := map()
-	
+
 	if valtype(source) == 'O' ;
 			.and. 'CLASSNAME' $ source ;
 			.and. source:className == 'UISource'
 		return source
 	endif
-	
+
 	obj:source 	:= source
 	obj:list    := array(0)
 	obj:size	:= 0
 	obj:extern  := .F.
-	
-	if valtype(source) == 'C'	// External source 
+
+	if valtype(source) == 'C'	// External source
 		obj:extern := .T.
 	elseif valtype(source) == 'A' // Internal source
 		ui_fillList(obj, source)
@@ -118,7 +118,7 @@ static function ui_getValueByText(self, text)
 	if i > 0
 		v := self:list[i][2]
 	endif
-return v 
+return v
 
 /* Get text by id */
 static function ui_getText(self, id)
@@ -132,4 +132,4 @@ static function ui_getText(self, id)
 	if i > 0
 		v := self:list[i][1]
 	endif
-return v 
+return v

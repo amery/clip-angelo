@@ -19,7 +19,7 @@
 *+
 *+��������������������������������������������������������������������
 
-#include "fileio.ch"
+#include "ci_fileio.ch"
 STATIC aModules := {}
 STATIC nLastError, numlin
 

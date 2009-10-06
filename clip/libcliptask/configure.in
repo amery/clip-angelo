@@ -3,6 +3,9 @@
 cp -f ../Makefile.ini ../configure.ini ./
 if [ -f pth_tst$EXESUFF ] || [ -f cl_tst$EXESUFF ] ; then
 	cat Makefile.ini Makefile.in >Makefile
+#!/bin/sh
+
+touch configure.ok
 	exit 0
 fi
 ./cl_conf
@@ -14,6 +17,9 @@ if [ "$PTH_ERR" = 0 ] ; then
    echo USE_PTH=yes >USE_PTH
 	cat Makefile.ini Makefile.in >Makefile
 #    make clean
+#!/bin/sh
+
+		touch configure.ok
     exit 0
 fi
 
@@ -34,11 +40,16 @@ if [ "$CL_ERR" = 0 ] ; then
 	echo "-include Makefile.ini" >Makefile
 	cat Makefile.cl >>Makefile
 	#make clean
+#!/bin/sh
+
+touch configure.ok
 	exit 0
 fi
 rm -f USE_CL cl_tst$EXESUFF
 echo Warning:Workable library for tasks not detected.
 echo Please install packages libpth2, libpth-dev
 #make clean
-exit 1
+#!/bin/sh
+
+touch configure.ok
 

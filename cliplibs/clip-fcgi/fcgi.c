@@ -29,8 +29,8 @@
 /*#include <fcgi_stdio.h>*/
 #include <fcgiapp.h>
 
-#include "clip.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 extern char **environ;
 

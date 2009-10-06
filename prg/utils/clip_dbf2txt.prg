@@ -3,8 +3,8 @@
     Autor   : Uri (uri@itk.ru)
     Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
-#include "set.ch"
-#include "inkey.ch"
+#include "ci_set.ch"
+#include "ci_inkey.ch"
 
 local i,aStru,nField, nFields, tFile,hFile, tHeader,hHeader,str, sRec
 parameters dbFile,delim

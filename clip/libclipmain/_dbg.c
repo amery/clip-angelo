@@ -7,10 +7,10 @@
 	$Log: _dbg.c,v $
 	Revision 1.1  2006/06/22 19:01:29  itk
 	uri: initial
-	
+
 	Revision 1.18  2004/05/19 08:32:18  clip
 	rust: fix for ./configure -m
-	
+
 	Revision 1.17  2003/09/09 14:36:14  clip
 	uri: fixes for mingw from Mauricio and Uri
 
@@ -80,7 +80,7 @@
 */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -99,7 +99,7 @@
 #endif
 #include <sys/time.h>
 
-#include "error.ch"
+#include "ci_error.ch"
 
 #ifndef _WIN32
 static char in_path[256] =

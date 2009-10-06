@@ -1,11 +1,14 @@
 ##
-##										clip/Makefile.in
+##										test/Makefile.in
 ##
 # main parts
 #
 #
-Local_Depend =
-################################################################################################################
+
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile test$(EXESUFF)
 
@@ -15,8 +18,12 @@ cleanc :$(DIRS_TO_SCAN)
 
 distcleanc: clean
 
+hash1 :
+
 cfg :
+
 include $(Makefile_o_in)
+
 install: all
 
 test$(EXESUFF) : test.prg Makefile

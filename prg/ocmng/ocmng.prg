@@ -1,4 +1,4 @@
-#include "ocmng.ch"
+#include "ci_ocmng.ch"
 
 local com, oComp, tm
 local isFile := .f., fName:="", nWhat := 0

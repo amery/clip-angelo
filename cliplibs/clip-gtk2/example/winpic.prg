@@ -1,9 +1,9 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 
 
 function  main()
-local win, pixmap, pict, layout, btn, mask := map()
+local win, pixmap, pict, layout, btn, mask := map(), box
 
 	gtk_init()
 

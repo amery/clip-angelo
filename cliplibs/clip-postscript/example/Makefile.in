@@ -4,22 +4,22 @@
 # CLIP-POSTSCRIPT library examples Makefile
 # Copyright (C) 2007, E/AS Software Foundation
 # Web: http://eas.lrn.ru
-Local_Depend =
-# $(Clip_L_Dir)/libclip-postscript.so
+Depend_on 				= 				$(Clip_L_Dir)/libclip-postscript.so $(Clip_L_Dir)/libclip-xml.so
+CLIPFLAGS 				+= 			-I../include
+PRG 						= 				testform$(EXESUFF)
+LIBS 						= 				-lclip-postscript -lclip-xml -lexpat -lps
+ADDLIBS 					=
 
+export
 
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-
-.SUFFIXES: .prg .o .po
-.PHONY: all clean
-
-# Form test
-PRG=testform$(EXESUFF)
-LIBS=-lclip-postscript -lclip-xml -lexpat
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -29,9 +29,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG): testform.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewsNln $(CLIPINCLUDE) testform.prg $(LIBS)
+$(PRG): testform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ewsNln $(CLIPFLAGS) testform.prg $(LIBS)
 
 include $(Makefile_o_in)
 

@@ -7,7 +7,7 @@
 /*   License  : Public Domain					*/
 
 
-#include "fileio.ch"
+#include "ci_fileio.ch"
 #define BUFFSIZE 4096
 #define MAXLINES 64000
 

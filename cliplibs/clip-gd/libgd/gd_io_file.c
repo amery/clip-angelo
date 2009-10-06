@@ -22,8 +22,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 /* this is used for creating images in main memory*/
 
@@ -70,14 +70,14 @@ gdIOCtx* gdNewFileCtx (FILE *f) {
   return (gdIOCtx*)ctx;
 }
 
-static 
+static
 void gdFreeFileCtx(gdIOCtx *ctx)
 {
   gdFree(ctx);
 }
 
 
-static int 
+static int
 filePutbuf( gdIOCtx* ctx, const void *buf, int size )
 {
   fileIOCtx  *fctx;

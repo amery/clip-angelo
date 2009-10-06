@@ -9,34 +9,34 @@
   #define __CHECKING_HANDLE
 #endif
 
-#include "rdd.ch"
+#include "ci_rdd.ch"
 
-#include "box.ch"
-#include "Inkey.ch"
-#include "Setcurs.ch"
-#include "Error.ch"
-#include "config.ch"
-#include "dbedit.ch"
+#include "ci_box.ch"
+#include "ci_Inkey.ch"
+#include "ci_Setcurs.ch"
+#include "ci_Error.ch"
+#include "ci_config.ch"
+#include "ci_dbedit.ch"
 
 
-#define MY_HEADSEP      "═╤═"
-#define MY_COLSEP       " │ "
+#define MY_HEADSEP      "О©╫О©╫О©╫"
+#define MY_COLSEP       " О©╫ "
 
 
 function RDDNew(Driver,f_name,Shared,ReadOnly)
   local RDDobj
 
   RDDobj:=map()
-// Атрибуты
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
   RDDobj:classname:="RDD"
   RDDobj:handle:=NIL
-  RDDobj:table_driver:="DBF"		// имя драйвера таблиц по умолчанию
-  RDDobj:index_driver:="NTX"		// имя драйвера индексов по умолчанию
-  RDDobj:memo_driver:="DBT"		// имя драйвера мемо-файлов по умолчанию
-  RDDobj:share_mode:=RDD_SHARED		// режим открытия таблиц по умолчанию
-  RDDobj:read_only:=RDD_READ_WRITE	// режим открытия таблиц по умолчанию
-  RDDobj:soft_seek:=RDD_SEEK_SOFT	// режим индексного поиска по умолчанию
-  RDDobj:search_result:=.f.    		// здесь хранится результат последнего поиска
+  RDDobj:table_driver:="DBF"		// О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:index_driver:="NTX"		// О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:memo_driver:="DBT"		// О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:share_mode:=RDD_SHARED		// О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:read_only:=RDD_READ_WRITE	// О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:soft_seek:=RDD_SEEK_SOFT	// О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+  RDDobj:search_result:=.f.    		// О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
   _recover_RDD(RDDObj)
 
@@ -46,7 +46,7 @@ function RDDNew(Driver,f_name,Shared,ReadOnly)
 return RDDobj
 
 function _recover_RDD(RDDObj)
-// Методы
+// О©╫О©╫О©╫О©╫О©╫О©╫
   RDDobj:append:=@rddobj_append()
   RDDobj:bof:=@rddobj_bof()
   RDDobj:browse:=@rddobj_browse()
@@ -100,7 +100,7 @@ function _recover_RDD(RDDObj)
   RDDobj:struct:=@rddobj_struct()
   RDDobj:write:=@rddobj_write()
   RDDobj:zap:=@rddobj_zap()
-// Деструктор
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
   RDDobj:destroy:=@rddobj_destroy()
 return RDDObj
 
@@ -115,29 +115,29 @@ return rddgobottom(::handle)
 static function rddobj_found()
 return ::search_result
 
-static function rddobj_fcount()		// Возвращает количество полей
+static function rddobj_fcount()		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
 return rddfcount(::handle)
 
-static function rddobj_fieldpos(FName)		// Возвращает номер указанного поля
+static function rddobj_fieldpos(FName)		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
 return rddfieldpos(::handle,FName)
 
-static function rddobj_fieldname(FNo)		// Возвращает имя поля по номеру
+static function rddobj_fieldname(FNo)		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
 return rddfieldname(::handle,FNo)
 
-static function rddobj_locate(Expr,While,nNext,nRec,lRest)	// Поиск в таблице данных
+static function rddobj_locate(Expr,While,nNext,nRec,lRest)	// О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
   ::search_result:=rddlocate(::handle,Expr,While,nNext,nRec,lRest)
 return ::search_result
 
-static function rddobj_continue()  		// Продолжение поиска
+static function rddobj_continue()  		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
   ::search_result:=rddcontinue(::handle)
 return ::search_result
 
-static function rddobj_struct()  		// Возвращает структуру таблицы
+static function rddobj_struct()  		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
   __CHECKING_HANDLE
 return rddstruct(::handle)
 
@@ -389,7 +389,7 @@ static function rddobj_browse(self,top, left, down, right, fields, user_func, pi
             if browser:hitBottom
                status:=DE_HITBOTTOM
             endif
-            // DE_EXCEPT           4          // Клавиша не обрабатывается
+            // DE_EXCEPT           4          // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
             if "(" $ user_func
                 __user_func:=user_func
             else

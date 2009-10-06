@@ -4,9 +4,9 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
 
 #define WM_MDICREATE        544   // 0x0220
 #define WM_MDIDESTROY       545   // 0x0221

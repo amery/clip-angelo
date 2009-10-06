@@ -2,8 +2,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 #include "png.h"    /* includes zlib.h and setjmp.h */
 
 #define TRUE 1
@@ -495,7 +495,7 @@ void gdImagePngCtx(gdImagePtr im, gdIOCtx *outfile)
 /*  png_set_compression_window_bits(png_ptr, 15);  */
 
     if (transparent >= im->colorsTotal ||
-       (transparent >= 0 && open[transparent])) 
+       (transparent >= 0 && open[transparent]))
         transparent = -1;
 
     for (i = 0;  i < gdMaxColors;  ++i)

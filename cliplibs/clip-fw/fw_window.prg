@@ -4,10 +4,10 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/constant.ch>
-#include <clip-fw/sysMetrics.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_constant.ch>
+#include <fwin/ci_sysMetrics.ch>
 
 #define MAXCOLOR	65535
 #define SW_NORMAL              1

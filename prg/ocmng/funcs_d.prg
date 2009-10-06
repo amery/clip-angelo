@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 ********************************
-#include "ocmng.ch"
+#include "ci_ocmng.ch"
 *****************************************
 function ocmngDump(fName,nLevel)
 	local i,j,m,k,x,s

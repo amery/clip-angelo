@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
-#include "imenu.ch"
-#include "set.ch"
+#include "ci_inkey.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
 
 ************************************************
 function make_ab_menu()

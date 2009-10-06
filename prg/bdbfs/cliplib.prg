@@ -8,9 +8,9 @@
 � ⠪�� ࠡ��� � "�����஢�����" ०���.
 */
 
-#include "inkey.ch"
-#include "common.ch"
-#include "bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
 MEMVAR _tally
 **********
 FUNC __DBCOPY(NewBase, aFlds, bFor, bWhile, nNext, nRec, lRest, cRdd)

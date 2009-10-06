@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <zlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifdef _OSD_POSIX	/* BS2000 uses the EBCDIC char set instead of ASCII */
 #define CHARSET_EBCDIC
@@ -73,7 +73,7 @@ gdImagePtr gdImageCreate(int sx, int sy)
 		/* NOW ROW-MAJOR IN GD 1.3 */
 		im->pixels[i] = (unsigned char *) gdCalloc(
 			sx, sizeof(unsigned char));
-	}	
+	}
 	im->sx = sx;
 	im->sy = sy;
 	im->colorsTotal = 0;
@@ -95,7 +95,7 @@ void gdImageDestroy(gdImagePtr im)
 	int i;
 	for (i=0; (i<im->sy); i++) {
 		gdFree(im->pixels[i]);
-	}	
+	}
 	gdFree(im->pixels);
 	if (im->polyInts) {
 			gdFree(im->polyInts);
@@ -118,12 +118,12 @@ int gdImageColorClosest(gdImagePtr im, int r, int g, int b)
 		if (im->open[i]) {
 			continue;
 		}
-		rd = (im->red[i] - r);	
+		rd = (im->red[i] - r);
 		gd = (im->green[i] - g);
 		bd = (im->blue[i] - b);
 		dist = rd * rd + gd * gd + bd * bd;
 		if (first || (dist < mindist)) {
-			mindist = dist;	
+			mindist = dist;
 			ct = i;
 			first = 0;
 		}
@@ -132,12 +132,12 @@ int gdImageColorClosest(gdImagePtr im, int r, int g, int b)
 }
 
 /* This code is taken from http://www.acm.org/jgt/papers/SmithLyons96/hwb_rgb.html, an article
- * on colour conversion to/from RBG and HWB colour systems. 
- * It has been modified to return the converted value as a * parameter. 
+ * on colour conversion to/from RBG and HWB colour systems.
+ * It has been modified to return the converted value as a * parameter.
  */
 
-#define RETURN_HWB(h, w, b) {HWB->H = h; HWB->W = w; HWB->B = b; return HWB;} 
-#define RETURN_RGB(r, g, b) {RGB->R = r; RGB->G = g; RGB->B = b; return RGB;} 
+#define RETURN_HWB(h, w, b) {HWB->H = h; HWB->W = w; HWB->B = b; return HWB;}
+#define RETURN_RGB(r, g, b) {RGB->R = r; RGB->G = g; RGB->B = b; return RGB;}
 #define HWB_UNDEFINED -1
 #define SETUP_RGB(s, r, g, b) {s.R = r/255.0; s.G = g/255.0; s.B = b/255.0;}
 
@@ -148,30 +148,30 @@ int gdImageColorClosest(gdImagePtr im, int r, int g, int b)
 
 
 /*
- * Theoretically, hue 0 (pure red) is identical to hue 6 in these transforms. Pure 
- * red always maps to 6 in this implementation. Therefore UNDEFINED can be 
+ * Theoretically, hue 0 (pure red) is identical to hue 6 in these transforms. Pure
+ * red always maps to 6 in this implementation. Therefore UNDEFINED can be
  * defined as 0 in situations where only unsigned numbers are desired.
  */
-typedef struct {float R, G, B;} RGBType; 
+typedef struct {float R, G, B;} RGBType;
 typedef struct {float H, W, B;} HWBType;
 
 static HWBType* RGB_to_HWB( RGBType RGB, HWBType* HWB) {
 
 	/*
-	 * RGB are each on [0, 1]. W and B are returned on [0, 1] and H is  
-	 * returned on [0, 6]. Exception: H is returned UNDEFINED if W == 1 - B.  
+	 * RGB are each on [0, 1]. W and B are returned on [0, 1] and H is
+	 * returned on [0, 6]. Exception: H is returned UNDEFINED if W == 1 - B.
 	 */
 
- 	float R = RGB.R, G = RGB.G, B = RGB.B, w, v, b, f;  
-	int i;  
-  
- 	w = MIN3(R, G, B);  
- 	v = MAX3(R, G, B);  
- 	b = 1 - v;  
-	if (v == w) RETURN_HWB(HWB_UNDEFINED, w, b);  
- 	f = (R == w) ? G - B : ((G == w) ? B - R : R - G);  
- 	i = (R == w) ? 3 : ((G == w) ? 5 : 1);  
-	RETURN_HWB(i - f /(v - w), w, b);  
+ 	float R = RGB.R, G = RGB.G, B = RGB.B, w, v, b, f;
+	int i;
+
+ 	w = MIN3(R, G, B);
+ 	v = MAX3(R, G, B);
+ 	b = 1 - v;
+	if (v == w) RETURN_HWB(HWB_UNDEFINED, w, b);
+ 	f = (R == w) ? G - B : ((G == w) ? B - R : R - G);
+ 	i = (R == w) ? 3 : ((G == w) ? 5 : 1);
+	RETURN_HWB(i - f /(v - w), w, b);
 
 }
 
@@ -181,7 +181,7 @@ static float HWB_Diff(int r1, int g1, int b1, int r2, int g2, int b2) {
 	float		diff;
 
 	SETUP_RGB(RGB1, r1, g1, b1);
-	SETUP_RGB(RGB2, r2, g2, b2);	
+	SETUP_RGB(RGB2, r2, g2, b2);
 
 	RGB_to_HWB(RGB1, &HWB1);
 	RGB_to_HWB(RGB2, &HWB2);
@@ -212,29 +212,29 @@ static float HWB_Diff(int r1, int g1, int b1, int r2, int g2, int b2) {
  */
 static RGBType* HWB_to_RGB( HWBType HWB, RGBType* RGB ) {
 
-	/* 
-	 * H is given on [0, 6] or UNDEFINED. W and B are given on [0, 1].  
-	 * RGB are each returned on [0, 1]. 
+	/*
+	 * H is given on [0, 6] or UNDEFINED. W and B are given on [0, 1].
+	 * RGB are each returned on [0, 1].
 	 */
- 
-	float h = HWB.H, w = HWB.W, b = HWB.B, v, n, f;  
-	int i;  
-  
-	v = 1 - b;  
-	if (h == HWB_UNDEFINED) RETURN_RGB(v, v, v);  
-	i = floor(h);  
-	f = h - i;  
-	if (i & 1) f = 1 - f; /* if i is odd */ 
-	n = w + f * (v - w); /* linear interpolation between w and v */ 
-	switch (i) {  
-		case 6:  
-		case 0: RETURN_RGB(v, n, w);  
-		case 1: RETURN_RGB(n, v, w);  
-		case 2: RETURN_RGB(w, v, n);  
-		case 3: RETURN_RGB(w, n, v);  
-		case 4: RETURN_RGB(n, w, v);  
-		case 5: RETURN_RGB(v, w, n);  
-	}  
+
+	float h = HWB.H, w = HWB.W, b = HWB.B, v, n, f;
+	int i;
+
+	v = 1 - b;
+	if (h == HWB_UNDEFINED) RETURN_RGB(v, v, v);
+	i = floor(h);
+	f = h - i;
+	if (i & 1) f = 1 - f; /* if i is odd */
+	n = w + f * (v - w); /* linear interpolation between w and v */
+	switch (i) {
+		case 6:
+		case 0: RETURN_RGB(v, n, w);
+		case 1: RETURN_RGB(n, v, w);
+		case 2: RETURN_RGB(w, v, n);
+		case 3: RETURN_RGB(w, n, v);
+		case 4: RETURN_RGB(n, w, v);
+		case 5: RETURN_RGB(v, w, n);
+	}
 
     return RGB;
 
@@ -252,9 +252,9 @@ int gdImageColorClosestHWB(gdImagePtr im, int r, int g, int b)
 		if (im->open[i]) {
 			continue;
 		}
-		dist = HWB_Diff(im->red[i], im->green[i], im->blue[i], r, g, b); 
+		dist = HWB_Diff(im->red[i], im->green[i], im->blue[i], r, g, b);
 		if (first || (dist < mindist)) {
-			mindist = dist;	
+			mindist = dist;
 			ct = i;
 			first = 0;
 		}
@@ -271,7 +271,7 @@ int gdImageColorExact(gdImagePtr im, int r, int g, int b)
 		if (im->open[i]) {
 			continue;
 		}
-		if ((im->red[i] == r) && 
+		if ((im->red[i] == r) &&
 			(im->green[i] == g) &&
 			(im->blue[i] == b)) {
 			return i;
@@ -289,7 +289,7 @@ int gdImageColorAllocate(gdImagePtr im, int r, int g, int b)
 			ct = i;
 			break;
 		}
-	}	
+	}
 	if (ct == (-1)) {
 		ct = im->colorsTotal;
 		if (ct == gdMaxColors) {
@@ -396,7 +396,7 @@ void gdImagePaletteCopy(gdImagePtr to, gdImagePtr from)
 		to->open[i] = 0;
         };
 
-	for (i=from->colorsTotal ; (i < to->colorsTotal) ; i++) { 
+	for (i=from->colorsTotal ; (i < to->colorsTotal) ; i++) {
 		to->open[i] = 1;
 	};
 
@@ -458,7 +458,7 @@ static void gdImageBrushApply(gdImagePtr im, int x, int y)
 	}
 	hy = gdImageSY(im->brush)/2;
 	y1 = y - hy;
-	y2 = y1 + gdImageSY(im->brush);	
+	y2 = y1 + gdImageSY(im->brush);
 	hx = gdImageSX(im->brush)/2;
 	x1 = x - hx;
 	x2 = x1 + gdImageSX(im->brush);
@@ -476,8 +476,8 @@ static void gdImageBrushApply(gdImagePtr im, int x, int y)
 			srcx++;
 		}
 		srcy++;
-	}	
-}		
+	}
+}
 
 static void gdImageTileApply(gdImagePtr im, int x, int y)
 {
@@ -494,7 +494,7 @@ static void gdImageTileApply(gdImagePtr im, int x, int y)
 		gdImageSetPixel(im, x, y,
 			im->tileColorMap[p]);
 	}
-}		
+}
 
 int gdImageGetPixel(gdImagePtr im, int x, int y)
 {
@@ -551,7 +551,7 @@ void gdImageLine(gdImagePtr im, int x1, int y1, int x2, int y2, int color)
 				}
 				gdImageSetPixel(im, x, y, color);
 			}
-		}		
+		}
 	} else {
 		d = 2*dx - dy;
 		incr1 = 2*dx;
@@ -642,7 +642,7 @@ void gdImageDashedLine(gdImagePtr im, int x1, int y1, int x2, int y2, int color)
 				}
 				dashedSet(im, x, y, color, &on, &dashStep);
 			}
-		}		
+		}
 	} else {
 		d = 2*dx - dy;
 		incr1 = 2*dx;
@@ -701,7 +701,7 @@ static void dashedSet(gdImagePtr im, int x, int y, int color,
 	*dashStepP = dashStep;
 	*onP = on;
 }
-	
+
 
 int gdImageBoundsSafe(gdImagePtr im, int x, int y)
 {
@@ -709,7 +709,7 @@ int gdImageBoundsSafe(gdImagePtr im, int x, int y)
 		((x < 0) || (x >= im->sx))));
 }
 
-void gdImageChar(gdImagePtr im, gdFontPtr f, int x, int y, 
+void gdImageChar(gdImagePtr im, gdFontPtr f, int x, int y,
 	int c, int color)
 {
 	int cx, cy;
@@ -727,7 +727,7 @@ void gdImageChar(gdImagePtr im, gdFontPtr f, int x, int y,
 	for (py = y; (py < (y + f->h)); py++) {
 		for (px = x; (px < (x + f->w)); px++) {
 			if (f->data[fline + cy * f->w + cx]) {
-				gdImageSetPixel(im, px, py, color);	
+				gdImageSetPixel(im, px, py, color);
 			}
 			cx++;
 		}
@@ -736,7 +736,7 @@ void gdImageChar(gdImagePtr im, gdFontPtr f, int x, int y,
 	}
 }
 
-void gdImageCharUp(gdImagePtr im, gdFontPtr f, 
+void gdImageCharUp(gdImagePtr im, gdFontPtr f,
 	int x, int y, int c, int color)
 {
 	int cx, cy;
@@ -754,7 +754,7 @@ void gdImageCharUp(gdImagePtr im, gdFontPtr f,
 	for (py = y; (py > (y - f->w)); py--) {
 		for (px = x; (px < (x + f->h)); px++) {
 			if (f->data[fline + cy * f->w + cx]) {
-				gdImageSetPixel(im, px, py, color);	
+				gdImageSetPixel(im, px, py, color);
 			}
 			cy++;
 		}
@@ -763,7 +763,7 @@ void gdImageCharUp(gdImagePtr im, gdFontPtr f,
 	}
 }
 
-void gdImageString(gdImagePtr im, gdFontPtr f, 
+void gdImageString(gdImagePtr im, gdFontPtr f,
 	int x, int y, unsigned char *s, int color)
 {
 	int i;
@@ -775,7 +775,7 @@ void gdImageString(gdImagePtr im, gdFontPtr f,
 	}
 }
 
-void gdImageStringUp(gdImagePtr im, gdFontPtr f, 
+void gdImageStringUp(gdImagePtr im, gdFontPtr f,
 	int x, int y, unsigned char *s, int color)
 {
 	int i;
@@ -789,7 +789,7 @@ void gdImageStringUp(gdImagePtr im, gdFontPtr f,
 
 static int strlen16(unsigned short *s);
 
-void gdImageString16(gdImagePtr im, gdFontPtr f, 
+void gdImageString16(gdImagePtr im, gdFontPtr f,
 	int x, int y, unsigned short *s, int color)
 {
 	int i;
@@ -801,7 +801,7 @@ void gdImageString16(gdImagePtr im, gdFontPtr f,
 	}
 }
 
-void gdImageStringUp16(gdImagePtr im, gdFontPtr f, 
+void gdImageStringUp16(gdImagePtr im, gdFontPtr f,
 	int x, int y, unsigned short *s, int color)
 {
 	int i;
@@ -825,7 +825,7 @@ static int strlen16(unsigned short *s)
 
 /* s and e are integers modulo 360 (degrees), with 0 degrees
   being the rightmost extreme and degrees changing clockwise.
-  cx and cy are the center in pixels; w and h are the horizontal 
+  cx and cy are the center in pixels; w and h are the horizontal
   and vertical diameter in pixels. Nice interface, but slow, since
   I don't yet use Bresenham (I'm using an inefficient but
   simple solution with too much work going on in it; generalizing
@@ -845,10 +845,10 @@ void gdImageArc(gdImagePtr im, int cx, int cy, int w, int h, int s, int e, int c
 	}
 	for (i=s; (i <= e); i++) {
 		int x, y;
-		x = ((long)gdCosT[i % 360] * (long)w2 / 1024) + cx; 
+		x = ((long)gdCosT[i % 360] * (long)w2 / 1024) + cx;
 		y = ((long)gdSinT[i % 360] * (long)h2 / 1024) + cy;
 		if (i != s) {
-			gdImageLine(im, lx, ly, x, y, color);	
+			gdImageLine(im, lx, ly, x, y, color);
 		}
 		lx = x;
 		ly = y;
@@ -900,7 +900,7 @@ void gdImageFillToBorder(gdImagePtr im, int x, int y, int border, int color)
 	}
 	/* Seek right */
 	rightLimit = x;
-	for (i = (x+1); (i < im->sx); i++) {	
+	for (i = (x+1); (i < im->sx); i++) {
 		if (gdImageGetPixel(im, i, y) == border) {
 			break;
 		}
@@ -915,9 +915,9 @@ void gdImageFillToBorder(gdImagePtr im, int x, int y, int border, int color)
 			int c;
 			c = gdImageGetPixel(im, i, y-1);
 			if (lastBorder) {
-				if ((c != border) && (c != color)) {	
-					gdImageFillToBorder(im, i, y-1, 
-						border, color);		
+				if ((c != border) && (c != color)) {
+					gdImageFillToBorder(im, i, y-1,
+						border, color);
 					lastBorder = 0;
 				}
 			} else if ((c == border) || (c == color)) {
@@ -932,9 +932,9 @@ void gdImageFillToBorder(gdImagePtr im, int x, int y, int border, int color)
 			int c;
 			c = gdImageGetPixel(im, i, y+1);
 			if (lastBorder) {
-				if ((c != border) && (c != color)) {	
-					gdImageFillToBorder(im, i, y+1, 
-						border, color);		
+				if ((c != border) && (c != color)) {
+					gdImageFillToBorder(im, i, y+1,
+						border, color);
 					lastBorder = 0;
 				}
 			} else if ((c == border) || (c == color)) {
@@ -953,7 +953,7 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 	old = gdImageGetPixel(im, x, y);
 	if (color == gdTiled) {
 		/* Tile fill -- got to watch out! */
-		int p, tileColor;	
+		int p, tileColor;
 		int srcx, srcy;
 		if (!im->tile) {
 			return;
@@ -962,7 +962,7 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 			I can't do it without allocating another image */
 		if (gdImageGetTransparent(im->tile) != (-1)) {
 			return;
-		}	
+		}
 		srcx = x % gdImageSX(im->tile);
 		srcy = y % gdImageSY(im->tile);
 		p = gdImageGetPixel(im->tile, srcx, srcy);
@@ -991,7 +991,7 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 	}
 	/* Seek right */
 	rightLimit = x;
-	for (i = (x+1); (i < im->sx); i++) {	
+	for (i = (x+1); (i < im->sx); i++) {
 		if (gdImageGetPixel(im, i, y) != old) {
 			break;
 		}
@@ -1006,8 +1006,8 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 			int c;
 			c = gdImageGetPixel(im, i, y-1);
 			if (lastBorder) {
-				if (c == old) {	
-					gdImageFill(im, i, y-1, color);		
+				if (c == old) {
+					gdImageFill(im, i, y-1, color);
 					lastBorder = 0;
 				}
 			} else if (c != old) {
@@ -1023,7 +1023,7 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 			c = gdImageGetPixel(im, i, y+1);
 			if (lastBorder) {
 				if (c == old) {
-					gdImageFill(im, i, y+1, color);		
+					gdImageFill(im, i, y+1, color);
 					lastBorder = 0;
 				}
 			} else if (c != old) {
@@ -1035,8 +1035,8 @@ void gdImageFill(gdImagePtr im, int x, int y, int color)
 
 void gdImageRectangle(gdImagePtr im, int x1, int y1, int x2, int y2, int color)
 {
-	gdImageLine(im, x1, y1, x2, y1, color);		
-	gdImageLine(im, x1, y2, x2, y2, color);		
+	gdImageLine(im, x1, y1, x2, y1, color);
+	gdImageLine(im, x1, y2, x2, y2, color);
 	gdImageLine(im, x1, y1, x1, y2, color);
 	gdImageLine(im, x2, y1, x2, y2, color);
 }
@@ -1077,12 +1077,12 @@ void gdImageCopy(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int srcX, i
 				/* If it's the same image, mapping is trivial */
 				if (dst == src) {
 					nc = c;
-				} else { 
+				} else {
 					/* First look for an exact match */
 					nc = gdImageColorExact(dst,
 						src->red[c], src->green[c],
 						src->blue[c]);
-				}	
+				}
 				if (nc == (-1)) {
 					/* No, so try to allocate it */
 					nc = gdImageColorAllocate(dst,
@@ -1103,11 +1103,11 @@ void gdImageCopy(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int srcX, i
 		}
 		toy++;
 	}
-}			
+}
 
 void gdImageCopyMerge(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int srcX, int srcY, int w, int h, int pct)
 {
- 
+
         int c, dc;
         int x, y;
         int tox, toy;
@@ -1138,7 +1138,7 @@ void gdImageCopyMerge(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int sr
                                 } else {
 					dc = gdImageGetPixel(dst, tox, toy);
 
-					ncR = src->red[c] * (pct/100.0) 
+					ncR = src->red[c] * (pct/100.0)
 						+ dst->red[dc] * ((100-pct)/100.0);
                                         ncG = src->green[c] * (pct/100.0)
                                                 + dst->green[dc] * ((100-pct)/100.0);
@@ -1168,7 +1168,7 @@ void gdImageCopyMerge(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int sr
 
 void gdImageCopyMergeGray(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int srcX, int srcY, int w, int h, int pct)
 {
- 
+
         int c, dc;
         int x, y;
         int tox, toy;
@@ -1196,11 +1196,11 @@ void gdImageCopyMergeGray(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, in
 
 
 			dc = gdImageGetPixel(dst, tox, toy);
-			g = 0.29900*dst->red[dc] 
+			g = 0.29900*dst->red[dc]
 				+ 0.58700*dst->green[dc]
 				+ 0.11400*dst->blue[dc];
 
-			ncR = src->red[c] * (pct/100.0) 
+			ncR = src->red[c] * (pct/100.0)
 				+ g * ((100-pct)/100.0);
 			ncG = src->green[c] * (pct/100.0)
 				+ g * ((100-pct)/100.0);
@@ -1281,12 +1281,12 @@ void gdImageCopyResized(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int 
 					/* If it's the same image, mapping is trivial */
 					if (dst == src) {
 						nc = c;
-					} else { 
+					} else {
 						/* First look for an exact match */
 						nc = gdImageColorExact(dst,
 							src->red[c], src->green[c],
 							src->blue[c]);
-					}	
+					}
 					if (nc == (-1)) {
 						/* No, so try to allocate it */
 						nc = gdImageColorAllocate(dst,
@@ -1317,7 +1317,7 @@ void gdImageCopyResized(gdImagePtr dst, gdImagePtr src, int dstX, int dstY, int 
 gdImagePtr
 gdImageCreateFromXbm(FILE *fd)
 {
-	gdImagePtr im;	
+	gdImagePtr im;
 	int bit;
 	int w, h;
 	int bytes;
@@ -1386,7 +1386,7 @@ gdImageCreateFromXbm(FILE *fd)
 			}
 			if (ch == 'x') {
 				break;
-			}	
+			}
 		}
 		/* Get hex value */
 		ch = getc(fd);
@@ -1400,9 +1400,9 @@ gdImageCreateFromXbm(FILE *fd)
 		}
 		h[1] = ch;
 		h[2] = '\0';
-		sscanf(h, "%x", &b);		
+		sscanf(h, "%x", &b);
 		for (bit = 1; (bit <= 128); (bit = bit << 1)) {
-			gdImageSetPixel(im, x++, y, (b & bit) ? 1 : 0);	
+			gdImageSetPixel(im, x++, y, (b & bit) ? 1 : 0);
 			if (x == im->sx) {
 				x = 0;
 				y++;
@@ -1438,10 +1438,10 @@ void gdImagePolygon(gdImagePtr im, gdPointPtr p, int n, int c)
 		lx = p->x;
 		ly = p->y;
 	}
-}	
-	
+}
+
 int gdCompareInt(const void *a, const void *b);
-	
+
 /* THANKS to Kirsten Schulz for the polygon fixes! */
 
 /* The intersection finding technique of this code could be improved  */
@@ -1464,11 +1464,11 @@ void gdImageFilledPolygon(gdImagePtr im, gdPointPtr p, int n, int c)
 	if (!im->polyAllocated) {
 		im->polyInts = (int *) gdMalloc(sizeof(int) * n);
 		im->polyAllocated = n;
-	}		
+	}
 	if (im->polyAllocated < n) {
 		while (im->polyAllocated < n) {
 			im->polyAllocated *= 2;
-		}	
+		}
 		im->polyInts = (int *) gdRealloc(im->polyInts,
 			sizeof(int) * im->polyAllocated);
 	}
@@ -1523,7 +1523,7 @@ void gdImageFilledPolygon(gdImagePtr im, gdPointPtr p, int n, int c)
 		}
 	}
 }
-	
+
 int gdCompareInt(const void *a, const void *b)
 {
 	return (*(const int *)a) - (*(const int *)b);
@@ -1534,7 +1534,7 @@ void gdImageSetStyle(gdImagePtr im, int *style, int noOfPixels)
 	if (im->style) {
 		gdFree(im->style);
 	}
-	im->style = (int *) 
+	im->style = (int *)
 		gdMalloc(sizeof(int) * noOfPixels);
 	memcpy(im->style, style, sizeof(int) * noOfPixels);
 	im->styleLength = noOfPixels;
@@ -1547,7 +1547,7 @@ void gdImageSetBrush(gdImagePtr im, gdImagePtr brush)
 	im->brush = brush;
 	for (i=0; (i < gdImageColorsTotal(brush)); i++) {
 		int index;
-		index = gdImageColorExact(im, 
+		index = gdImageColorExact(im,
 			gdImageRed(brush, i),
 			gdImageGreen(brush, i),
 			gdImageBlue(brush, i));
@@ -1566,14 +1566,14 @@ void gdImageSetBrush(gdImagePtr im, gdImagePtr brush)
 		im->brushColorMap[i] = index;
 	}
 }
-	
+
 void gdImageSetTile(gdImagePtr im, gdImagePtr tile)
 {
 	int i;
 	im->tile = tile;
 	for (i=0; (i < gdImageColorsTotal(tile)); i++) {
 		int index;
-		index = gdImageColorExact(im, 
+		index = gdImageColorExact(im,
 			gdImageRed(tile, i),
 			gdImageGreen(tile, i),
 			gdImageBlue(tile, i));
@@ -1650,7 +1650,7 @@ int gdImageCompare(gdImagePtr im1, gdImagePtr im2)
 
 
 			if (im1->blue[p1] != im2->blue[p2]) {
-				cmpStatus |= GD_CMP_COLOR + GD_CMP_IMAGE;	
+				cmpStatus |= GD_CMP_COLOR + GD_CMP_IMAGE;
 				break;
 			}
 		}

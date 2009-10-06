@@ -10,7 +10,7 @@
  */
 
 
-#include "gdfontt.h"
+#include "ci_gdfontt.h"
 
 char gdFontTinyData[] = {
 /* Char 0 */

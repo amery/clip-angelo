@@ -7,9 +7,9 @@
 
 /* CTI_OPTION_MENU - a widget used to choose from a list of valid choices. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_PUSHBUTTON
 

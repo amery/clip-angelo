@@ -114,7 +114,7 @@
 #endif
 
 
-#include "INKEY.CH"
+#include "ci_INKEY.CH"
 
 FUNCTION FT_CALENDAR (nRow, nCol, cColor, lShadow, lShowHelp)
 

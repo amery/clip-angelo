@@ -1,6 +1,7 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 function Main()
+Local window, vbox, ebox, image, tbar
 gtk_Init()
 
 window := gtk_WindowNew(," Test IMAGE and EVENTBOX ")

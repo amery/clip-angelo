@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "wbmp.h"
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_wbmp.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifdef NOTDEF
 #define __TEST			/* Compile with main function */
@@ -27,7 +27,7 @@
 
 /* getmbi
 ** ------
-** Get a multibyte integer from a generic getin function 
+** Get a multibyte integer from a generic getin function
 ** 'getin' can be getc, with in = NULL
 ** you can find getin as a function just above the main function
 ** This way you gain a lot of flexibilty about how this package
@@ -37,7 +37,7 @@ int getmbi ( int (*getin)(void *in), void *in )
 {
 	int i, mbi = 0;
 
-	do 
+	do
 	{
 		i = getin (in);
 		if ( i<0 ) return (-1);
@@ -59,20 +59,20 @@ int getmbi ( int (*getin)(void *in), void *in )
 void putmbi ( int i, void (*putout)(int c, void *out), void *out )
 {
     int cnt, l, accu;
- 
+
     /* Get number of septets */
     cnt=0;
     accu=0;
     while ( accu != i )
         accu+= i & 0x7f << 7*cnt++;
- 
+
     /* Produce the multibyte output */
     for ( l=cnt-1; l>0; l--)
         putout( 0x80 | (i & 0x7f << 7*l ) >> 7*l, out );
- 
+
     putout( i & 0x7f, out );
- 
-}    
+
+}
 
 
 
@@ -88,7 +88,7 @@ int skipheader( int (*getin)(void *in), void *in )
 	do
 	{
 		i = getin ( in );
-		if (i<0) 
+		if (i<0)
 			return (-1);
 	} while ( i & 0x80 );
 
@@ -112,14 +112,14 @@ Wbmp *createwbmp(int width, int height, int color)
     {
         gdFree( wbmp );
         return (NULL);
-    }   
+    }
 
 	wbmp->width = width;
 	wbmp->height= height;
 
-	for (i=0; i<width*height; wbmp->bitmap[i++] = color); 
+	for (i=0; i<width*height; wbmp->bitmap[i++] = color);
 
-	return(wbmp);	 
+	return(wbmp);
 }
 
 
@@ -134,21 +134,21 @@ int readwbmp ( int (*getin)(void *in), void *in, Wbmp **return_wbmp )
 {
 	int row, col, byte, pel, pos;
 	Wbmp *wbmp;
-	 
+
     if ( (wbmp = (Wbmp *) gdMalloc( sizeof(Wbmp) )) == NULL)
-    	return (-1);    
+    	return (-1);
 
 	wbmp->type = getin( in );
 	if ( wbmp->type != 0 )
 	{
-		gdFree( wbmp ); 
+		gdFree( wbmp );
 		return (-1);
 	}
 
 	if ( skipheader( getin, in ) )
 		return (-1);
 
-	
+
 	wbmp->width = getmbi ( getin, in );
 	if ( wbmp->width == -1 )
 	{
@@ -161,10 +161,10 @@ int readwbmp ( int (*getin)(void *in), void *in, Wbmp **return_wbmp )
 	{
 		gdFree( wbmp );
 		return (-1);
-	}	
-	
+	}
+
 	#ifdef __DEBUG
-	printf("W: %d, H: %d\n", wbmp->width, wbmp->height);	
+	printf("W: %d, H: %d\n", wbmp->width, wbmp->height);
 	#endif
 
 	if ( (wbmp->bitmap = (int *) gdMalloc( sizeof(int)*wbmp->width*wbmp->height )) == NULL)
@@ -173,8 +173,8 @@ int readwbmp ( int (*getin)(void *in), void *in, Wbmp **return_wbmp )
 		return (-1);
 	}
 
-	#ifdef __DEBUG	
-	printf("DATA CONSTRUCTED\n");		
+	#ifdef __DEBUG
+	printf("DATA CONSTRUCTED\n");
 	#endif
 
 	pos = 0;
@@ -191,21 +191,21 @@ int readwbmp ( int (*getin)(void *in), void *in, Wbmp **return_wbmp )
 					if ( byte & 1<<pel )
 					{
 						wbmp->bitmap[pos] = WBMP_WHITE;
-					}	 
-					else 
+					}
+					else
 					{
 						wbmp->bitmap[pos] = WBMP_BLACK;
 					}
 					pos++;
-				}	
-			}			
+				}
+			}
 		}
 	}
-	
+
 	*return_wbmp = wbmp;
 
 	return (0);
-} 
+}
 
 
 /* writewbmp
@@ -215,7 +215,7 @@ int readwbmp ( int (*getin)(void *in), void *in, Wbmp **return_wbmp )
 ** Why not just giving a filedescriptor to this function?
 ** Well, the incentive to write this function was the complete
 ** integration in gd library from www.boutell.com. They use
-** their own io functions, so the passing of a function seemed to be 
+** their own io functions, so the passing of a function seemed to be
 ** a logic(?) decision ...
 **
 */
@@ -252,8 +252,8 @@ int writewbmp( Wbmp *wbmp, void (*putout)(int c, void *out), void *out )
         }
         if (bitpos != 8)
                 putout(octet, out);
- 
-    }                                                                           
+
+    }
 	return (0);
 
 }
@@ -293,7 +293,7 @@ void printwbmp( Wbmp *wbmp )
             }
         }
         putchar('\n');
-    }    
+    }
 }
 
 #ifdef __TEST
@@ -306,7 +306,7 @@ int putout(int c, void *out)
 	return(putc(c, (FILE *) out));
 }
 
-/* getin from file descriptor 
+/* getin from file descriptor
 ** --------------------------
 */
 int getin( void *in )
@@ -325,7 +325,7 @@ int main ( int argc, char *argv[] )
 	Wbmp *wbmp;
 
     wbmp_file = fopen(argv[1], "rb");
-    if ( wbmp_file ) 
+    if ( wbmp_file )
 	{
 		readwbmp( &getin, wbmp_file, &wbmp );
 
@@ -334,8 +334,8 @@ int main ( int argc, char *argv[] )
 		#ifdef __DEBUG
 		printf("\nVIEWING IMAGE\n");
 		#endif
-		
-		printwbmp( wbmp ); 
+
+		printwbmp( wbmp );
 		#endif
 
 		#ifdef __WRITE
@@ -343,7 +343,7 @@ int main ( int argc, char *argv[] )
 		#ifdef __DEBUG
 		printf("\nDUMPING WBMP to STDOUT\n");
 		#endif
-		
+
 		writewbmp( wbmp, &putout, stdout );
 		#endif
 
@@ -351,4 +351,4 @@ int main ( int argc, char *argv[] )
 		fclose ( wbmp_file );
 	}
 }
-#endif	
+#endif

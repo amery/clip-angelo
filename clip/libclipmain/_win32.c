@@ -22,10 +22,10 @@
 
 */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #if defined(OS_MINGW) || defined(OS_CYGWIN)
 #include <io.h>
-#include "_win32.h"
+#include "ci__win32.h"
 #endif
 
 #ifdef OS_MINGW

@@ -402,7 +402,7 @@
 */
 
 #include <string.h>
-#include "../include.h/clip.h"
+#include "../include.h/ci_clip.h"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -421,10 +421,10 @@
 #include <stdio.h>
 #include <errno.h>
 
-#include "screen.h"
-#include "tcaps.h"
-#include "charset.h"
-#include "scankey.h"
+#include "ci_screen.h"
+#include "ci_tcaps.h"
+#include "ci_charset.h"
+#include "ci_scankey.h"
 
 #ifdef OS_CYGWIN
 	#include <w32api/windows.h>
@@ -455,7 +455,7 @@ static int w32_readch(void);
 #endif
 
 #ifdef USE_TASKS
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 #endif
 
 #ifndef timercmp

@@ -10,7 +10,7 @@
  */
 
 
-#include "gdfontg.h"
+#include "ci_gdfontg.h"
 
 char gdFontGiantData[] = {
 /* Char 0 */

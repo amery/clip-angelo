@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 ********************************
-#include "ocmng.ch"
+#include "ci_ocmng.ch"
 
 static parsers := map()
 /**********************************************/

@@ -37,9 +37,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*#include "clip.h"*/
+/*#include "ci_clip.h"*/
 
-#include "coll.h"
+#include "ci_coll.h"
 
 #define FIRST_SIZE 4
 #define DELTA_SIZE 8

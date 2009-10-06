@@ -22,7 +22,7 @@
  *
  */
 
-#include "netto.ch"
+#include "ci_netto.ch"
 
 
 /*  $DOC$
@@ -66,7 +66,6 @@
  *  $END$
  */
 
-#include "netto.ch"
 
 FUNCTION fn_Bin2I( cStr )
 	LOCAL i, nRetVal := 0
@@ -107,9 +106,9 @@ RETURN INT( nRetVal )
  *
  *  $EXAMPLES$
  *
- *      ? fn_I2Bin( 57007 )							// "ޯ"  
+ *      ? fn_I2Bin( 57007 )							// "ޯ"
  *
- *      ? fn_I2Bin( 57007, 4 )						// "  ޯ"  
+ *      ? fn_I2Bin( 57007, 4 )						// "  ޯ"
  *
  *  $SEEALSO$
  *      fn_Bin2I() fn_PeekStr() fn_PokeStr()
@@ -129,7 +128,7 @@ FUNCTION fn_I2Bin( nValue, nLen )
 	ENDIF
 
 	FOR i := 1 TO nLen                          // build string by subtracting
-		nTemp   := INT( nValue / 256^( nLen - i ) )  // (byte)*(256^n) for 
+		nTemp   := INT( nValue / 256^( nLen - i ) )  // (byte)*(256^n) for
 		cStr    += CHR( nTemp )								// nLen bytes
 		nValue  -= nTemp * 256^( nLen - i )
 	NEXT

@@ -1,4 +1,5 @@
 function Main()
+Local win, b1, e1, e11, b2, e2, e21, b3, e3, e31, list
 gtk_init()
 
 win := gtk_windowNew(, " test list with widgets ")

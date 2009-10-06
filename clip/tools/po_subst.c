@@ -24,9 +24,9 @@
 #include <time.h>
 #include "cl_iconv.h"
 
-#include "coll.h"
-#include "po_util.h"
-#include "clipcfg.h"
+#include "ci_coll.h"
+#include "ci_po_util.h"
+#include "ci_clipcfg.h"
 
 typedef struct
 {

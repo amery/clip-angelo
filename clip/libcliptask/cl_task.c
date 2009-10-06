@@ -121,18 +121,18 @@
 #include <sys/time.h>
 #include <sys/types.h>
 
-#include "../include.h/list.h"
-#include "../include.h/coll.h"
-#include "../include.h/hash.h"
+#include "../include.h/ci_list.h"
+#include "../include.h/ci_coll.h"
+#include "../include.h/ci_hash.h"
 
-#include "cl_cfg.h"
+#include "ci_cl_cfg.h"
 #ifdef OS_MINGW
-#include "../include.h/_win32.h"
+#include "../include.h/ci__win32.h"
 #else
 #include <sys/times.h>
 #endif
-#include "task.h"
-#include "task2.h"
+#include "ci_task.h"
+#include "ci_task2.h"
 
 
 #undef TASK_STACK_MIN
@@ -190,7 +190,7 @@ TaskState;
 
 struct Task
 {
-	
+
 	ListEl listel;
 
 	List recvlist;		/*  �������������*/
@@ -294,7 +294,7 @@ Task_INIT(void)
 {
 }
 
-TASK_DLLEXPORT long 
+TASK_DLLEXPORT long
 Task_version()
 {
 	return 1000L;
@@ -327,7 +327,7 @@ Task_START()
 	}
 }
 
-TASK_DLLEXPORT long 
+TASK_DLLEXPORT long
 Task_ID()
 {
 	Task *tp = Task_get_currTask();

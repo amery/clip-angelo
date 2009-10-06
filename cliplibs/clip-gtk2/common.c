@@ -5,17 +5,17 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <pango/pango.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
-#include "clip-gdk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
+#include "ci_clip-gdk2.h"
 
 /* This list associates pointer to a widget with pointer to it`s C_widget structure */
 static ClipVar _widget_list;
@@ -96,7 +96,7 @@ _clip_locale_from_utf8(char *text)
 
 	locale_text = g_locale_from_utf8(text, strlen(text), &br, &bw, &ge);
 	len = strlen(locale_text);
-	
+
 	buf = (char *) malloc(len+1); buf[len] = 0;
 	_clip_translate_charset(WinCharset,ClipHostCharset,locale_text,buf,len);
 	g_free(locale_text);
@@ -106,8 +106,8 @@ _clip_locale_from_utf8(char *text)
 	GError *ge;
 	gchar *t_utf;
 
-	t_utf = g_convert_with_fallback(text, 
-									strlen(text), 
+	t_utf = g_convert_with_fallback(text,
+									strlen(text),
 									_clip_host_charset(),
 									"utf-8",
 									"?",

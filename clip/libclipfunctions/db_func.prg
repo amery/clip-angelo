@@ -3,12 +3,12 @@
 	Author   : Uri (uri@itk.ru)
 	License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "set.ch"
-#include "fileio.ch"
-#include "common.ch"
-#include "error.ch"
-#include "dbinfo.ch"
+#include "ci_config.ch"
+#include "ci_set.ch"
+#include "ci_fileio.ch"
+#include "ci_common.ch"
+#include "ci_error.ch"
+#include "ci_dbinfo.ch"
 ****************************************************************
 function fieldwblock(fname,anum)
   local __cname, __al:=alias(anum)
@@ -1306,7 +1306,7 @@ return alias
 // return structure with info for all aliases
 static function __dbiInfo(nInfo)
 		local __dbi_names,__dbri_names,__dboi_names,__blob_names
-		#include "dbinames.ch"
+#include "ci_dbinames.ch"
 		do switch (nInfo)
 			case 1
 					return __dbi_names
@@ -1411,7 +1411,7 @@ return ret
 **********************************************************
 * check structure of DBF file for "struct" and remake DBF for new structure.
 **********************************************************
-#include "error.ch"
+#include "ci_error.ch"
 function dbCheckStructure(file,struct,rdd)
 	local err,eblock:=errorblock({|e| break(e) } )
 	local ret:=0, sel:=select()

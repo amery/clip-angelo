@@ -4,9 +4,9 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/constant.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_constant.ch>
 
 #define SC_RESTORE     61728
 #define SC_MINIMIZE    61472

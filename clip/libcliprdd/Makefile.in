@@ -1,135 +1,157 @@
 #
 #                                            clip/libcliprdd/Makefile.in
 #
-Local_Depend = ../include/*.ch ../include.h/*.h
+Local_Depend 	= 		../include/*.ch 		\
+							../include.h/*.h
 
-#CFLAGS += -I.. -I../include -I../include.h
-#LIB = libcliprdd.a
-OBJS = $(sort rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o )
-#CPPFLAGS=
-#TARGET_ARCH=
-PROG = cliprdd
-#install all: Makefile $(LIB)
-ADDLIBS =
+OBJS 				= 		$(sort 						\
+										rddclip.o 		\
+										rdd.o 			\
+										dbf.o 			\
+										ntx.o 			\
+										cdx.o 			\
+										dbt.o 			\
+										fpt.o 			\
+										rushmore.o 		\
+										btree.o 			\
+										six.o 			\
+										hiper.o 			\
+							)
 
-install all: Makefile $(ATARGET)
+PROG 				= 		cliprdd
+ADDLIBS 			=
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all: Makefile $(OBJS) $(ATARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libcliprdd
 
 cfg :
-	$(E_cp)cp --remove-destination -fu$(V) btree.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
 
 cleanc:
-	$(E_rm)rm -f$(V) 	*.b *.tmp 								\
-							test_ref.c test.c test.log 		\
-							*.dbf *.ntx *.cdx *.dbt *.fpt 	\
-							$(ATARGET) test
+	$(E_rm)rm -f$(V) 	*.b 			\
+							*.tmp 		\
+							test_ref.c 	\
+							test.c 		\
+							test.log 	\
+							*.dbf 		\
+							*. 			\
+							.ntx 			\
+							*.cdx 		\
+							*.dbt 		\
+							*.fpt 		\
+							$(ATARGET) 	\
+							test
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-#$(LIB): $(OBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS) && ranlib $(LIB)
-
-rddclip.o:	rddclip.c ../include.h/rdd.h Makefile
+rddclip.o:	rddclip.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-rdd.o:		rdd.c ../include.h/rdd.h Makefile
+rdd.o:		rdd.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-dbf.o:		dbf.c ../include.h/rdd.h Makefile
+dbf.o:		dbf.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-ntx.o:		ntx.c ../include.h/rdd.h Makefile
+ntx.o:		ntx.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-cdx.o:		cdx.c ../include.h/rdd.h Makefile
+cdx.o:		cdx.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-dbt.o:		dbt.c ../include.h/rdd.h Makefile
+dbt.o:		dbt.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-fpt.o:		fpt.c ../include.h/rdd.h Makefile
+fpt.o:		fpt.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-rushmore.o:	rushmore.c ../include.h/rdd.h Makefile
+rushmore.o:	rushmore.c ../include.h/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-btree.o:	btree.c btree.h Makefile
+btree.o:	btree.c ci_btree.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-six.o:		six.c ../include.h/rdd.h ../include/six.ch Makefile
+six.o:		six.c ../include.h/ci_rdd.h ../include/ci_six.ch Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-hiper.o:	hiper.c ../include.h/rdd.h btree.h Makefile
+hiper.o:	hiper.c ../include.h/ci_rdd.h ci_btree.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-test: test.prg rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o ../include.h/clipbase.h ../libclip/clipbase.c ../libclip/libclip.a $(CLIP)
+test: test.prg rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o ../include.h/ci_clipbase.h ../libclip/clipbase.c ../libclip/libclip.a $(CLIP)
 	$(Trace_clip)
 	$(CLIP) -e -R test.prg
 

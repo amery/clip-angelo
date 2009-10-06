@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
-#include <inkey.ch>
+#include <ci_clip-gtk2.ch>
+#include <ci_inkey.ch>
 
 local ret := NIL
 parameters query_key

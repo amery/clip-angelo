@@ -1,5 +1,5 @@
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
 
 #define LISTBOX_BASE    WM_USER
 

@@ -1,6 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function main()
-local mask, tb
+local mask, tb, win, st, vbox, button, st2, entry, buffer, view, st3, str
 
 gtk_init()
 win := gtk_windowNew(, "Test background pixmap")
@@ -55,7 +55,7 @@ buffer = gtk_TextBufferNew()
 view := gtk_TextViewNewWithBuffer( , buffer )
 gtk_TextViewSetWrapMode (view, GTK_WRAP_WORD)
 gtk_WidgetSetSizeRequest(view, 300, 50)
-str := "И текст по-русски"
+str := "О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫"
 gtk_TextBufferSetText(buffer,str, len(str) )
 st3 := map()
 st3:base_color:=gtk_ColorNew(11111, 111111, 11111)

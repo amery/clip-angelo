@@ -9,23 +9,23 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <fileio.ch>
-#include "clip-postscript.ch"
+#include <ci_fileio.ch>
+#include "ci_clip-postscript.ch"
 #define USER_AGENT	"clip-postscript"
 #define VERSION		"0.1.0"
 
 /** PSPrinter - Class for generate PostScript file from XPL form */
 function PSPrinter( settings )
 	local obj := map()
-	
+
 	obj:className := "PSPrinter"
-	obj:property  := map() 
+	obj:property  := map()
 	obj:content   := ""
 	obj:styles	  := map()
 	obj:root      := NIL
 	obj:title     := ""
 	obj:author    := USER_AGENT + "-" + VERSION
-	
+
 	obj:styles    := array(0)
 	obj:styleNum  := 1
 	obj:pages     := array(0)
@@ -37,14 +37,14 @@ function PSPrinter( settings )
 	obj:fy        := 0
 	obj:header    := NIL
 	obj:footer    := NIL
-	
+
 	// Page settings
 	if valtype(settings) == "O" .and. settings:className == "PSPageSettings"
 		obj:page := settings
 	else
 		obj:page := PSPageSettings()
 	endif
-	
+
 	_recover_PSPRINTER(obj)
 return obj
 
@@ -71,22 +71,22 @@ return obj
 static function ps_print( self, form, viewer, file )
 	local content:='', tmpdir, f, cdir, old, nPos, d, realPSFile, oErr
 	local out:="", err:=""
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
 		if valtype(form) != 'O'
 			return .F.
 		endif
-		
+
 		// Define missing file name
 		if empty(file)
 			tmpdir := getenv("TEMP")
 			if empty(tmpdir); tmpdir := getenv("TMP"); endif
 			if empty(tmpdir); tmpdir := '.'; endif
-			if right(tmpdir,1) != PATH_DELIM; tmpdir += PATH_DELIM; endif 
+			if right(tmpdir,1) != PATH_DELIM; tmpdir += PATH_DELIM; endif
 			file := tmpdir + 'output'+alltrim(str(random(10000),4,0))+'.ps'
 		endif
-		
+
 		if empty(viewer)
 			if os() == "CYGWIN"
 				viewer := WINDOWS_PRINT_PREVIEW
@@ -94,10 +94,10 @@ static function ps_print( self, form, viewer, file )
 				viewer := UNIX_PRINT_PREVIEW
 			endif
 		endif
-		
+
 		// Save to file
 		content := self:save( form, file )
-		
+
 		// View in external viewer
 		// TODO: non blocking fork
 		?? "View " + file + " in " + viewer + chr(10)
@@ -118,32 +118,32 @@ static function ps_print( self, form, viewer, file )
 		else
 			syscmd( viewer + " " + file, "", @out, @err )
 		endif
-	
+
 	recover using oErr
 		?? "PSPrinter:print() error:", errorMessage(oErr), chr(10)
 		return .F.
 	end sequence
-	
+
 return .T.
 
 
 /* Save generated PostScript file */
 static function ps_save( self, form, file )
 	local content:=NIL, f, old, oErr
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
 		if valtype(form) != 'O'
 			return NIL
 		endif
-		
+
 		// Generate PostScript if nessesary
 		content := self:render( form )
-		
+
 		if empty(content)
 			content := ''
 		endif
-		
+
 		if .not. empty(file)
 			// Save to file
 			old := set(_SET_TRANSLATE_PATH, .F.)
@@ -156,34 +156,34 @@ static function ps_save( self, form, file )
 			fclose( f )
 			set(_SET_TRANSLATE_PATH, old)
 		endif
-	
+
 	recover using oErr
 		?? "PSPrinter:save() error:", errorMessage(oErr), chr(10)
 		return NIL
 	end sequence
-		
+
 return content
 
 
 /* Generate PostScript from form */
 static function ps_render( self, form, force )
 	local t, a, i, oErr, content:="", b
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
 		//?? "render&\n"
 		// Return early generated content
 		if .not. empty(self:content) .and. (valtype(force) !='L' .or. .not. force)
 			return self:content
-		endif		
-		
+		endif
+
 		//?? "check form&\n"
 		// Check form
 		if valtype(form) != 'O' .or. valtype(form:root) != 'O'
 			return ''
 		endif
 		t := form:root
-		
+
 		//?? "parse header&\n"
 		// Set title, page settings and styles
 		a := t:XPath("/head/name")
@@ -195,15 +195,15 @@ static function ps_render( self, form, force )
 			for i in a
 				self:set( lower(i:getName()), i:getText() )
 			next
-		endif	
+		endif
 		a := t:XPath("/head/style")
 		if valtype(a) == 'A' .and. len(a) > 0
 			for i in a
 				self:setStyle( PSStyle(i, self) )
 			next
-		endif	
+		endif
 		//?? "process blocks&\n"
-		
+
 		// Generate blocks
 		// Add first page
 		self:y := 0
@@ -215,7 +215,7 @@ static function ps_render( self, form, force )
 				b:print()
 			next
 		endif
-		
+
 		//?? "print pages&\n"
 		// Print pages
 		self:content := self:printHeader()
@@ -224,7 +224,7 @@ static function ps_render( self, form, force )
 		next
 		self:content += self:printFooter()
 		//?? "end render&\n"
-		
+
 	recover using oErr
 		?? "PSPrinter:render() error:", errorMessage(oErr), chr(10)
 		return .F.
@@ -258,7 +258,7 @@ static function ps_getStyle(self, name)
 	local i
 	i := ascan(self:styles, {|e| name==e[1]})
 	if i > 0
-		return self:styles[i][2] 
+		return self:styles[i][2]
 	endif
 return NIL
 
@@ -266,7 +266,7 @@ return NIL
 /* Print document header */
 static function ps_printHeader( self )
 	local s:="", tpw, tph, a, enc, fonts:=array(0), real_font, cyr_font, i, f, fExt, is
-	
+
 	// Write PS content
 	// Write document header
 	s += "%!PS-Adobe-2.0&\n"
@@ -306,84 +306,84 @@ static function ps_printHeader( self )
 			aadd(fonts, f)
 		endif
 	next
-	
+
 	if len(fonts) > 0
 		s += "&\n% Change encoding for used cyrillic fonts&\n"
 		s += "/encoding_array 256 array def&\n"
 		s += "0 1 127 { dup encoding_array exch dup StandardEncoding exch get put } for&\n"
 		s += "128 1 255 { encoding_array exch /.notdef put } for&\n"
 		s += "encoding_array&\n"
-		s += "  dup 163 /afii10071 put %¸&\n"
-		s += "  dup 179 /afii10023 put %¨&\n"
-		s += "  dup 185 /afii61352 put %¹&\n"
-		s += "  dup 192 /afii10096 put %þ&\n"
-		s += "  dup 193 /afii10065 put %à&\n"
-		s += "  dup 194 /afii10066 put %á&\n"
-		s += "  dup 195 /afii10088 put %ö&\n"
-		s += "  dup 196 /afii10069 put %ä&\n"
-		s += "  dup 197 /afii10070 put %å&\n"
-		s += "  dup 198 /afii10086 put %ô&\n"
-		s += "  dup 199 /afii10068 put %ã&\n"
-		s += "  dup 200 /afii10087 put %õ&\n"
-		s += "  dup 201 /afii10074 put %è&\n"
-		s += "  dup 202 /afii10075 put %é&\n"
-		s += "  dup 203 /afii10076 put %ê&\n"
-		s += "  dup 204 /afii10077 put %ë&\n"
-		s += "  dup 205 /afii10078 put %ì&\n"
-		s += "  dup 206 /afii10079 put %í&\n"
-		s += "  dup 207 /afii10080 put %î&\n"
-		s += "  dup 208 /afii10081 put %ï&\n"
-		s += "  dup 209 /afii10097 put %ÿ&\n"
-		s += "  dup 210 /afii10082 put %ð&\n"
-		s += "  dup 211 /afii10083 put %ñ&\n"
-		s += "  dup 212 /afii10084 put %ò&\n"
-		s += "  dup 213 /afii10085 put %ó&\n"
-		s += "  dup 214 /afii10072 put %æ&\n"
-		s += "  dup 215 /afii10067 put %â&\n"
-		s += "  dup 216 /afii10094 put %ü&\n"
-		s += "  dup 217 /afii10093 put %û&\n"
-		s += "  dup 218 /afii10073 put %ç&\n"
-		s += "  dup 219 /afii10090 put %ø&\n"
-		s += "  dup 220 /afii10095 put %ý&\n"
-		s += "  dup 221 /afii10091 put %ù&\n"
-		s += "  dup 222 /afii10089 put %÷&\n"
-		s += "  dup 223 /afii10092 put %ú&\n"
-		s += "  dup 224 /afii10048 put %Þ&\n"
-		s += "  dup 225 /afii10017 put %À&\n"
-		s += "  dup 226 /afii10018 put %Á&\n"
-		s += "  dup 227 /afii10040 put %Ö&\n"
-		s += "  dup 228 /afii10021 put %Ä&\n"
-		s += "  dup 229 /afii10022 put %Å&\n"
-		s += "  dup 230 /afii10038 put %Ô&\n"
-		s += "  dup 231 /afii10020 put %Ã&\n"
-		s += "  dup 232 /afii10039 put %Õ&\n"
-		s += "  dup 233 /afii10026 put %È&\n"
-		s += "  dup 234 /afii10027 put %É&\n"
-		s += "  dup 235 /afii10028 put %Ê&\n"
-		s += "  dup 236 /afii10029 put %Ë&\n"
-		s += "  dup 237 /afii10030 put %Ì&\n"
-		s += "  dup 238 /afii10031 put %Í&\n"
-		s += "  dup 239 /afii10032 put %Î&\n"
-		s += "  dup 240 /afii10033 put %Ï&\n"
-		s += "  dup 241 /afii10049 put %ß&\n"
-		s += "  dup 242 /afii10034 put %Ð&\n"
-		s += "  dup 243 /afii10035 put %Ñ&\n"
-		s += "  dup 244 /afii10036 put %Ò&\n"
-		s += "  dup 245 /afii10037 put %Ó&\n"
-		s += "  dup 246 /afii10024 put %Æ&\n"
-		s += "  dup 247 /afii10019 put %Â&\n"
-		s += "  dup 248 /afii10046 put %Ü&\n"
-		s += "  dup 249 /afii10045 put %Û&\n"
-		s += "  dup 250 /afii10025 put %Ç&\n"
-		s += "  dup 251 /afii10042 put %Ø&\n"
-		s += "  dup 252 /afii10047 put %Ý&\n"
-		s += "  dup 253 /afii10043 put %Ù&\n"
-		s += "  dup 254 /afii10041 put %×&\n"
-		s += "  dup 255 /afii10044 put %Ú&\n"
+		s += "  dup 163 /afii10071 put %ï¿½&\n"
+		s += "  dup 179 /afii10023 put %ï¿½&\n"
+		s += "  dup 185 /afii61352 put %ï¿½&\n"
+		s += "  dup 192 /afii10096 put %ï¿½&\n"
+		s += "  dup 193 /afii10065 put %ï¿½&\n"
+		s += "  dup 194 /afii10066 put %ï¿½&\n"
+		s += "  dup 195 /afii10088 put %ï¿½&\n"
+		s += "  dup 196 /afii10069 put %ï¿½&\n"
+		s += "  dup 197 /afii10070 put %ï¿½&\n"
+		s += "  dup 198 /afii10086 put %ï¿½&\n"
+		s += "  dup 199 /afii10068 put %ï¿½&\n"
+		s += "  dup 200 /afii10087 put %ï¿½&\n"
+		s += "  dup 201 /afii10074 put %ï¿½&\n"
+		s += "  dup 202 /afii10075 put %ï¿½&\n"
+		s += "  dup 203 /afii10076 put %ï¿½&\n"
+		s += "  dup 204 /afii10077 put %ï¿½&\n"
+		s += "  dup 205 /afii10078 put %ï¿½&\n"
+		s += "  dup 206 /afii10079 put %ï¿½&\n"
+		s += "  dup 207 /afii10080 put %ï¿½&\n"
+		s += "  dup 208 /afii10081 put %ï¿½&\n"
+		s += "  dup 209 /afii10097 put %ï¿½&\n"
+		s += "  dup 210 /afii10082 put %ï¿½&\n"
+		s += "  dup 211 /afii10083 put %ï¿½&\n"
+		s += "  dup 212 /afii10084 put %ï¿½&\n"
+		s += "  dup 213 /afii10085 put %ï¿½&\n"
+		s += "  dup 214 /afii10072 put %ï¿½&\n"
+		s += "  dup 215 /afii10067 put %ï¿½&\n"
+		s += "  dup 216 /afii10094 put %ï¿½&\n"
+		s += "  dup 217 /afii10093 put %ï¿½&\n"
+		s += "  dup 218 /afii10073 put %ï¿½&\n"
+		s += "  dup 219 /afii10090 put %ï¿½&\n"
+		s += "  dup 220 /afii10095 put %ï¿½&\n"
+		s += "  dup 221 /afii10091 put %ï¿½&\n"
+		s += "  dup 222 /afii10089 put %ï¿½&\n"
+		s += "  dup 223 /afii10092 put %ï¿½&\n"
+		s += "  dup 224 /afii10048 put %ï¿½&\n"
+		s += "  dup 225 /afii10017 put %ï¿½&\n"
+		s += "  dup 226 /afii10018 put %ï¿½&\n"
+		s += "  dup 227 /afii10040 put %ï¿½&\n"
+		s += "  dup 228 /afii10021 put %ï¿½&\n"
+		s += "  dup 229 /afii10022 put %ï¿½&\n"
+		s += "  dup 230 /afii10038 put %ï¿½&\n"
+		s += "  dup 231 /afii10020 put %ï¿½&\n"
+		s += "  dup 232 /afii10039 put %ï¿½&\n"
+		s += "  dup 233 /afii10026 put %ï¿½&\n"
+		s += "  dup 234 /afii10027 put %ï¿½&\n"
+		s += "  dup 235 /afii10028 put %ï¿½&\n"
+		s += "  dup 236 /afii10029 put %ï¿½&\n"
+		s += "  dup 237 /afii10030 put %ï¿½&\n"
+		s += "  dup 238 /afii10031 put %ï¿½&\n"
+		s += "  dup 239 /afii10032 put %ï¿½&\n"
+		s += "  dup 240 /afii10033 put %ï¿½&\n"
+		s += "  dup 241 /afii10049 put %ï¿½&\n"
+		s += "  dup 242 /afii10034 put %ï¿½&\n"
+		s += "  dup 243 /afii10035 put %ï¿½&\n"
+		s += "  dup 244 /afii10036 put %ï¿½&\n"
+		s += "  dup 245 /afii10037 put %ï¿½&\n"
+		s += "  dup 246 /afii10024 put %ï¿½&\n"
+		s += "  dup 247 /afii10019 put %ï¿½&\n"
+		s += "  dup 248 /afii10046 put %ï¿½&\n"
+		s += "  dup 249 /afii10045 put %ï¿½&\n"
+		s += "  dup 250 /afii10025 put %ï¿½&\n"
+		s += "  dup 251 /afii10042 put %ï¿½&\n"
+		s += "  dup 252 /afii10047 put %ï¿½&\n"
+		s += "  dup 253 /afii10043 put %ï¿½&\n"
+		s += "  dup 254 /afii10041 put %ï¿½&\n"
+		s += "  dup 255 /afii10044 put %ï¿½&\n"
 		s += "pop&\n"
     endif
-	
-	// Transform fonts 
+
+	// Transform fonts
 	// For each cyrillic font
 	for i in fonts
 		f := at("Cyr", i)

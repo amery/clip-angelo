@@ -4,11 +4,11 @@
 	License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "clipcfg.h"
-#include "set.ch"
-#include "inkey.ch"
-#include "ulimit.ch"
-#include "fileio.ch"
+#include "ci_clipcfg.h"
+#include "ci_set.ch"
+#include "ci_inkey.ch"
+#include "ci_ulimit.ch"
+#include "ci_fileio.ch"
 
 init procedure sys_init
   local l,x,i,c,cliproot:=cliproot()

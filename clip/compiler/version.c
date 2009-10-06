@@ -37,7 +37,7 @@
  */
 
 #include <stdio.h>
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include "license.h"
 
 void

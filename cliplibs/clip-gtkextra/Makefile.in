@@ -5,102 +5,84 @@
 #
 #
 
-Local_Depend = include/*.ch include/*.h
-#export CC
-#DBGFLAGS	= -g #-DMEMDBG
-#WARNFLAGS	= -Wimplicit -Wall
+Local_Depend 		= 			include/*.ch 	\
+									include/*.h
 
-.SUFFIXES: .prg .c .po
-.PHONY:	tests screen hash
+SRCS  				= 			$(sort 						\
+												sheet.c 			\
+												fontcombo.c 	\
+												bordercombo.c 	\
+												colorcombo.c 	\
+												togglecombo.c 	\
+												combobox.c 		\
+												itementry.c 	\
+									)
 
-SRCS  = sheet.c fontcombo.c bordercombo.c colorcombo.c togglecombo.c \
-	combobox.c itementry.c
+OBJS  				= 			$(addsuffix .o, $(basename $(SRCS) ))
+HDRS					= 			include/ci_clip-gtkextra.ch 	\
+									include/ci_clip-gtkextra.h 	\
+									../clip-gtk/include/ci_clip-gtk.ch
 
-OBJS  = $(sort bordercombo.o colorcombo.o combobox.o fontcombo.o itementry.o sheet.o togglecombo.o )
-
-HDRS	= include/clip-gtkextra.ch include/clip-gtkextra.h ../clip-gtk/include/clip-gtk.ch
-
-OBJDIR	= .
-EXTOBJS =
-
-HASHSRCS = $(SRCS) $(HDRS)
-PROG = clip-gtkextra
-#XLIB	= libclip-gtkextra.a
-#XSLIB	= libclip-gtkextra$(DLLSUFF)
-#XSLIBREAL = libclip-gtkextra$(DLLREALSUFF)
-#XLIBOBJS= $(OBJS)
-
-SYS = $OSNAME
-SYSTEM_NAME = $(OSNAME)
-
-DEFS	=
+OBJDIR				=
+EXTOBJS 				=
+HASHSRCS 			= 			$(sort $(SRCS) $(HDRS) )
+PROG 					= 			clip-gtkextra
+SYS 					= 			$(OSNAME)
+SYSTEM_NAME 		= 			$(OSNAME)
+DEFS 					=
 # -DVERSION=\"0.1\"
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
-
-CC = $(COMPILER)
-C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
+C_FLAGS  			+= 		$(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
+ADDLIBS 				=
 
-export CC CFLAGS
-export MEMDBG MEMDBGFLAGS
-ADDLIBS =
+export
 
-all: Makefile include/clip-gtkextracfg.h hash $(STARGET)
+######################################################################################
+###################################################################################### local rules
+
+all: Makefile include/ci_clip-gtkextracfg.h $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gtkextra
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/clip-gtkextra.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-gtkextra.ch $(Clip_I_Dir)/
 
 d: set_dbg
 
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-include/clip-gtkextracfg.h : $(CONFIGURE_SH)
+include/ci_clip-gtkextracfg.h : $(CONFIGURE_SH)
 	$(E_e)$(Trace)
 	$(E_xx)$(CONFIGURE_SH)
 
-hash: include/_hashcode.h
+#hash: include/ci__hashcode.h
 
-include/_hashcode.h: $(HASHSRCS)
-	$(E_e)$(Trace)
-	$(E_if)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
-	$(E_if)cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/_hashcode.h include/hashcode.h
-	$(E_cp)cp -fp$(V)  include/hashcode.h include/_hashcode.h
-
-#$(XLIB): $(XLIBOBJS)
-#	rm -f $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
-#	ranlib $(XLIB)
-
-#$(XSLIB): $(XLIB)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
+#include/ci__hashcode.h: $(HASHSRCS)
+#	$(E_e)$(Trace)
+#	$(E_if)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/ci__hashcode.h
+#	$(E_if)cmp include/ci__hashcode.h include/ci_hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/ci__hashcode.h include/ci_hashcode.h
+#	$(E_cp)cp -fp$(V)  include/ci_hashcode.h include/ci__hashcode.h
 
 test: install
 	$(E_cd)cd example && $(MAKE)
 
 cleanc:
-	$(E_rm)rm -rf$(V) *.b $(TARGET).* Makefile.inc
+	$(E_rm)rm -rf$(V) *.b $(TARGET).* include/ci_clip-gtkextracfg.h
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 
 install: all install-lib install-example
-#	$(CLIP_CP) $(XLIB) $(XSLIB) $(DESTDIR)/lib
-#	chmod 0644  $(DESTDIR)/lib/$(XLIB)
-#	chmod 0755  $(DESTDIR)/lib/$(XSLIB)
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-gtkextra
-#	cp -fu$(V) example/*.prg example/Makefile example/*.ch $(DESTDIR)/doc/example/clip-gtkextra
 
 include $(Makefile_o_in)
 
-#.c.o:
-#	@echo $(CC) $(CDBGFLAGS) $(CFLAGS) -c $<
-#	@$(CC) $(CDBGFLAGS) $(CFLAGS) $(XCFLAGS) -c $<
-
 depend:
 	$(MAKE) hash
-	makedepend -Y  -- $(CFLAGS) -- $(SRCS) 2>/dev/null
+	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
 
 commit:
 	_cvs commit

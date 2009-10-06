@@ -4,25 +4,26 @@
 #  GNU make makefile
 #
 
-Local_Depend = include/*.ch
-#CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS += -n
-CLIPLIBS  =
-OBJS  = richtext.o
-PROG = clip-rtf
-#RTLIB = libclip-rtf.a
-#RTFLIB = libclip-rtf$(DLLSUFF)
-#RTFLIBREAL = libclip-rtf$(DLLREALSUFF)
-ADDLIBS =
+Local_Depend 		= 			include/*.ch
+CLIPFLAGS 			+= 		-n
+OBJS  				= 			richtext.o
+PROG 					= 			clip-rtf
+ADDLIBS 				=
+DOC 					= 			readme*
 
-DOC = readme*
-.SUFFIXES: .prg .o .po
+export
 
-all : Makefile $(STARGET)
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-rtf
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/richtext.ch $(Clip_I_Dir)/
-	$(E_cp)cp --remove-destination -fpu$(V) include/objects.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_richtext.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_objects.ch $(Clip_I_Dir)/
 
 cleanc :
 	$(E_rm)rm -f$(V) *.c $(TARGET).*

@@ -1,4 +1,4 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 //#define DEBUG
 
@@ -8,7 +8,7 @@
 	#define D_MSG(t)
 #endif
 
-static l, fsdialog, csdialoge
+static l, fsdialog, csdialog
 
 function Main()
 	local w, vb, hb, sw, f, tt
@@ -20,7 +20,7 @@ function Main()
 	local CLFrame, CLFx, clscr, clist
 	local CTFrame, CTFx, ctree, node1, node2, node3, node4, ctscr
 	local PBFrame, PBFx, qbtn
-	local PxmFrame, PxmFx, pix, bmppix
+	local PxmFrame, PxmFx, pix, bmppix, btn
 
 	gtk_Init()
 

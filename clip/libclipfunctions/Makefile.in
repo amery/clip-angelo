@@ -1,41 +1,89 @@
 #
 #                                            clip/libclipfunctions/Makefile.in
 #
-Local_Depend = ../include/*.ch ../include.h/*.h
+Local_Depend 		= 		../include/*.ch 		\
+								../include.h/*.h
 
-#CLIPROOT = ..
-#CLIP	= ../clip
-##CLIPFLAGS = -R -a -n -I .. -I ../include
-#CLIPFLAGS = -w -l -O -n -I$(Clip_I_Dir) -I../include.h
-#CLIPFLAGS2 = -a -O -n -I .. -I ../include
-#CLIPLIBS  =
-CLIPFLAGS += -n
-OBJS  = $(sort _prompt.o a2edit.o achoice.o bl_func.o blank.o box.o browse.o 				\
-					db_func.o dbedit.o dbeval.o dtools.o dummy.o errorsys.o fdummy.o 			\
-					filed.o filedd.o frmback.o frmrun.o ftools.o 									\
-					getcolor.o getsys.o hotkeys.o htools.o imenu.o 									\
-					lblback.o map_func.o memoedit.o menusys.o mset.o nation.o 					\
-					p_func.o p_imode.o p_ourget.o p_secret.o rtcompil.o 							\
-					sets.o str_func.o sys_init.o sys_exit.o timefunc.o var_func.o 				\
-					hbrowse.o ct_shtm.o dbtotal.o browsys.o sqlbrows.o 							\
-					foxsel.o foxsql.o foxscope.o foxdbfunc.o foxkey.o foxsys.o foxwin.o 		\
-					hbrowtbl.o sys_prn.o scr_func.o scr_tools.o pv_fv.o ft_ontick.o 			\
-					mimetype.o print_funcs.o )
+CLIPFLAGS 			+= 	-n
+OBJS  				= 		$(sort 							\
+											_prompt.o 			\
+											a2edit.o 			\
+											achoice.o 			\
+											bl_func.o 			\
+											blank.o 				\
+											box.o browse.o 	\
+											db_func.o 			\
+											dbedit.o 			\
+											dbeval.o 			\
+											dtools.o 			\
+											errorsys.o 			\
+											filed.o 				\
+											filedd.o 			\
+											frmback.o 			\
+											frmrun.o 			\
+											ftools.o 			\
+											getcolor.o 			\
+											getsys.o 			\
+											hotkeys.o 			\
+											htools.o 			\
+											imenu.o 				\
+											lblback.o 			\
+											map_func.o 			\
+											memoedit.o 			\
+											menusys.o 			\
+											mset.o 				\
+											nation.o 			\
+											p_func.o 			\
+											p_imode.o 			\
+											p_ourget.o 			\
+											p_secret.o 			\
+											rtcompil.o 			\
+											sets.o 				\
+											str_func.o 			\
+											sys_init.o 			\
+											sys_exit.o 			\
+											timefunc.o 			\
+											var_func.o 			\
+											hbrowse.o 			\
+											ct_shtm.o 			\
+											dbtotal.o 			\
+											browsys.o 			\
+											sqlbrows.o 			\
+											foxsel.o 			\
+											foxsql.o 			\
+											foxscope.o 			\
+											foxdbfunc.o 		\
+											foxkey.o 			\
+											foxsys.o 			\
+											foxwin.o 			\
+											hbrowtbl.o 			\
+											sys_prn.o 			\
+											scr_func.o 			\
+											scr_tools.o 		\
+											pv_fv.o 				\
+											ft_ontick.o 		\
+											mimetype.o 			\
+											print_funcs.o 		\
+											dummy.o 				\
+											fdummy.o 			\
+								)
 
-OBJS2 =  key_func.o key_func2.o
-OBJS += $(OBJS2)
-#LIB = libclipfunctions.a
-PROG = clipfunctions
-ADDLIBS =
-.SUFFIXES: .prg .o
+OBJS2 				=  	key_func.o key_func2.o
+OBJS 					+= 	$(OBJS2)
+PROG 					= 		clipfunctions
+ADDLIBS 				=
 
-#install all: Makefile $(LIB) $(OBJS) $(OBJS2)
-install all: Makefile $(ATARGET)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all: Makefile $(OBJS) $(ATARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipfunctions
 
 cfg :
-
-#$(LIB) : $(OBJS) $(OBJS2)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS) $(OBJS2)
 
 include $(Makefile_o_in)
 

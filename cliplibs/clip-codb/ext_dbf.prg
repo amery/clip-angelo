@@ -6,8 +6,8 @@
 
 /* EXTENT control */
 
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 ************************************************************
 function codb_extdbfNew(oDep,ext_id)
@@ -295,7 +295,7 @@ static function _ext_update(self,oData, xData, lUnique)
 
 	rec:object_id   := oData:id
 	rec:class_id    := oData:class_id
-	rec:version	:= 0 //version  // доделать
+	rec:version	:= 0 //version  // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	rec:isOld 	:= .f.
 	rec:body        := oData
 	rec:crc32     := self:objCRC(rec:body)

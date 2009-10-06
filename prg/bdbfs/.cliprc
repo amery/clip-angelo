@@ -1,4 +1,4 @@
--U std.ch
--U six2clip.ch
+-U ci_std.ch
+-U ci_six2clip.ch
 -q no-as-word
 -D ENGLISH

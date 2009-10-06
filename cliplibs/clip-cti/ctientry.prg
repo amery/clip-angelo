@@ -7,10 +7,10 @@
 
 /* CTI_ENTRY - object, that use to edit data of variable types: N, C, L, D, M */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
-#include "inkey.ch"
+#include "ci_setcurs.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 

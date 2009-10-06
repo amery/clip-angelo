@@ -1,5 +1,5 @@
-#include "set.ch"
-#include "odbc.ch"
+#include "ci_set.ch"
+#include "ci_odbc.ch"
 
 FUNCTION ODBC2CLIP(rowset,fieldno)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)

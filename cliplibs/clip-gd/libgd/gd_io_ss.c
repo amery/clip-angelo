@@ -11,7 +11,7 @@
 * used internally until it settles down a bit.
 *
 * This module just layers the Source/Sink interface on top of the IOCtx; no
-* support is provided for tell/seek, so GD2 writing is not possible, and 
+* support is provided for tell/seek, so GD2 writing is not possible, and
 * retrieving parts of GD2 files is also not possible.
 *
 * A new SS context does not need to be created with both a Source and a Sink.
@@ -23,8 +23,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 /* this is used for creating images in main memory*/
 
@@ -88,7 +88,7 @@ sourceGetbuf( gdIOCtx* ctx, void *buf, int size )
   res = ((lctx->src->source)(lctx->src->context, buf, size));
 
 /*
-** Translate the return values from the Source object: 
+** Translate the return values from the Source object:
 ** 0 is EOF, -1 is error
 */
 

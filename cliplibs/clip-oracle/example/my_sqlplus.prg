@@ -4,7 +4,9 @@ LOCAL I := 1
 LOCAL user := "scott"	// -u
 LOCAL passwd := "tiger"	// -p
 LOCAL db := ""			// -d
-
+Local e
+Local tmp
+Local trpars
 ErrorBlock({|e| SQLError(e)})
 
 DO WHILE param(I) != NIL

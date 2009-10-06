@@ -1,44 +1,136 @@
 #
 #                                            clip-nanfor/Makefile.in
 #
-Local_Depend = include/*.ch
-PROG = clip-nanfor
-#TARGET=libclip-nanfor$(DLLSUFF)
-#RTARGET=libclip-nanfor$(DLLREALSUFF)
-#LIBS=libclip-nanfor.a
-OBJS  = $(sort 	aading.o aavg.o acctadj.o acctmnth.o acctqtr.o acctweek.o 		\
-						acctyear.o adessort.o aemaxlen.o aeminlen.o amedian.o 			\
-						anomatch.o any2any.o aredit.o asum.o at2.o bitclr.o bitset.o 	\
-						blink.o byt2bit.o byt2hex.o byteand.o byteneg.o bytenot.o 		\
-						byteor.o bytexor.o calendar.o cntryset.o d2e.o 						\
-						datecnfg.o dayofyr.o daytobow.o dectobin.o 							\
-						dispmsg.o e2d.o easter.o elapmil.o elapsed.o 						\
-						eltime.o findith.o firstday.o gcd.o hex2dec.o 						\
-						invclr.o isbit.o isbiton.o lastday.o linked.o 						\
-						madd.o menu1.o metaph.o miltime.o min2dhm.o month.o 				\
-						netpv.o nooccur.o ntow.o 													\
-						pchr.o pegs.o pending.o pickday.o popadder.o 						\
-						prtesc.o pvid.o qtr.o rand1.o restsets.o round.o 					\
-						savearr.o savesets.o scregion.o 											\
-						sinkey.o sleep.o sqzn.o tbwhile.o 										\
-						vertmenu.o wda.o week.o workdays.o woy.o 								\
-						xbox.o year.o nwsem.o 														\
-						clrsel.o menuto.o ftext.o )
+Local_Depend 		= 			include/*.ch
+PROG 					= 			clip-nanfor
+SRCS 					= 			 						\
+									aading.prg 			\
+									aavg.prg 			\
+									acctadj.prg 		\
+									acctmnth.prg 		\
+									acctqtr.prg 		\
+									acctweek.prg 		\
+									acctyear.prg 		\
+									ach2tb.prg 			\
+									adessort.prg 		\
+									aemaxlen.prg 		\
+									aeminlen.prg 		\
+									amedian.prg 		\
+									anomatch.prg 		\
+									any2any.prg 		\
+									aredit.prg 			\
+									asum.prg 			\
+									at2.prg 				\
+									bitclr.prg 			\
+									bitset.prg 			\
+									blink.prg 			\
+									byt2bit.prg 		\
+									byt2hex.prg 		\
+									byteand.prg 		\
+									byteneg.prg 		\
+									bytenot.prg 		\
+									byteor.prg 			\
+									bytesh.prg 			\
+									bytexor.prg 		\
+									calendar.prg 		\
+									clrsel.prg 			\
+									cntryset.prg 		\
+									d2e.prg 				\
+									datecnfg.prg 		\
+									dayofyr.prg 		\
+									daytobow.prg 		\
+									dectobin.prg 		\
+									dfile.prg 			\
+									diskfunc.prg 		\
+									dispmsg.prg 		\
+									dosver.prg 			\
+									e2d.prg 				\
+									easter.prg 			\
+									elapmil.prg 		\
+									elapsed.prg 		\
+									eltime.prg 			\
+									findith.prg 		\
+									firstday.prg 		\
+									floptst.prg 		\
+									ftext.prg 			\
+									gcd.prg 				\
+									hex2dec.prg 		\
+									invclr.prg 			\
+									isbiton.prg 		\
+									isbit.prg 			\
+									isshare.prg 		\
+									lastday.prg 		\
+									linked.prg 			\
+									madd.prg 			\
+									menu1.prg 			\
+									menuto.prg 			\
+									metaph.prg 			\
+									miltime.prg 		\
+									min2dhm.prg 		\
+									month.prg 			\
+									mouse1.prg 			\
+									netpv.prg 			\
+									nooccur.prg 		\
+									ntow.prg 			\
+									nwlstat.prg 		\
+									nwsem.prg 			\
+									nwuid.prg 			\
+									page.prg 			\
+									pchr.prg 			\
+									pegs.prg 			\
+									pending.prg 		\
+									pickday.prg 		\
+									popadder.prg 		\
+									prtesc.prg 			\
+									pvid.prg 			\
+									qtr.prg 				\
+									rand1.prg 			\
+									restsets.prg 		\
+									round.prg 			\
+									savearr.prg 		\
+									savesets.prg 		\
+									scancode.prg 		\
+									scregion.prg 		\
+									setdate.prg 		\
+									settime.prg 		\
+									sinkey.prg 			\
+									sleep.prg 			\
+									sqzn.prg 			\
+									sysmem.prg 			\
+									tbwhile.prg 		\
+									tempfile.prg 		\
+									vertmenu.prg 		\
+									vidcur.prg 			\
+									vidmode.prg 		\
+									wda.prg 				\
+									week.prg 			\
+									workdays.prg 		\
+									woy.prg 				\
+									xbox.prg 			\
+									year.prg
+
+# error missing functions
 # dfile.o dosver.o nwlstat.o nwuid.o diskfunc.o floptst.o isshare.o mouse1.o
 # page.o scancode.o setdate.o settime.o sysmem.o tempfile.o vidcur.o
-#						vidmode.o \
-#						ach2tb.o \
-DOC = doc/*
-ADDLIBS =
+#						vidmode.o
+#						ach2tb.o
+OBJS  				= 			$(addsuffix .o,$(basename $(SRCS) ) )
+DOC 					= 			doc/*
+ADDLIBS 				=
 
-all :Makefile $(DIRS_TO_SCAN) $(STARGET)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all :Makefile $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-nanfor
 
 cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/$(PROG)
-
-#$(TARGET) : $(DIRS_TO_SCAN)
-#	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
 
 cleanc :
 	$(E_rm)rm -f$(V) $(TARGET).* *.c
@@ -47,10 +139,6 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install : all install-lib
-#install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	$(CLIP_CP) $(LIBS) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/clip-oasis/nanfor
 
 include $(Makefile_o_in)
 

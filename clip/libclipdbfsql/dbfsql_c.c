@@ -3,11 +3,11 @@
 #include <string.h>
 #include <time.h>
 #include <errno.h>
-#include "clip.h"
-#include "coll.h"
-#include "../libclipscreen/charset.h"
-#include "dbfsql.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_coll.h"
+#include "../libclipscreen/ci_charset.h"
+#include "ci_dbfsql.h"
+#include "ci_error.ch"
 
 const char subsys[]             = "DBFSQL";
 const char er_connect[]         = "Can't connect to database server";

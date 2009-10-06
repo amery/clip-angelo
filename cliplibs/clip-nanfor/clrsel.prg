@@ -74,7 +74,7 @@
  *                 a more appropriate test display.
  *
  *         [4]  cFillChar  is the character (for desktop background only)
- *                 Default is CHR(177) "±±±±±±±±±±±±±±"
+ *                 Default is CHR(177) "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
  *
  *
  *     <lClrMode>   .T.  use colour palette
@@ -84,7 +84,7 @@
  *
  *     <cTestChr>  2 Byte character string for colour test display
  *
- *                 Default is the CHR(254)+CHR(254)  "þþ"
+ *                 Default is the CHR(254)+CHR(254)  "ï¿½ï¿½"
  *
  *  $RETURNS$
  *     An array identical to the one passed, with new selected colours
@@ -106,7 +106,7 @@
  *     *.... a typical application might have the following different settings
  *     *     normally these would be stored in a .dbf/.dbv
  *     aClrs := {;
- *        { "Desktop",        "N/BG",                         "D", "±" }, ;
+ *        { "Desktop",        "N/BG",                         "D", "ï¿½" }, ;
  *        { "Title",          "N/W",                          "T"      }, ;
  *        { "Top Menu",       "N/BG,N/W,W+/BG,W+/N,GR+/N",    "M"      }, ;
  *        { "Sub Menu",       "W+/N*,GR+/N*,GR+/N*,W+/R,G+/R","M"      }, ;
@@ -152,9 +152,9 @@
 *------------------------------------------------
 // Pre-processor stuff
 
-#include "box.ch"
-#include "setcurs.ch"
-#include "inkey.ch"
+#include "ci_box.ch"
+#include "ci_setcurs.ch"
+#include "ci_inkey.ch"
 
 #define C_NAME   1
 #define C_CLR    2
@@ -223,7 +223,7 @@
   *.... a typical application might have the following different settings
   *     normally these would be stored in a .dbf/.dbv
   aClrs := {;
-     { "Desktop",        "N/BG",                         "D", "±" }, ;
+     { "Desktop",        "N/BG",                         "D", "ï¿½" }, ;
      { "Title",          "N/W",                          "T"      }, ;
      { "Top Menu",       "N/BG,N/W,W+/BG,W+/N,GR+/N",    "M"      }, ;
      { "Sub Menu",       "W+/N*,GR+/N*,GR+/N*,W+/R,G+/R","M"      }, ;
@@ -397,7 +397,7 @@ DO WHILE .T.
   IF aOpt[ C_TYPE ] <> "T"  // no prompt for titles
     SETCOLOR( IIF( lColour, "N/W,W+/R,,,N/W", "N/W,W+/N,,,N/W" ) )
     Double( nT, nL+1, nB, nR-1 )
-    @ nT, nL+2 SAY PadC( " "+ aOpt[C_NAME] +" ", nR -nL -3, "Í" )
+    @ nT, nL+2 SAY PadC( " "+ aOpt[C_NAME] +" ", nR -nL -3, "ï¿½" )
     FOR nX := 1 TO LEN( aPrompt )
       @ nX+nT, nL+2 PROMPT PadR( aPrompt[nX], nR -nL -3 )
     NEXT
@@ -430,7 +430,7 @@ DO WHILE .T.
   *.... allow change to specific part of colour string
   IF aOpt[ C_TYPE ] <> "T"
     Single( nT, nL+1, nB, nR-1 )
-    @ nT, nL+2 SAY PadC( " "+ aOpt[C_NAME] +" ", nR -nL -3, "Ä" )
+    @ nT, nL+2 SAY PadC( " "+ aOpt[C_NAME] +" ", nR -nL -3, "ï¿½" )
   ENDIF
   cClr := _ftClrSel( aClrPal, cClr, nChoice, aOpt )  //  selection routine
   aClrs[ nChoice ] := cClr               // put colour back in array
@@ -495,7 +495,7 @@ DO CASE
      ClearS( 19, 41, 24, 66 )
      Single( 19, 42, 24, 65 )
      @ 20,43 SAY  "    Invoice Entry    "
-     @ 21,42 SAY "ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´"
+     @ 21,42 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´"
      @ 22,43 SAY  "   Amount            "
      @ 23,43 SAY  "   Date              "
      SETCOLOR( aClr[2] )
@@ -510,7 +510,7 @@ DO CASE
      @ 19,42 SAY  "                       "
      @ 20,42 SAY  "     Test Message      "
      @ 21,42 SAY  "                       "
-     @ 22,41 SAY "ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ´"
+     @ 22,41 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´"
      SETCOLOR( aClr[2] )
      @ 23,44 SAY  " Accept "
      SETCOLOR( aClr[5] )
@@ -521,12 +521,12 @@ DO CASE
      ClearS( 18, 37, 24, 70 )
      Single( 18, 38, 24, 69 )
      @ 19,39 SAY  " Cust   Name           Amount "
-     @ 20,38 SAY "ÆÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍÍÍÍÍÍÍÑÍÍÍÍÍÍÍÍµ"
-     @ 21,39 SAY  "  312 ³ Rick Shaw    ³ 143.25 "
-     @ 23,39 SAY  "      ³              ³        "
-     @ 24,38 SAY "ÔÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍÍÍÍÍÍÍÏÍÍÍÍÍÍÍÍ¾"
+     @ 20,38 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµ"
+     @ 21,39 SAY  "  312 ï¿½ Rick Shaw    ï¿½ 143.25 "
+     @ 23,39 SAY  "      ï¿½              ï¿½        "
+     @ 24,38 SAY "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¾"
      SETCOLOR( aClr[2] )
-     @ 22,39 SAY  " 1005 ³ Harry Pitts  ³  78.95 "
+     @ 22,39 SAY  " 1005 ï¿½ Harry Pitts  ï¿½  78.95 "
      SETCOLOR( aClr[5] )
      @ 23,39 SAY  " 3162 "
      @ 23,46 SAY         " Barb Wire    "

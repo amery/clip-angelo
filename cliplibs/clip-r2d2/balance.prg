@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 
 function r2d2_balance_xml(_queryArr, typeNode)
@@ -21,7 +21,7 @@ errorblock({|err|error2html(err)})
 
 
 
-	_query := d2ArrToMap(_queryArr) 
+	_query := d2ArrToMap(_queryArr)
 
 	outlog(__FILE__,__LINE__, _query)
 
@@ -59,13 +59,13 @@ errorblock({|err|error2html(err)})
 	endif
 	if "ITOGO" $ _query
 		itogo := _query:itogo
-		if !(empty(itogo)) 
+		if !(empty(itogo))
 			itogo := .t.
 		endif
-		//if empty(account) 
+		//if empty(account)
 		//	itogo := .f.
 		//endif
-		
+
 	endif
 	if !empty(connect_id)
 		connect_data := cgi_connect_data(connect_id)
@@ -132,12 +132,12 @@ errorblock({|err|error2html(err)})
 	if i>0
 		col := columns[i]
 		col:expr := "__obj:=cgi_getValue(account), iif(empty(__obj),account,__obj:code)"
-		col:header := "КодСч"
+		col:header := "О©╫О©╫О©╫О©╫О©╫"
 		col:block := &("{|p1,p2,p3,p4|"+col:expr+"}")
 
 		tmp := oclone(col)
 		tmp:name := "account_name"
-		tmp:header := "СчНазвание"
+		tmp:header := "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"
 		tmp:expr := "__obj:=cgi_getValue(account), iif(empty(__obj),account,__obj:code+':'+__obj:smallname)"
 		tmp:datatype := "R"
 		tmp:block := &("{|p1,p2,p3,p4|"+tmp:expr+"}")
@@ -147,14 +147,14 @@ errorblock({|err|error2html(err)})
 
 		tmp := oclone(col)
 		tmp:name := "owner_id"
-		tmp:header := "РодСчет"
+		tmp:header := "О©╫О©╫О©╫О©╫О©╫О©╫О©╫"
 		tmp:expr := "__obj:=cgi_getValue(account), iif( empty(__obj), account,__obj:code+':'+__obj:smallname)"
 		tmp:datatype := "R"
 		tmp:block := &("{|p1,p2,p3,p4|"+tmp:expr+"}")
 		aadd(columns,"")
 		ains(columns,i+1)
 		columns[i+1] := tmp
-		
+
 		tmp := oclone(col)
 		tmp:name := "beg_date"
 		tmp:header := "beg_date"
@@ -164,7 +164,7 @@ errorblock({|err|error2html(err)})
 		aadd(columns,"")
 		ains(columns,i+1)
 		columns[i+1] := tmp
-		
+
 		tmp := oclone(col)
 		tmp:name := "end_date"
 		tmp:header := "end_date"
@@ -180,7 +180,7 @@ errorblock({|err|error2html(err)})
 	if empty(urn)
 		urn := sprname
 	endif
-	
+
 	if typeNode == 'rdf3'
 		cgi_xml_header()
 	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
@@ -202,7 +202,7 @@ errorblock({|err|error2html(err)})
 		aTree := make_balance(beg_date,end_date,oDep,cType,account,itogo,periodic)
 		cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)
 	else
-**************************************************************************************	
+**************************************************************************************
 	    aTree:=map()
 	    aTree['level0']:={}
 	    for nPer = 1 to len(mPeriod)
@@ -211,9 +211,9 @@ errorblock({|err|error2html(err)})
 		tmp := make_balance(beg_date,end_date,oDep,cType,account,itogo,periodic)
 		aadd(aTree['level0'], tmp)
 	    next
-	    cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)	
+	    cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode)
 	endif
-	
+
 	if typeNode == 'rdf3'
 	    ? '</RDF:RDF>'
 	elseif  typeNode == 'rdf'
@@ -235,7 +235,7 @@ static function	make_balance(beg_date,end_date,oDep,cType,cAccount,itogo,periodi
 	local min_date := end_date
 	local aTree:=map(),aRefs:={}
 	*****
-	
+
 	acc_chart_class := m->oDict02:classBodyByName("acc_chart")
 	if empty(acc_chart_class)
 		cgi_xml_error("Class description not found: acc_chart")
@@ -269,7 +269,7 @@ static function	make_balance(beg_date,end_date,oDep,cType,cAccount,itogo,periodi
 		next
 	endif
 	for i=1 to len(acc_chart_list)
-	     
+
 		account := m->oDep02:getValue(acc_chart_list[i])
 		if empty(account)
 			loop
@@ -298,10 +298,10 @@ static function	make_balance(beg_date,end_date,oDep,cType,cAccount,itogo,periodi
 	asort(aRefs,,,{|x,y| x[3] < y[3] })
 
 	aTree['level0']:={}
-	
+
 	tmp:=cgi_getValue(cType)
 	tmp:owner_id := ""
-	tmp:account := "Всего:"
+	tmp:account := "О©╫О©╫О©╫О©╫О©╫:"
 	tmp:account_name := tmp:code+":"+tmp:smallname
 	tmp:bd_summa:=0.00
 	tmp:bk_summa:=0.00
@@ -329,7 +329,7 @@ static function	make_balance(beg_date,end_date,oDep,cType,cAccount,itogo,periodi
 		endif
 	    next
 	    if itogo
-    		for i=1 to len(aTree['level0'])		
+    		for i=1 to len(aTree['level0'])
 		    obj:=aTree['level0'][i]
     		    tmp:bd_summa +=obj:bd_summa
 		    tmp:bk_summa +=obj:bk_summa
@@ -347,7 +347,7 @@ static function	make_balance(beg_date,end_date,oDep,cType,cAccount,itogo,periodi
 		aTree:beg_date:=beg_date
 		aTree:end_date:=end_date
 	    next
-	    
+
 	endif
 return aTree
 

@@ -2,9 +2,9 @@
 #include <time.h>
 #include <ctype.h>
 #include "ociap.h"
-#include "clip.h"
-#include "dbfsql.h"
-#include "oracle.ch"
+#include "ci_clip.h"
+#include "ci_dbfsql.h"
+#include "ci_oracle.ch"
 
 #define PIECEBUFLEN		1024*4
 #define TIMEOUT			30

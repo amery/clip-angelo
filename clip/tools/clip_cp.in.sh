@@ -22,7 +22,7 @@ if [ -f clip_cp.ini ] ; then
 	echo "CC=$CC" 												>&3
 	cat clip_cp.ini 											>&3
 	exec 															3>&-
-	echo ". done."
 	chmod +x clip_cp$SCRIPTSUFF
+	echo ". done."
 fi
 

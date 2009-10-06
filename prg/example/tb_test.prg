@@ -1,5 +1,5 @@
 // Limits for a2edit
-#include "error.ch"
+#include "ci_error.ch"
 #define MAX_COLUMNS 10
 #define MAX_RECORDS 150
 
@@ -57,7 +57,7 @@ do case
 	browse(2,3,15,45)
    case nfunc==2
 	fields:={"FIRM_NO","FIRM_KEY","TELEFON"}
-	h:={"a","Название","Телефон"}
+	h:={"a","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫"}
 	fields:=NIL
 	h:=NIL
 	dbedit(2,3,15,78,fields,,,h)

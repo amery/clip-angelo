@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 static driver := getDriver()
 

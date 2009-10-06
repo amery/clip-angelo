@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_connect_xml(_queryArr)
 
@@ -129,17 +129,17 @@ local i,j,x,y
 	tmp := oDep:select(classDesc:id,,,'connect_id=="'+id+'"')
 	if !empty(tmp)
 	    obj_id := atail(tmp)
-	endif	    
+	endif
 //	outlog(__FILE__,__LINE__)
 	if command=="BEGIN" .and. !empty(id)
 		if empty(obj_id)
 			obj:=map()
 		else
 			obj:= oDep:getValue(obj_id)
-		endif			
+		endif
 		obj:user := user
 		obj:userid := userid
-		obj:rang := rang		
+		obj:rang := rang
 		obj:passwd := passwd
 		obj:connect_id := id
 		obj:date := date()
@@ -150,8 +150,8 @@ local i,j,x,y
 		obj:acc01 := acc01
 		if empty(obj_id)
 			obj_id:=oDep:append(obj,classDesc:id)
-		else	
-				
+		else
+
 			oDep:update(obj)
 		endif
 
@@ -160,9 +160,9 @@ local i,j,x,y
 			?'</window>'
 			return
 		endif
-		
+
 		//obj:= oDep:getValue(obj_id)
-		
+
 	endif
 //	outlog(__FILE__,__LINE__)
 	if empty(obj_id) .and. !empty(id)
@@ -199,11 +199,11 @@ local i,j,x,y
 		if !empty(acc01)
 			obj:acc01 := acc01
 		endif
-		
+
 		for i=1 to len(_queryArr)
 			x := upper(_queryArr[i][1])
 			y := _queryArr[i][2]
-			
+
 			if x $ "USER PASSWD BEG_DATE END_DATE COMMAND ACC00 ACC01 ID CLASS_ID"
 				loop
 			endif
@@ -216,7 +216,7 @@ local i,j,x,y
 		next
 //		outlog(__FILE__,__LINE__,obj)
 		oDep:update(obj)
-		
+
 		if !empty(oDep:error)
 			cgi_xml_error(oDep:error,"8")
 			?'</window>'

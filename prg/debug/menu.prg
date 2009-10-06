@@ -3,11 +3,11 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
-#include "debug.ch"
-#include "imenu.ch"
-#include "set.ch"
-#include "ctwin.ch"
+#include "ci_inkey.ch"
+#include "ci_debug.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
+#include "ci_ctwin.ch"
 
 ************************************************
 function make_debug_menu(dbg_obj)

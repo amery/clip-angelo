@@ -1,18 +1,21 @@
 #
 #                                            prg/Makefile.in
 #
-Local_Depend =
-
 include Makefile.01
 
-#DIRS_TO_SCAN += example
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(DIRS_TO_SCAN)
 
 Makefile.01 : $(CONFIGURE_SH)
 	$(CONFIGURE_SH)
 
-cfg :
+hash1 :
+
+cfg : $(DIRS_TO_SCAN)
 
 install : all $(DIRS_TO_SCAN)
 

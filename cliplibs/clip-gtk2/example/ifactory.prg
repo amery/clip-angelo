@@ -1,7 +1,7 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 function main()
-local window, buffer, view, layout, bins
+local window, buffer, view, layout, bins, accel, ifactory, vbox, imenu
 	gtk_init()
 	window = gtk_WindowNew(, " Test item factory ")
 
@@ -31,7 +31,7 @@ local window, buffer, view, layout, bins
 	gtk_ItemFactoryCreateItems(ifactory, imenu, window)
 
 
-	/* добавить accel_group в объект window */
+	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ accel_group О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ window */
 	gtk_WindowAddAccelGroup (window, accel)
 
 	vbox := gtk_vboxNew()

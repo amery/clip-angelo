@@ -3,18 +3,18 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "Set.ch"
-#include "Inkey.ch"
-#include "Getexit.ch"
-#include "config.ch"
+#include "ci_Set.ch"
+#include "ci_Inkey.ch"
+#include "ci_Getexit.ch"
+#include "ci_config.ch"
 
 #define K_UNDO          K_CTRL_U
 
 #ifdef LANG_RUSSIAN
-      #define MSG_INSERT     "Вст"
-      #define MSG_OVERWRITE  "Зам"
-      #define MSG_DATE_ERROR "Ошибка Даты "
-      #define MSG_RANGE_ERROR "Диапазон: "
+      #define MSG_INSERT     "О©╫О©╫О©╫"
+      #define MSG_OVERWRITE  "О©╫О©╫О©╫"
+      #define MSG_DATE_ERROR "О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ "
+      #define MSG_RANGE_ERROR "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫: "
 #else
       #define MSG_INSERT    "Ins"
       #define MSG_OVERWRITE "Ovr"
@@ -22,11 +22,11 @@
       #define MSG_RANGE_ERROR "In range: "
 #endif
 
-// Координаты SCOREBOARD - области состояния на экране
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ SCOREBOARD - О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 #define SCORE_ROW		0
 #define SCORE_COL		60
 
-// Глобальные переменные состояния для активации READ
+// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ READ
 static status
 static __getlist
 
@@ -266,7 +266,7 @@ func GetPostValidate(get)
 		get:UpdateBuffer()
 		status:Updated := saveUpdated
 		if ( status:KillRead )
-			get:exitState := GE_ESCAPE  // вызвать выход из ReadModal()
+			get:exitState := GE_ESCAPE  // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ ReadModal()
 			valid := .t.
 		end
 	end
@@ -285,7 +285,7 @@ proc GetDoSetKey(keyBlock, get)
 	get:UpdateBuffer()
 	status:Updated := saveUpdated
 	if ( status:KillRead )
-	     get:exitState := GE_ESCAPE    // вызвать выход из ReadModal()
+	     get:exitState := GE_ESCAPE    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ ReadModal()
 	end
 return
 
@@ -326,13 +326,13 @@ static func Settle(GetList, pos)
 		pos ++
 	endcase
 
-	if ( pos == 0 )             // слишком резко вверх
+	if ( pos == 0 )             // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 		if ( !ReadExit() .and. !status:BumpBot )
 			status:BumpTop := .T.
 			pos := status:LastPos
 			exitState := GE_DOWN
 		end
-	elseif ( pos == Len(GetList) + 1 )    // слишком резко вниз
+	elseif ( pos == Len(GetList) + 1 )    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 		if ( !ReadExit() .and. exitState <> GE_ENTER .and. !status:BumpTop )
 			status:BumpBot := .T.
 			pos := status:LastPos

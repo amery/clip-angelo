@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "inkey.ch"
-#include "set.ch"
+#include "ci_config.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
 
 /* for trapshift */
 static tp_proc := NIL
@@ -165,7 +165,7 @@ function key_name(nkey)
 
 	local _key_names,ret:="",i
 
-	#include "key_name.ch"
+	#include "ci_key_name.ch"
 
 	for i=1 to len(_key_names)
 		if nkey>=_key_names[i][1] .and. nkey<=_key_names[i][2]

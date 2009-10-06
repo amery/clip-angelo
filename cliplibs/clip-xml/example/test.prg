@@ -1,7 +1,7 @@
-#include <clip-expat.ch>
+#include <ci_clip-expat.ch>
 
 function main()
-local parser, aa
+local parser, aa, filename, tm, file, buf, i
 
 
 if pcount() == 0
@@ -64,6 +64,7 @@ function myfunc(aa, str, len)
 return
 
 function myStartElement(aa, name, arrAttr)
+	Local i
 	? replicate("&\t", aa),"<"+name+">"
 	for i=1 to len(arrAttr)
 		? replicate("&\t", aa+1), arrAttr[i]

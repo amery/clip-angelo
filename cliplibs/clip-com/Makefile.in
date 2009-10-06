@@ -2,18 +2,24 @@
 #                                            clip-com/Makefile.in
 #
 
-Local_Depend = libezV24/*.h
-Depend_on=
-PROG = clip-com
+Local_Depend 		= 			libezV24/*.h
+PROG 					= 			clip-com
+OBJS 					= 			com.o
+C_FLAGS 				+= 		-IlibezV24
+LIBEZ 				= 			libezV24/libezV24-0.a
+ADDLIBS 				= 			libezV24/libezV24-0.a
+#			-L$(PWD)/libezV24 -lezV24-0
+DIRS_TO_SCAN 		= 			libezV24
 
-OBJS=com.o
-C_FLAGS+=-IlibezV24
-LIBEZ=libezV24/libezV24-0.a
-ADDLIBS=libezV24/libezV24-0.a
+export
 
-DIRS_TO_SCAN = libezV24
+######################################################################################
+###################################################################################### local rules
 
-all: Makefile have_lib $(DIRS_TO_SCAN) $(STARGET)
+all: Makefile have_lib $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-com
 
 cfg :
 
@@ -25,7 +31,6 @@ install : all install-lib install-example
 
 cleanc : libezV24 example
 	$(E_rm)rm -rf$(V) hashcode.h $(TARGET).*
-#	cd libezV24; $(MAKE) clean; rm -f$(V) *.a *.so *.so.* *.exe
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_an_rdf(_queryArr)
 
@@ -204,7 +204,7 @@ function cgi_an_putRdf1(bal_data,account,an_level,urn,total,beg_date,end_date,sT
 		     essenc := strtran(essenc,"'","&apos;")
 		     essenc := strtran(essenc,'<',"&lt;")
 		     essenc := strtran(essenc,'>',"&gt;")
-		     essenc := iif(tmp:an_value=="total","Bсего",essenc)
+		     essenc := iif(tmp:an_value=="total","BО©╫О©╫О©╫О©╫",essenc)
 		     if tmp:an_value=="total"
 		? '     DOCUM:rfl.name="'+essenc+'"'
 		    endif

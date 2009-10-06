@@ -4,9 +4,9 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)                   */
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html     */
 
-#include "edit.ch"
-#include "box.ch"
-#include "fileio.ch"
+#include "ci_edit.ch"
+#include "ci_box.ch"
+#include "ci_fileio.ch"
 
 #define U_CMD           1
 #define U_CYCLE         2
@@ -33,8 +33,8 @@ local obj
        obj:=map()
 
        obj:classname    := "TEXTEDIT"
-       obj:path         := ""  // путь к файлу
-       obj:filename     := ""  // имя файла
+       obj:path         := ""  // О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫
+       obj:filename     := ""  // О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
        obj:lines        := 0
        obj:colorSpec    := iif(empty(color),setcolor(),color)
        obj:line         := 1
@@ -56,9 +56,9 @@ local obj
        obj:autoWrap     := TE_AUTO_WRAP
 
        obj:mkblock      := .f.
-       obj:strblock     := .f.          // строчный блок
-       obj:rectblock    := .f.          // прямоугольный блок
-       obj:koordblock   := {NIL, NIL, NIL, NIL} // координаты блока
+       obj:strblock     := .f.          // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+       obj:rectblock    := .f.          // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+       obj:koordblock   := {NIL, NIL, NIL, NIL} // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 
        obj:__findR      := {}
        obj:__regSearch  := {}
@@ -78,7 +78,7 @@ local obj
        obj:__LNstyle    := 0
 
        obj:edbuffer     := {}
-       obj:__colors     := {}      // палитры цветов
+       obj:__colors     := {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
        obj:__leninfo    := maxcol()-maxcol()*3/4 - 1
 
        _recover_textedit(obj)
@@ -315,11 +315,11 @@ static function __te_nullInit()
   ::mkblock := .f.
 return
 
-*********** перезагрузка файла с диска
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_reLoadFile()
 return .t.
 
-*********** загрузка файла с диска
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_loadFile(filename, lRefresh)
 local nfile, scr, i
   lRefresh := iif(empty(lRefresh), .t., lRefresh)
@@ -383,7 +383,7 @@ local nfile, scr, i
   endif
 RETURN .t.
 
-*********** загрузка текста из строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_loadString(str)
 local ts
 	if str==NIL .or. (valtype(str)!="C" .and. valtype(str)!="M")
@@ -433,7 +433,7 @@ local i, oldcolor
        endif
        ::refresh()
 return
-*********** заполнение экрана текстом
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_refresh()
 local bp,bl,l,i,dev, str, str1, block, min, max, fnd, clr_st
 
@@ -521,7 +521,7 @@ local bp,bl,l,i,dev, str, str1, block, min, max, fnd, clr_st
 	      clr_st := ::__colors[2]
 	   endif
 	   if ::Nstyle .and. (bl+i) < ::lines+iif(::lEofString,1,0)
-		@ ::ntop+i-1, ::nLeft-::__LNstyle say str(bl+i, ::__LNstyle-1, 0)+"│" color clr_st
+		@ ::ntop+i-1, ::nLeft-::__LNstyle say str(bl+i, ::__LNstyle-1, 0)+"О©╫" color clr_st
 	   endif
 	   if (bl+i) > ::lines+iif(::lEofString,1,0)
 	      @ ::ntop+i-1, ::nLeft-::__LNstyle say space(l) color ::__colors[1]
@@ -531,7 +531,7 @@ local bp,bl,l,i,dev, str, str1, block, min, max, fnd, clr_st
        dispend()
 return
 
-*********** заполнение строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_refreshStr(Step)
 return
 
@@ -545,7 +545,7 @@ static function te_clear()
        ::refresh()
 return
 
-*********** перемещение на одну строку вниз
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_down( undo )
     undo := iif(undo==NIL, .t., undo)
     if undo
@@ -563,7 +563,7 @@ static function te_down( undo )
     endif
 RETURN
 
-*********** перемещение на одну строку вверх
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_up( undo )
      undo := iif(undo==NIL, .t., undo)
      if undo
@@ -581,7 +581,7 @@ static function te_up( undo )
      endif
 RETURN
 
-*********** перемещение по PgDn
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ PgDn
 static function te_PageDown( undo )
     undo := iif(undo==NIL, .t., undo)
     if undo
@@ -593,7 +593,7 @@ static function te_PageDown( undo )
     endif
 return
 
-*********** перемещение по PgUp
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ PgUp
 static function te_PageUp( undo )
     undo := iif(undo==NIL, .t., undo)
     if undo
@@ -605,7 +605,7 @@ static function te_PageUp( undo )
     endif
 RETURN
 
-*********** перемещение по стрелкам влево-вправо
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_cleft( undo )
     undo := iif(undo==NIL, .t., undo)
     if undo
@@ -638,7 +638,7 @@ static function te_cright( undo )
     endif
 return
 
-*********** в начало текста
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_goTop( undo )
    undo := iif(undo==NIL, .t., undo)
    if undo
@@ -651,7 +651,7 @@ static function te_goTop( undo )
    endif
 RETURN
 
-*********** в конец текста
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_goBottom( undo )
    undo := iif(undo==NIL, .t., undo)
    if undo
@@ -664,7 +664,7 @@ static function te_goBottom( undo )
    endif
 RETURN
 
-*********** в начало строки
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_Home( undo )
 local homepos:=0, lt
   undo := iif(undo==NIL, .t., undo)
@@ -692,7 +692,7 @@ local homepos:=0, lt
   endif
 return
 
-*********** в конец строки
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_end( undo )
    undo := iif(undo==NIL, .t., undo)
    if undo
@@ -711,7 +711,7 @@ static function te_end( undo )
    endif
 return
 
-*********** на слово вправо
+*********** О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_wordRight()
    local s,str, p:=::pos, fl:=.f.
    if ::line>::lines
@@ -734,7 +734,7 @@ static function te_wordRight()
    ::refresh()
 RETURN
 
-*********** на слово влево
+*********** О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_wordLeft()
    local s,str, p:=::pos, fl:=.f., pl:=.f.
    if ::line>::lines
@@ -758,7 +758,7 @@ static function te_wordLeft()
    ::refresh()
 RETURN
 
-*********** переход на строку
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_gotoLine(ln, rw, undo)
   if ln==NIL .or. ln < 1 .or. ln > ::lines
 	return .f.
@@ -780,7 +780,7 @@ static function te_gotoLine(ln, rw, undo)
   endif
 return .t.
 
-*********** переход на позицию
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_gotoPos(pos, cw, undo)
 local len
 
@@ -812,7 +812,7 @@ local len
    endif
 return .t.
 
-*********** переход на новую строку и новую колонку по заданным координатам в окне
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫
 static function te_mgoto(nRow, nCol, undo)
 local len
 
@@ -865,7 +865,7 @@ static function te_newLine(undo, autoIndent)
     endif
 return
 
-*********** вставить строку
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_insertLine(undo, autoIndent)
 local str, mrL, ol
    undo := iif(undo==NIL, .t., undo)
@@ -875,7 +875,7 @@ local str, mrL, ol
    if undo
 	::writeundo(HASH_INSLINE, ::edbuffer[::line])
    endif
-   if ol < ::lines  // т.е. строка уже добавлена функцией check_line()
+   if ol < ::lines  // О©╫.О©╫. О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ check_line()
 	if undo
 		::refresh()
 	endif
@@ -902,7 +902,7 @@ local str, mrL, ol
    endif
 return
 
-*********** вставить символ
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_insert(str, undo)
    local expstr, p, pos, colWin, tailstr
    undo := iif(undo==NIL, .t., undo)
@@ -943,7 +943,7 @@ static function te_insert(str, undo)
 	::refresh()
    endif
 return
-*********** заменить символ
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_overStrike(str, undo)
    local expstr, p, k, pos, colWin, tailstr, srcchr
    undo := iif(undo==NIL, .t., undo)
@@ -1061,7 +1061,7 @@ local i, m, p, l, srcstr, parr
 	::refresh()
    endif
 return
-*********** удаление символа слева
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_backSpace( undo )
 local min
    undo := iif(undo==NIL, .t., undo)
@@ -1116,7 +1116,7 @@ local min
    endif
 RETURN
 
-*********** удаление символа справа
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_delRight( undo )
 local min
    if ::line > ::lines
@@ -1165,7 +1165,7 @@ local min
    endif
 RETURN
 
-*********** удаление строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_deleteLine(undo)
 local min, max
    undo := iif(undo==NIL, .t., undo)
@@ -1198,7 +1198,7 @@ local min, max
    endif
 return
 
-*********** центрировать строку
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_centerLine()
    ::__check_line(::line)
    ::edbuffer[::line]=center(alltrim(::edbuffer[::line]),::marginRight,32,.f.)
@@ -1206,7 +1206,7 @@ static function te_centerLine()
    ::refresh()
 return
 
-*********** удаление от курсора до начала строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_delHome(undo)
    undo := iif(undo==NIL, .t., undo)
    ::__check_line(::line)
@@ -1222,7 +1222,7 @@ static function te_delHome(undo)
    endif
 RETURN
 
-*********** удаление от курсора до конца строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_delEnd(undo)
    undo := iif(undo==NIL, .t., undo)
    ::__check_line(::line)
@@ -1236,15 +1236,15 @@ static function te_delEnd(undo)
    endif
 RETURN
 
-*********** в начало предыдущей страницы
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_prevPage()
 RETURN
 
-************ в начало следующей страницы
+************ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_nextPage()
 RETURN
 
-*********** скроллинги в разные стороны
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_panHome()
 return
 
@@ -1263,7 +1263,7 @@ return
 static function te_panDown()
 return
 
-*********** поиск подстроки
+*********** О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_find(Find, undo)
 local str, scr
 local i, p, f, found:=.f., rr, st, en, _step
@@ -1359,7 +1359,7 @@ local i, p, f, found:=.f., rr, st, en, _step
 
 RETURN found
 
-*********** замена подстрок ниже курсора
+*********** О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_replace(Find, undo)
 local found:=.t., cstr:="", nkey, i, ret:=-1
 
@@ -1401,7 +1401,7 @@ local found:=.t., cstr:="", nkey, i, ret:=-1
 	endif
 RETURN ret
 
-********************* найти следующую
+********************* О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_findNext(Find, undo)
 local ret:=.f., oldDirect
 	undo:=iif(undo==NIL, .t., undo)
@@ -1421,7 +1421,7 @@ local ret:=.f., oldDirect
 	endif
 return ret
 
-********************* найти предыдующую
+********************* О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_findPrev(Find, undo)
 local ret:=.f., oldDirect
 	undo:=iif(undo==NIL, .t., undo)
@@ -1442,7 +1442,7 @@ local ret:=.f., oldDirect
 	endif
 return ret
 
-*********** "текущее" слово
+*********** "О©╫О©╫О©╫О©╫О©╫О©╫О©╫" О©╫О©╫О©╫О©╫О©╫
 static function te_curWord(pos, line)
 local ret:="", x, y, i, str, alpha, digit, ch
 	pos := iif(pos==NIL, ::pos, pos)
@@ -1482,7 +1482,7 @@ local ret:="", x, y, i, str, alpha, digit, ch
 	endif
 RETURN ret
 
-*********** "предыдущее" слово
+*********** "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫" О©╫О©╫О©╫О©╫О©╫
 static function te_prevWord(pos, line, newpos)
 local ret:="", x, y, i, str, e:=.f., ch
 	pos := iif(pos==NIL, ::pos, pos)
@@ -1522,7 +1522,7 @@ local ret:="", x, y, i, str, e:=.f., ch
 	newpos := x
 RETURN ret
 
-*********** "следующее" слово
+*********** "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫" О©╫О©╫О©╫О©╫О©╫
 static function te_nextWord(pos, line, newpos)
 local ret:="", x, y, i, str, e:=.t., ch
 	pos := iif(pos==NIL, ::pos, pos)
@@ -1557,7 +1557,7 @@ local ret:="", x, y, i, str, e:=.t., ch
 	newpos := x
 RETURN ret
 
-****************** поиск структуры по правилам Clipper
+****************** О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Clipper
 static function te_matchStruct(curword, forward, undo)
 local found:=.f., f_found, prevword, nextword, ind:=0, arr:={}, i, cnt:=0, cntoth:=0
 local clip_synt_beg, clip_synt_end, clip_synt_loop, word
@@ -1796,7 +1796,7 @@ private st
 	endif
 return found
 
-*********** поиск парного/идентичного символа
+*********** О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫/О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_Identity(symb, forward, undo)
 local found := .f., dbl:=.f.
 local i, j:=0, x, str1, str2, cnt:=0, ipos, iline, char, invchar, c
@@ -1948,11 +1948,11 @@ static function te_Frmt(str, len, s1, s2, spl, firstPos)
 local x, y, a1, a2, let, p, i
 	x := len
 	y := len
-	let := "[аеиоуыэюяaeiouy]"
+	let := "[О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫aeiouy]"
 	spl := iif(spl==NIL, .f., .t.)
 	firstPos := iif(firstPos==NIL, 0, firstPos)
 	if isalpha(substr(str, len, 1)) .or. isdigit(substr(str, len, 1)) .or. isdigit(::curword(len, str))
-		/* если нужен перенос в словах */
+		/* О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ */
 		if spl .and. !isdigit(::curword(len, str))
 			p := .t.
 		else
@@ -1976,7 +1976,7 @@ local x, y, a1, a2, let, p, i
 		next
 		a1 := {}
 		a2 := {}
-		while (y < 1 .or. !(search(let, substr(s2, 1, y), a2) .and. search("([a-z]+)([а-я]+)", substr(s2, 1, y), a2) )) .and. (len(s1)-x > 1)//(len(s1)-x >= 2)
+		while (y < 1 .or. !(search(let, substr(s2, 1, y), a2) .and. search("([a-z]+)([О©╫-О©╫]+)", substr(s2, 1, y), a2) )) .and. (len(s1)-x > 1)//(len(s1)-x >= 2)
 			s2 := substr(s1, len(s1), 1) + s2
 			s1 := substr(s1, 1, len(s1)-1)
 			y ++
@@ -1997,7 +1997,7 @@ local x, y, a1, a2, let, p, i
 	endif
 	x := len - len(s1)
 	s1 := rtrim(s1)
-	/* вставить пробелы для выравнивания длины строки */
+	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ */
 	if spl .and. x > 0 .and. !empty(s2)
 		y := len(s1)
 		for i:= 1 to x
@@ -2014,7 +2014,7 @@ local x, y, a1, a2, let, p, i
 return
 
 
-*********** форматирование строки
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_formatLine(lAutoMargin, nMarginLeft, nMarginRight, nTabSize, lHyphen, undo)
 local s1, s2, firstPos
 	undo := iif(undo==NIL, .t., undo)
@@ -2053,7 +2053,7 @@ local s1, s2, firstPos
 	endif
 RETURN
 
-*********** форматирование абзаца
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_formatPart(lAutoMargin, nMarginLeft, nMarginRight, nTabSize, lHyphen, undo)
 local i, s1, s2, line, st, en, arr:={}, firstPos1, firstPos2, len
 
@@ -2132,7 +2132,7 @@ local i, s1, s2, line, st, en, arr:={}, firstPos1, firstPos2, len
 	endif
 RETURN
 
-*********** форматирование  по правилам clipper
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫  О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ clipper
 static function te_insTempl(targ, undo)
 local i, j, p, target, start, en, spl
 	undo := iif(undo==NIL, .t., undo)
@@ -2359,7 +2359,7 @@ local i, n, str:="", ts, hch, ch
   ::updated:=.f.
 RETURN str
 
-*********** запись блока на диск
+*********** О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_saveBlock( fileName, createbak )
 local nfile, nbakfile, i, n, str, scr, ps, pl, ts, hch, ch
   save screen to scr
@@ -2426,7 +2426,7 @@ local nfile, nbakfile, i, n, str, scr, ps, pl, ts, hch, ch
   restore screen from scr
 RETURN .t.
 
-*********** загрузка блока с диска
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_loadBlock(filename, undo)
 local nfile, i, path, s, arr, size, edb
 	undo := iif(undo==NIL, .t., undo)
@@ -2475,7 +2475,7 @@ local nfile, i, path, s, arr, size, edb
 	endif
 RETURN .t.
 
-*********** копировать блок
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_copyBlock(mov, undo)
 local i, lenbuf, stbl, endbl, rightbl, leftbl, rowblock, buf, colblock
 
@@ -2483,7 +2483,7 @@ local i, lenbuf, stbl, endbl, rightbl, leftbl, rowblock, buf, colblock
     if !::strblock .and. !::rectblock
 	 return .F.
     endif
-    if mov == NIL   // переместить блок
+    if mov == NIL   // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 	mov := .f.
     endif
     if ::strblock
@@ -2575,13 +2575,13 @@ local i, lenbuf, stbl, endbl, rightbl, leftbl, rowblock, buf, colblock
     endif
 RETURN .T.
 
-*********** переместить блок
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_moveBlock(undo)
     undo := iif(undo==NIL, .t., undo)
 
 RETURN ::copyBlock(.t., undo)
 
-*********** удалить блок
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_deleteBlock(undo)
 local rowblock, rightbl, leftbl, stbl, endbl, i, unarr:={}, arr
     undo := iif(undo==NIL, .t., undo)
@@ -2654,7 +2654,7 @@ local rowblock, rightbl, leftbl, stbl, endbl, i, unarr:={}, arr
     endif
 RETURN .t.
 
-*********** начать отметку блока
+*********** О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_beginBlock( vid, undo )
     undo := iif(undo==NIL, .t., undo)
     vid := iif(vid==NIL, .t., vid)
@@ -2678,13 +2678,13 @@ static function te_beginBlock( vid, undo )
     endif
 RETURN
 
-*********** закончить отметку блока
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_endBlock( vid )
     ::mkblock := .f.
     ::koordblock[3] := min(::koordblock[3], ::lines)
 RETURN
 
-*********** отменить отметку блока
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static function te_cancelBlock( undo )
     undo := iif (undo==NIL, .t., undo)
     ::mkblock := .f.
@@ -2698,13 +2698,13 @@ static function te_cancelBlock( undo )
     endif
 RETURN
 
-*********** очистить буфер и добавить туда блок
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static function te_copyToClipboard( Clipboard )
     asize(Clipboard, 0)
     ::addToClipboard(@Clipboard)
 RETURN
 
-*********** добавить блок в буффер
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_addToClipboard(Clipboard)
     local i, j:=0, cb[2], nT, nL, nB, nR
     if ::strblock .or. ::rectblock
@@ -2725,13 +2725,13 @@ static function te_addToClipboard(Clipboard)
     endif
 RETURN
 
-*********** перенести блок в буффер
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_moveToClipboard(Clipboard)
 	::copyToClipboard(@Clipboard)
 	::deleteBlock()
 RETURN
 
-*********** вставить блок из буффера
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_pasteFromClipboard( Clipboard, it, undo )
 local i, j
 	if empty(Clipboard)
@@ -2743,7 +2743,7 @@ local i, j
 		::writeundo(HASH_PASTCLB, Clipboard[it])
 	endif
 	::line := ::__check_line(::line, .f.)
-	/* вставить строчный блок */
+	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ */
 	if Clipboard[it][1]
 		::lines += len(Clipboard[it][2])
 		asize(::edbuffer, ::lines)
@@ -2758,7 +2758,7 @@ local i, j
 			ains(::edbuffer, ::line+i-1)
 			::edbuffer[::line+i-1] := Clipboard[it][2][i]
 		next
-	else /* вставить прямоугольный блок */
+	else /* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ */
 		::strblock := .f.
 		::rectblock := .t.
 		afill(::koordblock, NIL)
@@ -2779,7 +2779,7 @@ local i, j
 	endif
 RETURN .t.
 
-************ откат последних действий
+************ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_undo()
 local i, j, cmd, len, line, p, edb
 	if ::__curundo == ::__startundo
@@ -3007,7 +3007,7 @@ local i, j, cmd, len, line, p, edb
 	::refresh()
 return
 
-************ сохранение последних действий
+************ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static function te_writeundo( cmd, val )
 local st[11], prev
 
@@ -3105,7 +3105,7 @@ local st[11], prev
 	endif
 return
 
-****************** псевдографика *********************************
+****************** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ *********************************
 static function te_around_check(around_char, R_Mode, L_Mode, U_Mode, D_Mode)
 local ch, p
 	::__check_line(::line)
@@ -3114,7 +3114,7 @@ local ch, p
 
 	/* right */
 	around_char[1] := substr(::edbuffer[::line], ::pos+1, 1)
-	p := at(around_char[1], "┤╢╖╜┐┴┬─┼╨╥╫┘╡╕╣╗╝╛╩╦═╬╧╤╪")
+	p := at(around_char[1], "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫")
 	if p>=1 .and. p<14
 		R_Mode=1
 	endif
@@ -3127,7 +3127,7 @@ local ch, p
 	else
 		around_char[2] := substr(::edbuffer[::line], ::pos-1, 1)
 	endif
-	p = at(around_char[2], "└┴┬├─┼╟╨╥╙╓╫┌╞╚╔╩╦╠═╬╧╤╘╒╪")
+	p = at(around_char[2], "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫")
 	if p >=1 .and. p<14
 		L_Mode=1
 	endif
@@ -3140,7 +3140,7 @@ local ch, p
 	else
 		around_char[3] := substr(::edbuffer[::line-1], ::pos, 1)
 	endif
-	p := at(around_char[3], "│┤╡╕┐┬├┼╞╤╒╪┌╢╖╣║╗╟╔╦╠╬╥╓╫")
+	p := at(around_char[3], "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫")
 	if p >=1 .and. p <14
 		U_Mode = 1
 	endif
@@ -3153,7 +3153,7 @@ local ch, p
 	else
 		around_char[4] := substr(::edbuffer[::line+1], ::pos, 1)
 	endif
-	p := at(around_char[4], "│┤╡╛└┴├┼╞╘╪┘╧╢╣║╝╜╟╚╩╠╬╨╙╫")
+	p := at(around_char[4], "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫")
 	if p >=1 .and. p < 14
 		D_Mode=1
 	endif
@@ -3168,35 +3168,35 @@ local A_Right:=1, A_Left:=2, A_Up:=3, A_Down:=4
 local R_Mode, L_Mode, U_Mode, D_Mode
 local p, ch_ret, line, pos, old_direction:=0, str, ch, i, j
 	undo := iif(undo == NIL, .t., undo)
-	draw_char := {{"─", "═"}, {"│", "║"}}
-	back_cur_ch := {"┐╖╕╗┘╛╜╝┤╢╣╡",;
-			"┌╓╒╔└╘╙╚├╟╠╞",;
-			"┐╕╖╗┌╓╒╔┬╤╦╥",;
-			"┘╛╜╝└╙╘╚┴╧╩╨"}
-	back_new_ch := {"┬╥┬╥┴┴╨╨┼╫╫┼╦╦╤╦╩╧╩╩╬╬╬╪",;
-			"┬╥┬╥┴┴╨╨┼╫╫┼╦╦╤╦╩╧╩╩╬╬╬╪",;
-			"┤╡┤╡├├╞╞┼╪╪┼╣╣╢╣╠╟╠╠╬╬╬╫",;
-			"┤╡┤╡├├╞╞┼╪╪┼╣╣╢╣╠╟╠╠╬╬╬╫"}
+	draw_char := {{"О©╫", "О©╫"}, {"О©╫", "О©╫"}}
+	back_cur_ch := {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"}
+	back_new_ch := {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫",;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"}
 	string :={;
    /* present_derection=A_Right*/;
-   /*up   */       {{"└╘└╘┘╛└╘┘╝┴╩┘╝└╘┘╛└╛┴╧","╙╚╙╚╙╚╙╚╜╝╨╩╜╝╙╚╜╝╙╝╨╩"},;
-   /*down */        {"┌╒┌╒┐╕┌╒┐╗┬╦┐╗┌╒┐╕┌╕┬╤","╓╔╓╔╓╔╓╔╖╗╥╦╖╗╓╔╖╗╓╗╥╦"},;
-   /*up down*/      {"├╞├╞╞╠├╞┤╣┼╬┤╣├╞╡╡╡╡╪╬","╟╠╟╠╟╠╟╠╢╣╫╬╢╠╟╠┤╣┤╣┼╬"};
+   /*up   */       {{"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+   /*down */        {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+   /*up down*/      {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"};
 		     },;
    /* present_derection=A_Left*/;
-		   {{"┘╛└╚└╘┘╛┘╛┴╩┘╘┘╛┘╛└╚┴╧","╜╝╙╚╙╚╜╝╜╝╨╩╜╚╜╝╜╝╙╚╨╩"},;
-		    {"┐╕┌╔┌╒┐╕┐╕┬╦┐╒┐╕┌╒┌╔┬╤","╖╗╓╔╓╔╖╗╖╗╥╦╖╔╖╗╖╗╓╔╥╦"},;
-		    {"┤╡├╠╞╞┤╡┤╡┼╬┤╞┤╡╡╣├╠╪╬","╢╣╟╠├╠╢╣╢╣╫╬├╠╢╣╢╣╟╣┼╬"};
+		   {{"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+		    {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+		    {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"};
 		     },;
    /* present_derection=A_Up*/;
-   /*left   */     {{"┘╜┐╗┐╖┘╜┘╜┤╣┘╖┘╜┘╜┐╗┤╢","╛╝╕╗╕╗╛╝╛╝╡╣╛╗╛╝╛╝╕╗╡╣"},;
-   /*right  */      {"└╙┌╔┌╓└╙└╙├╠└╓└╙└╙┌╔├╟","╘╚╒╔╒╔╘╚╘╚╞╠╘╔╘╚╘╚╒╔╞╠"},;
-   /*left right*/   {"┴╨┬╦╥╥┴╨┴╨┼╬┴╥┴╨╨╩┬╦╬╫","╧╩╤╦┬╦╧╩╧╩╪╬┬╦╧╩╧╩╤╩┼╬"};
+   /*left   */     {{"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+   /*right  */      {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+   /*left right*/   {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"};
 		     },;
    /* present_derection=A_Down*/;
-		   {{"┐╖┐╖┐╖┐╖┘╝┤╣┘╝┐╖┘╜┐╜┤╢","╕╗╕╗╕╗╕╗╛╝╡╣╛╝╕╗╛╝╕╝╡╣"},;
-		    {"┌╓┌╓┌╓┌╓└╚├╠└╚┌╓└╙┌╙├╟","╒╔╒╔╒╔╒╔╘╚╞╠╘╚╒╔╘╚╒╚╞╠"},;
-		    {"┬╥┬╥╥╦┬╥┴╩┼╬┴╩┬╥╨╨┬╨╫╬","╤╦╤╦╤╦╤╦╧╩╪╬╧╦╤╦┴╩┴╩┼╬"};
+		   {{"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+		    {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},;
+		    {"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"};
 		    };
 		   }
 	Draw_Mode := iif(Draw_Mode, 1, 2)

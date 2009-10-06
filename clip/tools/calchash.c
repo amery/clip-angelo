@@ -33,7 +33,7 @@
    preprocessor bug fix, warnings removed
 
    Revision 1.3  1999/12/04 20:08:27  uri
-   убрал warning нового компилятора
+   О©╫О©╫О©╫О©╫О©╫ warning О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.2  1999/10/26 19:11:15  paul
    start cvs logging
@@ -44,7 +44,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cliphash.h"
+#include "ci_cliphash.h"
 
 int
 main(int argc, char **argv)

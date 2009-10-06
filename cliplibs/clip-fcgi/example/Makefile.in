@@ -1,14 +1,19 @@
 #
 #                                            clip-fcgi/example/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-fcgi.so
+Depend_on 			= 				$(Clip_L_Dir)/libclip-fcgi.so
+PRG 					= 				clip_echo.fcgi
+LIBS 					= 				-lfcgi
+export
 
-PRG=clip_echo.fcgi
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG)$(EXESUFF)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -18,9 +23,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_rm)$(Trace_clip)
-	$(CLIP) -o$@ -ewsl -M $(PRG).prg -lclip-fcgi
+	$(CLIP) -o$@ -ewsl -M $(PRG).prg -lclip-fcgi $(LIBS)
 
 include $(Makefile_o_in)
 

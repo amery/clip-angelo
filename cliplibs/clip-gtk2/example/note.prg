@@ -1,5 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function Main()
+Local win, l1, lab1, l2, btn1, btn2, lab3, vbox, note
 gtk_init()
 win := gtk_windowNew(, "Test notebook")
 gtk_WindowSetPosition(win, GTK_WIN_POS_CENTER)
@@ -9,11 +10,11 @@ gtk_signalConnect(win, "delete-event", {|| gtk_quit()})
 
 l1 := gtk_layoutNew()
 gtk_WidgetSetSizeRequest(l1, 400, 500)
-lab1 := gtk_LabelNew(, "Строка по-русски")
+lab1 := gtk_LabelNew(, "О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫")
 gtk_MiscSetAlignment(lab1, 0.5, 0.5)
 gtk_MiscSetPadding(lab1, 10, 10)
 gtk_LayoutPut(l1, lab1, 5, 5)
-btn1 := gtk_ButtonNew(, "Сменить страницу ")
+btn1 := gtk_ButtonNew(, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ")
 gtk_SignalConnect(btn1, "clicked", {|| gtk_NotebookSetPage(note, 2)})
 gtk_LayoutPut(l1, btn1, 5, 50)
 
@@ -28,13 +29,13 @@ gtk_SignalConnect(btn2, "clicked", {|| gtk_NotebookSetPage(note, 1)})
 gtk_LayoutPut(l2, btn2, 5, 5)
 
 note  := gtk_NoteBookNew()
-gtk_NoteBookAppendPage(note, l1, "первая")
-gtk_NoteBookAppendPage(note, l2, "вторая")
+gtk_NoteBookAppendPage(note, l1, "О©╫О©╫О©╫О©╫О©╫О©╫")
+gtk_NoteBookAppendPage(note, l2, "О©╫О©╫О©╫О©╫О©╫О©╫")
 
-lab3 := gtk_LabelNew(, "Метка")
+lab3 := gtk_LabelNew(, "О©╫О©╫О©╫О©╫О©╫")
 gtk_MiscSetAlignment(lab3, 0.5, 0.5)
 gtk_MiscSetPadding(lab3, 10, 10)
-gtk_NotebookAppendPage(note, lab3, "третья")
+gtk_NotebookAppendPage(note, lab3, "О©╫О©╫О©╫О©╫О©╫О©╫")
 
 vbox := gtk_VboxNew()
 

@@ -1,5 +1,5 @@
-#include <inkey.ch>
-#include <clip-gtk.ch>
+#include <ci_inkey.ch>
+#include <ci_clip-gtk.ch>
 #include <tbrow.xpm>
 
 static sItem:=1, rwin:=1, cWin:=1, rows:=1, cols := 6, hideCol:=0
@@ -20,12 +20,13 @@ static fr_frameHb, fr_frameFb
 static fr_hAdj, fr_hScroll   	// horizontal scroll for frozen columns
 				// vertical scroll - one of both
 static fr_Style
-
+Static c, r
 static blue,yellow,red,magenta
 
 local nW, nH,  w, da, sx, sy
 local green:=nil, pixel:=nil
-
+Local hBox, colormap, white, gray, J, vb, K, I, size, hFrame, hfbox, bpgup
+Local bgotop, shFrame, shfbox, bpgdn, bgobottom
 //static pixmap
 local pixmap
 
@@ -467,7 +468,7 @@ static function	page_up()
 return
 *******************************************************************************
 static function size_allocate(win)
-local oldrows := rows, w, h, w1, h1, i, r
+local oldrows := rows, w, h, w1, h1, i, r, j
 	/* width and height paned */
 	gtk_WidgetGetSize(win, @sw_width, @sw_height)
 
@@ -536,7 +537,7 @@ return .t.
 **************************************************************************
 *
 static function AddFrozenPart(cln)
-
+Local j, vb, k, i
 if fr_cols == 1
 	fr_itemBox := gtk_HboxNew()
 	fr_headBox := gtk_HboxNew()
@@ -770,7 +771,7 @@ return .t.
 **************************************************************************
 *
 static function DelFrozenPart(cln)
-
+	Local j, vb, k, i
 	asize(frame, cols)
 	asize(frameHb, cols)
 	asize(frameFb, cols)

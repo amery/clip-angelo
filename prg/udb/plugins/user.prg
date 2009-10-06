@@ -8,7 +8,7 @@
   fun-ctions for view and edit USER information
 */
 
-#include "box.ch"
+#include "ci_box.ch"
 
 /* Can`t defined MAIN function name */
 
@@ -36,7 +36,7 @@ static function ab_user_view_card(oDep,data,oBox,colorSpec)
 	x1++;y1++
 
 	@ x1++,y1 say padc([User parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()
@@ -72,7 +72,7 @@ static function ab_user_edit_card(oDep,data,oBox,colorSpec)
 	x1++;y1++
 
 	@ x1++,y1 say padc([User parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t edit information]
 		dispend()

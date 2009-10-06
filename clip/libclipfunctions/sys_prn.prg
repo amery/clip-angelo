@@ -6,9 +6,9 @@
     functions for printing
 */
 
-#include "set.ch"
-#include "inkey.ch"
-#include "fileio.ch"
+#include "ci_set.ch"
+#include "ci_inkey.ch"
+#include "ci_fileio.ch"
 
 static print_desc
 static print_queue

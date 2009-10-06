@@ -1,28 +1,55 @@
 #
 #                                            clip-gtk2/example/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-gtk2.so
-DIRS_TO_SCAN = gdk-pixbuf-demo
-#LIBS= -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgdk_pixbuf-2.0 -lm -lpangox-1.0 -lpangoxft-1.0 -lpango-1.0 -lgobject-2.0 -lgmodule-2.0 -ldl -lglib-2.0
+Depend_on 			= 			$(Clip_L_Dir)/libclip-gtk2.so
+DIRS_TO_SCAN 		= 			gdk-pixbuf-demo
+SRC 					=			$(sort 											\
+													clipgtktest$(EXESUFF) 		\
+													simple$(EXESUFF)  			\
+													test_stock$(EXESUFF) 		\
+													test_image$(EXESUFF) 		\
+													accel$(EXESUFF) 				\
+													test_tree$(EXESUFF) 			\
+													test_image$(EXESUFF) 		\
+													test_gtk$(EXESUFF) 			\
+													winpic$(EXESUFF) 				\
+													test$(EXESUFF) 				\
+													note$(EXESUFF) 				\
+													fonttest$(EXESUFF) 			\
+													text$(EXESUFF) 				\
+													container$(EXESUFF) 			\
+													test_dnd$(EXESUFF) 			\
+													drag_and_drop$(EXESUFF) 	\
+													colorbtn$(EXESUFF) 			\
+													pango$(EXESUFF) 				\
+													entrytempl$(EXESUFF) 		\
+													combobox$(EXESUFF) 			\
+													ifactory$(EXESUFF) 			\
+													lines$(EXESUFF) 				\
+													draw$(EXESUFF) 				\
+													lists$(EXESUFF) 				\
+													imgmenu$(EXESUFF) 			\
+													winback$(EXESUFF) 			\
+													test_rc$(EXESUFF) 			\
+													iconview$(EXESUFF) 			\
+										)
 
-SRC =clipgtktest$(EXESUFF) tbrow$(EXESUFF) simple$(EXESUFF)  test_stock$(EXESUFF) test_image$(EXESUFF) accel$(EXESUFF) test_tree$(EXESUFF) test_image$(EXESUFF) \
-	test_gtk$(EXESUFF) test_text$(EXESUFF) winpic$(EXESUFF) test$(EXESUFF) note$(EXESUFF) fonttest$(EXESUFF) text$(EXESUFF) container$(EXESUFF) test_dnd$(EXESUFF) drag_and_drop$(EXESUFF) \
-        colorbtn$(EXESUFF) pango$(EXESUFF) entrytempl$(EXESUFF) combobox$(EXESUFF) ifactory$(EXESUFF) lines$(EXESUFF) draw$(EXESUFF) lists$(EXESUFF) imgmenu$(EXESUFF)\
-        winback$(EXESUFF) test_rc$(EXESUFF) iconview$(EXESUFF)
+#tbrow$(EXESUFF) 				# 	missing functions
+#test_text$(EXESUFF) 		# 	missing functions
+export
 
-#include Makefile.inc
+######################################################################################
+###################################################################################### local rules
 
-all:Makefile  $(SRC)
+all : Makefile  $(sort $(SRC) ) $(DIRS_TO_SCAN)
 
-install : all
+install : all  $(DIRS_TO_SCAN)
+
+hash1 :
 
 cfg :
 
-Makefile.inc :
-	$(E_xx)$(CONFIGURE_SH)
-
-cleanc:
+cleanc :
 	$(E_rm)rm -f$(V) *.c *.b
 	$(E_rm)rm -f$(V) $(SRC)
 
@@ -31,121 +58,121 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-clipgtktest$(EXESUFF): clipgtktest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+clipgtktest$(EXESUFF) 		: clipgtktest.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -esw clipgtktest.prg -lclip-gtk2 $(LIBS)
 
-fonttest$(EXESUFF): fonttest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -esw fonttest.prg -lclip-gtk2
+fonttest$(EXESUFF) 			: fonttest.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -esw fonttest.prg -lclip-gtk2 $(LIBS)
 
-accel$(EXESUFF): accel.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews -M accel.prg -lclip-gtk2
+accel$(EXESUFF) 				: accel.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews -M accel.prg -lclip-gtk2 $(LIBS)
 
-note$(EXESUFF): note.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews note.prg -lclip-gtk2
+note$(EXESUFF) 				: note.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews note.prg -lclip-gtk2 $(LIBS)
 
-tbrow$(EXESUFF): tbrow.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews tbrow.prg -lclip-gtk2
+tbrow$(EXESUFF) 				: tbrow.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews tbrow.prg -lclip-gtk2 $(LIBS)
 
-simple$(EXESUFF): simple.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews simple.prg -lclip-gtk2
+simple$(EXESUFF) 				: simple.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews simple.prg -lclip-gtk2 $(LIBS)
 
-text$(EXESUFF): text.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews text.prg -lclip-gtk2
+text$(EXESUFF) 				: text.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews text.prg -lclip-gtk2 $(LIBS)
 
-winpic$(EXESUFF): winpic.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews winpic.prg -lclip-gtk2
+winpic$(EXESUFF) 				: winpic.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews winpic.prg -lclip-gtk2 $(LIBS)
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test.prg -lclip-gtk2
+test$(EXESUFF) 				: test.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test.prg -lclip-gtk2 $(LIBS)
 
-test_gtk$(EXESUFF): test_gtk.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_gtk.prg -lclip-gtk2
+test_gtk$(EXESUFF) 			: test_gtk.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_gtk.prg -lclip-gtk2 $(LIBS)
 
-test_stock$(EXESUFF): test_stock.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_stock.prg -lclip-gtk2
+test_stock$(EXESUFF) 		: test_stock.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_stock.prg -lclip-gtk2 $(LIBS)
 
-test_image$(EXESUFF): test_image.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_image.prg -lclip-gtk2
+test_image$(EXESUFF) 		: test_image.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_image.prg -lclip-gtk2 $(LIBS)
 
-test_tree$(EXESUFF): test_tree.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_tree.prg -lclip-gtk2
+test_tree$(EXESUFF) 			: test_tree.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_tree.prg -lclip-gtk2 $(LIBS)
 
-iconview$(EXESUFF): iconview.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews iconview.prg -lclip-gtk2
+iconview$(EXESUFF) 			: iconview.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews iconview.prg -lclip-gtk2 $(LIBS)
 
-test_text$(EXESUFF): test_text.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_text.prg -lclip-gtk2
+test_text$(EXESUFF) 			: test_text.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_text.prg -lclip-gtk2 $(LIBS)
 
-container$(EXESUFF): container.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews container.prg -lclip-gtk2
+container$(EXESUFF) 			: container.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews container.prg -lclip-gtk2 $(LIBS)
 
-test_dnd$(EXESUFF): test_dnd.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -es test_dnd.prg -lclip-gtk2
+test_dnd$(EXESUFF) 			: test_dnd.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -es test_dnd.prg -lclip-gtk2 $(LIBS)
 
-drag_and_drop$(EXESUFF): drag_and_drop.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews drag_and_drop.prg -lclip-gtk2
+drag_and_drop$(EXESUFF) 	: drag_and_drop.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews drag_and_drop.prg -lclip-gtk2 $(LIBS)
 
-colorbtn$(EXESUFF): colorbtn.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews colorbtn.prg -lclip-gtk2
+colorbtn$(EXESUFF) 			: colorbtn.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews colorbtn.prg -lclip-gtk2 $(LIBS)
 
-pango$(EXESUFF): pango.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews pango.prg -lclip-gtk2
+pango$(EXESUFF) 				: pango.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews pango.prg -lclip-gtk2 $(LIBS)
 
-entrytempl$(EXESUFF): entrytempl.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews entrytempl.prg -lclip-gtk2
+entrytempl$(EXESUFF) 		: entrytempl.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews entrytempl.prg -lclip-gtk2 $(LIBS)
 
-combobox$(EXESUFF): combobox.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews combobox.prg -lclip-gtk2
+combobox$(EXESUFF) 			: combobox.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews combobox.prg -lclip-gtk2 $(LIBS)
 
-ifactory$(EXESUFF): ifactory.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews ifactory.prg -lclip-gtk2
+ifactory$(EXESUFF) 			: ifactory.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews ifactory.prg -lclip-gtk2 $(LIBS)
 
-lines$(EXESUFF): lines.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -wes lines.prg -lclip-gtk2
+lines$(EXESUFF) 				: lines.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -wes lines.prg -lclip-gtk2 $(LIBS)
 
-draw$(EXESUFF): draw.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews draw.prg -lclip-gtk2
+draw$(EXESUFF) 				: draw.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews draw.prg -lclip-gtk2 $(LIBS)
 
-lists$(EXESUFF): lists.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews lists.prg -lclip-gtk2
+lists$(EXESUFF) 				: lists.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews lists.prg -lclip-gtk2 $(LIBS)
 
-imgmenu$(EXESUFF): imgmenu.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews imgmenu.prg -lclip-gtk2
+imgmenu$(EXESUFF) 			: imgmenu.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews imgmenu.prg -lclip-gtk2 $(LIBS)
 
-winback$(EXESUFF): winback.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews winback.prg -lclip-gtk2
+winback$(EXESUFF) 			: winback.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews winback.prg -lclip-gtk2 $(LIBS)
 
-test_rc$(EXESUFF): test_rc.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ews test_rc.prg -lclip-gtk2
+test_rc$(EXESUFF) 			: test_rc.prg $(CLIP) Makefile $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ews test_rc.prg -lclip-gtk2 $(LIBS)
 
 
 include $(Makefile_end_in)

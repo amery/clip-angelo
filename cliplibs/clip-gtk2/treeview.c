@@ -4,14 +4,14 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
 /* Signals table */
@@ -1661,7 +1661,7 @@ clip_GTK_TREEVIEWGETSELECTEDCOLUMN(ClipMachine * cm)
 	cols = gtk_tree_view_get_columns(GTK_TREE_VIEW(ctree->widget));
 	cIndex = g_list_index(cols, (gpointer) column);
 	g_list_free(cols);
-	
+
 	_clip_retni(cm, cIndex+1);
 	return 0;
 err:

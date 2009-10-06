@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "set.ch"
-#include "debug.ch"
-#include "box.ch"
+#include "ci_set.ch"
+#include "ci_debug.ch"
+#include "ci_box.ch"
 
 local i,j, ddd, ret, nkey, inifile
 local params:={"","",""}

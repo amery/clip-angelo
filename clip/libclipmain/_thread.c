@@ -80,13 +80,13 @@
 
 #include <string.h>
 
-#include "clip.h"
-#include "error.ch"
-#include "hashcode.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
+#include "ci_hashcode.h"
 
 #ifdef USE_TASKS
 
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 
 typedef struct
 {

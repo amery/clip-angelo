@@ -11,8 +11,8 @@
 *
 */
 
-#include "frmdef.ch"
-#include "error.ch"
+#include "ci_frmdef.ch"
+#include "ci_error.ch"
 
 // Definitions for buffer sizes
 #define  SIZE_FILE_BUFF             1990       // Size of report file

@@ -2,8 +2,8 @@
    FiveWin-like menu commands.
 */
 
-#include "imenu.ch"
-#include "inkey.ch"
+#include "ci_imenu.ch"
+#include "ci_inkey.ch"
 
 local oInfo
 

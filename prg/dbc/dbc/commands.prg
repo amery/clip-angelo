@@ -69,7 +69,7 @@
 #include "axntxcdx.ch"
 #endif
 #endif
-#include "deflist.ch"
+#include "ci_deflist.ch"
 
 *+��������������������������������������������������������������������
 *+

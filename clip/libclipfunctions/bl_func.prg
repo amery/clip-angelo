@@ -1,8 +1,8 @@
 // BL Interpreter
 #ifdef FSHIP
-#include "inkey.fh"
+#include "ci_inkey.fh"
 #else
-#include "inkey.ch"
+#include "ci_inkey.ch"
 #endif
 #define comm_char '//'
 #ifdef FSHIP
@@ -555,7 +555,7 @@ return nil
 #ifdef FSHIP
 #include "error.fh"
 #else
-#include "error.ch"
+#include "ci_error.ch"
 #endif
 #define NTRIM(n) RTRIM(Str(n))
 

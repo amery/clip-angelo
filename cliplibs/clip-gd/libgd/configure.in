@@ -1,1 +1,3 @@
-cp -f$V ../Makefile.inc .
+#!/bin/sh
+
+touch configure.ok

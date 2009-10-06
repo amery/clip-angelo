@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "clipcfg.h"
-#include "directry.ch"
-#include "fileio.ch"
+#include "ci_clipcfg.h"
+#include "ci_directry.ch"
+#include "ci_fileio.ch"
 **********************************************************
 function fileIsScript(fName)
 	local fh, cBuf := space(2)

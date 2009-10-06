@@ -1,4 +1,4 @@
-// Demonstration of array dimensioning under Windows            Æ
+// Demonstration of array dimensioning under Windows            ï¿½
 /*
 File Name  : ATEST.PRG
 
@@ -6,12 +6,12 @@ Description: Demonstration of array dimensioning under Windows
 
 */
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <ci_FiveWin.ch>
 
+Static oWnd
 //-------------------------------------------------------------//
 
 FUNCTION Main()
-
    DEFINE WINDOW oWnd                                          ;
       TITLE "Massive Dialog Box use test";
       COLOR CLR_YELLOW
@@ -21,7 +21,7 @@ FUNCTION Main()
       SIZE 80, 20                                              ;
       ACTION ( MsgMeter( { | oMeter, oText, oDlg, lEnd, oBtn |       ;
       ArrayTest( oMeter, oText, @lEnd ) }                     , ;
-      "Element nÚ xxxx"                                       , ;
+      "Element nï¿½ xxxx"                                       , ;
       "Adding 2000 elements to a Clipper array..." ))
    else
    @ 2,  2 BUTTON "&Start"                                     ;
@@ -42,7 +42,7 @@ FUNCTION ArrayTest( oMeter, oText, lEnd )
    LOCAL nOld  := 1
 
    oMeter:SetTotal(2000)
-   oText:SetText( OemToAnsi( "Element nÚ: " ) + str( n, 4 ) )
+   oText:SetText( OemToAnsi( "Element nï¿½: " ) + str( n, 4 ) )
 
    WHILE n <= oMeter:nTotal .and. ! lEnd
       aadd( aTest, "" )
@@ -50,7 +50,7 @@ FUNCTION ArrayTest( oMeter, oText, lEnd )
       oMeter:Set( n++ )
 
       IF n - nOld == 10
-	 oText:SetText( OemToAnsi( "Element nÚ: " ) +           ;
+	 oText:SetText( OemToAnsi( "Element nï¿½: " ) +           ;
 	    str( n - 1, 4 ) )
 	 nOld := n
       ENDIF

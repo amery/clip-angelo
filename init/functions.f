@@ -1151,7 +1151,7 @@ function GetArch ()
 		fi
 		while [ $yz -eq -1 ] ; do
 			rm -fv$V $Clip_S_Dir/* 			>&0
-			rm -Rf$V $DESTDIR$CLIPROOT 	>&0
+			rm -Rf$V $INSTDIR 	>&0
 			varX=0
 			OnScreen 10 "You may install :"
 			OnScreen 1 "[ 1 ] : i386/i586 version "

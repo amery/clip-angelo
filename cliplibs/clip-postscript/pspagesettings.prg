@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 /* Class for page settings */
 
@@ -20,7 +20,7 @@ static page_formats := { ;
 
 function PSPageSettings()
 	local obj := map()
-	
+
 	obj:className := "PSPageSettings"
 	obj:format  := PAGE_A4
 	obj:layout  := PAGE_PORTRAIT
@@ -29,11 +29,11 @@ function PSPageSettings()
 	obj:header_margin := 10
 	obj:footer_margin := 15
 	obj:spacing := 0
-	
+
 	// Page size in PT
 	obj:width   := 595.276
 	obj:height  := 841.89
-	
+
 	_recover_PSPAGESETTINGS(obj)
 return obj
 
@@ -46,7 +46,7 @@ return obj
 /* Set page setting */
 static function ps_set( self, name, value )
 	local v, i, tv, a
-	
+
 	//?? "set:", name, value, chr(10)
 	switch lower(name)
 		case 'format'
@@ -69,7 +69,7 @@ static function ps_set( self, name, value )
 				endif
 			endif
 			self:format := v
-				
+
 		case "orientation"
 			v := iif( lower(value) == "landscape", PAGE_LANDSCAPE, PAGE_PORTRAIT)
 			if self:layout != v
@@ -78,7 +78,7 @@ static function ps_set( self, name, value )
 				self:height := tv
 			endif
 			self:layout := v
-		
+
 		case "units"
 			switch lower(value)
 				case "pt"
@@ -107,16 +107,16 @@ static function ps_set( self, name, value )
 				value := val(value)
 				self:margins := { value, value, value, value }
 			endif
-		
+
 		case "spacing"
 			self:spacing := val(value)
-		
+
 		case "header-margin"
 			self:header_margin := val(value)
-		
+
 		case "footer-margin"
 			self:footer_margin := val(value)
-		
+
 		otherwise
 			// Ignored
 	endswitch

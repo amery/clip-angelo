@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 static m_objs:=map(), m_class:={}, m_refs:=map()
 static sprID:=""
@@ -321,10 +321,10 @@ static function calc_objs(id_list,levels,level)
 			j := len(m_class)
 		endif
 		aadd(m_class[j][2],obj:id)
-		
+
 		if level >= levels
 		    loop
-		endif    
+		endif
 
 		/* references and objs */
 		for j=1 to len(classDesc:attr_list)

@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report8_xml(_queryArr)
 
@@ -208,7 +208,7 @@ local urn,sprname,cache:=map()
 	for i=1 to len(post_objs)
 		obj:=post_objs[i]
 		aadd(aRefs,{obj:id,"",dtos(obj:odate)+":"+obj:primary_document,obj,{}})
-		
+
 	next
 
 	asort(aRefs,,,{|x,y| x[3] <= y[3] })
@@ -251,13 +251,13 @@ local urn,sprname,cache:=map()
 		aadd(aRefs, {tmp:id,"",dtos(tmp:odate)+":"+"XXXX",tmp,{}})
 	endif
 
-	? '<root>'      	    
+	? '<root>'
 	if empty(urn)
 		urn := sprname
 	endif
-	aTree['level0']:={}                                                                                                                        
+	aTree['level0']:={}
 	for j=1 to len(aRefs)
-    	    aadd(aTree['level0'],aRefs[j][4])	
+    	    aadd(aTree['level0'],aRefs[j][4])
 	next
 	cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,'xml',.f.,sprname)
 	?'</root>'

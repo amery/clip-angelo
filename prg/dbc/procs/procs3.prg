@@ -48,8 +48,8 @@
 #ifdef RDD_AX
 #include "dbfcdxax.ch"
 #endif
-#include "fileio.ch"
-#include "deflist.ch"
+#include "ci_fileio.ch"
+#include "ci_deflist.ch"
 
 *+��������������������������������������������������������������������
 *+

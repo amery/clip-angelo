@@ -23,8 +23,8 @@
 #include <limits.h>
 #include <string.h>
 /* 1.8.1: remove dependency on jinclude.h */
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifdef HAVE_LIBJPEG
 #include "jpeglib.h"
@@ -513,7 +513,7 @@ fill_input_buffer (j_decompress_ptr cinfo)
   /* char *s; */
   memset(src->buffer, 0, INPUT_BUF_SIZE);
   while (nbytes < INPUT_BUF_SIZE) {
-	  int got = gdGetBuf(src->buffer + nbytes, 
+	  int got = gdGetBuf(src->buffer + nbytes,
 		  INPUT_BUF_SIZE - nbytes,
 		  src->infile);
       if ((got == EOF) || (got == 0)) {

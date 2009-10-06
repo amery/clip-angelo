@@ -11,16 +11,16 @@
 /*-------------------------------------------------------------------------*/
 
 #define FILE_BUFFER	4096
-#include <inkey.ch>
-#include <clipcfg.h>
+#include <ci_inkey.ch>
+#include <ci_clipcfg.h>
 
 static db, dbname:="", fmt
 
-/* 
+/*
     TODO:
 	- connection string for connect via COBrA server (-u, -p, -s)
 	- exit function for correct connection shutdown
-	- 'set <param>=<mode>' command needed 
+	- 'set <param>=<mode>' command needed
 	- CODB daemon for query mode
 */
 
@@ -32,7 +32,7 @@ function main(p1)
 
 	// Read from pipe
 	h := fopen("-|")
-	while .T. 
+	while .T.
 	    ss := freadstr(h,256)
 	    s := s + ss
 	    if empty(ss)
@@ -40,7 +40,7 @@ function main(p1)
 	    endif
 	end
 	fclose(h)
-	
+
 	fmt := CODBFormatter()
 	for i:=1 to pcount()
 		if ascan({'-h','--help','-?'}, param(i)) > 0
@@ -59,7 +59,7 @@ function main(p1)
 			aadd(params, param(i))
 		endif
 	next
-	
+
 	for i:=1 to len(params)
 		if params[i] == '-c' .and. i < len(params)
 			s := params[i+1]
@@ -71,7 +71,7 @@ function main(p1)
 			asize(params,len(params)-2)
 		endif
 	next
-	
+
 	// TODO: connect if needed
 	db  := codb_connect()
 	e := codb_get_error( db )
@@ -81,7 +81,7 @@ function main(p1)
 	endif
 
 	//?? params, s,chr(10)
-			
+
 	if len(params) > 0 // Database name
 		// possible use in form DB:DEP
 		params[len(params)] := strtran(params[len(params)], ":", " ")
@@ -97,14 +97,14 @@ function main(p1)
 			return 1
 		endif
 	endif
-	
+
 	if empty(s)
 		printUsage(0)
 		consoleMode()
 	else
 		executeCommand( s )
 	endif
-	
+
 	// TODO: correct disconnect from database
 	codb_close( db )
 
@@ -124,7 +124,7 @@ static function printUsage(mode)
 		?? "This software comes with ABSOLUTELY NO WARRANTY. This is free software,&\n"
 		?? "and you are welcome to modify and redistribute it under the GPL license&\n"
 		?? "&\n"
-		
+
 		// TODO: full list of command options
 		?? "Usage: codb [OPTIONS] [dbname[:depository]]&\n&\n"
 		?? "Options:&\n"
@@ -134,15 +134,15 @@ static function printUsage(mode)
 		?? "  --hide-titles    Suppress column names.&\n"
 		?? "  --delim='DELIM'  Set columns delimiter.&\n"
     endif
-return 
+return
 
 /* Console mode. Using readline library */
 static function consoleMode()
 	local comm:='', ret:='', prompt, buffer:='', cont:=.F., oErr
-	
+
 	// TODO: set key '\d' for exit
 	prompt := dbname + "> "
-	
+
 	oErr := ErrorBlock({|e| break(e) })
 	while .T.
 	  begin sequence
@@ -159,9 +159,9 @@ static function consoleMode()
 				loop
 			endif
 		endif
-		
+
 		ret := executeCommand(buffer+comm)
-		
+
 		if empty(ret) .or. substr(ltrim(ret),1,1) == '#'
 			prompt := dbname + "> "
 			cont   := .F.
@@ -175,7 +175,7 @@ static function consoleMode()
 	  recover using oErr
 		?? "INTERNAL ERROR:", oErr:description+' ('+oErr:fileName+')', chr(10)
 	  end sequence
-	
+
 	enddo
 return
 
@@ -184,7 +184,7 @@ static function executeCommand(comm)
 	local i:=0, pos, string:=.F., buffer:='', ret:=NIL, is_filename:=.F.
 	local j, ampos, fileNames:=array(0), files, fH, s, ss
 	local fBuf:=space(FILE_BUFFER), rTotal, aff, aOp
-	
+
 //	?? 'EXECUTE:',comm,chr(10)
 	while len(comm) > 0 .and. i<=len(comm)
 		i := i + 1
@@ -197,9 +197,9 @@ static function executeCommand(comm)
 			aadd( fileNames, substr(comm, ampos+1, i-ampos-1) )
 			is_filename := .F.
 		elseif .not. string .and. comm[i]==';' // command end
-			
+
 //			?? "EXEC:",left(comm,i-1),chr(10)
-			
+
 			// Process file names in command
 			files := array(0)
 			for j=1 to len(fileNames)
@@ -207,7 +207,7 @@ static function executeCommand(comm)
 				s := ''
 				if ferror() == 0
 					rTotal := 0
-					while .T. 
+					while .T.
 						ss := fread(fH, @fBuf, FILE_BUFFER)
 						s := s + left(fBuf, ss)
 						rTotal += ss
@@ -219,7 +219,7 @@ static function executeCommand(comm)
 					//?? "Append file '"+fileNames[j]+"':",rTotal,len(s),chr(10)
 					aadd( files, { fileNames[j], s } )
 				else
-					?? "Error opening '"+fileNames[j]+"'.&\n"			
+					?? "Error opening '"+fileNames[j]+"'.&\n"
 				endif
 			next
 			fileNames := array(0)
@@ -242,18 +242,18 @@ static function executeCommand(comm)
 				endswitch
 				?? aOp+' '+ltrim(str(len(aff:list)))+chr(10)
 			endif
-			
+
 			// Database name change
 			if lower(left(comm, 4)) == 'use ' .and. empty(ret:error)
 				dbname := ret:answer
 			endif
-			
+
 			if i<len(comm)
 				comm := substr(comm,i+1)
 				i := 0
 			else
 				return ''
 			endif
-		endif			
+		endif
 	enddo
 return comm

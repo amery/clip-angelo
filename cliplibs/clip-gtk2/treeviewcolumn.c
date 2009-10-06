@@ -4,14 +4,14 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
 
 typedef struct column_format {
 	guint	column;
@@ -949,7 +949,7 @@ format_data_func (GtkTreeViewColumn *col,
 	gfloat  n;
 	gchar   buf[20];
 	column_format *data = (column_format *)u_data;
-	
+
 	gtk_tree_model_get(model, iter, data->column, &n, -1);
 	g_snprintf(buf, sizeof(buf), data->format, n);
 	g_object_set(renderer, "text", buf, NULL);
@@ -963,7 +963,7 @@ clip_GTK_TREEVIEWCOLUMNSETFORMAT(ClipMachine * cm)
 	gint num          = _clip_parni(cm, 3);
 	gchar *format     = _clip_parc(cm, 4);
 	column_format *user_data;
-	
+
 	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
 	CHECKARG2(2,MAP_t,NUMERIC_t); CHECKCOBJOPT(ccell, GTK_IS_CELL_RENDERER(ccell->object));
 	CHECKARG(3, NUMERIC_t)
@@ -972,11 +972,11 @@ clip_GTK_TREEVIEWCOLUMNSETFORMAT(ClipMachine * cm)
 	LOCALE_TO_UTF(format);
 	user_data = (column_format *)malloc(sizeof(column_format));
 	user_data->column = num-1;
-	user_data->format = g_strdup(format);  
-	
-	gtk_tree_view_column_set_cell_data_func(GTK_TREE_VIEW_COLUMN(ccolumn->object), 
+	user_data->format = g_strdup(format);
+
+	gtk_tree_view_column_set_cell_data_func(GTK_TREE_VIEW_COLUMN(ccolumn->object),
 		GTK_CELL_RENDERER(ccell->object), format_data_func, (gpointer)user_data, NULL);
-	
+
 	return 0;
 err:
 	return 1;

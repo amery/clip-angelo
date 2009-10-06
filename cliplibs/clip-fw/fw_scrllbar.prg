@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/constant.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_constant.ch>
 
 #define SB_HORZ         0
 #define SB_VERT         1

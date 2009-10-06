@@ -2,9 +2,9 @@
     Copyright (C) 1998-2003 Yevgen Bondar <elb@lg.bank.gov.ua>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "common.ch"
-#include "inkey.ch"
-#include "bdbfmsg.ch"
+#include "ci_bd_common.ch"
+#include "ci_inkey.ch"
+#include "ci_bd_bdbfmsg.ch"
 memvar _Pole,_was_changes,_im,_bm,_base,arAim
 FIELD Field_name,Field_Type,Field_Dec,Field_LEN
 

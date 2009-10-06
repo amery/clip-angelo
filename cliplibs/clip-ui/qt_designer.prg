@@ -11,7 +11,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 #define DEBUG	.T.
 
@@ -27,7 +27,7 @@ static nCounter	:= 0
 
 function ui_convertFromUI3( root )
 	local r, h, i, l, pp, w
-	
+
 	// Create root and sections
 	r := XMLTag('form')
 	h := XMLTag('head')
@@ -35,31 +35,31 @@ function ui_convertFromUI3( root )
 	styles  := XMLTag('style')
 	actions := XMLTag('actions')
 	groups  := map()
-	
+
 	r:addChild(h)
 	r:addChild(i)
 	r:addChild(styles)
 	r:addChild(actions)
-	
+
 	nCounter := 0
-	
+
 	// Convert widgets
 	pp := root:XPath("/widget")
 	if valtype(pp) != 'A' .or. len(pp) == 0
 		?? "ERROR: Unable to find root widget for UI form.&\n"
 		return r
 	endif
-	
+
 	//Extract icons and actions from Qt Designer .ui file
 	ui_extractUI3( root )
-	
+
 	// Create widgets
 	w := ui_createWidgetFromUI3( pp[1], i, NIL )
-	
+
 	if DEBUG
 		?? r:dump()
 	endif
-	
+
 return r
 
 /* Return created widget from tag for UI forms */
@@ -137,7 +137,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 					// TODO (link label accel to other widget)
 				case "DATE"
 					a := array(3)
-					a[1] := c:XPath("date/year") 
+					a[1] := c:XPath("date/year")
 					a[2] := c:XPath("date/month")
 					a[3] := c:XPath("date/day")
 					label := a[3][1]:getText() + '.' + a[2][1]:getText() + '.' + right(a[1][1]:getText(),2)
@@ -165,7 +165,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 					endif
 				case "PAGESTEP", "ORIENTATION"
 					// Ignored for slider
- 				case "CURRENTITEM" 
+ 				case "CURRENTITEM"
 					a := c:XPath("number")
 					if valtype(a) == "A" .and. len(a) > 0
 						label := ltrim(str(val(a[1]:getText())+1))
@@ -242,13 +242,13 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 			node:setAttribute("class", rClass)
 			node:setAttribute("name",  rName)
 			node:setAttribute("label", label)
-			
+
 			// Append menu- and tool- bars
 			mW := w:XPath("/menubar")
 			ui_createWidgetFromUI3( mW[1], node, NIL )
 			mW := w:XPath("/toolbars")
 			ui_createWidgetFromUI3( mW[1], node, NIL )
-			
+
 		case "HBOX"
 			if "HASLAYOUT" $ parent .and. parent:hasLayout
 				node := NIL
@@ -257,7 +257,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 				if parent:attribute("class","") == "qlayoutwidget"
 					parent:setAttribute("class", "hbox")
 				endif
-			else		
+			else
 				node := XMLTag("widget")
 				node:setAttribute("class", "hbox")
 				node:setAttribute("name",  name)
@@ -265,7 +265,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 		case "VBOX"
 			if "HASLAYOUT" $ parent .and. parent:hasLayout
 				node := NIL
-			elseif name == "unnamed" 
+			elseif name == "unnamed"
 				node := NIL
 				if parent:attribute("class","") == "qlayoutwidget"
 					parent:setAttribute("class", "vbox")
@@ -278,7 +278,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 		case "GRID"
 			if "HASLAYOUT" $ parent .and. parent:hasLayout
 				node := NIL
-			elseif name == "unnamed" 
+			elseif name == "unnamed"
 				node := NIL
 				if parent:attribute("class","") == "qlayoutwidget"
 					parent:setAttribute("class", "grid")
@@ -370,25 +370,25 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 				sNode:setAttribute("value", value)
 				node:addChild( sNode )
 			endif
-			sNode := XMLTag("property") 
+			sNode := XMLTag("property")
 			sNode:setAttribute("name",  "value")
-			sNode:setAttribute("value", label) 
+			sNode:setAttribute("value", label)
 			node:addChild( sNode )
 		case "QSLIDER"
 			node := XMLTag("widget")
 			node:setAttribute("class", "slider")
 			node:setAttribute("name",  name)
-			sNode := XMLTag("property") 
+			sNode := XMLTag("property")
 			sNode:setAttribute("name",  "range")
-			sNode:setAttribute("value", slider:min + "-" + slider:max) 
+			sNode:setAttribute("value", slider:min + "-" + slider:max)
 			node:addChild( sNode )
-			sNode := XMLTag("property") 
+			sNode := XMLTag("property")
 			sNode:setAttribute("name",  "step")
-			sNode:setAttribute("value", slider:step) 
+			sNode:setAttribute("value", slider:step)
 			node:addChild( sNode )
-			sNode := XMLTag("property") 
+			sNode := XMLTag("property")
 			sNode:setAttribute("name",  "value")
-			sNode:setAttribute("value", slider:value) 
+			sNode:setAttribute("value", slider:value)
 			node:addChild( sNode )
 		case "QDATEEDIT"
 			node := XMLTag("widget")
@@ -560,7 +560,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 			?? "WARNING: Unsupported tag: ",cClass,chr(10)
 	end switch
 
-	if valtype(node) == "O" .and. .not. empty(row) .and. .not. empty(column) 
+	if valtype(node) == "O" .and. .not. empty(row) .and. .not. empty(column)
 		i := ltrim(str(val(row)+1))
 		j := ltrim(str(val(column)+1))
 		//?? "POS: ", valtype(node), i + ',' + j, chr(10)
@@ -570,11 +570,11 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 	// Add to tree
 	if valtype(node) == 'O' .and. valtype(parent) == 'O'
 		parent:addChild( node )
-		
+
 		if valtype(geom) == 'A'
 			node:setAttribute("pos", geom[3] + "," + geom[4])
 		endif
-		
+
 	endif
 
 	// Loop child widgets
@@ -601,7 +601,7 @@ static function ui_createWidgetFromUI3(w, parent, subtype)
 			else
 				prop:value := NIL
 			endif
-			
+
 			//?? prop:name, prop:value, chr(10)
 			switch prop:name
 				case "orientation"
@@ -728,7 +728,7 @@ return node
 static function ui_extractUI3( root )
 	local a, aN, i, n, nodes, node, name, value, content, f, l
 	local act
-	
+
 	// actions
 	a := root:XPath("/actions/action")
 	for i in a
@@ -759,7 +759,7 @@ static function ui_extractUI3( root )
 		s_actions[upper(node:name)] := node
 		//?? node, chr(10)
 	next
-	
+
 	// TODO: icons (need convert from PNG to XPM or native PNG support)
 	/*a := root:XPath("/images/image")
 	for i in a
@@ -774,7 +774,7 @@ static function ui_extractUI3( root )
 		fclose(f)
 	next
 	*/
-	
+
 	// actions
 	a := root:XPath("/connections/connection")
 	for i in a
@@ -804,28 +804,28 @@ static function ui_extractUI3( root )
 		act:event  := XMLTag("event")
 		act:action := XMLTag("action")
 		act:call   := XMLTag("call")
-		
+
 		act:event:setAttribute("widget", act:name)
 		act:event:setAttribute("signal", act:signal)
 		if .not. empty(act:object)
 			act:call:setAttribute("widget", act:object)
 		endif
 		act:call:setAttribute("method", act:slot)
-		
+
 		act:rule:addChild( act:event )
 		act:rule:addChild( act:action )
 		act:action:addChild( act:call )
 		actions:addChild( act:rule )
 		//?? act:rule:dump()
 	next
-	
+
 return NIL
 
 static function ui_fixName( name )
 	local classes, i, class, real:=name
-	
+
 	classes := { 	;
-					"mainwindow", ; 
+					"mainwindow", ;
 					"window", ;
 					"childwindow", ;
 					"document", ;

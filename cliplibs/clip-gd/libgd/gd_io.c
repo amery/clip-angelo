@@ -13,7 +13,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
+#include "ci_gd.h"
 
 /* Use this for commenting out debug-print statements. */
 /* Just use the first '#define' to allow all the prints... */

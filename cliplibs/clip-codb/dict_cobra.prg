@@ -6,7 +6,7 @@
 
 /* Virtual metods for COBRA/CODB driver */
 
-#include "codbcfg.ch"
+#include "ci_codbcfg.ch"
 
 ************************************************************
 function codb_dictCobra_Methods(dbData,user,passwd)

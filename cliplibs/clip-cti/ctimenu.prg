@@ -7,11 +7,11 @@
 
 /* CTI_MENU - Place items on the top bar menu or another pop-up menu */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
-#include "button.ch"
-#include "box.ch"
+#include "ci_inkey.ch"
+#include "ci_button.ch"
+#include "ci_box.ch"
 
 #define	SUPERCLASS	CTI_MENUSHELL
 

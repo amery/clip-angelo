@@ -6,9 +6,9 @@
 
 /* Virtual DEPOSITORY metods for DBF/CODB driver */
 
-#include "inkey.ch"
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_inkey.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 //#define PROFILE
 

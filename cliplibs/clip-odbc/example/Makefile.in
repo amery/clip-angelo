@@ -1,15 +1,20 @@
 #
 #                                            clip-odbc/example/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-odbc.so $(Clip_L_Dir)/libclip-oob.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-odbc.so 	\
+									$(Clip_L_Dir)/libclip-oob.so
+PRG 					=			my_isql
 
+export
 
-PRG=my_isql
+######################################################################################
+###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(PRG)$(EXESUFF)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -19,9 +24,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewMs $(PRG).prg -lclip-odbc
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ewMs $(PRG).prg -lclip-odbc -L$(LIBODBC) -lodbc
 
 include $(Makefile_o_in)
 

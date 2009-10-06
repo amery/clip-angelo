@@ -1,4 +1,4 @@
-// Testing Windows Styles!                                      ß
+// Testing Windows Styles!                                      ï¿½
 /*
 File Name  : TESTWSTY.PRG
 
@@ -6,7 +6,7 @@ Description:
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 //-------------------------------------------------------------//
 

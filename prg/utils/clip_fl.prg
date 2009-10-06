@@ -8,7 +8,7 @@
 	calculate function list in directory
 */
 
-#include "fileio.ch"
+#include "ci_fileio.ch"
 
 local _path:=param(1),mf:={},ms:={0,0},i
 if empty(_path) //.or. ("-" $ _file)

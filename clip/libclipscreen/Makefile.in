@@ -1,44 +1,57 @@
 #
 #                                            clip/libclipscreen/Makefile.in
 #
-Local_Depend = ../include/*.ch ../include.h/*.h
-#CC=gcc
-#CFLAGS+= -I../include.h
-#-pg -DMEMDBG
+Local_Depend 	= 			../include/*.ch 		\
+								../include.h/*.h
 
-#LIB = libclipscreen.a
-OBJS = $(sort tcaps.o termgoto.o screen.o scankey.o keymap.o)
+OBJS 				= 			$(sort 					\
+											tcaps.o 		\
+											termgoto.o 	\
+											screen.o 	\
+											scankey.o 	\
+											keymap.o 	\
+											)
 # charset.o
-PROG = clipscreen
-PROGS = kbd$(EXESUFF) cmap$(EXESUFF)
+
+PROG 				= 			clipscreen
+PROGS 			= 			kbd$(EXESUFF) 		\
+								cmap$(EXESUFF)
 #testscr
 
-KBDOBJS = scankey.o keymap.o kbd.o
-CMAPOBJS = charset.o cmap.o
+KBDOBJS 			= 			$(sort 	scankey.o 	\
+											keymap.o 	\
+											kbd.o 		\
+								)
 
-ADDLIBS =
+CMAPOBJS 		= 			charset.o \
+								cmap.o
 
+ADDLIBS 			=
 
-###################################################################
+export
 
-install all: Makefile $(ATARGET)
-#install all: Makefile $(LIB)
-#$(PROGS)
+######################################################################################
+###################################################################################### local rules
+
+install all: Makefile $(OBJS) $(ATARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipscreen
 
 cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/libclipscreen
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/libclipscreen/
-	$(E_cp)cp --remove-destination -fu$(V) charset.h $(Clip_I_Dir)/
-	$(E_cp)cp --remove-destination -Rfu$(V) install/* $(DESTDIR)/
+	$(E_cp)cp --remove-destination -fu$(V) ci_charset.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -Rfu$(V) install/* $(INSTDIR)/
 
 kbd$(EXESUFF): $(KBDOBJS) Makefile
 	$(Trace_cc)
-	$(CC) $(CFLAGS) -o kbd $(KBDOBJS)
+	$(CC) $(C_FLAGS) -o kbd $(KBDOBJS)
 
 
 cmap$(EXESUFF):	$(CMAPOBJS) Makefile
 	$(Trace_cc)
-	$(CC) $(CFLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
+	$(CC) $(C_FLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
 
 cleanc:
 	$(E_rm)rm -f$(V) *.b $(PROGS) $(ATARGET)
@@ -48,12 +61,7 @@ distcleanc :
 
 testscr$(EXESUFF): testscr.o  Makefile $(ATARGET) charset.o Makefile
 	$(Trace_cc)
-	$(CC) $(CFLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm
-
-#$(LIB): $(OBJS)
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
-#	ranlib $(LIB)
+	$(CC) $(C_FLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm
 
 include $(Makefile_o_in)
 

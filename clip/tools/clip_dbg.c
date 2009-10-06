@@ -97,7 +97,7 @@
 */
 #include <string.h>
 
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <stdio.h>
 #include <stdlib.h>

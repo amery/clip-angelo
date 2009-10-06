@@ -4,11 +4,11 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "button.ch"
-#include "getexit.ch"
-#include "inkey.ch"
-#include "llibg.ch"
-#include "setcurs.ch"
+#include "ci_button.ch"
+#include "ci_getexit.ch"
+#include "ci_inkey.ch"
+#include "ci_llibg.ch"
+#include "ci_setcurs.ch"
 
 STATIC oStatus
 

@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 static driver := getDriver()
 
@@ -35,7 +35,7 @@ function UITableColumn(name, caption, type)
 			obj:default	:= .F.
 		otherwise
 			obj:default	:= ''
-	endswitch			
+	endswitch
 return obj
 
 /* Table class */
@@ -65,7 +65,7 @@ return obj
 /* Add row and fill it by data */
 static function ui_addRow(self, data, id)
 	local i, node
-        
+
     // Fix missing id
     if id == NIL
        	self:lastId++
@@ -80,7 +80,7 @@ return node
 /* Set data for table row */
 static function ui_setRow(self, row, data, id)
 	local i, node
-        
+
     // Fix missing id
     if id == NIL
        	self:lastId++
@@ -132,7 +132,7 @@ return driver:getTableSelection( self, .T. )
 /* Set selection by ID */
 static function ui_setValue(self, id)
 	if valtype(id) == 'A' .and. len(id) > 0
-		id := id[1]		
+		id := id[1]
 	endif
 return driver:setTableSelection( self, id )
 
@@ -143,7 +143,7 @@ return driver:getTablePosition( self )
 /* Restore position from variable */
 static function ui_restorePosition(self, pos)
 	local ret
-	
+
 	if valtype(pos) == 'A' .and. len(pos) == 2 .and. .not. empty(pos[2])
 		ret := driver:setTablePosition( self, pos )
 	endif

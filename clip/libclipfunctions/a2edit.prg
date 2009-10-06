@@ -3,16 +3,16 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "box.ch"
-#include "Inkey.ch"
-#include "Setcurs.ch"
-#include "Error.ch"
-#include "config.ch"
-#include "dbedit.ch"
+#include "ci_box.ch"
+#include "ci_Inkey.ch"
+#include "ci_Setcurs.ch"
+#include "ci_Error.ch"
+#include "ci_config.ch"
+#include "ci_dbedit.ch"
 
 
-#define MY_HEADSEP      translate_charset(__CHARSET__,host_charset(),"═╤═")
-#define MY_COLSEP       translate_charset(__CHARSET__,host_charset()," │ ")
+#define MY_HEADSEP      translate_charset(__CHARSET__,host_charset(),"О©╫О©╫О©╫")
+#define MY_COLSEP       translate_charset(__CHARSET__,host_charset()," О©╫ ")
 
 memvar __a2_data, curr_record,__userfunc
 
@@ -90,7 +90,7 @@ function a2edit
 	    if browse:hitBottom
 	       status:=DE_HITBOTTOM
 	    endif
-	    // DE_EXCEPT           4          // Клавиша не обрабатывается DBEDIT()
+	    // DE_EXCEPT           4          // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ DBEDIT()
 	    if "(" $ user_func
 		__userfunc:=user_func
 	    else

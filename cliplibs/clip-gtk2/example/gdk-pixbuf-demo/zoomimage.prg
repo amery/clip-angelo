@@ -7,14 +7,14 @@
 */
 
 #define _OFFSET_	0.25
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 static da, back, background, pixbuf, pixbuf1, offset:=1, lInc:=.f.
 static _width, _height, window, style
 
 function main ( )
 
-	local vbox, hbox, inc, dec
+	local vbox, hbox, inc, dec, btn
 
 
 	gtk_init()

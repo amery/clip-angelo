@@ -144,7 +144,7 @@
 
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -155,8 +155,8 @@
 #include <sys/ioctl.h>
 #endif
 
-#include "../include.h/clip.h"
-#include "scankey.h"
+#include "../include.h/ci_clip.h"
+#include "ci_scankey.h"
 
 /* #define DBG  */
 /* #define DBG0 */

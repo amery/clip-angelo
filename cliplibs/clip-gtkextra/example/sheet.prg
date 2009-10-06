@@ -1,7 +1,7 @@
-#include <inkey.ch>
-#include <clip-gtk.ch>
-#include <clip-gtkextra.ch>
-#include "pixmaps.ch"
+#include <ci_inkey.ch>
+#include <ci_clip-gtk.ch>
+#include <ci_clip-gtkextra.ch>
+#include "ci_pixmaps.ch"
 
 #define FALSE	.F.
 #define TRUE	.T.
@@ -63,24 +63,24 @@ function Main()
 	gtk_SignalConnect(window, GTK_DELETE,{||gtk_Quit()})
 
 	main_vbox=gtk_VBoxNew(,.F.,1)
-	gtk_ContainerSetBorderWidth(main_vbox,0) 
+	gtk_ContainerSetBorderWidth(main_vbox,0)
 	gtk_ContainerAdd(window, main_vbox)
 	gtk_WidgetShow(main_vbox)
 
-	show_hide_box = gtk_HBoxNew(,.F., 1) 
-	hide_row_titles = gtk_ButtonNew(,"Hide Row Titles") 
-	hide_column_titles = gtk_ButtonNew(,"Hide Column Titles") 
-	show_row_titles = gtk_ButtonNew(,"Show Row Titles") 
+	show_hide_box = gtk_HBoxNew(,.F., 1)
+	hide_row_titles = gtk_ButtonNew(,"Hide Row Titles")
+	hide_column_titles = gtk_ButtonNew(,"Hide Column Titles")
+	show_row_titles = gtk_ButtonNew(,"Show Row Titles")
 	show_column_titles = gtk_ButtonNew(,"Show Column Titles")
 
-	gtk_BoxPackStart(show_hide_box, hide_row_titles, .T., .T., 0) 
+	gtk_BoxPackStart(show_hide_box, hide_row_titles, .T., .T., 0)
 	gtk_BoxPackStart(show_hide_box, hide_column_titles, .T., .T., 0)
 	gtk_BoxPackStart(show_hide_box, show_row_titles, .T., .T., 0)
 	gtk_BoxPackStart(show_hide_box, show_column_titles, .T., .T., 0)
 
-	gtk_WidgetShow(hide_row_titles) 
+	gtk_WidgetShow(hide_row_titles)
 	gtk_WidgetShow(hide_column_titles)
-	gtk_WidgetShow(show_row_titles) 
+	gtk_WidgetShow(show_row_titles)
 	gtk_WidgetShow(show_column_titles)
 
 	gtk_SignalConnect(hide_row_titles, "clicked", @do_hide_row_titles())
@@ -232,7 +232,7 @@ return
 
 ***********************************
 
-function do_hide_row_titles() 
+function do_hide_row_titles()
 	local current, cur_page
 
 	cur_page = gtk_NotebookGetCurrentPage(notebook)
@@ -716,7 +716,7 @@ function build_example1(sheet)
       		bullet[i] = gtk_PixmapCreateFromXpmD(, bullet_xpm)
       		gtk_WidgetShow(bullet[i])
       		area = gtk_SheetGetCellArea(sheets[1], 4+i, 1)
-/*      gtk_sheet_put(GTK_SHEET(sheets[0]), bullet[i], 
+/*      gtk_sheet_put(GTK_SHEET(sheets[0]), bullet[i],
                     area.x+area.width/2-8, area.y+area.height/2-8);
 */
       		gtk_SheetAttach(sheets[1], bullet[i], 4+i, 1, .5, .5)
@@ -725,7 +725,7 @@ function build_example1(sheet)
  	bullet[6] = gtk_PixmapCreateFromXpmD(, bullet_xpm)
  	gtk_WidgetShow(bullet[6])
  	area = gtk_SheetGetCellArea(sheets[1], 11, 1)
-/* gtk_sheet_put(GTK_SHEET(sheets[0]), bullet[i], 
+/* gtk_sheet_put(GTK_SHEET(sheets[0]), bullet[i],
                area.x+area.width/2-8, area.y+area.height/2-8);
 */
 	gtk_SheetAttach(sheets[1], bullet[6], 11, 1, .5, .5)
@@ -747,7 +747,7 @@ function build_example1(sheet)
 /*
  gtk_signal_connect(GTK_OBJECT(sheet),
                     "button_press_event",
-                    (GtkSignalFunc) do_popup, 
+                    (GtkSignalFunc) do_popup,
                     NULL);
 */
 

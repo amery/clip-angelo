@@ -2,7 +2,9 @@
 LOCAL conn,rs,data
 LOCAL sql := ""
 LOCAL I
-
+Local e
+Local tmp
+Local trpars
 CLS
 ErrorBlock({|e| SQLError(e)})
 

@@ -11,7 +11,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 #define COMPARE_DEBUG	.F.
 
@@ -250,7 +250,7 @@ static function ui_setObj(self, obj)
 		else
 			rn := i
 		endif
-		//?? 'set:', rn, upper(rn) $ obj, chr(10) 
+		//?? 'set:', rn, upper(rn) $ obj, chr(10)
 		if at("\.",i) != 0
 			a := split(i,"\.")
 			//?? "set foreign object attribute:",a,chr(10)
@@ -416,7 +416,7 @@ static function ui_setName(self, name, o)
 	if valtype(o) != "O" .or. .not. "CLASSNAME" $ o
 		return NIL
 	endif
-	
+
 	// Extract type from name
 	nArr := split(name,':')
 	if len(nArr) > 1
@@ -462,7 +462,7 @@ static function ui_setValues(self, values)
 			w := mapget(self:value, i, NIL)
 			v := i[2]
 		endif
-		
+
 		if "SETVALUE" $ w
 			w:setValue( v )
 		endif
@@ -529,25 +529,25 @@ return NIL
 /* Return id and context from table to another form */
 static function ui_select(self, table, column)
 	local act, obj:=NIL, val:=''
-    
+
     //?? "RETURN value:","RETURNACTION" $ self, valtype(self:returnAction), chr(10)
 	if "RETURNACTION" $ self .and. valtype(self:returnAction) == "B"
 		act := self:returnAction
 		obj := mapget(self:value, table, NIL)
-		
+
 		//?? valtype(obj), "GETSELECTIONID" $ obj , "GETSELECTIONFIELD" $ obj, chr(10)
 		if .not. empty(obj) .and. "GETVALUE" $ obj
 			val := obj:getValue()
 		endif
-		
+
 		// Append context if exist
 		if "CONTEXT" $ self .and. .not. empty(self:context)
 			val := { val, self:context }
 		endif
-		
+
 		//?? "RETURNED:", val,chr(10)
 		eval(act, val)
-	
+
 	endif
 
 return NIL
@@ -692,7 +692,7 @@ return NIL
 /* Raw widget value -> Formatted value */
 static function _w2val(v, format)
 	local nv:=v, fmt
-	
+
 	if valtype(format) != 'O'
 		return v
 	endif

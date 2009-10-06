@@ -7,7 +7,7 @@
     Test scaling images with gdk-pixbuf
 */
 
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 
 
 function main ( cimg )

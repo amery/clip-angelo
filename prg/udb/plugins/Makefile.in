@@ -1,22 +1,35 @@
 #
 #                                            prg/udb/plugins/Makefile.in
 #
-Local_Depend =
+Local_Depend 			=
 
-#CLIPFLAGS = -p -O -b -w -I ./include
-#CLIPLIBS  =
-#LIBS = ./libclip-codb$(DLLSUFF)
-#CLIPFLAGS += -p
+MODULES 					= 				$(sort 						\
+														acc_chart.po 	\
+														acc_oper.po 	\
+														attr.po 			\
+														class.po  		\
+														counter.po 		\
+														default.po 		\
+														deposit.po 		\
+														extent.po 		\
+														group.po 		\
+														index.po 		\
+														plugins.po 		\
+														report.po 		\
+														tcolumn.po 		\
+														tview.po 		\
+														user.po 			\
+											)
 
-.SUFFIXES: .prg .o .po
 
-MODULES = 	$(sort 	acc_chart.po acc_oper.po attr.po class.po  	\
-							counter.po default.po deposit.po extent.po 	\
-							group.po index.po plugins.po report.po 		\
-							tcolumn.po tview.po user.po )
+export
 
+######################################################################################
+###################################################################################### local rules
 
 install all : Makefile $(DIRS_TO_SCAN) $(MODULES)
+
+hash1 :
 
 cfg :
 

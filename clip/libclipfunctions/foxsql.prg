@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "error.ch"
-#include "set.ch"
+#include "ci_error.ch"
+#include "ci_set.ch"
 **************************************************
 * foxpro compatible SQL functions
 **************************************************
@@ -161,7 +161,7 @@ return
 * SELECT .... FROM .....
 ******
 
-#include "foxsql.ch"
+#include "ci_foxsql.ch"
 function fx_select(sQuery)
 	local oQuery:=sqlQueryNew(),tmp
 	oQuery:parse(sQuery)

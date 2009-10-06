@@ -17,7 +17,7 @@ int allow_severity, deny_severity;
 /*---------------------------------------------------
  *  example: tcp-wrap cobra-serv 192.168.170.1  -> 0 - OK | 1 - Error
  * --------------------------------------------------*/
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     int retval = ACCESS_DENIED;
     char *daemon, *ipaddr;

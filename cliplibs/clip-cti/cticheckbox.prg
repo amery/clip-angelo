@@ -8,8 +8,8 @@
 /* CTI_CHECKBOX - check boxes, which are controls that can be
 	toggled on or off by a user*/
 
-#include "cti.ch"
-#include "inkey.ch"
+#include "ci_cti.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 

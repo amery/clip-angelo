@@ -9,81 +9,33 @@ hname=`hostname -f 2>/dev/null`
 DLLSUFF='.so'
 DLLREALSUFF='.so'
 
-rm Makefile
+rm -f$V Makefile
 
-if [ $? != 0 ]
-then
-	hname=`hostname 2>/dev/null`
-	if [ $? != 0 ]
-	then
-		hname=`uname -n 2>/dev/null`
-		if [ $? != 0 ]
-		then
-			hname=localhost
-		fi
-	fi
-fi
+#printf "configure: Makefile creating.."
 
-osname=UNIX
-case "$uname" in
-	BSD/OS*|bsdi*)
-		osname=BSDI
-		;;
-	[lL]inux*)
-		osname=LINUX
-		stdlibpath=/usr/lib
-		stdincpath=/usr/include
-		;;
-	FreeBSD*)
-		osname=FREEBSD
-		STATICLINK=-static
-		;;
-	NetBSD*)
-		osname=NETBSD
-		;;
-	SunOS*)
-		osname=SUNOS
-		;;
-	CYGWIN*)
-		osname=CYGWIN
-		stdlibpath=/lib
-		stdincpath=/usr/include
-		DLLSUFF='.dll.a'
-		DLLREALSUFF='.dll'
-esac
+#exec 																												3>Makefile.inc
 
-printf "configure: Makefile creating.."
-
-exec 																												3>Makefile.inc
-
-echo "#	Created automatically by 'configure'" 														>&3
-echo '#' 																										>&3
-echo 																												>&3
-echo '#' 																										>&3
-echo '#	Compile flags' 																					>&3
-echo '#' 																										>&3
+#echo "#	Created automatically by 'configure'" 														>&3
+#echo '#' 																										>&3
+#echo 																												>&3
+#echo '#' 																										>&3
+#echo '#	Compile flags' 																					>&3
+#echo '#' 																										>&3
 #echo "CLIPROOT='$CLIPROOT'" 																				>&3
 #echo "include $CLIPROOT/include/Makefile.inc" 														>&3
-echo "OSNAME='$osname'" 																					>&3
-
-if [ -z "$CC" ] ; then
-	if [ -x "$(which cc 2>&1 >/dev/null)" ] ; 	then
-		CC=cc
-	else
-		CC=gcc
-	fi
-fi
+#echo "OSNAME='$osname'" 																					>&3
 #echo "DLLSUFF='$DLLSUFF'"  																				>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'"  																	>&3
-echo "INCLUDEDIRS=-I../clip-cti/include -I../clip-gtk" 											>&3
+cat ./Makefile.inc  																									>>Makefile.ini
+#echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk -I$PWD/../clip-cti/include" 		>>Makefile.ini
+echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk/include -I$PWD/../clip-cti/include" 		>>Makefile.ini
+#echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk -I$PWD/../clip-cti/include" 		>>Makefile.ini
 
-echo  	 																										>&3
-exec  																						 					3>&-
-
-tr -d \' <./Makefile.inc >Makefile
-cat ./Makefile >Makefile.inc
-
+#echo  	 																										>&3
+#exec  																						 					3>&-
+ln -sf$V ./include ./fwin
+#tr -d \' <./Makefile.inc >Makefile
+#cat ./Makefile  >>Makefile.ini
+#rm -f$V ./Makefile.inc
 echo ". done."
-#!/bin/sh
-
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

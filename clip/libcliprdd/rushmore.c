@@ -6,10 +6,10 @@
 	$Log: rushmore.c,v $
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.67  2005/10/31 14:37:07  clip
 	uri: small speed optimize
-	
+
 	Revision 1.65  2005/10/28 15:45:01  clip
 	rust: some rm_and() optimization
 
@@ -188,8 +188,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-#include "error.ch"
-#include "../include.h/rdd.h"
+#include "ci_error.ch"
+#include "../include.h/ci_rdd.h"
 
 #define ADDLEX(lex) if(rd->rmfilter) astrcat(&rd->rmfilter,&rd->rmflen,(lex))
 

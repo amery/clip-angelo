@@ -27,8 +27,8 @@
 #include "axntxcdx.ch"
 #endif
 #endif
-#include "deflist.ch"
-#include "fileio.ch"
+#include "ci_deflist.ch"
+#include "ci_fileio.ch"
 
 *+��������������������������������������������������������������������
 *+

@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "clipcfg.h"
-#include "fileio.ch"
+#include "ci_clipcfg.h"
+#include "ci_fileio.ch"
 
 static types
 

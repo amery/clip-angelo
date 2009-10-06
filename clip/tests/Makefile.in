@@ -1,38 +1,64 @@
 #
 #                                            clip/tests/Makefile.in
 #
-Local_Depend =
+Local_Depend 	=
 
 
-TESTS =	$(sort 	test.dbf \
-						a$(EXESUFF) a_flag$(EXESUFF) attoken$(EXESUFF) dbg$(EXESUFF) \
-						dispbox$(EXESUFF) dutil$(EXESUFF) \
-						err$(EXESUFF) \
-						hparse$(EXESUFF) \
-						inkey$(EXESUFF) \
-						key$(EXESUFF) \
-						loop$(EXESUFF) \
-						macro1$(EXESUFF) main$(EXESUFF) mainp.pa mathtest$(EXESUFF) mem_file$(EXESUFF) \
-						memoline$(EXESUFF) memo_t$(EXESUFF) mouse$(EXESUFF) \
-						obj$(EXESUFF) obj_p$(EXESUFF) \
-						param$(EXESUFF) param1$(EXESUFF) pg$(EXESUFF) pload$(EXESUFF) \
-						replace$(EXESUFF) run$(EXESUFF) \
-						set_t$(EXESUFF) \
-						task1$(EXESUFF) task2$(EXESUFF) task3$(EXESUFF) tbldec$(EXESUFF) testlock$(EXESUFF) \
-						transform$(EXESUFF) ttt$(EXESUFF) ttt_p$(EXESUFF) type_field$(EXESUFF) \
-						wind$(EXESUFF) wind2$(EXESUFF) wind3$(EXESUFF) \
-			)
+TESTS 			=	$(sort 									\
+									test.dbf 					\
+									a$(EXESUFF) 				\
+									a_flag$(EXESUFF) 			\
+									attoken$(EXESUFF) 		\
+									dbg$(EXESUFF) 				\
+									dispbox$(EXESUFF) 		\
+									dutil$(EXESUFF) 			\
+									err$(EXESUFF) 				\
+									hparse$(EXESUFF) 			\
+									inkey$(EXESUFF) 			\
+									key$(EXESUFF) 				\
+									loop$(EXESUFF) 			\
+									macro1$(EXESUFF) 			\
+									main$(EXESUFF) 			\
+									mainp.pa 					\
+									mathtest$(EXESUFF) 		\
+									mem_file$(EXESUFF) 		\
+									memoline$(EXESUFF) 		\
+									memo_t$(EXESUFF) 			\
+									mouse$(EXESUFF) 			\
+									obj$(EXESUFF) 				\
+									obj_p$(EXESUFF) 			\
+									param$(EXESUFF) 			\
+									param1$(EXESUFF) 			\
+									pg$(EXESUFF) 				\
+									pload$(EXESUFF) 			\
+									replace$(EXESUFF) 		\
+									run$(EXESUFF) 				\
+									set_t$(EXESUFF) 			\
+									task1$(EXESUFF) 			\
+									task2$(EXESUFF) 			\
+									task3$(EXESUFF) 			\
+									tbldec$(EXESUFF) 			\
+									testlock$(EXESUFF) 		\
+									transform$(EXESUFF) 		\
+									ttt$(EXESUFF) 				\
+									ttt_p$(EXESUFF) 			\
+									type_field$(EXESUFF) 	\
+									wind$(EXESUFF) 			\
+									wind2$(EXESUFF) 			\
+									wind3$(EXESUFF) 			\
+						)
 #loadso$(EXESUFF) param$(EXESUFF) reclock$(EXESUFF)
 
-#CLIP = $(CLIPROOT)/bin/clip
-#CLIP = clip$(EXESUFF)
-#CLPFLAGS = $(CLIPFLAGS)
-#CLIPLIB =
-CLPFLAGS = -v2 -g -l
-SF = -s
-DBFS = test.dbf ttt.dbf ttt.dbt
+CLPFLAGS 		= 	-v2 -g -l
+SF 				= 	-s
+DBFS 				= 	test.dbf ttt.dbf ttt.dbt
 
-install all : Makefile dbfs $(TESTS)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all : Makefile dbfs $(OBJS) $(TESTS)
 
 cfg :
 

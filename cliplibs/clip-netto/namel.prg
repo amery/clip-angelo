@@ -1,11 +1,11 @@
 /*
  * File......: NAMEL.PRG
  * Author....: Steven Tyrakowski
- * CIS ID....: 
+ * CIS ID....:
  * Date......: $Date: 2006/06/22 20:12:13 $
  * Revision..: $Revision: 1.1 $
  * Log file..: $Logfile$
- * 
+ *
  * This is an original work by various Netware API group participants
  * and is placed in the public domain.
  *
@@ -23,7 +23,7 @@
  */
 
 
-#include "netto.ch"
+#include "ci_netto.ch"
 
 /*  $DOC$
  *  $FUNCNAME$

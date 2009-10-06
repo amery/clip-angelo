@@ -3,11 +3,11 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "Set.ch"
-#include "Inkey.ch"
-#include "common.ch"
-#include "Getexit.ch"
-#include "bdbfmsg.ch"
+#include "ci_Set.ch"
+#include "ci_Inkey.ch"
+#include "ci_bd_common.ch"
+#include "ci_Getexit.ch"
+#include "ci_bd_bdbfmsg.ch"
 
 #define K_UNDO	K_CTRL_U
 
@@ -77,7 +77,7 @@ WHILE ( pos <> 0 )
 	get := GetList[pos]
 	IF !EMPTY(lPassword) THEN get:ColorSpec:="w/w"
 
-//’¥ªáâ PostActiveGet( get )
+//ï¿½ï¿½ï¿½ï¿½ï¿½ PostActiveGet( get )
 	name := Upper(get:name)
 	_aSub:=get:subscript
 
@@ -154,7 +154,7 @@ WHILE ( get:exitstate == GE_NOEXIT )
 		ShowMouse()
 		GetApplyKey( get, WaitKey(0), lCycle )
 		HideMouse()
-		IF  _NeedScroll THEN @ 13, __c say '±'
+		IF  _NeedScroll THEN @ 13, __c say 'ï¿½'
 	END
 
 	// disallow exit IF the VALID condition is not satisfied
@@ -187,7 +187,7 @@ DO CASE
 		EVAL(m->_aGetKeys[_mox,2])
 
 	CASE (_cGetType == "C") .AND. key==K_CTRL_X .AND. IsCtrlShift()
-		get:buffer:=IF(_cGetBuffer>='€',Nation2Usa(_cGetBuffer),;
+		get:buffer:=IF(_cGetBuffer>='ï¿½',Nation2Usa(_cGetBuffer),;
 			    Usa2Nation(_cGetBuffer))
 		get:VarPut(get:buffer)
 		get:Changed:=.t.
@@ -542,7 +542,7 @@ ENDIF
 RETU _var
 **********
 PROC InsString(oGet,cStr,lMemo)
-//‚¬¥áâ® KeyBoard ¨§-§  ¢®§¬®¦­®£® ­ «¨ç¨ï ¢ áâà®ª¥ ã¯à ¢«ïîé¨å á¨¬¢®«®¢
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ KeyBoard ï¿½ï¿½-ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½à®ªï¿½ ï¿½ï¿½à ¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ á¨¬ï¿½ï¿½ï¿½ï¿½ï¿½
 LOCAL i
 FOR i:=1 TO LEN(cStr)
 	IF ( _ReadInsert )
@@ -570,7 +570,7 @@ nR1:=m->_middlerow+7
 nC:=m->_middlecol-17
 Window(nR, nC, nR1, m->_middlecol+17, _MSG_ASCII)
 
-@ nR+2, nC SAY (cStr:='Ç'+REPL('Ä', 33)+'¶')
+@ nR+2, nC SAY (cStr:='ï¿½'+REPL('ï¿½', 33)+'ï¿½')
 @ nR1-2, nC++ SAY cStr
 
 FOR i:=0 TO 7

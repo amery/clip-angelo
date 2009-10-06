@@ -10,12 +10,12 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 static driver := getDriver()
 
-/* 
-	TODO: nice expand/collapse icons, ignore expand/collapse as node 
+/*
+	TODO: nice expand/collapse icons, ignore expand/collapse as node
 	activation on single LMB click
 */
 
@@ -46,7 +46,7 @@ return obj
 /* Add node and fill it by data */
 static function ui_addNode(self, data, id, parent, sibling, expanded)
 	local node
-        
+
 	// Fix missing id
     if id == NIL
 		self:lastId++
@@ -55,7 +55,7 @@ static function ui_addNode(self, data, id, parent, sibling, expanded)
    	if valtype(id) == 'N'
    		id := ltrim(str(id))
 	endif
-	
+
 	expanded := iif(valtype(expanded)=="U", .T., expanded)
 	node := driver:addTreeNode(self, parent, sibling, data, expanded, id)
 return node
@@ -63,7 +63,7 @@ return node
 /* Set data for tree row */
 static function ui_setRow(self, row, data, id)
 	local i, node
-        
+
     // Fix missing id
     if id == NIL
        	self:lastId++
@@ -115,7 +115,7 @@ return driver:getTreeSelection( self, .T. )
 /* Set selection by ID */
 static function ui_setValue(self, id)
 	if valtype(id) == 'A' .and. len(id) > 0
-		id := id[1]		
+		id := id[1]
 	endif
 return driver:setTreeSelection( self, id )
 

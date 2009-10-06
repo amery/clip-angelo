@@ -1,4 +1,4 @@
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 
 //#define DEBUG
 

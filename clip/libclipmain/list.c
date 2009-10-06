@@ -23,8 +23,8 @@
    *
  */
 
-/*#include "clip.h"*/
-#include "list.h"
+/*#include "ci_clip.h"*/
+#include "ci_list.h"
 
 #define PREV(el) ((ListEl *)(el))->prev
 #define NEXT(el) ((ListEl *)(el))->next

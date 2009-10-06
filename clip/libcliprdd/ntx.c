@@ -6,16 +6,16 @@
 	$Log: ntx.c,v $
 	Revision 1.2  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.121  2005/09/26 12:14:20  clip
 	rust: balancing bug fixed
-	
+
 	Revision 1.120  2005/08/08 09:00:31  clip
 	alena: fix for gcc 4
-	
+
 	Revision 1.119  2005/02/05 11:52:43  clip
 	rust: minor fix in ntx_seek()
 
@@ -282,9 +282,9 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include "../include.h/rdd.h"
-#include "error.ch"
-#include "./btree.h"
+#include "../include.h/ci_rdd.h"
+#include "ci_error.ch"
+#include "./ci_btree.h"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif

@@ -6,11 +6,11 @@
 	$Log: rddclip.c,v $
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.98  2005/12/09 16:52:13  clip
-	
+
 	crr
-	
+
 	Revision 1.97  2005/02/02 14:22:24  clip
 	rust: minor fix for SET OPTIMIZE LEVEL 2
 
@@ -207,8 +207,8 @@
 */
 #include <string.h>
 #include <limits.h>
-#include "../include.h/rdd.h"
-#include "error.ch"
+#include "../include.h/ci_rdd.h"
+#include "ci_error.ch"
 
 #define READLOCK	if((er = rd->vtbl->_rlock(cm,rd,__PROC__))) goto err
 #define WRITELOCK	if((er = rd->vtbl->_wlock(cm,rd,__PROC__))) goto err

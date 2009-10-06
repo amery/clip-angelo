@@ -1,5 +1,5 @@
-#include "r2d2lib.ch"
-#include "fileio.ch"
+#include "ci_r2d2lib.ch"
+#include "ci_fileio.ch"
 
 function r2d2_odfreport(_queryArr)
 
@@ -65,7 +65,7 @@ local i,j,s1,s2
 	//?? "Content-type: application/xml"//+c_type
 	?
 	data = odf_make_report(file,prg1,par1,prg2,par2)
-	
+
 return
 *******************
 static function odf_make_report(file,prg1,par1,prg2,par2)
@@ -76,7 +76,7 @@ static function odf_make_report(file,prg1,par1,prg2,par2)
 	local bl1,bl2,pars1,pars2
 	tPath := PATH_DELIM+"tmp"+PATH_DELIM+"r2d2"+;
 		PATH_DELIM+"odfreport"+PATH_DELIM+alltrim(str(pid()))
-		
+
 	if !makeDirectory(tPath)
 		data:="<error>Can`t create tmp directory."+tPath+"</error>"
 		return data
@@ -88,8 +88,8 @@ static function odf_make_report(file,prg1,par1,prg2,par2)
 	cmd += "; cd "+tPath
 	cmd += '; unzip -x '+fname
 	cmd += '; rm -f '+fname
-	
-	outlog(__FILE__,__LINE__, cmd) 	
+
+	outlog(__FILE__,__LINE__, cmd)
 	syscmd(cmd,"",@out,@err)
 	if !empty(err)
 		data:="<error>"+err+"</error>"
@@ -106,7 +106,7 @@ static function odf_make_report(file,prg1,par1,prg2,par2)
 
 	if !empty(bl1)
 		x := evala(bl1,par1)
-		
+
 	endif
 	/*
 	if !empty(bl2)
@@ -115,11 +115,11 @@ static function odf_make_report(file,prg1,par1,prg2,par2)
 		ains(pars2,1)
 		pars2[1] = x
 		y := evala(bl2,pars2)
-		
+
 	endif
-	*/	
+	*/
 	data := memoread(tPath+PATH_DELIM+"content.xml")
-outlog(__FILE__,__LINE__, tPath+PATH_DELIM+"content.xml")	
+outlog(__FILE__,__LINE__, tPath+PATH_DELIM+"content.xml")
 	if empty(data)
 		data:="<error>file not found:"+tPath+PATH_DELIM+"content.xml </error>"
 		return data
@@ -158,7 +158,7 @@ outlog(__FILE__,__LINE__, tPath+PATH_DELIM+fname)
 
 
 	cmd := " rm -rf "+tPath
-outlog(__FILE__,__LINE__, cmd)	
+outlog(__FILE__,__LINE__, cmd)
 //	syscmd(cmd,"",@out,@err)
 	if !empty(err)
 		data:="<error>"+err+"</error>"

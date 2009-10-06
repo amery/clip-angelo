@@ -1,14 +1,21 @@
 #
 #                                            clip-oracle/example/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-oracle.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-oracle.so
+PRG 					= 			my_sqlplus$(EXESUFF)
+LIBS 					= 			-L$(OR_LIB) -lclntsh -lnnz11
+# -laio
 
-PRG=my_sqlplus$(EXESUFF)
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all:Makefile  $(PRG)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -18,9 +25,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_sqlplus$(EXESUFF): my_sqlplus.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewMs my_sqlplus.prg -lclip-oracle
+my_sqlplus$(EXESUFF) 	: my_sqlplus.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ewMs my_sqlplus.prg -lclip-oracle $(LIBS)
 
 include $(Makefile_o_in)
 

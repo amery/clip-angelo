@@ -11,7 +11,7 @@
  */
 
 
-#include "gdfontl.h"
+#include "ci_gdfontl.h"
 
 char gdFontLargeData[] = {
 /* Char 0 */

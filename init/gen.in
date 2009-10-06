@@ -71,7 +71,7 @@ export ADDLIBS=""
 export AS_PRG="as"
 export BINDIR="$HOME/bin"
 export CC=$(type -p gcc)
-export CFLAGS=""
+export C_FLAGS=""
 export CHECK_STACK="no"
 export Clip="$Clip_B_Dir/clip$Suff_Exe"
 #export Clipar="$Clip_B_Dir/clipar$Suff_Exe"
@@ -259,24 +259,24 @@ fi
 #####################################################################################################
 ##  schema values supersided in each directory expect INCLUDE_FLAGS
 ##						general flags for cc compiler
-if [ -f $Clip_S_Dir/CFLAGS.setup.ini ] ; then
-	export CFLAGS="$(cat $Clip_S_Dir/CFLAGS.setup.ini )"
+if [ -f $Clip_S_Dir/C_FLAGS.setup.ini ] ; then
+	export C_FLAGS="$(cat $Clip_S_Dir/C_FLAGS.setup.ini )"
 else
-	export CFLAGS="-Wall -fPIC $INCLUDE_FLAGS"
-	echo "$CFLAGS" >$Clip_S_Dir/CFLAGS.setup.ini
+	export C_FLAGS="-Wall -fPIC $INCLUDE_FLAGS"
+	echo "$C_FLAGS" >$Clip_S_Dir/C_FLAGS.setup.ini
 fi
-if [ -f $Clip_S_Dir/CFLAGS_GEN.setup.ini ] ; then
-	export CFLAGS_GEN="$(cat $Clip_S_Dir/CFLAGS_GEN.setup.ini )"
+if [ -f $Clip_S_Dir/C_FLAGS_GEN.setup.ini ] ; then
+	export C_FLAGS_GEN="$(cat $Clip_S_Dir/C_FLAGS_GEN.setup.ini )"
 else
-	export CFLAGS_GEN="$CFLAGS"
-	echo "$CFLAGS_GEN" >$Clip_S_Dir/CFLAGS_GEN.setup.ini
+	export C_FLAGS_GEN="$C_FLAGS"
+	echo "$C_FLAGS_GEN" >$Clip_S_Dir/C_FLAGS_GEN.setup.ini
 fi
 ##						general cc debug flags
-if [ -f $Clip_S_Dir/CFLAGS_GEN_DEBUG.setup.ini ] ; then
-	export CFLAGS_GEN_DEBUG="$(cat $Clip_S_Dir/CFLAGS_GEN_DEBUG.setup.ini )"
+if [ -f $Clip_S_Dir/C_FLAGS_GEN_DEBUG.setup.ini ] ; then
+	export C_FLAGS_GEN_DEBUG="$(cat $Clip_S_Dir/C_FLAGS_GEN_DEBUG.setup.ini )"
 else
-	export CFLAGS_GEN_DEBUG="$CFLAGS -g"
-	echo "$CFLAGS_GEN_DEBUG" >$Clip_S_Dir/CFLAGS_GEN_DEBUG.setup.ini
+	export C_FLAGS_GEN_DEBUG="$C_FLAGS -g"
+	echo "$C_FLAGS_GEN_DEBUG" >$Clip_S_Dir/C_FLAGS_GEN_DEBUG.setup.ini
 fi
 ##						general flags for clip compiler
 if [ -f $Clip_S_Dir/CLIP_FLAGS.setup.ini ] ; then
@@ -312,7 +312,7 @@ else
 fi
 #################################		(clip directory)
 #################################		cc compiler suggestions
-export C_CLIP_FLAGS="$CFLAGS_GEN"
+export C_CLIP_FLAGS="$C_FLAGS_GEN"
 export C_CLIP_FLAGS_DEBUG_LEVEL=0
 export C_CLIP_FLAGS_OPTIMISE_LEVEL=3
 export C_CLIP_FLAGS_VERBOSITY=""
@@ -323,7 +323,7 @@ export CLIP_CLIP_FLAGS_DEBUG_LEVEL=0
 export CLIP_CLIP_FLAGS_OPTIMISE_LEVEL=3
 export CLIP_CLIP_FLAGS_VERBOSITY=0
 ##						for test & debug purposes
-export C_DEBUG_CLIP_FLAGS="-O0 -g3 --verbose $CFLAGS_GEN_DEBUG"
+export C_DEBUG_CLIP_FLAGS="-O0 -g3 --verbose $C_FLAGS_GEN_DEBUG"
 export C_DEBUG_CLIP_FLAGS_DEBUG_LEVEL=3
 export C_DEBUG_CLIP_FLAGS_OPTIMISE_LEVEL=0
 export C_DEBUG_CLIP_FLAGS_VERBOSITY=1
@@ -333,7 +333,7 @@ export CLIP_DEBUG_CLIP_FLAGS_OPTIMISE_LEVEL=0
 export CLIP_DEBUG_CLIP_FLAGS_VERBOSITY=6
 #################	cliplibs directory
 export CliplibsVerbose="v"
-export C_CLIPLIBS_FLAGS="$CFLAGS_GEN"
+export C_CLIPLIBS_FLAGS="$C_FLAGS_GEN"
 export C_CLIPLIBS_FLAGS_DEBUG_LEVEL=0
 export C_CLIPLIBS_FLAGS_OPTIMISE_LEVEL=0
 export C_CLIPLIBS_FLAGS_VERBOSITY=""
@@ -342,7 +342,7 @@ export CLIP_CLIPLIBS_FLAGS_DEBUG_LEVEL=0
 export CLIP_CLIPLIBS_FLAGS_OPTIMISE_LEVEL=3
 export CLIP_CLIPLIBS_FLAGS_VERBOSITY=0
 ##  for test purposes
-export C_DEBUG_CLIPLIBS_FLAGS="-O0 -g3 --verbose $CFLAGS_GEN_DEBUG"
+export C_DEBUG_CLIPLIBS_FLAGS="-O0 -g3 --verbose $C_FLAGS_GEN_DEBUG"
 export C_DEBUG_CLIPLIBS_FLAGS_DEBUG_LEVEL=3
 export C_DEBUG_CLIPLIBS_FLAGS_OPTIMISE_LEVEL=0
 export C_DEBUG_CLIPLIBS_FLAGS_VERBOSITY=1
@@ -352,7 +352,7 @@ export CLIP_DEBUG_CLIPLIBS_FLAGS_OPTIMISE_LEVEL=0
 export CLIP_DEBUG_CLIPLIBS_FLAGS_VERBOSITY=6
 ###############	prg directory
 export PrgVerbose="v"
-export C_PRG_FLAGS="$CFLAGS_GEN"
+export C_PRG_FLAGS="$C_FLAGS_GEN"
 export C_PRG_FLAGS_DEBUG_LEVEL=0
 export C_PRG_FLAGS_OPTIMISE_LEVEL=3
 export C_PRG_FLAGS_VERBOSITY=""
@@ -361,7 +361,7 @@ export CLIP_PRG_FLAGS_DEBUG_LEVEL=0
 export CLIP_PRG_FLAGS_OPTIMISE_LEVEL=3
 export CLIP_PRG_FLAGS_VERBOSITY=0
 ##  for test purposes
-export C_DEBUG_PRG_FLAGS="-O -g3 --verbose $CFLAGS_GEN_DEBUG"
+export C_DEBUG_PRG_FLAGS="-O -g3 --verbose $C_FLAGS_GEN_DEBUG"
 export C_DEBUG_PRG_FLAGS_DEBUG_LEVEL=3
 export C_DEBUG_PRG_FLAGS_OPTIMISE_LEVEL=0
 export C_DEBUG_PRG_FLAGS_VERBOSITY=1
@@ -370,10 +370,10 @@ export CLIP_DEBUG_PRG_FLAGS_DEBUG_LEVEL=3
 export CLIP_DEBUG_PRG_FLAGS_OPTIMISE_LEVEL=0
 export CLIP_DEBUG_PRG_FLAGS_VERBOSITY=6
 ###############	config directory
-export C_CONFIG_FLAGS="-O3 $CFLAGS_GEN"
+export C_CONFIG_FLAGS="-O3 $C_FLAGS_GEN"
 export CLIP_CONFIG_FLAGS="--optimise=3 --verbose=0 --debug=0 $CLIP_FLAGS_GEN"
 ##  for test purposes
-export C_DEBUG_CONFIG_FLAGS="-O -g3 --verbose $CFLAGS_GEN_DEBUG"
+export C_DEBUG_CONFIG_FLAGS="-O -g3 --verbose $C_FLAGS_GEN_DEBUG"
 export CLIP_DEBUG_CONFIG_FLAGS="--debug=3 --optimise=0 --verbose=6 $CLIP_FLAGS_GEN_DEBUG"
 ####				end
 export C_DEBUG_TEST_FLAGS=$C_DEBUG_PRG_FLAGS
@@ -386,9 +386,9 @@ cp -fpu$V init/Makefile.gen.in $Clip_I_Dir/
 #! [ -f $Clip_M_Dir/Makefile.ini ] 	&& source "$Clip_C_Dir/init_Mkfile.sh"
 #! [ -f $Clip_M_Dir/configure.ini ] 	&& source "$Clip_C_Dir/init_Mkfile.sh"
 
-export CFLAGS="$(cat $Clip_S_Dir/CFLAGS.setup.ini )"
-export CFLAGS_GEN="$(cat $Clip_S_Dir/CFLAGS_GEN.setup.ini )"
-export CFLAGS_GEN_DEBUG="$(cat $Clip_S_Dir/CFLAGS_GEN_DEBUG.setup.ini )"
+export C_FLAGS="$(cat $Clip_S_Dir/C_FLAGS.setup.ini )"
+export C_FLAGS_GEN="$(cat $Clip_S_Dir/C_FLAGS_GEN.setup.ini )"
+export C_FLAGS_GEN_DEBUG="$(cat $Clip_S_Dir/C_FLAGS_GEN_DEBUG.setup.ini )"
 
 export CLIP_FLAGS="$(cat $Clip_S_Dir/CLIP_FLAGS.setup.ini )"
 export CLIP_FLAGS_GEN="$(cat $Clip_S_Dir/CLIP_FLAGS_GEN.setup.ini )"

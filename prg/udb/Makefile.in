@@ -2,26 +2,40 @@
 #                                            prg/udb/Makefile.in
 #
 
-Local_Depend =
-#$(Clip_L_Dir)/libclip-codb.so
+Depend_on 		=		$(Clip_L_Dir)/libclip-codb.so
+DIRS_TO_SCAN 	= 		plugins reports
+LIBS 				= 		-lclip-codb
+AB_OBJS  		= 		$(sort 						\
+										ab_obj.o 		\
+										ab_menu.o 		\
+										ab_brow.o 		\
+										ab_init.o 		\
+										ab_funcs.o 		\
+										ab_report.o 	\
+							)
 
-DIRS_TO_SCAN = plugins reports
-
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O -b -w -I ./include
-CLIPLIBS  =
-#LIBS = ./libclip-codb$(DLLSUFF)
-LIBS = -lclip-codb
-AB_OBJS  = $(sort ab_obj.o ab_menu.o ab_brow.o ab_init.o ab_funcs.o \
-						ab_report.o )
-.SUFFIXES: .prg .o .po
-
-PROGS = 	$(sort 	codb_pack$(EXESUFF) codb_addobj$(EXESUFF) codb_ab$(EXESUFF) 									\
-						codb_make$(EXESUFF) codb_load$(EXESUFF) codb_export$(EXESUFF) codb_reindex$(EXESUFF) 	\
-						codb_arename$(EXESUFF) codb_rcheck$(EXESUFF) )
+PROGS 			= 		$(sort 									\
+										codb_pack$(EXESUFF) 		\
+										codb_addobj$(EXESUFF) 	\
+										codb_ab$(EXESUFF) 		\
+										codb_make$(EXESUFF) 		\
+										codb_load$(EXESUFF) 		\
+										codb_export$(EXESUFF) 	\
+										codb_reindex$(EXESUFF) 	\
+										codb_arename$(EXESUFF) 	\
+										codb_rcheck$(EXESUFF) 	\
+							)
 #test$(EXESUFF)
 
-all : Makefile $(DIRS_TO_SCAN) $(PROGS)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+
+all : Makefile $(DIRS_TO_SCAN) $(OBJS) $(PROGS)
+
+hash1 :
 
 cfg :
 
@@ -32,8 +46,6 @@ update:
 	../_cvs update -dP
 
 cleanc:
-#	cd plugins; rm -rf$(V) *.po *.bak *.log *.out *.po *core core* *.ex *.nm
-#	cd reports; rm -rf$(V) *.po *.bak *.log *.po *core core* *.ex *.nm
 	$(E_rm)rm -rf$(V) *.c *.b
 	$(E_rm)rm -rf$(V) *.pro $(PROGS) test$(EXESUFF) test2$(EXESUFF)
 
@@ -43,152 +55,126 @@ distcleanc :
 include $(Makefile_o_in)
 
 install : all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/codb_ab/plugins
-	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(DESTDIR)/codb_ab/plugins/
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/codb_ab/reports
-	$(E_cp)cp --remove-destination -Rfup$(V) reports/* $(DESTDIR)/codb_ab/reports/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_ab$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_make$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_load$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_pack$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_reindex$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_rcheck$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_addobj$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_export$(EXESUFF) $(DESTDIR)/bin/
-	$(E_cp)cp --remove-destination -fpu$(V) codb_arename$(EXESUFF) $(DESTDIR)$/bin/
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/codb_ab/plugins
+	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(INSTDIR)/codb_ab/plugins/
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/codb_ab/reports
+	$(E_cp)cp --remove-destination -Rfup$(V) reports/* $(INSTDIR)/codb_ab/reports/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_ab$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_make$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_load$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_pack$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_reindex$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_rcheck$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_addobj$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_export$(EXESUFF) $(INSTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) codb_arename$(EXESUFF) $(INSTDIR)/bin/
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M test.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+test2$(EXESUFF): test2.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_make$(EXESUFF): codb_make.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_load$(EXESUFF): codb_load.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_export$(EXESUFF): codb_export.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_pack$(EXESUFF): codb_pack.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_reindex$(EXESUFF): codb_reindex.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_rcheck$(EXESUFF): codb_rcheck.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 				\
+		$(Trace_clip_d) 	;												\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;			\
+	else 																		\
+		$(Trace_clip) 		;												\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(LIBS) ;	\
+	fi
+
+codb_check$(EXESUFF): codb_check.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_addobj$(EXESUFF): codb_addobj.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
+		$(Trace_clip_d) 	;										\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
+	else 																\
+		$(Trace_clip) 		;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
+	fi
+
+codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+		$(Trace_clip_d) 	;											\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;		\
+	else 																	\
+		$(Trace_clip) 			;										\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;			\
+	fi
+
+codb_ab$(EXESUFF): codb_ab.prg $(AB_OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(AB_OBJS) $(LIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-test2$(EXESUFF): test2.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M test2.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_make$(EXESUFF): codb_make.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_make.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_load$(EXESUFF): codb_load.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_load.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_export$(EXESUFF): codb_export.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_export.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_pack$(EXESUFF): codb_pack.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_pack.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_reindex$(EXESUFF): codb_reindex.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_reindex.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_rcheck$(EXESUFF): codb_rcheck.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_rcheck.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_check$(EXESUFF): codb_check.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_check.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_addobj$(EXESUFF): codb_addobj.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_addobj.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_arename.prg $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 			;													\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(CLIPLIBS) ;		\
-	fi
-
-codb_ab$(EXESUFF): codb_ab.prg $(AB_OBJS) $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	cd plugins; $(CLIP) -pw *.prg
-#	cd reports; $(CLIP) -pw *.prg
-#	$(CLIP) $(CLIPFLAGS) -o$@ -s -e -M codb_ab.prg $(AB_OBJS) $(CLIPLIBS) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 											\
-		$(Trace_clip_d) 	;																		\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(AB_OBJS) $(CLIPLIBS) $(LIBS) ;	\
-	else 																								\
-		$(Trace_clip) 		;																		\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(AB_OBJS) $(CLIPLIBS) $(LIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(AB_OBJS) $(LIBS) ;		\
 	fi
 
 include $(Makefile_end_in)

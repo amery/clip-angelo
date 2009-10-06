@@ -1,64 +1,80 @@
 #
 #                                            clip-fw/Makefile.in
 #
-Local_Depend = include/*.ch include/*.h
+Local_Depend 		= 		include/*.ch 	\
+								include/*.h
 
-#CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS += $(INCLUDEDIRS)
-#CC = gcc
-#CFLAGS = -fPIC -Wall -g -I. -I$(CLIPROOT)/include
-PROG = clip-fw
-CLIPLIBS  =
-#FWLIB = libclip-fw.a
-#FWINLIB = libclip-fw$(DLLSUFF)
-#FWINLIBREAL = libclip-fw$(DLLREALSUFF)
+CLIPFLAGS 			+= 	$(INCLUDEDIRS)
+PROG 					= 		clip-fw
+SRCS 					= 					\
+								c_funcs.c \
+								fw_bar.prg  \
+								fw_brush.prg  \
+								fw_btnbmp.prg  \
+								fw_button.prg  \
+								fw_color.prg  \
+								fw_combobox.prg  \
+								fw_common.prg  \
+								fw_control.prg  \
+								fw_dialog.prg  \
+								fw_font.prg  \
+								fw_get.prg  \
+								fw_icon.prg  \
+								fw_listbox.prg  \
+								fw_mdichild.prg  \
+								fw_mdiclien.prg  \
+								fw_mdiframe.prg  \
+								fw_menuitem.prg  \
+								fw_menu.prg  \
+								fw_menusys.prg  \
+								fw_meter.prg  \
+								fw_msgbar.prg  \
+								fw_msgitem.prg  \
+								fw_msg.prg  \
+								fw_rect.prg  \
+								fw_say.prg  \
+								fw_scrllbar.prg  \
+								fw_syscti.prg  \
+								fw_sysgtk.prg  \
+								fw_tabs.prg  \
+								fw_timer.prg  \
+								fw_wbrowse.prg  \
+								fw_window.prg
 
-COBJS    = c_funcs.o
-LIBOBJS  = $(sort fw_sysgtk.o fw_common.o fw_syscti.o fw_menusys.o\
-	   fw_color.o fw_window.o fw_menu.o fw_menuitem.o \
-	   fw_msg.o fw_font.o fw_msgbar.o fw_bar.o fw_btnbmp.o \
-	   fw_control.o fw_dialog.o fw_combobox.o fw_get.o fw_say.o fw_button.o\
-	   fw_meter.o fw_listbox.o fw_msgitem.o fw_timer.o fw_rect.o\
-	   fw_mdiclien.o fw_mdichild.o fw_mdiframe.o fw_scrllbar.o fw_tabs.o\
-	   fw_wbrowse.o )
+#								t.prg
+#								fp.prg
 
-OBJS = $(sort $(COBJS) $(LIBOBJS) )
-.SUFFIXES: .prg .o .po
+OBJS 					= 		$(sort $(addsuffix .o,$(basename $(SRCS) ) ) )
 ADDLIBS =
 
-include Makefile.inc
+export
 
-all:  Makefile links  $(STARGET)
+######################################################################################
+###################################################################################### local rules
+
+all:  Makefile links $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-fw
 
 cfg :
+	$(E_ln)[ -L ./fwin ] 			\
+		|| ln -sf$(V) ./include ./fwin
 	$(E_mkD)mkdir -p $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) ./include/*.ch $(Clip_I_Dir)/$(PROG)/
 	$(E_cp)cp --remove-destination -fpu$(V) ./include/*.h $(Clip_I_Dir)/$(PROG)/
 
-Makefile.inc :
-	$(E_xx)$(CONFIGURE_SH)
-
 links :
-
-#$(FWINLIB): $(COBJS) $(LIBOBJS)
-#	$(CC) $(C_FLAGS) -c c_funcs.c
-#	$(CLIP_MAKELIB) $(FWLIB) $(LIBOBJS) $(COBJS)
-#	$(CLIP_MAKESLIB) $(FWINLIB) $(FWLIB)
+	$(E_ln)[ -L ./fwin ] 			\
+		|| ln -sf$(V) ./include ./fwin
 
 cleanc:
-	$(E_rm)rm -f$(V) fw*.c $(TARGET).* Makefile.inc
+	$(E_rm)rm -f$(V) fw*.c $(TARGET).* ./fwin
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install: all install-lib install-example
-#	$(CLIP_CP) $(FWINLIB) $(DESTDIR)/lib
-#	$(CLIP_CP) libclip-fw $(DESTDIR)/lib
-#	mkdir -p $(DESTDIR)/include/fwin
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-fw
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-fw/bitmaps
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-fw/data
-#	cp -Ruf$(V) example/* example/.c* $(DESTDIR)/doc/example/clip-fw/
 
 include $(Makefile_o_in)
 

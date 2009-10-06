@@ -1,9 +1,8 @@
 #!/bin/sh -u
 
-source $Clip_I_Dir/clipcfg.sh
-Check_Include 		gdk-pixbuf-features.h xyz 	clip-gtk 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
-Check_Include 		gdk-pixbuf-xlib.h 	xyz 	clip-gtk 		yes 	/usr/include 										"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
-Check_Library 		gdk_pixbuf 			.so 	clip-gtk 		Yes	/usr/lib$C64 							"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
+Check_Include 		gdk-pixbuf-features.h 	xyz 	clip-gtk 		yes 	/usr/include 			"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Include 		gdk-pixbuf-xlib.h 		xyz 	clip-gtk 		yes 	/usr/include 			"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
+Check_Library 		gdk_pixbuf 					.so 	clip-gtk 		Yes	/usr/lib$C64 			"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
 
 USE_GTK=yes
 
@@ -60,7 +59,7 @@ esac
 
 printf "configure: creating clip-gtkcfg.h .."
 
-exec 																3>include/clip-gtkcfg.h
+exec 																3>include/ci_clip-gtkcfg.h
 
 echo "/* Created automatically by 'configure' */" 	>&3
 echo "#ifndef CLIPGTK_CONFIG_H" 							>&3
@@ -136,6 +135,12 @@ then
 	echo "gtk not detected"
 	exit 0
 fi
+PIXBUFINCLUDEDIRS="-I/usr/include/gdk-pixbuf-1.0 -I/usr/include/gtk-1.2 -I/usr/include/glib-1.2 -I/usr/lib$C64/glib/include -I/usr/include"
+INCLUDEDIRS="$PIXBUFINCLUDEDIRS"
+LIBS="-L/usr/lib$C64 -lgtk -lgdk -lgmodule -lglib -ldl -lXi -lXext -lX11 -lm"
+PIXBUFLIBS="-L/usr/lib$C64 -lgdk_pixbuf"
+XCFLAGS="-I/usr/include/gtk-1.2 -I/usr/include/glib-1.2 -I/usr/lib$C64/glib/include -I/usr/include/gdk-pixbuf-1.0"
+
 
 
 printf "configure: Makefile creating.."
@@ -150,34 +155,16 @@ echo '#	Compile flags' 														>&3
 echo '#' 																			>&3
 #echo "CLIPROOT='$CLIPROOT'" 													>&3
 #echo "include $CLIPROOT/include/Makefile.inc" 							>&3
-echo "OSNAME='$osname'" 														>&3
-
-if [ -z "$CC" ]
-then
-	IFS="${IFS= 	}"; save_ifs="$IFS"; IFS=":"
-	for cc_dir in $PATH; do
-		test -z "$cc_dir" && cc_dir=.
-		if test -f $cc_dir/gcc; then
-			CC=gcc
-			break
-		fi
-		if test -f $cc_dir/cc; then
-			CC=cc
-			break
-		fi
-	done
-	IFS="$save_ifs"
-fi
-echo "COMPILER='$CC'" 															>&3
+#echo "COMPILER='$CC'" 															>&3
 #echo "DLLSUFF='$DLLSUFF'" 													>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'" 											>&3
 echo "PIXBUFINCLUDEDIRS=$PIXBUFCFLAGS" 									>&3
-echo "INCLUDEDIRS=\$(PIXBUFINCLUDEDIRS) $(gtk-config --cflags)" 	>&3
-echo "XTARGETS=\$(XLIB) \$(XSLIB)" 											>&3
+echo "INCLUDEDIRS=\$(PIXBUFINCLUDEDIRS)" 									>&3
 echo "C_FLAGS+= \$(INCLUDEDIRS) $EXTRACFLAGS" 							>&3
-echo "ADDLIBS=$LIBS $PIXBUFLIBS " 											>&3
-echo "PIXBUFSRC=$PIXBUFSRC " 													>&3
-echo "PIXBUFOBJ=$PIXBUFOBJ " 													>&3
+echo "LIBS=$LIBS" 																>&3
+echo "PIXBUFLIBS=$PIXBUFLIBS" 												>&3
+echo "PIXBUFSRC=$PIXBUFSRC" 													>&3
+echo "PIXBUFOBJ=$PIXBUFOBJ" 													>&3
 
 if [ "$USE_GTK" = yes ]
 then
@@ -188,8 +175,12 @@ fi
 echo 																					>&3
 exec 																					3>&-
 
-cat Makefile.ini 				>Makefile
-tr -d \' <./Makefile.inc 	>>Makefile
-cat ./Makefile.in 			>>Makefile
+tr -d \' <./Makefile.inc 	>Makefile
+cat ./Makefile 			>>Makefile.ini
+cp -f$V ./Makefile ../../prg/udbx/Makefile.inc
+cp -f$V ./Makefile ../clip-fw/Makefile.inc
 
 echo ". done."
+#!/bin/sh
+
+touch configure.ok

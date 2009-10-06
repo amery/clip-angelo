@@ -2,9 +2,9 @@
     Copyright (C) 1998-2004 Yevgen Bondar <elb@lg.bank.gov.ua>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-// Немножечко оптимизированные функции Nantucket Forum
+// я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜чко я┐╜я┐╜тимя┐╜я┐╜я┐╜ровя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ункции Nantucket Forum
 
-#include "common.ch"
+#include "ci_bd_common.ch"
 
 EXTERNAL FT_LASTKEY, FT_ELAPSED, FT_Fday, FT_Hex2Dec
 EXTERNAL FT_ISPrint
@@ -81,10 +81,10 @@ LOCAL i
 cTypeToConvertTo:=UPPER(cTypeToConvertTo)
 
 DO CASE
-      CASE cTypeToConvertTo == 'V'	//и так хорошо
+      CASE cTypeToConvertTo == 'V'	//я┐╜ так я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	IF xValueToConvert==NIL THEN xValueToConvert:=''
 
-      CASE cTypeToConvertTo == 'X'	//и так хорошо
+      CASE cTypeToConvertTo == 'X'	//я┐╜ так я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 
       CASE cTypeToConvertTo $ "CM" .AND.; // They Want a Character String
 	   IS_NOT_CHAR(xValueToConvert)
@@ -165,7 +165,7 @@ DO CASE
 	xValueToConvert := IF(IS_CHAR(xValueToConvert),;
 				CTOT(xValueToConvert),;
 				CTOT("  /  /  00:00"))
-     	
+
 
 ENDCASE
 
@@ -779,7 +779,7 @@ RETURN FT_AEmaxlen( aArray, nDimension, nStart, nCount, .T.)
 **********
 
 FUNC FT_TEMPFILE( cPath, lHide )
-// в отличие от оригинальной функции допускает числовой атрибут
+// я┐╜ я┐╜тличие я┐╜я┐╜ я┐╜ригя┐╜я┐╜я┐╜я┐╜ьноя┐╜ я┐╜ункции я┐╜я┐╜я┐╜я┐╜ская┐╜я┐╜ я┐╜я┐╜слоя┐╜я┐╜я┐╜ я┐╜я┐╜рибя┐╜я┐╜
 IF valType(lHide) = "L" .AND. lHide
 	lHide:=1
 ENDIF

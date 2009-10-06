@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_rdfinfo(_queryArr, isRDF)
 
@@ -29,7 +29,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	endif
 	if "ID" $ _query
 		id := _query:id
-		? id 
+		? id
 		? '----'
 	endif
 	? 'ssssssss'
@@ -50,7 +50,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 	endif
 	atom := (left(atom,1) == "Y")
 	if "__DELETED" $ _query
-		needDeleted := (left(_query:__deleted,1) $ "YyäÄ")
+		needDeleted := (left(_query:__deleted,1) $ "Yyï¿½ï¿½")
 	endif
 	if !empty(connect_id)
 		connect_data := cgi_connect_data(connect_id)
@@ -206,7 +206,7 @@ local urn, sprname:="", values := "", attr := "", atom:="", iftree
 		urn := 'urn:'+sprname
 	endif
 	//outlog(__FILE__,__LINE__,len(aTree))
-	
+
 	if isRDF
 		cgi_putArefs2Rdf(aTree,oDep,0,urn,columns,"",,atom)
 	else

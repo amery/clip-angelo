@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "codbcfg.ch"
+#include "ci_codbcfg.ch"
 ************************************************************
 function codbListNew(lReadOnly)
 return codbList():new(lReadOnly)

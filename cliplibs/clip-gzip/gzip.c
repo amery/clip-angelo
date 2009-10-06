@@ -28,9 +28,9 @@
 #include <limits.h>
 #include <string.h>
 
-#include "hashcode.h"
-#include "clip.h"
-#include "error.ch"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 #ifdef HAVE_ZLIB_H
 #include "zlib.h"

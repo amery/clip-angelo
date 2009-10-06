@@ -6,9 +6,9 @@
 /* install procedure all CODB dictionaries and default data objects */
 //#include "codbcfg.ch"
 
-#include "six2clip.ch"
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_six2clip.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 public mFiles
 memvar mFiles

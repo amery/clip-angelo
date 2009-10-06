@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "codb.ch"
-#include "codbcfg.ch"
+#include "ci_codb.ch"
+#include "ci_codbcfg.ch"
 
 local oDep,oDict
 /*

@@ -48,8 +48,8 @@
 #include "axntxcdx.ch"
 #endif
 #endif
-#include "fileio.ch"
-#include "deflist.ch"
+#include "ci_fileio.ch"
+#include "ci_deflist.ch"
 Static msquery, textquery[ 7 ], fileque, que_upd := .F.
 
 *+��������������������������������������������������������������������

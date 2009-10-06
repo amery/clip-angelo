@@ -1,36 +1,27 @@
 #
 #                                            clip-gzip/Makefile.in
 #
-Local_Depend =
-PROG = clip-gzip
-#TARGET=libclip-gzip$(DLLSUFF)
-#ATARGET=libclip-gzip.a
-#RTARGET=libclip-gzip$(DLLREALSUFF)
-OBJS=gzip.o
-ADDLIBS=-lz
-#$(C_LIBS)
+PROG 			= 			clip-gzip
+OBJS 			= 			gzip.o
+ADDLIBS 		= 			-lz
 
-all:Makefile $(STARGET)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gzip
 
 cfg :
 
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
-
-#$(ATARGET): $(OBJS)
-#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBS)
-
 include $(Makefile_o_in)
 
-hashcode.h:
-#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
+install : all install-lib install-example
 
-install:all install-lib install-example
-#	$(CLIP_CP) libclip-gzip $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-gzip
-#	cp -Rfu$(V) example/* $(DESTDIR)/doc/example/clip-gzip/
-
-cleanc:
+cleanc :
 	$(E_rm)rm -rf$(V) hashcode.h $(TARGET).*
 
 distcleanc :

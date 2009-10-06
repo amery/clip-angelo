@@ -2,26 +2,26 @@
 	$Log: po_util.c,v $
 	Revision 1.1  2006/06/22 19:01:36  itk
 	uri: initial
-	
+
 	Revision 1.7  2002/12/11 07:19:48  clip
 	fix bug with '_' processing
 	paul
-	
+
 	Revision 1.6  2002/11/18 10:53:28  clip
 	fix bug with backslash in po_extr/po_subst utils
 	paul
-	
+
 	Revision 1.5  2002/11/05 07:45:34  clip
 	*** empty log message ***
-	
+
 	Revision 1.4  2002/11/04 10:21:57  clip
 	po compatability mode for old gettext utils
 	paul
-	
+
 	Revision 1.3  2002/10/24 13:05:44  clip
 	tdoc: add English GPL text
 	paul
-	
+
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +29,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "po_util.h"
+#include "ci_po_util.h"
 
 #define COMPAT_DELIM '\177'
 

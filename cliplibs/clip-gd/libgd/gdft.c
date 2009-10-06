@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifndef MSWIN32
 #include <unistd.h>
@@ -32,7 +32,7 @@ char * gdImageStringFT(gdImage *im, int *brect, int fg, char *fontlist,
 }
 #else
 
-#include "gdcache.h"
+#include "ci_gdcache.h"
 /*#include "freetype/freetype.h"*/
 /*#include "freetype/ftglyph.h"*/
 #include <ft2build.h>
@@ -153,7 +153,7 @@ typedef struct {
  */
 
 #ifdef JISX0208
-#include "jisx0208.h"
+#include "ci_jisx0208.h"
 #endif
 
 #define Tcl_UniChar int

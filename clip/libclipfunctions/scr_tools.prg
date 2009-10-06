@@ -3,7 +3,7 @@
 	Author  : Tsarenko P  <tpe@dongu.donetsk.ua>
 	License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
+#include "ci_config.ch"
 
 ***************************************************************
 Function SaySpread(cStr, nDelay, nRow, nCol)

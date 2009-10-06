@@ -7,7 +7,7 @@
 
 /* CTI_SIGNAL - object contains information about CTI signal */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 init procedure __cti_signal_init()
 	public SignalCurrentID := 0

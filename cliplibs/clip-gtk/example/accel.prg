@@ -1,4 +1,5 @@
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
+Local win, btn, vbox, pix
 gtk_init()
 win := gtk_windowNew(, "Test accelerators")
 gtk_WindowSetPosition(win, GTK_WIN_POS_CENTER)
@@ -9,7 +10,7 @@ gtk_WindowSetIconPixmap(win, pix)
 gtk_signalConnect(win, "delete-event", {|| gtk_quit()})
 
 //gtk_SignalConnect(win, GTK_EVENT, {|wgt, ev| iif(ev:event!=GTK_KEY_PRESS, .f., (qout(ev:keyval, chr(ev:keyval))))})
-btn := gtk_ButtonNew(, "ф&ыва", "&")
+btn := gtk_ButtonNew(, "О©╫&О©╫О©╫О©╫", "&")
 //btn:AccelKey=115
 gtk_SignalConnect(btn, "clicked", {|| qout("clicked asdf")})
 gtk_WidgetAddAccelerator(btn, GTK_CLICKED_SIGNAL, win, ;

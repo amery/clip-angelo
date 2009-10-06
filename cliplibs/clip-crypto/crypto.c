@@ -25,8 +25,8 @@
 
 #include <openssl/evp.h>
 
-#include "clip.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 
 #define BLOCK_SIZE 4096

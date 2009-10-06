@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
+#include "ci_gd.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -115,7 +115,7 @@ gdImagePtr gdImageCreateFromGdCtx(gdIOCtxPtr in)
 
 	/* Then the data... */
 	for (y=0; (y<sy); y++) {
-		for (x=0; (x<sx); x++) {	
+		for (x=0; (x<sx); x++) {
 			int ch;
 			ch = gdGetC(in);
 			if (ch == EOF) {
@@ -168,8 +168,8 @@ static void _gdImageGd(gdImagePtr im, gdIOCtx *out)
 
 	_gdPutHeader(im, out);
 
-	for (y=0; (y < im->sy); y++) {	
-		for (x=0; (x < im->sx); x++) {	
+	for (y=0; (y < im->sy); y++) {
+		for (x=0; (x < im->sx); x++) {
 			/* ROW-MAJOR IN GD 1.3 */
 			gdPutC((unsigned char)im->pixels[y][x], out);
 		}

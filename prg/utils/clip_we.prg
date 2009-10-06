@@ -3,7 +3,7 @@
     Autor   : Uri (uri@itk.ru)
     Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
-#include "set.ch"
+#include "ci_set.ch"
 
 local i, par := {}, scr, color
 

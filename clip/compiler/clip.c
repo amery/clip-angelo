@@ -361,7 +361,7 @@
  *
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -370,14 +370,14 @@
 #ifndef OS_MINGW
 	#include <sys/times.h>
 #else
-	#include "_win32.h"
+	#include "ci__win32.h"
 #endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
 #include <locale.h>
 
-#include "clic.h"
+#include "ci_clic.h"
 #include "getopt.h"
 #include "license.h"
 
@@ -409,7 +409,7 @@ int verbose = 1;
 int main_flag = 0;
 int nomain_flag = 0;
 int auto_memvar = 0;
-const char *std_ch_filename = "std.ch";
+const char *std_ch_filename = "ci_std.ch";
 char *CC = "gcc";
 char *COMPILE_FLAG = "-c";
 char *CFLAGS = "";
@@ -916,7 +916,7 @@ options:\n\
  -D<name=value>, --define=<name=value>\n\
 	define macro name as <value>\n\
  -U[<filename>], --use-std-ch[=<filename>]\n\
-	use alternate (or none) standard include file (default==std.ch)\n\
+	use alternate (or none) standard include file (default==ci_std.ch)\n\
  -S<charset>, --source-charset\n\
 	define source charset of string constants\n\
  -T<charet>, --target-charset\n\
@@ -1595,7 +1595,7 @@ main(int argc, char **argv)
 				 && strcasecmp(e, OBJSUF)
 				 && strcasecmp(e, SOBJSUF) && strcasecmp(e, ".a") && strcasecmp(e, ".lib"))
 			{
-				yywarning("unknown file type '%s' file '%s'", e, argv[i]);
+				/*yywarning("unknown file type '%s' file '%s'", e, argv[i]); */
 				continue;
 			}
 		}

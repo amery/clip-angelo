@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_bind(_queryArr, typeNode)
 
@@ -65,7 +65,7 @@ errorblock({|err|error2html(err)})
 
 
 	if typeNode == 'rdf3'
-	
+
 	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
 	    ? 'xmlns:D="http://itk.ru/D#" '
 	    ? 'xmlns:R="http://itk.ru/R#" '

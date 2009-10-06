@@ -3,12 +3,12 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "button.ch"
+#include "ci_config.ch"
+#include "ci_button.ch"
 
 #ifdef __UNIX__
-  #define SB_UPSYM      "ì"
-  #define SB_DOWNSYM    "õ"
+  #define SB_UPSYM      "ÔøΩ"
+  #define SB_DOWNSYM    "ÔøΩ"
   #define SB_LEFTSYM    "<"
   #define SB_RIGHTSYM   ">"
   #define SB_THUMBSYM   "#"
@@ -17,9 +17,9 @@
   #define SB_DOWNSYM    chr(25)
   #define SB_LEFTSYM    chr(27)
   #define SB_RIGHTSYM   chr(26)
-  #define SB_THUMBSYM   "í"
+  #define SB_THUMBSYM   "ÔøΩ"
 #endif
-#define SB_FILLSYM    "ê"
+#define SB_FILLSYM    "ÔøΩ"
 
 ***************************************************
 function scrollBar(nstart,nend,noffset,bsBlock,orient)

@@ -1,17 +1,16 @@
 #!/bin/sh
+
 Check_Library 		glade-2.0 			.so 	clip-glade2 	Yes 	/usr/lib$C64 							"libglade-devel-xx-$ARCH.(rpm/deb)"
 
 LIBGLADE_VER=$(pkg-config --modversion libglade-2.0 2> /dev/null )
 
-CFLAGS=$(pkg-config --cflags libglade-2.0)
+C_FLAGS=$(pkg-config --cflags libglade-2.0)
 LIBS=$(pkg-config --libs libglade-2.0)
 
-
-echo "LIBS = $LIBS" >Makefile.01
-echo "C_FLAGS += $CFLAGS $ADDCFLAGS">>Makefile.01
-echo "LIBGLADE_VER = $LIBGLADE_VER">>Makefile.01
-
-cat Makefile.in >Makefile
+cat ./Makefile.inc 							>>Makefile.ini
+echo "LIBS += $LIBS" 						>>Makefile.ini
+echo "C_FLAGS += $C_FLAGS $ADD_CFLAGS"	>>Makefile.ini
+echo "LIBGLADE_VER = $LIBGLADE_VER"		>>Makefile.ini
 #!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

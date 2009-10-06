@@ -9,8 +9,8 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <clip-ui.ch>
-#include <clip-gtk2.ch>
+#include <ci_clip-ui.ch>
+#include <ci_clip-gtk2.ch>
 
 /* Test of clip-ui library usage */
 
@@ -20,7 +20,7 @@ static childToolbar
 static timer, tbState, iteration
 static vals := { { 'Alan', 'P1' }, ;
 				 { 'John', 'P2' }, ;
-				 { 'Mary', 'P3' } ; 
+				 { 'Mary', 'P3' } ;
 			   }
 
 /* Declaration */
@@ -186,14 +186,14 @@ static function BankRefReq( sp )
 	aadd(tc, UITableColumn('num',  '#', TABLE_COLUMN_NUMBER))
 	aadd(tc, UITableColumn('date', 'Date', TABLE_COLUMN_DATE))
 	aadd(tc, UITableColumn('name', 'Payee', TABLE_COLUMN_CHOICE))
-	aadd(tc, UITableColumn('sum',  'Sum', TABLE_COLUMN_NUMBER))	
+	aadd(tc, UITableColumn('sum',  'Sum', TABLE_COLUMN_NUMBER))
 	tc[1]:format := "%.0f"
-	tc[3]:source := UISource( "names" ) 	
+	tc[3]:source := UISource( "names" )
 	tc[3]:lookup := .T.
 	tc[4]:format := "%'.2f"
 
 	table := UITable(tc)
-	
+
 	// Fill tree and table
 	updateTable(tree, table)
 	node66 := tree:addNode({"Parent_Last"})
@@ -253,7 +253,7 @@ return
 
 /* Form widgets */
 static function BankDocReq(w,grid)
-	local drv, lab, data, top, bottomLine, sd, pol, plat 
+	local drv, lab, data, top, bottomLine, sd, pol, plat
 	local i,  t, f1, f2, t1, t2, b1, b2, b3, e1, e2, cb1, cb2
 	local sum, hbsum, rs, rg, wIcon, wB
 	drv := getDriver()
@@ -342,9 +342,9 @@ static function BankDocReq(w,grid)
 	f1:setType(FRAME_RAISED)
 	t1 := UIHBox(,,3)
 	f1:add( t1 )
-	
+
 	drv:setStyle(f1,"color.bg","green")
-	
+
 	cb1 := UIChoice(NIL, "names", "P3")
 	w:setName("payer", cb1)
 	t1:add(cb1, .T., .T.)
@@ -485,58 +485,58 @@ return
 /* EditTable widget */
 static function EditTableWidget( w )
 	local table, columns:={}, b, tA, t1, t2, t3
-	
+
 	//? 'create columns'
 	aadd( columns, UITableColumn( 'num', 	'#', 		TABLE_COLUMN_COUNTER ) )
 	aadd( columns, UITableColumn( 'name', 	'Name', 	TABLE_COLUMN_CHOICE ) )
 	aadd( columns, UITableColumn( 'unit', 	'Units', 	TABLE_COLUMN_COMBO ) )
-	aadd( columns, UITableColumn( 'date',	'Date', 	TABLE_COLUMN_DATE ) ) 
+	aadd( columns, UITableColumn( 'date',	'Date', 	TABLE_COLUMN_DATE ) )
 	aadd( columns, UITableColumn( 'qty', 	'Quantity', TABLE_COLUMN_NUMBER ) )
 	aadd( columns, UITableColumn( 'price', 	'Price', 	TABLE_COLUMN_NUMBER ) )
 	aadd( columns, UITableColumn( 'sum', 	'Sum', 		TABLE_COLUMN_NUMBER ) )
 	aadd( columns, UITableColumn( 'vat', 	'VAT', 		TABLE_COLUMN_CHECK ) )
 	aadd( columns, UITableColumn( 'other', 	'Comment',	TABLE_COLUMN_TEXT ) )
-	
+
 	// Lookup at second columns
 	columns[2]:lookup := .T.
 	columns[2]:source := UISource( "names" )
-	
+
 	columns[3]:source := UISource( { "barrel", "pint" } )
 	columns[3]:default := 'bottle'
-	
+
 	columns[4]:editable := .F.
-	
+
 	columns[5]:format := "%.0f"
-	
+
 	columns[8]:default := .T.
-		
+
 	//? 'create UIEditTable'
 	//w:setPadding( 3 )
 	table := UIEditTable( columns )
-	
+
 	//? 'add rows'
 	table:addRow( { 1, "P1",      "2", date(),  5, 5.1, 0, .T., '' } )
 	table:addRow( { 2, "P2",       "1", date(), 15, 2.5, 0, .F., 'Cold and tasty' } )
 	table:addRow( { 3, "P3", 1,       date(),  0,   0, 0, .F., '' } )
 	table:setRow( 3, { 3, "P1", 1, date(),  1, 10.7, 0, .T., '' } )
 	table:addRow( { 4, "P2",       1, date(), 15, 2.3, 0, .T., '' } )
-	
+
 	//? 'remove rows'
 	table:removeRow( 3 )
 	table:removeRow( 4 )
 	table:setCursor( 2, 3 )
-	
+
 	//? 'set field value'
 	table:setField( 'unit', 2, 2 )
 	table:setField( 5, 2, 8 )
 	?? 'num: ', table:getField('num', 2), ' '
 	?? 'price', table:getField('price', 2)
 	?? chr(10)
-	
+
 	//? 'set action'
 	table:setAction( 'changed', {|t,r,c,val| TableChanged(t, r, c, val) })
 	table:setAction( 'select',  {|t,r,c,val| ChoiceSelect(t, r, c, val) }, 'name')
-	
+
 	//table:layout:setPadding( 3 )
 	w:add(table, .T., .T.)
 	b := UIButton("Get values", {|w, e| showEditTableValues(table) })

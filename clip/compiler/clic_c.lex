@@ -26,7 +26,7 @@ start cvs logging
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
-#include "clic.h"
+#include "ci_clic.h"
 
 static char *i_name;
 static int comment_caller;
@@ -169,7 +169,7 @@ preprocCFile( char *iname, char *oname )
 	i_name=iname;
    	yyin=ifile;
         yyout=ofile;
-        fprintf(yyout, "#include \"clip.h\"\n");
+        fprintf(yyout, "#include \"ci_clip.h\"\n");
         fprintf(yyout, "#line 1 \"%s\"\n", i_name);
 
 	while( yylex()>0 )

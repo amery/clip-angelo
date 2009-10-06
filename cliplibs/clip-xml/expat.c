@@ -8,13 +8,12 @@
 #include <errno.h>
 #include <expat.h>
 
-#include "clip.h"
-#include "libclipscreen/charset.h"
+#include "ci_clip.h"
+#include "libclipscreen/ci_charset.h"
 
-#include "hashxml.h"
-#include "clip-expat.h"
-#include "clip-expat.ch"
-
+#include "ci_hashcode.h"
+#include "ci_clip-expat.h"
+#include "ci_clip-expat.ch"
 
 static ClipVar _xml_list;
 static ClipVar *xml_list = &_xml_list;

@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "config.ch"
+#include "ci_config.ch"
 
 *************************************************
 function HtmlNew( File, Title)

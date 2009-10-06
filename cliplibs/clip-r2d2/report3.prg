@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report3_xml(_queryArr)
 
@@ -88,11 +88,11 @@ local urn,sprname,typenode,cache:=map()
 		cgi_xml_error( "Class description not found: "+sprname )
 		return
 	endif
-	
-	
-	if empty(urn)                                                                                                                                        
-	    urn := 'urn:'+sprname                                                                                                                        
-        endif        
+
+
+	if empty(urn)
+	    urn := 'urn:'+sprname
+        endif
 
 	oDep02 := cgi_needDepository("GBL02","01")
 	if empty(oDep)
@@ -198,7 +198,7 @@ local urn,sprname,typenode,cache:=map()
 	tmp := map()
 	post_objs:={}
 	for i=1 to len(post_list)
-		/* не показывать дубликаты проводок */
+		/* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 		if post_list[i] $ tmp
 			loop
 		endif
@@ -235,7 +235,7 @@ local urn,sprname,typenode,cache:=map()
 		endif
 		aadd(post_objs,post)
 	next
-	aTree['level0']:={}                                                                                                                    
+	aTree['level0']:={}
 
 	if .t. //empty(document)
 
@@ -251,15 +251,15 @@ local urn,sprname,typenode,cache:=map()
             	apost[k]:kquantity+=tmp:kquantity
             endif
         next
-        /*                                 
+        /*
         for k in apost
         	aadd(aTree['level0'], k)
         next
         */
 		asort(aTree['level0'],,,{|x,y| x:odate <= y:odate})
-	else        
+	else
 		for i=1 to len(post_objs)
-			aadd(aTree['level0'], post_objs[i])                                                                                                               
+			aadd(aTree['level0'], post_objs[i])
 		next
 		asort(aTree['level0'],,,{|x,y| x:odate <= y:odate})
 	endif
@@ -267,32 +267,32 @@ local urn,sprname,typenode,cache:=map()
 	cgi_xml_header()
 
 
-	if typeNode == 'rdf3'                                                                                                                                
-	     ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                             
-	     ? 'xmlns:D="http://itk.ru/D#" '                                                                                                                  
-	     ? 'xmlns:R="http://itk.ru/R#" '                                                                                                                  
-	     ? 'xmlns:S="http://itk.ru/S#">'                                                                                                                  
-	     ?                                                                                                                                                
-	 elseif typeNode == 'rdf'                                                                                                                             
-	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                               
-	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'                                                                                                        
-	 elseif typeNode == 'xml'                                                                                                                             
-	    ? '<root>'                                                                                                                                         
-	 else                                                                                                                                                 
-	    ? '<root xmlns="http://itk.ru/json#">'                                                                                                             
-	endif                 
-																										                                                                                                                                                               
-		if len(aTree)>0                                                                                                                                      
-			cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode,.f., sprname)                                                                
-		endif                                                                                                                                                
+	if typeNode == 'rdf3'
+	     ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	     ? 'xmlns:D="http://itk.ru/D#" '
+	     ? 'xmlns:R="http://itk.ru/R#" '
+	     ? 'xmlns:S="http://itk.ru/S#">'
+	     ?
+	 elseif typeNode == 'rdf'
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
+	 elseif typeNode == 'xml'
+	    ? '<root>'
+	 else
+	    ? '<root xmlns="http://itk.ru/json#">'
+	endif
+
+		if len(aTree)>0
+			cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,"",,typeNode,.f., sprname)
+		endif
 
 
 
-	if typeNode == 'rdf3'                                                                                                                                
-    	    ? '</RDF:RDF>'                                                                                                                                   
-	elseif  typeNode == 'rdf'                                                                                                                            
-	    ? '</RDF:RDF>'                                                                                                                                   
-	else                                                                                                                                                 
-	    ? '</root>'                                                                                                                                      
-	endif                                                                                                                                                
-	?						                                  
+	if typeNode == 'rdf3'
+    	    ? '</RDF:RDF>'
+	elseif  typeNode == 'rdf'
+	    ? '</RDF:RDF>'
+	else
+	    ? '</root>'
+	endif
+	?

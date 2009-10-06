@@ -6,16 +6,16 @@
 	$Log: rdd.c,v $
 	Revision 1.3  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.2  2006/12/11 12:23:22  foldi
 	Manage custom index.
-	
+
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.323  2005/12/09 15:46:35  clip
 	rust: actualize rd->record before rdd_setvalue()
-	
+
 	Revision 1.322  2005/11/30 16:38:44  clip
 	rust: fix SIGSEGV
 
@@ -826,20 +826,20 @@
 #include <string.h>
 #include <limits.h>
 #include <time.h>
-#include "../include.h/rdd.h"
-#include "coll.h"
-#include "../libclipscreen/charset.h"
-#include "error.ch"
-#include "six.ch"
-#include "btree.h"
+#include "../include.h/ci_rdd.h"
+#include "ci_coll.h"
+#include "../libclipscreen/ci_charset.h"
+#include "ci_error.ch"
+#include "ci_six.ch"
+#include "ci_btree.h"
 #ifdef USE_TASKS
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 #endif
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif
 
-#include "../include.h/ncp.h"
+#include "../include.h/ci_ncp.h"
 
 #ifdef USE_NCPFS
 #define fcntl ncp_fcntl

@@ -9,22 +9,22 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 /** UIEditTable - class for table, editable by user */
 
 /* Tests:
-	- create table with columns: 
+	- create table with columns:
 		- choice
 		- id from combobox column
-   
+
    BUGS:
 	- unable to get value from first column if it is number
-	
+
    FUTURE
    	- custom background
    	- sortable columns
-   	
+
 */
 
 static driver := getDriver()

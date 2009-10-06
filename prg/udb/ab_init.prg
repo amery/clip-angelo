@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 init procedure ab_init
 	local k

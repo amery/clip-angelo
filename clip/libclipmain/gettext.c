@@ -10,11 +10,11 @@
 #include <dirent.h>
 #include <ctype.h>
 
-#include "clip.h"
-#include "coll.h"
-#include "gettext.h"
-#include "plural.h"
-#include "clipcfg.h"
+#include "ci_clip.h"
+#include "ci_coll.h"
+#include "ci_gettext.h"
+#include "ci_plural.h"
+#include "ci_clipcfg.h"
 
 #ifdef OS_CYGWIN
 #undef NO_MMAP

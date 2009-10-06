@@ -1,23 +1,27 @@
 #
 #                                            clip/libclipdbfsql/Makefile.in
 #
-Local_Depend = ../include/*.ch ../include.h/*.h
+Local_Depend 		= 			../include/*.ch 		\
+									../include.h/*.h
 
-# set appropriate paths between comments
-########
+C_FLAGS 				+= 		-I../libcliprdd
+OBJS 					=  		$(sort 						\
+												dbfsql_c.o 		\
+												dbfsql_prg.o 	\
+									)
 
-#CC = gcc
-#CLIPFLAGS += -I. -I../include -I../include.h
+ADDLIBS 				=
+PROG 					= 			clipdbfsql
 
-C_FLAGS += -I../libcliprdd
+export
 
-OBJS =  $(sort dbfsql_c.o dbfsql_prg.o )
-ADDLIBS =
-#LIB = libclipdbfsql.a
-PROG = clipdbfsql
+######################################################################################
+###################################################################################### local rules
 
-install all: Makefile $(ATARGET)
-#install all: Makefile $(LIB)
+install all: Makefile $(OBJS) $(ATARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipdbfsql
 
 cfg:
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
@@ -29,10 +33,6 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
-
-#$(LIB): $(OBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) dbfsql_c.o dbfsql_prg.o && ranlib $(LIB)
 
 include $(Makefile_end_in)
 

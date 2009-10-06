@@ -533,7 +533,7 @@
 
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -553,14 +553,14 @@
 #endif
 #include <ctype.h>
 
-#include "clip.h"
-#include "clipvm.h"
-#include "hash.h"
-#include "ar.h"
-#include "coll.h"
+#include "ci_clip.h"
+#include "ci_clipvm.h"
+#include "ci_hash.h"
+#include "ci_ar.h"
+#include "ci_coll.h"
 
 #ifdef USE_TASKS
-	#include "../libcliptask/task.h"
+	#include "../libcliptask/ci_task.h"
 #endif
 #ifndef RTLD_NOW
 	#define RTLD_NOW DL_LAZY

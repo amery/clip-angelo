@@ -1,4 +1,4 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 #define TARGET_STRING	0
 #define TARGET_ROOTWIN	1
@@ -17,11 +17,13 @@ static target_table := { ;
   { "frame", 1, 1 }}
 
 static n_targets := len(target_table)
+Static trashcan_closed, trashcan_closed_mask, trashcan_open, trashcan_open_mask, time, popdown_timer
+Static popup_window, popped_up, in_popup, popup_timer
 
 function main ()
 
 local  window, table, label, button, layout, frame, f1
-local drag_icon, drag_mask
+local drag_icon, drag_mask, entry
 
 
   gtk_init ()

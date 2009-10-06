@@ -542,7 +542,7 @@
 */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -561,11 +561,11 @@
 #include <dirent.h>
 #include <limits.h>
 
-#include "hash.h"
-#include "hashcode.h"
+#include "ci_hash.h"
+#include "ci_hashcode.h"
 
-#include "error.ch"
-#include "fileio.ch"
+#include "ci_error.ch"
+#include "ci_fileio.ch"
 
 #ifdef _WIN32
 	#include <io.h>
@@ -578,10 +578,10 @@
 #endif
 
 
-#include "ncp.h"
+#include "ci_ncp.h"
 
 #ifdef USE_TASKS
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 #endif
 
 typedef struct {

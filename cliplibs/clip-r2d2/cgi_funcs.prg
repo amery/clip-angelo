@@ -1,5 +1,5 @@
-#include "set.ch"	
-#include "r2d2lib.ch"
+#include "ci_set.ch"
+#include "ci_r2d2lib.ch"
 
 //#define PUT_RDF_TREE
 
@@ -71,7 +71,6 @@ function cgi_html_header(title, charSet)
 	endif
 return ""
 /* ���� include - �� ������� - ����� ��� ����� :) */
-#include "r2d2lib.ch"
 /************************************************/
 function cgi_xml_error(str,ident)
 	? '<error>'
@@ -316,7 +315,7 @@ function cgi_essence(oId)
 	local ret,idLen1,idLen2,idDep,oDep
 
 	ret:=codb_essence(oId)
-	
+
 	if empty(ret) .and. valtype(oId)=="C" //.or. ret==oId
 	else
 	    return ret
@@ -759,7 +758,7 @@ function cgi_make_columns(oDict,sprname,tview,type,atom)
 				next
 			 endif
 			col:defvalue := attrEmp
-			
+
 			aadd(columns,col)
 		next
 	else
@@ -833,7 +832,7 @@ function cgi_make_columns(oDict,sprname,tview,type,atom)
 	col:width   := codb_info("CODB_ID_LEN")
 	col:expr    := "id"
 	col:footer  := ""
-	
+
 	aadd(columns,col)
 
 	for i=1 to len(columns)
@@ -1069,7 +1068,7 @@ function cgi_aRefs(oDep,classDesc,columns,_query,find_wrap,Serr,includeAll,lOwne
 	local isExpr
 	local aTree:={}, arList:={}
 	s_obj := cgi_make_select_string(columns,_query,find_wrap,@Serr)
-	
+
 	isExpr:= iif(isExpr==NIL,.f.,isExpr)
 	fullList:= iif(fullList==NIL,.f.,fullList)
 	needDeleted:= iif(valtype(needDeleted)=="L",needDeleted,.f.)
@@ -1127,9 +1126,9 @@ function cgi_aRefs2(oDep,classDesc,columns,_query,find_wrap,Serr,includeAll,lOwn
 	fullList:= iif(fullList==NIL,.f.,fullList)
 	needDeleted:= iif(valtype(needDeleted)=="L",needDeleted,.f.)
 
-	
+
 	for i=1 to len(columns)
-		if columns[i]:name = 'owner_id' 
+		if columns[i]:name = 'owner_id'
 			iftree := .t.
 			exit
 		endif
@@ -1167,7 +1166,7 @@ local obj, lenmas, mas, owid
 	lenmas:= len(idList) // iif( len(idList) > 10000, 10000, len(idList))
 
 	if !iftree
-		if needDeleted 
+		if needDeleted
 			for i=1 to lenmas
 				obj:=cgi_getValue(idList[i])
 				if needDeleted .and. obj:__version >=0
@@ -1178,7 +1177,7 @@ local obj, lenmas, mas, owid
 		else
 			aTree['level0']:=idList
 		endif
-		
+
 	else
 		//*--------------if tree
 		for i=1 to lenmas
@@ -1194,7 +1193,7 @@ local obj, lenmas, mas, owid
 			    aadd(aTree[tmp1],obj)
 			endif
 		next
-  		
+
 		if empty(strexpr)
 		    return aTree
 		endif
@@ -1206,13 +1205,13 @@ local obj, lenmas, mas, owid
 		    else
 				if empty(mas[1]:owner_id)
 				    loop
-				endif    	
+				endif
 		    endif
 		    if len(mas)>0
 				findOwnerIdObject(mas[1]:owner_id, aTree)
 		    end
 		next
-		
+
 	endif
 
 return aTree
@@ -1222,21 +1221,21 @@ local obj, key, k
     obj:=cgi_getValue(owid)
     key:=iif( empty(obj:owner_id), 'level0', obj:owner_id)
     if key $ aTree
-    
+
 	k := ascan(aTree[key],{|x|x:id==obj:id})
-	if k==0  
+	if k==0
 	    aadd(aTree[key], obj)
 	    if !empty(obj:owner_id)
 		findOwnerIdObject(obj:owner_id, aTree)
 	    endif
-	endif    
-    	
+	endif
+
     else
 	aTree[key]:={}
 	aadd(aTree[key], obj)
 	if !empty(obj:owner_id)
     	    findOwnerIdObject(obj:owner_id, aTree)
-	endif    
+	endif
     endif
 return
 
@@ -2001,7 +2000,7 @@ local arr, dname
 local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 
     outlog(__FILE__,__LINE__,'cgi_putArefs2Rdf3')
-    
+
 	if empty(ext_urn)
 		ext_urn := ""
 	endif
@@ -2012,11 +2011,11 @@ local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 		lenarr:=len(arr)
 		if lenarr==0
 		    loop
-		else  
+		else
 		    obj:=arr[1]
 		    if 'OWNER_ID' $ obj
 			dname:=iif( empty(obj:owner_id), 'level0', obj:owner_id)
-		    else 
+		    else
 		    	dname:='level0'
 		    endif
 		endif
@@ -2032,11 +2031,11 @@ local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 		lenarr:=len(arr)
 		if lenarr==0
 		    loop
-		else  
+		else
 		    obj:=arr[1]
 		    if 'OWNER_ID' $ obj
 			dname:=iif( empty(obj:owner_id), 'level0', obj:owner_id)
-		    else 
+		    else
 		    	dname:='level0'
 		    endif
 		endif
@@ -2054,18 +2053,18 @@ local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 		lenarr:=len(arr)
 		if lenarr==0
 		    loop
-		else  
+		else
 		    obj:=arr[1]
 		    if 'OWNER_ID' $ obj
 				dname:=iif( empty(obj:owner_id), 'level0', obj:owner_id)
-		    else 
+		    else
 		    	dname:='level0'
 		    endif
 		endif
 		//if tmp == ','
 			?? tmp
 		//endif
-			tmp:=','			
+			tmp:=','
 	    	? ' "'+dname+'":['
 			if lenarr>=1
 		    	    ??'{'
@@ -2081,17 +2080,17 @@ local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 			endif
 				?? ']'
 	    next
-	    
-	else    
+
+	else
 	    for arr in aTree
 	    	lenarr:=len(arr)
 		if lenarr==0
 		    loop
-		else  
+		else
 		    obj:=arr[1]
 		    if 'OWNER_ID' $ obj
 			dname:=iif( empty(obj:owner_id), 'level0', obj:owner_id)
-		    else 
+		    else
 		    	dname:='level0'
 		    endif
 		endif
@@ -2102,7 +2101,7 @@ local z:=1, lencol:=len(columns), lenTree:= len(aTree), lenarr, lentmp
 		    	next
 		? s+'</'+sprname+'>'
 	    next
-	 
+
 	endif
 return
 
@@ -2142,7 +2141,7 @@ local essenc:="", rerr, refs:=""
 			?? '>'+dtoc(sTmp)
 	    elseif  col:datatype == "L"
 			if valtype(sTmp)=="L"
-		    	?? ' value="'+iif(tmp[upper(col:name)],"true","false")+'">'+iif(sTmp,"true","false") 
+		    	?? ' value="'+iif(tmp[upper(col:name)],"true","false")+'">'+iif(sTmp,"true","false")
 			else
 		    	?? ' value="'+iif(tmp[upper(col:name)],"true","false")+'">'+sTmp
 			endif
@@ -2177,11 +2176,11 @@ local essenc:="", rerr, refs:=""
 				endif
 			endif
 			?? ' idref="'+sTmp+'">'+sTmp3
-	    elseif  col:datatype == "A"			
-	        sTmp := alltrim(varToString( stmp,,, .f.))                                                                                           
-	        sTmp := substr(stmp,2,len(sTmp)-2)                                                                                                   
-		sTmp := strtran(sTmp,'"',"")                                                                                                         
-		sTmp := strtran(sTmp,','," ")                                                                                                        
+	    elseif  col:datatype == "A"
+	        sTmp := alltrim(varToString( stmp,,, .f.))
+	        sTmp := substr(stmp,2,len(sTmp)-2)
+		sTmp := strtran(sTmp,'"',"")
+		sTmp := strtran(sTmp,','," ")
 		?? ' idrefs="'+sTmp+'">'
 	endif
 	elseif valtype(sTmp) == "C"
@@ -2195,7 +2194,7 @@ local essenc:="", rerr, refs:=""
 	    cgi_error2xml(rerr)
 	end sequence
     next
-    
+
 	?? '</object>'
 
 
@@ -2207,35 +2206,35 @@ local sTmp, sTmp2, sTmp3, sTmp4
 local tmp, str:=""
 local j, col, s := "", obj2, k:=0, t:='false'
 local essenc:="", rerr, refs:="", cid:="", colname:="", coldtp:=""
-local cClass 
+local cClass
 
 
-    if valtype(obj)=="C" 
+    if valtype(obj)=="C"
 	obj:= cgi_getValue(obj)
     endif
 
     if empty(obj)
 	return
     endif
-    
+
     essenc := strtran_json(cgi_essence(obj))
     ??  '"id":"'+obj:id+'", "essence":"'+essenc+'", '
 
     s := obj:id
     if s $ aTree
         t:="true"
-    endif 
-	
+    endif
+
     ?? '"a":{ "isContainer":'+t+', "level":0, "isContainerOpen":false }'
     refs:=',"r":{"id":"'+essenc+'"'
     cid:=',"cid":{"a":""'
 
-    
+
     for j=1 to lencol
     	begin sequence
 	sTmp3 := ""
 	sTmp2 := ""
-	stmp4 := ""    
+	stmp4 := ""
     	col := columns[j]
 	colname:=col:name
 
@@ -2247,7 +2246,7 @@ local cClass
 	    if colname=='id' .or. coldtp=="A" .or. coldtp=="M"
     		loop
     	    endif
-	
+
 	    if  coldtp == "C"
 			str+=',"'+colname+'":"'+strtran_json(sTmp)+'" '
 	    elseif  coldtp == "N"
@@ -2266,24 +2265,24 @@ local cClass
 			endif
 			refs+= ',"'+colname+'":'+ iif(obj[upper(colname)],"true","false")
 	    elseif  coldtp == "R" .and. colname!='essence'
-			if !empty(stmp)			
+			if !empty(stmp)
 			    if upper(colname) $ obj
 				sTmp2 := obj[upper(colname)]
-			    elseif "OBJ_ID" $ col    
+			    elseif "OBJ_ID" $ col
 				sTmp2 := mapEval(obj,col:obj_id)
 			    endif
-			    
+
 			    if !empty(stmp2)
-				sTmp3 := strtran_json(cgi_essence(sTmp2))			    
+				sTmp3 := strtran_json(cgi_essence(sTmp2))
 			    endif
-			    
+
 			    sTmp4 := cgi_getValue(stmp2)
 			    if !empty(stmp4)
 				//sTmp3 := strtran_json(cgi_essence(sTmp4))
-				cid+=',"'+colname+'":"'+sTmp4:class_id+'"'    
+				cid+=',"'+colname+'":"'+sTmp4:class_id+'"'
 			    endif
-			    
-			    
+
+
 			endif
 
 			str+=',"'+colname+'":"'+sTmp3+'" '
@@ -2301,15 +2300,15 @@ local cClass
 			endif
 			str+=', "'+colname+'":"'+sTmp3+'" '
 			refs+=',"'+colname+'":"'+sTmp+'"'
-	    endif		
+	    endif
 	elseif valtype(sTmp) == "C"
 		str+=', "'+colname+'":"'+strtran_json(sTmp)+'" '
 	endif
-	
+
 	recover using rerr
 	    cgi_error2xml(rerr)
 	end sequence
-    	
+
     next
 	 str+=refs+'}'+ cid+'}'
 	 ?? str
@@ -2835,14 +2834,14 @@ function get_contentType(file)
 			{"xht","application/xhtml+xml"},;
 			{"xbl","application/xml"},;
 			{"xml","application/xml"},;
-			{"gif","image/gif"},;                                       
-			{"jpeg","image/jpeg"},;                                  
-			{"jpg","image/jpeg"},;                                   
-			{"jpe","image/jpeg"},;                                      
-			{"pcx","image/pcx"},;                                      
-			{"png","image/png"},;                                     
-			{"svg","image/svg+xml"},;                                   
-			{"svgz","image/svg+xml"},;                                  
+			{"gif","image/gif"},;
+			{"jpeg","image/jpeg"},;
+			{"jpg","image/jpeg"},;
+			{"jpe","image/jpeg"},;
+			{"pcx","image/pcx"},;
+			{"png","image/png"},;
+			{"svg","image/svg+xml"},;
+			{"svgz","image/svg+xml"},;
 			{"xls","application/xml"};
 		}
 

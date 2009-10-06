@@ -1,4 +1,4 @@
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 
 //#define DEBUG
 
@@ -26,7 +26,7 @@ function Main()
 	local CLFrame, CLFx, clscr, clist
 	local CTFrame, CTFx, ctree, node1, node2, node3, node4, ctscr
 	local PBFrame, PBFx, qbtn
-	local PxmFrame, PxmFx, pix, bmppix
+	local PxmFrame, PxmFx, pix, bmppix, node11, node44
 
 	Process:=map()
 
@@ -520,7 +520,7 @@ function Main()
 	node11:=gtk_CTreeInsertNode(ctree,,,{"Node2"},,,,.f.,.t.)
 	node2:=gtk_CTreeInsertNode(ctree,node1,,{"Leaf1"},,,,.t.)
 	node3:=gtk_CTreeInsertNode(ctree,node1,,{"Leaf2"},,,,.t.)
-	gtk_CTreeInsertNode(ctree,node1,,{"русские", "не сдаются"},,,,.t.)
+	gtk_CTreeInsertNode(ctree,node1,,{"О©╫О©╫О©╫О©╫О©╫О©╫О©╫", "О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫"},,,,.t.)
 	node4:=gtk_CTreeInsertNode(ctree,node1,node3,{"Leaf3"},,,,.t.)
 	node44:=gtk_CTreeInsertNode(ctree,node11,,{"Leaf333"},,,,.f.)
 	gtk_CTreeInsertNode(ctree,node44,,{"Leaf333"},,,,.t.)
@@ -740,7 +740,6 @@ return
 
 function ColorNew(r, g, b, op)
   local obj := map()
-
   r  = iif(r ==nil,0,r)
   g  = iif(g ==nil,0,g)
   b  = iif(b ==nil,0,b)

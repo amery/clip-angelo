@@ -7,10 +7,10 @@
 
 /* CTI_PUSHBUTTON - control for creating push buttons */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
-#include "inkey.ch"
+#include "ci_setcurs.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 

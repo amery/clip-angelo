@@ -660,10 +660,10 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-#include "clic.h"
-#include "nodepriv.h"
-#include "clipvm.h"
-#include "clipcfg.h"
+#include "ci_clic.h"
+#include "ci_nodepriv.h"
+#include "ci_clipvm.h"
+#include "ci_clipcfg.h"
 
 static void flush_codestr(CodestrNode *np, void *nod);
 static int loopNo, loopPart=0;

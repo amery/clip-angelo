@@ -1,6 +1,6 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 /*
-	отчет по : подразделению/работнику/корреспонденту
+	О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ : О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫/О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫/О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 
 #define USE_DOCUMENT
@@ -55,8 +55,8 @@ local cashe:=map()
         if "ACC00" $ _query .and. !empty(_query:acc00)
             set("ACC00",_query:acc00)
         endif
-							
-							
+
+
 
 	if (empty(account) .and. empty(an_value)) .or. (empty(beg_date) .or. empty(end_date))
 		cgi_html_header()
@@ -76,7 +76,7 @@ local cashe:=map()
 		return
 	endif
 
-	//cgi_html_header("Журнал по счету")
+	//cgi_html_header("О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫")
 	cgi_xml_header()
 	? '<body  xmlns:html="http://www.w3.org/1999/xhtml">'
 
@@ -138,7 +138,7 @@ local cashe:=map()
 			cgi_html_error( "AN_VALUE not found: "+an_value)
 			return
 		endif
-		/* delete ненужные счета без нужной аналитики */
+		/* delete О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 		tmp := {}
 		for i=1 to len(acc_objs)
 			k := .f.
@@ -184,28 +184,28 @@ local cashe:=map()
 	**************
 	? '<br/>'
 	if !empty(account)
-	? '<span name="header">Журнал счету: </span>'
+	? '<span name="header">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫: </span>'
 	? '<span name="object">'+ acc_objs[1]:code+'  '+acc_objs[1]:smallname+'</span>'
 	endif
 	if !empty(an_value)
-	? '<span name="header"> Аналитическая карточка по : </span>'
+	? '<span name="header"> О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ : </span>'
 	? '<span name="object" idref="'+an_value+'">'+cgi_essence(an_value)+'</span>'
 	endif
-	? 'за период с <span name="beg_date"> '+dtoc(beg_date)+'</span> по <span name="end_date">'+dtoc(end_date)+'</span>'
+	? 'О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ <span name="beg_date"> '+dtoc(beg_date)+'</span> О©╫О©╫ <span name="end_date">'+dtoc(end_date)+'</span>'
 	? '<br/>'
 	? '<table cellpadding="0" cellspacing="0" border="1" style="width: 90%;"  xmlns:html="http://www.w3.org/1999/xhtml">'
 //	? '<table id="account_ved" cellpadding="2" cellspacing="0" border="1" width="80%" align="center">'
 	? '<tr>'
-	? '	<th valign="top"  align="left"  >Дата</th>'
-	? '	<th valign="top"  align="left"  >Дебет</th>'
-	? '	<th valign="top"  align="left"  >Кредит</th>'
-	? '	<th valign="top"  align="right" >Д-т сумма</th>'
-	? '	<th valign="top"  align="right" >К-т сумма</th>'
+	? '	<th valign="top"  align="left"  >О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top"  align="left"  >О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top"  align="left"  >О©╫О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top"  align="right" >О©╫-О©╫ О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top"  align="right" >О©╫-О©╫ О©╫О©╫О©╫О©╫О©╫</th>'
 #ifdef USE_DOCUMENT
-	? '	<th valign="top"  align="left"  width="50%">Документ</th>'
+	? '	<th valign="top"  align="left"  width="50%">О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫</th>'
 #else
-	? '	<th valign="top"  align="left"  width="20%">Субъект</th>'
-	? '	<th valign="top"  align="left"  width="20%">Объект</th>'
+	? '	<th valign="top"  align="left"  width="20%">О©╫О©╫О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top"  align="left"  width="20%">О©╫О©╫О©╫О©╫О©╫О©╫</th>'
 #endif
 	? '</tr>'
 	? '<tbody>'
@@ -310,10 +310,10 @@ local cashe:=map()
 		? '	<td valign="top"  align="right"> '+str(c_data:bd_summa,14,2)+' </td>'
 		? '	<td valign="top"  align="right"> '+str(c_data:bk_summa,14,2)+' </td>'
 #ifdef USE_DOCUMENT
-		? '	<td valign="top"  align="left" >Начальное сальдо</td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫</td>'
 #else
-		? '	<td valign="top"  align="left" >Начальное</td>'
-		? '	<td valign="top"  align="left" >сальдо</td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫</td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫</td>'
 #endif
 		? '</tr>'
 	next
@@ -373,7 +373,7 @@ local cashe:=map()
 	tmp := map()
 	post_objs:={}
 	for i=1 to len(post_list)
-		/* не показывать дубликаты проводок */
+		/* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 		if post_list[i] $ tmp
 			loop
 		endif
@@ -475,16 +475,16 @@ local cashe:=map()
 
 	next
 	? '<tr id="total">'
-	? '	<td valign="top"  align="left" >ИТОГО </td>'
+	? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫ </td>'
 	? '	<td valign="top"  > ... </td>'
 	? '	<td valign="top"  > ... </td>'
 	? '	<td valign="top"  align="right">'+str(summa_all1,14,2)+'</td>'
 	? '	<td valign="top"  align="right">'+str(summa_all2,14,2)+'</td>'
 #ifdef USE_DOCUMENT
-	? '	<td valign="top"   align="left" >Обороты за период </td>'
+	? '	<td valign="top"   align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
 #else
-	? '	<td valign="top"   align="left" >Обороты </td>'
-	? '	<td valign="top"   align="left" >за период </td>'
+	? '	<td valign="top"   align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
+	? '	<td valign="top"   align="left" >О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
 #endif
 	? '</tr>'
 	for i=1 to len(beg_data)
@@ -496,10 +496,10 @@ local cashe:=map()
 		? '	<td font="bold"  align="right">'+str(c_data:ed_summa,14,2)+' </td>'
 		? '	<td font="bold"  align="right">'+str(c_data:ek_summa,14,2)+' </td>'
 #ifdef USE_DOCUMENT
-		? '	<td valign="top"  align="left" >Конечное сальдо </td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
 #else
-		? '	<td valign="top"  align="left" >Конечное </td>'
-		? '	<td valign="top"  align="left" >сальдо </td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
+		? '	<td valign="top"  align="left" >О©╫О©╫О©╫О©╫О©╫О©╫ </td>'
 #endif
 		? '</tr>'
 	next

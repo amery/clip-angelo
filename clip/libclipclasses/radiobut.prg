@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "button.ch"
+#include "ci_button.ch"
 
 **********************************************
 function radioButton(nrow,ncol,caption,rvalue)

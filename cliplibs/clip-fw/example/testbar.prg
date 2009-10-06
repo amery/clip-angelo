@@ -1,4 +1,4 @@
-// Create an application with ButtonBar and Menu.               Æ
+// Create an application with ButtonBar and Menu.               ï¿½
 /*
 File Name  : TESTBAR.PRG
 
@@ -7,7 +7,7 @@ Description: This sample shows how to create a Management Menu
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 STATIC oWnd
 STATIC date

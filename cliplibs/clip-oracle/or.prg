@@ -1,5 +1,5 @@
-#include "set.ch"
-#include "oracle.ch"
+#include "ci_set.ch"
+#include "ci_oracle.ch"
 
 FUNCTION OR2CLIP(rowset,fieldno)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)

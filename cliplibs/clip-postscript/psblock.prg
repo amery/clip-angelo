@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 /* TODO: Class for content block */
 
@@ -17,7 +17,7 @@ function PSBlock( printer, t, parent )
 	local obj := map(), n, nA, b, st, ct, xm, ym, v
 	local ml:=0, mr:=0, mt:=0, mb:=0, border, dh:=0
 	local ax, ay, aw, ah, p, oErr
-	
+
 	if valtype(printer) != "O" .or. valtype(t) != "O"
 		return NIL
 	endif
@@ -44,12 +44,12 @@ function PSBlock( printer, t, parent )
 	obj:h         := 0
 	obj:attrs     := t:getAttributes()
 	obj:childs    := array(0)
-	
+
 	_recover_PSBLOCK(obj)
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
-	
+
 	// Detect type
 	switch lower(t:getName())
 		case "text"
@@ -80,7 +80,7 @@ function PSBlock( printer, t, parent )
 		obj:style := printer:getStyle( st )
 		//?? "Got style:", valtype( obj:style), chr(10)
 	endif
-	
+
 	// Inherits parent element style
 	if valtype(obj:style) != "O" .and. empty(st)
 		// Try to get parent object style
@@ -90,19 +90,19 @@ function PSBlock( printer, t, parent )
 				obj:style := ct:style
 				exit
 			endif
-			ct := ct:parent 
+			ct := ct:parent
 		enddo
 	endif
-	
+
 	// Create style from string
 	if valtype(obj:style) != "O"
 		// Unknown style name, try to apply defined properies
 		obj:style := PSStyle( st, printer )
 		printer:setStyle( obj:style )
 	endif
-	
+
 	//?? "Style:", st, obj:style:getName(), chr(10)
-	
+
 	// Compute sizes
 	obj:x := obj:style:get("x")
 	obj:y := obj:style:get("y")
@@ -114,7 +114,7 @@ function PSBlock( printer, t, parent )
 	mt := obj:style:get("padding-top")
 	mb := obj:style:get("padding-bottom")
 	obj:ts := obj:style:get("font-size")
-	
+
 	// Fix margins for cells
 	if obj:type == O_CELL
 		ml := iif( ml == 0, 2 * PT_IN_MM, ml )
@@ -122,7 +122,7 @@ function PSBlock( printer, t, parent )
 		mt := iif( mt == 0, 2 * PT_IN_MM, mt )
 		mb := iif( mb == 0, 2 * PT_IN_MM, mb )
 	endif
-	
+
 	dh := iif( dh==0, 7.5, dh ) // For default font
 	if obj:type == O_TEXT .or. obj:type == O_CELL
 		obj:h := iif( obj:h==0, dh + mt + mb, obj:h )
@@ -131,14 +131,14 @@ function PSBlock( printer, t, parent )
 	obj:ty := mt
 	obj:tx1 := mr
 	obj:ty1 := mb
-			
+
 	// Pass sizes to parent
 	p := iif( valtype(obj:parent)=="O", obj:parent, printer:currentPage )
-	
+
 	if obj:type == O_TABLE
 		obj:h := 0
 	endif
-	
+
 	if valtype(p) == "O"
 		obj:y := iif( obj:y==0, p:y, obj:x )
 		switch p:type
@@ -164,7 +164,7 @@ function PSBlock( printer, t, parent )
 				endif
 		endswitch
 	endif
-	
+
 	// Process childs
 	nA := t:getChilds()
 	for n in nA
@@ -184,15 +184,15 @@ function PSBlock( printer, t, parent )
 				otherwise
 					aadd( obj:childs, b )
 			endswitch
-		endif 
+		endif
 	next
 	if obj:w == 0
 		obj:w := printer:page:width - obj:x - ;
 			printer:val2pt(printer:page:margins[2]) - ;
 			printer:val2pt(printer:page:margins[4])
 	endif
-		
-		
+
+
 	// Set document-wide page footer and page header
 	if valtype(obj:parent) == "O" .and. obj:parent:type != O_TABLE
 		if obj:type == O_PAGE_HEADER
@@ -201,13 +201,13 @@ function PSBlock( printer, t, parent )
 			printer:footer := obj
 		endif
 	endif
-	
+
 	recover using oErr
 		?? "PSBlock() error:", errorMessage(oErr), chr(10)
 		obj := NIL
 		cancel
 	end sequence
-		
+
 return obj
 
 
@@ -240,7 +240,7 @@ static function ps_print( self )
 	local font, color, bt, bb, bl, br, align, oErr
 	local arr:=array(2), continues:=.F., text, ph
 	local hasH:=.F., hasF:=.F., ct
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
 		//?? "print block&\n"
@@ -253,7 +253,7 @@ static function ps_print( self )
 			?? "ERROR: No page&\n"
 			return NIL
 		endif
-		
+
 		// Simple text and variables
 		if valtype(self:parent) == "O" .and. ;
 				( self:parent:type == O_TEXT .or. self:parent:type == O_CELL ) .and. ;
@@ -270,13 +270,13 @@ static function ps_print( self )
 			p:add( PSVariable( self:name, self:attrs ) )
 			return NIL
 		endif
-		
+
 		//?? "headers, footers...&\n"
 		// Print header
 		if .not. empty(self:header)
 			self:header:print()
 		endif
-		
+
 		// Check if block is in page header or page footer
 		ct := self:parent
 		do while valtype(ct) == "O"
@@ -287,49 +287,49 @@ static function ps_print( self )
 			endif
 			ct := ct:parent
 		enddo
-		
+
 		// Set y-coordinate for header and footer
 		if self:type == O_PAGE_HEADER
-			
+
 			self:y := self:printer:val2pt(psize:header_margin)
 			self:printer:hy := self:y
-		
+
 		elseif self:type == O_PAGE_FOOTER
-			
+
 			self:y := psize:height - self:printer:val2pt(psize:footer_margin)
 			self:printer:fy := self:y
-		
+
 		elseif hasH
-			
+
 			if self:type == O_TEXT .or. self:type == O_ROW
 				self:y := self:printer:hy
 				self:printer:hy += self:h + ;
 					iif(self:type == O_TEXT, self:printer:val2pt(psize:spacing), 0)
 			endif
-		
+
 		elseif hasF
-			
+
 			if self:type == O_TEXT .or. self:type == O_ROW
 				self:y := self:printer:fy
 				self:printer:fy += self:h + ;
 					iif(self:type == O_TEXT, self:printer:val2pt(psize:spacing), 0)
 			endif
-		
+
 		else
 			if self:type == O_ROW
 				//?? "Y (row):", self:y, chr(10)
 			endif
-			
+
 			// Fix y-coordinate for continues pages
 			if .not. ( hasH .or. hasF )
 				self:y := self:y - self:printer:ay
 			endif
-						
+
 			ph := psize:height - self:printer:val2pt(psize:margins[1]) - ;
 				self:printer:val2pt(psize:margins[3])
 			ph -= iif(valtype(self:parent) == "O" .and. ;
 				valtype(self:parent:p_footer) == "O", self:parent:p_footer:h, 0)
-			
+
 			if self:type == O_CELL .and. valtype(self:parent) == "O"
 				self:y := self:parent:y
 			elseif self:y == 0
@@ -339,10 +339,10 @@ static function ps_print( self )
 				//?? "Y (row2):", self:y, self:parent:y, chr(10)
 				self:y := self:y + self:parent:y
 			endif
-		
+
 			//?? "pos:", self:y + self:h, ph, chr(10)
 			if self:y + self:h > ph .and. self:type != O_TABLE .and. self:type != O_SECTION
-				
+
 				// Wrap to new page
 				//?? "NEW PAGE&\n"
 				self:printer:ay += self:printer:y
@@ -351,14 +351,14 @@ static function ps_print( self )
 				endif
 				self:printer:add()
 				p := self:printer:currentPage
-				
+
 				// Print common page header and footer
 				if valtype(self:printer:header) == "O"
 					self:printer:header:print()
 				elseif valtype(self:printer:footer) == "O"
 					self:printer:footer:print()
 				endif
-				
+
 				// Print section header
 				self:printer:y := 0
 				if valtype(self:parent) == "O" .and. valtype(self:parent:p_header) == "O"
@@ -369,25 +369,25 @@ static function ps_print( self )
 				endif
 				//?? "Y after header:", self:printer:y, chr(10)
 				self:y := self:printer:y
-			
+
 			elseif self:type == O_TEXT .or. self:type == O_ROW
 				// Shift bottom
 				self:printer:y := self:y + self:h + ;
 					iif(self:type == O_TEXT, self:printer:val2pt(psize:spacing), 0)
 			endif
-		
+
 		endif
-				
+
 		// Print page header
 		if .not. empty(self:p_header) .and. self:type != O_TABLE
 			self:p_header:print()
 		endif
-				
+
 		// Print page footer
 		if .not. empty(self:p_footer) .and. self:type != O_TABLE
 			self:p_footer:print()
 		endif
-				
+
 		// Set font && color
 		font := self:style:getFontName( .T. )
 		//?? "font", font != p:font, font, p:font, "&\n"
@@ -401,7 +401,7 @@ static function ps_print( self )
 			s += self:setColor( color )
 			p:color := color
 		endif
-		
+
 		switch self:style:get("text-align")
 			case "left"
 				align := C_ALIGN_LEFT
@@ -414,7 +414,7 @@ static function ps_print( self )
 			otherwise
 				align := C_ALIGN_LEFT
 		endswitch
-		
+
 		//?? "print text&\n"
 		continues := (self:type==O_TEXT .or. self:type==O_CELL) .and. len(self:childs)>0
 		//?? "block:", self:name, ltrim(str(self:printer:y)), ltrim(str(self:x)), ltrim(str(self:y)), ltrim(str(self:w)), ltrim(str(self:h)), chr(10)
@@ -424,21 +424,21 @@ static function ps_print( self )
 		s += self:printBorder() // border
 		arr := self:printAt( self:x + self:tx, self:y + self:ty, self:text, align, ;
 				self:x + self:w - self:tx1, self:y + self:h - self:ty1, self:h, continues ) // text
-		
+
 		if continues
-			s += arr[1] 
+			s += arr[1]
 		else
 			s += arr
 		endif
-		
+
 		if continues
 			//?? "CONTUNUES:", s, arr[2], chr(10)
 		endif
-		
+
 		// TODO: split to several pages
 		s := "%% <" + self:name + iif(continues,"-continues","") + ">&\n" + s
 		p:add( PSCode( s ) )
-		
+
 		// Print childs
 		childs := self:childs
 		for i in childs
@@ -446,13 +446,13 @@ static function ps_print( self )
 		next
 		if continues
 			p:add( PSCode( arr[2] ) )
-		endif		
-		
+		endif
+
 		// Print footer
 		if .not. empty(self:footer)
 			self:footer:print()
 		endif
-		
+
 	recover using oErr
 		?? "PSBlock:print() error:", errorMessage(oErr), chr(10)
 		cancel
@@ -496,7 +496,7 @@ static function ps_printAt( self, x, y, text, align, x2, y2, lh, continues )
 	y2r := ltrim(str( iif(y2==NIL, ps:height - p:val2pt(ps:margins[1]), ;
 		ps:height - p:val2pt(ps:margins[1]) - y2 + cH ) ))
 	lhr := ltrim(str( lh ))
-	
+
 	ct := self:parent
 	do while valtype(ct) == "O"
 		 if ct:type == O_PAGE_FOOTER
@@ -505,13 +505,13 @@ static function ps_printAt( self, x, y, text, align, x2, y2, lh, continues )
 		 endif
 		 ct := ct:parent
 	enddo
-	
+
 	if footer
 		yr := ltrim(str( ps:height - y - self:ts + cH ))
 		y2r := ltrim(str( iif(y2==NIL, p:val2pt(ps:footer_margin), ps:height - y2 + cH) ))
 		//?? "FOOTER POS (text):", self:y, yr, y2r, lhr, chr(10)
 	endif
-	
+
 	s := self:moveTo( x, y + self:ts - cH )
 	//?? "y (text):", y, self:ts, cH, chr(10)
 	s += "/lm " + xr + " def /tm " + yr + " def /rm " + x2r + " def /bm " + y2r + " def /bg " + lhr + " def&\n"
@@ -533,7 +533,7 @@ static function ps_moveTo( self, x, y )
 
 	r_x := x + p:val2pt(ps:margins[4])
 	r_y := ps:height - y - p:val2pt(ps:margins[1])
-	
+
 	ct := self:parent
 	do while valtype(ct) == "O"
 		 if ct:type == O_PAGE_FOOTER
@@ -542,12 +542,12 @@ static function ps_moveTo( self, x, y )
 		 endif
 		 ct := ct:parent
 	enddo
-	
+
 	if footer
 		r_y := ps:height - y
 		//?? "FOOTER POS (pos):", y, r_y, chr(10)
 	endif
-	
+
 return alltrim(str(round(r_x))) + " " + alltrim(str(round(r_y))) + " moveto&\n"
 
 
@@ -597,7 +597,7 @@ static function ps_printBorder( self )
 	bt := self:style:get("border-top")
 	bb := self:style:get("border-bottom")
 	bc := self:style:get("background-color")
-	
+
 	// Calculate coordinates
 	x := alltrim(str( self:x + p:val2pt(ps:margins[4])))// + bl/2 ))
 	y := alltrim(str( ps:height - self:y - p:val2pt(ps:margins[1])))// - bt/2 ))
@@ -605,7 +605,7 @@ static function ps_printBorder( self )
 	y1 := alltrim(str( ps:height - self:y - p:val2pt(ps:margins[1]) - self:h))// + bb/2 ))
 	w := alltrim(str( self:w ))
 	h := alltrim(str( self:h ))
-	
+
 	ct := self:parent
 	do while valtype(ct) == "O"
 		 if ct:type == O_PAGE_FOOTER
@@ -614,13 +614,13 @@ static function ps_printBorder( self )
 		 endif
 		 ct := ct:parent
 	enddo
-	
+
 	if footer
 		y := alltrim(str( ps:height - self:y ))
 		y1 := alltrim(str( ps:height - self:y - self:h ))
 		//?? "FOOTER POS:", self:y, y, y1, h, chr(10)
 	endif
-	
+
 	// Fill path
 	if .not. empty(bc)
 		xf := alltrim(str( self:x + p:val2pt(ps:margins[4]) ))
@@ -633,7 +633,7 @@ static function ps_printBorder( self )
 		s += "closepath&\n"
 		s += "fill grestore&\n"
 	endif
-	
+
 	// Draw borders
 	//?? "borders:", self:style:getName(), bt, bb, bl, br, chr(10)
 	//s += "gsave&\n"

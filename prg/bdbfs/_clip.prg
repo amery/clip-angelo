@@ -1,5 +1,5 @@
 #ifdef __CLIP__
-#include "llibg.ch"
+#include "ci_llibg.ch"
 ****
 function mouseStat()
 local ms:=mstate()

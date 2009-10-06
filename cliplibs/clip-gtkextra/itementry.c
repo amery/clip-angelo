@@ -3,18 +3,18 @@
     Author  : Alexey M. Tkachenko <alexey@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkextracfg.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkextracfg.h"
 
 #include <gtkextra/gtkextra.h>
 #include <string.h>
 
-#include "clip-gtk.ch"
-#include "clip-gtk.h"
+#include "ci_clip-gtk.ch"
+#include "ci_clip-gtk.h"
 
-#include "clip-gtkextra.ch"
-#include "clip-gtkextra.h"
+#include "ci_clip-gtkextra.ch"
+#include "ci_clip-gtkextra.h"
 
 /**********************************************************/
 

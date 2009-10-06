@@ -12,7 +12,7 @@
    application functions. A CTI_MENUITEM can have a submenu associated with it,
    allowing for nested hierarchical menus. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_WIDGET
 

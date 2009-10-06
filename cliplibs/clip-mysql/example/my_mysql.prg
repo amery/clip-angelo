@@ -8,7 +8,9 @@ LOCAL db		// -d
 LOCAL port		// -P
 LOCAL socket	// -s
 LOCAL flag		// -f
-
+Local e
+Local tmp
+Local trpars
 ErrorBlock({|e| SQLError(e)})
 clear screen
 

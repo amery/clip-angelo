@@ -1049,7 +1049,7 @@
  * preprocessor bug fix, warnings removed
  *
  * Revision 1.3  1999/12/04 20:08:28  uri
- * убрал warning нового компилятора
+ * О©╫О©╫О©╫О©╫О©╫ warning О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
  *
  * Revision 1.2  1999/10/29 20:09:45  paul
  * trailing spaces in preprocessor match
@@ -1068,16 +1068,16 @@
 #include <errno.h>
 #if defined(__GNUC__)
    #include <unistd.h>
-   #include "clipcfg.h"
+   #include "ci_clipcfg.h"
 #else
-   #include "wintypes.h"
+   #include "ci_wintypes.h"
 #endif
 
 
-#include "clic.h"
+#include "ci_clic.h"
 #include "clic.tab.h"
-#include "../libclipscreen/charset.h"
-#include "../libclipscreen/screen.h"
+#include "../libclipscreen/ci_charset.h"
+#include "../libclipscreen/ci_screen.h"
 
 #define FREE(s)	{if (s) {free(s); (s)=0;}}
 

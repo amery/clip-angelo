@@ -61,7 +61,7 @@
  *  $END$
  */
 
-#include "box.ch"
+#include "ci_box.ch"
 
 // test code
 #ifdef FT_TEST

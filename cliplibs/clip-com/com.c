@@ -38,9 +38,9 @@
 #include <limits.h>
 #include <ctype.h>
 
-#include "hashcode.h"
-#include "clip.h"
-#include "error.ch"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 #include "libezV24/ezV24.h"
 #define _C_ITEM_TYPE_COMPORT	1600

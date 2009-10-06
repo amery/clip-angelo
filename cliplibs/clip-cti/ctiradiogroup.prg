@@ -7,7 +7,7 @@
 
 /* CTI_RADIOGROUP -  */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_OBJECT
 

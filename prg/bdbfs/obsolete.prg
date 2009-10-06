@@ -2,10 +2,10 @@
     Copyright (C) 1998-2003 Yevgen Bondar <elb@lg.bank.gov.ua>
     License : (GPL) http://www.itk.ru/clipper/license.html
 
-Подправлены мелочи в стандартном SIx файле.
-Некоторые SX_ функции переписаны.
+я┐╜я┐╜я┐╜я┐╜равя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜таня┐╜я┐╜я┐╜тноя┐╜ SIx файя┐╜я┐╜.
+я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ SX_ я┐╜ункции я┐╜я┐╜репя┐╜саня┐╜.
 */
-#include 'common.ch'
+#include 'ci_bd_common.ch'
 #define ORDER_LIMIT 256
 #define BAG_LIMIT    50
 
@@ -132,4 +132,4 @@ IF_NIL cPsw IS Sx_SetPass()
 RETURN IF(Valtype(cStr) $ 'CM', Crypt(cStr, cPsw), cStr)
 **********
 FUNC Sx_DeCrypt(cStr, cPsw)
-RETURN Sx_EnCrypt(cStr, cPsw)	//Так clipper tools работает
+RETURN Sx_EnCrypt(cStr, cPsw)	//я┐╜я┐╜я┐╜ clipper tools рабя┐╜таея┐╜

@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_addinfo_xml(_queryStr)
 
@@ -218,7 +218,7 @@ local sprname:=""
 				for i=1 to len(p_list)
 					oDep:delete(p_list[i])
 				next
-				/* не удалять второй раз*/
+				/* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫*/
 				pdoc_del[a+b] := a+b
 			endif
 		endif
@@ -244,7 +244,7 @@ local sprname:=""
 			else
 				oDep:update(obj)
 			endif
-			
+
 		else
 			if .f. //classDesc:name == "accpost"
 				oDep:error := r2d2_mt_oper("append_accpost",oDep,obj)
@@ -259,7 +259,7 @@ local sprname:=""
 		if !empty(oDep:error)
 			if val(oDep:error) != 1143 /* non unique value */
 				outlog(__FILE__,__LINE__, odep:error)
-			cgi_xml_error(odep:error) //не надо выводить xml вне корневого тега!!!!!!!
+			cgi_xml_error(odep:error) //О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ xml О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫!!!!!!!
 			//	return
 			endif
 			err_desc := oDep:error
@@ -279,9 +279,9 @@ local sprname:=""
 					if valtype(keyValue)=='N'
 					    ?? alltrim(str(keyValue))
 					else
-					    ?? keyValue					    				
+					    ?? keyValue
 	    				endif
-					    ??'", "name":"'+classDesc:unique_key+'"}' 
+					    ??'", "name":"'+classDesc:unique_key+'"}'
 					    return
 					endif
 				next
@@ -317,7 +317,7 @@ local sprname:=""
 	endif
 	? "{"
 	cgi_putObjJson(obj,columns, urn, aTree, len(columns))
-	
+
 	//cgi_putArefs2Rdf3(aTree,oDep,0,urn,columns,'','',nodeType)
 	?? "}"
 
@@ -326,7 +326,7 @@ return
 
 ****************************************
 function accpost_stop_date(oDep,oData)
-	static stop_dates := map() /* для сервера надо как то иначе */
+	static stop_dates := map() /* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ */
 	local depEtc,dictEtc
 	local i,tmp,obj,acc_db,stop_date
 	if set("ACCPOST_LOG")=="NO"

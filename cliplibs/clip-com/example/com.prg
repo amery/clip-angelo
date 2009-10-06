@@ -13,7 +13,6 @@ ENDIF
 ? COM_HARD(m->port, .f.)
 
 ? COM_TIMEOUT(m->port, 20)
-
 m->msg:='Hello, World!'
 ? 'send', COM_SEND(m->port, m->msg)
 

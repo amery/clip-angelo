@@ -3,8 +3,8 @@
     Author   : Alexey M. Tkachenko (alexey@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "abx.ch"
-#include "clip-gtk2.ch"
+#include "ci_abx.ch"
+#include "ci_clip-gtk2.ch"
 
 function abx_menu_new()
 	local obj := map()

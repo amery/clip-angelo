@@ -6,8 +6,8 @@
 
 /* Virtual metods for DBF/CODB driver */
 
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 ************************************************************
 function codb_dictDBF_Methods(dbData,user,passwd)

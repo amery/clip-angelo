@@ -6,7 +6,7 @@
 
 /* Virtual metods for CODB object over DBF files */
 
-#include "codbcfg.ch"
+#include "ci_codbcfg.ch"
 
 #ifndef __1
 static data

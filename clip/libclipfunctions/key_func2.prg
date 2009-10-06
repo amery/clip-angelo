@@ -1,4 +1,4 @@
-#include "inkey.ch"
+#include "ci_inkey.ch"
 function keycodeByName(sKey)
 local hKey
 do switch (sKey)

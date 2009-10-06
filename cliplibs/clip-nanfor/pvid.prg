@@ -16,7 +16,7 @@
  * Initial revision.
  */
 
-#include "SET.CH"
+#include "ci_SET.CH"
 
 #define PV_ROW     1
 #define PV_COL     2

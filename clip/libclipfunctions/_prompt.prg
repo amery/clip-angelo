@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "set.ch"
+#include "ci_set.ch"
 
-#define HOT_KEYS "1234567890абвгдежзиклмнопрст"
+#define HOT_KEYS "1234567890О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"
 
 static massPrompt[0]
 static massHotKey[0]

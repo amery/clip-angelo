@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/bin/sh -u
+
 
 
 Check_Include 		mysql.h 				xyz 	clip-mysql 		Yes 	/usr/include/mysql 					"libmysql-static-devel-xx-$ARCH.(rpm/deb)"
 
 Check_Library 		mysqlclient_r 		.so 	clip-mysql		Yes 	/usr/lib$C64 							"libmysql-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		mysqlclient 		.so 	clip-mysql		Yes 	/usr/lib$C64 							"libmysql-static-devel-xx-$ARCH.(rpm/deb)"
+#!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

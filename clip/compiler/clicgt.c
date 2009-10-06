@@ -28,20 +28,20 @@
 #include <dirent.h>
 #include <ctype.h>
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 
 #ifndef OS_MINGW
 #include <sys/mman.h>
 #endif
 
-#include "gettext.h"
-#include "clic.h"
-#include "plural.h"
+#include "ci_gettext.h"
+#include "ci_clic.h"
+#include "ci_plural.h"
 
 #ifdef HAVE_ICONV
 #include "cl_iconv.h"
 #else
-#include "screen/charset.h"
+#include "libclipscreen/ci_charset.h"
 #endif
 
 #ifndef O_BINARY

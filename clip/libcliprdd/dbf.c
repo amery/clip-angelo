@@ -6,13 +6,13 @@
 	$Log: dbf.c,v $
 	Revision 1.2  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.1  2006/06/22 19:35:30  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.187  2006/02/27 11:54:10  clip
 	rust: avoid some compilers' warnings
-	
+
 	Revision 1.186  2005/08/08 09:00:31  clip
 	alena: fix for gcc 4
 
@@ -556,15 +556,15 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include <limits.h>
-#include "../include.h/rdd.h"
-#include "./btree.h"
-#include "error.ch"
-#include "dbinfo.ch"
+#include "../include.h/ci_rdd.h"
+#include "./ci_btree.h"
+#include "ci_error.ch"
+#include "ci_dbinfo.ch"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif
 
-#include "../include.h/ncp.h"
+#include "../include.h/ci_ncp.h"
 
 #ifdef USE_NCPFS
 #define fcntl ncp_fcntl

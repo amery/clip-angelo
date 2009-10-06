@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "box.ch"
-#include "button.ch"
+#include "ci_box.ch"
+#include "ci_button.ch"
 
 function topbar(nrow,nleft,nright)
   local obj

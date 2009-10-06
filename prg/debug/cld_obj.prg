@@ -3,66 +3,66 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "inkey.ch"
-#include "debug.ch"
-#include "imenu.ch"
-#include "set.ch"
-#include "ctwin.ch"
-#include "box.ch"
+#include "ci_config.ch"
+#include "ci_inkey.ch"
+#include "ci_debug.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
+#include "ci_ctwin.ch"
+#include "ci_box.ch"
 
 
 ************************************************
 static com_names:={;
     {"rem","#", "*", "//" } ;
-   ,{"I","õ","INPUT", "õðòá÷ìåîéå" } ;
-   ,{"M","í","MONITOR","íïîéôïò"} ;
+   ,{"I","ï¿½","INPUT", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"M","ï¿½","MONITOR","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"} ;
    ,{ "?","??" } ;
-   ,{"A","á","ANIMATE","áîéíáãéñ" } ;
-   ,{"B","BP","ôï","BREAKPOINT" } ;
-   ,{"C","÷ùúï÷","CALLSTACK" } ;
-   ,{"D","ä","õäáìéôø","DELETE" } ;
+   ,{"A","ï¿½","ANIMATE","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"B","BP","ï¿½ï¿½","BREAKPOINT" } ;
+   ,{"C","ï¿½ï¿½ï¿½ï¿½ï¿½","CALLSTACK" } ;
+   ,{"D","ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½","DELETE" } ;
    ,{"DOS","OS" } ;
    ,{"RUN" } ;
-   ,{"F","FIND","ðïéóë" } ;
-   ,{"GO","ðõóë" } ;
-   ,{"G","GOTO","ðåòåèïä" } ;
-   ,{"H","HELP","ðïíïýø" } ;
-   ,{"L","LIST","óðéóïë" } ;
-   ,{"N","NEXT","óìåäõàýåå" } ;
-   ,{"NUM","îõíåòáãéñ" } ;
-   ,{"O","OUTPUT","üëòáî" } ;
-   ,{"P","PREV","ðòåäùäõýåå" } ;
-   ,{"Q","QUIT","ëïîåã" } ;
-   ,{"R","RESTART","òåóôáòô" } ;
-   ,{"RESUME","éóèïäîïå" } ;
-   ,{"SPEED","óëïòïóôø" } ;
-   ,{"S","STEP","ûáç" } ;
-   ,{"T","TP","ôô","TRACEPOINT" } ;
-   ,{"V","VIEW","úáçòõúéôø" } ;
-   ,{"W","WP","ôú","VIEWPOINT" } ;
+   ,{"F","FIND","ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"GO","ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"G","GOTO","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"H","HELP","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"L","LIST","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"N","NEXT","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"NUM","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"O","OUTPUT","ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"P","PREV","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"Q","QUIT","ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"R","RESTART","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"RESUME","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"SPEED","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"S","STEP","ï¿½ï¿½ï¿½" } ;
+   ,{"T","TP","ï¿½ï¿½","TRACEPOINT" } ;
+   ,{"V","VIEW","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"W","WP","ï¿½ï¿½","VIEWPOINT" } ;
    ,{"CONNECT","CO" } ;
    ,{"!","!!" } ;
-   ,{"TABSIZE","TS","ôáâ" } ;
-   ,{"PATH","PATH","ðõôø" } ;
-   ,{"CBTRACE","CB","âìïë" } ;
-   ,{"PPVIEW","PP","ðð" } ;
-   ,{"SAVE","óïèòáîéôø" } ;
-   ,{"VIEWALIASES","VA","òï"} ;
+   ,{"TABSIZE","TS","ï¿½ï¿½ï¿½" } ;
+   ,{"PATH","PATH","ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"CBTRACE","CB","ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"PPVIEW","PP","ï¿½ï¿½" } ;
+   ,{"SAVE","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" } ;
+   ,{"VIEWALIASES","VA","ï¿½ï¿½"} ;
    }
 
 static mon_names:={ ;
-    {"PU","PUBLIC","ðõ","ðõâìéó"};
-   ,{"PR","PRIVATE","ðò","ðòé÷üêô"};
-   ,{"ST","STATIC","óô","óôáôéë"};
-   ,{"LO","LOCAL","ìï","ìïëáì"};
-   ,{"FI","FIELD","æé","æéìä"};
+    {"PU","PUBLIC","ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"};
+   ,{"PR","PRIVATE","ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"};
+   ,{"ST","STATIC","ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"};
+   ,{"LO","LOCAL","ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½ï¿½"};
+   ,{"FI","FIELD","ï¿½ï¿½","ï¿½ï¿½ï¿½ï¿½"};
    }
 
 static point_names:={ ;
-    {"B","BP","ôï","BREAKPOINT" } ;
-   ,{"T","TP","ôô","TRACEPOINT" } ;
-   ,{"W","WP","ôú","VIEWPOINT" } ;
+    {"B","BP","ï¿½ï¿½","BREAKPOINT" } ;
+   ,{"T","TP","ï¿½ï¿½","TRACEPOINT" } ;
+   ,{"W","WP","ï¿½ï¿½","VIEWPOINT" } ;
    }
 
 
@@ -439,7 +439,7 @@ function dbg_viewvar(vname,level,p,flag)
 			memoedit(p)
 		case t=="A"
 			for i=1 to len(p)
-				aadd(m,str(i,4,0)+""+::viewVar(vname,level,p[i],.f.))
+				aadd(m,str(i,4,0)+"ï¿½"+::viewVar(vname,level,p[i],.f.))
 			next
 			do while !empty(m)
 				curPos=achoice(0,0,maxrow(),maxcol(),m,,,curPos,curPos)
@@ -466,9 +466,9 @@ function dbg_viewvar(vname,level,p,flag)
 					h=substr(h,at(DBG_DELIM,h)+1)
 					h=substr(h,at(DBG_DELIM,h)+2)
 					h=substr(h,1,len(h)-1)
-					hashstr(upper(h))  // ÞÔÏÂ ÚÄÅÓØ ÚÁÐÏÍÎÉÔØ
+					hashstr(upper(h))  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				endif
-				aadd(m,padr(h,15)+""+::viewVar(vname,level,p[mv[i]],.f.) )
+				aadd(m,padr(h,15)+"ï¿½"+::viewVar(vname,level,p[mv[i]],.f.) )
 			next
 			do while !empty(m)
 				curPos=achoice(0,0,maxrow(),maxcol(),m,,,curPos,curPos)
@@ -881,7 +881,7 @@ static function command_addBP(numLine,fileName)
 	endif
 	n=ascan(::breakPoints,{|x|x[1]==numLine .and. x[2]==fileName})
 	if n==0
-		// ÄÁÔØ ËÏÍÁÎÄÕ RT_CLIP
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RT_CLIP
 		if ::curSrcWin!=0
 			::windows[::curSrcWin]:highLightAdd(numLine,5)
 		endif
@@ -890,7 +890,7 @@ static function command_addBP(numLine,fileName)
 		sss:=[ADD ]
 		n=len(::breakPoints)
 	else
-		// ÄÁÔØ ËÏÍÁÎÄÕ RT_CLIP
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RT_CLIP
 		::dbg_command("rm "+filename+":"+alltrim(str(numLine)))
 		if ::curSrcWin!=0
 			::windows[::curSrcWin]:highLightDel(numLine,5)
@@ -914,12 +914,12 @@ static function command_addTP(vstr)
 	endif
 	n=ascan(::TracePoints,vstr)
 	if n==0
-		// ÄÁÔØ ËÏÍÁÎÄÕ RT_CLIP
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RT_CLIP
 		aadd(::TracePoints,vstr)
 		sss:="ADD "
 		n=len(::TracePoints)
 	else
-		// ÄÁÔØ ËÏÍÁÎÄÕ RT_CLIP
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ RT_CLIP
 		adel(::TracePoints,n)
 		asize(::TracePoints,len(::TracePoints)-1)
 		sss:="DELETE "
@@ -1194,7 +1194,7 @@ static function command_run(str,add_flag)
 		case ncom==17  // "NUM"
 		     if len(mcomm)>1
 			fstr=upper(alltrim(mcomm[2]))
-			if fstr=="ON" .or. fstr=="÷ëì"
+			if fstr=="ON" .or. fstr=="ï¿½ï¿½ï¿½"
 				::menu:numeration(.t.)
 			else
 				::menu:numeration(.f.)
@@ -1274,7 +1274,7 @@ static function command_run(str,add_flag)
 		case ncom==32  // "CBTRACE"
 		     if len(mcomm)>1
 			fstr=upper(alltrim(mcomm[2]))
-			if fstr=="ON" .or. fstr=="÷ëì"
+			if fstr=="ON" .or. fstr=="ï¿½ï¿½ï¿½"
 				::menu:cbTraceStyle(.t.)
 			else
 				::menu:cbTraceStyle(.f.)
@@ -1286,7 +1286,7 @@ static function command_run(str,add_flag)
 		case ncom==33  // "PPVIEW"
 		     if len(mcomm)>1
 			fstr=upper(alltrim(mcomm[2]))
-			if fstr=="ON" .or. fstr=="÷ëì"
+			if fstr=="ON" .or. fstr=="ï¿½ï¿½ï¿½"
 				::menu:preprocStyle(.t.)
 			else
 				::menu:preprocStyle(.f.)

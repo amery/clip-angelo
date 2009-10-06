@@ -4,9 +4,9 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
-#include <inkey.ch>
-#include "abx.ch"
+#include <ci_clip-gtk2.ch>
+#include <ci_inkey.ch>
+#include "ci_abx.ch"
 
 function abx_data_browse_new(oIdList)
 	local obj := map()

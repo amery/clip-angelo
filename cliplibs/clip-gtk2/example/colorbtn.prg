@@ -1,5 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function main()
+Local win, vbox, btn1, btn2
 gtk_init()
 win := gtk_windowNew(, "Color Buttons")
 qout()

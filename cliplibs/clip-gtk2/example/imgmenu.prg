@@ -1,7 +1,7 @@
-#include <clip-gtk2.ch>
-#include <gtk2-stock.ch>
+#include <ci_clip-gtk2.ch>
+#include <ci_gtk2-stock.ch>
 function main()
-local mask, tb
+local mask, tb, win, vbox, menu, pic, m1, m2, pic1, m3
 
 gtk_init()
 win := gtk_windowNew(, "Test Image Menu item")

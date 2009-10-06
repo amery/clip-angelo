@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_accpost_log_beg(oDep,oper,id,data)
 	local oDict,class_id
@@ -76,14 +76,14 @@ function r2d2_accpost_log_end(oDep,log_id)
 
 	if !empty(obj2)
 	? "<error>"
-	    ? "<mess>"    
+	    ? "<mess>"
 	    ? [analitic balance have error]
 	    ? obj2:opertype,obj2:realDate, obj2:realTime
 	    ? "</mess>"
-	    ? "<mess>"    
+	    ? "<mess>"
 	    ? obj2:diffobj
-    	    ? "</mess>"    
-	? "</error>"		
+    	    ? "</mess>"
+	? "</error>"
 	endif
 
 return .t.

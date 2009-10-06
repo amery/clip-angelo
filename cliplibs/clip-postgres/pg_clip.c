@@ -3,10 +3,10 @@
 #include <time.h>
 #include <sys/timeb.h>
 #include "libpq-fe.h"
-#include "clip.h"
-#include "postgres.ch"
-#include "dbfsql.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_postgres.ch"
+#include "ci_dbfsql.h"
+#include "ci_error.ch"
 
 #define INV_WRITE               0x00020000
 #define INV_READ                0x00040000

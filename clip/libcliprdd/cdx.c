@@ -6,10 +6,10 @@
 	$Log: cdx.c,v $
 	Revision 1.7  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.6  2007/01/19 13:39:51  itk
 	uri: fixed bad code. sigsegv under gcc4.1
-	
+
 	Revision 1.5  2007/01/19 08:05:26  itk
 	uri: small fix for gcc4.1
 
@@ -461,10 +461,10 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <ctype.h>
-#include "../include.h/rdd.h"
-#include "error.ch"
-#include "./btree.h"
-#include "clipcfg.h"
+#include "../include.h/ci_rdd.h"
+#include "ci_error.ch"
+#include "./ci_btree.h"
+#include "ci_clipcfg.h"
 #ifdef HAVE_REGEX_H
 	#include <regex.h>
 #endif

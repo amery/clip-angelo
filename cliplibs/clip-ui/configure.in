@@ -1,7 +1,3 @@
 #!/bin/sh
 
-cat Makefile.ini 	>Makefile
-cat Makefile.in 	>>Makefile
-#!/bin/sh
-
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

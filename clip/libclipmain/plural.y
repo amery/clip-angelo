@@ -24,7 +24,7 @@ paul
 */
 #include <stdlib.h>
 #include <string.h>
-#include "plural.h"
+#include "ci_plural.h"
 
 #define YYPARSE_PARAM arg
 #define YYLEX_PARAM arg

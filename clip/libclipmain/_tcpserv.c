@@ -15,7 +15,7 @@
 */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -31,9 +31,9 @@
 	#include <sys/socket.h>
 #endif
 
-#include "hashcode.h"
-#include "error.ch"
-#include "fileio.ch"
+#include "ci_hashcode.h"
+#include "ci_error.ch"
+#include "ci_fileio.ch"
 
 #ifdef USE_UTMP
 #  include <utmp.h>

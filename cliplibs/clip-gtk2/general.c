@@ -4,17 +4,17 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "task.h"
-#include "clip-gtkcfg2.h"
-#include "clipcfg.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_task.h"
+#include "ci_clip-gtkcfg2.h"
+#include "ci_clipcfg.h"
 
 #undef MAXPATHLEN
 #include <gtk/gtk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
 
 static ClipVar _data_list;
 static ClipVar *data_list = &_data_list;

@@ -6,24 +6,26 @@
 # Web: http://eas.lrn.ru
 # Copyright (C) 2006, ITK
 # Web: http://www.itk.ru
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-#C_FLAGS=-g
-Local_Depend =
-# $(Clip_L_Dir)/libclip-xml.so
+Depend_on 				= 			$(Clip_L_Dir)/libclip-xml.so
+ADDLIBS 					= 			-lclip-xml
+PROGS 					= 			$(sort 									\
+													test_xml$(EXESUFF) 		\
+													test$(EXESUFF)				\
+										)
 
-.SUFFIXES: .prg .o .po
-.PHONY: all clean
+CLIPFLAGS 				+= 		-I../include
+EXTRALIBS 				= 			-L$(Dir_Lib) -lexpat
 
-# Widget tests
-ADDLIBS=-lclip-xml
+export
 
-PROGS=test_xml$(EXESUFF) test$(EXESUFF)
-
-EXTRALIBS=
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PROGS)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -34,13 +36,13 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewsln  $(C_FLAGS) test_xml.prg $(ADDLIBS) $(EXTRALIBS)
+test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ewsln test_xml.prg $(ADDLIBS) $(EXTRALIBS)
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -eswlg test.prg $(ADDLIBS)
+test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -o$@ -eswlg test.prg $(ADDLIBS) $(EXTRALIBS)
 
 include $(Makefile_o_in)
 

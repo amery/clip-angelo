@@ -7,8 +7,8 @@
 
 /* CTI_BROWSE_COMBO - a text entry field with a dropdown TBrowse */
 
-#include "cti.ch"
-#include "inkey.ch"
+#include "ci_cti.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_ENTRY
 

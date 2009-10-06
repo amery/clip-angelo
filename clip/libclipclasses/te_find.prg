@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
-#include "box.ch"
+#include "ci_inkey.ch"
+#include "ci_box.ch"
 
 function findOptions(str, rstr, color, colorhist, lcase, lwordonly, lregexp, lallw, ndirect, nwhere)
 local obj
@@ -34,7 +34,7 @@ local obj
        obj:sethistrepl	:= @sethistrepl()
        obj:sethistorysize := @sethistorysize()
 
-       obj:__colors 	:= {}      // палитры цветов
+       obj:__colors 	:= {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
        obj:__setColor 	:= @__setcolor()
        obj:__setcolor()
 return obj
@@ -265,7 +265,7 @@ wclose()
 setcolor(oldcolor)
 return ret
 
-*********** Установить find history
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ find history
 static function sethistfind(hist)
 local i
 	if valtype(hist) == "A"
@@ -277,7 +277,7 @@ local i
 	endif
 return
 
-*********** Установить replace history
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ replace history
 static function sethistrepl(hist)
 local i
 	if valtype(hist) == "A"

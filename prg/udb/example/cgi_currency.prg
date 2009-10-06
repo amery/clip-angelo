@@ -1,6 +1,6 @@
 
 //select currency from MY00101 where '01' $ code to idList
-local obj,idlist,err,rname,dict,oCurr
+local obj,idlist,err,rname,dict,oCurr, dep,classes,currency,i,c
 errorblock({|err|error2html(err)})
 ?? "Content-type: text/html"
 ?

@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "button.ch"
-#include "box.ch"
-#include "setcurs.ch"
+#include "ci_button.ch"
+#include "ci_box.ch"
+#include "ci_setcurs.ch"
 
 function _radiogrp_(top,left,bottom,right,var,buttons,caption,message,color,;
 		    fblock,style)
@@ -50,9 +50,9 @@ function radioGroup(top,left,bottom,right)
    obj:=map()
    obj:classname:="RADIOGROUP"
    obj:bottom	:=bottom
-   obj:buffer	:=0       // почему-то в описании стоит buffer,а
-   obj:value	:=0        // почему-то в описании стоит buffer,а
-			   // в getsys.prg - value ??????
+   obj:buffer	:=0       // О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ buffer,О©╫
+   obj:value	:=0        // О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ buffer,О©╫
+			   // О©╫ getsys.prg - value ??????
    obj:capRow	:=top
    obj:capCol	:=left+2
    obj:caption	:=NIL

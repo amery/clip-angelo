@@ -8,8 +8,8 @@
 #include <sys/types.h>
 #include <regex.h>
 
-#include "clip.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 #define NEW(type)	((type*)calloc(sizeof(type),1))
 #ifndef RE_NREGS

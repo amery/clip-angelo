@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "box.ch"
-#include "config.ch"
+#include "ci_box.ch"
+#include "ci_config.ch"
 
 ****************************************
 function ab_padrBody(oData,aBodyDesc)

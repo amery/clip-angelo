@@ -40,7 +40,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include "screen.h"
+#include "ci_screen.h"
 
 char *CLIPROOT=".";
 extern char **environ;

@@ -16,6 +16,6 @@ if [ -f clip_msgmerge.ini ] ; then
 	echo "PO_TO_COMPAT=\"$PO_TO_COMPAT\"" 					>&3
 	cat clip_msgmerge.ini 										>&3
 	exec 																3>&-
-	echo ". done.>&1"
 	chmod +x clip_msgmerge$SCRIPTSUFF
+	echo ". done."
 fi

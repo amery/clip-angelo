@@ -10,51 +10,48 @@
 # Author: Alena <alena@itk.ru>
 #
 
-Local_Depend = include/*.h include/*.ch
+Local_Depend 		= 			include/*.h 	\
+									include/*.ch
 
+LIBS 					= 			-lexpat
+CLIPFLAGS 			+= 		-n
+PROG 					= 			clip-xml
+SRC 					= 			expat.c
+OBJS    				= 			$(sort 					\
+												expat.o 		\
+												xmltag.o 	\
+												xmltree.o 	\
+												xpath.o 		\
+									)
 
-#CLIP = $(CLIPROOT)/bin/clip
+HDRS					= 			include/ci_clip-expat.ch
+HASHSRCS 			= 			$(SRC) $(HDRS)
+ADDLIBS 				= 			-lexpat
 
-.SUFFIXES: .prg .o .po
+export
 
-LIBS= -lexpat $(C_LIBS)
-#CFLAGS  = -I. $(C_FLAGS)
-# $(XCFLAGS)
+######################################################################################
+###################################################################################### local rules
 
-#XLIB=libclip-xml.a
-#XSLIB=libclip-xml$(DLLSUFF)
-#XSLIBREAL=libclip-xml$(DLLREALSUFF)
-
-#XTARGETS=$(XLIB) $(XSLIB)
-CLIPFLAGS += -n
-PROG= clip-xml
-SRC = expat.c
-OBJ = expat.o
-XLIBOBJS = $(OBJ)
-OBJS    = xmltag.o xmltree.o xpath.o
-
-HDRS	= include/clip-expat.ch
-HASHSRCS = $(SRC) $(HDRS)
-ADDLIBS =
-
-.PHONY: all clean uninstall distclean
-
-all : Makefile hash lib $(STARGET)
+all : Makefile lib $(OBJS) $(STARGET)
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/clip-expat.ch $(Clip_I_Dir)/
-	$(E_cp)cp --remove-destination -fpu$(V) include/clip-expat.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-expat.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-expat.h $(Clip_I_Dir)/
 
-hash: include/_hashxml.h
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-xml
 
-include/_hashxml.h: $(HASHSRCS)
-	$(E_e)$(Trace)
-	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashxml.h
-	$(E_if)cmp include/_hashxml.h include/hashxml.h 2>/dev/null || cp -f$(V) include/_hashxml.h include/hashxml.h
+#hash: include/ci__hashxml.h
+
+#include/ci__hashxml.h: $(HASHSRCS)
+#	$(E_e)$(Trace)
+#	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/ci__hashxml.h
+#	$(E_if)cmp include/ci__hashxml.h include/ci_hashxml.h 2>/dev/null || cp -f$(V) include/ci__hashxml.h include/ci_hashxml.h
 
 
 lib :
-	$(E_if)[ -f $(Dir_Lib) ]
+	$(E_if)[ -f $(Dir_Lib)/libexpat.so ]
 
 install : all install-lib install-example
 

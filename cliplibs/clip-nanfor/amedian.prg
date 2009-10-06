@@ -62,7 +62,7 @@
 
 #ifdef FT_TEST
 
-#include "directry.ch"
+#include "ci_directry.ch"
 
 FUNCTION MAIN()
    LOCAL var0, myarray0 := DIRECTORY(), myarray1 := {}

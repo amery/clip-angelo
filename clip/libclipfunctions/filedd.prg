@@ -6,11 +6,11 @@
   Date  - 15/05/2000 year
   License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include <inkey.ch>
-#include <config.ch>
-#include <set.ch>
-#include <box.ch>
-#include <pgch.ch>
+#include <ci_inkey.ch>
+#include <ci_config.ch>
+#include <ci_set.ch>
+#include <ci_box.ch>
+#include <ci_pgch.ch>
 
 #define LIST_COLORS	"0/3,0/2,15/3,0/3,0/2,15/2,15/2"
 #define DOP	replicate(" ", 256)
@@ -22,7 +22,7 @@
 #define FA_VOLUME	8
 #define FA_DIRECTORY	16
 #define FA_ARCHIVE	32
-//#define FD_DELIM	translate_charset(__CHARSET__, host_charset(), "Å")
+//#define FD_DELIM	translate_charset(__CHARSET__, host_charset(), "ÔøΩ")
 /*#define FD_DELIM 	chr(PGCH_VLINE)*/
 #define FD_DELIM	iif(set(_SET_DISPBOX),translate_charset("cp437", host_charset(), CHR(179)),chr(PGCH_VLINE))
 

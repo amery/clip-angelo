@@ -1,15 +1,16 @@
-// Massive DialogBox use test                                   ä
+// Massive DialogBox use test                                   ï¿½
 /*
 Tested GET object and base
 */
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <ci_FiveWin.ch>
 
 STATIC oWnd
 STATIC lEnd := .F.
 STATIC cName
 STATIC oName
 STATIC oSay
+Static first
 //-------------------------------------------------------------//
 
 FUNCTION Main()

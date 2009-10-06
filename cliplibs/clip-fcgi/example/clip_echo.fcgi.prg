@@ -1,4 +1,4 @@
-#include "fcgi.ch"
+#include "ci_fcgi.ch"
 local count:=0
 
 while FCGI_ACCEPT()

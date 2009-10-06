@@ -7,9 +7,9 @@
      Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
 
-#include "set.ch"
-#include "cobra.ch"
-#include "tcp.ch"
+#include "ci_set.ch"
+#include "ci_cobra.ch"
+#include "ci_tcp.ch"
 
 function cobraServiceNew(oIni)
 	local tmp,obj:=map()
@@ -286,7 +286,7 @@ static function COBRA_answerWait(nQuery)
 				exit
 			endif
 		endif
-		/* во время получения ответа - пришел запрос :) */
+		/* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ - О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ :) */
 		if cAnswer == "QUERY"
 			err := errorBlock({|e|break(e)})
 			::cLine := ""

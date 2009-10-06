@@ -1,17 +1,21 @@
 #
 #                                            prg/udb/example/Makefile.in
 #
-Local_Depend =
+Local_Depend 			=
+LIBS  					= 				-lclip-codb
+PROGS 					= 				$(sort 									\
+														my001$(EXESUFF) 			\
+														cgi_currency$(EXESUFF) 	\
+											)
 
-#CLIPFLAGS = -a -O -b
-CLIPLIBS  = -lclip-codb
+export
 
-PROGS = my001$(EXESUFF) cgi_currency$(EXESUFF)
+######################################################################################
+###################################################################################### local rules
 
+install all: Makefile $(PROGS)
 
-.SUFFIXES: .prg .o .po
-
-all: Makefile $(PROGS)
+hash1 :
 
 cfg :
 
@@ -26,11 +30,11 @@ include $(Makefile_o_in)
 
 my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -esw -M my001.prg $(CLIPLIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -eswn my001.prg $(LIBS)
 
 cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M cgi_currency.prg $(CLIPLIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M cgi_currency.prg $(LIBS)
 
 include $(Makefile_end_in)
 

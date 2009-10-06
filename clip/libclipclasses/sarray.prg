@@ -6,7 +6,7 @@
     class SORTEDARRAY
 */
 
-#include "set.ch"
+#include "ci_set.ch"
 
 *****************************************
 function tSortedArray()

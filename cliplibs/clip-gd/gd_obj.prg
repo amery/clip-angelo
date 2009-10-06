@@ -1,9 +1,9 @@
-/*   GD - класс  					     */
+/*   GD - О©╫О©╫О©╫О©╫О©╫  					     */
 /*   Copyright (C) 2001  ITK                                 */
 /*   Author  : Elena Kornilova (alena@itk.ru)                */
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html  */
 
-#include "gdinfo.ch"
+#include "ci_gdinfo.ch"
 
 function GdImageNew(p1, p2)
 local obj:=map()

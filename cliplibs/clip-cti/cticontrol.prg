@@ -7,10 +7,10 @@
 
 /* CTI_CONTROL is an object, able to react on user`s actions */
 
-#include "setcurs.ch"
-#include "box.ch"
+#include "ci_setcurs.ch"
+#include "ci_box.ch"
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define SUPERCLASS	CTI_WIDGET
 

@@ -84,11 +84,11 @@
 #include <stdarg.h>
 #include <time.h>
 #include <ctype.h>
-#include "coll.h"
-#include "clipcfg.h"
+#include "ci_coll.h"
+#include "ci_clipcfg.h"
 
 #ifdef OS_MINGW
-	#include "getopt.h"
+	#include "ci_getopt.h"
 #endif
 
 extern char *optarg;
@@ -584,7 +584,7 @@ make_c_file(char *Arname, int argc, char **argv)
 	fprintf(file, " *\tat %s", ctime(&ts));
 	fprintf(file, " */\n");
 
-	fprintf(file, "\n#include \"clip.h\"\n\n");
+	fprintf(file, "\n#include \"ci_clip.h\"\n\n");
 
 	s = strrchr(arname, '/');
 	if (!s)

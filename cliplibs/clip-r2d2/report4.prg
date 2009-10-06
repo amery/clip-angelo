@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report4_xml(_queryArr)
 
@@ -178,21 +178,21 @@ local k_list, d_list, arefs:={}, atree:=map()
 	col := oclone(tmp)
 	col:datatype := "C"
 	col:name := "account"
-	col:header := "Счет"
+	col:header := "О©╫О©╫О©╫О©╫"
 	col:expr := "account"
 	col:block := &("{|p1,p2,p3,p4|"+col:expr+"}")
 	aadd(columns,col)
 	col := oclone(tmp)
 	col:datatype := "N"
 	col:name := "dsumma"
-	col:header := "Дебет"
+	col:header := "О©╫О©╫О©╫О©╫О©╫"
 	col:expr := "dsumma"
 	col:block := &("{|p1,p2,p3,p4|"+col:expr+"}")
 	aadd(columns,col)
 	col := oclone(tmp)
 	col:datatype := "N"
 	col:name := "ksumma"
-	col:header := "Кредит"
+	col:header := "О©╫О©╫О©╫О©╫О©╫О©╫"
 	col:expr := "ksumma"
 	col:block := &("{|p1,p2,p3,p4|"+col:expr+"}")
 	aadd(columns,col)

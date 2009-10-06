@@ -11,8 +11,8 @@
 *
 */
 
-#include "lbldef.ch"
-#include "error.ch"
+#include "ci_lbldef.ch"
+#include "ci_error.ch"
 
 #define BUFFSIZE        1034          // Size of label file
 #define FILEOFFSET      74            // Start of label content descriptions
@@ -170,7 +170,7 @@ STATIC FUNCTION ListAsArray( cList, cDelimiter )
    LOCAL nPos
    LOCAL aList := {}                  // Define an empty array
    LOCAL lDelimLast := .F.
-  
+
    IF cDelimiter == NIL
       cDelimiter := ","
    ENDIF

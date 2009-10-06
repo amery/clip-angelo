@@ -66,9 +66,9 @@
 #include "axntxcdx.ch"
 #endif
 #endif
-#include "deflist.ch"
-#include "inkey.ch"
-#include "error.ch"
+#include "ci_deflist.ch"
+#include "ci_inkey.ch"
+#include "ci_error.ch"
 
 *+��������������������������������������������������������������������
 *+

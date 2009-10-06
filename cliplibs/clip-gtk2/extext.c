@@ -8,18 +8,18 @@
 
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
-#include "clip-gdk2.h"
-#include "gtkextext.h"
-#include "bmpxpm.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
+#include "ci_clip-gdk2.h"
+#include "ci_gtkextext.h"
+#include "ci_bmpxpm.h"
 
 #ifdef OS_CYGWIN
 	#include "sys\cygwin.h"

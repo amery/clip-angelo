@@ -1,5 +1,5 @@
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifdef HAVE_LIBTTF
 #define NEED_CACHE 1
@@ -49,7 +49,7 @@
  * sizes of a few tens of elements.
  */
 
-#include "gdcache.h"
+#include "ci_gdcache.h"
 
 /*********************************************************/
 /* implementation                                        */

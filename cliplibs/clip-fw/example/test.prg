@@ -1,4 +1,4 @@
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <ci_FiveWin.ch>
 
 STATIC oWnd, oFont, oName
 

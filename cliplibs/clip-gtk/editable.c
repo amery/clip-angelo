@@ -3,15 +3,15 @@
     Author  : Alexey M. Tkachenko <alexey@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg.h"
 
 #include <gtk/gtk.h>
 #include <string.h>
 
-#include "clip-gtk.ch"
-#include "clip-gtk.h"
+#include "ci_clip-gtk.ch"
+#include "ci_clip-gtk.h"
 
 /**********************************************************/
 /* Signal handlers */

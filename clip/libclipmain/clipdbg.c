@@ -231,7 +231,7 @@
    ClipMachine flags info
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
@@ -254,16 +254,16 @@
 #include <sys/stat.h>
 #include <sys/time.h>
 
-#include "clip.h"
-#include "clipvm.h"
-#include "hash.h"
-#include "libclipscreen/screen.h"
-#include "error.ch"
-#include "hashcode.h"
-#include "rational.h"
-#include "libclipscreen/charset.h"
-#include "coll.h"
-#include "rdd.h"
+#include "ci_clip.h"
+#include "ci_clipvm.h"
+#include "ci_hash.h"
+#include "libclipscreen/ci_screen.h"
+#include "ci_error.ch"
+#include "ci_hashcode.h"
+#include "ci_rational.h"
+#include "libclipscreen/ci_charset.h"
+#include "ci_coll.h"
+#include "ci_rdd.h"
 
 int _clip_debugnext = 0;
 

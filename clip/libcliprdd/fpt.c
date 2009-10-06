@@ -6,14 +6,14 @@
 	$Log: fpt.c,v $
 	Revision 1.2  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.1  2006/06/22 19:35:30  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.44  2005/12/09 16:52:13  clip
-	
+
 	crr
-	
+
 	Revision 1.43  2005/08/08 09:00:31  clip
 	alena: fix for gcc 4
 
@@ -142,9 +142,9 @@
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "../include.h/rdd.h"
-#include "error.ch"
-#include "dbinfo.ch"
+#include "../include.h/ci_rdd.h"
+#include "ci_error.ch"
+#include "ci_dbinfo.ch"
 
 #define FLEX_PAGESIZE   1024
 #define FLEX_MAXLEAF    ((FLEX_PAGESIZE-10)/8)

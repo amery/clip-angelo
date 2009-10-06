@@ -9,18 +9,18 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 #define PSFDEBUG	.F.
 
 /** PSForm - Class for XPL form */
 function PSForm()
 	local obj := map()
-	
+
 	obj:className := "PSForm"
 	obj:oXml := NIL
 	obj:root := NIL
-	
+
 	_recover_PSFORM(obj)
 return obj
 
@@ -37,7 +37,7 @@ return obj
 
 /* Open XPL form from file */
 static function ps_openFile( self, fileName )
-	
+
 	if PSFDEBUG
 		?? "PSForm: file parsing...&\n"
 	endif
@@ -50,7 +50,7 @@ static function ps_openFile( self, fileName )
 	if PSFDEBUG
 		?? "PSForm: file parsing complete&\n"
 	endif
-	
+
 	self:root := self:oXml:getRoot()
 
 return .T.
@@ -80,7 +80,7 @@ return .T.
 /* Get type of opened form */
 static function ps_getType( self )
 	local t:='', tt
-	
+
 	if valtype(self:root)=='O'
 		tt := lower(self:root:attribute('type',''))
 		if tt=='template' .or. tt=='form'

@@ -1,9 +1,12 @@
 #!/bin/sh
 CurDir="$PWD"
-if ! [ -f ../../cliplibs/clip-gtk2/Makefile.inc ] ; then
-	cd ../../cliplibs/clip-gtk2
-	[ -f $CONFIGURE ] && $CONFIGURE
+if ! [ -f ../../cliplibs/clip-gtk/Makefile.inc ] ; then
+	cd ../../cliplibs/clip-gtk
+	[ -f $CONFIGURE_SH ] && $CONFIGURE_SH
 fi
 cd $CurDir
-[ -f ../../cliplibs/clip-gtk2/Makefile.inc ] && cp -f$V ../../cliplibs/clip-gtk2/Makefile.inc .
+[ -f ../../cliplibs/clip-gtk/Makefile.inc ] && cp -f$V ../../cliplibs/clip-gtk/Makefile.inc .
 
+#!/bin/sh
+cat ./Makefile.inc >>Makefile.ini
+touch configure.ok

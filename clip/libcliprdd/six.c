@@ -6,13 +6,13 @@
 	$Log: six.c,v $
 	Revision 1.2  2007/02/12 09:13:17  itk
 	uri: many fixes for amd64
-	
+
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.104  2005/08/08 09:00:31  clip
 	alena: fix for gcc 4
-	
+
 	Revision 1.103  2004/05/26 09:52:24  clip
 	rust: some cleanings
 
@@ -378,10 +378,10 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <ctype.h>
-#include "../include.h/rdd.h"
-#include "six.ch"
-#include "error.ch"
-#include "set.ch"
+#include "../include.h/ci_rdd.h"
+#include "ci_six.ch"
+#include "ci_error.ch"
+#include "ci_set.ch"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif

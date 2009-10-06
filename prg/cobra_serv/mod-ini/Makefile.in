@@ -1,14 +1,22 @@
 #
 #                                            prg/cobra-serv/mod-ini/Makefile.in
 #
-Local_Depend =
+Local_Depend 			=
+MODULES 					= 			$(sort 							\
+													cobra_hello.po 	\
+													cobra_codb.po 		\
+													cobra_mod.po 		\
+													mk_tmpdir.po 		\
+										)
 
-#CLIPFLAGS = -pw
-#CLIPFLAGS += -p
-MODULES = cobra_hello.po cobra_codb.po cobra_mod.po mk_tmpdir.po
-.SUFFIXES: .prg .o .po
+export
+
+######################################################################################
+###################################################################################### local rules
 
 install all: Makefile $(MODULES)
+
+hash1 :
 
 cfg :
 

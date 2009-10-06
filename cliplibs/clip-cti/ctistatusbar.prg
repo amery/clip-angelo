@@ -7,7 +7,7 @@
 
 /* CTI_STATUSBAR - report messages of minor importance to the user. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_WIDGET
 

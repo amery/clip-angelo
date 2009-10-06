@@ -8,13 +8,13 @@
 	$Log: charset.c,v $
 	Revision 1.2  2007/10/17 13:30:03  itk
 	uri: fix warnings for gcc 4.2
-	
+
 	Revision 1.1  2006/06/22 19:35:31  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.10  2004/05/21 11:22:19  clip
 	rust: minor fix for 'configure -m'
-	
+
 	Revision 1.9  2004/03/01 13:01:57  clip
 	uri: add some support UTF-8 to screen output
 
@@ -42,10 +42,10 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../include.h/clip.h"
+#include "../include.h/ci_clip.h"
 
-#include "charset.h"
-#include "screen.h"
+#include "ci_charset.h"
+#include "ci_screen.h"
 
 extern char *CLIPROOT;
 

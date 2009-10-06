@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "button.ch"
-#include "setcurs.ch"
+#include "ci_button.ch"
+#include "ci_setcurs.ch"
 
 function _pushbutt_(caption,message,color,fblock,sblock,style,;
 		    sizex,sizey,capxoff,capyoff,bitmap,bmpxoff,;

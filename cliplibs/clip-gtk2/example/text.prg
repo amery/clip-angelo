@@ -1,7 +1,7 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 function main()
-local window, buffer, view, layout, bins
+local window, buffer, view, layout, bins, accel, ifactory, vbox, str, imenu, binsNot
 	gtk_init()
 	window = gtk_WindowNew(, " Test Text ")
 
@@ -32,7 +32,7 @@ local window, buffer, view, layout, bins
         gtk_ItemFactoryCreateItems(ifactory, imenu, window)
 
 
-        /* * то же самое, но поэлементно добавляет
+        /* * О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫, О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
         gtk_ItemFactoryCreateItem(ifactory, ;
         	{ "/_File",    NIL,          0,                 0,"<Branch>" }, 1)
         gtk_ItemFactoryCreateItem(ifactory, ;
@@ -40,7 +40,7 @@ local window, buffer, view, layout, bins
         gtk_ItemFactoryCreateItem(ifactory, ;
 	  	{ "/File/New _View",   NIL, @do_new_view(), 0, NIL }, 1)
         */
-  	/* добавить accel_group в объект window */
+  	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ accel_group О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ window */
   	gtk_WindowAddAccelGroup (window, accel)
 
         vbox := gtk_vboxNew()
@@ -53,7 +53,7 @@ local window, buffer, view, layout, bins
 	view := gtk_TextViewNewWithBuffer( , buffer:buffer )
 	gtk_TextViewSetWrapMode (view, GTK_WRAP_WORD)
         gtk_WidgetSetSizeRequest(view, 300, 50)
-        str := "И текст по-русски"
+        str := "О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫"
         gtk_TextBufferSetText(buffer:buffer,str, len(str) )
 
         gtk_LayoutPut(layout, view, 10, 10)

@@ -8,7 +8,7 @@
   fun-ctions for view and edit DEFAULT and UNDEF objects information
 */
 
-#include "box.ch"
+#include "ci_box.ch"
 
 /* Can`t defined MAIN function name */
 
@@ -43,7 +43,7 @@ static function ab_def_view_card(oDep,data,oBox,colorSpec)
 	//outlog(data)
 
 	@ x1++,y1 say padc([OBJECT parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()
@@ -121,7 +121,7 @@ static function ab_def_edit_card(oDep,data,oBox,colorSpec)
 	pic:="@S"+alltrim(str(y2-y1-17),3,0)
 
 	@ x1++,y1 say padc([OBJECT parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()

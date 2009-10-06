@@ -42,13 +42,13 @@
  */
 
 #include <stdio.h>
-#include "task.h"
+#include "ci_task.h"
 
 void
 _destroy(void *_data)
 {
 	char *data;
-	
+
 	data = (char *)_data;
 	printf("		task %ld function destroy, data=%s\n",Task_ID(),data);
 	return ;
@@ -61,7 +61,7 @@ run(void *_data)
 	void *ret = NULL;
 	char *data;
 	TaskMessage * msg;
-	
+
 	data = (char *)_data;
 	printf("		task %ld function begin, data=%s\n",Task_ID(),data);
 	printf("		task %ld waiting message ....\n",Task_ID());
@@ -76,7 +76,7 @@ run(void *_data)
 		Task_sleep(50);
 	}
 	printf("		task %ld function return, data=%s\n",Task_ID(),data);
-	
+
 	return ret;
 }
 
@@ -86,7 +86,7 @@ run1(void *_data)
 	int i;
 	void *ret = NULL;
 	char *data;
-	
+
 	data = (char *)_data;
 	printf("		supertask %ld function begin, data=%s\n",Task_ID(),data);
 	Task_STOP();
@@ -106,7 +106,7 @@ main(int argc, char **argv)
 	int i;
 	Task *tp;
 	TaskMessage *msg;
-	
+
 	printf("\n		begin. version=%ld\n",Task_version());
 	printf("		AAAA\n");
 	for (i = 0; i < 3; i++)

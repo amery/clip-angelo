@@ -6,8 +6,8 @@
      Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
 
-#include "http.ch"
-#include "tcp.ch"
+#include "ci_http.ch"
+#include "ci_tcp.ch"
 #define HTTP_NREAD 10000
 
 function httpServiceNew(oIni)

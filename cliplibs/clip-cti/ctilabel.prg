@@ -7,7 +7,7 @@
 
 /* CTI_LABEL - A widget that displays a small to medium amount of text. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_WIDGET
 

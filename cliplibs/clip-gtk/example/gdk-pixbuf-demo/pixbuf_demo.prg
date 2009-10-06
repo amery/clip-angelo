@@ -7,7 +7,7 @@
     Test show images with gdk-pixbuf
 */
 
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 
 #define TRUE  .t.
 #define FALSE .f.

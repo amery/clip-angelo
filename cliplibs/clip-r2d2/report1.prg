@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report1_xml(_queryArr)
 
@@ -65,7 +65,7 @@ local cache:=map()
 		return
 	endif
 
-//	cgi_html_header("Справка по счету")
+//	cgi_html_header("О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫")
 	cgi_xml_header()
 	? '<body>'
 
@@ -296,22 +296,22 @@ local cache:=map()
 			acc_s+=","
 		endif
 	next
-	? '<div><span>Ведомость по счету</span>'
+	? '<div><span>О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫</span>'
 	if len(account)==12
 	? '<span> '+codb_essence(account)+'</span>'
 	else
 	? '<span> '+codb_essence(account)+':'+accname+'</span>'
 	endif
-	? '<span>за период с '+dtoc(beg_date)+' по '+dtoc(end_date)+'</span></div>'
+	? '<span>О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ '+dtoc(beg_date)+' О©╫О©╫ '+dtoc(end_date)+'</span></div>'
 	? '<table cellpadding="2" cellspacing="0" border="1" width="80%" align="center">'
 	? '<tr>'
 	? '	<th valign="top" width="10%"><br/></th>'
 	? '	<th valign="top" width="10%"><br/></th>'
-	? '	<th valign="top" width="30%">Оборот по дебету</th>'
+	? '	<th valign="top" width="30%">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫</th>'
 
 	? '	<th valign="top" width="10%"><br/></th>'
 	? '	<th valign="top" width="10%"><br/></th>'
-	? '	<th valign="top" width="30%">Оборот по кредиту</th>'
+	? '	<th valign="top" width="30%">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫</th>'
 	? '</tr>'
 	? '<tbody>'
 
@@ -343,16 +343,16 @@ local cache:=map()
 	? '</table>'
 	? '<BR/>'
 	**********************
-	? '<div>Справка по оборотам:</div>'
+	? '<div>О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫:</div>'
 	? '<table cellpadding="2" cellspacing="2" border="1" width="80%" align="center">'
 	? '<tr>'
-	? '	<th valign="top" width="10%">Счет</th>'
-	? '	<th valign="top">Начало дебет</th>'
-	? '	<th valign="top">Начало кредит</th>'
-	? '	<th valign="top">Оборот дебет</th>'
-	? '	<th valign="top">Оборот кредит</th>'
-	? '	<th valign="top">Конец дебет</th>'
-	? '	<th valign="top">Конец кредит</th>'
+	? '	<th valign="top" width="10%">О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫</th>'
+	? '	<th valign="top">О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫</th>'
 	? '</tr>'
 	? '<tbody>'
 

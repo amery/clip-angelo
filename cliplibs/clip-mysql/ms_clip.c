@@ -2,16 +2,16 @@
 	$Log: ms_clip.c,v $
 	Revision 1.2  2007/05/07 05:32:16  itk
 	uri:some fix for NEWDECIMAL
-	
+
 	Revision 1.1  2006/06/22 20:12:11  itk
 	uri: init sf.net
-	
+
 	Revision 1.29  2006/03/23 10:41:06  clip
 	rust: BLOB functions for PG (thanks Slava Zanko <slavaz@cis.by>)
-	
+
 	Revision 1.27  2004/02/26 12:59:55  clip
 	rust: bindpars with NIL
-	
+
 	Revision 1.26  2003/06/09 13:10:14  clip
 	rust: multiple column PRIMARY KEY as row ID
 
@@ -98,9 +98,9 @@
 #include <string.h>
 #include <time.h>
 
-#include "clip.h"
-#include "dbfsql.h"
-#include "mysql.ch"
+#include "ci_clip.h"
+#include "ci_dbfsql.h"
+#include "ci_mysql.ch"
 
 #undef UNIQUE_FLAG
 #include <mysql.h>

@@ -3,12 +3,12 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "box.ch"
-#include "Inkey.ch"
+#include "ci_box.ch"
+#include "ci_Inkey.ch"
 
-#define MY_HEADSEP      translate_charset(__CHARSET__,host_charset(),"†∂†")
-#define MY_COLSEP       translate_charset(__CHARSET__,host_charset()," Å ")
-#define MY_FOOTSEP      translate_charset(__CHARSET__,host_charset(),"†π†")
+#define MY_HEADSEP      translate_charset(__CHARSET__,host_charset(),"ÔøΩÔøΩÔøΩ")
+#define MY_COLSEP       translate_charset(__CHARSET__,host_charset()," ÔøΩ ")
+#define MY_FOOTSEP      translate_charset(__CHARSET__,host_charset(),"ÔøΩÔøΩÔøΩ")
 
 memvar __a2_data, curr_record,__userfunc
 

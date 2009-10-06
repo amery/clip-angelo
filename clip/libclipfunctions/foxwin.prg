@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "ctwin.ch"
+#include "ci_ctwin.ch"
 ***********************************************************
 static fx_windows := {}
 static fx_wstack  := {}

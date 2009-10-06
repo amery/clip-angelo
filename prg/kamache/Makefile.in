@@ -1,28 +1,23 @@
 #
 #                                            prg/kamache/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-codb.so
-Local_Depend +=
-# $(Clip_L_Dir)/libclip-r2d2.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-codb.so 	\
+									$(Clip_L_Dir)/libclip-r2d2.so
+CLIPLIBS  			=
+LIBS  				= 			-lclip-codb -lclip-r2d2
+OBJS  				=
+CHS  					=
+MODULES 				=
+DIRS_TO_SCAN 		= 			mod-ini mod-clip
 
+export
 
+######################################################################################
+###################################################################################### local rules
 
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O -l -w
-CLIPLIBS  = -L$(Clip_L_Dir) -lclip-codb -lclip-r2d2
-OBJS  =
-#cobra_conn.o
-CHS  =
-#corba_serv.ch
-MODULES =
-#module1.po codbtview.po
-.SUFFIXES: .prg .o .po
+all : Makefile $(DIRS_TO_SCAN) $(OBJS) kamache$(EXESUFF) $(MODULES) #AUTH WRAP
 
-DIRS_TO_SCAN = mod-ini mod-clip
-
-all : Makefile $(DIRS_TO_SCAN) kamache$(EXESUFF) $(MODULES) #AUTH WRAP
+hash1 :
 
 cfg :
 
@@ -33,22 +28,20 @@ cleanc :
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-kamache$(EXESUFF) : kamache.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -es kamache.prg $(OBJS) $(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+kamache$(EXESUFF) : kamache.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
+	else 																			\
+		$(Trace_clip) 		;													\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
 	fi
 
 install : all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/kamache
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/kamache/mod-cache
-	$(E_cp)cp --remove-destination -fpu$(V) kamache$(EXESUFF) $(DESTDIR)/kamache
-	$(E_cp)cp --remove-destination -fpu$(V) kamache.ini $(DESTDIR)/kamache
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/kamache
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/kamache/mod-cache
+	$(E_cp)cp --remove-destination -fpu$(V) kamache$(EXESUFF) $(INSTDIR)/kamache
+	$(E_cp)cp --remove-destination -fpu$(V) kamache.ini $(INSTDIR)/kamache
 
 include $(Makefile_o_in)
 

@@ -5,8 +5,8 @@
 */
 #define NO_PGCH
 
-#include "box.ch"
-#include "lang.ch"
+#include "ci_box.ch"
+#include "ci_lang.ch"
 
 #ifdef __CLIP__
   #define mprompt prompt
@@ -237,7 +237,7 @@ do while len<=lenStr
    endif
    if !(chr==" ") .and. EndChoice
 	  aadd(mass,{0,0,0,0})
-	  i++    // Счетчик эл-ов массива
+	  i++    // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫-О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	  mass[i][1]:=y
 	  mass[i][2]:=Len+x-1
 	  EndChoice:=.f.
@@ -257,14 +257,14 @@ return mass
 
 ****************************************************************
 * function otvet
-* parameters str - строка сообщения
-*            y,x - координаты левого верхнего угла
-*            EscExit - .t. - нет зацикливания при нажатии ESC без очистки lastkey()
+* parameters str - О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+*            y,x - О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+*            EscExit - .t. - О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ESC О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ lastkey()
 *            color
 * ****
 // OTVET() ....
-// EscExit==.f. .or. NIL - не реагировать на нажатие ESC
-//        ==.t. - выход
+// EscExit==.f. .or. NIL - О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ESC
+//        ==.t. - О©╫О©╫О©╫О©╫О©╫
 function otvet
 local i,j,otv,oldcolor,scr
 local row,col,mas[0],lenMas
@@ -284,10 +284,10 @@ if funcname("OTVET")
    return .f.
 endif
 iif(y==NIL, y:=_maxRowN,)
-blD1:=setkey(asc(LANG_YES_CHAR)       ,{|| in_key(__nm,.t.)})    // Д || Y
-blD2:=setkey(asc(lower(LANG_YES_CHAR)),{|| in_key(__nm,.t.)})    // д || y
-blN1:=setkey(asc(LANG_NO_CHAR)        ,{|| in_key(__nm,.f.)})    // Н || N
-blN2:=setkey(asc(lower(LANG_NO_CHAR)) ,{|| in_key(__nm,.f.)})    // н || n
+blD1:=setkey(asc(LANG_YES_CHAR)       ,{|| in_key(__nm,.t.)})    // О©╫ || Y
+blD2:=setkey(asc(lower(LANG_YES_CHAR)),{|| in_key(__nm,.t.)})    // О©╫ || y
+blN1:=setkey(asc(LANG_NO_CHAR)        ,{|| in_key(__nm,.f.)})    // О©╫ || N
+blN2:=setkey(asc(lower(LANG_NO_CHAR)) ,{|| in_key(__nm,.f.)})    // О©╫ || n
 do while .t.
    j=at(";",str)
    if j!=0
@@ -344,10 +344,10 @@ do while .t.
 	  clearkey()
    endif
 enddo
-setkey(asc("Y")       ,blD1)    // Д || Y
-setkey(asc("y"),blD2)    // д || y
-setkey(asc("N")        ,blN1)    // Н || N
-setkey(asc("n") ,blN2)    // н || n
+setkey(asc("Y")       ,blD1)    // О©╫ || Y
+setkey(asc("y"),blD2)    // О©╫ || y
+setkey(asc("N")        ,blN1)    // О©╫ || N
+setkey(asc("n") ,blN2)    // О©╫ || n
 if !EscExit
    clearkey()
 endif
@@ -509,7 +509,7 @@ return
 Function dispboxSay(top, left, bottom, right, xType,color)
 	local ch,ch1,ch2,x,y,sStyle
 	local row:=row(),col:=col()
-	//local d_string :=[╔═╗║╝═╚║], s_string :=[┌─┐│┘─└│]
+	//local d_string :=[О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫], s_string :=[О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫]
 	local d_string := B_DOUBLE
 	local s_string := B_SINGLE
 	dispbegin()
@@ -564,7 +564,7 @@ return
 ***********************************
 Function winbuf_dispbox(winbuffer,top, left, bottom, right, xType,color)
 	local ch,ch1,ch2,x,y,sStyle
-	//local d_string :=[╔═╗║╝═╚║], s_string :=[┌─┐│┘─└│]
+	//local d_string :=[О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫], s_string :=[О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫]
 	local d_string := B_DOUBLE
 	local s_string := B_SINGLE
 	if valtype(xType)=="N"
@@ -615,7 +615,7 @@ function dbgshadow(x1,y1,x2,y2,attrib)
 	dispattr(x2+1,y1+2,x2+1,y2+2,attrib)
 return
 
-#include "ctwin.ch"
+#include "ci_ctwin.ch"
 ***********************************
 Function wbox(xType)
 	local sStyle

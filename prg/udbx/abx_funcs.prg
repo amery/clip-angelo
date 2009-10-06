@@ -4,9 +4,9 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
-#include <inkey.ch>
-#include "abx.ch"
+#include <ci_clip-gtk2.ch>
+#include <ci_inkey.ch>
+#include "ci_abx.ch"
 
 function abx_msgbox(MsgText,MsgHeader,aButtons,Window)
 	local dlg, btn, i, label, pos, str
@@ -76,7 +76,7 @@ static function msgbox_dlg_close(dlg,index)
 return
 
 /*******************************************************************/
-#include <inkey.ch>
+#include <ci_inkey.ch>
 
 function abx_achoice(m,Header,width,height)
 	local i

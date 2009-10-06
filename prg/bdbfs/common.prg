@@ -6,10 +6,10 @@
 ������������ �㭪樨 ELB.LIB, ᯥ樠�쭮 ������஢����� ��� bdbfs.
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "set.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
 MEMVAR	__mcol,__mrow,_middlerow,_middlecol,_mins,_ms,;
 	_im,_cm,_MenuColor,_hdcolor,_base,;
 	_timing,_told,_tally,main_keys,;

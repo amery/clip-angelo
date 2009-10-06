@@ -1,20 +1,18 @@
 #
 #                                            prg/cobra_clnt/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-codb.so
+Depend_on 			= 		$(Clip_L_Dir)/libclip-codb.so
+CLIPFLAGS 			+= 	-n
+OBJS  				= 		objbrowse.o tviewbrowse.o
 
+export
 
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS += -n
-#CLIPLIBS  = #-lclip-codb
-OBJS  = objbrowse.o tviewbrowse.o
-.SUFFIXES: .prg .o .po
+######################################################################################
+###################################################################################### local rules
 
-########################################################################################
+all: Makefile $(OBJS) cobra_clnt1$(EXESUFF)
 
-all: Makefile cobra_clnt1$(EXESUFF)
+hash1 :
 
 cfg :
 
@@ -25,11 +23,8 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -es cobra_clnt1.prg $(OBJS)
-#	$(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) ;	\
 	else 																\
@@ -39,8 +34,8 @@ cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 
 install : all
 	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt1$(EXESUFF) $(Clip_B_Dir)/
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra
-	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt.ini $(DESTDIR)/cobra
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra
+	$(E_cp)cp --remove-destination -fu$(V) cobra_clnt.ini $(INSTDIR)/cobra
 
 include $(Makefile_o_in)
 

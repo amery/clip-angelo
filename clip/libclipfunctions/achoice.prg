@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
-#include "achoice.ch"
+#include "ci_inkey.ch"
+#include "ci_achoice.ch"
 
 memvar __ac_data
 
@@ -331,7 +331,7 @@ static func Skipper(n)
     __ac_data:nRowMass:=min(__ac_data:lenMass,__ac_data:nRowMass)
 return __ac_data:nRowmass-i
 *****************************************************
-* по 1-му символу
+* О©╫О©╫ 1-О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static func firstChr(chrKey,bb)
 	local ccc,retVal
 	ccc:=upper(chr(chrKey))

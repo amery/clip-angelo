@@ -2,10 +2,10 @@
     Copyright (C) 1998-2004 Yevgen Bondar <elb@lg.bank.gov.ua>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "dbedit.ch"
-#include "common.ch"
-#include "inkey.ch"
-#include "bdbfmsg.ch"
+#include "ci_dbedit.ch"
+#include "ci_bd_common.ch"
+#include "ci_inkey.ch"
+#include "ci_bd_bdbfmsg.ch"
 
 #define _ptr _BdbfBrow:ColPos
 #translate Stable() => IF !_bdbfbrow:Stable; _bdbfbrow:ForceStable(); ENDIF

@@ -1,5 +1,5 @@
-#include "set.ch"
-#include "postgres.ch"
+#include "ci_set.ch"
+#include "ci_postgres.ch"
 
 
 FUNCTION PG2CLIP(rowset,fieldno)

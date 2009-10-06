@@ -9,7 +9,7 @@
  * This is an original work by Glenn Scott and David Peterson
  * and is placed in the public domain.
  *
- * Notes: David Peterson reworked all the date code for 
+ * Notes: David Peterson reworked all the date code for
  * internationalization.
  *
  * Modification history:
@@ -25,7 +25,7 @@
  *
  */
 
-#include "netto.ch"
+#include "ci_netto.ch"
 
 function _fndt2Str( dDate, cTime )
   local cDt := "", aDate
@@ -40,7 +40,7 @@ function _fndt2Str( dDate, cTime )
      // Convert to international date format
      cDt := _fndtonc(dDate) + _fnttonc(cTime)
   endif
-     
+
   return cDt
 
 /* ------------------------------------------------------------------ */
@@ -61,7 +61,7 @@ function _fnStr2dt( cStr )
   return { dDate, cTime }
 
 /* ------------------------------------------------------------------ */
-  
+
 /*
  * _fnnctod() - Convert Novell 3 byte date string to a Clipper date
  *
@@ -75,7 +75,7 @@ function _fnnctod(cDate)
                    str( BYTE2I( substr( cDate, 3, 1 ) ), 2 ) )
    SET(_SET_DATEFORMAT, cDateFormat)
    return dDate
-  
+
 /*
  * _fndtonc() - Convert Clipper date into the Novell 3-byte date string
  *
@@ -89,7 +89,7 @@ function _fndtonc(dDate)
               I2BYTE( day   (dDate)       )
 
    return cNDate
-  
+
 /*
  * _fnttonc() - Convert a Clipper time to the Novell 3 byte time string
  *
@@ -114,7 +114,7 @@ function _fnnctot(cNTime)
 
    cTime  := _fnstrz( BYTE2I( substr( cNTime, 1, 1 ) ), 2 ) + ":" + ;
              _fnstrz( BYTE2I( substr( cNTime, 2, 1 ) ), 2 ) + ":" + ;
-             _fnstrz( BYTE2I( substr( cNTime, 3, 1 ) ), 2 ) 
+             _fnstrz( BYTE2I( substr( cNTime, 3, 1 ) ), 2 )
 
    return cTime
 
@@ -131,7 +131,7 @@ function _fnintod(nYear, nMonth, nDay)
                    str( nDay,   2 ) )
    SET(_SET_DATEFORMAT, cDateFormat)
    return dDate
-  
+
 /*
  * _fndtoin() - Convert date to Year, Month and Day values.
  * The values are returned as an array {Year, Month, Day}
@@ -146,7 +146,7 @@ function _fndtoin(dDate)
    nDay   := day   (dDate)
 
    return { nYear, nMonth, nDay }
-  
+
 
 /*
  * _fndtoic() - Convert Clipper Date to an international date
@@ -162,7 +162,7 @@ function _fndtoic(dDate)
    SET(_SET_DATEFORMAT, cDateFormat)
 
    return cDate
-  
+
 
 /*
  * _fnictod() - Convert an international date in the form "yy/mm/dd"
@@ -181,5 +181,5 @@ function _fnictod(cDate)
 
 static function _fnstrz( n, w )
   return padl( alltrim( str( n ) ), w, "0" )
-  
+
 

@@ -1,6 +1,6 @@
 /* Example loaddable module for COBrA server*/
 
-#include "cobra.ch"
+#include "ci_cobra.ch"
 #define MAX_TVIEW 1000
 
 

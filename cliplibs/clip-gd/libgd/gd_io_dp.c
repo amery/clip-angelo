@@ -19,8 +19,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -200,7 +200,7 @@ static dynamicPtr* newDynamic (int initialSize, void *data) {
   return dp;
 }
 
-static int 
+static int
 dynamicPutbuf( struct gdIOCtx* ctx, const void *buf, int size )
 {
   dpIOCtx  *dctx;
@@ -253,7 +253,7 @@ dynamicGetbuf( gdIOCtxPtr ctx, void *buf, int len)
 
 	return rlen;
 }
-	
+
 static int
 dynamicGetchar( gdIOCtxPtr ctx )
 {
@@ -267,10 +267,10 @@ dynamicGetchar( gdIOCtxPtr ctx )
 	} else {
 		return b ;/* (b & 0xff); */
 	}
-}	
+}
 
 /* *********************************************************************
- * 
+ *
  * InitDynamic - Return a dynamically resizable void*
  *
  * *********************************************************************

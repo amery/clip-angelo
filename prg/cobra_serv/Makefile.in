@@ -1,25 +1,25 @@
 #
 #                                            prg/cobra_serv/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-codb.so
-Local_Depend +=
-#$(Clip_L_Dir)/libclip-r2d2.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-codb.so 	\
+									$(Clip_L_Dir)/libclip-r2d2.so
+CLIPFLAGS 			+= 		-n
+LIBS  				= 			-lclip-codb -lclip-r2d2
+MODULES 				= 			$(sort 						\
+												module1.po 		\
+												codbtview.po 	\
+												codbdlist.po	\
+									)
+DIRS_TO_SCAN 		= 			auth mod-ini tcp-wrap
 
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-CLIPFLAGS += -n
-CLIPLIBS  = -lclip-codb -lclip-r2d2
-OBJS  =
-#cobra_conn.o
-CHS  =
-#corba_serv.ch
-MODULES = module1.po codbtview.po codbdlist.po
-.SUFFIXES: .prg .o .po
+export
 
-DIRS_TO_SCAN = auth mod-ini tcp-wrap
+######################################################################################
+###################################################################################### local rules
 
-all : Makefile $(DIRS_TO_SCAN) cobra_serv$(EXESUFF) $(MODULES)
+all : Makefile $(DIRS_TO_SCAN) $(OBJS) cobra_serv$(EXESUFF) $(MODULES)
+
+hash1 :
 
 cfg :
 
@@ -30,29 +30,27 @@ cleanc : $(DIRS_TO_SCAN)
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cobra_serv$(EXESUFF) :cobra_serv.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -es -o$@ cobra_serv.prg $(OBJS) $(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS)  $(CLIPLIBS);	\
-	else 																				\
-		$(Trace_clip) 	;															\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+cobra_serv$(EXESUFF) :cobra_serv.prg $(OBJS) $(MODULES) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS)  $(LIBS) ; 	\
+	else 																			\
+		$(Trace_clip) 	;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
 	fi
 
 install: all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra
 	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(Clip_B_Dir)/
-	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(DESTDIR)/cobra/
-	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv.ini $(DESTDIR)/cobra
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra/mod-ini
-	$(E_cp)cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(DESTDIR)/cobra/mod-ini
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra/tcp-wrap
-	$(E_cp)cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(DESTDIR)/cobra/tcp-wrap
-	$(E_cp)cp --remove-destination -fpu$(V) $(MODULES) $(DESTDIR)/cobra/
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/cobra/files
-	$(E_cp)cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(DESTDIR)/cobra/files
+	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv$(EXESUFF) $(INSTDIR)/cobra/
+	$(E_cp)cp --remove-destination -fpu$(V) cobra_serv.ini $(INSTDIR)/cobra
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/mod-ini
+	$(E_cp)cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(INSTDIR)/cobra/mod-ini
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/tcp-wrap
+	$(E_cp)cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(INSTDIR)/cobra/tcp-wrap
+	$(E_cp)cp --remove-destination -fpu$(V) $(MODULES) $(INSTDIR)/cobra/
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/files
+	$(E_cp)cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(INSTDIR)/cobra/files
 
 include $(Makefile_o_in)
 

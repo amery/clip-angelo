@@ -1,0 +1,22 @@
+#
+#                                            clip/libclipscreen/install/charsets/Makefile.in
+#
+Local_Depend 	=
+CFLAGS			=		-g
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all: gen_tbl$(EXESUFF)
+
+gen_tbl$(EXESUFF): gen_tbl.o
+	$(Trace_c)
+	$(CC) $(CFLAGS) -o $@ gen_tbl.o
+
+gen_tbl.o: gen_tbl.c
+
+
+clean:
+	$(E_rm)rm -f gen_tbl$(EXESUFF) *.o *.b *.bak *.BAK

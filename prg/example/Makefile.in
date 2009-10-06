@@ -1,65 +1,73 @@
 #
 #                                            prg/example/Makefile.in
 #
-Local_Depend =
+CLIPFLAGS 			+= -o$@
+SQLLIB				= 		$(Clip_L_Dir)/libdbfsql.a
+PGLIBS				= 		$(Clip_L_Dir)/libclip-postgres.a /usr/lib/libpq.a /usr/lib/libcrypt.a
+MSLIBS				= 		$(Clip_L_Dir)/libclip-mysql.a /usr/lib/libmysqlclient.a
+ORLIBS				= 		$(Clip_L_Dir)/libclip-oracle.a /usr/lib/oracle/*/client$(C64)/lib/libclntsh.so
+POBJS  				= 		menu.po getfile.po
+PAOBJS  				= 		menu.po getfile.po
+CLIP_LOCALE_ROOT 	=.
+BINS 					= 		$(sort 								\
+											menu$(EXESUFF) 		\
+											fw_menu$(EXESUFF) 	\
+											getfile$(EXESUFF) 	\
+											tb_test$(EXESUFF) 	\
+											big_num$(EXESUFF) 	\
+								)
+# multilang$(EXESUFF)
+#pluralmsg$(EXESUFF) \
+export
 
+######################################################################################
+###################################################################################### local rules
 
-CLIPFLAGS += -o$@
-#GUILIB  = $(Clip_L_Dir)/libxclip.a
-SQLLIB	= $(Clip_L_Dir)/libdbfsql.a
-PGLIBS	= $(Clip_L_Dir)/libclip-postgres.a /usr/lib/libpq.a /usr/lib/libcrypt.a
-MSLIBS	= $(Clip_L_Dir)/libclip-mysql.a /usr/lib/libmysqlclient.a
-ORLIBS	= $(Clip_L_Dir)/libclip-oracle.a $(ORACLE_HOME)/lib/libclntsh.so
-POBJS  = menu.po getfile.po
-PAOBJS  = menu.po getfile.po
-CLIP_LOCALE_ROOT=.
-export CLIP_LOCALE_ROOT
-.SUFFIXES: .prg .o .po
+all : Makefile $(BINS)
 
-all : Makefile $(sort menu$(EXESUFF) fw_menu$(EXESUFF) getfile$(EXESUFF) tb_test$(EXESUFF) big_num$(EXESUFF) multilang$(EXESUFF) )
-#pluralmsg$(EXESUFF)
+hash1 :
+
 cfg :
 
-install : all
+install :
 
 include $(Makefile_o_in)
 
 cleanc:
-	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -rf$(V) locale.pot locale.mo
-	$(E_rm)rm -f$(V) menu$(EXESUFF) getfile$(EXESUFF) big_num$(EXESUFF) tb_test$(EXESUFF) fw_menu$(EXESUFF) multilang$(EXESUFF) pluralmsg$(EXESUFF)
+	$(E_rm)rm -f$(V) *.c *.b || true
+	$(E_rm)rm -f$(V) locale.pot locale.mo $(BINS) || true
 
 distcleanc :
-	$(E_rm)rm -rf$(V) *.g
+	$(E_rm)rm -f$(V) *.g || true
 
 menu$(EXESUFF):	menu.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M menu.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M menu.prg
 #	$(CLIPLIBS)
 
 fw_menu$(EXESUFF): fw_menu.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M fw_menu.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M fw_menu.prg
 #	$(CLIPLIBS)
 
 getfile$(EXESUFF): getfile.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M getfile.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M getfile.prg
 #	$(CLIPLIBS)
 
 tb_test$(EXESUFF): tb_test.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M tb_test.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M tb_test.prg
 #	$(CLIPLIBS)
 
 big_num$(EXESUFF): big_num.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M big_num.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M big_num.prg
 #	$(CLIPLIBS)
 
 multilang$(EXESUFF): multilang.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew -M -E CLIP_MODULE="ml1" multilang.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M -E CLIP_MODULE="ml1" multilang.prg
 #	$(CLIPLIBS)
 	$(CLIP_MSGMERGE)
 	$(CLIP_MSGFMT)
@@ -67,22 +75,22 @@ multilang$(EXESUFF): multilang.prg Makefile $(CLIP) $(LIBCLIP)
 pluralmsg$(EXESUFF): pluralmsg.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -E CLIP_MODULE="ml2" pluralmsg.prg
-	$(CLIP) $(CLIPFLAGS) -ew -M -E CLIP_MODULE="ml2" pluralmsg.prg
+	$(CLIP) $(CLIPFLAGS) -ewslN -M -E CLIP_MODULE="ml2" pluralmsg.prg
 #	$(CLIPLIBS)
 	$(CLIP_MSGMERGE)
 	$(CLIP_MSGFMT)
 
 mypsql$(EXESUFF): mypsql.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew mypsql.prg $(SQLLIB) $(PGLIBS)
+	$(CLIP) $(CLIPFLAGS) -ewslN mypsql.prg $(SQLLIB) $(PGLIBS)
 
 mymysql$(EXESUFF): mymysql.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew mymysql.prg $(SQLLIB) $(MSLIBS)
+	$(CLIP) $(CLIPFLAGS) -ewslN mymysql.prg $(SQLLIB) $(MSLIBS)
 
 mysqlplus$(EXESUFF): mysqlplus.prg Makefile $(CLIP) $(LIBCLIP)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -ew mysqlplus.prg $(SQLLIB) $(ORLIBS)
+	$(CLIP) $(CLIPFLAGS) -ewslN mysqlplus.prg $(SQLLIB) $(ORLIBS)
 
 #gui_test$(EXESUFF): gui_test.prg $(GUILIB) $(CLIP)
 #	$(Trace_clip)

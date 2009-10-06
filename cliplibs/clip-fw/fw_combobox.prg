@@ -6,8 +6,8 @@
 
 
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
 
 #define GWL_STYLE          -16
 

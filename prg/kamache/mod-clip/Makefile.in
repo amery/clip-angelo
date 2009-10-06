@@ -1,14 +1,17 @@
 #
 #                                            prg/kamache/mod-clip/Makefile.in
 #
-Local_Depend =
+Local_Depend 			=
+MODULES 					= 				hello.po
 
-#CLIP	= $(CLIPROOT)/bin/clip$(EXESUFF)
-CLIPFLAGS = -p
-MODULES = hello.po
-.SUFFIXES: .prg .o .po
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all : $(MODULES)
+
+hash1 :
 
 cfg :
 
@@ -19,8 +22,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install : all
-	$(E_mkD)mkdir -p$(V)  $(DESTDIR)/kamache/mod-clip
-	$(E_cp)cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-clip
+	$(E_mkD)mkdir -p$(V)  $(INSTDIR)/kamache/mod-clip
+	$(E_cp)cp --remove-destination -fpu$(V) Makefile *.po *.prg $(INSTDIR)/kamache/mod-clip
 
 include $(Makefile_o_in)
 

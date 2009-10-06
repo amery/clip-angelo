@@ -1,29 +1,39 @@
 #
 #                                            prg/debug/Makefile.in
 #
-Local_Depend =
+OBJS  			= 		$(sort 					\
+										init.o 		\
+										cld_obj.o 	\
+										menu.o 		\
+										command.o 	\
+										source.o 	\
+										values.o 	\
+										viewset.o 	\
+										viewali.o 	\
+										monitor.o 	\
+							)
 
+POBJS  			= 		$(addsuffix .po, $(basename $(OBJS) ) )
+BIN 				= 		clip_cld$(EXESUFF)
+export
 
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O -l -w
-#CLIPLIBS  =
-OBJS  = init.o cld_obj.o menu.o command.o source.o values.o viewset.o viewali.o monitor.o
-POBJS  = init.o cld_obj.po menu.po command.po source.po values.po viewset.po viewali.po monitor.po
-.SUFFIXES: .prg .o .po
+######################################################################################
+###################################################################################### local rules
 
-all : Makefile clip_cld$(EXESUFF)
+all : Makefile $(OBJS) $(BIN)
+
+hash1 :
 
 cfg :
 
 cleanc :
-	$(E_rm)rm -rf$(V) *.c *.b clip_cld$(EXESUFF) test$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.c *.b $(BIN) test$(EXESUFF)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 clip_cld$(EXESUFF) : clip_cld.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -esM $< $(OBJS); 	\
 	else 																\

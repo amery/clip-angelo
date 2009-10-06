@@ -7,8 +7,8 @@ http://www.csn.ul.ie/~caolan
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #ifndef HAVE_LIBXPM
 gdImagePtr gdImageCreateFromXpm(char *filename)

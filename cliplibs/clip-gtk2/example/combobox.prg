@@ -1,6 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function main()
-local major, minor
+local major, minor, win, layout, frame1, frame2, frame3, list, combo, combo2, a, d, vbox, cell, I, entry
 gtk_init()
 gtk_Version(@major, @minor)
 if  (major < 2) .or. (minor < 4)
@@ -26,13 +26,13 @@ gtk_LayoutPut(layout, combo, 8, 17)
 
 
 a:={}
-aadd(a, "Понедельник")
-aadd(a, "Вторник"    )
-aadd(a, "Среда"      )
-aadd(a, "Четверг"    )
-aadd(a, "Пятница"    )
-aadd(a, "Суббота"    )
-aadd(a, "Праздник!!!")
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫")
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫"    )
+aadd(a, "О©╫О©╫О©╫О©╫О©╫"      )
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫"    )
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫"    )
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫"    )
+aadd(a, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫!!!")
 
 gtk_ComboBoxAppendText(combo, a[1])
 gtk_ComboBoxAppendText(combo, a[2])
@@ -54,12 +54,12 @@ combo2 := gtk_ComboBoxNewWithModel(, gtk_TreeModel(list))
 cell := gtk_CellRendererTextNew()
 gtk_CellLayoutPackstart(combo2, cell, .t.)
 gtk_CellLayoutSetAttributes(combo2, cell, "text", 1, NIL)
-  /* или вот так, если один атрибут */
+  /* О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫, О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 //gtk_CellLayoutAddAttribute(combo2, cell, "text", 1)
 gtk_ComboBoxSetWrapWidth(combo2, 3)
 for i=1 to 10
 
-        gtk_ListStoreAppend(list, 1, "str строка"+alltrim(str(i)), -1)
+        gtk_ListStoreAppend(list, 1, "str О©╫О©╫О©╫О©╫О©╫О©╫"+alltrim(str(i)), -1)
 
 next
 
@@ -77,10 +77,10 @@ gtk_LayoutPut(layout, frame3, 2, 70)
 
 entry := gtk_ComboBoxEntryNewText()
 gtk_WidgetSetSizeRequest(entry, 240)
-gtk_ComboBoxAppendText(entry, "Бывает, проснешься как птица -")
-gtk_ComboBoxAppendText(entry, "Крылатой пружиной на взводе")
-gtk_ComboBoxAppendText(entry, "И хочется жить и трудиться!!!")
-gtk_ComboBoxAppendText(entry, "Но к завтраку это проходит...")
+gtk_ComboBoxAppendText(entry, "О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ -")
+gtk_ComboBoxAppendText(entry, "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫")
+gtk_ComboBoxAppendText(entry, "О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫!!!")
+gtk_ComboBoxAppendText(entry, "О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫...")
 gtk_ComboBoxSetActive(entry, 1)
 
 gtk_LayoutPut(layout, entry, 8, 85)

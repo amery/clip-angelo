@@ -7,7 +7,7 @@
 
 /* CTI_ZORDER stores list of widgetss in Z(vertical) order */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 /* CTI_ZORDER constructor */
 function cti_zorder_new()

@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "button.ch"
-#include "set.ch"
+#include "ci_button.ch"
+#include "ci_set.ch"
 
 static aMenuStack := {}
 static oLastItem

@@ -23,9 +23,9 @@ bug in rational_adda
 from uri:
 
 Revision 1.2  2000/10/20 08:03:23  clip
-Вкрутил rational везде где упоминается NUMERIC_t
-может чего и осталось неотловленное, но это может быть только в тех
-местах где нет использования NUMERIC_t !!!!!
+О©╫О©╫О©╫О©╫О©╫О©╫О©╫ rational О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NUMERIC_t
+О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫
+О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NUMERIC_t !!!!!
 from uri:
 
 Revision 1.1  2000/09/12 07:28:31  clip
@@ -42,14 +42,14 @@ from uri:
 
 */
 
-#include "integer.h"
+#include "ci_integer.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
 
-#include "clip.h"
+#include "ci_clip.h"
 
 /*************************************************/
 int integer_sign(integer * data)
@@ -538,7 +538,7 @@ integer * integer_sdivide(integer * data, integer * y, integer ** div)
 						integer_ssub(*div,var);
 			}
 		if ( cmp==0 )
-			break;              // если числа равны
+			break;              // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 				integer_rshifta(var,1);
 	}
 		integer_destroy(var);

@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 /*
 color "1,     2, 3, 4, 5, 6"
 1- border, item
@@ -51,7 +51,7 @@ local obj
        obj:findbuffer  	:= ""
 
        obj:item 	:= {}
-       obj:__colors	:= {}      // палитры цветов
+       obj:__colors	:= {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
        obj:__init()
        obj:__setcolor()
@@ -229,7 +229,7 @@ static func killFocus()
     ::refresh()
 return
 
-*********** заполнение
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static func refresh()
 local cur, i, j, nl:=::nLeft
        if ::union
@@ -392,7 +392,7 @@ local i,a, j, nl:=::nLeft, s, es:="", cur
        dispend()
 return
 
-*********** перемещение на одну строку вниз
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 static func down
     ::line++
     ::buffer++
@@ -400,7 +400,7 @@ static func down
     ::refresh()
 RETURN
 
-*********** перемещение на одну строку вверх
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 static func up
      ::line--
      ::buffer--
@@ -408,14 +408,14 @@ static func up
      ::refresh()
 RETURN
 
-*********** перемещение по PgDn
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ PgDn
 static func PageDown
     ::buffer += ::itemWin
     ::first += ::itemWin
     ::clearFindBuffer()
     ::refresh()
 return
-*********** перемещение по PgUp
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ PgUp
 static func PageUp
     ::buffer -= ::itemWin
     ::first -= ::itemWin
@@ -423,7 +423,7 @@ static func PageUp
     ::refresh()
 RETURN
 
-*********** перемещение по стрелкам влево-вправо
+*********** О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫
 static func left()
     ::pos --
     ::buffer -= ::rowWin
@@ -438,7 +438,7 @@ static func right()
     ::refresh()
 return
 
-*********** в начало списка
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static func Home
   ::pos := 1
   ::buffer := 1
@@ -448,7 +448,7 @@ static func Home
   ::refresh()
 return
 
-*********** в конец списка
+*********** О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 static func End
   ::pos := ::colWin
   ::buffer := ::itemCount
@@ -458,7 +458,7 @@ static func End
   ::refresh()
 return
 
-*********** поиск подстроки
+*********** О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 static func find(ch)
 local i, j, cur, oldfirst, oldline, oldbuff, oldpos, oldfb, found:=.f., cw
 
@@ -559,9 +559,9 @@ local Rcol:=::nRight, Lcol:=::nLeft
 return .t.
 *************
 /*
-width - это массив {}
-каждый элемент либо цифра, либо 0 - те все оставшееся, причем 0 - может
-быть несколько, тогда вся оставшаяся ширина делится по братски между ними
+width - О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ {}
+О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫ 0 - О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫ 0 - О©╫О©╫О©╫О©╫О©╫
+О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 */
 static function setWidthCol(width)
 local i, az:={}, s:=0, len

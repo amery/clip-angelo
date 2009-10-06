@@ -4,29 +4,33 @@
 #  GNU make makefile
 #
 
-Local_Depend = include/*.ch
+Local_Depend 		= 			include/*.ch
+LIBODBC 				+= 		-lodbc
+LIBOOB 				+= 		-lesoobclient
+PROG 					= 			clip-odbc
+PROG2 				= 			clip-oob
+ADDLIBS 				= 			$(LIBODBC)
+ADDLIBS2 			= 			$(LIBOOB)
+OBJS 					= 			$(sort 						\
+												odbc_clip.o 	\
+												odbc.o 			\
+									)
 
-#LIBODBC=@LIBODBC@ $(C_LIBS)
-LIBODBC+=-lodbc $(C_LIBS)
-# Note: below we check if LIBOOB is empty when library is missed
-#LIBOOB=@LIBOOB@
-LIBOOB+=-lesoobclient
-PROG = clip-odbc
-PROG2 = clip-oob
-ADDLIBS =
-#+= $(LIBODBC)
-ADDLIBS2 =
-#+= $(LIBOOB)
-OBJS=odbc_clip.o odbc.o
-OBJS2= $(OBJS)
-DOC = *.html
+OBJS2 				= 			$(OBJS)
+DOC 					= 			*.html
 
-################################################################################################################
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all : Makefile $(OBJS) $(OBJS2) $(STARGET) $(STARGET2)
 
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-odbc
+
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/odbc.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_odbc.ch $(Clip_I_Dir)/
 
 include $(Makefile_o_in)
 

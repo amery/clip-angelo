@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report7_xml(_queryArr)
 
@@ -43,9 +43,9 @@ local i,j,k,s,s1,s2,tmp,obj,col,typenode
 	endif
 	if "HUDDLE" $ _query
 		huddle := upper(_query:huddle)
-		if upper(left(huddle,1)) $ "TYä"
+		if upper(left(huddle,1)) $ "TYï¿½"
 		    huddle := .t.
-		else 	
+		else
 		    huddle := .f.
 		endif
 	endif
@@ -152,4 +152,4 @@ local i,j,k,s,s1,s2,tmp,obj,col,typenode
 	?' ]</items>'
 	? '</root>'
 
-return 
+return

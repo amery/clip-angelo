@@ -4,8 +4,8 @@
     24.11.01 23:47
 */
 
-#include "set.ch"
-#include "error.ch"
+#include "ci_set.ch"
+#include "ci_error.ch"
 
 FUNCTION __DBTOTAL( cFile, xKey, aFields,                 ;
                     xFor, xWhile, nNext, nRec, lRest, rdd ;

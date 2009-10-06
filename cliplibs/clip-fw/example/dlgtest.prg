@@ -1,4 +1,4 @@
-// Massive DialogBox use test                                   ä
+// Massive DialogBox use test                                   ï¿½
 /*
 File Name  : DLGTEST.PRG
 
@@ -6,7 +6,7 @@ Description: Massive Dialog Box use test
 
 */
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <ci_FiveWin.ch>
 
 STATIC oWnd
 STATIC lEnd := .F.

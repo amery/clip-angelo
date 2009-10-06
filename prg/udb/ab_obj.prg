@@ -3,11 +3,11 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "inkey.ch"
-#include "imenu.ch"
-#include "set.ch"
-#include "box.ch"
+#include "ci_config.ch"
+#include "ci_inkey.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
+#include "ci_box.ch"
 
 
 ************************************************

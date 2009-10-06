@@ -3,11 +3,11 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "config.ch"
-#include "lang.ch"
+#include "ci_config.ch"
+#include "ci_lang.ch"
 /*
-	Кто знает что тут еще должно быть
-        напишите.
+	О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+        О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫.
 */
 /*
 #define _GET_INSERT_ON   7     // "Ins"

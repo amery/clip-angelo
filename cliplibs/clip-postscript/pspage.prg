@@ -9,13 +9,13 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 /* Class for Postscript page content */
 
 function PSPage( num, orientation, printer )
 	local obj := map()
-	
+
 	obj:className := "PSPage"
 	obj:type      := O_PAGE
 	obj:num	      := num
@@ -59,12 +59,12 @@ return self:num
 static function ps_print( self, printer )
 	local s:="", i, inum, iinum, tpw, v
 	local x, y, x1, y1, ss:="", pp
-	
+
 	//?? "print page...&\n"
 	if valtype(printer) != "O"
 		return ""
 	endif
-		
+
 	inum  := ltrim(str(self:getNumber()))
 	iinum := ltrim(str(printer:getPageCount()))
 	tpw   := ltrim(str(printer:page:width))
@@ -76,7 +76,7 @@ static function ps_print( self, printer )
 		s += tpw + " 0 translate&\n"
 		s += "90 rotate&\n"
 	endif
-	
+
 	// Text text box border
 	/*pp := printer:page
 	x  := ltrim(str(printer:val2pt(pp:margins[4])))
@@ -97,7 +97,7 @@ static function ps_print( self, printer )
 	ss += x+" "+y+" lineto closepath stroke&\n"
 	s += ss
 	*/
-	
+
 	// Write out page content
 	for i in self:blocks
 		//?? "."
@@ -119,7 +119,7 @@ static function ps_print( self, printer )
 			s += v
 		endif
 	next
-	
+
 	// write out page footer
 	s += "grestore stroke showpage&\n"
 	s += "%%PageTrailer&\n&\n"
@@ -143,5 +143,5 @@ static function ps_getHeight( self )
 	local p, s, w
 	p := self:printer
 	s := p:page
-	w := p:height - p:val2pt(s:margins[1]) - p:val2pt(s:margins[3]) - self:y 
-return w  
+	w := p:height - p:val2pt(s:margins[1]) - p:val2pt(s:margins[3]) - self:y
+return w

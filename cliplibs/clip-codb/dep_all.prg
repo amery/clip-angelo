@@ -6,8 +6,8 @@
 
 /* Virtual DEPOSITORY metods for all CODB drivers */
 
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 static __objCache := map()
 

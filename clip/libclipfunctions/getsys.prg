@@ -4,13 +4,13 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "button.ch"
-#include "getexit.ch"
-#include "inkey.ch"
-#include "llibg.ch"
-#include "set.ch"
-#include "setCurs.ch"
-#include "tbrowse.ch"
+#include "ci_button.ch"
+#include "ci_getexit.ch"
+#include "ci_inkey.ch"
+#include "ci_llibg.ch"
+#include "ci_set.ch"
+#include "ci_setCurs.ch"
+#include "ci_tbrowse.ch"
 
 #define K_UNDO          K_CTRL_U
 //#define CTRL_END_SPECIAL

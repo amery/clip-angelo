@@ -6,4 +6,4 @@ if [[ "$C64" != "64" ]] ; then
 fi
 #!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

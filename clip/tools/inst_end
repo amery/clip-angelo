@@ -7,11 +7,11 @@
 
 #[ `id -u` = 0 ] || exit 0
 
-chown -R root $DESTDIR$CLIPROOT 2>/dev/null || exit 0
-chmod -R a+r,go-w $DESTDIR$CLIPROOT
+chown -R root $INSTDIR 2>/dev/null || exit 0
+chmod -R a+r,go-w $INSTDIR
 
-cd  $DESTDIR/usr/share/terminfo \
-	|| cd $DESTDIR/usr/lib/terminfo \
+cd  $INSTDIR/usr/share/terminfo \
+	|| cd $INSTDIR/usr/lib/terminfo \
 	|| exit 0
 
 cd l || exit 0

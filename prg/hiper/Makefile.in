@@ -1,23 +1,25 @@
 #
 #                                            prg/hiper/Makefile.in
 #
-Local_Depend =
+BINS 				= 			$(sort 									\
+											clip_hindex$(EXESUFF) 	\
+											clip_hseek$(EXESUFF) 	\
+								)
 
+export
 
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -s -l -w
+######################################################################################
+###################################################################################### local rules
 
-BINS = $(sort clip_hindex$(EXESUFF) clip_hseek$(EXESUFF) )
-OBJS =
-LIBS =
+all : Makefile $(OBJS) $(BINS)
 
-all : Makefile $(BINS)
+hash1 :
 
 cfg :
 
 install :	all
-	$(E_cp)cp --remove-destination -fpu$(V) clip_hindex$(EXESUFF) $(DESTDIR)/bin/clip_hindex$(EXESUFF)
-	$(E_cp)cp --remove-destination -fpu$(V) clip_hseek$(EXESUFF) $(DESTDIR)/bin/clip_hseek$(EXESUFF)
+	$(E_cp)cp --remove-destination -fpu$(V) clip_hindex$(EXESUFF) $(INSTDIR)/bin/clip_hindex$(EXESUFF)
+	$(E_cp)cp --remove-destination -fpu$(V) clip_hseek$(EXESUFF) $(INSTDIR)/bin/clip_hseek$(EXESUFF)
 
 cleanc:
 	$(E_rm)rm -rf$(V) $(BINS) *.c *.b
@@ -28,7 +30,7 @@ distcleanc :
 include $(Makefile_o_in)
 
 clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
 	else 																\
@@ -37,7 +39,7 @@ clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(LIBCLIP)
 	fi
 
 clip_hseek$(EXESUFF):	clip_hseek.prg Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
 	else 																\

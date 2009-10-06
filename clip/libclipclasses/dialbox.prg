@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
-#include "box.ch"	//1   2	   3    4   5   6   7	 8   9	 0
+#include "ci_inkey.ch"
+#include "ci_box.ch"	//1   2	   3    4   5   6   7	 8   9	 0
 #define DBCOLORS	"0/3,1/3,14/3,14/1,1/3,14/1,0/3,14/1,9/3,14/1"
 //#define DBCOLORS	"0/7,1/7,14/7,14/1,1/7,3/7,0/7,14/1,9/7,14/1"
 #define _BUTTON_	1
@@ -19,16 +19,16 @@
 /*
 say, get, qout
 color="col1, col2, col3, col4, col5, col6, col7, col8"
-col1 - простой текст
-col2 - выделенный текст
-col3 - кнопка
-col4 - активная кнопка
-col5 - get объект не активный
-col6 - get объект активный
-col7 - checkbox объект не активный
-col8 - checkbox объект активный
-col9 - radiogroup объект не активный
-col10 - radiogroup объект активный
+col1 - О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
+col2 - О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
+col3 - О©╫О©╫О©╫О©╫О©╫О©╫
+col4 - О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+col5 - get О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+col6 - get О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+col7 - checkbox О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+col8 - checkbox О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+col9 - radiogroup О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+col10 - radiogroup О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 function dialogBox(Lrow, Lcol, Rrow, Rcol, color)
 local obj
@@ -72,7 +72,7 @@ local obj
        obj:__oldscr	:= 0
        obj:__oldcolr	:= 0
        obj:__oldcursor	:= 0
-       obj:__colors 	:= {}      // палитры цветов
+       obj:__colors 	:= {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
        _recover_dialogbox(obj)
 
@@ -144,9 +144,9 @@ local str
 	::__oldcursor := setcursor()
 	::leninfo := maxcol()-maxcol()*3/4 - 1
 	setcolor(::colorSpec)
-	set("dbox_colors_list","15/3,15/7,0/7,0/3,")   // цвет list объектов
-	set("dbox_colors_dialog","15/7,14/1,w+/b,g/rb,15/7,0/7")   // цвет диалогов
-	set("dbox_colors_menu","0/7,0/2,r/7,g/rb,15/7,0/7") // цвет меню
+	set("dbox_colors_list","15/3,15/7,0/7,0/3,")   // О©╫О©╫О©╫О©╫ list О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("dbox_colors_dialog","15/7,14/1,w+/b,g/rb,15/7,0/7")   // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("dbox_colors_menu","0/7,0/2,r/7,g/rb,15/7,0/7") // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
 	::item:hasFocus := .f.
 	asize(::item_area, 0)
 	::Find := findOptions(,,set("dbox_colors_dialog"), set("dbox_colors_list"))

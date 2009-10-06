@@ -174,7 +174,7 @@
    Paul Lasarev <paul@itk.ru>
 
    Revision 1.12  2000/05/22 22:19:01  clip
-   глюк в clip_DTOC, не освобождалась выделенная память
+   О©╫О©╫О©╫О©╫ О©╫ clip_DTOC, О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.11  2000/05/20 18:37:20  clip
    change hash function
@@ -185,32 +185,32 @@
    add prefix 'clip_' to all clip functions
 
    Revision 1.9  2000/03/30 19:00:57  uri
-   переделал под новые вызовы error
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ error
 
    Revision 1.8  2000/03/30 18:13:19  paul
    fields in macro
 
    Revision 1.7  1999/12/10 21:16:35  uri
-   в typename добавил MEMO_t
+   О©╫ typename О©╫О©╫О©╫О©╫О©╫О©╫О©╫ MEMO_t
 
    Revision 1.6  1999/12/08 21:01:22  uri
-   доделал фйнкции с датами из тулзов
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.5  1999/12/04 22:16:35  uri
-   вычистил все предупреждения
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.4  1999/12/04 21:25:35  uri
-   немного *DATE* функций из тулзов
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫ *DATE* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.3  1999/12/04 19:15:04  uri
-   новый gcc
+   О©╫О©╫О©╫О©╫О©╫ gcc
 
    Revision 1.2  1999/10/26 19:11:05  paul
    start cvs logging
 */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <stdio.h>
 #include <unistd.h>
@@ -223,8 +223,8 @@
 	#include <sys/times.h>
 #endif
 
-#include "error.ch"
-#include "hashcode.h"
+#include "ci_error.ch"
+#include "ci_hashcode.h"
 
 #ifdef OS_CYGWIN
 #include <w32api/windows.h>

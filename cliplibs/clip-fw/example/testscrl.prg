@@ -1,4 +1,4 @@
-// Sample how to use ScrollBars                                 Æ
+// Sample how to use ScrollBars                                 ï¿½
 /*
 File Name  : TESTSCRL.PRG
 
@@ -6,7 +6,7 @@ Description: Sample how to use ScrollBars
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 STATIC oWnd
 

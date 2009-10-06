@@ -1,7 +1,7 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 function main()
-local window, buffer, view, vbox, sw, e, s
+local window, buffer, view, vbox, sw, e, s, columns, types, cc, store, model, o, data, c, i, row1, row2, row3, renderer
 	gtk_init()
 	window = gtk_WindowNew(, " Test List Store Object ")
 	gtk_WidgetSetSizeRequest( window, 300, 300 )
@@ -39,9 +39,9 @@ local window, buffer, view, vbox, sw, e, s
 	// Insert rows...
 	data := {"f", 55.0}
 	// Set values
-	row := gtk_ListStoreAppend(store)
+	row1 := gtk_ListStoreAppend(store)
 	for i:=1 to len(data)
-		gtk_ListStoreSetValue(store, row, i, data[i])
+		gtk_ListStoreSetValue(store, row1, i, data[i])
 	next
 
 	row2 := gtk_ListStoreAppend(store,1,"f2", 2, -1)

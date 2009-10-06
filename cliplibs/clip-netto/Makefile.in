@@ -2,27 +2,44 @@
 #                                            clip-netto/Makefile.in
 #
 
-Local_Depend = include/*.ch
-PROG = clip-netto
-#TARGET=libclip-netto$(DLLSUFF)
-#RTARGET=libclip-netto$(DLLREALSUFF)
-#LIBS=libclip-netto.a
-OBJS  = $(sort fnbin2i.o fndpve.o fnerr.o fnhex.o \
-	namel.o nonull.o \
-	nwdate.o reg2l.o ssfp.o \
-	)
-# fnbit.o fnpfeval.o is3x.o isnet.o ipxinit.o request.o fnpeek.o
-DOC = doc/*
-ADDLIBS =
+Local_Depend 			= 			include/*.ch
+PROG 						= 			clip-netto
+SRCS 						= 			$(sort 						\
+													fnbin2i.prg 	\
+													fnbit.prg  		\
+													fndpve.prg  	\
+													fnerr.prg  		\
+													fnhex.prg  		\
+													fnpeek.prg  	\
+													fnpfeval.prg  	\
+													ipxinit.prg  	\
+													is3x.prg  		\
+													isnet.prg  		\
+													namel.prg  		\
+													nonull.prg  	\
+													nwdate.prg  	\
+													reg2l.prg  		\
+													request.prg  	\
+													ssfp.prg			\
+										)
+OBJS  					= 			$(addsuffix .o, $(basename $(SRCS) ) )
+# fnbit.o fnpfeval.o is3x.o isnet.o ipxinit.o request.o fnpeek.o ## error missing functions
+DOC 						= 			doc/*
+ADDLIBS 					=
 
-all : Makefile $(STARGET)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-netto
 
 cfg :
 	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/$(PROG)
 	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch include/*.h $(Clip_I_Dir)/$(PROG)
-
-#$(TARGET):$(DIRS_TO_SCAN)
-#	$(CLIP_MAKESLIB) $(TARGET) $(LIBS)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
@@ -31,9 +48,6 @@ cleanc :
 	$(E_rm)rm -f$(V) $(TARGET).* *.c
 
 install : all install-lib install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
-#	$(CLIP_CP) $(LIBS) $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/include/netto
 
 include $(Makefile_o_in)
 

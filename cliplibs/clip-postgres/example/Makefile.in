@@ -1,15 +1,21 @@
 #
 #                                            clip-postgres/example/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-postgres.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-postgres.so
+LIBS 					= 			-L$(PGLIBDIR) -lpq
+ADDLIBS 				=
+PRG 					= 			my_psql$(EXESUFF)
 
+export
 
-PRG=my_psql$(EXESUFF)
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -19,9 +25,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewMs my_psql.prg -lclip-postgres
+my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ewMs my_psql.prg -lclip-postgres $(LIBS)
 
 include $(Makefile_o_in)
 

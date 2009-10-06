@@ -1,14 +1,21 @@
 #
 #                                            prg/kamache/mod-ini/Makefile.in
 #
-Local_Depend =
+Local_Depend 			=
+MODULES 					= 			$(sort 							\
+													kmch_hello.po 		\
+													mk_tmpdir.po		\
+										)
+#kmch_codb.po)
 
-# CLIP	= clip$(EXESUFF)
-#CLIPFLAGS += -p
-MODULES = kmch_hello.po mk_tmpdir.po #kmch_codb.po
-.SUFFIXES: .prg .o .po
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all : Makefile $(MODULES)
+
+hash1 :
 
 cfg :
 
@@ -19,8 +26,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install : all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/kamache/mod-ini
-	$(E_cp)cp --remove-destination -fpu$(V) Makefile *.po *.prg $(DESTDIR)/kamache/mod-ini
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/kamache/mod-ini
+	$(E_cp)cp --remove-destination -fpu$(V) Makefile *.po *.prg $(INSTDIR)/kamache/mod-ini
 
 include $(Makefile_o_in)
 

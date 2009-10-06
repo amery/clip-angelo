@@ -8,9 +8,9 @@
 /* CTI_CONTAINER - abstract class for deriving other classes of widgets, who
  * may contain children widget */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
+#include "ci_setcurs.ch"
 
 #define	SUPERCLASS	CTI_WIDGET
 

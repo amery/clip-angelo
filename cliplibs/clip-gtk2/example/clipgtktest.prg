@@ -1,5 +1,5 @@
-#include <clip-gtk2.ch>
-#include <gtk2-stock.ch>
+#include <ci_clip-gtk2.ch>
+#include <ci_gtk2-stock.ch>
 
 //#define DEBUG
 
@@ -28,7 +28,7 @@ function Main()
 	local CTFrame, CTFx, ctree, node1, node2, node3, node4, ctscr
 	local PBFrame, PBFx, qbtn
 	local PxmFrame, PxmFx, pix, bmppix
-        local bfont, bcolor
+        local bfont, bcolor, listbtn
 
 	Process:=map()
 
@@ -703,7 +703,7 @@ return obj
 ////////////////////////////////////////////////////
 
 function getToplevels(w)
-local dialog, dvb, dbtn, dsv, list, i, str, toplevel
+local dialog, dvb, dbtn, dsv, list, i, str, toplevel, label
 
         list := gtk_WindowListToplevels()
         toplevel = gtk_WidgetGetToplevel(w)

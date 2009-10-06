@@ -9,7 +9,7 @@
      Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
 
-#include "cobra.ch"
+#include "ci_cobra.ch"
 
 static query_counter := 1
 

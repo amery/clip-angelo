@@ -1,9 +1,9 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_classes_xml(flag)
 
 	local m1:={"ACC01","ACC00","GBL02","GBL01","ETC01"}
-	local m2:={"Глобальные","Общие","Отдел кадров","Бухгалтерские","Настройки"}
+	local m2:={"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫","О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"}
 	local i
 	//local meta:= {"tcolumn","attr","class","index","deposit","extent","plugins","counter"}
 
@@ -21,7 +21,7 @@ function r2d2_classes_xml(flag)
 			for i=1 to len(m1)
 				put_xml(m1[i],m2[i])
 			next
-	    ? '</metadata>'	
+	    ? '</metadata>'
 	elseif flag == 'cls4'
 			?? "Content-type: application/x-javascript;charset="+host_charset()
 			?
@@ -36,7 +36,7 @@ return
 
 
 static function put_json2(m1,m2)
-	
+
 	local i, oDict, list, class2, atrib, tcol, index2, extent,counter
 	local j,tmp
 	oDict := codb_dict_reference(m1)
@@ -51,10 +51,10 @@ static function put_json2(m1,m2)
 			? 'CLASS["'+class2:id+'"]={id:"'+class2:id
 			?? '",name:"'+class2:name
 			?? '",expr_essence:"'+strtran_json(class2:expr_essence)
-			?? '",super_id:"'+ class2:super_id 
+			?? '",super_id:"'+ class2:super_id
 			?? '",unique_key:"'+class2:unique_key
 			?? '",extent_id:"'+class2:extent_id
-			?? '",dict:"'+m1			
+			?? '",dict:"'+m1
 			?? '",idx_list:['
 				tmp := class2:idx_list
 				for j=1 to len(tmp)
@@ -62,7 +62,7 @@ static function put_json2(m1,m2)
 				next
 			?? '], tcol_list:['
 				if 'TCOL_LIST' $ class2
-				    tmp := class2:tcol_list   
+				    tmp := class2:tcol_list
 				    for j=1 to len(tmp)
 					?? iif(j==1,'',',')+'"'+tmp[j]+'"'
 	    			    next
@@ -79,7 +79,7 @@ static function put_json2(m1,m2)
 	for i=1 to len(list)
 		atrib := oDict:getValue(list[i])
 		? 'ATTRIBUT["'+atrib:id+'"]={id:"'+atrib:id
-		?? '",dict:"'+m1					
+		?? '",dict:"'+m1
 		?? '",name:"'+atrib:name
 		?? '",type:"'+atrib:type
 		?? '",lentype:'+alltrim(str(atrib:lentype))
@@ -95,8 +95,8 @@ static function put_json2(m1,m2)
 	for i=1 to len(list)
 		tcol := oDict:getValue(list[i])
 		? 'TCOLUMN["'+tcol:id+'"]={name:"'+tcol:name
-		?? '",id:"'+tcol:id		
-		?? '",dict:"'+m1					
+		?? '",id:"'+tcol:id
+		?? '",dict:"'+m1
 		?? '",header:"'+strtran_json(tcol:header)
 		?? '",width:'+alltrim(str(tcol:width))
 		?? ',expr:"'+tcol:expr
@@ -107,7 +107,7 @@ static function put_json2(m1,m2)
 	for i=1 to len(list)
 		index2 := oDict:getValue(list[i])
 		? 'INDEX["'+index2:id+'"]={name:"'+index2:name
-		?? '",dict:"'+m1			
+		?? '",dict:"'+m1
 		?? '",expr:"'+index2:expr
 		??'"};'
 	next
@@ -119,7 +119,7 @@ static function put_json2(m1,m2)
 		?? extent:id
 		?? '"]={name:"'
 		?? extent:name
-		?? '",dict:"'+m1					
+		?? '",dict:"'+m1
 		??'"};'
 	next
 
@@ -132,7 +132,7 @@ static function put_json2(m1,m2)
 		?? counter:name
 		?? '",type:"'
 		?? counter:type
-		?? '",dict:"'+m1					
+		?? '",dict:"'+m1
 		??'"};'
 	next
 
@@ -141,7 +141,7 @@ return
 
 ******************
 static function put_json(m1,m2)
-	
+
 	local i,oDict,list,class2
 	local tColumns,tIndexes
 	local j,tmp,col,atrib
@@ -188,16 +188,16 @@ static function put_json(m1,m2)
 	list := oDict:select("TVIEW")
 	for i=1 to len(list)
 		tmp := oDict:getValue(list[i])
-		? 'TVIEW["'+tmp:name+'"]={id:"'+tmp:id+'", tcol_list:['				
+		? 'TVIEW["'+tmp:name+'"]={id:"'+tmp:id+'", tcol_list:['
 		for j=1 to len(tmp:col_list)
-    		    col := oDict:getValue(tmp:col_list[j]) 
+    		    col := oDict:getValue(tmp:col_list[j])
 		    if !empty(col)
 			?? iif(j==1,'',',')+'"'+col:name+'"'
 		    endif
 		next
 		??']};'
 	next
-*/	
+*/
 	?
 return
 

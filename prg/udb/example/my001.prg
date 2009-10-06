@@ -1,5 +1,10 @@
 * sample for creating MY001 and append few objects
 *
+Static tm
+Function Main ()
+Local d, list, i, m001, oDict, depBody, dep_id, extBody
+Local ext_id, attr, code_id, name_id, indBody, ind1_id, ind2_id, classBody
+Local currency_id, oDep, currBody, data, obj, obj_id, c_list, my001, tmp
 d:=codbList():new()
 ? "open dictionary list", d:error
 list:=d:list()

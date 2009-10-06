@@ -2,20 +2,32 @@
 #                                            prg/udbx/plugins/Makefile.in
 #
 
-Local_Depend =
-#$(Clip_L_Dir)/libclip-gtk.so
+Local_Depend 			=
+Depend_on 				= 				$(Clip_L_Dir)/libclip-gtk.so
 
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O -b -w -I ./include
-#CLIPLIBS  =
-#LIBS = ./libclip-codb$(DLLSUFF)
-#CLIPFLAGS += -p
-.SUFFIXES: .prg .o .po
+MODULES 					= 				$(sort 					\
+														attr.po 		\
+														class.po 	\
+														counter.po 	\
+														default.po 	\
+														deposit.po 	\
+														group.po 	\
+														index.po 	\
+														plugins.po 	\
+														report.po 	\
+														tcolumn.po 	\
+														tview.po 	\
+														user.po 		\
+											)
 
-MODULES = 	$(sort attr.po class.po counter.po default.po deposit.po \
-				group.po index.po plugins.po report.po tcolumn.po tview.po user.po )
+export
 
-all : Makefile $(DIRS_TO_SCAN) $(MODULES)
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(MODULES)
+
+hash1 :
 
 cfg :
 

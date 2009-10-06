@@ -4,7 +4,7 @@ osname=`./osname.sh|tr '[:lower:]' '[:upper:]'`
 arch=`./arch.sh|tr '[:lower:]' '[:upper:]'`
 libc=`./libcver.sh|tr '.' '_'|tr '[:lower:]' '[:upper:]'`
 
-exec > cl_cfg.h
+exec > ci_cl_cfg.h
 
 case "$osname" in
 	MINGW*)

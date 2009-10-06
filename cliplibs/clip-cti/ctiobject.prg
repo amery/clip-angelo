@@ -7,7 +7,7 @@
 
 /* CTI_OBJECT - virtual object, all other objects inherits from it. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 /* CTI_OBJECT constructor */
 

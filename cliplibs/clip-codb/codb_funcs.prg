@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 static dict_list := map()
 static dict_counter:= map()

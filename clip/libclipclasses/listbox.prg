@@ -3,10 +3,10 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "button.ch"
-#include "box.ch"
-#include "setcurs.ch"
-#include "set.ch"
+#include "ci_button.ch"
+#include "ci_box.ch"
+#include "ci_setcurs.ch"
+#include "ci_set.ch"
 
 #ifdef __UNIX__
    #define LB_PUSHSYM "#"
@@ -111,7 +111,7 @@ function listBox(top,left,bottom,right,ldrop)
    obj:__mData	:= {}
    obj:__SB	:= NIL
    obj:__colors	:= {}
-   obj:__bufType:= 0  // тип данных в буфере - 0-число,1-текст,2-данные
+   obj:__bufType:= 0  // О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ - 0-О©╫О©╫О©╫О©╫О©╫,1-О©╫О©╫О©╫О©╫О©╫,2-О©╫О©╫О©╫О©╫О©╫О©╫
    obj:__scr	:= savescreen(top+iif(ldrop,1,0),left,bottom,right)
    obj:__setColor()
 

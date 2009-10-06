@@ -22,7 +22,7 @@
  *
  */
 
-#include "netto.ch"
+#include "ci_netto.ch"
 
 
 /*  $DOC$
@@ -31,7 +31,7 @@
  *  $CATEGORY$
  *      Miscellaneous
  *  $ONELINER$
- *      Convert a binary string to hexidecimal 
+ *      Convert a binary string to hexidecimal
  *  $SYNTAX$
  *
  *      fn_Bin2I( <cBinStr> ) -> cHexStr
@@ -48,7 +48,7 @@
  *
  *      Internally, all information is stored as a series of bytes.  When
  *      performing a direct read from memory, a character string will be
- *      returned.  Use this function to convert that string to its 
+ *      returned.  Use this function to convert that string to its
  *      hexidecimal numeric equivalent.
  *
  *  $EXAMPLES$
@@ -98,9 +98,9 @@ RETURN cHexStr
  *
  *  $EXAMPLES$
  *
- *      ? fn_Hex2Bin( "DEAF" )						// "ޯ"  
+ *      ? fn_Hex2Bin( "DEAF" )						// "ޯ"
  *
- *      ? fn_Hex2Bin( "10" )							// ""  
+ *      ? fn_Hex2Bin( "10" )							// ""
  *
  *  $SEEALSO$
  *      fn_Bin2Hex() fn_PeekStr() fn_PokeStr()

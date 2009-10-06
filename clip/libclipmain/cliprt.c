@@ -1813,7 +1813,7 @@
 
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
@@ -1834,19 +1834,19 @@
 #include <errno.h>
 #include <limits.h>
 
-#include "clip.h"
-#include "clipvm.h"
-#include "hash.h"
-#include "../libclipscreen/screen.h"
-#include "error.ch"
-#include "hashcode.h"
-#include "rational.h"
-#include "../libclipscreen/charset.h"
-#include "coll.h"
+#include "ci_clip.h"
+#include "ci_clipvm.h"
+#include "ci_hash.h"
+#include "../libclipscreen/ci_screen.h"
+#include "ci_error.ch"
+#include "ci_hashcode.h"
+#include "ci_rational.h"
+#include "../libclipscreen/ci_charset.h"
+#include "ci_coll.h"
 #include "license.h"
 
 #ifdef USE_TASKS
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 #endif
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))

@@ -1,14 +1,19 @@
 #
 #                                            clip-com/example/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-com.so
+Depend_on 		= 			$(Clip_L_Dir)/libclip-com.so
+PRG 				= 			com
 
-PRG=com
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG)$(EXESUFF)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -18,7 +23,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP)
+$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewNsl -M $(PRG).prg -lclip-$(PRG)
 

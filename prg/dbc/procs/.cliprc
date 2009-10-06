@@ -2,7 +2,7 @@
 #-I ../include
 -l
 -D ENGLISH
--U std.ch
--U config.ch
--U clip.ch
+-U ci_std.ch
+-U ci_config.ch
+-U ci_clip.ch
 

@@ -1,13 +1,19 @@
 #
 #                                            clip-gtkextra/example/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-gtkextra.so $(Clip_L_Dir)/libclip-gtk.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-gtkextra.so 	\
+									$(Clip_L_Dir)/libclip-gtk.so
 
+export
 
-all:Makefile sheet$(EXESUFF)
+######################################################################################
+###################################################################################### local rules
+
+all:Makefile #sheet$(EXESUFF) ## missing functions
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -17,9 +23,9 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ew -s -l sheet.prg -lclip-gtkextra -lclip-gtk
+sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ew -s -l sheet.prg -lclip-gtkextra -lclip-gtk $(LIBS)
 
 include $(Makefile_o_in)
 

@@ -9,8 +9,8 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
-#include "var.ch"
+#include "ci_clip-ui.ch"
+#include "ci_var.ch"
 
 static currentDriver := NIL
 static currentDriverName := DEFAULT_DRIVER
@@ -117,7 +117,7 @@ return value
 */
 function getLocaleStrings( parent, locale )
 	local section:=NIL, mStr:=map(), tag, i, a
-	
+
 	if empty(locale)
 		locale := left(getenv("LANG"),2)
 	endif
@@ -144,7 +144,7 @@ function getLocaleStrings( parent, locale )
 	// Collect messages inside widgets
 	a := parent:XPath('//msg')
 	//?? valtype(a), len(a),chr(10)
-	
+
 	if valtype(a) == 'A' .and. len(a) > 0
 		for i in a
 			if i:attribute('lang','') == locale .and. .not. ( i:attribute("id","") == "" .and. i:attribute("value","") == "" )

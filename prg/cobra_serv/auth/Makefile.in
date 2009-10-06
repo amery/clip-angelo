@@ -1,26 +1,27 @@
 #
 #                                            prg/cobra-serv/auth/Makefile.in
 #
-Local_Depend =
-
-#CLIP	= $(CLIPROOT)/bin/clip
-
+Local_Depend 			=
 # need package libpam0g-dev
+LIBS 						= 			-lpam
 
-LIBS = -lpam
-#CC = gcc
-#CFLAGS = -O
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile pam-auth$(EXESUFF)
+
+hash1 :
 
 cfg :
 
 pam-auth$(EXESUFF): pam-auth.c Makefile
 	$(E_cc)if [ -f $(subst .c,.g,$<) ] ; then 	\
-		$(Trace_c_d) ; 									\
+		$(Trace_cc_d) ; 									\
 		$(CC) -g $(C_FLAGS) $< -o $@ $(LIBS) ; 	\
 	else 														\
-		$(Trace_c) ; 										\
+		$(Trace_cc) ; 										\
 		$(CC) $(C_FLAGS) $< -o $@ $(LIBS) ; 		\
 	fi
 
@@ -31,10 +32,10 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install:all
-	$(E_mkD)mkdir -p $(DESTDIR)/cobra/auth
-	$(E_rm)cd $(DESTDIR)/cobra/auth; rm -f$(V) pam-auth$(EXESUFF)
-	$(E_cp)cp --remove-destination -fpu$(V) Makefile make_mod.sh other pam* $(DESTDIR)/cobra/auth
-	$(E_if)cd $(DESTDIR)/cobra/auth; test -z $(DESTDIR) && sudo ./make_mod.sh || exit 0
+	$(E_mkD)mkdir -p $(INSTDIR)/cobra/auth
+	$(E_rm)cd $(INSTDIR)/cobra/auth; rm -f$(V) pam-auth$(EXESUFF)
+	$(E_cp)cp --remove-destination -fpu$(V) Makefile make_mod.sh other pam* $(INSTDIR)/cobra/auth
+	$(E_if)cd $(INSTDIR)/cobra/auth; test -z $(INSTDIR) && sudo ./make_mod.sh || exit 0
 
 include $(Makefile_o_in)
 

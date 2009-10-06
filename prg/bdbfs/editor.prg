@@ -3,11 +3,11 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "set.ch"
-#include "memoedit.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
+#include "ci_memoedit.ch"
 MEMVAR __mrow,__mcol,_im,_bm,_HdColor,_c_f,_zif,_lWrap
 MEMVAR cFld,cTitle,cFooter,lEdit,nrBorder,cPrintHeader	//parameters
 **********
@@ -41,13 +41,13 @@ IF EMPTY(m->_MemoEditor) .OR. !m->lEdit
 		ShowMouse();ShowMouse()
 		i:=MemoEdit(m->cFld,6,3,__mrow-6,__mcol-3,m->lEdit,;
 			    'FileEditor', m->nrBorder,m->_nMemoTab)
-		inkey()		//¢ëç¨â âì «¨è­¨© ESC
+		inkey()		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½è­¨ï¿½ ESC
 		IF !m->lReload
 			cFld:=i
 			m->lReload:=.F.
 		ENDIF
 		IF m->lFinish THEN EXIT
-//à®¨§®è«¨ ¨§¬¥­¥­¨ï ª®­ä¨£ãà æ¨¨
+//ï¿½à®¨ï¿½ï¿½è«¨ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¨£ï¿½ï¿½ï¿½æ¨¨
 		m->nrBorder:=m->_nMemoWrap
 	ENDDO
 	IF !m->lEdit .OR. LastKey()==K_ESC;
@@ -60,7 +60,7 @@ ELSE
 		lSpec:=.T.
 		IF (i:=ASCAN(m->_memoEditor,{|x|LIKE(x[1],_c_f)}))==0;
 			THEN i:=1
-// ¥á«¨ ­¥ ­ ©¤¥­® - ¯¥à¢ë©
+// ï¿½á«¨ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		amEd:=m->_MemoEditor[i]
 		ASIZE(amEd,5)
 		cEditor:=amEd[2]
@@ -116,7 +116,7 @@ ELSE
 					nRes:=ME_IGNORE
 				ELSEIF nKey=2
 					oEd:updated:=.F.
-					KEYBOARD _ESC	//„ «¥¥ ¥áâì ®¡à ¡®âª  LastKey()
+					KEYBOARD _ESC	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½à ¡ï¿½âª  LastKey()
 				ELSEIF nKey=3
 					nRes:=K_CTRL_W
 				ENDIF
@@ -124,7 +124,7 @@ ELSE
 
 		CASE nKey==K_ALT_X
 			oEd:updated:=.F.
-			KEYBOARD _ESC	//¥ ¤®¯ãáâ¨âì ¯®¢â®à 
+			KEYBOARD _ESC	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			nRes:=K_ESC
 
 		CASE nKey==K_F2
@@ -156,14 +156,14 @@ ELSE
 		CASE nKey==K_F6 .OR. (nKey==K_INS .AND. IsShift())
 			InsString(oEd, GetWinClip(), .T.)
 			nRes:=ME_IGNORE
-			__Keyboard(_RIGHT+_LEFT)	//ªãàá®à ­¥ ãáâ ­ ¢«¨¢ ¥âáï
+			__Keyboard(_RIGHT+_LEFT)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½â ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		CASE nKey==K_CTRL_GMINUS
 			InsString(oEd, FT_XTOY(GetClipBoard(), 'C'), .T.)
 			__Keyboard(_RIGHT+_LEFT)
 
 		CASE nKey==K_F9 .AND. GetMemoVars()
-			m->lFinish:=.F.		//¯¥à¥ç¨â âì
+			m->lFinish:=.F.		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			nRes:=K_CTRL_W
 
 		CASE nKey==K_F10
@@ -171,7 +171,7 @@ ELSE
 
 		CASE nKey==K_CTRL_F10
 			InsString(oEd, AsciiTbl(CHR(ch)), .T. )
-			__Keyboard(_RIGHT+_LEFT)	//ªãàá®à ­¥ ãáâ ­ ¢«¨¢ ¥âáï
+			__Keyboard(_RIGHT+_LEFT)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½â ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		CASE nKey==K_INS .AND. m->lEdit
 			Set( _SET_INSERT, !Set(_SET_INSERT) )

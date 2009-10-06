@@ -14,7 +14,7 @@
 */
 
 #include <string.h>
-#include "po_util.h"
+#include "ci_po_util.h"
 
 int
 main(int argc, char **argv)

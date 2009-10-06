@@ -11,8 +11,8 @@
 *
 */
 
-#include "frmdef.ch"
-#include "error.ch"
+#include "ci_frmdef.ch"
+#include "ci_error.ch"
 
 /***
 *  Nation Message Constants

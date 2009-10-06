@@ -29,7 +29,7 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkprivate.h>
-#include "gtkextext.h"
+#include "ci_gtkextext.h"
 
 #define TEXT_BORDER_ROOM 2
 #define CURSOR_TIMEOUT 350
@@ -1366,7 +1366,8 @@ line_set (GtkExText * text, gint pos)
 void
 style_init_each (gpointer key, GtkExTextStyle * style, GtkExText * text)
 {
-    gint width;
+
+gint width;
     GtkExTextStyle *def;
 
     def = gtk_extext_style_get (text, "Default");
@@ -1553,7 +1554,8 @@ property_remove_linked_list (GtkExText * text, GtkExTextProperty * cur)
     if (!next) {                /* LAST property */
         text->property_end = cur->prev;
         text->property_end->next = NULL;
-    } else {                   /* somewhere in list */
+
+} else {                   /* somewhere in list */
 
         if (cur->prev)
             cur->prev->next = next;
@@ -3826,7 +3828,8 @@ find_cursor (GtkExText * text, gdouble x, gdouble y, gboolean select)
             text->timer =
                 gtk_timeout_add (SCROLL_TIME, gtk_extext_scroll_timeout, text);
         }
-    } else {
+
+} else {
         y -= 2;
         lp = gtk_extext_get_line_by_offset (text, y, &dummy);
         if ((lp->line_number >

@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_report6_xml(_queryArr)
 
@@ -80,9 +80,9 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 		return
 	endif
 
-	
 
-	
+
+
 
 	oDep := cgi_needDepository("ACC01","01")
 	if empty(oDep)
@@ -128,10 +128,10 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 	    if empty(obj)
 		loop
 	    endif
-	    for j=1 to len(obj:accpost_list)                                                                                                             
-		k := obj:accpost_list[j]                                                                                                                 
-		obj2 := cgi_getValue(obj:accpost_list[j])                                                                                               
-		if !(k $ post_objs)   
+	    for j=1 to len(obj:accpost_list)
+		k := obj:accpost_list[j]
+		obj2 := cgi_getValue(obj:accpost_list[j])
+		if !(k $ post_objs)
 		    if empty(obj2)
 			loop
 		    endif
@@ -141,9 +141,9 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 		    if "__VERSION" $ obj2 .and. obj2:__version < 0
 		        loop
 		    endif
-		    post_objs[k]:= obj2                                                                                                                      
-                endif                         
-	    next 
+		    post_objs[k]:= obj2
+                endif
+	    next
 	next
 
 
@@ -156,12 +156,12 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 	    else
 	        apost[k]:=tmp
 	        aadd(aTree['level0'], apost[k])
-	    endif 
+	    endif
 	next
 /*
 	for k in apost
 	    aadd(aTree['level0'], k)
-	next		
+	next
 */
 	asort(aTree['level0'],,,{|x,y| x:odate <= y:odate})
 	columns := cgi_accpost_columns(oDict)
@@ -170,26 +170,26 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 	endif
 
 	if typeNode == 'rdf3'
-		cgi_xml_header()                                                                                                                                 
-	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                              
-	    ? 'xmlns:D="http://itk.ru/D#" '                                                                                                                   
-	    ? 'xmlns:R="http://itk.ru/R#" '                                                                                                                   
-	    ? 'xmlns:S="http://itk.ru/S#">'                                                                                                                   
-	    ?                                                                                                                                                 
-	elseif typeNode == 'rdf' 
-		cgi_xml_header()                                                                                                                             
-	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'                                                                                
-	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'                                                                                                         
+		cgi_xml_header()
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	    ? 'xmlns:D="http://itk.ru/D#" '
+	    ? 'xmlns:R="http://itk.ru/R#" '
+	    ? 'xmlns:S="http://itk.ru/S#">'
+	    ?
+	elseif typeNode == 'rdf'
+		cgi_xml_header()
+	    ? '<RDF:RDF xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+	    ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
 	elseif typeNode == 'xml'
 		cgi_xml_header()
-		? 'root' 
-	else 
+		? 'root'
+	else
 		cgi_text_header()
-		? '{'              
-	endif                  
+		? '{'
+	endif
 
 	cgi_putArefs2Rdf3(aTree, oDep, 0, urn, columns,"",, typeNode,.f., sprname)
-	
+
 	if typeNode == 'rdf3' .or. typeNode == 'rdf'
 	    ? '</RDF:RDF>'
 	elseif typeNode == 'json'
@@ -197,4 +197,4 @@ local i,j,k,s,s1,s2,tmp,obj,obj2,col,typenode
 	else
 	    ? '</root>'
 	endif
-return 
+return

@@ -3,9 +3,9 @@
     Author   : Alena (alena@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include <inkey.ch>
-#include <clipcfg.h>
-#include <box.ch>
+#include <ci_inkey.ch>
+#include <ci_clipcfg.h>
+#include <ci_box.ch>
 #define __CHARSET	"cp437"
 #define COLOR_BROWSER	"0/3,  14/3, 1/3, 14/3, 14/1, 11/3, 0/7, 15/1, 15/3,   1/3"
 #define COLOR_MENU 	"0/7,0/2,4/7,2/5,15/7,0/7"
@@ -14,7 +14,7 @@
 #define COLOR_DIALOG	"0/7, 15/1"
 #define COLOR_TEXTAREA	"11/1,11/1,0/2,0/3,0/7,1/3"
 #define TAB_SIZE	8
-#define DELIMITER	"─"
+#define DELIMITER	"О©╫"
 #define LISTDELTA	4
 #define LIST_TYPE	1
 #define LIST_DEEP	2
@@ -120,7 +120,7 @@ local obj
 	obj:getHcolor	:= @getHcolor()
 	obj:new_clr	:= @new_clr()
 	obj:rest_clr	:= @rest_clr()
-	obj:__colors 	:= {}      // палитры цветов
+	obj:__colors 	:= {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 	obj:__setColor 	:= @__setcolor()
 	obj:__setcolor()
 
@@ -303,7 +303,7 @@ local buf, timeout:=60
 			sleep(1)
 		endif
 	enddo
-	/*пропустить заголовок*/
+	/*О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫*/
 	sleep(0.1)
 	while  !::url:fileeof()
 	    if upper(::url:protocol) == "FILE"
@@ -884,9 +884,9 @@ tbl - items array
 
 	width -= len(::tbl[::numTable]:TColumns)-1
 
-	// если указана ширина таблицы
+	// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	if width>0
-		// фактич ширина
+		// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 		fact := 0
 		for i=1 to len(item:Tcolumns)
 			fact += item:Tcolumns[i]
@@ -1057,7 +1057,7 @@ static function add_Table( caption, border)
 local i, j, s, s1, w, t, k, arr, c_repl, e_str, c_str, cell, ctbl, celine
 local tcolor, wfact, rl, symb, x, y, dc, rc, rtbl, elem, hcls, ls, spos
 local cell_pos:={}
-local box:={"┌","─","┬","┐","│","├","┤","┼","└","┴","┘"}
+local box:={"О©╫","О©╫","О©╫","О©╫","О©╫","О©╫","О©╫","О©╫","О©╫","О©╫","О©╫"}
       //     1   2   3   4   5   6   7   8   9   0   1
 	border := iif(border==NIL, .f., .t.)
 	caption := iif(caption==NIL, "", caption)
@@ -1084,34 +1084,34 @@ local box:={"┌","─","┬","┐","│","├","┤","┼","└","┴","┘"}
 			::doc:Text(padc(arr[i], j),,,,,::clr)
 		next
 	endif
-	tcolor := ::clr // цвет таблицы
+	tcolor := ::clr // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	::doc:Text(s,,,,,tcolor)
 	::newLine(, .t.)
 	// write body
 	c_repl := .f.
 	for i=1 to len(ctbl)
-		// левый символ
+		// О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 		ls := box[5]
 		::doc:Text(ls,,,,,tcolor)
-		// высота ячеек в строке
+		// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 		hcls := 1
-		// начальная строка таблицы
+		// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 		rtbl := ::doc:n_Line
 		rc := ::doc:n_Pos
 		for j=1 to len(ctbl[i])
 			elem := ctbl[i][j]
-			w := elem:WIDTH //ширина ячейки
+			w := elem:WIDTH //О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 			if len(cell_pos) < j
 				aadd(cell_pos, rc)
 			else
 				cell_pos[j] := rc
 			endif
-			// нижняя граница ячеек
+			// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫
 			if j==1
 				s1 := symb_tbl(ctbl, i, j-1)
 			endif
 			s1 += replicate(iif(elem:ROW>1 .and. i!=len(ctbl), " ", box[2]), elem:WIDTH)
-			// ширина текущей ячейки/ячеек, если col > 1
+			// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫/О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫ col > 1
 			for k=2 to elem:COL
 				w += ctbl[i][j+k-1]:WIDTH
 				s1 += symb_tbl(ctbl, i, j+k-2)
@@ -1125,13 +1125,13 @@ local box:={"┌","─","┬","┐","│","├","┤","┼","└","┴","┘"}
 			j += elem:COL-1
 			w += elem:COL-1
 
-			// размещение текста в строке ячейки
+			// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 			if !"ALIGN"$elem
 				elem:ALIGN := ""
 			endif
 
-			// теперь весь текст ячейки
-			// если пустая ячейка
+			// О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+			// О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 			if !("text"$elem) .or. len(elem:text)==0
 				::doc:Text(" ":replicate(w),rtbl,rc,,,tcolor)
 				::doc:refresh()
@@ -1155,12 +1155,12 @@ local box:={"┌","─","┬","┐","│","├","┤","┼","└","┴","┘"}
 				s1 += symb_tbl(ctbl, i, j)
 				loop
 			endif
-			// если не пустая ячейка
+			// О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 			rl := 0
 
 			do while (len(elem:text) > 0)
-				// сколько элементов влезет в одну строку ячейки
-				wfact := 0 // фактическая ширина данных в таблице
+				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+				wfact := 0 // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 				y := 0
 				for x=1 to len(elem:text)
 					if wfact +elem:text[x][2] <= w

@@ -281,11 +281,11 @@ start cvs logging
 #include <time.h>
 #include <stdarg.h>
 #include <ctype.h>
-#include "hashcode.h"
-#include "hash.h"
-#include "clipcfg.h"
-#include "clip.h"
-#include "clipvm.h"
+#include "ci_hashcode.h"
+#include "ci_hash.h"
+#include "ci_clipcfg.h"
+#include "ci_clip.h"
+#include "ci_clipvm.h"
 
 #ifdef FORCEALIGN
 

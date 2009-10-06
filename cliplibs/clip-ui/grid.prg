@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 static driver := getDriver()
 
@@ -118,7 +118,7 @@ return NIL
 static function ui_setEqualSize(self, isEqual)
 	driver:setBoxElemEqualSize(self, isEqual)
 return NIL
-	
+
 /* Add widget to left/top pane */
 static function ui_addSplitPane(self, obj)
 	driver:addSplitPane(self, obj)

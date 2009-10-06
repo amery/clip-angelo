@@ -22,6 +22,6 @@ if [ -f clip_makelib.ini ] ; then
 	echo "CC=$CC" 													>&3
 	cat clip_makelib.ini 										>&3
 	exec 																3>&-
-	echo ". done."
 	chmod +x clip_makelib$SCRIPTSUFF
+	echo ". done."
 fi

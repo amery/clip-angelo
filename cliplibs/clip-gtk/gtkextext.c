@@ -1,6 +1,6 @@
 /*  GtkExText
  *
- *  Copyright (C) 1999, 2000 
+ *  Copyright (C) 1999, 2000
  *  Mikael Hermansson <mikeh@bahnhof.se>
  *  Chris Phelps <chicane@reninet.com>
  *  for use in Glimmer as a code editor.
@@ -29,7 +29,7 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkprivate.h>
-#include "gtkextext.h"
+#include "ci_gtkextext.h"
 
 #define TEXT_BORDER_ROOM 2
 #define CURSOR_TIMEOUT 350
@@ -1366,7 +1366,8 @@ line_set (GtkExText * text, gint pos)
 void
 style_init_each (gpointer key, GtkExTextStyle * style, GtkExText * text)
 {
-    gint width;
+
+gint width;
     GtkExTextStyle *def;
 
     def = gtk_extext_style_get (text, "Default");
@@ -1553,7 +1554,8 @@ property_remove_linked_list (GtkExText * text, GtkExTextProperty * cur)
     if (!next) {                /* LAST property */
         text->property_end = cur->prev;
         text->property_end->next = NULL;
-    } else {                   /* somewhere in list */
+
+} else {                   /* somewhere in list */
 
         if (cur->prev)
             cur->prev->next = next;
@@ -3420,7 +3422,7 @@ expose_line_text (GtkExText * text, GdkDrawable * draw_area,
     return y + max_height;
 }
 
-/* gint  
+/* gint
 expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *linedataptr,gint x,gint y)
 {
   gchar *txt;
@@ -3479,7 +3481,7 @@ expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *lined
 
    if(!selection && text->pseudo_select && start <= text->pseudo_start && end >= text->pseudo_end)
       pseudo = TRUE;
-			
+
    if(cursor_line)
    {
       tabindex = get_spaces_between(text, start, start, start+text->column_number);
@@ -3560,7 +3562,7 @@ expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *lined
          {
             length = text->pseudo_start - curpos;
          }
-                  
+
          if(text->full_selection && selection && use_color && send == end)
          {
             gdk_gc_set_foreground(text->gc, &style->bg_color);
@@ -3627,7 +3629,7 @@ expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *lined
       textwidth = gdk_text_width(default_style->font, numbers, strlen(numbers));
       gdk_gc_set_foreground(text->gc, &GTK_WIDGET(text)->style->text[GTK_STATE_NORMAL]);
       gdk_draw_text(draw_area, default_style->font, text->gc, text->number_width-(textwidth+TEXT_BORDER_ROOM), y + (max_height-3), numbers, strlen(numbers));
-   } 
+   }
    if(text->draw_pixbufs && linedataptr->lineptr && linedataptr->lineptr->pixbuf)
    {
 	GdkPixbuf *pixbuf=linedataptr->lineptr->pixbuf;
@@ -3641,7 +3643,7 @@ expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *lined
 				 text->gutter_width-width-TEXT_BORDER_ROOM,y-TEXT_BORDER_ROOM,
                           width,height,
 				    GDK_RGB_DITHER_MAX,
-				   pixels,    
+				   pixels,
 				    rowstride);
         else
 		gdk_draw_rgb_image (draw_area,
@@ -3649,7 +3651,7 @@ expose_line_text(GtkExText *text,GdkDrawable *draw_area,GtkExTextLineData *lined
 				 text->gutter_width-width-TEXT_BORDER_ROOM,y-TEXT_BORDER_ROOM,
                           width,height,
 				    GDK_RGB_DITHER_NORMAL,
-				   pixels,    
+				   pixels,
 				    rowstride);
 
    }
@@ -3826,7 +3828,8 @@ find_cursor (GtkExText * text, gdouble x, gdouble y, gboolean select)
             text->timer =
                 gtk_timeout_add (SCROLL_TIME, gtk_extext_scroll_timeout, text);
         }
-    } else {
+
+} else {
         y -= 2;
         lp = gtk_extext_get_line_by_offset (text, y, &dummy);
         if ((lp->line_number >

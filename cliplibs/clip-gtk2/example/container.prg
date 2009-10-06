@@ -1,5 +1,5 @@
-#include <clip-gtk2.ch>
-static lay, btn1, btn2, btn3, btn4
+#include <ci_clip-gtk2.ch>
+static lay, btn1, btn2, btn3, btn4, win, xx
 function main()
 
 gtk_init()
@@ -54,7 +54,7 @@ return .t.
 
 ******************************
 static function setChain(mode)
-local x, arr
+local x, arr, xx
 	do case
 	case mode == 0
         	gtk_ContainerUnsetFocusChain(lay)

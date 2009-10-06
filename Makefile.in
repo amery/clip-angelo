@@ -15,32 +15,21 @@
 ## 	-p database info (variables)
 ## 	-j n  concurrent jobs
 ## 	-x read
-#MAKEFLAGS = --warn-undefined-variables							to initiate in /init/Makefile.02.in
+#MAKEFLAGS = --warn-undefined-variables							to initiate in /init/Makefile.01.in
 ## 			Issue a warning message whenever `make' sees a reference to an
 ## 			undefined variable. 	This can be helpful when you are trying to
 ## 			debug makefiles which use variables in complex ways.
 ##
-Depend_on =
-#export Depend_on
-#export MAKEFLAGS = --warn-undefined-variables
-#export MAKEFLAGS += -Rr
-#
-Depend_Files = init/*
-#NODBU=yes
-#export NODBU MAKE CONFIGURE_SH
-#export Makefile_end_in Makefile_o_in
+Depend_on 			=
+Depend_Files 		= 		init/*
 
-DIRS_TO_SCAN = clip test cliplibs prg
+DIRS_TO_SCAN 		= 		clip 			\
+								test 			\
+								cliplibs 	\
+								prg 			\
+								example
 
-.PHONY: deb rpm
-
-
-all : $(Making)
-#	cat Readme_src | more
-#	$(E_e)echo
-#	$(E_e)echo
-#	$(E_e)echo "choose target: local system deb rpm rpm-opt tgz tbz src"
-#	exit 1
+all : $(Making) # if already run once
 	$(E_e)echo Log file : $(Clip_M_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
@@ -52,7 +41,8 @@ home : $(Clip_M_Dir)/config/home.ok
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
 $(Clip_M_Dir)/config/home.ok :
-	$(E_rm)[ -f $(Clip_M_Dir)/config/home.ok ] || $(MAKE) clean
+	$(E_rm)[ -f $(Clip_M_Dir)/config/home.ok ] 	\
+		|| $(MAKE) clean
 	$(E_xx)./configure "home"
 	$(E_xx)$(MAKE) M_config
 	$(E_xx)touch $(Clip_M_Dir)/config/home.ok
@@ -65,7 +55,8 @@ opt : $(Clip_M_Dir)/config/opt.ok
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
 $(Clip_M_Dir)/config/opt.ok :
-	$(E_rm)[ -f $(Clip_M_Dir)/config/opt.ok ] || $(MAKE) clean
+	$(E_rm)[ -f $(Clip_M_Dir)/config/opt.ok ] 	\
+		|| $(MAKE) clean
 	$(E_xx)./configure "opt"
 	$(E_xx)$(MAKE) M_config
 	$(E_xx)touch $(Clip_M_Dir)/config/opt.ok
@@ -78,7 +69,8 @@ local : $(Clip_M_Dir)/config/local.ok
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
 $(Clip_M_Dir)/config/local.ok :
-	$(E_rm)[ -f $(Clip_M_Dir)/config/local.ok ] || $(MAKE) clean
+	$(E_rm)[ -f $(Clip_M_Dir)/config/local.ok ] 	\
+		|| $(MAKE) clean
 	$(E_xx)./configure "local"
 	$(E_xx)$(MAKE) M_config
 	$(E_xx)touch $(Clip_M_Dir)/config/local.ok
@@ -91,7 +83,8 @@ usr.local : $(Clip_M_Dir)/config/usr.local.ok
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
 $(Clip_M_Dir)/config/usr.local.ok :
-	$(E_rm)[ -f $(Clip_M_Dir)/config/usr.local.ok ] || $(MAKE) clean
+	$(E_rm)[ -f $(Clip_M_Dir)/config/usr.local.ok ] 	\
+		|| $(MAKE) clean
 	$(E_xx)./configure "usr.local"
 	$(E_xx)$(MAKE) M_config
 	$(E_xx)touch $(Clip_M_Dir)/config/usr.local.ok
@@ -106,12 +99,18 @@ $(Clip_M_Dir)/config/usr.local.ok :
 #	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
 #$(Clip_M_Dir)/config/sys.ok :
-#	$(E_rm)[ -f $(Clip_M_Dir)/config/sys.ok ] || $(MAKE) clean
+#	$(E_rm)[ -f $(Clip_M_Dir)/config/sys.ok ] 	\
+#		|| $(MAKE) clean
 #	$(E_xx)./configure "sys"
 #	$(E_xx)$(MAKE) M_config
 #	$(E_xx)touch $(Clip_M_Dir)/config/sys.ok
 
-M_config : Makefile $(DIRS_TO_SCAN) FORCE
+hash :
+
+hash1 :
+	$(E_xx)$(MAKE) hasher hash
+
+M_config : Makefile hasher $(DIRS_TO_SCAN) FORCE hash1
 	$(E_e)$(Trace)
 	$(E_xx)touch $(Clip_M_Dir)/config/config_check.ok
 	$(E_e)banner $@ ok
@@ -132,11 +131,18 @@ install : Makefile $(DIRS_TO_SCAN)
 	$(E_xx)$(CLIP_MSGMERGE)
 	$(E_xx)$(CLIP_MSGFMT)
 	$(E_rm)$(Clip_M_Dir)/init/CleanCVS.sh $(INSTDIR)
-	$(E_rm)cd $(INSTDIR) 																															\
-		&& rm -f$(V) */include.clip */*/include.clip */*/*/include.clip */*/*/*/include.clip  */*/*/*/*/include.clip 	\
+	$(E_rm)cd $(INSTDIR) 							\
+		&& rm -f$(V) 	*/include.clip 			\
+							*/*/include.clip 			\
+							*/*/*/include.clip 		\
+							*/*/*/*/include.clip  	\
+							*/*/*/*/*/include.clip 	\
 		|| true
-	$(E_e)banner $@ ok 				>&1
-	$(E_e)banner $@ ok 				>&0
+	$(E_e)banner $@ 	 				>&1
+	$(E_e)banner Version 			>&0
+	$(E_e)banner $(rD) 				>&0
+	$(E_e)banner $(rV) 				>&0
+	$(E_e)banner ok 					>&0
 	$(E_e)echo bin to 				>&1
 	$(E_e)echo bin to 				>&0
 	$(E_e)echo $(Clip_B_Dir) 		>&1
@@ -158,12 +164,23 @@ install : Makefile $(DIRS_TO_SCAN)
 
 cleanc :
 	$(E_rm)$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
-	$(E_rm)rm -f$(V) Makefile Makefile.ini $(Clip_M_Dir)/config/*.ok configure.ini
-	$(E_rm)rm -f$(V) sys home usr.local opt config_check configure.flags set.txt *.set.txt *.set
+	$(E_rm)rm -f$(V) 	Makefile 						\
+							Makefile.ini 					\
+							$(Clip_M_Dir)/config/*.ok 	\
+							configure.ini
+	$(E_rm)rm -f$(V) 	sys 					\
+							home 					\
+							usr.local 			\
+							opt 					\
+							config_check 		\
+							configure.flags 	\
+							set.txt 				\
+							*.set.txt 			\
+							*.set
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
 
-clean : $(DIRS_TO_SCAN) cleanc
+clean : $(DIRS_TO_SCAN) hasher cleanc
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_M_Dir)/compile.*.sh 						>&0
@@ -301,34 +318,42 @@ Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
 
 FORCE :
 
-$(DIRS_TO_SCAN) : Makefile FORCE
+$(DIRS_TO_SCAN) hasher : Makefile FORCE
 	$(E_e)echo "Scanning : " $(PWD) >&0
 	$(E_e)echo "Scanning : " $(PWD) >&1
-	$(E_cd)if [ -d $@ ] ; then 																					\
-				cd $@  																									\
-					&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
-					&& (	( 	[ ./configure.in -nt Makefile ] 													\
-								&& ( [ -x $(CONFIGURE_SH) ] 														\
-										&& $(CONFIGURE_SH) 															\
-									) 																						\
-								|| false 																				\
-							) 																								\
-							|| true 																						\
-						) 																									\
-					&& (	( [ ./configure -nt Makefile ] 														\
-								&& ( [ -x $(CONFIGURE_SH) ] 														\
-										&& $(CONFIGURE_SH) 0 														\
-									) 																						\
-								|| false 																				\
-							) 																								\
-							|| true 																						\
-						) 																									\
-					&& ( 	[ -f Makefile ] 																			\
-							|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
-									&& $(CONFIGURE_SH) 0 															\
-								) 																							\
-							|| false 																					\
-						) 																									\
-					&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ; 						\
+	$(E_cd)if [ -d $@ ] ; then 																				\
+			cd $@  																									\
+				&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
+				&& (	( 	[ ./configure.in -nt Makefile ] 													\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 															\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& (	( 	[ ./Makefile.in -nt Makefile ] 													\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 															\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& (	( [ ./configure -nt Makefile ] 														\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 0 														\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& ( 	[ -f Makefile ] 																			\
+						|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
+								&& $(CONFIGURE_SH) 0 															\
+							) 																							\
+						|| false 																					\
+					) 																									\
+				&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ; 						\
 		fi
 

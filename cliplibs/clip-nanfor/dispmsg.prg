@@ -117,7 +117,7 @@
  */
 
 
-#include "INKEY.CH"
+#include "ci_INKEY.CH"
 
 // beginning of demo program
 #ifdef FT_TEST
@@ -254,9 +254,9 @@ FUNCTION FT_DispMsg( aInfo, cKey, nBoxTop, nBoxLeft, cnBoxString, lShadow )
    // consistent with DISPBOX()
 
    IF cnBoxString == NIL .OR. cnBoxString == 2
-      cnBoxString := "ÉÍ»º¼ÍÈº "
+      cnBoxString := "ï¿½Í»ï¿½ï¿½ï¿½Èº "
    ELSEIF cnBoxString == 1
-      cnBoxString := "ÚÄ¿³ÙÄÀ³ "
+      cnBoxString := "ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ "
    ENDIF
 
    lShadow := IIF( lShadow == NIL, .T., lShadow )

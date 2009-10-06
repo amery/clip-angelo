@@ -1,4 +1,5 @@
 function Main()
+Local window, vbox, menu, popup, o, oo, o1, o2, o3, tb, pic, pic1
 
 gtk_Init()
 

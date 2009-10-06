@@ -23,12 +23,12 @@
 *+
 *+��������������������������������������������������������������������
 
-#include "fileio.ch"
+#include "ci_fileio.ch"
 #ifdef RDD_AX
 #include "dbfcdxax.ch"
 #endif
-#include "inkey.ch"
-#include "deflist.ch"
+#include "ci_inkey.ch"
+#include "ci_deflist.ch"
 
 *+��������������������������������������������������������������������
 *+

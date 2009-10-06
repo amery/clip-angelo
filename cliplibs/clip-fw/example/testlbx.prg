@@ -1,4 +1,4 @@
-// ListBox USE sample                                           Æ
+// ListBox USE sample                                           ï¿½
 /*
 File Name  : TESTLBX.PRG
 
@@ -6,7 +6,7 @@ Description: ListBox USE sample
 
 */
 
-#INCLUDE "fwin/FiveWin.ch"
+#INCLUDE "ci_FiveWin.ch"
 
 //-------------------------------------------------------------//
 

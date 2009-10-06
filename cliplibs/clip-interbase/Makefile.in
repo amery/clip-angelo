@@ -3,38 +3,37 @@
 #
 #  GNU make makefile
 #
-Local_Depend = include/*.ch
-PROG = clip-interbase
-IBROOT=/opt/interbase
+Local_Depend 		= 			include/*.ch
+PROG 					= 			clip-interbase
+IBROOT 				= 			/opt/interbase
+C_FLAGS 				+= 		-I$(IBROOT)/include
+OBJS 					= 			$(sort 					\
+												ib_clip.o 	\
+												ib.o 			\
+									)
 
-#TARGET=libclip-interbase$(DLLSUFF)
-#RTARGET=libclip-interbase$(DLLREALSUFF)
-C_FLAGS += -I$(IBROOT)/include
-OBJS=ib_clip.o ib.o
-ADDLIBS= -lgds -L$(IBROOT)/lib -lcrypt
-# $(C_LIBS)
-DOC = *.html
+ADDLIBS				= 			-lgds -L$(IBROOT)/lib -lcrypt
+DOC 					= 			*.html
 
-all: Makefile  have_lib $(STARGET)
-#all: $(OBJS)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile  have_lib $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-interbase
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/interbase.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_interbase.ch $(Clip_I_Dir)/
 
 have_lib:
 	$(E_if)test -f $(IBROOT)/include/ibase.h -o -f /usr/include/ibase.h
 
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
-
 include $(Makefile_o_in)
 
-install:all install-lib install-example install-doc
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
-#	mkdir -p$(V) $(DESTDIR)$(CLIPROOT)/doc/clip-interbase
-#	cp -fu$(V) *.html $(DESTDIR)$(CLIPROOT)/doc/clip-interbase
-#	mkdir -p$(V) $(DESTDIR)$(CLIPROOT)/doc/example/clip-interbase
-#	cp -Ruf$(V) example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-interbase/
+install : all install-lib install-example install-doc
 
 cleanc:
 	$(E_rm)rm -rf$(V) ib.c $(TARGET).*

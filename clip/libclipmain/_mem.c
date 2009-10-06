@@ -113,11 +113,11 @@
 #include <stdarg.h>
 #include <errno.h>
 
-#include "clip.h"
-#include "error.ch"
-#include "rdd.h"
-#include "coll.h"
-#include "rational.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
+#include "ci_rdd.h"
+#include "ci_coll.h"
+#include "ci_rational.h"
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))
 #define NEWVECT(type,len) ((type*)calloc(sizeof(type),(len)))
@@ -250,7 +250,7 @@ dbf2clip(DbfData * dp, ClipVar * vp)
 		   vp->t.len = dp->u.c.len;
 		 */
 		vp->n.d = dp->u.n;
-		//vp->t.dec = dp->u.c.dec;   ???????? çÄÅ dec × dbf ?????
+		//vp->t.dec = dp->u.c.dec;   ???????? ï¿½ï¿½ï¿½ dec ï¿½ dbf ?????
 		break;
 	case 'L':
 		vp->t.type = LOGICAL_t;

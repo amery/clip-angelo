@@ -15,10 +15,18 @@ Makefile.ini : $(CONFIGURE_SH)
 	$(E_cp)cp --remove-destination -fpu$(V) ../configure.ini ../Makefile.ini ./
 	$(E_xx)$(CONFIGURE_SH)
 
-Makefile : Makefile.in ../Makefile.ini ./configure.in ./configure $(Local_Depend) $(wildcard *.g)
+Makefile : 		Makefile.in 		\
+					../Makefile.ini 	\
+					./configure.in 	\
+					./configure 		\
+					$(Local_Depend) 	\
+					$(AllG)
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
-	$(E_xx)( [ -f Makefile.in ] && $(CONFIGURE_SH) ) || true
+	$(E_xx)( [ -f Makefile.in ] 	\
+				&& $(CONFIGURE_SH) 	\
+			) 								\
+			|| true
 	$(E_e)echo $(PWD)/Makefile "is updated" >&0
 	$(E_e)echo $(PWD)/Makefile "is updated" >&1
 	$(E_e)echo $(PWD)/Makefile "is updated" >&2
@@ -26,38 +34,46 @@ Makefile : Makefile.in ../Makefile.ini ./configure.in ./configure $(Local_Depend
 FORCE :
 
 $(DIRS_TO_SCAN) example : Makefile FORCE
-	$(E_cd)if [ -d $@ ] ; then 																					\
-				cd $@  																									\
-					&& echo  "Scanning : " $$PWD >&0 															\
-					&& echo  "Scanning : " $$PWD >&1 															\
-					&& echo  "Scanning : " $$PWD >&2 															\
-					&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
-					&& (	( 	[ ./configure.in -nt Makefile ] 													\
-								&& ( [ -x $(CONFIGURE_SH) ] 														\
-										&& $(CONFIGURE_SH) 															\
-									) 																						\
-								|| false 																				\
-							) 																								\
-							|| true 																						\
-						) 																									\
-					&& (	( [ ./configure -nt Makefile ] 														\
-								&& ( [ -x $(CONFIGURE_SH) ] 														\
-										&& $(CONFIGURE_SH) 0 														\
-									) 																						\
-								|| false 																				\
-							) 																								\
-							|| true 																						\
-						) 																									\
-					&& ( 	[ -f Makefile ] 																			\
-							|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
-									&& $(CONFIGURE_SH) 0 															\
-								) 																							\
-							|| false 																					\
-						) 																									\
-					&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ;						\
+	$(E_cd)if [ -d $@ ] ; then 																				\
+			cd $@  																									\
+				&& echo  "Scanning : " $$PWD >&0 															\
+				&& echo  "Scanning : " $$PWD >&1 															\
+				&& echo  "Scanning : " $$PWD >&2 															\
+				&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
+				&& (	( 	[ ./configure.in -nt Makefile ] 													\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 															\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& (	( 	[ ./Makefile.in -nt Makefile ] 													\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 															\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& (	( [ ./configure -nt Makefile ] 														\
+							&& ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) 0 														\
+								) 																						\
+							|| false 																				\
+						) 																								\
+						|| true 																						\
+					) 																									\
+				&& ( 	[ -f Makefile ] 																			\
+						|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
+								&& $(CONFIGURE_SH) 0 															\
+							) 																							\
+						|| false 																					\
+					) 																									\
+				&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ;						\
 		fi
 
-M_config : cleanc Makefile cfg $(DIRS_TO_SCAN) example FORCE
+M_config : cleanc Makefile cfg $(DIRS_TO_SCAN) example hash1 FORCE
 	$(E_ln)[ -d ./include.clip ] 	\
 				|| ln -sf$(V) $(Clip_I_Dir) ./include.clip
 	$(E_cp)cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
@@ -72,13 +88,62 @@ distclean : $(DIRS_TO_SCAN) example distcleanc clean
 uninstall : distclean
 
 clean : $(DIRS_TO_SCAN) example cleanc
-	$(E_rm)rm -f$(V) 	$(sort 	*~ *.a *.BAK *.bak *.cdx *.config.txt *.dll 						\
-										*.ex *.exe *.EXE *.export *.idx *.nm *.ntx 						\
-										*.o *.output *.pa *.po *.ppo *.s *.so *.t *.sav 				\
-										*.tmp *.uri a.out compile.*.sh set.txt *.set.txt 				\
-										*.log configure.ini Makefile.ini *.set								\
-										Makefile.01 Makefile.02 make2 include locale.po charsets 	\
-										dummy.c include.clip 						 							) || true
+	$(E_rm)rm -f$(V) 	*~ 					\
+							*.a 					\
+							*.BAK    			\
+							*.bak 				\
+							*.cdx 				\
+							*.config.txt 		\
+							*.dll 				\
+							*.ex 					\
+							*.exe 				\
+							*.EXE 				\
+							*.export 			\
+							*.idx 				\
+							*.nm 					\
+							*.ntx 				\
+							*.o 					\
+							*.ok 					\
+							*.output 			\
+							*.pa 					\
+							*.po 					\
+							*.ppo 				\
+							*.s 					\
+							*.so 					\
+							*.t 					\
+							*.sav 				\
+							*.tmp 				\
+							*.uri 				\
+							a.out 				\
+							compile.*.sh 		\
+							set.txt 				\
+							*.set.txt 			\
+							*.log 				\
+							*.set					\
+							Makefile.01 		\
+							Makefile.02 		\
+							Makefile.ini 		\
+							configure.ini 		\
+							Makefile.inc		\
+							make2 				\
+							dummy.c 				\
+							|| true
+	$(E_rm)([ -L include ] 				\
+				&& rm -f$(V) include 	\
+			)									\
+			|| true
+	$(E_rm)([ -L locale.po ] 			\
+				&& rm -f$(V) locale.po 	\
+			)									\
+			|| true
+	$(E_rm)([ -L charsets ] 			\
+				&& rm -f$(V) charsets 	\
+			)									\
+			|| true
+	$(E_rm)([ -L clipinclude.clip ] 				\
+				&& rm -f$(V) clipinclude.clip 	\
+			)												\
+			|| true
 	$(E_rm)( [ -f Makefile.in ] 			\
 					&& rm -f$(V) Makefile 	\
 			) 										\
@@ -87,7 +152,6 @@ clean : $(DIRS_TO_SCAN) example cleanc
 					&& rm -f$(V) configure	\
 			) 										\
 			|| true
-	$(E_rm)rm -f$(V) Makefile.ini configure.ini
 
 $(ATARGET) : $(OBJS) $(ADDOBJS) Makefile $(CLIP)
 	$(E_e)$(Trace_lib)
@@ -128,11 +192,16 @@ endif
 
 install-lib :
 	$(E_cp)$(CLIP_CP) $(TARGET) $(Clip_L_Dir)/
-	$(E_cp)( [[ $(PROG2) != "xyz2" ]] && $(CLIP_CP) $(TARGET2) $(Clip_L_Dir)/ ) || true
+	$(E_cp)( [[ $(PROG2) != "xyz2" ]] 						\
+				&& $(CLIP_CP) $(TARGET2) $(Clip_L_Dir)/ 	\
+			) 															\
+		|| true
 
 install-example :
-	$(E_mkD)[ -d example ] && mkdir -p$(V) $(Clip_D_Dir)/example/$(PROG)
-	$(E_cp)[ -d example ] && cp --remove-destination -Rfpu$(V) example/* $(Clip_D_Dir)/example/$(PROG)/
+	$(E_mkD)[ -d example ] 										\
+		&& mkdir -p$(V) $(Clip_D_Dir)/example/$(PROG)
+	$(E_cp)[ -d example ] 																					\
+		&& cp --remove-destination -Rfpu$(V) example/* $(Clip_D_Dir)/example/$(PROG)/
 
 install-doc : $(DOC)
 	$(E_mkD)mkdir -p$(V) $(Clip_D_Dir)/$(PROG)

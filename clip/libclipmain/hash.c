@@ -45,8 +45,8 @@
 
 #include <stdlib.h>
 
-/*#include "clip.h"*/
-#include "hash.h"
+/*#include "ci_clip.h"*/
+#include "ci_hash.h"
 
 struct _HashTable
 {

@@ -4,16 +4,16 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   License : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
-#include <clip-fw/tcbrowse.ch>
-#include <clip-fw/sysMetrics.ch>
-//#include <clip-fw/WinApi.ch> |\ includig from fivewin.ch
-//#include <clip-fw/font.ch>   |/
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
+#include <fwin/ci_tcbrowse.ch>
+#include <fwin/ci_sysMetrics.ch>
+//#include <fwin/WinApi.ch> |\ includig from fivewin.ch
+//#include <fwin/font.ch>   |/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/msgxpm.ch>
-#include <clip-fw/itk.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_msgxpm.ch>
+#include <fwin/ci_itk.ch>
 
 #define COLOR_BTNFACE	15
 #define COLOR_BTNSHADOW	16

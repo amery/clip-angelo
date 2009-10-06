@@ -1,6 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function main()
-local oGet
+local oGet, win, x, btn, btn1, vbox
 clear screen
 gtk_init()
 

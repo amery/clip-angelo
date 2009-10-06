@@ -16,8 +16,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <zlib.h>
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -25,7 +25,7 @@
 /* Use this for commenting out debug-print statements. */
 /* Just use the first '#define' to allow all the prints... */
 /*#define GD2_DBG(s) (s) */
-#define GD2_DBG(s) 
+#define GD2_DBG(s)
 
 typedef struct {
 	int	offset;
@@ -38,8 +38,8 @@ extern void _gdPutColors(gdImagePtr im, gdIOCtx *out);
 /* */
 /* Read the extra info in the gd2 header. */
 /* */
-static 
-int _gd2GetHeader(gdIOCtxPtr in, int *sx, int *sy, 
+static
+int _gd2GetHeader(gdIOCtxPtr in, int *sx, int *sy,
 			int *cs, int *vers, int *fmt, int *ncx, int *ncy, t_chunk_info **chunkIdx)
 {
         int     i;
@@ -150,8 +150,8 @@ fail1:
 }
 
 static
-gdImagePtr _gd2CreateFromFile(gdIOCtxPtr in, int *sx, int *sy, 
-		int *cs, int *vers, int *fmt, 
+gdImagePtr _gd2CreateFromFile(gdIOCtxPtr in, int *sx, int *sy,
+		int *cs, int *vers, int *fmt,
 		int *ncx, int *ncy, t_chunk_info **cidx)
 {
         gdImagePtr im;
@@ -202,7 +202,7 @@ int _gd2ReadChunk(int offset, char *compBuf, int compSize, char *chunkBuf, uLong
 		return FALSE;
 	};
 	GD2_DBG(printf("Got %d bytes. Uncompressing into buffer of %d bytes\n", compSize, *chunkLen));
-	zerr = uncompress((unsigned char *) chunkBuf, chunkLen,  
+	zerr = uncompress((unsigned char *) chunkBuf, chunkLen,
 		(unsigned char *) compBuf, compSize);
         if (zerr != Z_OK) {
 		GD2_DBG(printf("Error %d from uncompress\n",zerr));
@@ -289,8 +289,8 @@ gdImagePtr gdImageCreateFromGd2Ctx(gdIOCtxPtr in)
 				chunkLen = chunkMax;
 
 				if (!_gd2ReadChunk(	chunkIdx[chunkNum].offset,
-							compBuf, 
-							chunkIdx[chunkNum].size, 
+							compBuf,
+							chunkIdx[chunkNum].size,
 							chunkBuf, &chunkLen, in))
 				{
                                         GD2_DBG(printf("Error reading comproessed chunk\n"));
@@ -505,12 +505,12 @@ gdImagePtr gdImageCreateFromGd2PartCtx(gdIOCtx *in, int srcx, int srcy, int w, i
 					};
 
 					/* Only use a point that is in the image. */
-					if ( (x >= srcx) && (x < (srcx + w)) && (x < fsx) && (x >= 0) 
+					if ( (x >= srcx) && (x < (srcx + w)) && (x < fsx) && (x >= 0)
 					     && (y >= srcy)  && (y < (srcy + h)) && (y < fsy) && (y >= 0)
 					   )
 					{
                                         	im->pixels[y-srcy][x-srcx] = ch;
-					} 	
+					}
                                 };
                         };
                 };
@@ -670,9 +670,9 @@ static void _gdImageGd2(gdImagePtr im, gdIOCtx *out, int cs, int fmt)
                         };
 			if (fmt == GD2_FMT_COMPRESSED) {
                         	compLen = compMax;
-                        	if (compress((unsigned char *) 
-					&compData[0], &compLen, 
-					(unsigned char *) &chunkData[0], 
+                        	if (compress((unsigned char *)
+					&compData[0], &compLen,
+					(unsigned char *) &chunkData[0],
 					chunkLen) != Z_OK) {
                                 	printf("Error from compressing\n");
                         	} else {

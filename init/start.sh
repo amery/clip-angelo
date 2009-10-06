@@ -25,7 +25,7 @@ if [ -n "$ARCH" ] ; then
 	fi
 fi
 option="$*"
-CLIPROOT=/clip$Clip_Version/
+CLIPROOT=clip$Clip_Version
 if [[ -z "$option" ]] ; then
 	option="home"
 	DESTDIR="$HOME/"

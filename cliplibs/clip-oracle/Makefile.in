@@ -3,23 +3,30 @@
 #
 #  GNU make makefile
 #
-Local_Depend = include/*.ch
+Local_Depend 			= 			include/*.ch
+PROG 						= 			clip-oracle
+OBJS 						= 			$(sort 					\
+													or_clip.o 	\
+													or.o 			\
+										)
 
-PROG = clip-oracle
-OBJS=or_clip.o or.o
-#ADDLIBS = -L$(OR_LIB) -lclntsh
-C_FLAGS += -I$(OR_INC)
-ADDLIBS =
-ADDLIBS2 =
+C_FLAGS 					+= 		-I$(OR_INC)
+ADDLIBS 					= 			-L$(OR_LIB) -lclntsh
+ADDLIBS2 				=
+DOC 						= 			*.html
 
-DOC = *.html
+export
 
-################################################################################################################
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile  have_lib $(OBJS) $(STARGET)
 
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-oracle
+
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/oracle.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_oracle.ch $(Clip_I_Dir)/
 
 have_lib:
 	$(E_if)test -f $(OR_INC)/oci.h

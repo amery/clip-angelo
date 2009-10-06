@@ -2,11 +2,11 @@
 	$Log: po_extr.c,v $
 	Revision 1.1  2006/06/22 19:01:35  itk
 	uri: initial
-	
+
 	Revision 1.2  2002/10/24 13:05:44  clip
 	tdoc: add English GPL text
 	paul
-	
+
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,8 +15,8 @@
 #include <errno.h>
 #include <time.h>
 
-#include "coll.h"
-#include "po_util.h"
+#include "ci_coll.h"
+#include "ci_po_util.h"
 
 static char *filename = "-";
 static int dupflag = 0;

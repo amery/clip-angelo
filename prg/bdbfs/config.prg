@@ -3,10 +3,10 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "set.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
 
 MEMVAR _req,__mcol,_im,_HdColor,_zif,_macro,_inifile,_MemoEditor
 STATIC aOther:={'_lForced','_timing','_lMeter','_sx_step','_mask','_UndoSize',;

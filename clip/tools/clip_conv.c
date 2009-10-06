@@ -17,8 +17,8 @@
 #include <errno.h>
 #include <string.h>
 
-#include "clipcfg.h"
-#include "../libclipscreen/charset.h"
+#include "ci_clipcfg.h"
+#include "../libclipscreen/ci_charset.h"
 
 char *CLIPROOT = CLIP_ROOT;
 

@@ -6,7 +6,7 @@ Description: Drawing different grphical primitives - lines, points, segments,
 arc...
 
 */
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 #define TRUE	.T.
 #define FALSE 	.F.
@@ -217,7 +217,7 @@ STATIC FUNCTION PangoText( )
    DC:hPen := hPen
 
    label := gtk_LabelNew()
-   pango := gtk_WidgetCreatePangoLayout(label, "Pango Text Текст панго")
+   pango := gtk_WidgetCreatePangoLayout(label, "Pango Text О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫")
    PangoLayoutSetFontDescription(pango, "Arial Italic 16")
    /* without color */
    gdk_DrawLayoutLine(DC:PIXMAP, hPen, ;
@@ -249,11 +249,11 @@ STATIC FUNCTION Image( )
    DC:hPen := hPen
 
 
-   image := gtk_ImageNewFromFile(, "./gdk-pixbuf-demo/background.jpg")
-   gtk_WidgetGetSize(image, @width, @height)
+   img := gtk_ImageNewFromFile(, "./gdk-pixbuf-demo/background.jpg")
+   gtk_WidgetGetSize(img, @width, @height)
 
    gdk_DrawDrawable(DC:PIXMAP, hPen, ;
-   	image, 0, 0, 0, 0, width, height)
+   	img, 0, 0, 0, 0, width, height)
    gtk_ObjectDestroy( hPen )
 
    gtk_WidgetDraw(DC)

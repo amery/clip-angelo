@@ -1,5 +1,5 @@
-#include <clip-gtk2.ch>
-#include <gtk2-stock.ch>
+#include <ci_clip-gtk2.ch>
+#include <ci_gtk2-stock.ch>
 
 #define TRUE	.T.
 #define FALSE	.F.
@@ -22,7 +22,7 @@
 
 
 static file_pixbuf, folder_pixbuf
-
+MemVar up_button, parent
 public up_button, parent
 
 function Main()
@@ -120,7 +120,7 @@ local store
 return store
 
 static function fill_store (store)
-local a, b, i, current
+local a, b, c, i, current, path
   	gtk_ListStoreClear (store)
 	dirchange(parent)
 
@@ -176,7 +176,7 @@ local a, b, i, current
 return
 
 static function item_activated (icon_view, event, store)
-local path, is_dir
+local path, is_dir, pathstr
 
   	pathstr := gtk_TreePathToString(event:TREEPATH)
   	gtk_TreeModelGetFromPathString (store, pathstr,;

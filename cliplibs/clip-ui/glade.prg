@@ -11,7 +11,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 #define DEBUG	.T.
 
@@ -24,7 +24,7 @@ static groups  := NIL
 
 function ui_convertFromGlade3( root )
 	local r, h, i, l, pp
-	
+
 	// Create root and sections
 	r := XMLTag('form')
 	h := XMLTag('head')
@@ -32,24 +32,24 @@ function ui_convertFromGlade3( root )
 	styles  := XMLTag('style')
 	actions := XMLTag('actions')
 	groups  := map()
-	
+
 	r:addChild(h)
 	r:addChild(i)
 	r:addChild(styles)
 	r:addChild(actions)
-	
+
 	// Convert widgets
 	pp := root:XPath("/widget")
 	if valtype(pp) != 'A' .or. len(pp) == 0
 		?? "ERROR: Unable to find root widget for Glade form.&\n"
 		return r
 	endif
-	
+
 	ui_createWidgetFromGlade3( pp[1], i, NIL )
 	if DEBUG
 		?? r:dump()
 	endif
-	
+
 return r
 
 /* Create widget in XFL format */
@@ -59,17 +59,17 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 	local x:='', y:='', adjustment, cols:='0', rows:='0'
 	local value, rName, rClass, rI, node:=NIL, rSubType:=""
 	local sNode:=NIL, rValue, a, i, wValue:="", pos:="", tNode, act
-	
+
 	if w == NIL
 		return NIL
 	endif
-	
+
 	cClass := w:attribute("class","")
 	name  := w:attribute("id","")
 
 	//?? '>', cClass, name, chr(10)
 	for c in w:getChilds()
-		
+
 		// Properties
 		if lower(c:getName()) == "property"
 			value := c:getText()
@@ -97,7 +97,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					sNode:setAttribute("widget", ui_fixName( name ) )
 					sNode:setAttribute("name",   "spacing")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "label"
 					label := value
 					//label := self:i18n(c:value)
@@ -113,7 +113,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					sNode:setAttribute("widget", ui_fixName( name ) )
 					sNode:setAttribute("name",   "value")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "icon_size"
 				case "xalign"
 				case "yalign"
@@ -163,7 +163,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "type")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "window_placement"
 				case "overwrite"
 				case "accepts_tab"
@@ -184,12 +184,12 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					if upper(cClass) == "GTKCOMBOBOX"
 						rValue := strtran(value, chr(10), "'},{'")
 						rValue := "{'" + rValue + "'}"
-						
+
 						sNode := XMLTag("property")
 						sNode:setAttribute("widget", ui_fixName( name ))
 						sNode:setAttribute("name",   "source")
 						sNode:setAttribute("value",  rValue)
-						styles:addChild( sNode )				
+						styles:addChild( sNode )
 					endif
 				case "add_tearoffs"
 				case "active"
@@ -199,7 +199,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 						sNode:setAttribute("widget", ui_fixName( name ))
 						sNode:setAttribute("name",   "value")
 						sNode:setAttribute("value",  value)
-						styles:addChild( sNode )				
+						styles:addChild( sNode )
 					endif
 				case "inconsistent"
 				case "draw_indicator"
@@ -217,13 +217,13 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "geometry.width")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "height_request"
 					sNode := XMLTag("property")
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "geometry.height")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "draw_value"
 				case "layout_style"
 				case "n_rows"
@@ -240,19 +240,19 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "padding")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "column_spacing"
 					sNode := XMLTag("property")
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "spacing")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "row_spacing"
 					sNode := XMLTag("property")
 					sNode:setAttribute("widget", ui_fixName( name ))
 					sNode:setAttribute("name",   "spacing")
 					sNode:setAttribute("value",  value)
-					styles:addChild( sNode )				
+					styles:addChild( sNode )
 				case "fraction"
 					if left(getenv("LANG"),2) == "ru"
 						value := strtran(value, ",", ".")
@@ -300,32 +300,32 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 			act:signal := c:attribute("name","")
 			act:object := c:attribute("object","")
 			act:slot   := c:attribute("handler","")
-			
+
 			act:rule   := XMLTag("rule")
 			act:event  := XMLTag("event")
 			act:action := XMLTag("action")
 			act:call   := XMLTag("call")
-			
+
 			act:event:setAttribute("widget", act:name)
 			act:event:setAttribute("signal", act:signal)
 			if .not. empty(act:object)
 				act:call:setAttribute("widget", act:object)
 			endif
 			act:call:setAttribute("method", act:slot)
-			
+
 			act:rule:addChild( act:event )
 			act:rule:addChild( act:action )
 			act:action:addChild( act:call )
 			actions:addChild( act:rule )
 			//?? act:rule:dump()
-	
+
 		endif
 	next
 
 	if lUnderLine .and. !empty(label)
 		label := strtran(label, "_", "&")
 	endif
-	
+
 	// Widgets
 	switch upper(cClass)
 		/* Widgets */
@@ -363,11 +363,11 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 				tNode:setAttribute("name",  "geometry")
 				tNode:setAttribute("value", value)
 				styles:addChild( tNode )
-			endif			
+			endif
 		case "GTKHBOX"
 			if "HASLAYOUT" $ parent .and. parent:hasLayout
 				node := NIL
-			else		
+			else
 				node := XMLTag("widget")
 				node:setAttribute("class", "hbox")
 				node:setAttribute("name",  name)
@@ -376,7 +376,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 			rI := at('_', name)
 			if "HASLAYOUT" $ parent .and. parent:hasLayout
 				node := NIL
-			else			
+			else
 				node := XMLTag("widget")
 				node:setAttribute("class", "vbox")
 				node:setAttribute("name",  name)
@@ -427,7 +427,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 			node:setAttribute("label", label)
 		case "GTKMENU"
 			// Nothing do
-		case "GTKIMAGEMENUITEM" 
+		case "GTKIMAGEMENUITEM"
 			node := XMLTag("widget")
 			node:setAttribute("class", "menuItem")
 			node:setAttribute("name",  name)
@@ -554,18 +554,18 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 			node:setAttribute("class", "slider")
 			node:setAttribute("name",  name)
 			a := split(adjustment, " ")
-			if len(a) >= 6 
-				sNode := XMLTag("property") 
+			if len(a) >= 6
+				sNode := XMLTag("property")
 				sNode:setAttribute("name",  "range")
-				sNode:setAttribute("value", a[1] + "-" + a[3]) 
+				sNode:setAttribute("value", a[1] + "-" + a[3])
 				node:addChild( sNode )
-				sNode := XMLTag("property") 
+				sNode := XMLTag("property")
 				sNode:setAttribute("name",  "step")
-				sNode:setAttribute("value", a[6]) 
+				sNode:setAttribute("value", a[6])
 				node:addChild( sNode )
-				sNode := XMLTag("property") 
+				sNode := XMLTag("property")
 				sNode:setAttribute("name",  "value")
-				sNode:setAttribute("value", a[5]) 
+				sNode:setAttribute("value", a[5])
 				node:addChild( sNode )
 			endif
 		case "GTKPROGRESSBAR"
@@ -596,7 +596,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 	if valtype(node) == 'O' .and. valtype(parent) == 'O'
 		if lower(parent:attribute("class")) == "tabarea"
 			// TabArea widget
-			
+
 			// Check empty tab in this area
 			i := parent:countChilds()
 			if i == 0
@@ -605,7 +605,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 				parent:addChild( sNode )
 				i++
 			endif
-			
+
 			sNode := parent:getChild(i)
 			if lower(node:attribute("class")) == "label"
 				// Label == Tab
@@ -620,9 +620,9 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 				sNode:addChild( node )
 			endif
 		elseif lower(parent:attribute("class","")) == "frame"
-			// Caption for frame 
+			// Caption for frame
 			if lower(node:attribute("class")) == "label"
-				parent:setAttribute("label", node:attribute("label","")) 
+				parent:setAttribute("label", node:attribute("label",""))
 			else
 				// Other widgets
 				parent:addChild( node )
@@ -631,7 +631,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 			parent:addChild( node )
 		endif
 	endif
-	
+
 	// Process child widgets
 	for c in w:getChilds()
 		sNode  := NIL
@@ -685,7 +685,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 							?? "WARNING: child tag " + p:getName() + " for widget is ignored&\n"
 					end switch
 				next
-				
+
 				// Set properties
 				//?? sNode:attribute("class"), x, y, chr(10)
 				if valtype(sNode) == "O" .and. valtype(sNode:parent) == "O"
@@ -711,7 +711,7 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 						//sNode:setAttribute("name", sNode:attribute("name","") + "+")
 					endif
 				endif
-			
+
 			case "PROPERTY"
 				// Nothing do
 			case "SIGNAL"
@@ -723,26 +723,26 @@ static function ui_createWidgetFromGlade3(w, parent, subtype)
 				?? "WARNING: tag <" + c:getName() + "> is ignored&\n"
 		end switch
 	next
-	
+
 	//?? "NODE:", node:attribute("class"), chr(10)
-	
+
 	// Remove last tab in tab area
 	if valtype(node) == 'O' .and. lower(node:attribute("class","")) == "tabarea"
 		node:removeChild( node:countChilds() )
 	endif
-	
+
 	// Return actual tag
 	if valtype(node) != "O"
 		return sNode
 	endif
-	
+
 return node
 
 static function ui_fixName( name )
 	local classes, i, class, real:=name
-	
+
 	classes := { 	;
-					"mainwindow", ; 
+					"mainwindow", ;
 					"window", ;
 					"childwindow", ;
 					"document", ;

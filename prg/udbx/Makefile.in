@@ -4,37 +4,36 @@
 #
 # 		from cliplibs/clip-gtk2
 
-Local_Depend =
-#$(Clip_L_Dir)/libclip-codb.so
-Local_Depend +=
-# $(Clip_L_Dir)/libclip-gtk.so
+Depend_on 		= 			$(Clip_L_Dir)/libclip-codb.so $(Clip_L_Dir)/libclip-gtk.so
+OBJS  			= 			$(sort 								\
+											abx_obj.o 				\
+											abx_menu.o 				\
+											abx_events.o 			\
+											abx_funcs.o 			\
+											abx_meta_browse.o 	\
+											abx_getobj.o 			\
+											abx_data_browse.o 	\
+								)
+BIN 				= 			codb_abx$(EXESUFF)
+DIRS_TO_SCAN 	= 			plugins
 
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -Obl -I./include
-CLIPLIBS  = -L$(Clip_L_Dir) -lclip-codb -lclip-gtk2 -lclip $(LIBS)
+LIBS 				+= 		-lclip-codb -lclip-gtk -lclip $(PIXBUFLIBS)
 
-OBJS  = $(sort abx_obj.o abx_menu.o abx_events.o abx_funcs.o abx_meta_browse.o abx_getobj.o \
-	abx_data_browse.o )
+export
 
-BIN = codb_abx$(EXESUFF)
+######################################################################################
+###################################################################################### local rules
 
-.SUFFIXES: .prg .o .po
+all: $(DIRS_TO_SCAN) $(OBJS) $(BIN)
 
-DIRS_TO_SCAN = plugins
-
-include Makefile.inc
-
-all: $(DIRS_TO_SCAN) $(BIN)
+hash1 :
 
 cfg :
 
-Makefile.inc :
-	$(E_xx)$(CONFIGURE_SH)
-
 install: all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/codb_abx/plugins
-	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(DESTDIR)/codb_abx/plugins
-	$(E_cp)cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(DESTDIR)/bin/
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/codb_abx/plugins
+	$(E_cp)cp --remove-destination -Rfpu$(V) plugins/* $(INSTDIR)/codb_abx/plugins
+	$(E_cp)cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(INSTDIR)/bin/
 
 cleanc : $(DIRS_TO_SCAN)
 	$(E_rm)rm -rf$(V) *.c *.b $(BIN)
@@ -42,15 +41,13 @@ cleanc : $(DIRS_TO_SCAN)
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -se $< $(OBJS) $(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
-		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(CLIPLIBS) ;	\
-	else 																				\
-		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(CLIPLIBS) ;		\
+$(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
+		$(Trace_clip_d) 	;													\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
+	else 																			\
+		$(Trace_clip) 		;													\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
 	fi
 
 commit:

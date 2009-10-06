@@ -4,15 +4,15 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
 
 static GtkTreeIter 	_Iter;
 static GtkTreeIter 	*Iter = &_Iter;
@@ -1587,12 +1587,12 @@ clip_GTK_TREEMODELFOREACH(ClipMachine * cm)
 	C_widget *ctreemodel = _fetch_cw_arg(cm);
 	ClipVar        *func = _clip_spar(cm, 2);
 	C_var             *c = NEW(C_var);
-	
+
 	CHECKCWID(ctreemodel, GTK_IS_TREE_MODEL);
 	CHECKARG2(2,PCODE_t,CCODE_t);
 
 	c->cm = cm; c->cw = ctreemodel; _clip_mclone(cm, &c->cfunc, func);
-	
+
 	gtk_tree_model_foreach( GTK_TREE_MODEL(ctreemodel->widget),
 		(GtkTreeModelForeachFunc)_foreach_func, c );
 

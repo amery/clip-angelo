@@ -1,8 +1,8 @@
 // Stand for connection and simply make echo.
-#include "set.ch"
-#include "tcp.ch"
-#include "cobra.ch"
-#include "http.ch"
+#include "ci_set.ch"
+#include "ci_tcp.ch"
+#include "ci_cobra.ch"
+#include "ci_http.ch"
 
 //#define DEBUG
 

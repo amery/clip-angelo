@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_balance2_rdf(_queryArr)
 
@@ -65,8 +65,8 @@ errorblock({|err|error2html(err)})
         if "ACC00" $ _query .and. !empty(_query:acc00)
             set("ACC00",_query:acc00)
         endif
-							
-							
+
+
 
 
 	if empty(beg_date) .or. empty(end_date)
@@ -137,12 +137,12 @@ errorblock({|err|error2html(err)})
 	if i>0
 	      col := columns[i]
 	      col:expr := "cgi_getValue(account):code"
-	      col:header := "КодСч"
+	      col:header := "О©╫О©╫О©╫О©╫О©╫"
 	      col:block := &("{|p1,p2,p3,p4|"+col:expr+"}")
 
 	      tmp := oclone(col)
 	      tmp:name := "account_name"
-	      tmp:header := "СчНазвание"
+	      tmp:header := "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫"
 	      //tmp:expr := "cgi_getValue(account):code"
 	      tmp:expr := "cgi_getValue(account):smallname"
 	      tmp:datatype := "C"
@@ -153,7 +153,7 @@ errorblock({|err|error2html(err)})
 
 	      tmp := oclone(col)
 	      tmp:name := "end_date"
-	      tmp:header := "Конец"
+	      tmp:header := "О©╫О©╫О©╫О©╫О©╫"
 	      tmp:expr := "m->end_date"
 	      tmp:datatype := "C"
 	      tmp:block := &("{|p1,p2,p3,p4|"+tmp:expr+"}")
@@ -163,7 +163,7 @@ errorblock({|err|error2html(err)})
 
 	      tmp := oclone(col)
 	      tmp:name := "beg_date"
-	      tmp:header := "Начало"
+	      tmp:header := "О©╫О©╫О©╫О©╫О©╫О©╫"
 	      tmp:expr := "m->beg_date"
 	      tmp:datatype := "C"
 	      tmp:block := &("{|p1,p2,p3,p4|"+tmp:expr+"}")

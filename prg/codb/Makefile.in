@@ -1,23 +1,20 @@
 #
 #                                            prg/codb/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-codb.so
-Local_Depend +=
-# $(Clip_L_Dir)/libcodb-query.so
-
-
-
-#CLIP	= clip
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -w -O -b -l
-CLIPLIBS  = -lclip-codb -lcodb-query
-TARGET = codb$(EXESUFF)
+Depend_on 			=			$(Clip_L_Dir)/libclip-codb.so 	\
+									$(Clip_L_Dir)/libcodb-query.so
+LIBS  				= 			-lclip-codb -lcodb-query
+TARGET 				= 			codb$(EXESUFF)
 OBJS  =
-# codb.o
-.SUFFIXES: .prg .o .po
 
-all : Makefile $(TARGET)
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(OBJS) $(TARGET)
+
+hash1 :
 
 cfg :
 
@@ -28,15 +25,13 @@ cleanc :
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(TARGET): codb.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -esM $(OBJS) $(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
+$(TARGET): codb.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;	\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -eslNn $< $(OBJS) $(LIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esn $< $(OBJS) $(CLIPLIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -eslNn $< $(OBJS) $(LIBS) ;		\
 	fi
 
 install : all

@@ -84,7 +84,7 @@ hash1 : Makefile DIR links $(DIRS_TO_SCAN) example
 
 %.o : %.c Makefile
 	$(Trace_c)
-	$(E_cc)$(CC) $(CFLAGS) -c $<
+	$(E_cc)$(CC) $(C_FLAGS) -c $<
 
 %.o : %.prg Makefile
 	$(Trace_prg)

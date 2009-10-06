@@ -2,11 +2,11 @@
 	$Log: clip_trans.c,v $
 	Revision 1.1  2006/06/22 19:01:32  itk
 	uri: initial
-	
+
 	Revision 1.7  2001/10/29 06:51:21  clip
 	fix text fopen modes
 	paul
-	
+
 	Revision 1.6  2001/10/14 11:22:05  clip
 	uri: small bugs in freebsd
 
@@ -27,7 +27,7 @@
 #include <fcntl.h>
 #include <errno.h>
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 
 char *CLIPROOT = CLIP_ROOT;
 

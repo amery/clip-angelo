@@ -50,7 +50,7 @@
  */
 
 #include <stdio.h>
-#include "task.h"
+#include "ci_task.h"
 
 void *
 run(void *data)

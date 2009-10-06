@@ -1,6 +1,7 @@
-#include <gtk2-stock.ch>
+#include <ci_gtk2-stock.ch>
 
 function Main()
+Local window, vbox, hb, stock, btn, i, j, k
 gtk_Init()
 
 window := gtk_WindowNew(,"test")

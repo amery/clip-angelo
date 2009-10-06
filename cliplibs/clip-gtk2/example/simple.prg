@@ -1,9 +1,9 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 static hb
 
 function main()
-	local w,f,vb,sw,qbtn,st
+	local w,f,vb,sw,qbtn,st, menu1
 
 	/* Initialize GTK+ system */
 	gtk_init()

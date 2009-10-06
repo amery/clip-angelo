@@ -1,11 +1,11 @@
-// Drawing lines and some management colors                     ß
+// Drawing lines and some management colors                     ï¿½
 /*
 File Name  : LINES.PRG
 
 Description: Drawing lines and some management colors
 
 */
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 /* Pen Styles */
 #define PS_SOLID                          0
 #define PS_DASH                           1

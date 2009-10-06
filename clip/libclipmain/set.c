@@ -301,7 +301,7 @@
    add copyright
 
    Revision 1.25  2000/11/04 11:08:29  clip
-   bug in set(_SET_CANCEL), заткнут но не выправил
+   bug in set(_SET_CANCEL), О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
    from uri:
 
    Revision 1.24  2000/10/31 11:50:07  clip
@@ -313,9 +313,9 @@
    paul
 
    Revision 1.22  2000/10/20 08:03:24  clip
-   Вкрутил rational везде где упоминается NUMERIC_t
-   может чего и осталось неотловленное, но это может быть только в тех
-   местах где нет использования NUMERIC_t !!!!!
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫ rational О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NUMERIC_t
+   О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫
+   О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NUMERIC_t !!!!!
    from uri:
 
    Revision 1.21  2000/05/30 22:46:09  clip
@@ -362,7 +362,7 @@
    bsd fixes
 
    Revision 1.9  2000/03/30 17:04:09  uri
-   переделал под новые вызовы ошибок
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.8  2000/03/24 19:49:59  uri
    set(_SET_LOGFILE)
@@ -380,7 +380,7 @@
    preprocessor bug fix, warnings removed
 
    Revision 1.3  1999/11/17 22:27:23  uri
-   Немного стринг-функций из тоолсов сделал
+   О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 
    Revision 1.2  1999/10/26 19:11:37  paul
    start cvs logging
@@ -397,18 +397,18 @@
 #include <limits.h>
 #include <fcntl.h>
 
-#include "clip.h"
-#include "clipcfg.h"
+#include "ci_clip.h"
+#include "ci_clipcfg.h"
 
 #ifdef OS_CYGWIN
 	#include <io.h>
 #endif
 
-#include "set.ch"
-#include "libclipscreen/screen.h"
-#include "hashcode.h"
-#include "rational.h"
-#include "libclipscreen/charset.h"
+#include "ci_set.ch"
+#include "libclipscreen/ci_screen.h"
+#include "ci_hashcode.h"
+#include "ci_rational.h"
+#include "libclipscreen/ci_charset.h"
 
 extern char *_get_unix_name(ClipMachine * cm, char *dname);
 static void set_printer_charset(ClipMachine * mp);

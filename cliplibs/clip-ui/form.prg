@@ -11,7 +11,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 #define DEBUG	.F.
 
@@ -54,7 +54,7 @@ static function ui_parseFile(self)
 
 	fileName := self:fileName
 	set translate path off
-	
+
 	if DEBUG
 		?? "UIForm: file parsing...&\n"
 	endif
@@ -95,7 +95,7 @@ static function ui_parse(self)
 
  	oErr := ErrorBlock({|e| break(e) })
     begin sequence
-	
+
 	if DEBUG
 		?? "UIForm: form parsing...&\n"
 	endif
@@ -108,19 +108,19 @@ static function ui_parse(self)
 
 	// Check version
 	if lower(self:root:getName()) == "glade-interface"
-		
+
 		// Clade 3.x form support
 		self:root := ui_convertFromGlade3( self:root )
-	
+
 	elseif lower(self:root:getName()) == "ui" .and. left(self:root:attribute("version",""), 2) == "3."
-		
+
 		// Qt Designer 3.x form support
 		self:root := ui_convertFromUI3( self:root )
-	
+
 	elseif lower(self:root:getName()) == "form"
-	
+
 		// Noting do: native format
-		
+
 	else
 		?? "ERROR: Unknown form format.&\n"
 		return NIL
@@ -182,12 +182,12 @@ static function ui_parse(self)
 		?? "ERROR: no <head> tag!&\n"
 		return NIL
 	endif
-	
+
 	self:setPreAction(res[1], NIL)
 	if DEBUG
 		?? "UIForm: form parsing complete&\n"
 	endif
-	
+
 	// Error hangle
 	recover using oErr
 		?? "ERROR: UIForm form creation: " + errorMessage(oErr) + "&\n"
@@ -200,7 +200,7 @@ return win
 static function ui_TableColumns(self, t)
 	local a, e, i, o
 	local p_a, p_col, p_name, p_value, p_block
-	
+
 	// Get columns
 	a := array(0)
 	for e in t:getChilds()
@@ -208,7 +208,7 @@ static function ui_TableColumns(self, t)
 			aadd( a, UITableColumn( e:attribute("name"), self:i18n(e:attribute("title","")), TABLE_COLUMN_TEXT)  )
 		endif
 	next
-	
+
 	// Get column attributes
 	for e in t:getChilds()
 		if e:getName() == "property"
@@ -467,7 +467,7 @@ static function ui_createWidget(self, tag, parent )
 
 		otherwise
 			?? "WARNING: Unknown class:",class,chr(10)
-	
+
 	endswitch
 	if .not. empty(name)
 		aadd(self:names,name)
@@ -531,7 +531,7 @@ static function ui_createWidget(self, tag, parent )
 			?? "WARNING: tag "+c:getName()+" is ignored&\n"
 		endif
 	next
-	
+
 	// Error hangle
 	recover using oErr
 		?? "ERROR: UIForm widget creation: " + errorMessage(oErr) + "&\n"
@@ -563,11 +563,11 @@ static function ui_setProperty(self, tag, obj, value)
 	if obj == NIL
 		return .F.
 	endif
-	
+
 	if (obj:className == "UITable" .or. obj:className == "UIEditTable") .and. lower(name) != 'row'
 		return .F.
 	endif
-	
+
 	switch name
 		case "label"
 			if .not. "SETTEXT" $ obj; return .F.; endif
@@ -717,7 +717,7 @@ static function ui_getPropertyValue(self, tagObj)
 	widget := tagObj:attribute("widget","")
 	prop   := tagObj:attribute("name","")
 	obj    := mapget(self:widgets,widget,NIL)
-	if DEBUG; ?? 'GET PROPERTY:', prop, chr(10); endif 
+	if DEBUG; ?? 'GET PROPERTY:', prop, chr(10); endif
 
 	if empty(obj)
 		?? "ERROR get property for widget '"+widget+"': widget not found&\n"
@@ -731,7 +731,7 @@ static function ui_getPropertyValue(self, tagObj)
 	if obj:className == "UIMenuItem" .and. prop == "isChecked"
 		return driver:isCheckedMenuItem( obj )
 	endif
-	
+
 	if prop == "context"
 		if DEBUG; ?? 'CONTEXT:', self:context, chr(10); endif
 		return self:context
@@ -857,7 +857,7 @@ static function ui_setPreAction(self, tag, lObj)
 	aadd(self:actions, actions)
 	id := len(self:actions)
 	self:actionHandler( id )
-	
+
 return .T.
 
 /* Form action handler */
@@ -931,9 +931,9 @@ static function ui_subActionHandler(self, tag, addVal)
 
 	widgetname := tag:attribute("widget","")
 	method 	:= upper(tag:attribute("method",""))
-	
+
 	//?? "call "+iif(valtype(widgetname)=='C',widgetname,"")+":"+method+"()",tag:getAttributes(),"&\n"
-	
+
 	c := tag:getChilds()
 	for p in c
 		switch p:getName()

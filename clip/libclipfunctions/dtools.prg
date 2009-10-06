@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "lang.ch"
+#include "ci_lang.ch"
 static monates
 static days
 
@@ -47,9 +47,9 @@ lMode:=iif(lMode==NIL,.f.,lMode)
 str:=alltrim(monates[month(d)])
 if "ru" $ lower(getenv("LANG")) .or. "ru" $ lower(getenv("CLIP_LANG"))
     if month(d)==3 .or. month(d)==8
-      str:=str+"а"
+      str:=str+"О©╫"
     else
-      str:=left(str,len(str)-1)+"я"
+      str:=left(str,len(str)-1)+"О©╫"
     endif
 endif
 
@@ -65,9 +65,9 @@ d:=iif(d==NIL,date(),d)
 str:=alltrim(monates[month(d)])
 if "ru" $ lower(getenv("LANG")) .or. "ru" $ lower(getenv("CLIP_LANG"))
     if month(d)==3 .or. month(d)==8
-      str:=str+"а"
+      str:=str+"О©╫"
     else
-      str:=left(str,len(str)-1)+"я"
+      str:=left(str,len(str)-1)+"О©╫"
     endif
 endif
 str:=str+" "+str(day(d),2,0)+", "+;
@@ -112,7 +112,7 @@ return cdow(var)
 function maxday(xxx)
 return lastdayom(xxx)
 ********************************************************************
-func last_day(dat)  //"D"-последний день месяца
+func last_day(dat)  //"D"-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 return eom(dat)
 ********************************************************************
 function maxdayg(xxx)
@@ -146,23 +146,23 @@ endif
 if valtype(var)=='D'
    str_mon=" "+alltrim(monates[month(var)])
    if month(var)==3 .or. month(var)==8
-      ccc="а"
+      ccc="О©╫"
       str_mon=rtrim(str_mon)+ccc
    else
-      ccc="я"
+      ccc="О©╫"
       str_mon=substr(str_mon,1,len(str_mon)-1)+ccc
    endif
-   str=str(day(var),2,0)+" "+str_mon+" "+str(year(var),4,0)+" г."
+   str=str(day(var),2,0)+" "+str_mon+" "+str(year(var),4,0)+" О©╫."
 endif
 return str
 ********************************************************************
 func date_r(dat)
-return date_rus(month(dat))+str(year(dat))+" г."
+return date_rus(month(dat))+str(year(dat))+" О©╫."
 ********************************************************************
 * test for sdtod()
 ******
 *local i,m,d1,d2
-*m:={"01.02.03","02/03/04","20050607","3k05","2к04","1q03","3m05","2м04","3n05","2н04","11w03"}
+*m:={"01.02.03","02/03/04","20050607","3k05","2О©╫04","1q03","3m05","2О©╫04","3n05","2О©╫04","11w03"}
 *? week(date())
 *for i=1 to len(m)
 *	? sdtod(m[i],@d1,@D2),d1,d2
@@ -209,7 +209,7 @@ function sdtod(s,d1,d2)
 	next
 	s2 := upper(substr(s3,1,i-1))
 	s3 := substr(s3,i+1)
-	if s2 $ [KQК]     /* quartel */
+	if s2 $ [KQО©╫]     /* quartel */
 		s1 := val(s1)
 		if s1<1 .or. s1>4
 			return .f.
@@ -219,7 +219,7 @@ function sdtod(s,d1,d2)
 		d2 := ctod(s3+"."+str(s1+2,2,0)+".01","yy.mm.dd")
 		d2 := eom(d2)
 		return .t.
-	elseif s2 $ [MМ]  /* month   */
+	elseif s2 $ [MО©╫]  /* month   */
 		i := val(s1)
 		if i<1 .or. i>12
 			return .f.
@@ -227,7 +227,7 @@ function sdtod(s,d1,d2)
 		d1 := ctod(s3+"."+s1+".01","yy.mm.dd")
 		d2 := eom(d1)
 		return .t.
-	elseif s2 $ [WNН] /* week    */
+	elseif s2 $ [WNО©╫] /* week    */
 		s1 := val(s1)
 		if s1<1 .or. s1>60
 			return .f.

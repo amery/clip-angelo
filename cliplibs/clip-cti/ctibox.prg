@@ -7,7 +7,7 @@
 
 /* CTI_BOX - a base class for box containers */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_CONTAINER
 

@@ -1,4 +1,4 @@
-#include "set.ch"
+#include "ci_set.ch"
 
 FUNCTION DBTCP2CLIP(rowset,fieldno)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)

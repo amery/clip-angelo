@@ -6,7 +6,7 @@ Description: Display bitmap
 
 */
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <fwin/ci_FiveWin.ch>
 
 //-------------------------------------------------------------//
 

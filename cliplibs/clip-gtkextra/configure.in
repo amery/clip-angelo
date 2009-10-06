@@ -10,7 +10,7 @@ oldpwd=`pwd`
 DLLSUFF='.so'
 DLLREALSUFF='.so'
 
-rm Makefile
+rm -f$V Makefile
 if [ $? != 0 ]
 then
 	hname=`hostname 2>/dev/null`
@@ -54,7 +54,7 @@ esac
 
 printf "configure: creating clip-gtkextracfg.h .."
 
-exec 																										3>include/clip-gtkextracfg.h
+exec 																										3>include/ci_clip-gtkextracfg.h
 
 echo "/* Created automatically by 'configure' */" 											>&3
 echo "#ifndef CLIPGTKEXTRA_CONFIG_H" 															>&3
@@ -184,13 +184,15 @@ then
 	done
 	IFS="$save_ifs"
 fi
-echo "COMPILER=$CC" 																	>&3
+PIXBUFLIBS="-L/usr/lib$C64 -lgdk_pixbuf"
+LIBS="-L/usr/lib$C64 -lgtk -lgdk -lgmodule -lglib -ldl -lXi -lXext -lX11 -lm -L/usr/lib$C64 -lgtk -lgdk -lgtkextra -lglib -lm"
+#echo "COMPILER=$CC" 																	>&3
 #echo "DLLSUFF='$DLLSUFF'" 														>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'" 												>&3
 echo "INCLUDEDIRS=-I$gtkprefix/include -I$gtkextraprefix/include" 	>&3
-echo "XTARGETS=\$(XLIB) \$(XSLIB)" 												>&3
+#echo "XTARGETS=\$(XLIB) \$(XSLIB)" 												>&3
 echo "C_FLAGS += \$(INCLUDEDIRS) $EXTRACFLAGS" 								>&3
-echo "LIBS=$LIBS" 																	>&3
+echo "LIBS=$LIBS $PIXBUFLIBS" 													>&3
 
 if [ "$USE_GTK" = yes ]
 then
@@ -205,9 +207,11 @@ echo "XCFLAGS=$XCFLAGS" 															>&3
 echo 																						>&3
 exec 																						3>&-
 
-cat Makefile.ini 				>Makefile
-tr -d \' <./Makefile.inc 	>>Makefile
-cat ./Makefile.in 			>>Makefile
-
+tr -d \' <./Makefile.inc 	>Makefile
+cat ./Makefile 			>>Makefile.ini
+rm -f$V ./Makefile.inc
 echo ". done."
 
+#!/bin/sh
+
+touch configure.ok

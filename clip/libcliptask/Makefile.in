@@ -1,71 +1,72 @@
 #
 #                                            clip/libcliptask/Makefile.in
 #
+Local_Depend 	= 		../include/*.ch 		\
+							../include.h/*.h
 
-Local_Depend = ../include/*.ch ../include.h/*.h
-#CC= gcc
-#CFLAGS = -O -g -Wall -fPIC -I$(CLIPROOT)/include
-#CFLAGS = -O -Wall -fPIC
-#CFLAGS = $(C_FLAGS)
-TEST_ADDOBJS = ../compiler/coll.o ../compiler/list.o ../libclipmain/hash.o
-PTH_LIBS= -lpth
-PTH_TEST= pth_tst$(EXESUFF)
-OBJS = pth_task.o
-#LIB = libcliptask.a
-PROG = cliptask
+TEST_ADDOBJS 	= 										\
+							../compiler/coll.o 		\
+							../compiler/list.o 		\
+							../libclipmain/hash.o
 
+PTH_LIBS 		= 		-lpth
+PTH_TEST 		= 		pth_tst$(EXESUFF)
+OBJS 				= 		pth_task.o
+PROG 				= 		cliptask
+Depend_on 		= 		/usr/lib$(C64)/libpth.so
 ADDLIBS =
 
+export
 
-all install : cl_cfg.h Makefile $(ATARGET)
-#all install : cl_cfg.h $(LIB) Makefile
+######################################################################################
+###################################################################################### local rules
+
+all install : ci_cl_cfg.h Makefile $(OBJS) $(ATARGET)
 
 cfg:
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
 
-#$(LIB): $(OBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS)
-#	ranlib $(LIB)
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libcliptask
 
 include $(Makefile_o_in)
 
 ../libclipmain/coll.o : ../libclipmain/coll.c Makefile
-	$(E_cd)cd ../libclipmain																					\
+	$(E_cd)cd ../libclipmain																		\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ../libclipmain/list.o : ../libclipmain/list.c Makefile
-	$(E_cd)cd ../libclipmain  																				\
+	$(E_cd)cd ../libclipmain  																		\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ../libclipmain/hash.o : ../libclipmain/hash.c Makefile
-	$(E_cd)cd ../libclipmain  																				\
+	$(E_cd)cd ../libclipmain  																		\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  hash.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
-cl_cfg.h :
+ci_cl_cfg.h :
 	$(E_e)$(Trace)
 	$(E_xx)./cl_conf
 
-pth_task.o: pth_task.c task.h  Makefile
+pth_task.o: pth_task.c ci_task.h  Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
 	else 														\
 		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
+		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
 cl_tst$(EXESUFF): $(OBJS) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
 	$(E_e)$(Trace_cc)
-	$(E_cc)$(CC) $(CFLAGS) -o $@ cl_tst.o $(OBJS) $(TEST_ADDOBJS) $(ATARGET)
+	$(E_cc)$(CC) $(C_FLAGS) -o $@ cl_tst.o $(OBJS) $(TEST_ADDOBJS) $(ATARGET)
 	$(E_xx)$@
 
 task_tst$(EXESUFF) : $(ADDOBJS) task_tst.o $(ATARGET) Makefile
 	$(Trace_cc)
-	$(CC) $(CFLAGS) task_tst.c -o $@ $(TEST_ADDOBJS) $(ATARGET) $(PTH_LIBS)
+	$(CC) $(C_FLAGS) task_tst.c -o $@ $(TEST_ADDOBJS) $(ATARGET) $(PTH_LIBS)
 
 std_tst: pth_tst$(EXESUFF) Makefile
 

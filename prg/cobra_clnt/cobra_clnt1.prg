@@ -1,4 +1,4 @@
-#include "cobra.ch"
+#include "ci_cobra.ch"
 
 static oConnect:=cobraServiceNew()
 

@@ -35,7 +35,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "scankey.h"
+#include "ci_scankey.h"
 
 char *CLIPROOT=".";
 static struct termios ts, ts0;

@@ -1,19 +1,19 @@
 #
 #                                            prg/udb/reports/Makefile.in
 #
+Deoend_on 				= 				$(Clip_L_Dir)/libclip-gtk.so
+MODULES 					= 				$(sort 					\
+														default.po 	\
+											)
 
-Local_Depend =
-# $(Clip_L_Dir)/libclip-gtk.so
+export
 
-#CLIPFLAGS = -p -O -b -w -I ./include
-#CLIPLIBS  =
-#CLIPFLAGS += -p
+######################################################################################
+###################################################################################### local rules
 
-.SUFFIXES: .prg .o .po
+install all : Makefile $(MODULES)
 
-MODULES = 	$(sort default.po )
-
-install all : Makefile $(DIRS_TO_SCAN) $(MODULES)
+hash1 :
 
 cfg :
 

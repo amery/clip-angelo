@@ -6,9 +6,9 @@
 /* install procedure all CODB dictionaries and default data objects */
 //#include "codbcfg.ch"
 
-#include "six2clip.ch"
-#include "codbcfg.ch"
-#include "inkey.ch"
+#include "ci_six2clip.ch"
+#include "ci_codbcfg.ch"
+#include "ci_inkey.ch"
 
 local dList,list
 local i,j,k,id,tmp,key

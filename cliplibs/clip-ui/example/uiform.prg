@@ -9,14 +9,14 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <clip-ui.ch>
+#include <ci_clip-ui.ch>
 
 #define PRGVERSION	"0.1.3"
 
 static ws, win
 static vals := { { 'Alan', '1' }, ;
 				 { 'John', '2' }, ;
-				 { 'Mary', '3' } ; 
+				 { 'Mary', '3' } ;
 			   }
 
 
@@ -70,11 +70,11 @@ function openForm( obj, filename, context, action )
 	if valtype(obj) != 'O'
 		return NIL
 	endif
-	
+
 	?? 'FORM CONTEXT:', context, chr(10)
 	f := UIForm( filename, obj, context )
 	w := f:parseFile()
-	
+
 	if valtype(context) == 'B'
 		w:context := NIL
 		w:returnAction := context
@@ -82,12 +82,12 @@ function openForm( obj, filename, context, action )
 		w:context := context
 		w:returnAction := action
 	endif
-	
+
 	if w == NIL
 		return NIL
 	endif
 	w:show()
-	
+
 return NIL
 
 function showValues()

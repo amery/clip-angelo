@@ -1,4 +1,4 @@
-#include "directry.ch"
+#include "ci_directry.ch"
 
 STATIC sExt := {".HTML",".HTM",".SHTML"}
 STATIC sSize := 0

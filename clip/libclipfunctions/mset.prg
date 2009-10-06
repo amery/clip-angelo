@@ -3,9 +3,9 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "mset.ch"
+#include "ci_mset.ch"
 *-----------------*
-* MSET() подобна SET()
+* MSET() О©╫О©╫О©╫О©╫О©╫О©╫О©╫ SET()
 *-----------------*
 func mSet( par1, par2 )
 static mset:={.f.,80,1,"PRN",.f.}

@@ -1036,17 +1036,17 @@
 #include <locale.h>
 #include <signal.h>
 
-#include "clip.h"
-#include "../libclipscreen/screen.h"
-#include "hashcode.h"
-#include "error.ch"
-#include "ctwin.ch"
-#include "config.ch"
-#include "rational.h"
-#include "coll.h"
+#include "ci_clip.h"
+#include "../libclipscreen/ci_screen.h"
+#include "ci_hashcode.h"
+#include "ci_error.ch"
+#include "ci_ctwin.ch"
+#include "ci_config.ch"
+#include "ci_rational.h"
+#include "ci_coll.h"
 
 #ifdef USE_TASKS
-#include "../libcliptask/task.h"
+#include "../libcliptask/ci_task.h"
 #endif
 
 ClipModule IO_module = {

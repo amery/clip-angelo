@@ -1,7 +1,7 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 function main()
-local window, label, vbox
+local window, label, vbox, button, entry
 	gtk_init()
 	window = gtk_WindowNew(, " Test Resources ")
 

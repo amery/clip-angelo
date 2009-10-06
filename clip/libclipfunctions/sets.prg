@@ -38,7 +38,7 @@ return .t.
 ****************************************
 function setnames()
 	local __set_names
-	#include "setnames.ch"
+	#include "ci_setnames.ch"
 return __set_names
 
 ****************************************

@@ -1,5 +1,5 @@
-#include "clipcfg.h"
-#include "setcurs.ch"
+#include "ci_clipcfg.h"
+#include "ci_setcurs.ch"
 function sys(nVal,p1,p2)
 	static dir:={},nCount:=0
 	local ret:="",s

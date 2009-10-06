@@ -4,7 +4,7 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html  */
 
 #define PI		3.14159265358979323846	/* pi */
-#include "gdinfo.ch"
+#include "ci_gdinfo.ch"
 
 local gd, red, white, black, blue, yellow, fon, im, luch, cx, cy, x1, y1, x2, y2, im2, i
 clear screen

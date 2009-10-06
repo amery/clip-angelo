@@ -1,14 +1,19 @@
 #
 #                                            clip-gd/example/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-gd.so
+Depend_on 			=			 $(Clip_L_Dir)/libclip-gd.so
+PRG 					= 			gr$(EXESUFF)
 
-PRG=gr$(EXESUFF)
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -18,8 +23,8 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-gr$(EXESUFF): gr.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+gr$(EXESUFF): gr.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swlN -e -M gr.prg -lclip-gd $(LIBS)
 # -lgd
 

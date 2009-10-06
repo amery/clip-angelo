@@ -2,4 +2,4 @@
 
 echo "C_FLAGS += -I $PWD/include.h" >>Makefile.ini
 
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

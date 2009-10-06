@@ -58,7 +58,7 @@
 => ;
          <param> := IIF(<param> = NIL, <val>, <param> ) ;
          [; <paramn> := IIF(<paramn> = NIL, <valn>, <paramn> ) ]
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 
 #ifdef FT_TEST
@@ -72,7 +72,7 @@
    *   TBNAMES.DBF/.NTX ARE AUTOMATICALLY CREATED BY THIS TEST PROGRAM
    */
 
-  #INCLUDE "SETCURS.CH"
+  #INCLUDE "ci_SETCURS.CH"
 
   FUNCTION TBWHILE()
      LOCAL aFields := {}, cKey := "O", cOldColor
@@ -281,9 +281,9 @@ FUNCTION FT_BRWSWHL(aFields, bWhileCond, cKey, nFreeze, lSaveScrn, ;
    b := TBrowseDB(nTop, nLeft, nBottom, nRight)
 
    /* default heading and column separators */
-   b:headSep := "мям"
-   b:colSep  := " Ё "
-   b:footSep := "мом"
+   b:headSep := "О©╫О©╫О©╫"
+   b:colSep  := " О©╫ "
+   b:footSep := "О©╫О©╫О©╫"
 
    /* add custom 'TbSkipWhil' (to handle passed condition) */
    b:skipBlock := {|x| TbSkipWhil(x, bWhileCond)}
@@ -488,7 +488,7 @@ STATIC FUNCTION TbWhileBot(cKey)
    * This is accomplished by incrementing the right most character of the
    * string cKey by one ascii character.  After SEEKing the new string,
    * back up one record to get to the last record which matches cKey.
-   #include "set.ch"
+#include "ci_set.ch"
    LOCAL cSoftSave := SET(_SET_SOFTSEEK, .t.)
    SEEK LEFT(cKey, LEN(cKey) -1) + CHR( ASC( RIGHT(cKey,1) ) +1)
    SET(_SET_SOFTSEEK, cSoftSave)

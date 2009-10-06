@@ -2,26 +2,12 @@
 ##										cliplibs/Makefile.in
 ##
 #
-Local_Depend =
 include ./Makefile.01
-#ifeq ($(MAKECMDGOALS),clean)
-#DIRS_TO_SCAN = clip-bzip2 		clip-codb 			clip-com 			clip-crypto  	\
-#					clip-cti 		 																	\
-#					clip-fcgi 																			\
-#					clip-gd 			clip-glade2 													\
-#					clip-gtk2 																			\
-#					clip-dbtcp 																			\
-#					clip-fw 																				\
-#					clip-gzip 		clip-mysql 			clip-odbc 								\
-#					clip-nanfor 	clip-netto 														\
-#					clip-oracle 	clip-postgres 		clip-postscript 	clip-r2d2 		\
-#					clip-rtf 		clip-xml 			clip-ui
-#endif
-export CFLAGS CLIP CLIPFLAGS CLIPROOT
-#					clip-gtk 																			\
-#					clip-gtkextra 																			\
 
-################################################################################################################
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all local user system install lib : Makefile $(DIRS_TO_SCAN) FORCE
 	$(E_e)echo $@ $<
@@ -38,6 +24,8 @@ all local user system install lib : Makefile $(DIRS_TO_SCAN) FORCE
 ./Makefile.01 : ./configure ./configure.in
 	$(E_xx)./configure
 
+hash1 :
+
 cfg :
 
 cleanc :
@@ -45,25 +33,5 @@ cleanc :
 distcleanc:
 	$(E_rm)rm -rf$(V) *.g
 	$(E_rm)rm -f$(V) *.o *.n
-
-deb: clean
-	$(E_xx)for dir in $(DIRS_TO_SCAN); \
-		do ./mkdeb $$dir; \
-	done
-
-rpm:
-	$(E_xx)for dir in $(DIRS_TO_SCAN); \
-		do ./mkrpm $$dir; \
-	done
-
-rpm-opt:
-	$(E_xx)for dir in $(DIRS_TO_SCAN); \
-		do ./mkrpm -opt $$dir; \
-	done
-
-tgz tbz:
-	$(E_xx)for dir in $(DIRS_TO_SCAN); \
-		do ./mktgz $$dir; \
-	done
 
 include $(Makefile_end_in)

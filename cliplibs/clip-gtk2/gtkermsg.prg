@@ -3,7 +3,7 @@
     Author  : Alexey M. Tkachenko <alexey@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "clip-gtk2.ch"
+#include "ci_clip-gtk2.ch"
 
 function gtk_ErrorMsgBox(cMsg, aButton, cTitle, activeWnd)
 local nWidth, nHeight

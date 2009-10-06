@@ -6,13 +6,13 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "set.ch"
-#include "lang.ch"
-#include "getexit.ch"
-#include "date.ch"
-#include "button.ch"
-#include "config.ch"
-#include "inkey.ch"
+#include "ci_set.ch"
+#include "ci_lang.ch"
+#include "ci_getexit.ch"
+#include "ci_date.ch"
+#include "ci_button.ch"
+#include "ci_config.ch"
+#include "ci_inkey.ch"
 **********************************************************************
 /* it`s function via clipper psevdo function __GET */
 
@@ -165,9 +165,9 @@ function _recover_get(obj)
   obj:Insert 		:= @Insert()
   obj:overStrike   	:= @overStrike()
   obj:__analizePic 	:= @__analizePic()   // analize PICTURE string
-  obj:__fillBuffer 	:= @__fillBuffer()   // заполнитель буфера
-  obj:__updateInfo 	:= @__updateInfo()   // читает вновь переменную и обновляет
-					// служебную инфу
+  obj:__fillBuffer 	:= @__fillBuffer()   // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+  obj:__updateInfo 	:= @__updateInfo()   // О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+					// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
   obj:__checkSym   	:= @__checkSym()
   obj:__toString   	:= @__toString()
   obj:__toString   	:= @__toString()
@@ -201,7 +201,7 @@ static func unTransform()
 #ifdef DEBUG
 	outlog(__FILE__,__LINE__,"untransform",::name)
 #endif
-    // buffer надо почистить от ненужных символов
+    // buffer О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
     if "R" $ ::__flags .or. ::type!="C"
        s=""
        for i=1 to len(::__posArr)
@@ -1170,7 +1170,7 @@ static func __analizePic()
   endif
   */
   if !empty(::picture)
-	  // разбор команд в PICTURE-строке
+	  // О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ PICTURE-О©╫О©╫О©╫О©╫О©╫О©╫
 	s1:=::picture
 	if substr(s1,1,1)=="@"
 		i:=at(" ",s1)
@@ -1255,7 +1255,7 @@ static func __analizePic()
      return NIL
   endif
   if empty(s4) //empty(::picture)
-     // сделать шаблон по умолчанию
+     // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	do case
 	case ::type=="C"
 		  ::__len:=len(::__original)
@@ -1324,7 +1324,7 @@ static func __analizePic()
 	endif
 
   else
-	//  разбор шаблона вывода данных
+	//  О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 	::__format:=""
 	::__dataSay:=""
 	for i=1 to len(s4)

@@ -3,16 +3,16 @@
     Author  : Alexey M. Tkachenko <alexey@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
-#include "clip-gdk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
+#include "ci_clip-gdk2.h"
 
 GtkType _gdk_type_gdk_window() { return GDK_OBJECT_WINDOW; }
 long _clip_type_gdk_window() { return GDK_OBJECT_WINDOW; }

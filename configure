@@ -5,6 +5,48 @@ Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
 cd "$Clip_M_Dir"
+rD=$(cat $Clip_M_Dir/release.sequence)
+rV=$(cat $Clip_M_Dir/release.version)
+seq_no="$rD-$rV"
+export seq_no
+export rV
+export rD
+if [[ -f /usr/bin/banner ]] ; then
+	banner Clip-ITK 								>&0
+	banner V.$rD 									>&0
+	banner $rV 										>&0
+else
+	echo "Version : $seq_no" 					>&0
+fi
+cd "$Clip_M_Dir/clip/tools"
+reg=1
+if [ -f registration ] ; then
+	./rsa-verify >license.txt <registration
+	reg=$?
+	echo >>license.txt
+	echo "REGISTRATION BEGIN" >>license.txt
+	cat registration >>license.txt
+	echo "REGISTRATION END" >>license.txt
+fi
+if [ "$reg" != 0 ] ; then
+	cp --remove-destination -fu$V license.gnu license.txt
+fi
+echo "Registration info:" 						>&0
+echo 													>&0
+cat license.txt 									>&0
+echo 													>&0
+exec 																			3>license.h
+echo '#define CLIP_LICENSE "\' 										>&3
+#sed -e 's/"/\\"/g' -e 's/^.*$/"\0\\\n"\\/g' <license.txt 	>&3
+sed -e 's/"/\\"/g' -e 's/^.*$/\0\\n\\/g' <license.txt			>&3
+echo '"'																		>&3
+rm -f license.txt
+exec																			3>&-
+echo ". done."
+cp -f$V license.h $Clip_M_Dir/
+cd "$Clip_M_Dir"
+cp -f$V ./license.h $Clip_M_Dir/clip/tools/
+sleep 2
 C64=$(uname -m)
 ARCH=$(uname -m)
 if [ -n "$ARCH" ] ; then
@@ -44,7 +86,7 @@ if [ -z "$option" ] || [[ "$option" = "-h" ]] || [[ "$option" = "--help" ]] ; th
 		exit 0
 	fi
 fi
-set >configure.set.txt
+#set >configure.set.txt
 source $Clip_M_Dir/init/start.sh $option
 if [[ $? != 0 ]] ; then
 	error $0 $LINENO
@@ -67,3 +109,4 @@ fi
 cat Makefile.ini 	>Makefile
 cat Makefile.in 	>>Makefile
 #$MAKE $option
+touch configure.ok

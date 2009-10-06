@@ -1,44 +1,44 @@
 /*
-┌──────────────────────────────────────────────────────────────────────────┐
-│         Name: RTFDemo.prg                                                │
-│  Description: Demo of RichText() Class                                   │
-│     Language: Clipper/Fivewin                                            │
-│      Version: 0.90                                                       │
-│         Date: 01/28/97                                                   │
-│       Author: Tom Marchione                                              │
-│     Internet: 73313,3626@compuserve.com                                  │
-│                                                                          │
-│    Copyright: (C) 1997, Thomas R. Marchione                              │
-│       Rights: Use/modify freely for applicaton work, under the condition │
-│               that you include the original author's credits (i.e., this │
-│               header), and you do not offer the source code for sale.    │
-│               The author may or may not supply updates and revisions     │
-│               to this code as "freeware".                                │
-│                                                                          │
-│   Warranties: None. The code has not been rigorously tested in a formal  │
-│               development environment, and is offered as-is.  The author │
-│               assumes no responsibility for its use.                     │
-│                                                                          │
-│    Revisions:                                                            │
-│                                                                          │
-│    DATE       AUTHOR  COMMENTS                                           │
-│──────────────────────────────────────────────────────────────────────────│
-│    01/28/97   TRM     Date of initial release                            │
-│                                                                          │
-│                                                                          │
-│                                                                          │
-│                                                                          │
-│                                                                          │
-└──────────────────────────────────────────────────────────────────────────┘
+О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+О©╫         Name: RTFDemo.prg                                                О©╫
+О©╫  Description: Demo of RichText() Class                                   О©╫
+О©╫     Language: Clipper/Fivewin                                            О©╫
+О©╫      Version: 0.90                                                       О©╫
+О©╫         Date: 01/28/97                                                   О©╫
+О©╫       Author: Tom Marchione                                              О©╫
+О©╫     Internet: 73313,3626@compuserve.com                                  О©╫
+О©╫                                                                          О©╫
+О©╫    Copyright: (C) 1997, Thomas R. Marchione                              О©╫
+О©╫       Rights: Use/modify freely for applicaton work, under the condition О©╫
+О©╫               that you include the original author's credits (i.e., this О©╫
+О©╫               header), and you do not offer the source code for sale.    О©╫
+О©╫               The author may or may not supply updates and revisions     О©╫
+О©╫               to this code as "freeware".                                О©╫
+О©╫                                                                          О©╫
+О©╫   Warranties: None. The code has not been rigorously tested in a formal  О©╫
+О©╫               development environment, and is offered as-is.  The author О©╫
+О©╫               assumes no responsibility for its use.                     О©╫
+О©╫                                                                          О©╫
+О©╫    Revisions:                                                            О©╫
+О©╫                                                                          О©╫
+О©╫    DATE       AUTHOR  COMMENTS                                           О©╫
+О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+О©╫    01/28/97   TRM     Date of initial release                            О©╫
+О©╫                                                                          О©╫
+О©╫                                                                          О©╫
+О©╫                                                                          О©╫
+О©╫                                                                          О©╫
+О©╫                                                                          О©╫
+О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 
 
 #ifdef __CLIP__
-#include "objects.ch"
+#include "ci_objects.ch"
 #else
-#include "fiveWin.ch"
+#include "ci_fiveWin.ch"
 #endif
-#include "richtext.ch"
+#include "ci_richtext.ch"
 
 
 RTFDemo()
@@ -220,14 +220,14 @@ LOCAL aBullet[5]
 
 //      First, load some text...
 
-aTitle[1] := "Garden Пример Summary"
-aTitle[2] := "Весна is almost here!"
-aTitle[3] := "(...in the северной hemisphere)"
+aTitle[1] := "Garden О©╫О©╫О©╫О©╫О©╫О©╫ Summary"
+aTitle[2] := "О©╫О©╫О©╫О©╫О©╫ is almost here!"
+aTitle[3] := "(...in the О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ hemisphere)"
 
-aBullet[1] := "Этот отчет - демонстрация некоторых возможностей " + ;
-			"класса RichText() для Clipper & Fivewin.  Он был написан " + ;
-			" Tom Marchione (73313,3626@compuserve.com).  Если у Вас есть какие-либо " + ;
-			"комментарии и вопросы - мылом, т.е. E-Mail."
+aBullet[1] := "О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ - О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ " + ;
+			"О©╫О©╫О©╫О©╫О©╫О©╫ RichText() О©╫О©╫О©╫ Clipper & Fivewin.  О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ " + ;
+			" Tom Marchione (73313,3626@compuserve.com).  О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫ " + ;
+			"О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ - О©╫О©╫О©╫О©╫О©╫, О©╫.О©╫. E-Mail."
 
 aBullet[2] := "RichText() lets you generate reports to RTF files, like this " + ;
 			"one.  RTF files can be read by most word processors, so this " + ;

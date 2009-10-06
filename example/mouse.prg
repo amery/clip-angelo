@@ -1,4 +1,4 @@
-#include <inkey.ch>
+#include <ci_inkey.ch>
 
 local key:=0
 local flags:=0

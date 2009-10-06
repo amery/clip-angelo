@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/fivewin.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_fivewin.ch>
 
 #define BAR_HEIGHT           28
 #define GRAY_BRUSH            2

@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 
 static time_close:=.f.
 static lWaitperiod:=.f.

@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 #define PSTDEBUG	.F.
 
@@ -19,7 +19,7 @@ static currentObject := NIL
 /** PSTemplate - Class for XPL templates */
 function PSTemplate( o )
 	local obj:=NIL
-	
+
 	if valtype(o) == 'O' .and. o:className == 'PSForm'
 		obj := o
 	else
@@ -28,7 +28,7 @@ function PSTemplate( o )
 	endif
 	obj:values  := array(0)
 	obj:namedSections := map()
-	
+
 	_recover_PSTEMPLATE(obj)
 return obj
 
@@ -44,7 +44,7 @@ return obj
 /* Fill PSForm by data */
 static function ps_fill( self )
 	local tags:=array(0), t, root, i, j, res, hasParent, oErr
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
 		if PSTDEBUG
@@ -56,7 +56,7 @@ static function ps_fill( self )
 			return .F.
 		endif
 		root := self:oXml:getRoot()
-		
+
 		for i:=1 to len(valued_tags)
 			res := root:XPath("//"+valued_tags[i])
 			if valtype(res) == "A"
@@ -71,15 +71,15 @@ static function ps_fill( self )
 					if .not. hasParent
 						aadd( tags, t )
 					endif
-				next 
+				next
 			endif
 		next
-		
+
 		asort(tags,,,{|a,b| a:pos < b:pos })
 		if PSTDEBUG
 			?? "PSTemplate:fill() - number of top-level valued tags:", ltrim(str(len(tags))), "&\n"
 		endif
-		
+
 		// Process valued tags
 		for t in tags
 			ps_templateExecute( self, t )
@@ -87,7 +87,7 @@ static function ps_fill( self )
 		if PSTDEBUG
 			?? "PSTemplate:fill() complete&\n"
 		endif
-	
+
 	recover using oErr
 		?? "PSTemplate:fill() error:", errorMessage(oErr), chr(10)
 		return .F.
@@ -101,19 +101,19 @@ static function ps_templateExecute( self, t )
 	local c, v:=NIL, vv, node, name, func, oErr
 	local block, lpos, childs, content, ocontent, item, schilds, i, j
 	local newData, pNode, pPos
-	
+
 	if valtype(t) != 'O'
 		return .F.
 	endif
-	
+
 	oErr := errorBlock({|e| break(e) })
 	begin sequence
-	
+
 	if PSTDEBUG
 		?? "process tag <"+t:getName()+">...", chr(10)
 	endif
 	switch lower(t:getName())
-	
+
 		case "value"
 			// Single value
 			name := t:attribute("name","")
@@ -131,7 +131,7 @@ static function ps_templateExecute( self, t )
 				next
 			else
 				// Process simple <value>
-				vv := t:getText() 
+				vv := t:getText()
 				func := lower(t:attribute("function",""))
 				if .not. empty(func)
 					switch func
@@ -160,7 +160,7 @@ static function ps_templateExecute( self, t )
 			if .not. ps_hasParent( t, "data" )
 				t:remove()
 			endif
-			
+
 		case "call"
 			// Statement call
 			childs := t:getChilds()
@@ -170,39 +170,39 @@ static function ps_templateExecute( self, t )
 				content := ""
 				for item in childs
 					v := ps_val2str( ps_templateExecute( self, item ) )
-					content += substr(ocontent, lpos, item:offset-lpos) + v				
+					content += substr(ocontent, lpos, item:offset-lpos) + v
 				next
-				content += substr(ocontent, lpos, len(ocontent)-lpos) 
+				content += substr(ocontent, lpos, len(ocontent)-lpos)
 			else
 				content := ocontent
 			endif
-			
+
 			if PSTDEBUG
 				?? "Execute expression:", content, chr(10)
 			endif
 			vv := "{|| " + content + " }"
-			
+
 			begin sequence
 				v := eval( &vv )
 			recover using oErr
 				?? "Error on execute expression '"+content+"':", errorMessage(oErr), chr(10)
 				return NIL
 			end sequence
-			
+
 			if PSTDEBUG
 				?? "Execute result:", v, chr(10)
 			endif
-			
+
 			if .not. ps_hasParent( t, "data" )
 				t:remove()
 			endif
-			
+
 		case "data"
 			// Iterated section
 			newData := array(0)
 			content := self:getValue(t:attribute("repeat",""))
 			if valtype(content) == 'A' .and. len(content) > 0
-				
+
 				// Iterate each element
 				for i:=1 to len(content)
 					if PSTDEBUG
@@ -218,10 +218,10 @@ static function ps_templateExecute( self, t )
 							// Pass orginary elements
 							aadd(newData, ps_repeat(self, @item))
 						endif
-					next 
+					next
 				next
 				self:setValue(t:attribute("repeat",""), 0)
-				
+
 				// Replace data by newData
 				pNode := t:getParent()
 				pPos  := t:pos
@@ -237,17 +237,17 @@ static function ps_templateExecute( self, t )
 				// Only for debug!
 				//?? pNode:dump()
 			endif
-			
-			
+
+
 		case "condition"
 			// Condition
 			childs := t:getChilds()
 			if len(childs) == 0
 				?? "PSTemplate: missing value for <condition>&\n"
-				v := NIL			
+				v := NIL
 			else
 				content := .T.
-				vv := "NIL"				
+				vv := "NIL"
 				for item in childs
 					if content 	// Value
 						content := .F.
@@ -267,15 +267,15 @@ static function ps_templateExecute( self, t )
 			if .not. ps_hasParent( t, "data" )
 				t:remove()
 			endif
-			
+
 		otherwise
 			// Unknown tag. Ignored
 			if PSTDEBUG
 				?? "Warning: unsupported valued tag <"+t:getName()+">&\n"
 			endif
-			
+
 	endswitch
-	
+
 	recover using oErr
 		?? "Error process tag <"+t:getName()+">:", errorMessage(oErr), chr(10)
 		return NIL
@@ -288,11 +288,11 @@ return v
 static function ps_hasParent( t, tag )
 	local fnd:=.F., ct, n
 	local s:=""
-	
+
 	if empty(tag) .or. valtype(t) != 'O' .or. .not. "GETNAME" $ t
 		return .F.
 	endif
-	
+
 	ct := t:getParent()
 	do while .not. fnd .and. valtype(ct) == 'O'
 		s := ct:getName() + "/"
@@ -302,7 +302,7 @@ static function ps_hasParent( t, tag )
 		ct := ct:getParent()
 	enddo
 	//?? "lookup", tag, "in", s, "=", fnd, chr(10)
-	
+
 return fnd
 
 
@@ -315,7 +315,7 @@ static function ps_setNumber( self, name )
 			self:values[i][2] := val(self:values[i][2])
 		elseif valtype(self:values[i][2]) != 'N'
 			self:values[i][2] := 0
-		endif		
+		endif
 	endif
 return NIL
 
@@ -323,11 +323,11 @@ return NIL
 /* Set form value */
 static function ps_setValue( self, name, value, cItem )
 	local i, ov:=NIL
-	
+
 	if empty(value)
 		return NIL
 	endif
-	
+
 	if PSTDEBUG
 		?? "Set value:", name, "=", ps_val2str(value), ;
 			iif(valtype(cItem) == 'N', "("+ltrim(str(cItem))+")",""),"&\n"
@@ -350,7 +350,7 @@ return ov
 /* Get form value */
 static function ps_getValue( self, name )
 	local i, origName, a, v:=NIL, sub
-	
+
 	origName := name
 	a := split(name, ":")
 	if len(a) > 1
@@ -374,7 +374,7 @@ static function ps_getValue( self, name )
 							?? "Get value:", origName, "=", ps_val2str(v[sub]), "&\n"
 						endif
 						return v[sub]
-					endif 
+					endif
 				endif
 			elseif valtype(v) == 'O'
 				if upper(sub) $ v
@@ -390,7 +390,7 @@ static function ps_getValue( self, name )
 			?? "Warning: undefined value with name "+name+"&\n"
 		endif
 	endif
-	
+
 	if PSTDEBUG
 		?? "Get value:", origName, "=", ps_val2str(v), "&\n"
 	endif
@@ -401,15 +401,15 @@ return v
 /* Fill item and return copy */
 static function ps_repeat(self, tag)
 	local t, childs, i, item, v, a, tN, tM, tA:=array(0)
-	
+
 	if valtype(tag) != 'O'
 		return NIL
 	endif
-	
+
 	if PSTDEBUG
 		?? "repeat tag <"+tag:getName()+">&\n"
 	endif
-	
+
 	// Copy object
 	t := map()
 	childs := mapkeys(tag)
@@ -422,18 +422,18 @@ static function ps_repeat(self, tag)
 			t[i] := tM
 		endif
 	next
-	
+
 	// Copy arrays
 	childs := tag:getChilds()
 	t:childs := array(0)
-	
+
 	// Store named tag
 	tN := upper(t:attribute("name",""))
 	if .not. empty(tN)
 		//?? "NAMED:", tN, chr(10)
 		self:namedSections[tN] := @t
 	endif
-	
+
 	// Process childs
 	for i:=1 to len(childs)
 		item := childs[i]
@@ -445,16 +445,16 @@ static function ps_repeat(self, tag)
 			// Pass orginary elements
 			t:addChild( ps_repeat(self, @item) )
 		endif
-		
+
 	next
-	
+
 return t
 
 
 /* Set style to named section */
 // TODO: support all named elements
 function setStyle( name, style )
-	
+
 	if empty(name) .or. empty(style) .or. valtype(currentObject) != 'O'
 		return NIL
 	endif
@@ -462,19 +462,19 @@ function setStyle( name, style )
 	if upper(name) $ currentObject:namedSections
 		currentObject:namedSections[upper(name)]:setAttribute("style", style)
 	endif
-	
+
 return NIL
 
 
 /* Transform any value to string */
 static function ps_val2str( v, fmt )
 	local t, s:="", l, i
-	
+
 	t := valtype(v)
 	if valtype(fmt) != 'L'
 		fmt := .F.
 	endif
-	
+
 	switch t
 		case 'C', 'D'
 			s := iif(fmt, '"'+v+"'", v)
@@ -500,6 +500,5 @@ static function ps_val2str( v, fmt )
 		otherwise
 			s := ''
 	endswitch
-	
+
 return s
-	

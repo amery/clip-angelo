@@ -1,10 +1,10 @@
-#INCLUDE "button.ch"
-#INCLUDE "browsys.ch"
-#INCLUDE "inkey.ch"
-#INCLUDE "Set.ch"
-#INCLUDE "SetCurs.ch"
-#INCLUDE "tbrowse.ch"
-#INCLUDE "llibg.ch"
+#INCLUDE "ci_button.ch"
+#INCLUDE "ci_browsys.ch"
+#INCLUDE "ci_inkey.ch"
+#INCLUDE "ci_Set.ch"
+#INCLUDE "ci_SetCurs.ch"
+#INCLUDE "ci_tbrowse.ch"
+#INCLUDE "ci_llibg.ch"
 
 #DEFINE NVALTYPE_CHAR      67
 #DEFINE NVALTYPE_DATE      68
@@ -26,8 +26,8 @@ FUNCTION tbCreate( uOwner, nTop, nLeft, nBottom, nRight, cColorInfo, cBorder, lA
 
       oBrowse := tBrowseNew( nTop, nLeft, nBottom, nRight )
       oBrowse:AutoLite      := .F.
-      oBrowse:HeadSep       := "Ä"
-      oBrowse:ColSep        := "Å"
+      oBrowse:HeadSep       := "ÔøΩ"
+      oBrowse:ColSep        := "ÔøΩ"
       oBrowse:SkipBlock     := { | x | tbSkip( aTBInfo, x ) }
 
       IF ( ValType( uOwner ) == "A" )

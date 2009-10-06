@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 * charset koi8-r
-#include "clip-gtk2.ch"
-#include "inkey.ch"
+#include "ci_clip-gtk2.ch"
+#include "ci_inkey.ch"
 
 function abx_getobj_new(Type,Picture,OnChange)
 	local obj:=map()

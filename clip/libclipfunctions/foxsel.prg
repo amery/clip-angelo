@@ -4,9 +4,9 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "fileio.ch"
-#include "foxsql.ch"
-#include "error.ch"
+#include "ci_fileio.ch"
+#include "ci_foxsql.ch"
+#include "ci_error.ch"
 
 
 //#define DEBUG_WHERE
@@ -390,7 +390,7 @@ static function sql_openDB()
 				i:Open:=.f.
                         else
         			i:hDB:=rddUseArea(,i:file,.t.,.f.)
-				i:Open:=.t.				
+				i:Open:=.t.
                         	if file(i:file+memoext())
         				rddSetMemo(i:hDB,,i:file)
                         	endif
@@ -532,7 +532,7 @@ static function sql_parseFields()
                 k:dec  :=0
                 aadd(::fields,k)
         next
-        for i in ::fields      // дублирование имен
+        for i in ::fields      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
         	xname:=i:xname
                 if empty(i:aname) // default table
                 	i:aname:=::from[1]:alias

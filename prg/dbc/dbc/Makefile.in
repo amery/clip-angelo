@@ -1,25 +1,33 @@
 #
 #                                            prg/dbc/dbc/Makefile.in
 #
-Local_Depend = ../dbc/deflist.ch
+Local_Depend 			= 			../dbc/*.ch
+OBJS  					= 			$(sort 						\
+													move.o 			\
+													modistru.o 		\
+													commands.o 		\
+													view.o 			\
+													query.o 			\
+													pechdbc.o 		\
+													prcmenu.o \
+										)
+LIBS 						= 			../procs.a
 
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -n -O -b
-#CLIPLIBS  = ../procs.a
-OBJS  = $(sort move.o modistru.o commands.o view.o query.o pechdbc.o prcmenu.o )
-.SUFFIXES: .prg .o
+export
 
-LIBS = ../procs.a
-
+######################################################################################
+###################################################################################### local rules
 
 dbc$(EXESUFF):  dbc.prg $(OBJS) $(CLIP) $(LIBCLIP) $(LIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
 		$(Trace_clip_d) 	;													\
 		$(CLIP) $(CLIPFLAGS) -se -g -o$@ $< $(OBJS) $(LIBS) ;		\
 	else 																			\
 		$(Trace_clip) 		;													\
 		$(CLIP) $(CLIPFLAGS) -se -o$@ $< $(OBJS) $(LIBS) ;			\
 	fi
+
+hash1 :
 
 cfg :
 
@@ -30,9 +38,9 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install : all
-	$(E_cp)cp --remove-destination -fpu$(V) dbc$(EXESUFF) $(DESTDIR)/bin/
+	$(E_cp)cp --remove-destination -fpu$(V) dbc$(EXESUFF) $(INSTDIR)/bin/
 
-all: dbc$(EXESUFF)
+all : $(OBJS) dbc$(EXESUFF)
 
 include $(Makefile_o_in)
 

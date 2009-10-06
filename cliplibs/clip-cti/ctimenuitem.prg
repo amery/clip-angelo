@@ -8,7 +8,7 @@
 /* CTI_MENUITEM objects are the basis for which both top bar and pop-up menus
      are built upon */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_WIDGET
 

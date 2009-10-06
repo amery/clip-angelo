@@ -3,21 +3,21 @@
 	Author   : Uri (uri@itk.ru)
 	License : (GPL) http://www.itk.ru/clipper/license.html
 
-	Изменения в функциях
+	О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	    refreshCurrent
 	    refreshAll
 	    cleft
 	    cright
 	    stabilize
-	    функция  panRight работает не совсем правильно
+	    О©╫О©╫О©╫О©╫О©╫О©╫О©╫  panRight О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 	20.07.2004 john (sneshka@online.bryansk.ru)
 
 */
 
-#include "tbrowse.ch"
-#include "inkey.ch"
-#include "button.ch"
+#include "ci_tbrowse.ch"
+#include "ci_inkey.ch"
+#include "ci_button.ch"
 
 //#define TBR_CACHED
 //#define DEBUG_CALL
@@ -62,7 +62,7 @@ func TBrowseNew(Lrow,Lcol,Rrow,Rcol,db)
 	   obj:leftVisible	:= 1
 	   obj:rightVisible	:= 1
 	   obj:message	:= ""
-	   obj:chop		:= .f. /* показывать неполностью вмещаемые колонки ?*/
+	   obj:chop		:= .f. /* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ?*/
 	   obj:hiliteType	:= 1   /* 0 -none
 					  1 - current ceil
 					  2 - current line
@@ -91,7 +91,7 @@ func TBrowseNew(Lrow,Lcol,Rrow,Rcol,db)
 	   obj:cursorLen:=0
 
 	  *************************************
-	  obj:__firstStab	:=.f.  // был ли первый stabilize
+	  obj:__firstStab	:=.f.  // О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ stabilize
 	  obj:__rect	:={0,0,0,0}
 
 	  obj:__colorCells	:={}  // items for colorRect()
@@ -101,21 +101,21 @@ func TBrowseNew(Lrow,Lcol,Rrow,Rcol,db)
 	  obj:__columns	:={}
 
 	  obj:__lRedrawTable    := .t. // need redraw headers & footers
-	  obj:__columnsLen	:={} // длины колонок
-	  obj:__colVisible	:={} // видимые колонки
-	  obj:__colpos		:=1  // текущая колонка из числа видимых
-	  obj:__whereVisible	:={} // row для каждой видимой колонки
-	  obj:__headStrings	:={} // надписи заголовков по строкам
-	  obj:__footStrings	:={} // надписи подвалов по строкам
+	  obj:__columnsLen	:={} // О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__colVisible	:={} // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__colpos		:=1  // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__whereVisible	:={} // row О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__headStrings	:={} // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__footStrings	:={} // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	  obj:__colors	:={} // палитры цветов
+	  obj:__colors	:={} // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
 	  obj:__keys	:=map() // array for ::setkey()
 
 	  obj:__refreshLine     :={}
-	  obj:__headRows	:=0  // строк в заголовке
-	  obj:__footRows	:=0  // строк в подвале
+	  obj:__headRows	:=0  // О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	  obj:__footRows	:=0  // О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-	  obj:__rightAll	:=.f. // больше справа никого нет
+	  obj:__rightAll	:=.f. // О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫
 
 	  obj:winbuffer		:= NIL
 
@@ -165,10 +165,10 @@ function _recover_tbrowse(obj)
 	obj:stabilize	:= @stabilize()
 	obj:forceStable	:= @forceStable()
 
-	obj:__whoVisible	:= @__whoVisible() // вычислить кто видимый
+	obj:__whoVisible	:= @__whoVisible() // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	obj:__reMakeColumns	:= @__remakeColumns()
 	obj:__dummyRow	:= @__dummyRow()
-	obj:__sayTable	:= @__sayTable() // рисовать обрамление, заголовки, подвалы
+	obj:__sayTable	:= @__sayTable() // О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	obj:__setColor	:= @__setcolor()
 	obj:__getColor	:= @__getcolor()
 //	obj:__checkRow	:= @__checkRow()

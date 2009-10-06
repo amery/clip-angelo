@@ -1,133 +1,148 @@
 #
 #                                            clip-fw/example/Makefile.in
 #
-Local_Depend =
-# $(Clip_L_Dir)/libclip-fw.so
-Local_Depend +=
-# $(Clip_L_Dir)/libclip-gtk.so
-Local_Depend +=
-# $(Clip_L_Dir)/libclip-cti.so
+Depend_on 				= 			$(Clip_L_Dir)/libclip-fw.so 		\
+										$(Clip_L_Dir)/libclip-gtk.so 		\
+										$(Clip_L_Dir)/libclip-cti.so
+CLIPFLAGS 				= 			-o$@ -g -l -w $(INCLUDEDIRS)
+CLIPLIBS  				=
+OBJS  					=
+BINS 						= 			$(sort 								\
+													combos$(EXESUFF) 		\
+													dlgtest$(EXESUFF) 	\
+													gettest$(EXESUFF) 	\
+													lines$(EXESUFF) 		\
+													test$(EXESUFF) 		\
+													testbar$(EXESUFF) 	\
+													testbrw$(EXESUFF) 	\
+													testlbx$(EXESUFF) 	\
+													testscrl$(EXESUFF) 	\
+													testwsty$(EXESUFF) 	\
+													tooltip$(EXESUFF) 	\
+													atest$(EXESUFF) 		\
+													bmp$(EXESUFF)			\
+										)
 
+#atest$(EXESUFF)  # 		missing many functions
+#bmp$(EXESUFF)  	# 		missing many functions
+LIBS 						+= 		-lclip-fw -lclip-gtk -lclip-cti $(PIXBUFLIBS)
+export
 
-
-CLIPFLAGS = -o$@ -g -l -w
-CLIPLIBS  =
-OBJS  =
-BINS = atest$(EXESUFF) bmp$(EXESUFF) combos$(EXESUFF) dlgtest$(EXESUFF) gettest$(EXESUFF) lines$(EXESUFF) test$(EXESUFF) testbar$(EXESUFF) testbrw$(EXESUFF) testlbx$(EXESUFF) \
-	testscrl$(EXESUFF) testwsty$(EXESUFF) tooltip$(EXESUFF)
-
-.SUFFIXES: .prg .o .po
+######################################################################################
+###################################################################################### local rules
 
 all:	Makefile $(BINS)
 
 install : all
 
+hash1 :
+
 cfg :
 
 include $(Makefile_o_in)
 
-al$(EXESUFF):	al.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s -M al.prg -lclip-fw -lclip-gtk
+al$(EXESUFF):	al.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s -M al.prg $(LIBS)
 
-atest$(EXESUFF):	atest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s atest.prg -lclip-fw -lclip-gtk -lclip-cti
+atest$(EXESUFF):	atest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s atest.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e atest.prg -lclip-fw $(CLIPROOT)/lib/libclip-gtk.a -lgtk -lgdk
 
-bmp$(EXESUFF):	bmp.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s bmp.prg -lclip-fw -lclip-gtk -lclip-cti
+bmp$(EXESUFF):	bmp.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s bmp.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s bmp.prg ./libclip-fw.a -lclip-gtk
 
-combos$(EXESUFF):	combos.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s combos.prg -lclip-fw -lclip-gtk -lclip-cti
+combos$(EXESUFF):	combos.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s combos.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -P combos.prg -lclip-fw -lclip-gtk
 
-customer$(EXESUFF): customer.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s customer.prg -lclip-fw -lclip-gtk -lclip-cti
+customer$(EXESUFF): customer.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s customer.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s customer.prg libclip-gtk.a -lclip-fw -lgtk -lgdk #-lclip-gtk
 
-dlgtest$(EXESUFF):dlgtest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s dlgtest.prg -lclip-fw -lclip-gtk -lclip-cti
+dlgtest$(EXESUFF):dlgtest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s dlgtest.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -P dlgtest.prg -lclip-fw -lclip-gtk
 
-gettest$(EXESUFF):gettest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s gettest.prg -lclip-fw -lclip-gtk -lclip-cti
+gettest$(EXESUFF):gettest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s gettest.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -P gettest.prg -lclip-fw -lclip-gtk
 
-gettest2$(EXESUFF):gettest2.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+gettest2$(EXESUFF):gettest2.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -e -s gettest2.prg -lclip-fw -lclip-gtk -lclip-cti
-	$(CLIP) $(CLIPFLAGS) -e -s gettest2.prg -lclip-fw -lclip-gtk
+	$(CLIP) $(CLIPFLAGS) -e -s gettest2.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -P gettest2.prg -lclip-fw -lclip-gtk
 
-lines$(EXESUFF):	lines.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s lines.prg -lclip-fw -lclip-gtk -lclip-cti
+lines$(EXESUFF):	lines.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s lines.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s lines.prg libclip-gtk.a -lclip-fw -lgtk -lgdk #-lclip-gtk
 
-test$(EXESUFF):	test.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s test.prg -lclip-fw -lclip-gtk -lclip-cti
+test$(EXESUFF):	test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s test.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s test.prg -lclip-gtk ./libclip-fw.a -lgtk -lgdk
 #	$(CLIP) $(CLIPFLAGS) -e -s test.prg ./libclip-gtk.a -lclip-fw -lgtk -lgdk
 
-testbar$(EXESUFF): testbar.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s testbar.prg -lclip-fw -lclip-gtk -lclip-cti
+testbar$(EXESUFF): testbar.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s testbar.prg $(LIBS)
 
-testbrw$(EXESUFF): testbrw.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s testbrw.prg -lclip-fw -lclip-gtk -lclip-cti
+testbrw$(EXESUFF): testbrw.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s testbrw.prg $(LIBS)
 
-testlbx$(EXESUFF): testlbx.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s testlbx.prg -lclip-fw -lclip-gtk -lclip-cti
+testlbx$(EXESUFF): testlbx.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s testlbx.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s testlbx.prg ./libclip-fw.a ./libclip-gtk.a -lgtk -lgdk
 
 
-testscrl$(EXESUFF): testscrl.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+testscrl$(EXESUFF): testscrl.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -P testscrl.prg -lclip-fw -lclip-gtk
-	$(CLIP) $(CLIPFLAGS) -e -s testscrl.prg -lclip-fw -lclip-gtk -lclip-cti
+	$(CLIP) $(CLIPFLAGS) -e -s testscrl.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s testscrl.prg ./libclip-fw.a ./libclip-gtk.a -lgtk -lgdk
 
-testtabs$(EXESUFF): testtabs.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+testtabs$(EXESUFF): testtabs.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -P testtabs.prg -lclip-fw -lclip-gtk
-	$(CLIP) $(CLIPFLAGS) -e -s testtabs.prg -lclip-fw -lclip-gtk -lclip-cti
+	$(CLIP) $(CLIPFLAGS) -e -s testtabs.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s testtabs.prg ./libclip-fw.a ./libclip-gtk.a -lgtk -lgdk
 
-testwsty$(EXESUFF): testwsty.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
+testwsty$(EXESUFF): testwsty.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLIPFLAGS) -P testwsty.prg -lclip-fw -lclip-gtk
-	$(CLIP) $(CLIPFLAGS) -e -s testwsty.prg -lclip-fw -lclip-gtk -lclip-cti
+	$(CLIP) $(CLIPFLAGS) -e -s testwsty.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s testwsty.prg ./libclip-fw.a ./libclip-gtk.a -lgtk -lgdk
 
-tooltip$(EXESUFF): tooltip.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s tooltip.prg -lclip-fw -lclip-gtk  -lclip-cti
+tooltip$(EXESUFF): tooltip.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s tooltip.prg $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s tooltip.prg ./libclip-fw.a ./libclip-gtk.a -lgtk -lgdk
 
-t$(EXESUFF):	t.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s -M t.prg   -lclip-gtk
+t$(EXESUFF):	t.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s -M t.prg  $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s -M t.prg libclip-gtk.a -lclip-fw -lgtk -lgdk #-lclip-gtk
 
-tt$(EXESUFF):	tt.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s -M tt.prg  -lclip-fw -lclip-gtk -lclip-cti
+tt$(EXESUFF):	tt.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s -M tt.prg  $(LIBS)
 #	$(CLIP) $(CLIPFLAGS) -e -s -M tt.prg  -lclip-cti
 #	$(CLIP) $(CLIPFLAGS) -e -s -M tt.prg libclip-gtk.a -lclip-fw -lgtk -lgdk #-lclip-gtk
 
-gtktest$(EXESUFF): gtktest.prg $(CLIP) $(LIBCLIP)
-	$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -e -s -M gtktest.prg  -lclip-gtk
+gtktest$(EXESUFF): gtktest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s -M gtktest.prg  $(LIBS)
 
 log:
 	$(E_rm)rm -f$(V) *.c

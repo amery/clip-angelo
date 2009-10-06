@@ -7,7 +7,7 @@
 
 /* list of all objects in CTI system. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 static cti_object_list_current_id := -1
 static cti_object_list := map()

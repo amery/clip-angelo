@@ -1,5 +1,6 @@
 #!/bin/sh -u
 
+
 LIBODBC=$(Check_Library 		esoobS 				.so 	clip-odbc 		Yes 	/usr/lib$C64							"libunixODBC1-static-devel-xx-$ARCH.(rpm/deb)")
 LIBOOB=$(Check_Library 		esoobclient 		.so	clip-odbc 		Yes 	/usr/local/easysoft/oob/client 	"can be downloaded at" \
 																																"http://www.easysoft.com/products/data_access")
@@ -7,7 +8,9 @@ Check_Include 		sqlext.h 				xyz 	clip-odbc 		Yes 	/usr/include 										"libun
 Check_Include 		odbc.h 					xyz 	clip-odbc 		Yes 	/usr/local/easysoft/oob/client/include 	"can be downloaded at" \
 																																				"http://www.easysoft.com/products/data_access"
 
-echo "LIBODBC = $LIBODBC" 	>>Makefile.ini
-echo "LIBOOB = $LIBOOB" 	>>Makefile.ini
+echo "LIBODBC = -L$LIBODBC" 	>>Makefile.ini
+echo "LIBOOB = -L$LIBOOB" 	>>Makefile.ini
 
-cat Makefile.ini Makefile.in >Makefile
+#!/bin/sh
+
+touch configure.ok

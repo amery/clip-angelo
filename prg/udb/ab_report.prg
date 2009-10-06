@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "box.ch"
+#include "ci_box.ch"
 ****************************************
 function ab_run_report(oRep,oBox,oIdList)
 	local ret,block,oWin

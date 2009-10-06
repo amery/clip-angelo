@@ -44,15 +44,15 @@
    uri: clipBoard functions.
 
    Revision 1.1  2002/09/11 09:08:39  clip
-   uri: sorry, забыл добавить файл.
+   uri: sorry, О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫.
 
 
 */
 
 #include <string.h>
 #include <stdlib.h>
-#include "clip.h"
-#include "error.ch"
+#include "ci_clip.h"
+#include "ci_error.ch"
 
 #ifdef _WIN32
 	#ifdef OS_CYGWIN  /* MingW port automatically #includes <windows.h> */
@@ -60,7 +60,7 @@
 	#endif
 #else
 	#include <unistd.h>
-	#include "clipbrd.ch"
+	#include "ci_clipbrd.ch"
 	static unsigned char * _clip_clipboard_data [CF_MAX];
 	static unsigned char   _clip_clipboard_len  [CF_MAX];
 #endif

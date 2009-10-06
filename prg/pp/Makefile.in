@@ -1,19 +1,19 @@
 #
 #                                            prg/pp/Makefile.in
 #
-Local_Depend =
+Local_Depend 	=
+Depend_on 		=
+LIBS  			=
+OBJS 				=
+BIN 				= 		pp_ron$(EXESUFF)
 
+export
 
-##CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -O
-LIBS  =
-OBJS =
-BIN = pp$(EXESUFF)
+######################################################################################
+###################################################################################### local rules
 
 $(BIN):	pp.prg Makefile $(CLIP) $(LIBCLIP)
-#	$(Trace_clip)
-#	$(CLIP) $(CLIPFLAGS) -o$@ -e -s $< $(CLIPLIBS)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
 		$(Trace_clip_d) 	;													\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
 	else 																			\
@@ -21,13 +21,15 @@ $(BIN):	pp.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
 	fi
 
+hash1 :
+
 cfg :
 
- all : Makefile  pp$(EXESUFF)
+ all : Makefile  $(BIN)
 
 install : all
-	$(E_cp)cp --remove-destination -fpu$(V) $(BIN) $(DESTDIR)/bin/pp_ron$(EXESUFF)
-	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(DESTDIR)/include
+	$(E_cp)cp --remove-destination -fpu$(V) $(BIN) $(INSTDIR)/bin/
+		$(E_cp)cp --remove-destination -fpu$(V) *.ch $(INSTDIR)/include
 
 cleanc:
 	$(E_rm)rm -f$(V) *.c *.ntx $(BIN) *.pp?

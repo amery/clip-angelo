@@ -1,17 +1,21 @@
 #
 #                                            clip-crypto/Makefile.in
 #
-Local_Depend =
-PROG = clip-crypto
-#TARGET=libclip-crypto$(DLLSUFF)
-#ATARGET=libclip-crypto.a
-#RTARGET=libclip-crypto$(DLLREALSUFF)
-OBJS=crypto.o
-ADDLIBS=-lcrypto
-#$(C_LIBS)
+PROG 					= 			clip-crypto
+Depend_on 			= 			/usr/lib$(C64)/libcrypto.so
+OBJS 					= 			crypto.o
+ADDLIBS 				= 			-lcrypto
 
-all:Makefile have_lib $(STARGET)
+export
 
+######################################################################################
+###################################################################################### local rules
+
+all:Makefile have_lib $(OBJS) $(STARGET)
+
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-crypto
 
 cfg :
 
@@ -19,21 +23,9 @@ have_lib:
 	$(E_if)test -f /usr/include/openssl/evp.h
 	$(E_xx)awk 'BEGIN{FS="\""} /^#define[ \t]+[SL]N_/{print "\""$$2"\","}' /usr/include/openssl/objects.h > names.h
 
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBS)
-
-#$(ATARGET): $(OBJS)
-#	$(CLIP_MAKELIB) $(ATARGET) $(OBJS) $(LIBS)
-
 include $(Makefile_o_in)
 
-#hashcode.h:
-#	echo '#define HASH_ferror ' $$(echo ferror| $(CLIPROOT)/bin/cliphash | cut -d' ' -f2) >hashcode.h
-
 install : all install-lib install-example
-#	$(CLIP_CP) libclip-crypto $(DESTDIR)/lib
-#	mkdir -p$(V) $(DESTDIR)/doc/example/clip-crypto
-#	cp -Ruf$(V) example/* $(DESTDIR)/doc/example/clip-crypto/
 
 cleanc: example
 	$(E_rm)rm -rf$(V) hashcode.h names.h $(TARGET).*

@@ -7,9 +7,9 @@
 
 /* CTI_WIDGET is class of all visible objects in CTI */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
+#include "ci_setcurs.ch"
 
 /* CTI_WIDGET constructor */
 

@@ -1,6 +1,6 @@
 #xcommand DEFAULT <uVar1> := <uVal1> ;
 	       [, <uVarN> := <uValN> ] => ;
-		  <uVar1> := If( <uVar1> == nil, <uVal1>, <uVar1> ) ;;
+		  <uVar1> := If( <uVar1> == nil, <uVal1>, <uVar1> ) ;
 		[ <uVarN> := If( <uVarN> == nil, <uValN>, <uVarN> ); ]
 
 

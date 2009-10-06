@@ -1,4 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
+
+Static pos, widget
 
 function main()
 local window, buffer, view, vbox, sw

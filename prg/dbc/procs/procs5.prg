@@ -29,7 +29,7 @@
 #include "dbfcdxax.ch"
 #endif
 // #include "fileio.ch"
-#include "deflist.ch"
+#include "ci_deflist.ch"
 
 *+��������������������������������������������������������������������
 *+

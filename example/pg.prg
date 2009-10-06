@@ -1,7 +1,7 @@
-#include "ctwin.ch"
-#include "box.ch"
-#include "abox.ch"
-#include "pgch.ch"
+#include "ci_ctwin.ch"
+#include "ci_ex_box.ch"
+#include "ci_ex_abox.ch"
+#include "ci_pgch.ch"
 
 local x
 

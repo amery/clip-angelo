@@ -3,29 +3,31 @@
 #
 #  GNU make makefile
 #
-Local_Depend =
+PROG 				= 		clip-dbtcp
+ADDLIBS 			= 		-L$(DBTCP_PATH) -ldbftp
+DBTCPINCLUDE 	= 		-I$(DBTCP_PATH)/../include
+Depend_on 		= 		$(DBTCP_PATH)/libdbftp.a
+C_FLAGS 			+= 	$(DBTCPINCLUDE)
+OBJS 				= 		$(sort 						\
+										dbtcp_clip.o 	\
+										dbtcp.o 			\
+							)
 
-PROG = clip-dbtcp
-#DBTCP_PATH=@DBTCP_PATH@
-ADDLIBS = -L$(DBTCP_PATH) -ldbftp
-DBTCPINCLUDE=-I$(DBTCP_PATH)/../include
+export
 
-C_FLAGS += $(DBTCPINCLUDE)
-#TARGET=libclip-dbtcp$(DLLSUFF)
-#RTARGET=libclip-dbtcp$(DLLREALSUFF)
-OBJS= $(sort dbtcp_clip.o dbtcp.o )
+######################################################################################
+###################################################################################### local rules
 
-all: Makefile  $(STARGET)
+all: Makefile $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-dbtcp
 
 cfg :
-
-#$(TARGET): $(OBJS)
-#	$(CLIP_MAKESLIB) $(TARGET) $(OBJS) $(LIBDBTCP)
 
 include $(Makefile_o_in)
 
 install:all install-lib install-example
-#	$(CLIP_CP) $(TARGET) $(DESTDIR)/lib
 
 cleanc:
 	$(E_rm)rm -rf$(V) dbtcp.c dbtcp_ref.c $(TARGET).*

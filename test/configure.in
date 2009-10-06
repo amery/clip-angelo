@@ -1,2 +1,3 @@
-#!/bin/sh -u
+#!/bin/sh
 
+touch configure.ok

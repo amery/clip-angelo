@@ -7,9 +7,9 @@
 
 /* CTI_MENUBAR - used as a main menu in which pop-up menus reside */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_MENUSHELL
 

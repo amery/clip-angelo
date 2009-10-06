@@ -34,8 +34,8 @@
 
  */
 
-#include "clip.h"
-#include "hashcode.h"
+#include "ci_clip.h"
+#include "ci_hashcode.h"
 
 /*extern void *alloca(); */
 extern int printf();

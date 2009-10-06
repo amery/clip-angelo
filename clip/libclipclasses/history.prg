@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
-#include "box.ch"
+#include "ci_inkey.ch"
+#include "ci_box.ch"
 
 function historyObj(Lrow, Lcol, Rrow, Rcol, color)
 local obj
@@ -29,7 +29,7 @@ local obj
        obj:set		:= @set()
 
        obj:colorSpec    := iif(empty(color),setcolor(),color)
-       obj:__colors 	:= {}      // палитры цветов
+       obj:__colors 	:= {}      // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
        obj:__setColor 	:= @__setcolor()
        obj:__setcolor()
 return obj

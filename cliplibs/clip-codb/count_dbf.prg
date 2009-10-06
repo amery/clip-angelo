@@ -8,8 +8,8 @@
   Virtual counter class for CODB object and metadata over DBF files
 */
 
-#include "codbcfg.ch"
-#include "codb_dbf.ch"
+#include "ci_codbcfg.ch"
+#include "ci_codb_dbf.ch"
 
 ************************************************************
 function codb_countDbfNew(path)

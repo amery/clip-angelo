@@ -1,14 +1,19 @@
 #
 #                                            clip-dbtcp/example/Makefile.in
 #
-Local_Depend =
-#$(Clip_L_Dir)/libclip-dbtcp.so
+Depend_on 		= 		$(Clip_L_Dir)/libclip-dbtcp.so
+PRG 				= 		my_dbtcp$(EXESUFF)
 
-PRG=my_dbtcp$(EXESUFF)
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all:Makefile  $(PRG)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -18,7 +23,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_dbtcp$(EXESUFF): my_dbtcp.prg $(CLIP) $(LIBCLIP)
+my_dbtcp$(EXESUFF): my_dbtcp.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_rm)$(Trace_clip)
 	$(CLIP) -o$@ -eMwls my_dbtcp.prg -lclip-dbtcp
 

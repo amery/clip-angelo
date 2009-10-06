@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_rdfinfo3(_queryArr, typeNode)
 
@@ -146,7 +146,7 @@ local s_obj
 			endif
 			aadd(aTree['level0'], obj)
 		next
-		
+
 	endif
 
 
@@ -164,9 +164,9 @@ local s_obj
           ? 'xmlns:DOCUM="http://last/cbt_new/rdf#">'
 	elseif typeNode == 'xml'
 			cgi_xml_header()
-		?	
+		?
 		? '<root xmlns="http://itk.ru#">'
-	else 
+	else
 			cgi_text_header()
 	  	? '{'
 	endif

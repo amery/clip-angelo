@@ -1,5 +1,5 @@
-#include "set.ch"
-#include "mysql.ch"
+#include "ci_set.ch"
+#include "ci_mysql.ch"
 
 FUNCTION MS2CLIP(rowset,fieldno)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)
@@ -60,7 +60,7 @@ FUNCTION CLIP2MS(rowset,fieldno,value,totext)
 				RETURN STR(value,SQLFieldLen(rowset,fieldno),SQLFieldDec(rowset,fieldno))
 			else
 				RETURN toSTRing(value,SQLFieldLen(rowset,fieldno),SQLFieldDec(rowset,fieldno))
-			endif				
+			endif
 		CASE type==MST_TINY;
 			.OR. type==MST_SHORT;
 			.OR. type==MST_INT24;

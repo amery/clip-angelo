@@ -1,10 +1,17 @@
 #
 #                                            clip/include/Makefile.in
 #
-Local_Depend =
+
+export
+
+######################################################################################
+###################################################################################### local rules
 
 install all :
 	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-include
 
 cfg:
 	$(E_cp)cp --remove-destination -fpu$(V) *.ch $(Clip_I_Dir)/

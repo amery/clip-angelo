@@ -6,18 +6,22 @@
 # Copyright (C) 2003-2005 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-#CLIP = clip$(EXESUFF)
-CLIP_MODULE = clip-ui
-Local_Depend =
-CLIPFLAGS += -I../../clip-gtk2 -n
-OBJS    = driver-gtk2.po
+CLIP_MODULE 			= 			clip-ui
+Local_Depend 			=
+CLIPFLAGS 				+= 		-I../../clip-gtk2/include -n
+OBJS 						= 			driver-gtk2.po
 
-.PHONY: all clean uninstall distclean
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all : Makefile $(OBJS)
 
 install : all
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-ui-drivers
 
 cfg :
 
@@ -27,8 +31,8 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install: all
-	$(E_mkD)mkdir -p$(V) $(DESTDIR)/lib/drivers
-	$(CLIP_CP) $(OBJS) $(DESTDIR)/lib/drivers
+	$(E_mkD)mkdir -p$(V) $(INSTDIR)/lib/drivers
+	$(CLIP_CP) $(OBJS) $(INSTDIR)/lib/drivers
 
 uninstall:
 	$(E_rm)rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)

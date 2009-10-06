@@ -2,7 +2,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
-#include "gd.h"
+#include "ci_gd.h"
 
 #define TRUE 1
 #define FALSE 0

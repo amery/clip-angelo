@@ -3,7 +3,7 @@
 	Author   : Uri (uri@itk.ru)
 	License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "lang.ch"
+#include "ci_lang.ch"
 ***************************************************************
 function memvarblock(vname)
   local __cname
@@ -175,8 +175,8 @@ return ret
 
 ****************************************************************************
 function funcname(pn)
-	local str,i := 2 // i>1 начинаем не с функции, которая вызывает FUNCNAME()
-		   // а с предыдущей
+	local str,i := 2 // i>1 О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ FUNCNAME()
+		   // О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	pn := upper(pn)
 	do while .t.
 		str := procname(i)

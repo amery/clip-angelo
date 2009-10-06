@@ -41,7 +41,7 @@
 #include <sys/types.h>
 #include <fcntl.h>
 
-#include "../include.h/clip.h"
+#include "../include.h/ci_clip.h"
 
 #ifdef unix
 	#ifndef _WIN32
@@ -63,8 +63,8 @@
 
 #endif
 
-#include "../include.h/clip.h"
-#include "tcaps.h"
+#include "../include.h/ci_clip.h"
+#include "ci_tcaps.h"
 
 /* max length of termcap entry */
 #define TBUFSIZE  2048

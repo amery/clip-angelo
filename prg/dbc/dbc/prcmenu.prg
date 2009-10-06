@@ -21,9 +21,9 @@
 *+
 *+��������������������������������������������������������������������
 
-#include "color.ch"
-#include "inkey.ch"
-#include "deflist.ch"
+#include "ci_color.ch"
+#include "ci_inkey.ch"
+#include "ci_deflist.ch"
 MEMVAR mwidth, horiz
 /*
  �᫨ ������ �������, ������頥� 0 ��� ����� ���࠭���� ������.

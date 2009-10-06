@@ -1,20 +1,20 @@
 /*
    	WBMP: Wireless Bitmap Type 0: B/W, Uncompressed Bitmap
-   	Specification of the WBMP format can be found in the file: 
+   	Specification of the WBMP format can be found in the file:
 	SPEC-WAESpec-19990524.pdf
-   	You can download the WAP specification on: http://www.wapforum.com/ 
+   	You can download the WAP specification on: http://www.wapforum.com/
 
    	gd_wbmp.c
 
    	Copyright (C) Johan Van den Brande (johan@vandenbrande.com)
-   
+
 	Fixed: gdImageWBMPPtr, gdImageWBMP
 
    	Recoded: gdImageWBMPCtx for use with my wbmp library
 	(wbmp library included, but you can find the latest distribution
 	 at http://www.vandenbrande.com/wbmp)
 
-	Implemented: gdImageCreateFromWBMPCtx, gdImageCreateFromWBMP 
+	Implemented: gdImageCreateFromWBMPCtx, gdImageCreateFromWBMP
 
    	---------------------------------------------------------------------------
 
@@ -32,7 +32,7 @@
    	** implied warranty.
 
    	---------------------------------------------------------------------------
-   	Parts od this code are inspired by  'pbmtowbmp.c' and 'wbmptopbm.c' by 
+   	Parts od this code are inspired by  'pbmtowbmp.c' and 'wbmptopbm.c' by
    	Terje Sannum <terje@looplab.com>.
    	**
    	** Permission to use, copy, modify, and distribute this software and its
@@ -51,13 +51,13 @@
    	----------------------------------------------------------------------------
 */
 
-#include <gd.h>
-#include <gdfonts.h>
+#include <ci_gd.h>
+#include <ci_gdfonts.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
 
-#include "wbmp.h"
+#include "ci_wbmp.h"
 
 
 /* gd_putout
@@ -68,7 +68,7 @@
 void gd_putout( int i, void * out )
 {
     gdPutC( i , (gdIOCtx *) out );
-}   
+}
 
 
 /* gd_getin
@@ -87,12 +87,12 @@ int gd_getin( void *in )
 **  Write the image as a wbmp file
 **  Parameters are:
 **  image:  gd image structure;
-**  fg:     the index of the foreground color. any other value will be 
+**  fg:     the index of the foreground color. any other value will be
 **          considered as background and will not be written
 **  out:    the stream where to write
 */
 void gdImageWBMPCtx(gdImagePtr image, int fg, gdIOCtx *out) {
-  
+
   	int 	x, y, pos;
     Wbmp 	*wbmp;
 
@@ -102,20 +102,20 @@ void gdImageWBMPCtx(gdImagePtr image, int fg, gdIOCtx *out) {
 		fprintf(stderr, "Could not create WBMP\n");
 
   	/* fill up the WBMP structure */
-	pos = 0;  
-	for(y=0; y<gdImageSY(image); y++) 
+	pos = 0;
+	for(y=0; y<gdImageSY(image); y++)
 	{
-		for(x=0; x<gdImageSX(image); x++) 
+		for(x=0; x<gdImageSX(image); x++)
 		{
-	  		if(gdImageGetPixel(image, x, y) == fg) 
+	  		if(gdImageGetPixel(image, x, y) == fg)
 			{
-				wbmp->bitmap[pos] = WBMP_BLACK; 
+				wbmp->bitmap[pos] = WBMP_BLACK;
 	  		}
 			pos++;
 	  	}
 	}
 
-	/* write the WBMP to a gd file descriptor */		
+	/* write the WBMP to a gd file descriptor */
 	if ( writewbmp( wbmp, &gd_putout, out ) )
 		fprintf(stderr, "Could not save WBMP\n");
 	/* des submitted this bugfix: gdFree the memory. */
@@ -131,7 +131,7 @@ gdImagePtr	gdImageCreateFromWBMPCtx( gdIOCtx *infile )
 {
 	/* FILE *wbmp_file; */
 	Wbmp *wbmp;
-    gdImagePtr im = NULL; 
+    gdImagePtr im = NULL;
 	int black, white;
 	int col, row, pos;
 
@@ -141,7 +141,7 @@ gdImagePtr	gdImageCreateFromWBMPCtx( gdIOCtx *infile )
     if (!(im = gdImageCreate(wbmp->width, wbmp->height)))
 	{
     	freewbmp( wbmp );
-		return (NULL);   	
+		return (NULL);
 	}
 
 	/* create the background color */
@@ -157,16 +157,16 @@ gdImagePtr	gdImageCreateFromWBMPCtx( gdIOCtx *infile )
 		{
 			if (wbmp->bitmap[pos++] == WBMP_WHITE)
 			{
-				gdImageSetPixel(im, col, row, white);		
+				gdImageSetPixel(im, col, row, white);
 			}
 			else
 			{
 				gdImageSetPixel(im, col, row, black);
 			}
 		}
-	}	
+	}
 
-	freewbmp( wbmp );	
+	freewbmp( wbmp );
 
 	return(im);
 }

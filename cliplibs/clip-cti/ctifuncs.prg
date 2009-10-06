@@ -5,7 +5,7 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 /* Function for inheritance CTI objects.
    Creates virtual methods table.

@@ -4,24 +4,24 @@
 # CLIP-UI library examples Makefile
 # Copyright (C) 2003-2006, E/AS Software Foundation
 # Web: http://eas.lrn.ru
-#CLIPINCLUDE = -I$(CLIPROOT)/include
-Local_Depend =
-# $(Clip_L_Dir)/libclip-ui.so $(Clip_L_Dir)/libclip-xml.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-ui.so 	\
+									$(Clip_L_Dir)/libclip-xml.so 	\
+									/usr/lib$(C64)/libexpat.so
+PRG1 					= 			uitest$(EXESUFF)
+PRG2 					= 			uiform$(EXESUFF)
+LIBS 					= 			-lclip-ui -lclip-xml -lexpat
+EXTRALIBS 			=
 
-.SUFFIXES: .prg .o .po
-.PHONY: all clean
+export
 
-# Widget tests
-PRG1=uitest$(EXESUFF)
-PRG2=uiform$(EXESUFF)
-LIBS=-lclip-ui -lclip-xml -lexpat
-EXTRALIBS=
-
-Depend_on = $(Clip_L_Dir)/libclip-ui $(Clip_L_Dir)/libclip-xml $(Clip_L_Dir)/libexpat
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(PRG1) $(PRG2)
 
 install : all
+
+hash1 :
 
 cfg :
 
@@ -32,15 +32,12 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 $(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewslM $(CLIPINCLUDE) uitest.prg $(LIBS) $(EXTRALIBS)
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ewslM $(CLIPFLAGS) uitest.prg $(LIBS) $(EXTRALIBS)
 
 $(PRG2): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
-	$(Trace_clip)
-	$(CLIP) -o$@ -ewsln $(CLIPINCLUDE) uiform.prg $(LIBS) $(EXTRALIBS)
-
-#.prg.o:
-#	$(CLIP) -l $(CLIPINCLUDE) $<
+	$(E_e)$(Trace_clip)
+	$(CLIP) -o$@ -ewsln $(CLIPFLAGS) uiform.prg $(LIBS) $(EXTRALIBS)
 
 include $(Makefile_o_in)
 

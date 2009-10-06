@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "dbedit.ch"
-#include "box.ch"
+#include "ci_dbedit.ch"
+#include "ci_box.ch"
 
 /* mode`s for tbrowse objects */
 #define AB_BROWSE_MODE_CARD 	1

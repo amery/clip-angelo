@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 static stack_setKeys:={}
 

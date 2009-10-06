@@ -3,10 +3,8 @@
 #	Configure script for clip
 #	<uri@itk.ru>
 #
-source ../configure.ini
 Check_Include 		X11/xpm.h 				xyz 	clip-gd 			Yes 	/usr/include 										"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		freetype 			.so 	clip-gd 			Yes	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/dev)"
-Check_Library 		gd 					.so 	clip-gd 			Yes	/usr/lib$C64 							"libgd-static-devel-xx-$ARCH.(rpm/dev)"
 Check_Library 		jpeg 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libjpeg-static-xx-$ARCH.(rpm/deb)"
 Check_Library 		png 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libpng-static-xx-$ARCH.(rpm/deb)"
 Check_Library 		ttf 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/deb)"
@@ -29,6 +27,7 @@ Check_Library 		Xext 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-d
 Check_Library 		png12 				.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		z 						.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		m 						.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+#Check_Library 		gd 						.so 	clip-gd 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 
 uname=`uname -s`
 uver=`uname -r`
@@ -51,7 +50,13 @@ stdlibpath=/usr/local/lib
 stdincpath=/usr/local/include
 LIBXPM='-lXpm -lX11'
 CYGFLAGS=
-
+LIBPNG=""
+LIBJPEG=""
+LIBDIRS=""
+LIBFREETYPE=""
+LIBXPM=""
+LIBTTF=""
+LIBS=""
 case "$uname" in
 	BSD/OS*|bsdi*)
 		osname=BSDI
@@ -143,16 +148,20 @@ else
 	LIBXPM=''
 fi
 echo LIBS="-lgd -lz -lm $LIBPNG $LIBJPEG $LIBFREETYPE $LIBTTF $LIBXPM" 						>&3
+echo LIBS="-lz -lm $LIBPNG $LIBJPEG $LIBFREETYPE $LIBTTF $LIBXPM" 						>&3
 echo  																						 					>&3
 exec   																											3>&-
 
-tr -d \' <./Makefile.inc >Makefile
-cat ./Makefile >Makefile.inc
-cp -f$V ./Makefile.inc ./libgd/
-cp -f$V ./Makefile.inc ./example/
+sleep .1
+tr -d \' <./Makefile.inc 	>Makefile
+sleep .1
+cat ./Makefile 				>Makefile.inc
+sleep .1
+cat ./Makefile.inc 			>>Makefile.ini
+rm -f$V ./Makefile.inc
 echo ". done."
-printf "configure: creating gdcfg.h .."
-exec   																						 	3>include/gdcfg.h
+printf "configure: creating ci_gdcfg.h .."
+exec   																						 	3>include/ci_gdcfg.h
 echo "/* Created automatically by 'configure' */"   								>&3
 echo "#ifndef GD_CONFIG_H"   																>&3
 echo "#define GD_CONFIG_H"   																>&3
@@ -196,4 +205,6 @@ echo ". done."
 
 #!/bin/sh
 
-cat Makefile.ini Makefile.inc Makefile.in >Makefile
+#!/bin/sh
+
+touch configure.ok

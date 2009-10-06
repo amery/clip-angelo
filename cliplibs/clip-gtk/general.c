@@ -3,18 +3,18 @@
     Author  : Alexey M. Tkachenko <alexey@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "hashcode.h"
-#include "clip.h"
-#include "task.h"
-#include "clip-gtkcfg.h"
-#include "clipcfg.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_task.h"
+#include "ci_clip-gtkcfg.h"
+#include "ci_clipcfg.h"
 
 #undef MAXPATHLEN
 #include <gtk/gtk.h>
 #include <string.h>
 
-#include "clip-gtk.ch"
-#include "clip-gtk.h"
+#include "ci_clip-gtk.ch"
+#include "ci_clip-gtk.h"
 
 static ClipVar _data_list;
 static ClipVar *data_list = &_data_list;

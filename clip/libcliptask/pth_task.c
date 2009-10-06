@@ -39,9 +39,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <pth.h>
-#include "cl_cfg.h"
-#include "task.h"
-#include "task2.h"
+#include "ci_cl_cfg.h"
+#include "ci_task.h"
+#include "ci_task2.h"
 
 //#define _LDEBUG
 //#define _MDEBUG
@@ -69,12 +69,12 @@ struct Task
 	char *name;		/*  ����� */
 	long id;		/*  ���������� (pid) */
 	long stacklen;		/*  length of task's stack */
-	
+
 	void * (*run) (void *data);
 	void (*destroy) (void *data);
 	void *data;
 	void *ref;  /*other reference to any data*/
-	
+
 };
 
 static int seqNo = 2;		/*  ��������������*/
@@ -120,7 +120,7 @@ Task_yield(void)
 #ifdef _LDEBUG
 	printf("F=%s,L=%d\n",__FILE__,__LINE__);
 #endif
-	
+
 	if (!canSwitch)
 		return 0;
 	if (pth_inited)
@@ -128,7 +128,7 @@ Task_yield(void)
 #ifdef _LDEBUG
 	printf("F=%s,L=%d\n",__FILE__,__LINE__);
 #endif
-	return 0;	
+	return 0;
 }
 
 static Task *
@@ -153,7 +153,7 @@ seach_task_in_list(List *list, pth_t ref)
 }
 
 
-TASK_DLLEXPORT long 
+TASK_DLLEXPORT long
 Task_ID()
 {
 	long id;
@@ -303,7 +303,7 @@ Task_new(const char *name, long stacksize, void *data
 	Task *task = NEW(Task);
 	pth_t ptask;
 	pth_attr_t attr;
-	
+
 #ifdef _LDEBUG
 	printf("F=%s,L=%d\n",__FILE__,__LINE__);
 #endif
@@ -313,18 +313,18 @@ Task_new(const char *name, long stacksize, void *data
 			return NULL;
 		pth_inited = 1;
 	}
-	
+
 	if (stacksize < TASK_STACK_MIN)
 		stacksize = TASK_STACK_MIN;
 
 	++seqNo;
-	task->id = seqNo;	
+	task->id = seqNo;
 	task->stacklen = stacksize;
 	task->name = strdup(name);
 	task->data = data;
 	task->run = run;
 	task->destroy = destroy;
-	
+
         attr = pth_attr_new();
         pth_attr_set(attr, PTH_ATTR_NAME, name);
 	pth_attr_set(attr, PTH_ATTR_STACK_SIZE, (unsigned int)stacksize);
@@ -522,7 +522,7 @@ __Task_sendMessage(long receiver, TaskMessage * msg, int wait)
 	selfPort = pth_msgport_find(msgPortName);
 	ev = pth_event(PTH_EVENT_MSG, selfPort);
 	pth_wait(ev);
-		
+
 	if (msg->destroy)
 		msg->destroy((void *)msg->data);
 #ifdef _MDEBUG

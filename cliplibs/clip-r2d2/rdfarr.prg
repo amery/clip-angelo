@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_array2rdf(_queryArr, typeNode)
 
@@ -148,7 +148,7 @@ local urn, sprname:=""
 
 		columns := cgi_make_columns(oDict,sprname)
 	else
-	
+
 		columns :={}
 		col := map()
 		col:datatype := "R"
@@ -166,7 +166,7 @@ local urn, sprname:=""
 		return
 	endif
 
-	if empty(istree)    
+	if empty(istree)
 	    for i=1 to len(columns)
 		if columns[i]:name = 'owner_id'
 	    	    iftree := .t.
@@ -175,7 +175,7 @@ local urn, sprname:=""
 	    next
 	else
 	    iftree:=iif(istree=='false', .f., .t.)
-	endif 
+	endif
 
 	aTree:=idlist_atree(idList, iftree, oDep, .f., 'exp')
 //*--------------------В этом месте перескочить

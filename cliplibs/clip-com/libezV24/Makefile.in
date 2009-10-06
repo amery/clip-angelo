@@ -46,16 +46,13 @@ LIBS =
 ifeq "${RELEASE}" "DEBUG"
 	C_FLAGS = -c -Wall -fPIC -D$(PLATFORM) $(INCDIR)
 	C_DEFS = -DDEBUG -DBETA
-	LFLAGS = $(LIBDIR)
 else
 	ifeq "${RELEASE}" "BETA"
 		C_FLAGS = -c -Wall -fPIC -O2 -D$(PLATFORM) $(INCDIR)
 		C_DEFS = -DBETA
-		LFLAGS = $(LIBDIR)
 	else
 		C_FLAGS = -c -Wall  -fPIC -O2 -D$(PLATFORM) $(INCDIR)
 		C_DEFS = -DFINAL
-		LFLAGS = -s $(LIBDIR)
 	endif
 endif
 ARFLAGS = cru
@@ -67,9 +64,14 @@ C_FLAGS += $(C_DEFS)
 
 DIRS_TO_SCAN =
 
-################################################################################################################
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all: Makefile $(OBJS) shared static
+
+hash1 :
 
 shared:		$(NAME)
 
@@ -78,7 +80,7 @@ static:		$(LIBNAME)
 include $(Makefile_o_in)
 
 $(NAME):	$(OBJS) Makefile
-		$(E_cc)gcc -shared -W1,soname,$(SONAME) -o $(NAME) $(OBJS)
+		$(E_mkSl)gcc -shared -W1,soname,$(SONAME) -o $(NAME) $(OBJS)
 		$(E_ln)ln -sf$(V) $@ $(PLAINNAME)
 
 $(LIBNAME):	$(OBJS) Makefile

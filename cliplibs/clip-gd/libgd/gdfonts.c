@@ -9,7 +9,7 @@
  */
 
 
-#include "gdfonts.h"
+#include "ci_gdfonts.h"
 
 char gdFontSmallData[] = {
 /* Char 0 */

@@ -2,24 +2,27 @@
 #
 #                                            prg/dbc/Makefile.in
 #
-Local_Depend = dbc/deflist.ch
+DIRS_TO_SCAN 		= 		procs dbc
 
+export
 
-DIRS_TO_SCAN = procs dbc
+######################################################################################
+###################################################################################### local rules
 
+all : $(DIRS_TO_SCAN)
 
-all:$(DIRS_TO_SCAN)
+hash1 :
 
 cfg :
 
-cleanc:
+cleanc :
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
-install:all
+install : all
 
 include $(Makefile_end_in)
 

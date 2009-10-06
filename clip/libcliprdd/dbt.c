@@ -8,9 +8,9 @@
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "../include.h/rdd.h"
-#include "error.ch"
-#include "dbinfo.ch"
+#include "../include.h/ci_rdd.h"
+#include "ci_error.ch"
+#include "ci_dbinfo.ch"
 
 #define DBT_PAGE_SIZE 512
 

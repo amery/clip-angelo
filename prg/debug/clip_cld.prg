@@ -3,8 +3,8 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "set.ch"
-#include "debug.ch"
+#include "ci_set.ch"
+#include "ci_debug.ch"
 
 parameters par1,par2
 

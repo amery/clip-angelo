@@ -2,67 +2,40 @@
 #                                            clip-glade2/Makefile.in
 #
 # Makefile for clip-libglade2
-
-Local_Depend =
-
 # Check libglade version.
+LIBGLADE_MIN 			= 			2.4.2
+PROG 						= 			clip-glade2
+C_FLAGS 					+= 		-I../clip-gtk2
+OBJS 						= 			clip_glade.o
+ADDLIBS 					= 			-lglade-2.0
 
-LIBGLADE_MIN=2.4.2
+export
 
-PROG = clip-glade2
-#XTARGET=$(XLIB) $(XSLIB)
+######################################################################################
+###################################################################################### local rules
 
-C_FLAGS += -I../clip-gtk2
-
-OBJS=clip_glade.o
-
-ADDLIBS =
-#XLIB=libclip-glade2.a
-#XSLIB=libclip-glade2$(DLLSUFF)
-
-
-include Makefile.01
-
-.SUFFIXES: .c .o
+all : Makefile  have_libglade $(OBJS) $(STARGET)
 
 
-all:Makefile  have_libglade  $(STARGET)
-
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-glade2
 
 cfg :
 
-Makefile.01 : configure
-	$(E_xx)./configure
-
-have_libglade:
+have_libglade :
 	$(E_if)test -n "$(LIBGLADE_VER)" || echo libglade2 not found
 	$(E_if)test -n "$(LIBGLADE_VER)" || exit
 	$(E_if)test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  || echo libglade detected $(LIBGLADE_VER), needed $(LIBGLADE_MIN) or upper && exit
 	$(E_if)test $(LIBGLADE_VER) '>' $(LIBGLADE_MIN) -o $(LIBGLADE_VER) = $(LIBGLADE_MIN)  && exit
 
-
-
-#$(XLIB): $(OBJS)
-#	rm -f$(V) $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(OBJS)
-#	ranlib $(XLIB)
-
-#$(XSLIB): $(XLIB)
-#	rm -f$(V) $(XSLIB)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
-#
-
-install:all install-lib install-example
-#	clip_cp$(SCRIPTSUFF) $(XLIB) $(XSLIB) $(DESTDIR)/lib
-#	chmod 0644 $(DESTDIR)/lib/$(XLIB)
-#	chmod 0755 $(DESTDIR)/lib/$(XSLIB)
+install : all install-lib install-example
 
 include $(Makefile_o_in)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cleanc:
+cleanc :
 
 include $(Makefile_end_in)
 

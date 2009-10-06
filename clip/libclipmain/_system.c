@@ -84,7 +84,7 @@
  */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -94,7 +94,7 @@
 	#include <sys/wait.h>
 #endif
 
-#include "error.ch"
+#include "ci_error.ch"
 
 #undef SYSTEM
 

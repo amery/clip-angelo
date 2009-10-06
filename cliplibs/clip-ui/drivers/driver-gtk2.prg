@@ -11,9 +11,9 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 //#include <gtk2-stock.ch>
-#include "clip-ui.ch"
+#include "ci_clip-ui.ch"
 
 static drv := NIL
 

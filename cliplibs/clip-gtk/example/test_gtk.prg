@@ -1,5 +1,6 @@
-#include <clip-gtk.ch>
+#include <ci_clip-gtk.ch>
 function Main()
+Local window, vbox, tb, pic, pic1, clist, label
 gtk_Init()
 
 window := gtk_WindowNew(,"test")

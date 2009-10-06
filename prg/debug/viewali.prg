@@ -3,19 +3,19 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
-#include "debug.ch"
-#include "imenu.ch"
-#include "set.ch"
-#include "ctwin.ch"
-#include "dbinfo.ch"
+#include "ci_inkey.ch"
+#include "ci_debug.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
+#include "ci_ctwin.ch"
+#include "ci_dbinfo.ch"
 
 ************************************************
 function make_debug_viewali_window(dbg_obj,ntop,nleft,nbottom,nright,nwin)
 
 	local obj:=map(),n,i
 	local __dbi_names,__dbri_names, __dboi_names,__blob_names
-	#include "dbinames.ch"
+	#include "ci_dbinames.ch"
 
 	obj:classname   := "DBG_VIEWALIASES"
 	obj:dbg		:= dbg_obj
@@ -25,8 +25,8 @@ function make_debug_viewali_window(dbg_obj,ntop,nleft,nbottom,nright,nwin)
 	obj:blob	:= __blob_names
 	obj:menuItems	:= {}
 	obj:menuPos	:= 1
-	obj:cardActive	:= .f.	// или по списку alias или по
-				// информации
+	obj:cardActive	:= .f.	// О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ alias О©╫О©╫О©╫ О©╫О©╫
+				// О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	obj:name	:= [View work selects]
 	obj:top		:= ntop
 	obj:left	:= nleft
@@ -260,9 +260,9 @@ static function window_redraw()
 	@ -1, ::right-5 say "["+alltrim(str(::headWin))+"]"
 
 	::browse:configure()
-	@ 1, ::cardPos say replicate("─", ::right )
+	@ 1, ::cardPos say replicate("О©╫", ::right )
 	for i=0 to ::bottom
-		@ i, ::cardPos say "█"
+		@ i, ::cardPos say "О©╫"
 	next
 	::redrawMenu()
 	if !::focus

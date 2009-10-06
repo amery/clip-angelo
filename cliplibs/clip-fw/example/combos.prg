@@ -1,6 +1,6 @@
 // Using different styles of ComboBox controls in a dialog
 
-#INCLUDE <fwin/FiveWin.ch>
+#INCLUDE <fwin/ci_FiveWin.ch>
 
 #DEFINE ID_SIMPLE       110
 #DEFINE ID_DROPDOWN     120

@@ -66,8 +66,8 @@
 #include <string.h>
 #include <errno.h>
 
-#include "clic.h"
-#include "clipcfg.h"
+#include "ci_clic.h"
+#include "ci_clipcfg.h"
 
 static FILE *out = 0;
 static char *fname = 0, *mname = 0;

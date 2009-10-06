@@ -3,7 +3,7 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "error.ch"
+#include "ci_error.ch"
 
 function errorNew()
 	local obj:=map()

@@ -8,7 +8,7 @@
   fun-ctions for view and edit TVIEW information
 */
 
-#include "box.ch"
+#include "ci_box.ch"
 
 /* Can`t defined MAIN function name */
 
@@ -39,7 +39,7 @@ static function ab_tview_view_card(oDep,data,oBox,colorSpec)
 	oDict:=oDep:dictionary()
 
 	@ x1++,y1 say padc([TVIEW parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()
@@ -123,7 +123,7 @@ static function ab_tview_edit_card(oDep,data,oBox,colorSpec)
 	x1++;y1++
 
 	@ x1++,y1 say padc([TVIEW parameters],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 
 	ab_padrBody(data,codb_info("CODB_TVIEW_BODY"))
 

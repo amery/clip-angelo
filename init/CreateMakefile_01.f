@@ -28,7 +28,7 @@
 		echo "export prg_files=$prg_files" 														>>Makefile.01
 		echo "export ADDOBJS=$ADDOBJS"	 														>>Makefile.01
 		echo "export ADDLIBS=$ADDLIBS"	 														>>Makefile.ini
-		echo "export CFLAGS=$CFLAGS" 																>>Makefile.ini
+		echo "export C_FLAGS=$C_FLAGS" 																>>Makefile.ini
 		echo "export CLIP_FLAGS=$CLIP_FLAGS" 													>>Makefile.ini
 		echo "export PROG      		=   	$PROG"												>>Makefile.01
 		echo "export Main_h        	= 		$Clip_I_Dir/*.h" 								>>Makefile.01

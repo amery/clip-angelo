@@ -63,7 +63,7 @@ main(int argc, char **argv)
 		printf(" *\t%s\n", argv[i]);
 	printf(" */\n");
 
-	printf("\n#include \"clip.h\"\n\n");
+	printf("\n#include \"ci_clip.h\"\n\n");
 
 	printf("struct ClipNameEntry _cfunctions[]=\n{\n");
 	while (fgets(buf, sizeof(buf), in) != NULL)

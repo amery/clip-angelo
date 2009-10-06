@@ -1,5 +1,5 @@
-#include "r2d2lib.ch"
-#include "fileio.ch"
+#include "ci_r2d2lib.ch"
+#include "ci_fileio.ch"
 
 function r2d2_getfile_xml(_queryArr)
 
@@ -45,7 +45,7 @@ local data,ldata,file:="",c_type:="",locale:="",hostname:=""
 	?? "Content-type: "+c_type
 	?
 	ldata := _get_localeData(file,locale)
-	
+
 	if empty(ldata)
 		data := memoread(file)
 		data := _normalize(@data,file,hostname)
@@ -55,7 +55,7 @@ local data,ldata,file:="",c_type:="",locale:="",hostname:=""
 		? data
 		return
 	endif
-	
+
 	data := memoread(file)
 	data := _localize(@data,ldata)
 	data := _normalize(@data,file,hostname)
@@ -118,12 +118,12 @@ static function _get_localeData(file,locale)
 		set(_SET_TRANSLATE_PATH,oldset)
 		return ret
 	endif
-	
-	
+
+
 /*<!ENTITY button.proba.parent "asdf"> */
 
 	fh:=fopen(lfile,FO_READ)
-	
+
 	if fh < 0
 		set(_SET_TRANSLATE_PATH,oldset)
 		outlog(__FILE__,__LINE__,[Can`t open file:]+lfile)

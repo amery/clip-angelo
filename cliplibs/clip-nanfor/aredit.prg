@@ -111,12 +111,12 @@
  *  $END$
  */
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 * Default heading, column, footer separators
-#define DEF_HSEP    "мям"
-#define DEF_CSEP    " Ё "
-#define DEF_FSEP    "мом"
+#define DEF_HSEP    "О©╫О©╫О©╫"
+#define DEF_CSEP    " О©╫ "
+#define DEF_FSEP    "О©╫О©╫О©╫"
 
 * Default info for tb_methods section
 #define KEY_ELEM 1

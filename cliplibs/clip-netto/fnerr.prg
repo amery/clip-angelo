@@ -5,7 +5,7 @@
  * Date......: $Date: 2006/06/22 20:12:13 $
  * Revision..: $Revision: 1.1 $
  * Log file..: $Logfile$
- * 
+ *
  * This is an original work by Glenn Scott and is placed in the
  * public domain.
  *
@@ -23,8 +23,8 @@
  */
 
 
-#include "ftint86.ch"
-#include "netto.ch"
+#include "ci_ftint86.ch"
+#include "ci_netto.ch"
 
 
 static  gFnErr   :=    ESUCCESS
@@ -97,5 +97,5 @@ function fn_Error()
 function _fnSetErr( nCode )
   local xOld := gFnErr
 
-  gFnErr     := nCode 
+  gFnErr     := nCode
   return xOld

@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
-#include "abx.ch"
+#include <ci_clip-gtk2.ch>
+#include "ci_abx.ch"
 
 static hb
 static idle_descr

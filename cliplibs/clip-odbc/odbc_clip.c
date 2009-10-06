@@ -2,13 +2,13 @@
 	$Log: odbc_clip.c,v $
 	Revision 1.1  2006/06/22 20:12:13  itk
 	uri: init sf.net
-	
+
 	Revision 1.22  2006/03/23 10:41:06  clip
 	rust: BLOB functions for PG (thanks Slava Zanko <slavaz@cis.by>)
-	
+
 	Revision 1.20  2004/04/09 10:43:49  clip
 	rust: minor fix
-	
+
 	Revision 1.19  2004/02/26 12:59:55  clip
 	rust: bindpars with NIL
 
@@ -72,8 +72,8 @@
 #include <time.h>
 #include <ctype.h>
 
-#include "clip.h"
-#include "dbfsql.h"
+#include "ci_clip.h"
+#include "ci_dbfsql.h"
 
 #include <sqlext.h>
 

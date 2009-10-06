@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "gd.h"
+#include "ci_gd.h"
 #ifndef HAVE_LIBTTF
 char * gdImageStringTTF(gdImage *im, int *brect, int fg, char *fontname,
                 double ptsize, double angle, int x, int y, char *string)
@@ -19,17 +19,17 @@ char * gdImageStringTTF(gdImage *im, int *brect, int fg, char *fontname,
 }
 #else
 
-#include "gdcache.h"
+#include "ci_gdcache.h"
 #include "freetype.h"
 
 /* number of fonts cached before least recently used is replaced */
 #define FONTCACHESIZE 6
 
-/* number of character glyphs cached per font before 
+/* number of character glyphs cached per font before
 	least-recently-used is replaced */
 #define GLYPHCACHESIZE 120
 
-/* number of bitmaps cached per glyph before 
+/* number of bitmaps cached per glyph before
 	least-recently-used is replaced */
 #define BITMAPCACHESIZE 8
 
@@ -39,14 +39,14 @@ char * gdImageStringTTF(gdImage *im, int *brect, int fg, char *fontname,
 /* ptsize below which anti-aliasing is ineffective */
 #define MINANTIALIASPTSIZE 0
 
-/* display resolution - (Not really.  This has to be 96 or hinting is wrong) */ 
+/* display resolution - (Not really.  This has to be 96 or hinting is wrong) */
 #define RESOLUTION 96
 
 /* Number of colors used for anti-aliasing */
 #define NUMCOLORS 4
 
-/* Line separation as a factor of font height.  
-	No space between if LINESPACE = 1.00 
+/* Line separation as a factor of font height.
+	No space between if LINESPACE = 1.00
 	Line separation will be rounded up to next pixel row*/
 #define LINESPACE 1.05
 
@@ -112,7 +112,7 @@ typedef struct {
 	glyph_t				*glyph;
 } bitmapkey_t;
 
-typedef struct { 
+typedef struct {
     unsigned char       pixel;		/* key */
     unsigned char       bgcolor;	/* key */
     int					fgcolor;	/* key */ /* -ve means no antialias */
@@ -125,7 +125,7 @@ typedef struct {
     unsigned char       bgcolor;    /* key */
     int					fgcolor;    /* key */ /* -ve means no antialias */
     gdImagePtr          im;			/* key */
-} tweencolorkey_t;  
+} tweencolorkey_t;
 
 /* forward declarations so that glyphCache can be initialized by font code */
 static int glyphTest ( void *element, void *key );
@@ -180,9 +180,9 @@ static void bitmapRelease( void *element );
  */
 
 #ifdef JISX0208
-#include "jisx0208.h"
+#include "ci_jisx0208.h"
 #endif
- 
+
 #define Tcl_UniChar int
 #define TCL_UTF_MAX 3
 static int
@@ -191,7 +191,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 /* chPtr is the int for the result */
 {
     int byte;
-    
+
 	/* HTML4.0 entities in decimal form, e.g. &#197; */
     byte = *((unsigned char *) str);
 	if (byte == '&') {
@@ -203,7 +203,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 				byte = *((unsigned char *) (str+i));
 				if (byte >= '0' && byte <= '9') {
 					n = (n * 10) + (byte - '0');
-				} 
+				}
 				else
 					break;
 			}
@@ -213,7 +213,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 			}
 		}
 	}
-	 
+
     /*
      * Unroll 1 to 3 byte UTF-8 sequences, use loop to handle longer ones.
      */
@@ -249,7 +249,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 	    /*
 	     * Two-byte-character lead-byte followed by a trail-byte.
 	     */
-	     
+
 	    *chPtr = (Tcl_UniChar) (((byte & 0x1F) << 6) | (str[1] & 0x3F));
 	    return 2;
 	}
@@ -257,7 +257,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 	 * A two-byte-character lead-byte not followed by trail-byte
 	 * represents itself.
 	 */
-	 
+
 	*chPtr = (Tcl_UniChar) byte;
 	return 1;
     } else if (byte < 0xF0) {
@@ -266,7 +266,7 @@ gdTcl_UtfToUniChar(char *str, Tcl_UniChar *chPtr)
 	     * Three-byte-character lead byte followed by two trail bytes.
 	     */
 
-	    *chPtr = (Tcl_UniChar) (((byte & 0x0F) << 12) 
+	    *chPtr = (Tcl_UniChar) (((byte & 0x0F) << 12)
 		    | ((str[1] & 0x3F) << 6) | (str[2] & 0x3F));
 	    return 3;
 	}
@@ -354,7 +354,7 @@ fontFetch ( char **error, void *key )
 		*error = "Could not create face instance";
 		return NULL;
 	}
-	
+
 	if (TT_Set_Instance_Resolutions(a->instance, RESOLUTION, RESOLUTION)) {
 		*error = "Could not set device resolutions";
 		return NULL;
@@ -366,7 +366,7 @@ fontFetch ( char **error, void *key )
 	}
 
 	TT_Get_Instance_Metrics(a->instance, &a->imetrics);
-	
+
 
 /* FIXME - This mapping stuff is imcomplete - where is the spec? */
 
@@ -596,15 +596,15 @@ bitmapRelease( void *element )
 
 static int
 tweenColorTest (void *element, void *key)
-{ 
+{
     tweencolor_t *a=(tweencolor_t *)element;
     tweencolorkey_t *b=(tweencolorkey_t *)key;
-    
-    return (a->pixel == b->pixel    
+
+    return (a->pixel == b->pixel
          && a->bgcolor == b->bgcolor
          && a->fgcolor == b->fgcolor
          && a->im == b->im);
-} 
+}
 
 static void *
 tweenColorFetch (char **error, void *key)
@@ -613,7 +613,7 @@ tweenColorFetch (char **error, void *key)
     tweencolorkey_t *b=(tweencolorkey_t *)key;
 	int pixel, npixel, bg, fg;
 	gdImagePtr im;
-   
+
     a = (tweencolor_t *)malloc(sizeof(tweencolor_t));
 	pixel = a->pixel = b->pixel;
 	bg = a->bgcolor = b->bgcolor;
@@ -632,13 +632,13 @@ tweenColorFetch (char **error, void *key)
 	}
     *error = NULL;
     return (void *)a;
-}   
-        
+}
+
 static void
 tweenColorRelease(void *element)
-{   
+{
     free((char *)element);
-}   
+}
 
 /********************************************************************/
 /* gdttfchar -  render one character onto a gd image                */
@@ -648,12 +648,12 @@ gdttfchar(gdImage *im, int fg, font_t *font,
 	int x, int y,					/* string start pos in pixels */
 	TT_F26Dot6 x1,	TT_F26Dot6 y1,	/* char start offset (*64) from x,y */
 	TT_F26Dot6 *advance,
-	TT_BBox **bbox, 
+	TT_BBox **bbox,
 	char **next)
 {
     int pc, ch, len;
 	int row, col;
-	int x2, y2;     /* char start pos in pixels */ 
+	int x2, y2;     /* char start pos in pixels */
 	int x3, y3;     /* current pixel pos */
 	unsigned char *pixel;
 
@@ -748,10 +748,10 @@ gdttfchar(gdImage *im, int fg, font_t *font,
 		if (y3 >= im->sy || y3 < 0) continue;
 		for (col = 0; col < glyph->Bit.width; col++, pc++) {
 			if (glyph->gray_render) {
-				tweencolorkey.pixel = 
+				tweencolorkey.pixel =
 					*((unsigned char *)(glyph->Bit.bitmap) + pc);
 			} else {
-				tweencolorkey.pixel = 
+				tweencolorkey.pixel =
 					(((*((unsigned char *)(glyph->Bit.bitmap) + pc/8))
 						<<(pc%8))&128)?4:0;
 			}
@@ -773,7 +773,7 @@ gdttfchar(gdImage *im, int fg, font_t *font,
 extern int any2eucjp(unsigned char *, unsigned char *, unsigned int);
 
 /********************************************************************/
-/* gdImageStringTTF -  render a utf8 string onto a gd image         */ 
+/* gdImageStringTTF -  render a utf8 string onto a gd image         */
 
 char * gdImageStringTTF(gdImage *im, int *brect, int fg, char *fontname,
 		double ptsize, double angle, int x, int y, char *string)
@@ -828,7 +828,7 @@ char * gdImageStringTTF(gdImage *im, int *brect, int fg, char *fontname,
 	} else
 	next=string;
 #endif
-	while (*next) {	  
+	while (*next) {
 		ch = *next;
 
 		/* carriage returns */

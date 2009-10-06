@@ -3,22 +3,22 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-// ¬ã«ïæ¨ï äã­ªæ¨© FoxPro ¨ FlexMemo
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ã­ªæ¨© FoxPro ï¿½ FlexMemo
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "set.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
 **********
 FUNC Alen(aArr,nDim)
 LOCAL aCol,nLen:=0
 IF !EMPTY(aArr) .AND. ValType(aArr)=='A'
 	nLen:=LEN(aArr)
 	aCol:=aArr[1]
-	IF nDim # 1		//‘âà®ª
-		IF EMPTY(nDim)	//«¥¬¥­â®¢
+	IF nDim # 1		//ï¿½ï¿½à®ª
+		IF EMPTY(nDim)	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â®¢
 			IF ValType(aCol)='A' THEN nLen:=nLen*LEN(aCol)
-		ELSE	//‘â®«¡æ®¢
+		ELSE	//ï¿½â®«ï¿½æ®¢
 			nLen:=IF( ValType(aCol)='A', LEN(aCol), 0)
 		ENDIF
 	ENDIF
@@ -177,7 +177,7 @@ RETURN {0,437,620,737,850,852,857,861,865,866,895,;
 	1250,1251,1252,1253,1254,;
 	10000,10006,10007,10029;
 	}[AT(SUBSTR(m->__RealFlds,2,1),CHR(1)+'ij'+CHR(2)+'dkgfeh'+;
-		    CHR(200)+CHR(201)+CHR(3)+CHR(203)+CHR(202)+CHR(4)+'˜–—')+1]
+		    CHR(200)+CHR(201)+CHR(3)+CHR(203)+CHR(202)+CHR(4)+'ï¿½ï¿½ï¿½')+1]
 *********
 FUNC ShowForced(xFld,nEl)
 LOCAL cType,nLen
@@ -232,13 +232,13 @@ ELSE
 ENDIF
 RETURN cDate
 **********
-FUNC MemoSrc(cFld,nbSize,nPos,cType)	//"ãç­®¥" çâ¥­¨¥ VFP-¯®«¥©
+FUNC MemoSrc(cFld,nbSize,nPos,cType)	//"ï¿½ï¿½ç­®ï¿½" ï¿½â¥­ï¿½ï¿½ VFP-ï¿½ï¿½ï¿½ï¿½ï¿½
 LOCAL h,cT,cf1,cf2, cMemo
 IF MemoEmpty(cFld)
 	cFld:=''
 	nPos:=0
 	nbSize:=0
-	cType:='0'+CHR(3)	//„«ï DbFlex
+	cType:='0'+CHR(3)	//ï¿½ï¿½ï¿½ DbFlex
 ELSEIF m->_aCommon[5]	//DbFlex
 	nPos:=Bin2L(SUBSTR(cFld,5))
 	nbSize:=Bin2L(cFld)
@@ -289,7 +289,7 @@ nSize:=FSeek(h,0,2)
 
 IF m->_aCommon[5]	//DbFlex
 	cT:=VALTYPE(cNew)
-	IF cT=='C'		//‚á¥ ã¦¥ å®à®è®
+	IF cT=='C'		//ï¿½ï¿½ï¿½ ã¦¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		IF LEN(TRIM(cNew))==0 THEN RETU SPACE(10)
 		cType:='C'+CHR(3)
 	ELSEIF cT=='D'
@@ -312,7 +312,7 @@ IF m->_aCommon[5]	//DbFlex
 		cType:=CHR(0)+CHR(0)
 	ENDIF
 	lNew:=(LEN(cNew) > nOldSize) .AND.;
-		(nPos+nOldSize+6 < nSize)	//•¢®áâ ¬®¦­® ¨ ¯¥à¥¯¨á âì
+		(nPos+nOldSize+6 < nSize)	//ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½à¥¯ï¿½ï¿½ï¿½ï¿½ï¿½
 ELSE
 	cNew:=FT_XTOY(cNew,'C')
 	IF LEN(TRIM(cNew))==0 THEN;

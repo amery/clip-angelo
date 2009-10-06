@@ -1,9 +1,9 @@
-#include "gd.h"
-#include "gdfontg.h"
-#include "gdfontl.h"
-#include "gdfontmb.h"
-#include "gdfonts.h"
-#include "gdfontt.h"
+#include "ci_gd.h"
+#include "ci_gdfontg.h"
+#include "ci_gdfontl.h"
+#include "ci_gdfontmb.h"
+#include "ci_gdfonts.h"
+#include "ci_gdfontt.h"
 
 #define sintScale 1024
 #define costScale 1024

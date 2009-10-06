@@ -9,16 +9,16 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include "clip-postscript.ch"
+#include "ci_clip-postscript.ch"
 
 /* TODO: Class for Postscript code part */
 
 function PSCode( code )
 	local obj := map()
-	
+
 	obj:className := "PSCode"
 	obj:code := code
-	
+
 	_recover_PSCODE(obj)
 return obj
 

@@ -7,11 +7,11 @@
 
 /* CTI_WINDOW - window. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
-#include "box.ch"
-#include "setcurs.ch"
+#include "ci_inkey.ch"
+#include "ci_box.ch"
+#include "ci_setcurs.ch"
 
 #define	SUPERCLASS	CTI_BIN
 

@@ -4,14 +4,14 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)                   */
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html     */
 
-#include "config.ch"
-#include "set.ch"
-#include "button.ch"   // Menu definitions
-#include "inkey.ch"    // Key definitions
-#include "edit.ch"
-#include "box.ch"
-#include <clipcfg.h>
-#include <setcurs.ch>
+#include "ci_config.ch"
+#include "ci_set.ch"
+#include "ci_button.ch"   // Menu definitions
+#include "ci_inkey.ch"    // Key definitions
+#include "ci_edit.ch"
+#include "ci_box.ch"
+#include <ci_clipcfg.h>
+#include <ci_setcurs.ch>
 
 #define FA_NORMAL       0
 #define FA_READONLY     1
@@ -172,17 +172,17 @@ local nfile, str, spl, i, fd, curwin, oldwin, home, percent, nWin
 
 	::__mapKeys     := HK_get("edit")
 
-	set("edit_margin_right","50") // длина строки
-	set("edit_page_len","20")     // длина страницы
-	set("edit_txtdir", curdir())   // где храняться документы
-	set("edit_colors_edit",'11/1,0/2,0/3,0/7,1/3, 15/R') // цвет редактирования
-	set("edit_colors_window",'14/1') // цвет окна редактирования
-	set("edit_colors_view",'0/7,7/1,0/3,,1/3')  // цвет просмотра
-	set("edit_colors_menu","0/7,0/2,r/7,g/rb,15/7,0/7") // цвет меню
-	set("edit_colors_list","0/3,0/2,15/7,15/3,14/3,14/2,0/2")   // цвет list объектов
-	//set("edit_colors_dialog","0/7,0/2,w+/b,g/rb,15/7,0/7")   // цвет диалогов
-	set("edit_colors_dialog","0/7,15/1,0/7,g/rb,15/3,0/7,0/7,15/7")   // цвет диалогов
-	set("edit_tabpack",'yes')   // сжимать пробелы в табуляции
+	set("edit_margin_right","50") // О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_page_len","20")     // О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_txtdir", curdir())   // О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_colors_edit",'11/1,0/2,0/3,0/7,1/3, 15/R') // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_colors_window",'14/1') // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_colors_view",'0/7,7/1,0/3,,1/3')  // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_colors_menu","0/7,0/2,r/7,g/rb,15/7,0/7") // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫
+	set("edit_colors_list","0/3,0/2,15/7,15/3,14/3,14/2,0/2")   // О©╫О©╫О©╫О©╫ list О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	//set("edit_colors_dialog","0/7,0/2,w+/b,g/rb,15/7,0/7")   // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_colors_dialog","0/7,15/1,0/7,g/rb,15/3,0/7,0/7,15/7")   // О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	set("edit_tabpack",'yes')   // О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	set(_SET_SCOREBOARD,.t.)
 	setcursor(1)
 	//setcancel(.f.)

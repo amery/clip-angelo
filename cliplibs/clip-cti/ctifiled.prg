@@ -7,11 +7,11 @@
 */
 
 
-#include "cti.ch"
-#include "ctievents.ch"
+#include "ci_cti.ch"
+#include "ci_ctievents.ch"
 
-#include "setcurs.ch"
-#include "inkey.ch"
+#include "ci_setcurs.ch"
+#include "ci_inkey.ch"
 
 #define FA_NORMAL	0
 #define FA_READONLY	1

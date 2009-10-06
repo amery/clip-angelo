@@ -10,7 +10,7 @@ export List=""
 [ -f $Clip_S_Dir/clip.setup.ini ] && export List=$(cat $Clip_S_Dir/clip.setup.ini )
 
 [ -z $List ] && 	export List="
-		CFLAGS_GEN
+		C_FLAGS_GEN
 		C_CLIP_FLAGS
 		CLIP_FLAGS_GEN
 		CLIP_CLIP_FLAGS
@@ -39,7 +39,7 @@ if [ $ClipVerbose == "-" ] ; then
 		OnScreen 2 "    cp -f\$V jklm (command is verbose) in batch files or cp -f\$(V) in Makefile"
 		export ClipVerbose=$(ReadVarX_Min_Max						 	" Desable '-v' in command(s) 	(suggested 0) : " 	0 1 	"v" "/" )
 #		OnScreen 3 "For NON DEBUG version mode : 'Production'"
-		OnScreen 2 "For CC compiling general : $CC $CFLAGS_GEN source.c"
+		OnScreen 2 "For CC compiling general : $CC $C_FLAGS_GEN source.c"
 		OnScreen 0
 		export C_CLIP_FLAGS_VERBOSITY=$(ReadVarX_Min_Max 			" CC verbosity '--verbose' 	(suggested 0) : " 	0 1 	"/" '--verbose' )
 		OnScreen 0
@@ -71,7 +71,7 @@ if [ $ClipVerbose == "-" ] ; then
 #		CLIP_DEBUG_CLIP_FLAGS_DEBUG_LEVEL=1
 #		CLIP_DEBUG_CLIP_FLAGS_OPTIMISE_LEVEL=0
 		# CC compiler's flags
-		export C_CLIP_FLAGS="-I../include.h $CFLAGS_GEN $C_CLIP_FLAGS_VERBOSITY"
+		export C_CLIP_FLAGS="-I../include.h $C_FLAGS_GEN $C_CLIP_FLAGS_VERBOSITY"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS -O$C_CLIP_FLAGS_OPTIMISE_LEVEL"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS -g$C_CLIP_FLAGS_DEBUG_LEVEL"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS $C_CLIP_FLAGS_ADDITIONNAL"
@@ -87,7 +87,7 @@ if [ $ClipVerbose == "-" ] ; then
 		export CLIP_CLIP_FLAGS="$CLIP_CLIP_FLAGS $CLIP_CLIP_FLAGS_ADDITIONNAL"
 		##  for test purposes
 		# CC compiler's flags
-#		C_DEBUG_CLIP_FLAGS="$CFLAGS_GEN_DEBUG $C_DEBUG_CLIP_FLAGS_VERBOSITY"
+#		C_DEBUG_CLIP_FLAGS="$C_FLAGS_GEN_DEBUG $C_DEBUG_CLIP_FLAGS_VERBOSITY"
 #		C_DEBUG_CLIP_FLAGS="$C_DEBUG_CLIP_FLAGS -O$C_DEBUG_CLIP_FLAGS_OPTIMISE_LEVEL"
 #		C_DEBUG_CLIP_FLAGS="$C_DEBUG_CLIP_FLAGS -g$C_DEBUG_CLIP_FLAGS_DEBUG_LEVEL"
 		# clip compiler's flags
@@ -140,7 +140,7 @@ fi
 #if ! [[ $C_DEBUG_CLIP_FLAGS_VERBOSITY == --verbose ]] ; then
 #	C_DEBUG_CLIP_FLAGS_VERBOSITY=""
 #fi
-		export C_CLIP_FLAGS="-I../include.h $CFLAGS_GEN 		$C_CLIP_FLAGS_VERBOSITY"
+		export C_CLIP_FLAGS="-I../include.h $C_FLAGS_GEN 		$C_CLIP_FLAGS_VERBOSITY"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS 	-O$C_CLIP_FLAGS_OPTIMISE_LEVEL"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS 	-g$C_CLIP_FLAGS_DEBUG_LEVEL"
 		export C_CLIP_FLAGS="$C_CLIP_FLAGS 	$C_CLIP_FLAGS_ADDITIONNAL"
@@ -151,7 +151,7 @@ fi
 		export CLIP_CLIP_FLAGS="$CLIP_CLIP_FLAGS $CLIP_CLIP_FLAGS_ADDITIONNAL"
 ##  for test purposes
 ## CC compiler's flags
-#C_DEBUG_CLIP_FLAGS="$CFLAGS_GEN_DEBUG $C_DEBUG_CLIP_FLAGS_VERBOSITY"
+#C_DEBUG_CLIP_FLAGS="$C_FLAGS_GEN_DEBUG $C_DEBUG_CLIP_FLAGS_VERBOSITY"
 #C_DEBUG_CLIP_FLAGS="$C_DEBUG_CLIP_FLAGS -O$C_DEBUG_CLIP_FLAGS_OPTIMISE_LEVEL"
 #C_DEBUG_CLIP_FLAGS="$C_DEBUG_CLIP_FLAGS -g$C_DEBUG_CLIP_FLAGS_DEBUG_LEVEL"
 # clip compiler's flags

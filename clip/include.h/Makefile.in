@@ -1,13 +1,28 @@
 #
 #                                            clip/include.h/Makefile.in
 #
-Local_Depend =
+
+export
+
+######################################################################################
+###################################################################################### local rules
 
 all install :
-	$(E_cp)cp --remove-destination -fpu$(V) clip.h _win32.h hashcode.h hash.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) 	ci_clip.h 				\
+															ci__win32.h 			\
+															ci_hashcode.h 			\
+															ci_hash.h 				\
+															$(Clip_I_Dir)/
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-include.h
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) clip.h _win32.h hashcode.h hash.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) 	ci_clip.h 				\
+															ci__win32.h 			\
+															ci_hashcode.h 			\
+															ci_hash.h 				\
+															$(Clip_I_Dir)/
 
 cleanc :
 

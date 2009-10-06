@@ -19,64 +19,49 @@
 ## 			undefined variable. 	This can be helpful when you are trying to
 ## 			debug makefiles which use variables in complex ways.
 ##
-Depend_on =
-#export Depend_on
-MAKEFLAGS = --warn-undefined-variables
-ADDMAKECMDGOALS =
-#export MAKEFLAGS += -Rr
-#
-
+AllSrcs 				= 			$(wildcard *.prg) $(wildcard *.c)
+AllG 					= 			$(addsuffix .g,$(basename $(AllSrcs)))
+Depend_on 			=
+Local_Depend 		=
+MAKEFLAGS 			+= 		--warn-undefined-variables
+ADDMAKECMDGOALS 	+=
 DLLLIBSUFF 			= 		.a
-
 PROGS					= 		xyzs
 PROG 					= 		xyz
 PROG2 				= 		xyz2
-
 OBJS 					=
 OBJS2 				=
-
 TARGET 				= 		lib$(PROG)
 TARGET2				= 		lib$(PROG2)
-
 ATARGET 				= 		$(TARGET)$(DLLLIBSUFF)
 ATARGET2				= 		$(TARGET2)$(DLLLIBSUFF)
-
 RTARGET 				= 		$(TARGET)$(DLLREALSUFF)
 RTARGET2				= 		$(TARGET2)$(DLLREALSUFF)
-
 STARGET 				= 		$(TARGET)$(DLLSUFF)
 STARGET2				= 		$(TARGET2)$(DLLSUFF)
-
 ADDOBJS 				=
 #ADDLIBS 			=
-
 ADDOBJS2 			=
 ADDLIBS2 			=
-
 LIBCLIP 				= 		$(Clip_L_Dir)/libclip.so
 CLIPLIB 				= 		-L$(Clip_L_Dir) -lclip
-
 BINS 					=
-
 DIRS_TO_SCAN 		=
-
 DOC =
-
-define Trace_o
-error
-endef
-define Trace_n
-error
-endef
-define Trace_c
-error
-endef
-define Trace_c_d
-error
-endef
-
-
-
+Debug_Make			=1
+E_mkl 				=
+E_mkSl 				=@
+E_cc 					=@
+E_cd 					=@
+E_clip 				=@
+E_cp 					=@
+E_e 					=@
+E_for 				=@
+E_if 					=@
+E_ln 					=@
+E_mkD 				=@
+E_rm 					=@
+E_xx 					=@
 define Trace
 	echo [MAKE] : $(value PWD)/$@ because of : $? >&0 ; 	\
 	echo [MAKE] : $(value PWD)/$@ because of : $? >&1 ; 	\
@@ -86,83 +71,71 @@ define Trace_cc
 	$(Trace) ;								\
 	echo [CC] $(value PWD)/$@ 	>&2 ; \
 	echo [CC] $(value PWD)/$@ 	>&0 ; \
-	echo [CC] $(value PWD)/$@
+	echo [CC] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_cc_d
 	$(Trace) ; 									\
 	echo [CC -g] $(value PWD)/$@ 	>&2 ; \
 	echo [CC -g] $(value PWD)/$@ 	>&0 ; \
-	echo [CC -g] $(value PWD)/$@
+	echo [CC -g] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_clip
 	$(Trace) ; 										\
 	echo [CLIP] $(value PWD)/$@ 	>&2 ; 	\
 	echo [CLIP] $(value PWD)/$@ 	>&0 ; 	\
-	echo [CLIP] $(value PWD)/$@
+	echo [CLIP] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_clip_d
 	$(Trace) ; 											\
 	echo [CLIP -g] $(value PWD)/$@ 	>&2 ; 	\
 	echo [CLIP -g] $(value PWD)/$@ 	>&0 ; 	\
-	echo [CLIP -g] $(value PWD)/$@
+	echo [CLIP -g] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_flex
 	$(Trace) ; 										\
 	echo [FLEX] $(value PWD)/$@ 	>&2 ; 	\
 	echo [FLEX] $(value PWD)/$@ 	>&0 ; 	\
-	echo [FLEX] $(value PWD)/$@
+	echo [FLEX] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_lib
 	$(Trace) ; 										\
+	echo OBJS : $(OBJS) 		;					\
 	echo [LIB] $(value PWD)/$@ 	>&2 ; 	\
 	echo [LIB] $(value PWD)/$@ 	>&0 ; 	\
-	echo [LIB] $(value PWD)/$@
+	echo [LIB] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_lib2
 	$(Trace) ; 										\
+	echo OBJS2 : $(OBJS2) 	;					\
 	echo [LIB2] $(value PWD)/$@ 	>&2 ; 	\
 	echo [LIB2] $(value PWD)/$@ 	>&0 ; 	\
-	echo [LIB2] $(value PWD)/$@
+	echo [LIB2] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_prg
 	$(Trace) ; 										\
 	echo [CLIP] $(value PWD)/$@ 	>&2 ; 	\
 	echo [CLIP] $(value PWD)/$@ 	>&0 ; 	\
-	echo [CLIP] $(value PWD)/$@
+	echo [CLIP] $(value PWD)/$@	>&1
 endef
 
 define Trace_prg_d
 	$(Trace) ; 											\
 	echo [CLIP -g] $(value PWD)/$@ 	>&2 ; 	\
 	echo [CLIP -g] $(value PWD)/$@ 	>&0 ; 	\
-	echo [CLIP -g] $(value PWD)/$@
+	echo [CLIP -g] $(value PWD)/$@ 	>&1
 endef
 
 define Trace_yacc
 	$(Trace) ; 										\
 	echo [YACC] $(value PWD)/$@ 	>&2 ; 	\
 	echo [YACC] $(value PWD)/$@ 	>&0 ; 	\
-	echo [YACC] $(value PWD)/$@
+	echo [YACC] $(value PWD)/$@ 	>&1
 endef
 
-Debug_Make=1
-E_mkl=
-E_mkSl=
-E_cc=
-E_cd=
-E_clip=
-E_cp=
-E_e=
-E_for=
-E_if=
-E_ln=
-E_mkD=
-E_rm=
-E_xx=

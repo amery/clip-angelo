@@ -3,11 +3,11 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
-#include "debug.ch"
-#include "imenu.ch"
-#include "set.ch"
-#include "ctwin.ch"
+#include "ci_inkey.ch"
+#include "ci_debug.ch"
+#include "ci_imenu.ch"
+#include "ci_set.ch"
+#include "ci_ctwin.ch"
 
 ************************************************
 function make_debug_monitor_window(dbg_obj,ntop,nleft,nbottom,nright,nwin)
@@ -126,7 +126,7 @@ return .f.
 static function window_redrawMenu(flag)
 	static oldMenuPos:=0
 	local i, j
-	@ 1,0 say replicate("€",::right)
+	@ 1,0 say replicate("ï¿½",::right)
 	flag:=iif(flag==NIL,.f.,flag)
 	if ::menuPos<=0
 		::menuPos:=len(::menuItems)

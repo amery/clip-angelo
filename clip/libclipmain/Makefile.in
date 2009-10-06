@@ -1,29 +1,63 @@
 #
 #                                            clip/libclipmain/Makefile.in
 #
-Local_Depend = ../include/*.ch ../include.h/*.h
+Local_Depend 	= 		../include/*.ch 		\
+							../include.h/*.h
 
-#CFLAGS += -I.. -I../include -I../include.h
-#LIB = libclipmain.a
-OBJS = $(sort cliphash.o rt.tab.o 											\
-	   _file1.o _string.o _date.o 											\
-	  clipbase.o _math.o diskutils.o _mem.o 								\
-	  _system.o rational.o integer.o gettext.o _dbg.o 					\
-	  _tcp.o _tcpserv.o _regex.o ncp.o _clipboard.o _depsort.o 		\
-	  _ctools_s.o _file.o  _io.o _thread.o _util.o  					\
-	  clipdbg.o cliprt.o cliptbl.o clipvm.o 								\
-	  hash.o set.o coll.o list.o plural.tab.o _win32.o)
+OBJS 				= 		$(sort 							\
+										cliphash.o 			\
+										rt.tab.o 			\
+										_file1.o 			\
+										_string.o 			\
+										_date.o 				\
+	   								clipbase.o 			\
+										_math.o 				\
+										diskutils.o 		\
+										_mem.o 				\
+	   								_system.o 			\
+										rational.o 			\
+										integer.o 			\
+										gettext.o 			\
+										_dbg.o 				\
+	   								_tcp.o 				\
+										_tcpserv.o 			\
+										_regex.o 			\
+										ncp.o 				\
+										_clipboard.o 		\
+										_depsort.o 			\
+	   								_ctools_s.o 		\
+										_file.o  			\
+										_io.o 				\
+										_thread.o 			\
+										_util.o  			\
+	   								clipdbg.o 			\
+										cliprt.o 			\
+										cliptbl.o 			\
+										clipvm.o 			\
+	   								hash.o 				\
+										set.o 				\
+										coll.o 				\
+										list.o 				\
+										plural.tab.o 		\
+										_win32.o 			\
+	   					)
 
-ADDOBJS = ../libclipscreen/charset.o
-#../compiler/coll.o  ../compiler/_win32.o ../compiler/list.o ../compiler/plural.tab.o
-
-PROG = clipmain
-install all: Makefile $(ATARGET)
-#install all: Makefile $(LIB)
-
+ADDOBJS 			= 		../libclipscreen/charset.o
+PROG 				= 		clipmain
+C_FLAGS 			+= 	-I../include.h
 ADDLIBS =
 
-cfg :
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all: Makefile lex $(OBJS) $(ATARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipmain
+
+cfg : lex
 	$(E_ln)[ -d charsets ] 												\
 		|| ln -sf$(V) ../libclipscreen/install/charsets .
 
@@ -37,53 +71,109 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-#../compiler/coll.o : ../compiler/coll.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/list.o : ../compiler/list.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/plural.tab.o : ../compiler/plural.tab.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE) plural.tab.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
-#../compiler/_win32.o : ../compiler/_win32.c Makefile
-#	$(Trace)
-#	cd ../compiler  																	\
-#		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
-#		&& $(MAKE)  _win32.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
-
 ../libclipscreen/charset.o: ../libclipscreen/charset.c Makefile
 	$(E_cd)cd ../libclipscreen  															\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
+plural.tab.o: plural.tab.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+clic.tab.o: clic.tab.c ../include.h/ci_clic.h Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+lex.yy.o: lex.yy.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+lex.cl.o: lex.cl.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+clicutil.o: clicutil.c clic.tab.h Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+clic_name.o: clic_name.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+###################################################### yacc - flex
+
+clic_name.c: clic.tab.c Makefile
+	$(E_e)$(Trace)
+	$(E_e)echo "#include <stdio.h>" 													 >clic_name.c
+	$(E_e)echo "#ifndef YYDEBUG" 														>>clic_name.c
+	$(E_e)echo "#define YYDEBUG 0" 													>>clic_name.c
+	$(E_e)echo "#endif" 																	>>clic_name.c
+	$(E_e)echo "#if !YYDEBUG" 															>>clic_name.c
+	$(E_e)echo "#define static" 														>>clic_name.c
+	$(E_e)sed -n -e "/^\(.*\)yytname[ \t]*\[\]/,/^};/p" clic.tab.c 		>>clic_name.c
+	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
+	$(E_e)echo "#endif" 																	>>clic_name.c
+
+clic.tab.c: clic.y ../include.h/ci_clic.h
+	$(E_xx)$(YACC) -bclic -v -d clic.y
+
+lex.cl.c: clic_c.lex clic.tab.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -Pcl clic_c.lex
+
+lex.hash.c: hasher.lex ../include.h/ci_cliphash.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -Phash hasher.lex
+
+#note: flex -i for case-insencitive parser
+lex.yy.c: clic.lex clic.tab.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -i clic.lex
+
 plural.tab.c: plural.y
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -bplural -pplural plural.y
 
-plural.tab.o: plural.tab.c Makefile
-	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
-		$(Trace_cc_d) ; 									\
-		$(CC) $(CFLAGS) -g -c $< ; 					\
-	else 														\
-		$(Trace_cc) ; 										\
-		$(CC) $(CFLAGS) -c $< ; 						\
-	fi
+rt.tab.c: rt.y ../include.h/ci_clic.h
+	$(E_e)$(Trace_yacc)
+	$(E_xx)$(YACC) -brt -prt -v -d rt.y
 
-yacc : plural.tab.c
+depend:
+	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
 
-#$(LIB): $(OBJS) $(ADDOBJS) Makefile
-#	rm -f$(V) $(LIB)
-#	$(CLIP_MAKELIB) $(LIB) $(OBJS) $(ADDOBJS) && ranlib $(LIB)
-
+lex: yacc Makefile
+# lex.yy.c lex.cl.c lex.hash.c
+yacc: rt.tab.c plural.tab.c Makefile
+#clic.tab.c clic_name.c
 include $(Makefile_end_in)
 

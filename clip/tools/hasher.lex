@@ -1,5 +1,5 @@
 %{
-#include "cliphash.h"
+#include "ci_cliphash.h"
 %}
 
 ID      [A-Za-z_][A-Za-z0-9_]*
@@ -7,7 +7,7 @@ ID      [A-Za-z_][A-Za-z0-9_]*
 %%
 
 [^H\n]+		/*ECHO;*/
-"HASH_"{ID}     printf( "#define\t%-32s\t%ld /*%d,%ld*/\n", yytext, (clip_hash_t) _clip_casehashstr(yytext+5), (int)_clip_casehashstr(yytext+5),(long)_clip_casehashstr(yytext+5)); 
+"HASH_"{ID}     printf( "#define\t%-32s\t%ld /*%d,%ld*/\n", yytext, (clip_hash_t) _clip_casehashstr(yytext+5), (int)_clip_casehashstr(yytext+5),(long)_clip_casehashstr(yytext+5));
 .|\n		/*ECHO;*/
 
 %%

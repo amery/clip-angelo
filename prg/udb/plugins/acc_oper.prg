@@ -8,7 +8,7 @@
   fun-ctions for view and edit acc_oper objects information
 */
 
-#include "box.ch"
+#include "ci_box.ch"
 
 local ret := NIL
 parameters query_key
@@ -49,7 +49,7 @@ static function r2d2_aoper_view_card(oDep,data,oBox,colorSpec)
 	x1++;y1++
 
 	@ x1++,y1 say padc([Account operation],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()
@@ -62,7 +62,7 @@ static function r2d2_aoper_view_card(oDep,data,oBox,colorSpec)
 	@ x1++,y1 say [User name.......]+padr(data:username,y2-y1-16)
 	@ x1++,y1 say [Data class......]+padr(data:class,y2-y1-16)
 
-	@ x1++,y1 say padc([List of posting],y2-y1,"€")
+	@ x1++,y1 say padc([List of posting],y2-y1,"ï¿½")
 	@ x1++,y1 say padr([Debet..............Kredit],y2-y1,".")
 	for i=1 to len(data:accpost_list)
 		s:=""
@@ -102,7 +102,7 @@ static function r2d2_aoper_edit_card(oDep,data,oBox,colorSpec)
 	pic:="@S"+alltrim(str(y2-y1-16),3,0)
 
 	@ x1++,y1 say padc([Account operation],y2-y1)
-	@ x1++,y1 say replicate("€",y2-y1)
+	@ x1++,y1 say replicate("ï¿½",y2-y1)
 	if empty(data)
 		@ x1++,y1 say [Can`t display information]
 		dispend()
@@ -125,7 +125,7 @@ static function r2d2_aoper_edit_card(oDep,data,oBox,colorSpec)
 	@ x1++,y1+16 get data:username picture pic
 	@ x1  ,y1 say [Data class......]+padr(data:class,y2-y1-16)
 	@ x1++,y1+16 get data:class picture pic
-	@ x1++,y1 say padc([List of posting],y2-y1,"€")
+	@ x1++,y1 say padc([List of posting],y2-y1,"ï¿½")
 	@ x1++,y1 say padr([Debet..............Kredit],y2-y1,".")
 	dispend()
 	read

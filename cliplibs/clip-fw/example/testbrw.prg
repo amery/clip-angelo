@@ -1,6 +1,6 @@
 // Using FiveWin browses for inline data capture
 
-#include "fwin/FiveWin.ch"
+#include "ci_FiveWin.ch"
 
 //----------------------------------------------------------------//
 

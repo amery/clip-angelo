@@ -3,10 +3,10 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "error.ch"
-#include "inkey.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_error.ch"
+#include "ci_inkey.ch"
 
 **********
 FUNC ErrorSys(lMini)
@@ -79,7 +79,7 @@ IF Type('_tmr')=='N' .AND. USED() THEN go m->_tmr
 BREAK(gCode)
 **********
 STATIC PROC WriteLog(cMessage)
-* При отладке - более подробно
+* я┐╜я┐╜я┐╜ я┐╜тлая┐╜я┐╜я┐╜ - я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜робя┐╜я┐╜
 LOCAL i
 cMessage:=_CRLF+DTOC(date())+' '+TIME()+_CRLF+cMessage
 i:=2

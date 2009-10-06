@@ -9,7 +9,7 @@
  */
 
 
-#include "gdfontmb.h"
+#include "ci_gdfontmb.h"
 
 char gdFontMediumBoldData[] = {
 /* Char 0 */

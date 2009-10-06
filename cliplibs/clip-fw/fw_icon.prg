@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
 
 #define IDI_HAND   32513
 
@@ -29,7 +29,7 @@ function _recover_FWIN_TICON(obj)
 	obj:New		:= @fw_New()
 	obj:ReDefine	:= @fw_ReDefine()
 	obj:Display	:= {| Self | self:BeginPaint(), self:Paint(), self:EndPaint(), 0}
-	obj:Paint	:= {| Self |  DrawIcon( self:hDC, 0, 0, self:hIcon )
+	obj:Paint	:= {| Self |  DrawIcon( self:hDC, 0, 0, self:hIcon )}
 	//obj:Destroy	:= @fw_Destroy()
 	obj:SetName	:= @fw_SetName()
 	obj:SetFile	:= @fw_SetFile()
@@ -173,7 +173,7 @@ return nil
 
 //----------------------------------------------------------------------------//
 
-static function fw_Destroy()
+static function fw_Destroy(self)
 
    if self:hIcon != 0
       eval(Selector:DestroyIcon, self:hIcon )

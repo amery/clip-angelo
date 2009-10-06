@@ -1,5 +1,5 @@
-#include "gd.h"
-#include "gdhelpers.h"
+#include "ci_gd.h"
+#include "ci_gdhelpers.h"
 #include <stdlib.h>
 #include <string.h>
 

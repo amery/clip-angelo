@@ -7,9 +7,9 @@
 
 /* CTI_RADIOBUTTON - button */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 

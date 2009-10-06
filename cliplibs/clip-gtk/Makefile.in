@@ -4,120 +4,147 @@
 # main part
 #
 #
-#include Makefile.inc
-#export CC
-#DBGFLAGS	= -g #-DMEMDBG
-#WARNFLAGS	= -Wimplicit -Wall
+Local_Depend 		= 		include/*.ch 	\
+								include/*.h
 
-.SUFFIXES: .prg .c .po
-.PHONY:	test screen hash
+HDRS					= 		include/ci_clip-gtk.ch 	\
+								include/ci_clip-gtk.h
 
-Local_Depend = include/*.ch include/*.h
+GDK_SRC 				= 		gdk.c 				\
+								gdkfont.c 			\
+								gdkinput.c 			\
+								gdkcolor.c 			\
+								gdkgc.c 				\
+								gdkdraw.c 			\
+	  							gdkwindow.c 		\
+								gdkregion.c 		\
+								$(PIXBUFSRC)
 
-HDRS	= include/clip-gtk.ch include/clip-gtk.h
+GTK_SRC 				= 		accelgroup.c 			\
+								adjustment.c 			\
+								alignment.c 			\
+								bmpxpm.c 				\
+								box.c 					\
+								button.c 				\
+								buttonbox.c 			\
+								calendar.c 				\
+	  							checkbutton.c 			\
+								checkmenuitem.c 		\
+								clist.c 					\
+								colorsel.c 				\
+								combo.c 					\
+								common.c 				\
+	  							container.c 			\
+								ctree.c 					\
+								curve.c 					\
+								dialog.c 				\
+								drawingarea.c 			\
+								editable.c 				\
+								entry.c 					\
+	  							filesel.c 				\
+								fixed.c 					\
+								fontsel.c 				\
+								frame.c 					\
+								general.c 				\
+								gtkdraw.c 				\
+								handlebox.c 			\
+								item.c 					\
+	  							itemfactory.c 			\
+	  							label.c 					\
+								layout.c 				\
+								list.c 					\
+								listitem.c 				\
+								menu.c 					\
+								menubar.c 				\
+								menuitem.c 				\
+	  							menushell.c 			\
+								misc.c 					\
+								notebook.c 				\
+								object.c 				\
+								optionmenu.c 			\
+								packer.c 				\
+								paned.c 					\
+	  							pixmap.c 				\
+								progress.c 				\
+								progressbar.c 			\
+								radiobutton.c 			\
+								radiomenuitem.c 		\
+	  							range.c 					\
+								rulers.c 				\
+								scale.c 					\
+								scrollbar.c 			\
+								scrolledwindow.c 		\
+								separator.c 			\
+	  							spinbutton.c 			\
+								statusbar.c 			\
+								table.c 					\
+								text.c 					\
+								tipsquery.c 			\
+								togglebutton.c 		\
+	  							toolbar.c 				\
+								tooltips.c 				\
+								tree.c 					\
+								treeitem.c 				\
+								viewport.c 				\
+								widget.c 				\
+								window.c 				\
+	  							gtkermsg.prg
 
-GDK_SRC = gdk.c gdkfont.c gdkinput.c gdkcolor.c gdkgc.c gdkdraw.c \
-	  gdkwindow.c gdkregion.c $(PIXBUFSRC)
+GTK_EXTEXT_SRC 	=
+#gtkextext.c
+#extext.c
 
-GTK_SRC = accelgroup.c adjustment.c alignment.c bmpxpm.c box.c button.c buttonbox.c calendar.c \
-	  checkbutton.c checkmenuitem.c clist.c colorsel.c combo.c common.c \
-	  container.c ctree.c curve.c dialog.c drawingarea.c editable.c entry.c \
-	  filesel.c fixed.c fontsel.c frame.c general.c gtkdraw.c handlebox.c item.c \
-	  itemfactory.c \
-	  label.c layout.c list.c listitem.c menu.c menubar.c menuitem.c \
-	  menushell.c misc.c notebook.c object.c optionmenu.c packer.c paned.c \
-	  pixmap.c progress.c progressbar.c radiobutton.c radiomenuitem.c \
-	  range.c rulers.c scale.c scrollbar.c scrolledwindow.c separator.c \
-	  spinbutton.c statusbar.c table.c text.c tipsquery.c togglebutton.c \
-	  toolbar.c tooltips.c tree.c treeitem.c viewport.c widget.c window.c \
-	  gtkermsg.prg
-
-GTK_EXTEXT_SRC = #gtkextext.c extext.c
-
-GDK_OBJ = gdk.o gdkfont.o gdkinput.o gdkcolor.o gdkgc.o gdkdraw.o \
-	  gdkwindow.o gdkregion.o $(PIXBUFOBJ)
-
-GTK_OBJ = accelgroup.o adjustment.o alignment.o bmpxpm.o box.o button.o buttonbox.o calendar.o \
-	  checkbutton.o checkmenuitem.o clist.o colorsel.o combo.o common.o \
-	  container.o ctree.o curve.o dialog.o drawingarea.o editable.o entry.o \
-	  filesel.o fixed.o fontsel.o frame.o general.o gtkdraw.o handlebox.o item.o \
-	  itemfactory.o \
-	  label.o layout.o list.o listitem.o menu.o menubar.o menuitem.o \
-	  menushell.o misc.o notebook.o object.o optionmenu.o packer.o paned.o \
-	  pixmap.o progress.o progressbar.o radiobutton.o radiomenuitem.o \
-	  range.o rulers.o scale.o scrollbar.o scrolledwindow.o separator.o \
-	  spinbutton.o statusbar.o table.o text.o tipsquery.o togglebutton.o \
-	  toolbar.o tooltips.o tree.o treeitem.o viewport.o widget.o window.o \
-	  gtkermsg.o
-
-GTK_EXTEXT_OBJ = #gtkextext.o extext.o
-
-SRCS = $(GDK_SRC) $(GTK_SRC) $(GTK_EXTEXT_SRC)
-
-OBJS = $(sort $(GDK_OBJ) $(GTK_OBJ) $(GTK_EXTEXT_OBJ))
-
-OBJDIR	= .
-EXTOBJS =
-
-HASHSRCS = $(SRCS) $(HDRS)
-
-#XLIB	= libclip-gtk.a
-#XSLIB	= libclip-gtk$(DLLSUFF)
-#XSLIBREAL = libclip-gtk$(DLLREALSUFF)
-#XLIBOBJS= $(OBJS)
-PROG = clip-gtk
-SYS = $OSNAME
-SYSTEM_NAME = $(OSNAME)
-
-DEFS	=
+SRCS 					= 		$(sort $(GDK_SRC) $(GTK_SRC) $(GTK_EXTEXT_SRC))
+OBJS 					= 		$(addsuffix .o,$(basename $(SRCS) ) )
+OBJDIR 				= .
+EXTOBJS 				=
+HASHSRCS 			= 		$(sort $(SRCS) $(HDRS))
+PROG 					= 		clip-gtk
+SYS 					= 		$(OSNAME)
+SYSTEM_NAME 		= 		$(OSNAME)
+DEFS					=
 # -DVERSION=\"0.1\"
 # -DSYSTEM=\"$(SYSTEM_NAME)\"
-
-#CC = $(COMPILER)
-C_FLAGS  += $(DEFS) $(MEMDBGFLAGS) $(XCFLAGS)
-# $(INCLUDEDIRS)
+C_FLAGS  			+= 	$(DEFS) $(MEMDBGFLAGS) $(XCFLAGS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
+ADDLIBS 				=
 
-export CC CFLAGS
-export MEMDBG MEMDBGFLAGS
-ADDLIBS =
+export
 
-all: Makefile include/clip-gtkcfg.h hash $(STARGET)
+######################################################################################
+###################################################################################### local rules
+
+all: Makefile include/ci_clip-gtkcfg.h $(OBJS) $(STARGET)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gtk
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) clip-gtk.cliprc $(INSTDIR)/cliprc/
-	$(E_cp)cp --remove-destination -fpu$(V) include/clip-gtk.ch include/clip-gtk.h $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-gtk.ch include/ci_clip-gtk.h $(Clip_I_Dir)/
 
-d: set_dbg
+d : set_dbg
 
 set_dbg: CDBGFLAGS=-g
 set_dbg: all
 
-include/clip-gtkcfg.h : $(CONFIGURE_SH)
-	$(Trace)
-	$(CONFIGURE_SH)
-
-hash: include/_hashcode.h
-
-include/_hashcode.h: $(HASHSRCS)
+include/ci_clip-gtkcfg.h : $(CONFIGURE_SH)
 	$(E_e)$(Trace)
-	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/_hashcode.h
-	$(E_if)cmp include/_hashcode.h include/hashcode.h 2>/dev/null || cp include/_hashcode.h include/hashcode.h
-	$(E_cp)cp -fp$(V) include/hashcode.h include/_hashcode.h
+	$(E_xx)$(CONFIGURE_SH)
 
-#$(XLIB): $(XLIBOBJS)
-#	rm -f $(XLIB)
-#	$(CLIP_MAKELIB) $(XLIB) $(XLIBOBJS)
-#	ranlib $(XLIB)
+#hash: include/ci__hashcode.h
 
-#$(XSLIB): $(XLIB)
-#	$(CLIP_MAKESLIB) $(XSLIB) $(XLIB) $(LIBS)
+#include/ci__hashcode.h: $(HASHSRCS)
+#	$(E_e)$(Trace)
+#	$(E_xx)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/ci__hashcode.h
+#	$(E_if)cmp include/ci__hashcode.h include/ci_hashcode.h 2>/dev/null || cp include/ci__hashcode.h include/ci_hashcode.h
+#	$(E_cp)cp -fp$(V) include/ci_hashcode.h include/ci__hashcode.h
 
 cleanc:
-	$(E_rm)rm -rf$(V) *.b gtkermsg.c $(TARGET).* Makefile.inc
+	$(E_rm)rm -f$(V) *.b gtkermsg.c $(TARGET).* include/ci_clip-gtkcfg.h
 
 distcleanc :
-	$(E_rm)rm -rf$(V) *.g
+	$(E_rm)rm -f$(V) *.g
 
 install:all install-lib install-example
 

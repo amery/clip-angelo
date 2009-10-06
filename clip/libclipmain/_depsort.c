@@ -27,9 +27,9 @@
 #include <stdarg.h>
 #include <errno.h>
 
-#include "clip.h"
-#include "error.ch"
-#include "coll.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
+#include "ci_coll.h"
 
 extern char *CLIPROOT;
 

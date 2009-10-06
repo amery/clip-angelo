@@ -1,5 +1,6 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 function main()
+Local win, btn1, lay, label, vbox, plab
 gtk_init()
 win := gtk_windowNew(, " Test pango ")
 qout()

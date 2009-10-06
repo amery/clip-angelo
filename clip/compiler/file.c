@@ -477,10 +477,10 @@
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
-#include "clic.h"
-#include "nodepriv.h"
-#include "clipcfg.h"
-#include "clip.h"
+#include "ci_clic.h"
+#include "ci_nodepriv.h"
+#include "ci_clipcfg.h"
+#include "ci_clip.h"
 
 #if 0
 typedef struct
@@ -1206,7 +1206,7 @@ write_File(File * file)
 	fprintf(out, " *\tat %s", ctime(&tbuf));
 	fprintf(out, " */\n");
 
-	fprintf(out, "\n#include \"clip.h\"\n\n");
+	fprintf(out, "\n#include \"ci_clip.h\"\n\n");
 
 	fprintf(out, "static const char *_file = \"%s\";\n\n", file->name);
 
@@ -1822,7 +1822,7 @@ write_OFile(File * file, long *len)
 		else
 #endif
 		{
-			fprintf(out, "#include \"clip.h\"\n\n");
+			fprintf(out, "#include \"ci_clip.h\"\n\n");
 		}
 
 	}
@@ -2587,7 +2587,7 @@ write_Cfunc(const char *name, int argc, char **argv, Coll * ex, Coll * nm)
 
 	if (!use_asm)
 	{
-		fprintf(out, "\n#include \"clip.h\"\n");
+		fprintf(out, "\n#include \"ci_clip.h\"\n");
 	}
 	else
 	{

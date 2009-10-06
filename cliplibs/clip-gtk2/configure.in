@@ -1,6 +1,30 @@
 #!/bin/sh -u
 
 Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
+Check_Include 		X11/xpm.h 				xyz 	clip-gtk2 			Yes 	/usr/include 										"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		freetype 			.so 	clip-gtk2 			Yes	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/dev)"
+Check_Library 		jpeg 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libjpeg-static-xx-$ARCH.(rpm/deb)"
+Check_Library 		png 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libpng-static-xx-$ARCH.(rpm/deb)"
+Check_Library 		ttf 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gtk-x11-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gdk-x11-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		atk-1.0 				.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gdk_pixbuf-2.0 	.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pangocairo-1.0 	.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		pango-1.0 			.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		cairo 				.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gobject-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		gmodule-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		dl 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		glib-2.0 			.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		freetype 			.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		fontconfig 			.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		Xrender 				.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		X11 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		Xext 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		png12 				.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		z 						.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		m 						.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 
 uname=`uname -s`
 uver=`uname -r`
@@ -128,15 +152,15 @@ if [ ! \( "$GTK_MAJOR" -le 2  \) ]; then
 fi
 PANGO_MAJOR=`$PKGCONFIG pango --modversion|cut -d. -f1`
 PANGO_MINOR=`$PKGCONFIG pango --modversion|cut -d. -f2`
-exec 																		3>include/clip-gtkcfg2.h
+exec 																		3>include/ci_clip-gtkcfg2.h
 echo "/* Created automatically by 'configure' */" 			>&3
 echo "#ifndef CLIPGTK_CONFIG_H" 									>&3
 echo "#define CLIPGTK_CONFIG_H" 									>&3
 echo 																		>&3
 echo '#undef  VERSION ' 											>&3
-echo '#undef  OSNAME ' 												>&3
-echo '#define OSNAME "'$osname'"' 								>&3
-echo "#define OS_$osname" 											>&3
+#echo '#undef  OSNAME ' 												>&3
+#echo '#define OSNAME "'$osname'"' 								>&3
+#echo "#define OS_$osname" 											>&3
 echo '#define GTK2_VER_MAJOR '$GTK_MAJOR 						>&3
 echo '#define GTK2_VER_MINOR '$GTK_MINOR 						>&3
 echo '#define PANGO_VER_MAJOR '$PANGO_MAJOR 					>&3
@@ -178,8 +202,8 @@ fi
 #echo "DLLSUFF='$DLLSUFF'"														>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'" 											>&3
 echo "INCLUDEDIRS=$EXTRACFLAGS $($PKGCONFIG gtk+-2.0 --cflags)" 	>&3
-echo "XTARGETS=\$(XLIB) \$(XSLIB)" 											>&3
-echo "LIBS=$LIBS \$(C_LIBS)" 													>&3
+#echo "XTARGETS=\$(XLIB) \$(XSLIB)" 											>&3
+echo "LIBS=$LIBS " 																>&3
 if [ \( "$GTK_MAJOR" -ge 2  \) ] ; then
 	if [ \( "$GTK_MINOR" -ge 4  \) ] ; then
 		echo "GTK_24=yes" 														>&3
@@ -196,9 +220,11 @@ echo 																					>&3
 exec 																					3>&-
 tr -d \' <./Makefile.inc >Makefile.tmp
 mv -f$V Makefile.tmp Makefile.inc
-cp -f$V ./Makefile.inc ../../prg/udbx/
+#cp -f$V ./Makefile.inc ../../prg/udbx/
 cat ./Makefile.inc >>Makefile.ini
+cp -f$V ./Makefile.inc ../clip-glade2/
+rm -f$V ./Makefile.inc
 echo ". done."
 #!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
+touch configure.ok

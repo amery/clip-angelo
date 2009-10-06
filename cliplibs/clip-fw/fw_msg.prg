@@ -5,9 +5,9 @@
 /*   License : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/msgxpm.ch>
-#include <clip-fw/itk.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_msgxpm.ch>
+#include <fwin/ci_itk.ch>
 
 static lbStyle
 static FontMessage

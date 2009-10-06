@@ -4,12 +4,12 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "set.ch"
-#include "lang.ch"
-#include "getexit.ch"
-#include "date.ch"
-#include "button.ch"
-#include "config.ch"
+#include "ci_set.ch"
+#include "ci_lang.ch"
+#include "ci_getexit.ch"
+#include "ci_date.ch"
+#include "ci_button.ch"
+#include "ci_config.ch"
 
 function TEXTGETNEW(row,col,bottom,right,block,varname,color,var,vblock,wblock)
   local obj

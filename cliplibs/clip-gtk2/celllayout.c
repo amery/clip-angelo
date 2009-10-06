@@ -4,14 +4,14 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 #include <string.h>
-#include "hashcode.h"
-#include "clip.h"
-#include "clip-gtkcfg2.h"
+#include "ci_hashcode.h"
+#include "ci_clip.h"
+#include "ci_clip-gtkcfg2.h"
 
 #include <gtk/gtk.h>
 
-#include "clip-gtk2.ch"
-#include "clip-gtk2.h"
+#include "ci_clip-gtk2.ch"
+#include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
 /* Ginterface Cell Layout has no signals                  */

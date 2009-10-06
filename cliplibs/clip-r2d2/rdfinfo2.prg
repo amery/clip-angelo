@@ -1,4 +1,4 @@
-#include "r2d2lib.ch"
+#include "ci_r2d2lib.ch"
 
 function r2d2_info2_rdf(_queryArr)
 
@@ -45,7 +45,7 @@ local urn, sprname:="", values := "", attr := "", atom:=""
 	endif
 	atom := (left(atom,1) == "Y")
 	if "__DELETED" $ _query
-		needDeleted := (left(_query:__deleted,1) $ "YyäÄ")
+		needDeleted := (left(_query:__deleted,1) $ "Yyï¿½ï¿½")
 	endif
 	if !empty(connect_id)
 		connect_data := cgi_connect_data(connect_id)

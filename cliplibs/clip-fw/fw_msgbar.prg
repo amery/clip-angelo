@@ -4,8 +4,8 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include <clip-gtk2.ch>
-#include <clip-fw/FiveWin.ch>
+#include <ci_clip-gtk2.ch>
+#include <fwin/ci_FiveWin.ch>
 
 #define COLOR_BTNFACE    15
 #define COLOR_BTNSHADOW  16

@@ -3,18 +3,18 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 static key_maps
 
 /********************************************
 * func HK_load()
-* читает переназначение клавиш для пользовательских программ
-* типа "редактор", "отладчик", .........
-* из файла keymaps, который может лежать в:
-* 1. в /usr/local/lib/clip/
-* 2. по пути, указанному в setenv("RTCLIP_PATH")
-* 3. в $HOME/.clip
+* О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+* О©╫О©╫О©╫О©╫ "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫", "О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫", .........
+* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ keymaps, О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫:
+* 1. О©╫ /usr/local/lib/clip/
+* 2. О©╫О©╫ О©╫О©╫О©╫О©╫, О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ setenv("RTCLIP_PATH")
+* 3. О©╫ $HOME/.clip
 */
 function HK_load()
 local nfile
@@ -38,7 +38,7 @@ function HK_init
 	key_maps:debug:=map()
 	k:=key_maps:debug
 
-	#include "debug.ch"
+	#include "ci_debug.ch"
 	k[ K_ESC ]	:=HASH_CallMenu
 	k[ K_F1 ] 	:=HASH_Help
 	k[ K_F2 ]	:=HASH_ZoomWindow
@@ -122,7 +122,7 @@ function HK_init
 	key_maps:edit:=map()
 	k:=key_maps:edit
 
-	/* Код клавиши 	  Команда */
+	/* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 	  О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 	k[ K_ESC ]	:=HASH_CallMenu		// call Menu
 	k[ K_ALT_X ]	:=HASH_ExitSave		// exit from editor witch save
 	k[ K_ALT_B ]	:=HASH_ExitNoSave	// exit from editor witchout save
@@ -170,7 +170,7 @@ function HK_init
 	key_maps:dialog:=map()
 	k:=key_maps:dialog
 
-	/* Код клавиши 	  Команда */
+	/* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 	  О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 	k[ K_ESC ]	:=HASH_CallMenu		// call Menu
 	k[ K_ALT_X ]	:=HASH_Exit		// exit from dialog box
 	k[ K_F6 ]	:=HASH_Find		// find string
@@ -181,7 +181,7 @@ function HK_init
 	key_maps:commander:=map()
 	k:=key_maps:commander
 
-	/* Код клавиши 	  Команда */
+	/* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 	  О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 	k[ K_F9 ]	:=HASH_CallMenu		// call Menu
 	k[ K_ESC ]	:=HASH_CallMenu		// call Menu
 
@@ -197,7 +197,7 @@ function HK_init
 	key_maps:htmlBrowser:=map()
 	k:=key_maps:htmlBrowser
 
-	/* Код клавиши 	  Команда */
+	/* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 	  О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 	k[ K_F9 ]	:=HASH_CallMenu		// call Menu
 	k[ K_F2 ]	:=HASH_CallMenu		// call Menu
 	k[ K_ESC ]	:=HASH_Exit		// call Menu
@@ -244,8 +244,8 @@ function HK_add(name,data)
 return map()
 
 ***********************************************
-* по массиву назначенных клавиш и хеш-коду
-* возвращает активную клавишу
+* О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫-О©╫О©╫О©╫О©╫
+* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ***********************************************
 function HK_get_key(keymap,hashKey)
    local ret:=0,i,m

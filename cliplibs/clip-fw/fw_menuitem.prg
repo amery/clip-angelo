@@ -4,7 +4,7 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include "clip-fw/FiveWin.ch"
+#include "fwin/ci_FiveWin.ch"
 
 #define MF_BYCOMMAND  0
 #define MF_ENABLED    0

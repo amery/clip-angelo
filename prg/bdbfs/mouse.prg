@@ -1,4 +1,4 @@
-#include <inkey.ch>
+#include <ci_inkey.ch>
 proc main
 set color to "g+/b"
 clear screen

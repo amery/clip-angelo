@@ -8,7 +8,7 @@
 /* CTI_HBOX is a container that organizes child widgets into a single row.
    All children are allocated the same height. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_BOX
 

@@ -5,9 +5,9 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "set.ch"
-#include "setcurs.ch"
-#include "cti.ch"
+#include "ci_set.ch"
+#include "ci_setcurs.ch"
+#include "ci_cti.ch"
 
 static cti_mainloop_level:=0
 static cti_initialized := FALSE

@@ -5,12 +5,12 @@
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
 
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
-#include <clip-fw/FiveWin.ch>
-#include <clip-fw/Constant.ch>
-#include <Set.ch>
-#include <Inkey.ch>
+#include <fwin/ci_FiveWin.ch>
+#include <fwin/ci_Constant.ch>
+#include <ci_Set.ch>
+#include <ci_Inkey.ch>
 
 #define ES_PASSWORD         32   // 0x020
 #define GWL_STYLE          -16

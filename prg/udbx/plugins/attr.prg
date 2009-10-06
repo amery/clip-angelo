@@ -4,7 +4,7 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 static mtype, atype, ltype, itype, aCls, aNCls, aRef, aSRef, aOCnt, aSCnt, aVCnt
 

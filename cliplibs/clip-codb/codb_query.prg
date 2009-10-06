@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <codb_dbf.ch>
+#include <ci_codb_dbf.ch>
 
 /** Library for database manipulation in console mode */
 /*
@@ -18,12 +18,12 @@
 	- export/import
 	- use file content as command list
 	- SET DBF CHARSET TO <>
-	- Ошибка обновления имени метаобъекта в codb
-	- Документация по утилите codb отдельно
-	- Использование ; в строках
+	- О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ codb
+	- О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ codb О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+	- О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ ; О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	- DROP DATABASE <db>
-	
-	- При поиске по неиндексированным полям выдаёт все записи (в codb_ab ищет правильно!)
+
+	- О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ (О©╫ codb_ab О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫!)
 */
 
 /* First key list */
@@ -41,39 +41,39 @@ static cmdList := { ;
 	{ "show", 		@ec_show(), 	"Show list of metaobjects" }, ;
 	{ "use",  		@ec_use(),  	"Open database" } ;
 }
-	
+
 /* Metaclasses types */
 static aMClasses := { ;
-	{'databases', 	'', 	   'Show all available databases'} , ; 
-	{'depositories', 'DEPOSIT', 'Show all depositories'} , ; 
-	{'extents', 	'EXTENT',  'Show all extended attributes'} , ; 
-	{'attributes', 	'ATTR',    'Show all attributes for classes'} , ; 
-	{'counters',	'COUNTER', 'Show all counters'} , ; 
-	{'indexes', 	'INDEX',   'Show all indexes'} , ; 
-	{'classes', 	'CLASS',   'Show all classes'} , ; 
-	{'tcolumns', 	'TCOLUMN', 'Show all columns for views'} , ; 
-	{'tviews', 		'TVIEW',   'Show all views'} , ; 
-	{'reports', 	'REPORT',  'Show all reports'} , ; 
-	{'plugins', 	'PLUGINS', 'Show all database plugins'} , ; 
-	{'users', 		'USER',    'Show all database users'} , ; 
-	{'groups', 		'GROUP',   'Show all database user groups'},  ; 
-	{'statistics', 	'',        'Counts all metaclass objects'}  ; 
+	{'databases', 	'', 	   'Show all available databases'} , ;
+	{'depositories', 'DEPOSIT', 'Show all depositories'} , ;
+	{'extents', 	'EXTENT',  'Show all extended attributes'} , ;
+	{'attributes', 	'ATTR',    'Show all attributes for classes'} , ;
+	{'counters',	'COUNTER', 'Show all counters'} , ;
+	{'indexes', 	'INDEX',   'Show all indexes'} , ;
+	{'classes', 	'CLASS',   'Show all classes'} , ;
+	{'tcolumns', 	'TCOLUMN', 'Show all columns for views'} , ;
+	{'tviews', 		'TVIEW',   'Show all views'} , ;
+	{'reports', 	'REPORT',  'Show all reports'} , ;
+	{'plugins', 	'PLUGINS', 'Show all database plugins'} , ;
+	{'users', 		'USER',    'Show all database users'} , ;
+	{'groups', 		'GROUP',   'Show all database user groups'},  ;
+	{'statistics', 	'',        'Counts all metaclass objects'}  ;
 }
 
 /* Metaclasses name for 'DESCRIBE' */
 static aMClassesDesc := { ;
-	{'depository', 	'DEPOSIT', 'Show depository metaclass structure'} , ; 
-	{'extent', 		'EXTENT',  'Show extended attribute metaclass structure'} , ; 
-	{'attribute', 	'ATTR',    'Show attribute metaclass structure'} , ; 
-	{'counter',		'COUNTER', 'Show counter metaclass structure'} , ; 
-	{'index', 		'INDEX',   'Show index metaclass structure'} , ; 
-	{'class', 		'CLASS',   'Show class metaclass structure'} , ; 
-	{'tcolumn', 	'TCOLUMN', 'Show column for view metaclass structure'} , ; 
-	{'tview', 		'TVIEW',   'Show view metaclass structure'} , ; 
-	{'report', 		'REPORT',  'Show report metaclass structure'} , ; 
-	{'plugin', 		'PLUGINS', 'Show database plugin metaclass structure'} , ; 
-	{'user', 		'USER',    'Show database user metaclass structure'} , ; 
-	{'group', 		'GROUP',   'Show database user group metaclass structure'}  ; 
+	{'depository', 	'DEPOSIT', 'Show depository metaclass structure'} , ;
+	{'extent', 		'EXTENT',  'Show extended attribute metaclass structure'} , ;
+	{'attribute', 	'ATTR',    'Show attribute metaclass structure'} , ;
+	{'counter',		'COUNTER', 'Show counter metaclass structure'} , ;
+	{'index', 		'INDEX',   'Show index metaclass structure'} , ;
+	{'class', 		'CLASS',   'Show class metaclass structure'} , ;
+	{'tcolumn', 	'TCOLUMN', 'Show column for view metaclass structure'} , ;
+	{'tview', 		'TVIEW',   'Show view metaclass structure'} , ;
+	{'report', 		'REPORT',  'Show report metaclass structure'} , ;
+	{'plugin', 		'PLUGINS', 'Show database plugin metaclass structure'} , ;
+	{'user', 		'USER',    'Show database user metaclass structure'} , ;
+	{'group', 		'GROUP',   'Show database user group metaclass structure'}  ;
 }
 
 /* Attributes of metaclasses */
@@ -94,15 +94,15 @@ static codbMetaAttr := { ;
 
 function CODB_Client( connect_string )
 	local obj
-	
+
 	obj := map()
 	obj:className := "CODB_Client"
 	obj:error := NIL
-	
+
 	obj:connect_string := connect_string
 	obj:dict := NIL
 	obj:dep  := NIL
-	
+
 	obj:dict_list := array(0)
 	obj:dep_list  := array(0)
 
@@ -110,15 +110,15 @@ return obj
 
 function CODB_Result( data )
 	local obj
-	
+
 	obj := map()
 	obj:className := "CODB_Result"
-	
+
 	obj:answer    := "OK"
 	obj:fields    := array(0)
 	obj:data      := data
-	
-	obj:error     := NIL 
+
+	obj:error     := NIL
 	obj:columns   := 0
 	obj:rows      := 0
 	obj:affected  := map() // Affected records
@@ -126,25 +126,25 @@ function CODB_Result( data )
 	obj:affected:class := ''
 	obj:affected:list  := array(0)
 	obj:affected:db    := ''
-	
+
 return obj
 
 /* Connect to server */
 function codb_connect( connect_string )
 	local oErr, o, dbh, dbl, i, pos, cDB, cDBPath, cDBDesc, curDB
 	local dict, depl, j, dep, dep_new, dep_content, name
-	
+
 	o := CODB_Client(connect_string)
 	set deleted on
 	set translate path off
-	
+
 	oErr := ErrorBlock({|e| break(e) })
 
 	if .not. isFunction("codb_needDepository")
                 o:error := 'CODB library not linked'
                 return o
         endif
-	
+
 	begin sequence
 		dbh := codbListNew()
 		if val(dbh:error) > 0
@@ -160,12 +160,12 @@ function codb_connect( connect_string )
 			if .not. val(dict:error) > 0 .and. dict:open()
 				cDBPath := iif(empty(dict),"",dict:path)
 				cDBDesc := substr(i,pos+1)
-				
+
 				// Append to databases list
 				dep_new := NIL
 				aadd(o:dict_list, { cDB, dict, dep_new, cDBPath, cDBDesc } )
 				curDB := len(o:dict_list)
-			
+
 				// Fill depositories list
 				depl := dict:select("DEPOSIT")
 				for j in depl
@@ -191,7 +191,7 @@ function codb_connect( connect_string )
 		o:error = "Error open database list: "+errorMessage(oErr)
 		return o
 	end sequence
-	
+
 return o
 
 /* Internal function for setting up db by its name */
@@ -199,7 +199,7 @@ static function __set_db(self, db)
 	local p, i
 
 //	?? "Set DB:", db, chr(10)
-	
+
 	if empty(db)
 		return .F.
 	endif
@@ -224,9 +224,9 @@ return .F.
 /* Close connection to server */
 function codb_close( self )
 	local i
-	//?? "CLOSE DATABASE.&\n"	
+	//?? "CLOSE DATABASE.&\n"
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
-		return .F.		
+		return .F.
 	endif
 
 	// Close depositories if open
@@ -238,7 +238,7 @@ function codb_close( self )
 	for i=1 to len(self:dict_list)
 		self:dict_list[i][2]:close()
 	next
-	
+
 	set deleted off
 
 return .T.
@@ -246,7 +246,7 @@ return .T.
 /* Execute database command */
 function codb_execute( self, cmd, db, files )
 	local oErr, a:=array(0), r, i, key, ret, is_string:=.F., is_comment:=.F., p, part:= '', pos
-	
+
 	// Create result object
 	r := CODB_Result()
 	r:affected:db := db
@@ -254,25 +254,25 @@ function codb_execute( self, cmd, db, files )
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
 		r:answer := "ERROR"
 		r:error  := "Connection is not open. Use 'codb_connect()' first."
-		return r		
+		return r
 	endif
 
 	// Set database
 	__set_db(self, db)
-		
+
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		if empty(cmd)
 			r:answer := "ERROR"
 			r:error  := NIL
-			return r		
+			return r
 		endif
-		
+
 		if right(cmd,1) == ';'
 			cmd := left(cmd,len(cmd)-1) // Remove trailing ';'
 		endif
-		
+
 		cmd  := alltrim(cmd)
 		//?? "CMD(C):",cmd,chr(10)
 		for i:=1 to len(cmd)
@@ -284,20 +284,20 @@ function codb_execute( self, cmd, db, files )
 				endif
 				loop
 			endif
-			
+
 			if is_string
 				part := part + cmd[i]
 				loop
 			endif
-			
+
 			// Process comments
-			if cmd[i] == '#' 
+			if cmd[i] == '#'
 				is_comment := .T.
 			endif
 			if cmd[i] == "&\n" .and. is_comment
 				is_comment := .F.
 			endif
-			
+
 			if cmd[i] $  " &\t&\n,"
 				if i>1 .and. .not. cmd[i-1] $  " &\t&\n,"
 					aadd( a, part )
@@ -317,9 +317,9 @@ function codb_execute( self, cmd, db, files )
 				a[i] := substr(a[i],2,len(a[i])-2)
 			endif
 		next
-		
+
 		key := a[1]
-		
+
 		// Lookup command
 		for i in cmdList
 			if lower(key) == i[1]
@@ -363,12 +363,12 @@ function codb_get_object( self, id, db )
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
 		r:answer := "ERROR"
 		r:error  := "Connection is not open. Use 'codb_connect()' first."
-		return r		
+		return r
 	endif
 
 	// Set database
 	__set_db(self, db)
-	
+
 	ret := ec_get_object( self, id, r)
 
 	if ret != NIL
@@ -386,12 +386,12 @@ function codb_put_object( self, obj, db, class )
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
 		r:answer := "ERROR"
 		r:error  := "Connection is not open. Use 'codb_connect()' first."
-		return r		
+		return r
 	endif
 
 	// Set database
 	__set_db(self, db)
-	
+
 	// Translate class name to its ID
 	class := clip("codb_metaIdByName", self:dep, class, "CLASS")
 
@@ -412,12 +412,12 @@ function codb_get_metaobject( self, id, db )
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
 		r:answer := "ERROR"
 		r:error  := "Connection is not open. Use 'codb_connect()' first."
-		return r		
+		return r
 	endif
 
 	// Set database
 	__set_db(self, db)
-	
+
 	ret := ec_get_metaobject( self, id, r)
 
 	if ret != NIL
@@ -435,12 +435,12 @@ function codb_put_metaobject( self, obj, db, class )
 	if valtype(self) != 'O' .or. ( "CLASSNAME" $ self .and. self:className != "CODB_Client")
 		r:answer := "ERROR"
 		r:error  := "Connection is not open. Use 'codb_connect()' first."
-		return r		
+		return r
 	endif
 
 	// Set database
 	__set_db(self, db)
-	
+
 	ret := ec_put_metaobject( self, obj, r, , class)
 
 	if ret != NIL
@@ -475,7 +475,7 @@ static function ec_help( self, cmd, res, files )
 		for i in cmdList
 			aadd( res:data, { i[1], i[3] } )
 		next
-		
+
 	else
 		switch lower(cmd[2])
 			case 'help'
@@ -519,23 +519,23 @@ return NIL
 /* 'SHOW' command */
 static function ec_show( self, cmd, res, files )
 	local oErr, dbh, dbl, i, j, pos, d:=self:dict, o, class, c_db
-	
+
 	if len(cmd) == 1
 		return "Metaclass name is missed"
 	endif
-	
+
 	if lower(cmd[2]) != 'databases' .and. empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		if lower(cmd[2]) == 'databases'	// TODO: Show all databases
 			if len(self:dict_list) > 0
 				res:fields := {"Name","Path","Description"}
 				res:data   := array(0)
-				
+
 				for i in self:dict_list
 					aadd( res:data, { i[1], i[4], i[5] } )
 				next
@@ -592,17 +592,17 @@ return NIL
 /* 'DESCRIBE' command */
 static function ec_describe( self, cmd, res, files )
 	local oErr, dbh, dbl, i, j, pos, d:=self:dict, o, class
-	
+
 	if len(cmd) == 1
 		return "Class name is missed"
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		// Scan metaclass names
 		j := ascan(aMClassesDesc, {|e| e[1]==lower(cmd[2]) })
@@ -612,13 +612,13 @@ static function ec_describe( self, cmd, res, files )
 			res:fields := {"Name","Type","Length","Transform","Default"}
 			res:data   := array(0)
 			class := codbMetaAttr[pos][2]
-			
+
 			for i in class
 				aadd( res:data, {i[1], i[2], i[3], i[5], i[6]} )
 			next
 			return
 		endif
-		
+
 		// Scan ordinary classes
 		dbl := d:select("CLASS",,cmd[2])
 		if val(d:error) > 0
@@ -633,7 +633,7 @@ static function ec_describe( self, cmd, res, files )
 		endif
 		res:fields := {"Name","Type","Length","Transform","Default"}
 		res:data   := array(0)
-		
+
 		for i in j:attr_list
 			o := d:getValue(i)
 			// TODO: need more ordinary class structure information
@@ -648,20 +648,20 @@ return NIL
 /* Get raw object*/
 static function ec_get_object( self, id, res, files, d )
 	local oErr, cEnt, dbl
-	
+
 	if valtype(d) == 'O'
 		cEnt := 'metaobject'
 	else
 		d := self:dep
 		cEnt := 'object'
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		// Get object content
 		dbl := d:getValue(id)
@@ -679,7 +679,7 @@ return NIL
 
 /* Get raw metaobject*/
 static function ec_get_metaobject( self, id, res, files )
-	
+
 	ec_get_object( self, id, res, files, self:dict )
 
 return NIL
@@ -694,19 +694,19 @@ static function ec_put_object( self, obj, res, files, d, class )
 		d := self:dep
 		cEnt := 'object'
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		if "ID" $ obj .and. .not. empty(obj:id)
 			// Update content
 			if d:update(obj)
 				id := obj:id
-			else 
+			else
 				id := NIL
 			endif
 			res:affected:type  := 'M'
@@ -740,43 +740,43 @@ return ec_put_object( self, obj, res, files, self:dict, class )
 static function ec_get( self, cmd, res, files, d )
 	local oErr, k, p, v, class:="", attr, cEnt, oClass, j, oAttr, dbl
 	local aKeys, aNames, i
-	
+
 	if valtype(d) == 'O'
 		cEnt := 'metaobject'
 	else
 		d := self:dep
 		cEnt := 'object'
 	endif
-	
+
 	if len(cmd) == 1
 		return "ID is missed"
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		// Show object content
 		dbl := d:getValue(cmd[2])
-		
+
 		//?? dbl,chr(10)
-		
+
 		if val(d:error) > 0
 			return "Cannot get "+cEnt+" with id "+cmd[2]+": "+d:error
 		endif
-		
+
 		if '__VERSION' $ dbl .and. dbl:__version < 0
 			return "Cannot get "+cEnt+" with id "+cmd[2]+": "+cEnt+" was deleted"
 		endif
-		
+
 		res:fields := {"Attribute","Value"}
 		res:data   := array(0)
-		
+
 		//?? dbl,chr(10)
-		
+
 		aKeys := mapkeys(dbl)
 		aNames := { "__version","__meta","__crc32" }
 
@@ -787,7 +787,7 @@ static function ec_get( self, cmd, res, files, d )
 				aadd( res:data, { "__meta", class } )
 				for i:=1 to len(codbMetaAttr[p][2])
 				    attr := codbMetaAttr[p][2][i]
-				    if attr[1] $ dbl	
+				    if attr[1] $ dbl
 					aadd( res:data, { lower(attr[1]), dbl[attr[1]] } )
 				    endif
 				next
@@ -797,7 +797,7 @@ static function ec_get( self, cmd, res, files, d )
 			if .not. "CLASS_ID" $ dbl
 				return "Internal error: no 'class_id' in object"
 			endif
-			
+
 			// Append to aNames real attribute names
 			oClass := self:dict:getValue(dbl:class_id)
 			for j in oClass:attr_list
@@ -806,10 +806,10 @@ static function ec_get( self, cmd, res, files, d )
 					aadd(aNames, oAttr:name)
 				endif
 			next
-			
+
 			// Process all keys
 			for i:=1 to len(aNames) //aKeys)
-				p := ascan(aKeys, {|e| e == hashstr(upper(aNames[i])) })		
+				p := ascan(aKeys, {|e| e == hashstr(upper(aNames[i])) })
 				if p > 0
 					k := aNames[i]
 					v := dbl[upper(k)]
@@ -825,10 +825,10 @@ static function ec_get( self, cmd, res, files, d )
 				aadd( res:data, { k, v } )
 			next
 		endif
-			
+
 		// Sort fields
 		res:data := asort(res:data,,, {|a,b| a[1] < b[1] })
-		
+
 	recover using oErr
 		return "Error get '"+cmd[2]+"': "+oErr:description
 	end sequence
@@ -837,39 +837,39 @@ return NIL
 
 /* 'METAGET' command */
 static function ec_metaget( self, cmd, res, files )
-	
+
 	ec_get( self, cmd, res, files, self:dict )
-	
+
 return NIL
 
 /* 'PUT' command */
 static function ec_put( self, cmd, res, files, d, metaclass )
 	local oErr, cEnt, obj:=map(), i, e, name, value, shift:=0
 	local pos, pos2, class_id, class_name, j, cClass, cValue, cFile, nId
-	
+
 	if valtype(d) == 'O'
 		cEnt := 'metaobject'
 	else
 		d := self:dep
 		cEnt := 'object'
 	endif
-	
+
 	if len(cmd) == 1
 		return cEnt+" is empty"
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		//?? cmd,chr(10)
 		for i=3 to len(cmd)
-			
+
 			e := cmd[i]
-			
+
 			// Ignore decorations
 			if e == '=' .or. e == '(' .or. e == ')'
 				shift := shift + 1
@@ -881,9 +881,9 @@ static function ec_put( self, cmd, res, files, d, metaclass )
 			if e[len(e)] == '=' .or. e[len(e)] == ')'
 				e := substr(e, 1, len(e)-1)
 			endif
-			
+
 			//?? '<'+e+'>'+chr(10)
-			
+
 			// Split words by '='
 			pos  := at("=",e)
 			pos2 := at("'",e)
@@ -931,7 +931,7 @@ static function ec_put( self, cmd, res, files, d, metaclass )
 				shift := shift + 1
 				loop
 			endif
-			
+
 			//?? i+shift, (i+shift) % 2, chr(10)
 			if (i+shift) % 2 == 0 // Value
 				value := e
@@ -977,13 +977,13 @@ static function ec_put( self, cmd, res, files, d, metaclass )
 			else // Name
 				name := upper(e)
 			endif
-			
+
 		next
-		
+
 		//res:fields := array(0)
 		//res:data   := NIL
 		//return NIL
-		
+
 		//?? obj, chr(10)
 		// Update content
 		if .not. "ID" $ obj .or. valtype(metaclass) == 'C'
@@ -1009,20 +1009,20 @@ static function ec_put( self, cmd, res, files, d, metaclass )
 				class_name := cmd[2]
 				class_id := clip("codb_metaIdByName",d,cmd[2],"CLASS")
 			endif
-			
+
 			if empty(class_id)
 				return "No class '"+class_name+"'"
 			endif
-			
+
 			//?? "append",obj,class_id,"&\n"
 			//d:padrbody(obj, class_id)
-			
+
 			// TODO: error in '.NOT.' on extents appended
 			nId := d:append(obj, class_id)
 			res:affected:type  := 'C'
 			res:affected:class := class_id
 			res:affected:list  := { nId }
-			
+
 			//?? d:error,chr(10)
 			if .not. empty(d:error)
 				return "Cannot put "+cEnt+": "+d:error
@@ -1031,7 +1031,7 @@ static function ec_put( self, cmd, res, files, d, metaclass )
 			if "CLASS_ID" $ obj
 				obj := d:padrbody(obj, obj:class_id)
 			endif
-			
+
 			d:update(obj)
 			res:affected:type  := 'M'
 			res:affected:class := obj:class_id
@@ -1058,17 +1058,17 @@ return ec_put( self, cmd, res, files, self:dict )
 /* 'DELETE' command */
 static function ec_delete( self, cmd, res, files )
 	local oErr, d:=self:dep, aKeys, k, p, v, dbl, class:="", oList, i
-	
+
 	if len(cmd) == 1
 		return "Id is missed"
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	//?? "delete",cmd[2],chr(10)
 	begin sequence
 		if len(cmd) > 2 .and. lower(cmd[2]) == 'from'
@@ -1089,16 +1089,16 @@ static function ec_delete( self, cmd, res, files )
 			endif
 			oList := { cmd[2] }
 		endif
-		
+
 		// Check values
 		if valtype(oList) != 'A' .or. len(oList) == 0
 			return 'Nothing delete'
 		endif
-		
+
 		res:affected:type  := 'D'
 		res:affected:class := class
 		res:affected:list  := oList
-		
+
 		// Real delete
 		for i in oList
 			dbl := d:delete(i)
@@ -1111,7 +1111,7 @@ static function ec_delete( self, cmd, res, files )
 				endif
 			endif
 		next
-		
+
 	recover using oErr
 		return "Error delete '"+cmd[2]+"': "+oErr:description
 	end sequence
@@ -1120,21 +1120,21 @@ return NIL
 /* 'DROP' command */
 static function ec_drop( self, cmd, res, files )
 	local dbl, oErr, d:=self:dict, j, class, id, dep, aObj:=array(0), o
-	
+
 	if len(cmd) == 1
 		return "Metaobject class is missed"
 	endif
-	
+
 	if len(cmd) < 3
 		return "Type or name is missed"
 	endif
-	
+
 	if empty(d)
 		return "Select database first ('use <DBNAME>')"
 	endif
 
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	//?? "delete",cmd[2],cmd[3],chr(10)
 	begin sequence
 		// Lookup metaobject
@@ -1144,20 +1144,20 @@ static function ec_drop( self, cmd, res, files )
 		endif
 		class := aMClassesDesc[j][2]
 		//?? "CLASS:", class, chr(10)
-		
+
 		dbl := d:select(class,,cmd[3])
 		//?? "OBJECT:", dbl,chr(10)
-				
+
 		if len(dbl) == 0
 			return "Cannot drop "+cmd[2]+" '"+cmd[3]+"': metaobject was not found"
 		else
 			id := dbl[1]
 		endif
-		
+
 		// Delete metaobject
 		dbl := d:delete( id )
-		
-		// For class delete all its objects 
+
+		// For class delete all its objects
 		if class == 'CLASS'
 			dep := self:dep
 			if .not. empty(dep)
@@ -1168,13 +1168,13 @@ static function ec_drop( self, cmd, res, files )
 				next
 			endif
 		endif
-		
+
 		aadd(aObj, id)
-		
+
 		res:affected:type  := 'D'
 		res:affected:class := id
 		res:affected:list  := aObj
-		
+
 		//?? dbl, d:error,chr(10)
 		if .not. empty(d:error)
 			return "Cannot drop object '"+cmd[2]+' '+cmd[3]+"': object not found"
@@ -1189,16 +1189,16 @@ return NIL
 static function ec_create( self, cmd, res, files )
 	local oErr, dbh, d:=map(), dict, desc:='', i
 
-	if len(cmd) < 2 
+	if len(cmd) < 2
 		return "Unknown metaclass name for creation"
 	endif
-	
+
 	i := ascan(aMClassesDesc, {|e| lower(cmd[2]) == e[1] })
 	// Create any metaobject
 	if i > 0
 		return ec_put( self, cmd, res, files, self:dict, aMClassesDesc[i][2] )
 	endif
-	
+
 	if lower(cmd[2]) != "database"
 		return "Unknown type of created metaobject"
 	endif
@@ -1214,20 +1214,20 @@ static function ec_create( self, cmd, res, files )
 	if len(cmd[3]) <> 5
 		return "Database name must be 5 symbols (ex. TST01)"
 	endif
-		
+
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		dbh := codbList():new()
 		if val(dbh:error) > 0
 			return "Cannot open database list: "+dbh:error
 		endif
-	
+
 		d:id   := cmd[3]
 		d:name := desc
 		d:type := "DBF"
 		d:path := cmd[4]
-		
+
 		//?? d, chr(10)
 		if dbh:existId(d:id)
 			return "Database with name '"+d:id+"' is already exists"
@@ -1236,15 +1236,15 @@ static function ec_create( self, cmd, res, files )
 				return "Cannot create database: "+dbh:error
 			endif
 		endif
-		
-		// Open created database. 
+
+		// Open created database.
 		dict := dbh:connect(d:id)
-		
+
 		if .not. val(dict:error) > 0 .and. dict:open()
 			// Append to databases list
 			aadd(self:dict_list, { d:id, dict, NIL, d:path, d:name } )
 		endif
-				
+
 	recover using oErr
 		return "Error create "+cmd[2]+": "+oErr:description
 	end sequence
@@ -1286,26 +1286,26 @@ static function ec_select( self, cmd, res, files )
 	local status:=1, part, o, row, elem, classIds:=array(0)
 	local value, where_condition, field
 	local item, adAttrs:=array(0), oClass, oAttr, z, oId
-	
+
 	if dict == NIL
 		return "Open database first"
 	endif
-	
+
 	if d == NIL
 		return "Open or create depository first"
 	endif
-	
+
 	if len(cmd) < 2
 		return "Attribute list is empty"
 	endif
 
 	// Parse statement
 	for i=2 to len(cmd)
-		if lower(cmd[i]) == 'from' 
+		if lower(cmd[i]) == 'from'
 			status := 2 // classes
 			loop
 		endif
-		if lower(cmd[i]) == 'where' 
+		if lower(cmd[i]) == 'where'
 			status := 3 // where condition(s)
 			loop
 		endif
@@ -1323,13 +1323,13 @@ static function ec_select( self, cmd, res, files )
 //?? "ATTRS:", attrs, chr(10)
 //?? "CLASSES:", classes, chr(10)
 //?? "WHERE:", where, chr(10)
-	
+
 	if len(classes) == 0
 		return "Class(es) is not defined"
 	endif
-	
+
 	oErr := ErrorBlock({|e| break(e) })
-	
+
 	begin sequence
 		// First: expand class names if '*'
 		if classes[1] = '*' // All classes
@@ -1350,7 +1350,7 @@ static function ec_select( self, cmd, res, files )
 				endif
 			next
 		endif
-		
+
 		// Second: insert all fields instead '*'
 		for i=1 to len(attrs)
 			if attrs[i] == '*'
@@ -1384,28 +1384,28 @@ static function ec_select( self, cmd, res, files )
 		next
 		attrs := adAttrs
 		//?? "ATTR+:",attrs,chr(10)
-		
+
 		// Third: fill result with 'where' condition check
 		res:fields := attrs
-		res:data   := array(0)		
-	
+		res:data   := array(0)
+
 		// WHERE preparing, TODO: translate logical operation and quotes
 		where_condition := ''
 		for part in where
 			where_condition += part
 		next
 		//?? where_condition,chr(10)
-		
+
 		for part in classIds
 			//?? "d:select:", part, where_condition, chr(10)
 			dbl := d:select(part,,,where_condition)
-			
+
 			//?? part,":",len(dbl), dbl,chr(10)
-			
+
 			if val(d:error) > 0
 				return "Cannot get object list for class id '"+part+"': "+d:error
 			endif
-		
+
 			// Fill attributes columns
 			for i in dbl
 				row := array(len(attrs))

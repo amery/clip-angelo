@@ -8,9 +8,9 @@
 /* CTI_APPLICATION - main object, contains all windows and other objects. */
 /* This class usually have only one object */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
+#include "ci_setcurs.ch"
 
 #define SUPERCLASS	CTI_WIDGET
 

@@ -1,4 +1,4 @@
-#include <clip-gtk2.ch>
+#include <ci_clip-gtk2.ch>
 
 #define TARGET_STRING	0
 #define TARGET_ROOTWIN	1
@@ -9,7 +9,7 @@ static trashcan_open := NIL           /* GdkPixmap */
 static trashcan_open_mask := NIL      /* GdkPixmap */
 static trashcan_closed := NIL         /* GdkPixmap */
 static trashcan_closed_mask := NIL    /* GdkPixmap */
-
+Static time
 static have_drag := FALSE
 
 

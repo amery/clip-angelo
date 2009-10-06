@@ -4,8 +4,8 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "edit.ch"
-#include "memoedit.ch"
+#include "ci_edit.ch"
+#include "ci_memoedit.ch"
 
 
 function memoedit(str, ntop, nleft, nbot, nright, mode, user_func,;

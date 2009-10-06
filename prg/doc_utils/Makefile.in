@@ -1,44 +1,43 @@
 #
 #                                            prg/doc_utils/Makefile.in
 #
-Local_Depend =
+BINS 				= 		$(sort 								\
+										ftosgml$(EXESUFF) 	\
+										ctosgml$(EXESUFF) 	\
+							)
+export
 
+######################################################################################
+###################################################################################### local rules
 
-#CLIP	= $(CLIPROOT)/bin/clip
-#CLIPFLAGS = -o$@ -v2 -l -w -O -n -I .. -I $(CLIPROOT)/include
-CLIPLIBS  =
+all : Makefile $(OBJS) $(BINS)
 
-LIBS  =
-OBJS  =
-
-.SUFFIXES: .prg .o
-
-all : Makefile ftosgml$(EXESUFF) ctosgml$(EXESUFF)
+hash1 :
 
 cfg :
 
 ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
-		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
 	else 																\
 		$(Trace_clip) 		;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
 ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
-		$(CLIP) $(CLIPFLAGS) -o$@ -g -e $< ; 				\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
 	else 																\
 		$(Trace_clip) 		;										\
-		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
+		$(CLIP) $(CLIPFLAGS) -o$@ -eslN $< ;				\
 	fi
 
 include $(Makefile_o_in)
 
 cleanc :
-	$(E_rm)rm -rf$(V) *.c *.b ftosgml$(EXESUFF) ctosgml$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.c *.b $(BINS)
 	$(E_rm)rm -rf$(V) sgml/*
 
 distcleanc :

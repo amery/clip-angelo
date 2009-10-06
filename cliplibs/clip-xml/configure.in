@@ -2,62 +2,21 @@
 
 function exitf()
 {
-	rm -f test_expat.c test_expat
+	rm -f$V test_expat.c test_expat
 	exit $1
 }
 
 Dir_Lib=$(Check_Library 		expat 					.so clip-xml 			Yes 	/usr/lib$C64 		"libexpat-devel-xx-$ARCH.(rpm/deb)")
-Dir_Lib="$Dir_Lib/libexpat.so"
-if [ "$Dir_Lib" -nt ./configure.in ] ; then
-	touch Makefile.in
-fi
-#cp Makefile.empty Makefile
-cat <<EOF >test_expat.c
-
-#include <stdio.h>
-#include "expat.h"
-
-static void
-startElement(void *userData, const char *name, const char **atts)
-{
-}
-
-static void
-endElement(void *userData, const char *name)
-{
-}
-
-int
-main(int argc, char *argv[])
-{
-  char buf[BUFSIZ];
-  XML_Parser parser = XML_ParserCreate(NULL);
-  int done;
-  int depth = 0;
-  XML_SetUserData(parser, &depth);
-  XML_SetElementHandler(parser, startElement, endElement);
-  done = XML_STATUS_ERROR;
-  XML_ParserFree(parser);
-  return 0;
-}
-
-EOF
-
 EXPAT_EXIST=''
 
-gcc -o test_expat test_expat.c -lexpat >/dev/null 2>&1 && EXPAT_EXIST="yes"]
-
-if [ -z $EXPAT_EXIST ]
-then
-	echo "Warning: package expat-dev not installed or have old version"
+gcc -o test_expat test/test_expat.c -L$Dir_Lib -lexpat
+if [ $? != 0 ] ; then
+	echo "Warning: package expat-dev not installed or have old version" >&2
 	exitf 1
 fi
 echo "Dir_Lib = $Dir_Lib" >>Makefile.ini
 
-cat Makefile.ini 	>Makefile
-cat Makefile.in 	>>Makefile
+exitf 0
 #!/bin/sh
 
-cat Makefile.ini Makefile.in >Makefile
-
-exitf 0
+touch configure.ok

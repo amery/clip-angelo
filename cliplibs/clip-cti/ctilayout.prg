@@ -9,9 +9,9 @@
 /*  position  within  it's  window,  relative  to it's upper left hand   */
 /*  corner. The position of the widgets can be changed dynamically.      */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "setcurs.ch"
+#include "ci_setcurs.ch"
 
 #define	SUPERCLASS	CTI_CONTAINER
 

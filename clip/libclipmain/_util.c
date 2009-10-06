@@ -565,7 +565,7 @@
 
  */
 
-#include "clipcfg.h"
+#include "ci_clipcfg.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -582,14 +582,14 @@
 #endif
 #include <errno.h>
 
-#include "clip.h"
-#include "error.ch"
-#include "rational.h"
-#include "coll.h"
-#include "hashcode.h"
-#include "../libclipscreen/charset.h"
-#include "../libclipscreen/screen.h"
-#include "../libcliptask/task.h"
+#include "ci_clip.h"
+#include "ci_error.ch"
+#include "ci_rational.h"
+#include "ci_coll.h"
+#include "ci_hashcode.h"
+#include "../libclipscreen/ci_charset.h"
+#include "../libclipscreen/ci_screen.h"
+#include "../libcliptask/ci_task.h"
 
 extern char *CLIPROOT;
 

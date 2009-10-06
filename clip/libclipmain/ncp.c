@@ -6,10 +6,10 @@
 	$Log: ncp.c,v $
 	Revision 1.1  2006/06/22 19:01:35  itk
 	uri: initial
-	
+
 	Revision 1.6  2004/05/19 08:32:18  clip
 	rust: fix for ./configure -m
-	
+
 	Revision 1.5  2003/09/02 14:27:42  clip
 	changes for MINGW from
 	Mauricio Abre <maurifull@datafull.com>
@@ -36,19 +36,19 @@
 */
 
 #include <string.h>
-#include "clip.h"
+#include "ci_clip.h"
 
 #include <errno.h>
 #include <fcntl.h>
 
-#include "ncp.h"
+#include "ci_ncp.h"
 
 #ifdef USE_NCPFS
 
 #include <sys/ioctl.h>
 #include <unistd.h>
 
-#include "ncp_fs.h"
+#include "ci_ncp_fs.h"
 
 
 int

@@ -50,14 +50,14 @@
  *
  *      There are a few HOT Keys while using the Adder:
  *
- *             <D>ecimals д change # of decimals
- *             <M>ove     д the Adder from right display to left
- *             <T>ape     д turn the Tape Display On or Off
- *             <S>croll   д the tape display
- *             <DEL> дддбдд 1st Clear entry
- *                      юдд 2nd Clear ADDER
- *             <ESC>      д Quit
- *             <F10>      д return a <TOTAL> to the active get
+ *             <D>ecimals О©╫ change # of decimals
+ *             <M>ove     О©╫ the Adder from right display to left
+ *             <T>ape     О©╫ turn the Tape Display On or Off
+ *             <S>croll   О©╫ the tape display
+ *             <DEL> О©╫О©╫О©╫О©╫О©╫О©╫ 1st Clear entry
+ *                      О©╫О©╫О©╫ 2nd Clear ADDER
+ *             <ESC>      О©╫ Quit
+ *             <F10>      О©╫ return a <TOTAL> to the active get
  *
  *
  *      A couple of notes about the adder:
@@ -107,9 +107,9 @@
  *  $END$
  */
 
-#include 'Inkey.ch'
-#include 'SetCurs.ch'
-#include 'achoice.ch'
+#include 'ci_Inkey.ch'
+#include 'ci_SetCurs.ch'
+#include 'ci_achoice.ch'
 
 // Set up manifest constants to access the window colors in the array aWinColor
 #define W_BORDER 1
@@ -137,8 +137,8 @@
 #define K_MULTIPLY 42
 #define K_DIVIDE   47
 #define K_ZERO     48
-#define B_DOUBLE 'им╩╨╪мх╨ '
-#define B_SINGLE 'зд©ЁыдюЁ '
+#define B_DOUBLE 'О©╫м╩О©╫О©╫О©╫х╨ '
+#define B_SINGLE 'О©╫д©О©╫О©╫О©╫О©╫ '
 
 #undef CRLF
 #define CRLF CHR(13)+CHR(10)
@@ -246,21 +246,21 @@ STATIC lAdderOpen := .F.,                                                    ;
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: FT_Adder()            Docs: Keith A. Wire                  Ё
-  Ё  Description: Pop Up Adder / Calculator with Tape Display                Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:18:40am            Time updated: Ч11:18:40am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё        Notes: To make FT_Adder() pop up from any wait state in your      Ё
-  Ё             : application just insert the line:                          Ё
-  Ё             :   SET KEY K_ALT_A  TO FT_Adder                             Ё
-  Ё             : at the top of your application                             Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: FT_Adder()            Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Pop Up Adder / Calculator with Tape Display                О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:18:40am            Time updated: О©╫11:18:40am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫        Notes: To make FT_Adder() pop up from any wait state in your      О©╫
+  О©╫             : application just insert the line:                          О©╫
+  О©╫             :   SET KEY K_ALT_A  TO FT_Adder                             О©╫
+  О©╫             : at the top of your application                             О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 FUNCTION FT_Adder()
 
@@ -433,38 +433,38 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftAddScreen()        Docs: Keith A. Wire                  Ё
-  Ё  Description: Display the Adder                                          Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:24:29am            Time updated: Ч11:24:29am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftAddScreen()        Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display the Adder                                          О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:24:29am            Time updated: О©╫11:24:29am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftAddScreen(aAdder)
   LOCAL nCol
   _ftPushWin(2+nTopOS,2+nAddSpace,22+nTopOS,30+nAddSpace,'   Adder   ',      ;
           '<F-1> for Help',,B_DOUBLE)
   nCol := 5+nAddSpace
-  @  7+nTopOS, nCol SAY '      зддд© зддд© зддд©'
-  @  8+nTopOS, nCol SAY '      Ё   Ё Ё   Ё Ё   Ё'
-  @  9+nTopOS, nCol SAY '      юддды юддды юддды'
-  @ 10+nTopOS, nCol SAY 'зддд© зддд© зддд© зддд©'
-  @ 11+nTopOS, nCol SAY 'Ё   Ё Ё   Ё Ё   Ё Ё   Ё'
-  @ 12+nTopOS, nCol SAY 'юддды юддды юддды Ё   Ё'
-  @ 13+nTopOS, nCol SAY 'зддд© зддд© зддд© Ё   Ё'
-  @ 14+nTopOS, nCol SAY 'Ё   Ё Ё   Ё Ё   Ё Ё   Ё'
-  @ 15+nTopOS, nCol SAY 'юддды юддды юддды юддды'
-  @ 16+nTopOS, nCol SAY 'зддд© зддд© зддд© зддд©'
-  @ 17+nTopOS, nCol SAY 'Ё   Ё Ё   Ё Ё   Ё Ё   Ё'
-  @ 18+nTopOS, nCol SAY 'юддды юддды юддды Ё   Ё'
-  @ 19+nTopOS, nCol SAY 'зддддддддд© зддд© Ё   Ё'
-  @ 20+nTopOS, nCol SAY 'Ё         Ё Ё   Ё Ё   Ё'
-  @ 21+nTopOS, nCol SAY 'юддддддддды юддды юддды'
+  @  7+nTopOS, nCol SAY '      О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д©'
+  @  8+nTopOS, nCol SAY '      О©╫   О©╫ О©╫   О©╫ О©╫   О©╫'
+  @  9+nTopOS, nCol SAY '      О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫'
+  @ 10+nTopOS, nCol SAY 'О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д©'
+  @ 11+nTopOS, nCol SAY 'О©╫   О©╫ О©╫   О©╫ О©╫   О©╫ О©╫   О©╫'
+  @ 12+nTopOS, nCol SAY 'О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫   О©╫'
+  @ 13+nTopOS, nCol SAY 'О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫   О©╫'
+  @ 14+nTopOS, nCol SAY 'О©╫   О©╫ О©╫   О©╫ О©╫   О©╫ О©╫   О©╫'
+  @ 15+nTopOS, nCol SAY 'О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫'
+  @ 16+nTopOS, nCol SAY 'О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫О©╫О©╫д©'
+  @ 17+nTopOS, nCol SAY 'О©╫   О©╫ О©╫   О©╫ О©╫   О©╫ О©╫   О©╫'
+  @ 18+nTopOS, nCol SAY 'О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫   О©╫'
+  @ 19+nTopOS, nCol SAY 'О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д© О©╫О©╫О©╫д© О©╫   О©╫'
+  @ 20+nTopOS, nCol SAY 'О©╫         О©╫ О©╫   О©╫ О©╫   О©╫'
+  @ 21+nTopOS, nCol SAY 'О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫'
   _ftSetWinColor(W_CURR,W_TITLE)
   nCol := 7+nAddSpace
   @ 11+nTopOS, nCol SAY '7'
@@ -493,18 +493,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftChangeDec()        Docs: Keith A. Wire                  Ё
-  Ё  Description: Change the decimal position in the display                 Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:25:17am            Time updated: Ч11:25:17am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nNumDec                                                    Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftChangeDec()        Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Change the decimal position in the display                 О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:25:17am            Time updated: О©╫11:25:17am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nNumDec                                                    О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftChangeDec(aAdder, nNumDec)
 
@@ -535,17 +535,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftDispTotal()        Docs: Keith A. Wire                  Ё
-  Ё  Description: Display total number to Adder Window                       Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:25:58am            Time updated: Ч11:25:58am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftDispTotal()        Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display total number to Adder Window                       О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:25:58am            Time updated: О©╫11:25:58am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftDispTotal(aAdder)
 
@@ -571,17 +571,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftDispSubTot()       Docs: Keith A. Wire                  Ё
-  Ё  Description: Display subtotal number                                    Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:26:31am            Time updated: Ч11:26:31am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftDispSubTot()       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display subtotal number                                    О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:26:31am            Time updated: О©╫11:26:31am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftDispSubTot(aAdder)
 
@@ -605,18 +605,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftProcessNumb()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Act on NUMBER key pressed                                  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 11:38:34am            Time updated: Ч11:38:34am            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nKey                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftProcessNumb()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Act on NUMBER key pressed                                  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 11:38:34am            Time updated: О©╫11:38:34am            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nKey                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftProcessNumb(aAdder, nKey)
   LOCAL nNum
@@ -652,17 +652,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftAddTotal()         Docs: Keith A. Wire                  Ё
-  Ё  Description: Enter key - SUBTOTAL\TOTAL                                 Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:05:29pm            Time updated: Ч12:05:29pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftAddTotal()         Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Enter key - SUBTOTAL\TOTAL                                 О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:05:29pm            Time updated: О©╫12:05:29pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftAddTotal(aAdder)
   _ftEraseTotSubTot(aAdder)
@@ -738,18 +738,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftAddSub()           Docs: Keith A. Wire                  Ё
-  Ё  Description: Process + or - keypress                                    Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:06:13pm            Time updated: Ч12:06:13pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nKey                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftAddSub()           Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Process + or - keypress                                    О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:06:13pm            Time updated: О©╫12:06:13pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nKey                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftAddSub(aAdder, nKey)
 
@@ -795,18 +795,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftMultDiv()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Process * or / keypress                                    Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:06:43pm            Time updated: Ч12:06:43pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nKey                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftMultDiv()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Process * or / keypress                                    О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:06:43pm            Time updated: О©╫12:06:43pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nKey                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftMultDiv(aAdder, nKey)
 
@@ -856,17 +856,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftAddHelp            Docs: Keith A. Wire                  Ё
-  Ё  Description: Help window                                                Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:07:07pm            Time updated: Ч12:07:07pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftAddHelp            Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Help window                                                О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:07:07pm            Time updated: О©╫12:07:07pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftAddHelp
 
@@ -879,14 +879,14 @@ STATIC FUNCTION _ftAddHelp
                  'adder is Totaled. When multiplying or dividing the '      +;
                  '<ENTER> is a Total the first time pressed.' + CRLF + CRLF +;
                  'Hot Keys:'                                           +CRLF+;
-                 '         <D>ecimals д change # of decimals'          +CRLF+;
-                 '         <M>ove     д the Adder from right to left'  +CRLF+;
-                 '         <T>ape     д turn Tape Display On or Off'   +CRLF+;
-                 '         <S>croll   д the tape display'       + CRLF +CRLF+;
-                 '         <DEL> дддбдд 1st Clear entry'               +CRLF+;
-                 '                  юдд 2nd Clear ADDER'               +CRLF+;
-                 '         <ESC>      д Quit'                          +CRLF+;
-                 '         <F10>      д return a <TOTAL> to the active get'
+                 '         <D>ecimals О©╫ change # of decimals'          +CRLF+;
+                 '         <M>ove     О©╫ the Adder from right to left'  +CRLF+;
+                 '         <T>ape     О©╫ turn Tape Display On or Off'   +CRLF+;
+                 '         <S>croll   О©╫ the tape display'       + CRLF +CRLF+;
+                 '         <DEL> О©╫О©╫О©╫О©╫О©╫О©╫ 1st Clear entry'               +CRLF+;
+                 '                  О©╫О©╫О©╫ 2nd Clear ADDER'               +CRLF+;
+                 '         <ESC>      О©╫ Quit'                          +CRLF+;
+                 '         <F10>      О©╫ return a <TOTAL> to the active get'
 
    _ftPushMessage(cMess, .T., 'ADDER HELP', 'press any key to continue...',  ;
                   'QUIET')
@@ -897,17 +897,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftClearAdder()       Docs: Keith A. Wire                  Ё
-  Ё  Description: Clear entry / Clear Adder                                  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:07:33pm            Time updated: Ч12:07:33pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftClearAdder()       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Clear entry / Clear Adder                                  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:07:33pm            Time updated: О©╫12:07:33pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftClearAdder(aAdder)
 
@@ -930,19 +930,19 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftUpdateTrans()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Update transactions array                                  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:07:55pm            Time updated: Ч12:07:55pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : lTypeTotal                                                 Ё
-  Ё             : nAmount                                                    Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftUpdateTrans()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Update transactions array                                  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:07:55pm            Time updated: О©╫12:07:55pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : lTypeTotal                                                 О©╫
+  О©╫             : nAmount                                                    О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftUpdateTrans(aAdder, lTypeTotal, nAmount)
 
@@ -980,17 +980,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftEraseTotSubTot()   Docs: Keith A. Wire                  Ё
-  Ё  Description: Clear the <TOTAL> & <SUBTOTAL> from Adder                  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:08:14pm            Time updated: Ч12:08:14pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftEraseTotSubTot()   Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Clear the <TOTAL> & <SUBTOTAL> from Adder                  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:08:14pm            Time updated: О©╫12:08:14pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftEraseTotSubTot(aAdder)
   _ftSetWinColor(W_CURR,W_SCREEN)
@@ -1000,19 +1000,19 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftRoundIt()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Adder Rounding function                                    Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:09:00pm            Time updated: Ч12:09:00pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: nNumber                                                    Ё
-  Ё             : nPlaces                                                    Ё
-  Ё Return Value: INT@( ABS@(nNumber@) @* 10 @^ nPlaces @+ 0@.50 @+ 10 @^ - ;Ё
-  Ё             :    12 @) / 10 @^ nPlaces                                   Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftRoundIt()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Adder Rounding function                                    О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:09:00pm            Time updated: О©╫12:09:00pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: nNumber                                                    О©╫
+  О©╫             : nPlaces                                                    О©╫
+  О©╫ Return Value: INT@( ABS@(nNumber@) @* 10 @^ nPlaces @+ 0@.50 @+ 10 @^ - ;О©╫
+  О©╫             :    12 @) / 10 @^ nPlaces                                   О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftRoundIt(nNumber, nPlaces)
   nPlaces := IF( nPlaces == NIL, 0, nPlaces )
@@ -1022,19 +1022,19 @@ RETURN IF(nNumber < 0.0, -1.0, 1.0) *                                        ;
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftDivide()           Docs: Keith A. Wire                  Ё
-  Ё  Description: Check divide by zero not allowed                           Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:10:41pm            Time updated: Ч12:10:41pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nNumerator                                                 Ё
-  Ё             : nDenominator                                               Ё
-  Ё Return Value: @(nNumerator/nDenominator@)                                Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftDivide()           Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Check divide by zero not allowed                           О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:10:41pm            Time updated: О©╫12:10:41pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nNumerator                                                 О©╫
+  О©╫             : nDenominator                                               О©╫
+  О©╫ Return Value: @(nNumerator/nDenominator@)                                О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftDivide(aAdder, nNumerator,nDenominator)
   IF nDenominator==0.0
@@ -1047,17 +1047,17 @@ RETURN(nNumerator/nDenominator)
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftValDeci()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Validate the number of decimals                            Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:10:56pm            Time updated: Ч12:10:56pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: oGet                                                       Ё
-  Ё Return Value: lRtnValue                                                  Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftValDeci()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Validate the number of decimals                            О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:10:56pm            Time updated: О©╫12:10:56pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: oGet                                                       О©╫
+  О©╫ Return Value: lRtnValue                                                  О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftValDeci(oGet)
 
@@ -1072,18 +1072,18 @@ RETURN lRtnValue
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftDisplayTape()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Display the Tape                                           Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:11:28pm            Time updated: Ч12:11:28pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: aAdder                                                     Ё
-  Ё             : nKey                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftDisplayTape()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display the Tape                                           О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:11:28pm            Time updated: О©╫12:11:28pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: aAdder                                                     О©╫
+  О©╫             : nKey                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftDisplayTape(aAdder, nKey)
   LOCAL nDispTape, nTopTape := 1
@@ -1123,19 +1123,19 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftSetLastKey()       Docs: Keith A. Wire                  Ё
-  Ё  Description: Sets the LASTKEY() value to value of nLastKey              Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:12:00pm            Time updated: Ч12:12:00pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: nLastKey                                                   Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё        Notes: I use this in most of my Pop-Up routines to reset the      Ё
-  Ё             : original value of LASTKEY() when quitting.                 Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftSetLastKey()       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Sets the LASTKEY() value to value of nLastKey              О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:12:00pm            Time updated: О©╫12:12:00pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: nLastKey                                                   О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫        Notes: I use this in most of my Pop-Up routines to reset the      О©╫
+  О©╫             : original value of LASTKEY() when quitting.                 О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftSetLastKey(nLastKey)
   _ftPushKeys()
@@ -1148,18 +1148,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPushKeys           Docs: Keith A. Wire                  Ё
-  Ё  Description: Push any keys in the Keyboard buffer on the array aKeys[]  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:16:09pm            Time updated: Ч12:16:09pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё        Notes: Save any keys in the buffer... for FAST typists <g>.       Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPushKeys           Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Push any keys in the Keyboard buffer on the array aKeys[]  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:16:09pm            Time updated: О©╫12:16:09pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫        Notes: Save any keys in the buffer... for FAST typists <g>.       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPushKeys
   DO WHILE NEXTKEY() != 0
@@ -1171,18 +1171,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPopKeys            Docs: Keith A. Wire                  Ё
-  Ё  Description: Restore the keyboard with any keystrokes that were saved   Ё
-  Ё             :   with _ftPushKeys                                         Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:17:58pm            Time updated: Ч12:17:58pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPopKeys            Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Restore the keyboard with any keystrokes that were saved   О©╫
+  О©╫             :   with _ftPushKeys                                         О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:17:58pm            Time updated: О©╫12:17:58pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPopKeys
   LOCAL cKeys := ''
@@ -1194,23 +1194,23 @@ STATIC FUNCTION _ftPopKeys
 RETURN NIL
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPushMessage()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Display a message on the screen in a window                Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:18:53pm            Time updated: Ч12:18:53pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cMessage                                                   Ё
-  Ё             : lWait                                                      Ё
-  Ё             : cTitle                                                     Ё
-  Ё             : cBotTitle                                                  Ё
-  Ё             : xQuiet                                                     Ё
-  Ё             : nTop                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё     See Also: _ftPopMessage                                              Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPushMessage()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display a message on the screen in a window                О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:18:53pm            Time updated: О©╫12:18:53pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cMessage                                                   О©╫
+  О©╫             : lWait                                                      О©╫
+  О©╫             : cTitle                                                     О©╫
+  О©╫             : cBotTitle                                                  О©╫
+  О©╫             : xQuiet                                                     О©╫
+  О©╫             : nTop                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫     See Also: _ftPopMessage                                              О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPushMessage(cMessage,lWait,cTitle,cBotTitle,xQuiet, nTop)
   LOCAL nMessLen, nNumRows, nWide, nLeft, nBottom, nRight, nKey, cOldDevic,  ;
@@ -1257,18 +1257,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPopMessage         Docs: Keith A. Wire                  Ё
-  Ё  Description: Pop off the Message Box                                    Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:24:22pm            Time updated: Ч12:24:22pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё     See Also: _ftPushMessage()                                           Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPopMessage         Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Pop off the Message Box                                    О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:24:22pm            Time updated: О©╫12:24:22pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫     See Also: _ftPushMessage()                                           О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPopMessage
   _ftPopWin()
@@ -1277,24 +1277,24 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftQuest()            Docs: Keith A. Wire                  Ё
-  Ё  Description: Push a Question Box on the Screen                          Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:25:32pm            Time updated: Ч12:25:32pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cMessage                                                   Ё
-  Ё             : xVarVal                                                    Ё
-  Ё             : cPict                                                      Ё
-  Ё             : bValid                                                     Ё
-  Ё             : lNoESC                                                     Ё
-  Ё             : nWinColor                                                  Ё
-  Ё             : nTop                                                       Ё
-  Ё Return Value: xVarVal                                                    Ё
-  Ё        Notes: This function will work for all Data Types                 Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftQuest()            Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Push a Question Box on the Screen                          О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:25:32pm            Time updated: О©╫12:25:32pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cMessage                                                   О©╫
+  О©╫             : xVarVal                                                    О©╫
+  О©╫             : cPict                                                      О©╫
+  О©╫             : bValid                                                     О©╫
+  О©╫             : lNoESC                                                     О©╫
+  О©╫             : nWinColor                                                  О©╫
+  О©╫             : nTop                                                       О©╫
+  О©╫ Return Value: xVarVal                                                    О©╫
+  О©╫        Notes: This function will work for all Data Types                 О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftQuest(cMessage,xVarVal,cPict,bValid,lNoESC,nWinColor,nTop)
 
@@ -1384,19 +1384,19 @@ RETURN xVarVal
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftAdderTapeUDF()    Docs: Keith A. Wire                   Ё
-  Ё  Description: User function for ACHOICE() when scrolling tape            Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:26:44pm            Time updated: Ч12:26:44pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: mode                                                       Ё
-  Ё             : cur_elem                                                   Ё
-  Ё             : rel_pos                                                    Ё
-  Ё Return Value: nRtnVal                                                    Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftAdderTapeUDF()    Docs: Keith A. Wire                   О©╫
+  О©╫  Description: User function for ACHOICE() when scrolling tape            О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:26:44pm            Time updated: О©╫12:26:44pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: mode                                                       О©╫
+  О©╫             : cur_elem                                                   О©╫
+  О©╫             : rel_pos                                                    О©╫
+  О©╫ Return Value: nRtnVal                                                    О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 FUNCTION _ftAdderTapeUDF(mode,cur_elem,rel_pos)
   LOCAL nKey,nRtnVal
@@ -1425,18 +1425,18 @@ RETURN nRtnVal
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftError()            Docs: Keith A. Wire                  Ё
-  Ё  Description: Display an ERROR message in a window                       Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:27:43pm            Time updated: Ч12:27:43pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cMessage                                                   Ё
-  Ё             : xDontReset                                                 Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftError()            Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Display an ERROR message in a window                       О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:27:43pm            Time updated: О©╫12:27:43pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cMessage                                                   О©╫
+  О©╫             : xDontReset                                                 О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftError(cMessage, xDontReset)
   LOCAL nOldRow,nOldCol,nOldCurs,nTop,nLeft,nBot,nRight,cOldColor,           ;
@@ -1486,18 +1486,18 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftStuffComma()       Docs: Keith A. Wire                  Ё
-  Ё  Description: Stuff a Comma in a string                                  Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:28:19pm            Time updated: Ч12:28:19pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cStrToStuff                                                Ё
-  Ё             : lTrimStuffedStr                                            Ё
-  Ё Return Value: cStrToStuff                                                Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftStuffComma()       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Stuff a Comma in a string                                  О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:28:19pm            Time updated: О©╫12:28:19pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cStrToStuff                                                О©╫
+  О©╫             : lTrimStuffedStr                                            О©╫
+  О©╫ Return Value: cStrToStuff                                                О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftStuffComma(cStrToStuff,lTrimStuffedStr)
 
@@ -1538,24 +1538,24 @@ RETURN cStrToStuff
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftSetSCRColor()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Set the standard screen colors to the color requested.     Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:28:48pm            Time updated: Ч12:28:48pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: nStd                                                       Ё
-  Ё             : nEnh                                                       Ё
-  Ё             : nBord                                                      Ё
-  Ё             : nBack                                                      Ё
-  Ё             : nUnsel                                                     Ё
-  Ё Return Value: SETCOLOR(aStdColor[nStd] + ',' + aStdColor[nEnh] + ',' + ; Ё
-  Ё             :   aStdColor[nBord] + ',' + aStdColor[nBack] + ',' +      ; Ё
-  Ё             :   aStdColor[nUnsel])                                       Ё
-  Ё     See Also: _ftSetWinColor()                                           Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftSetSCRColor()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Set the standard screen colors to the color requested.     О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:28:48pm            Time updated: О©╫12:28:48pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: nStd                                                       О©╫
+  О©╫             : nEnh                                                       О©╫
+  О©╫             : nBord                                                      О©╫
+  О©╫             : nBack                                                      О©╫
+  О©╫             : nUnsel                                                     О©╫
+  О©╫ Return Value: SETCOLOR(aStdColor[nStd] + ',' + aStdColor[nEnh] + ',' + ; О©╫
+  О©╫             :   aStdColor[nBord] + ',' + aStdColor[nBack] + ',' +      ; О©╫
+  О©╫             :   aStdColor[nUnsel])                                       О©╫
+  О©╫     See Also: _ftSetWinColor()                                           О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftSetSCRColor(nStd,nEnh,nBord,nBack,nUnsel)
 
@@ -1575,38 +1575,38 @@ RETURN SETCOLOR(aStdColor[nStd]+','+aStdColor[nEnh]+','+aStdColor[nBord]+','+;
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPushWin()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Push a new window on the screen                            Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:34:38pm            Time updated: Ч12:34:38pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: t                                                          Ё
-  Ё             : l                                                          Ё
-  Ё             : b                                                          Ё
-  Ё             : r                                                          Ё
-  Ё             : cTitle                                                     Ё
-  Ё             : cBotTitle                                                  Ё
-  Ё             : nWinColor                                                  Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё     See Also:                                                            Ё
-  Ё        Notes: Push a new window on the screen in the position t,l,b,r    Ё
-  Ё             :   and if cTitle is not NIL print the title for the window  Ё
-  Ё             :   in centered in the top line of the box. Similarly do     Ё
-  Ё             :   the same for cBotTitle. If nWinColor=NIL get the next    Ё
-  Ё             :   window color and use it for all the colors. If           Ё
-  Ё             :   cTypeBord=NIL use the single line border, else use the   Ё
-  Ё             :   one they requested. Push the window coordinates, the     Ё
-  Ё             :   color number, the SAVESCREEN() value, and whether they   Ё
-  Ё             :   picked the window color they wanted to use. If           Ё
-  Ё             :   lAutoWindow=.F. then the window color was incremented    Ё
-  Ё             :   and we will will restore the color number when we pop    Ё
-  Ё             :   the window off.                                          Ё
-  Ё             :                                                            Ё
-  Ё             :      nWinColor DEFAULT == _ftNextWinColor()                Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPushWin()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Push a new window on the screen                            О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:34:38pm            Time updated: О©╫12:34:38pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: t                                                          О©╫
+  О©╫             : l                                                          О©╫
+  О©╫             : b                                                          О©╫
+  О©╫             : r                                                          О©╫
+  О©╫             : cTitle                                                     О©╫
+  О©╫             : cBotTitle                                                  О©╫
+  О©╫             : nWinColor                                                  О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫     See Also:                                                            О©╫
+  О©╫        Notes: Push a new window on the screen in the position t,l,b,r    О©╫
+  О©╫             :   and if cTitle is not NIL print the title for the window  О©╫
+  О©╫             :   in centered in the top line of the box. Similarly do     О©╫
+  О©╫             :   the same for cBotTitle. If nWinColor=NIL get the next    О©╫
+  О©╫             :   window color and use it for all the colors. If           О©╫
+  О©╫             :   cTypeBord=NIL use the single line border, else use the   О©╫
+  О©╫             :   one they requested. Push the window coordinates, the     О©╫
+  О©╫             :   color number, the SAVESCREEN() value, and whether they   О©╫
+  О©╫             :   picked the window color they wanted to use. If           О©╫
+  О©╫             :   lAutoWindow=.F. then the window color was incremented    О©╫
+  О©╫             :   and we will will restore the color number when we pop    О©╫
+  О©╫             :   the window off.                                          О©╫
+  О©╫             :                                                            О©╫
+  О©╫             :      nWinColor DEFAULT == _ftNextWinColor()                О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPushWin(t,l,b,r,cTitle,cBotTitle,nWinColor)
 
@@ -1637,22 +1637,22 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPopWin             Docs: Keith A. Wire                  Ё
-  Ё  Description: Pop a Window off the screen                                Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 12:52:34pm            Time updated: Ч12:52:34pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё        Notes: Pop the currently active window off the screen by restoringЁ
-  Ё             :   it from the aWindow Array and if they pushed a new windowЁ
-  Ё             :   automatically selecting the color we will roll back the  Ё
-  Ё             :   current window setting using _ftLastWinColor() and reset Ё
-  Ё             :   the color to the color setting when window was pushed.   Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPopWin             Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Pop a Window off the screen                                О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 12:52:34pm            Time updated: О©╫12:52:34pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫        Notes: Pop the currently active window off the screen by restoringО©╫
+  О©╫             :   it from the aWindow Array and if they pushed a new windowО©╫
+  О©╫             :   automatically selecting the color we will roll back the  О©╫
+  О©╫             :   current window setting using _ftLastWinColor() and reset О©╫
+  О©╫             :   the color to the color setting when window was pushed.   О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPopWin
 
@@ -1680,27 +1680,27 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftSetWinColor()      Docs: Keith A. Wire                  Ё
-  Ё  Description: Set the Color to the Window Colors requested               Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:37:32pm            Time updated: Ч01:37:32pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: nWin                                                       Ё
-  Ё             : nStd                                                       Ё
-  Ё             : nEnh                                                       Ё
-  Ё             : nBord                                                      Ё
-  Ё             : nBack                                                      Ё
-  Ё             : nUnsel                                                     Ё
-  Ё Return Value:SETCOLOR(aWinColor[nStd,nWin]+','+aWinColor[nEnh,nWin]+','+;Ё
-  Ё             :  aWinColor[nBord,nWin]+','+aWinColor[nBack,nWin]+','+     ;Ё
-  Ё             :  aWinColor[nUnsel,nWin])                                   Ё
-  Ё     See Also: _ftSetSCRColor()                                           Ё
-  Ё        Notes: If the window number is not passed use the currently activeЁ
-  Ё             :   window number nWinColor.                                 Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftSetWinColor()      Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Set the Color to the Window Colors requested               О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:37:32pm            Time updated: О©╫01:37:32pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: nWin                                                       О©╫
+  О©╫             : nStd                                                       О©╫
+  О©╫             : nEnh                                                       О©╫
+  О©╫             : nBord                                                      О©╫
+  О©╫             : nBack                                                      О©╫
+  О©╫             : nUnsel                                                     О©╫
+  О©╫ Return Value:SETCOLOR(aWinColor[nStd,nWin]+','+aWinColor[nEnh,nWin]+','+;О©╫
+  О©╫             :  aWinColor[nBord,nWin]+','+aWinColor[nBack,nWin]+','+     ;О©╫
+  О©╫             :  aWinColor[nUnsel,nWin])                                   О©╫
+  О©╫     See Also: _ftSetSCRColor()                                           О©╫
+  О©╫        Notes: If the window number is not passed use the currently activeО©╫
+  О©╫             :   window number nWinColor.                                 О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftSetWinColor(nWin,nStd,nEnh,nBord,nBack,nUnsel)
 
@@ -1719,21 +1719,21 @@ RETURN SETCOLOR(aWinColor[nStd,nWin]+','+aWinColor[nEnh,nWin]+','+           ;
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftShadow()           Docs: Keith A. Wire                  Ё
-  Ё  Description: Create a shadow on the screen in the coordinates given     Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:40:56pm            Time updated: Ч01:40:56pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: nTop                                                       Ё
-  Ё             : nLeft                                                      Ё
-  Ё             : nBottom                                                    Ё
-  Ё             : nRight                                                     Ё
-  Ё Return Value: NIL                                                        Ё
-  Ё     See Also: _ftPushWin()                                               Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftShadow()           Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Create a shadow on the screen in the coordinates given     О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:40:56pm            Time updated: О©╫01:40:56pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: nTop                                                       О©╫
+  О©╫             : nLeft                                                      О©╫
+  О©╫             : nBottom                                                    О©╫
+  О©╫             : nRight                                                     О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫     See Also: _ftPushWin()                                               О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftShadow( nTop, nLeft, nBottom, nRight )
 
@@ -1748,19 +1748,19 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftLastWinColor       Docs: Keith A. Wire                  Ё
-  Ё  Description: Decrement the active window color number and return the    Ё
-  Ё             :   current value                                            Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:49:19pm            Time updated: Ч01:49:19pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: nWinColor := IF(nWinColor=1,4,nWinColor-1)                 Ё
-  Ё        Notes: If we are already on window #1 restart count by using # 4. Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftLastWinColor       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Decrement the active window color number and return the    О©╫
+  О©╫             :   current value                                            О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:49:19pm            Time updated: О©╫01:49:19pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: nWinColor := IF(nWinColor=1,4,nWinColor-1)                 О©╫
+  О©╫        Notes: If we are already on window #1 restart count by using # 4. О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftLastWinColor
 RETURN nWinColor := IF(nWinColor=1,4,nWinColor-1)
@@ -1770,19 +1770,19 @@ RETURN nWinColor := IF(nWinColor=1,4,nWinColor-1)
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftNextWinColor       Docs: Keith A. Wire                  Ё
-  Ё  Description: Increment the active window color number and return the    Ё
-  Ё             :   current value                                            Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:51:12pm            Time updated: Ч01:51:12pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: nWinColor := (IF(nWinColor<4,nWinColor+1,1))               Ё
-  Ё        Notes: If we are already on window #4 restart count by using # 1. Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftNextWinColor       Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Increment the active window color number and return the    О©╫
+  О©╫             :   current value                                            О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:51:12pm            Time updated: О©╫01:51:12pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: nWinColor := (IF(nWinColor<4,nWinColor+1,1))               О©╫
+  О©╫        Notes: If we are already on window #4 restart count by using # 1. О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftNextWinColor
   IF EMPTY(aWinColor)
@@ -1795,19 +1795,19 @@ RETURN nWinColor := (IF(nWinColor<4,nWinColor+1,1))
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftWinTitle()         Docs: Keith A. Wire                  Ё
-  Ё  Description: Print the top or bottom titles on the border of the        Ё
-  Ё             :   currently active window.                                 Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:52:29pm            Time updated: Ч01:52:29pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cTheTitle                                                  Ё
-  Ё             : cTopOrBot                                                  Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftWinTitle()         Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Print the top or bottom titles on the border of the        О©╫
+  О©╫             :   currently active window.                                 О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:52:29pm            Time updated: О©╫01:52:29pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cTheTitle                                                  О©╫
+  О©╫             : cTopOrBot                                                  О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftWinTitle(cTheTitle,cTopOrBot)
 
@@ -1822,17 +1822,17 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftInitColors         Docs: Keith A. Wire                  Ё
-  Ё  Description: Initilize the colors for the Adder                         Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 02:59:58pm            Time updated: Ч02:59:58pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: None                                                       Ё
-  Ё Return Value: NIL                                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftInitColors         Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Initilize the colors for the Adder                         О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 02:59:58pm            Time updated: О©╫02:59:58pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: None                                                       О©╫
+  О©╫ Return Value: NIL                                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftInitColors
 
@@ -1858,19 +1858,19 @@ RETURN NIL
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftCharOdd()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Remove all the even numbered characters in a string.       Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:41:50pm            Time updated: Ч01:41:50pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cString                                                    Ё
-  Ё Return Value: STRTRAN(cString,'')                                       Ё
-  Ё        Notes: Used for example to strip all the attribute characters     Ё
-  Ё             : from a screen save.                                        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftCharOdd()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Remove all the even numbered characters in a string.       О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:41:50pm            Time updated: О©╫01:41:50pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cString                                                    О©╫
+  О©╫ Return Value: STRTRAN(cString,'')                                       О©╫
+  О©╫        Notes: Used for example to strip all the attribute characters     О©╫
+  О©╫             : from a screen save.                                        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftCharOdd(cString)
   cString := TRANSFORM(cString,REPLICATE("X", LEN(cString)/2 ) )
@@ -1880,19 +1880,19 @@ RETURN STRTRAN(cString,'')
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPosRepl()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Replace the Character at nPosit in cString with cChar      Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:44:21pm            Time updated: Ч01:44:21pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cString                                                    Ё
-  Ё             : cChar                                                      Ё
-  Ё             : nPosit                                                     Ё
-  Ё Return Value: STRTRAN(cString,'9',cChar,nPosit,1)+''                     Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPosRepl()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Replace the Character at nPosit in cString with cChar      О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:44:21pm            Time updated: О©╫01:44:21pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cString                                                    О©╫
+  О©╫             : cChar                                                      О©╫
+  О©╫             : nPosit                                                     О©╫
+  О©╫ Return Value: STRTRAN(cString,'9',cChar,nPosit,1)+''                     О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPosRepl(cString,cChar,nPosit)
 RETURN STRTRAN(cString,'9',cChar,nPosit,1)+''
@@ -1901,18 +1901,18 @@ RETURN STRTRAN(cString,'9',cChar,nPosit,1)+''
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftCharRem()          Docs: Keith A. Wire                  Ё
-  Ё  Description: Removes all occurances of cChar from cString.              Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:45:41pm            Time updated: Ч01:45:41pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cChar                                                      Ё
-  Ё             : cString                                                    Ё
-  Ё Return Value: STRTRAN(cString,cChar)                                     Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftCharRem()          Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Removes all occurances of cChar from cString.              О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:45:41pm            Time updated: О©╫01:45:41pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cChar                                                      О©╫
+  О©╫             : cString                                                    О©╫
+  О©╫ Return Value: STRTRAN(cString,cChar)                                     О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftCharRem(cChar,cString)
 RETURN STRTRAN(cString,cChar)
@@ -1924,17 +1924,17 @@ RETURN STRTRAN(cString,cChar)
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftCountLeft()        Docs: Keith A. Wire                  Ё
-  Ё  Description: Returns the number of spaces on the Left side of the StringЁ
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:47:00pm            Time updated: Ч01:47:00pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cString                                                    Ё
-  Ё Return Value: LEN(cString)-LEN(LTRIM(cString))                           Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftCountLeft()        Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Returns the number of spaces on the Left side of the StringО©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:47:00pm            Time updated: О©╫01:47:00pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cString                                                    О©╫
+  О©╫ Return Value: LEN(cString)-LEN(LTRIM(cString))                           О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftCountLeft(cString)
 RETURN LEN(cString)-LEN(LTRIM(cString))
@@ -1943,19 +1943,19 @@ RETURN LEN(cString)-LEN(LTRIM(cString))
 
 
 
-/*зд Function ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд©
-  Ё         Name: _ftPosIns()           Docs: Keith A. Wire                  Ё
-  Ё  Description: Insert the Character cChar in cString at position nPosit   Ё
-  Ё       Author: Keith A. Wire                                              Ё
-  Ё Date created: 10-03-93              Date updated: Ч10-03-93              Ё
-  Ё Time created: 01:48:30pm            Time updated: Ч01:48:30pm            Ё
-  Ё    Copyright: None - Public Domain                                       Ё
-  цдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд╢
-  Ё    Arguments: cString                                                    Ё
-  Ё             : cChar                                                      Ё
-  Ё             : nPosit                                                     Ё
-  Ё Return Value: LEFT(cString,nPosit-1)+cChar+SUBSTR(cString,nPosit)        Ё
-  юдддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддды
+/*О©╫О©╫ Function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д©
+  О©╫         Name: _ftPosIns()           Docs: Keith A. Wire                  О©╫
+  О©╫  Description: Insert the Character cChar in cString at position nPosit   О©╫
+  О©╫       Author: Keith A. Wire                                              О©╫
+  О©╫ Date created: 10-03-93              Date updated: О©╫10-03-93              О©╫
+  О©╫ Time created: 01:48:30pm            Time updated: О©╫01:48:30pm            О©╫
+  О©╫    Copyright: None - Public Domain                                       О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╢
+  О©╫    Arguments: cString                                                    О©╫
+  О©╫             : cChar                                                      О©╫
+  О©╫             : nPosit                                                     О©╫
+  О©╫ Return Value: LEFT(cString,nPosit-1)+cChar+SUBSTR(cString,nPosit)        О©╫
+  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 STATIC FUNCTION _ftPosIns(cString,cChar,nPosit)
 RETURN LEFT(cString,nPosit-1)+cChar+SUBSTR(cString,nPosit)

@@ -3,7 +3,7 @@
 	Autor   : Rust (rust@itk.ru)
 	Licence : (GPL) http://www.itk.ru/clipper/licence.html
 */
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 #define LF CHR(10)
 #define CHUNKSIZE 1024

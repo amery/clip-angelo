@@ -3,10 +3,10 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "set.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_set.ch"
 MEMVAR __mrow,__mcol,_HdColor,_cLookText
 
 * This is the default maximum line length
@@ -22,14 +22,14 @@ ViewFiles(cFile)
 **********
 PROC ViewFiles(cFile,bApply,lCheckExist)
 /*
-‚¥àá¨ï ã¯à®é¥­  ¤«ï bdbf.
-®ª §ë¢ ¥â ä ©« cFile.
-Œ®¦¥â ¨á¯®«ì§®¢ âì ¢áâà®¥­­ë© ¢ìî¥à (á ¢®§¬®¦­®áâìî ¯¥ç â¨,¯®¤á¢¥âª¨ ¨ â.¤.).
-¨«¨ ¢­¥è­¨©,®¯à¥¤¥«¥­­ë© ¢ ¯¥à¥¬¥­­®© _TextViewer.
-à¨ ¨á¯®«ì§®¢ ­¨¨ ¢áâà®¥­­®£® ¬®¦­® § ¤ âì ¤®¯®«­¨â¥«ì­ë© ¡«®ª ª®¤  bApply
-¤«ï ¯à¥®¡à §®¢ ­¨ï áâà®ª.
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½é¥­ï¿½ ï¿½ï¿½ï¿½ bdbf.
+ï¿½ï¿½ï¿½ï¿½ï¿½ë¢ ï¿½ï¿½ ä ©ï¿½ cFile.
+ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½á¯®ï¿½ì§®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à®¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½á¢¥âª¨ ï¿½ ï¿½.ï¿½.).
+ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½è­¨ï¿½,ï¿½ï¿½à¥¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½à¥¬ï¿½ï¿½ï¿½ï¿½ï¿½ _TextViewer.
+ï¿½ï¿½ï¿½ ï¿½á¯®ï¿½ì§®ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½à®¥ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â¥«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ bApply
+ï¿½ï¿½ï¿½ ï¿½à¥®ï¿½à §ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½à®ª.
 
-à¨¬¥àë:
+ï¿½à¨¬ï¿½ï¿½ï¿½:
 	_TextViewer:='WpView'
 	ViewFiles('MyFile.prn')
 	ViewFiles('Help.txt',{|_1|StrTran(_1,chr(K_TAB),SPACE(8))})
@@ -68,7 +68,7 @@ ENDDO
 RETURN cOut
 /*************************************************************************
  Browse Function By: Tom Claffy  March 1993
- €¤ ¯â¨à®¢ ­® ¤«ï BDBF by ELB :-)
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à®¢ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ BDBF by ELB :-)
 
 */
 
@@ -129,7 +129,7 @@ PRIVATE _CodePage
 SavePos()
 
 _cLookText:='' 	//need for Getname()
-bOrigin:=bApplyText	//¯¥à¥ª«îç âì ¡ã¤¥¬ ¯® F8
+bOrigin:=bApplyText	//ï¿½ï¿½à¥ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ã¤¥ï¿½ ï¿½ï¿½ F8
 
 // move back to the top of the file
 FSEEK(nHandle,0)
@@ -164,9 +164,9 @@ DISPBOX(nTop,nLeft,nBottom,nRight,FRAME1,cBoxColor)
 *@ nTop,nRight SAY '' COLOR cBoxColor
 *@ nBottom,nRight SAY '' COLOR cBoxColor
 
-// ¥à¢¨ç­ë© ScrollBar
+// ï¿½ï¿½à¢¨ï¿½ï¿½ï¿½ï¿½ ScrollBar
 FOR i := nBarTop TO nBarBottom
-	@ i,nRight SAY '°' COLOR cBarColor
+	@ i,nRight SAY 'ï¿½' COLOR cBarColor
 NEXT
 
 DISPEND()
@@ -183,9 +183,9 @@ WHILE .t.
 				  nTop+nHighliteLine,nLeft+1)
    ENDIF
 
-//Ž¡­®¢¨¬ ScrollBar
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ScrollBar
    // erase the old button - where's the whiteout
-   @ nRow,nRight SAY '°' COLOR cBarColor
+   @ nRow,nRight SAY 'ï¿½' COLOR cBarColor
    IF (nStart:=aLines[1,2]) = 0		// figger out the new row
 	nRow = nBarTop
    ELSEIF nLastOffset >= nSize -1
@@ -535,7 +535,7 @@ WHILE nCounter < nEnd
       nTempCount = LEN( aOffsets )
 
       IF !lEof .AND. nTempCount==1
-	//Ž¤­  ¤«¨­­ ï áâà®ª  ¢ ¡¨­ à­®¬ ä ©«¥
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½à®ªï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½à­®ï¿½ ä ©ï¿½ï¿½
 	nTempCount:=2
 	AADD( aOffsets, nBlock )
       ENDIF

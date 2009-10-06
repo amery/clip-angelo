@@ -4,11 +4,11 @@
 /*   Author  : Elena Kornilova (alena@itk.ru)			*/
 /*   Licence : (GPL) http://www.itk.ru/clipper/licence.html	*/
 
-#include "clip-fw/FiveWin.ch"
-#include "InKey.ch"
-#include "Set.ch"
-#include "clip-fw/Constant.ch"
-#include "clip-fw/Report.ch"
+#include "fwin/ci_FiveWin.ch"
+#include "ci_InKey.ch"
+#include "ci_Set.ch"
+#include "fwin/ci_Constant.ch"
+#include "fwin/ci_Report.ch"
 
 #define GW_HWNDFIRST          0
 #define GW_HWNDLAST           1
@@ -1466,7 +1466,7 @@ static function fw_Skip( Self, n )
       return Eval( Self:bSkip, n )
    endif
 
-return ( Self:cAlias )->( _DBSkipper( n ) )
+return ( Self:cAlias )->( DBSkip( n ) )
 
 //----------------------------------------------------------------------------//
 
@@ -1729,7 +1729,7 @@ static function fw_SetFilter( Self, cField, uVal1, uVal2 )
 				    { || ( Self:cAlias )->( DbGoBottom() ) } )
 
       Self:bSkip      = If( uVal1 != nil, BuildSkip( Self:cAlias, cField, uVal1, uVal2 ),;
-		      { | n | ( Self:cAlias )->( _DbSkipper( n ) ) } )
+		      { | n | ( Self:cAlias )->( DbSkip( n ) ) } )
 
       Self:bLogicLen  = If( uVal1 != nil,;
 		      { || ( Self:cAlias )->( Self:RecCount( uVal1 ) ) },;

@@ -11,7 +11,7 @@
 very useful itself, but it is useful for deriving subclasses, since it
 provides common code needed for handling a single child widget. */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 #define	SUPERCLASS	CTI_CONTAINER
 

@@ -162,7 +162,7 @@
  * paul
  *
  * Revision 1.49  2001/12/21 11:48:20  clip
- *  (cAlias)->&(cf) := nSum    // этого не было
+ *  (cAlias)->&(cf) := nSum    // О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫
  * paul
  *
  * Revision 1.48  2001/12/18 10:23:17  clip
@@ -400,9 +400,9 @@
 #include <math.h>
 #include <stdarg.h>
 
-#include "clic.h"
-#include "node.h"
-#include "nodepriv.h"
+#include "ci_clic.h"
+#include "ci_node.h"
+#include "ci_nodepriv.h"
 
 #define YYERROR_VERBOSE
 static int if_depth=0, if_line, if_file, loop_line, loop_file, seq_line, seq_file;
@@ -459,7 +459,7 @@ static Node *(*def_node)(VarColl *cp) = 0;
 
 %token PREPROC
 
-%token RETURN FUNCTION PROCEDURE IPROCEDURE EPROCEDURE EXTERN PARAMETERS RETURN
+%token RETURN FUNCTION PROCEDURE IPROCEDURE EPROCEDURE EXTERN PARAMETERS
 %token SFUNCTION SPROCEDURE TEXT
 %token PUBLIC PRIVATE STATIC LOCAL DIMENSION
 %token NIL END TRUE FALSE

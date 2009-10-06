@@ -7,9 +7,9 @@
 
 /* CTI_LIST multi-column list */
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
 #define	SUPERCLASS	CTI_CONTROL
 
@@ -41,8 +41,8 @@ function cti_list_new(nColumns)
 	obj:__cur_row		:= 0
 	obj:__cur_col		:= 0
 
-	obj:__col_separator	:=  ""
-	obj:__title_separator	:= "€Š€"
+	obj:__col_separator	:=  "ï¿½"
+	obj:__title_separator	:= "ï¿½ï¿½ï¿½"
 
 	obj:__real_draw			:= @cti_list_real_draw()
 	obj:__refresh_columns		:= @cti_list_refresh_columns()

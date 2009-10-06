@@ -3,10 +3,10 @@
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#include "common.ch"
-#include "bdbfmsg.ch"
-#include "inkey.ch"
-#include "dbinfo.ch"
+#include "ci_bd_common.ch"
+#include "ci_bd_bdbfmsg.ch"
+#include "ci_inkey.ch"
+#include "ci_dbinfo.ch"
 REQUEST dbfntx
 REQUEST dbfcdx
 REQUEST dbfctx

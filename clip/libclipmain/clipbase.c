@@ -1081,14 +1081,14 @@
 #include <ctype.h>
 #include <unistd.h>
 #include <errno.h>
-#include "rdd.h"
-#include "hash.h"
-#include "error.ch"
-#include "hashcode.h"
-#include "rational.h"
-#include "six.ch"
-#include "dbinfo.ch"
-#include "dbstruct.ch"
+#include "ci_rdd.h"
+#include "ci_hash.h"
+#include "ci_error.ch"
+#include "ci_hashcode.h"
+#include "ci_rational.h"
+#include "ci_six.ch"
+#include "ci_dbinfo.ch"
+#include "ci_dbstruct.ch"
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))
 #define VAR(type,var,ini) type *var=(type*)(ini)

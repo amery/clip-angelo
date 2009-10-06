@@ -9,7 +9,7 @@
 /*   published by the Free Software Foundation; either version 2 of the    */
 /*   License, or (at your option) any later version.                       */
 /*-------------------------------------------------------------------------*/
-#include <clip-expat.ch>
+#include <ci_clip-expat.ch>
 #define FILEBLOCK	1024
 
 /* XMLTree class */
@@ -38,7 +38,7 @@ static function xml_ParseFile( self, filename )
 
 	// Create parser
 	parser := xml_ParserCreate()
-	
+
 	// Set handler functions
 	var:=map()
 	var:ct := NIL
@@ -48,7 +48,7 @@ static function xml_ParseFile( self, filename )
 	xml_SetUserData(parser, @var)
 	xml_SetCharacterDataHandler( parser, @xml_handleText() )
 	xml_SetElementHandler( parser, @xml_handleElementStart(), @xml_handleElementEnd() )
-	
+
 	file = fopen(filename)
 	do while !fileeof(file)
 		nRead := fread(file, @buf, 1024)
@@ -62,7 +62,7 @@ static function xml_ParseFile( self, filename )
 			return .F.
 		endif
 	enddo
-	
+
 	// Close file and free Expat parser
 	self:root := var:root
 	fclose(file)
@@ -76,7 +76,7 @@ static function xml_ParseString( self, string )
 
 	// Create parser
 	parser := xml_ParserCreate()
-	
+
 	// Set handler functions
 	var:=map()
 	var:ct := NIL
@@ -86,10 +86,10 @@ static function xml_ParseString( self, string )
 	xml_SetUserData(parser, @var)
 	xml_SetCharacterDataHandler( parser, @xml_handleText() )
 	xml_SetElementHandler( parser, @xml_handleElementStart(), @xml_handleElementEnd() )
-	
+
 	// Parse string
 	xml_Parse(parser, string, len(string), .T.)
-		
+
 	// Handle buffer
 	if xml_GetErrorCode(parser) <> 0
 		self:error := xml_ErrorString(parser) + ;
@@ -101,7 +101,7 @@ static function xml_ParseString( self, string )
 	// Free Expat parser
 	self:root := var:root
 	xml_ParserFree(parser)
-	
+
 return .T.
 
 /* Get root tag */
@@ -133,7 +133,7 @@ return xml_XPath( t, path )
 /* Dump tree as XML string */
 static function xml_Dump( self, tag )
 	local t, s, header:="", localEncoding
-	
+
 	//?? valtype(self:root),chr(10)
 	if valtype(tag) == "O" .and. tag:className == "XMLTag"
 		t := tag
@@ -143,9 +143,9 @@ static function xml_Dump( self, tag )
 	else
 		return ""
 	endif
-	
+
 	s := self:root:dump()
-	
+
 	// encode all file: s and self:encoding
 	localEncoding := host_charset()
 	//?? "BEFORE ",self:encoding, localEncoding,":", s, chr(10)
@@ -167,11 +167,11 @@ function xml_handleElementStart( vUser, name, aAttr )
 	vUser:ct := XMLTag( name )
 	vUser:ct:pos := xml_GetCurrentByteIndex( vUser:parser )
 	vUser:ct:parent := vUser:pt
-	
+
 	aeval( aAttr, {|e| e[2]:=translate_charset( "utf-8", host_charset(), e[2]) } )
 	vUser:ct:attributes := aAttr
-		
-	// Append child to parent tag	
+
+	// Append child to parent tag
 	if valtype(vUser:pt) == "O" .and. "CHILDS" $ vUser:pt
 		aadd(vUser:pt:childs, vUser:ct)
 		vUser:ct:offset := len(vUser:pt:text)
@@ -190,7 +190,7 @@ return
 /* Handler function for text processing */
 function xml_handleText( vUser, sStr, nLen )
 	local s, i:=1, sTrimmed
-	
+
 	s := translate_charset( "utf-8", host_charset(), sStr )
 	if .not. empty(vUser:ct)
 		// Remove lead spaces and tabs (for empty string)
@@ -198,7 +198,7 @@ function xml_handleText( vUser, sStr, nLen )
 		if len(sTrimmed) == 0
 			s := sTrimmed
 		endif
-					
+
 		//?? "==="+s+"===",len(s), right(s,1) == chr(10),"&\n"
 		if len(s) == 1 .and. right(s,1) == chr(10)
 			if right(vUser:ct:text,1) == chr(10) .or. len(vUser:ct:text) == 0

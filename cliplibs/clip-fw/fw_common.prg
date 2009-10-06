@@ -1,4 +1,4 @@
-#include <clipcfg.h>
+#include <ci_clipcfg.h>
 
 static Selector
 static drivers := {}
