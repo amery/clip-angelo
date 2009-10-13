@@ -1,15 +1,15 @@
 *charset cp866
 
-#ifndef _ABOX_DEFINED
+#ifndef CI_ABOX_DEFINED
 
-#define AB_SINGLE 'зд©ЁыдюЁ'
+#define AB_SINGLE 'О©╫д©О©╫О©╫О©╫О©╫'
 
-#define AB_DOUBLE 'им╩╨╪мх╨'
+#define AB_DOUBLE 'О©╫м╩О©╫О©╫О©╫х╨'
 
-#define AB_SINGLE_DOUBLE	'ум╦Ё╬мтЁ'
+#define AB_SINGLE_DOUBLE	'О©╫м╦О©╫О©╫О©╫тЁ'
 
-#define	AB_DOUBLE_SINGLE	'жд╥╨╫дс╨'
+#define	AB_DOUBLE_SINGLE	'О©╫д╥О©╫О©╫О©╫с╨'
 
-#define _ABOX_DEFINED
+#define CI_ABOX_DEFINED
 
 #endif

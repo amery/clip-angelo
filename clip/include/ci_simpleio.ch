@@ -1,5 +1,5 @@
-#ifndef _SIMPLEIO_DEFINED
-#define _SIMPLEIO_DEFINED
+#ifndef CI_SIMPLEIO_DEFINED
+#define CI_SIMPLEIO_DEFINED
 
 #command ?  [ <xList,...> ]                                             ;
       => ( OutStd(Chr(13)+Chr(10)) [, OutStd(<xList>)] )

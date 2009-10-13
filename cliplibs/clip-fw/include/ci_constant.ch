@@ -1,5 +1,5 @@
-#ifndef _CONSTANT_CH
-#define _CONSTANT_CH
+#ifndef CI__CONSTANT_CH
+#define CI__CONSTANT_CH
 
 //----------------------------------------------------------------------------//
 // FiveWin MsDos-Text coordinates simulation values

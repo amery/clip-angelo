@@ -1026,8 +1026,8 @@
 
  */
 
-#ifndef CLIP_H
-#define CLIP_H
+#ifndef CI_CLIP_H
+#define CI_CLIP_H
 
 #include "ci_clipcfg.h"
 /*
@@ -1106,7 +1106,7 @@ enum ClipFlags
 
 #define MACRO len
 
-typedef struct
+typedef struct ClipType
 {
 	enum ClipVarType type:4;
 	unsigned len:6;
@@ -1119,28 +1119,28 @@ typedef struct
 }
 ClipType;
 
-typedef struct
+typedef struct ClipBuf
 {
 	char *buf;
 	int len;
 }
 ClipBuf;
 
-typedef struct
+typedef struct ClipVect
 {
 	void **items;
 	int count;
 }
 ClipVect;
 
-typedef struct
+typedef struct ClipFieldDef
 {
 	long areahash;
 	long fieldhash;
 }
 ClipFieldDef;
 
-typedef struct
+typedef struct ClipRefVar
 {
 	ClipType t;
 	union ClipVar *vp;
@@ -1148,49 +1148,49 @@ typedef struct
 }
 ClipRefVar;
 
-typedef struct
+typedef struct ClipNumVar
 {
 	ClipType t;
 	double d;
 }
 ClipNumVar;
 
-typedef struct
+typedef struct ClipLongVar
 {
 	ClipType t;
 	long l;
 }
 ClipLongVar;
 
-typedef struct
+typedef struct ClipRationalVar
 {
 	ClipType t;
 	struct rational *r;
 }
 ClipRationalVar;
 
-typedef struct
+typedef struct ClipStrVar
 {
 	ClipType t;
 	ClipBuf str;
 }
 ClipStrVar;
 
-typedef struct
+typedef struct ClipLogVar
 {
 	ClipType t;
 	int val;
 }
 ClipLogVar;
 
-typedef struct
+typedef struct ClipDateVar
 {
 	ClipType t;
 	long julian;
 }
 ClipDateVar;
 
-typedef struct
+typedef struct ClipDateTimeVar
 {
 	ClipType t;
 	long julian;
@@ -1198,7 +1198,7 @@ typedef struct
 }
 ClipDateTimeVar;
 
-typedef struct
+typedef struct ClipArrVar
 {
 	ClipType t;
 	union ClipVar *items;
@@ -1207,7 +1207,7 @@ typedef struct
 }
 ClipArrVar;
 
-typedef struct
+typedef struct ClipMapVar
 {
 	ClipType t;
 	struct ClipVarEl *items;
@@ -1255,7 +1255,7 @@ ClipBlock;
 
 struct ClipVarFrame;
 
-typedef struct
+typedef struct ClipCodeVar
 {
 	ClipType t;
 	union
@@ -1293,35 +1293,35 @@ typedef struct ClipVarEl
 }
 ClipVarEl;
 
-typedef union
+typedef union ClipVarNum
 {
 	ClipNumVar _v;
 	ClipVar v;
 }
 ClipVarNum;
 
-typedef union
+typedef union ClipVarStr
 {
 	ClipStrVar _v;
 	ClipVar v;
 }
 ClipVarStr;
 
-typedef union
+typedef union ClipVarLog
 {
 	ClipLogVar _v;
 	ClipVar v;
 }
 ClipVarLog;
 
-typedef union
+typedef union ClipVarCode
 {
 	ClipCodeVar _v;
 	ClipVar v;
 }
 ClipVarCode;
 
-typedef struct
+typedef struct ClipVarDef
 {
 	/*const char *funcname; */
 	long name;		/*const char *name; *//* first contain number */
@@ -1329,14 +1329,14 @@ typedef struct
 }
 ClipVarDef;
 
-typedef struct
+typedef struct ClipHashBucket
 {
 	long hash;
 	long offs;
 }
 ClipHashBucket;
 
-typedef struct
+typedef struct ClipHashNames
 {
 	int num;
 	ClipHashBucket *buckets;
@@ -1354,7 +1354,7 @@ typedef struct ClipVarFrame
 ClipVarFrame;
 
 
-typedef struct
+typedef struct ClipVarVect
 {
 	int count;
 		ClipVar *items;
@@ -1384,7 +1384,7 @@ ClipFrame;
 
 #define SYSERRLEN	128
 
-typedef struct
+typedef struct ClipRect
 {
 	int top;
 	int bottom;
@@ -1393,7 +1393,7 @@ typedef struct
 }
 ClipRect;
 
-typedef struct
+typedef struct ClipAttr
 {
 	int standard;
 	int enhanced;
@@ -1408,7 +1408,7 @@ typedef struct
 }
 ClipAttr;
 
-typedef struct
+typedef struct ClipWindow
 {
 	ClipRect rect;
 	ClipRect format;
@@ -1438,7 +1438,7 @@ ClipWindow;
 #define _C_ITEM_TYPE_GTK_TIMEOUT	15
 #define _C_ITEM_TYPE_XML_PARSER	16
 
-typedef struct
+typedef struct ContainerItem
 {
 	void *item;
 	int key;
@@ -1447,7 +1447,7 @@ typedef struct
 }
 ContainerItem;
 
-typedef struct
+typedef struct Container
 {
 	ContainerItem *items;
 	int len;
@@ -1458,7 +1458,7 @@ Container;
 /*
  * ������ ��� ����, ��������
  * ������� ������ */
-typedef struct
+typedef struct C_FILE
 {
 	int type;	/* type of opened file, see fileio.ch:FT_* */
 	int fileno;	/* real file or socket number */
@@ -1492,7 +1492,7 @@ typedef struct SQLDriver
 	int (*connect)(struct ClipMachine*);
 } SQLDriver;
 
-typedef struct
+typedef struct ProfileBucket
 {
 		long hash;
 		char *procname;
@@ -1507,7 +1507,7 @@ typedef struct
 }
 ProfileBucket;
 
-typedef struct
+typedef struct ProfileCount
 {
 	ProfileBucket *bucket;
 		unsigned long count;
@@ -1999,14 +1999,14 @@ int _clip_tcond(ClipMachine * mp, int *ip);	/* don't pop stack */
 
 int _clip_find_obj(ClipMachine * mp, long otype, ClipObjRtti ** rtti);
 
-typedef struct
+typedef struct ClipNameEntry
 {
 	long hash;
 	ClipFunction *f;
 }
 ClipNameEntry;
 
-typedef struct
+typedef struct ClipModule
 {
 	const char *name;
 	ClipNameEntry *cfunctions;
@@ -2028,7 +2028,7 @@ int _clip_main(ClipMachine * mp, long hash, int argc, char **argv, char **envp);
 int _clip_main_func(ClipMachine * mp, ClipFunction func, int argc, char **argv, char **envp);
 int _clip_main_code(ClipMachine * mp, ClipBlock * block, int argc, char **argv, char **envp);
 
-typedef struct
+typedef struct ClipInitStruct
 {
 	/*ClipNameEntry _cfunctions[];*/
 	ClipFunction *(*_clip_builtin)(long hash);
@@ -2300,7 +2300,7 @@ VarEntry;
 
 void _clip_hash_buckets(ClipMachine *mp, ClipFile *file);
 
-typedef struct
+typedef struct ClipBreakPoint
 {
 	char *filename;
 	int line;

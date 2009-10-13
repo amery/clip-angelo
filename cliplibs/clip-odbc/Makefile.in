@@ -11,20 +11,26 @@ PROG 					= 			clip-odbc
 PROG2 				= 			clip-oob
 ADDLIBS 				= 			$(LIBODBC)
 ADDLIBS2 			= 			$(LIBOOB)
-OBJS 					= 			$(sort 						\
-												odbc_clip.o 	\
-												odbc.o 			\
+prg_files 			= 			$(sort 						\
+												odbc.prg 		\
 									)
 
-OBJS2 				= 			$(OBJS)
+c_files 				= 			$(sort 						\
+												odbc_clip.c 	\
+									)
+
 DOC 					= 			*.html
 
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+o_files2 			= 			$(o_files)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(OBJS2) $(STARGET) $(STARGET2)
+all : Makefile $(o_files) $(o_files2) $(STARGET) $(STARGET2)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-odbc

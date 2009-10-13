@@ -1,8 +1,8 @@
 #include "ci_hash.h"
 #include "ci_btree.h"
 
-#ifndef DBFSQL_H
-#define DBFSQL_H
+#ifndef CI_DBFSQL_H
+#define CI_DBFSQL_H
 
 /* Errors (e:subCode) */
 #define ER_NOLIB		1000

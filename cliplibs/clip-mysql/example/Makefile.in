@@ -1,15 +1,18 @@
 #
 #                                            clip-mysql/example/Makefile.in
 #
-Depend_on 			= 				$(Clip_L_Dir)/libclip-mysql.so
-PRG 					= 				my_mysql$(EXESUFF)
-LIBS 					= 				-L/usr/lib/mysql -lmysqlclient
+Depend_on 			= 			$(Clip_L_Dir)/libclip-mysql.so
+prg_files 			= 			my_mysql.prg
+LIBS 					= 			-L/usr/lib/mysql -lmysqlclient
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_mysql$(EXESUFF): my_mysql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewMs my_mysql.prg -lclip-mysql $(LIBS)
+	$(CLIP) -o$@ -ewMs $< -lclip-mysql $(LIBS)
 
 include $(Makefile_o_in)
 

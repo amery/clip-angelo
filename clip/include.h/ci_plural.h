@@ -1,4 +1,4 @@
-/* 
+/*
    $Log: plural.h,v $
    Revision 1.1  2006/06/22 19:35:17  itk
    uri: init sf.net repository
@@ -13,8 +13,8 @@
  support for plural forms in i18n messages
  paul
 */
-#ifndef PLURAL_H
-#define PLURAL_H
+#ifndef CI_PLURAL_H
+#define CI_PLURAL_H
 
 typedef struct PluralData PluralData;
 

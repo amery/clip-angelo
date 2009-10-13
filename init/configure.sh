@@ -1,8 +1,12 @@
 #!/bin/bash -u
-echo "Configuring $PWD" >&0
+echo "Configuring $PWD because of $*" >&0
+echo "Configuring $PWD because of $*" >&1
+echo "Configuring $PWD because of $*" >&2
 [ -f $PWD/configure.ok ] && rm -f$V $PWD/configure.ok
 source $Clip_M_Dir/configure.ini
-cp --remove-destination -fu$V ../Makefile.ini ../configure.ini ./
+[ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
+[ -f ./Makefile.ini ] || cp --remove-destination -fpu$V $Clip_M_Dir/Makefile.ini $Clip_M_Dir/configure.ini ./
+[ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
 if [ -f ./configure.in ] ; then
 	echo "#!/bin/bash -u" 									>./configure
 	cat ./configure.ini 										>>./configure
@@ -13,12 +17,12 @@ fi
 sleep .1
 [ -f configure ] && ./configure 0
 if [ $? != 0 ] ; then
-	break
+	exit 1
 fi
 touch $PWD/configure.ok
 touch $PWD/configure.ok
 touch $PWD/configure.ok
-sleep .1
+sleep 1
 cat ./Makefile.ini 								>Makefile
 #[ -f Makefile.inc ] && cat Makefile.inc 	>>Makefile
 cat ./Makefile.in 								>>Makefile
@@ -30,5 +34,5 @@ if ! [ -f $PWD/configure.ok ] ; then
 	echo "error config" >&0
 	echo "error config" >&1
 	echo "error config" >&2
-	break
+	exit 1
 fi

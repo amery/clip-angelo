@@ -1,5 +1,5 @@
-#ifndef _KEY_DEFINED
-#define _KEY_DEFINED
+#ifndef CI_KEY_DEFINED
+#define CI_KEY_DEFINED
 
 /* Cursor movement keys */
 #define K_HOME              1   /*   Home, Ctrl-A                */

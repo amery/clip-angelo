@@ -1,16 +1,19 @@
 #
 #                                            clip-bzip2/Makefile.in
 #
-PROG 				= 			clip-bzip2
-OBJS 				= 			bzip2.o
-ADDLIBS 			= 			-lbz2
+PROG 					= 			clip-bzip2
+c_files 				= 			bzip2.c
+ADDLIBS 				= 			-lbz2
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile  ci_bzpref.h have_lib $(OBJS) $(STARGET)
+all : Makefile  ci_bzpref.h have_lib $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-bzip2

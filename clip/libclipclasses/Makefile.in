@@ -6,64 +6,67 @@ Local_Depend 		= 		../include/*.ch 		\
 
 CLIPFLAGS 			+= 	-n
 PROG 					= 		clipclasses
-OBJS  				= 		$(sort 								\
-											block.o 					\
-											checkbox.o 				\
-											database.o 				\
-											dbm.o 					\
-											dialbox.o 				\
-											dt_obj.o 				\
-											edit.o 					\
-											err_obj.o 				\
-											field.o 					\
-											fw_time.o 				\
-											get_obj.o 				\
-											history.o 				\
-											hparser.o 				\
-											html_obj.o 				\
-											listbox.o 				\
-											listitem.o 				\
-											menuitem.o 				\
-											pp_tb.o 					\
-											pushbutt.o 				\
-											queue.o 					\
-											radiobut.o 				\
-											radiogrp.o 				\
-											rdd_obj.o 				\
-											scrolbar.o 				\
-											smtp_obj.o 				\
-											stack.o 					\
-											htag_obj.o 				\
-											tb_obj.o 				\
-											tcol_obj.o 				\
-											te_find.o 				\
-											tedit_obj.o 			\
-											tfile.o 					\
-											tget_obj.o 				\
-											url_obj.o 				\
-											sarray.o 				\
-											inifile.o 				\
-											cobra_service.o 		\
-											cobra_info.o 			\
-											http_service.o 		\
-											tcp_server.o 			\
+prg_files  			= 		$(sort 									\
+											block.prg 					\
+											checkbox.prg 				\
+											database.prg 				\
+											dbm.prg 						\
+											dialbox.prg 				\
+											dt_obj.prg 					\
+											edit.prg 					\
+											err_obj.prg 				\
+											field.prg 					\
+											fw_time.prg 				\
+											get_obj.prg 				\
+											history.prg 				\
+											hparser.prg 				\
+											html_obj.prg 				\
+											listbox.prg 				\
+											listitem.prg 				\
+											menuitem.prg 				\
+											pp_tb.prg 					\
+											pushbutt.prg 				\
+											queue.prg 					\
+											radiobut.prg 				\
+											radiogrp.prg 				\
+											rdd_obj.prg 				\
+											scrolbar.prg 				\
+											smtp_obj.prg 				\
+											stack.prg 					\
+											htag_obj.prg 				\
+											tb_obj.prg 					\
+											tcol_obj.prg 				\
+											te_find.prg 				\
+											tedit_obj.prg 				\
+											tfile.prg 					\
+											tget_obj.prg 				\
+											url_obj.prg 				\
+											sarray.prg 					\
+											inifile.prg 				\
+											cobra_service.prg 		\
+											cobra_info.prg 			\
+											http_service.prg 			\
+											tcp_server.prg 			\
 								)
 
 ADDLIBS 				=
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(OBJS) $(ATARGET)
+install all : Makefile $(o_files) $(ATARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipclasses
 
-cfg:
+cfg :
 
-cleanc:
+cleanc :
 	$(E_rm)rm -rf$(V) *.c *.b  $(ATARGET)
 
 distcleanc :

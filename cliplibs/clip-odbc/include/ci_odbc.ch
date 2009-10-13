@@ -1,5 +1,5 @@
-#ifndef ODBC_CH
-#define ODBC_CH
+#ifndef CI_ODBC_CH
+#define CI_ODBC_CH
 
 #define	SQL_UNKNOWN_TYPE	0
 #define SQL_CHAR            1			// !

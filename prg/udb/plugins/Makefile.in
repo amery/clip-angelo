@@ -3,31 +3,33 @@
 #
 Local_Depend 			=
 
-MODULES 					= 				$(sort 						\
-														acc_chart.po 	\
-														acc_oper.po 	\
-														attr.po 			\
-														class.po  		\
-														counter.po 		\
-														default.po 		\
-														deposit.po 		\
-														extent.po 		\
-														group.po 		\
-														index.po 		\
-														plugins.po 		\
-														report.po 		\
-														tcolumn.po 		\
-														tview.po 		\
-														user.po 			\
-											)
+prg_files 				= 			$(sort 							\
+													acc_chart.prg 		\
+													acc_oper.prg 		\
+													attr.prg 			\
+													class.prg  			\
+													counter.prg 		\
+													default.prg 		\
+													deposit.prg 		\
+													extent.prg 			\
+													group.prg 			\
+													index.prg 			\
+													plugins.prg 		\
+													report.prg 			\
+													tcolumn.prg 		\
+													tview.prg 			\
+													user.prg 			\
+										)
 
+po_files 				= 			$(addsuffix .po, $(basename $(prg_files) ) )
+SRC_PRG_files 			= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all : Makefile $(DIRS_TO_SCAN) $(MODULES)
+install all : Makefile $(DIRS_TO_SCAN) $(po_files)
 
 hash1 :
 
@@ -39,8 +41,8 @@ update:
 	../_cvs update -dP
 
 cleanc : $(DIRS_TO_SCAN)
-	$(E_rm)rm -rf$(V) *.c *.b $(MODULES)
-	$(E_rm)rm -rf$(V) *.pro $(PROGS) test test2
+	$(E_rm)rm -rf$(V) *.c *.b $(po_files)
+	$(E_rm)rm -rf$(V) *.pro test test2
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

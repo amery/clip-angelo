@@ -1,7 +1,7 @@
 // Warning: Under development. Not available yet!
 
-#ifndef _DBF_CH
-#define _DBF_CH
+#ifndef CI__DBF_CH
+#define CI__DBF_CH
 
 #xcommand DBF [<oDbf>] ;
              [ <file: FILE, FILENAME, DISK> <cFileName> ] ;

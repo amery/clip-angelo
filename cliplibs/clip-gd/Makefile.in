@@ -4,8 +4,9 @@
 Local_Depend 		= 			include/*.ch 	\
 									include/*.h
 PROG 					= 			clip-gd
-SRCS 					= 									\
-									_gd.c 				\
+c_files 				= 									\
+									_gd.c
+prg_files 			=									\
 									bggraph.prg  		\
 									bgtools.prg  		\
 									circle.prg  		\
@@ -19,11 +20,13 @@ SRCS 					= 									\
 									line.prg  			\
 									ring.prg
 
-OBJS 					= 			$(addsuffix .o, $(basename $(SRCS)))
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 DOC 					= 			doc/*
 LIBGD 				= 			libgd/libgd.a
 ADDLIBS 				= 			$(LIBGD)
 DIRS_TO_SCAN 		= 			libgd
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
@@ -46,7 +49,7 @@ test_lib : include/ci_gdcfg.h
 include/ci_gdcfg.h :
 	$(E_xx)$(CONFIGURE_SH)
 
-all : Makefile test_lib $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+all : Makefile test_lib $(DIRS_TO_SCAN) $(o_files) $(STARGET)
 
 install : all install-lib install-example install-doc
 

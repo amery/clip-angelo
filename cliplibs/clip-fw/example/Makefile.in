@@ -1,37 +1,39 @@
 #
 #                                            clip-fw/example/Makefile.in
 #
-Depend_on 				= 			$(Clip_L_Dir)/libclip-fw.so 		\
-										$(Clip_L_Dir)/libclip-gtk.so 		\
-										$(Clip_L_Dir)/libclip-cti.so
-CLIPFLAGS 				= 			-o$@ -g -l -w $(INCLUDEDIRS)
-CLIPLIBS  				=
-OBJS  					=
-BINS 						= 			$(sort 								\
-													combos$(EXESUFF) 		\
-													dlgtest$(EXESUFF) 	\
-													gettest$(EXESUFF) 	\
-													lines$(EXESUFF) 		\
-													test$(EXESUFF) 		\
-													testbar$(EXESUFF) 	\
-													testbrw$(EXESUFF) 	\
-													testlbx$(EXESUFF) 	\
-													testscrl$(EXESUFF) 	\
-													testwsty$(EXESUFF) 	\
-													tooltip$(EXESUFF) 	\
-													atest$(EXESUFF) 		\
-													bmp$(EXESUFF)			\
-										)
+Depend_on 			= 			$(Clip_L_Dir)/libclip-fw.so 		\
+									$(Clip_L_Dir)/libclip-gtk.so 		\
+									$(Clip_L_Dir)/libclip-cti.so
+CLIPFLAGS 			= 			-o$@ -g -l -w $(INCLUDEDIRS)
+CLIPLIBS  			=
+BINS 					= 			$(sort 						\
+												combos.prg 		\
+												dlgtest.prg 	\
+												gettest.prg 	\
+												lines.prg 		\
+												test.prg 		\
+												testbar.prg 	\
+												testbrw.prg 	\
+												testlbx.prg 	\
+												testscrl.prg 	\
+												testwsty.prg 	\
+												tooltip.prg 	\
+												atest.prg 		\
+												bmp.prg			\
+									)
 
-#atest$(EXESUFF)  # 		missing many functions
-#bmp$(EXESUFF)  	# 		missing many functions
-LIBS 						+= 		-lclip-fw -lclip-gtk -lclip-cti $(PIXBUFLIBS)
+#atest.prg  # 		missing many functions
+#bmp.prg  	# 		missing many functions
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+LIBS 					+= 		-lclip-fw -lclip-gtk -lclip-cti $(PIXBUFLIBS)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:	Makefile $(BINS)
+all:	Makefile $(exe_files)
 
 install : all
 

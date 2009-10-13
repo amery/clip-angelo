@@ -8,47 +8,50 @@
 Local_Depend 		= 			include/*.ch
 DRIVERSDIR 			= 			$(INSTDIR)/lib/drivers
 PROG 					= 			clip-ui
-OBJS    				= 			$(sort 							\
-												button.o 			\
-												checkbox.o 			\
-												choice.o 			\
-												color.o 				\
-												combobox.o 			\
-												edit.o 				\
-												edittable.o 		\
-												font.o 				\
-												form.o 				\
-												frame.o 				\
-												grid.o 				\
-												image.o 				\
-												label.o 				\
-												layout.o 			\
-												menu.o 				\
-												progressbar.o 		\
-												radiobutton.o 		\
-												slider.o 			\
-												source.o 			\
-												table.o 				\
-												timer.o 				\
-												toolbar.o 			\
-												tree.o 				\
-												utils.o 				\
-												window.o 			\
-												workspace.o 		\
-												glade.o 				\
-												qt_designer.o 		\
+prg_files    		= 			$(sort 							\
+												button.prg 			\
+												checkbox.prg 		\
+												choice.prg 			\
+												color.prg 			\
+												combobox.prg 		\
+												edit.prg 			\
+												edittable.prg 		\
+												font.prg 			\
+												form.prg 			\
+												frame.prg 			\
+												grid.prg 			\
+												image.prg 			\
+												label.prg 			\
+												layout.prg 			\
+												menu.prg 			\
+												progressbar.prg 	\
+												radiobutton.prg 	\
+												slider.prg 			\
+												source.prg 			\
+												table.prg 			\
+												timer.prg 			\
+												toolbar.prg 		\
+												tree.prg 			\
+												utils.prg 			\
+												window.prg 			\
+												workspace.prg 		\
+												glade.prg 			\
+												qt_designer.prg 	\
 									)
 
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 LANGS   				= 			ru_RU.KOI8-R
 DIRS_TO_SCAN 		= 			drivers
 ADDLIBS 				= 			-L$(Clip_L_Dir) -lclip-xml
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile ci_var.ch $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+all : Makefile ci_var.ch $(DIRS_TO_SCAN) $(o_files) $(STARGET)
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-ui.ch $(Clip_I_Dir)/

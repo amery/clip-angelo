@@ -1,10 +1,10 @@
 /***
 *	setnames.ch
-*       Определения значений SET-установок Clipper
+*       О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ SET-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Clipper
 */
 
-#ifndef _SETNAMES_DEFINED
-#define _SETNAMES_DEFINED
+#ifndef CI_SETNAMES_DEFINED
+#define CI_SETNAMES_DEFINED
 
 __set_names:=map()
 __set_names[1]:=    "EXACT"

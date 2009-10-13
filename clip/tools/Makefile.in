@@ -7,18 +7,21 @@
 Local_Depend 	= 		../include.h/*.h		\
 							../include/*.ch
 
-BINS				=		$(sort 											\
-										clipar$(EXESUFF) 					\
-										clip_conv$(EXESUFF) 				\
-										clip_dbg$(EXESUFF) 				\
-										clip_trans$(EXESUFF) 			\
-										clip_hashextract$(EXESUFF) 	\
-										cliphash$(EXESUFF) 				\
-										genlist$(EXESUFF) 				\
-										gen_tbl$(EXESUFF) 				\
-										$(PO_BINS) 							\
+c_files		=		$(sort 									\
+										clipar.c 				\
+										clip_conv.c 			\
+										clip_dbg.c 				\
+										clip_trans.c 			\
+										clip_hashextract.c 	\
+										cliphash.c 				\
+										genlist.c 				\
+										gen_tbl.c 				\
+										po_extr.c 				\
+										po_compat.c 			\
+										po_subst.c 				\
 							)
 
+exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(c_files) ) )
 SCRIPTS 			= 		$(sort 								 			\
 										clip_cp$(SCRIPTSUFF) 			\
 										clip_bug$(SCRIPTSUFF) 			\
@@ -32,13 +35,15 @@ SCRIPTS 			= 		$(sort 								 			\
 										clip_msgmerge$(SCRIPTSUFF) 	\
 										add_meta_tag$(SCRIPTSUFF) 		\
 							)
+SRC_C_files 		= 			$(sort $(c_files) po_util.c )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile links lex $(DIRS_TO_SCAN) $(OBJS) $(BINS) $(SCRIPTS)
+all: Makefile links lex $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(SCRIPTS)
 
 links:
 
@@ -109,8 +114,8 @@ clicutil.o: clicutil.c clic.tab.h Makefile
 	fi
 
 install : all
-	$(E_xx)chmod 755 $(BINS) $(SCRIPTS)
-	$(E_cp)cp --remove-destination -fpu$(V) $(BINS) $(SCRIPTS) $(Clip_B_Dir)/ || true
+	$(E_xx)chmod 755 $(exe_files) $(SCRIPTS)
+	$(E_cp)cp --remove-destination -fpu$(V) $(exe_files) $(SCRIPTS) $(Clip_B_Dir)/ || true
 	$(E_ln)cd $(BINDIR) \
 		&& ln -sf$(V) $(Clip_B_Dir)/*$(EXESUFF) $(Clip_B_Dir)/*$(SCRIPTSUFF) $(BINDIR)/
 
@@ -260,13 +265,13 @@ tconv$(SCRIPTSUFF) : tconv Makefile
 	$(E_cp)cp --remove-destination -f$(V) tconv $@
 
 cleanc :
-	$(E_rm)rm -Rf$(V) bin
+	$(E_rm)rm -Rf$(V) bin clip_mk_depend$(EXESUFF)
 	$(E_rm)rm -f$(V) charsets
 # || true
-	$(E_rm)rm -f$(V) $(BINS) $(SCRIPTS) *.b 		\
-		test dtest locale.pot license.h 		\
-		Makefile.tmp 				\
-		Makefile.incl
+	$(E_rm)rm -f$(V) 	$(exe_files) $(SCRIPTS) *.b 			\
+							test dtest locale.pot license.h 		\
+							Makefile.tmp 								\
+							Makefile.incl
 #  || true
 	$(E_rm)rm -f$(V) clipcfg.sh clipcfg.h license.txt
 # || true
@@ -275,19 +280,6 @@ distcleanc: clean
 	$(E_rm)rm -f$(V) *.g configure.flags
 	$(E_rm)rm -f$(V) cliproot
 # || true
-
-commit:
-	./_cvs_commit
-
-update:
-	./_cvs_update
-
-ucommit:
-	./_cvs_commit
-	./_cvs_update
-
-shell:
-	sh
 
 ###################################################### yacc - flex
 
@@ -326,9 +318,6 @@ plural.tab.c: plural.y
 rt.tab.c: rt.y ../include.h/ci_clic.h
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -brt -prt -v -d rt.y
-
-depend:
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
 
 lex: yacc lex.hash.c Makefile
 yacc: Makefile

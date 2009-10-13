@@ -1,15 +1,18 @@
 #
 #                                            clip-interbase/example/Makefile.in
 #
-Depend_on 				= 				$(Clip_L_Dir)/libclip-interbase.so
-PRG 						= 				my_isql$(EXESUFF)
+Depend_on 			= 			$(Clip_L_Dir)/libclip-interbase.so
+prg_files 			= 			my_isql.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:Makefile $(PRG)
+all:Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(Trace_clip)
-	$(CLIP) -o$@ -ewMs my_isql.prg -lclip-interbase
+	$(CLIP) -o$@ -ewMs $< -lclip-interbase
 
 include $(Makefile_o_in)
 

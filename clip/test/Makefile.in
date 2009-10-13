@@ -1,0 +1,349 @@
+#
+#                                            clip/tests/Makefile.in
+#
+Local_Depend 	=
+
+
+TESTS 			=	$(sort 									\
+									test.dbf 					\
+									a$(EXESUFF) 				\
+									a_flag$(EXESUFF) 			\
+									attoken$(EXESUFF) 		\
+									dbg$(EXESUFF) 				\
+									dispbox$(EXESUFF) 		\
+									dutil$(EXESUFF) 			\
+									err$(EXESUFF) 				\
+									hparse$(EXESUFF) 			\
+									inkey$(EXESUFF) 			\
+									key$(EXESUFF) 				\
+									loop$(EXESUFF) 			\
+									macro1$(EXESUFF) 			\
+									main$(EXESUFF) 			\
+									mainp.pa 					\
+									mathtest$(EXESUFF) 		\
+									mem_file$(EXESUFF) 		\
+									memoline$(EXESUFF) 		\
+									memo_t$(EXESUFF) 			\
+									mouse$(EXESUFF) 			\
+									obj$(EXESUFF) 				\
+									obj_p$(EXESUFF) 			\
+									param$(EXESUFF) 			\
+									param1$(EXESUFF) 			\
+									pg$(EXESUFF) 				\
+									pload$(EXESUFF) 			\
+									replace$(EXESUFF) 		\
+									run$(EXESUFF) 				\
+									set_t$(EXESUFF) 			\
+									task1$(EXESUFF) 			\
+									task2$(EXESUFF) 			\
+									task3$(EXESUFF) 			\
+									tbldec$(EXESUFF) 			\
+									testlock$(EXESUFF) 		\
+									transform$(EXESUFF) 		\
+									ttt$(EXESUFF) 				\
+									ttt_p$(EXESUFF) 			\
+									type_field$(EXESUFF) 	\
+									wind$(EXESUFF) 			\
+									wind2$(EXESUFF) 			\
+									wind3$(EXESUFF) 			\
+									testscr$(EXESUFF) 		\
+						)
+#loadso$(EXESUFF) param$(EXESUFF) reclock$(EXESUFF)
+prg_files 		= 				a_flag.prg 			\
+									attoken.prg 		\
+									dbg.prg 				\
+									dispbox.prg 		\
+									dutil.prg 			\
+									err.prg 				\
+									hparse.prg 			\
+									inkey.prg 			\
+									key.prg 				\
+									loop.prg 			\
+									macro1.prg 			\
+									main.prg 			\
+									mainp.pa 			\
+									mathtest.prg 		\
+									mem_file.prg 		\
+									memoline.prg 		\
+									memo_t.prg 			\
+									mouse.prg 			\
+									obj.prg 				\
+									obj_p.prg 			\
+									param.prg 			\
+									param1.prg 			\
+									pg.prg 				\
+									pload.prg 			\
+									replace.prg 		\
+									run.prg 				\
+									set_t.prg 			\
+									task1.prg 			\
+									task2.prg 			\
+									task3.prg 			\
+									tbldec.prg 			\
+									testlock.prg 		\
+									transform.prg 		\
+									ttt.prg 				\
+									ttt_p.prg 			\
+									type_field.prg 	\
+									wind.prg 			\
+									wind2.prg 			\
+									wind3.prg
+
+C_TO_ERASE 		= 		$(addsuffix .c, $(basename $(prg_files) ) )
+CLPFLAGS 		= 	-v2 -g -l -I include.clip
+SF 				= 	-s
+DBFS 				= 	test.dbf ttt.dbf ttt.dbt
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all : Makefile dbfs $(sort $(TESTS) )
+
+cfg :
+	ln -sf$(V) $(Clip_I_Dir) ./include.clip
+
+hash1 :
+
+cleanc :
+	$(E_rm)rm -rf$(V) *.b *.tab.c *.tab.h lex.*.c
+	$(E_rm)rm -f$(V) $(C_TO_ERASE) *.mlog *.pid $(TESTS) $(DBFS) x
+
+dbfs: $(DBFS)
+
+test.dbf: test.dbf.orig Makefile
+	$(E_e)$(Trace)
+	cp test.dbf.orig test.dbf
+
+ttt.dbf: ttt.dbf.orig Makefile
+	$(E_e)$(Trace)
+	cp ttt.dbf.orig ttt.dbf
+
+ttt.dbt: ttt.dbt.orig Makefile
+	$(E_e)$(Trace)
+	cp ttt.dbt.orig ttt.dbt
+
+
+testscr$(EXESUFF): testscr.c Makefile
+	$(E_e)$(Trace_cc)
+	$(CC) $(C_FLAGS) -o $@ $< -lgpm $(CLIPLIB)
+
+a$(EXESUFF): a.prg  dbfs Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -I. -o$@ -e -M a.prg #aa.o #../a.a
+
+a1.a:   a1.o Makefile
+	$(Trace_lib)
+	rm -f a1.a
+	ar q a1.a a1.o
+
+a1.o:   a1.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) a1.prg
+
+a_flag$(EXESUFF): a_flag.prg  Makefile  $(CLIP) $(LIBCLIP)#a1.a
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M -a a_flag.prg #a1.a
+
+attoken$(EXESUFF): attoken.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -eslM attoken.prg
+
+dbg$(EXESUFF): dbg.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M dbg.prg
+
+dispbox$(EXESUFF): dispbox.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -M dispbox.prg
+
+dutil$(EXESUFF): dutil.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -o$@ -e -M dutil.prg -lz
+
+err$(EXESUFF): err.prg  errorsys.o Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M err.prg errorsys.o
+
+errorsys.o: errorsys.prg Makefile $(CLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) errorsys.prg
+
+hparse$(EXESUFF): hparse.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -l -s -M hparse.prg
+
+inkey$(EXESUFF): inkey.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -l -s -n inkey.prg
+
+key$(EXESUFF): key.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M key.prg
+
+loadso$(EXESUFF): loadso.prg  obj.so Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M loadso.prg $(LIBCLIP)
+
+loop$(EXESUFF): loop.prg  loop_p.po Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M loop.prg loop_p.po $(LIBCLIP)
+
+loop_p.po: loop_p.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p loop_p.prg
+
+macro1$(EXESUFF): macro1.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M macro1.prg
+
+main$(EXESUFF):  Makefile mainp.pa $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -o $@ mainp.pa
+
+mainp.pa: mainp.po set_p.po mem_file.po Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace)
+	../tools/clipar$(EXESUFF) mainp.pa mainp.po set_p.po mem_file.po
+
+mainp.po: mainp.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p mainp.prg
+
+mathtest$(EXESUFF): mathtest.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M mathtest.prg
+
+mem_file$(EXESUFF): mem_file.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M mem_file.prg
+
+mem_file.po: mem_file.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p mem_file.prg
+
+memo_t$(EXESUFF): memo_t.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M memo_t.prg
+
+memoline$(EXESUFF): memoline.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -l -s -M memoline.prg
+
+mouse$(EXESUFF): mouse.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M mouse.prg
+
+obj$(EXESUFF): obj.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M obj.prg
+
+obj.po: obj.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p obj.prg
+
+obj.so: obj.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(CLIP) $(CLPFLAGS) -s obj.prg
+
+obj_p$(EXESUFF): obj_p.prg obj.po Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M obj_p.prg obj.po
+
+param$(EXESUFF): param.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M param.prg
+
+param1$(EXESUFF): param1.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M param1.prg
+
+pg$(EXESUFF): pg.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M pg.prg
+
+pload$(EXESUFF): pload.prg  obj.po Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M pload.prg
+
+reclock$(EXESUFF): reclock.prg dbfs Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -M reclock.prg
+
+replace$(EXESUFF): replace.prg replacep.po  $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M replace.prg replacep.po
+
+replacep.po: replacep.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p replacep.prg
+
+run$(EXESUFF): run.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M run.prg
+
+set_p.po: set_p.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p set_p.prg
+
+set_t$(EXESUFF): set_t.prg set_p.po $(CLIP) $(LIBCLIP)
+	$(E_e)$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M set_t.prg set_p.po
+
+task1$(EXESUFF): task1.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -I. -o$@ -e -M task1.prg
+
+task2$(EXESUFF): task2.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -I. -o$@ -e -M task2.prg
+
+task3$(EXESUFF): task3.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -I. -o$@ -e -M task3.prg
+
+tbldec$(EXESUFF): tbldec.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M tbldec.prg
+
+testlock$(EXESUFF): testlock.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -M testlock.prg
+
+ttt$(EXESUFF): ttt.prg  test.dbf Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M ttt.prg
+
+ttt_p$(EXESUFF): ttt_p.prg ttt.po Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M ttt_p.prg ttt.po
+
+ttt.po: ttt.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -p ttt.prg
+
+type_field$(EXESUFF): type_field.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M type_field.prg
+
+transform$(EXESUFF): transform.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) -I. -o$@ -e -l -s -M transform.prg
+
+wind$(EXESUFF): wind.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M wind.prg
+
+wind2$(EXESUFF): wind2.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M wind2.prg
+
+wind3$(EXESUFF): wind3.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLPFLAGS) $(SF) -o$@ -e -M wind3.prg
+
+x$(EXESUFF): x.prg  Makefile $(CLIP) $(LIBCLIP)
+	$(E_e)$(Trace_clip)
+#	$(CLIP) $(CLPFLAGS) -e -M x.prg ../libxclip.a `gtk-config --libs` -lz
+	$(CLIP) $(CLPFLAGS) -o$@ -e -M x.prg -lxclip -lz  `gtk-config --libs`
+
+include $(Makefile_end_in)
+

@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef YTYPES_H
-#define YTYPES_H
+#ifndef CI_YTYPES_H
+#define CI_YTYPES_H
 
 typedef unsigned char Uchar;
 typedef unsigned int Uint;

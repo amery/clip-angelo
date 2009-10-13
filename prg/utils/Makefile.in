@@ -6,26 +6,31 @@ PGLIBS 				= 			libpgclip.a libpq.a libcrypt.a
 MSLIBS 				= 			libmsclip.a libmysqlclient.a
 POBJS					= 			menu.po getfile.po
 PAOBJS				= 			menu.po getfile.po
-BINS 					= 			$(sort 										\
-												clip_run$(EXESUFF) 			\
-												clip_prg$(EXESUFF) 			\
-												clip_we$(EXESUFF) 			\
-												clip_bl$(EXESUFF) 			\
-												www_clip$(EXESUFF) 			\
-												wcl2prg$(EXESUFF) 			\
-												clip_blank$(EXESUFF) 		\
-												sqlrun$(EXESUFF)  			\
-												clip_hv$(EXESUFF) 			\
-												clip_fl$(EXESUFF) 			\
-												clip_dbf2txt$(EXESUFF) 		\
+prg_files 			= 			$(sort 								\
+												clip_run.prg 			\
+												clip_prg.prg 			\
+												clip_we.prg 			\
+												clip_bl.prg 			\
+												www_clip.prg 			\
+												wcl2prg.prg 			\
+												clip_blank.prg 		\
+												sqlrun.prg  			\
+												clip_hv.prg 			\
+												clip_fl.prg 			\
+												clip_dbf2txt.prg 		\
+												clip_mk_depend.prg 	\
 									)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: $(BINS)
+all: $(exe_files)
 
 hash1 :
 
@@ -33,7 +38,7 @@ cfg :
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -rf$(V) $(BINS)
+	$(E_rm)rm -rf$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
@@ -41,7 +46,8 @@ distcleanc :
 include $(Makefile_o_in)
 
 install:all
-	$(E_cp)cp --remove-destination -fpu$(V) $(BINS) $(INSTDIR)/bin
+	$(E_cp)cp --remove-destination -fpu$(V) $(exe_files) $(INSTDIR)/bin
+	$(E_ln)ln -sf$(V) $(INSTDIR)/bin/* $(BINDIR)/
 	$(E_cp)cp --remove-destination -fpu$(V) .macro $(INSTDIR)/etc
 	$(E_cp)cp --remove-destination -fpu$(V) .templ $(INSTDIR)/etc
 
@@ -70,6 +76,15 @@ clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(LIBCLIP)
 	else 															\
 		$(Trace_clip) 		;									\
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
+	fi
+
+clip_mk_depend$(EXESUFF) :  clip_mk_depend.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_clip)if [ -f $(subst .o,.g,$<) ] ; then 		\
+		$(Trace_clip_d) ; 									\
+		$(CLIP) $(CLIPFLAGS) -g -es -o $@ $< ; 		\
+	else 															\
+		$(Trace_clip) ; 										\
+		$(CLIP) $(CLIPFLAGS) -es -o $@ $< ; 			\
 	fi
 
 clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(LIBCLIP)

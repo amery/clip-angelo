@@ -49,7 +49,7 @@ cfg :
 distcleanc : $(DIRS_TO_SCAN) clean
 	$(E_rm)rm -rf$(V) hashed
 
-example :
+test example :
 
 hasher :
 
@@ -73,3 +73,4 @@ $(Clip_I_Dir)/ci_hashcode.h : Makefile $(Clip_B_Dir)/clip_hashextract$(EXESUFF) 
 	$(E_e)banner ci_hashcode.h ok
 
 include $(Makefile_end_in)
+

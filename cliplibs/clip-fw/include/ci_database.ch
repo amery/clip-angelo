@@ -1,4 +1,4 @@
-#include <fwin/Dbms.ch>
+#include <fwin/CI_Dbms.ch>
 
 #xcommand DEFINE DATABASE <oDb> ;
 	     [ ALIAS <cAlias> ] ;

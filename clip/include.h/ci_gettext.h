@@ -16,8 +16,8 @@
    write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
    Boston, MA 02111-1307, USA.  */
 
-#ifndef _GETTEXT_H
-#define _GETTEXT_H 1
+#ifndef CI__GETTEXT_H
+#define CI__GETTEXT_H 1
 
 #include <stdio.h>
 

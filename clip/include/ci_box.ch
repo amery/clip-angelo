@@ -1,5 +1,5 @@
-#ifndef _BOX_DEFINED
-#define _BOX_DEFINED
+#ifndef CI_BOX_DEFINED
+#define CI_BOX_DEFINED
 
 #ifndef __NO_PGCH__
 

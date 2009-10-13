@@ -4,27 +4,29 @@
 #
 # 		from cliplibs/clip-gtk2
 
-Depend_on 		= 			$(Clip_L_Dir)/libclip-codb.so $(Clip_L_Dir)/libclip-gtk.so
-OBJS  			= 			$(sort 								\
-											abx_obj.o 				\
-											abx_menu.o 				\
-											abx_events.o 			\
-											abx_funcs.o 			\
-											abx_meta_browse.o 	\
-											abx_getobj.o 			\
-											abx_data_browse.o 	\
-								)
-BIN 				= 			codb_abx$(EXESUFF)
-DIRS_TO_SCAN 	= 			plugins
-
-LIBS 				+= 		-lclip-codb -lclip-gtk -lclip $(PIXBUFLIBS)
+Depend_on 		= 		$(Clip_L_Dir)/libclip-codb.so $(Clip_L_Dir)/libclip-gtk.so
+prg_files  		= 		$(sort 								\
+										abx_obj.prg 			\
+										abx_menu.prg 			\
+										abx_events.prg 		\
+										abx_funcs.prg 			\
+										abx_meta_browse.prg 	\
+										abx_getobj.prg 		\
+										abx_data_browse.prg 	\
+							)
+exe_files 		= 		codb_abx$(EXESUFF)
+DIRS_TO_SCAN 	= 		plugins
+o_files 			= 		$(addsuffix .o, $(basename $(prg_files) ) )
+LIBS 				+= 	-lclip-codb -lclip-gtk -lclip $(PIXBUFLIBS)
+SRC_C_files 	= 		$(sort $(c_files) )
+SRC_PRG_files 	= 		$(sort $(prg_files) codb_abx.prg )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: $(DIRS_TO_SCAN) $(OBJS) $(BIN)
+all: $(DIRS_TO_SCAN) $(o_files) $(exe_files)
 
 hash1 :
 
@@ -36,18 +38,18 @@ install: all
 	$(E_cp)cp --remove-destination -fpu$(V) codb_abx$(EXESUFF) $(INSTDIR)/bin/
 
 cleanc : $(DIRS_TO_SCAN)
-	$(E_rm)rm -rf$(V) *.c *.b $(BIN)
+	$(E_rm)rm -rf$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(BIN): codb_abx.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
-		$(Trace_clip_d) 	;													\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
-	else 																			\
-		$(Trace_clip) 		;													\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
+codb_abx$(EXESUFF): codb_abx.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\
+	else 																				\
+		$(Trace_clip) 		;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
 	fi
 
 commit:

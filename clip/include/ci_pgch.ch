@@ -1,5 +1,5 @@
-#ifndef PGCH_CH
-#define PGCH_CH
+#ifndef CI_PGCH_CH
+#define CI_PGCH_CH
 
 #define PGCH_HLINE	1
 #define PGCH_LLCORNER   2
@@ -30,14 +30,14 @@
 #define PGCH_RARROW	16
 #define PGCH_LARROW     17
 
-/* B_SINGLE 'ВАГБЕАДБ' */
+/* B_SINGLE 'я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜' */
 #define PGCH_B_SINGLE '&\010&\001&\016&\017&\003&\001&\002&\017'
 
-/* B_DOUBLE 'еаибоалб' */
+/* B_DOUBLE 'я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜' */
 #define PGCH_B_DOUBLE '&\031&\022&\032&\033&\024&\022&\023&\033'
 
-/* B_SINGLE_DOUBLE 'важБмайБ' */
-/* B_DOUBLE_SINGLE 'дАзбнАкб' */
+/* B_SINGLE_DOUBLE 'я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜' */
+/* B_DOUBLE_SINGLE 'я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜' */
 
 
 #endif

@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_MENUBAR_CH__
-#define __CTI_MENUBAR_CH__
+#ifndef CI___CTI_MENUBAR_CH__
+#define CI___CTI_MENUBAR_CH__
 
 #define		CTI_IS_MENUBAR(obj)	(cti_check_cast(obj,"CTI_MENUBAR"))
 

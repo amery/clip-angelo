@@ -38,9 +38,9 @@ from uri:
 
 #include "ci_integer.h"
 
-#ifndef __ITK_RATIONAL_H
+#ifndef CI__ITK_RATIONAL_H
 
-#define __ITK_RATIONAL_H
+#define CI__ITK_RATIONAL_H
 
 
 typedef struct rational

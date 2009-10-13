@@ -4,7 +4,7 @@
 Local_Depend 		= 			include/*.ch
 PROG 					= 			clip-cti
 CLIPFLAGS 			+= 		-n
-SRCS 					= 											\
+prg_files 			= 											\
 									ctiapp.prg 					\
 									ctibin.prg 					\
 									ctibox.prg 					\
@@ -41,16 +41,18 @@ SRCS 					= 											\
 									ctiwindow.prg 				\
 									ctizorder.prg
 
-OBJS 					= 			$(sort $(addsuffix .o, $(basename $(SRCS) ) ))
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 
 ADDLIBS =
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile links $(OBJS) $(STARGET)
+all: Makefile links $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-cti

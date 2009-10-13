@@ -1,13 +1,13 @@
 /***
 *	extend.h
-* Определения Системы Расширения Clipper 5.0 для языка C.
-* Copyright (c) 1987,1988,1989,1990 Nantucket Corp.  Все права сохраняются.
+* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Clipper 5.0 О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ C.
+* Copyright (c) 1987,1988,1989,1990 Nantucket Corp.  О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫.
 *
-* Clipper использует соглашения большой модели памяти Microsoft C (large model)
+* Clipper О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ Microsoft C (large model)
 */
 
-#ifndef EXTEND_H
-#define EXTEND_H
+#ifndef CI_EXTEND_H
+#define CI_EXTEND_H
 
 #ifndef CLIPPERDEFS
 
@@ -36,18 +36,18 @@ typedef double XDOUBLE;
 #define LOGICAL		4
 #define DATE		8
 #define ALIAS		16
-#define MPTR    32		/* OR с типом при передаче по ссылке */
+#define MPTR    32		/* OR О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ */
 #define MEMO		65
 #define WORD		128
 #define ARRAY		512
 
 #endif
 
-/* количество/тип параметров */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫/О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 extern int _parinfo(int);
 extern int _parinfa(int, unsigned int);
 
-/* значения параметров */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 extern char *_parc(int,...);
 extern unsigned int _parcsiz(int,...);
 extern unsigned int _parclen(int,...);
@@ -57,7 +57,7 @@ extern XDOUBLE _parnd(int,...);
 extern int _parl(int,...);
 extern char *_pards(int,...);
 
-/* возврат значения */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 extern void _retc(char far *);
 extern void _retclen(char far *, unsigned int);
 extern void _retni(int);
@@ -66,10 +66,10 @@ extern void _retnd(XDOUBLE);
 extern void _retl(int);
 extern void _retds(char far *);
 
-/* нет возвращаемого значения (возврат NIL) */
+/* О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ (О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NIL) */
 extern void _ret(void);
 
-/* запись значения */
+/* О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 int _storc(char far *, int,...);
 int _storclen(char far *, int,...);
 int _storni(int, int,...);
@@ -79,21 +79,21 @@ int _storl(int, int,...);
 int _stords(char far *, int,...);
 
 /***
-* Замечание:
-* _xalloc() возвращает NULL при невозможности удовлетворения запроса
-* _xgrab() формирует сообщение об ошибке при невозможности удовлетворения запроса
+* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫:
+* _xalloc() О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ NULL О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+* _xgrab() О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 */
 
-/*  распределение памяти */
+/*  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫ */
 extern void far *_xalloc(unsigned int numberOfBytes);
 extern void far *_xgrab(unsigned int numberOfBytes);
 extern void _xfree(void far * allocatedBlock);
 
-/* совместимость с Summer '87 */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ Summer '87 */
 #define _exmgrab(size)			_xgrab(size)
 #define _exmback(ptr, size)		_xfree(ptr)
 
-/* макросы для проверки параметров */
+/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 #define PCOUNT		(_parinfo(0))
 #define ISCHAR(n)	(_parinfo(n) & CHARACTER)
 #define ISNUM(n)	(_parinfo(n) & NUMERIC)

@@ -1,5 +1,5 @@
-#ifndef _DIALOG_CH
-#define _DIALOG_CH
+#ifndef CI__DIALOG_CH
+#define CI__DIALOG_CH
 
 //----------------------------------------------------------------------------//
 // Microsoft 3D Look

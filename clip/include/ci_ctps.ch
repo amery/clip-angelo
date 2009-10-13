@@ -1,4 +1,4 @@
-#ifndef _NTPS
+#ifndef CI_NTPS
 
 // Job modes
 #define PSJ_HOLD		0
@@ -95,7 +95,7 @@
 #define PSTYP_BRGVAP		4
 
 
-#define _NTPS
+#define CI_NTPS
 
 #endif
 

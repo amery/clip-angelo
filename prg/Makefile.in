@@ -24,21 +24,5 @@ cleanc:
 distcleanc :
 	rm -rf$(V) *.g
 
-commit:
-	./_cvs commit
-
-update:
-	./_cvs update -dP
-
-deb:
-	./mkdeb
-
-rpm:
-	./mkrpm
-
-tgz:
-	./mktgz
-
-
 include $(Makefile_end_in)
 

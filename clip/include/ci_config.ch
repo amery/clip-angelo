@@ -1,6 +1,6 @@
 
-#ifndef __CONFIG_DEFINED
-#define __CONFIG_DEFINED
+#ifndef CI__CONFIG_DEFINED
+#define CI__CONFIG_DEFINED
 
 		// language compatibilites
 #define __NO_PGCH__  // comment for Chinese or other two byte charset`s

@@ -87,15 +87,18 @@ GTK_SRC 				= 		accelgroup.c 			\
 								treeitem.c 				\
 								viewport.c 				\
 								widget.c 				\
-								window.c 				\
-	  							gtkermsg.prg
+								window.c
+
+prg_files 			= 		gtkermsg.prg
 
 GTK_EXTEXT_SRC 	=
 #gtkextext.c
 #extext.c
 
 SRCS 					= 		$(sort $(GDK_SRC) $(GTK_SRC) $(GTK_EXTEXT_SRC))
-OBJS 					= 		$(addsuffix .o,$(basename $(SRCS) ) )
+c_files 				= 		$(sort $(GDK_SRC) $(GTK_SRC) $(GTK_EXTEXT_SRC))
+o_files 				= 		$(sort $(addsuffix .o, $(basename $(prg_files) $(c_files) ) ) )
+
 OBJDIR 				= .
 EXTOBJS 				=
 HASHSRCS 			= 		$(sort $(SRCS) $(HDRS))
@@ -108,13 +111,15 @@ DEFS					=
 C_FLAGS  			+= 	$(DEFS) $(MEMDBGFLAGS) $(XCFLAGS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 ADDLIBS 				=
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile include/ci_clip-gtkcfg.h $(OBJS) $(STARGET)
+all: Makefile include/ci_clip-gtkcfg.h $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gtk
@@ -149,22 +154,6 @@ distcleanc :
 install:all install-lib install-example
 
 include $(Makefile_o_in)
-
-depend:
-	$(MAKE) hash
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

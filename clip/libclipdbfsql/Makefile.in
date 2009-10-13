@@ -5,28 +5,34 @@ Local_Depend 		= 			../include/*.ch 		\
 									../include.h/*.h
 
 C_FLAGS 				+= 		-I../libcliprdd
-OBJS 					=  		$(sort 						\
-												dbfsql_c.o 		\
-												dbfsql_prg.o 	\
+c_files 				=  		$(sort 						\
+												dbfsql_c.c 		\
+									)
+
+prg_files 			=  		$(sort 							\
+												dbfsql_prg.prg 	\
 									)
 
 ADDLIBS 				=
 PROG 					= 			clipdbfsql
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(OBJS) $(ATARGET)
+install all: Makefile $(o_files) $(ATARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipdbfsql
 
-cfg:
+cfg :
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
 
-cleanc:
+cleanc :
 	$(E_rm)rm -f$(V) *.b *.tmp dbfsql_prg_ref.c dbfsql_prg.c dbfsql_prg.log  $(ATARGET)
 
 distcleanc :

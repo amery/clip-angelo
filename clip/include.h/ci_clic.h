@@ -242,8 +242,8 @@
  *
  */
 
-#ifndef YUVM_H
-#define YUVM_H
+#ifndef CI_YUVM_H
+#define CI_YUVM_H
 
 #include <stdio.h>
 #include <ctype.h>

@@ -2,20 +2,24 @@
 #                                            clip-gtk/example/gdk-pixbuf-demo/Makefile.in
 #
 Depend_on 				= 			$(Clip_L_Dir)/libclip-gtk.so
-SRC						=			$(sort 									\
-													pixbuf_demo$(EXESUFF) 	\
-													pixbuf_scale$(EXESUFF) 	\
-													zoomimage$(EXESUFF) 		\
+
+LIBS 						+= 		$(PIXBUFLIBS) \
+										-lclip-gtk
+
+prg_files 				=			$(sort 							\
+													pixbuf_demo.prg 	\
+													pixbuf_scale.prg 	\
+													zoomimage.prg 		\
 										)
 
-LIBS 						+= 		$(PIXBUFLIBS)
-
+exe_files 			= 				$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_PRG_files 		= 				$(prg_files)
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(SRC)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -25,22 +29,22 @@ cfg :
 
 cleanc:
 	$(E_rm)rm -f$(V) *.c
-	$(E_rm)rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewsl pixbuf_demo.prg -lclip-gtk $(LIBS)
+	$(CLIP) -o$@ -g -ewsl $< $(LIBS)
 
 pixbuf_scale$(EXESUFF) : pixbuf_scale.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewsl pixbuf_scale.prg -lclip-gtk $(LIBS)
+	$(CLIP) -o$@ -g -ewsl $< $(LIBS)
 
 zoomimage$(EXESUFF) : zoomimage.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewsl zoomimage.prg -lclip-gtk $(LIBS)
+	$(CLIP) -o$@ -g -ewsl $< $(LIBS)
 
 include $(Makefile_o_in)
 

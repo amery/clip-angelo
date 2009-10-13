@@ -1,64 +1,72 @@
 #
 #                                            prg/bdbfs/Makefile.in
 #
-Local_Depend 		= 		include/*.ch
-CLIPFLAGS 			+= 	-n -I $(Clip_I_Dir)/clip-netto
-LIBS  				= 		-lclip-netto -lclip-nanfor
-OBJS  				=		$(sort 						\
-											getsys.o 		\
-											common.o 		\
-											help.o 			\
-											print.o 			\
-											mdbedit.o 		\
-											mainmenu.o 		\
-											aktions.o 		\
-											obsolete.o 		\
-											cliplib.o 		\
-											filer.o 			\
-											viewer.o 		\
-											editor.o 		\
-											foxpro.o 		\
-											tb2html.o 		\
-											menu.o 			\
-											_clip.o 			\
-											modistru.o 		\
-											vkrz.o 			\
-											nanfor.o 		\
-											nettos.o 		\
-											errorsys.o 		\
-											config.o 		\
-											examplep.o 		\
+Local_Depend 	= 		include/*.ch
+Depend_on 		= 		$(Clip_L_Dir)/libclip-netto.so 		\
+							$(Clip_L_Dir)/libclip-nanfor.so
+
+CLIPFLAGS 		+= 	-n -I $(Clip_I_Dir)/clip-netto
+LIBS  			= 		-lclip-netto -lclip-nanfor
+prg_files  		=		$(sort 						\
+										getsys.prg 		\
+										common.prg 		\
+										help.prg 		\
+										print.prg 		\
+										mdbedit.prg 	\
+										mainmenu.prg 	\
+										aktions.prg 	\
+										obsolete.prg 	\
+										cliplib.prg 	\
+										filer.prg 		\
+										viewer.prg 		\
+										editor.prg 		\
+										foxpro.prg 		\
+										tb2html.prg 	\
+										menu.prg 		\
+										_clip.prg 		\
+										modistru.prg 	\
+										vkrz.prg 		\
+										nanfor.prg 		\
+										nettos.prg 		\
+										errorsys.prg 	\
+										config.prg 		\
+										examplep.prg 	\
 								)
+
+o_files 			= 		$(addsuffix .o, $(basename $(prg_files) ) )
+exe_files 		= 		bdbf$(EXESUFF)
+SRC_C_files 	= 		$(sort $(c_files) )
+SRC_PRG_files 	= 		$(sort $(prg_files) bdbf.prg )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(OBJS) bdbf$(EXESUFF)
+all: Makefile $(o_files) $(exe_files)
 
 hash1 :
 
 cfg :
 
-bdbf$(EXESUFF):	bdbf.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
-		$(Trace_clip_d) 	;													\
-		$(CLIP) $(CLIPFLAGS) -s -g -o $@ -e $< $(OBJS) $(LIBS) ;	\
-	else 																			\
-		$(Trace_clip) ;														\
-		$(CLIP) $(CLIPFLAGS) -s -o $@ -e $< $(OBJS) $(LIBS) ;		\
+bdbf$(EXESUFF):	bdbf.prg $(o_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -s -g -o $@ -e $< $(o_files) $(LIBS) ;	\
+	else 																				\
+		$(Trace_clip) ;															\
+		$(CLIP) $(CLIPFLAGS) -s -o $@ -e $< $(o_files) $(LIBS) ;		\
 	fi
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -rf$(V) bdbf$(EXESUFF) test$(EXESUFF)
+	$(E_rm)rm -rf$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 install: all
-	$(E_cp)cp --remove-destination -fpu$(V) bdbf$(EXESUFF) $(INSTDIR)/bin/bdbf$(EXESUFF)
+	$(E_cp)cp --remove-destination -fpu$(V) $(exe_files) $(INSTDIR)/bin/
 	$(E_cp)cp --remove-destination -fpu$(V) *.hlp $(INSTDIR)/bin/
 	$(E_cp)cp --remove-destination -Rfpu$(V) locale.po/* $(INSTDIR)/locale.po/
 	$(E_rm)rm -rf$(V) `find $(INSTDIR)/locale.po -type d -name CVS -print`

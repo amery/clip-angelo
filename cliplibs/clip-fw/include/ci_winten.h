@@ -1,5 +1,5 @@
-#ifndef _WINTEN_H
-#define _WINTEN_H
+#ifndef CI__WINTEN_H
+#define CI__WINTEN_H
 
 // WinTen.h - Is to avoid conflicts between Clipper and Windows API
 // functions with names of 10 characters or less.

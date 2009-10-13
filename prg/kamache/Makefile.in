@@ -1,21 +1,24 @@
 #
 #                                            prg/kamache/Makefile.in
 #
-Depend_on 			= 			$(Clip_L_Dir)/libclip-codb.so 	\
-									$(Clip_L_Dir)/libclip-r2d2.so
-CLIPLIBS  			=
-LIBS  				= 			-lclip-codb -lclip-r2d2
-OBJS  				=
-CHS  					=
-MODULES 				=
-DIRS_TO_SCAN 		= 			mod-ini mod-clip
+Depend_on 		= 		$(Clip_L_Dir)/libclip-codb.so 	\
+							$(Clip_L_Dir)/libclip-r2d2.so
+CLIPLIBS  		=
+LIBS  			= 		-lclip-codb -lclip-r2d2
+CHS  				=
+MODULES 			=
+DIRS_TO_SCAN 	= 		mod-ini mod-clip
+prg_files 		= 		kamache.prg
+exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 	= 		$(sort $(c_files) )
+SRC_PRG_files 	= 		$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(DIRS_TO_SCAN) $(OBJS) kamache$(EXESUFF) $(MODULES) #AUTH WRAP
+all : Makefile $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(MODULES) #AUTH WRAP
 
 hash1 :
 
@@ -23,18 +26,18 @@ cfg :
 
 cleanc :
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -rf$(V) kamache$(EXESUFF) *.pro
+	$(E_rm)rm -rf$(V) $(exe_files) *.pro
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-kamache$(EXESUFF) : kamache.prg $(CHS) $(OBJS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
-		$(Trace_clip_d) 	;													\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS) $(LIBS) ;	\
-	else 																			\
-		$(Trace_clip) 		;													\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
+kamache$(EXESUFF) : kamache.prg $(CHS) $(o_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\
+	else 																				\
+		$(Trace_clip) 		;														\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
 	fi
 
 install : all

@@ -1,5 +1,5 @@
-#ifndef _VIDEO_CH
-#define _VIDEO_CH
+#ifndef CI__VIDEO_CH
+#define CI__VIDEO_CH
 
 //----------------------------------------------------------------------------//
 

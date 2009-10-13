@@ -4,6 +4,9 @@
 Local_Depend 			=
 LIBS 						= 			-lwrap
 
+c_files 					= 			tcp-wrap.c
+SRC_C_files 			= 			$(sort $(c_files) )
+
 export
 
 ######################################################################################

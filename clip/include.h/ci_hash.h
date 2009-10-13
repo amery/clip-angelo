@@ -13,8 +13,8 @@
 
  */
 
-#ifndef HASH_H
-#define HASH_H
+#ifndef CI_HASH_H
+#define CI_HASH_H
 
 typedef struct _HashTable HashTable;
 

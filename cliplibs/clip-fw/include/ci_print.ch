@@ -1,5 +1,5 @@
-#ifndef _PRINT_CH
-#define _PRINT_CH
+#ifndef CI__PRINT_CH
+#define CI__PRINT_CH
 
 //----------------------------------------------------------------------------//
 // Printer

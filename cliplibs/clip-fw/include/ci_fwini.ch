@@ -1,5 +1,5 @@
-#ifndef _INI_CH
-#define _INI_CH
+#ifndef CI__INI_CH
+#define CI__INI_CH
 
 #xcommand INI <oIni> ;
 	     [ <file: FILE, FILENAME, DISK> <cIniFile> ] ;

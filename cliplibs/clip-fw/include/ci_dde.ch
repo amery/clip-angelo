@@ -1,5 +1,5 @@
-#ifndef _DDE_CH
-#define _DDE_CH
+#ifndef CI__DDE_CH
+#define CI__DDE_CH
 
 #define WM_DDE_FIRST                     992       // 0x03E0
 #define WM_DDE_INITIATE       (WM_DDE_FIRST)

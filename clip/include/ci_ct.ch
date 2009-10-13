@@ -23,7 +23,7 @@
 *
 *************************************************************************
 
-#ifndef _CT_DEFINED
+#ifndef CI_CT_DEFINED
 
 *************************************************************************
 *
@@ -168,5 +168,5 @@ x WARNING_TOKENNEXT_HAS_BEEN_USED_WITHOUT_PARAMETER__SEE_HANDBOOK_OR_NG
 
 *
 ***************************************************************************
-#define _CT_DEFINED
+#define CI_CT_DEFINED
 #endif

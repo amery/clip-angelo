@@ -2,18 +2,18 @@
 	$Log: po_util.h,v $
 	Revision 1.1  2006/06/22 19:35:17  itk
 	uri: init sf.net repository
-	
+
 	Revision 1.3  2002/11/04 10:21:57  clip
 	po compatability mode for old gettext utils
 	paul
-	
+
 	Revision 1.2  2002/10/24 13:05:44  clip
 	tdoc: add English GPL text
 	paul
-	
+
 */
-#ifndef PO_UTIL_H
-#define PO_UTIL_H
+#ifndef CI_PO_UTIL_H
+#define CI_PO_UTIL_H
 
 #include <stdio.h>
 

@@ -2,19 +2,22 @@
 #                                            prg/cobra-serv/mod-ini/Makefile.in
 #
 Local_Depend 			=
-MODULES 					= 			$(sort 							\
-													cobra_hello.po 	\
-													cobra_codb.po 		\
-													cobra_mod.po 		\
-													mk_tmpdir.po 		\
+prg_files 				= 			$(sort 							\
+													cobra_hello.prg 	\
+													cobra_codb.prg 	\
+													cobra_mod.prg 		\
+													mk_tmpdir.prg 		\
 										)
+
+po_files 				= 			$(addsuffix .po, $(basename $(prg_files) ) )
+SRC_PRG_files 			= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(MODULES)
+install all: Makefile $(po_files)
 
 hash1 :
 

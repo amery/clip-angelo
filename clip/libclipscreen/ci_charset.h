@@ -1,5 +1,5 @@
-#ifndef CHARSET_H
-#define CHARSET_H
+#ifndef CI_CHARSET_H
+#define CI_CHARSET_H
 
 /* standalone */
 typedef struct

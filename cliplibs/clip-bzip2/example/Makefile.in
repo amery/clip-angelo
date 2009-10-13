@@ -2,14 +2,17 @@
 #                                            clip-bz2/example/Makefile.in
 #
 Depend_on 			= 			$(Clip_L_Dir)/libclip-bzip2.so
-PRG 					= 			bz2$(EXESUFF)
+prg_files 			= 			bz2.prg
 LIBS 					= 			-lclip-bzip2 -lbz2
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG) *.bz2
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files) *.bz2
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 bz2$(EXESUFF): bz2.prg Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewN -s -l -M bz2.prg $(LIBS)
+	$(CLIP) -o$@ -ewN -s -l -M $< $(LIBS)
 
 include $(Makefile_o_in)
 

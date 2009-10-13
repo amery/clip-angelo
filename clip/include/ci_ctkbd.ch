@@ -1,5 +1,5 @@
-#ifndef _CTKBD_DEFINED
-#define _CTKBD_DEFINED
+#ifndef CI_CTKBD_DEFINED
+#define CI_CTKBD_DEFINED
 
 /********************* KBDSTAT(), TRAPSHIFT() *********************/
 

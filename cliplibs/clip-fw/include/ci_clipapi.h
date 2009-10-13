@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
-//   Clipper API ver 1.0                           Fco.Pulp×n, A.Linares      //
+//   Clipper API ver 1.0                           Fco.Pulpï¿½n, A.Linares      //
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _CLIPAPI_H
-#define _CLIPAPI_H
+#ifndef CI__CLIPAPI_H
+#define CI__CLIPAPI_H
 
 // Some xBase for C language!
 #define IF(x,y,z) ((x)?(y):(z))
@@ -72,7 +72,7 @@ typedef struct
    LONG lDummy1;
    LONG lnNumber;
    LONG lDummy2;
-     
+
 } CLV_LONG;
 
 
@@ -82,7 +82,7 @@ typedef struct
 } CLIP_FLOAT;
 
 // Una especie de herencia del struct CLIPVAR para types NUM_FLOAT
-// aun estÁ por desarrollar. Son las funciones _dv.....
+// aun estï¿½ por desarrollar. Son las funciones _dv.....
 
 // A kind of inheritance from CLIPVAR struct for NUM_FLOAT types
 // still to be completed. They are the functions _dv......
@@ -92,7 +92,7 @@ typedef struct
    WORD wType;
    LONG lDummy1;
    CLIP_FLOAT fFloat;
-     
+
 } CLV_FLOAT;
 
 // Estructura CLV_WORD para NUMERIC (WORD) y para los LOGICAL (BOOL).
@@ -226,7 +226,7 @@ typedef struct
 } CLIPCOLOR;
 
 extern CLIPCOLOR * _colors;       // _colors[ 5 ]
-extern WORD _ColorCount;      // Number of colors used É?
+extern WORD _ColorCount;      // Number of colors used ï¿½?
 void _xSetColor( PCLIPVAR );  // String dBase Colors
 
 //////////////////////////////////////////////////////////////////
@@ -239,7 +239,7 @@ typedef struct
    WORD wLeft;
    WORD wHeight;
    WORD wWidth;      // so there is no conflict with Windows.h rect
-} gtRECT;            // asÂ no hay conflicto con el rect de windows.h
+} gtRECT;            // asï¿½ no hay conflicto con el rect de windows.h
 
 typedef gtRECT * LPgtRECT;
 
@@ -333,7 +333,7 @@ extern void _PutL( BOOL );
 
 // Places any CLIPVAR at Clipper Stack.  Pass ClipVars by value.
 // Automatically updates _tos
-extern void _xPushM( LPCLIPVAR );    
+extern void _xPushM( LPCLIPVAR );
 
 
 // calling Clipper from C
@@ -350,7 +350,7 @@ extern void _xEval( WORD wNumberOfParameters );
 
                                            // eval a codeblock with no params
 extern void _cEval0( PCLIPVAR CodeBlock ); // evalua codeblock sin parametros.
-extern void _cEval1( PCLIPVAR CodeBlock, PCLIPVAR Param1 ); // idem con un parÁmetro.
+extern void _cEval1( PCLIPVAR CodeBlock, PCLIPVAR Param1 ); // idem con un parï¿½metro.
                                            // same but with one param
 
 extern PCLIPVAR _GetGrip( PCLIPVAR ); // allocates new clipvar in high stack pos.
@@ -469,7 +469,7 @@ void _xSend( WORD wNumberOfParameters );     // The missing xSend function
 
 
 // Memory Management
-// Alloc wBytes (fixed É?)
+// Alloc wBytes (fixed ï¿½?)
 extern LPBYTE _AllocF( WORD wBytes );
 
 
@@ -533,16 +533,16 @@ LONG _DynGetOrdAddr( WORD wHandle, WORD wService );
 // ERROR
 void _ierror( WORD wError );  // generates an internal error message and quit.
 
-/** YO ESTAS cuatro no las ponÂa **/
+/** YO ESTAS cuatro no las ponï¿½a **/
 /** Not sure about these **/
 
 void _CycleF( void );
 WORD _osStackBase( void );
 void _osAllocDefSeg( WORD*, WORD*,WORD* );
-WORD _osAvail( void );   // NÚ de parrafos disponibles.
+WORD _osAvail( void );   // Nï¿½ de parrafos disponibles.
 
 // TB Module
-LPSTR _tbname( PCLIPVAR, WORD );      // Same as ProcName. 2Ú param no matter
+LPSTR _tbname( PCLIPVAR, WORD );      // Same as ProcName. 2ï¿½ param no matter
                                       // 1 param is _ActInfo( WORD )
 
 
@@ -550,7 +550,7 @@ LPSTR _tbname( PCLIPVAR, WORD );      // Same as ProcName. 2Ú param no matter
 // "DATE" ones
                               // gets the date at _tos, returns
 extern void _year( void );    // recibe fecha en _tos, retorna
-                              // (CLV_LONG) aÄo en _tos
+                              // (CLV_LONG) aï¿½o en _tos
                               // (CLV_LONG) year at _tos
 extern void _month( void );   // idem.
 extern void _day( void );     // idem.
@@ -559,7 +559,7 @@ extern void _day( void );     // idem.
 
            CLIPPER MiYear()
            {
-               // copiamos el VITEM Fecha en la primera posici×n libre 
+               // copiamos el VITEM Fecha en la primera posiciï¿½n libre
                // del STACK.
 
                // we copy the date VITEM at the STACK first free position

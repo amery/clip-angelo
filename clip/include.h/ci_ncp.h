@@ -18,8 +18,8 @@
 	paul
 
 */
-#ifndef NCP_H
-#define NCP_H
+#ifndef CI_NCP_H
+#define CI_NCP_H
 
 #include "ci_clipcfg.h"
 

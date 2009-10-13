@@ -1,5 +1,5 @@
-#ifndef _DBINAMES_DEFINED
-#define _DBINAMES_CH
+#ifndef CI_DBINAMES_DEFINED
+#define CI_DBINAMES_CH
 
 
 /* codes for DBRECORDINFO() */

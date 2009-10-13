@@ -1,0 +1,43 @@
+#
+#                                            prg/udb/test/Makefile.in
+#
+prg_files 			= 		$(sort 						\
+											test.prg 		\
+								)
+
+exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
+LIBS 					+=
+export
+
+######################################################################################
+###################################################################################### local rules
+
+test$(EXESUFF) : test.prg Makefile $(CLIP) $(LIBCLIP)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\
+	else 																				\
+		$(Trace_clip) ;															\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
+	fi
+
+hash1 :
+
+cfg :
+
+ all : Makefile  $(exe_files)
+
+install : all
+
+cleanc :
+	$(E_rm)rm -f$(V) *.c *.ntx $(exe_files) *.pp?
+
+distcleanc :
+	$(E_rm)rm -rf$(V) *.g
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

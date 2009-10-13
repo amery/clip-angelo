@@ -1,15 +1,18 @@
 #
 #                                            clip-crypto/example/Makefile.in
 #
-Depend_on 			= 				$(Clip_L_Dir)/libclip-crypto.so
-PRG 					= 				crypto$(EXESUFF)
-LIBS 					= 				-lcrypto
+Depend_on 			= 			$(Clip_L_Dir)/libclip-crypto.so
+prg_files 			= 			crypto.prg
+LIBS 					= 			-lcrypto
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewN -s -l -M crypto.prg -lclip-crypto $(LIBS)
+	$(CLIP) -o$@ -ewN -s -l -M $< -lclip-crypto $(LIBS)
 
 include $(Makefile_o_in)
 

@@ -1,5 +1,5 @@
-#ifndef _CTVIDEO_DEFINED
-#define _CTVIDEO_DEFINED
+#ifndef CI_CTVIDEO_DEFINED
+#define CI_CTVIDEO_DEFINED
 
 /******************* VIDEOTYPE() *******************/
 

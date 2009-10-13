@@ -1,4 +1,4 @@
-#include <inkey.ch>
+#include <ci_inkey.ch>
 static app
 local btn, fn, calendar, statb
 app := cti_init()

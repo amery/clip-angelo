@@ -108,7 +108,7 @@ clean : Makefile DIR $(DIRS_TO_SCAN) cleanc
 	$(E_rm)rm -f$(V) *.tmp *.uri a.out compile.*.sh set.txt *.set.txt 				|| true
 	$(E_rm)rm -f$(V) *.log Makefile configure.ini Makefile.ini 							|| true
 	$(E_rm)rm -f$(V) Makefile.01 Makefile.02 make2 include locale.po charsets 		|| true
-	$(E_rm)rm -f$(V) $(BIN) $(BINS) $(PROGS) $(OBJS) $(OBJS2) 							|| true
+	$(E_rm)rm -f$(V) $(BIN) $(BINS) $(PROGS) $(o_files) $(o_files2) 							|| true
 	$(E_rm)rm -f$(V) $(TARGET).* $(TARGET2).* $(CONFIGURE_SH) 							|| true
 	$(E_rm)rm -f$(V) dummy.c  											 							|| true
 
@@ -129,10 +129,10 @@ distclean : Makefile $(DIRS_TO_SCAN) distcleanc clean
 ## 																first library
 ##
 
-$(ATARGET) : $(OBJS) $(ADDOBJS) Makefile
+$(ATARGET) : $(o_files) $(ADDOBJS) Makefile
 	$(Trace_lib)
 	$(E_rm)rm -f$(V) $(TARGET).*
-	$(E_c_mkl)$(Clip_makelib) $@ $(OBJS) $(ADDOBJS) $(ADDLIBS)
+	$(E_c_mkl)$(Clip_makelib) $@ $(o_files) $(ADDOBJS) $(ADDLIBS)
 
 $(RTARGET) : $(ATARGET) Makefile
 	$(Trace_lib)
@@ -170,10 +170,10 @@ endif
 ##							second library
 ##
 
-$(ATARGET2) : $(OBJS2) $(ADDOBJS2) Makefile
+$(ATARGET2) : $(o_files2) $(ADDOBJS2) Makefile
 	$(Trace_lib2)
 	$(E_rm)rm -f$(V) $(TARGET2).*
-	$(E_c_mkSl)$(Clip_makelib) $@ $(OBJS2) $(ADDOBJS2) $(ADDLIBS2)
+	$(E_c_mkSl)$(Clip_makelib) $@ $(o_files2) $(ADDOBJS2) $(ADDLIBS2)
 
 $(RTARGET2) : $(ATARGET2) $(LocalDepend) Makefile
 	$(Trace_lib2)

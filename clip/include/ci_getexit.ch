@@ -1,5 +1,5 @@
-#ifndef _GE_DEFINED
-#define _GE_DEFINED
+#ifndef CI_GE_DEFINED
+#define CI_GE_DEFINED
 
 
 #define GE_NOEXIT     0

@@ -6,17 +6,20 @@
 # Copyright (C) 2003-2005 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
 
-CLIP_MODULE 			= 			clip-ui
-Local_Depend 			=
-CLIPFLAGS 				+= 		-I../../clip-gtk2/include -n
-OBJS 						= 			driver-gtk2.po
+CLIP_MODULE 		= 			clip-ui
+Local_Depend 		=
+CLIPFLAGS 			+= 		-I../../clip-gtk2/include -n
+prg_files 			= 			driver-gtk2.prg
+po_files 			= 			$(addsuffix .po, $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS)
+all : Makefile $(po_files)
 
 install : all
 
@@ -32,10 +35,10 @@ distcleanc :
 
 install: all
 	$(E_mkD)mkdir -p$(V) $(INSTDIR)/lib/drivers
-	$(CLIP_CP) $(OBJS) $(INSTDIR)/lib/drivers
+	$(CLIP_CP) $(po_files) $(INSTDIR)/lib/drivers
 
 uninstall:
-	$(E_rm)rm -f$(V) $(Clip_L_Dir)/drivers/$(OBJS)
+	$(E_rm)rm -f$(V) $(Clip_L_Dir)/drivers/$(po_files)
 
 include $(Makefile_o_in)
 

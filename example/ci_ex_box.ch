@@ -1,14 +1,14 @@
 *charset koi8-r
-#ifndef _BOX_DEFINED
+#ifndef CI_BOX_DEFINED
 
-#define B_SINGLE '‚€ƒ…€„'
+#define B_SINGLE 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 
-#define B_DOUBLE '¥ ¨¡® «¡'
+#define B_DOUBLE 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 
-#define B_SINGLE_DOUBLE	'¢ ¦¬ ©'
+#define B_SINGLE_DOUBLE	'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 
-#define	B_DOUBLE_SINGLE	'¤€§¡­€ª¡'
+#define	B_DOUBLE_SINGLE	'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 
-#define _BOX_DEFINED
+#define CI_BOX_DEFINED
 
 #endif

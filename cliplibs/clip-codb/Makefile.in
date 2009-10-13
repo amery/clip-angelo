@@ -4,46 +4,49 @@
 
 Local_Depend 		= 			include/*.ch
 CLIPFLAGS 			+= 		-n
-OBJS  				= 			$(sort 						\
-												codb_list.o 	\
-												codb.o 			\
-												codb_funcs.o 	\
-												codb_oql.o 		\
-												codb_install.o \
-												codb_err.o 		\
-												codb_cache.o 	\
-												codb_cobra.o 	\
-												codb_uni.o 		\
-												list_id.o 		\
-												codb_dep.o 		\
-												codb_dict.o 	\
-												dict_dbf.o 		\
-												dep_dbf.o 		\
-												ext_dbf.o 		\
-												count_dbf.o 	\
-												dict_all.o 		\
-												dep_all.o 		\
-												codb_sql.o 		\
-												dict_sql.o 		\
-												dict_cobra.o 	\
-												dep_cobra.o 	\
+prg_files  			= 			$(sort 							\
+												codb_list.prg 		\
+												codb.prg 			\
+												codb_funcs.prg 	\
+												codb_oql.prg 		\
+												codb_install.prg 	\
+												codb_err.prg 		\
+												codb_cache.prg 	\
+												codb_cobra.prg 	\
+												codb_uni.prg 		\
+												list_id.prg 		\
+												codb_dep.prg 		\
+												codb_dict.prg 		\
+												dict_dbf.prg 		\
+												dep_dbf.prg 		\
+												ext_dbf.prg 		\
+												count_dbf.prg 		\
+												dict_all.prg 		\
+												dep_all.prg 		\
+												codb_sql.prg 		\
+												dict_sql.prg 		\
+												dict_cobra.prg 	\
+												dep_cobra.prg 		\
 									)
 
 PROG 					= 			clip-codb
 PROG2 				= 			codb-query
-OBJS2 				= 			$(sort 						\
-												codb_query.o 	\
-												formatter.o 	\
+prg_files2 			= 			$(sort 							\
+												codb_query.prg 	\
+												formatter.prg 		\
 									)
 
 ADDLIBS 				=
-
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+o_files2 			= 			$(addsuffix .o, $(basename $(prg_files2) $(c_files2) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files)  $(prg_files2) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:   Makefile  $(OBJS) $(OBJS2) $(STARGET) $(STARGET2)
+all:   Makefile  $(o_files) $(o_files2) $(STARGET) $(STARGET2)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-codb

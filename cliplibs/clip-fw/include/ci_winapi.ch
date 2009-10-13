@@ -1,5 +1,5 @@
-#ifndef _WINAPI_CH
-#define _WINAPI_CH
+#ifndef CI__WINAPI_CH
+#define CI__WINAPI_CH
 
 #include <fwin/ci_FwMsgs.h>        // User defined FiveWin new Windows messages
 

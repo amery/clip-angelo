@@ -4,29 +4,32 @@
 Local_Depend 	= 		../include/*.ch 		\
 							../include.h/*.h
 
-OBJS 				= 		$(sort 						\
-										rddclip.o 		\
-										rdd.o 			\
-										dbf.o 			\
-										ntx.o 			\
-										cdx.o 			\
-										dbt.o 			\
-										fpt.o 			\
-										rushmore.o 		\
-										btree.o 			\
-										six.o 			\
-										hiper.o 			\
+c_files 			= 		$(sort 						\
+										rddclip.c 		\
+										rdd.c 			\
+										dbf.c 			\
+										ntx.c 			\
+										cdx.c 			\
+										dbt.c 			\
+										fpt.c 			\
+										rushmore.c 		\
+										btree.c 			\
+										six.c 			\
+										hiper.c 			\
 							)
 
 PROG 				= 		cliprdd
 ADDLIBS 			=
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(OBJS) $(ATARGET)
+install all: Makefile $(o_files) $(ATARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libcliprdd
@@ -150,10 +153,6 @@ hiper.o:	hiper.c ../include.h/ci_rdd.h ci_btree.h Makefile
 		$(Trace_cc) ; 										\
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
-
-test: test.prg rddclip.o rdd.o dbf.o ntx.o cdx.o dbt.o fpt.o rushmore.o btree.o six.o hiper.o ../include.h/ci_clipbase.h ../libclip/clipbase.c ../libclip/libclip.a $(CLIP)
-	$(Trace_clip)
-	$(CLIP) -e -R test.prg
 
 include $(Makefile_end_in)
 

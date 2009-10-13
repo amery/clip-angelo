@@ -1,5 +1,5 @@
-#ifndef _ERR_DEFINED
-#define _ERR_DEFINED
+#ifndef CI_ERR_DEFINED
+#define CI_ERR_DEFINED
 
 /* messages in errorsys */
 #define EG_MSG_QUIT    "Quit"

@@ -1,14 +1,14 @@
-#ifndef _BUTTON_DEFINED
-#define _BUTTON_DEFINED
+#ifndef CI_BUTTON_DEFINED
+#define CI_BUTTON_DEFINED
 
 #define SCROLL_VERTICAL         1
 #define SCROLL_HORIZONTAL       2
 
 /*
-#define MENU_SEPARATOR   translate_charset(__CHARSET__,host_charset(), "€")
-#define SEPARATOR_DOUBLE translate_charset(__CHARSET__,host_charset(), "± µ" )
-#define SEPARATOR_SINGLE translate_charset(__CHARSET__,host_charset(), "†€‡" )
-#define SEPARATOR_DOUBLE_SINGLE translate_charset(__CHARSET__,host_charset(), "°€´" )
+#define MENU_SEPARATOR   translate_charset(__CHARSET__,host_charset(), "ï¿½")
+#define SEPARATOR_DOUBLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
+#define SEPARATOR_SINGLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
+#define SEPARATOR_DOUBLE_SINGLE translate_charset(__CHARSET__,host_charset(), "ï¿½ï¿½ï¿½" )
 */
 #define MENU_SEPARATOR   translate_charset("cp437",host_charset(), chr(196))
 #define SEPARATOR_DOUBLE translate_charset("cp437",host_charset(), chr(204)+chr(205)+chr(185) )
@@ -64,4 +64,4 @@
 #endif
 
 
-/*€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/

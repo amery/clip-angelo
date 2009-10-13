@@ -1,5 +1,5 @@
-#ifndef _FONT_CH
-#define _FONT_CH
+#ifndef CI__FONT_CH
+#define CI__FONT_CH
 
 //#define FONT_DEFAULT	"-Cronyx-Courier-medium-R-Normal-*-*-100-*-*-M-*-KOI8-R"
 #define FONT_DEFAULT	"-*-times-bold-r-*-*-14-*-*-*-*-*-*-*"

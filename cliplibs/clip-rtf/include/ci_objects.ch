@@ -2,8 +2,8 @@
 Objects.ch
 */
 
-#ifndef _OBJECTS_CH
-#define _OBJECTS_CH
+#ifndef CI__OBJECTS_CH
+#define CI__OBJECTS_CH
 
 #define _FuncType_
 
@@ -44,7 +44,7 @@ Objects.ch
 #xcommand METHOD <Met> [, MetN] VIRTUAL [<*x*>] => ;
 	obj:_AsName( <Met> ) := \{|| \}
 
-// Una GENIAL idea de Antonio Linares: La declaraci×n "SetGet"
+// Una GENIAL idea de Antonio Linares: La declaraciï¿½n "SetGet"
 #xcommand METHOD <Met> [, MetN] SETGET [<*x*>]  => ;
 	obj:_AsName_(<Met> ) := _SETGET_ [<x>]
 
@@ -53,7 +53,7 @@ Objects.ch
 
 
 
-// Traductores de descripciones de m÷todos.
+// Traductores de descripciones de mï¿½todos.
 
 #xtranslate _MetTrans_( <Met> [, MetN] ) => ;
 	    _AsStr_( <Met> ), \{|| _AsName_( <Met> )() \}
@@ -79,7 +79,7 @@ Objects.ch
 
 
 
-// Traductores Gen÷ricos de <Func>[ ( [ <parms,..> ] ) ]
+// Traductores Genï¿½ricos de <Func>[ ( [ <parms,..> ] ) ]
 
 #xtranslate _AsFunc_( <itm> )                   => <itm>()
 #xtranslate _AsFunc_( <itm>( [<prm,...>] ) )    =>  <itm>( [<prm>] )
@@ -107,7 +107,7 @@ Objects.ch
 
 #xcommand END CLASS  => ENDCLASS
 
-// Declaraciones para el c×digo ( funci×n × procedimiento ) de los m÷todos.
+// Declaraciones para el cï¿½digo ( funciï¿½n ï¿½ procedimiento ) de los mï¿½todos.
 // ==========================================================================
 
 #xcommand METHOD <Met> [, MetN] CLASS <ClassN> =>;

@@ -63,6 +63,10 @@ DOC = manual.dxx doc++.conf api-h*
 C_FLAGS += $(C_DEFS)
 
 DIRS_TO_SCAN =
+c_files 			= 			ezV24.c snprintf.c
+o_files 			= 			$(addsuffix $(EXESUFF), $(basename $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 

@@ -7,20 +7,26 @@ Local_Depend 		= 			include/*.ch
 PROG 					= 			clip-interbase
 IBROOT 				= 			/opt/interbase
 C_FLAGS 				+= 		-I$(IBROOT)/include
-OBJS 					= 			$(sort 					\
-												ib_clip.o 	\
-												ib.o 			\
+c_files 				= 			$(sort 					\
+												ib_clip.c 	\
+									)
+
+prg_files 			= 			$(sort 					\
+												ib.prg 			\
 									)
 
 ADDLIBS				= 			-lgds -L$(IBROOT)/lib -lcrypt
 DOC 					= 			*.html
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile  have_lib $(OBJS) $(STARGET)
+all : Makefile  have_lib $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-interbase

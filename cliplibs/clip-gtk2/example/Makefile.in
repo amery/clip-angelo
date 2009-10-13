@@ -3,45 +3,49 @@
 #
 Depend_on 			= 			$(Clip_L_Dir)/libclip-gtk2.so
 DIRS_TO_SCAN 		= 			gdk-pixbuf-demo
-SRC 					=			$(sort 											\
-													clipgtktest$(EXESUFF) 		\
-													simple$(EXESUFF)  			\
-													test_stock$(EXESUFF) 		\
-													test_image$(EXESUFF) 		\
-													accel$(EXESUFF) 				\
-													test_tree$(EXESUFF) 			\
-													test_image$(EXESUFF) 		\
-													test_gtk$(EXESUFF) 			\
-													winpic$(EXESUFF) 				\
-													test$(EXESUFF) 				\
-													note$(EXESUFF) 				\
-													fonttest$(EXESUFF) 			\
-													text$(EXESUFF) 				\
-													container$(EXESUFF) 			\
-													test_dnd$(EXESUFF) 			\
-													drag_and_drop$(EXESUFF) 	\
-													colorbtn$(EXESUFF) 			\
-													pango$(EXESUFF) 				\
-													entrytempl$(EXESUFF) 		\
-													combobox$(EXESUFF) 			\
-													ifactory$(EXESUFF) 			\
-													lines$(EXESUFF) 				\
-													draw$(EXESUFF) 				\
-													lists$(EXESUFF) 				\
-													imgmenu$(EXESUFF) 			\
-													winback$(EXESUFF) 			\
-													test_rc$(EXESUFF) 			\
-													iconview$(EXESUFF) 			\
-										)
+prg_files 			=			$(sort 								\
+												clipgtktest.prg 		\
+												simple.prg  			\
+												test_stock.prg 		\
+												test_image.prg 		\
+												accel.prg 				\
+												test_tree.prg 			\
+												test_image.prg 		\
+												test_gtk.prg 			\
+												winpic.prg 				\
+												test.prg 				\
+												note.prg 				\
+												fonttest.prg 			\
+												text.prg 				\
+												container.prg 			\
+												test_dnd.prg 			\
+												drag_and_drop.prg 	\
+												colorbtn.prg 			\
+												pango.prg 				\
+												entrytempl.prg 		\
+												combobox.prg 			\
+												ifactory.prg 			\
+												lines.prg 				\
+												draw.prg 				\
+												lists.prg 				\
+												imgmenu.prg 			\
+												winback.prg 			\
+												test_rc.prg 			\
+												iconview.prg 			\
+									)
 
-#tbrow$(EXESUFF) 				# 	missing functions
-#test_text$(EXESUFF) 		# 	missing functions
+#tbrow.prg 				# 	missing functions
+#test_text.prg 		# 	missing functions
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile  $(sort $(SRC) ) $(DIRS_TO_SCAN)
+all : Makefile  $(exe_files) $(DIRS_TO_SCAN)
 
 install : all  $(DIRS_TO_SCAN)
 
@@ -51,7 +55,7 @@ cfg :
 
 cleanc :
 	$(E_rm)rm -f$(V) *.c *.b
-	$(E_rm)rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

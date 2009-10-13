@@ -1,5 +1,5 @@
-#ifndef _KEY_NAME_DEFINED
-#define _KEY_NAME_DEFINED
+#ifndef CI_KEY_NAME_DEFINED
+#define CI_KEY_NAME_DEFINED
 
 _key_names={ ;
  { -47, -1, { ;

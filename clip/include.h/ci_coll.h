@@ -20,8 +20,8 @@
 
  */
 
-#ifndef COLL_H
-#define COLL_H
+#ifndef CI_COLL_H
+#define CI_COLL_H
 
 #define ARR_ALLOC(type,len)       ((type*)malloc(sizeof(type)*(len)))
 #define ARR_REALLOC(type,ptr,len) ((ptr)=(type*)realloc(ptr,sizeof(type)*(len)))

@@ -1,5 +1,5 @@
-#ifndef _STD53_DEFINED
-#define _STD53_DEFINED
+#ifndef CI_STD53_DEFINED
+#define CI_STD53_DEFINED
 
 #include "ci_Set.ch"
 /* Don`t remove this line, it`s only for CLIP compiler */

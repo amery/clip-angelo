@@ -3,14 +3,17 @@
 #
 Depend_on 			= 			$(Clip_L_Dir)/libclip-odbc.so 	\
 									$(Clip_L_Dir)/libclip-oob.so
-PRG 					=			my_isql
+prg_files 			=			my_isql.prg
 
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)$(EXESUFF)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -19,14 +22,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -ewMs $(PRG).prg -lclip-odbc -L$(LIBODBC) -lodbc
+	$(CLIP) $(CLIPFLAGS) -o$@ -ewMs $< -lclip-odbc -L$(LIBODBC) -lodbc
 
 include $(Makefile_o_in)
 

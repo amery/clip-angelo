@@ -115,8 +115,8 @@
 
  */
 
-#ifndef CLIPVM_H
-#define CLIPVM_H
+#ifndef CI_CLIPVM_H
+#define CI_CLIPVM_H
 
 /* clip virtual machine codes */
 

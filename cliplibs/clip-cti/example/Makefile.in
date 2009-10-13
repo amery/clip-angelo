@@ -1,24 +1,27 @@
 #
 #                                            clip-cti/example/Makefile.in
 #
-Depend_on 				= 			$(Clip_L_Dir)/libclip-cti.so
+Depend_on 			= 			$(Clip_L_Dir)/libclip-cti.so
 # 		\
-#										$(Clip_L_Dir)/libclip-fw.so
-INCDIR 					= 			-I$(Clip_M_Dir)/cliplibs/clip-cti/include
-LIBS 						= 			-lclip-cti
-ADD_OBJS 				=
-BINS 						= 			$(sort 								\
-												ctitest$(EXESUFF) 		\
-												ctifd$(EXESUFF) 			\
-												browsecombo$(EXESUFF) 	\
-										)
-#												ctit$(EXESUFF) 			\
+#									$(Clip_L_Dir)/libclip-fw.so
+INCDIR 				= 			-I$(Clip_M_Dir)/cliplibs/clip-cti/include
+LIBS 					= 			-lclip-cti
+ADD_OBJS 			=
+prg_files 			= 			$(sort 							\
+												ctitest.prg 		\
+												ctifd.prg 			\
+												browsecombo.prg 	\
+									)
+#												ctit.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile
+all : Makefile $(exe_files)
 
 install : all
 
@@ -28,32 +31,29 @@ cfg :
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -f$(V) ctitest$(EXESUFF) ctifd$(EXESUFF) browsecombo$(EXESUFF) ctit$(EXESUFF)
+	$(E_rm)rm -f$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_o_in)
 
-ctitest$(EXESUFF): ctitest.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctitest$(EXESUFF): ctitest.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe $(INCDIR) ctitest.prg $(OBJS) $(ADD_OBJS) $(LIBS)
+	$(CLIP) -o$@ -swe $(INCDIR) $< $(o_files) $(ADD_OBJS) $(LIBS)
 
-ctifd$(EXESUFF): ctifd.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctifd$(EXESUFF): ctifd.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -swe $(INCDIR) -M  ctifd.prg $(OBJS) $(ADD_OBJS) $(LIBS)
+	$(CLIP) -o$@ -swe $(INCDIR) -M  $< $(o_files) $(ADD_OBJS) $(LIBS)
 
-ctit$(EXESUFF): ctit.prg $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctit$(EXESUFF): ctit.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-#	$(CLIP) -swe -M  ctit.prg $(OBJS) $(ADD_OBJS)
-	$(CLIP) -o$@ $(INCDIR) -swe  ctit.prg $(OBJS) $(ADD_OBJS) -lclip-fw $(LIBS)
+#	$(CLIP) -swe -M  ctit.prg $(o_files) $(ADD_OBJS)
+	$(CLIP) -o$@ $(INCDIR) -swe $< $(o_files) $(ADD_OBJS) -lclip-fw $(LIBS)
 
-browsecombo$(EXESUFF): browsecombo.prg $(OBJS) $(CLIP) $(Depend_on)
+browsecombo$(EXESUFF): browsecombo.prg $(o_files) $(CLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ $(INCDIR) -swe browsecombo.prg $(OBJS) $(ADD_OBJS) $(LIBS)
-
-depend:
-	makedepend -w80 -- *.prg 2>/dev/null
+	$(CLIP) -o$@ $(INCDIR) -swe $< $(o_files) $(ADD_OBJS) $(LIBS)
 
 include $(Makefile_end_in)
 

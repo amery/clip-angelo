@@ -1,5 +1,5 @@
-#ifndef _CTDRV_DEFINED
-#define _CTDRV_DEFINED
+#ifndef CI_CTDRV_DEFINED
+#define CI_CTDRV_DEFINED
 
 /******************* INPUTMODE() *******************/
 

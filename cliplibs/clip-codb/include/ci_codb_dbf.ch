@@ -1,7 +1,7 @@
 /* clip object data base (CODB) over DBF descriptions */
 
-#ifndef _CODB_OVERDBF_DEFINED
-#define _CODB_OVERDBF_DEFINED
+#ifndef CI__CODB_OVERDBF_DEFINED
+#define CI__CODB_OVERDBF_DEFINED
 
 #include "ci_codbcfg.ch"
 

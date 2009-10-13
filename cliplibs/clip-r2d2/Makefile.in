@@ -3,53 +3,55 @@
 #
 Local_Depend 			= 			include/*.ch
 CLIPFLAGS 				+= 		-n
-OBJS 						= 			$(sort 								\
-													acc_log.o  				\
-													accpost.o 				\
-													addinfo.o 				\
-													an_funcs.o  			\
-													an_rdf.o  				\
-													an_rdf2.o  				\
-													an_rdf3.o  				\
-													balance.o 				\
-													balance2.o 				\
-													bind2.o 					\
-													cgi_funcs.o  			\
-													cgi_funcs2.o  			\
-													classes_rdf.o 			\
-													classes_xml.o 			\
-													connect.o  				\
-													delobj.o 				\
-													getfile.o  				\
-													memo.o 					\
-													obj_arr.o 				\
-													obj_rass.o  			\
-													odfreport.o 			\
-													print.o 					\
-													rdfarr.o  				\
-													rdfinfo.o  				\
-													rdfinfo2.o  			\
-													rdfinfo3.o 				\
-													rdf_sell.o  			\
-													report1.o  				\
-													report3.o  				\
-													report4.o  				\
-													report5.o  				\
-													report6.o 				\
-													report7.o  				\
-													report8.o 				\
+prg_files 				= 			$(sort 									\
+													acc_log.prg  				\
+													accpost.prg 				\
+													addinfo.prg 				\
+													an_funcs.prg  				\
+													an_rdf.prg  				\
+													an_rdf2.prg  				\
+													an_rdf3.prg  				\
+													balance.prg 				\
+													balance2.prg 				\
+													bind2.prg 					\
+													cgi_funcs.prg  			\
+													cgi_funcs2.prg  			\
+													classes_rdf.prg 			\
+													classes_xml.prg 			\
+													connect.prg  				\
+													delobj.prg 					\
+													getfile.prg  				\
+													memo.prg 					\
+													obj_arr.prg 				\
+													obj_rass.prg  				\
+													odfreport.prg 				\
+													print.prg 					\
+													rdfarr.prg  				\
+													rdfinfo.prg  				\
+													rdfinfo2.prg  				\
+													rdfinfo3.prg 				\
+													rdf_sell.prg  				\
+													report1.prg  				\
+													report3.prg  				\
+													report4.prg  				\
+													report5.prg  				\
+													report6.prg 				\
+													report7.prg  				\
+													report8.prg 				\
 										)
-#rdfinfo2.o  balance2.o
-OBJS2 					= 			accpost.o bind.o
+prg_files2 					= 			accpost.prg bind.prg
 PROG 						= 			clip-r2d2
 ADDLIBS 					=
+o_files 					= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:  Makefile $(OBJS) $(STARGET)
+all:  Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-r2d2

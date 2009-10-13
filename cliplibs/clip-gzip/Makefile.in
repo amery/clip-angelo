@@ -1,16 +1,19 @@
 #
 #                                            clip-gzip/Makefile.in
 #
-PROG 			= 			clip-gzip
-OBJS 			= 			gzip.o
-ADDLIBS 		= 			-lz
+PROG 					= 			clip-gzip
+c_files 				= 			gzip.c
+ADDLIBS 				= 			-lz
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(STARGET)
+all : Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gzip

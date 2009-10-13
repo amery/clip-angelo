@@ -1,5 +1,5 @@
-#ifndef __COBRA_CH__
-#define __COBRA_CH__
+#ifndef CI__COBRA_CH__
+#define CI__COBRA_CH__
 
 /* CLIP Object Broker & Application Server: default settings */
 #define COBRA_VERSION  0.20

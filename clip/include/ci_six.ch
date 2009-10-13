@@ -1,5 +1,5 @@
-#ifndef SIX_CH
-#define SIX_CH
+#ifndef CI_SIX_CH
+#define CI_SIX_CH
 
 #define JOIN_UNION              1
 #define JOIN_INTERSECT          2

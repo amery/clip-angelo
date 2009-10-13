@@ -1,5 +1,5 @@
-#include "set.ch"
-#include "interbase.ch"
+#include "ci_set.ch"
+#include "ci_interbase.ch"
 
 FUNCTION IB2CLIP(rowset,fieldno)
 	LOCAL type := SQLFieldTypeSQL(rowset,fieldno)

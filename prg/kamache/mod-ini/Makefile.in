@@ -1,19 +1,22 @@
 #
 #                                            prg/kamache/mod-ini/Makefile.in
 #
-Local_Depend 			=
-MODULES 					= 			$(sort 							\
-													kmch_hello.po 		\
-													mk_tmpdir.po		\
-										)
+Local_Depend 		=
+prg_files 			= 			$(sort 							\
+												kmch_hello.prg 	\
+												mk_tmpdir.prg		\
+									)
 #kmch_codb.po)
+
+po_files 			= 				$(addsuffix .po, $(basename $(prg_files) ) )
+SRC_PRG_files 			= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(MODULES)
+all : Makefile $(po_files)
 
 hash1 :
 

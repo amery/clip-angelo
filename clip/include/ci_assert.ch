@@ -1,5 +1,5 @@
-#ifndef _ASSERT_DEFINED
-#define _ASSERT_DEFINED
+#ifndef CI_ASSERT_DEFINED
+#define CI_ASSERT_DEFINED
 
     #ifndef NDEBUG
 

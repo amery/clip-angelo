@@ -1,8 +1,8 @@
 
 /* Typed in by Richard */
 /* minor changes for linux */
-#ifndef _AR_H
-#define _AR_H
+#ifndef CI__AR_H
+#define CI__AR_H
 
 #define ARMAG "!<arch>\n"
 #define SARMAG 8

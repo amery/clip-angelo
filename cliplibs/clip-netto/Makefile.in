@@ -2,37 +2,42 @@
 #                                            clip-netto/Makefile.in
 #
 
-Local_Depend 			= 			include/*.ch
-PROG 						= 			clip-netto
-SRCS 						= 			$(sort 						\
-													fnbin2i.prg 	\
-													fnbit.prg  		\
-													fndpve.prg  	\
-													fnerr.prg  		\
-													fnhex.prg  		\
-													fnpeek.prg  	\
-													fnpfeval.prg  	\
-													ipxinit.prg  	\
-													is3x.prg  		\
-													isnet.prg  		\
-													namel.prg  		\
-													nonull.prg  	\
-													nwdate.prg  	\
-													reg2l.prg  		\
-													request.prg  	\
-													ssfp.prg			\
-										)
-OBJS  					= 			$(addsuffix .o, $(basename $(SRCS) ) )
-# fnbit.o fnpfeval.o is3x.o isnet.o ipxinit.o request.o fnpeek.o ## error missing functions
-DOC 						= 			doc/*
-ADDLIBS 					=
+Local_Depend 		= 		include/*.ch
+PROG 					= 		clip-netto
+prg_files 			= 		$(sort 						\
+											fnbin2i.prg 	\
+											fndpve.prg  	\
+											fnerr.prg  		\
+											fnhex.prg  		\
+											namel.prg  		\
+											nonull.prg  	\
+											nwdate.prg  	\
+											reg2l.prg  		\
+											ssfp.prg			\
+								)
+
+# error missing functions
+
+#											fnbit.prg  		\
+#											isnet.prg  		\
+#											fnpfeval.prg  	\
+#											is3x.prg  		\
+#											fnpeek.prg  	\
+#											request.prg  	\
+#											ipxinit.prg  	\
+## error missing functions
+DOC 					= 		doc/*
+ADDLIBS 				=
+o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(STARGET)
+all : Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-netto

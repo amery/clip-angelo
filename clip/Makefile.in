@@ -50,19 +50,20 @@ export
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(DIRS_TO_SCAN)
+all : Makefile $(DIRS_TO_SCAN)
 
 cfg : inst_dir inst_screen links
+	$(E_cp)cp -f$(V) ../Makefile.ini ../configure.ini .
 
 hash1 :
 #Makefile $(DIRS_TO_SCAN)
 
-links:
+links :
 	$(E_ln)[ -d charsets ] || ln -sf$(V) libclipscreen/install/charsets .
 
-trans: clip_trans inst_dir inst_screen
+trans : clip_trans inst_dir inst_screen
 
-clip.1: clip.html
+clip.1 : clip.html
 	htex -o man clip.html
 
 cleanc : $(DIRS_TO_SCAN)
@@ -73,10 +74,10 @@ cleanc : $(DIRS_TO_SCAN)
 						*.log 		\
 						*core 		\
 						core*
-	$(E_rm)[ ! -f tests/Makefile ] 	\
-		|| (cd tests 						\
-				&& $(MAKE) clean			\
-			)
+#	$(E_rm)[ ! -f test/Makefile ] 	\
+#		|| (cd test 						\
+#				&& $(MAKE) clean			\
+#			)
 	$(E_rm)[ ! -f libclipmemdebug/Makefile ] 	\
 		|| (cd libclipmemdebug 						\
 				&& $(MAKE) clean 						\
@@ -94,22 +95,21 @@ cleanc : $(DIRS_TO_SCAN)
 							*~ core* 	\
 							*core			\
 							*.output 	\
-							test 			\
 							dtest 		\
 							bin 			\
 							*.exe 		\
 							locale.pot 	\
 							license.h
 
-distcleanc: clean
+distcleanc : clean
 	$(E_rm)rm -f$(V) configure.flags
 	$(E_rm)rm -f$(V) Makefile
 
-cleantest:
-	$(E_rm)rm -f$(V) test dtest *.pa test.o dtest.o
-	$(E_rm)cd tests && $(MAKE) clean
+cleantest :
+	$(E_rm)rm -f$(V) dtest *.pa test.o dtest.o
+#	$(E_rm)cd test && $(MAKE) clean
 
-pot:
+pot :
 	mkdir -p locale.pot/clip
 	xgettext --language=C \
 		 --keyword \
@@ -134,11 +134,11 @@ pot:
 	CLIP_LOCALE_ROOT=`pwd` tools/clip_msgmerge$(SCRIPTSUFF)
 
 
-install: all inst_dir inst_clip $(XINSTALL) inst_codb 			\
+install : all inst_dir inst_clip $(XINSTALL) inst_codb 			\
 	 inst_screen inst_ch inst_locale $(INST_STD_LIB) inst_doc 	\
 	 inst_end
 
-inst_dir:
+inst_dir :
 	$(E_mkD)[ -d $(INSTDIR) ] 									\
 		|| mkdir -p$(V) $(INSTDIR)
 	$(E_mkD)[ -d $(BINDIR) ] 									\
@@ -169,7 +169,7 @@ inst_dir:
 	$(E_mkD)[ -d $(INSTDIR)/locale.mo ] 					\
 		|| mkdir -p$(V) $(INSTDIR)/locale.mo
 
-inst_clip:
+inst_clip :
 	$(E_cd)cd $(Clip_B_Dir) \
 		&& chmod 0755 $(BINS) clip_bug$(SCRIPTSUFF) cliphash$(EXESUFF)
 	$(E_xx)if [ "$(OSNAME)" = CYGWIN ] ; then echo "bash lowname %1 %2 %3 %4 %5 %6 %7 %8 %9" > $(Clip_B_Dir)/lowname.bat ; fi
@@ -190,45 +190,29 @@ ifneq ($(BINDIR),$(Clip_B_Dir))
 endif
 	$(E_xx)touch $(INSTDIR)/cliprc/.notrm
 
-inst_locale:
+inst_locale :
 	$(E_cp)cp --remove-destination -Rfpu$(V) locale.po/* $(INSTDIR)/locale.po
 	$(E_rm)rm -rf$(V) `find $(INSTDIR)/locale.po -type d -name CVS -print`
 	$(E_xx)CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
 
-inst_lib:
+inst_lib :
 
-inst_std_lib:
+inst_std_lib :
 
-inst_screen:
+inst_screen :
 
-inst_codb:
+inst_codb :
 
-inst_ch: $(INST_MEMDEBUG_H)
+inst_ch : $(INST_MEMDEBUG_H)
 
-inst_memdebug_h:
+inst_memdebug_h :
 
-inst_doc:
+inst_doc :
 
-inst_xclip:
+inst_xclip :
 
-inst_end:
+inst_end :
 	$(E_xx)inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
-
-depend:
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	./_cvs_commit
-
-update:
-	./_cvs_update
-
-ucommit:
-	./_cvs_commit
-	./_cvs_update
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

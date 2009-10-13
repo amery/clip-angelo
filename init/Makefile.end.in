@@ -15,12 +15,21 @@ Makefile.ini : $(CONFIGURE_SH)
 	$(E_cp)cp --remove-destination -fpu$(V) ../configure.ini ../Makefile.ini ./
 	$(E_xx)$(CONFIGURE_SH)
 
+../Makefile.ini : $(CONFIGURE_SH)
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -fpu$(V) $(Clip_M_Dir)/configure.ini $(Clip_M_Dir)/Makefile.ini ../
+	$(E_xx)$(CONFIGURE_SH)
+
+depend : $(DIRS_TO_SCAN) example FORCE
+	$(E_xx)$(Clip_M_Dir)/init/MakeDepend.sh
+
 Makefile : 		Makefile.in 		\
 					../Makefile.ini 	\
 					./configure.in 	\
 					./configure 		\
-					$(Local_Depend) 	\
-					$(AllG)
+					$(Local_Depend)
+#					 	\
+#					$(AllG)
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
 	$(E_xx)( [ -f Makefile.in ] 	\
@@ -33,45 +42,38 @@ Makefile : 		Makefile.in 		\
 
 FORCE :
 
-$(DIRS_TO_SCAN) example : Makefile FORCE
+$(DIRS_TO_SCAN) example test : Makefile FORCE
 	$(E_cd)if [ -d $@ ] ; then 																				\
 			cd $@  																									\
 				&& echo  "Scanning : " $$PWD >&0 															\
 				&& echo  "Scanning : " $$PWD >&1 															\
 				&& echo  "Scanning : " $$PWD >&2 															\
-				&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
-				&& (	( 	[ ./configure.in -nt Makefile ] 													\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 															\
+				&& (	( 	[ ./Makefile -nt ./configure.in ] 												\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./configure.in 										\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& (	( 	[ ./Makefile.in -nt Makefile ] 													\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 															\
+				&& (	( 	[ ./Makefile -nt ./Makefile.in ] 												\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./Makefile.in 										\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& (	( [ ./configure -nt Makefile ] 														\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 0 														\
+				&& (	( [ ./Makefile -nt ./configure ] 													\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./configure  											\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& ( 	[ -f Makefile ] 																			\
+				&& ( 	[ -f ./Makefile ] 																		\
 						|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
-								&& $(CONFIGURE_SH) 0 															\
+								&& $(CONFIGURE_SH) ./Makefile  												\
 							) 																							\
-						|| false 																					\
 					) 																									\
 				&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ;						\
 		fi
+#				&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
 
 M_config : cleanc Makefile cfg $(DIRS_TO_SCAN) example hash1 FORCE
 	$(E_ln)[ -d ./include.clip ] 	\
@@ -153,37 +155,37 @@ clean : $(DIRS_TO_SCAN) example cleanc
 			) 										\
 			|| true
 
-$(ATARGET) : $(OBJS) $(ADDOBJS) Makefile $(CLIP)
+$(ATARGET) : $(o_files) $(ADDOBJS) Makefile $(CLIP) $(Depend_on)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $(TARGET).*
-	$(E_mkl)$(CLIP_MAKELIB) $@ $(OBJS) $(ADDOBJS) $(ADDLIBS)
+	$(E_mkl)$(CLIP_MAKELIB) $@ $(o_files) $(ADDOBJS) $(ADDLIBS)
 
-$(RTARGET) : $(ATARGET) Makefile $(CLIP) $(LIBCLIP)
+$(RTARGET) : $(ATARGET) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $@
 	$(E_mkSl)$(CLIP_MAKESLIB) $@ $< $(ADDLIBS)
 
 ifneq ($(RTARGET), $(STARGET))
 
-$(STARGET) : $(RTARGET) Makefile $(CLIP) $(LIBCLIP)
+$(STARGET) : $(RTARGET) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $@
 	$(E_mkSl)$(CLIP_MAKESLIB) $@ $(ATARGET) $(ADDLIBS)
 endif
 
-$(ATARGET2) : $(OBJS2) $(ADDOBJS2) Makefile $(CLIP)
+$(ATARGET2) : $(o_files2) $(ADDOBJS2) Makefile $(CLIP) $(Depend_on)
 	$(E_e)$(Trace_lib2)
 	$(E_rm)rm -f$(V) $(TARGET2).*
-	$(E_mkSl)$(CLIP_MAKELIB) $@ $(OBJS2) $(ADDOBJS2) $(ADDLIBS2)
+	$(E_mkSl)$(CLIP_MAKELIB) $@ $(o_files2) $(ADDOBJS2) $(ADDLIBS2)
 
-$(RTARGET2) : $(ATARGET2) Makefile $(CLIP) $(LIBCLIP)
+$(RTARGET2) : $(ATARGET2) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_lib2)
 	$(E_rm)rm -f$(V) $@
 	$(E_mkSl)$(CLIP_MAKESLIB) $@ $< $(ADDLIBS2)
 
 ifneq ($(RTARGET2), $(STARGET2))
 
-$(STARGET2) : $(RTARGET2) Makefile $(CLIP) $(LIBCLIP)
+$(STARGET2) : $(RTARGET2) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_lib2)
 	$(E_rm)rm -f$(V) $@
 	$(E_mkSl)$(CLIP_MAKESLIB) $@ $< $(ADDLIBS2)

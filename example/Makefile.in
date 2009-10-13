@@ -18,6 +18,8 @@ PROGS=	$(sort 								\
 						tcpserv$(EXESUFF) 	\
 						tcpclient$(EXESUFF) 	\
 			)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) clip.c )
 
 export
 
@@ -38,7 +40,7 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-install :
+install : #all
 	$(E_mkD)[ -d $(Clip_D_Dir)/example/ ] || mkdir -p$(V) $(Clip_D_Dir)/example/
 	$(E_cp)cp --remove-destination -Rfpu$(V) * $(Clip_D_Dir)/example/
 

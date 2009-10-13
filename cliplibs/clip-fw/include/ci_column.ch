@@ -1,6 +1,6 @@
 
-#ifndef _COLUMN_CH
-#define _COLUMN_CH
+#ifndef CI__COLUMN_CH
+#define CI__COLUMN_CH
 
 #define TBCT_TEXT               1
 #define TBCT_BITMAP             2

@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_STATUSBAR_CH__
-#define __CTI_STATUSBAR_CH__
+#ifndef CI___CTI_STATUSBAR_CH__
+#define CI___CTI_STATUSBAR_CH__
 
 #define		CTI_IS_STATUSBAR(obj)	(cti_check_cast(obj,"CTI_STATUSBAR"))
 

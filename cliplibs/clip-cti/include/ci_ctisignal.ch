@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_SIGNAL_CH__
-#define __CTI_SIGNAL_CH__
+#ifndef CI___CTI_SIGNAL_CH__
+#define CI___CTI_SIGNAL_CH__
 
 #define		CTI_NO_SIGNAL			0
 //#define		CTI_KEY_PRESSED_SIGNAL		1

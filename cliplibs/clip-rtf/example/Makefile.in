@@ -1,15 +1,18 @@
 #
 #                                            clip-rtf/example/Makefile.in
 #
-Depend_on 				=				$(Clip_L_Dir)/libclip-rtf.so
-BINS 						= 				rtfdemo$(EXESUFF)
+Depend_on 			=			$(Clip_L_Dir)/libclip-rtf.so
+prg_files 			= 			rtfdemo.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(BINS)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -19,11 +22,11 @@ cfg :
 
 rtfdemo$(EXESUFF) : rtfdemo.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewslM rtfdemo.prg -lclip-rtf
+	$(CLIP) -o$@ -ewslM $< -lclip-rtf
 
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.rtf $(BINS)
+	$(E_rm)rm -f$(V) *.c *.rtf $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

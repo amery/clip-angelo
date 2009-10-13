@@ -8,17 +8,22 @@ ADDLIBS 			= 		-L$(DBTCP_PATH) -ldbftp
 DBTCPINCLUDE 	= 		-I$(DBTCP_PATH)/../include
 Depend_on 		= 		$(DBTCP_PATH)/libdbftp.a
 C_FLAGS 			+= 	$(DBTCPINCLUDE)
-OBJS 				= 		$(sort 						\
-										dbtcp_clip.o 	\
-										dbtcp.o 			\
+c_files 			= 		$(sort 						\
+										dbtcp_clip.c 	\
 							)
+c_files 			= 		$(sort 						\
+										dbtcp.prg 		\
+							)
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(OBJS) $(STARGET)
+all: Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-dbtcp

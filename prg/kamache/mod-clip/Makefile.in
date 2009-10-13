@@ -1,15 +1,17 @@
 #
 #                                            prg/kamache/mod-clip/Makefile.in
 #
-Local_Depend 			=
-MODULES 					= 				hello.po
+Local_Depend 		=
+prg_files 			= 			hello.prg
+po_files 			= 			$(addsuffix .po, $(basename $(prg_files) ) )
 
+SRC_PRG_files 		= 			$(prg_files)
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : $(MODULES)
+all : $(po_files)
 
 hash1 :
 

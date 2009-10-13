@@ -6,53 +6,57 @@ Local_Depend 		= 		include/*.ch 	\
 
 CLIPFLAGS 			+= 	$(INCLUDEDIRS)
 PROG 					= 		clip-fw
-SRCS 					= 					\
-								c_funcs.c \
-								fw_bar.prg  \
-								fw_brush.prg  \
-								fw_btnbmp.prg  \
-								fw_button.prg  \
-								fw_color.prg  \
-								fw_combobox.prg  \
-								fw_common.prg  \
-								fw_control.prg  \
-								fw_dialog.prg  \
-								fw_font.prg  \
-								fw_get.prg  \
-								fw_icon.prg  \
-								fw_listbox.prg  \
-								fw_mdichild.prg  \
-								fw_mdiclien.prg  \
-								fw_mdiframe.prg  \
-								fw_menuitem.prg  \
-								fw_menu.prg  \
-								fw_menusys.prg  \
-								fw_meter.prg  \
-								fw_msgbar.prg  \
-								fw_msgitem.prg  \
-								fw_msg.prg  \
-								fw_rect.prg  \
-								fw_say.prg  \
-								fw_scrllbar.prg  \
-								fw_syscti.prg  \
-								fw_sysgtk.prg  \
-								fw_tabs.prg  \
-								fw_timer.prg  \
-								fw_wbrowse.prg  \
+c_files 				= 					\
+								c_funcs.c
+
+prg_files 			= 							 	\
+								fw_bar.prg 			\
+								fw_brush.prg 		\
+								fw_btnbmp.prg 		\
+								fw_button.prg 		\
+								fw_color.prg 		\
+								fw_combobox.prg 	\
+								fw_common.prg 		\
+								fw_control.prg 	\
+								fw_dialog.prg 		\
+								fw_font.prg 		\
+								fw_get.prg 			\
+								fw_icon.prg 		\
+								fw_listbox.prg 	\
+								fw_mdichild.prg 	\
+								fw_mdiclien.prg 	\
+								fw_mdiframe.prg 	\
+								fw_menuitem.prg 	\
+								fw_menu.prg 		\
+								fw_menusys.prg 	\
+								fw_meter.prg 		\
+								fw_msgbar.prg 		\
+								fw_msgitem.prg 	\
+								fw_msg.prg 			\
+								fw_rect.prg 		\
+								fw_say.prg 			\
+								fw_scrllbar.prg 	\
+								fw_syscti.prg 		\
+								fw_sysgtk.prg 		\
+								fw_tabs.prg 		\
+								fw_timer.prg 		\
+								fw_wbrowse.prg 	\
 								fw_window.prg
 
 #								t.prg
 #								fp.prg
 
-OBJS 					= 		$(sort $(addsuffix .o,$(basename $(SRCS) ) ) )
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 ADDLIBS =
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:  Makefile links $(OBJS) $(STARGET)
+all: Makefile links $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-fw

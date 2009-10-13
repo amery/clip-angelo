@@ -1,8 +1,8 @@
 /* clip object data base (CODB) configuration */
 
-#ifndef _CODBCFG_DEFINED
+#ifndef CI__CODBCFG_DEFINED
 
-#define _CODBCFG_DEFINED
+#define CI__CODBCFG_DEFINED
 
 #define CODB_VERSION "0.7.0"
 #define CODB_KNOWLEDGE "0.1.0"

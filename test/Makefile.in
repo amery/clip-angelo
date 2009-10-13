@@ -4,6 +4,10 @@
 # main parts
 #
 #
+prg_files 			= 			clip_mk_depend.prg test.prg
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
@@ -51,3 +55,4 @@ test$(EXESUFF) : test.prg Makefile
 	$(E_xx)banner are OK 		>&2
 
 include $(Makefile_end_in)
+

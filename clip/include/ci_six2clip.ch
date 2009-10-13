@@ -1,5 +1,5 @@
-#ifndef __SIX2CLIP_DEFINED
-#define __SIX2CLIP_DEFINED
+#ifndef CI__SIX2CLIP_DEFINED
+#define CI__SIX2CLIP_DEFINED
 
 #include "ci_six.ch"
 

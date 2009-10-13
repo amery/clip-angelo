@@ -1,10 +1,13 @@
 #
 #                                            prg/cobra-serv/auth/Makefile.in
 #
-Local_Depend 			=
+Local_Depend 		=
 # need package libpam0g-dev
-LIBS 						= 			-lpam
+LIBS 					= 			-lpam
 
+c_files 				= 			pam-auth.c
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 export
 
 ######################################################################################

@@ -1,5 +1,5 @@
-#ifndef _FOLDER_CH
-#define _FOLDER_CH
+#ifndef CI__FOLDER_CH
+#define CI__FOLDER_CH
 
 //----------------------------------------------------------------------------//
 

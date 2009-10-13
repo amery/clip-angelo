@@ -2,13 +2,13 @@
 	$Log: ib_clip.c,v $
 	Revision 1.1  2006/06/22 20:12:11  itk
 	uri: init sf.net
-	
+
 	Revision 1.22  2006/03/23 10:41:06  clip
 	rust: BLOB functions for PG (thanks Slava Zanko <slavaz@cis.by>)
-	
+
 	Revision 1.21  2005/12/15 15:32:54  clip
 	rust: GCC 4 fix
-	
+
 	Revision 1.20  2003/08/05 11:25:34  clip
 	rust: patch from Sergio Zayas <icaro.maneton@lycos.es> applied
 
@@ -76,9 +76,9 @@
 #include <math.h>
 
 #include <ibase.h>
-#include "clip.h"
-#include "dbfsql.h"
-#include "interbase.ch"
+#include "ci_clip.h"
+#include "ci_dbfsql.h"
+#include "ci_interbase.ch"
 
 #define DPB_SIZE 256
 

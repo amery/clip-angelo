@@ -1,5 +1,5 @@
-#ifndef __HTTP_CH__
-#define __HTTP_CH__
+#ifndef CI__HTTP_CH__
+#define CI__HTTP_CH__
 
 #define KAMACHE_VERSION  0.40
 #define KAMACHE_DEFPORT  3001

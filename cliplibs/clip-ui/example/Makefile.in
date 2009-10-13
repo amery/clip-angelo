@@ -7,17 +7,22 @@
 Depend_on 			= 			$(Clip_L_Dir)/libclip-ui.so 	\
 									$(Clip_L_Dir)/libclip-xml.so 	\
 									/usr/lib$(C64)/libexpat.so
-PRG1 					= 			uitest$(EXESUFF)
-PRG2 					= 			uiform$(EXESUFF)
+prg_files 			=			$(sort 								\
+												uitest.prg 				\
+												uiform.prg 				\
+									)
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 LIBS 					= 			-lclip-ui -lclip-xml -lexpat
 EXTRALIBS 			=
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG1) $(PRG2)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -26,18 +31,18 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) $(PRG1) $(PRG2) image[0-9]*
+	$(E_rm)rm -f$(V) $(exe_files) image[0-9]*
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG1): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+uitest$(EXESUFF): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewslM $(CLIPFLAGS) uitest.prg $(LIBS) $(EXTRALIBS)
+	$(CLIP) -o$@ -ewslM $(CLIPFLAGS) $< $(LIBS) $(EXTRALIBS)
 
-$(PRG2): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+uiform$(EXESUFF): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewsln $(CLIPFLAGS) uiform.prg $(LIBS) $(EXTRALIBS)
+	$(CLIP) -o$@ -ewsln $(CLIPFLAGS) $< $(LIBS) $(EXTRALIBS)
 
 include $(Makefile_o_in)
 

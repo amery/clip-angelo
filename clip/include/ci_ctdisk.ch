@@ -1,5 +1,5 @@
-#ifndef _CTDISK_DEFINED
-#define _CTDISK_DEFINED
+#ifndef CI_CTDISK_DEFINED
+#define CI_CTDISK_DEFINED
 
 #define NO_DISK_ERR	 0
 

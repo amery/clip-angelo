@@ -1,5 +1,5 @@
-#ifndef _RDDSYS_DEFINED
-#define _RDDSYS_DEFINED
+#ifndef CI_RDDSYS_DEFINED
+#define CI_RDDSYS_DEFINED
 
 /* RDD Types for rddRegister() */
 #define RDT_FULL     1

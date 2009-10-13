@@ -6,19 +6,24 @@
 Local_Depend 		= 			include/*.ch
 PROG 					= 			clip-mysql
 C_FLAGS 				+= 		-I/usr/include/mysql -I/usr/local/include/mysql
-OBJS 					= 			$(sort 					\
-												ms_clip.o 	\
-												ms.o 			\
+prg_files 			= 			$(sort 					\
+												ms.prg 			\
+									)
+c_files 				= 			$(sort 					\
+												ms_clip.c 	\
 									)
 ADDLIBS 				=			-L/usr/lib/mysql -lmysqlclient
 DOC 					= 			*.html
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile  have_lib $(OBJS) $(STARGET)
+all: Makefile  have_lib $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-mysql

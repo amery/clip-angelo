@@ -2,8 +2,8 @@
 #include "ci_config.ch"
 #include "ci_set.ch"
 
-#ifndef _TE_DEFINED
-#define _TE_DEFINED
+#ifndef CI_TE_DEFINED
+#define CI_TE_DEFINED
 
 #define TE_SCORE_ROW		0
 #define TE_SCORE_COL		60

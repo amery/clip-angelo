@@ -86,8 +86,8 @@ start of logging CVS
 
 */
 
-#ifndef SCREEN_H
-#define SCREEN_H
+#ifndef CI_SCREEN_H
+#define CI_SCREEN_H
 
 /* cursor goto handling with padding/delay checking */
 void scr_tgoto(char *CM, int destcol, int destline, char *buf, int buflen);

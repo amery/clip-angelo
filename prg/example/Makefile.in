@@ -9,33 +9,36 @@ ORLIBS				= 		$(Clip_L_Dir)/libclip-oracle.a /usr/lib/oracle/*/client$(C64)/lib/
 POBJS  				= 		menu.po getfile.po
 PAOBJS  				= 		menu.po getfile.po
 CLIP_LOCALE_ROOT 	=.
-BINS 					= 		$(sort 								\
-											menu$(EXESUFF) 		\
-											fw_menu$(EXESUFF) 	\
-											getfile$(EXESUFF) 	\
-											tb_test$(EXESUFF) 	\
-											big_num$(EXESUFF) 	\
+prg_files 			= 		$(sort 						\
+											menu.prg 		\
+											fw_menu.prg 	\
+											getfile.prg 	\
+											tb_test.prg 	\
+											big_num.prg 	\
 								)
-# multilang$(EXESUFF)
-#pluralmsg$(EXESUFF) \
+# multilang.prg
+#pluralmsg.prg
+exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(BINS)
+all : Makefile $(exe_files)
 
 hash1 :
 
 cfg :
 
-install :
+install : #all
 
 include $(Makefile_o_in)
 
 cleanc:
 	$(E_rm)rm -f$(V) *.c *.b || true
-	$(E_rm)rm -f$(V) locale.pot locale.mo $(BINS) || true
+	$(E_rm)rm -f$(V) locale.pot locale.mo $(exe_files) || true
 
 distcleanc :
 	$(E_rm)rm -f$(V) *.g || true

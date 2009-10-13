@@ -6,17 +6,17 @@ Hash_Dir=$Clip_M_Dir/hasher/hashed
 ProgName=$1
 h_files=""
 ch_files=""
-c_files="$(ls -A *.c)"
-prg_files="$(ls -A *.prg)"
+c_files="$(ls -A *.c 2>/dev/null)"
+prg_files="$(ls -A *.prg 2>/dev/null)"
 i_ch_files=""
 i_h_files=""
 if [ -L include ] ; then
 	echo include is A link
 else
-	h_files="$(ls -A *.h)"
-	ch_files="$(ls -A *.ch)"
-	[ -d include ] && cd include && i_h_files="$(ls -A *.h)" && cd ..
-	[ -d include ] && cd include && i_ch_files="$(ls -A *.ch)" && cd ..
+	h_files="$(ls -A *.h 2>/dev/null)"
+	ch_files="$(ls -A *.ch 2>/dev/null)"
+	[ -d include ] && cd include && i_h_files="$(ls -A *.h 2>/dev/null)" && cd ..
+	[ -d include ] && cd include && i_ch_files="$(ls -A *.ch 2>/dev/null)" && cd ..
 fi
 fName=""
 H_f="$h_files"
@@ -63,7 +63,7 @@ for fName in $H_f ; do
 done
 prg_files=""
 for fName in $P_f ; do
-	if [ -f ./$fName.prg ] ; then
+	if [ -f ./$fName ] ; then
 		ln -sf$V "$PWD/$fName" "$Hash_Dir/$ProgName-$fName"
 		prg_files="$prg_files $fName"
 	fi

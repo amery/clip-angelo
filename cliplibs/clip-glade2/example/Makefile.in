@@ -2,22 +2,25 @@
 #                                            clip-glade2/example/Makefile.in
 #
 # Make for eglade
-Depend_on 					= 			$(Clip_L_Dir)/libclip-glade2.so 		\
-											$(Clip_L_Dir)/libclip-gtk2.so
-LIBS 							+= 		-lclip-gtk2 -lclip-glade2
-OBJS 							= 			$(sort 					\
-													dlgopen.o 		\
-													dlgsave.o 		\
-													dlgselfont.o 	\
-													dlgabout.o 		\
-											)
-
+Depend_on 			= 			$(Clip_L_Dir)/libclip-glade2.so 		\
+									$(Clip_L_Dir)/libclip-gtk2.so
+LIBS 					+= 		-lclip-gtk2 -lclip-glade2
+prg_files 			= 			$(sort 							\
+												dlgopen.prg 		\
+												dlgsave.prg 		\
+												dlgselfont.prg 	\
+												dlgabout.prg 		\
+									)
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) ) )
+exe_files 			= 			eglade$(EXESUFF)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) eglade.prg )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(OBJS) eglade$(EXESUFF)
+all : Makefile $(o_files) $(exe_files)
 
 install : all
 
@@ -25,12 +28,12 @@ hash1 :
 
 cfg :
 
-eglade$(EXESUFF): eglade.prg  $(OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+eglade$(EXESUFF): eglade.prg  $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -ewlNs $<  $(OBJS) $(LIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ewlNs $<  $(o_files) $(LIBS)
 
-cleanc:
-	$(E_rm)rm -f$(V) eglade$(EXESUFF) *.c
+cleanc :
+	$(E_rm)rm -f$(V) $(exe_files) *.c
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

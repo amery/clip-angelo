@@ -1,5 +1,5 @@
-#ifndef _DBINFO_DEFINED
-#define _DBINFO_DEFINED
+#ifndef CI_DBINFO_DEFINED
+#define CI_DBINFO_DEFINED
 
 /* define codes for DBRECORDINFO() */
 #define DBRI_DELETED       1

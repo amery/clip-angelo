@@ -19,7 +19,8 @@
 
 */
 
-#ifndef __WIN32_CLIP_H_
+#ifndef CI__WIN32_CLIP_H_
+#define CI__WIN32_CLIP_H_
 
 /* don't touch next line!! must be EXACTLY as it is */
 #if defined(_WIN32) || defined(OS_MINGW) || defined(OS_CYGWIN)

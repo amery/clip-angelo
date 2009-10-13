@@ -1,15 +1,18 @@
 #
 #                                            clip-gzip/example/Makefile.in
 #
-Depend_on 			= 				$(Clip_L_Dir)/libclip-gzip.so
-PRG 					= 				gz$(EXESUFF)
-LIBS 					= 				-lclip-gzip -lz
+Depend_on 			= 			$(Clip_L_Dir)/libclip-gzip.so
+prg_files 			= 			gz.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+LIBS 					= 			-lclip-gzip -lz
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile  $(PRG)
+all : Makefile  $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG) *.gz
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files) *.gz
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 gz$(EXESUFF): gz.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ew -s -l -M gz.prg $(LIBS)
+	$(CLIP) -o$@ -ew -s -l -M $< $(LIBS)
 
 include $(Makefile_o_in)
 

@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_OPTION_MENU_CH__
-#define __CTI_OPTION_MENU_CH__
+#ifndef CI___CTI_OPTION_MENU_CH__
+#define CI___CTI_OPTION_MENU_CH__
 
 #define		CTI_IS_OPTION_MENU(obj)	(cti_check_cast(obj,"CTI_OPTION_MENU"))
 

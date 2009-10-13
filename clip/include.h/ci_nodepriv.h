@@ -105,8 +105,8 @@
 
  */
 
-#ifndef NODEPRIV_H
-#define NODEPRIV_H
+#ifndef CI_NODEPRIV_H
+#define CI_NODEPRIV_H
 
 typedef struct
 {

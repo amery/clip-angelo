@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_CONTROL_CH__
-#define __CTI_CONTROL_CH__
+#ifndef CI___CTI_CONTROL_CH__
+#define CI___CTI_CONTROL_CH__
 
 #define		CTI_IS_CONTROL(obj)	(cti_check_cast(obj,"CTI_CONTROL"))
 

@@ -1,6 +1,6 @@
 /* description of standart commands */
-#ifndef _STD50_DEFINED
-#define _STD50_DEFINED
+#ifndef CI_STD50_DEFINED
+#define CI_STD50_DEFINED
 
 #include "ci_Set.ch"
 /* Don`t remove this line - it`s only for CLIP compiler */

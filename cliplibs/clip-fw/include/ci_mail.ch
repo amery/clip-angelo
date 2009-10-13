@@ -1,7 +1,7 @@
 // FiveWin - Windows MAPI - mail services - xBase Commands
 
-#ifndef _MAIL_CH
-#define _MAIL_CH
+#ifndef CI__MAIL_CH
+#define CI__MAIL_CH
 
 //----------------------------------------------------------------------------//
 

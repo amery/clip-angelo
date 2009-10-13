@@ -6,17 +6,21 @@
 
 Local_Depend 		= 			include/*.ch
 CLIPFLAGS 			+= 		-n
-OBJS  				= 			richtext.o
+prg_files  			= 			richtext.prg
 PROG 					= 			clip-rtf
 ADDLIBS 				=
+
+o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 DOC 					= 			readme*
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(STARGET)
+all : Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-rtf

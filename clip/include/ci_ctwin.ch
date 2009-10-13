@@ -2,34 +2,34 @@
 	define symbols for function wbox()
 */
 
-#ifndef _WB_DEFINED
-#define _WB_DEFINED
+#ifndef CI_WB_DEFINED
+#define CI_WB_DEFINED
 
-#define WB_DOUBLE_CLEAR 	 0     /* ¥ ¨ */
-#define WB_SINGLE_CLEAR 	 1     /* ‚€ƒ */
-#define WB_DOUBLE_SINGLE_CLEAR	 2     /* ¢ ¦ */
-#define WB_SINGLE_DOUBLE_CLEAR	 3     /* ¤€§ */
+#define WB_DOUBLE_CLEAR 	 0     /* ï¿½ï¿½ï¿½ */
+#define WB_SINGLE_CLEAR 	 1     /* ï¿½ï¿½ï¿½ */
+#define WB_DOUBLE_SINGLE_CLEAR	 2     /* ï¿½ï¿½ï¿½ */
+#define WB_SINGLE_DOUBLE_CLEAR	 3     /* ï¿½ï¿½ï¿½ */
 
-#define WB_DOUBLE		 4     /* ¥ ¨ */
-#define WB_SINGLE		 5     /* ‚€ƒ */
-#define WB_DOUBLE_SINGLE	 6     /* ¢ ¦ */
-#define WB_SINGLE_DOUBLE	 7     /* ¤€§ */
+#define WB_DOUBLE		 4     /* ï¿½ï¿½ï¿½ */
+#define WB_SINGLE		 5     /* ï¿½ï¿½ï¿½ */
+#define WB_DOUBLE_SINGLE	 6     /* ï¿½ï¿½ï¿½ */
+#define WB_SINGLE_DOUBLE	 7     /* ï¿½ï¿½ï¿½ */
 
-#define WB_HALF_FULL_CLEAR	 8     /* ‹ */
+#define WB_HALF_FULL_CLEAR	 8     /* ï¿½ï¿½ï¿½ */
 
-#define WB_HALF_CLEAR		 9     /* ‹ */
+#define WB_HALF_CLEAR		 9     /* ï¿½ï¿½ï¿½ */
 
-#define WB_FULL_HALF_CLEAR	10     /*  */
+#define WB_FULL_HALF_CLEAR	10     /* ï¿½ï¿½ï¿½ */
 
-#define WB_FULL_CLEAR		11     /*  */
+#define WB_FULL_CLEAR		11     /* ï¿½ï¿½ï¿½ */
 
-#define WB_HALF_FULL		12     /* ‹ */
+#define WB_HALF_FULL		12     /* ï¿½ï¿½ï¿½ */
 
-#define WB_HALF 		13     /* ‹ */
+#define WB_HALF 		13     /* ï¿½ï¿½ï¿½ */
 
-#define WB_FULL_HALF		14     /*  */
+#define WB_FULL_HALF		14     /* ï¿½ï¿½ï¿½ */
 
-#define WB_FULL 		15     /*  */
+#define WB_FULL 		15     /* ï¿½ï¿½ï¿½ */
 
 #ifdef __CLIP__
 

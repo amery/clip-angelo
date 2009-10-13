@@ -17,8 +17,8 @@
    *
  */
 
-#ifndef LIST_H
-#define LIST_H
+#ifndef CI_LIST_H
+#define CI_LIST_H
 
 typedef struct
 {
@@ -45,18 +45,18 @@ int Next_List(List * list);	/* ring next */
 
 int prev_List(List * list);
 int Prev_List(List * list);	/* ring prev */
-int seek_List(List * list, void *item);		/* устанавливает текущий */
+int seek_List(List * list, void *item);		/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 
-void remove_List(List * list);	/* удаляет текущий; текущим становится следующий */
+void remove_List(List * list);	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 void removeIt_List(List * list, void *item);
 
-void insert_List(List * list, void *item);	/* вставляет после текущего */
-void insertBefore_List(List * list, void *item);	/* вставляет перед текущим  */
-void append_List(List * list, void *item);	/* вставляет в конец        */
-void prepend_List(List * list, void *item);	/* вставляет в начало       */
+void insert_List(List * list, void *item);	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
+void insertBefore_List(List * list, void *item);	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫  */
+void append_List(List * list, void *item);	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫        */
+void prepend_List(List * list, void *item);	/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫ О©╫О©╫О©╫О©╫О©╫О©╫       */
 
 void removeAll_List(List * list);
 
-void put_List(List * list, void *item);		/* замещает текущий */
+void put_List(List * list, void *item);		/* О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
 
 #endif

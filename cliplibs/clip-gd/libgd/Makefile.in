@@ -30,16 +30,18 @@ SRCS 					= 								\
 									gdxpm.c 			\
 									wbmp.c
 
-OBJS 					= 			$(sort 	$(addsuffix .o, $(basename $(SRCS) ) ) )
+o_files 				= 			$(sort 	$(addsuffix .o, $(basename $(SRCS) ) ) )
 INCDIR 				= 			-I ../include $(INCLUDEDIRS)
 C_FLAGS 				+= 		$(INCDIR)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile cfg $(OBJS) $(ATARGET)
+all : Makefile cfg $(o_files) $(ATARGET)
 
 install : all
 

@@ -1,5 +1,5 @@
-#ifndef _MENU_CH
-#define _MENU_CH
+#ifndef CI__MENU_CH
+#define CI__MENU_CH
 
 //----------------------------------------------------------------------------//
 // Creating PullDown Menus from source code

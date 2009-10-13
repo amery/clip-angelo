@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_LABEL_CH__
-#define __CTI_LABEL_CH__
+#ifndef CI___CTI_LABEL_CH__
+#define CI___CTI_LABEL_CH__
 
 #define		CTI_IS_LABEL(obj)	(cti_check_cast(obj,"CTI_LABEL"))
 

@@ -5,28 +5,31 @@
 #
 # Copyright (C) 2007 by E/AS Software Foundation
 # Author: Andrey Cherepanov <skull@eas.lrn.ru>
-Local_Depend 		= 			include/*.ch
-PROG 					= 			clip-postscript
-CLIPFLAGS 			+= 		-n
-OBJS    				= 			$(sort 							\
-												psblock.o 			\
-												pscode.o 			\
-												psform.o 			\
-												pspage.o 			\
-												pspagesettings.o 	\
-												psprinter.o 		\
-												psstyle.o 			\
-												pstemplate.o 		\
-												psvariable.o 		\
-									)
-ADDLIBS 				=
+Local_Depend 		= 		include/*.ch
+PROG 					= 		clip-postscript
+CLIPFLAGS 			+= 	-n
+prg_files    		= 		$(sort 								\
+											psblock.prg 			\
+											pscode.prg 				\
+											psform.prg 				\
+											pspage.prg 				\
+											pspagesettings.prg 	\
+											psprinter.prg 			\
+											psstyle.prg 			\
+											pstemplate.prg 		\
+											psvariable.prg 		\
+								)
+ADDLIBS 				= 		-lps
+o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(STARGET)
+all : Makefile $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-postscript

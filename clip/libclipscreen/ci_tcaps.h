@@ -8,8 +8,8 @@ start of logging CVS
 
 */
 
-#ifndef TCAPS_H
-#define TCAPS_H
+#ifndef CI_TCAPS_H
+#define CI_TCAPS_H
 
 /* BOOLS */
 #define NO_bw     0

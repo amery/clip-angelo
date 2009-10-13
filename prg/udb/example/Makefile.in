@@ -1,19 +1,24 @@
 #
 #                                            prg/udb/example/Makefile.in
 #
-Local_Depend 			=
+Depend_on 				= 				$(Clip_L_Dir)/libclip-codb.so
+
 LIBS  					= 				-lclip-codb
-PROGS 					= 				$(sort 									\
-														my001$(EXESUFF) 			\
-														cgi_currency$(EXESUFF) 	\
+
+prg_files 				= 				$(sort 							\
+														my001.prg 			\
+														cgi_currency.prg 	\
 											)
 
+exe_files 				= 				$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+
+SRC_PRG_files 			= 				$(prg_files)
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(PROGS)
+install all: Makefile $(exe_files)
 
 hash1 :
 
@@ -28,13 +33,13 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP)
+my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -eswn my001.prg $(LIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -eswn $< $(LIBS)
 
-cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(LIBCLIP)
+cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M cgi_currency.prg $(LIBS)
+	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M $< $(LIBS)
 
 include $(Makefile_end_in)
 

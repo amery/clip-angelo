@@ -1,15 +1,17 @@
 #
 #                                            clip-gd/example/Makefile.in
 #
-Depend_on 			=			 $(Clip_L_Dir)/libclip-gd.so
-PRG 					= 			gr$(EXESUFF)
-
+Depend_on 			=		 $(Clip_L_Dir)/libclip-gd.so
+prg_files 			= 		gr.prg
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
+exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,7 +20,7 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

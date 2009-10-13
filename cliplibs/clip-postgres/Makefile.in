@@ -7,21 +7,27 @@ Local_Depend 			= 			include/*.ch
 PROG 						= 			clip-postgres
 C_FLAGS 					+= 		-I$(PGINCDIR)
 PGLIB 					= 			-L$(PGLIBDIR) -lpq
-OBJS 						= 			$(sort 					\
-													pg_clip.o 	\
-													pg.o 			\
+prg_files 				= 			$(sort 					\
+													pg.prg 		\
+										)
+
+c_files 					= 			$(sort 					\
+													pg_clip.c 	\
 										)
 
 CLIPFLAGS 				+= 		-I$(PGINCDIR)
 DOC 						= 			*.html
 ADDLIBS 					= 			$(PGLIB)
+o_files 					= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 			= 			$(sort $(c_files) )
+SRC_PRG_files 			= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile  have_lib $(OBJS) $(STARGET)
+all: Makefile  have_lib $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-postgres

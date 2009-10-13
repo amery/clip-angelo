@@ -5,66 +5,25 @@
 Local_Depend 		= 			../include/*.ch 		\
 									../include.h/*.h
 Depend_on 			=
-SRCS					= 			coll.c 			\
-									list.c 			\
-									hash.c 			\
-									getopt.c 		\
-									getopt1.c 		\
-									clicutil.c 		\
-	  								clic.y 			\
-	  								clic.lex 		\
-	  								file.c 			\
-	  								node.c 			\
-	  								locale.c 		\
-	  								clip.c 			\
-	  								clicgt.c 		\
-	  								_win32.c
 
-OBJS					= 			$(sort 	clic.tab.o 		\
-												lex.yy.o 		\
-												lex.cl.o 		\
-												getopt.o 		\
-												getopt1.o 		\
-	  											clicutil.o  	\
-	  											clip.o 			\
-	  											file.o 			\
-	  											node.o 			\
-	  											clip_hash.o 	\
-	  											locale.o 		\
-	  											clicgt.o 		\
+c_files				= 			$(sort 	clic.tab.c 		\
+												lex.yy.c 		\
+												lex.cl.c 		\
+												getopt.c 		\
+												getopt1.c 		\
+	  											clicutil.c  	\
+	  											clip.c 			\
+	  											file.c 			\
+	  											node.c 			\
+	  											clip_hash.c 	\
+	  											locale.c 		\
+	  											clicgt.c 		\
 	  								)
 
 OBJDIR				= .
 LIBS					= 			-lm
 BIN 					=			clip$(EXESUFF)
 BINS 					= 			$(BIN)
-HASHSRCS 			= 			$(sort 	cliprt.c 		\
-												clipdbg.c 		\
-												clipvm.c 		\
-												clipmain.c 		\
-												rt.y 				\
-												_io.c 			\
-	   										set.c 			\
-	   										_util.c 			\
-	   										_file.c 			\
-	   										_file1.c 		\
-	   										_string.c 		\
-	   										_date.c 			\
-	   										clipbase.c 		\
-	   										_math.c 			\
-	   										_ctools_s.c 	\
-	   										diskutils.c 	\
-	   										_mem.c 			\
-	  											_system.c 		\
-	  											_thread.c 		\
-	  											rational.c 		\
-	  											integer.c 		\
-	  											_dbg.c 			\
-	  											_tcp.c 			\
-	  											_tcpserv.c 		\
-	  											_regex.c 		\
-	  											_thread.c 		\
-	  								)
 
 ADDOBJS 				= 			$(sort 											\
 												../libclipscreen/charset.o 	\
@@ -77,24 +36,24 @@ ADDOBJS 				= 			$(sort 											\
 DIRS_TO_SCAN 		=
 C_FLAGS 				+= 		-I../include.h
 ADDLIBS = $(ICONV_LIB)
-
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) clip.c )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile links lex $(OBJS) $(BIN)
+all : Makefile links lex $(o_files) $(BIN)
 
-links:
+links :
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-compiler
 
-cfg: lex
+cfg : lex
 	$(E_ln)[ -d charsets ] 											\
 		|| ln -sf$(V) ../libclipscreen/install/charsets .
-
-FORCE :
 
 ../libclipmain/coll.o : ../libclipmain/coll.c Makefile
 	$(E_cd)cd ../libclipmain  																		\
@@ -116,21 +75,21 @@ FORCE :
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE)  _win32.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
-../libclipscreen/charset.o: ../libclipscreen/charset.c Makefile
+../libclipscreen/charset.o : ../libclipscreen/charset.c Makefile
 	$(E_cd)cd ../libclipscreen  																	\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
-$(BIN):  $(OBJS) $(ADDOBJS) $(MLIB) Makefile
+$(BIN) : $(o_files) $(ADDOBJS) $(MLIB) Makefile
 	$(E_e)$(Trace_cc)
 	$(E_e)echo "seq_no : " $(seq_no)
 	$(E_cc)$(CC) $(C_FLAGS) $(STATICLINK) -DSEQ_NO=\"$(seq_no)\" 	\
 		-o $@ version.c 															\
-		$(OBJS) $(ADDOBJS) $(ADDLIBS) $(MLIB)
+		$(o_files) $(ADDOBJS) $(ADDLIBS) $(MLIB)
 	$(E_cp)cp --remove-destination -fuv $@ $(Clip_B_Dir)/
 	$(E_ln)ln -sf$(V) $(Clip_B_Dir)/$@ $(BINDIR)/
 
-clip_hash.o: ../libclipmain/cliphash.c Makefile
+clip_hash.o : ../libclipmain/cliphash.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 									\
 		$(Trace_cc_d) ; 																	\
 		$(CC) $(C_FLAGS) -g -DSTANDALONE -o clip_hash.o -c $< ; 				\
@@ -155,7 +114,7 @@ install : all
 
 include $(Makefile_o_in)
 
-cliprt.o: cliprt.c Makefile
+cliprt.o : cliprt.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 		\
 		$(Trace_cc_d) ; 										\
 		$(CC) $(C_FLAGS) -g -O -c $< ; 					\
@@ -164,7 +123,7 @@ cliprt.o: cliprt.c Makefile
 		$(CC) $(C_FLAGS) -O -c $< ; 						\
 	fi
 
-_ctools_s.o: _ctools_s.c Makefile
+_ctools_s.o : _ctools_s.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 		\
 		$(Trace_cc_d) ; 										\
 		$(CC) $(C_FLAGS) -g -O -c $< ; 					\
@@ -173,7 +132,7 @@ _ctools_s.o: _ctools_s.c Makefile
 		$(CC) $(C_FLAGS) -O -c $< ; 						\
 	fi
 
-_math.o: _math.c Makefile
+_math.o : _math.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 		\
 		$(Trace_cc_d) ; 										\
 		$(CC) $(C_FLAGS) -g -O0 -c $< ; 					\
@@ -182,7 +141,7 @@ _math.o: _math.c Makefile
 		$(CC) $(C_FLAGS) -O0 -c $< ; 						\
 	fi
 
-clic.tab.o: clic.tab.c ../include.h/ci_clic.h Makefile
+clic.tab.o : clic.tab.c ../include.h/ci_clic.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -191,7 +150,7 @@ clic.tab.o: clic.tab.c ../include.h/ci_clic.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-lex.yy.o: lex.yy.c Makefile
+lex.yy.o : lex.yy.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -200,7 +159,7 @@ lex.yy.o: lex.yy.c Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-lex.cl.o: lex.cl.c Makefile
+lex.cl.o : lex.cl.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -209,7 +168,7 @@ lex.cl.o: lex.cl.c Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-plural.tab.o: plural.tab.c Makefile
+plural.tab.o : plural.tab.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -218,7 +177,7 @@ plural.tab.o: plural.tab.c Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-clicutil.o: clicutil.c clic.tab.h Makefile
+clicutil.o : clicutil.c clic.tab.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -227,7 +186,7 @@ clicutil.o: clicutil.c clic.tab.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-clic_name.o: clic_name.c Makefile
+clic_name.o : clic_name.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -238,7 +197,7 @@ clic_name.o: clic_name.c Makefile
 
 ###################################################### yacc - flex
 
-clic_name.c: clic.tab.c Makefile
+clic_name.c : clic.tab.c Makefile
 	$(E_e)$(Trace)
 	$(E_e)echo "#include <stdio.h>" 													 >clic_name.c
 	$(E_e)echo "#ifndef YYDEBUG" 														>>clic_name.c
@@ -250,52 +209,34 @@ clic_name.c: clic.tab.c Makefile
 	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
 	$(E_e)echo "#endif" 																	>>clic_name.c
 
-clic.tab.c: clic.y ../include.h/ci_clic.h
+clic.tab.c : clic.y ../include.h/ci_clic.h
 	$(E_xx)$(YACC) -bclic -v -d clic.y
 
-lex.cl.c: clic_c.lex clic.tab.h
+lex.cl.c : clic_c.lex clic.tab.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Pcl clic_c.lex
 
-lex.hash.c: hasher.lex ../include.h/ci_cliphash.h
+lex.hash.c : hasher.lex ../include.h/ci_cliphash.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Phash hasher.lex
 
 #note: flex -i for case-insencitive parser
-lex.yy.c: clic.lex clic.tab.h
+lex.yy.c : clic.lex clic.tab.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -i clic.lex
 
-plural.tab.c: plural.y
+plural.tab.c : plural.y
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -bplural -pplural plural.y
 
-rt.tab.c: rt.y ../include.h/ci_clic.h
+rt.tab.c : rt.y ../include.h/ci_clic.h
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -brt -prt -v -d rt.y
 
-depend:
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-lex: yacc lex.yy.c lex.cl.c Makefile
+lex : yacc lex.yy.c lex.cl.c Makefile
 #lex.hash.c
-yacc: clic.tab.c clic_name.c Makefile
+
+yacc : clic.tab.c clic_name.c Makefile
 # rt.tab.c plural.tab.c
-commit:
-	./_cvs_commit
-
-update:
-	./_cvs_update
-
-ucommit:
-	./_cvs_commit
-	./_cvs_update
-
-shell:
-	sh
 
 include $(Makefile_end_in)
-
-
-# DO NOT DELETE
-

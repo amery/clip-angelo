@@ -3,7 +3,8 @@
 #
 #
 #
-#ADDMAKECMDGOALS = example
+#ADDMAKECMDGOALS = example test
+# tests
 #							to initiate in /init/Makefile.02.in
 ## 	-i ignore errors
 ##
@@ -197,6 +198,12 @@ distclean : distcleanc $(DIRS_TO_SCAN) example cleanc
 	$(E_e)echo Log file : $(Clip_M_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
 
+depend : Makefile $(DIRS_TO_SCAN) FORCE
+	$(E_e)banner $@ ok 	>&1
+	$(E_e)banner $@ ok 	>&0
+	$(E_e)echo Log file : $(Clip_M_Dir)/compile.*.sh 						>&0
+	$(E_e)echo Error/warning log file : $(Clip_M_Dir)/compile2.*.sh 	>&0
+
 packages: clean src tgz rpm deb
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
@@ -324,35 +331,28 @@ $(DIRS_TO_SCAN) hasher : Makefile FORCE
 	$(E_cd)if [ -d $@ ] ; then 																				\
 			cd $@  																									\
 				&& cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./ 		\
-				&& (	( 	[ ./configure.in -nt Makefile ] 													\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 															\
+				&& (	( 	[ ./Makefile -nt ./configure.in ] 												\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./configure.in															\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& (	( 	[ ./Makefile.in -nt Makefile ] 													\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 															\
+				&& (	( 	[ ./Makefile -nt ./Makefile.in ] 												\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./Makefile.in 															\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& (	( [ ./configure -nt Makefile ] 														\
-							&& ( [ -x $(CONFIGURE_SH) ] 														\
-									&& $(CONFIGURE_SH) 0 														\
+				&& (	( [ ./Makefile -nt ./configure ] 													\
+							|| ( [ -x $(CONFIGURE_SH) ] 														\
+									&& $(CONFIGURE_SH) ./configure 														\
 								) 																						\
-							|| false 																				\
 						) 																								\
-						|| true 																						\
 					) 																									\
-				&& ( 	[ -f Makefile ] 																			\
+				&& ( 	[ -f ./Makefile ] 																		\
 						|| ( 	[ -x $(CONFIGURE_SH)  ] 														\
-								&& $(CONFIGURE_SH) 0 															\
+								&& $(CONFIGURE_SH) ./Makefile 															\
 							) 																							\
-						|| false 																					\
 					) 																									\
 				&& $(MAKE) $(MAKEFLAGS) $(MAKECMDGOALS) $(ADDMAKECMDGOALS) ; 						\
 		fi

@@ -38,8 +38,8 @@
  paul
  */
 
-#ifndef TASK_H
-#define TASK_H
+#ifndef CI_TASK_H
+#define CI_TASK_H
 
 #include <sys/time.h>
 #include <sys/types.h>

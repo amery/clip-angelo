@@ -1,0 +1,40 @@
+#
+#                                            clip-fw/test/Makefile.in
+#
+prg_files 			=		t.prg
+
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+
+CLIPFLAGS 			+= 		-I ../
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all: Makefile links $(exe_files)
+
+hash1 :
+	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-fw
+
+cfg :
+
+links :
+
+t$(EXESUFF):	t.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CLIP) $(CLIPFLAGS) -e -s -M $< $(LIBS)
+
+cleanc:
+	$(E_rm)rm -f$(V) *.c $(exe_files)
+
+distcleanc :
+	$(E_rm)rm -rf$(V) *.g
+
+install: all
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

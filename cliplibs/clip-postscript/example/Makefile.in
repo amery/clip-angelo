@@ -4,18 +4,21 @@
 # CLIP-POSTSCRIPT library examples Makefile
 # Copyright (C) 2007, E/AS Software Foundation
 # Web: http://eas.lrn.ru
-Depend_on 				= 				$(Clip_L_Dir)/libclip-postscript.so $(Clip_L_Dir)/libclip-xml.so
-CLIPFLAGS 				+= 			-I../include
-PRG 						= 				testform$(EXESUFF)
-LIBS 						= 				-lclip-postscript -lclip-xml -lexpat -lps
-ADDLIBS 					=
+Depend_on 			= 			$(Clip_L_Dir)/libclip-postscript.so $(Clip_L_Dir)/libclip-xml.so
+CLIPFLAGS 			+= 		-I../include
+prg_files 			= 			testform.prg
+LIBS 					= 			-lclip-postscript -lclip-xml -lexpat
+ADDLIBS 				=
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -24,14 +27,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) $(PRG) *.c
+	$(E_rm)rm -f$(V) $(exe_files) *.c
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG): testform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+testform$(EXESUFF): testform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewsNln $(CLIPFLAGS) testform.prg $(LIBS)
+	$(CLIP) -o$@ -ewsNln $(CLIPFLAGS) $< $(LIBS)
 
 include $(Makefile_o_in)
 

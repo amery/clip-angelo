@@ -1,29 +1,32 @@
 #
 #                                            prg/dbc/procs/Makefile.in
 #
-Local_Depend 			= 			../dbc/*.ch
-CLIPFLAGS 				+= 		-I../dbc
-OBJS  					=  		$(sort 						\
-													procs1.o 		\
-													procs3.o 		\
-													procs5.o 		\
-													procs7.o 		\
-	 												procs8.o 		\
-													procini.o 		\
-													procscri.o 		\
-	 												procared.o 		\
-													procsay.o 		\
-	 									)
+Local_Depend 		= 			../dbc/*.ch
+CLIPFLAGS 			+= 		-I../dbc
+prg_files  			=  		$(sort 							\
+												procs1.prg 			\
+												procs3.prg 			\
+												procs5.prg 			\
+												procs7.prg 			\
+	 											procs8.prg 			\
+												procini.prg 		\
+												procscri.prg 		\
+	 											procared.prg 		\
+												procsay.prg 		\
+	 								)
+
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) ) )
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all : $(OBJS) ../procs.a
+install all : $(o_files) ../procs.a
 
-../procs.a : $(OBJS)
-	$(E_mkl)$(CLIP_MAKELIB) ../procs.a *.o
+../procs.a : $(o_files)
+	$(E_mkl)$(CLIP_MAKELIB) ../procs.a $(o_files)
 
 hash1 :
 

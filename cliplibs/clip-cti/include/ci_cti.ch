@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_CH__
-#define __CTI_CH__
+#ifndef CI___CTI_CH__
+#define CI___CTI_CH__
 
 #include "cti/ci_clipcti.ch"
 #include "cti/ci_ctiapp.ch"

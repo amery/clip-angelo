@@ -1,9 +1,9 @@
 ##
-##										init/Makefile.02.in
+##										init/Makefile.01.in
 ##
 ##				called from all Makefile files
 ##
-# 	ADDMAKECMDGOALS =							to initiate in /init/Makefile.02.in
+# 	ADDMAKECMDGOALS =							to initiate in /init/Makefile.01.in
 ## 	-i ignore errors
 ##
 ## 	--no-print-directory
@@ -23,14 +23,22 @@ AllSrcs 				= 			$(wildcard *.prg) $(wildcard *.c)
 AllG 					= 			$(addsuffix .g,$(basename $(AllSrcs)))
 Depend_on 			=
 Local_Depend 		=
+prg_files 			=
+prg_files2 			=
+c_files 				=
+c_files2 			=
+SRC_PRG_files 		=
+SRC_PRG_files2 	=
+SRC_C_files 		=
+SRC_C_files2 		=
 MAKEFLAGS 			+= 		--warn-undefined-variables
 ADDMAKECMDGOALS 	+=
 DLLLIBSUFF 			= 		.a
 PROGS					= 		xyzs
 PROG 					= 		xyz
 PROG2 				= 		xyz2
-OBJS 					=
-OBJS2 				=
+o_files 				=
+o_files2 			=
 TARGET 				= 		lib$(PROG)
 TARGET2				= 		lib$(PROG2)
 ATARGET 				= 		$(TARGET)$(DLLLIBSUFF)
@@ -49,7 +57,7 @@ BINS 					=
 DIRS_TO_SCAN 		=
 DOC =
 Debug_Make			=1
-E_mkl 				=
+E_mkl 				=@
 E_mkSl 				=@
 E_cc 					=@
 E_cd 					=@
@@ -104,7 +112,7 @@ endef
 
 define Trace_lib
 	$(Trace) ; 										\
-	echo OBJS : $(OBJS) 		;					\
+	echo OBJS : $(o_files) 		;				\
 	echo [LIB] $(value PWD)/$@ 	>&2 ; 	\
 	echo [LIB] $(value PWD)/$@ 	>&0 ; 	\
 	echo [LIB] $(value PWD)/$@ 	>&1
@@ -112,7 +120,7 @@ endef
 
 define Trace_lib2
 	$(Trace) ; 										\
-	echo OBJS2 : $(OBJS2) 	;					\
+	echo OBJS2 : $(o_files2) 	;				\
 	echo [LIB2] $(value PWD)/$@ 	>&2 ; 	\
 	echo [LIB2] $(value PWD)/$@ 	>&0 ; 	\
 	echo [LIB2] $(value PWD)/$@ 	>&1

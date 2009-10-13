@@ -1,5 +1,5 @@
-#ifndef _ODBC_CH
-#define _ODBC_CH
+#ifndef CI__ODBC_CH
+#define CI__ODBC_CH
 
 //----------------------------------------------------------------------------//
 

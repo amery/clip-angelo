@@ -16,8 +16,8 @@
    *
  */
 
-#ifndef CONST_H
-#define CONST_H
+#ifndef CI_CONST_H
+#define CI_CONST_H
 
 typedef struct
 {

@@ -1,5 +1,5 @@
-#ifndef __SNPRINTF_H__
-#define __SNPRINTF_H__
+#ifndef CI___SNPRINTF_H__
+#define CI___SNPRINTF_H__
 
 int
 #ifdef __STDC__

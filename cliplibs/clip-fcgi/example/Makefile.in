@@ -1,15 +1,18 @@
 #
 #                                            clip-fcgi/example/Makefile.in
 #
-Depend_on 			= 				$(Clip_L_Dir)/libclip-fcgi.so
-PRG 					= 				clip_echo.fcgi
-LIBS 					= 				-lfcgi
+Depend_on 			= 			$(Clip_L_Dir)/libclip-fcgi.so
+prg_files 			= 			clip_echo.fcgi.prg
+LIBS 					= 			-lfcgi
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 export
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)$(EXESUFF)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
+clip_echo.fcgi$(EXESUFF): clip_echo.fcgi.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_rm)$(Trace_clip)
-	$(CLIP) -o$@ -ewsl -M $(PRG).prg -lclip-fcgi $(LIBS)
+	$(CLIP) -o$@ -ewsl -M $< -lclip-fcgi $(LIBS)
 
 include $(Makefile_o_in)
 

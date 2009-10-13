@@ -17,23 +17,28 @@ LIBS 					= 			-lexpat
 CLIPFLAGS 			+= 		-n
 PROG 					= 			clip-xml
 SRC 					= 			expat.c
-OBJS    				= 			$(sort 					\
-												expat.o 		\
-												xmltag.o 	\
-												xmltree.o 	\
-												xpath.o 		\
+c_files 				= 			$(sort 					\
+												expat.c 		\
 									)
+prg_files 			= 			$(sort 					\
+											xmltag.prg 		\
+											xmltree.prg 	\
+											xpath.prg 		\
+									)
+o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 
 HDRS					= 			include/ci_clip-expat.ch
 HASHSRCS 			= 			$(SRC) $(HDRS)
 ADDLIBS 				= 			-lexpat
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile lib $(OBJS) $(STARGET)
+all : Makefile lib $(o_files) $(STARGET)
 
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-expat.ch $(Clip_I_Dir)/

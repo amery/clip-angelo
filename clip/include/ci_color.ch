@@ -1,5 +1,5 @@
 
-#ifndef _COLOR_DEFINED
+#ifndef CI_COLOR_DEFINED
 
 #define COLOR_STANDARD    0
 #define COLOR_ENHANCED    1
@@ -13,6 +13,6 @@
 #define CLR_UNSELECTED  COLOR_UNSELECTED
 
 
-#define _COLOR_DEFINED
+#define CI_COLOR_DEFINED
 #endif
 

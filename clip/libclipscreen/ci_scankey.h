@@ -31,8 +31,8 @@
 
 */
 
-#ifndef SCANKEY_H
-#define SCANKEY_H
+#ifndef CI_SCANKEY_H
+#define CI_SCANKEY_H
 #include <stdio.h>
 
 long scan_key(unsigned char scancode);

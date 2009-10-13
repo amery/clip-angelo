@@ -1,5 +1,5 @@
-#ifndef _COMMON_DEFINED
-#define _COMMON_DEFINED
+#ifndef CI_COMMON_DEFINED
+#define CI_COMMON_DEFINED
 
 #ifdef __CLIP__
 	#define MAX_STR 0xFFEF

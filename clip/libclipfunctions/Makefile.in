@@ -5,80 +5,83 @@ Local_Depend 		= 		../include/*.ch 		\
 								../include.h/*.h
 
 CLIPFLAGS 			+= 	-n
-OBJS  				= 		$(sort 							\
-											_prompt.o 			\
-											a2edit.o 			\
-											achoice.o 			\
-											bl_func.o 			\
-											blank.o 				\
-											box.o browse.o 	\
-											db_func.o 			\
-											dbedit.o 			\
-											dbeval.o 			\
-											dtools.o 			\
-											errorsys.o 			\
-											filed.o 				\
-											filedd.o 			\
-											frmback.o 			\
-											frmrun.o 			\
-											ftools.o 			\
-											getcolor.o 			\
-											getsys.o 			\
-											hotkeys.o 			\
-											htools.o 			\
-											imenu.o 				\
-											lblback.o 			\
-											map_func.o 			\
-											memoedit.o 			\
-											menusys.o 			\
-											mset.o 				\
-											nation.o 			\
-											p_func.o 			\
-											p_imode.o 			\
-											p_ourget.o 			\
-											p_secret.o 			\
-											rtcompil.o 			\
-											sets.o 				\
-											str_func.o 			\
-											sys_init.o 			\
-											sys_exit.o 			\
-											timefunc.o 			\
-											var_func.o 			\
-											hbrowse.o 			\
-											ct_shtm.o 			\
-											dbtotal.o 			\
-											browsys.o 			\
-											sqlbrows.o 			\
-											foxsel.o 			\
-											foxsql.o 			\
-											foxscope.o 			\
-											foxdbfunc.o 		\
-											foxkey.o 			\
-											foxsys.o 			\
-											foxwin.o 			\
-											hbrowtbl.o 			\
-											sys_prn.o 			\
-											scr_func.o 			\
-											scr_tools.o 		\
-											pv_fv.o 				\
-											ft_ontick.o 		\
-											mimetype.o 			\
-											print_funcs.o 		\
-											dummy.o 				\
-											fdummy.o 			\
+prg_files  			= 		$(sort 								\
+											_prompt.prg 			\
+											a2edit.prg 				\
+											achoice.prg 			\
+											bl_func.prg 			\
+											blank.prg 				\
+											box.prg 					\
+											browse.prg 				\
+											db_func.prg 			\
+											dbedit.prg 				\
+											dbeval.prg 				\
+											dtools.prg 				\
+											errorsys.prg 			\
+											filed.prg 				\
+											filedd.prg 				\
+											frmback.prg 			\
+											frmrun.prg 				\
+											ftools.prg 				\
+											getcolor.prg 			\
+											getsys.prg 				\
+											hotkeys.prg 			\
+											htools.prg 				\
+											imenu.prg 				\
+											lblback.prg 			\
+											map_func.prg 			\
+											memoedit.prg 			\
+											menusys.prg 			\
+											mset.prg 				\
+											nation.prg 				\
+											p_func.prg 				\
+											p_imode.prg 			\
+											p_ourget.prg 			\
+											p_secret.prg 			\
+											rtcompil.prg 			\
+											sets.prg 				\
+											str_func.prg 			\
+											sys_init.prg 			\
+											sys_exit.prg 			\
+											timefunc.prg 			\
+											var_func.prg 			\
+											hbrowse.prg 			\
+											ct_shtm.prg 			\
+											dbtotal.prg 			\
+											browsys.prg 			\
+											sqlbrows.prg 			\
+											foxsel.prg 				\
+											foxsql.prg 				\
+											foxscope.prg 			\
+											foxdbfunc.prg 			\
+											foxkey.prg 				\
+											foxsys.prg 				\
+											foxwin.prg 				\
+											hbrowtbl.prg 			\
+											sys_prn.prg 			\
+											scr_func.prg 			\
+											scr_tools.prg 			\
+											pv_fv.prg 				\
+											ft_ontick.prg 			\
+											mimetype.prg 			\
+											print_funcs.prg 		\
+											dummy.prg 				\
+											fdummy.prg 				\
 								)
 
-OBJS2 				=  	key_func.o key_func2.o
-OBJS 					+= 	$(OBJS2)
+prg_files2 			=  	key_func.prg key_func2.prg
 PROG 					= 		clipfunctions
 ADDLIBS 				=
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(prg_files2) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(OBJS) $(ATARGET)
+install all : Makefile $(o_files) $(ATARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipfunctions
@@ -87,7 +90,7 @@ cfg :
 
 include $(Makefile_o_in)
 
-cleanc:
+cleanc :
 	$(E_rm)rm -rf$(V) *.c *.b $(ATARGET)
 
 distcleanc :

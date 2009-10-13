@@ -1,15 +1,18 @@
 #
 #                                            clip-com/example/Makefile.in
 #
-Depend_on 		= 			$(Clip_L_Dir)/libclip-com.so
-PRG 				= 			com
-
+Depend_on 			= 			$(Clip_L_Dir)/libclip-com.so
+prg_files 			= 			com.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+LIBS 					+= 		-lclip-com
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)$(EXESUFF)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -18,14 +21,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG) *.bz2
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files) *.bz2
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-$(PRG)$(EXESUFF): $(PRG).prg $(CLIP) $(LIBCLIP) $(Depend_on)
+com$(EXESUFF): com.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ewNsl -M $(PRG).prg -lclip-$(PRG)
+	$(CLIP) -o$@ -ewNsl -M $< $(LIBS)
 
 include $(Makefile_o_in)
 

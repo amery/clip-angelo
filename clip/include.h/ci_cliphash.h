@@ -1,5 +1,5 @@
-#ifndef CLIPHASH_H
-#define CLIPHASH_H
+#ifndef CI_CLIPHASH_H
+#define CI_CLIPHASH_H
 
 #define CLIP_HASH_LONG
 //#define CLIP_HASH_INT

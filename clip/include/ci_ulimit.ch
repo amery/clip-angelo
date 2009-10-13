@@ -2,9 +2,9 @@
 	defined constants for function ulimit()
 */
 
-#ifndef _ULIMIT_DEFINED
+#ifndef CI_ULIMIT_DEFINED
 
-#define _ULIMIT_DEFINED
+#define CI_ULIMIT_DEFINED
 
 
 #define ULIMIT_CPU	"CPU"      /* CPU time in seconds */

@@ -4,19 +4,23 @@
 
 Local_Depend 		= 			libezV24/*.h
 PROG 					= 			clip-com
-OBJS 					= 			com.o
+c_files 				= 			com.c
 C_FLAGS 				+= 		-IlibezV24
 LIBEZ 				= 			libezV24/libezV24-0.a
 ADDLIBS 				= 			libezV24/libezV24-0.a
 #			-L$(PWD)/libezV24 -lezV24-0
 DIRS_TO_SCAN 		= 			libezV24
 
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile have_lib $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+all: Makefile have_lib $(DIRS_TO_SCAN) $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-com
@@ -36,5 +40,4 @@ distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 include $(Makefile_end_in)
-
 

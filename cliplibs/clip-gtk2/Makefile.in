@@ -152,13 +152,15 @@ ifdef GTK_26
 else
 	GTK_26_SRC 		=
 endif
+c_files 				= 			$(sort $(GDK_SRC) $(GTK_SRC) $(GTK_EXTEXT_SRC) $(GTK_24_SRC) $(GTK_26_SRC))
+prg_files 			= 			$(GTK_PRG)
+o_files 				= 			$(sort $(addsuffix .o, $(basename $(prg_files) $(c_files) ) ))
 SRCS 					= 			$(GDK_SRC) $(GTK_SRC) $(GTK_PRG) $(GTK_EXTEXT_SRC) $(GTK_24_SRC) $(GTK_26_SRC)
-GDK_OBJ 				= 			$(addsuffix .o,$(basename $(GDK_SRC) ) )
-GTK_OBJ 				= 			$(addsuffix .o,$(basename $(GTK_SRC) $(GTK_PRG) ) )
-GTK_EXTEXT_OBJ 	= 			$(addsuffix .o,$(basename $(GTK_EXTEXT_SRC) ) )
-GTK_24_OBJ 			= 			$(addsuffix .o,$(basename $(GTK_24_SRC) ) )
-GTK_26_OBJ 			= 			$(addsuffix .o,$(basename $(GTK_26_SRC) ) )
-OBJS 					= 			$(sort $(GDK_OBJ) $(GTK_OBJ) $(GTK_EXTEXT_OBJ) $(GTK_24_OBJ) $(GTK_26_OBJ))
+#GDK_OBJ 				= 			$(addsuffix .o,$(basename $(GDK_SRC) ) )
+#GTK_OBJ 				= 			$(addsuffix .o,$(basename $(GTK_SRC) $(GTK_PRG) ) )
+#GTK_EXTEXT_OBJ 	= 			$(addsuffix .o,$(basename $(GTK_EXTEXT_SRC) ) )
+#GTK_24_OBJ 			= 			$(addsuffix .o,$(basename $(GTK_24_SRC) ) )
+#GTK_26_OBJ 			= 			$(addsuffix .o,$(basename $(GTK_26_SRC) ) )
 OBJDIR 				= .
 EXTOBJS 				=
 
@@ -168,13 +170,15 @@ DEFS 					=
 C_FLAGS  			+= 		$(DEFS) $(MEMDBGFLAGS) $(INCLUDEDIRS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 ADDLIBS 				=
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile include/ci_clip-gtkcfg2.h $(OBJS) $(STARGET)
+all: Makefile include/ci_clip-gtkcfg2.h $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gtk2
@@ -182,11 +186,6 @@ hash1 :
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) clip-gtk2.cliprc $(INSTDIR)/cliprc/
 	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-gtk2.ch include/ci_gtk2-stock.ch include/ci_clip-gtk2.h $(Clip_I_Dir)/
-
-d: set_dbg
-
-set_dbg: CDBGFLAGS=-g
-set_dbg: all
 
 include/ci_clip-gtkcfg2.h :
 	$(E_e)$(Trace)
@@ -210,22 +209,6 @@ distcleanc :
 install:all install-lib install-example
 
 include $(Makefile_o_in)
-
-depend:
-	$(MAKE) hash
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

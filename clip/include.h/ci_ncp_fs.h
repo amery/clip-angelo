@@ -9,8 +9,8 @@
 
 /* NOTE: this is a standalone version of linux/ncp_fs.h */
 
-#ifndef _KERNEL_NCP_FS_H
-#define _KERNEL_NCP_FS_H
+#ifndef CI__KERNEL_NCP_FS_H
+#define CI__KERNEL_NCP_FS_H
 
 #include <sys/types.h>
 #include <sys/socket.h>

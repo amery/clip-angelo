@@ -1,5 +1,5 @@
-#ifndef _DLL_CH
-#define _DLL_CH
+#ifndef CI__DLL_CH
+#define CI__DLL_CH
 
 #define VOID     0
 #define BYTE     1

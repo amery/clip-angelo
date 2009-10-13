@@ -3,13 +3,17 @@
 #
 Depend_on 			= 			$(Clip_L_Dir)/libclip-gtkextra.so 	\
 									$(Clip_L_Dir)/libclip-gtk.so
+prg_files 			= 			sheet.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:Makefile #sheet$(EXESUFF) ## missing functions
+all:Makefile #$(exe_files) ## missing functions
 
 install : all
 
@@ -18,14 +22,14 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b sheet$(EXESUFF)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
 sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
-	$(CLIP) -o$@ -ew -s -l sheet.prg -lclip-gtkextra -lclip-gtk $(LIBS)
+	$(CLIP) -o$@ -ew -s -l $< -lclip-gtkextra -lclip-gtk $(LIBS)
 
 include $(Makefile_o_in)
 

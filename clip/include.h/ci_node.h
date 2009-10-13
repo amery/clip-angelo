@@ -162,8 +162,8 @@
  *
  */
 
-#ifndef NODE_H
-#define NODE_H
+#ifndef CI_NODE_H
+#define CI_NODE_H
 
 #include <stdio.h>
 #include "ci_list.h"

@@ -1,39 +1,42 @@
 #
 #                                            clip/libclipscreen/Makefile.in
 #
-Local_Depend 	= 			../include/*.ch 		\
-								../include.h/*.h
+Local_Depend 		= 			../include/*.ch 		\
+									../include.h/*.h
 
-OBJS 				= 			$(sort 					\
-											tcaps.o 		\
-											termgoto.o 	\
-											screen.o 	\
-											scankey.o 	\
-											keymap.o 	\
-											)
+c_files 				= 			$(sort 					\
+												tcaps.c 		\
+												termgoto.c 	\
+												screen.c 	\
+												scankey.c 	\
+												keymap.c 	\
+									)
 # charset.o
 
-PROG 				= 			clipscreen
-PROGS 			= 			kbd$(EXESUFF) 		\
-								cmap$(EXESUFF)
+PROG 					= 			clipscreen
+PROGS 				= 			kbd$(EXESUFF) 		\
+									cmap$(EXESUFF)
 #testscr
 
-KBDOBJS 			= 			$(sort 	scankey.o 	\
-											keymap.o 	\
-											kbd.o 		\
-								)
+KBDOBJS 				= 			$(sort 	scankey.o 	\
+												keymap.o 	\
+												kbd.o 		\
+									)
 
-CMAPOBJS 		= 			charset.o \
-								cmap.o
+CMAPOBJS 			= 			charset.o \
+									cmap.o
 
-ADDLIBS 			=
+ADDLIBS 				=
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) charset.c kdb.c cmap.c )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-install all: Makefile $(OBJS) $(ATARGET)
+install all: Makefile $(o_files) $(ATARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipscreen
@@ -46,12 +49,12 @@ cfg :
 
 kbd$(EXESUFF): $(KBDOBJS) Makefile
 	$(Trace_cc)
-	$(CC) $(C_FLAGS) -o kbd $(KBDOBJS)
+	$(CC) $(C_FLAGS) -o $@ $(KBDOBJS)
 
 
 cmap$(EXESUFF):	$(CMAPOBJS) Makefile
 	$(Trace_cc)
-	$(CC) $(C_FLAGS) -o cmap$(EXESUFF) $(CMAPOBJS)
+	$(CC) $(C_FLAGS) -o $@ $(CMAPOBJS)
 
 cleanc:
 	$(E_rm)rm -f$(V) *.b $(PROGS) $(ATARGET)
@@ -59,11 +62,8 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-testscr$(EXESUFF): testscr.o  Makefile $(ATARGET) charset.o Makefile
-	$(Trace_cc)
-	$(CC) $(C_FLAGS) -o testscr$(EXESUFF) testscr.o $(ATARGET) charset.o -lgpm
-
 include $(Makefile_o_in)
 
 include $(Makefile_end_in)
 
+tests : cmap$(EXESUFF) kbd$(EXESUFF)

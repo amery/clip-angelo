@@ -47,6 +47,7 @@ export
 all: Makefile links $(DIRS_TO_SCAN) $(LIB) $(SLIB)
 
 hash1 :
+
 cfg :
 	$(E_ln)[ -d compiler ] 							\
 		|| ln -sf$(V) ../compiler ./
@@ -97,10 +98,6 @@ distcleanc: clean
 							clip_cp$(SCRIPTSUFF) license.txt license.h
 	$(E_rm)rm -f$(V) cliproot
 	$(E_rm)rm -rf$(V) *.g
-
-cleantest:
-	$(E_rm)rm -f$(V) test dtest *.pa test.o dtest.o
-	$(E_rm)cd tests && $(MAKE) clean
 
 pot:
 	mkdir -p locale.pot/clip
@@ -225,22 +222,6 @@ inst_xclip:
 
 inst_end:
 	$(E_xx)inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
-
-depend:
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	./_cvs_commit
-
-update:
-	./_cvs_update
-
-ucommit:
-	./_cvs_commit
-	./_cvs_update
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

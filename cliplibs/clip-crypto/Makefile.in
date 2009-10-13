@@ -3,15 +3,18 @@
 #
 PROG 					= 			clip-crypto
 Depend_on 			= 			/usr/lib$(C64)/libcrypto.so
-OBJS 					= 			crypto.o
+c_files 				= 			crypto.c
 ADDLIBS 				= 			-lcrypto
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all:Makefile have_lib $(OBJS) $(STARGET)
+all:Makefile have_lib $(o_files) $(STARGET)
 
 
 hash1 :

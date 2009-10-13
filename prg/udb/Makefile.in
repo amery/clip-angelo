@@ -5,35 +5,41 @@
 Depend_on 		=		$(Clip_L_Dir)/libclip-codb.so
 DIRS_TO_SCAN 	= 		plugins reports
 LIBS 				= 		-lclip-codb
-AB_OBJS  		= 		$(sort 						\
-										ab_obj.o 		\
-										ab_menu.o 		\
-										ab_brow.o 		\
-										ab_init.o 		\
-										ab_funcs.o 		\
-										ab_report.o 	\
+prg_files 		= 		$(sort 							\
+										codb_pack.prg 		\
+										codb_addobj.prg 	\
+										codb_ab.prg 		\
+										codb_make.prg 		\
+										codb_load.prg 		\
+										codb_export.prg 	\
+										codb_reindex.prg 	\
+										codb_arename.prg 	\
+										codb_rcheck.prg 	\
+							)
+#test.prg
+
+exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+
+AB_PRG  			= 		$(sort 							\
+										ab_obj.prg 			\
+										ab_menu.prg 		\
+										ab_brow.prg 		\
+										ab_init.prg 		\
+										ab_funcs.prg 		\
+										ab_report.prg 		\
 							)
 
-PROGS 			= 		$(sort 									\
-										codb_pack$(EXESUFF) 		\
-										codb_addobj$(EXESUFF) 	\
-										codb_ab$(EXESUFF) 		\
-										codb_make$(EXESUFF) 		\
-										codb_load$(EXESUFF) 		\
-										codb_export$(EXESUFF) 	\
-										codb_reindex$(EXESUFF) 	\
-										codb_arename$(EXESUFF) 	\
-										codb_rcheck$(EXESUFF) 	\
-							)
-#test$(EXESUFF)
+o_files 			= 		$(addsuffix .o, $(basename $(AB_PRG) ) )
 
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) $(AB_PRG) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
 
-all : Makefile $(DIRS_TO_SCAN) $(OBJS) $(PROGS)
+all : Makefile $(DIRS_TO_SCAN) $(o_files) $(exe_files)
 
 hash1 :
 
@@ -47,7 +53,7 @@ update:
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.c *.b
-	$(E_rm)rm -rf$(V) *.pro $(PROGS) test$(EXESUFF) test2$(EXESUFF)
+	$(E_rm)rm -rf$(V) *.pro $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
@@ -168,13 +174,13 @@ codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;			\
 	fi
 
-codb_ab$(EXESUFF): codb_ab.prg $(AB_OBJS) $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_ab$(EXESUFF): codb_ab.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(AB_OBJS) $(LIBS) ;	\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(AB_OBJS) $(LIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(o_files) $(LIBS) ;		\
 	fi
 
 include $(Makefile_end_in)

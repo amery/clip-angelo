@@ -4,14 +4,17 @@
 Depend_on 			= 			$(Clip_L_Dir)/libclip-postgres.so
 LIBS 					= 			-L$(PGLIBDIR) -lpq
 ADDLIBS 				=
-PRG 					= 			my_psql$(EXESUFF)
+prg_files 			= 			my_psql.prg
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(c_files)
+SRC_PRG_files 		= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(PRG)
+all: Makefile $(exe_files)
 
 install : all
 
@@ -20,7 +23,7 @@ hash1 :
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) *.c *.b $(PRG)
+	$(E_rm)rm -f$(V) *.c *.b $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

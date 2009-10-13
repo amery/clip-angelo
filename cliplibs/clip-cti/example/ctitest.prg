@@ -1,6 +1,6 @@
-#include "inkey.ch"
+#include "ci_inkey.ch"
 
-#include "cti.ch"
+#include "ci_cti.ch"
 
 static lst, br
 

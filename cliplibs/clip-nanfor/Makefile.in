@@ -3,7 +3,7 @@
 #
 Local_Depend 		= 			include/*.ch
 PROG 					= 			clip-nanfor
-SRCS 					= 			 						\
+prg_files 			= 			$(sort 				\
 									aading.prg 			\
 									aavg.prg 			\
 									acctadj.prg 		\
@@ -11,7 +11,6 @@ SRCS 					= 			 						\
 									acctqtr.prg 		\
 									acctweek.prg 		\
 									acctyear.prg 		\
-									ach2tb.prg 			\
 									adessort.prg 		\
 									aemaxlen.prg 		\
 									aeminlen.prg 		\
@@ -40,10 +39,7 @@ SRCS 					= 			 						\
 									dayofyr.prg 		\
 									daytobow.prg 		\
 									dectobin.prg 		\
-									dfile.prg 			\
-									diskfunc.prg 		\
 									dispmsg.prg 		\
-									dosver.prg 			\
 									e2d.prg 				\
 									easter.prg 			\
 									elapmil.prg 		\
@@ -51,14 +47,12 @@ SRCS 					= 			 						\
 									eltime.prg 			\
 									findith.prg 		\
 									firstday.prg 		\
-									floptst.prg 		\
 									ftext.prg 			\
 									gcd.prg 				\
 									hex2dec.prg 		\
 									invclr.prg 			\
 									isbiton.prg 		\
 									isbit.prg 			\
-									isshare.prg 		\
 									lastday.prg 		\
 									linked.prg 			\
 									madd.prg 			\
@@ -68,14 +62,10 @@ SRCS 					= 			 						\
 									miltime.prg 		\
 									min2dhm.prg 		\
 									month.prg 			\
-									mouse1.prg 			\
 									netpv.prg 			\
 									nooccur.prg 		\
 									ntow.prg 			\
-									nwlstat.prg 		\
 									nwsem.prg 			\
-									nwuid.prg 			\
-									page.prg 			\
 									pchr.prg 			\
 									pegs.prg 			\
 									pending.prg 		\
@@ -89,41 +79,53 @@ SRCS 					= 			 						\
 									round.prg 			\
 									savearr.prg 		\
 									savesets.prg 		\
-									scancode.prg 		\
 									scregion.prg 		\
-									setdate.prg 		\
-									settime.prg 		\
 									sinkey.prg 			\
 									sleep.prg 			\
 									sqzn.prg 			\
-									sysmem.prg 			\
 									tbwhile.prg 		\
-									tempfile.prg 		\
 									vertmenu.prg 		\
-									vidcur.prg 			\
-									vidmode.prg 		\
 									wda.prg 				\
 									week.prg 			\
 									workdays.prg 		\
 									woy.prg 				\
 									xbox.prg 			\
-									year.prg
+									year.prg 			\
+									)
 
 # error missing functions
-# dfile.o dosver.o nwlstat.o nwuid.o diskfunc.o floptst.o isshare.o mouse1.o
-# page.o scancode.o setdate.o settime.o sysmem.o tempfile.o vidcur.o
-#						vidmode.o
-#						ach2tb.o
-OBJS  				= 			$(addsuffix .o,$(basename $(SRCS) ) )
+
+#									dosver.prg 			\
+#									dfile.prg 			\
+#									nwlstat.prg 		\
+#									nwuid.prg 			\
+#									setdate.prg 		\
+#									tempfile.prg 		\
+#									page.prg 			\
+#									isshare.prg 		\
+#									diskfunc.prg 		\
+#									sysmem.prg 			\
+#									vidmode.prg 		\
+#									scancode.prg 		\
+#									floptst.prg 		\
+#									vidcur.prg 			\
+#									settime.prg 		\
+#									mouse1.prg 			\
+#									ach2tb.prg 			\
+# error missing functions
+
 DOC 					= 			doc/*
 ADDLIBS 				=
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all :Makefile $(DIRS_TO_SCAN) $(OBJS) $(STARGET)
+all :Makefile $(DIRS_TO_SCAN) $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-nanfor

@@ -1,23 +1,27 @@
 #
 #                                            prg/cobra_serv/Makefile.in
 #
-Depend_on 			= 			$(Clip_L_Dir)/libclip-codb.so 	\
-									$(Clip_L_Dir)/libclip-r2d2.so
-CLIPFLAGS 			+= 		-n
-LIBS  				= 			-lclip-codb -lclip-r2d2
-MODULES 				= 			$(sort 						\
-												module1.po 		\
-												codbtview.po 	\
-												codbdlist.po	\
-									)
-DIRS_TO_SCAN 		= 			auth mod-ini tcp-wrap
+Depend_on 		= 		$(Clip_L_Dir)/libclip-codb.so 	\
+							$(Clip_L_Dir)/libclip-r2d2.so
+CLIPFLAGS 		+= 	-n
+LIBS  			= 		-lclip-codb -lclip-r2d2
+prg_files 		= 		$(sort 						\
+										module1.prg 	\
+										codbtview.prg 	\
+										codbdlist.prg	\
+							)
+DIRS_TO_SCAN 	= 		auth mod-ini tcp-wrap
+po_files 		= 		$(addsuffix .po, $(basename $(prg_files) ) )
+exe_files 		= 		cobra_serv$(EXESUFF)
+SRC_C_files 	= 		$(sort $(c_files) )
+SRC_PRG_files 	= 		$(sort $(prg_files) cobra_serv.prg )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(DIRS_TO_SCAN) $(OBJS) cobra_serv$(EXESUFF) $(MODULES)
+all : Makefile $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(po_files)
 
 hash1 :
 
@@ -25,18 +29,18 @@ cfg :
 
 cleanc : $(DIRS_TO_SCAN)
 	$(E_rm)rm -f$(V) *.c *.b
-	$(E_rm)rm -f$(V) cobra_serv$(EXESUFF) *.pro
+	$(E_rm)rm -f$(V) $(exe_files) *.pro
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cobra_serv$(EXESUFF) :cobra_serv.prg $(OBJS) $(MODULES) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
-	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 					\
-		$(Trace_clip_d) 	;													\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(OBJS)  $(LIBS) ; 	\
-	else 																			\
-		$(Trace_clip) 	;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(OBJS) $(LIBS) ;		\
+cobra_serv$(EXESUFF) : cobra_serv.prg $(o_files) $(po_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
+		$(Trace_clip_d) 	;														\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files)  $(LIBS) ; 	\
+	else 																				\
+		$(Trace_clip) 	;															\
+		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
 	fi
 
 install: all
@@ -48,7 +52,7 @@ install: all
 	$(E_cp)cp --remove-destination -fpu$(V) ./mod-ini/Makefile ./mod-ini/*.po ./mod-ini/*.prg $(INSTDIR)/cobra/mod-ini
 	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/tcp-wrap
 	$(E_cp)cp --remove-destination -fpu$(V) ./tcp-wrap/Makefile ./tcp-wrap/tcp-* $(INSTDIR)/cobra/tcp-wrap
-	$(E_cp)cp --remove-destination -fpu$(V) $(MODULES) $(INSTDIR)/cobra/
+	$(E_cp)cp --remove-destination -fpu$(V) $(po_files) $(INSTDIR)/cobra/
 	$(E_mkD)mkdir -p$(V) $(INSTDIR)/cobra/files
 	$(E_cp)cp --remove-destination -fpu$(V) ./auth/pam-err-msg $(INSTDIR)/cobra/files
 

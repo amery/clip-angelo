@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_WIDGET_CH__
-#define __CTI_WIDGET_CH__
+#ifndef CI___CTI_WIDGET_CH__
+#define CI___CTI_WIDGET_CH__
 
 #define		CTI_IS_WIDGET(obj)	(cti_check_cast(obj,"CTI_WIDGET"))
 

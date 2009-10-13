@@ -1,11 +1,11 @@
 // Comm support has been developed by FiveWin users:
 //   Pepe Valerdi Tormo.
-//   Javier GarcÂa P÷rez.
+//   Javier Garcï¿½a Pï¿½rez.
 //
 // Thanks very much
 
-#ifndef _COMM_CH
-#define _COMM_CH
+#ifndef CI__COMM_CH
+#define CI__COMM_CH
 
 #xcommand DEFINE COMM <oComm> ;
 			 [ STOP <nStop> ] ;
@@ -30,7 +30,7 @@
        => ;
 	  [ <oComm> := ] TComm():New( <nDevice>, <nInQueue>, <nOutQueue>, "LPT", <nBaud>, ;
 							<cParity>, <nStop>, <nData> )
-     
+
 #xcommand WRITE COMM <oComm> STRING <cString> => ;
 		<oComm>:Write( <cString> )
 

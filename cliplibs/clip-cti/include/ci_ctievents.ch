@@ -5,8 +5,8 @@
 	License	: (GPL) http://www.itk.ru/clipper/license.html
 */
 
-#ifndef __CTI_EVENTS_CH__
-#define __CTI_EVENTS_CH__
+#ifndef CI___CTI_EVENTS_CH__
+#define CI___CTI_EVENTS_CH__
 
 #define		CTI_NOTHING_EVENT		0
 //#define		CTI_KEYBOARD_EVENT		1

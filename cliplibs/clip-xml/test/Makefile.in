@@ -1,0 +1,42 @@
+#
+#                                            clip-xml/test/Makefile.in
+
+LIBS 					+=
+# 		-lexpat -L $(Clip_L_Dir) -lclip-xml
+
+c_files 				= 		$(sort 						\
+											test_expat.c 	\
+								)
+
+exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) $(c_files) ) )
+
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all : Makefile $(exe_files)
+
+cfg :
+
+hash1 :
+
+install : all
+
+test_expat$(EXESUFF): test_expat.c $(CLIP) $(LIBCLIP) $(Depend_on)
+	$(E_e)$(Trace_clip)
+	$(CC) $(C_FLAGS) -o$@ $< $(LIBS)
+
+cleanc:
+	$(E_rm)rm -rf$(V) *.b $(exe_files)
+
+distcleanc :
+	$(E_rm)rm -rf$(V) *.g
+
+include $(Makefile_o_in)
+
+include $(Makefile_end_in)
+

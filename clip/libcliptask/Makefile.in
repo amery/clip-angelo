@@ -1,27 +1,30 @@
 #
 #                                            clip/libcliptask/Makefile.in
 #
-Local_Depend 	= 		../include/*.ch 		\
-							../include.h/*.h
+Local_Depend 		= 		../include/*.ch 		\
+								../include.h/*.h
 
-TEST_ADDOBJS 	= 										\
-							../compiler/coll.o 		\
-							../compiler/list.o 		\
-							../libclipmain/hash.o
+TEST_ADDOBJS 		= 										\
+								../compiler/coll.o 		\
+								../compiler/list.o 		\
+								../libclipmain/hash.o
 
-PTH_LIBS 		= 		-lpth
-PTH_TEST 		= 		pth_tst$(EXESUFF)
-OBJS 				= 		pth_task.o
-PROG 				= 		cliptask
-Depend_on 		= 		/usr/lib$(C64)/libpth.so
+PTH_LIBS 			= 		-lpth
+PTH_TEST 			= 		pth_tst$(EXESUFF)
+c_files 				= 		pth_task.c
+PROG 					= 		cliptask
+Depend_on 			= 		/usr/lib$(C64)/libpth.so
 ADDLIBS =
+o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all install : ci_cl_cfg.h Makefile $(OBJS) $(ATARGET)
+all install : ci_cl_cfg.h Makefile $(o_files) $(ATARGET)
 
 cfg:
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
@@ -59,9 +62,9 @@ pth_task.o: pth_task.c ci_task.h  Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-cl_tst$(EXESUFF): $(OBJS) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
+cl_tst$(EXESUFF): $(o_files) $(ADDOBJS) cl_tst.o $(ATARGET) Makefile
 	$(E_e)$(Trace_cc)
-	$(E_cc)$(CC) $(C_FLAGS) -o $@ cl_tst.o $(OBJS) $(TEST_ADDOBJS) $(ATARGET)
+	$(E_cc)$(CC) $(C_FLAGS) -o $@ cl_tst.o $(o_files) $(TEST_ADDOBJS) $(ATARGET)
 	$(E_xx)$@
 
 task_tst$(EXESUFF) : $(ADDOBJS) task_tst.o $(ATARGET) Makefile

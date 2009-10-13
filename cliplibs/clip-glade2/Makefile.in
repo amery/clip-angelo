@@ -3,18 +3,21 @@
 #
 # Makefile for clip-libglade2
 # Check libglade version.
-LIBGLADE_MIN 			= 			2.4.2
-PROG 						= 			clip-glade2
-C_FLAGS 					+= 		-I../clip-gtk2
-OBJS 						= 			clip_glade.o
-ADDLIBS 					= 			-lglade-2.0
+LIBGLADE_MIN 			= 		2.4.2
+PROG 						= 		clip-glade2
+C_FLAGS 					+= 	-I../clip-gtk2
+c_files 					= 		clip_glade.c
+ADDLIBS 					= 		-lglade-2.0
+o_files 					= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile  have_libglade $(OBJS) $(STARGET)
+all : Makefile  have_libglade $(o_files) $(STARGET)
 
 
 hash1 :

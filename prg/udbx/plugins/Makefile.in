@@ -2,30 +2,33 @@
 #                                            prg/udbx/plugins/Makefile.in
 #
 
-Local_Depend 			=
-Depend_on 				= 				$(Clip_L_Dir)/libclip-gtk.so
+Depend_on 				= 			$(Clip_L_Dir)/libclip-gtk.so
 
-MODULES 					= 				$(sort 					\
-														attr.po 		\
-														class.po 	\
-														counter.po 	\
-														default.po 	\
-														deposit.po 	\
-														group.po 	\
-														index.po 	\
-														plugins.po 	\
-														report.po 	\
-														tcolumn.po 	\
-														tview.po 	\
-														user.po 		\
-											)
+prg_files 				= 			$(sort 						\
+													attr.prg 		\
+													class.prg 		\
+													counter.prg 	\
+													default.prg 	\
+													deposit.prg 	\
+													group.prg 		\
+													index.prg 		\
+													plugins.prg 	\
+													report.prg 		\
+													tcolumn.prg 	\
+													tview.prg 		\
+													user.prg 		\
+										)
+
+po_files 				= 			$(addsuffix .po, $(basename $(prg_files) ) )
+
+SRC_PRG_files 			= 			$(prg_files)
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(MODULES)
+all : Makefile $(po_files)
 
 hash1 :
 
@@ -37,7 +40,7 @@ update:
 	../_cvs update -dP
 
 cleanc : $(DIRS_TO_SCAN)
-	$(E_rm)rm -rf$(V) *.c *.b $(MODULES)
+	$(E_rm)rm -rf$(V) *.c *.b $(po_files)
 	$(E_rm)rm -rf$(V) *.pro test test2
 
 distcleanc :

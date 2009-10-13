@@ -1,7 +1,7 @@
 // Trees for FiveWin !!!  Incredible powerfull !!!
 
-#ifndef _TREE_CH
-#define _TREE_CH
+#ifndef CI__TREE_CH
+#define CI__TREE_CH
 
 #xcommand TREE [<oTree>] ;
              [ BITMAPS <cBmpOpen>, <cBmpClose> ] ;

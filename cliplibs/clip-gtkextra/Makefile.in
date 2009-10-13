@@ -8,7 +8,7 @@
 Local_Depend 		= 			include/*.ch 	\
 									include/*.h
 
-SRCS  				= 			$(sort 						\
+c_files  			= 			$(sort 						\
 												sheet.c 			\
 												fontcombo.c 	\
 												bordercombo.c 	\
@@ -18,14 +18,15 @@ SRCS  				= 			$(sort 						\
 												itementry.c 	\
 									)
 
-OBJS  				= 			$(addsuffix .o, $(basename $(SRCS) ))
 HDRS					= 			include/ci_clip-gtkextra.ch 	\
 									include/ci_clip-gtkextra.h 	\
 									../clip-gtk/include/ci_clip-gtk.ch
 
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+
 OBJDIR				=
 EXTOBJS 				=
-HASHSRCS 			= 			$(sort $(SRCS) $(HDRS) )
+HASHSRCS 			= 			$(sort $(c_files) $(HDRS) )
 PROG 					= 			clip-gtkextra
 SYS 					= 			$(OSNAME)
 SYSTEM_NAME 		= 			$(OSNAME)
@@ -35,13 +36,15 @@ DEFS 					=
 C_FLAGS  			+= 		$(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
 #  $(WARNFLAGS) $(DBGFLAGS) $(OPTFLAGS) -I$(INCLUDE)
 ADDLIBS 				=
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile include/ci_clip-gtkextracfg.h $(OBJS) $(STARGET)
+all: Makefile include/ci_clip-gtkextracfg.h $(o_files) $(STARGET)
 
 hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-gtkextra
@@ -49,25 +52,9 @@ hash1 :
 cfg :
 	$(E_cp)cp --remove-destination -fpu$(V) include/ci_clip-gtkextra.ch $(Clip_I_Dir)/
 
-d: set_dbg
-
-set_dbg: CDBGFLAGS=-g
-set_dbg: all
-
 include/ci_clip-gtkextracfg.h : $(CONFIGURE_SH)
 	$(E_e)$(Trace)
 	$(E_xx)$(CONFIGURE_SH)
-
-#hash: include/ci__hashcode.h
-
-#include/ci__hashcode.h: $(HASHSRCS)
-#	$(E_e)$(Trace)
-#	$(E_if)clip_hashextract$(EXESUFF) $(HASHSRCS) | sort -u > include/ci__hashcode.h
-#	$(E_if)cmp include/ci__hashcode.h include/ci_hashcode.h 2>/dev/null || cp --remove-destination -fpu$(V) include/ci__hashcode.h include/ci_hashcode.h
-#	$(E_cp)cp -fp$(V)  include/ci_hashcode.h include/ci__hashcode.h
-
-test: install
-	$(E_cd)cd example && $(MAKE)
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.b $(TARGET).* include/ci_clip-gtkextracfg.h
@@ -79,22 +66,6 @@ distcleanc :
 install: all install-lib install-example
 
 include $(Makefile_o_in)
-
-depend:
-	$(MAKE) hash
-	makedepend -Y  -- $(C_FLAGS) -- $(SRCS) 2>/dev/null
-
-commit:
-	_cvs commit
-
-update:
-	_cvs update -dP
-
-ucommit:
-	_cvs update -dP && _cvs commit
-
-shell:
-	sh
 
 include $(Makefile_end_in)
 

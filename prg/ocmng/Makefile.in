@@ -1,34 +1,37 @@
 #
 #                                            prg/ocmng/Makefile.in
 #
-Depend_on 		= 			$(Clip_L_Dir)/libclip-codb.so
-LIBS  			= 			-lclip-codb
-OBJS 				= 			$(sort 					\
-											funcs_a.o 	\
-											funcs_c.o 	\
-											funcs_d.o 	\
-											funcs_i.o 	\
-											funcs_w.o 	\
-											funcs_x.o 	\
-											funcs_r.o 	\
-											funcs_s.o 	\
+Depend_on 			= 		$(Clip_L_Dir)/libclip-codb.so
+LIBS  				= 		-lclip-codb
+O_PRG 				= 		$(sort 						\
+											funcs_a.prg 	\
+											funcs_c.prg 	\
+											funcs_d.prg 	\
+											funcs_i.prg 	\
+											funcs_w.prg 	\
+											funcs_x.prg 	\
+											funcs_r.prg 	\
+											funcs_s.prg 	\
 								)
-INCS 				= 			funcs_s.prg ci_ocmng.ch
-PROGS 			= 			ocmng$(EXESUFF) xml2xmo$(EXESUFF)
-
+INCS 					= 		funcs_s.prg ci_ocmng.ch
+prg_files 			= 		ocmng.prg xml2xmo.prg
+exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+o_files 				= 		$(addsuffix .o, $(basename $(O_PRG) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) $(O_PRG) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(OBJS) $(PROGS)
+all: Makefile $(o_files) $(exe_files)
 
 hash1 :
 
 cfg :
 
 cleanc:
-	$(E_rm)rm -f$(V) $(PROGS) *.c *.pro *.b
+	$(E_rm)rm -f$(V) $(exe_files) *.c *.pro *.b
 	$(E_rm)./cleanxmo.sh
 
 distcleanc :
@@ -36,26 +39,26 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-ocmng$(EXESUFF): ocmng.prg  $(OBJS) $(INCS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+ocmng$(EXESUFF): ocmng.prg  $(o_files) $(INCS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(OBJS) $(LIBS) ;	\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(OBJS) $(LIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(o_files) $(LIBS) ;		\
 	fi
 
-xml2xmo$(EXESUFF): xml2xmo.prg  $(OBJS) $(INCS) $(CLIP) $(LIBCLIP) $(Depend_on)
+xml2xmo$(EXESUFF): xml2xmo.prg  $(o_files) $(INCS) $(CLIP) $(LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
-		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(OBJS) $(LIBS) ;	\
+		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\
 	else 																				\
 		$(Trace_clip) 		;														\
-		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(OBJS) $(LIBS) ;		\
+		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(o_files) $(LIBS) ;		\
 	fi
 
 install: all
-	$(E_cp)cp --remove-destination -fpu$(V) $(PROGS) cleanxmo.sh $(INSTDIR)/bin
+	$(E_cp)cp --remove-destination -fpu$(V) $(exe_files) cleanxmo.sh $(INSTDIR)/bin
 
 include $(Makefile_end_in)
 

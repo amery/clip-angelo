@@ -1,22 +1,25 @@
 #
 #                                            prg/doc_utils/Makefile.in
 #
-BINS 				= 		$(sort 								\
-										ftosgml$(EXESUFF) 	\
-										ctosgml$(EXESUFF) 	\
+prg_files 		= 		$(sort 						\
+										ftosgml.prg 	\
+										ctosgml.prg 	\
 							)
+exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all : Makefile $(OBJS) $(BINS)
+all : Makefile $(o_files) $(exe_files)
 
 hash1 :
 
 cfg :
 
-ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+ftosgml$(EXESUFF) :	ftosgml.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
@@ -25,7 +28,7 @@ ftosgml$(EXESUFF) :	ftosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
-ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
+ctosgml$(EXESUFF) :	ctosgml.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
@@ -37,7 +40,7 @@ ctosgml$(EXESUFF) :	ctosgml.prg $(OBJS) Makefile $(CLIP) $(LIBCLIP)
 include $(Makefile_o_in)
 
 cleanc :
-	$(E_rm)rm -rf$(V) *.c *.b $(BINS)
+	$(E_rm)rm -rf$(V) *.c *.b $(exe_files)
 	$(E_rm)rm -rf$(V) sgml/*
 
 distcleanc :

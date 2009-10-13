@@ -1,5 +1,5 @@
-#ifndef _DBMS_CH
-#define _DBMS_CH
+#ifndef CI__DBMS_CH
+#define CI__DBMS_CH
 
 #xtranslate __TYPE__                               => "C"
 #xtranslate __TYPE__ <typ: STRING>                 => "C"
@@ -86,7 +86,7 @@
 #xCommand REDEFINE DBMS <oDbms> FROM FILE <cFile> ;
       => ;
           <oDbms>:= TDbms():Redefine( #<cFile> )
-          
+
 #ifdef _Dbms_
 #undef _Dbms_
 #endif

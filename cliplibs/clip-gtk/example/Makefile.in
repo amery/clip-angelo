@@ -1,31 +1,34 @@
 #
 #                                            clip-gtk/example/Makefile.in
 #
-Depend_on 				= 			$(Clip_L_Dir)/libclip-gtk.so
-DIRS_TO_SCAN 			= 			gdk-pixbuf-demo
-SRC						=			$(sort 									\
-													accel$(EXESUFF) 			\
-													clipgtktest$(EXESUFF) 	\
-													note$(EXESUFF) 			\
-													simple$(EXESUFF) 			\
-													test$(EXESUFF) 			\
-													test_gtk$(EXESUFF) 		\
-													test_image$(EXESUFF) 	\
-													test_list$(EXESUFF) 		\
-													window$(EXESUFF)  		\
-													winpic$(EXESUFF) 			\
-													ifactory$(EXESUFF) 		\
-													clist_test$(EXESUFF) 	\
-													t$(EXESUFF)					\
+Depend_on 			= 			$(Clip_L_Dir)/libclip-gtk.so
+DIRS_TO_SCAN 		= 			gdk-pixbuf-demo
+prg_files			=			$(sort 									\
+												accel.prg 			\
+												clipgtktest.prg 	\
+												note.prg 			\
+												simple.prg 			\
+												test.prg 			\
+												test_gtk.prg 		\
+												test_image.prg 	\
+												test_list.prg 		\
+												window.prg  		\
+												winpic.prg 			\
+												ifactory.prg 		\
+												clist_test.prg 	\
+												t.prg					\
 										)
-#tbrow$(EXESUFF) 		# 		missing functions
-LIBS 						+= 		$(PIXBUFLIBS)
+#tbrow.prg 		# 		missing functions
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+LIBS 					+= 		$(PIXBUFLIBS)
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
 export
 
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile $(SRC)
+all: Makefile $(exe_files)
 
 install : all $(DIRS_TO_SCAN)
 
@@ -35,7 +38,7 @@ cfg :
 
 cleanc:
 	$(E_rm)rm -f$(V) *.c *.b
-	$(E_rm)rm -f$(V) $(SRC)
+	$(E_rm)rm -f$(V) $(exe_files)
 
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g

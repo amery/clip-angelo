@@ -2,8 +2,8 @@
 !short: FiveWin main Header File */
 
 
-#ifndef _FIVEWIN_CH
-#define _FIVEWIN_CH
+#ifndef CI__FIVEWIN_CH
+#define CI__FIVEWIN_CH
 
 #define FWVERSION    "LikelyFiveWin 0.3 - september 2002"
 #define FWCOPYRIGHT  "(C) 2002 ITK"

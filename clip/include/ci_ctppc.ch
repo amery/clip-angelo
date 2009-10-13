@@ -1,4 +1,4 @@
-#ifndef _NTPCC
+#ifndef CI_NTPCC
 
 // Event codes
 #define PPC_RECSUC 		1
@@ -15,7 +15,7 @@
 #define	PPC_NBD			2
 #define	PPC_NBS			18
 
-#define _NTPCC
+#define CI_NTPCC
 
 #endif
 

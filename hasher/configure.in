@@ -2,26 +2,3 @@
 ##
 ##															hasher dir
 ##
-source $Clip_F_F
-Config_Init
-#
-# 		variables re-defined here
-#
-echo "export V=$ClipVerbose" 							>>configure.ini
-echo "export C_FLAGS=\"$C_CLIP_FLAGS\"" 			>>configure.ini
-echo "export CLIP_FLAGS=\"$CLIP_CLIP_FLAGS\"" 	>>configure.ini
-#
-echo "export V = $ClipVerbose" 					>>Makefile.ini
-echo "export C_FLAGS = $C_CLIP_FLAGS" 			>>Makefile.ini
-echo "export CLIP_FLAGS = $CLIP_CLIP_FLAGS" 	>>Makefile.ini
-#
-# 			un-comment next line if re-defined variables
-Config_Init_2
-#
-export ProgName=hasher-dir
-export ADDLIBS=
-cat ./Makefile.ini 	>./Makefile
-cat #!/bin/sh
-
-touch configure.ok
-./Makefile.in 	>>./Makefile
