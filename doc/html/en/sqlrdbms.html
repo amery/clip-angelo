@@ -1,0 +1,2172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>RDBMS specific</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Working with SQL servers"
+HREF="sql.html"><LINK
+REL="PREVIOUS"
+TITLE="SQL API reference"
+HREF="sqlapi.html"><LINK
+REL="NEXT"
+TITLE="Working with sockets"
+HREF="sockets.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="sqlapi.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 13. Working with SQL servers</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="sockets.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SQLRDBMS">13.4. RDBMS specific</H1
+><P
+>Peculiarities of using particular RDBMS with CLIP are described below.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLMYSQL">13.4.1. MySQL</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42676">13.4.1.1. Building an application</H3
+><P
+>To be able to build an application using MySQL data base, appropriate packages
+must be installed. It includes MySQL development files and
+<B
+CLASS="COMMAND"
+>clip-mysql</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with MySQL driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-mysql</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+> command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-mysql</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42685">13.4.1.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the MySQL server use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("MS",[&#60;cHost&#62;],[&#60;cPort&#62;],[&#60;cLogin&#62;],[&#60;cPassword&#62;],[&#60;cDB&#62;],;
+	[&#60;cSocket&#62;],[&#60;cFlags&#62;],[&#60;cCharset&#62;],[&#60;cIsolation&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"MS" - identifier of MySQL driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cHost - a string containing the name of the host MySQL server is running on</P
+></LI
+><LI
+><P
+>cPort - server port number as string</P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cDB - a string containing the name of the database to be used</P
+></LI
+><LI
+><P
+>cSocket - a string containing UNIX socket or pipe name to be used as transport</P
+></LI
+><LI
+><P
+>cFlags - flags to be used with this connection as string; see MySQL manual
+for details</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+><LI
+><P
+>cIsolation - a string containing the name of isolation level to be used
+by default (see MySQL manual for details); if not passed,
+SET("MS_ISOLATION_LEVEL") value is used; possible values:</P
+><P
+></P
+><UL
+><LI
+><P
+>READ UNCOMMITTED</P
+></LI
+><LI
+><P
+>READ COMMITTED</P
+></LI
+><LI
+><P
+>REPEATABLE READ</P
+></LI
+><LI
+><P
+>SERIALIZABLE</P
+></LI
+></UL
+><P
+>the same values are possible for &#60;cIsolation&#62; parameter
+of <A
+HREF="sqlapi.html#SQLSTART"
+>TRowset:Start()</A
+>.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42724">13.4.1.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a field with
+AUTO_INCREMENT clause is used (see description of CREATE TABLE statement
+in the MySQL manual). See also
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42728">13.4.1.4. Implemented data types</H3
+><P
+>The following table shows implemented MySQL data types and their XBase
+equivalents.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN42731"><P
+><B
+>Table 13-1. Implemented MySQL data types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>MySQL data type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLIP data type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DECIMAL     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TINY        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>SHORT       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONG        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DOUBLE      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONGLONG    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INT24       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIMESTAMP   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIME        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {h,m,s}; h,m,s - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATETIME    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>YEAR        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ENUM        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>SET         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TINY_BLOB   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>MEDIUM_BLOB </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONG_BLOB   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BLOB        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VAR_STRING  </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>STRING      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLPOSTGRESQL">13.4.2. PostgreSQL</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42804">13.4.2.1. Building an application</H3
+><P
+>To be able to build an application using PostgreSQL data base,
+appropriate packages must be installed. It includes PostgreSQL
+development files and <B
+CLASS="COMMAND"
+>clip-postgres</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with PostgreSQL driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-postgres</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+>
+command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-postgres</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42813">13.4.2.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the PostgreSQL server use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("PG",[&#60;cHost&#62;],[&#60;cPort&#62;],[&#60;cLogin&#62;],[&#60;cPassword&#62;],[&#60;cDB&#62;],;
+	[&#60;cTTY&#62;],[&#60;cOptions&#62;],[&#60;cCharset&#62;],[&#60;cIsolation&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"PG" - identifier of PostgreSQL driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cHost - a string containing the name of the host PostgreSQL server is running on</P
+></LI
+><LI
+><P
+>cPort - server port number as string</P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cDB - a string containing the name of the database to be used</P
+></LI
+><LI
+><P
+>cTTY - the name of debug tty</P
+></LI
+><LI
+><P
+>cOptions - optional parameters of the connection; see PostgreSQL manual
+for details</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+><LI
+><P
+>cIsolation - a string containing the name of isolation level to be used by default
+(see PostgreSQL manual for details); if not passed, SET("PG_ISOLATION_LEVEL")
+value is used; possible values:</P
+><P
+></P
+><UL
+><LI
+><P
+>READ COMMITTED</P
+></LI
+><LI
+><P
+>SERIALIZABLE</P
+></LI
+></UL
+><P
+>the same values are possible for &#60;cIsolation&#62; parameter
+of <A
+HREF="sqlapi.html#SQLSTART"
+>TRowset:Start()</A
+>.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42848">13.4.2.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a <B
+CLASS="COMMAND"
+>oid</B
+>
+field is used. See
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+and PostgreSQL manual for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42853">13.4.2.4. Implemented data types</H3
+><P
+>The following table shows implemented PostgreSQL data types and their XBase
+equivalents.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN42856"><P
+><B
+>Table 13-2. Implemented PostgreSQL data types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>PostgreSQL data type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLIP data type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DECIMAL   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ABSTIME   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BOOL      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LOGICAL</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BOX       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {{x1,y1},{x2,y2}}; x1,y1,x2,y2 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BPCHAR    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BYTEA     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHAR      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CID       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CIDR      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x1,...}; x1,... - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CIRCLE    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x1,x2,x3}; x1,x2,x3 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FILENAME  </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT4    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT8    </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INET      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x1,x2,x3,x4,x5}; x1,x2,x3,x4,x5 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INT2      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INT28     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x1,x2,...,x8}; x1,x2,...,x8 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INT4      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LSEG      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {{x1,y1},{x2,y2}}; x1,y1,x2,y2 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>MONEY     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NAME      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>OID       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>OID8      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x1,x2,...,x8}; x1,x2,...,x8 - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>PATH      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>POINT     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {x,y}; x,y - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>POLYGON   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {{x1,y1},...{xn,yn}}; x1..xn, y1...yn - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>RELTIME   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TEXT      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIMESTAMP </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARCHAR   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>XID       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLORACLE">13.4.3. Oracle 8i</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42962">13.4.3.1. Building an application</H3
+><P
+>To be able to build an application using Oracle data base, appropriate packages
+must be installed. It includes Oracle development files and
+<B
+CLASS="COMMAND"
+>clip-oracle</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with Oracle driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-oracle</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+> command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-oracle</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN42971">13.4.3.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the Oracle server use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("OR",NIL,NIL,&#60;cLogin&#62;,&#60;cPassword&#62;,[&#60;cDB&#62;],NIL,NIL,[&#60;cCharset&#62;],[&#60;cIsolation&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"OR" - identifier of Oracle driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cDB - a string containing the name of the database to be used (connect string)</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+><LI
+><P
+>cIsolation - a string containing the name of isolation level to be used by default
+(see Oracle manual for details); if not passed, SET("OR_ISOLATION_LEVEL")
+value is used; values containing one or more of the following strings
+divided by ';' are possible:</P
+><P
+></P
+><UL
+><LI
+><P
+>READ COMMITTED</P
+></LI
+><LI
+><P
+>SERIALIZABLE</P
+></LI
+><LI
+><P
+>READ ONLY</P
+></LI
+><LI
+><P
+>READ WRITE</P
+></LI
+></UL
+><P
+>the same values are possible for &#60;cIsolation&#62; parameter
+of <A
+HREF="sqlapi.html#SQLSTART"
+>TRowset:Start()</A
+>.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43002">13.4.3.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a
+<B
+CLASS="COMMAND"
+>rowid</B
+> field is used (see Oracle manual). See also
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43007">13.4.3.4. Other peculiarities</H3
+><P
+>An array with SQL parameters (used in &#60;aParameters&#62; parameter of
+<A
+HREF="sqlapi.html#SQLCOMMAND"
+>TConnect:Command()</A
+> and
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> functions)
+must have third element (SQL data type) in each row with Oracle.
+Data types are defined in <B
+CLASS="COMMAND"
+>oracle.ch</B
+> include file.
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#include "oracle.ch"
+// ...
+conn:Command("INSERT INTO mytable (fname,lname) VALUES (:fname,:lname)",;
+	{{"fname","John",ORT_VARCHAR2},{"lname","Smith",ORT_VARCHAR2}})</PRE
+><P
+>INSERT statement passed in &#60;cInsertSQL&#62; parameter to
+TRowset constructor <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>
+must have <B
+CLASS="COMMAND"
+>RETURNING rowid</B
+> clause. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>INSERT INTO mytable (fname,lname) VALUES (:fname,:lname) RETURNING rowid INTO :rowid</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43018">13.4.3.5. Implemented data types</H3
+><P
+>The following table shows implemented Oracle data types and their XBase
+equivalents.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN43021"><P
+><B
+>Table 13-3. Implemented Oracle data types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Oracle data type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLIP data type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARCHAR2     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHAR         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>RAW          </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMBER       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INTEGER      </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONG         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONG VARCHAR </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONG RAW     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLOB         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BLOB         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FILE         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLINTERBASE">13.4.4. Interbase/Firebird</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43070">13.4.4.1. Building an application</H3
+><P
+>To be able to build an application using Interbase data base,
+appropriate packages must be installed. It includes Interbase development files
+and <B
+CLASS="COMMAND"
+>clip-interbase</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with Interbase driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-interbase</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+>
+command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-interbase</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43079">13.4.4.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the Interbase server use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("IB",NIL,NIL,&#60;cLogin&#62;,&#60;cPassword&#62;,&#60;cDB&#62;,NIL,NIL,[&#60;cCharset&#62;],[&#60;cIsolation&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"IB" - identifier of Interbase driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cDB - a string containing the name of the database to be used (the file name)</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+><LI
+><P
+>cIsolation - a string containing the name of isolation level to be used by default
+(see Interbase manual for details); if not passed, SET("IB_ISOLATION_LEVEL")
+value is used; values containing one or more of the following strings
+divided by ';' are possible:</P
+><P
+></P
+><UL
+><LI
+><P
+>CONCURRENCY</P
+></LI
+><LI
+><P
+>READ COMMITTED or READ_COMMITTED</P
+></LI
+><LI
+><P
+>REC VERSION or REC_VERSION</P
+></LI
+><LI
+><P
+>NO REC VERSION or NO_REC_VERSION</P
+></LI
+><LI
+><P
+>CONSISTENCY</P
+></LI
+><LI
+><P
+>WAIT</P
+></LI
+><LI
+><P
+>NOWAIT</P
+></LI
+><LI
+><P
+>READ</P
+></LI
+><LI
+><P
+>WRITE</P
+></LI
+></UL
+><P
+>the same values are possible for &#60;cIsolation&#62; parameter
+of <A
+HREF="sqlapi.html#SQLSTART"
+>TRowset:Start()</A
+>.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43120">13.4.4.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a field with the name
+passed in &#60;cIdName&#62; parameter to TRowset constructor is used.
+See <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43124">13.4.4.4. Other peculiarities</H3
+><P
+>With Interbase, <A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+>
+may receive the second parameter &#60;cLockTables&#62; describing
+what tables and how they should be locked during transaction.
+The string being contained in &#60;cLockTables&#62; should have
+the following form:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;table_name&#62;=&#60;lock_type&#62;[;&#60;table_name&#62;=&#60;lock_type&#62;,...]</PRE
+><P
+>where &#60;table_name&#62; - the name of the table to be locked;
+&#60;lock_type&#62; - lock type; the following types are possible:</P
+><P
+></P
+><UL
+><LI
+><P
+>SHARED_READ</P
+></LI
+><LI
+><P
+>SHARED_WRITE</P
+></LI
+><LI
+><P
+>PROTECTED_READ</P
+></LI
+><LI
+><P
+>PROTECTED_WRITE</P
+></LI
+></UL
+><P
+>See Interbase manual for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43140">13.4.4.5. Implemented data types</H3
+><P
+>The following table shows implemented Interbase data types and their XBase
+equivalents.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN43143"><P
+><B
+>Table 13-4. Implemented Interbase data types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Interbase data type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLIP data type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BLOB			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHAR			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DECIMAL			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DOUBLE PRECISON </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INTEGER			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>SMALLINT		</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIME			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATETIME</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIMESTAMP		</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATETIME</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARCHAR			</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLODBC">13.4.5. ODBC driver manager</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43192">13.4.5.1. Building an application</H3
+><P
+>To be able to build an application using ODBC manager,
+appropriate packages must be installed. It includes ODBC development files
+(iODBC2 or unixodbc) and <B
+CLASS="COMMAND"
+>clip-odbc</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with ODBC driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-odbc</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+>
+command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-odbc</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43201">13.4.5.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the database server through ODBC manager use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("ODBC",&#60;cDSN&#62;,[&#60;cLogin&#62;],[&#60;cPassword&#62;],NIL,NIL,NIL,NIL,[&#60;cCharset&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"ODBC" - identifier of ODBC driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cDSN - a string containing Data Source Name (see ODBC manual and odbc.ini)</P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43219">13.4.5.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a field with the name
+passed in &#60;cIdName&#62; parameter to TRowset constructor is used.
+See <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43223">13.4.5.4. Other peculiarities</H3
+><P
+>With ODBC you have to set appropriate transactions isolation level manually.
+<A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+> ignores passed parameters.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43227">13.4.5.5. Implemented data types</H3
+><P
+>The following table shows implemented ODBC data types and their XBase
+equivalents.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN43230"><P
+><B
+>Table 13-5. Implemented ODBC data types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>ODBC data type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CLIP data type</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TINYINT         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>SMALLINT        </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INTEGER         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BIGINT          </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DECIMAL         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DOUBLE          </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>FLOAT           </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>REAL            </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHAR            </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARCHAR         </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONGVARCHAR     </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE            </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIME            </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>ARRAY {h,m,s}; h,m,s - NUMERIC</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TIMESTAMP       </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATETIME</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LONGVARBINARY   </TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARARCTER</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLDBTCP">13.4.6. DBTCP proxy server for ODBC connections</H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43288">13.4.6.1. Building an application</H3
+><P
+>To be able to build an application using DBTCP proxy,
+appropriate packages must be installed. It includes DBTCP development files
+and <B
+CLASS="COMMAND"
+>clip-dbtcp</B
+> package. See
+<A
+HREF="installation.html"
+>Installation</A
+> chapter for details.</P
+><P
+>Link your application with DBTCP driver by adding
+<B
+CLASS="COMMAND"
+>-lclip-dbtcp</B
+> to the end of <B
+CLASS="COMMAND"
+>clip</B
+>
+command:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>$clip -e test.prg -lclip-dbtcp</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43297">13.4.6.2. ConnectNew() syntax</H3
+><P
+>To obtain a connect to the database server through DBTCP proxy use
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> with the following syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew("DBTCP",[&#60;cHost&#62;],[&#60;cPort&#62;],[&#60;cLogin&#62;],[&#60;cPassword&#62;],&#60;cDSN&#62;,NIL,NIL,[&#60;cCharset&#62;])</PRE
+><P
+>where</P
+><P
+></P
+><UL
+><LI
+><P
+>"DBTCP" - identifier of DBTCP driver; see also
+<A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></P
+></LI
+><LI
+><P
+>cHost - host name DBTCP server running on</P
+></LI
+><LI
+><P
+>cPort - server port number as string</P
+></LI
+><LI
+><P
+>cLogin - a string containing user login</P
+></LI
+><LI
+><P
+>cPassword - a string containing user's password</P
+></LI
+><LI
+><P
+>cDSN - a string containing Data Source Name</P
+></LI
+><LI
+><P
+>cCharset - charset used by server; if not passed, SET("SQL_CHARSET") is used</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43319">13.4.6.3. Rows binding</H3
+><P
+>To bind rows in the data base and rows in the local set a field with the name
+passed in &#60;cIdName&#62; parameter to TRowset constructor is used.
+See <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> description
+for details.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN43323">13.4.6.4. Other peculiarities</H3
+><P
+>With DBTCP you have to set appropriate transactions isolation level manually.
+<A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+> ignores passed parameters.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="sqlapi.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="sockets.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SQL API reference</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="sql.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Working with sockets</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

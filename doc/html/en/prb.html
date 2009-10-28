@@ -1,0 +1,837 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Possible problems and uncompatibilities</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Examples"
+HREF="compexamples.html"><LINK
+REL="NEXT"
+TITLE="Terminals, keyboard, mouse, localization"
+HREF="dev.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="compexamples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="dev.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="PRB">Chapter 7. Possible problems and uncompatibilities</H1
+><P
+>One of the most important targets of CLIP is Clipper compatibility.
+But when the compatibility gets in contradiction with the functionality,
+the latter is chosen as more important. This is the cause of the part of
+uncompatibilities. Cause of another part of uncompatibilities is
+distinction of the Unix platform (e.g. different file systems
+and terminal capabilities).</P
+><P
+></P
+><UL
+><LI
+><P
+>GCC 3.2.x have bugs, CLIP does not support it.</P
+></LI
+><LI
+><P
+>As a rule, in Unix user should press <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ESC</I
+></SPAN
+> key twice.
+CLIP makes possible to avoid that inconvenience by emulating second
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ESC</I
+></SPAN
+> in some interval of keyboard quietness.
+The length of that interval is controlled by
+<B
+CLASS="COMMAND"
+>SET(_SET_ESC_DELAY,&#60;nMilliseconds&#62;)</B
+>.
+See also about <A
+HREF="devkeyboard.html"
+>SCANMODE</A
+>.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>SETBLINK()</B
+> function does not work with CLIP under Unix
+(it always returns .T.). When you use <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BLINK</I
+></SPAN
+>
+attribute ('*' in clipper color definition) some terminals display
+blinking text others highlight background. Linux console in VGA text mode
+blinks, in FB mode highlights background. If you are using text mode console
+you can use SVGATextMode program to switch VGA adapter in BG-HI mode
+(look at option "16color" in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>/etc/TextConfig</I
+></SPAN
+>).
+If you are using other terminal you have to find a way how to switch them
+into proper mode.</P
+><P
+>Because it cannot be controlled from server side maybe you will find
+interesting this function:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>blinkattr( [lEnable] ) -&#62; lPrevState</PRE
+><P
+>which allow to block sending <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BLINK</I
+></SPAN
+> attribute
+from a CLIP application to the terminal. So if you won't be able to
+set terminal in BG-HI mode you can disable using
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BLINK</I
+></SPAN
+> attribute (<B
+CLASS="COMMAND"
+>blinkattr(.f.)</B
+>)
+and the text won't blink (but their background won't be highlighted too).
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Thanks for the info to Przemyslaw Czerpak.</I
+></SPAN
+></P
+></LI
+><LI
+><P
+>Some RDD functions (e.g. <B
+CLASS="COMMAND"
+>DBSKIP()</B
+>) don't generate
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>EG_NOTABLE</I
+></SPAN
+> error when there are no work areas
+in use with Clipper 5.01. But with Clipper 5.3 (and Clipper 5.2)
+error is generated. In such case CLIP works like Clipper 5.3.</P
+></LI
+><LI
+><P
+>It is impossible to open a table in <B
+CLASS="COMMAND"
+>EXCLUSIVE READONLY</B
+>
+mode with CLIP under Unix. In such case table is opened in
+<B
+CLASS="COMMAND"
+>SHARED READONLY</B
+> mode. The cause is the difference
+between DOS's and Unix file locking mechanism.</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>AS</I
+></SPAN
+> and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>REF</I
+></SPAN
+> are reserved keywords
+in CLIP. See description of the <B
+CLASS="COMMAND"
+>-q</B
+> switch in the
+<A
+HREF="compoptions.html"
+>compiler options</A
+> section.</P
+></LI
+><LI
+><P
+>In Clipper, <B
+CLASS="COMMAND"
+>CHR(&#60;nConst&#62;)</B
+> is constant (translated
+at compile time). In CLIP <B
+CLASS="COMMAND"
+>CHR()</B
+> is as usual function
+as others, it is always evaluated at run time.</P
+></LI
+><LI
+><P
+>CLIP can work in two modes: <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>fullscreen</I
+></SPAN
+> and
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>stream</I
+></SPAN
+>. Just started, a CLIP application is working
+in the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>stream</I
+></SPAN
+> mode, i.e. all application's output is
+placed in the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>stdout</I
+></SPAN
+> stream. An application
+works in this mode until any full screen operation (e.g. displaying a window,
+displaying data at a specified screen row and column or polling keyboard)
+is performed (this mode is useful for <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CGI</I
+></SPAN
+> applications,
+for example). When any full screen operation is performed, application
+initializes terminal, switches to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>fullscreen</I
+></SPAN
+>
+mode and stops output to the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>stdout</I
+></SPAN
+> stream.</P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/tip.gif"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Follow these two simple rules:</P
+><P
+></P
+><UL
+><LI
+><P
+>full screen application should start with <B
+CLASS="COMMAND"
+>CLEAR SCREEN</B
+>
+command.</P
+></LI
+><LI
+><P
+>stream application (<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CGI</I
+></SPAN
+>) should redefine the standard
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>error block</I
+></SPAN
+> (by <B
+CLASS="COMMAND"
+>ERRORBLOCK()</B
+>
+function) to avoid turning into <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>fullscreen</I
+></SPAN
+> mode
+(standard <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>error block</I
+></SPAN
+> performs full screen operations).
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>errorblock({|err| myerr(err)})
+function myerr(err)
+	outerr("Error:",err) // outerr() outputs to the stderr
+	exit
+return</PRE
+></LI
+></UL
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>In the Unix file system, file mask <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>*.*</I
+></SPAN
+> means all files
+with a dot ('.') in their names. Use the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE_MASK</I
+></SPAN
+>
+macro instead of '<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>*.*</I
+></SPAN
+>'. <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>FILE_MASK</I
+></SPAN
+>
+is platform dependent constant ('<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>*</I
+></SPAN
+>' in Unix,
+'<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>*.*</I
+></SPAN
+>' in Windows).</P
+></LI
+><LI
+><P
+>Do not use the keywords (<B
+CLASS="COMMAND"
+>FIELD</B
+>, <B
+CLASS="COMMAND"
+>WHILE</B
+>,
+<B
+CLASS="COMMAND"
+>FOR</B
+>, <B
+CLASS="COMMAND"
+>CASE</B
+>, <B
+CLASS="COMMAND"
+>END</B
+>, etc)
+as the names of variables.</P
+></LI
+><LI
+><P
+>In some circumstances, the <B
+CLASS="COMMAND"
+>IF(,,)</B
+> function is discerned
+as <B
+CLASS="COMMAND"
+>IF ... ELSE ... ENDIF</B
+> statement. In such cases
+compiler generates a warning.</P
+></LI
+><LI
+><P
+>With Clipper, the <B
+CLASS="COMMAND"
+>TYPE()</B
+> function invokes some functions
+(e.g. <B
+CLASS="COMMAND"
+>SUBSTR()</B
+>) and does not invoke anothers
+(e.g. <B
+CLASS="COMMAND"
+>ALERT()</B
+>). CLIP does not invoke any function
+and returns '<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>UI</I
+></SPAN
+>' for expressions containing any
+function calls.</P
+></LI
+><LI
+><P
+>Clipper have an odd feature:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>if NIL==0   // generates run-time error
+if (NIL==0) // OK</PRE
+><P
+>This <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>feature</I
+></SPAN
+> is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>not supported</I
+></SPAN
+>
+by CLIP (both examples are OK).</P
+></LI
+><LI
+><P
+>Unix file system does differentiate the case of letters in the file names
+(<B
+CLASS="COMMAND"
+>USE table.dbf</B
+> and <B
+CLASS="COMMAND"
+>USE TABLE.DBF</B
+>
+are not equivalent commands). To help porting DOS-applications to Unix
+<B
+CLASS="COMMAND"
+>SET TRANSLATE PATH ON</B
+> command is intended.
+When <B
+CLASS="COMMAND"
+>ON</B
+> all file (and directory) names are translated
+to the lower case. In this case the full path to the file and the file itself
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>must</I
+></SPAN
+> be in the lower case on the disk.
+When <B
+CLASS="COMMAND"
+>OFF</B
+> the translation is not performed. In this case
+names of the files on the disk must correspond to the names they are
+addressed by.</P
+><P
+>Disk names (C:, D:, etc) can be assigned to the directories in the following
+manner:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>SET("C:","/home/rust/diskC")
+SET("D:","/home/rust/diskD")</PRE
+><P
+>By default, disk C: is assigned to the root directory (/).</P
+></LI
+><LI
+><P
+>The <B
+CLASS="COMMAND"
+>INDEXEXT()</B
+> function returns the index's suffix
+in the lower case.</P
+></LI
+><LI
+><P
+>Displaying of double pseudographic symbols is not possible on some types of
+terminals. It is possible by using <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>termcap</I
+></SPAN
+> instead
+of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>terminfo</I
+></SPAN
+> (export TERMCAP=/etc/termcap and
+look at <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>g1</I
+></SPAN
+> entry for single graphic chars and
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>g2</I
+></SPAN
+> entry for double graphic chars in
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>/etc/termcap</I
+></SPAN
+>).</P
+></LI
+><LI
+><P
+>Displaying of the chars with codes less than 32 is impossible on Unix
+terminals. These chars are displayed as highlighted char with the code
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;nSymbol&#62; + 32</I
+></SPAN
+>.</P
+></LI
+><LI
+><P
+>You should recollect <B
+CLASS="COMMAND"
+>DISPBEGIN()</B
+>,
+<B
+CLASS="COMMAND"
+>DISPEND()</B
+> functions. Those who have
+long been working with terminals must understand well why it is
+necessary. As for novices, they should read attentively the description
+of these functions and imagine how information runs via narrow
+commiunication channels from the server to terminals and how the
+processor is loaded, while outputting information. To use them is not
+necessary, but it's desirable, particularly in those places where you
+display and process the input from the keyboard themselves. In those
+functions and commands (<B
+CLASS="COMMAND"
+>PROMPT/MENU</B
+>,
+<B
+CLASS="COMMAND"
+>GET/READ</B
+>, etc) where the processing
+of the display and keyboard is executed independently, an optimal output
+mode has been already used, and so enclosing them by
+<B
+CLASS="COMMAND"
+>DISPBEGIN()</B
+> and <B
+CLASS="COMMAND"
+>DISPEND()</B
+>
+is unnecessary.</P
+></LI
+><LI
+><P
+>The restriction of the function/procedure name size of 10 chars has
+been removed. It applies equally to variable names. To simplify the
+transition to a length of more than 10 symbols, you can use
+<B
+CLASS="COMMAND"
+>#xdefine</B
+> directive (case-insensitive
+<B
+CLASS="COMMAND"
+>#define</B
+>).</P
+></LI
+><LI
+><P
+>The restriction of the string size of 64k has been removed.</P
+></LI
+><LI
+><P
+>The restriction of the array size of 4096/8192 elements has been removed.</P
+></LI
+><LI
+><P
+>The <B
+CLASS="COMMAND"
+>MEMOEDIT()</B
+> function is based on the
+<B
+CLASS="COMMAND"
+>TEXTEDIT</B
+> class, and there may be some problems with
+user functions for <B
+CLASS="COMMAND"
+>MEMOEDIT()</B
+>.</P
+></LI
+><LI
+><P
+>get:baddate() is a method, not an attribute.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>TBrowse</B
+> object is visualised not quite so as a standard
+one is, which eliminates problems with number of displayed fields and cursor
+positioning, when navigating over the table in user functions.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>RUN</B
+> command output damages current screen contents.
+When outputting to the terminal, this problem cannot be completely solved
+without resorting to tricks, as it turns out that several programs output
+independently to one device, in the same way as if several programs,
+independent of each other, output information to one COM port. We recommend
+to use something like:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>run &#38;command
+wait "Press any key"
+clear screen // or restore screen</PRE
+><P
+>And one more peculiarity of the <B
+CLASS="COMMAND"
+>RUN</B
+> command - in Unux,
+it runs the shell, then shell executes the program. Though
+<B
+CLASS="COMMAND"
+>run cd mydir</B
+> will operate, but after exiting from the shell
+the current directory will remain the same.</P
+></LI
+><LI
+><P
+>In error object, there is some incompatibility.</P
+></LI
+><LI
+><P
+>It is preferable to use <B
+CLASS="COMMAND"
+>inkey(0.1)</B
+> instead of
+<B
+CLASS="COMMAND"
+>inkey()</B
+>, otherwise an application will use too much
+of processor time. In particular, we had to make some changes in DBU
+concerning <B
+CLASS="COMMAND"
+>INKEY()</B
+> and stabilization in
+<B
+CLASS="COMMAND"
+>TBrowse</B
+>; these changes are enclosed by
+<B
+CLASS="COMMAND"
+>#ifdef __CLIP__</B
+>.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>RESTORE FROM</B
+> always operates as with
+<B
+CLASS="COMMAND"
+>ADDITIVE</B
+>.</P
+></LI
+><LI
+><P
+>The <B
+CLASS="COMMAND"
+>SET PROCEDURE</B
+> command is not and probably
+will not be supported. Link the whole program from object files by
+using CLIP or use the new features relating to PO-files;
+read about <A
+HREF="categsystem.html#FUNCTIONLOAD"
+>LOAD()</A
+> function.</P
+></LI
+><LI
+><P
+>The <B
+CLASS="COMMAND"
+>SETCOLOR()</B
+> function have 10 pair colors, new 5 pair
+don`t have any special meaning.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="compexamples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="dev.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Examples</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Terminals, keyboard, mouse, localization</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

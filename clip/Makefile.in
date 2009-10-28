@@ -33,7 +33,6 @@ ALIBS 				= 								\
 
 DIRS_TO_SCAN 		= 									\
 									include 				\
-									include.h 			\
 									tools 				\
 									compiler 			\
 									libclipclasses 	\
@@ -69,11 +68,6 @@ clip.1 : clip.html
 cleanc : $(DIRS_TO_SCAN)
 	$(E_rm)rm -f$(V) *.ex *.nm charsets
 	$(E_rm)rm -Rf$(V) bin
-	$(E_rm)cd include.h 			\
-		&& rm -rf 	*.bak 		\
-						*.log 		\
-						*core 		\
-						core*
 #	$(E_rm)[ ! -f test/Makefile ] 	\
 #		|| (cd test 						\
 #				&& $(MAKE) clean			\
@@ -193,7 +187,7 @@ endif
 inst_locale :
 	$(E_cp)cp --remove-destination -Rfpu$(V) locale.po/* $(INSTDIR)/locale.po
 	$(E_rm)rm -rf$(V) `find $(INSTDIR)/locale.po -type d -name CVS -print`
-	$(E_xx)CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
+	$(E_xx)CLIPROOT=$(INSTDIR) $(Clip_B_Dir)/clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
 
 inst_lib :
 
@@ -212,7 +206,7 @@ inst_doc :
 inst_xclip :
 
 inst_end :
-	$(E_xx)inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
+	$(E_xx)$(Clip_B_Dir)/inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
 
 include $(Makefile_end_in)
 

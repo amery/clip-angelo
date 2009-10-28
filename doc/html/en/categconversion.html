@@ -1,0 +1,1629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CONVERSION</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CGI/FCGI"
+HREF="categcgifcgi.html"><LINK
+REL="NEXT"
+TITLE="DATABASE"
+HREF="categdatabase.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categcgifcgi.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categdatabase.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGCONVERSION">CONVERSION</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN37403"
+></A
+><H2
+>Name</H2
+>CONVERSION&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN37406"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+>BIN2I(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W(&#60;cUnsignedInt&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONDSTRTON"
+>DSTRTON(&#60;sString&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONFSTRTON"
+>FSTRTON(&#60;sString&#62;)</A
+>
+cBitPattern         <A
+HREF="categconversion.html#FUNCTIONFTBYT2BIT"
+>FT_BYT2BIT( &#60;cByte&#62; )</A
+>
+cHexValue           <A
+HREF="categconversion.html#FUNCTIONFTBYT2HEX"
+>FT_BYT2HEX( cByte )</A
+>
+&#60;cNumE&#62;             <A
+HREF="categconversion.html#FUNCTIONFTD2E"
+>FT_D2E( &#60;nDec&#62;, &#60;nPrecision&#62; )</A
+>
+cBinaryNumber       <A
+HREF="categconversion.html#FUNCTIONFTDEC2BIN"
+>FT_DEC2BIN( &#60;nNum&#62; )</A
+>
+&#60;nDec&#62;              <A
+HREF="categconversion.html#FUNCTIONFTE2D"
+>FT_E2D( &#60;cNumE&#62; )</A
+>
+&#60;cPrinterFormat&#62;    <A
+HREF="categconversion.html#FUNCTIONFTESCCODE"
+>FT_ESCCODE( &#60;cASCII&#62; )</A
+>
+nDecNum             <A
+HREF="categconversion.html#FUNCTIONFTHEX2DEC"
+>FT_HEX2DEC( &#60;cHexNum&#62; )</A
+>
+cColor              <A
+HREF="categconversion.html#FUNCTIONFTINVCLR"
+>FT_INVCLR( [ &#60;cDsrdColor&#62; ] )</A
+>
+cWords              <A
+HREF="categconversion.html#FUNCTIONFTNTOW"
+>FT_NTOW( &#60;nNumber&#62; )</A
+>
+cCompressed         <A
+HREF="categconversion.html#FUNCTIONFTSQZN"
+>FT_SQZN( &#60;nValue&#62; [, &#60;nSize&#62; [, &#60;nDecimals&#62; ] ] )</A
+>
+nValue              <A
+HREF="categconversion.html#FUNCTIONFTUNSQZN"
+>FT_UNSQZN( &#60;cCompressed&#62;, &#60;nSize&#62; [, &#60;nDecimals&#62; ] )</A
+>
+xResult             <A
+HREF="categconversion.html#FUNCTIONFTXTOY"
+>FT_XTOY( &#60;xValueToConvert&#62;, &#60;cTypeToConvertTo&#62; ; [, &#60;lWantYesNo&#62; ] )</A
+>
+&#60;sStr&#62;              <A
+HREF="categstring.html#FUNCTIONHASHNAME"
+>HASHNAME(&#60;nHashCode&#62;)</A
+>
+&#60;nHashCode&#62;         <A
+HREF="categstring.html#FUNCTIONHASHSTR"
+>HASHSTR(&#60;sStr&#62;)</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN(&#60;nInteger&#62;)</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN(&#60;nExp&#62;)</A
+>
+&#60;vData&#62;             <A
+HREF="categstring.html#FUNCTIONSTR2VAR"
+>STR2VAR(&#60;sUucodeStr&#62;)</A
+>
+&#60;sUucodeStr&#62;        <A
+HREF="categstring.html#FUNCTIONVAR2STR"
+>VAR2STR(&#60;vData&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN37432"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37435"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYT2BIT"
+></A
+>Function  FT_BYT2BIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYT2BIT( &#60;cByte&#62; ) --&#62; cBitPattern&#13;</PRE
+><P
+> Can be used to show results of bit manipulation, both before and after.
+ Binary representation follows right-to-left convention of bit position
+ numbering, 0 through 7.  Space between high and low nibbles for clarity
+ and easy comparison to hexadecimal notation.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37441"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the byte to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 9-character string, consisting of 1's and 0's, representing bits 0
+ through 7 of parameter byte, with space between bits 3 and 4.  Returns
+ NIL if parameters are faulty.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTBYT2HEX"
+> FT_BYT2HEX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37461"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These three code lines perform a bitwise AND on bytes with values of
+ CHR(20) and CHR(36), and deliver the result as a string in binary (bit)
+ format.
+ 
+ ? FT_BYT2BIT(CHR(20))         // byte1: '0001 0100'
+ ? FT_BYT2BIT(CHR(36))         // byte2: '0010 0100'
+ 
+ ? FT_BYT2BIT(FT_BYTEAND(CHR(20), CHR(36)))
+ // result: '0000 0100'
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37465"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYT2HEX"
+></A
+>Function  FT_BYT2HEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYT2HEX( cByte ) --&#62; cHexValue&#13;</PRE
+><P
+> Can be used to show results of bit manipulation, both before and after.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37471"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the byte to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Three-character string, consisting of two digits of hexadecimal
+ notation and letter 'h' to signify hex.  Returns NIL if parameters are
+ faulty.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTBYT2BIT"
+> FT_BYT2BIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37491"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These three code lines perform a bitwise AND on bytes with values of
+ CHR(20) and CHR(36), and deliver the result as a string in hexadecimal
+ format, using 'h' to signify hexadecimal.
+ 
+ ? FT_BYT2HEX(CHR(20))         // byte1: '14h'
+ ? FT_BYT2HEX(CHR(36))         // byte2: '24h'
+ 
+ ? FT_BYT2HEX(FT_BYTEAND(CHR(20), CHR(36)))
+ // result: '04h'
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37495"
+></A
+><H3
+><A
+NAME="FUNCTIONFTD2E"
+></A
+>Function  FT_D2E() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_D2E( &#60;nDec&#62;, &#60;nPrecision&#62; ) --&#62; &#60;cNumE&#62;&#13;</PRE
+><P
+> Given a decimal number and the desired precision,
+ a string representing the equivalent in scientific
+ notation is returned.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37500"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>         Decimal number to convert
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPrecision&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   Number of decimal places in result.
+ Defaults to 6 decimal places.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cNumE&gt;        A string representing a number in
+ scientific notation</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTE2D"
+> FT_E2D()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37525"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_D2E( 12.345, 2 )
+ --&#62; 1.23E1
+ 
+ ? FT_D2E( -12.345, 3 )
+ --&#62; -1.235E1
+ 
+ ? FT_D2E( 0.00000543, 2 )
+ --&#62; 5.43E-6</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37529"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDEC2BIN"
+></A
+>Function  FT_DEC2BIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DEC2BIN( &#60;nNum&#62; ) --&#62; cBinaryNumber&#13;</PRE
+><P
+> This function can be used in conjunction with any bit-wise
+ operations.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37534"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the numeric expression to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A character string representing &lt;nNum&gt; in binary format.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37549"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOut( FT_DEC2BIN(255) )        // "11111111"
+ QOut( FT_DEC2BIN(2) )          // "00000010"</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37553"
+></A
+><H3
+><A
+NAME="FUNCTIONFTE2D"
+></A
+>Function  FT_E2D() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_E2D( &#60;cNumE&#62; ) --&#62; &#60;nDec&#62;&#13;</PRE
+><P
+> Given a string in the format  x.yEz, the decimal
+ equivalent is returned.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37558"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cNumE&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   Scientific notation string to convert</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nDec&gt;    Decimal number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTD2E"
+> FT_D2E()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37578"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_E2D( "1.23E1" )
+ --&#62; 12.3
+ 
+ ? FT_E2D( "-1.235E1" )
+ --&#62; -12.35
+ 
+ ? ft_d2e( "5.43E-6" )
+ --&#62; 0.0000543</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37582"
+></A
+><H3
+><A
+NAME="FUNCTIONFTESCCODE"
+></A
+>Function  FT_ESCCODE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ESCCODE( &#60;cASCII&#62; ) --&#62; &#60;cPrinterFormat&#62;&#13;</PRE
+><P
+> This function is useful for allowing the user to enter printer
+ control codes in Lotus-style ASCII format, and then having
+ this function convert that code to the format that the printer
+ needs to receive.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37587"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cASCII&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ASCII representation of the printer control
+ codes in Lotus 123 format (e.g. "\027E" for Chr(27)+"E")
+ 
+ "\nnn" will be converted to Chr(nnn)
+ "\\" will be converted to "\"</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The binary version of an ASCII coded printer setup string.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37602"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cSetup = "\015"          // default = Epson compressed print
+ UserInput( @cSetup )     // Let user modify setup code
+ SET DEVICE TO PRINT      // get ready to print
+ ?? FT_ESCCODE( cSetup )  // Output the converted code</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37606"
+></A
+><H3
+><A
+NAME="FUNCTIONFTHEX2DEC"
+></A
+>Function  FT_HEX2DEC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_HEX2DEC( &#60;cHexNum&#62; ) --&#62; nDecNum&#13;</PRE
+><P
+> Converts a hexadecimal number to a BASE 10 decimal number.
+ Useful for using FT_INT86().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37611"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cHexNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string representing a hex number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A decimal number.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37626"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_INT86( HEX2DEC( "21" ), aRegs )
+ 
+ Converts 21h, the Dos Interrupt, to its decimal equivalent,
+ 33, for use by FT_INT86().</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37630"
+></A
+><H3
+><A
+NAME="FUNCTIONFTINVCLR"
+></A
+>Function  FT_INVCLR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_INVCLR( [ &#60;cDsrdColor&#62; ] ) --&#62; cColor&#13;</PRE
+><P
+> This function inverts a passed color (in the Clipper format: ??/??),
+ e.g., "W/N" is converted to "N/W".</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37635"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDsrdColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the color to get the inverse of.  Defaults to
+ current color.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The inverse of the passed color.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37650"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cInverse := FT_INVCLR()            // Get Inverse of Current Color
+ cInvErr  := FT_INVCLR( cErrColor ) // Get Inverse of cErrorColor</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37654"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNTOW"
+></A
+>Function  FT_NTOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NTOW( &#60;nNumber&#62; ) --&#62; cWords&#13;</PRE
+><P
+> Translates numeric input to a text string.</P
+><P
+> 
+ FT_NTOW is intended to be used with integers only.  Since I don't
+ know what your application will be, I can't assume the type of
+ fraction you want returned (ninety nine cents, 99/100, .99, etc).
+ If you want the fraction in words, just pass it as an integer.</P
+><P
+> 
+ Do not pass a negative number!  Handle negative numbers any way
+ you need to in your code.  (ie: CR, DB, Negative, Minus, etc.)</P
+><P
+> 
+ Also, numeric 0 is returned as a null string.  You will need to
+ make a decision how to output it (zero dollars, no dollars, etc).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37662"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  An integer to translate</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A text string representing &lt;nNumber&gt;</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37677"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_NTOW( 999 )		-&#62; Nine Hundred Ninety Nine
+ 
+ ? FT_NTOW( 1000 )		-&#62; One Thousand
+ 
+ ? FT_NTOW( 23 ) + " Dollars and " + FT_NTOW( 99 ) + " Cents"
+ -&#62; Twenty Three Dollars and Ninety Nine Cents
+ 
+ ? FT_NTOW( 23 ) + " Dollars and " + "99/100"
+ -&#62; Twenty Three Dollars and 99/100
+ 
+ x      := -23.99
+ cents  := str( (x - int( x )) * 100, 2, 0 ) + "/100"
+ x      := int( x )
+ string := iif( x &#60; 0, "Credit of ", "Debit of " )
+ ? string + FT_NTOW( abs(x) ) + " Dollars and " + "99/100"
+ --&#62; Credit of Twenty Three Dollars and 99/100</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37681"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSQZN"
+></A
+>Function  FT_SQZN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SQZN( &#60;nValue&#62; [, &#60;nSize&#62; [, &#60;nDecimals&#62; ] ] ) --&#62; cCompressed&#13;</PRE
+><P
+>  The FT_SQZN function allows a numeric value to be compressed when
+ stored in the database.  The compression is 50% the storage space
+ of the original number.  The companion function, FT_UNSQZN returns
+ the original number from the compressed string.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37687"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> cCompressed  - Compressed string, 50% the size of nSize</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTUNSQZN"
+> FT_UNSQZN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37702"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  replace TRANS-&#62;cust_id with FT_SQZN(mcust_id,8),;
+ TRANS-&#62;amount  with FT_SQZN(mamount,12,2)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37706"
+></A
+><H3
+><A
+NAME="FUNCTIONFTUNSQZN"
+></A
+>Function  FT_UNSQZN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_UNSQZN( &#60;cCompressed&#62;, &#60;nSize&#62; [, &#60;nDecimals&#62; ] ) --&#62; nValue&#13;</PRE
+><P
+>  The FT_UNSQZN function returns the numeric value from the compressed
+ string.  The compression is 50% the storage space of the original
+ number.  The original number must have been compressed using the
+ FT_SQZN() function.</P
+><P
+> 
+ This function, along with FT_SQZN() can be used to reduce disk storage
+ requirements for numeric fields in a database file.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37713"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCompressed&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  - Compressed string, obtained from FT_SQZN()
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>        - Size of numeric field
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDecimals&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    - Optional number of decimal places</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nValue       - Uncompressed numeric value</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTSQZN"
+> FT_SQZN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37743"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  mcust_id := FT_UNSQZN(TRANS-&#62;cust_id,8),;
+ mamount  := FT_UNSQZN(TRANS-&#62;amount,12,2)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37747"
+></A
+><H3
+><A
+NAME="FUNCTIONFTXTOY"
+></A
+>Function  FT_XTOY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_XTOY( &#60;xValueToConvert&#62;, &#60;cTypeToConvertTo&#62; ;
+ [, &#60;lWantYesNo&#62; ] ) --&#62; xResult&#13;</PRE
+><P
+> This function converts a value of character, date, numeric, logical,
+ array or code block type to any of the other type.  While it is
+ guaranteed to return a value of the correct type, that value may not
+ be meaningful (i.e., converting from a code block returns an EMPTY()
+ value of the desired type).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37752"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;xValueToConvert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to convert.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTypeToConvertTo&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the type of value to convert to
+ ("C","D","L","N","A" or "B").
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWantYesNo&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical to signal if 'Y' or 'N' is to be returned
+ if Converting a logical, otherwise '.T.' or '.F.' will be returned
+ for logicals.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The original value converted to the new type.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37777"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nNumericValue := FT_XTOY(cInputValue, "N")
+ IF (FT_XTOY(nInputValue, "L"))</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categcgifcgi.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categdatabase.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CGI/FCGI</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DATABASE</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

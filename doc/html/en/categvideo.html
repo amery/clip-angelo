@@ -1,0 +1,1526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>VIDEO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CODEBLOCK"
+HREF="categcodeblock.html"><LINK
+REL="NEXT"
+TITLE="CGI/FCGI"
+HREF="categcgifcgi.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categcodeblock.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categcgifcgi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGVIDEO">VIDEO</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN36939"
+></A
+><H2
+>Name</H2
+>VIDEO&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN36942"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nVMode              <A
+HREF="categvideo.html#FUNCTIONFTGETMODE"
+>FT_GETMODE()</A
+>
+&#60;aCurInfo&#62;          <A
+HREF="categvideo.html#FUNCTIONFTGETVCUR"
+>FT_GETVCUR( [ &#60;nPage&#62; ] )</A
+>
+&#60;nPage&#62;             <A
+HREF="categvideo.html#FUNCTIONFTGETVPG"
+>FT_GETVPG()</A
+>
+&#60;nStackSize&#62;        <A
+HREF="categvideo.html#FUNCTIONFTPOPVID"
+>FT_PopVid()</A
+>
+&#60;nStackSize&#62;        <A
+HREF="categvideo.html#FUNCTIONFTPUSHVID"
+>FT_PushVid()</A
+>
+NIL                 <A
+HREF="categvideo.html#FUNCTIONFTRGNSTACK"
+>FT_RGNSTACK( &#60;cAction&#62;, [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ], [ &#60;nBottom&#62; ], [ &#60;nRight&#62; ] )</A
+>
+NIL                 <A
+HREF="categvideo.html#FUNCTIONFTRSTRGN"
+>FT_RSTRGN( &#60;cScreen&#62;, [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ] )</A
+>
+cScreen             <A
+HREF="categvideo.html#FUNCTIONFTSAVRGN"
+>FT_SAVRGN( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62; )</A
+>
+NIL                 <A
+HREF="categvideo.html#FUNCTIONFTSETMODE"
+>FT_SETMODE( &#60;nMode&#62; )</A
+>
+NIL                 <A
+HREF="categvideo.html#FUNCTIONFTSETVCUR"
+>FT_SETVCUR( [ &#60;nPage&#62; ], [ &#60;nRow&#62; ], [ &#60;nCol&#62; ] )</A
+>
+NIL                 <A
+HREF="categvideo.html#FUNCTIONFTSETVPG"
+>FT_SETVPG( &#60;nPage&#62; )</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN36956"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36959"
+></A
+><H3
+><A
+NAME="FUNCTIONFTGETMODE"
+></A
+>Function  FT_GETMODE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_GETMODE() --&#62; nVMode&#13;</PRE
+><P
+> Use this function to find out what mode your display adapter is in.
+ Uses DOS interrupt 10h to get the mode.  For a table of modes
+ available on various graphics adapters, refer to a book such
+ as Wilton's "Programmer's Guide to PC &amp; PS/2 Video Systems"
+ (Microsoft Press)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36964"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The video mode, as a numeric.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36974"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> function main( cMode )
+ 
+ FT_SETMODE( val( cMode ) )
+ QOut( "Video mode is: " + str( FT_GETMODE() ) )
+ return ( nil )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36978"
+></A
+><H3
+><A
+NAME="FUNCTIONFTGETVCUR"
+></A
+>Function  FT_GETVCUR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_GETVCUR( [ &#60;nPage&#62; ] ) --&#62; &#60;aCurInfo&#62;&#13;</PRE
+><P
+>  FT_GETVCUR() uses FT_INT86() to invoke interrupt 10h, function
+ 3, to return the character cursor location for the specified
+ video page.</P
+><P
+> 
+ The top line and bottom line of cursor are set depending on
+ the current cursor mode, and are only meaningful in alphanumeric
+ video modes.</P
+><P
+> 
+ For more information on graphics programming, cursors, and
+ cursor modes, refer to Richard Wilton's _Programmer's Guide to
+ PC and PS/2 Video Systems_ (Microsoft Press).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36986"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPage&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the video page to get the cursor information for.
+ Defaults to the current page, as returned by FT_GETVPG().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A four-element array (&lt;aCurInfo&gt;), set up as follows:
+ 
+ aCurInfo[1] = Top line of cursor
+ aCurInfo[2] = Bottom line of cursor
+ aCurInfo[3] = Character row
+ aCurInfo[4] = Character column
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37001"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  aCurInfo := getVCur( 1 )    // Get info on cursor pos in page 1
+ QOut("Row: " + str( aCurInfo[3] ) + "  Col: " + str( aCurInfo[4] ) )
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37005"
+></A
+><H3
+><A
+NAME="FUNCTIONFTGETVPG"
+></A
+>Function  FT_GETVPG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_GETVPG() --&#62; &#60;nPage&#62;&#13;</PRE
+><P
+> Get the currently selected video page</P
+><P
+> 
+ For more information on graphics programming and video pages,
+ consult a reference such as _Programmer's Guide to PC and PS/2
+ Video Systems_ (Microsoft Press).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37012"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The video page, as a numeric.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSETVPG"
+> FT_SETVPG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37027"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nPage := FT_GETVPG()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37031"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPOPVID"
+></A
+>Function  FT_POPVID() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PopVid() --&#62; &#60;nStackSize&#62;&#13;</PRE
+><P
+> This is the complementary function to FT_PushVid().  At some time
+ after saving the video states it will probably be necessary to restore
+ them.  This is done by restoring the settings from the last call to
+ FT_PushVid().  The number of items on the internal stack is then
+ reduced by one.  Note that the use of stack logic means that items on
+ the stack are retrieved in Last In First Out order.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37036"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The number of items remaining in the internal stack.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTPUSHVID"
+> FT_PushVid()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37051"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PopVid()          // Restore video states</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37055"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPUSHVID"
+></A
+>Function  FT_PUSHVID() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PushVid() --&#62; &#60;nStackSize&#62;&#13;</PRE
+><P
+> Menus, picklists, browses, and other video-intensive items often
+ require you to save certain video states -- screen image, cursor
+ position, and so forth.  Constantly saving and restoring these items
+ can get very tedious.  This function attempts to alleviate this
+ problem.  When called, it saves the cursor position, color setting,
+ screen image, cursor style, blink setting, scoreboard setting, snow
+ setting, and maximum row and column to a series of static arrays.  All
+ that is needed to restore the saved settings is a call to FT_PopVid().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37060"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The current size of the internal stack (i.e. the number of times
+ FT_PushVid() has been called).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTPOPVID"
+> FT_PopVid()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37075"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PushVid()          // Save the current video states</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37079"
+></A
+><H3
+><A
+NAME="FUNCTIONFTRGNSTACK"
+></A
+>Function  FT_RGNSTACK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RGNSTACK( &#60;cAction&#62;, [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ], [ &#60;nBottom&#62; ],
+ [ &#60;nRight&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> FT_RGNSTACK() allows multiple screens to be saved and restored from
+ a stack.  The stack is implemented with Clipper static array that is
+ visible only to FT_RGNSTACK().</P
+><P
+> 
+ The purpose of FT_RGNSTACK() is to allow multiple screen regions to be
+ managed without the need to remember the original coordinates or to
+ create variables for each one.</P
+><P
+> 
+ When called with "push", FT_RGNSTACK() places the saved screen area
+ at the end of the static array.  The array size is incremented by one
+ to accommodate the new screen area.</P
+><P
+> 
+ When called with "pop", the function restores the screen image stored
+ in the last element of the array, and the array size is decremented by
+ one.  If "pop all" is specified, all the saved screens are restored
+ until the array is empty.</P
+><P
+> 
+ FT_RGNSTACK() calls FT_SAVRGN() and FT_RSTRGN().  Refer to the
+ documentation for these two functions for more information.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37088"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> determines what action FT_RGNSTACK() will take.  The
+ allowable values for this parameter are "push", "pop", and "pop all".
+ If the function is called with any other string as the first parameter
+ no action is performed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> with a value of "push" will push a saved screen region onto
+ the stack.  A value of "pop" will restore the most recently pushed
+ screen region.  "pop all" tells the function to restore all screen
+ images which are currently on the stack.
+ 
+ The use of &lt;nTop&gt;, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; depends on the</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> parameter.  If &lt;cAction&gt; is "push", the next four parameters
+ define the screen region to save.  If &lt;cAction&gt; is "pop" or "pop all"
+ the following four parameters are ignored.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FT_RGNSTACK() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSAVRGN"
+> FT_SAVRGN()</A
+> <A
+HREF="categvideo.html#FUNCTIONFTRSTRGN"
+> FT_RSTRGN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37119"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example uses FT_RGNSTACK() to save and restore various
+ sections of the screen.
+ 
+ @ 00, 00, 24, 79 BOX "111111111"         // fill the screen with 1's
+ FT_RGNSTACK("push", 10, 05, 15, 15)      // push a region
+ @ 00, 00, 24, 79 BOX "222222222"         // fill the screen with 2's
+ FT_RGNSTACK("push", 10, 20, 15, 30)      // push a region
+ @ 00, 00, 24, 79 BOX "333333333"         // fill the screen with 3's
+ FT_RGNSTACK("push", 10, 35, 15, 45)      // push a region
+ @ 00, 00, 24, 79 BOX "444444444"         // fill the screen with 4's
+ FT_RGNSTACK("push", 10, 50, 15, 60)      // push a region
+ @ 00, 00, 24, 79 BOX "555555555"         // fill the screen with 5's
+ FT_RGNSTACK("push", 10, 65, 15, 75)      // push a region
+ CLEAR
+ FT_RGNSTACK("pop")        // restore the 5's region
+ FT_RGNSTACK("pop")        // restore the 4's region
+ FT_RGNSTACK("pop all")    // restore the 3's, 2's and 1's regions</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37123"
+></A
+><H3
+><A
+NAME="FUNCTIONFTRSTRGN"
+></A
+>Function  FT_RSTRGN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RSTRGN( &#60;cScreen&#62;, [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> FT_RSTRGN() restores a screen region previously saved with
+ FT_SAVRGN().  Calling FT_RSTRGN() with &lt;cScreen&gt; as the only
+ parameter will restore the saved region to its original location.
+ &lt;nTop&gt; and &lt;nLeft&gt; may be used to define a new location for the
+ upper left corner of the saved region.</P
+><P
+> 
+ &lt;nTop&gt; and &lt;nLeft&gt; are dependent upon each other. You may not
+ specify one without the other.</P
+><P
+> 
+ FT_RSTRGN() calls Clipper's RESTSCREEN().  Refer to the Clipper
+ documentation for more information regarding this function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37130"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cScreen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a screen region previously returned from FT_SAVRGN().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nLeft&gt; are optional parameters that define a new location
+ for the upper left corner of the screen area contained in &lt;cScreen&gt;.
+ Allowable values are 0 through 255.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FT_RSTRGN() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSAVRGN"
+> FT_SAVRGN()</A
+> <A
+HREF="categvideo.html#FUNCTIONFTRGNSTACK"
+> FT_RGNSTACK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37156"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example uses FT_RSTRGN() to restore a saved portion
+ of the screen to different locations.
+ 
+ @ 00, 00, 24, 79 BOX "111111111"      // fill the screen with 1's
+ cScreen = FT_SAVRGN(10, 10, 20, 30)   // save a region
+ @ 00, 00, 24, 79 BOX "222222222"      // fill the screen with 2's
+ FT_RSTRGN(cScreen)                    // restore the 1's region
+ @ 00, 00, 24, 79 BOX "222222222"      // fill the screen with 2's
+ FT_RSTRGN(cScreen, 15, 15)            // restore to a different location
+ @ 00, 00, 24, 79 BOX "222222222"      // fill the screen with 2's
+ FT_RSTRGN(cScreen, 20, 60)            // restore to a different location</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37160"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSAVRGN"
+></A
+>Function  FT_SAVRGN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SAVRGN( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62; ) --&#62; cScreen&#13;</PRE
+><P
+> FT_SAVRGN() is similar to Clipper's SAVESCREEN(), but it saves the
+ screen coordinates as well as the display information.  The saved
+ area can be restored by passing the returned string to FT_RSTRGN().</P
+><P
+> 
+ Note that the strings returned from FT_SAVRGN() and Clipper's
+ SAVESCREEN() are not interchangeable.  A screen region saved with
+ with FT_SAVRGN() must be restored using FT_RSTRGN().</P
+><P
+> 
+ FT_SAVRGN() calls Clipper's SAVESCREEN().  Refer to the Clipper
+ documentation for more information regarding this function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37167"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the portion of the
+ screen to save.  Allowable values are 0 through 255.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FT_SAVRGN() returns the saved screen region and its coordinates
+ as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTRSTRGN"
+> FT_RSTRGN()</A
+> <A
+HREF="categvideo.html#FUNCTIONFTRGNSTACK"
+> FT_RGNSTACK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37188"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example uses FT_SAVRGN() and FT_RSTRGN() to save
+ and restore a portion of the screen.
+ 
+ @ 00, 00, 24, 79 BOX "111111111"       // fill the screen with 1's
+ cScreen = FT_SAVRGN(10, 10, 20, 30)    // save a region
+ @ 00, 00, 24, 79 BOX "222222222"       // fill the screen with 2's
+ FT_RSTRGN(cScreen)                     // restore the 1's region</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37192"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETMODE"
+></A
+>Function  FT_SETMODE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETMODE( &#60;nMode&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Use this function to put your display adapter into a video mode.
+ Uses DOS interrupt 10h to set the mode.  For a table of modes
+ available on various graphics adapters, refer to a book such
+ as Wilton's "Programmer's Guide to PC &amp; PS/2 Video Systems"
+ (Microsoft Press)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37197"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is one of the DOS video modes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFTADAPTER"
+> FT_ADAPTER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37217"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FUNCTION Main( cMode )
+ 
+ FT_SETMODE( VAL( cMode ) )
+ QOUT( "Video mode is: " + STR( FT_GETMODE() ) )
+ RETURN ( NIL )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37221"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETVCUR"
+></A
+>Function  FT_SETVCUR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETVCUR( [ &#60;nPage&#62; ], [ &#60;nRow&#62; ], [ &#60;nCol&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> FT_SETVCUR() sets the cursor position on a specific video page.
+ It uses FT_INT86() to invoke interrupt 10h, function 2.</P
+><P
+> 
+ For more information on graphics programming, cursors, and video
+ pages, refer to Richard Wilton's _Programmer's Guide to PC and
+ PS/2 Video Systems_ (Microsoft Press).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37228"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPage&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the video page (defaults to current page, determined
+ by FT_GETVPG()
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the row coordinate (defaults to 0 )
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the column coordinate (defaults to 0 )</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37253"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // Set the position to row 5, column 10 on video page 1:
+ 
+ FT_SETVCUR( 1, 5, 10 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37257"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETVPG"
+></A
+>Function  FT_SETVPG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETVPG( &#60;nPage&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Selects the video page.</P
+><P
+> 
+ For more information on graphics programming and video pages,
+ consult a reference such as "Programmer's Guide to PC and PS/2
+ Video Systems" (Microsoft Press).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37263"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a valid video page.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTGETVPG"
+> FT_GETVPG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37283"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // The following sets the current video page to 1
+ 
+ FT_SETVPG( 1 )</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categcodeblock.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categcgifcgi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CODEBLOCK</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CGI/FCGI</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

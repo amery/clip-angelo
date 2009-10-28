@@ -1,0 +1,5328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FILE/IO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="OBJECT"
+HREF="categobject.html"><LINK
+REL="NEXT"
+TITLE="DOS/BIOS"
+HREF="categdosbios.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categobject.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categdosbios.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGFILEIO">FILE/IO</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN27851"
+></A
+><H2
+>Name</H2
+>FILE/IO&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN27854"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nFiles              <A
+HREF="categdiskutils.html#FUNCTIONADIR"
+>ADIR([&#60;cFilespec&#62;],[&#60;aFilenames&#62;],[&#60;aSizes&#62;],[&#60;aDates&#62;], [&#60;aTimes&#62;],[&#60;aAttributes&#62;])</A
+>
+lRet                <A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+>bZip2Close(&#60;nHandle&#62;)</A
+>
+nHandle             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+>bZip2Open(&#60;filename&#62; [,&#60;mode&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+>bZip2Read(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+>bZip2Write(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+cDirectory          <A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+>CURDIR([&#60;cDrivespec&#62;])</A
+>
+nSuccess            <A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+>DIRCHANGE(&#60;cDir&#62;)</A
+>
+aDirectory          <A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+>DIRECTORY(&#60;cDirSpec&#62;, [&#60;cAttributes&#62;])</A
+>
+nOsCode             <A
+HREF="categsystem.html#FUNCTIONDOSERROR"
+>DOSERROR([&#60;nNewOsCode&#62;])</A
+>
+&#60;sDosFileName&#62;      <A
+HREF="categdiskutils.html#FUNCTIONDOSPATH"
+>DOSPATH(&#60;sUnixFileName&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categfileio.html#FUNCTIONFACCESS"
+>FACCESS(&#60;sFileName&#62;, &#60;sMode&#62;)</A
+>
+lError              <A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+>FCLOSE(&#60;nHandle&#62;)</A
+>
+nHandle             <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE(&#60;cFile&#62;, [&#60;nAttribute&#62;])</A
+>
+nSuccess            <A
+HREF="categfileio.html#FUNCTIONFERASE"
+>FERASE(&#60;cFile&#62;)</A
+>
+nErrorCode          <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+>
+                    <A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+></A
+>
+lExists             <A
+HREF="categfileio.html#FUNCTIONFILE"
+>FILE(&#60;cFilespec&#62;)</A
+>
+                    <A
+HREF="categfileio.html#FUNCTIONFILEATTR"
+></A
+>
+&#60;sFileAttrs&#62;        <A
+HREF="categfileio.html#FUNCTIONFILEATTRS"
+>FILEATTRS(&#60;sFileName&#62;)</A
+>
+&#60;sFileStr&#62;          <A
+HREF="categfileio.html#FUNCTIONFILEGETSTR"
+>FILEGETSTR(&#60;nFileHandle&#62;, &#60;nSize&#62;)</A
+>
+nHandle             <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN(&#60;cFile&#62;, [&#60;nMode&#62;])</A
+>
+nBytes              <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD(&#60;nHandle&#62;, @&#60;cBufferVar&#62;, &#60;nBytes&#62;)</A
+>
+cString             <A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+>FREADSTR(&#60;nHandle&#62;, &#60;nBytes&#62;)</A
+>
+nSuccess            <A
+HREF="categfileio.html#FUNCTIONFRENAME"
+>FRENAME(&#60;cOldFile&#62;, &#60;cNewFile&#62;)</A
+>
+nPosition           <A
+HREF="categfileio.html#FUNCTIONFSEEK"
+>FSEEK(&#60;nHandle&#62;, &#60;nOffset&#62;, [&#60;nOrigin&#62;])</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONFTDFCLOSE"
+>FT_DFCLOSE()</A
+>
+nResult             <A
+HREF="categfileio.html#FUNCTIONFTDFSETUP"
+>FT_DFSETUP( &#60;cInFile&#62;, &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, ; &#60;nStart&#62;, &#60;nCNormal&#62;, &#60;nCHighlight&#62;, &#60;cExitKeys&#62;,   ; &#60;lBrowse&#62;, &#60;nColSkip&#62;, &#60;nRMargin&#62;, &#60;nBuffSize&#62; )</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONFTFAPPEND"
+>FT_FAPPEND( [ &#60; nLines &#62; ] )</A
+>
+lResult             <A
+HREF="categfileio.html#FUNCTIONFTFBOF"
+>FT_FBOF()</A
+>
+lSuccess            <A
+HREF="categfileio.html#FUNCTIONFTFDELETE"
+>FT_FDELETE( [ &#60; nLines &#62; ] )</A
+>
+lResult             <A
+HREF="categfileio.html#FUNCTIONFTFEOF"
+>FT_FEOF()</A
+>
+nErrorNo            <A
+HREF="categfileio.html#FUNCTIONFTFERROR"
+>FT_FERROR()</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONFTFGOBOT"
+>FT_FGOBOT()</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONFTFGOTO"
+>FT_FGOTO( nLine )</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()</A
+>
+lSuccess            <A
+HREF="categfileio.html#FUNCTIONFTFINSERT"
+>FT_FINSERT( [ &#60; nLines &#62; ] )</A
+>
+nLastRecordNum      <A
+HREF="categfileio.html#FUNCTIONFTFLASTRE"
+>FT_FLASTRE()</A
+>
+cLine               <A
+HREF="categfileio.html#FUNCTIONFTFREADLN"
+>FT_FREADLN()</A
+>
+nRecNo              <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+>
+nPreviousArea       <A
+HREF="categfileio.html#FUNCTIONFTFSELECT"
+>FT_FSELECT( [ &#60;nNewArea&#62; ] )</A
+>
+nLinesSkipped       <A
+HREF="categfileio.html#FUNCTIONFTFSKIP"
+>FT_FSKIP( [ &#60;nLines&#62; ] )</A
+>
+nHandle | 0         <A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+>FT_FUSE( [ &#60;cFile&#62; ] [, &#60;nMode&#62; ] )</A
+>
+lSuccess            <A
+HREF="categfileio.html#FUNCTIONFTFWRITELN"
+>FT_FWRITELN( &#60; cData &#62;, [ &#60; lInsert &#62; ] )</A
+>
+nBytesWritten       <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE(&#60;nHandle&#62;, &#60;cBuffer&#62;, [&#60;nBytes&#62;])</A
+>
+lRet                <A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+>gZipClose(&#60;nHandle&#62;)</A
+>
+nHandle             <A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+>gZipOpen(&#60;filename&#62; [,&#60;mode&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+>gZipRead(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+>gZipWrite(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+&#60;sUnixPath&#62;         <A
+HREF="categdiskutils.html#FUNCTIONMAKEPATH"
+>MAKEPATH(&#60;sDosPath&#62;)</A
+>
+cString             <A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+>MEMOREAD(&#60;cFile&#62;)</A
+>
+lSuccess            <A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+>MEMOWRIT(&#60;cFile&#62;, &#60;cString&#62;)</A
+>
+lError              <A
+HREF="categsystem.html#FUNCTIONNETERR"
+>NETERR([&#60;lNewError&#62;])</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONOUTERR"
+>OUTERR(&#60;exp list&#62;)</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONOUTSTD"
+>OUTSTD(&#60;exp list&#62;)</A
+>
+&#60;sPath&#62;             <A
+HREF="categdiskutils.html#FUNCTIONSTARTPATH"
+>STARTPATH()</A
+>
+&#60;nNewSocket&#62;        <A
+HREF="categtcp.html#FUNCTIONTCPACCEPT"
+>TCPACCEPT(&#60;nSock&#62;[, &#60;nTimeout&#62;])</A
+>
+TRUE || FALSE       <A
+HREF="categtcp.html#FUNCTIONTCPCLOSE"
+>TCPCLOSE(&#60;nConnection&#62;)</A
+>
+&#60;nConnection&#62;       <A
+HREF="categtcp.html#FUNCTIONTCPCONNECT"
+>TCPCONNECT(&#60;sHostName&#62;[, &#60;nPort&#62;][, &#60;nTimeout&#62;])</A
+>
+&#60;nErrNo&#62;            <A
+HREF="categtcp.html#FUNCTIONTCPLISTEN"
+>TCPLISTEN(&#60;nPort&#62;[, &#60;nBackLog&#62;])</A
+>
+&#60;nLenBuf&#62;           <A
+HREF="categtcp.html#FUNCTIONTCPREAD"
+>TCPREAD(&#60;nConnection&#62;, @&#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])</A
+>
+&#60;nLenBuf&#62;           <A
+HREF="categtcp.html#FUNCTIONTCPWRITE"
+>TCPWRITE(&#60;nConnection&#62;, &#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN27918"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27921"
+></A
+><H3
+><A
+NAME="FUNCTIONFACCESS"
+></A
+>Function  FACCESS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FACCESS(&#60;sFileName&#62;, &#60;sMode&#62;) 	--&#62; TRUE || FALSE
+ &#13;</PRE
+><P
+>  FACCESS() checks access mode &lt;sMode&gt; for file &lt;sFileName&gt;.</P
+><P
+> 
+ &lt;sMode&gt; is the string in UNIX format "rwx-rwx-rwx" (owner-group-other)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27927"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the file name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, is the access mode.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns TRUE if specified access mode is true for file.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27947"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FACCESS("/usr/home/user1/mbox", "rw--") 	// TRUE
+ FACCESS("/usr/home/user1/mbox", "rw-rw-rw") 	// FALSE
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27951"
+></A
+><H3
+><A
+NAME="FUNCTIONFCLOSE"
+></A
+>Function  FCLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCLOSE(&#60;nHandle&#62;) --&#62; lError&#13;</PRE
+><P
+> FCLOSE() is a low-level file function that closes binary files and
+ forces the associated DOS buffers to be written to disk.  If the
+ operation fails, FCLOSE() returns false (.F.).  FERROR() can then be
+ used to determine the reason for the failure.  For example, attempting
+ to use FCLOSE() with an invalid handle returns false (.F.), and FERROR()
+ returns DOS error 6, invalid handle.  See FERROR() for a complete list
+ of error numbers.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27957"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the file handle obtained previously from FOPEN() or
+ FCREATE().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FCLOSE() returns false (.F.) if an error occurs while writing;
+ otherwise, it returns true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCREATE"
+> FCREATE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27979"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses FCLOSE() to close a newly created binary
+ file and displays an error message if the close fails:
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FCREATE("Testfile", FC_NORMAL)
+ IF !FCLOSE(nHandle)
+ ? "Error closing file, error number: ", FERROR()
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27983"
+></A
+><H3
+><A
+NAME="FUNCTIONFCREATE"
+></A
+>Function  FCREATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCREATE(&#60;cFile&#62;, [&#60;nAttribute&#62;]) --&#62; nHandle&#13;</PRE
+><P
+> FCREATE() is a low-level file function that either creates a new file or
+ opens and truncates an existing file.  If &lt;cFile&gt; does not exist, it is
+ created and opened for writing.  If it does exist and can be opened for
+ writing, it is truncated to zero-length.  If it cannot be opened for
+ writing, FCREATE() returns -1 and FERROR() returns the appropriate error
+ value.</P
+><P
+> 
+ When FCREATE() successfully creates a new file, the file is left open in
+ compatibility sharing mode and read/write access mode.  The file
+ attribute specified by the &lt;nAttribute&gt; argument is applied to the new
+ file when it is closed, allowing writing to a newly created read-only
+ file.  For a list of access modes, see FOPEN().</P
+><P
+> 
+ Since a file handle is required in order to identify an open file to
+ other file functions, always assign the return value from FCREATE() to a
+ variable for later use.</P
+><P
+> 
+ Like other file functions, FCREATE() does not use either the DEFAULT or
+ PATH settings for its operation.  Instead, it writes to the current DOS
+ directory unless a path is explicitly stated.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27992"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the file to create.  If the file already
+ exists, its length is truncated to zero without warning.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nAttribute&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is one of the binary file attributes shown in the table
+ below.  If this argument is omitted, the default value is zero.
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>Binary File Attributes
+------------------------------------------------------------------------
+Value   Fileio.ch      Attribute Description
+------------------------------------------------------------------------
+0       FC_NORMAL      Normal    Create normal read/write file (default)
+1       FC_READONLY    Read-only Create read-only file
+2       FC_HIDDEN      Hidden    Create hidden file
+4       FC_SYSTEM      System    Create system file
+------------------------------------------------------------------------</PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FCREATE() returns the DOS file handle number of the new binary file in
+ the range of zero to 65,535.   If an error occurs, FCREATE() returns
+ -1 and FERROR() is set to indicate an error code.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+> FCLOSE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28020"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates a file called Testfile and opens it for
+ reading and writing:
+ 
+ #include "Fileio.ch"
+ 
+ //
+ IF (nHandle := FCREATE("Testfile", FC_NORMAL)) == -1
+ ? "File cannot be created:", FERROR()
+ BREAK
+ ELSE
+ FWRITE(nHandle, "Hello there")
+ FCLOSE(nHandle)
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28024"
+></A
+><H3
+><A
+NAME="FUNCTIONFERASE"
+></A
+>Function  FERASE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FERASE(&#60;cFile&#62;) --&#62; nSuccess&#13;</PRE
+><P
+> FERASE() is a file function that deletes a specified file from disk.
+ FERASE() is the same as the ERASE command but returns a value and can be
+ specified within an expression.  When FERASE() is called, &lt;cFile&gt; is
+ deleted from disk only if found in the current DOS directory or in the
+ directory explicitly specified as part of the file name.  Like the other
+ file functions and commands, FERASE() does not use either SET DEFAULT or
+ SET PATH to locate &lt;cFile&gt;.</P
+><P
+> 
+ Warning!  Files must be CLOSEd before removing them with FERASE().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28030"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the file to be deleted from disk, including
+ extension, optionally preceded by a drive and/or path specification.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FERASE() returns -1 if the operation fails and zero if it succeeds.  In
+ the case of a failure, FERROR() can be used to determine the nature of
+ the error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONFERROR"
+> FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFRENAME"
+>FRENAME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28051"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example deletes a set of files matching a wildcard
+ pattern:
+ 
+ #include "Directry.ch"
+ AEVAL(DIRECTORY("*.BAK"), { |aFile| ;
+ FERASE(aFile[F_NAME]) })
+ 
+ This example erases a file and displays a message if the
+ operation fails:
+ 
+ IF FERASE("AFile.txt") == -1
+ ? "File erase error:", FERROR()
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28055"
+></A
+><H3
+><A
+NAME="FUNCTIONFERRORSTR"
+></A
+>Function  FERRORSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+></PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28061"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28071"
+></A
+><H3
+><A
+NAME="FUNCTIONFILE"
+></A
+>Function  FILE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FILE(&#60;cFilespec&#62;) --&#62; lExists&#13;</PRE
+><P
+> FILE() is an environment function that determines whether any file
+ matching a file specification pattern is found.  FILE() searches the
+ specified directory if a path is explicitly specified.</P
+><P
+> 
+ If a path is not specified,  FILE() searches the current xClipper
+ default directory and then the xClipper path.  In no case is the DOS
+ path searched.  Note also that FILE() does not recognize hidden or
+ system files in its search.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28077"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFilespec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is in the current xClipper default directory and path.
+ It is a standard file specification that can include the wildcard
+ characters * and ? as well as a drive and path reference.  Explicit
+ references to a file must also include an extension.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FILE() returns true (.T.) if there is a match for any file matching the
+ &lt;cFilespec&gt; pattern; otherwise, it returns false (.F.).</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28092"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example FILE() attempts to find Sales.dbf in other
+ than the current xClipper default:
+ 
+ ? FILE("Sales.dbf")               // Result: .F.
+ ? FILE("\APPS\DBF\Sales.dbf")     // Result: .T.
+ //
+ SET PATH TO \APPS\DBF
+ ? FILE("Sales.dbf")               // Result: .T.
+ //
+ SET PATH TO
+ SET DEFAULT TO \APPS\DBF\
+ ? FILE("Sales.dbf")               // Result: .T.
+ ? FILE("*.dbf")                   // Result: .T.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28096"
+></A
+><H3
+><A
+NAME="FUNCTIONFILEATTR"
+></A
+>Function  FILEATTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+></PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28102"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28112"
+></A
+><H3
+><A
+NAME="FUNCTIONFILEATTRS"
+></A
+>Function  FILEATTRS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FILEATTRS(&#60;sFileName&#62;) 	--&#62; &#60;sFileAttrs&#62;
+ &#13;</PRE
+><P
+>  FILEATTRS() lakes <A
+HREF="categfileio.html#FUNCTIONFILEATTR"
+>FILEATTR()</A
+>, but
+ returns string &lt;sFileAttrs&gt;, what contents file attributes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28118"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the file name.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns string &lt;sFileAttrs&gt;, what contents file attributes.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILEATTR"
+> FILEATTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28138"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  SET("C:", "/usr/home/user1")
+ sUnixFileName := "/usr/home/user1/test.prg"
+ 
+ ? FILEATTR(sUnixFileName) 	// --&#62; 32
+ ? FILEATTRS(sUnixFileName) 	// --&#62; A
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28142"
+></A
+><H3
+><A
+NAME="FUNCTIONFILEGETSTR"
+></A
+>Function  FILEGETSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FILEGETSTR(&#60;nFileHandle&#62;, &#60;nSize&#62;) 	--&#62; &#60;sFileStr&#62;
+ &#13;</PRE
+><P
+>  FILEGETSTR() reads string from opened file. The size result string restrict
+ &lt;CRLF&gt; or &lt;CR&gt;, but no more then &lt;nSize&gt; symbols.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28147"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nFileHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the file handler.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the size string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns string &lt;sFileStr&gt;, what was read from file &lt;nFileHandle&gt;.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFOPEN"
+> FOPEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28172"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nFile := FOPEN("test.txt")
+ do while !feof(nFile)
+ ? FILEGETSTR(nFile, 1024)
+ ?
+ enddo
+ fclose()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28176"
+></A
+><H3
+><A
+NAME="FUNCTIONFOPEN"
+></A
+>Function  FOPEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FOPEN(&#60;cFile&#62;, [&#60;nMode&#62;]) --&#62; nHandle&#13;</PRE
+><P
+> FOPEN() is a low-level file function that opens an existing binary file
+ for reading and writing, depending on the &lt;nMode&gt; argument.  Whenever
+ there is an open error, use FERROR() to return the DOS error number.
+ For example, if the file does not exist, FOPEN() returns -1 and FERROR()
+ returns 2 to indicate that the file was not found.  See FERROR() for a
+ complete list of error numbers.</P
+><P
+> 
+ If the specified file is opened successfully, the value returned is the
+ DOS handle for the file.  This value is similar to an alias in the
+ database system and is required to identify the open file to other file
+ functions.  It is, therefore, important to assign the return value to a
+ variable for later use as in the example below.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28183"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the file to open, including the path if there
+ is one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the requested DOS open mode indicating how the opened
+ file is to be accessed.  The open mode is composed of elements from the
+ two types of modes described in the tables below.  If just the Access
+ Mode is used, the file is opened non-sharable.  The default open mode is
+ zero, which indicates non-sharable and read-only.
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>FOPEN() Access Modes
+------------------------------------------------------------------------
+Mode    Fileio.ch      Operation
+------------------------------------------------------------------------
+0       FO_READ        Open for reading (default)
+1       FO_WRITE       Open for writing
+2       FO_READWRITE   Open for reading or writing
+------------------------------------------------------------------------</PRE
+>
+ 
+ The Sharing Modes determine how other processes may access the file.
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>FOPEN() Sharing Modes
+------------------------------------------------------------------------
+Mode    Fileio.ch      Operation
+------------------------------------------------------------------------
+0       FO_COMPAT      Compatibility mode (default)
+16      FO_EXCLUSIVE   Exclusive use
+32      FO_DENYWRITE   Prevent others from writing
+48      FO_DENYREAD    Prevent others from reading
+64      FO_DENYNONE    Allow others to read or write
+64      FO_SHARED      Same as FO_DENYNONE
+------------------------------------------------------------------------</PRE
+>
+ 
+ The Access Modes in combination (+) with the Sharing modes determine the
+ accessibility of the file in a network environment.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FOPEN() returns the file handle of the opened file in the range of zero
+ to 65,535.  If an error occurs, FOPEN() returns -1.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+> FCLOSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28212"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses FOPEN() to open a file with  sharable
+ read/write status and displays an error message if the open fails:
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FOPEN("Temp.txt", FO_READWRITE + FO_SHARED)
+ IF FERROR() != 0
+ ? "Cannot open file, DOS error ", FERROR()
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28216"
+></A
+><H3
+><A
+NAME="FUNCTIONFREAD"
+></A
+>Function  FREAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FREAD(&#60;nHandle&#62;, @&#60;cBufferVar&#62;, &#60;nBytes&#62;) --&#62; nBytes&#13;</PRE
+><P
+> FREAD() is a low-level file function that reads characters from a binary
+ file into an existing character variable.  It reads from the file
+ starting at the current DOS file pointer position, advancing the file
+ pointer by the number of bytes read.  All characters are read including
+ control, null, and high-order (above CHR(127)) characters.</P
+><P
+> 
+ FREAD() is similar in some respects to both FREADSTR() and FSEEK().
+ FREADSTR() reads a specified number of bytes from a file up to the next
+ null (CHR(0)) character.  FSEEK() moves the file pointer without
+ reading.</P
+><P
+> 
+ If there is an error during the file read, FERROR() returns the DOS
+ error number.  See FERROR() for the list of error numbers.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28224"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the file handle obtained from FOPEN(), FCREATE(), or
+ predefined by DOS.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBufferVar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of an existing and initialized character
+ variable used to store data read from the specified file.  The length of
+ this variable must be greater than or equal to &lt;nBytes&gt;.  &lt;cBufferVar&gt;
+ must be passed by reference and, therefore, must be prefaced by the pass-
+ by-reference operator (@).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBytes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of bytes to read into the buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FREAD() returns the number of bytes successfully read as an integer
+ numeric value.  A return value less than &lt;nBytes&gt; or zero indicates end
+ of file or some other read error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+>FCLOSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28260"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses FREAD() after successfully opening a file to
+ read 128 bytes into a buffer area:
+ 
+ #define F_BLOCK      128
+ //
+ cBuffer := SPACE(F_BLOCK)
+ nHandle := FOPEN("Temp.txt")
+ //
+ IF FERROR() != 0
+ ? "File open error:", FERROR()
+ ELSE
+ IF FREAD(nHandle, @cBuffer, F_BLOCK) &#60;&#62; F_BLOCK
+ ? "Error reading Temp.txt"
+ ENDIF
+ FCLOSE(nHandle)
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28264"
+></A
+><H3
+><A
+NAME="FUNCTIONFREADSTR"
+></A
+>Function  FREADSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FREADSTR(&#60;nHandle&#62;, &#60;nBytes&#62;) --&#62; cString&#13;</PRE
+><P
+> FREADSTR() is a low-level file function that reads characters from an
+ open binary file beginning with the current DOS file pointer position.
+ Characters are read up to &lt;nBytes&gt; or until a null character (CHR(0)) is
+ encountered.  All characters are read including control characters
+ except for CHR(0).  The file pointer is then moved forward &lt;nBytes&gt;.  If
+ &lt;nBytes&gt; is greater than the number of bytes from the pointer position
+ to the end of the file, the file pointer is positioned to the last byte
+ in the file.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28270"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the file handle obtained from FOPEN(), FCREATE(), or
+ predefined by DOS.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBytes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of bytes to read, beginning at the current
+ DOS file pointer position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FREADSTR() returns a character string up to 65,535 (64K) bytes.  A null
+ return value ("") indicates an error or end of file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD()</A
+> <A
+HREF="categfileio.html#FUNCTIONFSEEK"
+>FSEEK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28301"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example displays the ASCII values of the first 16 bytes
+ of a text file:
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FOPEN("New.txt", FC_NORMAL)
+ IF FERROR() != 0
+ ? "File open error:", FERROR()
+ ELSE
+ cString := FREADSTR(nHandle, 16)
+ ? cString
+ FCLOSE(nHandle)
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28305"
+></A
+><H3
+><A
+NAME="FUNCTIONFRENAME"
+></A
+>Function  FRENAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FRENAME(&#60;cOldFile&#62;, &#60;cNewFile&#62;) --&#62; nSuccess&#13;</PRE
+><P
+> FRENAME() is a file function that changes the name of a specified file
+ to a new name and is identical to the RENAME command.</P
+><P
+> 
+ When FRENAME() is called, &lt;cOldFile&gt; is renamed only if it is located in
+ the current DOS directory or in the specified path.  FRENAME() does not
+ use SET DEFAULT or SET PATH to locate &lt;cOldFile&gt;.</P
+><P
+> 
+ If the source directory is different from the target directory, the file
+ moves to the target directory.  In the instance that either &lt;cNewFile&gt;
+ exists or is currently open, FRENAME() fails and returns -1, indicating
+ that it did not perform its designated action.  The nature of the error
+ can be determined with FERROR().</P
+><P
+> 
+ Warning!  Files must be CLOSEd before renaming.  Attempting to
+ rename an open file will produce unpredictable results.  When a database
+ file is renamed, the associated memo (.dbt) file must also be renamed.
+ Failure to do so may compromise the integrity of your databases.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28313"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOldFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the file to be renamed, including the file
+ extension.  A drive letter and/or path name may also be included as part
+ of the file name.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cNewFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new name of the file, including the file
+ extension.  A drive letter and/or path name may also be included as part
+ of the name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FRENAME() returns -1 if the operation fails and zero if it succeeds.  In
+ the case of a failure, FERROR() can be used to determine the nature of
+ the error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFERASE"
+> FERASE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFILE"
+>FILE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28340"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates a file rename:
+ 
+ IF FRENAME("OldFile.txt", "NewFile.txt") == -1
+ ? "File error:", FERROR()
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28344"
+></A
+><H3
+><A
+NAME="FUNCTIONFSEEK"
+></A
+>Function  FSEEK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FSEEK(&#60;nHandle&#62;, &#60;nOffset&#62;, [&#60;nOrigin&#62;]) --&#62; nPosition&#13;</PRE
+><P
+> FSEEK() is a low-level file function that moves the file pointer forward
+ or backward in an open binary file without actually reading the contents
+ of the specified file.  The beginning position and offset are specified
+ as function arguments, and the new file position is returned.
+ Regardless of the function arguments specified, the file pointer cannot
+ be moved beyond the beginning or end of file boundaries.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28350"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the file handle obtained from FOPEN(), FCREATE(), or
+ predefined by DOS.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOffset&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of bytes to move the file pointer from the
+ position defined by &lt;nOrigin&gt;.  It can be a positive or negative number.
+ A positive number moves the pointer forward, and a negative number moves
+ the pointer backward in the file.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrigin&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the starting location of the file pointer before
+ FSEEK() is executed.  The default value is zero, representing the
+ beginning of file.  If &lt;nOrigin&gt; is the end of file, &lt;nOffset&gt; must be
+ zero or negative.
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>Methods of Moving the File Pointer
+------------------------------------------------------------------------
+Origin  Fileio.ch      Description
+------------------------------------------------------------------------
+0       FS_SET         Seek from beginning of file
+1       FS_RELATIVE    Seek from the current pointer position
+2       FS_END         Seek from end of file
+------------------------------------------------------------------------</PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FSEEK() returns the new position of the file pointer relative to the
+ beginning of file (position 0) as an integer numeric value.  This value
+ is without regard to the original position of the file pointer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+> FCLOSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+>FREADSTR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28387"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses FSEEK() to determine the length of a file by
+ seeking from the end of file.  Then, the file pointer is reset to the
+ beginning of file:
+ 
+ #include "Fileio.ch"
+ //
+ // Open the file read-only
+ IF (nHandle := FOPEN("Temp.txt")) &#62;= 0
+ //
+ // Get length of the file
+ nLength := FSEEK(nHandle, 0, FS_END)
+ //
+ // Reset file position to beginning of file
+ FSEEK(nHandle, 0)
+ FCLOSE(nHandle)
+ ELSE
+ ? "File open error:", FERROR()
+ ENDIF
+ 
+ This pseudofunction positions the file pointer at the last
+ byte in a binary file:
+ 
+ #define FileBottom(nHandle);
+ (FSEEK(nHandle, 0, FS_END))
+ 
+ This pseudofunction positions the file pointer at the first
+ byte in a binary file:
+ 
+ #define FileTop(nHandle);
+ (FSEEK(nHandle, 0))
+ 
+ This pseudofunction reports the current position of the file
+ pointer in a specified binary file:
+ 
+ #define FilePos(nHandle);
+ (FSEEK(nHandle, 0, FS_RELATIVE))</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28391"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDFCLOSE"
+></A
+>Function  FT_DFCLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DFCLOSE() --&#62; NIL&#13;</PRE
+><P
+> Closes the file opened by FT_DFSETUP()</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28396"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTDFSETUP"
+> FT_DFSETUP()</A
+> <A
+HREF="categunderconstruction.html#FUNCTIONFTDISPFILE"
+> FT_DISPFILE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28412"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> @ 4,9 TO 11,71
+ 
+ FT_DFSETUP("test.txt", 5, 10, 10, 70, 1, 7, 15,;
+ "AaBb" + Chr(143), .T., 5, 132, 4096)
+ 
+ cKey = FT_DISPFILE()
+ 
+ FT_DFCLOSE()
+ 
+ @ 20,0 SAY "Key that terminated FT_DISPFILE() was: " + '[' + cKey + ']'</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28416"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDFSETUP"
+></A
+>Function  FT_DFSETUP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DFSETUP( &#60;cInFile&#62;, &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, ;
+ &#60;nStart&#62;, &#60;nCNormal&#62;, &#60;nCHighlight&#62;, &#60;cExitKeys&#62;,   ;
+ &#60;lBrowse&#62;, &#60;nColSkip&#62;, &#60;nRMargin&#62;, &#60;nBuffSize&#62; ) --&#62; nResult&#13;</PRE
+><P
+> Note: make sure you allocate a buffer large enough to hold enough
+ data for the number of lines that you have in the window.  Use the
+ following formula as a guideline:</P
+><P
+> 
+ buffer size = (# of line) + 1 * RMargin</P
+><P
+> 
+ This is the smallest you should make the buffer.  For normal use,
+ 4096 bytes is recommended</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28423"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cInFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>     - text file to display (full path and filename)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>        - upper row of window</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>       - left col of window</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBottom&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>     - lower row of window</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>      - right col of window</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>      - line to place highlight at startup</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCNormal&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    - normal text color     (numeric attribute)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCHighlight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - text highlight color  (numeric attribute)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cExitKeys&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   - terminating key list  (each byte of string is a
+ key code)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lBrowse&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>     - act-like-a-browse-routine flag</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nColSkip&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    - col increment for left/right arrows</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRMargin&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    - right margin - anything to right is truncated</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBuffSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   - size of the paging buffer</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 0 if successful, FError() code if not</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFTDISPFILE"
+> FT_DISPFILE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTDFCLOSE"
+> FT_DFCLOSE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28504"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> @ 4,9 TO 11,71
+ 
+ FT_DFSETUP("test.txt", 5, 10, 10, 70, 1, 7, 15,;
+ "AaBb" + Chr(143), .T., 5, 132, 4096)
+ 
+ cKey = FT_DISPFILE()
+ 
+ FT_DFCLOSE()
+ 
+ @ 20,0 SAY "Key that terminated FT_DISPFILE() was: " + '[' + cKey + ']'</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28508"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFAPPEND"
+></A
+>Function  FT_FAPPEND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FAPPEND( [ &#60; nLines &#62; ] ) --&#62; NIL
+ &#13;</PRE
+><P
+>  This function appends a line of text to the file in the currently
+ selected text file workarea.  Text lines are delimited with a
+ CRLF pair.  The record pointer is moved to the last appended
+ record.</P
+><P
+> 
+ Multiple lines may be appended with one call to FT_FAPPEND().</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.
+ Each line appended with this function will be empty.</P
+><P
+> 
+ NOTE:  Occasionally a text file may contain a non-CRLF terminated
+ line, at the end of the file ("stragglers").  This function assumes
+ these stragglers to be the last line of the file, and begins
+ appending the new lines after this line.  In other words, if the
+ last line in the text file is not terminated with a CRLF pair prior
+ to calling FT_FAPPEND(), the function will terminate that last line
+ before appending any new lines.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28517"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLines&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of lines that should be appended to the
+ end of the currently selected text file.
+ 
+ If &lt;nLines&gt; is omitted, one record is appended.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  lSuccess.  If FALSE, check ^bft_fError()^n for the error code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+> FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFDELETE"
+>FT_FDELETE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFINSERT"
+>FT_FINSERT()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFLASTRE"
+>FT_FLASTRE()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28540"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // add a blank line of text to a file
+ FT_FUSE( "test.txt" )
+ 
+ ?FT_FRECNO()           // displays 5
+ 
+ FT_FAPPEND()
+ 
+ ?FT_FRECNO()           // displays 6
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28544"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFBOF"
+></A
+>Function  FT_FBOF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FBOF() --&#62; lResult
+ &#13;</PRE
+><P
+>  This function is similar to the CLIPPER Bof() function.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28551"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  .T. if an attempt was made to skip past the first record of
+ the currently selected text file, otherwise .F.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFSKIP"
+> FT_FSKIP()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFEOF"
+>FT_FEOF()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28568"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( "FTTEXT.C" )
+ 
+ FT_FGOTOP()
+ 
+ ? FT_FBOF()        // .F.
+ 
+ FT_FSKIP(-1)
+ 
+ ? FT_FBOF()        // .T.
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28572"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFDELETE"
+></A
+>Function  FT_FDELETE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FDELETE( [ &#60; nLines &#62; ] ) --&#62; lSuccess
+ &#13;</PRE
+><P
+>  This function deletes one or several lines of text from the file
+ in the currently selected text file workarea.  Text lines are
+ delimited with a CRLF pair.  The record pointer is not moved,
+ unless the deleted lines occur at the end of the file, in which
+ case ^bft_fRecno()^n will equal ^bft_fLastRe()^n and ^bft_fEOF()^n
+ will be set to TRUE.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28578"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  TRUE if successful, otherwise check ^ft_fError()^n for error code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFAPPEND"
+> FT_FAPPEND()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFINSERT"
+>FT_FINSERT()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28595"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // delete the next 4 lines from a file
+ FT_FUSE( "test.txt" )
+ 
+ FT_FDELETE( 4 )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28599"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFEOF"
+></A
+>Function  FT_FEOF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FEOF() --&#62; lResult
+ &#13;</PRE
+><P
+>  This function is similar to the CLIPPER Eof() function.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28606"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  .T. if an attempt was made to skip past the last record of
+ the currently selected text file, otherwise .F.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+> FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFSKIP"
+>FT_FSKIP()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28622"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( "FTTEXT.C" )
+ 
+ ? FT_FEOF()        // .F.
+ 
+ FT_FSKIP()
+ 
+ ? FT_FEOF()        // .T.
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28626"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFERROR"
+></A
+>Function  FT_FERROR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FERROR() --&#62; nErrorNo
+ &#13;</PRE
+><P
+>  This function returns the DOS error code associated with a file
+ operation on the currently selected text file.</P
+><P
+> 
+ Errors could stem from any open, create, read or write operation,
+ among others.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28633"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  The DOS error code if one occurred.  See a reference on DOS error
+ codes for an explanation of what the code means.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28643"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  if ft_fUse( "text.c" ) &#60; 0     // open text file
+ err := ft_fError();
+ QOUT( 'Error opening file "Text.c", error code (' + ;
+ LTRIM( STR( err ) ) + ')' )
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28647"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFGOBOT"
+></A
+>Function  FT_FGOBOT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FGOBOT() --&#62; NIL
+ &#13;</PRE
+><P
+>  This function moves the record pointer to the last record of the
+ file in the currently selected text file workarea.</P
+><P
+> 
+ If a read error occurs ^ft_fError()^n will contain the error code.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28655"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  NIL
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFSELECT"
+> FT_FSELECT()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+>FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFREADLN"
+>FT_FREADLN()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28674"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // read last line
+ FT_FUSE( "text.c" )
+ 
+ FT_FGOBOT()
+ 
+ ? FT_FREADLN()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28678"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFGOTO"
+></A
+>Function  FT_FGOTO() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FGOTO( nLine ) --&#62; NIL
+ &#13;</PRE
+><P
+>  This function moves the record pointer to a specific record
+ in the file in the currently selected text file workarea.  If
+ the record number requested is greater than the number of records
+ in the file, the record pointer will be positioned at the last
+ record.</P
+><P
+> 
+ Internally, the function operates differently depending on how
+ you invoke it.  Passing a value for ^b&lt;nLine&gt;^n results in what
+ is effectively a skip operation, which is fairly quick.  However
+ if you pass 0 for ^b&lt;nLine&gt;^n, e.g. ft_fGoTo( 0 ), the function
+ internally goes to the top of the file, then skips down the
+ required number of records.  Hence if your file is relatively
+ large and the current record is a high number, you may see some
+ delay as ft_fGoTo(0) skips through the file.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28686"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLine&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the record number to go to.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  NIL
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>  FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFREADLN"
+>FT_FREADLN()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28708"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // read 5th line of text from file
+ 
+ ft_fUse( "FTTEXT.C" )
+ 
+ ft_fGoTo(5)
+ 
+ cText := ft_fReadLN()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28712"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFGOTOP"
+></A
+>Function  FT_FGOTOP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FGOTOP() --&#62; NIL
+ &#13;</PRE
+><P
+>  This function moves the record pointer to the first record
+ in the currently selected text file workarea.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28719"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  NIL
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFSELECT"
+> FT_FSELECT()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+>FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOBOT"
+>FT_FGOBOT()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28737"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( "text.c" )      // open text file
+ 
+ DO WHILE !FT_FEOF()
+ 
+ ? FT_FREADLN()        // read thru file
+ 
+ FT_FSKIP()
+ 
+ ENDDO
+ 
+ FT_FGOTOP()              // go back to top
+ 
+ ? FT_FRECNO()            // 1
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28741"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFINSERT"
+></A
+>Function  FT_FINSERT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FINSERT( [ &#60; nLines &#62; ] ) --&#62; lSuccess
+ &#13;</PRE
+><P
+>  This function inserts a line of text in the file in the currently
+ selected text file workarea.  Text lines are delimited with a
+ CRLF pair.</P
+><P
+> 
+ The record pointer is not moved.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.
+ Each line inserted with this function will be empty.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28749"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ^blSuccess^n is TRUE if the insert succeeded, FALSE if not.  If
+ false check the return value of ^bft_fError()^n for the reason.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFAPPEND"
+> FT_FAPPEND()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFDELETE"
+>FT_FDELETE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFLASTRE"
+>FT_FLASTRE()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28767"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // add a couple of blank lines of text to a file
+ ft fUse( "test.txt" )
+ 
+ ft_fGoTo( 10 )
+ 
+ ft_fInsert( 5 )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28771"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFLASTRE"
+></A
+>Function  FT_FLASTRE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FLASTRE() --&#62; nLastRecordNum
+ &#13;</PRE
+><P
+>  This function returns the number of the last record in a text file.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28778"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  An integer containing the number of records in the text file in
+ the currently selected text file workarea, or zero if no file
+ is currently open in the workarea.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+> FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28794"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( "text.c" )
+ 
+ ? FT_FLASTRE()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28798"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFREADLN"
+></A
+>Function  FT_FREADLN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FREADLN() --&#62; cLine
+ &#13;</PRE
+><P
+>  This function returns a line of text read from the file in the
+ currently selected text file workarea.  Text lines are delimited
+ with a CRLF pair.  The record pointer is not moved.</P
+><P
+> 
+ Currently the maximum record size is 4096 characters.  You may
+ increase the maximum record size by changing the value of ^b#define
+ ^bBUFFSIZE^n in the C source and recompiling, however you should
+ consider the performance implications if you do (all read and writes
+ use this buffer size, including ft_fSkip()'s and ft_fGoto()'s).</P
+><P
+> 
+ If a read error occurs ^ft_fError()^n will contain the error code.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28807"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A string containing the current record in a text file.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+> FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFWRITELN"
+>FT_FWRITELN()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28825"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // display each record of a text file
+ 
+ FT_FUSE( "text.c" )
+ 
+ DO WHILE ! FT_FEOF()
+ 
+ ? FT_FREADLN()
+ 
+ FT_FSKIP()
+ 
+ ENDDO
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28829"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFRECNO"
+></A
+>Function  FT_FRECNO() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FRECNO() --&#62; nRecNo
+ &#13;</PRE
+><P
+>  This function returns the current record number of the file open
+ in the currently selected text file workarea.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28836"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  The current record number of a text file or 0 if no file is open.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFSELECT"
+> FT_FSELECT()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+>FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOBOT"
+>FT_FGOBOT()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28854"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( "text.c" )      // open text file
+ 
+ DO WHILE !FT_FEOF()
+ 
+ ? FT_FREADLN()        // read thru file
+ 
+ FT_FSKIP()
+ 
+ ENDDO
+ 
+ FT_FGOTOP()              // go back to top
+ 
+ ? FT_FRECNO()            // 1
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28858"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFSELECT"
+></A
+>Function  FT_FSELECT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FSELECT( [ &#60;nNewArea&#62; ] ) --&#62; nPreviousArea
+ &#13;</PRE
+><P
+>  This function selects a text file "workarea" from 1 to 10.  A
+ file may or may not be open in the selected area.</P
+><P
+> 
+ Passing 0 for ^b&lt;nNewArea&gt;^n selects the next available workarea,
+ similar to Clipper's SELECT 0 command.  If no more workareas are
+ available the current workarea is not changed.</P
+><P
+> 
+ Each file is opened in its own "workarea", similar to the concept
+ used by dbf files.  As provided, a maximum of 10 files (in 10
+ workareas) can be opened (assuming there are sufficient file
+ handles available).  That number may be increased by modifying
+ the #define TEXT_WORKAREAS in the C source code and recompiling.</P
+><P
+> 
+ All the FT_F*() file functions operate on the file in the currently
+ selected text file workarea.</P
+><P
+> 
+ Text file workareas are separate from and independent of Clipper's
+ database workareas.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28868"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  The current selected text file area.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+> FT_FUSE()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28883"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FSELECT(1)
+ 
+ nFile1 := FT_FUSE( "temp.c" )
+ 
+ ? FT_FLASTRE()                 // no. of lines in temp.c
+ 
+ FT_FSELECT(2)
+ 
+ nFile2 := FT_FUSE( "temp.h" )
+ 
+ ? FT_FLASTRE()                 // no. of lines in temp.h
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28887"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFSKIP"
+></A
+>Function  FT_FSKIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FSKIP( [ &#60;nLines&#62; ] ) --&#62; nLinesSkipped
+ &#13;</PRE
+><P
+>  This function moves the text file record pointer, similar to
+ the CLIPPER SKIP command.</P
+><P
+> 
+ Use the return value to determine how many records were actually
+ skipped, for example to write a custom skipper function for
+ TBrowse'g text files.</P
+><P
+> 
+ If a read error occurs ^ft_fError()^n will contain the error code.</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28896"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLines&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of lines to skip.  Defaults to 1 if
+ not specified.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  The number of lines actually skipped.  If the file's EOF or
+ BOF was encountered before ^b&lt;nLines&gt;^n could be skipped, the
+ return value will be less than ^b&lt;nLines&gt;^n.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+> FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFGOTOP"
+>FT_FGOTOP()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28917"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // display each record of a text file
+ 
+ FT_FUSE( "text.c" )
+ 
+ DO WHILE ! FT_FEOF()
+ 
+ ? FT_FREADLN()
+ 
+ FT_FSKIP()
+ 
+ ENDDO
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28921"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFUSE"
+></A
+>Function  FT_FUSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FUSE( [ &#60;cFile&#62; ] [, &#60;nMode&#62; ] ) --&#62; nHandle | 0
+ &#13;</PRE
+><P
+>  The FT_F*() file functions are for reading text files, that is,
+ files where each line (record) is delimited by a CRLF pair.</P
+><P
+> 
+ Each file is opened in its own "workarea", similar to the concept
+ use by dbf files.  As provided, a maximum of 10 files (in 10
+ workareas) can be opened (assuming there are sufficient file
+ handles available).  That number may be increased by modifying
+ the #define TEXT_WORKAREAS in the C source code and recompiling.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28928"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  If ^b&lt;cFile&gt;^n is passed and the file is opened successfully, an
+ integer containing the text file's workarea.  If the file cannot be
+ opened, -1 will be returned.  In this case, check the return value
+ of ^bft_fError()^n for the cause of the error.
+ 
+ If FT_FUSE() is called without any arguments, it will close the
+ text file in the current "text area" and return 0.
+ 
+ If a read error occurs ^ft_fError()^n will contain the error code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFUSE"
+> FT_FUSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFSELECT"
+>FT_FSELECT()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28944"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  #include "fileio.ch"
+ 
+ // open a text file for reading
+ ft_fUse( "text.txt" )
+ 
+ // open a text file for reading and writing
+ ft_fUse( "text.txt", FO_READWRITE + FO_SHARED )
+ 
+ // close file
+ ft_fUse()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28948"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFWRITELN"
+></A
+>Function  FT_FWRITELN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_FWRITELN( &#60; cData &#62;, [ &#60; lInsert &#62; ] ) --&#62; lSuccess
+ &#13;</PRE
+><P
+>  This function writes a line of text to the file in the currently
+ selected text file workarea.  Text lines are delimited with a
+ CRLF pair.  The record pointer is not moved.</P
+><P
+> 
+ The contents of the current record are updated to reflect the new
+ new line written, unless the Insert option is selected.</P
+><P
+> 
+ Writing a null string has the effect of clearing the current line
+ if in overstrike mode, else inserting a new line (same as
+ FT_FINSERT()).</P
+><P
+> 
+ A text file "record" is a line of text terminated by a CRLF pair.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28957"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of data to write to the file at the current
+ record position.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lInsert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical indicating whether the contents
+ of the current record are to be preserved, that is, if lInsert
+ evaluates to .T., the a new record is inserted at the current
+ position.  The current record then is pushed down to FT_FRECNO()+1.
+ 
+ If lInsert is .F. or omitted, the current record is replaced by
+ cData.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  TRUE if successful, otherwise check ^ft_fError()^n for error code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTFREADLN"
+> FT_FREADLN()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFRECNO"
+>FT_FRECNO()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFINSERT"
+>FT_FINSERT()</A
+> <A
+HREF="categfileio.html#FUNCTIONFTFDELETE"
+>FT_FDELETE()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN28985"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  // write a line of text to a file
+ 
+ FT_FUSE( "config.sys" )
+ 
+ DO WHILE UPPER( FT_FREADLN() ) != "FILES=" .AND. !F_FEOF()
+ 
+ FT_FSKIP()
+ 
+ ENDDO
+ 
+ FT_FWRITELN( "FILES=30", FT_FEOF() )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN28989"
+></A
+><H3
+><A
+NAME="FUNCTIONFWRITE"
+></A
+>Function  FWRITE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FWRITE(&#60;nHandle&#62;, &#60;cBuffer&#62;, [&#60;nBytes&#62;]) --&#62; nBytesWritten&#13;</PRE
+><P
+> FWRITE() is a low-level file function that writes data to an open binary
+ file from a character string buffer.  You can either write all or a
+ portion of the buffer contents.  Writing begins at the current file
+ position, and the function returns the actual number of bytes written.</P
+><P
+> 
+ If FWRITE() results in an error condition, FERROR() can be used to
+ determine the specific error.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN28996"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the file handle obtained from FOPEN(), FCREATE(), or
+ predefined by DOS.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to write to the specified file.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBytes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> indicates the number of bytes to write beginning at the
+ current file pointer position.  If omitted, the entire content of</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is written.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FWRITE() returns the number of bytes written as an integer numeric
+ value.  If the value returned is equal to &lt;nBytes&gt;, the operation was
+ successful.  If the return value is less than &lt;nBytes&gt; or zero, either
+ the disk is full or another error has occurred.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+> FCLOSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN()</A
+> <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29036"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example copies the contents of one file to another:
+ 
+ #include "Fileio.ch"
+ #define F_BLOCK      512
+ //
+ cBuffer := SPACE(F_BLOCK)
+ nInfile := FOPEN("Temp.txt", FO_READ)
+ nOutfile := FCREATE("Newfile.txt", FC_NORMAL)
+ lDone := .F.
+ //
+ DO WHILE !lDone
+ nBytesRead := FREAD(nInfile, @cBuffer, F_BLOCK)
+ IF FWRITE(nOutfile, cBuffer, nBytesRead) &#60; ;
+ nBytesRead
+ ? "Write fault: ", FERROR()
+ lDone := .T.
+ ELSE
+ lDone := (nBytesRead == 0)
+ ENDIF
+ ENDDO
+ //
+ FCLOSE(nInfile)
+ FCLOSE(nOutfile)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29040"
+></A
+><H3
+><A
+NAME="FUNCTIONOUTERR"
+></A
+>Function  OUTERR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> OUTERR(&#60;exp list&#62;) --&#62; NIL&#13;</PRE
+><P
+> OUTERR() is identical to OUTSTD() except that it writes to the standard
+ error device rather than the standard output device.  Output sent to the
+ standard error device bypasses the xClipper console and output devices
+ as well as any DOS redirection.  It is typically used to log error
+ messages in a manner that will not interfere with the standard screen or
+ printer output.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29045"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp list&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a list of values to display and can consist of any
+ combination of data types including memo.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> OUTERR() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONOUTSTD"
+> OUTSTD()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDISPOUT"
+>DISPOUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29066"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example displays an error message along with the date and
+ time of occurrence to the screen:
+ 
+ OUTERR("File lock failure", DATE(), TIME())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29070"
+></A
+><H3
+><A
+NAME="FUNCTIONOUTSTD"
+></A
+>Function  OUTSTD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> OUTSTD(&#60;exp list&#62;) --&#62; NIL&#13;</PRE
+><P
+> OUTSTD() is a simple output function similar to QOUT() except that it
+ writes to the STDOUT device (instead of to the xClipper console output
+ stream).  Programs with very simple output requirements (i.e., that
+ perform no full-screen input or output) can use this function to avoid
+ loading the terminal output subsystems.  The header file Simplio.ch
+ redefines the ? and ?? commands to use the OUTSTD() function.</P
+><P
+> 
+ Since OUTSTD() sends its output to the standard output device, the
+ output can be redirected using the DOS redirection symbols (&gt;, &gt;, |).
+ This lets you redirect output from a xClipper program to a file or
+ pipe.  Refer to your PC/MS-DOS documentation for more information about
+ this operating system facility.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29076"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp list&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a list of values to display and can consist of any
+ combination of data types including memo.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> OUTSTD() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONOUTERR"
+> OUTERR()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDISPOUT"
+>DISPOUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29098"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses OUTSTD() to display a list of expressions:
+ 
+ OUTSTD(Name, PADR(RTRIM(City) + "," + ;
+ State, 20), ZipCode)
+ 
+ This example redirects the output of a xClipper program to a
+ new file using the DOS redirection operator (&#62;):
+ 
+ C&#62;MYPROG &#62; FILE.TXT</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categobject.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categdosbios.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>OBJECT</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DOS/BIOS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

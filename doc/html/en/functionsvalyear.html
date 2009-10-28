@@ -1,0 +1,524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>VAL()-YEAR()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="RUNBLANK()-USEDRIVER()"
+HREF="functionsrunblankusedriver.html"><LINK
+REL="NEXT"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsrunblankusedriver.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSVALYEAR">VAL()-YEAR()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20186"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONVAL"
+> VAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a character number to numeric type</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONVAL2STR"
+> VAL2STR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Transform value to string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONVALTYPE"
+> VALTYPE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the data type returned by an expression</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONVAR2STR"
+> VAR2STR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert data to uucode string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONVERSION"
+> VERSION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns xClipper version</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+> WEIGHTASC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns the weight characterics of character.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTCHR"
+> WEIGHTCHR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns character by weight characterics.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+> WEIGHTTABLE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns the weight table of characters.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLERRORSTRING"
+> XML_ERRORSTRING()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get XML parse error description.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLGETCURRENTCOLUMNNUMBER"
+> XML_GETCURRENTCOLUMNNUMBER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get current column number in parsed XML file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLGETCURRENTLINENUMBER"
+> XML_GETCURRENTLINENUMBER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get current line number in parsed XML file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLGETERRORCODE"
+> XML_GETERRORCODE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get XML parse error code.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLPARSE"
+> XML_PARSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Parse string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLPARSERCREATE"
+> XML_PARSERCREATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create parser object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLPARSERFREE"
+> XML_PARSERFREE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Free parser object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETCDATASECTIONHANDLER"
+> XML_SETCDATASECTIONHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle start and end of CDATA block.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETCHARACTERDATAHANDLER"
+> XML_SETCHARACTERDATAHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle text block.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETCOMMENTHANDLER"
+> XML_SETCOMMENTHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle comments.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETDEFAULTHANDLER"
+> XML_SETDEFAULTHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle text which wouldn't otherwise be handled.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETELEMENTHANDLER"
+> XML_SETELEMENTHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle start and end tags.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETENDCDATASECTIONHANDLER"
+> XML_SETENDCDATASECTIONHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle end of CDATA block.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETENDELEMENTHANDLER"
+> XML_SETENDELEMENTHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle end tags.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETPARAMENTITYPARSING"
+> XML_SETPARAMENTITYPARSING()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set mode for parsing of parameter entities.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETSTARTCDATASECTIONHANDLER"
+> XML_SETSTARTCDATASECTIONHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle start of CDATA block.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETSTARTELEMENTHANDLER"
+> XML_SETSTARTELEMENTHANDLER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set functions for handle start tags.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLSETUSERDATA"
+> XML_SETUSERDATA()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set user data for parser.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-xml.html#FUNCTIONXMLXPATH"
+> XML_XPATH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Execute XPath query.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONYEAR"
+> YEAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to the year as a numeric value</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsrunblankusedriver.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>RUNBLANK()-USEDRIVER()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CLIP Functions by categories</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

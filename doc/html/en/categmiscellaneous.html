@@ -1,0 +1,2428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>MISCELLANEOUS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="DATABASE"
+HREF="categdatabase.html"><LINK
+REL="NEXT"
+TITLE="CLIP-UI"
+HREF="categclip-ui.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categdatabase.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categclip-ui.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGMISCELLANEOUS">MISCELLANEOUS</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN39948"
+></A
+><H2
+>Name</H2
+>MISCELLANEOUS&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN39951"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+>BIN2I(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W(&#60;cUnsignedInt&#62;)</A
+>
+bCurrentErrorHandler<A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+>ERRORBLOCK([&#60;bErrorHandler&#62;])</A
+>
+cHexStr             <A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2HEX"
+>fn_Bin2I( &#60;cBinStr&#62; )</A
+>
+nValue              <A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2I"
+>fn_Bin2I( &#60;cBinStr&#62; )</A
+>
+nResult             <A
+HREF="categmiscellaneous.html#FUNCTIONFNCLRBIT"
+>fn_clrbit( &#60;nNum&#62;, &#60;nBit&#62; )</A
+>
+nError              <A
+HREF="categmiscellaneous.html#FUNCTIONFNERROR"
+>fn_error()</A
+>
+cBinStr             <A
+HREF="categmiscellaneous.html#FUNCTIONFNHEX2BIN"
+>fn_Hex2Bin( &#60;cHexStr&#62; )</A
+>
+cBinStr             <A
+HREF="categmiscellaneous.html#FUNCTIONFNI2BIN"
+>fn_I2Bin( &#60;nValue&#62;, [ &#60;nLen&#62; ] )</A
+>
+lInit               <A
+HREF="categmiscellaneous.html#FUNCTIONFNIPXINIT"
+>Fn_IPXInit()</A
+>
+lIs3X               <A
+HREF="categmiscellaneous.html#FUNCTIONFNIS3X"
+>fn_is3x()</A
+>
+lSet                <A
+HREF="categmiscellaneous.html#FUNCTIONFNISBIT"
+>fn_isbit( &#60;nNum&#62;, &#60;nBit&#62; )</A
+>
+nStatus             <A
+HREF="categmiscellaneous.html#FUNCTIONFNISNET"
+>fn_isNet()</A
+>
+                    <A
+HREF="categmiscellaneous.html#FUNCTIONFNNAMEL"
+>fn_NameL( cName, nRequiredLength)  =&#62; cReturn</A
+>
+cNewStr             <A
+HREF="categmiscellaneous.html#FUNCTIONFNNONULL"
+>fn_noNull( cStr )</A
+>
+cBinStr             <A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+>fn_PeekStr( &#60;nSegment&#62;, &#60;nOffset&#62;, &#60;nLength&#62; )</A
+>
+xRet                <A
+HREF="categmiscellaneous.html#FUNCTIONFNPFEVAL"
+>fn_pfEval( xID, bBlock )</A
+>
+NIL                 <A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+>fn_PokeStr( &#60;nSegment&#62;, &#60;nOffset&#62;, &#60;cBinStr&#62; )</A
+>
+nResult             <A
+HREF="categmiscellaneous.html#FUNCTIONFNSETBIT"
+>fn_setbit( &#60;nNum&#62;, &#60;nBit&#62; )</A
+>
+nOldError           <A
+HREF="categmiscellaneous.html#FUNCTIONFNSETERR"
+>_fnSetErr( nErrCode )</A
+>
+cStrippedPath       <A
+HREF="categmiscellaneous.html#FUNCTIONFNSSFROMP"
+>Fn_SSFromP( &#60;cFullPath&#62;,&#60;@cServerName&#62; )</A
+>
+nResult             <A
+HREF="categmiscellaneous.html#FUNCTIONFNTOGBIT"
+>fn_togbit( &#60;nNum&#62;, &#60;nBit&#62; )</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN(&#60;nInteger&#62;)</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN(&#60;nExp&#62;)</A
+>
+nLastArgumentPos    <A
+HREF="categsystem.html#FUNCTIONPCOUNT"
+>PCOUNT()</A
+>
+nSourceLine         <A
+HREF="categsystem.html#FUNCTIONPROCLINE"
+>PROCLINE([&#60;nActivation&#62;])</A
+>
+cProcedureName      <A
+HREF="categsystem.html#FUNCTIONPROCNAME"
+>PROCNAME([&#60;nActivation&#62;])</A
+>
+cVersion            <A
+HREF="categsystem.html#FUNCTIONVERSION"
+>VERSION()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN39983"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39986"
+></A
+><H3
+><A
+NAME="FUNCTIONFNBIN2HEX"
+></A
+>Function  FN_BIN2HEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_Bin2I( &#60;cBinStr&#62; ) --&#62; cHexStr
+ &#13;</PRE
+><P
+>  Internally, all information is stored as a series of bytes.  When
+ performing a direct read from memory, a character string will be
+ returned.  Use this function to convert that string to its
+ hexidecimal numeric equivalent.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39992"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBinStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of bytes representing a number.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A string containing the hexdecimal value of &lt;cBinStr&gt;.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNHEX2BIN"
+> fn_Hex2Bin()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2I"
+> fn_Bin2I()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> fn_PeekStr()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> fn_PokeStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40015"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* convert a string containing CHR(0)+CHR(0)+CHR(222)+CHR(175) */
+ 
+ ? fn_Bin2Hex( CHR(0)+CHR(0)+CHR(222)+CHR(175) )	// "    DEAF"
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40019"
+></A
+><H3
+><A
+NAME="FUNCTIONFNBIN2I"
+></A
+>Function  FN_BIN2I() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_Bin2I( &#60;cBinStr&#62; ) --&#62; nValue
+ &#13;</PRE
+><P
+>  Internally, all information is stored as a series of bytes.  When
+ performing a direct read from memory, a character string will be
+ returned.  Use this function to convert that string to its Clipper
+ numeric equivalent.</P
+><P
+> 
+ This function only returns integer values.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40026"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBinStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of bytes representing a number.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  The decimal value of &lt;cBinStr&gt;.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNI2BIN"
+> fn_I2Bin()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> fn_PeekStr()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> fn_PokeStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40048"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* convert a string containing CHR(0)+CHR(0)+CHR(222)+CHR(175) */
+ 
+ ? fn_Bin2I( CHR(0)+CHR(0)+CHR(222)+CHR(175) ) 	// 57007
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40052"
+></A
+><H3
+><A
+NAME="FUNCTIONFNCLRBIT"
+></A
+>Function  FN_CLRBIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_clrbit( &#60;nNum&#62;, &#60;nBit&#62; ) --&#62; nResult
+ &#13;</PRE
+><P
+>  Clears a specified bit in a number.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40058"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number that needs a bit cleared;</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBit&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the bit to clear.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nResult&gt;, a numeric
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40078"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_clrbit( 9, 0 ) // 8 (clears bit 0)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40082"
+></A
+><H3
+><A
+NAME="FUNCTIONFNERROR"
+></A
+>Function  FN_ERROR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_error() --&#62; nError
+ &#13;</PRE
+><P
+></P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40088"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nError&gt;, a numeric error code.  Details on the error codes can
+ be found...
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNSETERR"
+> _fnSetErr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40103"
+></A
+><H3
+><A
+NAME="FUNCTIONFNHEX2BIN"
+></A
+>Function  FN_HEX2BIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_Hex2Bin( &#60;cHexStr&#62; ) --&#62; cBinStr
+ &#13;</PRE
+><P
+>  This function converts a hexidecimal value to it binary equivalent,
+ and is useful for doing a direct memory translation.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40109"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cHexStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string containing hexidecimal characters.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A binary string representing the value passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2HEX"
+> fn_Bin2Hex()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> fn_PeekStr()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> fn_PokeStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40131"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? fn_Hex2Bin( "DEAF" )
+ 
+ ? fn_Hex2Bin( "10" )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40135"
+></A
+><H3
+><A
+NAME="FUNCTIONFNI2BIN"
+></A
+>Function  FN_I2BIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_I2Bin( &#60;nValue&#62;, [ &#60;nLen&#62; ] ) --&#62; cBinStr
+ &#13;</PRE
+><P
+>  This function converts a decimal value to it binary equivalent,
+ and is useful for doing a direct memory translation.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40141"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the integer to convert.  Only positive integers may
+ be converted.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the desired resultant string length.  If omitted, it
+ defaults to the length required to represent &lt;nValue&gt;.  If &lt;nLen&gt;
+ is larger than the length required to represent &lt;nValue&gt;, cBinStr
+ is left-padded with CHR(0)'s to fill it out to the desired length.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A binary string representing the value passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2I"
+> fn_Bin2I()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> fn_PeekStr()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> fn_PokeStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40168"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? fn_I2Bin( 57007 )
+ 
+ ? fn_I2Bin( 57007, 4 )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40172"
+></A
+><H3
+><A
+NAME="FUNCTIONFNIPXINIT"
+></A
+>Function  FN_IPXINIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  Fn_IPXInit() --&#62; lInit
+ &#13;</PRE
+><P
+>  This function initializes an array in the library
+ with the address of the IPX services. This function must be
+ called before any of the IPX functions in this library can be
+ performed.</P
+><P
+> 
+ [This function is meant to be part of a larger suite but
+ the code wasn't ready by the release date.  In its present
+ form, it can be used to determine if IPX is installed,
+ which might be useful.]</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40179"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;lInit&gt; - Whether IPX has been initialised.  If &lt;lInit&gt; is false
+ check Fn_Error() for the error code which could be one of:
+ 
+ [ Error codes here ]
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40189"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  If ( Fn_IPXInit())
+ ? "IPX installed"
+ EndIf
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40193"
+></A
+><H3
+><A
+NAME="FUNCTIONFNIS3X"
+></A
+>Function  FN_IS3X() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_is3x() --&#62; lIs3X
+ &#13;</PRE
+><P
+>  A simple function that wraps around FN_GETFSI().  Determines
+ whether or not the current server is a NetWare 3.x server or
+ not.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40199"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  .t. if the server is a 3.x server, .f. if it isn't
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFNGETFSI"
+> FN_GETFSI()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40214"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  if fn_is3X()
+ qout( "You're on NetWare 3.x" )
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40218"
+></A
+><H3
+><A
+NAME="FUNCTIONFNISBIT"
+></A
+>Function  FN_ISBIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_isbit( &#60;nNum&#62;, &#60;nBit&#62; ) --&#62; lSet
+ &#13;</PRE
+><P
+>  Determines if a specified bit in a number is set.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40224"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number to test, &lt;nBit&gt; is the
+ bit to test (0-15).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns logical .t. if the bit is set, .f. if
+ it isn't.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40239"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? fn_isbit( 13, 0 ) // .t. (bit 0 is set)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40243"
+></A
+><H3
+><A
+NAME="FUNCTIONFNISNET"
+></A
+>Function  FN_ISNET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_isNet() --&#62; nStatus
+ &#13;</PRE
+><P
+>  fn_isNet() provides a simple way to determine if the user
+ running your program is logged in.  if fn_isNet() == 0,
+ she's in.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40249"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nStatus&gt;, a numeric, which will be one of:
+ 
+ 0     User has shell loaded and is logged in
+ 1     User hasn't loaded IPX
+ 2     User hasn't loaded a shell
+ 3     User is not attached to a server
+ 4     User has no connection id (?)
+ 5     User is not logged in
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFNNETVER"
+> fn_netver()</A
+> <A
+HREF="categmiscellaneous.html#FUNCTIONFNIS3X"
+> fn_is3x()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40265"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  if !fn_isNet()
+ qout( "This program requires Novell NetWare." )
+ endif
+ 
+ if fn_isNet()
+ qout( "This is not a network version!" )
+ ft_reboot()   // Take that!
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40269"
+></A
+><H3
+><A
+NAME="FUNCTIONFNNAMEL"
+></A
+>Function  FN_NAMEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_NameL( cName, nRequiredLength)  =&#62; cReturn
+ &#13;</PRE
+><P
+>  There are numerous places where a character string that is sent
+ needs to be encoded with a leading BYTE specifying the length
+ and may also need to be padded with NULLs.</P
+><P
+> 
+ A terminating null is guaranteed.</P
+><P
+> 
+ If the Length of cName is greater than nRequiredLength -1,
+ it is truncated to leave room for the terminator.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40277"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	 - the character string to be used (shouldn't be longer
+ than 255 characters</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> -  if specified, the String is padded with NULLs
+ to this length
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;cReturn&gt; - a character string with a one byte word at the beginning
+ which indicates the string length, including a null terminator
+ which is added if it does not exist.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40297"
+></A
+><H3
+><A
+NAME="FUNCTIONFNNONULL"
+></A
+>Function  FN_NONULL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_noNull( cStr ) --&#62; cNewStr
+ &#13;</PRE
+><P
+>  Given a string &lt;cStr&gt;, fn_noNull() strips any trailing NULLs,
+ [ chr(0) ] from the end.  If there are no nulls, the entire
+ string is returned.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40303"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - The string to be stripped of nulls
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;cNewStr&gt;
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40318"
+></A
+><H3
+><A
+NAME="FUNCTIONFNPEEKSTR"
+></A
+>Function  FN_PEEKSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_PeekStr( &#60;nSegment&#62;, &#60;nOffset&#62;, &#60;nLength&#62; ) --&#62; cBinStr
+ &#13;</PRE
+><P
+>  Use this function to perform memory reads of a contiguous block of
+ memory.  The string returned contains one character for each byte
+ of memory read.</P
+><P
+> 
+ If you plan to perform consecutive memory reads from memory, for
+ instance in filling an array, pass &lt;nOffset&gt; by reference to keep
+ it updated in the calling routine.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40325"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSegment&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the memory segment to read.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOffset&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting offset from &lt;nSegment&gt; to read from.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of bytes to read.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A string containing the characters found at &lt;nSegment&gt;:&lt;nOffset&gt;.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> fn_PokeStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40355"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* fill an array with 8-bytes taken from a block in memory */
+ 
+ ARRAY( aMemValues, 10 )                 // create a Clipper array
+ 
+ nSeg := &#60;...&#62;									// initialize pointers to
+ nOff := &#60;...&#62;                           //  desired memory location
+ 
+ AEVAL( aMemValues, {|e| e = fn_PeekStr( nSeg, @nOff, 8 ) }
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40359"
+></A
+><H3
+><A
+NAME="FUNCTIONFNPFEVAL"
+></A
+>Function  FN_PFEVAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_pfEval( xID, bBlock ) --&#62; xRet
+ &#13;</PRE
+><P
+>  Some APIs require you to set to a preferred connection ID first
+ before they can be executed.  This call just simplifies the
+ process of getting the old ID, setting the new one, doing
+ something, then resetting the old ID.</P
+><P
+> 
+ This function records the state of fn_error() after evaluating
+ the block and makes sure it stays that way before returning.
+ Therefore, you can't really know whether or not the calls to
+ change the preferred server back and forth are working or not,
+ as there is no way to access their return values.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40366"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;xID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> can be numeric, or a character.
+ 
+ If it's numeric, it is the connection ID of the server you want
+ to set to before evaluating &lt;bBlock&gt;.  This is is position of
+ the server in the server name table. You can use FN_FSNAME()
+ to find a connection ID, given a server name.  If the
+ connection ID is invalid, the current connection ID is used.
+ 
+ If it's a character, it is the _name_ of the server you want
+ to set to before evaluating &lt;bBlock&gt;.  If the server name is
+ invalid or not found, the current server is used.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block to evaluate.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;xVal&gt;, whatever is returned from the block when it is
+ evaluated.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40386"
+></A
+><H3
+><A
+NAME="FUNCTIONFNPOKESTR"
+></A
+>Function  FN_POKESTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_PokeStr( &#60;nSegment&#62;, &#60;nOffset&#62;, &#60;cBinStr&#62; ) --&#62; NIL
+ &#13;</PRE
+><P
+>  Use this function to perform memory write to a contiguous block of
+ memory.</P
+><P
+> 
+ If you plan to perform consecutive memory write to memory, for
+ instance in copying an array of binary strings to memory, pass
+ &lt;nOffset&gt; by reference to keep it updated in the calling routine.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40393"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSegment&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the memory segment to write to.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOffset&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting offset from &lt;nSegment&gt; to write at.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBinStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of bytes to write.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Nothing.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> fn_PeekStr()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40423"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* write an array to a block in memory */
+ 
+ nSeg := &#60;...&#62;									// initialize pointers to
+ nOff := &#60;...&#62;                           //  desired memory location
+ 
+ AEVAL( aMemValues, {|e| fn_PokeStr( nSeg, @nOff, e ) }
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40427"
+></A
+><H3
+><A
+NAME="FUNCTIONFNSETBIT"
+></A
+>Function  FN_SETBIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_setbit( &#60;nNum&#62;, &#60;nBit&#62; ) --&#62; nResult
+ &#13;</PRE
+><P
+>  Sets a bit in a number.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40433"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number that needs a bit set; and</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBit&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the bit to set (0-15).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nResult&gt;, a numeric
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40453"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? fn_setbit( 12, 0 )  // 13 (sets bit 0)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40457"
+></A
+><H3
+><A
+NAME="FUNCTIONFNSETERR"
+></A
+>Function  _FNSETERR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  _fnSetErr( nErrCode ) --&#62; nOldError
+ &#13;</PRE
+><P
+></P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40463"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nOldError&gt;
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNERROR"
+> FN_ERROR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40478"
+></A
+><H3
+><A
+NAME="FUNCTIONFNSSFROMP"
+></A
+>Function  FN_SSFROMP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  Fn_SSFromP( &#60;cFullPath&#62;,&#60;@cServerName&#62; ) --&#62; cStrippedPath
+ &#13;</PRE
+><P
+>  This function strips the server name from the specified path.
+ If the path does not include a file server specification, then
+ the function returns the original path.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40484"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFullPath&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   - The path from which the server name is to be
+ stripped.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cServerName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - The stripped file server name (MUST BE PASSED BY
+ REFERENCE!)
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;cStrippedPath&gt; - &lt;cFullPath&gt; less &lt;cServerName&gt;.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40504"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  cStripped := Fn_SSFromP( "FS1/SYS:\PUBLIC",@cServer )
+ ? cStripped     // "SYS:\PUBLIC"
+ ? cServer       // "FS1"
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN40508"
+></A
+><H3
+><A
+NAME="FUNCTIONFNTOGBIT"
+></A
+>Function  FN_TOGBIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  fn_togbit( &#60;nNum&#62;, &#60;nBit&#62; ) --&#62; nResult
+ &#13;</PRE
+><P
+>  Toggles bit &lt;nBit&gt; in number &lt;nNum&gt;.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40514"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number that needs a bit toggled.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBit&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the bit to toggle.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  &lt;nResult&gt;, a numeric
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN40534"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? fn_togbit( 9, 0 ) // 8 (toggles bit 0 )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categdatabase.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categclip-ui.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DATABASE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CLIP-UI</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

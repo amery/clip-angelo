@@ -1,0 +1,6177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>KEYBOARD/MOUSE</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="DATE/TIME"
+HREF="categdatetime.html"><LINK
+REL="NEXT"
+TITLE="GAME"
+HREF="categgame.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categdatetime.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categgame.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGKEYBOARDMOUSE">KEYBOARD/MOUSE</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN32242"
+></A
+><H2
+>Name</H2
+>KEYBOARD/MOUSE&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN32245"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nCode               <A
+HREF="categstring.html#FUNCTIONASC"
+>ASC(&#60;cExp&#62;)</A
+>
+cChar               <A
+HREF="categstring.html#FUNCTIONCHR"
+>CHR(&#60;nCode&#62;)</A
+>
+cKeyLabel           <A
+HREF="categkeyboardmouse.html#FUNCTIONFKLABEL"
+>FKLABEL(&#60;nFunctionKey&#62;)</A
+>
+nFunctionKeys       <A
+HREF="categkeyboardmouse.html#FUNCTIONFKMAX"
+>FKMAX()</A
+>
+nButStatus          <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTPRS"
+>FT_MBUTPRS( &#60;nButton&#62; [, @nButPrs [, @nX [, @nY] ] ] )</A
+>
+nBStat              <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTREL"
+>FT_MBUTREL( nButton [, @nButRel [, @nX [, @nY] ] ])</A
+>
+                    <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMCONOFF"
+>FT_MCONOFF( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62; )</A
+>
+lCursorState        <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMCURSOR"
+>FT_MCURSOR( [ &#60;lState&#62; ] )</A
+>
+lIsDoubleClk        <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDBLCLK"
+>FT_MDBLCLK( [ &#60;nClick&#62; [, &#60;nButton&#62; [, &#60;nInterval&#62; [, &#60;nRow&#62; [, &#60;nCol&#62;; [, &#60;nTime&#62; ] ] ] ] ] ] )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+>FT_MDEFCRS( &#60;nCrsType&#62;, &#60;nScrMask&#62;, &#60;nCrsMask&#62; )</A
+>
+nButtonStatus       <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+>FT_MGETPOS( @&#60;nX&#62;, @&#60;nY&#62; )</A
+>
+&#60;nPage&#62;             <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPAGE"
+>FT_MGETPAGE()</A
+>
+nButtonStatus       <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+>FT_MGETPOS( @&#60;nX&#62;, @&#60;nY&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETSENS"
+>FT_MGETSENS( &#60;@nHoriz&#62;, &#60;@nVert&#62;, &#60;@nDouble&#62; )</A
+>
+nRowPos             <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+>FT_MGETX()</A
+>
+nColPos             <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+>FT_MGETY()</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMHIDECRS"
+>FT_MHIDECRS()</A
+>
+lMouseStatus        <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINIT"
+>FT_MINIT()</A
+>
+lInRegion           <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+>FT_MINREGION( &#60;nT&#62;, &#60;nL&#62;, &#60;nB&#62;, &#60;nR&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMMICKEYS"
+>FT_MMICKEYS( @&#60;nX&#62;, @&#60;nY&#62; )</A
+>
+nMouseStatus        <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMRESET"
+>FT_MRESET()</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETCOORD"
+>FT_MSETPOS( &#60;nX&#62;, &#60;nY&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPAGE"
+>FT_MSETPAGE( &#60;@nPage&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPOS"
+>FT_MSETPOS( &#60;nX&#62;, &#60;nY&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETSENS"
+>FT_MSETSENS( &#60;nHoriz&#62;, &#60;nVert&#62;, &#60;nDouble&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSHOWCRS"
+>FT_MSHOWCRS()</A
+>
+&#60;nMajor&#62;            <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMVERSION"
+>FT_MVERSION( &#60;@nMinor&#62;, &#60;@nType&#62;, &#60;@nIRQ&#62;  )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMXLIMIT"
+>FT_MXLIMIT( &#60;nX1&#62;, &#60;nX2&#62; )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMYLIMIT"
+>FT_MYLIMIT( &#60;nY1&#62;, &#60;nY2&#62; )</A
+>
+cCode               <A
+HREF="categkeyboardmouse.html#FUNCTIONFTSCANCODE"
+>FT_SCANCODE()</A
+>
+nInkeyCode          <A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+>INKEY([&#60;nSeconds&#62;] [,&#60;nEventMask&#62;])</A
+>
+nInkeyCode          <A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+>LASTKEY()</A
+>
+nCurrentMouseColumn <A
+HREF="categkeyboardmouse.html#FUNCTIONMCOL"
+>MCOL()</A
+>
+nSpeed              <A
+HREF="categkeyboardmouse.html#FUNCTIONMDBLCLK"
+>MDBLCLK([&#60;nNewSpeed&#62;])</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONMHIDE"
+>MHIDE()</A
+>
+lIsPressed          <A
+HREF="categkeyboardmouse.html#FUNCTIONMLEFTDOWN"
+>MLEFTDOWN()</A
+>
+lIsPresent          <A
+HREF="categkeyboardmouse.html#FUNCTIONMPRESENT"
+>MPRESENT()</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONMRESTSTATE"
+>MRESTSTATE( &#60;cSaveState&#62; )</A
+>
+lIsPressed          <A
+HREF="categkeyboardmouse.html#FUNCTIONMRIGHTDOWN"
+>MRIGHTDOWN()</A
+>
+nCurrentMouseRow    <A
+HREF="categkeyboardmouse.html#FUNCTIONMROW"
+>MROW()</A
+>
+cSaveState          <A
+HREF="categkeyboardmouse.html#FUNCTIONMSAVESTATE"
+>MSAVESTATE()</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETBOUNDS"
+>MSETBOUNDS( [&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;] )</A
+>
+aRegions            <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCLIP"
+>MSETCLIP([&#60;nCoord list&#62;], [&#60;nMode&#62;])</A
+>
+lIsVisible          <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+>MSETCURSOR( [&#60;lVisible&#62;] )</A
+>
+NIL                 <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETPOS"
+>MSETPOS( &#60;nRow&#62;, &#60;nCol&#62; )</A
+>
+nOldCursorShape     <A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+>MSHOW([&#60;nCol&#62;, &#60;nRow&#62;, &#60;nStyle&#62;]) --&#62; nOldCursorShape MSHOW([&#60;nCursorShape&#62;]) --&#62; nOldCursorShape MSHOW([&#60;nCursorShape&#62;] | [&#60;nCol&#62;, &#60;nRow&#62;, &#60;nMode&#62;])</A
+>
+aState | 0          <A
+HREF="categkeyboardmouse.html#FUNCTIONMSTATE"
+>MSTATE()</A
+>
+nInkeyCode          <A
+HREF="categkeyboardmouse.html#FUNCTIONNEXTKEY"
+>NEXTKEY()</A
+>
+bCurrentAction      <A
+HREF="categkeyboardmouse.html#FUNCTIONSETKEY"
+>SETKEY(&#60;nInkeyCode&#62;, [&#60;bAction&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN32297"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32300"
+></A
+><H3
+><A
+NAME="FUNCTIONFKLABEL"
+></A
+>Function  FKLABEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FKLABEL(&#60;nFunctionKey&#62;) --&#62; cKeyLabel&#13;</PRE
+><P
+> FKLABEL() is a compatibility function used to replicate the FKLABEL()
+ function in dBASE III PLUS.  As a general principle, the use of this
+ function is not recommended and not needed in xClipper.  The function
+ keys are labeled Fn, where n ranges from one to 40 and corresponds
+ directly to the FKLABEL() argument.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32305"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FKLABEL() returns a character string representing the name of the
+ function key specified by the numeric argument, &lt;nFunctionKey&gt;.  If this
+ argument is less than one or greater than 40, the function returns a
+ null ("") string.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32315"
+></A
+><H3
+><A
+NAME="FUNCTIONFKMAX"
+></A
+>Function  FKMAX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FKMAX() --&#62; nFunctionKeys&#13;</PRE
+><P
+> FKMAX() is a compatibility function used to replicate the FKMAX()
+ function in dBASE III PLUS.  As a general principle, the use of this
+ function is not recommended and not needed in xClipper.  It simply
+ returns a constant value of 40.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32320"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32330"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMBUTPRS"
+></A
+>Function  FT_MBUTPRS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MBUTPRS( &#60;nButton&#62; [, @nButPrs [, @nX [, @nY] ] ] ) --&#62; nButStatus&#13;</PRE
+><P
+> Retrieves the mouse button status and the position of the cursor when
+ a button was last pressed.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32335"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nButton&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the mouse button number:
+ 
+ 0 - Left   Button
+ 1 - Right  Button
+ 2 - Middle Button [if applicable]
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nButPrs&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of times the specified button was pressed
+ since the last call to this routine. PASSED BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the X position of the cursor when the last press occurred.
+ PASSED BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the Y position of the cursor when the last press occurred.
+ PASSED BY REFERENCE.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An integer representing the button status:
+ 
+ 0 - no buttons pressed
+ 1 - left button pressed
+ 2 - right button pressed
+ 3 - left and right pressed
+ 4 - middle pressed
+ 5 - left and middle pressed
+ 6 - middle and right buttons pressed
+ 7 - all 3 buttons pressed</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTREL"
+> FT_MBUTREL()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDBLCLK"
+> FT_MDBLCLK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32371"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF Empty( FT_MBUTPRS(1) )
+ ? "No Item selected"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32375"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMBUTREL"
+></A
+>Function  FT_MBUTREL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MBUTREL( nButton [, @nButRel [, @nX [, @nY] ] ]) --&#62; nBStat&#13;</PRE
+><P
+> This function returns the release status of the mouse buttons and the
+ coordinates of the last release.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32380"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nButton&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the mouse button number
+ 0 - Left   Button
+ 1 - Right  Button
+ 2 - Middle Button [if applicable]
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nButRel&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of times the specified button was released
+ since the last call to this routine. PASSED BY REFERENCE.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the X position of the cursor when the last release occurred.
+ PASSED BY REFERENCE.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the Y position of the cursor when the last release occurred.
+ PASSED BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nBStat&gt;  - an integer representing button release status
+ 0 - None
+ 1 - Left
+ 2 - Right
+ 3 - Middle</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTPRS"
+> FT_MBUTPRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDBLCLK"
+> FT_MDBLCLK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32416"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF( FT_MBUTREL( 0 ) == 1 )
+ ? "Left button released"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32420"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMCONOFF"
+></A
+>Function  FT_MCONOFF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MCONOFF( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62; )&#13;</PRE
+><P
+> This function tells the mouse driver to hide the cursor if it is in
+ the given region. The driver hides the cursor by decrementing the cursor
+ flag. A call to FT_MSHOWCRS is required to turn the cursor back on.
+ Calling FT_MSHOWCRS also disables this function.</P
+><P
+> 
+ See FT_MSHOWCRS for a discussion of the cursor display flag.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32426"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt; &lt;nBottom&gt; &lt;nRight&gt; are the four corners of the
+ screen region in row and column coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSHOWCRS"
+> FT_MSHOWCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMHIDECRS"
+> FT_MHIDECRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMXLIMIT"
+> FT_MXLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMYLIMIT"
+> FT_MYLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+> FT_MINREGION()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32450"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MCONOFF( 10, 10, 11, 20 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32454"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMCURSOR"
+></A
+>Function  FT_MCURSOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MCURSOR( [ &#60;lState&#62; ] ) --&#62; lCursorState&#13;</PRE
+><P
+> This function works like most Clipper state functions.  If no value
+ is sent to FT_MCURSOR() it will return the state of the mouse cursor.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32459"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lState&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical indicating whether to set the mouse cursor on.
+ .T. - set mouse cursor on
+ .F. - set mouse cursor off
+ If omitted, no change is made to cursor state</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A logical indicating the previous mouse cursor state.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32474"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF !( FT_MCURSOR() )
+ FT_MCURSOR( .T. )
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32478"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMDBLCLK"
+></A
+>Function  FT_MDBLCLK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MDBLCLK( [ &#60;nClick&#62; [, &#60;nButton&#62; [, &#60;nInterval&#62; [, &#60;nRow&#62; [, &#60;nCol&#62;;
+ [, &#60;nTime&#62; ] ] ] ] ] ] ) --&#62; lIsDoubleClk&#13;</PRE
+><P
+> This is a mouse meta function that checks for the presence
+ of a double click.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32483"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nClick&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value.  If it is zero FT_MDBLCLK() will not
+ check for the first press but rather will simply wait the
+ specified period for a single press. This is useful if this
+ routine is called from one which in turn responded to a button
+ press. If it is not present or not equal to 0, then FT_MDBLCLK()
+ will wait for two presses of the specified button.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nButton&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the mouse button number
+ 0 - Left   Button
+ 1 - Right  Button
+ 2 - Middle Button [if applicable]
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInterval&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the interval to wait for the first click if requested
+ and the time to wait for the second. If not present then defaults
+ to 0.5 second.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the row number for the mouse cursor location for a double click
+ to be valid. If not present then the current position is taken as
+ the valid location.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the column number for the mouse cursor location for a double
+ click to be valid. If not present, then the current position is
+ taken as the valid location.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTime&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional start time for the waiting period for the first
+ click (of either one or two requested). If not given then the
+ time is set at entry into this routine. This is useful when this
+ routine is called from another routine which was called in
+ response to a mouse click but needs to know if a double click
+ has occurred</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .T. if a double click was detected.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTPRS"
+> FT_MBUTPRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMBUTREL"
+> FT_MBUTREL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32529"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF FT_MISREGION( 10, 10, 11, 20 ) .AND.;
+ FT_MDBLCLK(0,1,,FT_MGETX(),FT_MGETY())  &#38;&#38; double click, right button
+ &#38;&#38; at current location with
+ &#38;&#38; default interval
+ 
+ MnuItem1()
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32533"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMDEFCRS"
+></A
+>Function  FT_MDEFCRS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MDEFCRS( &#60;nCrsType&#62;, &#60;nScrMask&#62;, &#60;nCrsMask&#62; ) --&#62; NIL&#13;</PRE
+><P
+> In text mode the mouse cursor can either be a software generated or
+ the actual hardware cursor. This routine allows one choose between them.
+ The software cursor is the default and its effect on the character it
+ covers is determined by the screen mask and the cursor mask. Both of
+ these masks are 16 bit values (which in Clipper are passed as standard
+ numerical values). The 16 bit masks are arranged in a manner identical
+ to the way information is stored for each character cell on the screen.
+ The low order 8 bits represent the actual character displayed while the
+ high order bits represent the display atributes such as blinking,
+ intensity and forground and background colors. The mask is represented in
+ the diagram below:</P
+><P
+> 
+ Bit:     |15    |14      12|11       |10       8|7       0|
+ Function:|blink |background|intensity|foreground|character|</P
+><P
+> 
+ Blinking and high intensity are on when the bit is 1. The background and
+ foreground indicate which colors are used for each. The software mouse
+ cursor uses these two values by taking the mask from the screen cell it
+ is on and performing a logical AND on each bit with the screen mask
+ value. The result is then logically XOR'ed with the cursor mask value.
+ Thus to keep the character the same but invert the foreground and
+ background colors the following values would be used:</P
+><P
+> 
+ Bit:     |15    |14      12|11       |10       8|7       0|
+ Function:|blink |background|intensity|foreground|character|
+ screen:  |  0   |   111    |    0    |   111    |11111111 | =30719
+ cursor:  |  0   |   111    |    0    |   111    |00000000 | =30464</P
+><P
+> 
+ The hardware cursor is the text cursor provided by the video board. One
+ specifies the range of scan lines which are on using &lt;nScrMask&gt; and
+ &lt;nCrsMask&gt;. The range of values is dependant upon the type of monitor.
+ The first scan line is 0.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32542"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCrsType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the cursor type. A value of 0 indicates the software cursor
+ (the default) and a value of 1 indicates the hardware cursor.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nScrMask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the screen mask for the software cursor or the first scan
+ line of the hardware cursor. See the description for more
+ information.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCrsMask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the cursor mask for the software cursor of the last scan
+ line of the hardware cursor. See the description for more
+ information.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32567"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETCOORD"
+></A
+>Function  FT_MGETCOORD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETPOS( @&#60;nX&#62;, @&#60;nY&#62; ) --&#62; nButtonStatus&#13;</PRE
+><P
+> Loads cursor position into x and y coordinates passed by reference and
+ returns the button status.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32572"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the mouse X position in text
+ screen coordinates.  It must be passed by reference.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the mouse Y position in text
+ screen coordinates.  It must be passed by reference.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> an integer representing button status
+ 
+ - 0 for no button pressed
+ - 1 for left pressed
+ - 2 for right pressed
+ - 3 for left and right pressed
+ - 4 for middle pressed
+ - 5 for left and middle pressed
+ - 6 for right and middle pressed
+ - 7 for all three buttons pressed</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPOS"
+> FT_MSETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+> FT_MDEFCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32601"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL nX, nY
+ LOCAL nButton := FT_MGETCOORD( @nX, @nY )
+ ? "Mouse Row    :", nX
+ ? "Mouse Column :", nY
+ ? "Button Status:", nButton</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32605"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETPAGE"
+></A
+>Function  FT_MGETPAGE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETPAGE() --&#62; &#60;nPage&#62;&#13;</PRE
+><P
+> This function gets the display page for the mouse cursor. The valid
+ values of nPage is dependent upon the display mode. See FT_SETVPG()
+ for changing the current video page</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32610"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nPage&gt;  is the display page on which the mouse is currently being
+ displayed</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPAGE"
+> FT_MSETPAGE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32625"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nPage = FT_MGETPAGE( )  // Gets the mouse cursor display page</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32629"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETPOS"
+></A
+>Function  FT_MGETPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETPOS( @&#60;nX&#62;, @&#60;nY&#62; ) --&#62; nButtonStatus&#13;</PRE
+><P
+> Loads cursor position into x and y coordinates passed by reference and
+ returns the button status. The coordinate system in text mode has
+ eight virtual coordinates per character cell. Thus x=16 means that you
+ are in the Row 2. The values returned by this routine when in text mode
+ and with mouse driver versions 6 and above are multiples of 8. We have
+ experience with drivers prior to that version</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32634"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the mouse X position in virtual
+ screen coordinates.  It must be passed by reference.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the mouse Y position in virtual
+ screen coordinates.  It must be passed by reference.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> an integer representing button status
+ 
+ - 0 for no button pressed
+ - 1 for left pressed
+ - 2 for right pressed
+ - 3 for left and right pressed
+ - 4 for middle pressed
+ - 5 for left and middle pressed
+ - 6 for right and middle pressed
+ - 7 for all three buttons pressed</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+> FT_MGETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPOS"
+> FT_MSETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+> FT_MDEFCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32663"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL nX, nY
+ LOCAL nButton := FT_MGETPOS( @nX, @nY )
+ ? "Mouse Row    :", nX
+ ? "Mouse Column :", nY
+ ? "Button Status:", nButton</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32667"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETSENS"
+></A
+>Function  FT_MGETSENS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETSENS( &#60;@nHoriz&#62;, &#60;@nVert&#62;, &#60;@nDouble&#62; ) --&#62; NIL&#13;</PRE
+><P
+> This function returns the current values of the mouse movement
+ sensitivity parameters. The first two arguments control the amount of
+ movement necessary to move the cursor a given amount. The third argument
+ determines the threshold above which the mouse moves at twice the normal
+ speed. For further discussion of these values see FT_MSETSENS()</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32672"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHoriz&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the percentage of maximum horizontal sensitivity. PASSED
+ BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nVert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the percentage of maximum vertical sensitivity. PASSED BY
+ REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDouble&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the percentage of maximum sensitivity for doubling the
+ mouse cursor's speed on the screen. PASSED BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETSENS"
+> FT_MSETSENS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32702"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETSENS( @nHoriz, @nVert, @nDouble )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32706"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETX"
+></A
+>Function  FT_MGETX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETX() --&#62; nRowPos&#13;</PRE
+><P
+> Retrieves mouse's row position in virtual screen coordinates. The
+ values returned are multiples of 8 when in text mode and with at least
+ Microsoft drivers 6 and above.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32711"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nRowPos&gt; which is the row position of mouse in virtual screen
+ coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+> FT_MGETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+> FT_MDEFCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32729"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_MGETX()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32733"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMGETY"
+></A
+>Function  FT_MGETY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MGETY() --&#62; nColPos&#13;</PRE
+><P
+> Retrieves mouse's column position in virtual screen coordinates. The
+ values returned are multiples of 8 when in text mode and with at least
+ Microsoft drivers 6 and above.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32738"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nColPos&gt; Column position of mouse in virtual screen coordinates</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+> FT_MGETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+> FT_MDEFCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32756"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_MGETY()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32760"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMHIDECRS"
+></A
+>Function  FT_MHIDECRS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MHIDECRS() --&#62; NIL&#13;</PRE
+><P
+> Hides the mouse cursor. Make sure to turn the mouse cursor off when
+ redrawing screens.  The mouse cursor dutifully saves the screen
+ under it, so if you draw over the mouse cursor it will create a
+ "hole" in your screen when you move the mouse cursor.</P
+><P
+> 
+ Note: A call to FT_MHIDECRS() decrements a mouse driver variable
+ which indicates whether the cursor is shown. The cursor is visible
+ only when the variable = 0. Thus multiple calls to FT_MHIDECRS()
+ require an equal number of calls to FT_MSHOWCRS() before the cursor
+ will again be visible. Once the variable is 0 calls to FT_MSHOWCRS()
+ does not increment the varaible above 0.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32766"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSHOWCRS"
+> FT_MSHOWCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMCONOFF"
+> FT_MCONOFF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32782"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MHIDECRS()
+ @ 10, 10 to 20, 20
+ FT_MSHOWCRS()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32786"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMINIT"
+></A
+>Function  FT_MINIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MINIT() --&#62; lMouseStatus&#13;</PRE
+><P
+> Initializes the mouse drive, associated variables and returns mouse
+ status. It checks to see if the mouse has been previously initialized
+ and if so it does not reinitialize. The row and column limits of mouse
+ movement is set to the maximum for the current video mode.
+ Use FT_MSHOWCRS() to display the mouse cursor.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32791"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An logical representing the mouse status (.F. == mouse not installed)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMRESET"
+> FT_MRESET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32806"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF .NOT. FT_MINIT()
+ ? "No mouse driver is installed"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32810"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMINREGION"
+></A
+>Function  FT_MINREGION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MINREGION( &#60;nT&#62;, &#60;nL&#62;, &#60;nB&#62;, &#60;nR&#62; ) --&#62; lInRegion&#13;</PRE
+><P
+> This function will check to see if the mouse cursor is
+ within the confines of the specified region.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32815"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nT&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nL&gt; &lt;nB&gt; &lt;nR&gt; are the four corners of the screen region.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .T. if mouse is in specified region.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMXLIMIT"
+> FT_MXLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMYLIMIT"
+> FT_MYLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+> FT_MINREGION()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32837"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF FT_MINREGION( 10, 10, 11, 20 )
+ nChoice := 1
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32841"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMMICKEYS"
+></A
+>Function  FT_MMICKEYS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MMICKEYS( @&#60;nX&#62;, @&#60;nY&#62; ) --&#62; NIL&#13;</PRE
+><P
+> &lt;nX&gt; and &lt;nY&gt; must be passed by reference to receive
+ the mouse position in Mickeys.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32846"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the vertical mickey count.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a variable that will receive the horizontal mickey count.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32866"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MMICKEYS( @nX, @nY )
+ ? nX
+ ? nY</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32870"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMRESET"
+></A
+>Function  FT_MRESET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MRESET() --&#62; nMouseStatus&#13;</PRE
+><P
+> Resets the mouse driver and returns mouse status. Use FT_MSHOWCRS()
+ to display the mouse cursor. The mouse is set to allow it to cover the
+ complete screen (as defined by MAXCOL() and MAXROW()). This is necessary
+ because at least some versions of the mouse drivers do not operate
+ according to the documentation when confronted with a 43 or 50 line
+ screen.</P
+><P
+> 
+ Normally, FT_MINIT() should be used to initialize the mouse since it
+ will not reinitialize if already done.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32876"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An integer representing the mouse status (0 == mouse not installed)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINIT"
+> FT_MINIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSHOWCRS"
+> FT_MSHOWCRS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32892"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF Empty( FT_MRESET() )
+ ? "No mouse driver is installed"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32896"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMSETCOORD"
+></A
+>Function  FT_MSETCOORD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETPOS( &#60;nX&#62;, &#60;nY&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Positions mouse cursor on screen using text (normal row and column)
+ coordinates.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32901"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the desired mouse row.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the desired mouse column.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+> FT_MGETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPOS"
+> FT_MSETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMDEFCRS"
+> FT_MDEFCRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32931"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETCOORD( 10, 20 )     // position mouse cursor at row 10, col 20
+ // in text screen coordinates</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32935"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMSETPAGE"
+></A
+>Function  FT_MSETPAGE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETPAGE( &#60;@nPage&#62; ) --&#62; NIL&#13;</PRE
+><P
+> This function sets the display page for the mouse cursor. The valid
+ values of nPage is dependent upon the display mode. See FT_SETVPG()
+ for changing the current video page</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32940"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPage&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the desired display page.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPAGE"
+> FT_MGETPAGE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32960"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETPAGE( 1 )  // Sets the mouse cursor to page 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32964"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMSETPOS"
+></A
+>Function  FT_MSETPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETPOS( &#60;nX&#62;, &#60;nY&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Positions mouse cursor on screen. The virtual coordinate system in text
+ mode has eight virtual coordinates per character cell. Thus x=16 means
+ that you are in the Row 2.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32969"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the desired mouse row.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the desired mouse column.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETCOORD"
+> FT_MGETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETCOORD"
+> FT_MSETCOORD()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32998"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETPOS( 10, 20 )     // position mouse cursor at row 10, col 20
+ // in virtual screen coordinates</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33002"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMSETSENS"
+></A
+>Function  FT_MSETSENS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETSENS( &#60;nHoriz&#62;, &#60;nVert&#62;, &#60;nDouble&#62; ) --&#62; NIL&#13;</PRE
+><P
+> This function allows one to control the mouse movement sensitivity. The
+ first two arguments control the amount of movement necessary to move
+ the cursor a given amount. The values are the percentage of full
+ sensitivity and the default values after installing the mouse driver
+ is 50 which represents approximately 3.2 inches of horizontal
+ and 2 inches of vertical mouse movement to cover the entire screen.
+ A value of 100 requires about 0.9 inches of horizontal mouse movement to
+ cover the screen from one side to the other.</P
+><P
+> 
+ The third argument changes the threshold above which the mouse moves at
+ twice the normal speed. The value is a percentage of full sensitivity
+ with the default (50) providing doubling at 64 mickeys per second.</P
+><P
+> 
+ NOTE: These values are NOT restored after resetting the mouse driver/
+ hardware. A well behaved application should reset them to the
+ original value upon exiting.</P
+><P
+> 
+ NOTE: The above description is counter to all of the documentation
+ I have available. However, it does not work the way it is documented
+ with Microsoft drivers versions 6.16, 6.24, 7.04 and 8.20. The above
+ movement values are documented to be the number of mickeys per 8
+ pixels and the double speed value as the number mickeys per second
+ required to double the speed. Each of these values should range from 1
+ to 32K but the driver forces a maximum of 100. Also the documentation
+ states that resetting the mouse will reset these values. This is not
+ the case.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33012"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHoriz&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the sensitivity of the mouse on the horizontal axis. This
+ value is the integer percentage of highest sensitivity and
+ thus has a range of 1 to 100. The default value is 50 and at
+ this setting about 3.2 inches of mouse movement will move
+ the mouse cursor across the screen. If NIL, the current
+ value is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nVert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the relative sensitivity of the mouse on the vertical axis.
+ The value is an integer percentage of the highest sensitivity
+ and thus has a range of 1 to 100. The default value is 50 and
+ requires about 2 inches of mouse movement will move from top
+ to bottom of the screen.If NIL, the current value is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDouble&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the relative sensitivity of the mouse to doubling the ratio
+ of cursor movement to mouse movement. The default
+ value is 50. If NIL, the current value is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETSENS"
+> FT_MGETSENS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33042"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSETSENS( 75,75,50 )     // a little less mouse movement necessary.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33046"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMSHOWCRS"
+></A
+>Function  FT_MSHOWCRS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MSHOWCRS() --&#62; NIL&#13;</PRE
+><P
+> Displays the mouse cursor. Make sure to turn the mouse cursor off
+ when redrawing screens.  The mouse cursor dutifully saves the screen
+ under it, so if you draw over the mouse cursor it will create a "hole"
+ in your screen when you move the mouse cursor.</P
+><P
+> 
+ Note: A call to FT_MHIDECRS() decrements a mouse driver variable
+ which indicates whether the cursor is shown. The cursor is visible
+ only when the variable = 0. Thus multiple calls to FT_MHIDECRS()
+ require an equal number of calls to FT_MSHOWCRS() before the cursor
+ will again be visible. Once the variable is 0 calls to FT_MSHOWCRS()
+ does not increment the variable above 0.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33052"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMHIDECRS"
+> FT_MHIDECRS()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMCONOFF"
+> FT_MCONOFF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33068"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF Empty( FT_MRESET() )
+ FT_MSHOWCRS()
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33072"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMVERSION"
+></A
+>Function  FT_MVERSION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MVERSION( &#60;@nMinor&#62;, &#60;@nType&#62;, &#60;@nIRQ&#62;  ) --&#62; &#60;nMajor&#62;&#13;</PRE
+><P
+> This function returns the current values of the mouse driver version
+ number and type. The major version would be 6 and the minor version
+ would be 10 if the driver were version 6.10. The mouse type and IRQ
+ numbers are also returned.</P
+><P
+> 
+ NOTE: It appears that the values reported when one starts the mouse
+ driver actually have the minor version in hexadecimal! Thus on bootup
+ my screen showed 6.24 but this routine returned 30 for the minor version
+ number!</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33078"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMinor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the Minor version number. PASSED BY REFERENCE.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the Mouse type. PASSED BY REFERENCE.
+ 1 = Bus Mouse
+ 2 = Serial Mouse
+ 3 = InPort Mouse
+ 4 = PS/2 Mouse
+ 5 = HP Mouse</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nIRQ&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    is the IRQ number used for the mouse. PASSED BY REFERENCE.
+ 0 = PS/2
+ 2,3,4,5 or 7 = IRQ number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nMajor&gt; which is the major version number of the mouse driver.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETSENS"
+> FT_MSETSENS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33108"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nMajor=FT_MVERSION( @nMinor )
+ IF (nMajor+nMinor/100)&#60;7.2
+ ? "Sorry mouse driver version too old"
+ RETURN
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33112"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMXLIMIT"
+></A
+>Function  FT_MXLIMIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MXLIMIT( &#60;nX1&#62;, &#60;nX2&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Set maximum vertical bounds of mouse using virtual screen coordinates.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33117"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the top row limit.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nX2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the bottom row limit.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMYLIMIT"
+> FT_MYLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+> FT_MINREGION()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33143"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MXLIMIT( 10, 20 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33147"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMYLIMIT"
+></A
+>Function  FT_MYLIMIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MYLIMIT( &#60;nY1&#62;, &#60;nY2&#62; ) --&#62; NIL&#13;</PRE
+><P
+> Set maximum horizontal bounds of mouse using virtual screen coordinates.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33152"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the left column limit.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the right column limit.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMXLIMIT"
+> FT_MXLIMIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+> FT_MINREGION()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33178"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MYLIMIT( 10, 20 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33182"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSCANCODE"
+></A
+>Function  FT_SCANCODE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SCANCODE() --&#62; cCode&#13;</PRE
+><P
+> FT_SCANCODE() enables you to distinguish the different scancodes
+ of similar keys (such as Grey minus versus regular minus), thus
+ increasing the number of keys your input routine can recognize.</P
+><P
+> 
+ It works like INKEY(), in that it waits for a key to be pressed.
+ The scan code consists of two bytes, which are returned as a
+ two-character string.</P
+><P
+> 
+ For example, calling FT_SCANCODE() and pressing the Grey-minus
+ key will return a two character string:</P
+><P
+> 
+ CHR(45) + CHR(74)</P
+><P
+> 
+ LASTKEY() is not updated by FT_SCANCODE(), so don't try to
+ test LASTKEY() to see what was pressed during an FT_SCANCODE()
+ call.  Simply assign the return value to a variable and test
+ that (see the test driver below).</P
+><P
+> 
+ *  This was adapted from a short C routine posted by John Kaster on
+ NANFORUM.  It was written in Clipper to help demonstrate the
+ FT_INT86 function of the Nanforum Toolkit.</P
+><P
+> 
+ This program requires FT_INT86().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33193"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A two-character string, corresponding to the keyboard scan code.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33203"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cKey := FT_SCANCODE()
+ 
+ [grey-] returns:  CHR(45) + CHR(74)
+ [-]     returns:  CHR(45) + CHR(12)
+ [grey+] returns:  CHR(43) + CHR(78)
+ [+]     returns:  CHR(43) + CHR(13)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33207"
+></A
+><H3
+><A
+NAME="FUNCTIONINKEY"
+></A
+>Function  INKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> INKEY([&#60;nSeconds&#62;] [,&#60;nEventMask&#62;]) --&#62; nInkeyCode&#13;</PRE
+><P
+>  INKEY() is a keyboard function that extracts the next key pending in the
+ keyboard buffer or the next mouse event and returns a value representing
+ the appropriate event.  The value is also saved internally and can be
+ accessed using LASTKEY().  If the &lt;nSeconds&gt; argument is specified and
+ there are no pending keys in the buffer, program execution pauses until
+ a key appears in the keyboard buffer, or an appropriate mouse event
+ occurs, or &lt;nSeconds&gt; has elapsed.  The time INKEY() waits is based on
+ the operating system clock and is not related to the microprocessor
+ speed.  If &lt;nSeconds&gt; is zero, program execution pauses until a key is
+ pressed or an unmasked mouse event occurs.  Note that INKEY() is not a
+ wait state and, therefore, SET KEYs are not active.</P
+><P
+> 
+ INKEY() is similar to the NEXTKEY() function.  Unlike INKEY(), however,
+ NEXTKEY() reads, but does not extract the key or mouse event.  This is
+ useful when you need to test for a key or mouse event without processing
+ it.</P
+><P
+> 
+ INKEY() is the basic primitive of the xClipper system for fetching
+ keys and mouse events.  It is used for polling the keyboard, polling the
+ mouse, or pausing program execution.  As an example, you can use INKEY()
+ to terminate commands with a record scope such as LIST, LABEL FORM, and
+ REPORT FORM by including it in a WHILE condition.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33216"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSeconds&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the number of seconds INKEY() waits for a
+ keypress or mouse event.  You can specify the value in increments as
+ small as one-tenth of a second.  Specifying zero halts the program until
+ a key is pressed or an unmasked event occurs.  If &lt;nSeconds&gt; is omitted,
+ INKEY() does not wait for a keypress or mouse event.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEventMask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies which events should be returned.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEventMask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is omitted, the value represented by the
+ SET EVENTMASK command will be used.  If there is no
+ SET EVENTMASK command issued, the default value that will be used is 128
+ (keyboard events only).
+ 
+ This parameter can be any combination of the following values.  The
+ constant values listed below are defined in Inkey.ch.
+ 
+ Inkey Constants
+ ------------------------------------------------------------------------
+ Constant       Value     Descripiton
+ ------------------------------------------------------------------------
+ INKEY_MOVE     1         Mouse Events
+ INKEY_LDOWN    2         Mouse Left Click Down
+ INKEY_LUP      4         Mouse Left Click Up
+ INKEY_RDOWN    8         Mouse Right Click Down
+ INKEY_RUP      16        Mouse Right Click Up
+ INKEY_KEYBOARD 128       Keyboard Events
+ INKEY_ALL      159       All Mouse and Keyboard Events
+ ------------------------------------------------------------------------
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> INKEY() returns an integer value from -39 to 386 for keyboard events and
+ integer values from 1001 to 1007 for mouse events.  This value
+ identifies either the key extracted from the keyboard buffer or the
+ mouse event that last occurred.  If the keyboard buffer is empty, and no
+ mouse events are taking place, INKEY() returns 0.  INKEY() returns
+ values for all ASCII characters, function, Alt+Function, Ctrl+Function,
+ Alt+Letter, and Ctrl+Letter key combinations.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCHR"
+> CHR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+>LASTKEY()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONNEXTKEY"
+>NEXTKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33248"
+></A
+><H3
+><A
+NAME="FUNCTIONLASTKEY"
+></A
+>Function  LASTKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LASTKEY() --&#62; nInkeyCode&#13;</PRE
+><P
+>  LASTKEY() is a function that reports the INKEY() value of the last key
+ fetched from the keyboard buffer by the INKEY() function, or the next
+ mouse event, or a wait state such as ACCEPT, INPUT, READ, WAIT,
+ ACHOICE(), DBEDIT(), or MEMOEDIT().  The time LASTKEY() waits is based
+ on the operating system clock and is not related to the microprocessor
+ speed.  LASTKEY() retains its current value until another key is fetched
+ from the keyboard buffer.</P
+><P
+> 
+ LASTKEY() has a number of uses which include:</P
+><P
+> 
+ Determining the key that terminates a READ</P
+><P
+> 
+ Determining the key that exits the current Get object within a
+ user-defined function, invoked by a VALID clause</P
+><P
+> 
+ Identifying an exception key in the user function of
+ ACHOICE(), DBEDIT(), or MEMOEDIT()</P
+><P
+> 
+ LASTKEY() is also used with UPDATED() to determine if any Get object's
+ buffer was changed during a READ.</P
+><P
+> 
+ LASTKEY() is related to NEXTKEY() and READKEY().  NEXTKEY() reads the
+ current key pending in the keyboard buffer without removing it.  Use
+ NEXTKEY() instead of INKEY() when polling for a key.</P
+><P
+> 
+ For a complete list of INKEY() codes and Inkey.ch constants for each
+ key, refer to the Error Messages and Appendices Guide.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33262"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LASTKEY() returns an integer value from -39 to 386 for keyboard events
+ and integer values from 1001 to 1007 for mouse events.  This value
+ identifies either the key extracted from the keyboard buffer or the
+ mouse event that last occurred.  If the keyboard buffer is empty, and no
+ mouse events are taking place, LASTKEY() returns 0.  LASTKEY() returns
+ values for all ASCII characters, function, Alt+Function, Alt+Letter, and
+ Ctrl+Letter key combinations.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCHR"
+> CHR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+>INKEY()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONNEXTKEY"
+>NEXTKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33279"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example illustrates a typical application of LASTKEY() to
+ test the key that exits a READ.  If the user exits with any key other
+ than Esc and a GET was changed, the specified database file is
+ updated:
+ 
+ #include "Inkey.ch"
+ //
+ USE Customer NEW
+ MEMVAR-&#62;balance = Customer-&#62;Balance
+ @ 10, 10 SAY "Current Balance" GET MEMVAR-&#62;balance
+ READ
+ //
+ IF (LASTKEY() != K_ESC) .AND. UPDATED()
+ REPLACE Customer-&#62;Balance WITH MEMVAR-&#62;balance
+ 
+ ENDIF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33283"
+></A
+><H3
+><A
+NAME="FUNCTIONMCOL"
+></A
+>Function  MCOL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MCOL() --&#62; nCurrentMouseColumn&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33289"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MCOL() returns the mouse cursor's current screen column position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMROW"
+> MROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33304"
+></A
+><H3
+><A
+NAME="FUNCTIONMDBLCLK"
+></A
+>Function  MDBLCLK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MDBLCLK([&#60;nNewSpeed&#62;]) --&#62; nSpeed&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33310"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNewSpeed&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the maximum allowable amount of time between mouse
+ key presses for a double-click to be detected.  This is measured in
+ milliseconds.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MDBLCLK() returns the current double-click speed threshold.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33325"
+></A
+><H3
+><A
+NAME="FUNCTIONMHIDE"
+></A
+>Function  MHIDE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MHIDE() --&#62; NIL&#13;</PRE
+><P
+> MHIDE() hides the mouse pointer.  This function should be used together
+ with MSHOW() when updating the screen.  It is important to hide the
+ mouse pointer before changing the screen display and then show it again
+ after the change.</P
+><P
+> 
+ Note:  The MSETCURSOR() function should be used in place of MSHOW()
+ and MHIDE().  It is kept here for compatibility.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33331"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MHIDE() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+> MSHOW()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCLIP"
+>MSETCLIP()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+>MSETCURSOR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33348"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses the mouse pointer:
+ 
+ MHIDE()
+ @ 10, 20 say "Hi there, folks!!!"
+ MSHOW()
+ 
+ You can automate calls to MHIDE()/MSHOW() by modifying parts
+ of your header files (*.ch).  For example:
+ 
+ #command @ &#60;row&#62;, &#60;col&#62; SAY &#60;xpr&#62;;[PICTURE &#60;pic&#62;];
+ [COLOR &#60;color&#62;];
+ =&#62; DEVPOS(&#60;row&#62;, &#60;col&#62;);
+ DEVOUTPict(&#60;xpr&#62;, &#60;pic&#62; [, &#60;color&#62;])
+ // Can be changed to
+ #command @ &#60;row&#62;, &#60;col&#62; SAY &#60;xpr&#62;;
+ [PICTURE &#60;pic&#62;];
+ 
+ [COLOR &#60;color&#62;];
+ 
+ =&#62; MHIDE();
+ DEVPOS(&#60;row&#62;, &#60;col&#62;);
+ DEVOUTPict(&#60;xpr&#62;, &#60;pic&#62; [, &#60;color&#62;]);
+ MSHOW()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33352"
+></A
+><H3
+><A
+NAME="FUNCTIONMLEFTDOWN"
+></A
+>Function  MLEFTDOWN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MLEFTDOWN() --&#62; lIsPressed&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33358"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MLEFTDOWN() returns true (.T.) if the left mouse button is currently
+ pressed; otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMRIGHTDOWN"
+> MRIGHTDOWN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33373"
+></A
+><H3
+><A
+NAME="FUNCTIONMPRESENT"
+></A
+>Function  MPRESENT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MPRESENT() --&#62; lIsPresent&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33379"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MPRESENT() returns true (.T.) if a mouse is present; otherwise, it
+ returns false (.F.).</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33389"
+></A
+><H3
+><A
+NAME="FUNCTIONMRESTSTATE"
+></A
+>Function  MRESTSTATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MRESTSTATE( &#60;cSaveState&#62; ) --&#62; NIL&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33395"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MRESTSTATE() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSAVESTATE"
+> MSAVESTATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33410"
+></A
+><H3
+><A
+NAME="FUNCTIONMRIGHTDOWN"
+></A
+>Function  MRIGHTDOWN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MRIGHTDOWN() --&#62; lIsPressed&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33416"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MRIGHTDOWN() returns true (.T.) if the mouse's right button is currently
+ pressed; otherwise, it returns false (.F.) .</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMLEFTDOWN"
+> MLEFTDOWN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33431"
+></A
+><H3
+><A
+NAME="FUNCTIONMROW"
+></A
+>Function  MROW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MROW() --&#62; nCurrentMouseRow&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33437"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MROW() returns the mouse cursor's current screen row position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMCOL"
+> MCOL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33452"
+></A
+><H3
+><A
+NAME="FUNCTIONMSAVESTATE"
+></A
+>Function  MSAVESTATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSAVESTATE() --&#62; cSaveState&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33458"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSAVESTATE() returns a character string that describes the mouse's
+ current state.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMRESTSTATE"
+> MRESTSTATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33473"
+></A
+><H3
+><A
+NAME="FUNCTIONMSETBOUNDS"
+></A
+>Function  MSETBOUNDS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSETBOUNDS( [&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;] ) --&#62; NIL&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33479"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the uppermost allowable screen row for the mouse
+ cursor or 0 if omitted.  This value may range from 0 to the value of</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBottom&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the leftmost allowable screen column for the mouse
+ or 0 if omitted.  This value may range from 0 to the value of &lt;nRight&gt;.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBottom&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the bottommost screen row for the mouse cursor or
+ MaxRow() if omitted.  This value may range from the value of &lt;nTop&gt; to
+ MaxRow().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the rightmost allowable screen column for the mouse
+ or MaxCol() if omitted.  This value may range from the value of &lt;nLeft&gt;
+ to MaxCol().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSETBOUNDS() always returns NIL.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33514"
+></A
+><H3
+><A
+NAME="FUNCTIONMSETCLIP"
+></A
+>Function  MSETCLIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSETCLIP([&#60;nCoord list&#62;], [&#60;nMode&#62;]) --&#62; aRegions&#13;</PRE
+><P
+> MSETCLIP() controls mouse pointer movements.  It allows you to restrict
+ movement to a region.  When an inclusion is defined and the user tries
+ to move the mouse pointer out of the rectangle, it remains stuck at the
+ edge of the area, but is still visible.  This mode should be used to
+ restrict the range of user choices for moving or clicking the mouse.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33519"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCoord List&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> contains the coordinates of the inclusion region which
+ is represented as a comma-separated list of four coordinates whose
+ interpretation differs depending on mode.  If &lt;nMode&gt; is LLM_COOR_TEXT,
+ the coordinates look like this:  &lt;nTop&gt;, &lt;nLeft&gt;, &lt;nBottom&gt;, &lt;nRight&gt;.
+ If &lt;nMode&gt; is LLM_COOR_GRAPH, the coordinates are &lt;nX1&gt;, &lt;nY1&gt;, &lt;nX2&gt;,</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nY2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is one of the following two constants:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+> Coordinate Type Constants
+------------------------------------------------------------------------
+Constant       Description
+------------------------------------------------------------------------
+LLM_COOR_TEXT  Specifies that the coordinates are given in lines and
+columns of text
+LLM_COOR_GRAPH Specifies that the coordinates are given in pixels
+------------------------------------------------------------------------</PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSETCLIP() returns an array of coordinate information.  The coordinates
+ of the inclusion area are given in pixels and then in row/col format:
+ 
+ aRegions := {nIncX1, nIncY1, nIncX2, nIncY2,;
+ nIncR1, nIncC1, nIncR2, nIncC2,;
+ nCoorType}</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMHIDE"
+> MHIDE()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+>MSETCURSOR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+>MSHOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33552"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example shows how the MSETCLIP() function works:
+ 
+ // Define an inclusion region and save the current
+ // inclusion region in the array aOldInc
+ 
+ aOldInc := MSETCLIP(5, 5, 20, 75,LLM_COOR_TEXT)
+ // Code for selecting objects and buttons
+ // Restore old inclusion region
+ MSETCLIP(aOldInc[5],;
+ aOldInc[6],;
+ aOldInc[7],;
+ aOldInc[8],;
+ LLG_VIDEO_TEXT)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33556"
+></A
+><H3
+><A
+NAME="FUNCTIONMSETCURSOR"
+></A
+>Function  MSETCURSOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSETCURSOR( [&#60;lVisible&#62;] ) --&#62; lIsVisible&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33562"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lVisible&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> determines if the mouse should be visible.  Set to true
+ (.T.) to show the mouse cursor and set to false (.F.) to hide it.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSETCURSOR() returns the mouse cursor's previous visibility state if
+ &lt;lVisible&gt; is passed; otherwise, it returns its current visibility
+ state.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33577"
+></A
+><H3
+><A
+NAME="FUNCTIONMSETPOS"
+></A
+>Function  MSETPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSETPOS( &#60;nRow&#62;, &#60;nCol&#62; ) --&#62; NIL&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33583"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSETPOS() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+> MSETCURSOR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMROW"
+>MROW()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMCOL"
+>MCOL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33600"
+></A
+><H3
+><A
+NAME="FUNCTIONMSHOW"
+></A
+>Function  MSHOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSHOW([&#60;nCol&#62;, &#60;nRow&#62;, &#60;nStyle&#62;]) --&#62; nOldCursorShape
+ MSHOW([&#60;nCursorShape&#62;]) --&#62; nOldCursorShape
+ MSHOW([&#60;nCursorShape&#62;] | [&#60;nCol&#62;, &#60;nRow&#62;, &#60;nMode&#62;]) --&#62; nOldCursorShape&#13;</PRE
+><P
+> MSHOW() displays the mouse pointer.  It is generally used without
+ parameters to simply redisplay the mouse pointer at the position where
+ MHIDE() hid it (assuming the user has not moved the mouse).</P
+><P
+> 
+ It is possible to use two sets of parameters with this function.</P
+><P
+> 
+ Specify the coordinates where the pointer should appear.  In
+ this case, three parameters must be passed:  the mode and its
+ coordinates.  In text mode, coordinates are passed as row and column.
+ In graphic mode, you can pass either text or graphic coordinates.
+ Conversion is done automatically based on the font size of the
+ current characters.</P
+><P
+> 
+ You can also specify the mouse cursor shape to be displayed
+ when the mouse is visible.  This feature is available in graphic mode
+ only.</P
+><P
+> 
+ It is important to hide the mouse pointer before any new screen display,
+ and then show it again.  See MHIDE() for further information on how to
+ do this.</P
+><P
+> 
+ Note:  The MSETCURSOR() function should be used in place of MSHOW()
+ and MHIDE().  It is kept here for compatibility.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33610"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nRow&gt; define mouse pointer coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStyle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the style of mouse pointer using one of the
+ constants listed in the table below:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+> Text and Graph Constants
+------------------------------------------------------------------------
+Constant       Description
+------------------------------------------------------------------------
+LLM_COOR_TEXT  Specifies that the coordinates are passed in rows and
+columns of text
+LLM_COOR_GRAPH Specifies that the coordinates are passed in pixels
+------------------------------------------------------------------------</PRE
+>
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCursorShape&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the mouse cursor
+ shape.  The following are the possible values predefined for this
+ parameter:
+ 
+ Cursor Shape Constants
+ ------------------------------------------------------------------------
+ Constant                 Description
+ ------------------------------------------------------------------------
+ LLM_CURSOR_ARROW         Standard pointer
+ LLM_CURSOR_SIZE_NS       North South arrow
+ LLM_CURSOR_SIZE_WE       West East arrow
+ LLM_CURSOR_SIZE_NW_SE    North-West South-East arrow
+ LLM_CURSOR_SIZE_NE_SW    North-East South-West arrow
+ LLM_CURSOR_HAND          Hand
+ LLM_CURSOR_FINGER        Hand with one pointing finger
+ LLM_CURSOR_CROSS         Cross
+ LLM_CURSOR_WAIT          Hourglass
+ ------------------------------------------------------------------------</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MSHOW() returns the previously used cursor shape.  See &lt;nCurorShape&gt;
+ above for further information.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMHIDE"
+> MHIDE()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCLIP"
+>MSETCLIP()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+>MSHOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33643"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example hides the mouse pointer before using an
+ @...SAY command and then redisplays it.  Next, the mouse pointer is
+ repositioned, hidden, changed to an hour-glass, and then restored to
+ its previous shape:
+ 
+ LOCAL nOldShape := 0
+ MHIDE()
+ @ 10, 20 say "Hello world!!!"
+ MSHOW()
+ // Position the pointer at the center of the screen
+ MSHOW(MAXCOL() / 2, MAXROW() / 2, LLM_COOR_TEXT)
+ MHIDE()
+ @ 10, 20 say "Please wait ..."
+ // Display an hour glass cursor
+ nOldShape := MSHOW(LLM_CURSOR_WAIT)
+ // Your code
+ // Restore previously used cursor
+ MSHOW(nOldShape)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33647"
+></A
+><H3
+><A
+NAME="FUNCTIONMSTATE"
+></A
+>Function  MSTATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MSTATE() --&#62; aState | 0&#13;</PRE
+><P
+> MSTATE() returns information on the mouse state, i.e., the current
+ screen position of the pointer, the state of the left and right mouse
+ buttons, the visibility status of the mouse pointer, and the version of
+ the mouse driver.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33652"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> <PRE
+CLASS="PROGRAMLISTING"
+> MSTATE() Return Array
+ ------------------------------------------------------------------------
+ Position                 Description
+ ------------------------------------------------------------------------
+ LLM_STATE_X              State of X position.
+ LLM_STATE_Y              State of Y position.
+ LLM_STATE_ROW            State of column position.
+ LLM_STATE_COL            State of line position.
+ LLM_STATE_LEFT           State of left mouse button.  LLM_BUTTON_DOWN
+ means down and LLM_BUTTON_UP means up.
+ LLM_STATE_RIGHT          State of right mouse button.  LLM_BUTTON_DOWN
+ means down and LLM_BUTTON_UP means up.
+ LLM_STATE_VISIBLE        State of mouse pointer.  True (.T) means
+ visible and false (.F) means invisible.  (See
+ MSHOW() and MHIDE() for more information.)
+ LLM_STATE_DRIVER         Indicates version of mouse driver.
+ LLM_STATE_SHAPE          Mouse cursor shape.  (See note below.)
+ LLM_STATE_CLICKS_LEFT    Number of left clicks since last MSTATE() call.
+ LLM_STATE_CLICKS_RIGHT   Number of right clicks since last MSTATE()
+ call.
+ ------------------------------------------------------------------------
+ </PRE
+>
+ 
+ Note:  The following are the possible values predefined for this
+ return array position:  LLM_CURSOR_ARROW, LLM_CURSOR_SIZE_NS,
+ LLM_CURSOR_SIZE_WE, LLM_CURSOR_SIZE_NW_SE, LLM_CURSOR_SIZE_NE_SW,
+ LLM_CURSOR_HAND, LLM_CURSOR_FINGER, LLM_CURSOR_CROSS, LLM_CURSOR_WAIT.
+ For a description of these values see the MSHOW() table of Cursor Shape
+ Constants.
+ 
+ If the mouse is missing, 0 is returned.
+ 
+ The number of clicks (i.e., aState[LLM_STATE_CLICKS_LEFT] and
+ aState[LLM_STATE_CLICKS_RIGHT]) is reset each time MSTATE() is called.
+ Use MSTATE() to reset the mouse settings when needed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMHIDE"
+> MHIDE()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+>MSETCURSOR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+>MSHOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33670"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example shows how to use MSTATE() function:
+ 
+ // Show the mouse pointer
+ MSHOW()
+ DO WHILE INKEY() != K_ESC
+ // Retrieve mouse state
+ aState := MSTATE()
+ // Line position
+ @ 24,  0 SAY aState[LLM_STATE_ROW]
+ // Column position
+ @ 24, 10 SAY aState[LLM_STATE_COL]
+ // State of left button
+ @ 24, 20 SAY "Left" + If(aState[LLM_STATE_LEFT]==LLM_BUTTON_DOWN,;
+ "Down"  ,;
+ "Up")
+ // State of right button
+ @ 24, 40 SAY "Right " + If(aState[LLM_STATE_RIGHT]==    ;
+ LLM_BUTTON_DOWN ,;
+ "Down"  ,;
+ "Up")
+ ENDDO
+ // Hide the mouse pointer
+ MHIDE()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33674"
+></A
+><H3
+><A
+NAME="FUNCTIONNEXTKEY"
+></A
+>Function  NEXTKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> NEXTKEY() --&#62; nInkeyCode&#13;</PRE
+><P
+> NEXTKEY() is a function that reads the keystroke pending in the keyboard
+ buffer or the next mouse event without removing it.  The value returned
+ is the INKEY() code of the key pressed--the same value as returned by
+ INKEY() and LASTKEY().  NEXTKEY() returns values for all ASCII
+ characters as well as function, Alt+function, Ctrl+function, Alt+letter,
+ and Ctrl+letter key combinations.</P
+><P
+> 
+ NEXTKEY() is like the INKEY() function but differs in one fundamental
+ respect.  INKEY() removes the pending key from the keyboard buffer and
+ updates LASTKEY() with the value of the key.  by contrast NEXTKEY()
+ reads, but does not remove the key from the keyboard buffer, and does
+ not update LASTKEY().</P
+><P
+> 
+ Since NEXTKEY() does not remove the key from the keyboard buffer, it can
+ be used to poll the keyboard, and then pass control to a routine that
+ uses a wait state or INKEY() to actually fetch the key from the buffer.</P
+><P
+> 
+ For a complete list of INKEY() codes and Inkey.ch constants.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33682"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NEXTKEY() returns an integer numeric value ranging from -39 to 386 for
+ keyboard events and integer values from 1001 to 1007 for mouse events.
+ This value identifies either the key extracted from the keyboard buffer
+ or the mouse event that last occurred.  If the keyboard buffer is empty
+ and no mouse events are taking place, NEXTKEY() returns zero.  If SET
+ TYPEAHEAD is zero, NEXTKEY() always returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+> INKEY()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+>LASTKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33698"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example places an Esc key in the keyboard buffer, and
+ then shows the differences between INKEY(), LASTKEY(), and NEXTKEY():
+ 
+ #include "Inkey.ch"
+ //
+ CLEAR TYPEAHEAD
+ KEYBOARD CHR(K_ESC)
+ //
+ ? NEXTKEY(), LASTKEY()            // Result: 27 0
+ ? INKEY(), LASTKEY()              // Result: 27 27
+ ? NEXTKEY()                       // Result: 0
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN33702"
+></A
+><H3
+><A
+NAME="FUNCTIONSETKEY"
+></A
+>Function  SETKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETKEY(&#60;nInkeyCode&#62;, [&#60;bAction&#62;]) --&#62; bCurrentAction&#13;</PRE
+><P
+> SETKEY() is a keyboard function that sets or queries the automatic
+ action associated with a particular key during a wait state.  A wait
+ state is any mode that extracts keys from the keyboard except for
+ INKEY(), but including ACHOICE(), DBEDIT(), MEMOEDIT(), ACCEPT, INPUT,
+ READ and WAIT.  Up to 32 keys may be assigned at any one time.  At
+ startup, the system automatically assigns the F1 key to execute a
+ procedure or user-defined function named Help.</P
+><P
+> 
+ When an assigned key is pressed during a wait state, the EVAL() function
+ evaluates the associated &lt;bAction&gt; and the parameters, PROCNAME(),
+ PROCLINE(), and READVAR().  It is, however, not necessary to list
+ arguments when specifying &lt;bAction&gt; if you do not plan to use them
+ within the action block.</P
+><P
+> 
+ SETKEY() is like the SET KEY command which associates a procedure
+ invocation with a key.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN33709"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInkeyCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the INKEY() value of the key to be associated or
+ queried.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bAction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies a code block that is automatically executed
+ whenever the specified key is pressed during a wait state.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETKEY() returns the action block currently associated with the
+ specified key, or NIL if the specified key is not currently associated
+ with a block.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+> EVAL()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+>INKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN33735"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code fragment associates an action block with a key, and
+ then, after getting a key using INKEY(), executes it with the EVAL()
+ function:
+ 
+ #include "Inkey.ch"
+ SETKEY(K_DN, {|cProc, nLine, cVar| MyProc(cProc, ;
+ nLine, cVar)})
+ .
+ . &#60;statements&#62;
+ .
+ DO WHILE .T.
+ nKey := INKEY(0)
+ DO CASE
+ CASE (bAction := SETKEY(nKey)) != NIL
+ EVAL(bAction, PROCNAME(), PROCLINE(), READVAR())
+ CASE nKey = K_PGUP
+ Previous()
+ CASE nKey = K_PGDN
+ Next()
+ CASE nKey = K_ESC
+ EXIT
+ ENDCASE
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categdatetime.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categgame.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DATE/TIME</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>GAME</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

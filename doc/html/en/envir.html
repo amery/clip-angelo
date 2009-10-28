@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Environment variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="The original text of the GPL license"
+HREF="x250.html"><LINK
+REL="NEXT"
+TITLE="Following environment variables are defines libraries names:"
+HREF="x309.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x250.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x309.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="ENVIR">Chapter 4. Environment variables</H1
+><P
+>The administration of the compilation and linking processes is possible with the help of environment variables. Often CLIP is using in C+PO (C+PO programs - pseudocode inside C program - quickly compilated, small size, slow operation, but managed by standard tools of C developer. Theoretically, decompilation is possible, though this is much more complex than for PO files) mode. Thats why the part of variables relate to the C-compiler. You must know - CLIP (like CA-Clipper) not a compiler itself. Mostly it's translate to pseudocode (bytecode) with a C-wrapper. So, there is no needing to change the default values of thats kind of variables.</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN257">4.1. This variables are standart, but here is their description:</H1
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>CC</DT
+><DD
+><P
+>		name of C compiler (default=='gcc')
+	  </P
+><P
+></P
+></DD
+><DT
+>CFLAGS</DT
+><DD
+><P
+>		options for C compiler (default=='')
+	  </P
+></DD
+><DT
+>COMPILE_FLAG</DT
+><DD
+><P
+>		'compile-only' flag for C compiler (default=='-c')
+	  </P
+></DD
+><DT
+>COPT</DT
+><DD
+><P
+>		optimisation flag for C compiler (default=='-O2')
+	  </P
+></DD
+><DT
+>CDBG</DT
+><DD
+><P
+>		debug flag for C compiler (default=='-g') 
+	  </P
+></DD
+><DT
+>OUT_FLAG</DT
+><DD
+><P
+>		output flag for C compiler (default=='-o')
+	  </P
+></DD
+><DT
+>INCLUDE_FLAG</DT
+><DD
+><P
+>		include flag for C compiler (default=='-I')
+	  </P
+></DD
+><DT
+>OBJSUF</DT
+><DD
+><P
+>		suffix for output object files (default=='.o')
+	  </P
+></DD
+><DT
+>SOBJSUF</DT
+><DD
+><P
+>		suffix for output shared files (default=='.so')
+	  </P
+></DD
+><DT
+>LIBSUF</DT
+><DD
+><P
+>		suffix for library files (default=='.a')
+	  </P
+></DD
+><DT
+>SLIBSUF</DT
+><DD
+><P
+>		suffix for shared library files (default=='.so')
+	  </P
+></DD
+><DT
+>SFLAGS</DT
+><DD
+><P
+>		options for C compiler - shared version (default=='-shared')
+	  </P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x250.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x309.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>The original text of the GPL license</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Following environment variables are defines libraries names:</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Rational arithmetic</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="PREVIOUS"
+TITLE="Hexadecimal constants"
+HREF="lehex.html"><LINK
+REL="NEXT"
+TITLE="Associative arrays"
+HREF="lemap.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="lehex.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Language extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="lemap.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LERATIONAL">10.7. Rational arithmetic</H1
+><P
+>CLIP supports rational numbers with unlimited precision.
+To realize this possibility, it's necessary to write somewhere in
+program</P
+><PRE
+CLASS="PROGRAMLISTING"
+>set(_SET_RATIONAL,.t.)</PRE
+><P
+>or via the command described in <B
+CLASS="COMMAND"
+>clip.ch</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>SET RATIONAL ON</PRE
+><P
+>The compiler does not support large numbers as
+constants, that is, when using expressions like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>x := 123456789012345678901234567890</PRE
+><P
+>the compiler will make an attempt to
+transform this into double, and only coprocessor knows what the result
+will be :) To actually use large constants, it's necessary to use
+<A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL()</A
+> function. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>x:=val("123456789012345678901234567890")
+x:=val("1234.567890")
+x:=val("1/3")</PRE
+><P
+><A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> function
+now supports <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>len</I
+></SPAN
+>, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>dec</I
+></SPAN
+>
+parameters of any value. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? str(val("7/3"),1000,990)</PRE
+><P
+>Also, <A
+HREF="categunderconstruction.html#FUNCTIONRSTR"
+>RSTR()</A
+> function is added, and this gives a
+string in the form of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>numerator/denominator</I
+></SPAN
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? rstr(val("7/3")+val("5/6")) // 19/6</PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="lehex.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="lemap.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Hexadecimal constants</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Associative arrays</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

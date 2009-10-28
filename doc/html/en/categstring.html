@@ -1,0 +1,9797 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>STRING</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="INFO"
+HREF="categinfo.html"><LINK
+REL="NEXT"
+TITLE="NUMERIC"
+HREF="categnumeric.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categinfo.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categnumeric.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGSTRING">STRING</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN24841"
+></A
+><H2
+>Name</H2
+>STRING&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN24844"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;sResString&#62;        <A
+HREF="categstring.html#FUNCTIONADDSLASHES"
+>ADDSLASHES(&#60;sString&#62;)</A
+>
+cTrimString         <A
+HREF="categstring.html#FUNCTIONALLTRIM"
+>ALLTRIM(&#60;cString&#62;)</A
+>
+nCode               <A
+HREF="categstring.html#FUNCTIONASC"
+>ASC(&#60;cExp&#62;)</A
+>
+nPosition           <A
+HREF="categstring.html#FUNCTIONAT"
+>AT(&#60;cSearch&#62;, &#60;cTarget&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONBETWEEN"
+>BETWEEN(&#60;TargetData&#62;, &#60;FirstData&#62;, &#60;SecondData&#62;)</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONBUNZIP2"
+>bUnZip2(&#60;cData&#62;)</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2"
+>bZip2(&#60;cData&#62; [,&#60;nLevel&#62;])</A
+>
+cChar               <A
+HREF="categstring.html#FUNCTIONCHR"
+>CHR(&#60;nCode&#62;)</A
+>
+&#60;nCount&#62;            <A
+HREF="categstring.html#FUNCTIONCSCOUNT"
+>CSCOUNT(&#60;ÓChar&#62;, &#60;sString&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONDSTRTON"
+>DSTRTON(&#60;sString&#62;)</A
+>
+lEmpty              <A
+HREF="categarray.html#FUNCTIONEMPTY"
+>EMPTY(&#60;exp&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONFSTRTON"
+>FSTRTON(&#60;sString&#62;)</A
+>
+nPos                <A
+HREF="categstring.html#FUNCTIONFTAT2"
+>FT_AT2( &#60;cSearch&#62;, &#60;cTarget&#62; [, &#60;nOccurs&#62; [, &#60;lCaseSens&#62; ] ] )</A
+>
+cByte               <A
+HREF="categstring.html#FUNCTIONFTBITCLR"
+>FT_BITCLR( &#60;cByte&#62;, &#60;nBitPos&#62; )</A
+>
+cByte               <A
+HREF="categstring.html#FUNCTIONFTBITSET"
+>FT_BITSET( &#60;cByte&#62;, &#60;nBitPos&#62; )</A
+>
+cByte               <A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+>FT_BYTEAND( &#60;cByte1&#62;, &#60;cByte2&#62; )</A
+>
+cNewByte            <A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+>FT_BYTENEG( &#60;cByte&#62; )</A
+>
+cNewByte            <A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+>FT_BYTENOT( &#60;cByte&#62; )</A
+>
+cNewByte            <A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+>FT_BYTEOR( &#60;cByte1&#62;, &#60;cByte2&#62; )</A
+>
+cNewByte            <A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+>FT_BYTEXOR( &#60;cByte1&#62;, &#60;cByte2&#62; )</A
+>
+&#60;nStringPosition&#62;   <A
+HREF="categstring.html#FUNCTIONFTFINDITH"
+>FT_FINDITH( &#60;cCheckFor&#62;, &#60;cCheckIn&#62;, &#60;nWhichOccurrence&#62; ; [, &#60;lIgnoreCase&#62; ] )</A
+>
+lResult             <A
+HREF="categstring.html#FUNCTIONFTISBIT"
+>FT_ISBIT( &#60;cByte&#62;, &#60;nBitPos&#62; )</A
+>
+lResult             <A
+HREF="categstring.html#FUNCTIONFTISBITON"
+>FT_ISBITON( &#60;nNumber&#62;, &#60;nBit&#62; )</A
+>
+cMetaPhone          <A
+HREF="categstring.html#FUNCTIONFTMETAPH"
+>FT_METAPH( &#60;cName&#62; [, &#60;nSize&#62; ] )</A
+>
+&#60;nOccurrences&#62;      <A
+HREF="categstring.html#FUNCTIONFTNOOCCUR"
+>FT_NOOCCUR( &#60;cCheckFor&#62;, &#60;cCheckIn&#62; ; [, &#60;lIgnoreCase&#62; ] )</A
+>
+&#60;cPrinterFormat&#62;    <A
+HREF="categstring.html#FUNCTIONFTPCHR"
+>FT_PCHR( &#60;cString&#62; )</A
+>
+TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONGLOB"
+>GLOB(&#60;sString&#62;, &#60;sReg&#62;, [&#60;lIgnoreCase&#62;])</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONGUNZIP"
+>gUnZip(&#60;cData&#62;)</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONGZIP"
+>gZip(&#60;cData&#62; [,&#60;nLevel&#62;])</A
+>
+cConvertedString    <A
+HREF="categstring.html#FUNCTIONHARDCR"
+>HARDCR(&#60;cString&#62;)</A
+>
+&#60;sStr&#62;              <A
+HREF="categstring.html#FUNCTIONHASHNAME"
+>HASHNAME(&#60;nHashCode&#62;)</A
+>
+&#60;nHashCode&#62;         <A
+HREF="categstring.html#FUNCTIONHASHSTR"
+>HASHSTR(&#60;sStr&#62;)</A
+>
+lBoolean            <A
+HREF="categstring.html#FUNCTIONISALPHA"
+>ISALPHA(&#60;cString&#62;)</A
+>
+lBoolean            <A
+HREF="categstring.html#FUNCTIONISDIGIT"
+>ISDIGIT(&#60;cString&#62;)</A
+>
+lBoolean            <A
+HREF="categstring.html#FUNCTIONISLOWER"
+>ISLOWER(&#60;cString&#62;)</A
+>
+lBoolean            <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER(&#60;cString&#62;)</A
+>
+cSubString          <A
+HREF="categstring.html#FUNCTIONLEFT"
+>LEFT(&#60;cString&#62;, &#60;nCount&#62;)</A
+>
+nCount              <A
+HREF="categarray.html#FUNCTIONLEN"
+>LEN(&#60;cString&#62; | &#60;aTarget&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONLIKE"
+>LIKE(&#60;sMask&#62;, &#60;sString&#62;)</A
+>
+cLowerString        <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER(&#60;cString&#62;)</A
+>
+cTrimString         <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM(&#60;cString&#62;)</A
+>
+cTextBuffer         <A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+>MEMOEDIT([&#60;cString&#62;], [&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;], [&#60;lEditMode&#62;], [&#60;cUserFunction&#62;], [&#60;nLineLength&#62;], [&#60;nTabSize&#62;], [&#60;nTextBufferRow&#62;], [&#60;nTextBufferColumn&#62;], [&#60;nWindowRow&#62;], [&#60;nWindowColumn&#62;])</A
+>
+cLine               <A
+HREF="categstring.html#FUNCTIONMEMOLINE"
+>MEMOLINE(&#60;cString&#62;,[&#60;nLineLength&#62;],[&#60;nLineNumber&#62;], [&#60;nTabSize&#62;],[&#60;lWrap&#62;])</A
+>
+cString             <A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+>MEMOREAD(&#60;cFile&#62;)</A
+>
+cNewString          <A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+>MEMOTRAN(&#60;cString&#62;,[&#60;cReplaceHardCR&#62;],[&#60;cReplaceSoftCR&#62;])</A
+>
+lSuccess            <A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+>MEMOWRIT(&#60;cFile&#62;, &#60;cString&#62;)</A
+>
+nLines              <A
+HREF="categstring.html#FUNCTIONMLCOUNT"
+>MLCOUNT(&#60;cString&#62;, [&#60;nLineLength&#62;],[&#60;nTabSize&#62;], [&#60;lWrap&#62;])</A
+>
+nPosition           <A
+HREF="categstring.html#FUNCTIONMLCTOPOS"
+>MLCTOPOS(&#60;cText&#62;, &#60;nWidth&#62;, &#60;nLine&#62;, &#60;nCol&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;])</A
+>
+nPosition           <A
+HREF="categstring.html#FUNCTIONMLPOS"
+>MLPOS(&#60;cString&#62;, &#60;nLineLength&#62;, &#60;nLine&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;])</A
+>
+aLineColumn         <A
+HREF="categstring.html#FUNCTIONMPOSTOLC"
+>MPOSTOLC(&#60;cText&#62;, &#60;nWidth&#62;, &#60;nPos&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;])</A
+>
+cPaddedString       <A
+HREF="categstring.html#FUNCTIONPAD"
+>PADL(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;]) --&#62; cPaddedString PADC(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;]) --&#62; cPaddedString PADR(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;])</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+nPosition           <A
+HREF="categstring.html#FUNCTIONRAT"
+>RAT(&#60;cSearch&#62;, &#60;cTarget&#62;)</A
+>
+cRepeatedString     <A
+HREF="categstring.html#FUNCTIONREPLICATE"
+>REPLICATE(&#60;cString&#62;, &#60;nCount&#62;)</A
+>
+cSubString          <A
+HREF="categstring.html#FUNCTIONRIGHT"
+>RIGHT(&#60;cString&#62;, &#60;nCount&#62;)</A
+>
+cTrimString         <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>[R]TRIM(&#60;cString&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONSEARCH"
+>SEARCH(&#60;sPattern&#62;, &#60;sString&#62;, [@aReg], [&#60;nFrom&#62;], [&#60;nRange&#62;])</A
+>
+cSoundexString      <A
+HREF="categstring.html#FUNCTIONSOUNDEX"
+>SOUNDEX(&#60;cString&#62;)</A
+>
+cSpaces             <A
+HREF="categstring.html#FUNCTIONSPACE"
+>SPACE(&#60;nCount&#62;)</A
+>
+cNumber             <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR(&#60;nNumber&#62;, [&#60;nLength&#62;], [&#60;nDecimals&#62;])</A
+>
+&#60;vData&#62;             <A
+HREF="categstring.html#FUNCTIONSTR2VAR"
+>STR2VAR(&#60;sUucodeStr&#62;)</A
+>
+cNewString          <A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+>STRTRAN(&#60;cString&#62;, &#60;cSearch&#62;,[&#60;cReplace&#62;], [&#60;nStart&#62;], [&#60;nCount&#62;])</A
+>
+cNewString          <A
+HREF="categstring.html#FUNCTIONSTUFF"
+>STUFF(&#60;cString&#62;, &#60;nStart&#62;,	&#60;nDelete&#62;, &#60;cInsert&#62;)</A
+>
+cSubstring          <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR(&#60;cString&#62;, &#60;nStart&#62;, [&#60;nCount&#62;])</A
+>
+cFormatString       <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM(&#60;exp&#62;, &#60;cSayPicture&#62;)</A
+>
+cTrimString         <A
+HREF="categstring.html#FUNCTIONTRIM"
+>TRIM(&#60;cString&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+cUpperString        <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER(&#60;cString&#62;)</A
+>
+nNumber             <A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL(&#60;cNumber&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+>
+&#60;sUucodeStr&#62;        <A
+HREF="categstring.html#FUNCTIONVAR2STR"
+>VAR2STR(&#60;vData&#62;)</A
+>
+&#60;nCode&#62;             <A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+>WEIGHTASC(&#60;sString&#62;)</A
+>
+&#60;sTable&#62;            <A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+>WEIGHTTABLE()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN24920"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24923"
+></A
+><H3
+><A
+NAME="FUNCTIONADDSLASHES"
+></A
+>Function  ADDSLASHES() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  ADDSLASHES(&#60;sString&#62;) 	--&#62; &#60;sResString&#62;
+ &#13;</PRE
+><P
+>  ADDSLASHES() returns a string &lt;sResString&gt; with backslashes before characters that need to be quoted
+ in database queries etc. These characters are single quote ('), double quote
+ ("), backslash (\) and NUL (the null byte).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24929"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ADDSLASHES() returns string with backward slashes (\).
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24944"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  str := "Name='Ann'"
+ ADDSLASHES(str) 		// --&#62; Name=\'Ann\'
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24948"
+></A
+><H3
+><A
+NAME="FUNCTIONALLTRIM"
+></A
+>Function  ALLTRIM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ALLTRIM(&#60;cString&#62;) --&#62; cTrimString&#13;</PRE
+><P
+>  ALLTRIM() is a character function that removes both leading and trailing
+ spaces from a string.  It is related to LTRIM() and RTRIM() which remove
+ leading and trailing spaces, respectively.  The inverse of ALLTRIM(),
+ LTRIM(), and RTRIM() are the PADC(), PADL(), and PADR() functions which
+ center, left-justify, or right-justify character strings by padding them
+ with fill characters.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24955"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character expression to be trimmed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ALLTRIM() returns a character string with leading and trailing spaces
+ removed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONLTRIM"
+> LTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONPAD"
+>PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONTRIM"
+>TRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24978"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates a string with both leading and trailing
+ spaces, and then trims them with ALLTRIM():
+ 
+ cString := SPACE(10) + "string" + SPACE(10)
+ ? LEN(cString)                     // Result: 26
+ ? LEN(ALLTRIM(cString))            // Result: 6
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24982"
+></A
+><H3
+><A
+NAME="FUNCTIONASC"
+></A
+>Function  ASC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ASC(&#60;cExp&#62;) --&#62; nCode&#13;</PRE
+><P
+>  ASC() is a character conversion function that returns the ASCII value of the
+ leftmost character in a character string.  ASC() is used primarily on
+ expressions requiring numeric calculations on the ASCII value of a
+ character.  CHR() and ASC() are inverse functions.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24989"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character expression to be converted to a number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ASC() returns an integer numeric value in the range of zero to 255,
+ representing the ASCII value of &lt;cExp&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCHR"
+> CHR()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+>INKEY()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25012"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate various results of ASC():
+ 
+ ? ASC("A")                     // Result: 65
+ ? ASC("Apple")                 // Result: 65
+ ? ASC("a")                     // Result: 97
+ ? ASC("Z") - ASC("A")          // Result: 25
+ ? ASC("")                      // Result: 0
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25016"
+></A
+><H3
+><A
+NAME="FUNCTIONAT"
+></A
+>Function  AT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> AT(&#60;cSearch&#62;, &#60;cTarget&#62;) --&#62; nPosition&#13;</PRE
+><P
+>  AT() is a character function used to determine the position of the first
+ occurrence of a character substring within another string.  If you only
+ need to know whether a substring exists within another string, use the $
+ operator.  To find the last instance of a substring within a string, use
+ RAT().</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25023"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSearch&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character substring to be searched for.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be searched.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> AT() returns the position of the first instance of &lt;cSearch&gt; within
+ &lt;cTarget&gt; as an integer numeric value.  If &lt;cSearch&gt; is not found, AT()
+ returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRAT"
+> RAT()</A
+> <A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+>STRTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25050"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples show typical use of AT():
+ 
+ ? AT("a", "abcde")                  // Result: 1
+ ? AT("bcd", "abcde")                // Result: 2
+ ? AT("a", "bcde")                   // Result: 0
+ 
+ This example splits a character string based on the position
+ of a comma within the target string:
+ 
+ cTarget := "Langtree, Lilly"
+ ? SUBSTR(cTarget, 1, AT(",", cTarget) - 1)
+ // Result: Langtree
+ 
+ ? SUBSTR(cTarget, AT(",", cTarget) + 2)
+ // Result: Lilly
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25054"
+></A
+><H3
+><A
+NAME="FUNCTIONBETWEEN"
+></A
+>Function  BETWEEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BETWEEN(&#60;TargetData&#62;, &#60;FirstData&#62;, &#60;SecondData&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  BETWEEN() compares source value &lt;TargetData&gt; with &lt;FirstData&gt; and &lt;SecondData&gt;.
+ If &lt;TargetData&gt; locate between &lt;FirstData&gt; and &lt;SecondData&gt;, BETWEEN() returns TRUE.</P
+><P
+> 
+ All values must be ones type (string, numeric, date, ...).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25060"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;TargetData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is the source value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;FirstData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is the first data to comparing</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;SecondData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is the second data to comparing</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if &lt;TargetData&gt; is located berween &lt;FirstData&gt;  and &lt;SecondData&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25085"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  val := 12345
+ BETWEEN(val, 0, 99999) 	// --&#62; TRUE
+ BETWEEN(val, 99999, 0) 	// --&#62; TRUE
+ BETWEEN(val, 9999, 0) 	// --&#62; FALSE
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25089"
+></A
+><H3
+><A
+NAME="FUNCTIONCHR"
+></A
+>Function  CHR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CHR(&#60;nCode&#62;) --&#62; cChar&#13;</PRE
+><P
+>  CHR() is a numeric conversion function that converts an ASCII code to a
+ character.  It is the inverse of ASC().  CHR() serves a number of common
+ tasks including:</P
+><P
+> 
+ Sending control codes and graphics characters to the screen or
+ printer</P
+><P
+> 
+ Ringing the bell</P
+><P
+> 
+ Converting INKEY() return values to characters</P
+><P
+> 
+ Stuffing the keyboard buffer</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25100"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an ASCII code in the range of zero to 255.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> CHR() returns a single character value whose ASCII code is specified by
+ &lt;nCode&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONASC"
+> ASC()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+>INKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25121"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate CHR() with various arguments:
+ 
+ ? CHR(72)                    // Result: H
+ ? CHR(ASC("A") + 32)         // Result: a
+ ? CHR(7)                     // Result: bell sounds
+ 
+ These lines of code show the difference between a null string
+ and the null character:
+ 
+ ? LEN("")                   // Result: 0
+ ? LEN(CHR(0))               // Result: 1
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25125"
+></A
+><H3
+><A
+NAME="FUNCTIONCSCOUNT"
+></A
+>Function  CSCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CSCOUNT(&#60;ÓChar&#62;, &#60;sString&#62;) 	--&#62; &#60;nCount&#62;&#13;</PRE
+><P
+> CSCOUNT() returns the number of character &lt;cChar&gt; into source string &lt;sString&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25130"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cChar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Character, is the character for scanning.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the number of character &lt;cChar&gt; into source string &lt;sString&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25150"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  CSCOUNT("s", "substr") 		// --&#62; 2
+ CSCOUNT("a", "substr") 		// --&#62; 0
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25154"
+></A
+><H3
+><A
+NAME="FUNCTIONDSTRTON"
+></A
+>Function  DSTRTON() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DSTRTON(&#60;sString&#62;) 	--&#62; &#60;nValue&#62;&#13;</PRE
+><P
+> DSTRTON() converts string &lt;sString&gt; to numeric values and returns it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25159"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the numeric value, what was converted from string with "double"  representation.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25174"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  fread(file,@str,8)&#60;BR&#62;
+ n=DSTRTON(str)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25178"
+></A
+><H3
+><A
+NAME="FUNCTIONFSTRTON"
+></A
+>Function  FSTRTON() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FSTRTON(&#60;sString&#62;) 	--&#62; &#60;nValue&#62;&#13;</PRE
+><P
+> FSTRTON() converts string &lt;sString&gt; to numeric values and returns it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25183"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the numeric value, what was converted from string with "float"  representation.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25198"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  fread(file,@str,8)&#60;BR&#62;
+ n=FSTRTON(str)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25202"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAT2"
+></A
+>Function  FT_AT2() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AT2( &#60;cSearch&#62;, &#60;cTarget&#62; [, &#60;nOccurs&#62; [, &#60;lCaseSens&#62; ] ] ) --&#62; nPos&#13;</PRE
+><P
+> This function will find the nth occurrence of a substring
+ within a string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25207"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSearch&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character substring to search for.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to search.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOccurs&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the occurrence of cSearch to look for,
+ defaults to 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lCaseSens&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical value denoting case sensitivity.
+ If .F., then search is NOT sensitive to case,
+ defaults to .T.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The position of the nth occurrence of a substring</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTFINDITH"
+> FT_FINDITH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25242"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cSearch := "t"
+ cTarget := "This is the day that the Lord has made."
+ 
+ FT_AT2( cSearch, cTarget )            // Returns ( 9 )
+ 
+ FT_AT2( cSearch, cTarget, 2 )         // Returns ( 17 )
+ 
+ FT_AT2( cSearch, cTarget, 2, .F. )    // Returns ( 9 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25246"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBITCLR"
+></A
+>Function  FT_BITCLR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BITCLR( &#60;cByte&#62;, &#60;nBitPos&#62; ) --&#62; cByte&#13;</PRE
+><P
+> In effect, ANDs argument byte with a byte that has all bits set except
+ the target bit.  If bit is already clear (0), it remains clear.
+ Note: Calls FT_ISBIT() which is also in this Library.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25252"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character from CHR(0) to CHR(255).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBitPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 0 to 7 conforming to standard
+ right-to-left bit numbering convention and representing the
+ position of the bit within the byte.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns new byte, with designated bit cleared (reset).
+ If parameters are faulty, returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBITSET"
+> FT_BITSET()</A
+> <A
+HREF="categstring.html#FUNCTIONFTISBIT"
+> FT_ISBIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25278"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code would clear bit 4 in a byte represented by CHR(115):
+ 
+ cNewByte := FT_BITCLR( CHR(115), 4 )
+ ? ASC( cNewbyte )         // result: 99
+ ? cNewByte                // result: 'c'
+ 
+ This code would clear bit 5 in the byte represented by letter 'A':
+ 
+ FT_BITCLR( 'A', 5 )       // result: 'A', since
+ // bit 5 already clear
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25282"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBITSET"
+></A
+>Function  FT_BITSET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BITSET( &#60;cByte&#62;, &#60;nBitPos&#62; ) --&#62; cByte&#13;</PRE
+><P
+> In effect, ORs argument byte with a byte that has only the target bit
+ set.  If bit is already set, it remains set.
+ Note: Calls FT_ISBIT() which is also in this Library.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25288"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character from CHR(0) to CHR(255).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBitPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 0 to 7 conforming to standard right-to-left
+ bit numbering convention and representing the position of the bit
+ within the byte.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns new byte, with designated bit set.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBITCLR"
+> FT_BITCLR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTISBIT"
+> FT_ISBIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25314"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code would set bit 4 in a byte represented by CHR(107):
+ 
+ cNewbyte := FT_BITSET( CHR(107), 4 )
+ ? ASC( cNewbyte )             // result: 123
+ ? cNewbyte                    // result: '{'
+ 
+ 
+ This code would set bit 5 in the byte represented by the letter 'A'.
+ 
+ ? FT_BITSET( 'A', 5 )         // result: 'a'
+ // bit 5 set
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25318"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYTEAND"
+></A
+>Function  FT_BYTEAND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYTEAND( &#60;cByte1&#62;, &#60;cByte2&#62; ) --&#62; cByte&#13;</PRE
+><P
+> Can be used for any bit-wise masking operation.  In effect, this is a
+ bit-by-bit AND operation.  Equivalent to AND assembler instruction.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25324"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;cByte2&gt; are characters from CHR(0) TO CHR(255).
+ May be passed in CHR() form, as character literals, or as expressions
+ evaluating to CHR() values.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns resulting byte, in CHR() form.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+> FT_BYTEOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+> FT_BYTEXOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+> FT_BYTENOT()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+> FT_BYTENEG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25347"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code would mask out the high nibble (four most significant bits)
+ of the byte represented by chr(123) and leave the low nibble bits as in
+ the parameter byte.
+ 
+ cNewbyte := FT_BYTEAND( CHR(123), CHR(15) )
+ ? asc(cNewByte)  // result: 11
+ ? cNewByte       // result: non-printable character
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25351"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYTENEG"
+></A
+>Function  FT_BYTENEG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYTENEG( &#60;cByte&#62; ) --&#62; cNewByte&#13;</PRE
+><P
+> Can be used for bit-wise byte manipulation.  In effect, this is a
+ bit-by-bit NEG (two's complement) operation.  Equivalent to NEG
+ assembler instruction.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25357"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character from CHR(0) to CHR(255).
+ May be passed in CHR() form, as character literal, or
+ as expression evaluating to CHR() value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns resulting byte, in CHR() form.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+> FT_BYTEOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+> FT_BYTEXOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+> FT_BYTENOT()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+> FT_BYTEAND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25380"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code performs a bit-wise NEG on byte represented by CHR(32):
+ 
+ cNewByte := FT_BYTENOT(CHR(32))
+ ? asc(cNewByte)                  // result: 224
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25384"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYTENOT"
+></A
+>Function  FT_BYTENOT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYTENOT( &#60;cByte&#62; ) --&#62; cNewByte&#13;</PRE
+><P
+> Can be used for bitwise byte manipulation.  In effect, this is a
+ bit-by-bit NOT (one's complement) operation.  Equivalent to the
+ NOT assembler instruction.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25390"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character from CHR(0) to CHR(255).
+ May be passed in CHR() form, as character literal, or
+ as expression evaluating to CHR() value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns resulting byte, in CHR() form.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+> FT_BYTEOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+> FT_BYTEXOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+> FT_BYTENEG()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+> FT_BYTEAND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25413"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code performs a bitwise NOT on byte represented by CHR(32):
+ 
+ cNewByte := FT_BYTENOT( CHR(32) )
+ ? ASC( cNewByte )     // result: 223
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25417"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYTEOR"
+></A
+>Function  FT_BYTEOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYTEOR( &#60;cByte1&#62;, &#60;cByte2&#62; ) --&#62; cNewByte&#13;</PRE
+><P
+> Can be used for bit-wise byte manipulation.  In effect, this is a
+ bit-by-bit OR operation.  Equivalent to OR assembler instruction.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25423"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;cByte2&gt; are characters from CHR(0) TO CHR(255).
+ May be passed in CHR() form, as character literals, or as
+ expressions evaluating to CHR() values.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns resulting byte, in CHR() form.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+> FT_BYTEXOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+> FT_BYTENOT()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+> FT_BYTENEG()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+> FT_BYTEAND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25446"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code performs a bit-wise OR on two bytes represented
+ by CHR(20) and CHR(10):
+ 
+ cNewByte := FT_BYTEOR( CHR(20), CHR(10) )
+ ? ASC( cNewByte )  // result: 30
+ ? cNewByte         // result: non-printable character
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25450"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBYTEXOR"
+></A
+>Function  FT_BYTEXOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BYTEXOR( &#60;cByte1&#62;, &#60;cByte2&#62; ) --&#62; cNewByte&#13;</PRE
+><P
+> Can be used for bit-wise byte manipulation.  In effect, this is a
+ bit-by-bit XOR operation.  Equivalent to XOR assembler instruction.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25456"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;cByte2&gt; are characters from CHR(0) to CHR(255).
+ May be passed in CHR() form, as character literals, or
+ as expressions evaluating to CHR() values.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns resulting byte, in CHR() form.  If parameters are faulty,
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+> FT_BYTEOR()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+> FT_BYTENOT()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+> FT_BYTENEG()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+> FT_BYTEAND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25479"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code performs a bit-wise XOR on two bytes represented
+ by CHR(32) and CHR(55):
+ 
+ cNewByte := FT_BYTEXOR( CHR(32), CHR(55) )
+ ? ASC( cNewByte )     // result: 23
+ ? cNewByte            // result: non-printable character
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25483"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFINDITH"
+></A
+>Function  FT_FINDITH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_FINDITH( &#60;cCheckFor&#62;, &#60;cCheckIn&#62;, &#60;nWhichOccurrence&#62; ;
+ [, &#60;lIgnoreCase&#62; ] ) --&#62; &#60;nStringPosition&#62;&#13;</PRE
+><P
+> This function finds the position in a string of the "ith" time another
+ string appears in it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25488"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCheckFor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to search for.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCheckIn&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to search.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWhichOccurrence&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of the occurrence to find.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lIgnoreCase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical indicating if the search is to be case
+ sensitive.  The default is no case sensitivity (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The position in the string cCheckIn of the ith occurrence of cCheckFor.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTAT2"
+> FT_AT2()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25523"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Find the Position in cMemoString of
+ // the 10th Occurrence of "the", case
+ // insensitive
+ 
+ nNextPosition := FT_FINDITH("the", cMemoString, 10)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25527"
+></A
+><H3
+><A
+NAME="FUNCTIONFTISBIT"
+></A
+>Function  FT_ISBIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ISBIT( &#60;cByte&#62;, &#60;nBitPos&#62; ) --&#62; lResult&#13;</PRE
+><P
+> Tests for status of any selected bit in the byte passed as a parameter.
+ Byte must be presented in CHR() form, as a literal constant, or as the
+ one-byte character result of an expression.</P
+><P
+> 
+ This function is presented to illustrate that bit-wise operations
+ are possible with Clipper code.  For greater speed, write .C or
+ .ASM versions and use the Clipper Extend system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25533"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cByte&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character from CHR(0) to CHR(255)
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBitPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 0 to 7 conforming to standard right-to-left
+ bit-numbering convention and representing the position of the
+ bit within the byte.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .T. if designated bit is set (1), .F. if not set (0), NIL if
+ invalid parameters.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBITSET"
+> FT_BITSET()</A
+> <A
+HREF="categstring.html#FUNCTIONFTBITCLR"
+> FT_BITCLR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25559"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code tests whether bit 3 is set in the byte represented by
+ CHR(107):
+ 
+ lBitflag := FT_ISBIT(CHR(107), 3)
+ ? lBitflag                  // result: .T.
+ 
+ This code tests whether bit 5 is set in the byte represented by ASCII
+ 65 (letter 'A')
+ 
+ ? FT_ISBIT('A', 5)          // result: .F.
+ 
+ For a demonstration of Clipper bit manipulations, compile and
+ link the program BITTEST.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25563"
+></A
+><H3
+><A
+NAME="FUNCTIONFTISBITON"
+></A
+>Function  FT_ISBITON() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ISBITON( &#60;nNumber&#62;, &#60;nBit&#62; ) --&#62; lResult&#13;</PRE
+><P
+> This function is useful when dealing with binary integers.  It will
+ come in very handy if you use the FT_INT86() function, because the
+ CPU flags are returned as a series of bits.  Using this function, you
+ can determine the state of each CPU flag.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25568"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an integer for which a bit state needs to be checked.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBit&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 0 to 15 that indicates which bit to test.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .T. if the specified bit was on., .F. if off.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25588"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> if FT_ISBITON( nCPUFlags, 0 )
+ Qout( "The carry flag was set." )
+ endif
+ 
+ if FT_ISBITON( nCPUFlags, 7 )
+ Qout( "The sign flag was set." )
+ endif</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25592"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMETAPH"
+></A
+>Function  FT_METAPH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_METAPH( &#60;cName&#62; [, &#60;nSize&#62; ] ) --&#62; cMetaPhone&#13;</PRE
+><P
+> This function is a character function use to index and search for
+ sound-alike or phonetic matches.  It is an alternative to
+ the SOUNDEX() function, and addresses some basic pronunciation
+ rules, by looking at surrounding letters to determine how parts of
+ the string are pronounced.  FT_METAPH() will group sound-alikes
+ together, and forgive shortcomings in spelling ability.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25597"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to convert
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the length of the character string to be returned.
+ If not specified the default length is 4 bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A phonetically spelled character string</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25617"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> USE Persons
+ INDEX ON FT_METAPH( LastName ) TO LastName
+ SEEK FT_METAPH( "Philmore" )
+ ? FOUND(), LastName             // Result: .T. Philmore
+ SEEK FT_METAPH( "Fillmore" )
+ ? FOUND(), LastName             // Result: .T. Philmore</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25621"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNOOCCUR"
+></A
+>Function  FT_NOOCCUR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NOOCCUR( &#60;cCheckFor&#62;, &#60;cCheckIn&#62; ;
+ [, &#60;lIgnoreCase&#62; ] )     --&#62; &#60;nOccurrences&#62;&#13;</PRE
+><P
+> This function finds the number of times a string occurs in a
+ second string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25626"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCheckFor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to search for
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCheckIn&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to search
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lIgnoreCase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a boolean variable to force case sensitivity
+ (optional, defaults to .F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The number of times &lt;cCheckFor&gt; appears in &lt;cCheckIn&gt;</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25651"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Find the number of times "the" appears in cMemoString, case
+ // insensitive
+ 
+ nNoOfOccurrences := FT_NOOCCUR( "the", cMemoString )
+ 
+ // Find the number of times "the" appears in cMemoString, case
+ // sensitive
+ 
+ nNoOfOccurrences := FT_NOOCCUR( "the", cMemoString, TRUE )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25655"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPCHR"
+></A
+>Function  FT_PCHR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PCHR( &#60;cString&#62; ) --&#62;  &#60;cPrinterFormat&#62;&#13;</PRE
+><P
+> This function is useful for allowing the user to enter printer
+ control codes in text (enclosed in double quotes), numeric,
+ hexadecimal, or Epson commands preceded by a slash and returns
+ the printer control code equivalent.</P
+><P
+> 
+ NOTES"</P
+><P
+> 
+ - Combinations of text, numbers, hex, and commands must be
+ separated by commas ("A",27,&#38;1B,/RESET).
+ - Text must be enclosed in double quotes ("x").
+ - Hexadecimal must be preceded by an ampersand (&#38;1B).
+ - Epson commands, listed below, must be preceded by a forward
+ slash (/RESET).</P
+><P
+> 
+ Epson commands: (slash commands are specific to the Epson)</P
+><P
+> 
+ Job Control:</P
+><P
+> 
+ /RESET or /INIT   Reset or initialize the printer
+ /BELL  or /BEEP   Cause the printer's speaker to beep (not HS)
+ /CAN              Clear print buffers (not MX)
+ /SLOW             Set low speed mode (not CR, HS, MX)
+ /FAST             Cancel low speed mode (not CR, HS, MX)
+ /ONE              Select Unidirectional mode
+ /TWO              Select Directional mode
+ /ON               Activate printer
+ /OFF              Turn off printer</P
+><P
+> 
+ /FF or /EJECT     Form Feed</P
+><P
+> 
+ Page Control:</P
+><P
+> 
+ /1/6              Set 6 lines per inch
+ /1/8              Set 8 lines per inch
+ /SKIP             Set Skip perforation ON
+ /SKIPOFF          Set Skip perforation OFF</P
+><P
+> 
+ Font Selection and Manipulation:</P
+><P
+> 
+ /ITALIC           Select italic char. set  (only FX86, EX, LX,
+ no LQ-1500, SX)
+ /GRAPHIC          Select graphic char. set (only FX86, EX, LX,
+ no LQ-1500, SX)
+ /ROMAN            Choose Roman font
+ /SANS             Choose Sans Serif font
+ /DRAFT            Choose draft
+ /NLQ              Choose near letter quality
+ /PICA             Choose 10 chars per inch
+ /ELITE            Choose 12 chars per inch
+ /COND or /SI      Choose 15 chars per inch
+ /EMPH             Turn emphasize on
+ /EMPHOFF          Turn emphasize off
+ /SPANISH          Select spanish international char set
+ /USA              Select USA international char set</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25671"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the representation of the printer control codes in
+ text, numeric, hexadecimal, Epson command format, or any combination
+ separated by commas.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A character string of printer control codes.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25686"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cSetUp := '27,116,1'
+ Set Print ON
+ ? FT_PCHR( cSetUp )     --&#62;  (CHR(27)+CHR(116)+CHR(1))
+ &#60;select Epson char. graphics&#62;
+ 
+ ? FT_PCHR( '27,"x",0' ) --&#62;  (CHR(27)+CHR(120)+CHR(0))
+ &#60;Epson draft mode&#62;
+ 
+ ? FT_PCHR( '&#38;1B,"E"'  ) --&#62;  (CHR(27)+CHR(69))   &#60;HP reset&#62;
+ 
+ ? FT_PCHR( '/ELITE,/NLQ' ) --&#62;(CHR(27)+CHR(77)+CHR(27)+CHR(120)+CHR(1))
+ &#60;Epson elite &#38; near letter quality&#62;</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25690"
+></A
+><H3
+><A
+NAME="FUNCTIONGLOB"
+></A
+>Function  GLOB() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GLOB(&#60;sString&#62;, &#60;sReg&#62;, [&#60;lIgnoreCase&#62;]) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+> GLOB() returns TRUE if string corresponding to regular expression.
+ The expression &lt;sReg&gt; is the simple regular expression by DOS rules.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25695"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sReg&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the simple regular expression.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lIgnoreCase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Logical, is TRUE if ignore case sensitive (by default FALSE)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if string corresponding to regular expression.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25720"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? GLOB("aaa", "aaa") 		// --&#62; TRUE
+ ? GLOB("aaa", "[a-z]*")		// --&#62; TRUE
+ ? GLOB("aaa", "a*") 		// --&#62; TRUE
+ ? GLOB("aaa", "*") 		// --&#62; TRUE
+ ? GLOB("aaa", "a") 		// --&#62; FALSE
+ ? GLOB("", "a") 		// --&#62; FALSE
+ ? GLOB("", "*") 		// --&#62; TRUE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25724"
+></A
+><H3
+><A
+NAME="FUNCTIONHARDCR"
+></A
+>Function  HARDCR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> HARDCR(&#60;cString&#62;) --&#62; cConvertedString&#13;</PRE
+><P
+> HARDCR() is a memo function that replaces all soft carriage returns
+ (CHR(141)) with hard carriage returns (CHR(13)).  It is used to display
+ long character strings and memo fields containing soft carriage returns
+ with console commands.  In xClipper, console commands (including
+ REPORT and LABEL FORM) do not automatically convert soft carriage
+ returns to hard carriage returns, making it necessary for you to
+ explicitly make the conversion.  Soft carriage returns are added by
+ MEMOEDIT() when lines wrap.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25729"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> HARDCR() returns a character string up to 65,535 (64K) characters in
+ length.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+> MEMOTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+>STRTRAN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25750"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> To display a memo field formatted with the automatic word
+ wrapping of MEMOEDIT():
+ 
+ USE Sales NEW
+ ? HARDCR(Sales-&#62;Notes)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25754"
+></A
+><H3
+><A
+NAME="FUNCTIONHASHNAME"
+></A
+>Function  HASHNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  HASHNAME(&#60;nHashCode&#62;) 	--&#62; &#60;sStr&#62;
+ &#13;</PRE
+><P
+>  HASHNAME() returns sources string for hash code &lt;nHashCode&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25759"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHashCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the source hash code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns the string, from what was converted hash code.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONHASHSTR"
+> HASHSTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25779"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  HASHSTR("asdf")		// --&#62; 1886203041
+ HASHNAME(1886203041)	// --&#62; asdf
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25783"
+></A
+><H3
+><A
+NAME="FUNCTIONHASHSTR"
+></A
+>Function  HASHSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> HASHSTR(&#60;sStr&#62;) 	--&#62; &#60;nHashCode&#62;&#13;</PRE
+><P
+>  HASHSTR() calulates hash code from string &lt;sStr&gt; and returns it as numeric
+ value &lt;nHashCode&gt;. Hash code has unique values into range of 1000000 to MAX_LONG.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25788"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the string to convertion.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the numeric value - hash code, what was converted from string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONHASHNAME"
+> HASHNAME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25808"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  HASHSTR("asdf")		// --&#62; 1886203041
+ HASHSTR("ASDF")		// --&#62; 1190707477
+ HASHSTR("aSdF")		// --&#62; 1934510729
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25812"
+></A
+><H3
+><A
+NAME="FUNCTIONISALPHA"
+></A
+>Function  ISALPHA() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISALPHA(&#60;cString&#62;) --&#62; lBoolean&#13;</PRE
+><P
+>  ISALPHA() is a character function that determines if the specified
+ string begins with an alphabetic character.  An alphabetic character
+ consists of any uppercase or lowercase letter from A to Z.  ISALPHA()
+ returns false (.F.) if the string begins with a digit or any other
+ character.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25819"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be examined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISALPHA() returns true (.T.) if the first character in &lt;cString&gt; is
+ alphabetic; otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISDIGIT"
+> ISDIGIT()</A
+> <A
+HREF="categstring.html#FUNCTIONISLOWER"
+>ISLOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25843"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate various results of ISALPHA():
+ 
+ ? ISALPHA("AbcDe")               // Result: .T.
+ ? ISALPHA("aBcDE")               // Result: .T.
+ ? ISALPHA("1BCde")               // Result: .F.
+ ? ISALPHA(".FRED")               // Result: .F.
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25847"
+></A
+><H3
+><A
+NAME="FUNCTIONISDIGIT"
+></A
+>Function  ISDIGIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISDIGIT(&#60;cString&#62;) --&#62; lBoolean&#13;</PRE
+><P
+>  ISDIGIT() is a character function that determines whether the first
+ character in a string is a numeric digit between zero and nine.  If any
+ other character is the first character of the &lt;cString&gt;, ISDIGIT()
+ returns false (.F.).</P
+><P
+> 
+ ISDIGIT() is useful where you need to know if the current character
+ string is a number before converting it to a numeric value with the
+ VAL() function.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25855"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be examined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISDIGIT() returns true (.T.) if the first character of the character
+ string is a digit between zero and nine; otherwise, it returns false
+ (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISALPHA"
+> ISALPHA()</A
+> <A
+HREF="categstring.html#FUNCTIONISLOWER"
+>ISLOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25879"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate various results of ISDIGIT():
+ 
+ ? ISDIGIT("AbcDe")         // Result: .F.
+ ? ISDIGIT("1abcd")         // Result: .T.
+ ? ISDIGIT(".12345")         // Result: .F.
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25883"
+></A
+><H3
+><A
+NAME="FUNCTIONISLOWER"
+></A
+>Function  ISLOWER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISLOWER(&#60;cString&#62;) --&#62; lBoolean&#13;</PRE
+><P
+>  ISLOWER() is a character function that determines whether the first
+ character of a character string is lowercase.  It is the inverse of
+ ISUPPER() which determines whether a character begins with an uppercase
+ character.</P
+><P
+> 
+ Both ISLOWER() and ISUPPER() relate to the LOWER() and UPPER() functions
+ which actually convert lowercase characters to uppercase, and vice
+ versa.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25891"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be examined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISLOWER() returns true (.T.) if the first character of the character
+ string is a lowercase letter; otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISALPHA"
+> ISALPHA()</A
+> <A
+HREF="categstring.html#FUNCTIONISDIGIT"
+>ISDIGIT()</A
+> <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25915"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate various results of ISLOWER():
+ 
+ ? ISLOWER("aBcDe")         // Result: .T.
+ ? ISLOWER("AbcDe")         // Result: .F.
+ ? ISLOWER("1abcd")         // Result: .F.
+ ? ISLOWER("abcd")            // Result: .T.
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25919"
+></A
+><H3
+><A
+NAME="FUNCTIONISUPPER"
+></A
+>Function  ISUPPER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISUPPER(&#60;cString&#62;) --&#62; lBoolean&#13;</PRE
+><P
+>  ISUPPER() is a character function that determines whether the first
+ character of a string is uppercase.  It is the inverse of ISLOWER().
+ Both ISUPPER() and ISLOWER() relate to the UPPER() and LOWER() functions
+ which actually convert uppercase characters to lowercase, and vice
+ versa.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25926"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be examined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISUPPER() returns true (.T.) if the first character is an uppercase
+ letter; otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISALPHA"
+> ISALPHA()</A
+> <A
+HREF="categstring.html#FUNCTIONISDIGIT"
+>ISDIGIT()</A
+> <A
+HREF="categstring.html#FUNCTIONISLOWER"
+>ISLOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25950"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate ISUPPER() applied to various values:
+ 
+ ? ISUPPER("AbCdE")         // Result: .T.
+ ? ISUPPER("aBCdE")         // Result: .F.
+ ? ISUPPER("$abcd")         // Result: .F.
+ ? ISUPPER("8ABCD")         // Result: .F.
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25954"
+></A
+><H3
+><A
+NAME="FUNCTIONLEFT"
+></A
+>Function  LEFT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LEFT(&#60;cString&#62;, &#60;nCount&#62;) --&#62; cSubString&#13;</PRE
+><P
+>  LEFT() is a character function that returns a substring of a specified
+ character string.  It is the same as SUBSTR(&lt;cString&gt;, 1, &lt;nCount&gt;).
+ LEFT() is also like RIGHT(), which returns a substring beginning with
+ the last character in a string.</P
+><P
+> 
+ LEFT(), RIGHT(), and SUBSTR() are often used with both the AT() and
+ RAT() functions to locate the first and/or the last position of a
+ substring before extracting it.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN25962"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string from which to extract characters.
+ The maximum size of &lt;cString&gt; is 65,535 (64K) bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of characters to extract.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LEFT() returns the leftmost &lt;nCount&gt; characters of &lt;cString&gt; as a
+ character string.  If &lt;nCount&gt; is negative or zero, LEFT() returns a
+ null string ("").  If &lt;nCount&gt; is larger than the length of the
+ character string, LEFT() returns the entire string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONAT"
+> AT()</A
+> <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONRAT"
+>RAT()</A
+> <A
+HREF="categstring.html#FUNCTIONRIGHT"
+>RIGHT()</A
+> <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONSTUFF"
+>STUFF()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN25993"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example extracts the first three characters from the left
+ of the target string:
+ 
+ ? LEFT("ABCDEF", 3)                  // Result: ABC
+ 
+ This example extracts a substring from the beginning of a
+ string up to the first occurrence of a comma:
+ 
+ LOCAL cName := "James, William"
+ ? LEFT(cName, AT(",", cName) - 1)   // Result: James
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN25997"
+></A
+><H3
+><A
+NAME="FUNCTIONLIKE"
+></A
+>Function  LIKE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LIKE(&#60;sMask&#62;, &#60;sString&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+> LIKE() returns TRUE if string corresponding to mask.
+ The string &lt;sMask&gt; can contents special symbols: &lt;?&gt;, &lt;*&gt;, &lt;.&gt;</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26002"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sMask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the mask.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if string corresponding to mask.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26022"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? LIKE("aaa", "aaa") 		// --&#62; TRUE
+ ? LIKE("aaa", "a*") 		// --&#62; TRUE
+ ? LIKE("aaa", "*") 		// --&#62; TRUE
+ ? LIKE("aaa", "a") 		// --&#62; FALSE
+ ? LIKE("", "a") 		// --&#62; FALSE
+ ? LIKE("", "*") 		// --&#62; TRUE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26026"
+></A
+><H3
+><A
+NAME="FUNCTIONLOWER"
+></A
+>Function  LOWER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LOWER(&#60;cString&#62;) --&#62; cLowerString&#13;</PRE
+><P
+> LOWER() is a character function that converts uppercase and mixed case
+ strings to lowercase.  It is related to UPPER() which converts lowercase
+ and mixed case strings to uppercase.  LOWER() is related to the
+ ISLOWER() and ISUPPER() functions which determine whether a string
+ begins with a lowercase or uppercase letter.</P
+><P
+> 
+ LOWER() is generally used to format character strings for display
+ purposes.  It can, however, be used to normalize strings for case-
+ independent comparison or INDEXing purposes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26032"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string to be converted to lowercase.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LOWER() returns a copy of &lt;cString&gt; with all alphabetic characters
+ converted to lowercase.  All other characters remain the same as in the
+ original string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISLOWER"
+> ISLOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26054"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate various results of LOWER():
+ 
+ ? LOWER("STRING")               // Result: string
+ ? LOWER("1234 CHARS = ")      // Result: 1234 chars =
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26058"
+></A
+><H3
+><A
+NAME="FUNCTIONLTRIM"
+></A
+>Function  LTRIM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LTRIM(&#60;cString&#62;) --&#62; cTrimString&#13;</PRE
+><P
+>  LTRIM() is a character function that formats character strings with
+ leading spaces.  These can be, for example, numbers converted to
+ character strings using STR().</P
+><P
+> 
+ LTRIM() is related to RTRIM(), which removes trailing spaces, and
+ ALLTRIM(), which removes both leading and trailing spaces.  The inverse
+ of ALLTRIM(), LTRIM(), and RTRIM() are the PADC(), PADR(), and PADL()
+ functions which center, right-justify, or left-justify character strings
+ by padding them with fill characters.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26066"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to copy without leading spaces.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LTRIM() returns a copy of &lt;cString&gt; with the leading spaces removed.  If
+ &lt;cString&gt; is a null string ("") or all spaces, LTRIM() returns a null
+ string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONALLTRIM"
+> ALLTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONPAD"
+>PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONTRIM"
+>TRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26091"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate LTRIM() used with several other
+ functions:
+ 
+ nNumber = 18
+ ? STR(nNumber)                  // Result: 18
+ ? LEN(STR(nNumber))            // Result: 10
+ 
+ ? LTRIM(STR(nNumber))         // Result: 18
+ ? LEN(LTRIM(STR(nNumber)))      // Result:  2
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26095"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMOEDIT"
+></A
+>Function  MEMOEDIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMOEDIT([&#60;cString&#62;],
+ [&#60;nTop&#62;], [&#60;nLeft&#62;],
+ [&#60;nBottom&#62;], [&#60;nRight&#62;],
+ [&#60;lEditMode&#62;],
+ [&#60;cUserFunction&#62;],
+ [&#60;nLineLength&#62;],
+ [&#60;nTabSize&#62;],
+ [&#60;nTextBufferRow&#62;],
+ [&#60;nTextBufferColumn&#62;],
+ [&#60;nWindowRow&#62;],
+ [&#60;nWindowColumn&#62;]) --&#62; cTextBuffer&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26101"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to copy to the
+ MEMOEDIT() text buffer.  If not specified, the text buffer is empty.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; are the
+ upper-left and lower-right window coordinates.  Row values can range
+ from zero to MAXROW(), and column positions can range from zero to
+ MAXCOL().  If not specified, the default coordinates are 0, 0, MAXROW(),
+ and MAXCOL().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lEditMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> determines whether the text buffer can be edited or
+ merely displayed.  Specifying true (.T.) allows the user to make changes
+ to the text buffer, while specifying false (.F.) only allows the user to
+ browse the text buffer.  If not specified, the default value is true
+ (.T.).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUserFunction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a user-defined function that executes
+ when the user presses a key not recognized by MEMOEDIT() and when no
+ keys are pending in the keyboard buffer.  &lt;cUserFunction&gt; is specified
+ as a character value without parentheses or arguments.  Specifying false
+ (.F.) for this argument displays &lt;cString&gt; and causes MEMOEDIT() to
+ immediately terminate.  If this argument is specified, the automatic
+ behavior of MEMOEDIT() changes.  Refer to the discussion below.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> determines the length of lines displayed in the
+ MEMOEDIT() window.  If a line is greater than &lt;nLineLength&gt;, it is word
+ wrapped to the next line in the MEMOEDIT() window.  If &lt;nLineLength&gt; is
+ greater than the number of columns in the MEMOEDIT() window, the window
+ will scroll if the cursor moves past the window border.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is not specified, the default line length is (&lt;nRight&gt; -</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> determines the tab stops that will be used when the user
+ presses Tab.  If &lt;nTabSize&gt; is not specified, tab stops will be placed
+ at every four characters.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTextBufferRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nTextBufferColumn&gt; define the display
+ position of the cursor within the text buffer when MEMOEDIT() is
+ invoked.  &lt;nTextBufferRow&gt; begins with one (1) and &lt;nTextBufferColumn&gt;
+ begins with zero (0).  If these arguments are not specified, the cursor
+ is placed at row one (1) and column zero (0) of the MEMOEDIT() window.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWindowRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nWindowColumn&gt; define the initial position of
+ the cursor within the MEMOEDIT() window.  Row and column positions begin
+ with zero (0).  If these arguments are not specified, the initial window
+ position is row zero (0) and the current cursor column position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMOEDIT() returns the text buffer if the user terminates editing with
+ Ctrl+W or a copy of &lt;cString&gt; if user terminates with Esc.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+> LASTKEY()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOLINE"
+>MEMOLINE()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+>MEMOREAD()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+>MEMOTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+>MEMOWRIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26170"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMOLINE"
+></A
+>Function  MEMOLINE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMOLINE(&#60;cString&#62;,[&#60;nLineLength&#62;],[&#60;nLineNumber&#62;],
+ [&#60;nTabSize&#62;],[&#60;lWrap&#62;]) --&#62; cLine&#13;</PRE
+><P
+>  MEMOLINE() is a memo function used with MLCOUNT() to extract lines of
+ text from character strings and memo fields based on the number of
+ characters per line.  It is the most basic facility provided by
+ xClipper to display memo fields and long strings.</P
+><P
+> 
+ The basic method of operation is to determine the number of lines in the
+ memo field or character string using MLCOUNT() with the same number of
+ characters per line, tab size, and wrapping behavior as you intend to
+ use with MEMOLINE().  Using this value as the upper boundary of a
+ FOR...NEXT, each line of the memo field or character string can be
+ extracted with MEMOLINE() and processed with any combination of output
+ commands and functions required.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26178"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the memo field or character string from which a line of
+ text is to be extracted.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the number of characters per line and can be
+ between four and 254.  If not specified, the default line length is 79.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the line number to be extracted.  If not specified,
+ the default value is one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the tab size.  If not specified, the default
+ value is four.  If &lt;nTabSize&gt; is greater than or equal to &lt;nLineLength&gt;,
+ then the tab size is automatically converted to &lt;nLineLength&gt; - 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWrap&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> toggles word wrap on and off.  Specifying true (.T.) toggles
+ word wrap on; false (.F.) toggles it off.  If not specified, the default
+ value is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMOLINE() returns the line of text specified by &lt;nLineNumber&gt; in
+ &lt;cString&gt; as a character string.  If the line has fewer characters than
+ the indicated length, the return value is padded with blanks.  If the
+ line number is greater than the total number of lines in &lt;cString&gt;,
+ MEMOLINE() returns a null string ("").
+ 
+ If &lt;lWrap&gt; is true (.T.) and the indicated line length breaks the line
+ in the middle of a word, that word is not included as part of the return
+ value but shows up at the beginning of the next line extracted with
+ MEMOLINE().
+ 
+ If &lt;lWrap&gt; is false (.F.), MEMOLINE() returns only the number of
+ characters specified by the line length.  The next line extracted by
+ MEMOLINE() begins with the character following the next hard carriage
+ return, and all intervening characters are not processed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMLCOUNT"
+>MLCOUNT()</A
+> <A
+HREF="categstring.html#FUNCTIONMLPOS"
+>MLPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26220"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example demonstrates the general method for displaying
+ memo fields and long character strings using the combination of
+ MLCOUNT() and MEMOLINE():
+ 
+ LOCAL nLineLength := 40, nTabSize := 3, lWrap := .T.
+ LOCAL nLines, nCurrentLine
+ USE Customer INDEX CustName NEW
+ //
+ nLines := MLCOUNT(CustNotes, nLineLength,;
+ nTabSize, lWrap)
+ //
+ SET PRINTER ON
+ FOR nCurrentLine := 1 TO nLines
+ ? MEMOLINE(CustNotes, nLineLength, nCurrentLine,;
+ nTabSize, lWrap)
+ NEXT
+ SET PRINTER OFF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26224"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMOREAD"
+></A
+>Function  MEMOREAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMOREAD(&#60;cFile&#62;) --&#62; cString&#13;</PRE
+><P
+> MEMOREAD() is a memo function that reads a disk file into memory where
+ it can be manipulated as a character string or assigned to a memo field.
+ MEMOREAD() is used with MEMOEDIT() and MEMOWRIT() to edit an imported
+ disk file, and then write it back to disk.  MEMOREAD() searches for
+ &lt;cFile&gt; beginning with the current DOS directory.  If the file is not
+ found, MEMOREAD() searches the DOS path.  MEMOREAD() does not use the
+ xClipper DEFAULT or PATH to search for &lt;cFile&gt;.</P
+><P
+> 
+ In a network environment, MEMOREAD() attempts to open the specified file
+ shared and read--only.  If the file is opened exclusive by another
+ process, MEMOREAD() returns a null string ("").</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26230"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the file to read from disk.  It must include
+ an extension, if there is one, and can optionally include a path.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMOREAD() returns the contents of a text file as a character string.
+ The maximum file size that can be read is 65,535 characters (64K)--the
+ maximum size of a character string.  If &lt;cFile&gt; cannot be found,
+ MEMOREAD() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+>MEMOWRIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26251"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses MEMOREAD() to assign the contents of a text
+ file to the Notes memo field and to a character variable:
+ 
+ REPLACE Notes WITH MEMOREAD("Temp.txt")
+ cString = MEMOREAD("Temp.txt")
+ 
+ This example defines a function that edits a disk file:
+ 
+ FUNCTION Editor( cFile )
+ LOCAL cString
+ IF (cString := MEMOREAD(cFile)) == ""
+ ? "Error reading " + cFile
+ RETURN .F.
+ ELSE
+ MEMOWRIT(cFile, MEMOEDIT(cString))
+ RETURN .T.
+ ENDIF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26255"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMOTRAN"
+></A
+>Function  MEMOTRAN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMOTRAN(&#60;cString&#62;,[&#60;cReplaceHardCR&#62;],[&#60;cReplaceSoftCR&#62;]) --&#62; cNewString&#13;</PRE
+><P
+> MEMOTRAN() is a memo function that converts a memo field or long
+ character string containing hard and soft carriage return/line feed
+ characters into a form that can be displayed.  These two character
+ combinations are end of line formatting indicators placed in the string
+ by MEMOEDIT().  Soft carriage returns (CHR(141)) are inserted when a
+ line longer than the width of the MEMOEDIT() window wraps.  Hard
+ carriage returns (CHR(13)) are inserted when the user explicitly presses
+ Return.</P
+><P
+> 
+ MEMOTRAN() is particularly useful when displaying a memo field in a
+ REPORT FORM which does not wrap when a soft carriage return is
+ encountered.  MEMOTRAN() resolves this by converting soft carriage
+ returns to spaces.  Note, however, that you must declare MEMOTRAN() as
+ external using the REQUEST statement if it is used in a REPORT FORM and
+ not specified anywhere else in the current program.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26261"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to be searched.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cReplaceHardCR&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character with which to replace a hard
+ carriage return/line feed pair.  If not specified, the default value is
+ a semicolon (;).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cReplaceSoftCR&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character with which to replace a soft
+ carriage return/line feed pair.  If not specified, the default value is
+ a space.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMOTRAN() returns a copy of &lt;cString&gt; with the specified carriage
+ return/line feed pairs replaced.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+> STRTRAN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26291"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example strips all end of line characters from a memo
+ field:
+ 
+ REPLACE Notes WITH MEMOTRAN(Notes)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26295"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMOWRIT"
+></A
+>Function  MEMOWRIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMOWRIT(&#60;cFile&#62;, &#60;cString&#62;) --&#62; lSuccess&#13;</PRE
+><P
+> MEMOWRIT() is a memo function that writes a character string or memo
+ field to a disk file.  If a path is not specified, MEMOWRIT() writes
+ &lt;cFile&gt; to the current DOS directory and not the current DEFAULT
+ directory.  If &lt;cFile&gt; already exists, it is overwritten.</P
+><P
+> 
+ MEMOWRIT() is generally used with MEMOREAD() to load text files into
+ memory where they can be edited, displayed, and written back to disk.
+ You can also use MEMOWRIT() as a quick way of exporting a memo field to
+ a text file.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26301"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFile&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the target disk file including the file
+ extension and optional path and drive designator.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to write to &lt;cFile&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMOWRIT() returns true (.T.) if the writing operation is successful;
+ otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+>MEMOREAD()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26327"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses MEMOWRIT() with MEMOREAD() to allow editing
+ of memo fields with an external editor:
+ 
+ LOCAL cEditor := "MYEDIT.EXE"
+ USE Sales NEW
+ IF MEMOWRIT("Cliptmp.txt", Notes)
+ RUN (cEditor + " Cliptmp.txt")
+ REPLACE Notes WITH MEMOREAD("Cliptmp.txt")
+ ELSE
+ ? "Error while writing Cliptmp.txt"
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26331"
+></A
+><H3
+><A
+NAME="FUNCTIONMLCOUNT"
+></A
+>Function  MLCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MLCOUNT(&#60;cString&#62;, [&#60;nLineLength&#62;],[&#60;nTabSize&#62;], [&#60;lWrap&#62;]) --&#62; nLines&#13;</PRE
+><P
+> MLCOUNT() is a memo function used with MEMOLINE() to print character
+ strings and memo fields based on the number of characters per line.  In
+ the basic operation, use MLCOUNT() to return the number of lines in the
+ character string or memo field.  Then, using MEMOLINE() to extract each
+ line, loop through the memo field until there are no lines left.</P
+><P
+> 
+ If &lt;lWrap&gt; is true (.T.) and an end of line position breaks a word, it
+ is word wrapped to the next line and the next line begins with that
+ word.  If &lt;lWrap&gt; is false (.F.), MLCOUNT() counts the number of
+ characters specified by &lt;nLineLength&gt; as the current line.  The next
+ line begins with the character following the next hard or soft carriage
+ return.  Intervening characters are ignored.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26337"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to be counted.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the number of characters per line and can
+ range from four to 254.  If not specified, the default line length is
+ 79.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the tab size.  If not specified, the default
+ value is four.  If &lt;nTabSize&gt; is greater than or equal to &lt;nLineLength&gt;,
+ then the tab size is automatically converted to &lt;nLineLength&gt; - 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWrap&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> toggles word wrap on and off.  Specifying true (.T.) toggles
+ word wrap on; false (.F.) toggles it off.  If not specified, the default
+ value is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MLCOUNT() returns the number of lines in &lt;cString&gt; depending on the
+ &lt;nLineLength&gt;, the &lt;nTabSize&gt;, and whether word wrapping is on or off.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOLINE"
+> MEMOLINE()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+>MEMOTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONMLPOS"
+>MLPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26374"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example displays the contents of each Notes memo field in
+ the Sales database file, one line at a time:
+ 
+ USE Sales NEW
+ nLineLength = 65
+ //
+ DO WHILE !EOF()
+ nLines = MLCOUNT(Sales-&#62;Notes, nLineLength)
+ FOR nCurrLine = 1 TO nLines
+ 
+ ? MEMOLINE(Sales-&#62;Notes, nLineLength, nCurrLine)
+ NEXT
+ SKIP
+ ?
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26378"
+></A
+><H3
+><A
+NAME="FUNCTIONMLCTOPOS"
+></A
+>Function  MLCTOPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MLCTOPOS(&#60;cText&#62;, &#60;nWidth&#62;, &#60;nLine&#62;, &#60;nCol&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;]) --&#62; nPosition&#13;</PRE
+><P
+> MLCTOPOS() is a memo function that determines the byte position that
+ corresponds to a particular line and column within the formatted text.
+ Note that the line number is one-relative and the column number is
+ zero-relative.  This is compatible with MEMOEDIT().  The return value is
+ one-relative, making it suitable for use in SUBSTR() or other string
+ functions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26383"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cText&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the text string to be scanned.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWidth&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the line length formatting width.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLine&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the line number counting from 1.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the column number counting from 0.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of columns between tab stops.  If not
+ specified, the default is 4.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWrap&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the word wrap flag.  If not specified, the default is
+ true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MLCTOPOS() returns the byte position within &lt;cText&gt; counting from 1.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMLPOS"
+>MLPOS()</A
+> <A
+HREF="categstring.html#FUNCTIONMPOSTOLC"
+>MPOSTOLC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26430"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example determines the byte position of line 5, column 3
+ in the cText string:
+ 
+ cText := "Note the side on which the bread ;
+ is buttered."
+ //
+ ? MLCTOPOS(cText, 5, 3, 0)         // Result: 10</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26434"
+></A
+><H3
+><A
+NAME="FUNCTIONMLPOS"
+></A
+>Function  MLPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MLPOS(&#60;cString&#62;, &#60;nLineLength&#62;, &#60;nLine&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;]) --&#62; nPosition&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26440"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string or memo field.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLineLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the number of characters per line.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLine&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the line number.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the tab size.  The default is four.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is greater than or equal to &lt;nLineLength&gt;, then the tab size
+ is adjusted to &lt;nLineLength&gt; - 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWrap&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> toggles word wrap on and off.  Specifying true (.T.) toggles
+ word wrap on, and false (.F.) toggles it off.  The default is true
+ (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MLPOS() returns the character position of &lt;nLine&gt; in &lt;cString&gt; as an
+ integer numeric value.  If &lt;nLine&gt; is greater than the number of lines
+ in &lt;cString&gt;, MLPOS() returns the length of &lt;cString&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOLINE"
+> MEMOLINE()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+>MEMOTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONMLCOUNT"
+>MLCOUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26487"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses MLPOS() to find the position of a specific
+ line, given a line length:
+ 
+ cString = MEMOREAD("Temp.txt")
+ nLineLength = 40
+ nLine = 5
+ nPosition = MLPOS(cString, nLineLength, nLine)
+ ? SUBSTR(cString, nPosition, 12)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26491"
+></A
+><H3
+><A
+NAME="FUNCTIONMPOSTOLC"
+></A
+>Function  MPOSTOLC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MPOSTOLC(&#60;cText&#62;, &#60;nWidth&#62;, &#60;nPos&#62;, [&#60;nTabSize&#62;], [&#60;lWrap&#62;]) --&#62; aLineColumn&#13;</PRE
+><P
+> MPOSTOLC() is a memo function that determines the formatted line and
+ column corresponding to a particular byte position within &lt;cText&gt;.  Note
+ that the line number returned is one-relative and the column number is
+ zero-relative.  This is compatible with MEMOEDIT().  &lt;nPos&gt; is
+ one-relative, compatible with AT(), RAT(), and other string functions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26496"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cText&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a text string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWidth&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the length of the formatted line.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the byte position within text counting from one (1).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTabSize&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of columns between tab stops.  If not
+ specified, the default is four (4).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWrap&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the word wrap flag.  If not specified, the default is
+ true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MPOSTOLC() returns an array containing the line and the column values
+ for the specified byte position, &lt;nPos&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMLCTOPOS"
+>MLCTOPOS()</A
+> <A
+HREF="categstring.html#FUNCTIONMLPOS"
+>MLPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26538"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example determines, for the text string shown, the line
+ and column corresponding to the tenth character of the text, assuming
+ a formatting width of five columns.  A formatting width of five would
+ cause each of the first three words to be placed on a line by itself.
+ The tenth character of the text is the "s" in "side".  The word
+ "side" would be at the leftmost column of the third line of the
+ formatted text, so the return value is {3, 0}.
+ 
+ cText := "Note the side on which the bread ;
+ is buttered."
+ //
+ aLC := MPOSTOLC(cText, 5, 10)         // Result: {3, 0}</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26542"
+></A
+><H3
+><A
+NAME="FUNCTIONPAD"
+></A
+>Function  PAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PADL(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;]) --&#62; cPaddedString
+ PADC(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;]) --&#62; cPaddedString
+ PADR(&#60;exp&#62;, &#60;nLength&#62;, [&#60;cFillChar&#62;]) --&#62; cPaddedString&#13;</PRE
+><P
+>  PADC(), PADL(), and PADR() are character functions that pad character,
+ date, and numeric values with a fill character to create a new character
+ string of a specified length.  PADC() centers &lt;exp&gt; within &lt;nLength&gt;
+ adding fill characters to the left and right sides; PADL() adds fill
+ characters on the left side; and PADR() adds fill characters on the
+ right side.  If the length of &lt;exp&gt; exceeds &lt;nLength&gt;, all of the PAD()
+ functions truncate cPaddedString to &lt;nLength&gt;.</P
+><P
+> 
+ PADC(), PADL(), and PADR() display variable length strings within a
+ fixed length area.  They can be used, for instance, to ensure alignment
+ with consecutive ?? commands.  Another use is to display text to a fixed-
+ width screen area assuring that previous text is completely overwritten.</P
+><P
+> 
+ PADC(), PADL(), and PADR() are the inverse of the ALLTRIM(), RTRIM(),
+ and LTRIM() functions which trim leading and trailing space from
+ character strings.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26551"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character, numeric, or date value to be padded with a
+ fill character.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the length of the character string to be returned.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFillChar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character with which to pad &lt;exp&gt;.  If not
+ specified, the default is a space character.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PADC(), PADL(), and PADR() return the result of &lt;exp&gt; as a character
+ string padded with &lt;cFillChar&gt; to a total length of &lt;nLength&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRTRIM"
+> RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONALLTRIM"
+>ALLTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26583"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses PADR() to format a record number display on
+ a status line filling the allocated space:
+ 
+ IF EOF()
+ @ 23, 45 PADR("EOF/" + LTRIM(STR(LASTREC())), 20)
+ ELSEIF BOF()
+ @ 23, 45 PADR("BOF/" + LTRIM(STR(LASTREC())), 20)
+ ELSE
+ @ 23, 45 SAY PADR("Record " + LTRIM(STR(RECNO()) ;
+ + "/" + LTRIM(STR(LASTREC())), 20)
+ ENDIF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26587"
+></A
+><H3
+><A
+NAME="FUNCTIONRAT"
+></A
+>Function  RAT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RAT(&#60;cSearch&#62;, &#60;cTarget&#62;) --&#62; nPosition&#13;</PRE
+><P
+> RAT() is a character function that returns the position of the last
+ occurrence of a character substring within another character string.  It
+ does this by searching the target string from the right.  RAT() is like
+ the AT() function, which returns the position of the first occurrence of
+ a substring within another string.  RAT() is also like the $ operator,
+ which determines whether a substring is contained within a string.</P
+><P
+> 
+ Both the RAT() and AT() functions are used with SUBSTR(), LEFT(), and
+ RIGHT() to extract substrings.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26593"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSearch&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be located.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be searched.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RAT() returns the position of &lt;cSearch&gt; within &lt;cTarget&gt; as an integer
+ numeric value.  If &lt;cSearch&gt; is not found, RAT() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRIGHT"
+> RIGHT()</A
+> <A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+>STRTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONAT"
+>AT()</A
+> <A
+HREF="categstring.html#FUNCTIONLEFT"
+>LEFT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26622"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses RAT() to create a user-defined function,
+ FilePath(), that extracts the path from a file specification.  If the
+ path is unspecified, FilePath() returns a null string (""):
+ 
+ ? FilePath("C:\DBF\Sales.dbf")      // Result: C:\DBF\
+ 
+ FUNCTION FilePath( cFile )
+ LOCAL nPos, cFilePath
+ IF (nPos := RAT("\", cFile)) != 0
+ cFilePath = SUBSTR(cFile, 1, nPos)
+ ELSE
+ cFilePath = ""
+ ENDIF
+ RETURN cFilePath
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26626"
+></A
+><H3
+><A
+NAME="FUNCTIONREPLICATE"
+></A
+>Function  REPLICATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> REPLICATE(&#60;cString&#62;, &#60;nCount&#62;) --&#62; cRepeatedString&#13;</PRE
+><P
+> REPLICATE() is a character function that repeatedly displays, prints, or
+ stuffs the keyboard with one or more characters.  REPLICATE() is like
+ the SPACE() function, which returns a specified number of space
+ characters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26631"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be repeated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of times to repeat &lt;cString&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> REPLICATE() returns a character string up to a maximum of 65,535 (64K)
+ bytes in length.  Specifying a zero as the &lt;nCount&gt; argument returns a
+ null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSPACE"
+> SPACE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26656"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples demonstrate REPLICATE() repeating strings:
+ 
+ ? REPLICATE("*", 5)           // Result: *****
+ ? REPLICATE("Hi ", 2)         // Result: Hi Hi
+ ? REPLICATE(CHR(42), 5)       // Result: *****
+ 
+ This example uses REPLICATE() to stuff the keyboard with
+ several Down arrow keys:
+ 
+ #include "Inkey.ch"
+ KEYBOARD REPLICATE(CHR(K_DOWN), 25)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26660"
+></A
+><H3
+><A
+NAME="FUNCTIONRIGHT"
+></A
+>Function  RIGHT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RIGHT(&#60;cString&#62;, &#60;nCount&#62;) --&#62; cSubString&#13;</PRE
+><P
+> RIGHT() is a character function that extracts a substring beginning with
+ the rightmost character in &lt;cString&gt;.  It is the same as the character
+ expression, SUBSTR(&lt;cString&gt;, &lt;nCount&gt;).  For example, RIGHT("ABC", 1)
+ is the same as SUBSTR("ABC", -1).  RIGHT() is related to LEFT(), which
+ extracts a substring beginning with the leftmost character in &lt;cString&gt;.</P
+><P
+> 
+ The RIGHT(), LEFT(), and SUBSTR() functions are often used with both the
+ AT() and RAT() functions to locate either the first and/or the last
+ position of a substring before extracting it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26666"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string from which to extract characters.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of characters to extract.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RIGHT() returns the rightmost &lt;nCount&gt; characters of &lt;cString&gt;.  If
+ &lt;nCount&gt; is zero, RIGHT() returns a null string ("").  If &lt;nCount&gt; is
+ negative or larger than the length of the character string, RIGHT()
+ returns &lt;cString&gt;.  The maximum string size is 65,535 (64K) bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRTRIM"
+> RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONSTUFF"
+>STUFF()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONLEFT"
+>LEFT()</A
+> <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26695"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example shows the relationship between RIGHT() and
+ SUBSTR():
+ 
+ ? RIGHT("ABCDEF", 3)              // Result: DEF
+ ? SUBSTR("ABCDEF", -3)            // Result: DEF
+ 
+ This example extracts a substring from the end of another
+ string up to the last occurrence of a comma:
+ 
+ LOCAL cName := "James,William"
+ ? RIGHT(cName,;
+ LEN(cName) - RAT(",", cName) - 1)      // Result: William
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26699"
+></A
+><H3
+><A
+NAME="FUNCTIONRTRIM"
+></A
+>Function  RTRIM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> [R]TRIM(&#60;cString&#62;) --&#62; cTrimString&#13;</PRE
+><P
+> RTRIM() is a character function that formats character strings.  It is
+ useful when you want to delete trailing spaces while concatenating
+ strings.  This is typically the case with database fields which are
+ stored in fixed-width format.  For example, you can use RTRIM() to
+ concatenate first and last name fields to form a name string.</P
+><P
+> 
+ RTRIM() is related to LTRIM() which removes leading spaces, and
+ ALLTRIM() which removes both leading and trailing spaces.  The inverse
+ of ALLTRIM(), LTRIM(), and RTRIM() are the PADC(), PADR(), and PADL()
+ functions which center, right-justify, or left-justify character strings
+ by padding them with fill characters.  RTRIM() is exactly the same as
+ TRIM() in function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26705"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be copied without trailing
+ spaces.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RTRIM() returns a copy of &lt;cString&gt; with the trailing spaces removed.
+ If &lt;cString&gt; is a null string ("") or all spaces, RTRIM() returns a null
+ string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONTRIM"
+>TRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONALLTRIM"
+>ALLTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26729"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This is a user-defined function in which RTRIM() formats city,
+ state, and zip code fields for labels or form letters:
+ 
+ FUNCTION CityState(cCity, cState, cZip)
+ RETURN RTRIM(cCity) + ", " ;
+ + RTRIM(cState) + "  " + cZip
+ 
+ In this example the user-defined function, CityState(),
+ displays a record from Customer.dbf:
+ 
+ USE Customer INDEX CustName NEW
+ SEEK "Kate"
+ ? CityState(City, State, ZipCode)
+ // Result: Athens, GA 10066
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26733"
+></A
+><H3
+><A
+NAME="FUNCTIONSEARCH"
+></A
+>Function  SEARCH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SEARCH(&#60;sPattern&#62;, &#60;sString&#62;, [@aReg], [&#60;nFrom&#62;], [&#60;nRange&#62;]) --&#62; TRUE || FALSE&#13;</PRE
+><P
+> SEARCH() searches substring into string &lt;sString&gt; by regular expression &lt;sPattern&gt;
+ begin with position &lt;nFrom&gt; and in range &lt;nRange&gt;. The result of search will be
+ wrote to &lt;aReg&gt; if this parameter specified.</P
+><P
+> 
+ &lt;nRange&gt; it is the shifting value, when will be checked concidence about &lt;nFrom&gt;.
+ If &lt;nRange&gt;==0 - checked only position &lt;nFrom&gt;; if &lt;nRange&gt;==1 - checked
+ positions &lt;nFrom&gt; and &lt;nFrom&gt;+1; if &lt;nRange&gt;==-1 - checked positions &lt;nFrom&gt; and &lt;nFrom&gt;-1.</P
+><P
+> 
+ Every element &lt;aReg&gt; is the array of 3 elementes: 1-st element - is the starting
+ position founded substring; 2-d element - is the end founded substring; 3-d element -
+ is the substring length.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26740"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sPattern&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the pattern for search.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aReg&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Array, is the registr, where will be stored result of search.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nFrom&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the start search position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRange&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the range of search.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE in successfully searching.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26775"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  str := "int clip_SEARCH(ClipMachine * mp)"
+ reg := {}
+ 
+ if SEARCH("clip_[_A-Z]*", str, @reg)
+ qout("start :" +str(reg[1][1]))
+ qout("end   :" +str(reg[1][2]))
+ qout("length:" +str(reg[1][3]))
+ else
+ qout("Regular expression not found!")
+ endif
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26779"
+></A
+><H3
+><A
+NAME="FUNCTIONSOUNDEX"
+></A
+>Function  SOUNDEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SOUNDEX(&#60;cString&#62;) --&#62; cSoundexString&#13;</PRE
+><P
+> SOUNDEX() is a character function that indexes and searches for sound-
+ alike or phonetic matches.  It is used in applications where the precise
+ spelling of character keys is not known or where there is a high
+ probability of misspelled names.  Misspelling is common in real-time
+ transaction systems where the data entry operator is receiving
+ information over the telephone.  SOUNDEX() works by bringing
+ sound-alikes together under the same key value.  Note, however, the
+ soundex method is not absolute.  Keys that are quite different can
+ result in the same soundex value.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26784"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SOUNDEX() returns a four-digit character string in the form A999.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26799"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example builds an index using SOUNDEX() to create the key
+ values.  It then searches for a value found in the Salesman field:
+ 
+ USE Sales
+ INDEX ON SOUNDEX(Salesman) TO Salesman
+ SEEK SOUNDEX("Smith")
+ ? FOUND(), Salesman            // Result: .T. Smith
+ 
+ Here, a search is made for the same key as above but with a
+ different spelling:
+ 
+ SEEK SOUNDEX("Smythe")
+ ? FOUND(), Salesman            // Result: .T. Smith</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26803"
+></A
+><H3
+><A
+NAME="FUNCTIONSPACE"
+></A
+>Function  SPACE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SPACE(&#60;nCount&#62;) --&#62; cSpaces&#13;</PRE
+><P
+> SPACE() is a character function that returns a specified number of
+ spaces.  It is the same as REPLICATE("", &lt;nCount&gt;).  SPACE() can
+ initialize a character variable before associating it with a GET.
+ SPACE() can also pad strings with leading or trailing spaces.  Note,
+ however, that the PADC(), PADL(), and PADR() functions are more
+ effective for this purpose.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26808"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of spaces to be returned, up to a maximum of
+ 65,535 (64 K).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SPACE() returns a character string.  If &lt;nCount&gt; is zero, SPACE()
+ returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONREPLICATE"
+>REPLICATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26829"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses SPACE() to initialize a variable for data
+ input:
+ 
+ USE Customer NEW
+ MEMVAR-&#62;Name = SPACE(LEN(Customer-&#62;Name))
+ @ 10,10 SAY "Customer Name" GET MEMVAR-&#62;Name
+ READ</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26833"
+></A
+><H3
+><A
+NAME="FUNCTIONSTR"
+></A
+>Function  STR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> STR(&#60;nNumber&#62;, [&#60;nLength&#62;], [&#60;nDecimals&#62;]) --&#62; cNumber&#13;</PRE
+><P
+> STR() is a numeric conversion function that converts numeric values to
+ character strings.  It is commonly used to concatenate numeric values to
+ character strings.  STR() has applications displaying numbers, creating
+ codes such as part numbers from numeric values, and creating index keys
+ that combine numeric and character data.</P
+><P
+> 
+ STR() is like TRANSFORM(), which formats numeric values as character
+ strings using a mask instead of length and decimal specifications.</P
+><P
+> 
+ The inverse of STR() is VAL(), which converts character numbers to
+ numerics.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26840"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the numeric expression to be converted to a character
+ string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the length of the character string to return, including
+ decimal digits, decimal point, and sign.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDecimals&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of decimal places to return.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> STR() returns &lt;nNumber&gt; formatted as a character string.  If the
+ optional length and decimal arguments are not specified, STR() returns
+ the character string according to the rules.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+> TRANSFORM()</A
+> <A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26871"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate the range of values returned by
+ STR(), depending on the arguments specified:
+ 
+ nNumber:= 123.45
+ ? STR(nNumber)                   // Result:  123.45
+ ? STR(nNumber, 4)                // Result:  123
+ ? STR(nNumber, 2)                // Result:  **
+ ? STR(nNumber * 10, 7, 2)        // Result:  1234.50
+ ? STR(nNumber * 10, 12, 4)       // Result:  1234.5000
+ ? STR(nNumber, 10, 1)            // Result:  1234.5
+ 
+ This example uses STR() to create an index with a compound key
+ of order numbers and customer names:
+ 
+ USE Customer NEW
+ INDEX ON STR(NumOrders, 9) + CustName TO CustOrd
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26875"
+></A
+><H3
+><A
+NAME="FUNCTIONSTR2VAR"
+></A
+>Function  STR2VAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> STR2VAR(&#60;sUucodeStr&#62;) 	--&#62; &#60;vData&#62;&#13;</PRE
+><P
+> STR2VAR() deconverts uucode string &lt;sUucodeStr&gt; to source data &lt;vData&gt; to uucode string and returns it.
+ This function is conversely for <A
+HREF="categstring.html#FUNCTIONVAR2STR"
+>VAR2STR()</A
+> function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26881"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sUucodeStr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source uucode string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns some data wath equal source uucode string &lt;sUucodeStr&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTR2VAR"
+> STR2VAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26901"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  f1 := fopen("test.txt")
+ f2 := fcreare("test_uucode.txt")
+ do while !feof(f1)
+ uStr := VAR2STR(fGet(f1, 1024))
+ fwrite(f2, uStr, len(uStr))
+ enddo
+ fclose(f2)
+ fclose(f1)
+ 
+ f1 := fopen("test_uucode.txt")
+ do while !feof(f1)
+ uStr := fGet(f1, 1024)
+ ? STR2VAR(uStr)
+ ?
+ enddo
+ fclose(f1)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26905"
+></A
+><H3
+><A
+NAME="FUNCTIONSTRTRAN"
+></A
+>Function  STRTRAN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> STRTRAN(&#60;cString&#62;, &#60;cSearch&#62;,[&#60;cReplace&#62;], [&#60;nStart&#62;], [&#60;nCount&#62;]) --&#62; cNewString&#13;</PRE
+><P
+> STRTRAN() is a character function that performs a standard substring
+ search within a character string.  When it finds a match, it replaces
+ the search string with the specified replacement string.  All instances
+ of &lt;cSearch&gt; are replaced unless &lt;nStart&gt; or &lt;nCount&gt; is specified.
+ Note that STRTRAN() replaces substrings and, therefore, does not account
+ for whole words.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26910"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string or memo field to be searched.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSearch&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the sequence of characters to be located.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cReplace&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the sequence of characters with which to replace</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSearch&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.  If this argument is not specified, the specified instances
+ of the search argument are replaced with a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first occurrence that will be replaced.  If this
+ argument is omitted, the default is one.  If this argument is equal to
+ or less than zero, STRTRAN() returns an empty string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of occurrences to be replaced.  If this
+ argument is not specified, the default is all.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> STRTRAN() returns a new character string with the specified instances of
+ &lt;cSearch&gt; replaced with &lt;cReplace&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRAT"
+> RAT()</A
+> <A
+HREF="categstring.html#FUNCTIONSTUFF"
+>STUFF()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONAT"
+>AT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN26958"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses STRTRAN() to establish a postmodern analog
+ to a famous quotation:
+ 
+ cString:= "To compute, or not to compute?"
+ ? STRTRAN(cString, "compute", "be")
+ // Result: To be, or not to be?
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN26962"
+></A
+><H3
+><A
+NAME="FUNCTIONSTUFF"
+></A
+>Function  STUFF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> STUFF(&#60;cString&#62;, &#60;nStart&#62;,	&#60;nDelete&#62;, &#60;cInsert&#62;) --&#62; cNewString&#13;</PRE
+><P
+> STUFF() is a character function that deletes &lt;nDelete&gt; characters from
+ &lt;cString&gt; beginning at the &lt;nStart&gt; position.  Then, it inserts
+ &lt;cInsert&gt; into the resulting string beginning at &lt;nStart&gt; to form the
+ return string.  With this, STUFF() can perform the following six
+ operations:</P
+><P
+> 
+ Insert: If &lt;nDelete&gt; is zero, no characters are removed from
+ &lt;cString&gt;.  &lt;cInsert&gt; is then inserted at &lt;nStart&gt;, and the entire
+ string is returned.  For example, STUFF("My dog has fleas.", 12, 0,
+ "no" ) returns "My dog has no fleas."</P
+><P
+> 
+ Replace: If &lt;cInsert&gt; is the same length as &lt;nDelete&gt;,
+ &lt;cInsert&gt; replaces characters beginning at &lt;nStart&gt;.  The same number
+ of characters are deleted as are inserted, and the resulting string
+ is the same length as the original.  For example, STUFF("My dog has
+ fleas.", 12, 5, "bones") returns "My dog has bones."</P
+><P
+> 
+ Delete: If &lt;cInsert&gt; is a null string (""), the number of
+ characters specified by &lt;nDelete&gt; are removed from &lt;cString&gt;, and the
+ string is returned without any added characters.  For example,
+ STUFF("My dog has fleas.", 1, 3, "") returns "dog has fleas."</P
+><P
+> 
+ Replace and insert: If &lt;cInsert&gt; is longer than &lt;nDelete&gt;, all
+ characters from &lt;nStart&gt; up to &lt;nDelete&gt; are replaced and the rest of
+ &lt;cInsert&gt; is inserted.  Since more characters are inserted than are
+ deleted, the resulting string is always longer than the original.
+ For example, STUFF("My dog has fleas.", 8, 3, "does not have")
+ returns "My dog does not have fleas."</P
+><P
+> 
+ Replace and delete: If the length of &lt;cInsert&gt; is less than
+ &lt;nDelete&gt;, more characters are deleted than inserted.  The resulting
+ string, therefore, is shorter than the original.  For example,
+ STUFF("My dog has fleas.", 8, 3, "is") returns "My dog is fleas."</P
+><P
+> 
+ Replace and delete rest: If &lt;nDelete&gt; is greater than or equal
+ to the number of characters remaining in &lt;cString&gt; beginning with
+ &lt;nStart&gt;, all remaining characters are deleted before &lt;cInsert&gt; is
+ inserted.  For example, STUFF("My dog has fleas.", 8, 10, "is.")
+ returns "My dog is."</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN26973"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the target character string into which characters are
+ inserted and deleted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting position in the target string where the
+ insertion/deletion occurs.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDelete&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of characters to be deleted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cInsert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to be inserted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> STUFF() returns a copy of &lt;cString&gt; with the specified characters
+ deleted and with &lt;cInsert&gt; inserted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRAT"
+> RAT()</A
+> <A
+HREF="categstring.html#FUNCTIONRIGHT"
+>RIGHT()</A
+> <A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+>STRTRAN()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categstring.html#FUNCTIONAT"
+>AT()</A
+> <A
+HREF="categstring.html#FUNCTIONLEFT"
+>LEFT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27013"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate the six basic operations of
+ STUFF():
+ 
+ // Insert
+ ? STUFF("ABCDEF", 2, 0, "xyz")      // Result: AxyzBCDEF
+ // Replace
+ ? STUFF("ABCDEF", 2, 3, "xyz")      // Result: AxyzEF
+ // Delete
+ ? STUFF("ABCDEF", 2, 2, "")         // Result: ADEF
+ // Replace and insert
+ ? STUFF("ABCDEF", 2, 1, "xyz")      // Result: AxyzCDEF
+ // Replace and delete
+ ? STUFF("ABCDEF", 2, 4, "xyz")      // Result: AxyzF
+ // Replace and delete rest
+ ? STUFF("ABCDEF", 2, 10, "xyz")     // Result: Axyz
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27017"
+></A
+><H3
+><A
+NAME="FUNCTIONSUBSTR"
+></A
+>Function  SUBSTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SUBSTR(&#60;cString&#62;, &#60;nStart&#62;, [&#60;nCount&#62;]) --&#62; cSubstring&#13;</PRE
+><P
+> SUBSTR() is a character function that extracts a substring from another
+ character string or memo field.  SUBSTR() is related to the LEFT() and
+ RIGHT() functions which extract substrings beginning with leftmost and
+ rightmost characters in &lt;cString&gt;, respectively.</P
+><P
+> 
+ The SUBSTR(), RIGHT(), and LEFT() functions are often used with both the
+ AT() and RAT() functions to locate either the first and/or the last
+ position of a substring before extracting it.  They are also used to
+ display or print only a portion of a character string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27023"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string from which to extract a substring.
+ It can be up to 65,535 (64K) bytes, the maximum character string size in
+ xClipper.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting position in &lt;cString&gt;.  If &lt;nStart&gt; is
+ positive, it is relative to the leftmost character in &lt;cString&gt;.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is negative, it is relative to the rightmost character in the</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of characters to be extracted.  If omitted,
+ the substring begins at &lt;nStart&gt; and continues to the end of the string.
+ If &lt;nCount&gt; is greater than the number of characters from &lt;nStart&gt; to
+ the end of &lt;cString&gt;, the excess numbers are ignored.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SUBSTR() returns a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRAT"
+> RAT()</A
+> <A
+HREF="categstring.html#FUNCTIONRIGHT"
+>RIGHT()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categstring.html#FUNCTIONAT"
+>AT()</A
+> <A
+HREF="categstring.html#FUNCTIONLEFT"
+>LEFT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27067"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples extract the first and last name from a
+ variable:
+ 
+ cName:= "Biff Styvesent"
+ ? SUBSTR(cName, 1, 4)               // Result: Biff
+ ? SUBSTR(cName, 6)                  // Result: Styvesent
+ ? SUBSTR(cName, LEN(cName) + 2)     // Result: null string
+ ? SUBSTR(cName, -9)                  // Result: Styvesent
+ ? SUBSTR(cName, -9, 3)               // Result: Sty
+ 
+ This example uses SUBSTR() with AT() and RAT() to create a
+ user-defined function to extract a file name from a file
+ specification:
+ 
+ ? FileBase("C:\PRG\MYFILE.OBJ")      // Result: MYFILE.OBJ
+ 
+ FUNCTION FileBase( cFile )
+ LOCAL nPos
+ IF (nPos := RAT("\", cFile)) != 0
+ RETURN SUBSTR(cFile, nPos + 1)
+ ELSEIF (nPos := AT(":", cFile)) != 0
+ RETURN SUBSTR(cFile, nPos + 1)
+ ELSE
+ RETURN cFile
+ ENDIF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27071"
+></A
+><H3
+><A
+NAME="FUNCTIONTRIM"
+></A
+>Function  TRIM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TRIM(&#60;cString&#62;) --&#62; cTrimString&#13;</PRE
+><P
+> TRIM() is a character function that formats character strings.  It is
+ useful when you want to delete trailing spaces while concatenating
+ strings.  This is typically the case with database fields which are
+ stored in fixed-width format.  For example, you can use TRIM() to
+ concatenate first and last name fields to form a name string.</P
+><P
+> 
+ TRIM() is related to LTRIM(), which removes leading spaces, and
+ ALLTRIM(), which removes both leading and trailing spaces.  The inverse
+ of ALLTRIM(), LTRIM(), and RTRIM() are the PADC(), PADR(), and PADL()
+ functions which center, right-justify, or left-justify character strings
+ by padding them with fill characters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27077"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be copied without trailing
+ spaces.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> TRIM() returns a copy of &lt;cString&gt; with the trailing spaces removed.  If
+ &lt;cString&gt; is a null string ("") or all spaces, TRIM() returns a null
+ string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>RTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27099"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This is a user-defined function in which TRIM() formats city,
+ state, and zip code fields for labels or form letters:
+ 
+ FUNCTION CityState(cCity, cState, cZip)
+ RETURN TRIM(cCity) + ", " ;
+ + TRIM(cState) + "  " + cZip
+ 
+ In this example the user-defined function, CityState(),
+ displays a record from Customer.dbf:
+ 
+ USE Customer INDEX CustName NEW
+ SEEK "Kate"
+ 
+ ? CityState(City, State, ZipCode)
+ // Result: Athens, GA 10066
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27103"
+></A
+><H3
+><A
+NAME="FUNCTIONUPPER"
+></A
+>Function  UPPER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> UPPER(&#60;cString&#62;) --&#62; cUpperString&#13;</PRE
+><P
+> UPPER() is a character function that converts lowercase and mixed case
+ strings to uppercase.  It is related to LOWER() which converts uppercase
+ and mixed case strings to lowercase.  UPPER() is related to the
+ ISUPPER() and ISLOWER() functions which determine whether a string
+ begins with an uppercase or lowercase letter.</P
+><P
+> 
+ UPPER() is generally used to format character strings for display
+ purposes.  It can, however, be used to normalize strings for case-
+ independent comparison or INDEXing purposes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27109"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> UPPER() returns a copy of &lt;cString&gt; with all alphabetical characters
+ converted to uppercase.  All other characters remain the same as in the
+ original string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISLOWER"
+> ISLOWER()</A
+> <A
+HREF="categstring.html#FUNCTIONISUPPER"
+>ISUPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27131"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate the effects of UPPER():
+ 
+ ? UPPER("a string")           // Result: A STRING
+ ? UPPER("123 char = &#60;&#62;")      // Result: 123 CHAR = &#60;&#62;
+ 
+ This example uses UPPER() as part of a case-independent
+ condition:
+ 
+ USE Customer INDEX CustName NEW
+ LIST CustName FOR "KATE" $ UPPER(Customer)
+ 
+ UPPER() is also useful for creating case-independent index key
+ expressions:
+ 
+ USE Customer NEW
+ INDEX ON UPPER(Last) TO CustLast
+ 
+ Later, use the same expression to look up Customers:
+ 
+ MEMVAR-&#62;Last = SPACE(15)
+ @ 10, 10 GET MEMVAR-&#62;Last
+ READ
+ 
+ SEEK UPPER(MEMVAR-&#62;Last)
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27135"
+></A
+><H3
+><A
+NAME="FUNCTIONVAL"
+></A
+>Function  VAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> VAL(&#60;cNumber&#62;) --&#62; nNumber&#13;</PRE
+><P
+> VAL() is a character conversion function that converts a character
+ string containing numeric digits to a numeric value.  When VAL() is
+ executed, it evaluates &lt;cNumber&gt; until a second decimal point, the first
+ non-numeric character, or the end of the expression is encountered.
+ Leading spaces are ignored.  When SET FIXED is ON, VAL() returns the
+ number of decimal places specified by SET DECIMALS, rounding &lt;cNumber&gt;
+ if it is specified with more digits than the current DECIMALS value.  As
+ with all other functions that round, digits between zero and four are
+ rounded down, and digits between five and nine are rounded up.  When SET
+ FIXED is OFF, VAL() returns the number of decimal places specified in
+ &lt;cNumber&gt;.</P
+><P
+> 
+ VAL() is the opposite of STR() and TRANSFORM(), which convert numeric
+ values to character strings.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27141"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character expression to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> VAL() returns &lt;cNumber&gt; converted to a numeric value including decimal
+ digits.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONROUND"
+> ROUND()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27163"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples illustrate VAL() with SET FIXED ON and SET
+ DECIMALS TO 2:
+ 
+ SET DECIMALS TO 2
+ SET FIXED ON
+ //
+ ? VAL("12.1234")         // Result:   12.12
+ ? VAL("12.1256")         // Result:   12.13
+ ? VAL("12A12")           // Result:   12
+ ? VAL("A1212")           // Result:      0
+ ? VAL(SPACE(0))          // Result:      0
+ ? VAL(SPACE(1))          // Result:      0
+ ? VAL(" 12.12")          // Result:   12.12
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27167"
+></A
+><H3
+><A
+NAME="FUNCTIONVAR2STR"
+></A
+>Function  VAR2STR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> VAR2STR(&#60;vData&#62;) 	--&#62; &#60;sUucodeStr&#62;&#13;</PRE
+><P
+> VAR2STR() converts source data &lt;vData&gt; to uucode string &lt;sUucodeStr&gt; and returns it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27172"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Data to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns uucode string &lt;sUucodeStr&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTR2VAR"
+> STR2VAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27192"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  f1 := fopen("test.txt")
+ f2 := fcreare("test_uucode.txt")
+ do while !feof(f1)
+ uStr := VAR2STR(str)
+ fwrite(f2, uStr, len(uStr))
+ enddo
+ fclose(f2)
+ fclose(f1)</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categinfo.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categnumeric.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>INFO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>NUMERIC</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

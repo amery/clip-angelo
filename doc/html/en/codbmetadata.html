@@ -1,0 +1,609 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Metadata classes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CODB- CLIP Object Data Base."
+HREF="codb.html"><LINK
+REL="PREVIOUS"
+TITLE="CODB- CLIP Object Data Base."
+HREF="codb.html"><LINK
+REL="NEXT"
+TITLE="Controling classes."
+HREF="codbclasses.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="codb.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 12. CODB- CLIP Object Data Base.</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="codbclasses.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CODBMETADATA">12.2. Metadata classes</H1
+><P
+>Metadata it is objects what describe other object and so objects needdes
+to control of ODB kernel.</P
+><P
+>Any metadata have obligatory attribute &#60;ID&#62;. This attribute use for access to
+keeping objects. &#60;ID&#62; created ODB kernel when object append to dictionary.</P
+><P
+>The metadata counts and names are limited and determine by ODB kernel.
+The dictionary have object only classes:</P
+><P
+><B
+CLASS="COMMAND"
+><A
+HREF="codbmetadata.html#CODBDEPOSIT"
+>DEPOSIT</A
+> <A
+HREF="codbmetadata.html#CODBEXTENT"
+>EXTENT</A
+> <A
+HREF="codbmetadata.html#CODBATTR"
+>ATTR</A
+> <A
+HREF="codbmetadata.html#CODBCOUNTER"
+>COUNTER</A
+> <A
+HREF="codbmetadata.html#CODBINDEX"
+>INDEX</A
+> <A
+HREF="codbmetadata.html#CODBCLASS"
+>CLASS</A
+> <A
+HREF="codbmetadata.html#CODBTCOLUMN"
+>TCOLUMN</A
+> <A
+HREF="codbmetadata.html#CODBTVIEW"
+>TVIEW</A
+> <A
+HREF="codbmetadata.html#CODBREPORT"
+>REPORT</A
+> <A
+HREF="codbmetadata.html#CODBPLUGINS"
+>PLUGINS</A
+> <A
+HREF="codbmetadata.html#CODBUSER"
+>USER</A
+> <A
+HREF="codbmetadata.html#CODBGROUP"
+>GROUP</A
+></B
+></P
+><P
+>In the dictionary mast be at least one object of each metaclass.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBDEPOSIT">12.2.1. <B
+CLASS="COMMAND"
+>DEPOSIT</B
+> the description of metadata "depository"</H2
+><P
+>Attributes:</P
+><P
+></P
+><UL
+><LI
+><P
+>ID - metadata identifier</P
+></LI
+><LI
+><P
+>NAME - depository name</P
+></LI
+></UL
+><P
+>Example: create DEPOSIT metadata</P
+><PRE
+CLASS="PROGRAMLISTING"
+>	oDict := coDictionary():new("MY001")
+	oDict:open()
+	....
+	depBody := map()
+	depBody:name := "depository for Russian global information"
+	...
+	dep_id := oDict:append(depBody,"DEPOSIT")
+	if !empty(oDict:error)
+	   ? "Error:",oDict:error
+	endif
+	</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBEXTENT">12.2.2. <B
+CLASS="COMMAND"
+>EXTENT</B
+> the description of metadata "extent"</H2
+><P
+>Attributes:</P
+><P
+></P
+><UL
+><LI
+><P
+>ID - metadata identifier</P
+></LI
+><LI
+><P
+>NAME - extent name</P
+></LI
+><LI
+><P
+>HELP - description</P
+></LI
+></UL
+><P
+>Example: create EXTENT metadata</P
+><PRE
+CLASS="PROGRAMLISTING"
+>		extBody := map()
+		extBody:name := "statedep"
+		extBody:help := "information from state department of statistic"
+		...
+		ext_id := oDict:append(extBody,"EXTENT")
+		....
+	</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBATTR">12.2.3. <B
+CLASS="COMMAND"
+>ATTR</B
+> the attribute description of keeping object</H2
+><P
+>Attributes:</P
+><P
+></P
+><UL
+><LI
+><P
+>ID - metadata identifier</P
+></LI
+><LI
+><P
+>NAME - keeping object attribute name</P
+></LI
+><LI
+><P
+>TYPE - keeping object attribute type</P
+></LI
+><LI
+><P
+>LEN - length</P
+></LI
+><LI
+><P
+>DEC - characters after point (for numeric attributes)</P
+></LI
+><LI
+><P
+>LENTYPE - formatting type (for string attributes)</P
+></LI
+><LI
+><P
+>REF_TO - class identifier (for attributes with type "R") if empty, then reference to object any classes</P
+></LI
+><LI
+><P
+>DEFVALUE - the value by default</P
+></LI
+></UL
+><P
+>The TYPE values:</P
+><P
+></P
+><UL
+><LI
+><P
+>"C" - characters string with limit by length</P
+></LI
+><LI
+><P
+>"N" - numeric</P
+></LI
+><LI
+><P
+>"D" - date</P
+></LI
+><LI
+><P
+>"L" - logical</P
+></LI
+><LI
+><P
+>"M" - characters string without limit by length</P
+></LI
+><LI
+><P
+>"O" - object</P
+></LI
+><LI
+><P
+>"X" - any data of simple type: string, numeric, date, logical, reference</P
+></LI
+><LI
+><P
+>"R" - reference to object</P
+></LI
+><LI
+><P
+>"S" - reference to class</P
+></LI
+><LI
+><P
+>"A" - array of reference</P
+></LI
+><LI
+><P
+>"B" - code block</P
+></LI
+></UL
+><P
+>The LENTYPE values:</P
+><P
+></P
+><UL
+><LI
+><P
+>1 - "As is"</P
+></LI
+><LI
+><P
+>2 - "Right trim"</P
+></LI
+><LI
+><P
+>3 - "Right &amp; Left trim"</P
+></LI
+><LI
+><P
+>4 - "Right pad length"</P
+></LI
+></UL
+><P
+>Example: create ATTR metadata</P
+><PRE
+CLASS="PROGRAMLISTING"
+>	attr:=map()
+	attr:name := "code"
+	attr:type := "C"
+	attr:len  := 7
+	attr:lentype := 3
+	....
+	code_id := oDict:append(attr,"ATTR")
+	....
+	attr:=map()
+	attr:name := "name"
+	attr:type := "C"
+	attr:len  := 20
+	attr:lentype := 2
+	....
+	name_id := oDict:append(attr,"ATTR")
+	</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBCOUNTER">12.2.4. <B
+CLASS="COMMAND"
+>COUNTER</B
+>the counter description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBINDEX">12.2.5. <B
+CLASS="COMMAND"
+>INDEX</B
+> the index description</H2
+><P
+>Attributes:</P
+><P
+></P
+><UL
+><LI
+><P
+>ID - metadata identifier</P
+></LI
+><LI
+><P
+>NAME - index name</P
+></LI
+><LI
+><P
+>EXPR - index expression</P
+></LI
+></UL
+><P
+>Example: create INDEX metadata</P
+><PRE
+CLASS="PROGRAMLISTING"
+>	indBody := map()
+	indBody:name := "code"
+	indBody:expr := "code"
+	ind1_id := oDict:append(indBody,"INDEX")
+	....
+	indBody := map()
+	indBody:name := "name"
+	indBody:expr := "name"
+	ind2_id := oDict:append(indBody,"INDEX")
+	....
+	</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBCLASS">12.2.6. <B
+CLASS="COMMAND"
+>CLASS</B
+> the structure description</H2
+><P
+>Attributes:</P
+><P
+></P
+><UL
+><LI
+><P
+>ID - metadata identifier</P
+></LI
+><LI
+><P
+>NAME - keeling object name</P
+></LI
+><LI
+><P
+>SUPER_ID - super class identifier</P
+></LI
+><LI
+><P
+>EXTENT_ID - extent identifier</P
+></LI
+><LI
+><P
+>EXPR_ESSENCE - expression for short appeares</P
+></LI
+><LI
+><P
+>UNSTABLE - the characteristic of object stably (service parameter)</P
+></LI
+><LI
+><P
+>ATTR_LIST - array of attribute identifiers</P
+></LI
+><LI
+><P
+>IDX_LIST - array of index identifiers</P
+></LI
+></UL
+><P
+>Example: create CLASS metadata</P
+><PRE
+CLASS="PROGRAMLISTING"
+>	classBody:=map()
+	/* information about coding world currencies */
+	classBody:name := "currency"
+	/* from state department of statistic */
+	classBody:extent_id := ext_id
+	/* return via "USD:USA dollar" */
+	classBody:expr_essence := "code+':'+name"
+	/* two attributes "code" and "name" */
+	classBody:attr_list := {code_id,name_id}
+	/* two index "code" and "name" */
+	classBody:idx_list := {ind1_id,ind2_id}
+
+	currency_id := oDict:append(classBody,"CLASS")
+	if !empty(oDict:error)
+	   ? "Error:",oDict:error
+	endif
+	 </PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBTCOLUMN">12.2.7. <B
+CLASS="COMMAND"
+>TCOLUMN</B
+>the table column description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBTVIEW">12.2.8. <B
+CLASS="COMMAND"
+>TVIEW</B
+>the table view description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBREPORT">12.2.9. <B
+CLASS="COMMAND"
+>REPORT</B
+>the report description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBPLUGINS">12.2.10. <B
+CLASS="COMMAND"
+>PLUGINS</B
+>the plugins modules description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBUSER">12.2.11. <B
+CLASS="COMMAND"
+>USER</B
+>the user description</H2
+><P
+>Attributes:</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CODBGROUP">12.2.12. <B
+CLASS="COMMAND"
+>GROUP</B
+>the description of users group</H2
+><P
+>Attributes:</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="codb.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="codbclasses.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CODB- CLIP Object Data Base.</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="codb.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Controling classes.</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

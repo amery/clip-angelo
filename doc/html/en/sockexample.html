@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Example</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Working with sockets"
+HREF="sockets.html"><LINK
+REL="PREVIOUS"
+TITLE="TCP functions"
+HREF="sockfuncs.html"><LINK
+REL="NEXT"
+TITLE="Utilites"
+HREF="utilites.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="sockfuncs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 14. Working with sockets</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="utilites.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SOCKEXAMPLE">14.3. Example</H1
+><P
+>Below are the codes of simple application server and client.
+Server waits for a connection from client, reads messages from client,
+and sends them back. Client connects to the server, reads data from keyboard,
+sends them to the server, and prints what server returns.</P
+><P
+></P
+><UL
+><LI
+><P
+>Server source:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>// Stand for connection and simply make echo.
+#define DEFPORT  3000
+
+
+function main( cport )
+
+	local nPort, nH, nT := seconds() + 60
+	local nCon
+	clear screen
+
+	nport := iif( cport != nil, val(cport), DEFPORT )
+
+	if (nH := tcpListen( nport, 10 )) == -1
+		? "tcpsrv: Error listen on port ", nport
+		?
+		return( 1 )
+	endif
+
+	? "wait client connection"
+	do while( .t. )
+		if (nCon := tcpAccept( nH, 50 )) != -1
+			? "start",nH,nCon
+			start( @conEcho(), nCon )
+		endif
+		sleep(1)
+	enddo
+	tcpClose( nH )
+
+	?
+return( 0 )
+
+
+static function ConEcho( nH )
+// Make echo.
+
+	local cBuf := space(5), nL, cTxt
+
+	? "task, param : ", nH
+	do while( .t. )
+		if( (nL := tcpRead( nH, @cBuf, len(cBuf), 6000 )) &#62; 0 )
+			if( nL == 1 .and. upper( substr(cbuf,1,1)) == "Q" )
+				exit
+			endif
+			? "tcpsrv, read : ", nL
+			cTxt := "tcpsrv:" + substr(cBuf, 1, nL)
+			tcpWrite( nH, cTxt )
+		endif
+	enddo
+	tcpClose( nH )
+
+return( 0 )</PRE
+></LI
+><LI
+><P
+>Client source:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>#define BUFLEN   1024
+#define DEFPORT  3000
+#define DEFHOST "localhost"
+
+#define nTimeOut 600
+
+
+function main( cport, chost )
+
+	local nH, nPort , nL, cbuf := space( BUFLEN )
+	local nK, cEnv
+
+	clear screen
+
+	nPort := iif(valtype(cport)=='C', val( cport), DEFPORT )
+	if( chost == nil ); chost := DEFHOST; endif
+
+
+	? "Connecting to " + getHostByName( cHost )
+
+	if( (nH := tcpConnect( cHost, nPort, nTimeOut )) == -1 )
+		? "Error connecting to " + cHost + " on port "
+		?? nPort
+		?
+		return( 1 )
+	endif
+
+	nK := 0; cEnv := ""
+	do while ( nK != 27 )
+		if( (nL := tcpRead( nH, @cbuf, BUFLEN, 60 )) &#62; 0 )
+			? "Received  ("+alltrim(str(nL))+"):"+substr(cbuf,1,nL)
+			?
+		endif
+		if( (nK := inkey( 0.1 )) == 0 )
+			loop; endif
+		if( nK == 13 )
+			nL := tcpWrite( nH, cEnv )
+			? "Send: ",nl, + cEnv
+			if upper(cEnv)=="Q"
+				exit
+			endif
+			cEnv := ""
+		else
+			cEnv += chr(nK)
+		endif
+
+	enddo
+
+	? tcpClose( nH )
+
+	?
+
+return( 0 )</PRE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="sockfuncs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="utilites.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TCP functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="sockets.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Utilites</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

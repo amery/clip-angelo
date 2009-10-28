@@ -826,20 +826,20 @@
 #include <string.h>
 #include <limits.h>
 #include <time.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_coll.h"
-#include "../libclipscreen/ci_charset.h"
+#include "ci_charset.h"
 #include "ci_error.ch"
 #include "ci_six.ch"
 #include "ci_btree.h"
 #ifdef USE_TASKS
-#include "../libcliptask/ci_task.h"
+#include "ci_task.h"
 #endif
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif
 
-#include "../include.h/ci_ncp.h"
+#include "ci_ncp.h"
 
 #ifdef USE_NCPFS
 #define fcntl ncp_fcntl

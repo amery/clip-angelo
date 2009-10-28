@@ -17,7 +17,7 @@
 
  */
 
-#include "libclipscreen/ci_screen.h"
+#include "ci_screen.h"
 
 static unsigned char _koi_cmptbl[256] =
 {

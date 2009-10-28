@@ -1,0 +1,985 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>TASK</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="SERIAL I/O"
+HREF="categserialio.html"><LINK
+REL="NEXT"
+TITLE="CODEBLOCK"
+HREF="categcodeblock.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categserialio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categcodeblock.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGTASK">TASK</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN36537"
+></A
+><H2
+>Name</H2
+>TASK&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN36540"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;nTaskID&#62;           <A
+HREF="categtask.html#FUNCTIONSTART"
+>START(&#60;vTask&#62;, [&#60;vPar1&#62;,,, &#60;vParN&#62;])</A
+>
+&#60;vMsg&#62;              <A
+HREF="categtask.html#FUNCTIONTASKGETMSG"
+>TASKGETMSG()</A
+>
+&#60;nTaskID&#62;           <A
+HREF="categtask.html#FUNCTIONTASKID"
+>TASKID()</A
+>
+&#60;vMsg&#62;              <A
+HREF="categtask.html#FUNCTIONTASKPEEKMSG"
+>TASKPEEKMSG()</A
+>
+&#60;lResult&#62;           <A
+HREF="categtask.html#FUNCTIONTASKSENDMSG"
+>TASKSENDMSG(&#60;nReceiverID&#62;, &#60;vMsg&#62;[, &#60;lWait&#62;])</A
+>
+NIL                 <A
+HREF="categtask.html#FUNCTIONTASKSTART"
+>TASKSTART()</A
+>
+NIL                 <A
+HREF="categtask.html#FUNCTIONTASKSTOP"
+>TASKSTOP()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN36550"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36553"
+></A
+><H3
+><A
+NAME="FUNCTIONSTART"
+></A
+>Function  START() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> START(&#60;vTask&#62;, [&#60;vPar1&#62;,,, &#60;vParN&#62;]) 	--&#62; &#60;nTaskID&#62;&#13;</PRE
+><P
+> START() starts task in parallel mode and passes it some parameters &lt;vPar1&gt;,,, &lt;vParN&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36558"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vTask&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Is the function name, or code block, or address of static function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vPar1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>...&lt;vParN&gt; Is are some parameters for task.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns numeric value - is the task identifier.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSTOP"
+> TASKSTOP()</A
+> <A
+HREF="categtask.html#FUNCTIONTASKSTART"
+> TASKSTART()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36584"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>    ts := @task2()
+ ...
+ 
+ ? START("task1", "Ann", "Jhon", "Mary")
+ ...
+ ? START(ts, 200, 100)
+ ...
+ ? START({|p1, p2| qout("Start code block"), ..., qout("Code block finished")})
+ ...
+ 
+ function task1(a, b, c)
+ qout('Start task1')
+ ...
+ qout('task1 finished')
+ return .T.
+ 
+ static function task2(x, y)
+ qout('Start task2')
+ ...
+ qout('task2 finished')
+ return
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36588"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKGETMSG"
+></A
+>Function  TASKGETMSG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKGETMSG() 	--&#62; &#60;vMsg&#62;&#13;</PRE
+><P
+> TASKGETMSG() gets message from task input queue and returns it. If no
+ message available, waits forever.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36593"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns var &lt;vMsg&gt;, what was sended from a TASKSENDMSG().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSENDMSG"
+> TASKSENDMSG()</A
+> <A
+HREF="categtask.html#FUNCTIONTASKPEEKMSG"
+> TASKPEEKMSG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36609"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  static id
+ 
+ id := START("func1")
+ 
+ for i:=1 to 10
+ TASKSENDMSG(id, time())
+ sleep(i)
+ next
+ 
+ ....
+ 
+ function func1()
+ do while .T.
+ ? "task got: ", TASKGETMSG()
+ enddo
+ return
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36613"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKID"
+></A
+>Function  TASKID() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKID() 	--&#62; &#60;nTaskID&#62;&#13;</PRE
+><P
+> TASKID() returns current task identifier &lt;nTaskID&gt; as numeric value.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36618"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns task identifier as numeric value.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36628"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>   TASKSTOP()
+ 
+ ? TASKID()
+ 
+ TASKSTART()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36632"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKPEEKMSG"
+></A
+>Function  TASKPEEKMSG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKPEEKMSG() 	--&#62; &#60;vMsg&#62;&#13;</PRE
+><P
+> TASKPEEKMSG() gets message from task input queue and returns it. If no
+ message available, immediatly returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36637"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns var &lt;vMsg&gt;, what was sended from a TASKSENDMSG().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSENDMSG"
+> TASKSENDMSG()</A
+> <A
+HREF="categtask.html#FUNCTIONTASKGETMSG"
+> TASKGETMSG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36653"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  static id
+ 
+ id := START("func1")
+ 
+ for i:=1 to 10
+ TASKSENDMSG(id, time())
+ sleep(i)
+ next
+ 
+ ....
+ 
+ function func1()
+ do while .T.
+ ? "task got: ", TASKPEEKMSG()
+ enddo
+ return
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36657"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKSENDMSG"
+></A
+>Function  TASKSENDMSG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKSENDMSG(&#60;nReceiverID&#62;, &#60;vMsg&#62;[, &#60;lWait&#62;]) 	--&#62; &#60;lResult&#62;&#13;</PRE
+><P
+> TASKSENDMSG() sends var &lt;vMsg&gt; to task with identifier &lt;nReceiverID&gt; and returns
+ returns TRUE if operation successfully.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36662"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nReceiverID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	NUMERIC, is the identifier of task receiver.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vMsg&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		is the any type data - message to task.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lWait&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Logical, is TRUE if function must wait processed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns logical value &lt;lResult&gt;, TRUE if message was delivered.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKGETMSG"
+> TASKGETMSG()</A
+> <A
+HREF="categtask.html#FUNCTIONTASKPEEKMSG"
+> TASKPEEKMSG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36693"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  static id
+ 
+ id := START("func1")
+ 
+ for i:=1 to 10
+ TASKSENDMSG(id, time())
+ sleep(i)
+ next
+ 
+ ....
+ 
+ function func1()
+ do while .T.
+ ? "task got: ", TASKGETMSG()
+ enddo
+ return
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36697"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKSTART"
+></A
+>Function  TASKSTART() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKSTART() 	--&#62; NIL&#13;</PRE
+><P
+> TASKSTART() resumes all tasks what was stopped of function TASKSTOP().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36702"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSTOP"
+> TASKSTOP()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36717"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>   function Task_stop()
+ TASKSTOP()
+ ....
+ return
+ 
+ ....
+ Task_stop()
+ 
+ TASKSTART()
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36721"
+></A
+><H3
+><A
+NAME="FUNCTIONTASKSTOP"
+></A
+>Function  TASKSTOP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TASKSTOP() 	--&#62; NIL&#13;</PRE
+><P
+> TASKSTOP() stopeds all tasks with the exclusion current task.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36726"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSTART"
+> TASKSTART()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36741"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>   function Task_stop()
+ TASKSTOP()
+ ....
+ return
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categserialio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categcodeblock.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SERIAL I/O</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CODEBLOCK</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

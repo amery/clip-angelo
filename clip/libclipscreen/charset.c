@@ -42,7 +42,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "../include.h/ci_clip.h"
+#include "ci_clip.h"
 
 #include "ci_charset.h"
 #include "ci_screen.h"

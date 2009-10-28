@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Replaceable Database Drivers (RDD)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="OO model"
+HREF="leoomodel.html"><LINK
+REL="NEXT"
+TITLE="RDDs peculiarities"
+HREF="rddrdds.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="leoomodel.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rddrdds.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="RDD">Chapter 11. Replaceable Database Drivers (RDD)</H1
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="RDDOVERVIEW">11.1. Overview</H1
+><P
+>RDD is an abbreviation for Replaceable Database Drivers, that are
+used for processing a particular database format. RDD is an intermediate
+layer, that translates CLIP API calls to the low level file operations.</P
+><P
+>RDD architecture used in CLIP differs from those used in Clipper.
+CLIP RDD (in conception of Clipper) consist of three different
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>subdrivers</I
+></SPAN
+>: table driver, index driver and memo driver.
+These drivers can be easily combined in any way.</P
+><P
+>Besides, CLIP have additional developer interface - a set of RDD*()
+functions, that operate with the database <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>descriptors</I
+></SPAN
+>,
+instead of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>work areas</I
+></SPAN
+>.</P
+><P
+>Some of the most interesting features of CLIP RDD subsystem are listed below:</P
+><P
+></P
+><UL
+><LI
+><P
+>query optimizer (Rushmore/MachSIx like technology)</P
+></LI
+><LI
+><P
+>VARCHAR fields (compact storing of strings with length up to 64K)</P
+></LI
+><LI
+><P
+>VARIANT fields, allowing to store data of any basic XBase type
+(CHARACTER, NUMERIC, DATE, DATETIME or LOGIC)</P
+></LI
+><LI
+><P
+>storing data of any type (including objects) in memo-fields</P
+></LI
+><LI
+><P
+>Roll-Your-Own filters</P
+></LI
+><LI
+><P
+>MEMOPACK and Flexible FPT (reusing discarded blocks, that reduces memo bloat)</P
+></LI
+><LI
+><P
+>support of "scoped" SET RELATION (only "right" child table records are visible)</P
+></LI
+><LI
+><P
+>Roll-Your-Own indexes</P
+></LI
+><LI
+><P
+>multiple record locking</P
+></LI
+><LI
+><P
+>database event triggers</P
+></LI
+><LI
+><P
+>record edit rollbacks</P
+></LI
+><LI
+><P
+>"temporary" tables (that are deleted on CLOSE automatically)</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="leoomodel.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rddrdds.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>OO model</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>RDDs peculiarities</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

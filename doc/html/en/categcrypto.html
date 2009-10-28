@@ -1,0 +1,604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CRYPTO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="MENUS/PROMPTS"
+HREF="categmenusprompts.html"><LINK
+REL="NEXT"
+TITLE="NETWARE"
+HREF="categnetware.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categmenusprompts.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categnetware.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGCRYPTO">CRYPTO</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN30302"
+></A
+><H2
+>Name</H2
+>CRYPTO&nbsp;--&nbsp; Functions for cryptography based on OpenSSL technology.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN30305"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>aAlgoritmes         <A
+HREF="categcrypto.html#FUNCTIONEVPALGLIST"
+>EVP_ALG_LIST()</A
+>
+cDecrypted          <A
+HREF="categcrypto.html#FUNCTIONEVPDECRYPT"
+>EVP_DECRYPT(&#60;cData&#62;, &#60;cKey&#62; , [&#60;cCipherMethod&#62; , [&#60;cDigestMethod&#62;] , [&#60;cInitVector&#62;])</A
+>
+cEncrypted          <A
+HREF="categcrypto.html#FUNCTIONEVPENCRYPT"
+>EVP_ENCRYPT(&#60;cData&#62;, &#60;cKey&#62; , [&#60;cCipherMethod&#62; , [&#60;cDigestMethod&#62;] , [&#60;cInitVector&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN30311"
+></A
+><H2
+>Description </H2
+><P
+>Category Crypto include description of functions for
+cryptography based on OpenSSL technology.</P
+><P
+>&#13;For using need linking clip-crypto library:</P
+><P
+>&#13;clip -e test.prg -lclip-crypto</P
+><P
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30317"
+></A
+><H3
+><A
+NAME="FUNCTIONEVPALGLIST"
+></A
+>Function  EVP_ALG_LIST() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EVP_ALG_LIST() --&#62; aAlgoritmes
+ &#13;</PRE
+><P
+> Returns list of algoritms, registered in used version of OpenSSL library.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30322"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns array of crypt algoritmes. Possible values of crypt algoritmes:
+ "desx","des","idea","rc2","bf","blowfish","cast","cast-cbc","rc5".
+ Possible values of digest algoritmes:
+ "md5","md4","sha","sha1","dss","dss1","mdc2","ripemd160" .</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPENCRYPT"
+> EVP_ENCRYPT()</A
+> <A
+HREF="categcrypto.html#FUNCTIONEVPDECRYPT"
+>EVP_DECRYPT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30338"
+></A
+><H3
+><A
+NAME="FUNCTIONEVPDECRYPT"
+></A
+>Function  EVP_DECRYPT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EVP_DECRYPT(&#60;cData&#62;, &#60;cKey&#62; , [&#60;cCipherMethod&#62; , [&#60;cDigestMethod&#62;] , [&#60;cInitVector&#62;]) --&#62; cDecrypted&#13;</PRE
+><P
+> Decrypt string, encrypted by EVP_ENCRYPT(), using
+ one of symmetric block algoritm and given key string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30343"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - string for decryption.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  - key for decryption.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCipherMethod&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - decryption method. Default value 'des-ede3-cbc'.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDigestMethod&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- the digest method. Default value 'md5'.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cInitVector&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - initial vector for decryption. Default value ''.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Decrypted string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPENCRYPT"
+> EVP_ENCRYPT()</A
+> <A
+HREF="categcrypto.html#FUNCTIONEVPALGLIST"
+>EVP_ALG_LIST()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30384"
+></A
+><H3
+><A
+NAME="FUNCTIONEVPENCRYPT"
+></A
+>Function  EVP_ENCRYPT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EVP_ENCRYPT(&#60;cData&#62;, &#60;cKey&#62; , [&#60;cCipherMethod&#62; , [&#60;cDigestMethod&#62;] , [&#60;cInitVector&#62;]) --&#62; cEncrypted&#13;</PRE
+><P
+> Encrypt string using one of symmetric block algoritm and given key string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30389"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - string for encryption.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  - key for encryption.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCipherMethod&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - encryption method. Default value 'des-ede3-cbc'.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDigestMethod&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- the digest method. Default value 'md5'.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cInitVector&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - initial vector for encryption. Default value ''.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Encrypted string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPDECRYPT"
+> EVP_DECRYPT()</A
+> <A
+HREF="categcrypto.html#FUNCTIONEVPALGLIST"
+>EVP_ALG_LIST()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categmenusprompts.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categnetware.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>MENUS/PROMPTS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>NETWARE</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

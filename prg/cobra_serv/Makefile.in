@@ -34,7 +34,7 @@ cleanc : $(DIRS_TO_SCAN)
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cobra_serv$(EXESUFF) : cobra_serv.prg $(o_files) $(po_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+cobra_serv$(EXESUFF) : cobra_serv.prg $(o_files) $(po_files) Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files)  $(LIBS) ; 	\

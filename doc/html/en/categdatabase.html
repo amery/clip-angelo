@@ -1,0 +1,9789 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DATABASE</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CONVERSION"
+HREF="categconversion.html"><LINK
+REL="NEXT"
+TITLE="MISCELLANEOUS"
+HREF="categmiscellaneous.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categconversion.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categmiscellaneous.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGDATABASE">DATABASE</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN37784"
+></A
+><H2
+>Name</H2
+>DATABASE&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN37787"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nFields             <A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+>AFIELDS([&#60;aFieldNames&#62;], [&#60;aTypes&#62;], [&#60;aWidths&#62;], [&#60;aDecimals&#62;])</A
+>
+cAlias              <A
+HREF="categdatabase.html#FUNCTIONALIAS"
+>ALIAS([&#60;nWorkArea&#62;])</A
+>
+lBoundary           <A
+HREF="categdatabase.html#FUNCTIONBOF"
+>BOF()</A
+>
+lSuccess            <A
+HREF="categdatabase.html#FUNCTIONBROWSE"
+>BROWSE([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBAPPEND"
+>DBAPPEND([&#60;lReleaseRecLocks&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCLEARFILTER"
+>DBCLEARFILTER()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+>DBCLEARINDEX()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCLEARRELATION"
+>DBCLEARRELATION()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCLOSEALL"
+>DBCLOSEALL()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCLOSEAREA"
+>DBCLOSEAREA()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCOMMIT"
+>DBCOMMIT()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCOMMITALL"
+>DBCOMMITALL()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCREATE"
+>DBCREATE(&#60;cDatabase&#62;, &#60;aStruct&#62;,[&#60;cDriver&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+>DBCREATEINDEX(&#60;cIndexName&#62;, &#60;cKeyExpr&#62;, [&#60;bKeyExpr&#62;], [&#60;lUnique&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBDELETE"
+>DBDELETE()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBEDIT"
+>DBEDIT([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], &#60;nRight&#62;], [&#60;acColumns&#62;], [&#60;cUserFunction&#62;], [&#60;acColumnSayPictures&#62; | &#60;cColumnSayPicture&#62;], [&#60;acColumnHeaders&#62; | &#60;cColumnHeader&#62;], [&#60;acHeadingSeparators&#62; | &#60;cHeadingSeparator&#62;], [&#60;acColumnSeparators&#62; | &#60;cColumnSeparator&#62;], [&#60;acFootingSeparators&#62; | &#60;cFootingSeparator&#62;], [&#60;acColumnFootings&#62; | &#60;cColumnFooting&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBEVAL"
+>DBEVAL(&#60;bBlock&#62;,[&#60;bForCondition&#62;],[&#60;bWhileCondition&#62;],[&#60;nNextRecords&#62;], [&#60;nRecord&#62;],[&#60;lRest&#62;])</A
+>
+cAlias              <A
+HREF="categdatabase.html#FUNCTIONDBF"
+>DBF()</A
+>
+cFilter             <A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+>DBFILTER()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+>DBGOBOTTOM()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBGOTO"
+>DBGOTO(&#60;xIdentity&#62;)</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+>DBGOTOP()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBRECALL"
+>DBRECALL()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+>DBREINDEX()</A
+>
+cLinkExp            <A
+HREF="categdatabase.html#FUNCTIONDBRELATION"
+>DBRELATION(&#60;nRelation&#62;)</A
+>
+nWorkArea           <A
+HREF="categdatabase.html#FUNCTIONDBRSELECT"
+>DBRSELECT(&#60;nRelation&#62;)</A
+>
+lFound              <A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+>DBSEEK(&#60;expKey&#62;, [&#60;lSoftSeek&#62;], [&#60;lLast&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSELECTAREA"
+>DBSELECTAREA(&#60;nArea&#62; | &#60;cAlias&#62;)</A
+>
+cCurrentDriver      <A
+HREF="categdatabase.html#FUNCTIONDBSETDRIVER"
+>DBSETDRIVER([&#60;cDriver&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSETFILTER"
+>DBSETFILTER(&#60;bCondition&#62;, [&#60;cCondition&#62;])</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+>DBSETINDEX(&#60;cOrderBagName&#62;)</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+>DBSETORDER(&#60;nOrderNum&#62;)</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSETRELATION"
+>DBSETRELATION(&#60;nArea&#62; | &#60;cAlias&#62;, &#60;bExpr&#62;, &#60;cExpr&#62;)</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+>DBSKIP([&#60;nRecords&#62;])</A
+>
+aStruct             <A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+>DBSTRUCT()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBUNLOCK"
+>DBUNLOCK()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBUNLOCKALL"
+>DBUNLOCKALL()</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+>DBUSEAREA( [&#60;lNewArea&#62;], [&#60;cDriver&#62;], &#60;cName&#62;, [&#60;xcAlias&#62;], [&#60;lShared&#62;], [&#60;lReadonly&#62;])</A
+>
+&#60;cPath&#62;             <A
+HREF="categsystem.html#FUNCTIONDEFPATH"
+>DefPath()</A
+>
+lDeleted            <A
+HREF="categdatabase.html#FUNCTIONDELETED"
+>DELETED()</A
+>
+ValueInverted       <A
+HREF="categdatabase.html#FUNCTIONDESCEND"
+>DESCEND(&#60;exp&#62;)</A
+>
+nOsCode             <A
+HREF="categsystem.html#FUNCTIONDOSERROR"
+>DOSERROR([&#60;nNewOsCode&#62;])</A
+>
+lBoundary           <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+>
+nFields             <A
+HREF="categdatabase.html#FUNCTIONFCOUNT"
+>FCOUNT()</A
+>
+nErrorCode          <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+>
+bFieldBlock         <A
+HREF="categcodeblock.html#FUNCTIONFIELDBLOCK"
+>FIELDBLOCK(&#60;cFieldName&#62;)</A
+>
+ValueField          <A
+HREF="categdatabase.html#FUNCTIONFIELDGET"
+>FIELDGET(&#60;nField&#62;)</A
+>
+cFieldName          <A
+HREF="categdatabase.html#FUNCTIONFIELDNAME"
+>FIELDNAME/FIELD(&#60;nPosition&#62;)</A
+>
+nFieldPos           <A
+HREF="categdatabase.html#FUNCTIONFIELDPOS"
+>FIELDPOS(&#60;cFieldName&#62;)</A
+>
+ValueAssigned       <A
+HREF="categdatabase.html#FUNCTIONFIELDPUT"
+>FIELDPUT(&#60;nField&#62;, &#60;expAssign&#62;)</A
+>
+bFieldWBlock        <A
+HREF="categcodeblock.html#FUNCTIONFIELDWBLOCK"
+>FIELDWBLOCK(&#60;cFieldName&#62;, &#60;nWorkArea&#62;)</A
+>
+lExists             <A
+HREF="categfileio.html#FUNCTIONFILE"
+>FILE(&#60;cFilespec&#62;)</A
+>
+&#60;aSelected&#62;         <A
+HREF="categarray.html#FUNCTIONFLEDIT"
+>__Fledit( &#60;aSrc&#62;, &#60;aList&#62;)</A
+>
+lSuccess            <A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+>FLOCK()</A
+>
+lSuccess            <A
+HREF="categdatabase.html#FUNCTIONFOUND"
+>FOUND()</A
+>
+nBytes              <A
+HREF="categdatabase.html#FUNCTIONHEADER"
+>HEADER()</A
+>
+cExtension          <A
+HREF="categdatabase.html#FUNCTIONINDEXEXT"
+>INDEXEXT()</A
+>
+cKeyExp             <A
+HREF="categdatabase.html#FUNCTIONINDEXKEY"
+>INDEXKEY(&#60;nOrder&#62;)</A
+>
+nOrder              <A
+HREF="categdatabase.html#FUNCTIONINDEXORD"
+>INDEXORD()</A
+>
+nRecords            <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC() | RECCOUNT()*</A
+>
+dModification       <A
+HREF="categdatabase.html#FUNCTIONLUPDATE"
+>LUPDATE()</A
+>
+cTextBuffer         <A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+>MEMOEDIT([&#60;cString&#62;], [&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;], [&#60;lEditMode&#62;], [&#60;cUserFunction&#62;], [&#60;nLineLength&#62;], [&#60;nTabSize&#62;], [&#60;nTextBufferRow&#62;], [&#60;nTextBufferColumn&#62;], [&#60;nWindowRow&#62;], [&#60;nWindowColumn&#62;])</A
+>
+cString             <A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+>MEMOREAD(&#60;cFile&#62;)</A
+>
+lSuccess            <A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+>MEMOWRIT(&#60;cFile&#62;, &#60;cString&#62;)</A
+>
+lError              <A
+HREF="categsystem.html#FUNCTIONNETERR"
+>NETERR([&#60;lNewError&#62;])</A
+>
+cBagExt             <A
+HREF="categdatabase.html#FUNCTIONORDBAGEXT"
+>ORDBAGEXT()</A
+>
+cOrderBagName       <A
+HREF="categdatabase.html#FUNCTIONORDBAGNAME"
+>ORDBAGNAME(&#60;nOrder&#62; | &#60;cOrderName&#62;)</A
+>
+NIL                 <A
+HREF="categdatabase.html#FUNCTIONORDLISTADD"
+>ORDLISTADD(&#60;cOrderBagName&#62; [, &#60;cOrderName&#62;])</A
+>
+nRecords            <A
+HREF="categdatabase.html#FUNCTIONRECCOUNT"
+>RECCOUNT() | LASTREC()</A
+>
+Identity            <A
+HREF="categdatabase.html#FUNCTIONRECNO"
+>RECNO()</A
+>
+nBytes              <A
+HREF="categdatabase.html#FUNCTIONRECSIZE"
+>RECSIZE()</A
+>
+lSuccess            <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+>
+nWorkArea           <A
+HREF="categdatabase.html#FUNCTIONSELECT"
+>SELECT([&#60;cAlias&#62;])</A
+>
+lDbfOpen            <A
+HREF="categdatabase.html#FUNCTIONUSED"
+>USED()</A
+>
+&#60;nCode&#62;             <A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+>WEIGHTASC(&#60;sString&#62;)</A
+>
+&#60;sTable&#62;            <A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+>WEIGHTTABLE()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN37866"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37869"
+></A
+><H3
+><A
+NAME="FUNCTIONAFIELDS"
+></A
+>Function  AFIELDS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  AFIELDS([&#60;aFieldNames&#62;], [&#60;aTypes&#62;],
+ [&#60;aWidths&#62;], [&#60;aDecimals&#62;]) --&#62; nFields
+ 
+ &#13;</PRE
+><P
+>  AFIELDS() is an array function that fills a series of arrays (structure
+ attribute arrays) with the structure of the database file currently
+ open, one element in each array per field.  AFIELDS() works like ADIR(),
+ filling a series of existing arrays with information.  To use AFIELDS(),
+ you must first create the arrays to hold the database structure
+ information, each with the same number of elements as the number of
+ fields (i.e. FCOUNT()).  Once the structure attribute arrays are
+ created, you can then invoke AFIELDS() to fill the structure arrays with
+ information about each field.</P
+><P
+> 
+ By default, AFIELDS() operates on the currently selected work area.  It
+ can  operate on an unselected work area if you specify it within an
+ aliased expression (see example below).</P
+><P
+> 
+ AFIELDS() is a compatibility function and therefore is not recommended.
+ It is superseded by DBSTRUCT(), which does not require the existence of
+ any arrays prior to invocation and returns a multidimensional array
+ containing the current database file structure.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37878"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFieldNames&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with field names.  Each element
+ is a character string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTypes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the type of fields in</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFieldNames&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.  Each element is a character string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aWidths&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the widths of fields in</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFieldNames&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.  Each element is numeric data type.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aDecimals&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the number of decimals defined
+ for fields in &lt;aFieldNames&gt;.  Each element is numeric data type.  If the
+ field type is not numeric, the &lt;aDecimals&gt; element is zero.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  AFIELDS() returns the number of fields or the length of the shortest
+ array argument, whichever is less.  If no arguments are specified, or if
+ there is no file in USE in the current work area, AFIELDS() returns
+ zero.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+> ACHOICE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONADIR"
+>ADIR()*</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONASCAN"
+>ASCAN()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCREATE"
+>DBCREATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37927"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example demonstrates how AFIELDS() and ACHOICE() can be
+ used together to create a fields picklist:
+ 
+ USE Sales NEW
+ PRIVATE aFieldNames[FCOUNT()]
+ AFIELDS(aFieldNames)
+ @ 1, 0 TO 10, 10 DOUBLE
+ nChoice := ACHOICE(2, 1, 9, 9, aFieldNames)
+ @ 12, 0 SAY IF(nChoice != 0, aFieldNames[nChoice],;
+ "None selected")
+ RETURN
+ 
+ This example uses AFIELDS() with an aliased expression to fill
+ arrays with the structure of Sales.dbf, open in an unselected work
+ area:
+ 
+ LOCAL aFieldNames, aTypes, aWidths, aDecimals
+ USE Sales NEW
+ USE Customer NEW
+ //
+ aFieldNames := Sales-&#62;(ARRAY(FCOUNT()))
+ aTypes := Sales-&#62;(ARRAY(FCOUNT()))
+ aWidths := Sales-&#62;(ARRAY(FCOUNT()))
+ aDecimals := Sales-&#62;(ARRAY(FCOUNT()))
+ //
+ Sales-&#62;(AFIELDS(aFieldNames, aTypes, ;
+ aWidths, aDecimals))
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37931"
+></A
+><H3
+><A
+NAME="FUNCTIONALIAS"
+></A
+>Function  ALIAS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ALIAS([&#60;nWorkArea&#62;]) --&#62; cAlias&#13;</PRE
+><P
+>  ALIAS() is a database function that determines the alias of a specified
+ work area.  An alias is the name assigned to a work area when a database
+ file is USEd.  The actual name assigned is either the name of the
+ database file, or a name explicitly assigned with the ALIAS clause of
+ the USE command.</P
+><P
+> 
+ ALIAS() is the inverse of the SELECT() function.  ALIAS() returns the
+ alias name given the work area number, and SELECT() returns the work
+ area number given the alias name.</P
+><P
+> 
+ This example returns the name of the previously selected work
+ area:</P
+><P
+> 
+ USE File1 NEW ALIAS Test1
+ nOldArea := SELECT()
+ USE File2 NEW ALIAS Test2
+ ? ALIAS( nOldArea )            // Returns Test1</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37941"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWorkArea&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any work area number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ALIAS() returns the alias of the specified work area as a character
+ string in uppercase.  If &lt;nWorkArea&gt; is not specified, the alias of the
+ current work area is returned.  If there is no database file in USE for
+ the specified work area, ALIAS() returns a null string ("").
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONSELECT"
+> SELECT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37961"
+></A
+><H3
+><A
+NAME="FUNCTIONBOF"
+></A
+>Function  BOF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BOF() --&#62; lBoundary&#13;</PRE
+><P
+> BOF() is a database function used to test for a boundary condition when
+ you are moving the record pointer backward through a database file using
+ the SKIP command.  A simple usage example is a descending order record
+ list with an ascending order index file.  A more sophisticated example
+ is a screen paging routine that pages forward or backward through the
+ current database file based on the key the user presses.  When the user
+ attempts to page backward, you would use BOF() to test for a beginning
+ of file condition before using the SKIP command to move the record
+ pointer and repaint the screen.</P
+><P
+> 
+ Once BOF() is set to true (.T.), it retains its value until there is
+ another attempt to move the record pointer.</P
+><P
+> 
+ By default, BOF() operates on the currently selected work area.  It can
+ be made to operate on an unselected work area by specifying it within an
+ aliased expression (see example below).</P
+><P
+> 
+ The SKIP command is the only record movement command that can set BOF()
+ to true (.T.).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37969"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> BOF() returns true (.T.) after an attempt to SKIP backward beyond the
+ first logical record in a database file; otherwise, it returns false
+ (.F.).  If there is no database file open in the current work area,
+ BOF() returns false (.F.).  If the current database file contains no
+ records, BOF() returns true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONEOF"
+> EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN37984"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example demonstrates BOF() by attempting to move the
+ record pointer before the first record:
+ 
+ USE Sales NEW
+ ? RECNO(), BOF()               // Result: 1 .F.
+ SKIP -1
+ ? RECNO(), BOF()               // Result: 1 .T.
+ 
+ This example uses aliased expressions to query the value of
+ BOF() in unselected work areas:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ USE Invoices NEW
+ 
+ ? Sales-&#62;(BOF()), Customer-&#62;(BOF())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37988"
+></A
+><H3
+><A
+NAME="FUNCTIONBROWSE"
+></A
+>Function  BROWSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BROWSE([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;]) --&#62; lSuccess&#13;</PRE
+><P
+> BROWSE() is a user interface function that invokes a general purpose
+ table-oriented browser and editor for records in the current work area.
+ For a list of the navigation keys which are used by BROWSE(), refer to
+ the DBEDIT() function.  Note that Browse() is a compatibility function.
+ DBEDIT() should be used in its place.  For a more complicated BROWSE(),
+ TBROWSE() should be used.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37993"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ window coordinates.  If not specified, the default window coordinates
+ are 1, 0 to MAXROW(), and MAXCOL().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> BROWSE() always return NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBEDIT"
+> DBEDIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38013"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This is an example of browsing a file:
+ 
+ USE File1 NEW
+ BROWSE()
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38017"
+></A
+><H3
+><A
+NAME="FUNCTIONDBAPPEND"
+></A
+>Function  DBAPPEND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBAPPEND([&#60;lReleaseRecLocks&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBAPPEND() is a database function that lets you add records to the
+ current database.  The enhancement to this function lets you maintain
+ multiple record locks during an append.</P
+><P
+> 
+ DBAPPEND() without a parameter as in earlier versions of xClipper,
+ clears all pending record locks prior to an append.  This is the same as
+ DBAPPEND(.T.).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38023"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lReleaseRecLocks&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is a logical data type that if  true (.T.),
+ clears all pending record locks, then appends the next record.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lReleaseRecLocks&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is false (.F.), all pending record locks are
+ maintained and the new record is added to the end of the Lock List.  The
+ default value of &lt;lReleaseRecLocks&gt; is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBAPPEND() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBDELETE"
+> DBDELETE()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRECALL"
+>DBRECALL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38049"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCLEARFILTER"
+></A
+>Function  DBCLEARFILTER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCLEARFILTER() --&#62; NIL&#13;</PRE
+><P
+> DBCLEARFILTER() clears the logical filter condition, if any, for the
+ current work area.</P
+><P
+> 
+ DBCLEARFILTER() performs the same function as the standard SET FILTER
+ command with no expression specified.  For more information, refer to
+ the SET FILTER command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38055"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCLEARFILTER() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+> DBFILTER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETFILTER"
+>DBSETFILTER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38071"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example sets a filter, lists data as filtered,
+ and then clears the filter:
+ 
+ USE Employee NEW
+ DBSETFILTER( {|| Age &#60; 40}, "Age &#60; 40" )
+ LIST Employee-&#62;Name
+ DBCLEARFILTER()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38075"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCLEARINDEX"
+></A
+>Function  DBCLEARINDEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCLEARINDEX() --&#62; NIL&#13;</PRE
+><P
+> DBCLEARINDEX() closes any active indexes for the current work area.  Any
+ pending index updates are written and the index files are closed.</P
+><P
+> 
+ DBCLEARINDEX() performs the same function as the standard SET INDEX
+ command with no indexes specified.  For more information, refer to the
+ SET INDEX command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38081"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCLEARINDEX() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+> DBCREATEINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+>DBREINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+>DBSETINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+>DBSETORDER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38099"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example clears index files if any are set:
+ 
+ cFirst := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "FIRSTNAM" )
+ DBSETINDEX( "LASTNAME" )
+ //
+ IF INDEXORD() &#62; 0               // is there an index?
+ DBCLEARINDEX()               // clear index files
+ ELSE
+ COPY TO FILE TEMP SDF      // copy to SDF in natural
+ ENDIF                           // order</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38103"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCLEARRELATION"
+></A
+>Function  DBCLEARRELATION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCLEARRELATION() --&#62; NIL&#13;</PRE
+><P
+> DBCLEARRELATION() clears any active relations for the current work area.</P
+><P
+> 
+ DBCLEARRELATION() performs the same function as the standard SET
+ RELATION TO command with no clauses specified.  For more information,
+ refer to the SET RELATION command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38109"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCLEARRELATION() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETRELATION"
+> DBSETRELATION()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38124"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example sets a relation, lists data, and then
+ clears the relation:
+ 
+ USE Employee NEW
+ USE Department NEW INDEX Dept
+ //
+ SELECT Employee
+ DBSETRELATION("Department", ;
+ {|| Employee-&#62;Dept}, "Employee-&#62;Dept")
+ LIST Employee-&#62;Name, Department-&#62;Name
+ DBCLEARRELATION()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38128"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCLOSEALL"
+></A
+>Function  DBCLOSEALL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCLOSEALL() --&#62; NIL&#13;</PRE
+><P
+> DBCLOSEALL() releases all occupied work areas from use.  It is
+ equivalent to calling DBCLOSEAREA() on every occupied work area.
+ DBCLOSEALL() has the same effect as the standard CLOSE DATABASES
+ command.  For more information, refer to the USE and CLOSE commands.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38135"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCLOSEALL() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEAREA"
+> DBCLOSEAREA()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+>DBUSEAREA()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38151"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example closes all work areas:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "SALEFNAM" )
+ DBSETINDEX( "SALELNAM" )
+ //
+ DBUSEAREA( .T., "DBFNTX", "Colls", "Colls", .T. )
+ DBSETINDEX( "COLLFNAM" )
+ DBSETINDEX( "COLLLNAM" )
+ //
+ DBSELECTAREA( "Sales" )      // select "Sales" work area
+ //
+ 
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( DELETED() )
+ IF RLOCK()
+ Sales-&#62;( DBRECALL() )
+ ? "Record deleted: ", Sales( DELETED() )
+ ENDIF
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF
+ DBCLOSEALL()                  // close all work areas</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38155"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCLOSEAREA"
+></A
+>Function  DBCLOSEAREA() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCLOSEAREA() --&#62; NIL&#13;</PRE
+><P
+> DBCLOSEAREA() releases the current work area from use.  Pending updates
+ are written, pending locks are released, and any resources associated
+ with the work area are closed or released.  DBCLOSEAREA() is equivalent
+ to the standard CLOSE command or the USE command with no clauses.  For
+ more information, refer to the USE and CLOSE commands.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38160"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCLOSEAREA() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEALL"
+> DBCLOSEALL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCOMMIT"
+>DBCOMMIT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+>DBUSEAREA()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38177"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example closes a work area via an alias
+ reference:
+ 
+ cLast := "Winston"
+ //
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "SALEFNAM" )
+ DBSETINDEX( "SALELNAM" )
+ //
+ DBUSEAREA( .T., "DBFNTX", "Colls", "Colls", .T. )
+ DBSETINDEX( "COLLFNAM" )
+ DBSETINDEX( "COLLLNAM" )
+ //
+ DBSELECTAREA( "Sales" )      // select "Sales" work area
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ 
+ IF Sales-&#62;( DELETED() ) .AND. Sales-&#62;( RLOCK() )
+ Sales-&#62;( DBRECALL() )
+ ? "Record deleted: ", Sales( DELETED() )
+ ENDIF
+ ELSE
+ ? "Not found"
+ Colls-&#62;( DBCLOSEAREA() )
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38181"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCOMMIT"
+></A
+>Function  DBCOMMIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCOMMIT() --&#62; NIL&#13;</PRE
+><P
+> DBCOMMIT() causes all updates to the current work area to be written to
+ disk.  All updated database and index buffers are written to DOS and a
+ DOS COMMIT request is issued for the database (.dbf) file and any index
+ files associated with the work area.</P
+><P
+> 
+ DBCOMMIT() performs the same function as the standard COMMIT command
+ except that it operates only on the current work area.  For more
+ information, refer to the COMMIT command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38187"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCOMMIT() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEALL"
+> DBCLOSEALL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCOMMITALL"
+>DBCOMMITALL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBUNLOCK"
+>DBUNLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38204"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, COMMIT is used to force a write to disk after
+ a series of memory variables are assigned to field variables:
+ 
+ USE Sales EXCLUSIVE NEW
+ MEMVAR-&#62;Name := Sales-&#62;Name
+ 
+ MEMVAR-&#62;Amount := Sales-&#62;Amount
+ //
+ @ 10, 10 GET MEMVAR-&#62;Name
+ @ 11, 10 GET MEMVAR-&#62;Amount
+ READ
+ //
+ IF UPDATED()
+ APPEND BLANK
+ REPLACE Sales-&#62;Name WITH MEMVAR-&#62;Name
+ REPLACE Sales-&#62;Amount WITH MEMVAR-&#62;Amount
+ Sales-&#62;( DBCOMMIT() )
+ ENDIF
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38208"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCOMMITALL"
+></A
+>Function  DBCOMMITALL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCOMMITALL() --&#62; NIL&#13;</PRE
+><P
+> DBCOMMITALL() causes all pending updates to all work areas to be written
+ to disk.  It is equivalent to calling DBCOMMIT() for every occupied work
+ area.</P
+><P
+> 
+ For more information, refer to DBCOMMIT() and the COMMIT command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38214"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCOMMITALL() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEALL"
+> DBCLOSEALL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCOMMIT"
+>DBCOMMIT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBUNLOCK"
+>DBUNLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38231"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example writes all pending updates to disk:
+ 
+ cLast := "Winston"
+ //
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "SALEFNAM" )
+ DBSETINDEX( "SALELNAM" )
+ //
+ 
+ DBUSEAREA( .T., "DBFNTX", "Colls", "Colls", .T. )
+ DBSETINDEX( "COLLFNAM" )
+ DBSETINDEX( "COLLLNAM" )
+ 
+ DBSELECTAREA( "Sales" )      // select "Sales" work area
+ 
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( DELETED() ) .AND. Sales( RLOCK() )
+ Sales-&#62;( DBRECALL() )
+ ? "Deleted record has been recalled."
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF
+ //
+ // processing done, write updates to disk and close
+ DBCOMMITALL()
+ DBCLOSEALL()
+ QUIT</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38235"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCREATE"
+></A
+>Function  DBCREATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCREATE(&#60;cDatabase&#62;, &#60;aStruct&#62;,[&#60;cDriver&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBCREATE() is a database function that creates a database file from an
+ array containing the structure of the file.  You may create the array
+ programmatically or by using DBSTRUCT().  DBCREATE() is similar to the
+ CREATE FROM command which creates a new database file structure from a
+ structure extended file.  Use CREATE or COPY STRUCTURE EXTENDED commands
+ to create a structure extended file.</P
+><P
+> 
+ Before using DBCREATE(), you must first create the &lt;aStruct&gt; array and
+ fill it with the field definition arrays according to the structure in
+ Field Definition Subarray table (above).  There are some specific rules
+ for creating a field definition array, including:</P
+><P
+> 
+ Specify all field attributes with a value of the proper data
+ type for the attribute.  The decimals attribute must be specified--
+ even for non-numeric fields.  If the field does not have a decimals
+ attribute, specify zero.</P
+><P
+> 
+ Specify the type attribute using the first letter of the data
+ type as a minimum.  Use longer and more descriptive terms for
+ readability.  For example, both "C" and "Character" can be specified
+ as the type attribute for character fields.</P
+><P
+> 
+ In xClipper, character fields contain up to 64,000
+ characters.  Unlike the CREATE FROM command, DBCREATE() does not use
+ the decimals attribute to specify the high-order part of the field
+ length.  Specify the field length directly, regardless of its
+ magnitude.</P
+><P
+> 
+ To make references to the various elements of the field definition
+ subarray more readable, the header file called dbstruct.ch is supplied.
+ It contains the #defines to assign a name to the array position for each
+ field attribute.  It is located in \include.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38245"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the new database file, with an optional
+ drive and directory, specified as a character string.  If specified
+ without an extension, .dbf is assumed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aStruct&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array that contains the structure of &lt;cDatabase&gt; as
+ a series of subarrays, one per field.  Each subarray contains the
+ definition of each field's attributes and has the following structure:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>Field Definition Subarray
+------------------------------------------------------------------------
+Position     Metasymbol     dbstruct.ch
+------------------------------------------------------------------------
+1            cName          DBS_NAME
+2            cType          DBS_TYPE
+3            nLength        DBS_LEN
+4            nDecimals      DBS_DEC
+------------------------------------------------------------------------</PRE
+>
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDriver&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the replaceable database driver (RDD) to use to
+ process the current work area.  &lt;cDriver&gt; is the name of the RDD
+ specified as a character expression.  If you specify &lt;cDriver&gt; as a
+ literal value, you must enclose it in quotes.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCREATE() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+> AFIELDS()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+>DBSTRUCT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38277"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates an empty array and then adds field
+ definition subarrays using the AADD() function before creating
+ People.dbf.  You might use this technique to add field definitions to
+ your structure array dynamically:
+ 
+ aDbf := {}
+ AADD(aDbf, { "Name", "C", 25, 0 })
+ AADD(aDbf, { "Address", "C", 1024, 0 })
+ AADD(aDbf, { "Phone", "N", 13, 0 })
+ //
+ DBCREATE("People", aDbf)
+ 
+ This example performs the same types of actions but declares
+ the structure array as a two-dimensional array, and then uses
+ subscript addressing to specify the field definitions.  It will be
+ created using the DBFMDX RDD:
+ 
+ #include "dbstruct.ch"
+ //
+ LOCAL aDbf[1][4]
+ aDbf[1][ DBS_NAME ] := "Name"
+ aDbf[1][ DBS_TYPE ] := "Character"
+ aDbf[1][ DBS_LEN ]  := 25
+ aDbf[1][ DBS_DEC ]  := 0
+ //
+ DBCREATE("Name", aDbf, "DBFMDX")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38281"
+></A
+><H3
+><A
+NAME="FUNCTIONDBCREATEINDEX"
+></A
+>Function  DBCREATEINDEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBCREATEINDEX(&#60;cIndexName&#62;, &#60;cKeyExpr&#62;,
+ [&#60;bKeyExpr&#62;], [&#60;lUnique&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBCREATEINDEX() creates an index for the database (.dbf) file associated
+ with the current work area.  If the work area has active indexes, they
+ are closed.  After the new index is created, it becomes the controlling
+ index for the work area and is positioned to the first logical record.</P
+><P
+> 
+ DBCREATEINDEX() performs the same function as the standard INDEX
+ command.  For more information, refer to the INDEX command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38287"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cIndexName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character value that specifies the file name of
+ the index file to be created.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cKeyExpr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character value that expresses the index key
+ expression in textual form.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bKeyExpr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block that expresses the index key expression
+ in executable form.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lUnique&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value that specifies whether a
+ unique index is to be created.  If &lt;lUnique&gt; is omitted, the current
+ global _SET_UNIQUE setting is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBCREATEINDEX() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+> DBCLEARINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+>DBREINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+>DBSETINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+>DBSETORDER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+>AFIELDS()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+>DBSTRUCT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38327"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates an index file, Name, indexed on the Name
+ field:
+ 
+ USE Employees NEW
+ DBCREATEINDEX( "Name", "Name", { || Name })</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38331"
+></A
+><H3
+><A
+NAME="FUNCTIONDBDELETE"
+></A
+>Function  DBDELETE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBDELETE() --&#62; NIL&#13;</PRE
+><P
+> DBDELETE() marks the current record as deleted.  Records marked for
+ deletion can be filtered using SET DELETED or removed from the file
+ using the PACK command.</P
+><P
+> 
+ DBDELETE() performs the same function as the standard DELETE command
+ with a scope of the current record.  For more information, refer to the
+ DELETE command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38337"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBDELETE() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBRECALL"
+> DBRECALL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38352"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example deletes a record after a successful
+ record lock:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "LASTNAME" )
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( RLOCK() )
+ Sales-&#62;( DBDELETE() )
+ ? "Record deleted: ", Sales-&#62;( DELETED() )
+ ELSE
+ ? "Unable to lock record..."
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38356"
+></A
+><H3
+><A
+NAME="FUNCTIONDBEDIT"
+></A
+>Function  DBEDIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBEDIT([&#60;nTop&#62;], [&#60;nLeft&#62;],
+ [&#60;nBottom&#62;], &#60;nRight&#62;],
+ [&#60;acColumns&#62;],
+ [&#60;cUserFunction&#62;],
+ [&#60;acColumnSayPictures&#62; | &#60;cColumnSayPicture&#62;],
+ [&#60;acColumnHeaders&#62; | &#60;cColumnHeader&#62;],
+ [&#60;acHeadingSeparators&#62; | &#60;cHeadingSeparator&#62;],
+ [&#60;acColumnSeparators&#62; | &#60;cColumnSeparator&#62;],
+ [&#60;acFootingSeparators&#62; | &#60;cFootingSeparator&#62;],
+ [&#60;acColumnFootings&#62; | &#60;cColumnFooting&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBEDIT() is a user interface and compatibility function that displays
+ records from one or more work areas in a table form.  The DBEDIT()
+ window display is a grid of cells divided into columns and rows.
+ Columns correspond to database fields and rows correspond to database
+ records.  Each column is defined by an element of the &lt;acColumns&gt; array.
+ The display width of each column is determined by the evaluation of the
+ column expression in &lt;acColumns&gt; array or the column picture specified
+ in the &lt;acColumnSayPictures&gt; array.</P
+><P
+> 
+ All cursor movement keys are handled within DBEDIT(), including Page up,
+ Page down, Home, End, the four arrow keys, and all Ctrl key combinations
+ that produce cursor movement.  The navigation keys that DBEDIT()
+ responds to when a user function argument is not specified are listed in
+ the Active Keys table below:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>DBEDIT() Active Keys
+ ------------------------------------------------------------------------
+ Key                 Action
+ ------------------------------------------------------------------------
+ Up arrow            Up one row
+ Down arrow          Down one row
+ Left arrow          Column left
+ Right arrow         Column right
+ Ctrl+Left arrow     Pan left one column
+ Ctrl+Right arrow    Pan right one column
+ Home                Leftmost current screen column
+ End                 Rightmost current screen column
+ Ctrl+Home           Leftmost column
+ Ctrl+End            Rightmost column
+ PgUp                Previous screen
+ PgDn                Next screen
+ Ctrl+PgUp           First row of current column
+ Ctrl+PgDn           Last row of current column
+ Return              Terminate DBEDIT()
+ Esc                 Terminate DBEDIT()
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ When the user function argument (&lt;cUserFunction&gt;) is specified, all keys
+ indicated in the Active Keys table are active with the exception of Esc
+ and Return.  When DBEDIT() calls the user function, it automatically
+ passes two arguments:</P
+><P
+> 
+ The current mode passed as a numeric value</P
+><P
+> 
+ The index of the current column in &lt;acColumns&gt; passed as a
+ numeric value</P
+><P
+> 
+ The mode parameter indicates the current state of DBEDIT() depending on
+ the last key executed.  The possible mode values are listed in the
+ DBEDIT() Modes table below:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>DBEDIT() Modes
+ ------------------------------------------------------------------------
+ Status  Dbedit.ch      Description
+ ------------------------------------------------------------------------
+ 0       DE_IDLE        Idle, any cursor movement keystrokes have been
+ handled and no keystrokes are pending
+ 1       DE_HITTOP      Attempt to cursor past top of file
+ 2       DE_HITBOTTOM   Attempt to cursor past bottom of file
+ 3       DE_EMPTY       No records in work area
+ 4       DE_EXCEPT      Key exception
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ The index parameter points to the position of the current column
+ definition in the &lt;acColumns&gt; array.  If &lt;acColumns&gt; is not specified,
+ the index parameter points to the position of the field in the current
+ database structure.  Access the field name using FIELD().</P
+><P
+> 
+ A user-defined function must return a value that indicates to DBEDIT()
+ the action to perform.  The User Function Return Values table below
+ lists the possible return values and the corresponding actions:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>DBEDIT() User Function Return Values
+ ------------------------------------------------------------------------
+ Value   Dbedit.ch      Description
+ ------------------------------------------------------------------------
+ 0       DE_ABORT       Abort DBEDIT()
+ 1       DE_CONT        Continue DBEDIT()
+ 2       DE_REFRESH     Force reread/repaint and continue; after repaint,
+ process keys and go to idle
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ A number of instances affect calls to the user function:</P
+><P
+> 
+ A key exception occurs.  This happens when DBEDIT() fetches a
+ keystroke that it does not recognize from the keyboard.  Any pending
+ keys remain in the keyboard buffer until fetched within the user
+ function or until DBEDIT() continues.</P
+><P
+> 
+ DBEDIT() enters the idle mode (i.e., all pending keys have
+ been processed).  This happens when the keyboard is empty or after a
+ screen refresh.  In this instance, there is one call to the user
+ function and then DBEDIT() waits for a key.</P
+><P
+> 
+ Beginning or end of file is encountered.  This is the same as
+ idle.  All executable keys are performed, and there is one call to
+ the user function with the appropriate status message.</P
+><P
+> 
+ Note that when DBEDIT() is first executed, all keys pending in the
+ keyboard buffer are executed and then DBEDIT() enters the idle mode with
+ a user function call.  If no keys are pending, the idle mode is
+ immediate.</P
+><P
+> 
+ The user function should handle all modes and status messages received
+ from DBEDIT().</P
+><P
+> 
+ A user-defined function must ensure that the DBEDIT() status is
+ equivalent to DE_EXCEPT (4); otherwise, the value of LASTKEY() is
+ meaningless and a Return value of DE_REFRESH (2) will place the
+ application into an endless loop.  For example:</P
+><P
+> 
+ FUNCTION DBEditFunc ( nMode, nColumnPos )
+ LOCAL RetVal := DE_CONT</P
+><P
+> 
+ IF ( nMode == DE_EXCEPT )
+ IF ( LASTKEY() == K_F5 )
+ RetVal := DE_REFRESH
+ ENDIF
+ ENDIF
+ RETURN(  RetVal )</P
+><P
+> 
+ DBEDIT() is fully re-entrant, which means you can make nested calls to
+ it.  Using this feature, you can have multiple browse windows on the
+ screen at the same time.</P
+><P
+> 
+ DBEDIT() is a compatibility function and, therefore, no longer
+ recommended as a programmable browse facility.  As such, it is
+ superseded by the TBrowse object class.  For more information, refer to
+ TBrowse class in this chapter.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38385"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ upper-left and lower-right coordinates of the DBEDIT() window.  Row
+ values can range from zero to MAXROW() and column positions can range
+ from zero to MAXCOL().  If not specified, the default coordinates are 0,
+ 0, MAXROW(), and MAXCOL().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColumns&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of character expressions containing database
+ field names or expressions to use as column values for each row
+ displayed.  If this argument is not specified, DBEDIT() displays all
+ fields in the current work area as columns.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUserFunction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a user-defined function that executes
+ when an unrecognizable key is pressed or there are no keys pending in
+ the keyboard buffer.  Specify the function name as a character
+ expression without parentheses or arguments.  Note that the behavior of
+ DBEDIT() is affected by the presence of this argument.  Refer to the
+ discussion below for more information.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColumnSayPictures&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of picture clauses to
+ format each column.  Specifying &lt;cColumnSayPicture&gt; instead of an array
+ displays all columns with the same format.  Refer to TRANSFORM() or
+ @...SAY for more information on pictures.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColumnHeaders&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of character expressions that
+ define the headings for each column.  Specifying &lt;cColumnHeader&gt; gives
+ the same heading for all columns.  To display a multi-line heading,
+ embed a semicolon in the heading expression where you want the string to
+ break.  If not specified, column headings are taken from the &lt;acColumns&gt;
+ array or the field names in the current work area, if the &lt;acColumns&gt;
+ argument is not specified.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acHeadingSeparators&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of character expressions
+ that define the characters used to draw horizontal lines separating
+ column headings from the field display area. Specifying</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cHeadingSeparator&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> instead of an array uses the same heading separator
+ for all columns.  If this argument is not specified, the default
+ separator is a double graphics line.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColumnSeparators&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of character expressions
+ that define the characters used to draw vertical lines separating the
+ columns.  Specifying &lt;cColumnSeparator&gt; instead of an array uses the
+ same separator for all columns.  If this argument is not specified, the
+ default separator is a single graphics line.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acFootingSeparators&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of character expressions
+ that define the characters used to draw horizontal lines separating
+ column footings from the field display area.  Specifying</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFootingSeparator&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> instead of an array uses the same footing separator
+ for all columns.  If this argument is not specified, there is no footing
+ separator.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColumnFootings&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of character expressions that
+ define footings for each column.  Specifying &lt;cColumnFooting&gt; instead of
+ an array gives the same footing for all columns.  To display a multi-
+ line footing, embed a semicolon in the footing expression where you want
+ the string to break.  If this argument is not specified, there are no
+ column footings.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBEDIT() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+> ACHOICE()</A
+> <A
+HREF="categdatabase.html#FUNCTIONBROWSE"
+>BROWSE()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+>MEMOEDIT()</A
+> <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38458"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates a generic call to DBEDIT():
+ 
+ USE Names NEW
+ DBEDIT()
+ 
+ This example demonstrates calling DBEDIT() with a user
+ function:
+ 
+ #include "dbedit.ch"
+ #include "inkey.ch"
+ 
+ // Array must be visible to other user-defined programs in
+ // program
+ 
+ STATIC acColumns := {}
+ 
+ PROCEDURE Main()
+ 
+ USE Names NEW
+ INDEX ON Names-&#62;Lastname + Names-&#62;FirstName TO Names
+ 
+ CLS
+ 
+ acColumns := { "LastName", "FirstName" }
+ 
+ DBEDIT( 5, 5, 20, 70, acColumns, "UserFunc" )
+ 
+ RETURN
+ 
+ 
+ FUNCTION UserFunc( nMode, nCol )
+ LOCAL nKey := LASTKEY()
+ LOCAL nRetVal := DE_CONT         // Default return value
+ 
+ DO CASE
+ CASE nMode == DE_IDLE
+ nRetVal := IdleFunc()
+ CASE nMode == DE_HITTOP
+ TONE( 100, 3 )
+ CASE nMode == DE_HITBOTTOM
+ TONE( 100, 3 )
+ nRetVal := AppendFunc( nKey )
+ CASE nMode == DE_EMPTY
+ nRetVal := EmptyFunc()
+ CASE nMode == DE_EXCEPT
+ nRetVal := ExceptFunc( nKey, nCol )
+ OTHERWISE
+ TONE( 100, 3 )
+ ENDCASE
+ 
+ RETURN nRetVal
+ 
+ FUNCTION AppendFunc( nKey )
+ LOCAL nRetVal := DE_CONT         // Default return value
+ 
+ IF nKey == K_DOWN                  // If DOWN ARROW
+ APPEND BLANK                  // Append blank record
+ // Note: The appended record will appear at the top of the
+ //       DBEDIT() screen when the database file is indexed.
+ 
+ nRetVal := DE_REFRESH         // Refresh screen
+ ENDIF
+ 
+ 
+ RETURN nRetVal
+ 
+ FUNCTION ExceptFunc( nKey, nCol )
+ LOCAL nRetVal := DE_CONT         // Default return value
+ 
+ DO CASE
+ CASE nKey == K_ESC                  // If ESCAPE
+ nRetVal := DE_ABORT               // Exit
+ CASE nKey == K_RETURN               // If RETURN
+ nRetVal := EditFunc( nCol )      // Function to edit
+ // field
+ 
+ // Toggle DELETED status
+ CASE nKey == K_DEL .AND. LASTREC() != 0  // DELETE pressed
+ IF DELETED()
+ RECALL
+ ELSE
+ DELETE
+ ENDIF
+ OTHERWISE
+ TONE( 100, 1 )
+ ENDCASE
+ 
+ RETURN nRetVal
+ 
+ 
+ FUNCTION EditFunc( nCol )
+ LOCAL cIndexVal         // Value of current key expression
+ LOCAL nRetVal            // Return value
+ LOCAL nField            // Position of current field
+ LOCAL cFieldVal         // Value of current field
+ LOCAL nCursSave         // Preserve state of cursor
+ 
+ // This will return an error if no index is open
+ cIndexVal := &#38;amp;( INDEXKEY(0) )
+ 
+ nField := FIELDPOS( acColumns[nCol] )
+ 
+ IF nField != 0
+ nCursSave := SETCURSOR()         // Save state of cursor
+ SETCURSOR(1)                     // Change cursor shape
+ cFieldVal := FIELDGET( nField )         // Save contents
+ // of field
+ @ ROW(), COL() GET cFieldVal            // GET new value
+ READ
+ FIELDPUT( nField, cFieldVal )            // REPLACE with
+ // new value
+ SETCURSOR( nCursSave )                  // Restore cursor
+ // shape
+ ENDIF
+ 
+ 
+ IF cIndexVal != &#38;amp;( INDEXKEY(0) )         // If key expression
+ 
+ // changed
+ nRequest := DE_REFRESH               // Refresh screen
+ ELSE                                    // Otherwise
+ nRequest := DE_CONT                  // Continue
+ ENDIF
+ 
+ RETURN nRequest
+ 
+ FUNCTION IdleFunc()
+ // Idle routine
+ RETURN DE_CONT
+ 
+ FUNCTION EmptyFunc()
+ // Empty Records routine
+ RETURN DE_CONT</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38462"
+></A
+><H3
+><A
+NAME="FUNCTIONDBEVAL"
+></A
+>Function  DBEVAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBEVAL(&#60;bBlock&#62;,[&#60;bForCondition&#62;],[&#60;bWhileCondition&#62;],[&#60;nNextRecords&#62;],
+ [&#60;nRecord&#62;],[&#60;lRest&#62;]) --&#62; NIL&#13;</PRE
+><P
+>  DBEVAL() is a database function that evaluates a single block for each
+ record within the current work area that matches a specified scope
+ and/or condition.  On each iteration, DBEVAL() evaluates the specified
+ block.  All records within the scope or matching the condition are
+ processed until the end of file is reached.</P
+><P
+> 
+ By default, DBEVAL() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression.</P
+><P
+> 
+ DBEVAL() is similar to AEVAL() which applies a block to each element in
+ an array.  Like AEVAL(), DBEVAL() can be used as a primitive for the
+ construction of user-defined commands that process database files.  In
+ fact, many of the standard xClipper database processing commands are
+ created using DBEVAL().</P
+><P
+> 
+ Refer to the Code Blocks section in the "Basic Concepts" chapter of the
+ Programming and Utilities Guide for more information on the syntax and
+ theory of code blocks; and refer also to the Database System section in
+ the same chapter for information on record scoping and conditions.  Also
+ refer to the xClipper standard header file, std.ch, found in
+ \include for examples of xClipper database command definitions
+ that use DBEVAL().</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38472"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block to execute for each record processed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bForCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional condition specified as a code block
+ that is evaluated for each record in the scope.  It provides the same
+ functionality as the FOR clause of record processing commands.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bWhileCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional condition specified as a code block
+ that is evaluated for each record from the current record until the
+ condition returns false (.F.).  It provides the same functionality as
+ the WHILE clause of record processing commands.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNextRecords&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional number that specifies the number of
+ records to process starting with the current record.  It is the same as
+ the NEXT clause.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRecord&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional record number to process.  If this argument
+ is specified, &lt;bBlock&gt; will be evaluated for the specified record.  This
+ argument is the same as the RECORD clause.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lRest&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value that determines whether the
+ scope of DBEVAL() is all records, or, starting with the current record,
+ all records to the end of file.  This argument corresponds to the REST
+ and ALL clauses of record processing commands.  If true (.T.) , the
+ scope is REST; otherwise, the scope is ALL records.  If &lt;lRest&gt; is not
+ specified the scope defaults to ALL.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  DBEVAL() always returns NIL.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAEVAL"
+> AEVAL()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+>EVAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38518"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses DBEVAL() to implement Count(), a user-
+ defined function that counts the number of records in a work area
+ matching a specified scope.  The scope is passed as an array to
+ Count().  To make the example more interesting, there is a user-
+ defined command to create the scope array, thereby allowing you to
+ specify the scope in a familiar form.  Additionally, there is a set
+ of manifest constants that define the attributes of the scope object.
+ 
+ // Scope command definition
+ #command CREATE SCOPE &#60;aScope&#62; [FOR &#60;for&#62;] ;
+ [WHILE &#60;while&#62;] [NEXT &#60;next&#62;] [RECORD &#60;rec&#62;] ;
+ [&#60;rest:REST&#62;] [ALL];
+ =&#62;;
+ &#60;aScope&#62; := { &#60;{for}&#62;, &#60;{while}&#62;, &#60;next&#62;, ;
+ &#60;rec&#62;, &#60;.rest.&#62; }
+ //
+ 
+ // Scope attribute constants
+ #define FOR_COND      1
+ #define WHILE_COND    2
+ #define NEXT_SCOPE    3
+ #define REC_SCOPE     4
+ #define REST_SCOPE    5
+ //
+ // Create a scope and count records using it
+ LOCAL mySet, myCount
+ USE Customer NEW
+ CREATE SCOPE mySet FOR Customer = "Smith" WHILE ;
+ Zip &#62; "90000"
+ myCount := Count( mySet )
+ RETURN
+ 
+ FUNCTION Count( aScope )
+ LOCAL nCount := 0
+ DBEVAL( {|| nCount++},;
+ aScope[ FOR_COND ],;
+ aScope[ WHILE_COND ],;
+ aScope[ NEXT_SCOPE ],;
+ aScope[ REC_SCOPE ],;
+ aScope[ REST_SCOPE ];
+ )
+ RETURN nCount
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38522"
+></A
+><H3
+><A
+NAME="FUNCTIONDBF"
+></A
+>Function  DBF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBF() --&#62; cAlias&#13;</PRE
+><P
+> DBF() is a compatibility function that replicates the DBF() function in
+ xBASE.  xClipper implements it by invoking the ALIAS()
+ function without an argument.</P
+><P
+> 
+ DBF() is a compatibility function and, therefore, no longer recommended.
+ It is superseded entirely by the ALIAS() function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38528"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBF() returns the alias of the current work area as a character string.
+ If there is no active database file in the current work area, DBF()
+ returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONALIAS"
+> ALIAS()</A
+> <A
+HREF="categdatabase.html#FUNCTIONUSED"
+>USED()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38544"
+></A
+><H3
+><A
+NAME="FUNCTIONDBFILTER"
+></A
+>Function  DBFILTER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBFILTER() --&#62; cFilter&#13;</PRE
+><P
+> DBFILTER() is a database function used to save and re-execute an active
+ filter by returning the filter expression as a character string that can
+ be later recompiled and executed using the macro operator (&amp;).  This
+ function operates like the DBRELATION() and DBRSELECT() functions which
+ save and re-execute the linking expression of a relation within a work
+ area.</P
+><P
+> 
+ Since each work area can have an active filter, DBFILTER() can return
+ the filter expression of any work area.  This is done by referring to
+ DBFILTER() within an aliased expression as demonstrated below.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38550"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBFILTER() returns the filter condition defined in the current work area
+ as a character string.  If no FILTER has been SET, DBFILTER() returns a
+ null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBRELATION"
+> DBRELATION()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRSELECT"
+>DBRSELECT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38566"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens two database files, sets two filters, and
+ then displays the filter expressions for both work areas:
+ 
+ USE Customer INDEX Customer NEW
+ SET FILTER TO Last = "Smith"
+ USE Invoices INDEX Invoices NEW
+ SET FILTER TO CustId = "Smi001"
+ SELECT Customer
+ //
+ ? DBFILTER()                      // Result: Last = "Smith"
+ ? Invoices-&#62;(DBFILTER())      // Result: Custid = "Smi001"
+ 
+ This user-defined function, CreateQry(), uses DBFILTER() to
+ create a memory file containing the current filter expression in the
+ private variable cFilter:
+ 
+ FUNCTION CreateQry( cQryName )
+ PRIVATE cFilter := DBFILTER()
+ SAVE ALL LIKE cFilter TO (cQryName + ".qwy")
+ RETURN NIL
+ 
+ You can later RESTORE a query file with this user-defined
+ function, SetFilter():
+ 
+ FUNCTION SetFilter()
+ PARAMETER cQryName
+ RESTORE FROM &#38;amp;cQryName..qwy ADDITIVE
+ SET FILTER TO &#38;amp;cFilter.
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38570"
+></A
+><H3
+><A
+NAME="FUNCTIONDBGOBOTTOM"
+></A
+>Function  DBGOBOTTOM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBGOBOTTOM() --&#62; NIL&#13;</PRE
+><P
+> DBGOBOTTOM() moves to the last logical record in the current work area.</P
+><P
+> 
+ DBGOBOTTOM() performs the same function as the standard GO BOTTOM
+ command.  For more information, refer to the GO command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38576"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBGOBOTTOM() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+>DBGOTOP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+>DBSEEK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+>DBSKIP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38595"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example uses DBGOBOTTOM() to position the record
+ pointer on the last logical record:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "LASTNAME" )
+ //
+ Sales-&#62;( DBGOBOTTOM() )
+ IF ( Sales-&#62;Last == "Winston" )
+ IF RLOCK()
+ Sales-&#62;( DBDELETE() )
+ ? "Record deleted: ", Sales-&#62;( DELETED() )
+ ELSE
+ ? "Unable to lock record..."
+ ENDIF
+ END</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38599"
+></A
+><H3
+><A
+NAME="FUNCTIONDBGOTO"
+></A
+>Function  DBGOTO() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBGOTO(&#60;xIdentity&#62;) --&#62; NIL&#13;</PRE
+><P
+> DBGOTO() is a database function that positions the record pointer in the
+ current work area at the specified &lt;xIdentity&gt;.  In an Xbase data
+ structure, this identity is the record number because every record, even
+ an empty record, has a record number.  In non-Xbase data structures,
+ identity may be defined as something other than record number.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38604"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;xIdentity&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a unique value guaranteed by the structure of the
+ data file to reference a specific item in a data source (database).  In
+ a Xbase data structure (.dbf) &lt;xIdentity&gt; is the record number.  In
+ other data formats, &lt;xIdentity&gt; is the unique primary key value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;xIdentity&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> could be an array offset or virtual memory handle if the
+ data set is in memory instead of on disk.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBGOTO() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+>DBGOBOTTOM()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+>DBGOTOP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+>DBSEEK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+>DBSKIP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38634"
+></A
+><H3
+><A
+NAME="FUNCTIONDBGOTOP"
+></A
+>Function  DBGOTOP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBGOTOP() --&#62; NIL&#13;</PRE
+><P
+> DBGOTOP() moves to the first logical record in the current work area.</P
+><P
+> 
+ DBGOTOP() performs the same function as the standard GO TOP command.
+ For more information, refer to the GO TOP command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38640"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBGOTOP() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+>DBGOBOTTOM()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+>DBSEEK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+>DBSKIP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38659"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates the typical use of DBGOTOP():
+ 
+ DBGOTOP()
+ WHILE ( !EOF() )
+ ? FIELD-&#62;Name
+ DBSKIP()
+ END</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38663"
+></A
+><H3
+><A
+NAME="FUNCTIONDBRECALL"
+></A
+>Function  DBRECALL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBRECALL() --&#62; NIL&#13;</PRE
+><P
+> DBRECALL() causes the current record to be reinstated if it is marked
+ for deletion.</P
+><P
+> 
+ DBRECALL() performs the same function as the RECALL command.  For more
+ information, refer to the DELETE and RECALL commands.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38669"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBRECALL() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBDELETE"
+> DBDELETE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38684"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example recalls a record if it is deleted and
+ attempts to lock the record if successful:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "LASTNAME" )
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( DELETED() )
+ IF Sales( RLOCK() )
+ Sales( DBRECALL() )
+ ? "Record recalled"
+ ELSE
+ "Unable to lock record..."
+ ENDIF
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38688"
+></A
+><H3
+><A
+NAME="FUNCTIONDBREINDEX"
+></A
+>Function  DBREINDEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBREINDEX() --&#62; NIL&#13;</PRE
+><P
+> DBREINDEX() rebuilds all active indexes associated with the current work
+ area.  After the indexes are recreated, the work area is moved to the
+ first logical record in the controlling order.</P
+><P
+> 
+ DBREINDEX() performs the same function as the standard REINDEX command.
+ For more information, refer to the REINDEX command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38694"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBREINDEX() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+> DBCLEARINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+>DBCREATEINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+>DBSETINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+>DBSETORDER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38712"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example reindexes the work area:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "LASTNAME" )
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF RLOCK()
+ DELETE FOR Sales-&#62;LastName == "Winston"
+ Sales-&#62;( DBREINDEX() )
+ ELSE
+ ? "Unable to lock record..."
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38716"
+></A
+><H3
+><A
+NAME="FUNCTIONDBRELATION"
+></A
+>Function  DBRELATION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBRELATION(&#60;nRelation&#62;) --&#62; cLinkExp&#13;</PRE
+><P
+> DBRELATION() is a database function used with DBRSELECT() to determine
+ the linking expression and work area of an existing relation created
+ with the SET RELATION command.</P
+><P
+> 
+ DBRELATION() returns the linking expression defined by the TO clause.
+ DBRSELECT() returns the work area linked as defined by the INTO clause.</P
+><P
+> 
+ By default, DBRELATION() operates on the currently selected work area.
+ It will operate on an unselected work area if you specify it as part of
+ an aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38723"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRelation&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position of the desired relation in the list of
+ current work area relations.  The relations are numbered according to
+ the order in which they were defined with SET RELATION.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBRELATION() returns a character string containing the linking
+ expression of the relation specified by &lt;nRelation&gt;.  If there is no
+ RELATION SET for &lt;nRelation&gt;, DBRELATION() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+> DBFILTER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRSELECT"
+>DBRSELECT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38744"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens three database files, sets two child
+ relations from the parent work area, and then displays the linking
+ expression to the second child work area:
+ 
+ USE Invoices INDEX Invoices NEW
+ USE BackOrder INDEX BackOrder NEW
+ USE Customer INDEX Customer NEW
+ SET RELATION TO CustNum INTO Invoices, OrderNum ;
+ INTO BackOrder
+ //
+ ? DBRELATION(2)                  // Result: OrderNum
+ 
+ Later you can query the same linking expression from an
+ unselected work area by using an aliased expression like this:
+ 
+ USE Archive NEW
+ ? Customer-&#62;(DBRELATION(2))   // Result: OrderNum
+ 
+ This example is a user-defined function, Relation(), that
+ returns the results of both DBRELATION() and DBRSELECT() as an array:
+ 
+ FUNCTION Relation( nRelation )
+ RETURN { DBRELATION(nRelation), ;
+ ALIAS(DBRSELECT(nRelation)) }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38748"
+></A
+><H3
+><A
+NAME="FUNCTIONDBRSELECT"
+></A
+>Function  DBRSELECT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBRSELECT(&#60;nRelation&#62;) --&#62; nWorkArea&#13;</PRE
+><P
+> DBRSELECT() is a database function used in combination with DBRELATION()
+ to determine the work area and linking expression of an existing
+ relation created with the SET RELATION command.  DBRSELECT() returns the
+ work area defined by the INTO clause.  DBRELATION() returns the linking
+ expression defined by the TO clause.  To determine the alias of the
+ relation instead of the work area number, use the expression
+ ALIAS(DBRSELECT(&lt;nRelation&gt;)).</P
+><P
+> 
+ By default, DBRSELECT() operates on the currently selected work area.
+ It will operate on an unselected work area if you specify it as part of
+ an aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38754"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRelation&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position of the desired relation in the list of
+ current work area relations.  The relations are numbered according to
+ the order in which they were defined with SET RELATION.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBRSELECT() returns the work area number of the relation specified by
+ &lt;nRelation&gt; as an integer numeric value.  If there is no RELATION SET
+ for &lt;nRelation&gt;, DBRSELECT() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+> DBFILTER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRELATION"
+>DBRELATION()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38776"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens three database files, sets two child
+ relations from the parent work area, and then displays the linking
+ expression to the second child work area, as well as the target work
+ area of the relation:
+ 
+ USE Invoices INDEX Invoices NEW
+ USE BackOrder INDEX BackOrder NEW
+ USE Customer INDEX Customer NEW
+ SET RELATION TO CustNum INTO Customer, ;
+ OrderNum INTO BackOrder
+ //
+ ? DBRELATION(2), DBRSELECT(2)         // Result: OrderNum 3
+ 
+ ? ALIAS(DBRSELECT(2))               // Result: BACKORDER
+ 
+ Later, you can query the same information from an unselected
+ work area by using an aliased expression:
+ 
+ USE Archive NEW
+ ? Customer-&#62;(DBRELATION(2))      // Result: OrderNum
+ ? Customer-&#62;(DBRSELECT(2))         // Result: 3</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38780"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSEEK"
+></A
+>Function  DBSEEK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSEEK(&#60;expKey&#62;, [&#60;lSoftSeek&#62;], [&#60;lLast&#62;]) --&#62; lFound&#13;</PRE
+><P
+> DBSEEK() moves to the first logical record whose key value is equal to
+ &lt;expKey&gt;.  If such a record is found, it becomes the current record and
+ DBSEEK() returns true (.T.); otherwise, it returns false (.F.).  the
+ positioning of the work area is as follows: for a normal (not soft)
+ seek, the work area is positioned to LASTREC() + 1 and EOF() returns
+ true (.T.); for a soft seek, the work area is positioned to the first
+ record whose key value is greater than the specified key value.  If no
+ such record exists, the work area is positioned to LASTREC() + 1 and
+ EOF() returns true (.T.).</P
+><P
+> 
+ For a work area with no active indexes, DBSEEK() has no effect.</P
+><P
+> 
+ DBSEEK() performs the same function as the standard SEEK command.  For
+ more information, refer to the SEEK command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38787"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a value of any type that specifies the key value
+ associated with the desired record.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lSoftSeek&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value that specifies whether a
+ soft seek is to be performed.  This determines how the work area is
+ positioned if the specified key value is not found (see below).  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lSoftSeek&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is omitted, the current global _SET_SOFTSEEK setting is
+ used.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lLast&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is specified as true (.T.) to seek the last occurrence of
+ the specified key value.  False (.F.), the default, seeks the first
+ occurrence.
+ 
+ Note:  This parameter is only supported for specific RDDs.  DBFNTX
+ is NOT one of them.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSEEK() returns true (.T.) if the specified key value was found;
+ otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+> DBGOBOTTOM()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+>DBGOTOP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+>DBSKIP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFOUND"
+>FOUND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38826"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, DBSEEK() moves the pointer to the record in
+ the database, Employee, in which the value in FIELD "cName" matches
+ the entered value of cName:
+ 
+ ACCEPT "Employee name: " TO cName
+ IF ( Employee-&#62;(DBSEEK(cName)) )
+ Employee-&#62;(VIEWRECORD())
+ ELSE
+ ? "Not found"
+ END</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38830"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSELECTAREA"
+></A
+>Function  DBSELECTAREA() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSELECTAREA(&#60;nArea&#62; | &#60;cAlias&#62;) --&#62; NIL&#13;</PRE
+><P
+> DBSELECTAREA() causes the specified work area to become the current work
+ area.  All subsequent database operations will apply to this work area
+ unless another work area is explicitly specified for an operation.
+ DBSELECTAREA() performs the same function as the standard SELECT
+ command.  For more information, refer to the SELECT command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38835"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nArea&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value between zero and 250, inclusive, that
+ specifies the work area being selected.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAlias&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character value that specifies the alias of a
+ currently occupied work area being selected.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSELECTAREA() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+> DBUSEAREA()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONSELECT"
+>SELECT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38862"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example selects a work area via the alias name:
+ 
+ cLast := "Winston"
+ DBUSEAREA( .T., "DBFNTX", "Sales", "Sales", .T. )
+ DBSETINDEX( "SALEFNAM" )
+ DBSETINDEX( "SALELNAM" )
+ //
+ DBUSEAREA( .T., "DBFNTX", "Colls", "Colls", .T. )
+ DBSETINDEX( "COLLFNAM" )
+ DBSETINDEX( "COLLLNAM" )
+ //
+ DBSELECTAREA( "Sales" )      // select "Sales" work area
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( DELETED() ) .AND. Sales-&#62;( RLOCK() )
+ Sales-&#62;( DBRECALL() )
+ ? "Deleted record has been recalled."
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38866"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSETDRIVER"
+></A
+>Function  DBSETDRIVER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSETDRIVER([&#60;cDriver&#62;]) --&#62; cCurrentDriver&#13;</PRE
+><P
+> DBSETDRIVER() sets the database driver to be used when activating new
+ work areas without specifying a driver.  If the specified driver is not
+ available to the application, the call has no effect.  DBSETDRIVER()
+ returns the name of the current default driver, if any.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38871"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDriver&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional character value that specifies the name of
+ the database driver that should be used to activate and manage new work
+ areas when no driver is explicitly specified.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSETDRIVER() returns the name of the current default driver.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+> DBUSEAREA()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38892"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example makes the "DBFNDX" driver the default driver.  If
+ the driver is unavailable, a message is issued:
+ 
+ DBSETDRIVER("DBFNDX")
+ IF ( DBSETDRIVER() &#60;&#62; "DBFNDX" )
+ ? "DBFNDX driver not available"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38896"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSETFILTER"
+></A
+>Function  DBSETFILTER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSETFILTER(&#60;bCondition&#62;, [&#60;cCondition&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBSETFILTER() sets a logical filter condition for the current work area.
+ When a filter is set, records which do not meet the filter condition are
+ not logically visible.  That is, database operations which act on
+ logical records will not consider these records.</P
+><P
+> 
+ The filter expression supplied to DBSETFILTER() evaluates to true (.T.)
+ if the current record meets the filter condition; otherwise, it should
+ evaluate to false (.F.).</P
+><P
+> 
+ The filter expression may be a code block (&lt;bCondition&gt;) or both a code
+ block and equivalent text (&lt;cCondition&gt;).  If both versions are
+ supplied, they must express the same condition.  If the text version is
+ omitted, DBFILTER() will return an empty string for the work area.</P
+><P
+> 
+ DBSETFILTER() performs the same function as the standard SET FILTER
+ command.  For more information, refer to the SET FILTER command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38904"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block that expresses the filter condition in
+ executable form.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> stores the filter condition as a character string for
+ later retrieval by the DBFILTER() function.  If you omit this optional
+ parameter, the DBFILTER() function will return an empty string for the
+ work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSETFILTER() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARFILTER"
+> DBCLEARFILTER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+>DBFILTER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38930"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example limits data access to records in which the Age
+ field value is less than 40:
+ 
+ USE Employee NEW
+ DBSETFILTER( {|| Age &#60; 40}, "Age &#60; 40" )
+ DBGOTOP()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38934"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSETINDEX"
+></A
+>Function  DBSETINDEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSETINDEX(&#60;cOrderBagName&#62;) --&#62; NIL&#13;</PRE
+><P
+> DBSETINDEX() is a database function that adds the contents of an order
+ bag into the order list of the current work area.  Any orders already
+ associated with the work area continue to be active.  If the newly
+ opened order bag is the only order associated with the work area, it
+ becomes the controlling order; otherwise, the controlling order remains
+ unchanged.  If the order bag contains more than one order, and there are
+ no other orders associated with the work area, the first order in the
+ new order bag becomes the controlling order.</P
+><P
+> 
+ Note: DBSETINDEX() does not close all currently open index files.</P
+><P
+> 
+ DBSETINDEX() is a compatibility command and therefore is not
+ recommended.  It is superseded by the ORDLISTADD() function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38941"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOrderBagName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a disk file containing one or more
+ orders.  You may specify &lt;cOrderBagName&gt; as the file name with or
+ without the path name or extension.  If you do not include the extension
+ as part of &lt;cOrderBagName&gt;, xClipper uses the default extension of the
+ current RDD.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSETINDEX() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDLISTADD"
+> ORDLISTADD()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+>DBCLEARINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+>DBCREATEINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+>DBREINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+>DBSETORDER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38965"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSETORDER"
+></A
+>Function  DBSETORDER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSETORDER(&#60;nOrderNum&#62;) --&#62; NIL&#13;</PRE
+><P
+> DBSETORDER() controls which of the current work area's active indexes is
+ the controlling index.  The controlling index is the index which
+ determines the logical order of records in the work area.</P
+><P
+> 
+ Active indexes are numbered from 1 to the number of active indexes,
+ based on the order in which the indexes were opened.  &lt;nOrderNum&gt;
+ specifies the number of the desired index.</P
+><P
+> 
+ DBSETORDER() performs the same function as the standard SET ORDER
+ command.  For more information, refer to the SET ORDER command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN38972"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrderNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that specifies which of the active
+ indexes is to be the controlling index.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSETORDER() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+> DBCLEARINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+>DBCREATEINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+>DBREINDEX()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+>DBSETINDEX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN38995"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example sets the second named index, Age, as the
+ controlling index:
+ 
+ USE Employee NEW
+ SET INDEX TO Name, Age
+ DBSETORDER(2)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN38999"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSETRELATION"
+></A
+>Function  DBSETRELATION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSETRELATION(&#60;nArea&#62; | &#60;cAlias&#62;, &#60;bExpr&#62;, &#60;cExpr&#62;) --&#62; NIL&#13;</PRE
+><P
+> DBSETRELATION() relates the work area specified by &lt;nArea&gt; or &lt;cAlias&gt;
+ (the child work area) to the current work area (the parent work area).
+ Any existing relations remain active.</P
+><P
+> 
+ Relating work areas synchronizes the child work area with the parent
+ work area.  This is achieved by automatically repositioning the child
+ work area whenever the parent work area moves to a new record.  If there
+ is an active index in the child work area, moving the parent work area
+ causes an automatic SEEK operation in the child work area; the seek key
+ is based on the expression specified by &lt;bExpr&gt; and/or &lt;cExpr&gt;.  If the
+ child work area has no active index, moving the parent work area causes
+ an automatic GOTO in the child work area; the record number for the GOTO
+ is based on the expression specified by &lt;bExpr&gt; and/or &lt;cExpr&gt;.</P
+><P
+> 
+ The relational expression may be a code block (&lt;bExpr&gt;) or both a code
+ block and equivalent text (&lt;cExpr&gt;).  If both versions are supplied,
+ they must be equivalent.  If the text version is omitted, DBRELATION()
+ will return an empty string for the relation.</P
+><P
+> 
+ DBSETRELATION() performs the same function as the standard SET RELATION
+ command with the ADDITIVE clause.  For more information, refer to the
+ SET RELATION command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39007"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nArea&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that specifies the work area number of
+ the child work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAlias&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character value that specifies the alias of the child
+ work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bExpr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block that expresses the relational expression in
+ executable form.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cExpr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character value that expresses the relational
+ expression in textual form.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSETRELATION() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARRELATION"
+> DBCLEARRELATION()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRELATION"
+>DBRELATION()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRSELECT"
+>DBRSELECT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFOUND"
+>FOUND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39045"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates a typical use of the DBSETRELATION()
+ function:
+ 
+ USE Employee NEW
+ USE Department NEW INDEX Dept
+ SELECT Employee
+ DBSETRELATION("Department", {|| Employee-&#62;Dept},;
+ "Employee-&#62;Dept")
+ LIST Employee-&#62;Name, Department-&#62;Name</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39049"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSKIP"
+></A
+>Function  DBSKIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSKIP([&#60;nRecords&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBSKIP() moves either forward or backward relative to the current
+ record.  Attempting to skip forward beyond the last record positions the
+ work area to LASTREC() + 1 and EOF() returns true (.T.).  Attempting to
+ skip backward beyond the first record positions the work area to the
+ first record and BOF() returns true (.T.).</P
+><P
+> 
+ DBSKIP() performs the same function as the standard SKIP command.  For
+ more information, refer to the SKIP command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39055"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRecords&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of logical records to move, relative to the
+ current record.  A positive value means to skip forward, and a negative
+ value means to skip backward.  If &lt;nRecords&gt; is omitted, a value of 1 is
+ assumed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSKIP() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+>DBGOBOTTOM()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+>DBGOTOP()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+>DBSEEK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39079"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates a typical use of the DBSKIP()
+ function:
+ 
+ DBGOTOP()
+ 
+ DO WHILE ( !EOF() )
+ ? FIELD-&#62;Name
+ DBSKIP()
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39083"
+></A
+><H3
+><A
+NAME="FUNCTIONDBSTRUCT"
+></A
+>Function  DBSTRUCT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBSTRUCT() --&#62; aStruct&#13;</PRE
+><P
+> DBSTRUCT() is a database function that operates like COPY STRUCTURE
+ EXTENDED by creating an array of structure information rather than a
+ database file of structure information.  There is another function,
+ DBCREATE(), that can create a database file from the structure array.</P
+><P
+> 
+ By default, DBSTRUCT() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression as shown below.</P
+><P
+> 
+ Note, a header file, dbstruct.ch, located in \include contains a
+ series of manifest constants for each field attribute.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39090"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBSTRUCT() returns the structure of the current database file in an
+ array whose length is equal to the number of fields in the database
+ file.  Each element of the array is a subarray containing information
+ for one field.  The subarrays have the following format:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+>DBSTRUCT() Return Array
+ ------------------------------------------------------------------------
+ Position     Metasymbol     dbstruct.ch
+ ------------------------------------------------------------------------
+ 1            cName          DBS_NAME
+ 2            cType          DBS_TYPE
+ 3            nLength        DBS_LEN
+ 4            nDecimals      DBS_DEC
+ ------------------------------------------------------------------------
+ </PRE
+>
+ 
+ If there is no database file in USE in the current work area, DBSTRUCT()
+ returns an empty array ({}).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+> AFIELDS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39106"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens two database files and then creates an
+ array containing the database structure using DBSTRUCT() within an
+ aliased expression.  The field names are then listed using AEVAL():
+ 
+ #include "dbstruct.ch"
+ //
+ LOCAL aStruct
+ USE Customer NEW
+ USE Invoices NEW
+ //
+ aStruct := Customer-&#62;(DBSTRUCT())
+ AEVAL( aStruct, {|aField| QOUT(aField[DBS_NAME])} )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39110"
+></A
+><H3
+><A
+NAME="FUNCTIONDBUNLOCK"
+></A
+>Function  DBUNLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBUNLOCK() --&#62; NIL&#13;</PRE
+><P
+> DBUNLOCK() releases any record or file locks obtained by the current
+ process for the current work area.  DBUNLOCK() is only meaningful on a
+ shared database in a network environment.</P
+><P
+> 
+ DBUNLOCK() performs the same function as the standard UNLOCK command.
+ For more information, refer to the UNLOCK command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39116"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBUNLOCK() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUNLOCKALL"
+> DBUNLOCKALL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+>FLOCK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39133"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example illustrates a basic use of the
+ DBUNLOCK() function:
+ 
+ cLast := "Winston"
+ USE Sales SHARED NEW VIA "DBFNTX"
+ DBSETINDEX( "LASTNAME" )
+ //
+ IF ( Sales-&#62;(DBSEEK(cLast)) )
+ IF Sales-&#62;( RLOCK() )
+ Sales-&#62;( DBDELETE() )
+ 
+ ? "Record deleted: ", Sales( DELETED() )
+ Sales-&#62;( DBUNLOCK() )
+ ELSE
+ ? "Unable to lock record..."
+ ENDIF
+ ELSE
+ ? "Not found"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39137"
+></A
+><H3
+><A
+NAME="FUNCTIONDBUNLOCKALL"
+></A
+>Function  DBUNLOCKALL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBUNLOCKALL() --&#62; NIL&#13;</PRE
+><P
+> DBUNLOCKALL() releases any record or file locks obtained by the current
+ process for any work area.  DBUNLOCKALL() is only meaningful on a shared
+ database in a network environment.  It is equivalent to calling
+ DBUNLOCK() on every occupied work area.</P
+><P
+> 
+ DBUNLOCKALL() performs the same function as the UNLOCK ALL command.  For
+ more information, refer to the UNLOCK ALL command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39143"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBUNLOCKALL() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUNLOCK"
+> DBUNLOCK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+>FLOCK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+>RLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39160"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example marks a record for deletion if an
+ RLOCK() attempt is successful, then clears all locks in all work
+ areas:
+ 
+ cLast := "Winston"
+ USE Sales SHARED NEW VIA "DBFNTX"
+ DBSETINDEX( "SALEFNAM" )
+ DBSETINDEX( "SALELNAM" )
+ //
+ USE Colls SHARED NEW VIA "DBFNTX"
+ DBSETINDEX( "COLLFNAM" )
+ DBSETINDEX( "COLLLNAM" )
+ //
+ DBSELECTAREA( "Sales" )      // select "Sales" work area
+ //
+ IF ( Colls-&#62;(DBSEEK(cLast)) )
+ IF Colls-&#62;( DELETED() )
+ ? "Record deleted: ", Colls-&#62;( DELETED() )
+ 
+ IF Colls-&#62;( RLOCK() )
+ Colls-&#62;( DBRECALL() )
+ ? "Record recalled..."
+ ENDIF
+ ENDIF
+ ELSE
+ ? "Not found"
+ DBUNLOCKALL()            // remove all locks in
+ ENDIF                        // all work areas</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39164"
+></A
+><H3
+><A
+NAME="FUNCTIONDBUSEAREA"
+></A
+>Function  DBUSEAREA() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DBUSEAREA( [&#60;lNewArea&#62;], [&#60;cDriver&#62;], &#60;cName&#62;, [&#60;xcAlias&#62;],
+ [&#60;lShared&#62;], [&#60;lReadonly&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DBUSEAREA() associates the specified database (.dbf) file with the
+ current work area.  It performs the same function as the standard USE
+ command.  For more information, refer to the USE command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39169"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewArea&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value.  A value of true (.T.)
+ selects the lowest numbered unoccupied work area as the current work
+ area before the use operation.  If &lt;lNewArea&gt; is false (.F.) or omitted,
+ the current work area is used; if the work area is occupied, it is
+ closed first.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDriver&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional character value.  If present, it specifies
+ the name of the database driver which will service the work area.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDriver&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is omitted, the current default driver is used (see note
+ below).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the name of the database (.dbf) file to be opened.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;xcAlias&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional character value.  If present, it specifies
+ the alias to be associated with the work area.  The alias must
+ constitute a valid xClipper identifier.  A valid &lt;xcAlias&gt; may be any
+ legal identifier (i.e., it must begin with an alphabetic character and
+ may contain numeric or alphabetic characters and the underscore).
+ Within a single application, xClipper will not accept duplicate
+ aliases.  If &lt;xcAlias&gt; is omitted, a default alias is constructed from</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lShared&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value.  If present, it specifies
+ whether the database (.dbf) file should be accessible to other processes
+ on a network.  A value of true (.T.) specifies that other processes
+ should be allowed access; a value of false (.F.) specifies that the
+ current process is to have exclusive access.  If &lt;lShared&gt; is omitted,
+ the current global _SET_EXCLUSIVE setting determines whether shared
+ access is allowed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lReadonly&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical value that specifies whether
+ updates to the work area are prohibited.  A value of true (.T.)
+ prohibits updates; a value of false (.F.) permits updates.  A value of
+ true (.T.) also permits read-only access to the specified database
+ (.dbf) file.  If &lt;lReadonly&gt; is omitted, the default value is false
+ (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DBUSEAREA() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEAREA"
+> DBCLOSEAREA()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSETDRIVER"
+>DBSETDRIVER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONSELECT"
+>SELECT()</A
+> <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39227"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example is a typical use of the DBUSEAREA() function:
+ 
+ DBUSEAREA(.T., "DBFNDX", "Employees")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39231"
+></A
+><H3
+><A
+NAME="FUNCTIONDELETED"
+></A
+>Function  DELETED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DELETED() --&#62; lDeleted&#13;</PRE
+><P
+> DELETED() is a database function that determines if the current record
+ in the active work area is marked for deletion.  Since each work area
+ with an open database file can have a current record, each work area has
+ its own DELETED() value.</P
+><P
+> 
+ By default, DELETED() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).</P
+><P
+> 
+ In applications, DELETED() is generally used to query the deleted status
+ as a part of record processing conditions, or to display the deleted
+ status as a part of screens and reports.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39238"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DELETED() returns true (.T.) if the current record is marked for
+ deletion; otherwise, it returns false (.F.).  If there is no database
+ file in USE in the current work area, DELETED() returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBDELETE"
+> DBDELETE()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBRECALL"
+>DBRECALL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39254"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses DELETED() in the current and in an
+ unselected work area:
+ 
+ USE Customer NEW
+ USE Sales NEW
+ ? DELETED()                     // Result: .F.
+ DELETE
+ ? DELETED()                     // Result: .T.
+ ? Customer-&#62;(DELETED())         // Result: .F.
+ 
+ This example uses DELETED() to display a record's deleted
+ status in screens and reports:
+ 
+ @ 1, 65 SAY IF(DELETED(), "Inactive", "Active")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39258"
+></A
+><H3
+><A
+NAME="FUNCTIONDESCEND"
+></A
+>Function  DESCEND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DESCEND(&#60;exp&#62;) --&#62; ValueInverted&#13;</PRE
+><P
+> DESCEND() is a conversion function that returns the inverted form of the
+ specified expression to be used with INDEX to create descending order
+ indexes.  Specify that part of the index expression you want to be
+ descending as the DESCEND() argument.  To subsequently perform a lookup
+ with SEEK, specify DESCEND() in the search expression.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39263"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid expression of character, date, logical, or
+ numeric type.  Memo type is treated in the same way as character type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DESCEND() returns an inverted expression of the same data type as the
+ &lt;exp&gt;, except for dates which return a numeric value.  A DESCEND() of
+ CHR(0) always returns CHR(0).</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39278"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses DESCEND() in an INDEX expression to create a
+ descending order date index:
+ 
+ USE Sales NEW
+ INDEX ON DESCEND(OrdDate) TO SalesDate
+ 
+ Later, use DESCEND() to SEEK on the descending index:
+ 
+ SEEK DESCEND(dFindDate)
+ 
+ This example illustrates how to create a descending order
+ index using more than one data type.  Here, the key is created using
+ the concatenation of date and character fields after the appropriate
+ type conversion has taken place.  This example uses STR() instead of
+ DTOS(), since DESCEND() of a date returns a numeric value:
+ 
+ USE Sales NEW
+ INDEX ON STR(DESCEND(SaleDate)) + Salesman TO LastSale</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39282"
+></A
+><H3
+><A
+NAME="FUNCTIONEOF"
+></A
+>Function  EOF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EOF() --&#62; lBoundary&#13;</PRE
+><P
+> EOF() is a database function used to test for an end of file boundary
+ condition when the record pointer is moving forward through a database
+ file.  Any command that can move the record pointer can set EOF().</P
+><P
+> 
+ The most typical application is as a part of the &lt;lCondition&gt; argument
+ of a DO WHILE construct that sequentially processes records in a
+ database file.  Here &lt;lCondition&gt; would include a test for .NOT. EOF(),
+ forcing the DO WHILE loop to terminate when EOF() returns true (.T.).</P
+><P
+> 
+ EOF() and FOUND() are often used interchangeably to test whether a SEEK,
+ FIND, or LOCATE command failed.  With these commands, however, FOUND()
+ is preferred.</P
+><P
+> 
+ When EOF() returns true (.T.), the record pointer is positioned at
+ LASTREC() + 1 regardless of whether there is an active SET FILTER or SET
+ DELETED is ON.  Further attempts to move the record pointer forward
+ return the same result without error.  Once EOF() is set to true (.T.),
+ it retains its value until there is another attempt to move the record
+ pointer.</P
+><P
+> 
+ By default, EOF() operates on the currently selected work area.  It can
+ be made to operate on an unselected work area by specifying it within an
+ aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39291"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> EOF() returns true (.T.) when an attempt is made to move the record
+ pointer beyond the last logical record in a database file; otherwise, it
+ returns false (.F.).  If there is no database file open in the current
+ work area, EOF() returns false (.F.).  If the current database file
+ contains no records, EOF() returns true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFOUND"
+>FOUND()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39308"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates EOF() by deliberately moving the
+ record pointer beyond the last record:
+ 
+ USE Sales
+ GO BOTTOM
+ ? EOF()            // Result: .F.
+ SKIP
+ ? EOF()            // Result: .T.
+ 
+ This example uses aliased expressions to query the value of
+ EOF() in unselected work areas:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? Sales-&#62;(EOF())
+ ? Customer-&#62;(EOF())
+ 
+ This example illustrates how EOF() can be used as part of a
+ condition for sequential database file operations:
+ 
+ USE Sales INDEX CustNum NEW
+ DO WHILE !EOF()
+ nOldCust := Sales-&#62;CustNum
+ nTotalAmount := 0
+ DO WHILE nOldCust = Sales-&#62;CustNum .AND. (!EOF())
+ ? Sales-&#62;CustNum, Sales-&#62;Description, ;
+ Sales-&#62;SaleAmount
+ nTotalAmount += Sales-&#62;SaleAmount
+ SKIP
+ ENDDO
+ ? "Total amount: ", nTotalAmount
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39312"
+></A
+><H3
+><A
+NAME="FUNCTIONFCOUNT"
+></A
+>Function  FCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCOUNT() --&#62; nFields&#13;</PRE
+><P
+> FCOUNT() is a database function.  It is useful in applications
+ containing data-independent programs that can operate on any database
+ file.  These include generalized import/export and reporting programs.
+ Typically, you use FCOUNT() to establish the upper limit of a FOR...NEXT
+ or DO WHILE loop that processes a single field at a time.</P
+><P
+> 
+ By default, FCOUNT() operates on the currently selected work area.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39318"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FCOUNT() returns the number of fields in the database file in the
+ current work area as an integer numeric value.  If there is no database
+ file open, FCOUNT() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+> AFIELDS()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFIELDNAME"
+>FIELDNAME()</A
+> <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39335"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example illustrates FCOUNT(), returning the number of
+ fields in the current and an unselected work area:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? FCOUNT()                     // Result: 5
+ ? Sales-&#62;(FCOUNT())            // Result: 8
+ 
+ This example uses FCOUNT() to DECLARE an array with field
+ information:
+ 
+ LOCAL aFields := ARRAY(FCOUNT())
+ AFIELDS(aFields)
+ 
+ This example uses FCOUNT() as the upper boundary of a FOR loop
+ that processes the list of current work area fields:
+ 
+ LOCAL nField
+ USE Sales NEW
+ FOR nField := 1 TO FCOUNT()
+ ? FIELD(nField)
+ NEXT</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39339"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDGET"
+></A
+>Function  FIELDGET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDGET(&#60;nField&#62;) --&#62; ValueField&#13;</PRE
+><P
+> FIELDGET() is a database function that retrieves the value of a field
+ using its position within the database file structure rather than its
+ field name.  Within generic database service functions this allows,
+ among other things the retrieval of field values without use of the
+ macro operator.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39344"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nField&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ordinal position of the field in the record
+ structure for the current work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDGET() returns the value of the specified field.  If &lt;nField&gt; does
+ not correspond to the position of any field in the current database
+ file, FIELDGET() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDPUT"
+> FIELDPUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39364"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example compares FIELDGET() to functionally equivalent
+ code that uses the macro operator to retrieve the value of a field:
+ 
+ LOCAL nField := 1, FName, FVal
+ USE Customer NEW
+ //
+ // Using macro operator
+ FName := FIELD( nField )           // Get field name
+ FVal := &#38;amp;FName                     // Get field value
+ // Using FIELDGET()
+ FVal := FIELDGET( nField )         // Get field value</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39368"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDNAME"
+></A
+>Function  FIELDNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDNAME/FIELD(&#60;nPosition&#62;) --&#62; cFieldName&#13;</PRE
+><P
+> FIELDNAME() is a database function that returns a field name using an
+ index to the position of the field name in the database structure.  Use
+ it in data-independent applications where the field name is unknown.  If
+ information for more than one field is required, use AFIELDS() to create
+ an array of field information or COPY STRUCTURE EXTENDED to create a
+ database of field information.</P
+><P
+> 
+ If you need additional database file structure information, use TYPE()
+ and LEN().  To obtain the number of decimal places for a numeric field,
+ use the following expression:</P
+><P
+> 
+ LEN(SUBSTR(STR(&lt;idField&gt;), RAT(".", ;</P
+><P
+> 
+ STR(&lt;idField&gt;)) + 1))</P
+><P
+> 
+ By default, FIELDNAME() operates on the currently selected work area as
+ shown in the example below.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39377"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPosition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position of a field in the database file
+ structure.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDNAME() returns the name of the specified field as a character
+ string.  If &lt;nPosition&gt; does not correspond to an existing field in the
+ current database file or if no database file is open in the current work
+ area, FIELDNAME() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+> AFIELDS()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+>DBSTRUCT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFCOUNT"
+>FCOUNT()</A
+> <A
+HREF="categarray.html#FUNCTIONLEN"
+>LEN()</A
+> <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39401"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate FIELDNAME() used with several other
+ functions:
+ 
+ USE Sales
+ ? FIELDNAME(1)              // Result: BRANCH
+ ? FCOUNT()                  // Result: 5
+ ? LEN(FIELDNAME(0))         // Result: 0
+ ? LEN(FIELDNAME(40))        // Result: 0
+ 
+ This example uses FIELDNAME() to list the name and type of
+ each field in Customer.dbf:
+ 
+ USE Customer NEW
+ FOR nField := 1 TO FCOUNT()
+ ? PADR(FIELDNAME(nField), 10),;
+ VALTYPE(&#38;amp;(FIELDNAME(nField)))
+ NEXT
+ 
+ This example accesses fields in unselected work areas using
+ aliased expressions:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ USE Invoices NEW
+ //
+ ? Sales-&#62;(FIELDNAME(1))            // Result: SALENUM
+ ? Customer-&#62;(FIELDNAME(1))         // Result: CUSTNUM</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39405"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDPOS"
+></A
+>Function  FIELDPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDPOS(&#60;cFieldName&#62;) --&#62; nFieldPos&#13;</PRE
+><P
+> FIELDPOS() is a database function that is the inverse of the FIELDNAME()
+ function.  FIELDPOS() is most often used with the FIELDPUT() and
+ FIELDGET() functions.</P
+><P
+> 
+ FIELDPOS() return the names of fields in any unselected work area by
+ referring to the function using an aliased expression.  See the example
+ below.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39411"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFieldName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a field in the current or specified work
+ area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDPOS() returns the position of the specified field within the list
+ of fields associated with the current or specified work area.  If the
+ current work area has no field with the specified name, FIELDPOS()
+ returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDGET"
+> FIELDGET()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFIELDPUT"
+>FIELDPUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39432"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates a typical specification of the
+ FIELDPOS() function:
+ 
+ USE Customer NEW
+ ? FIELDPOS("Name")                     // Result: 1
+ ? FIELDGET(FIELDPOS("Name"))           // Result: Kate
+ 
+ This example uses FIELDPOS() to return the position of a
+ specified field in a unselected work area:
+ 
+ USE Customer NEW
+ USE Invoices NEW
+ ? Customer-&#62;(FIELDPOS("Name"))         // Result: 1
+ ? Customer-&#62;(FIELDGET(FIELDPOS("Name")))
+ // Result: Kate</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39436"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDPUT"
+></A
+>Function  FIELDPUT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDPUT(&#60;nField&#62;, &#60;expAssign&#62;) --&#62; ValueAssigned&#13;</PRE
+><P
+> FIELDPUT() is a database function that assigns &lt;expAssign&gt; to the field
+ at ordinal position &lt;nField&gt; in the current work area.  This function
+ allows you to set the value of a field using its position within the
+ database file structure rather than its field name.  Within generic
+ database service functions this allows, among other things, the setting
+ of field values without use of the macro operator.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39441"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nField&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ordinal position of the field in the current
+ database file.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expAssign&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to assign to the given field.  The data
+ type of this expression must match the data type of the designated field
+ variable.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDPUT() returns the value assigned to the designated field.  If
+ &lt;nField&gt; does not correspond to the position of any field in the current
+ database file, FIELDPUT() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDGET"
+> FIELDGET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39466"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example compares FIELDPUT() to functionally equivalent
+ code that uses the macro operator to set the value of a field:
+ 
+ // Using macro operator
+ FName := FIELD(nField)           // Get field name
+ FIELD-&#62;&#38;amp;FName := FVal            // Set field value
+ // Using FIELDPUT()
+ FIELDPUT(nField, FVal)           // Set field value</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39470"
+></A
+><H3
+><A
+NAME="FUNCTIONFLOCK"
+></A
+>Function  FLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FLOCK() --&#62; lSuccess&#13;</PRE
+><P
+> FLOCK() is a database function used in network environments to lock an
+ open and shared database file, preventing other users from updating the
+ file until the lock is released.  Records in the locked file are
+ accessible for read-only operations.</P
+><P
+> 
+ FLOCK() is related to USE...EXCLUSIVE and RLOCK().  USE...EXCLUSIVE
+ opens a database file so that no other user can open the same file at
+ the same time and is the most restrictive locking mechanism in
+ xClipper.  RLOCK() is the least restrictive and attempts to place an
+ update lock on a shared record, precluding other users from updating the
+ current record.  FLOCK() falls in the middle.</P
+><P
+> 
+ FLOCK() is used for operations that access the entire database file.
+ Typically, these are commands that update the file with a scope or a
+ condition such as DELETE or REPLACE ALL.  The following is a list of
+ such commands:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>Commands that require an FLOCK()
+ ------------------------------------------------------------------------
+ Command                       Mode
+ ------------------------------------------------------------------------
+ APPEND FROM                   FLOCK() or USE...EXCLUSIVE
+ DELETE (multiple records)     FLOCK() or USE...EXCLUSIVE
+ RECALL (multiple records)     FLOCK() or USE...EXCLUSIVE
+ REPLACE (multiple records)    FLOCK() or USE...EXCLUSIVE
+ UPDATE ON                     FLOCK() or USE...EXCLUSIVE
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ For each invocation of FLOCK(), there is one attempt to lock the
+ database file, and the result is returned as a logical value.  A file
+ lock fails if another user currently has a file or record lock for the
+ same database file or EXCLUSIVE USE of the database file.  If FLOCK() is
+ successful, the file lock remains in place until you UNLOCK, CLOSE the
+ DATABASE, or RLOCK().</P
+><P
+> 
+ By default, FLOCK() operates on the currently selected work area as
+ shown in the example below.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39481"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FLOCK() returns true (.T.) if an attempt to lock a database file in USE
+ in the current work area succeeds; otherwise, it returns false (.F.).
+ For more information on file locking, refer to the "Network Programming"
+ chapter in the Programming and Utilities Guide.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+> RLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39496"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses FLOCK() for a batch update of prices in
+ Inventory.dbf:
+ 
+ USE Inventory NEW
+ IF FLOCK()
+ REPLACE ALL Inventory-&#62;Price WITH ;
+ Inventory-&#62;Price * 1.1
+ ELSE
+ ? "File not available"
+ ENDIF
+ 
+ This example uses an aliased expression to attempt a file lock
+ in an unselected work area:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ //
+ IF !Sales-&#62;(FLOCK())
+ ? "Sales is in use by another"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39500"
+></A
+><H3
+><A
+NAME="FUNCTIONFOUND"
+></A
+>Function  FOUND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FOUND() --&#62; lSuccess&#13;</PRE
+><P
+> FOUND() is a database function that determines whether a search
+ operation (i.e., FIND, LOCATE, CONTINUE, SEEK, or SET RELATION)
+ succeeded.  When any of these commands are executed, FOUND() is set to
+ true (.T.) if there is a match; otherwise, it is set to false (.F.).</P
+><P
+> 
+ If the search command is LOCATE or CONTINUE, a match is the next record
+ meeting the scope and condition.  If the search command is FIND, SEEK or
+ SET RELATION, a match is the first key in the controlling index that
+ equals the search argument.  If the key value equals the search
+ argument, FOUND() is true (.T.); otherwise, it is false (.F.).</P
+><P
+> 
+ The value of FOUND() is retained until another record movement command
+ is executed.  Unless the command is another search command, FOUND() is
+ automatically set to false (.F.).</P
+><P
+> 
+ Each work area has a FOUND() value.  This means that if one work area
+ has a RELATION set to a child work area, querying FOUND() in the child
+ returns true (.T.) if there is a match.</P
+><P
+> 
+ By default, FOUND() operates on the currently selected work area.  It
+ can be made to operate on an unselected work area by specifying it
+ within an aliased expression (see example below).</P
+><P
+> 
+ FOUND() will return false (.F.) if there is no database open in the
+ current work area.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39510"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FOUND() returns true (.T.) if the last search command was successful;
+ otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONEOF"
+> EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39525"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example illustrates the behavior of FOUND() after a
+ record movement command:
+ 
+ USE Sales INDEX Sales
+ ? INDEXKEY(0)              // Result: SALESMAN
+ SEEK "1000"
+ ? FOUND()                  // Result: .F.
+ SEEK "100"
+ ? FOUND()                  // Result: .T.
+ SKIP
+ ? FOUND()                  // Result: .F.
+ 
+ This example tests a FOUND() value in an unselected work area
+ using an aliased expression:
+ 
+ USE Sales INDEX Sales NEW
+ USE Customer INDEX Customer NEW
+ SET RELATION TO CustNum INTO Sales
+ //
+ SEEK "Smith"
+ ? FOUND(), Sales-&#62;(FOUND())
+ 
+ This code fragment processes all Customer records with the key
+ value "Smith" using FOUND() to determine when the key value changes:
+ 
+ USE Customer INDEX Customer NEW
+ SEEK "Smith"
+ DO WHILE FOUND()
+ .
+ 
+ . &#60;statements&#62;
+ .
+ SKIP
+ LOCATE REST WHILE Name == "Smith"
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39529"
+></A
+><H3
+><A
+NAME="FUNCTIONHEADER"
+></A
+>Function  HEADER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> HEADER() --&#62; nBytes&#13;</PRE
+><P
+> HEADER() is a database function that is used with LASTREC(), RECSIZE(),
+ and DISKSPACE() to create procedures for backing up files.</P
+><P
+> 
+ By default, HEADER() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39535"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> HEADER() returns the number of bytes in the header of the current
+ database file as an integer numeric value.  If no database file is in
+ use, HEADER() returns a zero (0).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+> LASTREC()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRECSIZE"
+>RECSIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39551"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example determines the header size of Sales.dbf:
+ 
+ USE Sales NEW
+ ? HEADER()            // Result: 258
+ 
+ This example defines a pseudofunction, DbfSize(), that uses
+ HEADER() with RECSIZE() and LASTREC() to calculate the size of the
+ current database file in bytes:
+ 
+ #define DbfSize()      ((RECSIZE() * LASTREC()) + ;
+ HEADER() + 1)
+ 
+ Later you can use DbfSize() as you would any function:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? DbfSize()
+ ? Sales-&#62;(DbfSize())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39555"
+></A
+><H3
+><A
+NAME="FUNCTIONINDEXEXT"
+></A
+>Function  INDEXEXT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> INDEXEXT() --&#62; cExtension&#13;</PRE
+><P
+> INDEXEXT() returns the default index file extension by determining which
+ database driver is currently linked. Note that it is preferable to use
+ ORDBAGEXT() than INDEXEXT().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39560"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Unless you have linked another database driver, INDEXEXT() returns
+ ".ntx" to indicate that the default xClipper driver is in effect.  If
+ the dBASE III PLUS compatible database driver is linked, the function
+ returns ".ndx".</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXKEY"
+> INDEXKEY()</A
+> <A
+HREF="categdatabase.html#FUNCTIONINDEXORD"
+>INDEXORD()</A
+> <A
+HREF="categdatabase.html#FUNCTIONORDBAGEXT"
+>ORDBAGEXT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39577"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, INDEXEXT() creates an existence test for the
+ Customer index file independent of the database driver linked into
+ the current program:
+ 
+ USE Customer NEW
+ //
+ IF .NOT. FILE("Customer" + INDEXEXT())
+ INDEX ON CustName TO Customer
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39581"
+></A
+><H3
+><A
+NAME="FUNCTIONINDEXKEY"
+></A
+>Function  INDEXKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> INDEXKEY(&#60;nOrder&#62;) --&#62; cKeyExp&#13;</PRE
+><P
+> INDEXKEY() is a database function that determines the key expression of
+ a specified index in the current work area and returns it as a character
+ string.  To evaluate the key expression, specify INDEXKEY() as a macro
+ expression like this: &amp;(INDEXKEY(&lt;nOrder&gt;)).</P
+><P
+> 
+ INDEXKEY() has a number of applications, but two specific instances are
+ important.  Using INDEXKEY(), you can TOTAL on the key expression of the
+ controlling index without having to specify the key expression in the
+ source code.  The other instance occurs within a DBEDIT() user function.
+ Here, you may want to determine whether or not to update the screen
+ after the user has edited a record.  Generally, it is only necessary to
+ update the screen if the key expression of the controlling index has
+ changed for the current record.  Both of these examples are illustrated
+ below.</P
+><P
+> 
+ By default, INDEXKEY() operates on the currently selected work area.  It
+ can be made to operate on an unselected work area by specifying it
+ within an aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39588"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ordinal position of the index in the list of index
+ files opened by the last USE...INDEX or SET INDEX TO command for the
+ current work area.  A zero value specifies the controlling index,
+ without regard to its actual position in the list.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> INDEXKEY() returns the key expression of the specified index as a
+ character string.  If there is no corresponding index or if no database
+ file is open, INDEXKEY() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXEXT"
+> INDEXEXT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONINDEXORD"
+>INDEXORD()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39609"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example accesses the key expression of open indexes in
+ the current work area:
+ 
+ #define ORD_NATURAL      0
+ #define ORD_NAME         1
+ #define ORD_SERIAL      2
+ //
+ USE Customer INDEX Name, Serial NEW
+ SET ORDER TO ORD_SERIAL
+ ? INDEXKEY(ORD_NAME)         // Result: Name index exp
+ ? INDEXKEY(ORD_SERIAL)      // Result: Serial index exp
+ ? INDEXKEY(ORD_NATURAL)      // Result: Serial index exp
+ 
+ This example accesses the key expression of the controlling
+ index in an unselected work area:
+ 
+ USE Customer INDEX Name, Serial NEW
+ USE Sales INDEX Salesman NEW
+ ? INDEXKEY(0), Customer-&#62;(INDEXKEY(0))
+ 
+ This example uses INDEXKEY() as part of a TOTAL ON key
+ expression.  Notice that INDEXKEY() is specified using a macro
+ expression to force evaluation of the expression:
+ 
+ USE Sales INDEX Salesman NEW
+ TOTAL ON &#38;amp;(INDEXKEY(0)) FIELDS SaleAmount TO ;
+ SalesSummary
+ 
+ This example uses INDEXKEY() to determine whether the DBEDIT()
+ screen should be updated after the user has edited the current field
+ value.  Generally, you must update the DBEDIT() screen if the user
+ changes a field that is part of the controlling index key.
+ FieldEdit() is a user-defined function called from a DBEDIT() user
+ function to edit the current field if the user has pressed an edit
+ key.
+ 
+ #include "Dbedit.ch"
+ #define ORD_NATURAL   0
+ FUNCTION FieldEdit()
+ LOCAL indexVal
+ // Save current key expression and value
+ indexVal = &#38;amp;(INDEXKEY(ORD_NATURAL))
+ .
+ . &#60;code to GET current field value&#62;
+ .
+ // Refresh screen if key value has changed
+ IF indexVal != &#38;amp;(INDEXKEY(ORD_NATURAL))
+ nRequest = DE_REFRESH
+ ELSE
+ nRequest = DE_CONT
+ ENDIF
+ RETURN nRequest</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39613"
+></A
+><H3
+><A
+NAME="FUNCTIONINDEXORD"
+></A
+>Function  INDEXORD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> INDEXORD() --&#62; nOrder&#13;</PRE
+><P
+> INDEXORD() is a database function that determines the position of the
+ controlling index in the list of index files opened by the last
+ USE...INDEX or SET INDEX TO in the current work area.  It is often
+ useful to save the last controlling index so it can be restored later.</P
+><P
+> 
+ By default, INDEXORD() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39619"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> INDEXORD() returns an integer numeric value.  The value returned is
+ equal to the position of the controlling index in the list of open
+ indexes for the current work area.  A value of zero indicates that there
+ is no controlling index and records are being accessed in natural order.
+ If no database file is open, INDEXORD() will also return a zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXKEY"
+> INDEXKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39634"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses INDEXORD() to save the current order.  After
+ changing to a new order, it uses the saved value to restore the
+ original order:
+ 
+ USE Customer INDEX Name, Serial NEW
+ nOrder := INDEXORD()                  // Result: 1
+ SET ORDER TO 2
+ ? INDEXORD()                           // Result: 2
+ SET ORDER TO nOrder
+ ? INDEXORD()                           // Result: 1
+ 
+ This example uses an aliased expression to determine the order
+ number of the controlling index in an unselected work area:
+ 
+ USE Sales INDEX Salesman, CustNum NEW
+ USE Customer INDEX Name, Serial NEW
+ ? Sales-&#62;(INDEXORD())               // Result: 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39638"
+></A
+><H3
+><A
+NAME="FUNCTIONLASTREC"
+></A
+>Function  LASTREC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LASTREC() | RECCOUNT()* --&#62; nRecords&#13;</PRE
+><P
+> LASTREC() is a database function that determines the number of physical
+ records in the current database file.  LASTREC() is identical to
+ RECCOUNT() which is supplied as a compatibility function.</P
+><P
+> 
+ By default, LASTREC() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).</P
+><P
+> 
+ Note:  Although the functionality of RECNO() has been expanded to
+ encompass the concept of "identity," the LASTREC() function continues to
+ return only record numbers--not identities.  LASTREC() has no expanded
+ functionality, so it is not "identity-aware."</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39645"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LASTREC() returns the number of physical records in the current database
+ file as an integer numeric value.  Filtering commands such as SET FILTER
+ or SET DELETED have no effect on the return value.  LASTREC() returns
+ zero if there is no database file in USE in the current work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONEOF"
+> EOF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39660"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example illustrates the relationship between LASTREC(),
+ RECCOUNT(), and COUNT:
+ 
+ USE Sales NEW
+ ? LASTREC(), RECCOUNT()            // Result: 84 84
+ //
+ SET FILTER TO Salesman = "1001"
+ COUNT TO nRecords
+ ? nRecords, LASTREC()            // Result: 14 84
+ 
+ This example uses an aliased expression to access the number
+ of records in a open database file in an unselected work area:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? LASTREC(), Sales-&#62;(LASTREC())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39664"
+></A
+><H3
+><A
+NAME="FUNCTIONLUPDATE"
+></A
+>Function  LUPDATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LUPDATE() --&#62; dModification&#13;</PRE
+><P
+> LUPDATE() is a database function that determines the date the database
+ file in the current work area was last modified and CLOSEd.  By default,
+ LUPDATE() operates on the currently selected work area.  It will operate
+ on an unselected work area if you specify it as part of an aliased
+ expression, as shown in the example below.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39669"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LUPDATE() returns the date of the last change to the open database file
+ in the current work area.  If there is no database file in USE,
+ LUPDATE() returns a blank date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDNAME"
+> FIELDNAME()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRECSIZE"
+>RECSIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39686"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates that the modification date of the
+ database file is not changed until the database file is closed:
+ 
+ ? DATE()                  // Result: 09/01/90
+ USE Sales NEW
+ ? LUPDATE()               // Result: 08/31/90
+ //
+ APPEND BLANK
+ ? LUPDATE()               // Result: 08/31/90
+ CLOSE DATABASES
+ //
+ USE Sales NEW
+ ? LUPDATE()               // Result: 09/01/90
+ 
+ This example uses an aliased expression to access LUPDATE()
+ for a database file opened in an unselected work area:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? LUPDATE(), Sales-&#62;(LUPDATE())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39690"
+></A
+><H3
+><A
+NAME="FUNCTIONORDBAGEXT"
+></A
+>Function  ORDBAGEXT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ORDBAGEXT() --&#62; cBagExt&#13;</PRE
+><P
+> ORDBAGEXT() is an order management function that returns a character
+ expression that is the default order bag extension of the current or
+ aliased work area.  cBagExt is determined by the RDD active in the
+ current work area.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39695"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ORDBAGEXT() returns a character expression.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDBAGNAME"
+> ORDBAGNAME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39710"
+></A
+><H3
+><A
+NAME="FUNCTIONORDBAGNAME"
+></A
+>Function  ORDBAGNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ORDBAGNAME(&#60;nOrder&#62; | &#60;cOrderName&#62;) --&#62; cOrderBagName&#13;</PRE
+><P
+> ORDBAGNAME() is an order management function that lets you access the
+ name of the order bag in which &lt;cOrderName&gt; resides.  You may identify
+ the order as a character string or with an integer that represents its
+ position in the order list.  In case of duplicate names, ORDBAGNAME()
+ only recognizes the first matching name.</P
+><P
+> 
+ Note:  ORDBAGNAME(0) works as ORDBAGNAME(INDEXORD())</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39716"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an integer that identifies the position in the order
+ list of the target order whose order bag name is sought.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOrderName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string that represents the name of the
+ target order whose order bag name is sought.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ORDBAGNAME() returns a character string, the order bag name of the
+ specific order.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDBAGEXT"
+> ORDBAGEXT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39741"
+></A
+><H3
+><A
+NAME="FUNCTIONORDLISTADD"
+></A
+>Function  ORDLISTADD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ORDLISTADD(&#60;cOrderBagName&#62; [, &#60;cOrderName&#62;]) --&#62; NIL&#13;</PRE
+><P
+> ORDLISTADD() is an order management function that adds the contents of
+ an order bag, or a single order in an order bag, to the order list.
+ This function lets you extend the order list without issuing a SET INDEX
+ command that, first, clears all the active orders from the order list.</P
+><P
+> 
+ Any orders already associated with the work area continue to be active.
+ If the newly opened order bag contains the only order associated with
+ the work area, it becomes the controlling order; otherwise, the
+ controlling order remains unchanged.</P
+><P
+> 
+ After the new orders are opened, the work area is positioned to the
+ first logical record in the controlling order.</P
+><P
+> 
+ ORDLISTADD() is similar to the SET INDEX command or the INDEX clause of
+ the USE command, except that it does not clear the order list prior to
+ adding the new order(s).</P
+><P
+> 
+ ORDLISTADD() supersedes the DBSETINDEX() function.</P
+><P
+> 
+ The active RDD determines the order capacity of an order bag.  The
+ default  DBFNTX and the DBFNDX drivers only support single-order bags,
+ while other RDDs may support multiple-order bags (e.g., the DBFCDX
+ driver).  When using RDDs that support multiple-order bags, you must
+ explicitly SET ORDER (or ORDSETFOCUS()) to the desired controlling
+ order.  If you do not specify a controlling order, the data file will be
+ viewed in first order.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39751"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOrderBagName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a disk file containing one or more
+ orders.  You may specify &lt;cOrderBagName&gt; as the file name with or
+ without the path name or appropriate extension.  If you do not include
+ the extension as part of &lt;cOrderBagName&gt;, xClipper uses the default
+ extension of the current RDD.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOrderName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> the name of the specific order from the order bag to be
+ added to the order list of the current work area.  If you do not specify</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cOrderName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, all orders in the order bag are added to the order list of
+ the current work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ORDLISTADD() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+> DBSETINDEX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39781"
+></A
+><H3
+><A
+NAME="FUNCTIONRECCOUNT"
+></A
+>Function  RECCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RECCOUNT() | LASTREC() --&#62; nRecords&#13;</PRE
+><P
+> RECCOUNT() is a database function that is a synonym for LASTREC().  By
+ default, RECCOUNT() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).  Note that RECCOUNT() is a
+ compatibility function.  LASTREC() should be used in its place.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39786"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RECCOUNT() returns the number of physical records in the current
+ database file as an integer numeric value.  Filtering commands such as
+ SET FILTER or SET DELETED have no affect on the return value.
+ RECCOUNT() returns zero if there is no database file open in the current
+ work area.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONEOF"
+> EOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39802"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example illustrates the relationship between COUNT and
+ RECCOUNT():
+ 
+ USE Sales NEW
+ ? RECCOUNT()                      // Result: 84
+ //
+ SET FILTER TO Salesman = "1001"
+ COUNT TO nRecords
+ ? nRecords                        // Result: 14
+ ? RECCOUNT()                      // Result: 84
+ 
+ This example uses an aliased expression to access the number
+ of records in an unselected work area:
+ 
+ USE Sales NEW
+ USE Customer NEW
+ ? RECCOUNT(), Sales-&#62;(RECCOUNT())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39806"
+></A
+><H3
+><A
+NAME="FUNCTIONRECNO"
+></A
+>Function  RECNO() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RECNO() --&#62; Identity&#13;</PRE
+><P
+> RECNO() is a database function that returns the identity found at the
+ current position of the record pointer.  Identity is a unique value
+ guaranteed by the structure of the data file to reference a specific
+ record of a data file.  The data file need not be a traditional Xbase
+ file.  Therefore, unlike earlier versions of xClipper, the value
+ returned need not be a numeric data type.</P
+><P
+> 
+ Under all RDDs, RECNO() returns the value at the position of the record
+ pointer; the data type and other characteristics of this value are
+ determined by the content of the accessed data and the RDD active in the
+ current work area.  In an Xbase database this value is the record
+ number.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39812"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RECNO() returns the identity found at the position of the record
+ pointer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONEOF"
+>EOF()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39829"
+></A
+><H3
+><A
+NAME="FUNCTIONRECSIZE"
+></A
+>Function  RECSIZE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RECSIZE() --&#62; nBytes&#13;</PRE
+><P
+> RECSIZE() is a database function that determines the length of a record
+ by summing the lengths of each field then adding one for the DELETED()
+ status flag.  When this value is multiplied by LASTREC(), the product is
+ the amount of space occupied by the file's records.</P
+><P
+> 
+ RECSIZE() is useful in programs that perform automatic file backup.
+ When used in conjunction with DISKSPACE(), the RECSIZE() function can
+ assist in ensuring that sufficient free space exists on the disk before
+ a file is stored.</P
+><P
+> 
+ By default, RECSIZE() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39836"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RECSIZE() returns, as a numeric value, the record length in bytes of the
+ database file open in the current work area.  RECSIZE() returns zero if
+ no database file is open.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDNAME"
+> FIELDNAME()</A
+> <A
+HREF="categdatabase.html#FUNCTIONHEADER"
+>HEADER()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+>LASTREC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39853"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following user-defined function, DbfSize(), uses RECSIZE()
+ to calculate the size of the current database file:
+ 
+ FUNCTION DbfSize
+ RETURN ((RECSIZE() * LASTREC()) + HEADER() + 1)
+ 
+ This example illustrates the use of RECSIZE() to determine the
+ record length of database files open in unselected work areas:
+ 
+ USE Customer NEW
+ USE Sales NEW
+ //
+ ? RECSIZE(), Customer-&#62;(RECSIZE())
+ ? DbfSize(), Customer-&#62;(DbfSize())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39857"
+></A
+><H3
+><A
+NAME="FUNCTIONRLOCK"
+></A
+>Function  RLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RLOCK() --&#62; lSuccess&#13;</PRE
+><P
+> RLOCK() is a network function that locks the current record, preventing
+ other users from updating the record until the lock is released.
+ RLOCK() provides a shared lock, allowing other users read-only access to
+ the locked record while allowing only the current user to modify it.  A
+ record lock remains until another record is locked, an UNLOCK is
+ executed, the current database file is closed, or an FLOCK() is obtained
+ on the current database file.</P
+><P
+> 
+ For each invocation of RLOCK(), there is one attempt to lock the current
+ record, and the result is returned as a logical value.  An attempt to
+ obtain a record lock fails if another user currently has a file or
+ record lock on that particular record, or EXCLUSIVE USE of the database
+ file.  An attempt to RLOCK() in an empty database returns true (.T.).</P
+><P
+> 
+ By default, RLOCK() operates on the currently selected work area.  It
+ will operate on an unselected work area if you specify it as part of an
+ aliased expression (see example below).  This feature is useful since
+ RLOCK() does not automatically attempt a record lock for related files.</P
+><P
+> 
+ As a general rule, RLOCK() operates solely on the current record.  This
+ includes the following commands:</P
+><P
+> 
+ @...GET</P
+><P
+> 
+ DELETE (single record)</P
+><P
+> 
+ RECALL (single record)</P
+><P
+> 
+ REPLACE (single record)</P
+><P
+> 
+ Refer to the "Network Programming" chapter in the Programming and
+ Utilities Guide for more information.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39870"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RLOCK() returns true (.T.) if the record lock is obtained; otherwise, it
+ returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+> FLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39885"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example deletes a record in a network environment, using
+ RLOCK():
+ 
+ USE Customer INDEX CustName SHARED NEW
+ SEEK "Smith"
+ IF FOUND()
+ IF RLOCK()
+ DELETE
+ ? "Smith deleted"
+ ELSE
+ ? "Record in use by another"
+ ENDIF
+ ELSE
+ ? "Smith not in Customer file"
+ ENDIF
+ CLOSE
+ 
+ This example specifies RLOCK() as an aliased expression to
+ lock a record in an unselected work area:
+ 
+ USE Sales SHARED NEW
+ USE Customer SHARED NEW
+ //
+ IF !Sales-&#62;(RLOCK())
+ ? "The current Sales record is in use by another"
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39889"
+></A
+><H3
+><A
+NAME="FUNCTIONSELECT"
+></A
+>Function  SELECT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SELECT([&#60;cAlias&#62;]) --&#62; nWorkArea&#13;</PRE
+><P
+> SELECT() is a database function that determines the work area number of
+ an alias.  The number returned can range from 0 to 250.  If &lt;cAlias&gt; is
+ not specified, the current work area number is returned.  If &lt;cAlias&gt; is
+ specified and the alias does not exist, SELECT() returns zero.</P
+><P
+> 
+ Note:  The SELECT() function and SELECT command specified with an
+ extended expression argument look somewhat alike.  This should not be a
+ problem since the SELECT() function is not very useful on a line by
+ itself.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39895"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAlias&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the target work area alias name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SELECT() returns the work area of the specified alias as an integer
+ numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONUSED"
+> USED()</A
+> <A
+HREF="categdatabase.html#FUNCTIONALIAS"
+>ALIAS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39916"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses SELECT() to determine which work area
+ USE...NEW selected:
+ 
+ USE Sales NEW
+ SELECT 1
+ ? SELECT("Sales")            // Result: 4
+ 
+ To reselect the value returned from the SELECT() function, use
+ the SELECT command with the syntax, SELECT (&#60;idMemvar&#62;), like this:
+ 
+ USE Sales NEW
+ nWorkArea:= SELECT()
+ USE Customer NEW
+ SELECT (nWorkArea)
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN39920"
+></A
+><H3
+><A
+NAME="FUNCTIONUSED"
+></A
+>Function  USED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> USED() --&#62; lDbfOpen&#13;</PRE
+><P
+> USED() is a database function that determines whether there is a
+ database file in USE in a particular work area.  By default, USED()
+ operates on the currently selected work area.  It will operate on an
+ unselected work area if you specify it as part of an aliased expression.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN39925"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> USED() returns true (.T.) if there is a database file in USE; otherwise,
+ it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONSELECT"
+> SELECT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONALIAS"
+>ALIAS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN39941"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example determines whether a database file is in USE in
+ the current work area:
+ 
+ USE Customer NEW
+ ? USED()               // Result: .T.
+ CLOSE
+ ? USED()               // Result: .F.
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categconversion.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categmiscellaneous.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CONVERSION</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MISCELLANEOUS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

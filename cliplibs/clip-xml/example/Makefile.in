@@ -13,7 +13,7 @@ prg_files 			= 			$(sort 							\
 												test.prg				\
 									)
 
-exe_files 			= 				$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+exe_files 			= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 CLIPFLAGS 			+= 		-I../include
 EXTRALIBS 			= 			-L$(Dir_Lib) -lexpat
 SRC_C_files 		= 			$(c_files)
@@ -39,11 +39,11 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-test_xml$(EXESUFF): test_xml.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test_xml$(EXESUFF): test_xml.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -ewsln $< $(ADDLIBS) $(EXTRALIBS)
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test$(EXESUFF): test.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -eswlg $< $(ADDLIBS) $(EXTRALIBS)
 

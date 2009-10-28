@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Terminals, keyboard, mouse, localization</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Possible problems and uncompatibilities"
+HREF="prb.html"><LINK
+REL="NEXT"
+TITLE="Keyboard"
+HREF="devkeyboard.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="prb.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="devkeyboard.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="DEV">Chapter 8. Terminals, keyboard, mouse, localization</H1
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="DEVTERMINALS">8.1. Terminals</H1
+><P
+>CLIP applications are able to work with all kind of terminals and emulators.
+Terminal abilities descriptions are available at
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>terminfo</I
+></SPAN
+> database or
+(if environment variable TERMCAP is set) at the file TERMCAP is indicating on.
+On addition to this descriptions there are some extended possibilities
+to indicate for CLIP application some special capabilities of terminal.
+These descriptions are in directory $CLIPROOT/term and looking as</P
+><PRE
+CLASS="PROGRAMLISTING"
+>file term/linux-stelnet
+# to work with description of linux terminal in terminfo
++TERM=linux
+# whether yielding scan-codes instead of ansi-codes terminal ability;
+# options are: terminal, ioctl, no
+CLIP_SCANMODE=terminal
+# ESC-sequence to switch scan-codes transfer mode on
+CLIP_SCANSTART=\033[S
+# ESC-sequence to switch scan-codes transfer mode off
+CLIP_SCANSTOP=\033[R
+# keyboard layout for keyboard driver of CLIP application
+CLIP_KEYMAP=rustelnet
+# charset used by CLIP VM at run time // unicode - file
+CLIP_HOSTCS=koi8-r
+# charset used by client for display // unicode - file
+CLIP_CLIENTCS=cp866
+# single pseudo-graphics symbols
+CLIP_LINECHARS=\200\201\204\211\205\206\212\207\202\210\203
+# double pseudo-graphics symbols
+CLIP_DLINECHARS=\240\241\253\273\256\261\276\265\245\270\250
+# color translation table
+CLIP_COLORMAP=0123456789ABCDEF</PRE
+><P
+>All "advanced" terminal names have to be registered in your
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>terminfo/termcap</I
+></SPAN
+> database.</P
+><P
+>Linux standard <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>unicode-tables</I
+></SPAN
+> located in
+/usr/share/consoletrans directory are used for translation of
+terminal output.</P
+><P
+>Necessary unicode-tables have to be unpacked and put into $CLIPROOT/charsets
+directory. CLIP distribution contains some unicode-tables also.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="prb.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="devkeyboard.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Possible problems and uncompatibilities</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Keyboard</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

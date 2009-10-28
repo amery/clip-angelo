@@ -1,0 +1,816 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FTSAVRGN()-INKEY()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="FTMGETPOS()-FTSAVESETS()"
+HREF="functionsftmgetposftsavesets.html"><LINK
+REL="NEXT"
+TITLE="INT()-MONTH()"
+HREF="functionsintmonth.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsftmgetposftsavesets.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsintmonth.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSFTSAVRGNINKEY">FTSAVRGN()-INKEY()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN19364"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSAVRGN"
+> FT_SAVRGN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save a screen region for later display</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTSCANCODE"
+> FT_SCANCODE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Wait for keypress and return keyboard scan code</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categenvironment.html#FUNCTIONFTSETCENTURY"
+> FT_SETCENTURY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check/Set the CENTURY Setting</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTSETDATE"
+> FT_SETDATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the DOS system date</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSETMODE"
+> FT_SETMODE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the video mode</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTSETTIME"
+> FT_SETTIME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the DOS system time</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSETVCUR"
+> FT_SETVCUR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the cursor position on a specified video page</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTSETVPG"
+> FT_SETVPG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the current video page</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTSLEEP"
+> FT_SLEEP</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Wait for a specified amount of time</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTSQZN"
+> FT_SQZN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Compress a numeric value into a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+> FT_SYS2MIL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert system time to military time format.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTSYSMEM"
+> FT_SYSMEM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the amount of conventional memory installed</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTTEMPFIL"
+> FT_TEMPFIL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create a file with a unique name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTUNSQZN"
+> FT_UNSQZN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Uncompress a numeric compressed by FT_SQZN()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+> FT_WEEK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return calendar or fiscal week data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTWORKDAYS"
+> FT_WORKDAYS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return number of work days between two dates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTWOY"
+> FT_WOY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find number of week within year</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTXBOX"
+> FT_XBOX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a self-sizing message box and message</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTXTOY"
+> FT_XTOY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert from any data type to any other data type</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTYEAR"
+> FT_YEAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return calendar or fiscal year data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFWRITE"
+> FWRITE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write to an open binary file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETACTIVE"
+> GETACTIVE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the currently active Get object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+> GETAPPLYKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Apply a key to a Get object from within a  reader</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONGETCLIPUIVERSION"
+> GETCLIPUIVERSION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get CLIP-UI library version.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+> GETDOSETKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Process SET KEY during GET editing</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONGETDRIVER"
+> GETDRIVER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get current <A
+HREF="classuidriver.html"
+>UIDriver</A
+> object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONGETENV"
+> GETENV()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Retrieve the contents of a OS environment variable</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONGETMAINWINDOW"
+> GETMAINWINDOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get current application main window <A
+HREF="classuimainwindow.html"
+>UIMainWindow</A
+> object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+> GETPOSTVALIDATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Postvalidate the current Get object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETPREVALIDATE"
+> GETPREVALIDATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Prevalidate a Get object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETREADER"
+> GETREADER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Execute standard READ behavior for a Get object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONGETSYSIMAGE"
+> GETSYSIMAGE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get content of predefined icons (XPM format).</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONGLOB"
+> GLOB()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check confirmity string to regular expression.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGUNZIP"
+> GUNZIP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Uncompress string with GZIP alghoritm.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIP"
+> GZIP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Compress string with GZIP alghoritm.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+> GZIPCLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close GZIP file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+> GZIPOPEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open GZIP file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+> GZIPREAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read data from GZIP file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+> GZIPWRITE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write data to GZIP file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONHARDCR"
+> HARDCR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Replace all soft carriage returns in a character string with hard carriage</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONHASHNAME"
+> HASHNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns string from hash values.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONHASHSTR"
+> HASHSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns hash code for string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONHEADER"
+> HEADER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current database file header length</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+> I2BIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a xClipper numeric to a 16-bit binary integer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONIF"
+> IF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the result of an expression based on a condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONIIF"
+> IIF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the result of an expression based on a condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXEXT"
+> INDEXEXT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the default index extension based on the database driver currently</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXKEY"
+> INDEXKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the key expression of a specified index</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONINDEXORD"
+> INDEXORD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the order position of the controlling index</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONINKEY"
+> INKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Extract a character from the keyboard buffer or a mouse event</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsftmgetposftsavesets.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsintmonth.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FTMGETPOS()-FTSAVESETS()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>INT()-MONTH()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,1239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>INFO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="TCP"
+HREF="categtcp.html"><LINK
+REL="NEXT"
+TITLE="STRING"
+HREF="categstring.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categtcp.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categstring.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGINFO">INFO</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN24556"
+></A
+><H2
+>Name</H2
+>INFO&nbsp;--&nbsp; Functions for access to some information about values, functions, parameters, and so.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN24559"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;cPath&#62;             <A
+HREF="categsystem.html#FUNCTIONDEFPATH"
+>DefPath()</A
+>
+bCurrentErrorHandler<A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+>ERRORBLOCK([&#60;bErrorHandler&#62;])</A
+>
+TRUE || FALSE       <A
+HREF="categinfo.html#FUNCTIONISFIELD"
+>ISFIELD(&#60;sVarName&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categinfo.html#FUNCTIONISFUNCTION"
+>ISFUNCTION(&#60;sVarName&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categinfo.html#FUNCTIONISMEMVAR"
+>ISMEMVAR(&#60;sVarName&#62;)</A
+>
+nCount              <A
+HREF="categarray.html#FUNCTIONLEN"
+>LEN(&#60;cString&#62; | &#60;aTarget&#62;)</A
+>
+&#60;vVarValue&#62;         <A
+HREF="categinfo.html#FUNCTIONMEMVARGET"
+>MEMVARGET(&#60;sVarName&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categinfo.html#FUNCTIONMEMVARSET"
+>MEMVARSET(&#60;sVarName&#62;, &#60;vData&#62;)</A
+>
+lError              <A
+HREF="categsystem.html#FUNCTIONNETERR"
+>NETERR([&#60;lNewError&#62;])</A
+>
+cOsName             <A
+HREF="categsystem.html#FUNCTIONOS"
+>OS()</A
+>
+&#60;vParData&#62;          <A
+HREF="categinfo.html#FUNCTIONPARAM"
+>PARAM(&#60;nParNumber&#62;)</A
+>
+nLastArgumentPos    <A
+HREF="categsystem.html#FUNCTIONPCOUNT"
+>PCOUNT()</A
+>
+nSourceLine         <A
+HREF="categsystem.html#FUNCTIONPROCLINE"
+>PROCLINE([&#60;nActivation&#62;])</A
+>
+cProcedureName      <A
+HREF="categsystem.html#FUNCTIONPROCNAME"
+>PROCNAME([&#60;nActivation&#62;])</A
+>
+CurrentSetting      <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET(&#60;nSpecifier&#62;, [&#60;expNewSetting&#62;], [&#60;lOpenMode&#62;])</A
+>
+&#60;sPath&#62;             <A
+HREF="categdiskutils.html#FUNCTIONSTARTPATH"
+>STARTPATH()</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+>
+cVersion            <A
+HREF="categsystem.html#FUNCTIONVERSION"
+>VERSION()</A
+>
+&#60;nCode&#62;             <A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+>WEIGHTASC(&#60;sString&#62;)</A
+>
+&#60;sChar&#62;             <A
+HREF="categinfo.html#FUNCTIONWEIGHTCHR"
+>WEIGHTCHR(&#60;nCode&#62;)</A
+>
+&#60;sTable&#62;            <A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+>WEIGHTTABLE()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN24584"
+></A
+><H2
+>Description </H2
+><P
+>Categories <B
+CLASS="COMMAND"
+>INFO</B
+> is the set of functions for getting
+some information about values, functions, parameters, and so.&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24588"
+></A
+><H3
+><A
+NAME="FUNCTIONISFIELD"
+></A
+>Function  ISFIELD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISFIELD(&#60;sVarName&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  ISFIELD() returns TRUE if a varialbe name &lt;sVarName&gt; is a field name of DB.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24593"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sVarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the variable name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if a varialbe name is a field name of DB.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24608"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  USE adressbook.dbf
+ ...
+ 
+ if ISFIELD("NAME")
+ qout('"NAME" is field of DB')
+ else
+ qout("Error")
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24612"
+></A
+><H3
+><A
+NAME="FUNCTIONISFUNCTION"
+></A
+>Function  ISFUNCTION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISFUNCTION(&#60;sVarName&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  ISFUNCTION() returns TRUE if a varialbe name &lt;sVarName&gt; is a
+ function name.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24617"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sVarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the variable name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if a varialbe name is a function name.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24632"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  PRIVATE VarName
+ ....
+ 
+ static function Fnc()
+ .....
+ return
+ 
+ ...
+ 
+ ? ISFUNCTION("Fnc") 	// --&#62; TRUE
+ ? ISFUNCTION("VarName") 	// --&#62; FALSE
+ VarName := "Fnc"
+ ? ISFUNCTION(VarName) 	// --&#62; TRUE
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24636"
+></A
+><H3
+><A
+NAME="FUNCTIONISMEMVAR"
+></A
+>Function  ISMEMVAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISMEMVAR(&#60;sVarName&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  ISMEMVAR() returns TRUE if a varialbe name &lt;sVarName&gt; is a memory
+ variable name (PRIVATE, PUBLIC).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24641"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sVarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the variable name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if a varialbe name is a memory variable name.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24656"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  PRIVATE VarName
+ LOCAL _VarName
+ ...
+ 
+ ? ISMEMVAR("VarName") 	// --&#62; TRUE
+ ? ISMEMVAR("_VarName") 	// --&#62; FALSE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24660"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMVARGET"
+></A
+>Function  MEMVARGET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMVARGET(&#60;sVarName&#62;) 	--&#62; &#60;vVarValue&#62;&#13;</PRE
+><P
+>  MEMVARGET() returns MEMVAR value with name &lt;sVarName&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24665"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sVarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the variable name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns of MEMVAR value with name &lt;sVarName&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONMEMVARSET"
+> MEMVARSET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24685"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  MEMVARSET(Mem, "asdf")
+ 
+ ? MEMVARGET(Mem) 	// --&#62; asdf
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24689"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMVARSET"
+></A
+>Function  MEMVARSET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMVARSET(&#60;sVarName&#62;, &#60;vData&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  MEMVARSET() sets new MEMVAR value with name &lt;sVarName&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24694"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sVarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the variable name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is the new value of MEMVAR.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if successfully.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONMEMVARGET"
+> MEMVARGET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24719"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  MEMVARSET(Mem, "asdf")
+ 
+ ? MEMVARGET(Mem) 	// --&#62; asdf
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24723"
+></A
+><H3
+><A
+NAME="FUNCTIONPARAM"
+></A
+>Function  PARAM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PARAM(&#60;nParNumber&#62;) 	--&#62; &#60;vParData&#62;&#13;</PRE
+><P
+>  PARAM() returns the data &lt;vParData&gt; value of parameter with number &lt;nParNumber&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24728"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nParNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the parameters nuber.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the parameters value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONMEMVARGET"
+> MEMVARGET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24748"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  static function testParam(p1, p2, p3, p4, p5, p6, p7, p8, p9, p0)
+ local i
+ for i=1 to PCOUNT()
+ ? PARAM(i)
+ next
+ return
+ 
+ ....
+ 
+ testParam(1, 2, "A", "AB", "ABC")     // --&#62;  1
+ //      2
+ //      A
+ //      AB
+ //      ABC</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24752"
+></A
+><H3
+><A
+NAME="FUNCTIONWEIGHTASC"
+></A
+>Function  WEIGHTASC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> WEIGHTASC(&#60;sString&#62;) 	--&#62; &#60;nCode&#62;&#13;</PRE
+><P
+>  WEIGHTASC() returns the numeric value &lt;nCode&gt; - weight first character of
+ source string &lt;sString&gt; into weigth table. This code characterize the position
+ character for comparing operation.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24757"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the numeric value &lt;nCode&gt; - weight of character into weight table.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+> WEIGHTTABLE()</A
+> <A
+HREF="categinfo.html#FUNCTIONWEIGHTCHR"
+> WEIGHTCHR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24778"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  str := "asdf"
+ wa := WEIGHTASC(str) 	// --&#62; 66
+ 
+ ? WEIGHTCHR(wa)		// --&#62; a
+ ? WEIGHTCHR(wa+1)	// --&#62; b
+ ? WEIGHTCHR(wa+10)	// --&#62; k
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24782"
+></A
+><H3
+><A
+NAME="FUNCTIONWEIGHTCHR"
+></A
+>Function  WEIGHTCHR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> WEIGHTCHR(&#60;nCode&#62;) 	--&#62; &#60;sChar&#62;&#13;</PRE
+><P
+> WEIGHTCHR() returns the character &lt;sChar&gt; by them weight characterictics &lt;nCode&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24787"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the weight charateristic.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the character &lt;sChar&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTTABLE"
+> WEIGHTTABLE()</A
+> <A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+> WEIGHTASC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24808"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  str := "asdf"
+ wa := WEIGHTASC(str) 	// --&#62; 66
+ 
+ ? WEIGHTCHR(wa)		// --&#62; a
+ ? WEIGHTCHR(wa+1)	// --&#62; b
+ ? WEIGHTCHR(wa+10)	// --&#62; k
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24812"
+></A
+><H3
+><A
+NAME="FUNCTIONWEIGHTTABLE"
+></A
+>Function  WEIGHTTABLE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> WEIGHTTABLE() 	--&#62; &#60;sTable&#62;&#13;</PRE
+><P
+>  WEIGHTTABLE() returns the string &lt;sTable&gt; - weight table. This table
+ contain the "weight" all 256 characters and using for comparison operations, for operations with index mode, for
+ regular expressions and more.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24817"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the string &lt;sTable&gt; - weight table of characters.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONWEIGHTASC"
+> WEIGHTASC()</A
+> <A
+HREF="categinfo.html#FUNCTIONWEIGHTCHR"
+> WEIGHTCHR()</A
+> <A
+HREF="categstring.html#FUNCTIONASC"
+> ASC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24834"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  wt := WEIGHTTABLE()
+ 
+ for i=1 to 256
+ ? str(i, 3)+": "+as(wt[i])
+ next
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categtcp.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categstring.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TCP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>STRING</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,2266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SERIAL I/O</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="TERMINAL/IO"
+HREF="categterminalio.html"><LINK
+REL="NEXT"
+TITLE="TASK"
+HREF="categtask.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categterminalio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categtask.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGSERIALIO">SERIAL I/O</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN35978"
+></A
+><H2
+>Name</H2
+>SERIAL I/O&nbsp;--&nbsp; Functions for using communication over COM-ports.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN35981"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nTotalCharacters    <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT(&#60;nComPort&#62;)</A
+>
+lOldDTRStatus       <A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+>COM_DTR(&#60;nComPort&#62;,[&#60;lNewDTRStatus&#62;])</A
+>
+lClear              <A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+>COM_FLUSH(&#60;nComPort&#62;)</A
+>
+lOldHandshake       <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD(&#60;nComPort&#62;,&#60;lNewHandshake&#62;,[&#60;lDTR/DSR&#62;])</A
+>
+lInitialized        <A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+>COM_INIT(&#60;nComPort&#62;,[&#60;nBaudRate&#62;],[&#60;cParity&#62;], [&#60;nDataLength&#62;],[&#60;nStopBits&#62;])</A
+>
+nMaxCom             <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+>
+lStatus             <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN(&#60;nComPort&#62;,&#60;notused&#62;,&#60;notused&#62;,&#60;notused&#62;, [&#60;lRTSCTS&#62;],[&#60;lXONXOFF&#62;],[&#60;lDebug&#62;])</A
+>
+cData               <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ(&#60;nComPort&#62;,[&#60;nLength&#62;])</A
+>
+lOldRTSStatus       <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS(&#60;nComPort&#62;,[&#60;lNewRTSStatus&#62;])</A
+>
+nLength             <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND(&#60;nComPort&#62;,&#60;cString&#62;)</A
+>
+lDeleted            <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH(&#60;nComPort&#62;)</A
+>
+lOldHandshake       <A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+>COM_SOFT(&#60;nComPort&#62;,[&#60;lNewHandshake&#62;],[&#60;cXONchar&#62;],[&#60;cXOFFchar&#62;])</A
+>
+nOldTimeout         <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT(&#60;nComPort&#62;[,&#60;nTimeout&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN35997"
+></A
+><H2
+>Description </H2
+><P
+>Category Serial I/O include description of functions for
+using communication over COM-ports. This function based on
+multiplatform library EZV24 http://libezV24.sourceforge.net/.</P
+><P
+>&#13;For using need linking clip-com library:</P
+><P
+>&#13;clip -e test.prg -lclip-com</P
+><P
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36003"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMCOUNT"
+></A
+>Function  COM_COUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_COUNT(&#60;nComPort&#62;) --&#62; nTotalCharacters&#13;</PRE
+><P
+> This function allows you to determine the number of characters
+ in recieve buffer. This lets you determine how many characters can be
+ read with the COM_READ() function.</P
+><P
+> 
+ If an attempt is made to read the number of characters available
+ in a closed port, the function returns a value of -1.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36009"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) for which the number of characters in the input buffer is determined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return the number of characters in the selected buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+>COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36034"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nCharacter  :=  COM_COUNT(1)   // Number of characters-port 1
+ IF nCharacter &#62; 0
+ COM_READ(1, 1)              // Read 1 character
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36038"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMDTR"
+></A
+>Function  COM_DTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_DTR(&#60;nComPort&#62;,[&#60;lNewDTRStatus&#62;]) --&#62; lOldDTRStatus&#13;</PRE
+><P
+> COM_DTR() queries the DTR signal status.
+ If the second parameter is not supplied, the signal status does not change.</P
+><P
+> </P
+><P
+> 
+ The COM_CLOSE() function resets DTR (to inactive). By contrast,
+ COM_OPEN does not automatically make DTR active!</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36046"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) for which the number of characters in the input buffer is determined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewDTRStatus&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the status of DTR. .T. designates
+ that the DTR signal is active, and .F. designates that the signal is
+ inactive. If the parameter is not specified, does not affect the DTR
+ exit signal.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The returned value corresponds to the DTR signal status prior to
+ the new setting, or in the absence of &lt;lNewDTRStatus&gt;, the returned
+ value corresponds to the current DTR. A return of .T. indicates that the
+ DTR is active (MCR bit 1 = 1). A return of .F. indicates that the DTR is
+ inactive (MCR bit 1 = 0).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+> COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36076"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> lComOk  :=  COM_OPEN(1)	       // Open COM1
+ IF lComOk
+ COM_DTR(1, .T.)       // Activate DTR Port 1
+ * ...
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36080"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMFLUSH"
+></A
+>Function  COM_FLUSH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_FLUSH(&#60;nComPort&#62;) --&#62; lClear&#13;</PRE
+><P
+> This function allows you to flush all the characters in a
+ receiving buffer. This makes it unnecessary to tediously determine how
+ many characters are currently in the buffer in order to remove them with
+ a read procedure.</P
+><P
+> 
+ COM_FLUSH() guarantees a truly empty buffer. However, a new
+ character can be received between the time that you call a COM_COUNT()
+ and a COM_READ().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36086"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> If the receiving buffer can be cleared successfully, the function returns .T..</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+> COM_INIT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36110"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cHayes  :=  "ATZ"           // Hayes modem reset command
+ COM_SEND(1, cHayes)         // Issue Hayes command
+ INKEY(1)                    // Wait one second
+ COM_FLUSH(1)                // Reject modem reply messages</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36114"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMHARD"
+></A
+>Function  COM_HARD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_HARD(&#60;nComPort&#62;,&#60;lNewHandshake&#62;,[&#60;lDTR/DSR&#62;]) --&#62; lOldHandshake&#13;</PRE
+><P
+> The size of a receiving buffer is always limited. To avoid
+ overflow, and thereby a loss of characters, software or hardware
+ handshakes are usually implemented. During a hardware handshake, the
+ port monitors the RTS signal. If you use this function to switch this
+ handshake on, the signal is activated as soon as the buffer is 75% full.
+ As soon as the buffer content is once again reduced to 50% or less, the
+ port (the RTS signal) is once again released. Some printers use the port
+ signals, DTR (output like RTS) and DSR (entry like CTS) instead of RTS/
+ CTS, to avoid buffer overflow. In this case, &lt;lDTR/DSR&gt; can be passed
+ with .T..</P
+><P
+> 
+ This function works for data input as well as output.</P
+><P
+> 
+ If you use a hardware handshake, then the RTS signal should no
+ longer be affected by COM_RTS() or COM_MCR().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36121"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the number of the port (1 to N).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewHandshake&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates whether the handshake is on (.T.) or off (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lDTR/DSR&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates whether the function uses the DTR/DSR
+ handshake or the RTS/CTS handshake. When passed as .T., the function
+ uses the DTR/DSR handshake instead of the RTS/CTS handshake.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> When called only with &lt;nComPort&gt;, the COM_HARD() returns .T. if
+ the hardware handshake is on and .F. if the hardware handshake is off.
+ When &lt;lNewHandshake&gt; is passed, the function returns the status prior to
+ the new setting.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+>COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36156"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_OPEN(2)      // Open COM2
+ COM_HARD(2, .T.) // RTS/CTS Hardware handshake</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36160"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMINIT"
+></A
+>Function  COM_INIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_INIT(&#60;nComPort&#62;,[&#60;nBaudRate&#62;],[&#60;cParity&#62;],
+ [&#60;nDataLength&#62;],[&#60;nStopBits&#62;]) --&#62; lInitialized&#13;</PRE
+><P
+> In order to use the serial port after you open it, four
+ operating parameters must have been passed to this function. These
+ operating parameters are the transmission speed (baud rate), the data
+ length, the parity, and the number of stop bits. Tht defaul
+ configuration is "9600 baud, 8N1". This configuration means eight data
+ bits, no parity, and one stop bit. What is important is that all these
+ parameters can be changed while the port is closed. Neither the data
+ buffer or the modem status register (DTR, etc.) are affected.</P
+><P
+> 
+ The port must have been opened previously. It is impossible to
+ initialize a port prior to opening it.</P
+><P
+> 
+ If any or all of the four operating parameters are not
+ designated, or are designated incorrectly, the standard arguments of
+ 9600 baud, no parity, eight data bits, and one stop bit is used.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36167"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) that is initialized.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBaudRate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the selected baud rate for the port. Settings of 300, 600, 1200, 2400, 4800, 9600 and 19200 baud are possible. The default value is 300 baud.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cParity&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates parity in the following form: (E)ven, (O)dd, (M)ark, (S)pace, or (N)one. The default value is (N)one.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDataLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the data length; seven or eight bits are possible. The default value is eight bits.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStopBits&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the number of stop bits, one or two. The default value is one stop bit.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> If the com port is initialized successfully, the function returns .T.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36211"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nBuff_size := 4000                     // 4000 character buffer
+ lComOk  :=  COM_OPEN(1, nBuff_size)    // Open port
+ IF lComOk
+ lInitOk  :=  COM_INIT(1, 1200, "N", 8, 1)
+ 
+ IF .NOT. lInitOk
+ ? "Port cannot be initialized !"
+ ENDIF
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36215"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMNUM"
+></A
+>Function  COM_NUM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_NUM() --&#62; nMaxCom&#13;</PRE
+><P
+> This function returns the number of the serial interface port
+ available. This is not to say that a return value of 3 necessarily means
+ that ports 1 through 3 are available; for example, COM2 could be
+ missing. Whether or not a serial port can actually be used can be tested
+ using the COM_OPEN() or COM_INIT() functions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36220"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return the number of the highest available serial interface port</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+>COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36240"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? COM_NUM()                 // e.g. 4</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36244"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMOPEN"
+></A
+>Function  COM_OPEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_OPEN(&#60;nComPort&#62;,&#60;notused&#62;,&#60;notused&#62;,&#60;notused&#62;,
+ [&#60;lRTSCTS&#62;],[&#60;lXONXOFF&#62;],[&#60;lDebug&#62;]) --&#62; lStatus&#13;</PRE
+><P
+> This function allows you to open a serial interface port.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36249"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the number of the port (1 to N).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lRTSCRS&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  - Enable or disable use of hardware flow control.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lXONXOFF&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Enable or disable use of software flow control.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lDebug&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - True value enable com port debug output</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns .T. when the port has been successfully opened and you can select the buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+>COM_INIT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36288"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF COM_NUM() &#62; 0
+ ComOk  :=  COM_OPEN(1)     // Open COM1
+ 
+ IF .NOT. ComOk
+ ? "Port cannot be opened  !"
+ ENDIF
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36292"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMREAD"
+></A
+>Function  COM_READ() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_READ(&#60;nComPort&#62;,[&#60;nLength&#62;]) --&#62; cData&#13;</PRE
+><P
+> All characters arriving at the serial port are stored in the
+ appropriate buffer under interrupt control. It is possible to determine
+ the number of characters in the buffer and to read one, several, or all
+ of the characters. If the &lt;nLength&gt; parameter is not specified, then all
+ the characters in the buffer are read.</P
+><P
+> 
+ Remember that you can receive additional characters between
+ calling COM_COUNT() and COM_READ().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36298"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) that is read.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the number of the characters in the buffer that are read. The default value reads all characters.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The returned string contains the corresponding characters from
+ the receiving buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+>COM_INIT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36327"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> DO WHILE COM_COUNT(1) &#60; 10
+ // Wait until 10 characters in buffer
+ *...
+ ENDDO
+ cInput := COM_READ(1, 10)              // Read in 10 characters
+ ? cInput</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36331"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMRTS"
+></A
+>Function  COM_RTS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_RTS(&#60;nComPort&#62;,[&#60;lNewRTSStatus&#62;]) --&#62; lOldRTSStatus&#13;</PRE
+><P
+> COM_RTS() queries the RTS signal status.
+ If the second parameter is not supplied, the signal status does not change.</P
+><P
+> </P
+><P
+> 
+ The COM_CLOSE() function resets RTS (to inactive). By contrast,
+ COM_OPEN does not automatically make RTS active!</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36339"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) for which the number of characters in the input buffer is determined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewRTSStatus&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the status of RTS. .T. designates
+ that the RTS signal is active, and .F. designates that the signal is
+ inactive. If the parameter is not specified, does not affect the RTS
+ exit signal.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The returned value corresponds to the RTS signal status prior to
+ the new setting, or in the absence of &lt;lNewRTSStatus&gt;, the returned
+ value corresponds to the current RTS. A return of .T. indicates that the
+ RTS is active (MCR bit 1 = 1). A return of .F. indicates that the RTS is
+ inactive (MCR bit 1 = 0).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+> COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+>COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36369"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> lComOk  :=  COM_OPEN(1)	       // Open COM1
+ IF lComOk
+ COM_RTS(1, .T.)       // Activate RTS Port 1
+ * ...
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36373"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMSEND"
+></A
+>Function  COM_SEND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_SEND(&#60;nComPort&#62;,&#60;cString&#62;) --&#62; nLength&#13;</PRE
+><P
+> Transmits one or more characters from one of four ports.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36378"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) from which transmission occurs.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the string that is transmitted by the
+ selected port. If you only need to transmit a single character, then the
+ second parameter can also be numeric and thereby pass the ASCII
+ character code directly.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> When transmission is successful, a 0 is returned. If
+ transmission is not successful, the number of characters that have not
+ been transmitted or could not be placed in the sending buffer is
+ returned.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+>COM_INIT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+>COM_SFLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36407"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_OPEN(1)    //
+ COM_HARD(.T.)  // Hardware handshake
+ ACCEPT "Please input name " TO cInput
+ nRest := COM_SEND(1, cInput)         // 1st attempt to transmit
+ 
+ DO WHILE nRest &#62; 0
+ cInput := RIGHT(cInput, nRest)    // Characters not yet sent
+ nRest := COM_SEND(1, cInput)
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36411"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMSFLUSH"
+></A
+>Function  COM_SFLUSH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_SFLUSH(&#60;nComPort&#62;) --&#62; lDeleted&#13;</PRE
+><P
+> This function remove all characters from sending buffer not yet
+ transmitted.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36416"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> On success returns .T..</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+>COM_INIT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+>COM_OPEN()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+>COM_READ()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+>COM_SEND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36440"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cHayes  :=  "ATZ"           // Hayes modem reset command
+ COM_SEND(1, cHayes)         // Issue Hayes command
+ INKEY(1)                    // Wait one second
+ COM_SFLUSH(1)                // Reject modem reply messages</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36444"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMSOFT"
+></A
+>Function  COM_SOFT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_SOFT(&#60;nComPort&#62;,[&#60;lNewHandshake&#62;],[&#60;cXONchar&#62;],[&#60;cXOFFchar&#62;]) --&#62;  lOldHandshake&#13;</PRE
+><P
+> With modem connections, a hardware handshake is impossible,
+ which is why we are making a software handshake available with this
+ function. When a buffer is 75% full, an XOFF character (Ctrl-Q) is
+ transmitted to the remote station. As soon as the buffer has again been
+ emptied to 50% or less, the XON character (Ctrl-S) is transmitted. You
+ can use characters other than Ctrl-S or Ctrl-Q for individual protocols,
+ which would then be taken into account in the situations described
+ above.</P
+><P
+> 
+ When you want to transmit binary data, the software handshake
+ must always be turned off.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36450"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the port (1 to N) for which the software handshake is set.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewHandshake&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates whether the handshake is on (.T.) or off (.F.). If this parameter is omitted, the function returns the current setting.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cXONchar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates any character you choose as an XON character. The default character is ASCII 19 - Ctrl-S.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cXOFFchar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates any character you choose as an XOFF character. The default value is ASCII 17 - Ctrl-Q.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The function returns the previously set value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+>COM_TIMEOUT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36490"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_OPEN(1)   		// Open port
+ COM_SOFT(1, .T.)        // Software handshake COM1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36494"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMTIMEOUT"
+></A
+>Function  COM_TIMEOUT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_TIMEOUT(&#60;nComPort&#62;[,&#60;nTimeout&#62;]) --&#62; nOldTimeout&#13;</PRE
+><P
+> All read functions may use a timeout mechanism while waiting for
+ characters. If this time limit is exceeded the function abort reading.</P
+><P
+> 
+ The timeout duration is specified by the parameter
+ TenthOfSeconds. This value is given as a multiple of a thenth of a
+ second.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36500"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nComPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates the number of the port (1 to N).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - Designates operation timeout in tenth (1/10) seconds.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return previous value of operation timeout.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+>COM_RTS()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+>COM_SOFT()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+>COM_HARD()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+>COM_NUM()</A
+> <A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+>COM_COUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36530"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> COM_OPEN(2)
+ COM_TIMEOUT(6000)</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categterminalio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categtask.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TERMINAL/IO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>TASK</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

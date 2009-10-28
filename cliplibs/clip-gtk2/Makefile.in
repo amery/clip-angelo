@@ -189,7 +189,7 @@ cfg :
 
 include/ci_clip-gtkcfg2.h :
 	$(E_e)$(Trace)
-	$(E_xx)$(CONFIGURE_SH)
+	$(E_xx)$(CONFIGURE_SH) $(MAKECMDGOALS)
 
 #hash: include/ci__hashcode.h
 

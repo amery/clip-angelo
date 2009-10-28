@@ -1,0 +1,1798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>PACK/UNPACK</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="DISKUTILS"
+HREF="categdiskutils.html"><LINK
+REL="NEXT"
+TITLE="TCP"
+HREF="categtcp.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categdiskutils.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categtcp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGPACKUNPACK">PACK/UNPACK</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN23878"
+></A
+><H2
+>Name</H2
+>PACK/UNPACK&nbsp;--&nbsp; Functions pack/unpack and compress/uncompress data or file.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN23881"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>cResult             <A
+HREF="categpackunpack.html#FUNCTIONBUNZIP2"
+>bUnZip2(&#60;cData&#62;)</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2"
+>bZip2(&#60;cData&#62; [,&#60;nLevel&#62;])</A
+>
+lRet                <A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+>bZip2Close(&#60;nHandle&#62;)</A
+>
+nHandle             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+>bZip2Open(&#60;filename&#62; [,&#60;mode&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+>bZip2Read(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+>bZip2Write(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONGUNZIP"
+>gUnZip(&#60;cData&#62;)</A
+>
+cResult             <A
+HREF="categpackunpack.html#FUNCTIONGZIP"
+>gZip(&#60;cData&#62; [,&#60;nLevel&#62;])</A
+>
+lRet                <A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+>gZipClose(&#60;nHandle&#62;)</A
+>
+nHandle             <A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+>gZipOpen(&#60;filename&#62; [,&#60;mode&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+>gZipRead(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;])</A
+>
+realLen             <A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+>gZipWrite(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN23896"
+></A
+><H2
+>Description </H2
+><P
+>Category Pack/Unpack include description of functions for
+pack/unpack and compress/uncompress data or file.</P
+><P
+>&#13;Library clip-gzip is wrapper to populiar gzip library,
+for using clip-gzip need linking:
+clip -e test.prg -lclip-gzip</P
+><P
+>&#13;Library clip-bzip2 is wrapper to populiar bzip2 library,
+for using clip-bzip2 need linking:
+clip -e test.prg -lclip-bzip2</P
+><P
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23902"
+></A
+><H3
+><A
+NAME="FUNCTIONBUNZIP2"
+></A
+>Function  BUNZIP2() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bUnZip2(&#60;cData&#62;) --&#62; cResult&#13;</PRE
+><P
+> Unompress string, compressed by bZip2().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23907"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - data for uncompress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> bUnZip2() returns uncompressed string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2"
+> bZip2()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23927"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cResult := bUnZip2(bZip2(space(1000)))</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23931"
+></A
+><H3
+><A
+NAME="FUNCTIONBZIP2"
+></A
+>Function  BZIP2() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bZip2(&#60;cData&#62; [,&#60;nLevel&#62;]) --&#62; cResult&#13;</PRE
+><P
+> Compress string with given compression level (default 6).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23936"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - data for compress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLevel&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - level of compress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> bZip2() returns compressed string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBUNZIP2"
+> bUnZip2()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23961"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cResult := bZip2(space(1000))</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23965"
+></A
+><H3
+><A
+NAME="FUNCTIONBZIP2CLOSE"
+></A
+>Function  BZIP2CLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bZip2Close(&#60;nHandle&#62;) --&#62; lRet&#13;</PRE
+><P
+> bZip2Close() must be called explicitly, to clear and sync all buffers.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23970"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> bZip2Close() returns .t. or .f. as information about error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+> bZip2Open()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+>bZip2Read()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+>bZip2Write()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23992"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> lRet := bZip2Close(h)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23996"
+></A
+><H3
+><A
+NAME="FUNCTIONBZIP2OPEN"
+></A
+>Function  BZIP2OPEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bZip2Open(&#60;filename&#62; [,&#60;mode&#62;]) --&#62; nHandle&#13;</PRE
+><P
+> Open bZIP2 file with name &lt;filename&gt; and mode &lt;mode&gt; , by default
+ for reading.
+ Possible modes:
+ "rb" - binary read (no cr/lf translation)
+ "wbX" - set compression level X in range 0 to 9</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24001"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;filename&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - name of file with bZIP2 archive.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;mode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - file open mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> bZip2Open() returns number of opened file or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+> bZip2Read()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+>bZip2Write()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+>bZip2Close()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24028"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> h := bZip2Open("a.gz","rb")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24032"
+></A
+><H3
+><A
+NAME="FUNCTIONBZIP2READ"
+></A
+>Function  BZIP2READ() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bZip2Read(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;]) --&#62; realLen&#13;</PRE
+><P
+> Read and unpack data from opened bZIP2 file with &lt;nHandle&gt;
+ into preallocated &lt;cBuffer&gt; &lt;nLen&gt; bytes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24037"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - buffer for read data.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of read bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  bZip2Read() returns number of readed bytes or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+> bZip2Open()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+>bZip2Write()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+>bZip2Close()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24069"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> s := space(1000)
+ realLen := bZip2Read(h,@s,300)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24073"
+></A
+><H3
+><A
+NAME="FUNCTIONBZIP2WRITE"
+></A
+>Function  BZIP2WRITE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> bZip2Write(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;]) --&#62; realLen&#13;</PRE
+><P
+> Pack &lt;len&gt; bytes from &lt;cBuffer&gt; and write them to bZIP2-file.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24078"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - buffer with data.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of write bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> bZip2Write() returns number of writed bytes or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+> bZip2Open()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+>bZip2Read()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+>bZip2Close()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24110"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> s := space(1000)
+ realLen := bZip2Write(h,s,300)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24114"
+></A
+><H3
+><A
+NAME="FUNCTIONGUNZIP"
+></A
+>Function  GUNZIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gUnZip(&#60;cData&#62;) --&#62; cResult&#13;</PRE
+><P
+> Unompress string, compressed by gZip().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24119"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - data for uncompress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> gUnZip() returns uncompressed string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIP"
+> gZip()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24139"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cResult := gUnZip(gZip(space(1000)))</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24143"
+></A
+><H3
+><A
+NAME="FUNCTIONGZIP"
+></A
+>Function  GZIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gZip(&#60;cData&#62; [,&#60;nLevel&#62;]) --&#62; cResult&#13;</PRE
+><P
+> Compress string with given compression level (default 6).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24148"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - data for compress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLevel&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - level of compress.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> gZip() returns compressed string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGUNZIP"
+> gUnZip()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24173"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> cResult := gZip(space(1000))</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24177"
+></A
+><H3
+><A
+NAME="FUNCTIONGZIPCLOSE"
+></A
+>Function  GZIPCLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gZipClose(&#60;nHandle&#62;) --&#62; lRet&#13;</PRE
+><P
+> gZipClose() must be called explicitly, to clear and sync all buffers.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24182"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> gZipClose() returns .t. or .f. as information about error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+> gZipOpen()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+>gZipRead()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+>gZipWrite()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24204"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> lRet := gzipClose(h)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24208"
+></A
+><H3
+><A
+NAME="FUNCTIONGZIPOPEN"
+></A
+>Function  GZIPOPEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gZipOpen(&#60;filename&#62; [,&#60;mode&#62;]) --&#62; nHandle&#13;</PRE
+><P
+> Open GZIP file with name &lt;filename&gt; and mode &lt;mode&gt; , by default
+ for reading.
+ Possible modes:
+ "rb" - binary read (no cr/lf translation)
+ "wbX" - set compression level X in range 0 to 9</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24213"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;filename&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - name of file with gzip archive.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;mode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - file open mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> gZipOpen() returns number of opened file or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+> gZipRead()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+>gZipWrite()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+>gZipClose()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24240"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> h := gZipOpen("a.gz","rb")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24244"
+></A
+><H3
+><A
+NAME="FUNCTIONGZIPREAD"
+></A
+>Function  GZIPREAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gZipRead(&#60;nHandle&#62;, &#60;@cBuffer&#62; [,&#60;nLen&#62;]) --&#62; realLen&#13;</PRE
+><P
+> Read and unpack data from opened GZIP file with &lt;nHandle&gt;
+ into preallocated &lt;cBuffer&gt; &lt;nLen&gt; bytes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24249"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - buffer for read data.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of read bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  gZipRead() returns number of readed bytes or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+> gZipOpen()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPWRITE"
+>gZipWrite()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+>gZipClose()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24281"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> s := space(1000)
+ realLen := gzipRead(h,@s,300)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24285"
+></A
+><H3
+><A
+NAME="FUNCTIONGZIPWRITE"
+></A
+>Function  GZIPWRITE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> gZipWrite(&#60;nHandle&#62;, &#60;cBuffer&#62; [,&#60;nLen&#62;]) --&#62; realLen&#13;</PRE
+><P
+> Pack &lt;len&gt; bytes from &lt;cBuffer&gt; and write them to GZIP-file.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24290"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of opened file.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - buffer with data.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - number of write bytes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> gZipWrite() returns number of writed bytes or -1 if error.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONGZIPOPEN"
+> gZipOpen()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPREAD"
+>gZipRead()</A
+> <A
+HREF="categpackunpack.html#FUNCTIONGZIPCLOSE"
+>gZipClose()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24322"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> s := space(1000)
+ realLen := gzipWrite(h,s,300)</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categdiskutils.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categtcp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DISKUTILS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>TCP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,7149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>TERMINAL/IO</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CLIP-XML"
+HREF="categclip-xml.html"><LINK
+REL="NEXT"
+TITLE="SERIAL I/O"
+HREF="categserialio.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categclip-xml.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categserialio.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGTERMINALIO">TERMINAL/IO</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN34365"
+></A
+><H2
+>Name</H2
+>TERMINAL/IO&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN34368"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nPosition           <A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+>ACHOICE(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;acMenuItems&#62;, [&#60;alSelectableItems&#62; | &#60;lSelectableItems&#62;], [&#60;cUserFunction&#62;], [&#60;nInitialItem&#62;], [&#60;nWindowRow&#62;])</A
+>
+nChoice             <A
+HREF="categmenusprompts.html#FUNCTIONALERT"
+>ALERT( &#60;cMessage&#62;, [&#60;aOptions&#62;] )</A
+>
+nCol                <A
+HREF="categterminalio.html#FUNCTIONCOL"
+>COL()</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONCOLORSELECT"
+>COLORSELECT(&#60;nColorIndex&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDEVOUT"
+>DEVOUT(&#60;exp&#62;, [&#60;cColorString&#62;])</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDEVOUTPICT"
+>DEVOUTPICT(&#60;exp&#62;, &#60;cPicture&#62;, [&#60;cColorString&#62;])</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDEVPOS"
+>DEVPOS(&#60;nRow&#62;, &#60;nCol&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDISPBEGIN"
+>DISPBEGIN()</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDISPBOX"
+>DISPBOX(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, [&#60;cnBoxString&#62;], [&#60;cColorString&#62;])</A
+>
+nDispCount          <A
+HREF="categterminalio.html#FUNCTIONDISPCOUNT"
+>DISPCOUNT()</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDISPEND"
+>DISPEND()</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONDISPOUT"
+>DISPOUT(&#60;exp&#62;, [&#60;cColorString&#62;])</A
+>
+objGet              <A
+HREF="categterminalio.html#FUNCTIONGETACTIVE"
+>GETACTIVE([&#60;oGet&#62;])</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+>GETAPPLYKEY(&#60;oGet&#62;, &#60;nKey&#62;, &#60;GetList&#62;, &#60;oMenu&#62;, &#60;nMsgRow&#62;, &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+>GETDOSETKEY(&#60;bKeyBlock&#62;, &#60;oGet&#62;)</A
+>
+lSuccess            <A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+>GETPOSTVALIDATE(&#60;oGet&#62;)</A
+>
+lSuccess            <A
+HREF="categterminalio.html#FUNCTIONGETPREVALIDATE"
+>GETPREVALIDATE(&#60;oGet&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONGETREADER"
+>GETREADER(&#60;oGet&#62;, &#60;GetList&#62;, &#60;oMenu&#62;, &#60;nMsgRow&#62;, &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;)</A
+>
+lBoolean            <A
+HREF="categterminalio.html#FUNCTIONISCOLOR"
+>ISCOLOR() | ISCOLOUR()</A
+>
+lReady              <A
+HREF="categterminalio.html#FUNCTIONISPRINTER"
+>ISPRINTER()</A
+>
+nColumn             <A
+HREF="categterminalio.html#FUNCTIONMAXCOL"
+>MAXCOL()</A
+>
+nRow                <A
+HREF="categterminalio.html#FUNCTIONMAXROW"
+>MAXROW()</A
+>
+MenuID              <A
+HREF="categterminalio.html#FUNCTIONMENUMODAL"
+>MENUMODAL(&#60;oTopBar&#62;, &#60;nSelection&#62;, &#60;nMsgRow&#62;, &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONNOSNOW"
+>NOSNOW(&#60;lToggle&#62;)</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONOUTERR"
+>OUTERR(&#60;exp list&#62;)</A
+>
+NIL                 <A
+HREF="categfileio.html#FUNCTIONOUTSTD"
+>OUTSTD(&#60;exp list&#62;)</A
+>
+nColumn             <A
+HREF="categterminalio.html#FUNCTIONPCOL"
+>PCOL()</A
+>
+nRow                <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+lCurrentState       <A
+HREF="categterminalio.html#FUNCTIONREADEXIT"
+>READEXIT([&#60;lToggle&#62;])</A
+>
+bCurrentFormat      <A
+HREF="categterminalio.html#FUNCTIONREADFORMAT"
+>READFORMAT([&#60;bFormat&#62;])</A
+>
+lCurrentMode        <A
+HREF="categterminalio.html#FUNCTIONREADINSERT"
+>READINSERT([&#60;lToggle&#62;])</A
+>
+nReadkeyCode        <A
+HREF="categterminalio.html#FUNCTIONREADKEY"
+>READKEY()</A
+>
+lCurrentSetting     <A
+HREF="categterminalio.html#FUNCTIONREADKILL"
+>READKILL([&#60;lKillRead&#62;])</A
+>
+&#60;lUpdated&#62;          <A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+>READMODAL(&#60;aGetList&#62;, [&#60;nGet&#62;], [&#60;oMenu&#62;], [&#60;nMsgRow&#62;, &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;])</A
+>
+lCurrentSetting     <A
+HREF="categterminalio.html#FUNCTIONREADUPDATED"
+>READUPDATED([&#60;lChanged&#62;])</A
+>
+cVarName            <A
+HREF="categterminalio.html#FUNCTIONREADVAR"
+>READVAR()</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONRESTSCREEN"
+>RESTSCREEN([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;], &#60;cScreen&#62;)</A
+>
+nRow                <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+>
+cScreen             <A
+HREF="categterminalio.html#FUNCTIONSAVESCREEN"
+>SAVESCREEN([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;])</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONSCROLL"
+>SCROLL([&#60;nTop&#62;], [&#60;nLeft&#62;],[&#60;nBottom&#62;], [&#60;nRight&#62;], [&#60;nVert&#62;] [&#60;nHoriz&#62;])</A
+>
+lCurrentSetting     <A
+HREF="categterminalio.html#FUNCTIONSETBLINK"
+>SETBLINK([&#60;lToggle&#62;])</A
+>
+lCurrentSetting     <A
+HREF="categterminalio.html#FUNCTIONSETCANCEL"
+>SETCANCEL([&#60;lToggle&#62;])</A
+>
+cColorString        <A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+>SETCOLOR([&#60;cColorString&#62;])</A
+>
+nCurrentSetting     <A
+HREF="categterminalio.html#FUNCTIONSETCURSOR"
+>SETCURSOR([&#60;nCursorShape&#62;])</A
+>
+bCurrentAction      <A
+HREF="categkeyboardmouse.html#FUNCTIONSETKEY"
+>SETKEY(&#60;nInkeyCode&#62;, [&#60;bAction&#62;])</A
+>
+lSuccess            <A
+HREF="categterminalio.html#FUNCTIONSETMODE"
+>SETMODE(&#60;nRows&#62;, &#60;nCols&#62;)</A
+>
+&#60;nRow&#62;              <A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+>SETPOS(&#60;nRow&#62;, &#60;nCol&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONSETPRC"
+>SETPRC(&#60;nRow&#62;, &#60;nCol&#62;)</A
+>
+NIL                 <A
+HREF="categterminalio.html#FUNCTIONTONE"
+>TONE(&#60;nFrequency&#62;, &#60;nDuration&#62;)</A
+>
+lChange             <A
+HREF="categterminalio.html#FUNCTIONUPDATED"
+>UPDATED()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN34422"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34425"
+></A
+><H3
+><A
+NAME="FUNCTIONCOL"
+></A
+>Function  COL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COL() --&#62; nCol&#13;</PRE
+><P
+> COL() is a screen function that returns the current column position of
+ the cursor.  The value of COL() changes whenever the cursor position
+ changes on the screen.  Both console and full-screen commands can change
+ the cursor position.  In addition, COL() is automatically set to zero
+ whenever a CLEAR, CLEAR SCREEN, or CLS command is executed.</P
+><P
+> 
+ Use COL() to position the cursor to a column relative to the current
+ column.  It is generally used in combination with ROW() and all
+ variations of the @ command.  In particular, use COL() and ROW() to
+ create screen position-independent procedures or functions that pass the
+ upper-left row and column as parameters.</P
+><P
+> 
+ If DEVICE is SET TO PRINTER, all the output of @...SAY commands is
+ directed to the printer and PROW() and PCOL() are updated instead of
+ ROW() and COL().  Use these functions when you need to determine the
+ position of the printhead.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34432"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> COL() returns an integer numeric value.  The range of the return value
+ is zero to MAXCOL().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONMAXCOL"
+> MAXCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPCOL"
+>PCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34451"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example displays a Customer name beginning at column 10.
+ The customer's account status is then displayed to the right of the
+ last character of the customer name using COL():
+ 
+ USE Sales NEW
+ 
+ CLS
+ @ 1, 10 SAY "Customer Name: " + TRIM(Customer)
+ @ ROW(), COL() + 1 SAY "Account status: " + Status
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34455"
+></A
+><H3
+><A
+NAME="FUNCTIONCOLORSELECT"
+></A
+>Function  COLORSELECT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COLORSELECT(&#60;nColorIndex&#62;) --&#62; NIL&#13;</PRE
+><P
+> COLORSELECT() activates the specified color pair from the current list
+ of color attributes (established by SETCOLOR()).  Manifest constants for
+ &lt;nColorIndex&gt; are defined in Color.ch.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> Color.ch constants
+ ------------------------------------------------------------------------
+ Constant          Value
+ ------------------------------------------------------------------------
+ CLR_STANDARD      0
+ CLR_ENHANCED      1
+ CLR_BORDER        2
+ CLR_BACKGROUND    3
+ CLR_UNSELECTED    4
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ COLORSELECT() does not alter the current SET Color setting.</P
+><P
+> 
+ This table describes the scope of the xClipper color settings affected
+ by SETCOLOR():</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> Color settings
+ ------------------------------------------------------------------------
+ Setting        Scope
+ ------------------------------------------------------------------------
+ Standard       All screen output commands and functions
+ Enhanced       GETs and selection highlights
+ Border         Screen border (not supported on EGA and VGA monitors)
+ Background     Not supported
+ Unselected     Unselected GETs
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34466"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nColorIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number corresponding to the ordinal positions in
+ the current list of color attributes, as set by SETCOLOR().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+> SETCOLOR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34486"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates use of COLORSELECT() with the
+ Color.ch manifest constants:
+ 
+ USE Sales NEW
+ ? SETCOLOR()                   // displays "W/B,N/B,W/N,W/N,W/N"
+ // in white on blue
+ 
+ COLORSELECT(CLR_ENHANCED)      // enhanced is active color pair
+ ? "I'm black and blue"         // displayed in black on blue
+ COLORSELECT(CLR_STANDARD)      // restore standard color</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34490"
+></A
+><H3
+><A
+NAME="FUNCTIONDEVOUT"
+></A
+>Function  DEVOUT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DEVOUT(&#60;exp&#62;, [&#60;cColorString&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DEVOUT() is a full-screen display function that writes the value of a
+ single expression to the current device at the current cursor or
+ printhead position.  Use DEVOUT() with DEVPOS() in Std.ch to implement
+ the @...SAY command.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34495"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to display.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional argument that defines the display
+ color of &lt;exp&gt;.  If the current DEVICE setting is SCREEN, the output is
+ displayed in the specified color.
+ If not specified, &lt;exp&gt; is displayed as the standard color of the
+ current system color as defined by SETCOLOR().  &lt;cColorString&gt; is a
+ character expression containing the standard color setting.  If you want
+ to specify a literal color setting, enclose it in quote marks.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DEVOUT() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDEVPOS"
+>DEVPOS()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+>SETPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34524"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example shows the relationship between the DEVOUT()
+ function and the @...SAY command:
+ 
+ DEVPOS(10, 10)
+ DEVOUT("Hello there", "BG+/B"))
+ //
+ @ 10, 10 SAY "Hello there" COLOR "BG+/B"</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34528"
+></A
+><H3
+><A
+NAME="FUNCTIONDEVOUTPICT"
+></A
+>Function  DEVOUTPICT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DEVOUTPICT(&#60;exp&#62;, &#60;cPicture&#62;, [&#60;cColorString&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DEVOUTPICT() is a full-screen display function that writes the value of
+ a single expression to the current device at the current cursor or
+ printhead position.  DEVOUTPICT() is used in combination with DEVPOS()
+ in Std.ch to implement the @...SAY command used with a PICTURE clause.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34533"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to display.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cPicture&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the formatting control for the display of &lt;exp&gt;.
+ The picture specified here is the same as one used with @...SAY or
+ TRANSFORM and can include both templates and functions.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional argument that defines the display
+ color of &lt;exp&gt;.  If the current DEVICE is SCREEN, output displays in the
+ specified color.
+ 
+ If not specified, &lt;exp&gt; displays as the standard color of the current
+ system color as defined by SETCOLOR().  &lt;cColorString&gt; is a character
+ expression containing the standard color setting.  If you want to
+ specify a literal color setting, it must be enclosed in quote marks.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DEVOUTPICT() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDEVOUT"
+>DEVOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDEVPOS"
+>DEVPOS()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34567"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example shows the relationship between the DEVOUTPICT()
+ function and the @...SAY command:
+ 
+ DEVPOS(10, 10)
+ DEVOUTPICT("Hello there", "@!", "BG+/B"))
+ //
+ @ 10, 10 SAY "Hello there" PICTURE "@!" COLOR "BG+/B"</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34571"
+></A
+><H3
+><A
+NAME="FUNCTIONDEVPOS"
+></A
+>Function  DEVPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DEVPOS(&#60;nRow&#62;, &#60;nCol&#62;) --&#62; NIL&#13;</PRE
+><P
+> DEVPOS() is an environment function that moves the screen or printhead
+ depending on the current DEVICE.  If DEVICE is SET to SCREEN, DEVPOS()
+ behaves like SETPOS(), moves the cursor to the specified location, and
+ updates ROW() and COL() with the new cursor position.</P
+><P
+> 
+ If DEVICE is SET to PRINTER, DEVPOS() moves the printhead instead.  It
+ does this by sending the number of linefeed and/or formfeed characters
+ to the printer, and advancing the printhead to the new position.  If the
+ current SET MARGIN value is greater than zero, it is added to &lt;nCol&gt;.
+ The printhead is then advanced to the specified &lt;nRow&gt; and &lt;nCol&gt;
+ position and PROW() and PCOL() are updated.  If either &lt;nRow&gt; or &lt;nCol&gt;
+ are less than the current PROW() and PCOL() values, the printhead is
+ moved according to the following special rules:</P
+><P
+> 
+ If &lt;nRow&gt; is less than PROW(), an automatic EJECT (CHR(12)) is
+ sent to the printer followed by the number of linefeed characters
+ (CHR(10)) required to position the printhead on &lt;nRow&gt; of the
+ following page.</P
+><P
+> 
+ If &lt;nCol&gt; including the current SET MARGIN value is less than
+ PCOL(), a carriage return character (CHR(13)) and the number of space
+ characters required to position the printhead at &lt;nCol&gt; are sent to
+ the printer.</P
+><P
+> 
+ To circumvent these rules, use SETPRC() to reset PROW() and PCOL() to
+ new values before using DEVPOS().  See the SETPRC() discussion for more
+ information.</P
+><P
+> 
+ If the printer is redirected to a file using the SET PRINTER command,
+ DEVPOS() updates the file instead of the printer.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34581"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nCol&gt; are the new row and column positions of the
+ cursor or printhead.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DEVPOS() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDEVOUT"
+> DEVOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPCOL"
+>PCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+>SETPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34604"
+></A
+><H3
+><A
+NAME="FUNCTIONDISPBEGIN"
+></A
+>Function  DISPBEGIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISPBEGIN() --&#62; NIL&#13;</PRE
+><P
+> DISPBEGIN() is a screen function that informs the xClipper display
+ output system that the application is about to perform a series of
+ display operations.</P
+><P
+> 
+ Use DISPBEGIN() with DISPEND() to allow the display output system to
+ buffer display updates.  Display output which occurs after DISPBEGIN()
+ but before DISPEND() is allowed to accumulate in internal buffers.  When
+ DISPEND() executes, any pending updates appear on the physical display.
+ This is useful in applications where complex screen displays are slow
+ and the appearance of performance is desired.</P
+><P
+> 
+ DISPBEGIN() and DISPEND() calls are optional.  They are not required for
+ normal output.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34611"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISPBEGIN() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPEND"
+> DISPEND()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDISPCOUNT"
+>DISPCOUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34627"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example buffers screen output, updates the screen, and
+ then displays the buffered screen output:
+ 
+ DISPBEGIN()            // Start screen buffering
+ //
+ SETPOS(10, 10)
+ DISPOUT("A display update")
+ SETPOS(11, 10)
+ DISPOUT("Another display update")
+ //
+ DISPEND()               // Display buffered screen data</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34631"
+></A
+><H3
+><A
+NAME="FUNCTIONDISPBOX"
+></A
+>Function  DISPBOX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISPBOX(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;,
+ [&#60;cnBoxString&#62;], [&#60;cColorString&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DISPBOX() is a screen function that draws a box at the specified display
+ coordinates in the specified color.  If you specify &lt;cnBoxString&gt;,
+ DISPBOX() draws a box on the screen using configurable border and fill
+ characters.  DISPBOX() draws the box using &lt;cnBoxString&gt; starting from
+ the upper left-hand corner, proceeding clockwise and filling the screen
+ region with the ninth character.  If the ninth character is not
+ specified, the screen region within the box is not painted.  Existing
+ text and color remain unchanged.</P
+><P
+> 
+ In cases where cnBoxString respects xClipper conventions, the behavior
+ of DISPBOX() is unchanged.  The behavior of this function can easily be
+ modified to take advantage of graphic mode.  For example, you can
+ replace the standard window frames using single or double lines with new
+ graphical frames that have an impressive 3-D look.  Simply replace the
+ cBoxString parameter using the following:</P
+><P
+> 
+ CHR(2) + CHR(nColor+1) // draws a box of thickness 16x8x16x8
+ CHR(3) + CHR(nColor+1) // draws a box of thickness 8x8x8x8
+ CHR(4) + CHR(nColor+1) // draws a box of thickness</P
+><P
+> 
+ // 16x16x16x16
+ CHR(5) + CHR(nColor+1) // draws a box of thickness 16x8x8x8</P
+><P
+> 
+ Note that &lt;nColor&gt; is a numeric color representation.  You must add 1 to
+ this value.</P
+><P
+> 
+ In general, CHR(2) + CHR(nColor+1) can be used instead of xClipper's
+ B_SINGLE or B_DOUBLE defines.</P
+><P
+> 
+ xClipper graphics comes with two #defines LLG_BOX_GRAY_STD and
+ LLG_BOX_GRAY_SQUARE to allow gray (nColor=7) boxes of width 16x8 or
+ 16x16.</P
+><P
+> 
+ You can completely customize the box by passing chr(1) + ... as the
+ first parameter:</P
+><P
+> 
+ CHR(1)             + ;  // Box entirely defined
+ CHR(nBackColor+1)  + ;  // Color used as background fill
+ CHR(nLightColor+1) + ;  // Color used to lighten the frame
+ CHR(nDarkColor+1)  + ;  // Color used to darken the frame
+ CHR(nWidthUp)      + ;  // Thickness of upper edge of box
+ CHR(nWidthRight)   + ;  // Thickness of right edge of box
+ CHR(nWidthDown)    + ;  // Thickness of lower edge of box
+ CHR(nWidthLeft)         // Thickness of left edge of box</P
+><P
+> 
+ After DISPBOX() executes, the cursor is located in the upper corner of
+ the boxed region at &lt;nTop&gt; + 1 and &lt;nLeft&gt; + 1.  ROW() and COL() are
+ also updated to reflect the new cursor position.</P
+><P
+> 
+ Note that Box.ch, located in \include, provides constants for
+ various border configurations.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34646"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ coordinates of the box.  DISPBOX() draws a box using row values from
+ zero to MAXROW(), and column values from zero to MAXCOL().  If &lt;nBottom&gt;
+ and &lt;nRight&gt; are larger than MAXROW() and MAXCOL(), the bottom-right
+ corner is drawn off the screen.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cnBoxString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric or character expression that defines the
+ border characters of the box.  If specified as a numeric expression, a
+ value of 1 displays a single-line box and a value of 2 displays a
+ double-line box.  All other numeric values display a single-line box.
+ 
+ If &lt;cnBoxString&gt; is a character expression, it specifies the characters
+ to be used in drawing the box.  This is a string of eight border
+ characters and a fill character.  If &lt;cnBoxString&gt; is specified as a
+ single character, that character is used to draw the whole box.
+ 
+ If this argument is not specified, a single-line box is drawn.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the display color of the box that is drawn.
+ If not specified, the box is drawn using the standard color setting of
+ the current system color as defined by SETCOLOR().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISPBOX() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSCROLL"
+> SCROLL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34676"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code example displays a double-line box using a numeric
+ value to specify the box border:
+ 
+ #define B_SINGLE   1
+ #define B_DOUBLE   2
+ //
+ DISPBOX(1, 1, 10, 10, B_DOUBLE, "BG+/B")
+ 
+ This example displays a single-line top and double-line side
+ box by specifying border characters with a manifest constant defined
+ in Box.ch:
+ 
+ #include "Box.ch"
+ //
+ DISPBOX(1, 1, 10, 10, B_SINGLE_DOUBLE, "BG+/B")
+ 
+ This example displays a box with a 3-D look.  It can be used
+ for graphic mode:
+ 
+ // Display a box with a 3D look of constant width 16x16x16x16
+ DISPBOX( nTop, nLeft, nBottom, nRight, LLG_BOX_GRAY_SQUARE )
+ // Write some transparent text in the 3D frame
+ GWRITEAT(  nLeft * GMODE()[LLG_MODE_FONT_COL] ,;
+ nTop  * GMODE()[LLG_MODE_FONT_ROW] ,;
+ "This is some Text...",;
+ 4,;
+ LLG_MODE_SET; )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34680"
+></A
+><H3
+><A
+NAME="FUNCTIONDISPCOUNT"
+></A
+>Function  DISPCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISPCOUNT() --&#62; nDispCount&#13;</PRE
+><P
+> You can use DISPCOUNT() to determine the current display context.
+ xClipper uses display contexts to buffer and to supervise screen
+ output operations.</P
+><P
+> 
+ Each call to DISPBEGIN() defines a new display context.  Output to the
+ display context is suppressed until a matching DISPEND() statement
+ executes.</P
+><P
+> 
+ Since you may nest DISPBEGIN() calls, use DISPCOUNT() to determine
+ whether there are pending screen refresh requests.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34687"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISPCOUNT() returns the number of DISPEND() calls required to restore
+ the original display context.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPBEGIN"
+> DISPBEGIN()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDISPEND"
+>DISPEND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34703"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example saves the setting of DISPCOUNT(), then releases
+ all pending display contexts before writing to the screen:
+ 
+ PROCEDURE ForceDisplay(cExp)
+ LOCAL nSavCount
+ 
+ nSavCount := DISPCOUNT()
+ 
+ //  Discard pending display contexts
+ DO WHILE ( DISPCOUNT() &#62; 0)
+ DISPEND()
+ 
+ ENDDO
+ 
+ DISPOUT(cExp)
+ 
+ //  "Rewind" the current display context
+ DO WHILE (DISPCCOUNT() &#60; nSavCount )
+ DISPBEGIN()
+ ENDDO
+ 
+ RETURN</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34707"
+></A
+><H3
+><A
+NAME="FUNCTIONDISPEND"
+></A
+>Function  DISPEND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISPEND() --&#62; NIL&#13;</PRE
+><P
+> DISPEND() is a screen function that informs the xClipper display
+ output system that the application has finished performing a series of
+ display operations.</P
+><P
+> 
+ DISPEND() is used with DISPBEGIN() so the display output system can
+ buffer display updates.  This can be important for applications in which
+ complex screen displays are slow and the appearance of performance is
+ desired.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34713"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISPEND() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPBEGIN"
+> DISPBEGIN()</A
+> <A
+HREF="categterminalio.html#FUNCTIONDISPCOUNT"
+>DISPCOUNT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34729"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example buffers screen output, updates the screen, and
+ then displays the buffered screen output:
+ 
+ DISPBEGIN()            // Start screen buffering
+ //
+ SETPOS(10, 10)
+ DISPOUT("A display update")
+ SETPOS(11, 10)
+ DISPOUT("Another display update")
+ //
+ DISPEND()               // Display buffered screen data</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34733"
+></A
+><H3
+><A
+NAME="FUNCTIONDISPOUT"
+></A
+>Function  DISPOUT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISPOUT(&#60;exp&#62;, [&#60;cColorString&#62;]) --&#62; NIL&#13;</PRE
+><P
+> DISPOUT() is a simple output function that writes the value of a single
+ expression to the display at the current cursor position.  This function
+ ignores the SET DEVICE setting; output always goes to the screen.  You
+ can only use this function within a procedure or function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34738"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to display.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional argument that defines the display
+ color of &lt;exp&gt;.  If unspecified, &lt;exp&gt; is displayed as the standard
+ color of the current system color as defined by SETCOLOR().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character expression containing the standard color
+ setting.  You can specify a literal color setting, if you enclose it in
+ quote marks.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISPOUT() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+> <A
+HREF="categfileio.html#FUNCTIONOUTSTD"
+>OUTSTD()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+>SETCOLOR()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+>SETPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34773"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example performs screen output at a specified location in
+ different colors.  Note how the cursor position is saved and restored
+ using ROW(), COL(), and SETPOS():
+ 
+ PROCEDURE Showit
+ LOCAL nRow, nCol
+ ? nCol := COL()            // save original
+ ?? nRow := ROW()            // cursor position
+ 
+ INKEY(2)
+ 
+ SETPOS(nRow, nCol)
+ DISPOUT("This is a test of DISPOUT()")
+ ? COL()                     // display current
+ ?? ROW()                     // cursor position
+ 
+ INKEY(2)
+ 
+ SETPOS(nRow, nCol)
+ DISPOUT(space(26))         // clear original position
+ SET DEVICE TO PRINTER      // ignores SET DEVICE
+ 
+ SETPOS(nRow, nCol)         // display at
+ DISPOUT("           all through")
+ // original position
+ 
+ RETURN</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34777"
+></A
+><H3
+><A
+NAME="FUNCTIONGETACTIVE"
+></A
+>Function  GETACTIVE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETACTIVE([&#60;oGet&#62;]) --&#62; objGet&#13;</PRE
+><P
+> GETACTIVE() is an environment function that provides access to the
+ active Get object during a READ.  The current active Get object is the
+ one with input focus at the time GETACTIVE() is called.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34782"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to a Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETACTIVE() returns the Get object referenced by &lt;oGet&gt;.  If &lt;oGet&gt; is
+ not specified, then the current active Get object within the current
+ READ is used.  If there is no READ active when GETACTIVE() is called, it
+ returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+> READMODAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34802"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code uses a WHEN clause to force control to branch to a
+ special reader function.  Within this function, GETACTIVE() retrieves
+ the active Get object:
+ 
+ @ 10, 10 GET x
+ @ 11, 10 GET y WHEN MyReader()
+ @ 12, 10 GET z
+ READ
+ 
+ // Called just before second get (above)
+ // becomes current
+ FUNCTION MyReader
+ LOCAL objGet               // Active Get holder
+ objGet := GETACTIVE()      // Retrieve current
+ 
+ // active Get
+ BarCodeRead( objGet )
+ RETURN (.F.)               // Causes Get to be
+ // skipped in READ</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34806"
+></A
+><H3
+><A
+NAME="FUNCTIONGETAPPLYKEY"
+></A
+>Function  GETAPPLYKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETAPPLYKEY(&#60;oGet&#62;, &#60;nKey&#62;, &#60;GetList&#62;, &#60;oMenu&#62;,
+ &#60;nMsgRow&#62;, &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;)
+ --&#62; NIL&#13;</PRE
+><P
+> GETAPPLYKEY() is a Get system function that applies an INKEY() value to
+ a Get object.  Keys are applied in the default way.  That is, cursor
+ movement keys change the cursor position within the GET, data keys are
+ entered into the GET, etc.</P
+><P
+> 
+ If the key supplied to GETAPPLYKEY() is a SET KEY, GETAPPLYKEY() will
+ execute the set key and return; the key is not applied to the Get
+ object.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34812"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to a Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the INKEY() value to apply to &lt;oGet&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;GetList&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to the current list of Get objects.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oMenu&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to any top bar menu.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the row of the message
+ bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the left column of the
+ message bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the right column of the
+ message bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string representing the colors to be used
+ for the message bar text.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETAPPLYKEY() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+> GETDOSETKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+>GETPOSTVALIDATE()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPREVALIDATE"
+>GETPREVALIDATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34869"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example will apply keystrokes until Exit:
+ WHILE (oGet:exitState == GE_NOEXIT)
+ GETAPPLYKEY (oGet, INKEY(0), GetList, oMenu, nMsgRow,;
+ nMsgLeft, nMsgRight, nMsgColor)
+ ENDDO</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34873"
+></A
+><H3
+><A
+NAME="FUNCTIONGETDOSETKEY"
+></A
+>Function  GETDOSETKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETDOSETKEY(&#60;bKeyBlock&#62;, &#60;oGet&#62;) --&#62; NIL&#13;</PRE
+><P
+> GETDOSETKEY() is a function that executes a SET KEY code block,
+ preserving the context of the passed Get object.</P
+><P
+> 
+ Note that the procedure name and line number passed to the SET KEY block
+ are based on the most recent call to READMODAL().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34879"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to the current Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bKeyBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the code block to execute.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETDOSETKEY() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+> GETAPPLYKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+>GETPOSTVALIDATE()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPREVALIDATE"
+>GETPREVALIDATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34906"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example determines if the last key pressed,
+ nKey, has a SET KEY associated with it.  If it does, then GETDOSETKEY
+ is called to execute that block on the current GET.
+ 
+ IF ((bKeyBlock := SETKEY (nKey)) == NIL)
+ GETDOSETKEY (bKeyBlock, oGet)
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34910"
+></A
+><H3
+><A
+NAME="FUNCTIONGETPOSTVALIDATE"
+></A
+>Function  GETPOSTVALIDATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETPOSTVALIDATE(&#60;oGet&#62;) --&#62; lSuccess&#13;</PRE
+><P
+> GETPOSTVALIDATE() is a Get system function that validates a Get object
+ after editing, including evaluating Get:postBlock (the VALID clause) if
+ present.</P
+><P
+> 
+ The return value indicates whether the GET has been postvalidated
+ successfully.  If a CLEAR GETS is issued during postvalidation,
+ Get:exitState is set to GE_ESCAPE and GETPOSTVALIDATE() returns true
+ (.T.).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34916"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to the current Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETPOSTVALIDATE() returns a logical value indicating whether the Get
+ object has been postvalidated successfully.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+> GETAPPLYKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+>GETDOSETKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPREVALIDATE"
+>GETPREVALIDATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34938"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example calls GETPOSTVALIDATE to determine whether or not
+ the VALID clause of oGet is satisfied.  If not, then the user is not
+ allowed to exit from the Get object.
+ 
+ IF (! GETPOSVALIDATE (oGet))
+ oGet : exitState := GE_NOEXIT
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34942"
+></A
+><H3
+><A
+NAME="FUNCTIONGETPREVALIDATE"
+></A
+>Function  GETPREVALIDATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETPREVALIDATE(&#60;oGet&#62;) --&#62; lSuccess&#13;</PRE
+><P
+> GETPREVALIDATE() is a function that validates the Get object for
+ editing, including evaluating Get:preBlock (the WHEN clause) if it is
+ present.  The logical return value indicates whether the GET has been
+ prevalidated successfully.</P
+><P
+> 
+ Get:exitState is also set to reflect the outcome of the prevalidation:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> Get:exitState Values
+ ------------------------------------------------------------------------
+ Getexit.ch   Meaning
+ ------------------------------------------------------------------------
+ GE_NOEXIT    Indicates prevalidation success, okay to edit
+ GE_WHEN      Indicates prevalidation failure
+ GE_ESCAPE    Indicates that a CLEAR GETS was issued
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ Note that in the default system, a Get:exitState of GE_ESCAPE cancels
+ the current GET and terminates READMODAL().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34951"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to the current Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETPREVALIDATE() returns a logical value indicating whether the Get
+ object has been prevalidated successfully.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+> GETAPPLYKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+>GETDOSETKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+>GETPOSTVALIDATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN34973"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates the GETPREVALIDATE() function.
+ 
+ IF GETPREVALIDATE (oGet)
+ // process the get
+ ELSE
+ // WHEN clause not satisfied
+ // give a warning to the user
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN34977"
+></A
+><H3
+><A
+NAME="FUNCTIONGETREADER"
+></A
+>Function  GETREADER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETREADER(&#60;oGet&#62;, &#60;GetList&#62;, &#60;oMenu&#62;, &#60;nMsgRow&#62;,
+ &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;) --&#62; NIL&#13;</PRE
+><P
+> GETREADER() is a GET function that implements the standard READ behavior
+ for GETs.  By default, READMODAL() uses the GETREADER() function to read
+ Get objects.  GETREADER() in turn uses other functions in Getsys.prg to
+ do the work of reading the Get object.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN34982"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to a Get object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;GetList&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of all the Get objects in the current Get
+ list.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oMenu&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a reference to a TopBarMenu object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the row number on the
+ screen where the message bar is located.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the left border of the
+ row bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value representing the right border of the
+ row bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string representing the color string to
+ be used for the message bar.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETREADER() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONGETAPPLYKEY"
+> GETAPPLYKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETDOSETKEY"
+>GETDOSETKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONGETPOSTVALIDATE"
+>GETPOSTVALIDATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35034"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example sets the current Get object to the first GET in
+ the Get list.  Then, a READ is performed on this GET which has no
+ menu object, but includes a message bar at row 25 from column 0 to
+ column 80.  The color of the text on the message bar is white with a
+ red background.
+ 
+ oGet := GetList [1]
+ GETREADER (oGet, Getlist, NIL,25,;
+ 0,80,"W+/R")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35038"
+></A
+><H3
+><A
+NAME="FUNCTIONISCOLOR"
+></A
+>Function  ISCOLOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISCOLOR() | ISCOLOUR() --&#62; lBoolean&#13;</PRE
+><P
+> ISCOLOR() is a screen function that allows you to make decisions about
+ the type of screen attributes to assign (color or monochrome).  Note
+ that some monochrome adapters with graphics capability return true
+ (.T.).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35043"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISCOLOR() returns true (.T.) if there is a color graphics card
+ installed; otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+> SETCOLOR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35058"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example installs color attribute variables at runtime:
+ 
+ IF ISCOLOR()
+ cBox  = "BG+/B, W/N"
+ cSays = "BG/B, W/N"
+ cGets = "W/N, N/W"
+ ELSE
+ cBox  = "W+"
+ cSays = "W/N, N+/W"
+ cGets = "W/N, N/W"
+ ENDIF
+ .
+ . &#60;statements&#62;
+ .
+ SETCOLOR(cSays)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35062"
+></A
+><H3
+><A
+NAME="FUNCTIONISPRINTER"
+></A
+>Function  ISPRINTER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ISPRINTER() --&#62; lReady&#13;</PRE
+><P
+> ISPRINTER() is a printer function that determines whether the parallel
+ port (LPT1) is online and ready to print.  ISPRINTER() is
+ hardware-dependent and, therefore, only works on IBM BIOS compatible
+ systems.</P
+><P
+> 
+ You can check ISPRINTER() to make sure the printer is ready before you
+ begin a print operation; however, if an error occurs during the print
+ operation, a runtime error is generated.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35068"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ISPRINTER() returns true (.T.) if LPT1 is ready; otherwise, it returns
+ false (.F.).</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35078"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example tests the parallel port for readiness with up to
+ 25 retries.  If the parallel port is ready, the printer operation
+ begins:
+ 
+ LOCAL nCount := 0, nTimes := 25, lReady
+ //
+ DO WHILE nCount++ &#60;= nTimes .AND. !(lReady := ;
+ ISPRINTER())
+ ENDDO
+ //
+ IF lReady
+ REPORT FORM Sales TO PRINTER
+ ELSE
+ ? "Printer not ready..."
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35082"
+></A
+><H3
+><A
+NAME="FUNCTIONMAXCOL"
+></A
+>Function  MAXCOL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MAXCOL() --&#62; nColumn&#13;</PRE
+><P
+> MAXCOL() is a screen function that determines the maximum visible column
+ of the screen.  Row and column numbers start at zero in xClipper.</P
+><P
+> 
+ If you use a C or other extended function to set the video mode, use the
+ SETMODE() function so your xClipper application returns the correct
+ value for MAXCOL().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35088"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MAXCOL() returns the column number of the rightmost visible column for
+ display purposes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONMAXROW"
+>MAXROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35105"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses MAXROW() and MAXCOL() to determine the area
+ in which to draw a box, and then executes DBEDIT() within the box
+ region:
+ 
+ CLS
+ @ 0, 0 TO MAXROW(), MAXCOL() DOUBLE
+ DBEDIT(1, 1, MAXROW() + 1, MAXCOL() - 1)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35109"
+></A
+><H3
+><A
+NAME="FUNCTIONMAXROW"
+></A
+>Function  MAXROW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MAXROW() --&#62; nRow&#13;</PRE
+><P
+> MAXROW() is a screen function that determines the maximum visible row of
+ the screen.  Row and column numbers start at zero in xClipper.</P
+><P
+> 
+ If you use a C or other extended function to set the video mode, use the
+ SETMODE() function so your xClipper application returns the correct
+ value for MAXCOL().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35115"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MAXROW() returns the row number of the bottommost visible row for
+ display purposes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONMAXCOL"
+>MAXCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35132"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This user-defined function, ScreenSize(), uses MAXROW() and
+ MAXCOL() to return an array containing the current screen size:
+ 
+ FUNCTION ScreenSize
+ RETURN { MAXROW(), MAXCOL() }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35136"
+></A
+><H3
+><A
+NAME="FUNCTIONMENUMODAL"
+></A
+>Function  MENUMODAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MENUMODAL(&#60;oTopBar&#62;, &#60;nSelection&#62;, &#60;nMsgRow&#62;,
+ &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;) --&#62; MenuID&#13;</PRE
+><P
+> MENUMODAL() is a user-interface function that implements the pull-down
+ menu system in xClipper.  It is part of the open architecture Get
+ system of xClipper.  MENUMODAL() is similar to the READ command in
+ that it waits for the user to perform an action.  However, the
+ MENUMODAL() function will only respond to menu actions.</P
+><P
+> 
+ To implement a menu object at the same time as other objects, use the
+ READMODAL() function which has one of its arguments as TopBarMenu
+ object.</P
+><P
+> 
+ When the user chooses a menu item, control is passed to the code block
+ associated with that particular menu item.  Code blocks are defined
+ using the MenuItem class.</P
+><P
+> 
+ The menu items can be selected by using either the keyboard or the
+ mouse.  To select a menu item with the mouse, simply select its
+ TopBarMenu item with the mouse and then choose the appropriate PopUp
+ menu item.</P
+><P
+> 
+ Note:  The MENUMODAL() function will take one menu event from the
+ user and then terminate.  To avoid this, the following can be used, and
+ the same will allow the program to continuously accept menu events:</P
+><P
+> 
+ DO WHILE (MENUMODAL(themenu,...) &lt;&gt; ExitMenu)
+ ENDDO</P
+><P
+> 
+ The following table lists the active keys that can be used during
+ MENUMODAL():</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> MENUMODAL() Navigation Keys
+ ------------------------------------------------------------------------
+ Key                 Action
+ ------------------------------------------------------------------------
+ Left arrow, Ctrl+S  Move to the next TopBarMenu item to the left.  If
+ there are no more items to the left, the rightmost
+ TopBarMenu item will be selected.
+ Right arrow, Ctrl+D Move to the next TopBarMenu item to the right.  If
+ there are no more items to the right, the leftmost
+ TopBarMenu will be selected.
+ Up arrow, Ctrl+E    Move to the previous PopUp menu item.  If there are
+ no more items above the current item, the menu item
+ on the bottom will be selected.
+ Down arrow, Ctrl+X  Move to the next PopUp menu item.  If there are no
+ more items below the current item, the menu item on
+ the top will be selected.
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35149"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oTopBar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a TopBarMenu object created from the TopBarMenu class.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSelection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the TopBarMenu item selected by default.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the row number where menu item messages will appear.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the left border for menu item messages.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the right border for menu item messages.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the color string for the menu item messages.  It
+ consists of a single foreground/background pair.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MENUMODAL() returns the menu ID of the chosen menu item.  Menu IDs are
+ assigned using the MenuItem class.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35189"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> See the Menu.prg sample file in the \sample directory.
+ This example demonstrates combining TopBarMenu, PopUpMenu, and MenuItem
+ objects to create a menu with a number of available choices.  See
+ "Introduction to the Menu System" in the Programming and Utilities Guide
+ for more information about using this function.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35193"
+></A
+><H3
+><A
+NAME="FUNCTIONNOSNOW"
+></A
+>Function  NOSNOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> NOSNOW(&#60;lToggle&#62;) --&#62; NIL&#13;</PRE
+><P
+> NOSNOW() is used to suppress snow on CGA monitors.  Typically, use
+ NOSNOW() in the configuration section of your application to give the
+ user the option to suppress snow.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35198"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lToggle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical value that toggles the current state of snow
+ suppression.  A value of true (.T.) enables the snow suppression on,
+ while a value of false (.F.) disables snow suppression.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35213"
+></A
+><H3
+><A
+NAME="FUNCTIONPCOL"
+></A
+>Function  PCOL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PCOL() --&#62; nColumn&#13;</PRE
+><P
+> PCOL() is a printer function that reports the column position of the
+ printhead after the last print operation.  PCOL() is updated only if
+ either SET DEVICE TO PRINTER or SET PRINTER ON is in effect.  PCOL() is
+ the same as COL() except that it relates to the printer rather than the
+ screen.  PCOL() is updated in the following ways:</P
+><P
+> 
+ Application startup sets PCOL() to zero</P
+><P
+> 
+ EJECT resets PCOL() to zero</P
+><P
+> 
+ A print operation sets PCOL() to the last column print
+ position plus one</P
+><P
+> 
+ SETPRC() sets PCOL() to the specified column position</P
+><P
+> 
+ PCOL(), used with PROW(), prints a value relative to the last value
+ printed on the same line.  This makes it easier to align columns when
+ printing a columnar report.  A value is printed in the next column by
+ specifying its position as PCOL() + &lt;column offset&gt;.  Note that PCOL()
+ is effective for alignment only if the column values are fixed-width.
+ To guarantee fixed-width column values, format the output using
+ TRANSFORM(), the PICTURE clause of @...SAY, or any of the PAD()
+ functions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35223"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PCOL() returns an integer numeric value representing the last printed
+ column position, plus one.  The beginning column position is zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONCOL"
+>COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETPRC"
+>SETPRC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35243"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, PCOL() creates a simple report that prints a
+ listing of Customer names, addresses, and phone numbers:
+ 
+ LOCAL nLine := 99, nPage := 1
+ USE Customer INDEX CustName NEW
+ SET DEVICE TO PRINTER
+ DO WHILE !EOF()
+ IF nLine &#62; 55
+ PageTop(nPage)
+ nLine := 1
+ nPage++
+ ENDIF
+ @ nLine, 10 SAY CustName
+ @ nLine, PCOL() + 2;
+ SAY RTRIM(City) + ", " + RTRIM(State) + ZipCode;
+ PICTURE REPLICATE("X", 35)
+ @ nLine, PCOL() + 2;
+ SAY Phone;
+ PICTURE "@R (999) 999-9999"
+ nLine++
+ SKIP
+ ENDDO
+ SET DEVICE TO SCREEN
+ CLOSE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35247"
+></A
+><H3
+><A
+NAME="FUNCTIONPROW"
+></A
+>Function  PROW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PROW() --&#62; nRow&#13;</PRE
+><P
+> PROW() is a printer function that reports the row position of the
+ printhead after the last print operation.  PROW() is updated only if
+ either SET DEVICE TO PRINTER or SET PRINTER ON is in effect.  PROW() is
+ like ROW() except that it relates to the printer rather than the screen.
+ PROW() is updated in the following ways:</P
+><P
+> 
+ Application startup sets PROW() to zero</P
+><P
+> 
+ EJECT resets PROW() to zero</P
+><P
+> 
+ A print operation sets PROW() to the last row print position</P
+><P
+> 
+ SETPRC() sets PROW() to the specified row position</P
+><P
+> 
+ PROW() used with PCOL() prints a value to a new row relative to the last
+ row printed.  If the printhead is positioned to a new row with a control
+ code, a line feed (CHR(10)), or form feed (CHR(12)), PROW() is not
+ updated and, therefore, will not return the expected value.  To prevent
+ this discrepancy, reset PROW() to the correct value with SETPRC() after
+ sending any of these characters to the printer.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35257"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PROW() returns an integer numeric value that represents the number of
+ the current line sent to the printer.  The beginning row position is
+ zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONPCOL"
+> PCOL()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONROW"
+>ROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONCOL"
+>COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETPRC"
+>SETPRC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35276"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses PROW() and SETPRC() to create a simple one-
+ across label program that prints with @...SAY instead of ?:
+ 
+ USE Customer INDEX CustName NEW
+ SET DEVICE TO PRINTER
+ SETPRC(2, 0)
+ DO WHILE !EOF()
+ @ PROW(), 3 SAY CustName
+ @ PROW() + 1, 3 SAY RTRIM(City) + ",;
+ " + RTRIM(State) + ZipCode
+ @ PROW() + 1, 3 SAY Phone PICTURE "@R ;
+ (999) 999-9999"
+ SETPRC(2, 0)
+ SKIP
+ ENDDO
+ SET DEVICE TO SCREEN
+ CLOSE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35280"
+></A
+><H3
+><A
+NAME="FUNCTIONREADEXIT"
+></A
+>Function  READEXIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READEXIT([&#60;lToggle&#62;]) --&#62; lCurrentState&#13;</PRE
+><P
+> READEXIT() is an environment function that reports the current state of
+ Up arrow and Down arrow as keys the user can press to exit a READ from
+ the first or last Get object in a GetList.  If the optional &lt;lToggle&gt;
+ argument is specified, Up arrow and Down arrow are either enabled or
+ disabled as READ exit keys.  At program startup, Up arrow and Down arrow
+ are not enabled as READ exit keys.  Normally, READ exit keys include
+ only Pgup, Pgdn, Esc, or Return from the last GET.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35285"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lToggle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> toggles the use of Up arrow and Down arrow as READ exit
+ keys.  Specifying true (.T.) enables them as exit keys, and false (.F.)
+ disables them.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READEXIT() returns the current setting as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADINSERT"
+> READINSERT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35305"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example shows READEXIT() enabling Up arrow and Down arrow
+ exit keys before a READ then resetting them after the READ
+ terminates:
+ 
+ cMyvar = SPACE(10)
+ lLastExit = READEXIT(.T.)   // Result: Turn on exit keys
+ //
+ @ 10, 10 SAY "Enter: " GET cMyvar
+ READ
+ READEXIT(lLastExit)         // Result: Restore previous setting</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35309"
+></A
+><H3
+><A
+NAME="FUNCTIONREADFORMAT"
+></A
+>Function  READFORMAT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READFORMAT([&#60;bFormat&#62;]) --&#62; bCurrentFormat&#13;</PRE
+><P
+> READFORMAT() is a Get system function that accesses the current format
+ file in its internal code block representation.  It lets you manipulate
+ the format file code block from outside of the Get system's source code.</P
+><P
+> 
+ To set a format file, use SET FORMAT (see the SET FORMAT entry ) or
+ READFORMAT().</P
+><P
+> 
+ READFORMAT() is intended primarily for creating new READ layers.  The
+ code block that READFORMAT() returns, when evaluated, executes the code
+ that is in the format file from which it was created.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35316"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bFormat&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the code block, if any, to use for
+ implementing a format file.  If no argument is specified, the function
+ simply returns the current code block without setting a new one.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READFORMAT() returns the current format file as a code block.  If no
+ format file has been set, READFORMAT() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADKILL"
+> READKILL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADUPDATED"
+>READUPDATED()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35337"
+></A
+><H3
+><A
+NAME="FUNCTIONREADINSERT"
+></A
+>Function  READINSERT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READINSERT([&#60;lToggle&#62;]) --&#62; lCurrentMode&#13;</PRE
+><P
+> READINSERT() is an environment function that reports the current state
+ of the insert mode for READ and MEMOEDIT() and, optionally, sets the
+ insert mode on or off depending on the value of &lt;lToggle&gt;.  When
+ READINSERT() returns false (.F.) and the user enters characters into a
+ Get object's buffer during a READ or a MEMOEDIT(), characters are
+ overwritten.  When READINSERT() returns true (.T.), entered characters
+ are inserted instead.  The insert mode is a global setting belonging to
+ the system and not to any specific object.</P
+><P
+> 
+ You can execute READINSERT() prior to or during a READ or MEMOEDIT().
+ If used with READ, READINSERT() can be invoked within a WHEN or VALID
+ clause of @...GET or within a SET KEY procedure.  If used with
+ MEMOEDIT(), it can be invoked with the user function as well as a SET
+ KEY procedure.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35343"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lToggle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> toggles the insert mode on or off.  True (.T.) turns
+ insert on, while false (.F.) turns insert off.  The default is false
+ (.F.) or the last user-selected mode in READ or MEMOEDIT().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READINSERT() returns the current insert mode state as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADEXIT"
+> READEXIT()</A
+> <A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+>MEMOEDIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35364"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example sets the insert mode prior to entering MEMOEDIT()
+ and resets the mode when MEMOEDIT() terminates:
+ 
+ USE Sales NEW
+ 
+ // Turn on insert mode
+ lInsMode = READINSERT(.T.)
+ Sales-&#62;Notes := MEMOEDIT(Sales-&#62;Notes)
+ //
+ // Restore previous insert mode
+ READINSERT(lInsMode)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35368"
+></A
+><H3
+><A
+NAME="FUNCTIONREADKEY"
+></A
+>Function  READKEY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READKEY() --&#62; nReadkeyCode&#13;</PRE
+><P
+> READKEY() is a keyboard function that emulates the READKEY() function in
+ dBASE III PLUS.  Its purpose is to determine what key the user pressed
+ to terminate a READ.  If UPDATED() is true (.T.), READKEY() returns the
+ code plus 256.  Up arrow and Down arrow exit a READ only if READEXIT()
+ returns true (.T.).  The default value is false (.F.).  To provide
+ complete compatibility for these keys, execute a READEXIT (.T.) at the
+ beginning of your main procedure.</P
+><P
+> 
+ READKEY() is supplied as a compatibility function and, therefore, its
+ use is strongly discouraged.  It is superseded entirely by LASTKEY()
+ which determines the last keystroke fetched from the keyboard buffer.
+ If the keystroke was a READ exit key, LASTKEY() will return the INKEY()
+ code for that key.  To determine whether any Get object's buffer was
+ modified during a READ, it is superseded by the UPDATED() function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35374"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READKEY() returns a code representing the key pressed to exit a READ.
+ In xClipper, the following keys are the standard READ exit keys and
+ their READKEY() return codes:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+> READKEY() Return Codes
+ ------------------------------------------------------------------------
+ Exit Key            Return Code
+ ------------------------------------------------------------------------
+ Up arrow             5
+ Down arrow           2
+ PgUp                 6
+ PgDn                 7
+ Ctrl+PgUp           31
+ Ctrl+PgDn           30
+ Esc                 12
+ Ctrl+End, Ctrl+W    14
+ Type past end       15
+ Return              15
+ ------------------------------------------------------------------------
+ </PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONNEXTKEY"
+> NEXTKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADEXIT"
+>READEXIT()</A
+> <A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+>LASTKEY()</A
+> <A
+HREF="categterminalio.html#FUNCTIONUPDATED"
+>UPDATED()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35393"
+></A
+><H3
+><A
+NAME="FUNCTIONREADKILL"
+></A
+>Function  READKILL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READKILL([&#60;lKillRead&#62;]) --&#62; lCurrentSetting&#13;</PRE
+><P
+> READKILL() is a Get system function that lets you control whether or not
+ to terminate the current READ.</P
+><P
+> 
+ Unless directly manipulated, READKILL() returns true (.T.) after you
+ issue a CLEAR GETS (see the CLEAR GETS entry ) for the current READ;
+ otherwise, it returns false (.F.).</P
+><P
+> 
+ By accessing the function directly, however, you can control the
+ READKILL() flag with its function argument and use it to create new READ
+ layers.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35400"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lKillRead&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> sets the READKILL() flag.  A value of true (.T.)
+ indicates that the current read should be terminated, and a value of
+ false (.F.) indicates that it should not.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READKILL() returns the current setting as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADFORMAT"
+> READFORMAT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADUPDATED"
+>READUPDATED()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+>READMODAL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADVAR"
+>READVAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35423"
+></A
+><H3
+><A
+NAME="FUNCTIONREADMODAL"
+></A
+>Function  READMODAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READMODAL(&#60;aGetList&#62;, [&#60;nGet&#62;], [&#60;oMenu&#62;], [&#60;nMsgRow&#62;,
+ &#60;nMsgLeft&#62;, &#60;nMsgRight&#62;, &#60;cMsgColor&#62;])
+ --&#62; &#60;lUpdated&#62;&#13;</PRE
+><P
+> READMODAL() is a user interface function that implements the full-screen
+ editing mode for GETs, and is part of the open architecture Get system
+ of xClipper.  READMODAL() is like the READ command, but takes a
+ GetList array as an argument and does not reinitialize the GetList array
+ when it terminates.  Because of this, you can maintain multiple lists of
+ Get objects and activate them any time in a program's execution as long
+ as the array to activate is visible.</P
+><P
+> 
+ In order to retain compatibility with previous versions of xClipper,
+ the GET system in xClipper is implemented using a public array called
+ GetList.  Each time an @...GET command executes, it creates a Get object
+ and adds to the currently visible GetList array.  The standard READ
+ command is preprocessed into a call to READMODAL() using the GetList
+ array as its argument.  If the SAVE clause is not specified, the
+ variable GetList is assigned an empty array after the READMODAL()
+ function terminates.</P
+><P
+> 
+ Some of the functions in the Getsys.prg have been made public so that
+ they can be used when implementing customized GET readers.  These
+ functions are listed in the table below.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> Get System functions
+ ------------------------------------------------------------------------
+ Function            Description
+ ------------------------------------------------------------------------
+ GETACTIVE()         Return the currently active Get object
+ GETAPPLYKEY()       Apply a key to a Get object from within a GET reader
+ GETDOSETKEY()       Process SET KEY during GET editing
+ GETPOSTVALIDATE()   Postvalidate the current Get object
+ GETPREVALIDATE()    Prevalidate a Get object
+ GETREADER()         Execute standard READ behavior for a Get object
+ READFORMAT()        Return and, optionally, set the code block that
+ implements a format (.fmt) file
+ READKILL()          Return and, optionally, set whether the current Read
+ should be exited
+ READUPDATED()       Return and, optionally, set whether a GET has
+ changed during a Read
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ For reference information on the Get objects and functions listed above,
+ refer to the "Get System" chapter in the Programming and Utilities
+ Guide.</P
+><P
+> 
+ For more information on the supported keys in the default READMODAL()
+ function, refer to the READ command reference in this chapter.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35434"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aGetList&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array containing a list of Get objects to edit.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nGet&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional numeric value that indicates which Get object
+ within &lt;aGetList&gt; should initially receive input focus.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oMenu&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional Topbarmenu object that, when supplied,
+ permits menu selection during data entry.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nMsgLeft&gt;, and &lt;nMsgRight&gt; specify the row,
+ left, and right margins where the Get object messages appear on the
+ screen.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the color setting of the message area.  It
+ consists of a single foreground/background color pair.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READMODAL() returns true (.T.) when GetList is updated, false (.F.) when
+ it is not.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONUPDATED"
+> UPDATED()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35474"
+></A
+><H3
+><A
+NAME="FUNCTIONREADUPDATED"
+></A
+>Function  READUPDATED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READUPDATED([&#60;lChanged&#62;]) --&#62; lCurrentSetting&#13;</PRE
+><P
+> READUPDATED() is a Get system function intended primarily for creating
+ new READ Layers.  It is identical in functionality to UPDATED() (see the
+ UPDATED() entry ), except that it allows the UPDATED() flag to be set.</P
+><P
+> 
+ READUPDATED() enables you to manipulate the UPDATED() flag from outside
+ of the Get system's source code.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35480"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lChanged&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> sets the READUPDATED() flag.  A value of true (.T.)
+ indicates that data has changed, and a value of false (.F.) indicates
+ that no change has occurred.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READUPDATED() returns the current setting as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADFORMAT"
+> READFORMAT()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADKILL"
+>READKILL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONUPDATED"
+>UPDATED()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35502"
+></A
+><H3
+><A
+NAME="FUNCTIONREADVAR"
+></A
+>Function  READVAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> READVAR() --&#62; cVarName&#13;</PRE
+><P
+> READVAR() is an environment function that primarily implements context-
+ sensitive help for Get objects and lightbar menus.  READVAR() only works
+ during a READ or MENU TO command.  If used during any other wait states,
+ such as ACCEPT, INPUT, WAIT, ACHOICE(), DBEDIT(), or MEMOEDIT(), it
+ returns a null string ("").  Access it within a SET KEY procedure, or
+ within a user-defined function invoked from a WHEN or VALID clause of a
+ Get object.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35507"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> READVAR() returns the name of the variable associated with the current
+ Get object or the variable being assigned by the current MENU TO command
+ as an uppercase character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+> READMODAL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONREADKILL"
+>READKILL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35523"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example implements a simple help system for Get objects
+ using a database file to store the help text.  When the user presses
+ F1, the help database file is searched using READVAR() as the key
+ value.  If there is help text available, it is displayed in a window:
+ 
+ #include "Inkey.ch"
+ //
+ SET KEY K_F1 TO HelpLookup
+ cString = SPACE(10)
+ @ 5, 5 SAY "Enter:" GET cString
+ READ
+ RETURN
+ 
+ FUNCTION HelpLookup
+ USE Help INDEX Help NEW
+ SEEK READVAR()
+ IF FOUND()
+ DisplayHelp(Help-&#62;Topic)
+ ELSE
+ DisplayHelp("No help for " + READVAR())
+ ENDIF
+ CLOSE Help
+ RETURN NIL
+ 
+ FUNCTION DisplayHelp( cTopic )
+ LOCAL cScreen := SAVESCREEN(5,5,15,70),;
+ cColor := SETCOLOR("BG+/B")
+ //
+ SET CURSOR OFF
+ @ 5, 5 CLEAR TO 15, 70
+ @ 5, 5 TO 15, 70 DOUBLE
+ @ 5, 30 SAY " Help for " + READVAR() + " "
+ MEMOEDIT(cTopic, 6, 7, 14, 68, .F.)
+ //
+ RESTSCREEN(5, 5, 15, 70, cScreen)
+ SETCOLOR(cColor)
+ SET CURSOR ON
+ //
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35527"
+></A
+><H3
+><A
+NAME="FUNCTIONRESTSCREEN"
+></A
+>Function  RESTSCREEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> RESTSCREEN([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;], &#60;cScreen&#62;) --&#62; NIL&#13;</PRE
+><P
+> RESTSCREEN() is a screen function that redisplays a screen region saved
+ with SAVESCREEN().  The target screen location may be the same as or
+ different from the original location when the screen region was saved.
+ If you specify a new screen location, the new screen region must be the
+ same size or you will get ambiguous results.  To use RESTSCREEN() to
+ restore screen regions saved with SAVE SCREEN, specify the region
+ coordinates as 0, 0, MAXROW(), MAXCOL().</P
+><P
+> 
+ Warning!  SAVE SCREEN, RESTORE SCREEN, SAVESCREEN(), and
+ RESTSCREEN() are supported when using the default (IBM PC memory mapped)
+ screen driver.  Other screen drivers may not support saving and
+ restoring screens.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35533"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ coordinates of the screen information contained in &lt;cScreen&gt;.  If</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cScreen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> was saved without coordinates to preserve the entire screen,
+ no screen coordinates are necessary with RESTSCREEN().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cScreen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string containing the saved screen region.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> RESTSCREEN() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSAVESCREEN"
+> SAVESCREEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35563"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates RESTSCREEN() as part of a general
+ purpose pop-up menu function, PopMenu():
+ 
+ ? PopMenu({1, 1, 3, 10, {"ItemOne", "ItemTwo"}, ;
+ "BG+/B"})
+ 
+ FUNCTION PopMenu( aList )
+ LOCAL cScreen, nChoice, cOldColor := ;
+ SETCOLOR(aList[6])
+ cScreen := SAVESCREEN(aList[1], aList[2],;
+ aList[3], aList[4])
+ @ aList[1], aList[2], TO aList[3], aList[4] DOUBLE
+ nChoice := ACHOICE(++aList[1], ++aList[2],;
+ --aList[3], --aList[4], aList[5])
+ SETCOLOR(cOldColor)
+ RESTSCREEN(--aList[1], --aList[2], ++aList[3],;
+ ++aList[4], cScreen)
+ RETURN nChoice</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35567"
+></A
+><H3
+><A
+NAME="FUNCTIONROW"
+></A
+>Function  ROW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ROW() --&#62; nRow&#13;</PRE
+><P
+> ROW() is a screen function that returns the current row or line position
+ of the screen cursor.  The value of ROW() is updated by both console and
+ full-screen commands and functions.  @...SAY only updates ROW() when the
+ current DEVICE is the SCREEN.</P
+><P
+> 
+ ROW() is used with COL() and all variations of the @ command to position
+ the cursor to a new line relative to the current line.  In particular,
+ you can use ROW() and COL() to create screen position-independent
+ procedures or functions where you pass the upper-left row and column as
+ parameters.</P
+><P
+> 
+ ROW() is related to PROW() and PCOL(), which track the current printhead
+ position instead of the screen cursor position.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35574"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ROW() returns the cursor row position as an integer numeric value.  The
+ range of the return value is zero to MAXROW().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONPCOL"
+> PCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONCOL"
+>COL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONMAXROW"
+>MAXROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35592"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, ROW() simulates the LIST command, displaying
+ text on the same line but in different columns:
+ 
+ LOCAL nRow
+ USE Customer INDEX CustName NEW
+ DO WHILE .NOT. EOF()
+ CLS
+ @ 1, 1 SAY PADR("Name", LEN(CustName))
+ @ ROW(), COL() + 2 SAY PADR("Address", ;
+ LEN(Address))
+ @ ROW(), COL() + 2 SAY PADR("Phone", LEN(Phone))
+ nRow = 0
+ DO WHILE nRow++ &#60;= 15 .AND. (!EOF())
+ @ ROW() + 1, 1 SAY CustName
+ @ ROW(), COL() + 2 SAY Address
+ @ ROW(), COL() + 2 SAY Phone
+ SKIP
+ ENDDO
+ WAIT
+ ENDDO
+ CLOSE Customer</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35596"
+></A
+><H3
+><A
+NAME="FUNCTIONSAVESCREEN"
+></A
+>Function  SAVESCREEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SAVESCREEN([&#60;nTop&#62;], [&#60;nLeft&#62;], [&#60;nBottom&#62;], [&#60;nRight&#62;]) --&#62; cScreen&#13;</PRE
+><P
+> SAVESCREEN() is a screen function that saves a screen region to a
+ variable of any storage class including a field variable.  Later, you
+ can redisplay the saved screen image to the same or a new location using
+ RESTSCREEN().  Screen regions are usually saved and restored when using
+ a pop-up menu routine or dragging a screen object.</P
+><P
+> 
+ Warning!  SAVE SCREEN, RESTORE SCREEN, SAVESCREEN(), and
+ RESTSCREEN() are supported when using the default (IBM PC memory mapped)
+ screen driver.  Other screen drivers may not support saving and
+ restoring screens.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35602"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ coordinates of the screen region to be saved.  If either &lt;nBottom&gt; or</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is greater than MAXROW() or MAXCOL(), the screen is clipped.
+ If you specify no coordinates, the entire screen (i.e., from 0,0 to
+ MAXROW(), MAXCOL()) is saved.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SAVESCREEN() returns the specified screen region as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONRESTSCREEN"
+> RESTSCREEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35627"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following user-defined function creates a pop-up menu
+ using ACHOICE() with SAVESCREEN() and RESTSCREEN(), returning the
+ selection in the array of choices:
+ 
+ FUNCTION PopMenu( nTop, nLeft, nBottom, nRight, ;
+ aItems, cColor )
+ LOCAL cScreen, nChoice, cLastColor := ;
+ SETCOLOR(cColor)
+ //
+ cScreen:= SAVESCREEN(nTop, nLeft, nBottom, nRight)
+ @ nTop, nLeft TO nBottom, nRight DOUBLE
+ //
+ nChoice:= ACHOICE(++nTop, ++nLeft, ;
+ --nBottom, --nRight, aItems)
+ //
+ RESTSCREEN(--nTop, --nLeft, ++nBottom, ++nRight, ;
+ cScreen)
+ SETCOLOR(cLastColor)
+ RETURN nChoice</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35631"
+></A
+><H3
+><A
+NAME="FUNCTIONSCROLL"
+></A
+>Function  SCROLL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SCROLL([&#60;nTop&#62;], [&#60;nLeft&#62;],[&#60;nBottom&#62;], [&#60;nRight&#62;],
+ [&#60;nVert&#62;] [&#60;nHoriz&#62;]) --&#62; NIL&#13;</PRE
+><P
+> SCROLL() is a screen function that scrolls a screen region up or down a
+ specified number of rows.  When a screen scrolls up, the first line of
+ the region is erased, all other lines are moved up, and a blank line is
+ displayed in the current standard color on the bottom line of the
+ specified region.  If the region scrolls down, the operation is
+ reversed.  If the screen region is scrolled more than one line, this
+ process is repeated.</P
+><P
+> 
+ SCROLL() is used primarily to display status information into a defined
+ screen region.  Each time a new message is displayed, the screen region
+ scrolls up one line and a new line displays at the bottom.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35637"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, and &lt;nRight&gt; define the
+ scroll region coordinates.  Row and column values can range from 0, 0 to
+ MAXROW(), MAXCOL().  If you do not specify coordinate arguments, the
+ dimensions of the visible display are used.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nVert&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the number of rows to scroll vertically.  A positive
+ value scrolls up the specified number of rows.  A negative value scrolls
+ down the specified number of rows.  A value of zero disables vertical
+ scrolling.  If &lt;nVert&gt; is not specified, zero is assumed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHoriz&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the number of rows to scroll horizontally.  A
+ positive value scrolls left the specified number of columns.  A negative
+ value scrolls right the specified number of columns.  A value of zero
+ disables horizontal scrolling.  If &lt;nHoriz&gt; is not specified, zero is
+ assumed.
+ 
+ If you supply neither the &lt;nVert&gt; nor &lt;nHoriz&gt; parameters to SCROLL(),
+ the area specified by the first four parameters will be blanked.
+ 
+ Warning!  Horizontal scrolling is not supported on all of the
+ alternate terminal drivers (i.e., ANSITERM, NOVTERM, PCBIOS).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SCROLL() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPBOX"
+> DISPBOX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35667"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This user-defined function displays a message string at the
+ bottom of a screen region after scrolling the region up one line:
+ 
+ FUNCTION ScrollUp( nTop, nLeft, nBottom, nRight, ;
+ expDisplay )
+ //
+ SCROLL(nTop, nLeft, nBottom, nRight, 1)
+ @ nBottom, nLeft SAY expDisplay
+ //
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35671"
+></A
+><H3
+><A
+NAME="FUNCTIONSETBLINK"
+></A
+>Function  SETBLINK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETBLINK([&#60;lToggle&#62;]) --&#62; lCurrentSetting&#13;</PRE
+><P
+> SETBLINK() is an environment function that toggles the
+ blinking/background intensity attribute and reports the current state of
+ SETBLINK().  When SETBLINK() is on, characters written to the screen can
+ be made to blink by including an asterisk (*) in a color string passed
+ to SETCOLOR().  When SETBLINK() is off, the asterisk (*) causes the
+ background color to be intensified instead.  Thus, blinking and
+ background intensity attributes are not available at the same time.</P
+><P
+> 
+ Note:  This function is meaningful only on the IBM PC or compatible
+ computers with CGA, EGA, or VGA display hardware.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35677"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lToggle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> changes the meaning of the asterisk (*) character when it
+ is encountered in a SETCOLOR() string.  Specifying true (.T.) sets
+ character blinking on, and false (.F.) sets background intensity.  The
+ default is
+ true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETBLINK() returns the current setting as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+> SETCOLOR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35697"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example saves the current SETBLINK() state before passing
+ control to a user-defined function.  Upon return, SETBLINK() is
+ restored to its original value:
+ 
+ lOldBlink := SETBLINK()
+ MyFunc()
+ SETBLINK(lOldBlink)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35701"
+></A
+><H3
+><A
+NAME="FUNCTIONSETCANCEL"
+></A
+>Function  SETCANCEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETCANCEL([&#60;lToggle&#62;]) --&#62; lCurrentSetting&#13;</PRE
+><P
+> SETCANCEL() is a keyboard function that toggles the state of the
+ termination keys, Alt+C and Ctrl+Break, and reports the current state of
+ SETCANCEL().  Use SETCANCEL() when you want to suppress a user's ability
+ to terminate a program without using the specified method.</P
+><P
+> 
+ Note that if Alt+C or Ctrl+Break is redefined with SET KEY, the SET KEY
+ definition takes precedence even if SETCANCEL() returns true (.T.).</P
+><P
+> 
+ Warning!  When SETCANCEL() has been set to false (.F.), the user
+ cannot terminate a runaway program unless you provide an alternative
+ escape mechanism.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35708"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lToggle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> changes the availability of Alt+C and Ctrl+Break as
+ termination keys.  Specifying true (.T.) allows either of these keys to
+ terminate an application and false (.F.) disables both keys.  The
+ default is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETCANCEL() returns the current setting as a logical value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONSETKEY"
+> SETKEY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35728"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example provides an escape route from a wait state with
+ SETCANCEL() set off:
+ 
+ #define K_ALTC   302
+ //
+ SETCANCEL(.F.)              // Disable termination keys
+ SET KEY K_ALTC TO AltC      // Redefine Alt-C
+ .
+ . &#60;statements&#62;
+ .
+ RETURN
+ 
+ FUNCTION AltC
+ LOCAL cScreen, nChoice, cLastColor := ;
+ SETCOLOR("W/B, N/G")
+ //
+ SAVE SCREEN TO cScreen
+ @ 6, 20 CLEAR TO 9, 58
+ @ 6, 20 TO 9, 58 DOUBLE
+ @ 7, 26 SAY "Alt-C: Do you want to quit?"
+ @ 8, 35 PROMPT " Yes "
+ @ 8, 41 PROMPT " No "
+ MENU TO nChoice
+ SETCOLOR(cLastColor)
+ RESTORE SCREEN FROM cScreen
+ //
+ IF nChoice = 1
+ QUIT
+ ENDIF
+ //
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35732"
+></A
+><H3
+><A
+NAME="FUNCTIONSETCOLOR"
+></A
+>Function  SETCOLOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETCOLOR([&#60;cColorString&#62;]) --&#62; cColorString&#13;</PRE
+><P
+> SETCOLOR() is a screen function that saves the current color setting or
+ sets new colors for subsequent screen painting.  A color string is made
+ from several color settings, each color corresponding to different
+ regions of the screen.  As stated above, each setting is made up of a
+ foreground and background color.  Foreground defines the color of
+ characters displayed on the screen.  Background defines the color
+ displayed behind the character.  Spaces and nondisplay characters
+ display as background.</P
+><P
+> 
+ In xClipper, the settings that define color behavior are:</P
+><P
+> 
+ Standard: The standard setting governs all console, full-screen, and
+ interface commands and functions when displaying to the screen.  This
+ includes commands such as @...PROMPT, @...SAY, and ?, as well as
+ functions such as ACHOICE(), DBEDIT(), and MEMOEDIT().</P
+><P
+> 
+ Enhanced: The enhanced setting governs highlighted displays.  This
+ includes GETs with INTENSITY ON, and the MENU TO, DBEDIT(), and
+ ACHOICE() selection highlight.</P
+><P
+> 
+ Border: The border is an area around the screen that cannot be
+ written to.</P
+><P
+> 
+ Background: The background is not supported.</P
+><P
+> 
+ Unselected: The unselected setting indicates input focus by
+ displaying the current GET in the enhanced color while other GETs are
+ displayed in the unselected color.</P
+><P
+> 
+ In addition to colors, foreground settings can have high intensity
+ and/or blinking attributes.  With a monochrome display, high intensity
+ enhances brightness of painted text.  With a color display, high
+ intensity changes the hue of the specified color.  For example, "N"
+ displays foreground text as black where "N+" displays the same text as
+ gray.  High intensity is denoted by "+".  The blinking attribute causes
+ the foreground text to flash on and off at rapid intervals.  Blinking is
+ denoted with "*".  The attribute character can occur anywhere in the
+ setting string, but is always applied to the foreground color regardless
+ where it occurs.  See SETBLINK() for additional information.</P
+><P
+> 
+ The following colors are supported:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> List of Colors
+ ------------------------------------------------------------------------
+ Color          Letter    Monochrome
+ ------------------------------------------------------------------------
+ Black          N, Space  Black
+ Blue           B         Underline
+ Green          G         White
+ Cyan           BG        White
+ Red            R         White
+ Magenta        RB        White
+ Brown          GR        White
+ White          W         White
+ Gray           N+        Black
+ Bright Blue    B+        Bright Underline
+ Bright Green   G+        Bright White
+ Bright Cyan    BG+       Bright White
+ Bright Red     R+        Bright White
+ Bright Magenta RB+       Bright White
+ Yellow         GR+       Bright White
+ Bright White   W+        Bright White
+ Black          U         Underline
+ Inverse Video  I         Inverse Video
+ Blank          X         Blank
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35747"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string containing a list of color
+ attribute settings for subsequent screen painting.  The following is a
+ list of settings and related scopes:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+> Color Settings
+------------------------------------------------------------------------
+Setting        Scope
+------------------------------------------------------------------------
+Standard       All screen output commands and functions
+Enhanced       GETs and selection highlights
+Border         Border around screen, not supported on EGA and VGA
+Background     Not supported
+Unselected     Unselected GETs
+------------------------------------------------------------------------</PRE
+>
+ 
+ Each setting is a foreground and background color pair separated by the
+ slash (/) character and followed by a comma.  All settings are optional.
+ If a setting is skipped, its previous value is retained with only new
+ values set.  Settings may be skipped within the list or left off the end
+ as illustrated in the examples below.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETCOLOR() returns the current color settings as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONISCOLOR"
+> ISCOLOR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35768"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example assigns the current color setting to the
+ variable, cColor:
+ 
+ cColor:= SETCOLOR()
+ 
+ This example uses SETCOLOR() to save the current color setting
+ and set a new one.
+ 
+ cNewColor:= "BR+/N, R+/N"
+ cOldColor:= SETCOLOR(cNewColor)
+ 
+ This example uses SET COLOR TO to reset the default colors:
+ 
+ SET COLOR TO
+ ? SETCOLOR()            // Result: W/N, N/W, N, N, N/W
+ 
+ These two examples specify SETCOLOR() with missing settings:
+ 
+ // Settings left off the end
+ SETCOLOR("W/N, BG+/B")
+ //
+ // Settings skipped within the list
+ SETCOLOR("W/N, BG+/B,,,W/N")
+ 
+ This example uses SETCOLOR() with ISCOLOR() to set the colors,
+ depending on the screen type:
+ 
+ FUNCTION DefaultColors
+ IF ISCOLOR()
+ cForm := "W+/N, BG+/B,,,W/N"
+ cDialog := "N/N+, BG+/B,,,N/N+"
+ cAlert := "W+/R, BG+/B,,,W+/R"
+ ELSE
+ cForm := "W+/N, N/W,,,W/N"
+ cDialog := "W+/N, N/W,,,W/N"
+ cAlert := "W+/N, N/W,,,W/N"
+ ENDIF
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35772"
+></A
+><H3
+><A
+NAME="FUNCTIONSETCURSOR"
+></A
+>Function  SETCURSOR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETCURSOR([&#60;nCursorShape&#62;]) --&#62; nCurrentSetting&#13;</PRE
+><P
+> SETCURSOR() is an environment function that controls the shape of the
+ screen cursor.  The actual shape is dependent on the current screen
+ driver.  The specified shapes appear on IBM PC and compatible computers.
+ On other computers, the appearance may differ for each value specified.</P
+><P
+> 
+ SETCURSOR(0) is the same as SET CURSOR OFF, and any positive integer
+ value of &lt;nCursorShape&gt; less than 5 is the same as SET CURSOR ON.  The
+ cursor will display as the selected shape.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35778"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCursorShape&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number indicating the shape of the cursor.  For
+ simpler coding, the Setcurs.ch header file provides descriptive names
+ for the various cursor shapes as shown in the table below:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+> Cursor Shapes
+------------------------------------------------------------------------
+Shape               Value     Setcurs.ch
+------------------------------------------------------------------------
+None                0         SC_NONE
+Underline           1         SC_NORMAL
+Lower half block    2         SC_INSERT
+Full block          3         SC_SPECIAL1
+Upper half block    4         SC_SPECIAL2
+------------------------------------------------------------------------</PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETCURSOR() returns the current cursor shape as a numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+> SETPOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35799"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses SETCURSOR() to turn on a full block cursor
+ for the subsequent READ.  When the READ terminates, SETCURSOR() turns
+ off the cursor:
+ 
+ #include "Setcurs.ch"
+ //
+ USE Customer NEW
+ @ 10, 10 GET Customer-&#62;Name
+ @ 11, 10 GET Customer-&#62;Phone
+ //
+ SETCURSOR(SC_SPECIAL1)        // Change cursor to a block
+ READ
+ SETCURSOR(SC_NONE)            // Turn off cursor</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35803"
+></A
+><H3
+><A
+NAME="FUNCTIONSETMODE"
+></A
+>Function  SETMODE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETMODE(&#60;nRows&#62;, &#60;nCols&#62;) --&#62; lSuccess&#13;</PRE
+><P
+> SETMODE() is an environment function that attempts to change the mode of
+ the display hardware to match the number of rows and columns specified.
+ The change in screen size is reflected in the values returned by
+ MAXROW() and MAXCOL().</P
+><P
+> 
+ Note:  In LLG_VIDEO_TXT mode, and when a VESA driver is present, it
+ is possible to use the following values :
+ 25,80 | 43,80 | 50,80 | 60,80 | 25,132 | 43,132 | 50,132 | 60,132</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35809"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRows&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of rows in the desired display mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCols&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of columns in the desired display mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETMODE() returns true (.T.) if the mode change was successful;
+ otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONMAXCOL"
+> MAXCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONMAXROW"
+>MAXROW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35835"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example switches to a 43-line display mode:
+ 
+ IF SETMODE(43, 80)
+ ? "43-line mode successfully set"
+ ELSE
+ ? "43-line mode not available"
+ ENDIF
+ 
+ This example switches the video mode to regular text mode with
+ 60 rows and 132 columns:
+ 
+ // Switch to text mode
+ SET VIDEOMODE( LLG_VIDEO_TXT )
+ // Set the video mode to the largest number of characters
+ SETMODE( 60,132 )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35839"
+></A
+><H3
+><A
+NAME="FUNCTIONSETPOS"
+></A
+>Function  SETPOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETPOS(&#60;nRow&#62;, &#60;nCol&#62;) --&#62; &#60;nRow&#62;&#13;</PRE
+><P
+> SETPOS() is an environment function that moves the cursor to a new
+ position on the screen.  After the cursor is positioned, ROW() and COL()
+ are updated accordingly.  To control the shape and visibility of the
+ cursor, use the SETCURSOR() function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35844"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nCol&gt; define the new screen position of the cursor.
+ These values may range from 0, 0 to MAXROW(), MAXCOL().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETPOS() always returns &lt;nRow&gt;</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONROW"
+> ROW()</A
+> <A
+HREF="categterminalio.html#FUNCTIONSETCURSOR"
+>SETCURSOR()</A
+> <A
+HREF="categterminalio.html#FUNCTIONCOL"
+>COL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35866"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example moves the cursor to a new position then displays
+ a string to the screen using a console command, ??:
+ 
+ SETPOS(1, 1)
+ ?? "Hello world"</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35870"
+></A
+><H3
+><A
+NAME="FUNCTIONSETPRC"
+></A
+>Function  SETPRC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SETPRC(&#60;nRow&#62;, &#60;nCol&#62;) --&#62; NIL&#13;</PRE
+><P
+> SETPRC() is a printer function that sends control codes to the printer
+ without changing the tracking of the printhead position.  When
+ xClipper prints, it updates the PCOL() value with the number of
+ characters sent to the printer.  There is no discrimination between
+ printable or nonprintable characters.  If, for example, a string of ten
+ characters sent to the printer contains two characters interpreted by
+ the printer as a control code, the xClipper PCOL() value is
+ incremented by ten, while the true printhead position is moved only by
+ eight.  This can lead to alignment problems.  Using SETPRC(), you can
+ compensate for control codes by resetting PCOL() as shown in the example
+ below.</P
+><P
+> 
+ SETPRC() also suppresses page ejects when printing with @...SAY.  This
+ is important when the next row position is smaller than the current row
+ and an EJECT has not been issued.  In this situation, xClipper issues
+ an automatic page eject if the next row print position is less than the
+ current PROW() value.  Using SETPRC(), you can set PROW() to a number
+ less than the current row, thus suppressing the automatic EJECT.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35876"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new PROW() value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new PCOL() value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SETPRC() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONPCOL"
+> PCOL()</A
+> <A
+HREF="categterminalio.html#FUNCTIONPROW"
+>PROW()</A
+> <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35903"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This user-defined function, PrintCodes(), uses SETPRC() to
+ send control codes to the printer without affecting PROW() and PCOL()
+ values:
+ 
+ #include "Set.ch"
+ #define ITALICS_ON   CHR(27) + "I"
+ #define ITALICS_OFF   CHR(27) + "E"
+ //
+ SET DEVICE TO PRINTER
+ @ 12, 10 SAY "This is an"
+ @ PROW(), PCOL() + 2 SAY PrintCodes(ITALICS_ON) + ;
+ "important"
+ @ PROW(), PCOL() + 2 SAY PrintCodes(ITALICS_OFF) + ;
+ "meeting"
+ SET DEVICE TO SCREEN
+ RETURN
+ 
+ FUNCTION PrintCodes( cCtrlCode )
+ LOCAL nRow, nCol, lPrinter
+ lPrinter := SET(_SET_PRINTER, .T.)    // SET PRINTER ON
+ nRow:= PROW()                         // Save printhead position
+ nCol:= PCOL()
+ //
+ ?? cCtrlCode                          // Send control code
+ //
+ SETPRC(nRow, nCol)
+ SET(_SET_PRINTER, lPrinter)           // Restore printer setting
+ RETURN ""                             // Return a null string</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35907"
+></A
+><H3
+><A
+NAME="FUNCTIONTONE"
+></A
+>Function  TONE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TONE(&#60;nFrequency&#62;, &#60;nDuration&#62;) --&#62; NIL&#13;</PRE
+><P
+> TONE() is a sound function that indicates various program states to the
+ user.  These can be error states, boundary conditions, or the end of a
+ time-consuming process.  For example, an error state would sound an
+ error tone before alerting the user with a message or interactive dialog
+ box.  A boundary condition might indicate that the user is attempting to
+ move the cursor past the top or bottom of a column in a TBrowse object.
+ A batch process also might indicate its completion with a sound to alert
+ the user, in case the user has turned away from the screen.</P
+><P
+> 
+ TONE() works by sounding the speaker at the specified frequency for the
+ specified duration.  The duration is measured in increments of 1/18 of a
+ second.  The frequency is measured in hertz (cycles per second).
+ Frequencies of less than 20 are inaudible.  The table below shows the
+ frequencies of standard musical notes.</P
+><P
+> 
+ Note:  TONE() works only on IBM PC and 100 percent compatible
+ computers.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>Table of Musical Notes
+ ------------------------------------------------------------------------
+ Pitch   Frequency    Pitch     Frequency
+ ------------------------------------------------------------------------
+ C       130.80       mid C     261.70
+ C#      138.60       C#        277.20
+ D       146.80       D         293.70
+ D#      155.60       D#        311.10
+ E       164.80       E         329.60
+ F       174.60       F         349.20
+ F#      185.00       F#        370.00
+ G       196.00       G         392.00
+ G#      207.70       G#        415.30
+ A       220.00       A         440.00
+ A#      233.10       A#        466.20
+ B       246.90       B         493.90
+ C         523.30
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35916"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nFrequency&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a positive numeric value indicating the frequency of
+ the tone to be sounded.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDuration&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a positive numeric value indicating the duration of
+ the tone measured in increments of 1/18 of a second.  For example, an</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDuration&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> value of 18 represents one second.
+ For both arguments, non-integer values are truncated--not rounded--to
+ their integer portion.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> TONE() always returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCHR"
+> CHR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35946"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example is a beep function that indicates that a batch
+ operation has completed:
+ 
+ FUNCTION DoneBeep
+ TONE(300, 1)
+ TONE(100, 1)
+ TONE(300, 1)
+ TONE(100, 1)
+ RETURN NIL
+ 
+ This example is a tone sequence that indicates invalid
+ keystrokes or boundary conditions:
+ 
+ FUNCTION ErrorBeep
+ TONE(100, 3)
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN35950"
+></A
+><H3
+><A
+NAME="FUNCTIONUPDATED"
+></A
+>Function  UPDATED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> UPDATED() --&#62; lChange&#13;</PRE
+><P
+> UPDATED() determines whether characters were successfully entered into a
+ GET from the keyboard during the most current READ.  Each time READ
+ executes, UPDATED() is set to false (.F.).  Then, any change to a GET
+ entered from the keyboard sets UPDATED() to true (.T.) after the user
+ successfully exits the GET.  If the user presses Esc before exiting the
+ first GET edited, UPDATED() remains false (.F.).  Once UPDATED() is set
+ to true (.T.), it retains this value until the next READ is executed.</P
+><P
+> 
+ Within a SET KEY or VALID procedure, you can change the current GET
+ variable using the KEYBOARD command or by assigning a new value with one
+ of the many assignment operators.  Changing the variable with KEYBOARD
+ is the same as if the user had entered the change directly from the
+ keyboard, and UPDATED() is set accordingly.  However, since UPDATED()
+ reflects only those changes made from the keyboard, an assignment to the
+ GET variable does not affect UPDATED().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN35956"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> UPDATED() returns true (.T.) if data in a GET is added or changed;
+ otherwise, it returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+> READMODAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN35971"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example assigns field values from Customer.dbf to
+ variables and edits them.  If the user changes any of the values, the
+ field variables for the current record are updated with the new
+ values:
+ 
+ USE Customer NEW
+ CLEAR
+ MEMVAR-&#62;Customer = Customer-&#62;Customer
+ MEMVAR-&#62;Address = Customer-&#62;Address
+ @ 1, 1 SAY "Name:" GET MEMVAR-&#62;Customer
+ @ 2, 1 SAY "Address:" GET MEMVAR-&#62;Address
+ READ
+ //
+ IF UPDATED()
+ Customer-&#62;Customer := MEMVAR-&#62;Customer
+ Customer-&#62;Address := MEMVAR-&#62;Address
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categclip-xml.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categserialio.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CLIP-XML</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SERIAL I/O</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,1083 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DOS/BIOS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="FILE/IO"
+HREF="categfileio.html"><LINK
+REL="NEXT"
+TITLE="MENUS/PROMPTS"
+HREF="categmenusprompts.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categfileio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categmenusprompts.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGDOSBIOS">DOS/BIOS</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN29105"
+></A
+><H2
+>Name</H2
+>DOS/BIOS&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN29108"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;cVersion&#62;          <A
+HREF="categdosbios.html#FUNCTIONFTDOSVER"
+>FT_DOSVER()</A
+>
+nSpaceAvail         <A
+HREF="categdosbios.html#FUNCTIONFTDSKFREE"
+>FT_DSKFREE( [ &#60;cDrive&#62; ] )</A
+>
+nMaxCapacity        <A
+HREF="categdosbios.html#FUNCTIONFTDSKSIZE"
+>FT_DSKSIZE( [ &#60;cDrive&#62; ] )</A
+>
+nStatus             <A
+HREF="categdosbios.html#FUNCTIONFTFLOPTST"
+>FT_FLOPTST( &#60;nDrive&#62; )</A
+>
+nRetCode            <A
+HREF="categdosbios.html#FUNCTIONFTISSHARE"
+>FT_ISSHARE()</A
+>
+&#60;lResult&#62;           <A
+HREF="categdosbios.html#FUNCTIONFTSETDATE"
+>FT_SETDATE( &#60;dDate&#62; )</A
+>
+&#60;lResult&#62;           <A
+HREF="categdosbios.html#FUNCTIONFTSETTIME"
+>FT_SETTIME( &#60;cTime&#62; )</A
+>
+nMemSize            <A
+HREF="categdosbios.html#FUNCTIONFTSYSMEM"
+>FT_SYSMEM()</A
+>
+cFileSpec           <A
+HREF="categdosbios.html#FUNCTIONFTTEMPFIL"
+>FT_TEMPFIL( [ &#60;cPath&#62; ] [, &#60;lHide&#62; ] )</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN29120"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29123"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDOSVER"
+></A
+>Function  FT_DOSVER </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DOSVER() --&#62; &#60;cVersion&#62;&#13;</PRE
+><P
+>  FT_DOSVER() invokes DOS interrupt 21h, service 30 in order to
+ return the current DOS version.  It does this by setting up
+ an array corresponding to machine registers and then calling
+ the toolkit function FT_INT86().</P
+><P
+> 
+ It returns a character string corresponding to the DOS
+ version, as follows:  The major version, a period ("."), then
+ the minor version.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29131"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A character string with the major version number first, a
+ period ("."), then the minor version number (e.g., "3.30")</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29141"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FUNCTION main()
+ RETURN QOut( "Dos version: " + FT_DOSVER() )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29145"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDSKFREE"
+></A
+>Function  FT_DSKFREE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DSKFREE( [ &#60;cDrive&#62; ] ) --&#62; nSpaceAvail&#13;</PRE
+><P
+> Function to return the available space on the passed
+ drive letter or the default drive if no drive is passed.</P
+><P
+> 
+ Uses FT_INT86() through the internal function _ftDiskInfo().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29151"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the fixed disk to query. If no parameter is passed
+ the operation will be performed on the default drive.  Do not
+ include the ":".</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Integer representing the available disk space in bytes.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29166"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_DSKFREE()  // Returns free space on default drive.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29170"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDSKSIZE"
+></A
+>Function  FT_DSKSIZE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DSKSIZE( [ &#60;cDrive&#62; ] ) --&#62; nMaxCapacity&#13;</PRE
+><P
+> Function utilizing FT_INT86() to return Maximum Disk Size.
+ Uses FT_INT86() through the internal function _ftDiskInfo().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29175"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the fixed disk to query. If no drive is sent, the
+ operation will be performed on the default drive. Send without
+ the ":".</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An integer representing the maximum disk capacity in bytes.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29190"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_DSKSIZE()      // Maximum capacity for default drive
+ ? FT_DSKSIZE( "D" ) // Maximum capacity for Drive D:</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29194"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFLOPTST"
+></A
+>Function  FT_FLOPTST() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_FLOPTST( &#60;nDrive&#62; ) --&#62; nStatus&#13;</PRE
+><P
+> FT_FLOPTST() is designed as a full replacement for ISDRIVE().  Where
+ ISDRIVE() returns just .T. or .F. depending if the diskette drive is
+ ready or not, FT_FLOPTST() returns a numeric code designating the
+ diskette drive's status.</P
+><P
+> 
+ FT_FLOPTST() is particularly useful in backup and restore programs
+ that need to test the floppy drive before writing/reading from a
+ floppy disk.</P
+><P
+> 
+ No testing has been performed on systems with more than 2 floppy
+ drives.  If the third drive is "C" and the fourth "D" then there
+ should be no problems.</P
+><P
+> 
+ This function does not currently check subst'd drives.  So if you
+ have SUBST E: A:\ then FT_FLOPTST( ASC("E")-ASC("A") ) == 4
+ Any suggestions to fix this limitation are appreciated.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29203"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the diskette drive number, 0 = A:, 1 = B:</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> -1 - Wrong Parameters
+ 0 - Drive Loaded and ready to read or write
+ 1 - Drive Door Open or Diskette inserted upside down
+ 2 - Diskette is unformatted
+ 3 - Write protected
+ 4 - Undetermined</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29218"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> iStatus := FT_FLOPTST( 0 )
+ DO CASE
+ CASE iStatus == 1
+ Qout( "The door to drive A is open." )
+ CASE iStatus == 2
+ Qout( "The diskette in drive A is not formatted." )
+ CASE iStatus == 3
+ Qout( "The diskette in drive A is write-protected." )
+ CASE iStatus == 4
+ Qout( "Something is wrong with drive A, but I don't know what." )
+ ENDCASE</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29222"
+></A
+><H3
+><A
+NAME="FUNCTIONFTISSHARE"
+></A
+>Function  FT_ISSHARE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ISSHARE() --&#62; nRetCode&#13;</PRE
+><P
+> Uses DOS interrupt 2Fh (MultiPlex interrupt), service 10h
+ to determine if DOS SHARE.COM is loaded.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29227"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRetcode will be set as follows on exit:
+ 
+ 0 if SHARE not loaded but ok to load
+ 1 if SHARE not loaded and not ok to load
+ 255 if SHARE loaded</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFTINT86"
+> FT_INT86()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29242"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> IF FT_ISSHARE() != 255
+ Qout("SHARE must be loaded!")
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29246"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETDATE"
+></A
+>Function  FT_SETDATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETDATE( &#60;dDate&#62; ) --&#62; &#60;lResult&#62;&#13;</PRE
+><P
+> FT_SETDATE() uses NANFOR.LIB's FT_INT86() function to invoke
+ the DOS Set Date service (Interrupt 33, service 43).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29252"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a Clipper date variable that you want to set the current
+ DOS system date to.
+ 
+ It is up to you to send in a valid date.  The
+ year must be within the range 1980 through 2099.  If DOS
+ thinks the date is not valid, it won't change the date.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;lResult&gt; is simply the result of FT_INT86(), passed back
+ to your program.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29267"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  The following program takes a date from the command line and sets
+ the DOS system date:
+ 
+ FUNCTION main( cDate )
+ 
+ cDate := iif( cDate == nil, dtoc( date() ), cDate )
+ QOut( "Setting date to: " + cDate  + "... " )
+ FT_SETDATE( ctod( cDate ) )
+ Qout( "Today is now: " + dtoc( date() ) )
+ 
+ RETURN ( nil )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29271"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETTIME"
+></A
+>Function  FT_SETTIME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETTIME( &#60;cTime&#62; ) --&#62; &#60;lResult&#62;&#13;</PRE
+><P
+> FT_SETTIME() uses NANFOR.LIB's FT_INT86() function to invoke
+ the DOS Set Time service (Interrupt 33, service 45).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29277"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTime&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string in the form &lt;hh:mm:ss&gt; that you want to set
+ the current DOS system time to.
+ 
+ Use 24-hour time.  It is up to you to send in a valid time.  If
+ DOS doesn't think it is valid, it won't reset the time anyway.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;lResult&gt; is simply the result of FT_INT86(), passed back
+ to your program.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29292"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  The following program takes a time string from the command line and sets
+ the DOS system time:
+ 
+ FUNCTION main( cTime )
+ 
+ cTime := iif( cTime == nil, time(), cTime )
+ QOut( "Setting time to: " + cTime  + "... " )
+ FT_SETTIME( cTime )
+ Qout( "Time is now: " + time() )
+ 
+ RETURN ( nil )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29296"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSYSMEM"
+></A
+>Function  FT_SYSMEM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SYSMEM() --&#62; nMemSize&#13;</PRE
+><P
+> FT_SYSMEM() simply reports the amount of conventional memory
+ (up to 640K) installed.</P
+><P
+> 
+ FT_SYSMEM() uses DOS interrupt 12h to get this information.
+ For information, refer to Peter Norton's _Programmer's Guide
+ to the IBM PC_ (Brady).</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29303"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A numeric corresponding to the number of K memory.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29313"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOut( "Conventional memory installed: " + Str( FT_SYSMEM() ) + "K" )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29317"
+></A
+><H3
+><A
+NAME="FUNCTIONFTTEMPFIL"
+></A
+>Function  FT_TEMPFIL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_TEMPFIL( [ &#60;cPath&#62; ] [, &#60;lHide&#62; ] ) --&#62; cFileSpec&#13;</PRE
+><P
+> This function uses DOS Interrupt 21, service 5Ah (Create temporary
+ file) to create a unique filename in a directory you specify.
+ There will be no extension.  After the file is created, you may
+ then fopen() it and do any i/o you need (see the test driver
+ in the source code).</P
+><P
+> 
+ This function requires FT_INT86().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29323"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cPath&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the directory where you want to create the temporary
+ file.  If you omit this argument, the root of the current drive
+ is assumed ("\").
+ 
+ If &lt;lHide&gt; is .T., then the file will be created with the hidden
+ attribute set.  The default is .F.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cFileSpec&gt; should be your path, including the name of the newly
+ created unique file.  Use this with FOPEN(), etc.
+ 
+ If a DOS error occurred when trying to create the file, a
+ null string will be returned.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29338"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> Create a unique file in the root of the current drive:
+ 
+ myFile := FT_TEMPFIL()
+ 
+ Create a unique file in the current directory and hide it:
+ 
+ myFile := FT_TEMPFIL(".\", .t.)
+ 
+ Create a unique file on another drive, but do not hide it:
+ 
+ myFile := FT_TEMPFIL("e:\nanfor\src\")</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categfileio.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categmenusprompts.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FILE/IO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MENUS/PROMPTS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

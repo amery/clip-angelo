@@ -3,23 +3,24 @@
 ##
 ##				called from all Makefile files
 ##
-Local_Depend =
+Local_Depend 		=
 
-PROGS=	$(sort 								\
-						hello$(EXESUFF) 		\
-						test_dbf$(EXESUFF) 	\
-						pg$(EXESUFF) 			\
-						task$(EXESUFF) 		\
-						task_msg$(EXESUFF) 	\
-						mouse$(EXESUFF) 		\
-						testlock$(EXESUFF) 	\
-						reclock$(EXESUFF) 	\
-						inkey$(EXESUFF) 		\
-						tcpserv$(EXESUFF) 	\
-						tcpclient$(EXESUFF) 	\
-			)
-SRC_C_files 		= 			$(sort $(c_files) )
-SRC_PRG_files 		= 			$(sort $(prg_files) clip.c )
+prg_files 			=		$(sort 						\
+											hello.prg 		\
+											test_dbf.prg 	\
+											pg.prg 			\
+											task.prg 		\
+											task_msg.prg 	\
+											mouse.prg 		\
+											testlock.prg 	\
+											reclock.prg 	\
+											inkey.prg 		\
+											tcpserv.prg 	\
+											tcpclient.prg 	\
+								)
+PROGS 				= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+SRC_C_files 		= 		$(sort $(c_files) )
+SRC_PRG_files 		= 		$(sort $(prg_files) )
 
 export
 
@@ -50,47 +51,47 @@ strip :
 test.dbf : test.dbf.orig
 	$(E_cp)cp test.dbf.orig test.dbf
 
-hello$(EXESUFF) : hello.prg test.dbf $(CLIP) $(LIBCLIP)
+hello$(EXESUFF) : hello.prg test.dbf $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslwM hello.prg
 
-test_dbf$(EXESUFF) : test_dbf.prg $(CLIP) $(LIBCLIP)
+test_dbf$(EXESUFF) : test_dbf.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslwM test_dbf.prg
 
-pg$(EXESUFF) : pg.prg $(CLIP) $(LIBCLIP)
+pg$(EXESUFF) : pg.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslM pg.prg
 
-task$(EXESUFF) : task.prg $(CLIP) $(LIBCLIP)
+task$(EXESUFF) : task.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eswlM task.prg
 
-task_msg$(EXESUFF) : task_msg.prg $(CLIP) $(LIBCLIP)
+task_msg$(EXESUFF) : task_msg.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslwM task_msg.prg
 
-mouse$(EXESUFF) : mouse.prg $(CLIP) $(LIBCLIP)
+mouse$(EXESUFF) : mouse.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eswlM mouse.prg
 
-testlock$(EXESUFF) : testlock.prg $(CLIP) $(LIBCLIP)
+testlock$(EXESUFF) : testlock.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eswlM testlock.prg
 
-reclock$(EXESUFF) : reclock.prg test.dbf $(CLIP) $(LIBCLIP)
+reclock$(EXESUFF) : reclock.prg test.dbf $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslwM reclock.prg
 
-inkey$(EXESUFF) : inkey.prg $(CLIP) $(LIBCLIP)
+inkey$(EXESUFF) : inkey.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eslwM inkey.prg
 
-tcpserv$(EXESUFF) : tcpserv.prg $(CLIP) $(LIBCLIP)
+tcpserv$(EXESUFF) : tcpserv.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -eswl tcpserv.prg
 
-tcpclient$(EXESUFF) : tcpclient.prg $(CLIP) $(LIBCLIP)
+tcpclient$(EXESUFF) : tcpclient.prg $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -eswl tcpclient.prg
 

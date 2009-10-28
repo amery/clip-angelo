@@ -25,7 +25,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-gr$(EXESUFF): gr.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+gr$(EXESUFF): gr.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swlN -e -M gr.prg -lclip-gd $(LIBS)
 # -lgd

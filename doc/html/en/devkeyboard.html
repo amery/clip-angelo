@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Keyboard</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Terminals, keyboard, mouse, localization"
+HREF="dev.html"><LINK
+REL="PREVIOUS"
+TITLE="Terminals, keyboard, mouse, localization"
+HREF="dev.html"><LINK
+REL="NEXT"
+TITLE="Mouse"
+HREF="devmouse.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="dev.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Terminals, keyboard, mouse, localization</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="devmouse.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="DEVKEYBOARD">8.2. Keyboard</H1
+><P
+>CLIP applications have two keyboard drivers: <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>ANSI-mode</I
+></SPAN
+>
+and <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>scan-mode</I
+></SPAN
+>.</P
+><P
+>In the ANSI-mode ansi-codes of the keys are accepted from terminal,
+and two modificators - Ctrl-J, Ctrl-K are used for extended possibilities.</P
+><P
+>Modificator change key code for CLIP application. For example:
+pushing key 1 yield code 49, pushing Ctrl-J,1 yield code 376,
+pushing Ctrl-K,1 also yield code 376. Modificator Ctrl-J works the same as
+ALT, and modificator Ctrl-K works the same as CTRL but not with all keys.</P
+><P
+>More advanced keyboard mode is <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>scan-mode</I
+></SPAN
+>.
+In this mode terminal passes to the host scan-codes
+of pushed and released keys.
+All key combinations are available in the case of correct keymap description.
+There is even possibility to enlist code of symbol using
+"Alt+enlisted_at_digital_keyboard_code"!
+In this case description of used console layout (/usr/share/keymaps/*) is used.</P
+><P
+>In order for CLIP application to be able to use scan-mode it is necessary to
+generate keyboard description for desired keymap using
+$CLIPROOT/keymaps/genmap.sh utility; to put this description
+in $CLIPROOT/keymaps and to register CLIP_KEYMAP in the file with used
+terminal description in $CLIPROOT/term directory (see above about
+<A
+HREF="dev.html#DEVTERMINALS"
+>terminals</A
+>).</P
+><P
+>As terminal with scan-mode capability one may use linux-console or our
+terminal emulator <B
+CLASS="COMMAND"
+>STelnel</B
+> (download at
+<A
+HREF="ftp://ftp.itk.ru/pub/telnet"
+TARGET="_top"
+>ftp://ftp.itk.ru/pub/telnet</A
+>)</P
+><P
+>In order to use capabilities of "advanced" terminal run stelnet as follows:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>stelnet -s -t linux-stelnet host_name</PRE
+><P
+>and launch CLIP application as follows:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>export TERM=linux-stelnet
+my_clip_app
+export TERM=linux</PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="dev.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="devmouse.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Terminals, keyboard, mouse, localization</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="dev.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Mouse</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -6,7 +6,6 @@ echo "Configuring $PWD because of $*" >&2
 source $Clip_M_Dir/configure.ini
 [ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
 [ -f ./Makefile.ini ] || cp --remove-destination -fpu$V $Clip_M_Dir/Makefile.ini $Clip_M_Dir/configure.ini ./
-[ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
 if [ -f ./configure.in ] ; then
 	echo "#!/bin/bash -u" 									>./configure
 	cat ./configure.ini 										>>./configure
@@ -14,7 +13,6 @@ if [ -f ./configure.in ] ; then
 	cat ./configure.in  										>>./configure
 	chmod +x ./configure
 fi
-sleep .1
 [ -f configure ] && ./configure 0
 if [ $? != 0 ] ; then
 	exit 1
@@ -22,11 +20,14 @@ fi
 touch $PWD/configure.ok
 touch $PWD/configure.ok
 touch $PWD/configure.ok
-sleep 1
+if [[ "$1" = "clean" ]] || [[ "$1" = "distclean" ]] ;  then
+	sleep 0
+else
+	sleep 1
+fi
 cat ./Makefile.ini 								>Makefile
 #[ -f Makefile.inc ] && cat Makefile.inc 	>>Makefile
 cat ./Makefile.in 								>>Makefile
-sleep .1
 echo $PWD/Makefile "is updated" >&0
 echo $PWD/Makefile "is updated" >&1
 echo $PWD/Makefile "is updated" >&2

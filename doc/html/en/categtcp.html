@@ -1,0 +1,1059 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>TCP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="PACK/UNPACK"
+HREF="categpackunpack.html"><LINK
+REL="NEXT"
+TITLE="INFO"
+HREF="categinfo.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categpackunpack.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categinfo.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGTCP">TCP</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN24329"
+></A
+><H2
+>Name</H2
+>TCP&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN24332"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;nNewSocket&#62;        <A
+HREF="categtcp.html#FUNCTIONTCPACCEPT"
+>TCPACCEPT(&#60;nSock&#62;[, &#60;nTimeout&#62;])</A
+>
+TRUE || FALSE       <A
+HREF="categtcp.html#FUNCTIONTCPCLOSE"
+>TCPCLOSE(&#60;nConnection&#62;)</A
+>
+&#60;nConnection&#62;       <A
+HREF="categtcp.html#FUNCTIONTCPCONNECT"
+>TCPCONNECT(&#60;sHostName&#62;[, &#60;nPort&#62;][, &#60;nTimeout&#62;])</A
+>
+&#60;nErrNo&#62;            <A
+HREF="categtcp.html#FUNCTIONTCPLISTEN"
+>TCPLISTEN(&#60;nPort&#62;[, &#60;nBackLog&#62;])</A
+>
+&#60;nLenBuf&#62;           <A
+HREF="categtcp.html#FUNCTIONTCPREAD"
+>TCPREAD(&#60;nConnection&#62;, @&#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])</A
+>
+&#60;nLenBuf&#62;           <A
+HREF="categtcp.html#FUNCTIONTCPWRITE"
+>TCPWRITE(&#60;nConnection&#62;, &#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN24341"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24344"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPACCEPT"
+></A
+>Function  TCPACCEPT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPACCEPT(&#60;nSock&#62;[, &#60;nTimeout&#62;])	--&#62; &#60;nNewSocket&#62;&#13;</PRE
+><P
+> TCPACCEPT() extracts the first connection  request  on  the  queue  of
+ pending  connections,  creates a new connected socket with
+ mostly the same properties as &lt;nSock&gt;, and allocates a new  file
+ descriptor &lt;nNewSocket&gt; for  the socket, which is returned.</P
+><P
+> 
+ <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> and <A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+>FERRORSTR()</A
+>kept the error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24352"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the source socket.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the timeout.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns numeric value &lt;nNewSocket&gt; handler of new socket or -1 if error occurced.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24372"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  #define DEFPORT	3000
+ 
+ local nH, nPort, nCon
+ nPort := DEFPORT
+ 
+ if (nH := TCPLISTEN( nPort, 10 )) == -1
+ ? "tcpsrv: Error listen on port ", nPort
+ ?
+ return( 1 )
+ endif
+ 
+ //? "wait client connection"
+ do while( .t. )
+ ? "wait client connection",time()
+ if (nCon := TCPACCEPT( nH, 5000 )) != -1
+ ? "start",nH,nCon
+ start( {|nC| /* reading data from connection */ TCPREAD(nC....)}, nCon )
+ endif
+ sleep(0.01)
+ enddo
+ TCPCLOSE( nH )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24376"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPCLOSE"
+></A
+>Function  TCPCLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPCLOSE(&#60;nConnection&#62;)		--&#62; TRUE || FALSE&#13;</PRE
+><P
+> TCPCLOSE() closes opened connections and returns TRUE if operation was
+ successfully.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24381"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nConnaction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the connection number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if connection was successfully closed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPCONNECT"
+> TCPCONNECT()</A
+> <A
+HREF="categtcp.html#FUNCTIONTCPLISTEN"
+> TCPLISTEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24402"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  nH := TCPLISTEN(3000)
+ 
+ If nH &#62; 0
+ 
+ ....
+ 
+ TCPCLOSE(nH)
+ endif
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24406"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPCONNECT"
+></A
+>Function  TCPCONNECT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPCONNECT(&#60;sHostName&#62;[, &#60;nPort&#62;][, &#60;nTimeout&#62;])	--&#62; &#60;nConnection&#62;&#13;</PRE
+><P
+> TCPCONNECT() makes connect to server &lt;sHostName&gt; and creates socket
+ to port &lt;nPort&gt;. Returns connection number &lt;nConnection&gt; or -1 on error.
+ <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> and <A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+>FERRORSTR()</A
+>kept the error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24413"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sHostName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the server name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the port number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the timeout.( default 60000 )</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the connection number or -1.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24438"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>   con := TCPCONNECT("http://www.itk.ru")
+ 
+ if con &#62; -1
+ ? "connection: ", con
+ ....
+ TCPCLOSE(con)
+ else
+ ? FERROR()
+ endif
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24442"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPLISTEN"
+></A
+>Function  TCPLISTEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPLISTEN(&#60;nPort&#62;[, &#60;nBackLog&#62;])	--&#62; &#60;nErrNo&#62;&#13;</PRE
+><P
+> TCPLISTEN() creates socket and stands for incomming connections.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24447"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPort&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the port number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBackLog&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the  maximum length the queue of  pending  connections.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the numeric value &lt;nErrNo&gt;: on zero - operation was successfully, &lt;nErrNo&gt; &lt; 0 - error code.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24467"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  #define DEFPORT	3000
+ 
+ local nH, nPort, nCon
+ nPort := DEFPORT
+ 
+ if (nH := TCPLISTEN( nPort, 10 )) == -1
+ ? "tcpsrv: Error listen on port ", nPort
+ ?
+ return( 1 )
+ endif
+ 
+ //? "wait client connection"
+ do while( .t. )
+ ? "wait client connection",time()
+ if (nCon := TCPACCEPT( nH, 5000 )) != -1
+ ? "start",nH,nCon
+ start( {|nC| /* reading data from connection */ TCPREAD(nC....)}, nCon )
+ endif
+ sleep(0.01)
+ enddo
+ TCPCLOSE( nH )
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24471"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPREAD"
+></A
+>Function  TCPREAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPREAD(&#60;nConnection&#62;, @&#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])	--&#62; &#60;nLenBuf&#62;&#13;</PRE
+><P
+> TCPREAD() reads from connection &lt;nConnection&gt; some data (no more of &lt;nLen&gt; bytes) and writes it
+ to buffer &lt;sBuffer&gt;.
+ <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> and <A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+>FERRORSTR()</A
+>kept the error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24478"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nConnection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the connection number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the receiver buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the buffer size.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	NUmeric, is the timeout.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns numeric value - is the realy number of bytes received, or -1
+ if an error occurred.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24508"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  con := TCPCONNECT("http://www.itk.ru")
+ 
+ if con &#62; -1
+ ? "connection: ", con
+ buf := ""
+ tr := TCPREAD(con, @buf, 1024)
+ if tr &#62; -1
+ ? buf
+ else
+ ? "Error:", FERROR(), ":", FERRORSTR()
+ endif
+ TCPCLOSE(con)
+ else
+ ? FERROR(), FERRORSTR()
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN24512"
+></A
+><H3
+><A
+NAME="FUNCTIONTCPWRITE"
+></A
+>Function  TCPWRITE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TCPWRITE(&#60;nConnection&#62;, &#60;sBuffer&#62;, &#60;nLen&#62;[, &#60;nTimeout&#62;])	--&#62; &#60;nLenBuf&#62;&#13;</PRE
+><P
+> TCPWRITE() trys write some data &lt;sBuffer&gt; (with length &lt;nLen&gt; bytes)to connection &lt;nConnection&gt;.
+ <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> and <A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+>FERRORSTR()</A
+>kept the error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN24519"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nConnection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the connection number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sBuffer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source buffer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLen&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the buffer size.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	NUmeric, is the timeout.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns numeric value - is the realy number of bytes commited, or -1
+ if an error occurred.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN24549"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  local cBuf := space(5), nL, cTxt, nH, nPort
+ 
+ nPort := DEFPORT
+ 
+ if (nH := TCPLISTEN( nPort, 10 )) == -1
+ ? "tcpsrv: Error listen on port ", nPort
+ ?
+ return( 1 )
+ endif
+ 
+ do while( .t. )
+ if( (nL := TCPREAD( nH, @cBuf, len(cBuf), 60000 )) &#62; 0 )
+ ? "tcpsrv, read : ", nL
+ if( nL == 1 .and. upper( substr(cbuf,1,1)) == "Q" )
+ exit
+ endif
+ cTxt := "tcpsrv:" + substr(cBuf, 1, nL)
+ TCPWRITE( nH, cTxt )
+ elseif ferror() == 32
+ ? "Error:",ferrorstr()+":","closed task:",nh
+ exit
+ endif
+ //? "tcpsrv, read : ", nL,nh,time()
+ enddo
+ TCPCLOSE( nH )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categpackunpack.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categinfo.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PACK/UNPACK</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>INFO</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

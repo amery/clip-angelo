@@ -1,0 +1,2183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CODB-QUERY</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="ENVIRONMENT"
+HREF="categenvironment.html"><LINK
+REL="NEXT"
+TITLE="DISKUTILS"
+HREF="categdiskutils.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categenvironment.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categdiskutils.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGCODB-QUERY">CODB-QUERY</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN22859"
+></A
+><H2
+>Name</H2
+>CODB-QUERY&nbsp;--&nbsp; Library for work with CODB databases by queries.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN22862"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>NIL                 <A
+HREF="categcodb-query.html#FUNCTIONCODBCLOSE"
+>codb_close(&#60;oDB&#62;)</A
+>
+oDB                 <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>
+oRes                <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute(&#60;oDB&#62;,&#60;sQuery&#62;,[&#60;sDatabase&#62;],[&#60;aFiles&#62;])</A
+>
+'' | 'ERROR'        <A
+HREF="categcodb-query.html#FUNCTIONCODBGETANSWER"
+>codb_get_answer(&#60;oRes&#62;)</A
+>
+sName               <A
+HREF="categcodb-query.html#FUNCTIONCODBGETCOLUMN"
+>codb_get_column(&#60;oRes&#62;, &#60;nIndex&#62;)</A
+>
+sError | NIL        <A
+HREF="categcodb-query.html#FUNCTIONCODBGETERROR"
+>codb_get_error(&#60;oRes&#62;)</A
+>
+oMetaobject         <A
+HREF="categcodb-query.html#FUNCTIONCODBGETMETAOBJECT"
+>codb_get_metaobject(&#60;oDB&#62;,&#60;sID&#62;,[&#60;sDatabase&#62;])</A
+>
+oObject             <A
+HREF="categcodb-query.html#FUNCTIONCODBGETOBJECT"
+>codb_get_object(&#60;oDB&#62;,&#60;sID&#62;,[&#60;sDatabase&#62;])</A
+>
+aResult             <A
+HREF="categcodb-query.html#FUNCTIONCODBGETRESULT"
+>codb_get_result(&#60;oRes&#62;)</A
+>
+nColumns            <A
+HREF="categcodb-query.html#FUNCTIONCODBNUMCOLUMNS"
+>codb_num_columns(&#60;oRes&#62;)</A
+>
+nRows               <A
+HREF="categcodb-query.html#FUNCTIONCODBNUMROWS"
+>codb_num_rows(&#60;oRes&#62;)</A
+>
+oResult             <A
+HREF="categcodb-query.html#FUNCTIONCODBPUTMETAOBJECT"
+>codb_put_metaobject(&#60;oDB&#62;,&#60;oContent&#62;,[&#60;sDatabase&#62;],&#60;sClass&#62;)</A
+>
+oResult             <A
+HREF="categcodb-query.html#FUNCTIONCODBPUTOBJECT"
+>codb_put_object(&#60;oDB&#62;,&#60;oContent&#62;,[&#60;sDatabase&#62;],&#60;sClass&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22878"
+></A
+><H2
+>Description </H2
+><P
+>codb-query library provides unified access to CODB databases by
+queries instead call of	methods of classes <A
+HREF="classcodbdepository.html"
+>CODBDEPOSITORY</A
+>,
+<A
+HREF="classcodbdictionary.html"
+>CODBDICTIONARY</A
+>,
+<A
+HREF="classcodblist.html"
+>CODBLIST</A
+> and
+<A
+HREF="classcodbidlist.html"
+>CODBIDLIST</A
+>.</P
+><P
+>&#13;Queries are written on CQL language (SQL dialect adapted for CODB). You
+can use this library in own CLIP program or use console program called codb.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>Using In Programs.</B
+></P
+><P
+>&#13;For use codb-query library in programs you should build program with this
+library. Just append '-lcodb-query' to build command.</P
+><P
+>&#13;Typical session of work with database contains following steps:
+<PRE
+CLASS="PROGRAMLISTING"
+>db := codb_connect() // Connect to databases
+e := codb_get_error( db ) // Check error
+if e != NIL
+?? "ERROR codb_connect(): " + e + chr(10)
+return 1
+endif
+
+// Query execution
+oRes := codb_execute( db, 'show databases' )
+
+// Process result
+aResult := codb_get_result( oRes )
+
+codb_close( db ) // Close databases</PRE
+></P
+><P
+>&#13;Connect to databases is provided by function
+<A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>. This function
+opens all available databases. Function
+<A
+HREF="categcodb-query.html#FUNCTIONCODBCLOSE"
+>codb_close()</A
+> closes all databases.</P
+><P
+>&#13;Real operations with databases are provided by functions:
+<A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETMETAOBJECT"
+>codb_get_metaobject()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETOBJECT"
+>codb_get_object()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBPUTMETAOBJECT"
+>codb_put_metaobject()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBPUTOBJECT"
+>codb_put_object()</A
+>.</P
+><P
+>&#13;The difference between these functions is
+<A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> returns object, from
+which you can extract data by function
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETRESULT"
+>codb_get_result()</A
+>, but other
+functions operate only real objects.</P
+><P
+>&#13;For error check use
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETANSWER"
+>codb_get_answer()</A
+> and
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETERROR"
+>codb_get_error()</A
+>.</P
+><P
+>&#13;Query result returned from
+<A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+>, you can processed by
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETRESULT"
+>codb_get_result()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBNUMCOLUMNS"
+>codb_num_columns()</A
+>,
+<A
+HREF="categcodb-query.html#FUNCTIONCODBNUMROWS"
+>codb_num_rows()</A
+> and
+<A
+HREF="categcodb-query.html#FUNCTIONCODBGETCOLUMN"
+>codb_get_column()</A
+>.</P
+><P
+>&#13;Besides you can get result as formatted string. Just pass result object in
+<A
+HREF="classcodbformatter.html"
+>CODBFormatter()</A
+> method show.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>Using codb.</B
+></P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>codb [options] [database[:depository]]</PRE
+></P
+><P
+>&#13;On start codb without any parameters it will be work in interactive mode.</P
+><P
+>&#13;codb options:
+<P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>-c 'command'</B
+> - Execute query and exit.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>--hide-titles</B
+> - Suppress column names.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>--delim='DELIM'</B
+> - Set columns delimiter.</P
+></LI
+></UL
+></P
+><P
+>&#13;Complete list of options is available on run <B
+CLASS="COMMAND"
+>codb -h</B
+>.</P
+><P
+>&#13;Examples:
+<PRE
+CLASS="PROGRAMLISTING"
+>codb ETC01 -c 'show classes;'</PRE
+>
+Show all classes in database ETC01.
+<PRE
+CLASS="PROGRAMLISTING"
+>codb ETC01:ETC0101 -c 'select * from mng_vendor,mng_author;' --delim='|'</PRE
+>
+Show all fields from all objects of classes mng_vendor and mng_author from
+database ETC01 and depository ETC0101 with delimiter '|'.</P
+><P
+>&#13;Note: All data outputs in formatted mode so fields are accompanied
+with spaces to maximum width of element in each column.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>CQL Commands.</B
+></P
+><P
+>&#13;Each CODB command should be ended by semicolon. You can write comments
+begin with '#' character and end with line end ('\n'). String are
+delimited by single quote ('). If single quote is part of string it should
+be escaped by backslash (\').</P
+><P
+>&#13;You can pass several commands in -c parameter and through pipe:
+<PRE
+CLASS="PROGRAMLISTING"
+>echo 'show classes;show indexes;' | codb ETC01</PRE
+></P
+><P
+>&#13;Brief CQL Commands Description.</P
+><P
+>&#13;<P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>help</B
+> - Help about database commands;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>create</B
+> - Create metaobject;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>delete</B
+> - Delete object or metaobject;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>describe</B
+> - Show class structure;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>drop</B
+> - Delete metaobject by its name;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>get</B
+> - Get object from depository;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>metaget</B
+> - Get metaobject;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>metaput</B
+> - Create or update metaobject;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>put</B
+> - Create or update object in depository;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>select</B
+> - Query object attributes;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>show</B
+> - Show list of metaobjects;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>use</B
+> - Open database.</P
+></LI
+></UL
+></P
+><P
+>&#13;There is command <B
+CLASS="COMMAND"
+>quit</B
+> - quits the program in interactive
+mode. You can quit from codb to press Esc key.</P
+><P
+>&#13;Verbose CQL Command Description.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>help [&lt;command&gt;]</B
+>
+Help on command. If 'help' call without command name show all
+available commands.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>create &lt;metaclass&gt; (&lt;attr1&gt;=&lt;value1&gt;[,...])</B
+>
+or <B
+CLASS="COMMAND"
+>create database &lt;db_name&gt; &lt;path&gt;[&lt;description&gt;]</B
+>
+Create database or metaobject.
+Examples:
+create database EAS01 /var/lib/db 'E/AS Database';
+create attribute (name='phone',type='C',len=20);</P
+><P
+>&#13;Supported metaclasses:
+<P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>depository</B
+> - depository;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>extent</B
+> - namespace;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>attribute</B
+> - attribute;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>counter</B
+> - counter;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>index</B
+> - index;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>class</B
+> - class;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tcolumn</B
+> - view column;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tview</B
+> - view;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>report</B
+> - report;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>plugin</B
+> - plugin;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>user</B
+> - user;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>group</B
+> - group of users.</P
+></LI
+></UL
+></P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>delete &lt;id&gt;</B
+>
+Delete object or metaobject by its id.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>describe &lt;class_name&gt;</B
+>
+Show class structure by its name.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>drop &lt;metaclass&gt; &lt;metaobject_name&gt;</B
+>
+Delete metaobject by its name.</P
+><P
+>&#13;Supported metaclasses:
+<P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>depository</B
+> - depository;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>extent</B
+> - namespace;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>attribute</B
+> - attribute;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>counter</B
+> - counter;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>index</B
+> - index;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>class</B
+> - class;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tcolumn</B
+> - view column;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tview</B
+> - view;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>report</B
+> - report;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>plugin</B
+> - plugin;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>user</B
+> - user;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>group</B
+> - group of users.</P
+></LI
+></UL
+></P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>get &lt;id&gt;</B
+>
+Get object content from depository by its id.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>metaget &lt;id&gt;</B
+>
+Get metaobject content from dictionary by its id.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>metaput (&lt;attr1&gt;=&lt;value1&gt;[, ...])</B
+>
+Create or change metaobject in dictionary. If 'id' is defined in attributes
+list, exist object will be replaced by new values.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>put (&lt;attr1&gt;=&lt;value1&gt;[, ...])</B
+>
+Create or change metaobject in depository. If 'id' is defined in
+attributes list, exist object will be replaced by new values.</P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>select &lt;attributes&gt; from &lt;class&gt; [where &lt;condition&gt;]</B
+>
+Get list of attribute values matched condition.</P
+><P
+>&#13;&lt;attributes&gt; - list of attribute names delimited by comma. Names with
+spaces put in single quotes. You can use * for all attribute names for all
+specified classes.</P
+><P
+>&#13;&lt;class&gt; - list of class names delimited by comma. Names with
+spaces put in single quotes.</P
+><P
+>&#13;&lt;condition&gt; - condition by CLIP rules. There are supported
+operators: '==', '!=', '&gt;', '&gt;=', '&lt;=', '&lt;' and logical operators
+'.not.', '.and.', '.or.'. Value should be put in double quotes and
+there are no spaces between operators.</P
+><P
+>&#13;Example:
+<PRE
+CLASS="PROGRAMLISTING"
+>select id,author_name,email from mng_author where code=="Uri";</PRE
+></P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>show &lt;metaclass&gt;</B
+>
+Show metaobject list.</P
+><P
+>&#13;Supported metaclasses:
+<P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>databases</B
+> - databases;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>depositories</B
+> - depositories;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>extents</B
+> - namespaces;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>attributes</B
+> - attributes;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>counters</B
+> - counters;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>indexes</B
+> - indices;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>classes</B
+> - classes;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tcolumns</B
+> - view columns;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>tviews</B
+> - views;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>reports</B
+> - reports;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>plugins</B
+> - plugins;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>users</B
+> - users;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>groups</B
+> - user groups;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>statistics</B
+> - total statistics with number metaobjects in each metaclass.</P
+></LI
+></UL
+></P
+><P
+>&#13;<B
+CLASS="COMMAND"
+>use &lt;db&gt; [&lt;depository&gt;]</B
+>
+Change current work database and depository.</P
+><P
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23134"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBCLOSE"
+></A
+>Function  CODB_CLOSE </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_close(&#60;oDB&#62;) --&#62; NIL
+ &#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23140"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23156"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBCONNECT"
+></A
+>Function  CODB_CONNECT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_connect() --&#62; oDB&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23162"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> codb_connect() connects to CODB databases and returns object for other functions in codb-query library.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23172"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBEXECUTE"
+></A
+>Function  CODB_EXECUTE </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_execute(&#60;oDB&#62;,&#60;sQuery&#62;,[&#60;sDatabase&#62;],[&#60;aFiles&#62;]) --&#62; oRes&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23178"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sQuery&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Query on CQL (dialect of SQL adapted for CODB).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Name of work dictionary:depository (eg. ETC01:ETC0101). Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFiles&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Array. Array of files attached to this query. Each element is array: { &lt;fileName&gt;, &lt;content&gt; }. Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> codb_execute() returns result as object. Real data shoult be retrieved by <A
+HREF="categcodb-query.html#FUNCTIONCODBGETRESULT"
+>codb_get_result()</A
+>.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23210"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETANSWER"
+></A
+>Function  CODB_GET_ANSWER </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_answer(&#60;oRes&#62;) --&#62; '' | 'ERROR'&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23216"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns empty string if query executed successful or 'ERROR' if error is ocurred.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23232"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETCOLUMN"
+></A
+>Function  CODB_GET_COLUMN </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_column(&#60;oRes&#62;, &#60;nIndex&#62;) --&#62; sName&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23238"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Number. Column number from 1.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns column name from result or NIL if column number does not exist.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23259"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETERROR"
+></A
+>Function  CODB_GET_ERROR </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_error(&#60;oRes&#62;) --&#62; sError | NIL&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23265"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns NIL if query executed successful or error description if error is ocurred.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23281"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETMETAOBJECT"
+></A
+>Function  CODB_GET_METAOBJECT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_metaobject(&#60;oDB&#62;,&#60;sID&#62;,[&#60;sDatabase&#62;]) --&#62; oMetaobject&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23287"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- String. ID of metaobject.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Name of work dictionary:depository (eg. ETC01:ETC0101). Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns metaobject content.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23313"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETOBJECT"
+></A
+>Function  CODB_GET_OBJECT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_object(&#60;oDB&#62;,&#60;sID&#62;,[&#60;sDatabase&#62;]) --&#62; oObject&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23319"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- String. ID of object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Name of work dictionary:depository (eg. ETC01:ETC0101). Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object content.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23345"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBGETRESULT"
+></A
+>Function  CODB_GET_RESULT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_get_result(&#60;oRes&#62;) --&#62; aResult&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23351"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns query result as array.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23367"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBNUMCOLUMNS"
+></A
+>Function  CODB_NUM_COLUMNS </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_num_columns(&#60;oRes&#62;) --&#62; nColumns&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23373"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Number of columns in query result.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23389"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBNUMROWS"
+></A
+>Function  CODB_NUM_ROWS </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_num_rows(&#60;oRes&#62;) --&#62; nRows&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23395"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oRes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Object returned by <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> function.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Number of rows in query result.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23411"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBPUTMETAOBJECT"
+></A
+>Function  CODB_PUT_METAOBJECT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_put_metaobject(&#60;oDB&#62;,&#60;oContent&#62;,[&#60;sDatabase&#62;],&#60;sClass&#62;) --&#62; oResult&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23417"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oConent&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Object. Metaobject content.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Name of work dictionary:depository (eg. ETC01:ETC0101). Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClass&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Class name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Result object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23448"
+></A
+><H3
+><A
+NAME="FUNCTIONCODBPUTOBJECT"
+></A
+>Function  CODB_PUT_OBJECT </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> codb_put_object(&#60;oDB&#62;,&#60;oContent&#62;,[&#60;sDatabase&#62;],&#60;sClass&#62;) --&#62; oResult&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23454"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oDB&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Database connection object returned from <A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+>codb_connect()</A
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oConent&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Object. ïbject content.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDatabase&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Name of work dictionary:depository (eg. ETC01:ETC0101). Optional parameter.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClass&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Class name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Result object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbformatter.html"
+> CODBFORMATTER</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23490"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> db := codb_connect()
+ e := codb_get_error( db )
+ if e != NIL
+ ?? "ERROR codb_connect(): " + e + chr(10)
+ return 1
+ endif
+ fmt := CODBFormatter()
+ fmt:obj:options:hide_titles := .T.
+ res := codb_execute( db, 'show databases' )
+ ? fmt:show()
+ codb_close( db )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categenvironment.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categdiskutils.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ENVIRONMENT</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DISKUTILS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

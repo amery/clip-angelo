@@ -2,7 +2,7 @@
 #                                            clip/libclipdbfsql/Makefile.in
 #
 Local_Depend 		= 			../include/*.ch 		\
-									../include.h/*.h
+									../include/*.h
 
 C_FLAGS 				+= 		-I../libcliprdd
 c_files 				=  		$(sort 						\

@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "ci_bmpxpm.h"
+#include "ci_2_bmpxpm.h"
 
 
 /*

@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DBGOTOP()-EXP()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CODBEXECUTE()-DBGOTO()"
+HREF="functionscodbexecutedbgoto.html"><LINK
+REL="NEXT"
+TITLE="FACCESS()-FREADSTR()"
+HREF="functionsfaccessfreadstr.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionscodbexecutedbgoto.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsfaccessfreadstr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSDBGOTOPEXP">DBGOTOP()-EXP()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN18339"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBGOTOP"
+> DBGOTOP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move to the first logical record</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBRECALL"
+> DBRECALL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Reinstate a record marked for deletion</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBREINDEX"
+> DBREINDEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Recreate all active indexes for the current work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBRELATION"
+> DBRELATION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the linking expression of a specified relation</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBRSELECT"
+> DBRSELECT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the target work area number of a relation</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSEEK"
+> DBSEEK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move to the record having the specified key value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSELECTAREA"
+> DBSELECTAREA()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Change the current work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETDRIVER"
+> DBSETDRIVER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the default database driver and optionally set a new driver</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETFILTER"
+> DBSETFILTER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set a filter condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETINDEX"
+> DBSETINDEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Empty orders from an order bag into the order list</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETORDER"
+> DBSETORDER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the controlling order</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSETRELATION"
+> DBSETRELATION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Relate two work areas</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSKIP"
+> DBSKIP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move relative to the current record</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+> DBSTRUCT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create an array containing the structure of a database file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUNLOCK"
+> DBUNLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Release all locks for the current work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUNLOCKALL"
+> DBUNLOCKALL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Release all locks for all work areas</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBUSEAREA"
+> DBUSEAREA()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Use a database file in a work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONDEFPATH"
+> DEFPATH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns the true path defined in SET DEFAULT command.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDELETED"
+> DELETED()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the deleted status of the current record</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDESCEND"
+> DESCEND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create a descending index key value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDEVOUT"
+> DEVOUT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a value to the current device</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDEVOUTPICT"
+> DEVOUTPICT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a value to the current device using a picture clause</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDEVPOS"
+> DEVPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move the cursor or printhead to a new position depending on the current</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+> DIRCHANGE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Change the current DOS directory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+> DIRECTORY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create an array of directory and file information</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRMAKE"
+> DIRMAKE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create a directory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRREMOVE"
+> DIRREMOVE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove a directory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDISKCHANGE"
+> DISKCHANGE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Change the current DOS disk drive</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDISKNAME"
+> DISKNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current DOS drive</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDISKSPACE"
+> DISKSPACE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the space available on a specified disk</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPBEGIN"
+> DISPBEGIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Begin buffering screen output</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPBOX"
+> DISPBOX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a box on the screen</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPCOUNT"
+> DISPCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the number of pending DISPEND() requests</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPEND"
+> DISPEND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display buffered screen updates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONDISPOUT"
+> DISPOUT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a value to the display</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONDOSERROR"
+> DOSERROR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the last DOS error number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDOSPATH"
+> DOSPATH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns file name as DOS file name.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDOW"
+> DOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to a numeric day of the week</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONDSTRTON"
+> DSTRTON()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert string as "double"  to xClipper-numeric.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDTOC"
+> DTOC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDTOS"
+> DTOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to a character string formatted as yyyymmdd</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONEMPTY"
+> EMPTY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the result of an expression is empty</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONEOF"
+> EOF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine when end of file is encountered</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+> ERRORBLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Post a code block to execute when a runtime error occurs</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONERRORLEVEL"
+> ERRORLEVEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the xClipper return code</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+> EVAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Evaluate a code block</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPALGLIST"
+> EVP_ALG_LIST()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns list of algoritms, registered in used version of OpenSSL library.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPDECRYPT"
+> EVP_DECRYPT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Decrypt string encrypted by ENV_ENCRYPT().</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcrypto.html#FUNCTIONEVPENCRYPT"
+> EVP_ENCRYPT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Encrypt string using one of symmetric block algoritm and given key string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONEXP"
+> EXP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Calculate e**x</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionscodbexecutedbgoto.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsfaccessfreadstr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CODBEXECUTE()-DBGOTO()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FACCESS()-FREADSTR()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

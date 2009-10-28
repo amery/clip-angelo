@@ -1,0 +1,1813 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Writing and translation the CLIP documentation.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP localisation"
+HREF="localisation.html"><LINK
+REL="PREVIOUS"
+TITLE="Message translation"
+HREF="x1121.html"><LINK
+REL="NEXT"
+TITLE="Language extensions"
+HREF="langext.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1121.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. CLIP localisation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="langext.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN1166">9.3. Writing and translation the CLIP documentation.</H1
+><P
+>CLIP project now use the 
+<A
+HREF="http://www.docbook.org"
+TARGET="_top"
+>DocBook</A
+>
+documentation system to provide multiformat and multilanguage
+documentation in the strong and regular fasion.</P
+><P
+>The good introduction into DocBook is
+<A
+HREF="http://www.docbook.org/tdg/index.html"
+TARGET="_top"
+>DocBook - The Definition Guide</A
+>.</P
+><P
+>A simple introduction into DocBook is
+<A
+HREF="x1166.html#WRITING-DOCBOOK"
+>here</A
+>.</P
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1174">9.3.1. CLIP makefiles and .po manipulation utilities</H2
+><P
+>Writing and supporting documentation in more than one language
+is not so trivial, so we develop some helper programs to make
+our life a bit easier.</P
+><P
+></P
+><UL
+><LI
+><P
+>The <B
+CLASS="COMMAND"
+>po_extr</B
+> utilite process given files and 
+extract all strings, delimited by start and stop strings, into
+output standard .po file.</P
+><P
+>By default, as start string used <SPAN
+CLASS="QUOTE"
+>"_("</SPAN
+>,
+and as stop string <SPAN
+CLASS="QUOTE"
+>")_"</SPAN
+>.</P
+></LI
+><LI
+><P
+>The companion program is <B
+CLASS="COMMAND"
+>po_subst</B
+>, which
+substitute translated values from .po files into source text.</P
+></LI
+></UL
+><P
+>The makefile <B
+CLASS="COMMAND"
+>$CLIPROOT/include/Makefile.tdoc</B
+>
+can be used as include to simplify and unificate the documentation
+building.</P
+><P
+>This file assume, that sources .sgmls are in 
+directory ./template, the translated .po files are in 
+./po/&lt;sgml-file-name&gt;/*.po, and the output directory
+will be ./html for HTML output, ./ps for Postscript output,
+./pdf for PDF output, ./text for text output.</P
+><P
+>Provided targets are:
+<P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>merge - to merge sources and .po translations</TD
+></TR
+><TR
+><TD
+>sgml - to produce translated SGML files</TD
+></TR
+><TR
+><TD
+>html - to generate documentation in HTML format</TD
+></TR
+><TR
+><TD
+>ps - to generate documentation in Postscript format</TD
+></TR
+><TR
+><TD
+>pdf - to generate documentation in Adobe PDF format</TD
+></TR
+><TR
+><TD
+>tex - to generate documentation in TeX format</TD
+></TR
+><TR
+><TD
+>text - to generate documentation in plain text format</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+><P
+>Some CLIP packages already have the <SPAN
+CLASS="QUOTE"
+>"tdoc"</SPAN
+> directory,
+which contain documentation in this layout ("template doc, tdoc"),
+and we have planes make it for all.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="WRITING-DOCBOOK">9.3.2. Writing Documentation with DocBook</H2
+><P
+>DocBook is a flavor of <SPAN
+CLASS="ACRONYM"
+>SGML</SPAN
+>
+(<I
+CLASS="FIRSTTERM"
+>Standard Generalized Markup
+Language</I
+>), a syntax for marking up the contents
+of documents.  HTML is another very common flavor of SGML;
+DocBook markup looks very similar to HTML markup, although
+the names of the markup tags differ.</P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1206">9.3.2.1. Terminology</H3
+><P
+>SGML markup contains a number of syntactical elements that
+serve different purposes in the markup.  We'll run through
+the basics here to make sure we're on the same page when
+we refer to SGML semantics.</P
+><P
+>The basic currency of SGML is the
+<I
+CLASS="FIRSTTERM"
+>tag</I
+>.  A simple tag consists of a
+pair of angle brackets and the name of the tag.  For
+example, the <TT
+CLASS="SGMLTAG"
+>para</TT
+> tag would appear in
+an SGML document as <TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+>.  This start tag indicates
+that the immediately following text should be classified
+according to the tag.  In regular SGML, each opening tag
+must have a matching end tag to show where the start tag's
+contents end.  End tags begin with
+<SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>&lt;/</TT
+>"</SPAN
+> markup, e.g.,
+<TT
+CLASS="SGMLTAG"
+>&#60;/para&#62;</TT
+>.</P
+><P
+>The combination of a start tag, contents, and an end tag
+is called an <I
+CLASS="FIRSTTERM"
+>element</I
+>.  SGML
+elements can be nested inside of each other, or contain
+only text, or may be a combination of both text and other
+elements, although in most cases it is better to limit
+your elements to one or the other.</P
+><P
+>The <SPAN
+CLASS="ACRONYM"
+>XML</SPAN
+> (<I
+CLASS="FIRSTTERM"
+>eXtensible Markup
+Language</I
+>) specification, a modern subset of
+the SGML specification, adds a so-called <I
+CLASS="FIRSTTERM"
+>empty
+tag</I
+>, for elements that contain no text
+content.  The entire element is a single tag, ending with
+<SPAN
+CLASS="QUOTE"
+>"<TT
+CLASS="LITERAL"
+>/&gt;</TT
+>"</SPAN
+>, e.g.,
+<TT
+CLASS="SGMLTAG"
+>&lt;xref/&gt;</TT
+>.  However, use of this
+tag style restricts you to XML DocBook processing, and
+your document may no longer compile with SGML-only
+processing systems.</P
+><P
+>Often a processing system will need more information about
+an element than you can provide with just tags.  SGML
+allows you to add extra <SPAN
+CLASS="QUOTE"
+>"hints"</SPAN
+> in the form
+of SGML <I
+CLASS="FIRSTTERM"
+>attributes</I
+> to pass along
+this information.  The most common use of attributes in
+DocBook is giving specific elements a name, or an ID, so
+you can refer to it from elsewhere.  This ID can be used
+for many things, including file-naming for HTML output,
+hyper-linking to specific parts of the document, and even
+pulling text from that element (see the <TT
+CLASS="SGMLTAG"
+>&#60;xref&#62;</TT
+> tag).</P
+><P
+>An SGML attribute appears inside the start tag, between
+the &lt; and &gt; brackets.  For example, if you wanted to
+set the <TT
+CLASS="SGMLTAG"
+>id</TT
+> attribute
+of the <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+> element to
+<SPAN
+CLASS="QUOTE"
+>"mybook"</SPAN
+>, you would create a start tag like
+this: <PRE
+CLASS="PROGRAMLISTING"
+>&lt;book id="mybook"&#62;</PRE
+></P
+><P
+>Notice that the contents of the attribute are enclosed in
+quote marks.  These quotes are optional in SGML, but
+mandatory in XML.  It's a good habit to use quotes, as it
+will make it much easier to migrate your documents to an
+XML processing system later on.</P
+><P
+>You can also specify more than one attribute in a single
+tag: <PRE
+CLASS="PROGRAMLISTING"
+>&lt;book id="mybook" status="draft"&#62;</PRE
+></P
+><P
+>Another commonly used type of SGML markup is the
+<I
+CLASS="FIRSTTERM"
+>entity</I
+>.  An entity lets you
+associate a block of text with a name.  You declare the
+entity once, at the beginning of your document, and can
+invoke it as many times as you like throughout the
+document.  You can use entities as shorthand, or to make
+it easier to maintain certain phrases in a central
+location, or even to insert the contents of an entire file
+into your document.</P
+><P
+>An entity in your document is always surrounded by the
+<SPAN
+CLASS="QUOTE"
+>"&amp;"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>";"</SPAN
+> characters.  One
+entity you'll need sooner or later is the one for the
+<SPAN
+CLASS="QUOTE"
+>"&lt;"</SPAN
+> character.  Since SGML expects all
+tags to begin with a <SPAN
+CLASS="QUOTE"
+>"&lt;"</SPAN
+>, the
+<SPAN
+CLASS="QUOTE"
+>"&lt;"</SPAN
+> is a reserved character.  To use it in
+your document (as I am doing here), you must insert it
+with the <TT
+CLASS="LITERAL"
+>&amp;lt;</TT
+> entity.  Each time
+the SGML processor encounters <TT
+CLASS="LITERAL"
+>&amp;lt;</TT
+>,
+it will place a literal <SPAN
+CLASS="QUOTE"
+>"&lt;"</SPAN
+> in the output
+document. Similarly you must use the <TT
+CLASS="LITERAL"
+>&amp;gt;</TT
+> 
+and <TT
+CLASS="LITERAL"
+>&amp;amp;</TT
+> entities for the 
+<SPAN
+CLASS="QUOTE"
+>"&gt;"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"&amp;"</SPAN
+> characters.</P
+><P
+>The final term you'll need to know when writing simple
+DocBook documents is the <SPAN
+CLASS="ACRONYM"
+>DTD</SPAN
+>
+(<I
+CLASS="FIRSTTERM"
+>Document Type Declaration</I
+>).  The
+DTD defines the flavor of SGML a given document is written
+in.  It lists all the legal tag names, like <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+>, <TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+>, and so on, and declares
+how those tags are allowed to be used together.  For
+example, it doesn't make sense to put a <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+> element inside a <TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+> paragraph element -- only
+the reverse.</P
+><P
+>The DTD thus defines the legal structure of the document.
+It also declares which attributes can be used with which
+tags.  The SGML processing system can use the DTD to make
+sure the document is laid out properly before attempting
+to process it.  SGML-aware text editors like 
+can also use the DTD to
+guide you while you write, offering you choices about
+which tags you can add in different places in the
+document, and beeping at you when you try to add a tag
+where it doesn't belong.</P
+><P
+>Generally, you will declare which DTD you want to use as
+the first line of your SGML document.  In the case of
+DocBook, you will use something like this:
+<PRE
+CLASS="PROGRAMLISTING"
+>&lt;!doctype book PUBLIC "-//OASIS//DTD
+DocBook V3.1//EN" []&gt; &lt;book&gt; ...
+&lt;/book&gt;</PRE
+></P
+><P
+>Note that you must specify your toplevel element inside
+the doctype declaration.  If you were writing an article
+rather than a book, you might use this declaration instead:
+<PRE
+CLASS="PROGRAMLISTING"
+>&lt;!doctype article PUBLIC "-//OASIS//DTD DocBook V3.1//EN" []&gt;
+&lt;article&gt;
+...
+&lt;/article&gt;</PRE
+></P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="SGML-DOCUMENT">9.3.2.2. The Document</H3
+><P
+>Once you're comfortable with SGML, creating a DocBook
+document is quite simple and straightforward.  Even
+though DocBook contains over 300 different tags, you can
+usually get by with only a small subset of those tags.
+Most of them are for inline formatting, rather than for
+document structuring.  Furthermore, the common tags have
+short, intuitive names.
+          </P
+><P
+>Below is a (completely nonsensical) example to illustrate
+how a simple document might be laid out.  Notice that all
+<TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+> and <TT
+CLASS="SGMLTAG"
+>&#60;sect1&#62;</TT
+> elements have <TT
+CLASS="SGMLTAG"
+>id</TT
+> attributes.  This is not
+mandatory, but is a good habit to get into, as DocBook is
+commonly converted into HTML, with a separate generated
+file for each <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+>,
+<TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+>, and/or <TT
+CLASS="SGMLTAG"
+>&#60;sect1&#62;</TT
+> element.  If the given
+element has an <TT
+CLASS="SGMLTAG"
+>id</TT
+>
+attribute, the processor will typically name the file
+accordingly.  Thus, the below document might result in
+<TT
+CLASS="FILENAME"
+>index.html</TT
+>,
+<TT
+CLASS="FILENAME"
+>chapter-one.html</TT
+>,
+<TT
+CLASS="FILENAME"
+>blobs.html</TT
+>, and so on.
+          </P
+><P
+>Also notice the text marked off with <SPAN
+CLASS="QUOTE"
+>"&lt;!--"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>" --&gt;"</SPAN
+> characters.  These
+denote SGML comments.  SGML processors will completely
+ignore anything between these markers, similar to
+<SPAN
+CLASS="QUOTE"
+>"/*"</SPAN
+> and <SPAN
+CLASS="QUOTE"
+>"*/"</SPAN
+> comments in C
+source code.
+          </P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;!doctype book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" []&#62;
+&#60;book id="index"&#62;
+  &#60;bookinfo&#62;
+    &#60;title&#62;A Poet's Guide to Nonsense&#60;/title&#62;
+  &#60;/bookinfo&#62;
+
+  &#60;chapter id="chapter-one"&#62;
+    &#60;title&#62;Blobs and Gribbles&#60;/title&#62;
+
+    &#60;!-- This section contains only one major topic --&#62;
+    &#60;sect1 id="blobs"&#62;
+      &#60;title&#62;The Story Behind Blobs&#60;/title&#62;
+      &#60;para&#62;
+        Blobs are often mistaken for ice cubes and rain
+        puddles...
+      &#60;/para&#62;
+    &#60;/sect1&#62;
+
+    &#60;!-- This section contains embedded sub-sections --&#62;
+    &#60;sect1 id="gribbles"&#62;
+      &#60;title&#62;Your Friend the Gribble&#60;/title&#62;
+      &#60;para&#62;
+        A Gribble is a cute, unassuming little fellow...
+      &#60;/para&#62;
+
+      &#60;sect2 id="gribble-temperament"&#62;
+        &#60;title&#62;Gribble Temperament&#60;/title&#62;
+        &#60;para&#62;
+          When left without food for several days...
+        &#60;/para&#62;
+      &#60;/sect2&#62;
+
+      &#60;sect2 id="gribble-appearance"&#62;
+        &#60;title&#62;Gribble Appearance&#60;/title&#62;
+        &#60;para&#62;
+          Most Gribbles have a shock of white fur running from...
+        &#60;/para&#62;
+      &#60;/sect2&#62;
+    &#60;/sect1&#62;
+  &#60;/chapter&#62;
+
+  &#60;chapter id="chapter-two"&#62;
+    &#60;title&#62;Phantasmagoria&#60;/title&#62;
+
+    &#60;sect1 id="dretch-pools"&#62;
+      &#60;title&#62;Dretch Pools&#60;/title&#62;
+
+      &#60;para&#62;
+        When most poets think of Dretch Pools, they tend to...
+      &#60;/para&#62;
+    &#60;/sect&#62;
+  &#60;/chapter&#62;
+&#60;/book&#62;</PRE
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1284">9.3.2.3. Common Elements</H3
+><P
+>Once you get used to the syntax of SGML, the next hurdle
+in writing DocBook documentation is to learn the many
+DocBook-specific tag names, and when to use them.  DocBook
+was created for technical documentation, and as such, the
+tag names and document structure are slanted towards the
+needs of such documentation.
+          </P
+><P
+>To cover its target audience, DocBook declares a wide
+variety of specialized tags, including tags for formatting
+source code (with somewhat of a C/C++ bias), computer
+prompts, GUI application features, keystrokes, and so on.
+DocBook also includes tags for universal formatting needs,
+like headers, footnotes, tables, and graphics.
+          </P
+><P
+>We won't cover all of these elements here (over 300
+DocBook tags exist!), but we will cover the basics.  To
+learn more about the other tags, check out the official
+DocBook guide, at <A
+HREF="http://docbook.org"
+TARGET="_top"
+>http://docbook.org</A
+>.
+          </P
+><P
+>There are often many correct ways to mark up a given piece
+of text, and you may have to make guesses about which tag
+to use.  Sometimes you'll have to make compromises.
+If you don't like the way a certain
+tag looks in HTML, that doesn't mean you should choose a
+different tag based on its output formatting.  The
+processing stylesheets can be altered to fix the
+formatting of that same tag everywhere in the document
+(not just in the place you're working on).  For example,
+if you're frustrated that the <TT
+CLASS="SGMLTAG"
+>&#60;systemitem&#62;</TT
+> tag doesn't produce
+any formatting by default, you should fix the stylesheets,
+not change the valid <TT
+CLASS="SGMLTAG"
+>&#60;systemitem&#62;</TT
+> tag to, for example,
+an <TT
+CLASS="SGMLTAG"
+>&#60;emphasis&#62;</TT
+> tag.
+          </P
+><P
+>            Here are the common SGML elements:
+          </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Structural Elements</B
+></P
+><DL
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+></DT
+><DD
+><P
+>The book is the most common toplevel element, and is
+probably the one you should use for your document.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;set&#62;</TT
+></DT
+><DD
+><P
+>If you want to group more than one book into a
+single unit, you can place them all inside a set.
+This is useful when you want to bundle up
+documentation in alternate ways.  We do this with
+the documentation, using a <TT
+CLASS="SGMLTAG"
+>&#60;set&#62;</TT
+> to put everything
+into a single directory,
+and a <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+> to
+put each Wine guide into a separate directory.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+></DT
+><DD
+><P
+>A <TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+>
+element includes a single entire chapter of the
+book.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;part&#62;</TT
+></DT
+><DD
+><P
+>If the chapters in your book fall into major
+categories or groupings, you can place each 
+collection of chapters
+into a <TT
+CLASS="SGMLTAG"
+>&#60;part&#62;</TT
+>
+element.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;sect?&#62;</TT
+></DT
+><DD
+><P
+>DocBook has many section elements to divide the
+contents of a chapter into smaller chunks.  The
+encouraged approach is to use the numbered section
+tags, <TT
+CLASS="SGMLTAG"
+>&#60;sect1&#62;</TT
+>,
+<TT
+CLASS="SGMLTAG"
+>&#60;sect2&#62;</TT
+>, <TT
+CLASS="SGMLTAG"
+>&#60;sect3&#62;</TT
+>, <TT
+CLASS="SGMLTAG"
+>&#60;sect4&#62;</TT
+>, and <TT
+CLASS="SGMLTAG"
+>&#60;sect5&#62;</TT
+> (if necessary).
+These tags must be nested in order: you can't place
+a <TT
+CLASS="SGMLTAG"
+>&#60;sect3&#62;</TT
+> directly
+inside a <TT
+CLASS="SGMLTAG"
+>&#60;sect1&#62;</TT
+>.
+You have to nest the <TT
+CLASS="SGMLTAG"
+>&#60;sect3&#62;</TT
+> inside a <TT
+CLASS="SGMLTAG"
+>&#60;sect2&#62;</TT
+>, and so forth.
+Documents with these explicit section groupings are
+easier for SGML processors to deal with, and lead to
+better organized documents.  DocBook also supplies a
+<TT
+CLASS="SGMLTAG"
+>&#60;section&#62;</TT
+> element
+which you can nest inside itself, but its use is
+discouraged in favor of the numbered section tags.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;title&#62;</TT
+></DT
+><DD
+><P
+>The title of a book, chapter, part, section, etc.
+In most of the major structural elements, like
+<TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+>,
+<TT
+CLASS="SGMLTAG"
+>&#60;part&#62;</TT
+>, and the
+various section tags, <TT
+CLASS="SGMLTAG"
+>&#60;title&#62;</TT
+> is mandatory.  In
+other elements like <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+> and <TT
+CLASS="SGMLTAG"
+>&#60;note&#62;</TT
+>, it's optional.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+></DT
+><DD
+><P
+>The basic unit of text is the paragraph, represented
+by the <TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+> tag.
+This is probably the tag you'll use most often.  In
+fact, in a simple document, you can probably get
+away with using only <TT
+CLASS="SGMLTAG"
+>&#60;book&#62;</TT
+>, <TT
+CLASS="SGMLTAG"
+>&#60;chapter&#62;</TT
+>, <TT
+CLASS="SGMLTAG"
+>&#60;title&#62;</TT
+>, and <TT
+CLASS="SGMLTAG"
+>&#60;para&#62;</TT
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;article&#62;</TT
+></DT
+><DD
+><P
+>For shorter, more targeted documents, like topic
+pieces and whitepapers, you can use <TT
+CLASS="SGMLTAG"
+>&#60;article&#62;</TT
+> as your toplevel
+element.
+                </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Inline Formatting Elements</B
+></P
+><DL
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;filename&#62;</TT
+></DT
+><DD
+><P
+>The name of a file.  You can optionally set the
+<TT
+CLASS="SGMLTAG"
+>class</TT
+> attribute
+to <TT
+CLASS="LITERAL"
+>Directory</TT
+>,
+<TT
+CLASS="LITERAL"
+>HeaderFile</TT
+>, and
+<TT
+CLASS="LITERAL"
+>SymLink</TT
+> to further classify the
+filename.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;userinput&#62;</TT
+></DT
+><DD
+><P
+>                  Literal text entered by the user.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;computeroutput&#62;</TT
+></DT
+><DD
+><P
+>                  Literal text output by the computer.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;literal&#62;</TT
+></DT
+><DD
+><P
+>A catch-all element for literal computer data.  Its
+use is somewhat vague; try to use a more specific
+tag if possible, like <TT
+CLASS="SGMLTAG"
+>&#60;userinput&#62;</TT
+> or <TT
+CLASS="SGMLTAG"
+>&#60;computeroutput&#62;</TT
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;quote&#62;</TT
+></DT
+><DD
+><P
+>An inline quotation.  This tag typically inserts
+quotation marks for you, so you would write <TT
+CLASS="SGMLTAG"
+>&#60;quote&#62;</TT
+>This is a
+quote<TT
+CLASS="SGMLTAG"
+>&#60;/quote&#62;</TT
+> rather
+than "This is a quote".  This usage may be a little
+bulkier, but it does allow for automated formatting
+of all quoted material in the document.  Thus, if
+you wanted all quotations to appear in italic, you
+could make the change once in your stylesheet,
+rather than doing a search and replace throughout
+the document.  For larger chunks of quoted text, you
+can use <TT
+CLASS="SGMLTAG"
+>&#60;blockquote&#62;</TT
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;note&#62;</TT
+></DT
+><DD
+><P
+>Insert a side note for the reader.  By default, the
+SGML processor usually prefixes the content with
+"Note:".  You can change this text by adding a
+<TT
+CLASS="SGMLTAG"
+>&#60;title&#62;</TT
+> element.
+Thus, to add a visible FIXME comment to the
+documentation, you might write:
+                </P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;note&#62;
+  &#60;title&#62;FIXME&#60;/title&#62;
+  &#60;para&#62;This section needs more info about...&#60;/para&#62;
+&#60;/note&#62;</PRE
+><P
+>                  The results will look something like this:
+                </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>FIXME</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>This section needs more info about...</P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;sgmltag&#62;</TT
+></DT
+><DD
+><P
+>Used for inserting SGML tags, etc., into a SGML
+document without resorting to a lot of entity
+quoting, e.g., &amp;lt;.  You can change the
+appearance of the text with the <TT
+CLASS="SGMLTAG"
+>class</TT
+> attribute.  Some
+common values of this are
+<TT
+CLASS="LITERAL"
+>starttag</TT
+>,
+<TT
+CLASS="LITERAL"
+>endtag</TT
+>,
+<TT
+CLASS="LITERAL"
+>attribute</TT
+>,
+<TT
+CLASS="LITERAL"
+>attvalue</TT
+>, and even
+<TT
+CLASS="LITERAL"
+>sgmlcomment</TT
+>.  See this SGML file,
+<TT
+CLASS="FILENAME"
+>documentation/documentation.sgml</TT
+>,
+for examples.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;prompt&#62;</TT
+></DT
+><DD
+><P
+>The text used for a computer prompt, for example a
+shell prompt, or command-line application prompt.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;replaceable&#62;</TT
+></DT
+><DD
+><P
+>Meta-text that should be replaced by the user, not
+typed in literally, e.g., in command descriptions
+and <TT
+CLASS="PARAMETER"
+><I
+>--help</I
+></TT
+> outputs.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;constant&#62;</TT
+></DT
+><DD
+><P
+>                  A programming constant, e.g.,
+                  <TT
+CLASS="CONSTANT"
+>MAX_PATH</TT
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;symbol&#62;</TT
+></DT
+><DD
+><P
+>A symbolic value replaced, for example, by a
+pre-processor.  This applies primarily to C macros,
+but may have other uses.  Use the <TT
+CLASS="SGMLTAG"
+>&#60;constant&#62;</TT
+> tag instead of
+<TT
+CLASS="SGMLTAG"
+>&#60;symbol&#62;</TT
+> where
+appropriate.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;function&#62;</TT
+></DT
+><DD
+><P
+>                  A programming function name.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;parameter&#62;</TT
+></DT
+><DD
+><P
+>                  Programming language parameters you pass with a function.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;option&#62;</TT
+></DT
+><DD
+><P
+>                  Parameters you pass to a command-line executable.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;varname&#62;</TT
+></DT
+><DD
+><P
+>                  Variable name, typically in a programming language.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;type&#62;</TT
+></DT
+><DD
+><P
+>Programming language types, e.g., from a typedef
+definition.  May have other uses, too.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;structname&#62;</TT
+></DT
+><DD
+><P
+>The name of a C-language <SPAN
+CLASS="TYPE"
+>struct</SPAN
+>
+declaration, e.g., <SPAN
+CLASS="STRUCTNAME"
+>sockaddr</SPAN
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;structfield&#62;</TT
+></DT
+><DD
+><P
+>                  A field inside a C <SPAN
+CLASS="TYPE"
+>struct</SPAN
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;command&#62;</TT
+></DT
+><DD
+><P
+>An executable binary, e.g., <B
+CLASS="COMMAND"
+>/bin/sh</B
+>
+or <B
+CLASS="COMMAND"
+>ls</B
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;envar&#62;</TT
+></DT
+><DD
+><P
+>                  An environment variable, e.g, <TT
+CLASS="ENVAR"
+>$PATH</TT
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;systemitem&#62;</TT
+></DT
+><DD
+><P
+>A generic catch-all for system-related things, like
+OS names, computer names, system resources, etc.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;email&#62;</TT
+></DT
+><DD
+><P
+>An email address.  The SGML processor will typically
+add extra formatting characters, and even a
+<TT
+CLASS="LITERAL"
+>mailto:</TT
+> link for HTML pages.
+Usage: <TT
+CLASS="SGMLTAG"
+>&#60;email&#62;</TT
+>user@host.com<TT
+CLASS="SGMLTAG"
+>&#60;/email&#62;</TT
+>
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;firstterm&#62;</TT
+></DT
+><DD
+><P
+>Special emphasis for introducing a new term.  Can
+also be linked to a <TT
+CLASS="SGMLTAG"
+>&#60;glossary&#62;</TT
+> entry, if
+desired.
+                </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Item Listing Elements</B
+></P
+><DL
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;itemizedlist&#62;</TT
+></DT
+><DD
+><P
+>For bulleted lists, no numbering.  You can tweak the
+layout with SGML attributes.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;orderedlist&#62;</TT
+></DT
+><DD
+><P
+>A numbered list; the SGML processor will insert the
+numbers for you.  You can suggest numbering styles
+with the <TT
+CLASS="SGMLTAG"
+>numeration</TT
+> attribute.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;simplelist&#62;</TT
+></DT
+><DD
+><P
+>A very simple list of items, often inlined.  Control
+the layout with the <TT
+CLASS="SGMLTAG"
+>type</TT
+> attribute.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;variablelist&#62;</TT
+></DT
+><DD
+><P
+>A list of terms with definitions or descriptions,
+like this very list!
+                </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Block Text Quoting Elements</B
+></P
+><DL
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;programlisting&#62;</TT
+></DT
+><DD
+><P
+>Quote a block of source code. Typically highlighted
+in the output and set off from normal text.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;screen&#62;</TT
+></DT
+><DD
+><P
+>Quote a block of visible computer output, like the
+output of a command or chunks of debug logs.
+                </P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Hyperlink Elements</B
+></P
+><DL
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;link&#62;</TT
+></DT
+><DD
+><P
+>&#13;Generic hypertext link, used for pointing to other
+sections within the current document.  You supply
+the visible text for the link, plus the name of the <TT
+CLASS="SGMLTAG"
+>id</TT
+> attribute of the
+element that you want to link to.  For example:
+
+<PRE
+CLASS="PROGRAMLISTING"
+>&lt;link linkend="configuring"&#62;the section on configuring wine&lt;/link&gt;
+...
+&lt;sect2 id="configuring"&gt;
+...</PRE
+>
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;xref&#62;</TT
+></DT
+><DD
+><P
+>In-document hyperlink that can generate its own
+text.  Similar to the <TT
+CLASS="SGMLTAG"
+>&#60;link&#62;</TT
+> tag, you use the
+<TT
+CLASS="SGMLTAG"
+>linkend</TT
+>
+attribute to specify which target element you want
+to jump to:
+                </P
+><P
+><PRE
+CLASS="PROGRAMLISTING"
+>&lt;xref linkend="configuring"&gt;
+...
+&lt;sect2 id="configuring"&gt;
+...</PRE
+>
+                </P
+><P
+>By default, most SGML processors will autogenerate
+some generic text for the <TT
+CLASS="SGMLTAG"
+>&#60;xref&#62;</TT
+> link, like
+<SPAN
+CLASS="QUOTE"
+>"Section 2.3.1"</SPAN
+>.  You can use the
+<TT
+CLASS="SGMLTAG"
+>endterm</TT
+>
+attribute to grab the visible text content of the
+hyperlink from another element:
+                </P
+><P
+>   <PRE
+CLASS="PROGRAMLISTING"
+>&lt;xref linkend="configuring" endterm="config-title"&gt;
+...
+&lt;sect2 id="configuring"&gt;
+  &lt;title id="config-title"&#62;Configuring&lt;/title&gt;
+...</PRE
+>
+                </P
+><P
+>This would create a link to the
+<SPAN
+CLASS="SYMBOL"
+>configuring</SPAN
+> element,
+displaying the text of the
+<SPAN
+CLASS="SYMBOL"
+>config-title</SPAN
+> element for the
+hyperlink.  Most often, you'll add an <TT
+CLASS="SGMLTAG"
+>id</TT
+> attribute to the
+<TT
+CLASS="SGMLTAG"
+>&#60;title&#62;</TT
+> of the
+section you're linking to, as above, in which case
+the SGML processor will use the target's title text
+for the link text.
+                </P
+><P
+>Alternatively, you can use an <TT
+CLASS="SGMLTAG"
+>xreflabel</TT
+> attribute in
+the target element tag to specify the link text:
+                </P
+><PRE
+CLASS="PROGRAMLISTING"
+>&lt;sect1 id="configuring" xreflabel="Configuring"&gt;</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><TT
+CLASS="SGMLTAG"
+>&#60;xref&#62;</TT
+> is an
+empty element.  You don't need a closing tag for
+it (this is defined in the DTD).  In SGML
+documents, you should use the form <TT
+CLASS="SGMLTAG"
+>&#60;xref&#62;</TT
+>, while in XML
+documents you should use
+<TT
+CLASS="SGMLTAG"
+>&lt;xref/&gt;</TT
+>.
+                  </P
+></TD
+></TR
+></TABLE
+></DIV
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;anchor&#62;</TT
+></DT
+><DD
+><P
+>An invisible tag, used for inserting <TT
+CLASS="SGMLTAG"
+>id</TT
+> attributes into a
+document to link to arbitrary places (i.e., when
+it's not close enough to link to the top of an
+element).
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;ulink&#62;</TT
+></DT
+><DD
+><P
+>                  Hyperlink in URL form, e.g., <A
+HREF="http://www.itk.ru"
+TARGET="_top"
+>http://www.itk.ru</A
+>.
+                </P
+></DD
+><DT
+><TT
+CLASS="SGMLTAG"
+>&#60;olink&#62;</TT
+></DT
+><DD
+><P
+>Indirect hyperlink; can be used for linking to
+external documents.  Not often used in practice.
+                </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1605">9.3.2.4. Multiple SGML files</H3
+><P
+>            How to split an SGML document into multiple files...
+          </P
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="SGML-ENVIRONMENT">9.3.3. The SGML Environment</H2
+><P
+>You can write SGML/DocBook documents in any text editor you
+might find (although as we'll find in
+, some editors are more friendly for
+this task than others).  However, if you want to convert
+those documents into a more friendly form for reading, such
+as HTML, PostScript, or PDF, you will need a working SGML
+environment.  This section attempts to lay out the various
+SGML rendering systems, and how they are set up on the
+popular Linux distributions.
+        </P
+><P
+>There are two main environments, which can provide transformation
+from your .sgml files into target (HTML,Postsript,TeX,text,pdf,...)
+formats.
+        </P
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1612">9.3.3.1. DSSSL Environment</H3
+><P
+>This is the old and stable modular stylesheet system.
+In most cases that is what you need.
+          </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1615">9.3.3.2. XSLT Environment</H3
+><P
+>This is new, less stable environment, use .xml files
+instead .sgml.
+          </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1618">9.3.3.3. SGML on Redhat</H3
+><P
+>Most Linux distributions have everything you need already
+bundled up in package form.  Unfortunately, each
+distribution seems to handle its SGML environment
+differently, installing it into different paths, and
+naming its packages according to its own whims.
+          </P
+><P
+>The following packages seems to be sufficient for RedHat 7.1.  You
+will want to be careful about the order in which you install the
+rpms.
+            <P
+></P
+><UL
+><LI
+><P
+>sgml-common-*.rpm</P
+></LI
+><LI
+><P
+>openjade-*.rpm</P
+></LI
+><LI
+><P
+>perl-SGMLSpm-*.rpm</P
+></LI
+><LI
+><P
+>docbook-dtd*.rpm</P
+></LI
+><LI
+><P
+>docbook-style-dsssl-*.rpm</P
+></LI
+><LI
+><P
+>tetex-*.rpm</P
+></LI
+><LI
+><P
+>jadetex-*.rpm</P
+></LI
+><LI
+><P
+>docbook-utils-*.rpm</P
+></LI
+></UL
+>
+You can also use ghostscript to view the ps format output and 
+Adobe Acrobat 4 to view the pdf file.
+          </P
+></DIV
+><DIV
+CLASS="SECT3"
+><H3
+CLASS="SECT3"
+><A
+NAME="AEN1639">9.3.3.4. SGML on Debian</H3
+><P
+>The following packages seems to be sufficient for Debian 3.0.
+Just install them via apt-get.
+            <P
+></P
+><UL
+><LI
+><P
+>sgmltools-2</P
+></LI
+><LI
+><P
+>docbook-utils</P
+></LI
+></UL
+>
+           You can also use <B
+CLASS="COMMAND"
+>gv</B
+> to view the ps format output.
+          </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1121.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Message translation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="localisation.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Language extensions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

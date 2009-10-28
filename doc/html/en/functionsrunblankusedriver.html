@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>RUNBLANK()-USEDRIVER()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="MPOSTOLC()-RTRIM()"
+HREF="functionsmpostolcrtrim.html"><LINK
+REL="NEXT"
+TITLE="VAL()-YEAR()"
+HREF="functionsvalyear.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsmpostolcrtrim.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsvalyear.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSRUNBLANKUSEDRIVER">RUNBLANK()-USEDRIVER()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN19981"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONRUNBLANK"
+> RUN_BLANK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSAVESCREEN"
+> SAVESCREEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save a screen region for later display</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSCROLL"
+> SCROLL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Scroll a screen region up or down, right or left</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSEARCH"
+> SEARCH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Search a substring into string by regular expression.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONSECONDS"
+> SECONDS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the number of seconds elapsed since midnight</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONSELECT"
+> SELECT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the work area number of a specified alias</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONSET"
+> SET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Inspect or change a system setting</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETBLINK"
+> SETBLINK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle asterisk (*) interpretation in the SETCOLOR() string between blinking</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCANCEL"
+> SETCANCEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle Alt+C or Ctrl+C and Ctrl+Break as program termination keys</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCOLOR"
+> SETCOLOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current colors and optionally set new colors</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETCURSOR"
+> SETCURSOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the cursor shape</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONSETKEY"
+> SETKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Assign an action block to a key</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETMODE"
+> SETMODE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Change display mode to a specified number of rows and columns</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETPOS"
+> SETPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move the cursor to a new position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONSETPRC"
+> SETPRC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set PROW() and PCOL() values</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONSLEEP"
+> SLEEP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sleep for the specified number of seconds and milliseconds.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSOUNDEX"
+> SOUNDEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a character string to "soundex" form</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSPACE"
+> SPACE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a string of spaces</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONSPLITGEOM"
+> SPLITGEOM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Extract array from string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONSQRT"
+> SQRT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the square root of a positive number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONSTART"
+> START()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Start task.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONSTARTPATH"
+> STARTPATH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns full path and name of program.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTR"
+> STR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a numeric expression to a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTR2VAR"
+> STR2VAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert uucode string to data.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTRTRAN"
+> STRTRAN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Search and replace characters within a character string or memo field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTUFF"
+> STUFF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete and insert characters in a string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSUBSTR"
+> SUBSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Extract a substring from a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONSYSCMD"
+> SYSCMD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Run system command.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKGETMSG"
+> TASKGETMSG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get message.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKID"
+> TASKID()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return task identifier.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKPEEKMSG"
+> TASKPEEKMSG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get message.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSENDMSG"
+> TASKSENDMSG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Send message to task.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSTART"
+> TASKSTART()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Resume all tasks what was stopped.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtask.html#FUNCTIONTASKSTOP"
+> TASKSTOP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Stop all tasks with the exclusion current task.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPACCEPT"
+> TCPACCEPT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Accept a connection on a socket.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPCLOSE"
+> TCPCLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close connection.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPCONNECT"
+> TCPCONNECT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Connect with server.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPLISTEN"
+> TCPLISTEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Listen port.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPREAD"
+> TCPREAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read to buffer data from connection.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categtcp.html#FUNCTIONTCPWRITE"
+> TCPWRITE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Commit data from buffer to connection.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONTIME"
+> TIME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the system time</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONTONE"
+> TONE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sound a speaker tone for a specified frequency and duration</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+> TRANSFORM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert any value into a formatted character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONTRIM"
+> TRIM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove trailing spaces from a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONTYPE"
+> TYPE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the type of an expression</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONULIMIT"
+> ULIMIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set limit to use system resources.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONUPDATED"
+> UPDATED()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine whether a GET changed during a READ</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONUPPER"
+> UPPER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert lowercase characters to uppercase</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONUSED"
+> USED()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine whether a database file is in USE</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONUSEDRIVER"
+> USEDRIVER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Use specified driver.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsmpostolcrtrim.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsvalyear.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>MPOSTOLC()-RTRIM()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>VAL()-YEAR()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

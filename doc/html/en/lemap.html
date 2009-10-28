@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Associative arrays</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="PREVIOUS"
+TITLE="Rational arithmetic"
+HREF="lerational.html"><LINK
+REL="NEXT"
+TITLE="FOR ... IN statement"
+HREF="leforin.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="lerational.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Language extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="leforin.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LEMAP">10.8. Associative arrays</H1
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Associative array (AA)</I
+></SPAN
+> - is an array which elements
+are accessed by <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>associated</I
+></SPAN
+> character strings.
+Let's consider associative array in contrast of an ordinary array.
+An ordinary array may be written as follows:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>declare m[5]
+m[1]=11; m[2]=12; ....</PRE
+><P
+>To get access to elements, a consecutive numbers set
+is used, and it is limited with the array size. Inserting a new element
+becomes a problem, and it results in time losses. Opposite to ordinary
+arrays, elements of association arrays are identified by strings.
+<A
+HREF="categarray.html#FUNCTIONMAP"
+>map()</A
+> function creates an empty associative
+array. New elements are added to the associative array automatically.
+To get access to the element of the associative array object-style syntax
+can be used. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>// create an empty associative array
+m=map()
+// add two elements
+m:asdf=11; m:qwer=12
+? valtype(m) // 'O' (object)
+? len(m)     // 2
+? m:qwer     // 12</PRE
+><P
+>To be honest, elements of associative array are identified by
+a <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>hash codes</I
+></SPAN
+> of strings. Hash code is the number
+as a result of hashing a string to a number by using
+bit operations. For strings of less than 20 characters, the probability
+of coincidence of hash codes is approximately 1/1000000. For longer strings,
+the probability is increased.</P
+><P
+>The compiler calculates hash codes of strings enclosed in "`" characters.
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? m:qwer == m[`qwer`] // .t.</PRE
+><P
+>Also, compiler calculates hash codes of strings with <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>hash_</I
+></SPAN
+>
+prefix. In this case, the string is not converted to upper case. You should do
+it yourself:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? m:qwer == m[hash_qwer] // .f.
+? m:qwer == m[hash_QWER] // .t.</PRE
+><P
+>At run time, hash code can be calculated by
+<A
+HREF="categstring.html#FUNCTIONHASHSTR"
+>hashstr()</A
+> function:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? m:qwer == m[hashstr("QWER")] // .t.</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Pay attention to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>QWER</I
+></SPAN
+> which is written in upper case,
+because compiler does not distinguish letter cases.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>It's possible to get a list of indexes in the associative array by
+<A
+HREF="categunderconstruction.html#FUNCTIONMAPKEYS"
+>mapkeys()</A
+> function which returns an
+ordinary array with hash codes of associative array elements:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>mm := mapkeys(m)
+? len(mm) // 2
+for i to len(mm)
+	? mm[i] // something like 1233345677, 124321423
+next</PRE
+><P
+>Also, the associate array is characterized by a very fast access to elements,
+because necessary element is actually searched in a hash table.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="lerational.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="leforin.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Rational arithmetic</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FOR ... IN statement</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

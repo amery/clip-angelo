@@ -556,15 +556,15 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include <limits.h>
-#include "../include.h/ci_rdd.h"
-#include "./ci_btree.h"
+#include "ci_rdd.h"
+#include "ci_btree.h"
 #include "ci_error.ch"
 #include "ci_dbinfo.ch"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif
 
-#include "../include.h/ci_ncp.h"
+#include "ci_ncp.h"
 
 #ifdef USE_NCPFS
 #define fcntl ncp_fcntl

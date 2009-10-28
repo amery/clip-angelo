@@ -11,7 +11,7 @@ EXPAT_EXIST=''
 
 gcc -o test_expat test/test_expat.c -L$Dir_Lib -lexpat
 if [ $? != 0 ] ; then
-	echo "Warning: package expat-dev not installed or have old version" >&2
+	echo "Warning: package expat-dev is not installed or has old version" >&2
 	exitf 1
 fi
 echo "Dir_Lib = $Dir_Lib" >>Makefile.ini

@@ -1,0 +1,5607 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ARRAY</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="C-API"
+HREF="categc-api.html"><LINK
+REL="NEXT"
+TITLE="LOGICAL"
+HREF="categlogical.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categc-api.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categlogical.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGARRAY">ARRAY</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN21289"
+></A
+><H2
+>Name</H2
+>ARRAY&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN21292"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>NIL                 <A
+HREF="categarray.html#FUNCTIONA2EDIT"
+>A2EDIT(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;aData&#62;, &#60;cUserFunc&#62;, &#60;aSay&#62;, &#60;aHeaders&#62;, &#60;aHeadSep&#62;, &#60;aColSep&#62;, &#60;aFootSep&#62;, &#60;aFooters&#62;)</A
+>
+Value               <A
+HREF="categarray.html#FUNCTIONAADD"
+>AADD(&#60;aTarget&#62;, &#60;expValue&#62;[, &#60;keyValue&#62;])</A
+>
+aDuplicate          <A
+HREF="categarray.html#FUNCTIONACLONE"
+>ACLONE(&#60;aSource&#62;)</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONACOPY"
+>ACOPY(&#60;aSource&#62;, &#60;aTarget&#62;, [&#60;nStart&#62;], [&#60;nCount&#62;], [&#60;nTargetPos&#62;])</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL(&#60;aTarget&#62;, &#60;nPosition&#62;)</A
+>
+aArray              <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL(&#60;aArray&#62;, &#60;bBlock&#62;, [&#60;nStart&#62;], [&#60;nCount&#62;])</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL(&#60;aTarget&#62;, &#60;expValue&#62;,[&#60;nStart&#62;], [&#60;nCount&#62;])</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS(&#60;aTarget&#62;, &#60;nPosition&#62;)</A
+>
+aArray              <A
+HREF="categarray.html#FUNCTIONARRAY"
+>ARRAY(&#60;nElements&#62; [, &#60;nElements&#62;...])</A
+>
+&#60;nStoppedAt&#62;        <A
+HREF="categarray.html#FUNCTIONASCAN"
+>ASCAN(&#60;aArr&#62;, &#60;Expression&#62;, [&#60;nStart&#62;], [&#60;nCount&#62;], [lBack])</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONASIZE"
+>ASIZE(&#60;aTarget&#62;, &#60;nLength&#62;)</A
+>
+aTarget             <A
+HREF="categarray.html#FUNCTIONASORT"
+>ASORT(&#60;aTarget&#62;, [&#60;nStart&#62;],[&#60;nCount&#62;], [&#60;bOrder&#62;])</A
+>
+Element             <A
+HREF="categarray.html#FUNCTIONATAIL"
+>ATAIL(&#60;aArray&#62;)</A
+>
+aDirectory          <A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+>DIRECTORY(&#60;cDirSpec&#62;, [&#60;cAttributes&#62;])</A
+>
+lEmpty              <A
+HREF="categarray.html#FUNCTIONEMPTY"
+>EMPTY(&#60;exp&#62;)</A
+>
+&#60;aSelected&#62;         <A
+HREF="categarray.html#FUNCTIONFLEDIT"
+>__Fledit( &#60;aSrc&#62;, &#60;aList&#62;)</A
+>
+aNewArray           <A
+HREF="categarray.html#FUNCTIONFTAADDITION"
+>FT_AADDITION( &#60;aList1&#62;, &#60;aList2&#62; [, &#60;lTrimmer&#62; [, &#60;lCaseSens&#62; ] ] ) ;</A
+>
+nAverage            <A
+HREF="categarray.html#FUNCTIONFTAAVG"
+>FT_AAVG( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] )</A
+>
+aSorted             <A
+HREF="categarray.html#FUNCTIONFTADESSORT"
+>FT_ADESSORT( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] )</A
+>
+nMaxlen             <A
+HREF="categarray.html#FUNCTIONFTAEMAXLEN"
+>FT_AEMAXLEN( &#60;aArray&#62; [, &#60;nDimension&#62; [, &#60;nStart&#62; [, &#60;nCount&#62; ] ] ] ) ;</A
+>
+nMinlen             <A
+HREF="categarray.html#FUNCTIONFTAEMINLEN"
+>FT_AEMINLEN( &#60;aArray&#62; [, &#60;nDimension&#62; [, &#60;nStart&#62; [, &#60;nCount&#62; ] ] ] )</A
+>
+nMedian             <A
+HREF="categarray.html#FUNCTIONFTAMEDIAN"
+>FT_AMEDIAN( &#60;aArray&#62; [, &#60;nStart&#62; [, &#60;nEnd&#62; ] ] )</A
+>
+nNoOfMatches        <A
+HREF="categarray.html#FUNCTIONFTANOMATCHES"
+>FT_ANOMATCHES( &#60;aArray&#62;, &#60;bCompareBlock&#62; ; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] )</A
+>
+xElement            <A
+HREF="categarray.html#FUNCTIONFTAREDIT"
+>FT_AREDIT( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;Array Name&#62;, ; &#60;nElem&#62;, &#60;aHeadings&#62;, &#60;aBlocks&#62; [, &#60;bGetFunc&#62; ] )</A
+>
+nSum                <A
+HREF="categarray.html#FUNCTIONFTASUM"
+>FT_ASUM( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] )</A
+>
+aArray              <A
+HREF="categarray.html#FUNCTIONFTRESTARR"
+>FT_RESTARR( &#60;cFileName&#62;, &#60;nErrorCode&#62; )</A
+>
+lRet                <A
+HREF="categarray.html#FUNCTIONFTSAVEARR"
+>FT_SAVEARR( &#60;aArray&#62;, &#60;cFileName&#62;, &#60;nErrorCode&#62; )</A
+>
+nCount              <A
+HREF="categarray.html#FUNCTIONLEN"
+>LEN(&#60;cString&#62; | &#60;aTarget&#62;)</A
+>
+&#60;oObject&#62;           <A
+HREF="categarray.html#FUNCTIONMAP"
+>MAP()</A
+>
+&#60;lOldMode&#62;          <A
+HREF="categarray.html#FUNCTIONMAPMODIFY"
+>MAPMODIFY(&#60;oObj&#62;, &#60;lMode&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN21327"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21330"
+></A
+><H3
+><A
+NAME="FUNCTIONA2EDIT"
+></A
+>Function  A2EDIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  A2EDIT(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;aData&#62;, &#60;cUserFunc&#62;, &#60;aSay&#62;, &#60;aHeaders&#62;, &#60;aHeadSep&#62;, &#60;aColSep&#62;, &#60;aFootSep&#62;, &#60;aFooters&#62;) --&#62; NIL
+ &#13;</PRE
+><P
+>  A2EDIT() is a array function that determines the browse 2D array data
+ in a table layout.</P
+><P
+> 
+ A2EDIT() lake a <A
+HREF="categdatabase.html#FUNCTIONDBEDIT"
+>DBEDIT()</A
+> function.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21338"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Numeric, is the upper coordinates of the A2EDIT() window.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Numeric, is the left coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBottom&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Numeric, is the bottom coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Numeric, is the right coordinates.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Array, is the 2D array to browse.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUserFunc&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	String, is the user function name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSay&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Array, is the picture clauses to format each column.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aHeaders&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Array, is the column headers.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aHeadSep&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Array or character, is the heading separators.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aColSep&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Array or character, is the columns separators.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFootSep&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Array or character, is the footings separators.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFooters&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Array, is the footings data.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  A2EDIT() returns NIL.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBEDIT"
+> DBEDIT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21413"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  arr := {{1,2,3,4,5}{11,22,33,44,55}{111,222,333,444,555}}
+ A2EDIT(0, 0, maxrow(), maxcol(), arr, {"One", "Two", "Three", "Four", "Five"})
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21417"
+></A
+><H3
+><A
+NAME="FUNCTIONAADD"
+></A
+>Function  AADD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> AADD(&#60;aTarget&#62;, &#60;expValue&#62;[, &#60;keyValue&#62;]) --&#62; Value&#13;</PRE
+><P
+>  AADD() is an array function that increases the actual length of the
+ target array by one.  The newly created array element is assigned the
+ value specified by &lt;expValue&gt;.</P
+><P
+> 
+ AADD() is used to dynamically grow an array.  It is useful for building
+ dynamic lists or queues.  A good example of this is the GetList array
+ used by the Get system to hold Get objects.  After a READ or CLEAR GETS,
+ GetList becomes an empty array.  Each time you execute an @...GET
+ command, the Get system uses AADD() to add a new element to the end of
+ the GetList array, and then assigns a new Get object to the new element.</P
+><P
+> 
+ AADD() is similar to ASIZE() but only adds one element at a time;
+ ASIZE() can grow or shrink an array to a specified size.  AADD(),
+ however, has the advantage that it can assign a value to the new
+ element, while ASIZE() cannot.  AADD() may also seem similar to AINS(),
+ but they are different:  AINS() moves elements within an array, but it
+ does not change the array's length.</P
+><P
+> 
+ Note:  If &lt;expValue&gt; is another array, the new element in the target
+ array will contain a reference to the array specified by &lt;expValue&gt;.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21427"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to which a new element is to be added.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value assigned to the new element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;keyValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new element key value .
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  AADD() evaluates &lt;expValue&gt; and returns its value.  If &lt;expValue&gt; is not
+ specified, AADD() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAINS"
+> AINS()</A
+> <A
+HREF="categarray.html#FUNCTIONASIZE"
+>ASIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21458"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate the effects of multiple invocations
+ of AADD() to an array:
+ 
+ aArray := {}                  // Result: aArray is an empty array
+ AADD(aArray, 5)               // Result: aArray is { 5 }
+ AADD(aArray, 10)              // Result: aArray is { 5, 10 }
+ AADD(aArray, { 12, 10 })      // Result: aArray is
+ // { 5, 10, { 12, 10 } }
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21462"
+></A
+><H3
+><A
+NAME="FUNCTIONACLONE"
+></A
+>Function  ACLONE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ACLONE(&#60;aSource&#62;) --&#62; aDuplicate&#13;</PRE
+><P
+>  ACLONE() is an array function that creates a complete duplicate of the
+ &lt;aSource&gt; array.  If &lt;aSource&gt; contains subarrays, ACLONE() creates
+ matching subarrays and fills them with copies of the values in the
+ &lt;aSource&gt; subarrays.  ACLONE() is similar to ACOPY(), but ACOPY() does
+ not duplicate nested arrays.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21469"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSource&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to be duplicated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ACLONE() returns a duplicate of &lt;aSource&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONACOPY"
+> ACOPY()</A
+> <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL()</A
+> <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS()</A
+> <A
+HREF="categarray.html#FUNCTIONASIZE"
+>ASIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21492"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates an array then duplicates it using
+ ACLONE().  The first array is then altered, but the duplicate copy is
+ unaffected:
+ 
+ LOCAL aOne, aTwo
+ aOne := { 1, 2, 3 }         // Result: aOne is {1, 2, 3}
+ aTwo := ACLONE(aOne)        // Result: aTwo is {1, 2, 3}
+ aOne[1] := 99               // Result: aOne is {99, 2, 3}
+ // aTwo is still {1, 2, 3}
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21496"
+></A
+><H3
+><A
+NAME="FUNCTIONACOPY"
+></A
+>Function  ACOPY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  ACOPY(&#60;aSource&#62;, &#60;aTarget&#62;,
+ [&#60;nStart&#62;], [&#60;nCount&#62;], [&#60;nTargetPos&#62;]) --&#62; aTarget
+ 
+ &#13;</PRE
+><P
+>  ACOPY() is an array function that copies elements from the &lt;aSource&gt;
+ array to the &lt;aTarget&gt; array.  The &lt;aTarget&gt; array must already exist
+ and be large enough to hold the copied elements.  If the &lt;aSource&gt; array
+ has more elements, some elements will not be copied.</P
+><P
+> 
+ ACOPY() copies values of all data types including NIL and code blocks.
+ If an element of the &lt;aSource&gt; array is a subarray, the corresponding
+ element in the &lt;aTarget&gt; array will contain a reference to the subarray.
+ Thus, ACOPY() will not create a complete duplicate of a multidimensional
+ array.  To do this, use the ACLONE() function.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21504"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSource&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to copy elements from.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to copy elements to.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting element position in the &lt;aSource&gt; array.
+ If not specified, the default value is one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of elements to copy from the &lt;aSource&gt; array
+ beginning at the &lt;nStart&gt; position.  If &lt;nCount&gt; is not specified, all
+ elements in &lt;aSource&gt; beginning with the starting element are copied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTargetPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting element position in the &lt;aTarget&gt; array
+ to receive elements from &lt;aSource&gt;.  If not specified, the default value
+ is one.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ACOPY() returns a reference to the target array, &lt;aTarget&gt;.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONACLONE"
+> ACLONE()</A
+> <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL()</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL()</A
+> <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS()</A
+> <A
+HREF="categarray.html#FUNCTIONASORT"
+>ASORT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21549"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates two arrays, each filled with a value.
+ The first two elements from the source array are then copied into the
+ target array:
+ 
+ LOCAL nCount := 2, nStart := 1, aOne, aTwo
+ aOne := { 1, 1, 1 }
+ aTwo := { 2, 2, 2 }
+ ACOPY(aOne, aTwo, nStart, nCount)
+ // Result: aTwo is now { 1, 1, 2 }
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21553"
+></A
+><H3
+><A
+NAME="FUNCTIONADEL"
+></A
+>Function  ADEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ADEL(&#60;aTarget&#62;, &#60;nPosition&#62;) --&#62; aTarget&#13;</PRE
+><P
+>  ADEL() is an array function that deletes an element from an array.  The
+ contents of the specified array element is lost, and all elements from
+ that position to the end of the array are shifted up one element.  The
+ last element in the array becomes NIL.</P
+><P
+> 
+ Warning!  xClipper implements multidimensional arrays by nesting
+ arrays within other arrays.  If the &lt;aTarget&gt; array is a
+ multidimensional array, ADEL() can delete an entire subarray specified
+ by &lt;nPosition&gt;, causing &lt;aTarget&gt; to describe an array with a different
+ structure than the original.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21561"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to delete an element from.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPosition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position of the target array element to be
+ deleted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ADEL() returns a reference to the target array, &lt;aTarget&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONACOPY"
+> ACOPY()</A
+> <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL()</A
+> <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21588"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates a constant array of three elements, and
+ then deletes the second element.  The third element is moved up one
+ position, and the new third element is assigned a NIL:
+ 
+ LOCAL aArray
+ aArray := { 1, 2, 3 }      // Result: aArray is
+ // now { 1, 2, 3 }
+ ADEL(aArray, 2)            // Result: aArray is
+ // now { 1, 3, NIL }
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21592"
+></A
+><H3
+><A
+NAME="FUNCTIONAEVAL"
+></A
+>Function  AEVAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  AEVAL(&#60;aArray&#62;, &#60;bBlock&#62;,
+ [&#60;nStart&#62;], [&#60;nCount&#62;]) --&#62; aArray
+ 
+ &#13;</PRE
+><P
+>  AEVAL() is an array function that evaluates a code block once for each
+ element of an array, passing the element value and the element index as
+ block parameters.  The return value of the block is ignored.  All
+ elements in &lt;aArray&gt; are processed unless either the &lt;nStart&gt; or the
+ &lt;nCount&gt; argument is specified.</P
+><P
+> 
+ AEVAL() makes no assumptions about the contents of the array elements it
+ is passing to the block.  It is assumed that the supplied block knows
+ what type of data will be in each element.</P
+><P
+> 
+ AEVAL() is similar to DBEVAL() which applies a block to each record of a
+ database file.  Like DBEVAL(), AEVAL() can be used as a primitive for
+ the construction of iteration commands for both simple and complex array
+ structures.</P
+><P
+> 
+ Refer to the Code Blocks section in the "Basic Concepts" chapter of the
+ Programming and Utilities Guide for more information on the theory and
+ syntax of code blocks.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21602"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to traverse.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block to execute for each element encountered.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting element.  If not specified, the default is
+ element one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of elements to process from &lt;nStart&gt;.  If not
+ specified, the default is all elements to the end of the array.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  AEVAL() returns a reference to &lt;aArray&gt;.
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBEVAL"
+> DBEVAL()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+>EVAL()</A
+> <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21639"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses AEVAL() to display an array of file names
+ and file sizes returned from the DIRECTORY() function:
+ 
+ #include "Directry.ch"
+ //
+ LOCAL aFiles := DIRECTORY("*.dbf"), nTotal := 0
+ AEVAL(aFiles,;
+ { | aDbfFile |;
+ QOUT(PADR(aDbfFile[F_NAME], 10), aDbfFile[F_SIZE]),;
+ nTotal += aDbfFile[F_SIZE]);
+ } )
+ //
+ ?
+ ? "Total Bytes:", nTotal
+ 
+ This example uses AEVAL() to build a list consisting of
+ selected items from a multidimensional array:
+ 
+ #include "Directry.ch"
+ //
+ LOCAL aFiles := DIRECTORY("*.dbf"), aNames := {}
+ AEVAL(aFiles,;
+ { | file | AADD(aNames, file[F_NAME]) };
+ )
+ 
+ This example changes the contents of the array element
+ depending on a condition.  Notice the use of the codeblock
+ parameters:
+ 
+ LOCAL aArray[6]
+ AFILL(aArray,"old")
+ AEVAL(aArray,;
+ {|cValue,nIndex| IF(cValue == "old",;
+ aArray[nIndex] := "new",)})
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21643"
+></A
+><H3
+><A
+NAME="FUNCTIONAFILL"
+></A
+>Function  AFILL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> AFILL(&#60;aTarget&#62;, &#60;expValue&#62;,[&#60;nStart&#62;], [&#60;nCount&#62;]) --&#62; aTarget&#13;</PRE
+><P
+> AFILL() is an array function that fills the specified array with a
+ single value of any data type (including an array, code block, or NIL)
+ by assigning &lt;expValue&gt; to each array element in the specified range.</P
+><P
+> 
+ Warning!  AFILL() cannot be used to fill multidimensional arrays.
+ xClipper implements multidimensional arrays by nesting arrays within
+ other arrays.  Using AFILL() with a multidimensional array will
+ overwrite subarrays used for the other dimensions of the array.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21649"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to be filled.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to be placed in each array element.  It can
+ be an expression of any valid data type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position of the first element to be filled.  If this
+ argument is omitted, the default value is one.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of elements to be filled starting with
+ element &lt;nStart&gt;.  If this argument is omitted, elements are filled from
+ the starting element position to the end of the array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> AFILL() returns a reference to &lt;aTarget&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+>DBSTRUCT()</A
+> <A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+>DIRECTORY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21687"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example, creates a three-element array.  The array is
+ then filled with the logical value, (.F.).  Finally, elements in
+ positions two and three are assigned the new value of true (.T.):
+ 
+ LOCAL aLogic[3]
+ // Result: aLogic is { NIL, NIL, NIL }
+ 
+ AFILL(aLogic, .F.)
+ // Result: aLogic is { .F., .F., .F. }
+ 
+ AFILL(aLogic, .T., 2, 2)
+ // Result: aLogic is { .F., .T., .T. }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21691"
+></A
+><H3
+><A
+NAME="FUNCTIONAINS"
+></A
+>Function  AINS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> AINS(&#60;aTarget&#62;, &#60;nPosition&#62;) --&#62; aTarget&#13;</PRE
+><P
+> AINS() is an array function that inserts a new element into a specified
+ array.  The newly inserted element is NIL data type until a new value is
+ assigned to it.  After the insertion, the last element in the array is
+ discarded, and all elements after the new element are shifted down one
+ position.</P
+><P
+> 
+ Warning!  AINS() must be used carefully with multidimensional
+ arrays.  Multidimensional arrays in xClipper are implemented by
+ nesting arrays within other arrays.  Using AINS() in a multidimensional
+ array discards the last element in the specified target array which, if
+ it is an array element, will cause one or more dimensions to be lost.
+ To insert a new dimension into an array, first add a new element to the
+ end of the array using AADD() or ASIZE() before using AINS().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21697"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array into which a new element will be inserted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPosition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position at which the new element will be
+ inserted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> AINS() returns a reference to the target array, &lt;aTarget&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+> <A
+HREF="categarray.html#FUNCTIONACOPY"
+>ACOPY()</A
+> <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL()</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL()</A
+> <A
+HREF="categarray.html#FUNCTIONASIZE"
+>ASIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21727"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates the effect of using AINS() on an
+ array:
+ 
+ LOCAL aArray
+ aArray := { 1, 2, 3 }      // Result: aArray is
+ // now { 1, 2, 3 }
+ AINS(aArray, 2)            // Result: aArray is
+ // now { 1, NIL, 2 }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21731"
+></A
+><H3
+><A
+NAME="FUNCTIONARRAY"
+></A
+>Function  ARRAY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ARRAY(&#60;nElements&#62; [, &#60;nElements&#62;...]) --&#62; aArray&#13;</PRE
+><P
+>  ARRAY() is an array function that returns an uninitialized array with
+ the specified number of elements and dimensions.  If more than one
+ &lt;nElements&gt; argument is specified, a multidimensional array is created
+ with the number of dimensions equal to the number of &lt;nElements&gt;
+ arguments specified.  Any &lt;nElements&gt; that is itself an array creates a
+ nested array.</P
+><P
+> 
+ In xClipper, there are several ways to create an array.  You can
+ declare an array using a declaration statement such as LOCAL or STATIC;
+ you can create an array using a PRIVATE or PUBLIC statement; you can
+ assign a literal array to an existing variable; or you can use the
+ ARRAY() function.  ARRAY() has the advantage that it can create arrays
+ within expressions or code blocks.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21739"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nElements&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of elements in the specified dimension.
+ The maximum number of elements in a dimension is 65000.  Arrays in
+ xClipper can have an unlimited number of dimensions.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ARRAY() returns an array of specified dimensions.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+> <A
+HREF="categarray.html#FUNCTIONACLONE"
+>ACLONE()</A
+> <A
+HREF="categarray.html#FUNCTIONACOPY"
+>ACOPY()</A
+> <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL()</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL()</A
+> <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21765"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates a one-dimensional array of five elements
+ using the ARRAY() function, and then shows the equivalent action by
+ assigning a literal array of NIL values:
+ 
+ aArray := ARRAY(5)
+ aArray := { NIL, NIL, NIL, NIL, NIL }
+ 
+ This example shows three different statements which create the
+ same multidimensional array:
+ 
+ aArray := ARRAY(3, 2)
+ aArray := { {NIL, NIL}, {NIL, NIL}, {NIL, NIL} }
+ aArray := { ARRAY(2), ARRAY(2), ARRAY(2) }
+ 
+ This example creates a nested, multidimensional array:
+ 
+ aArray := ARRAY(3, {NIL,NIL})
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21769"
+></A
+><H3
+><A
+NAME="FUNCTIONASCAN"
+></A
+>Function  ASCAN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ASCAN(&#60;aArr&#62;, &#60;Expression&#62;, [&#60;nStart&#62;], [&#60;nCount&#62;], [lBack])	--&#62; &#60;nStoppedAt&#62;&#13;</PRE
+><P
+> ASCAN() scanns an array  &lt;aArr&gt; for a value &lt;Expression&gt; or until a code block &lt;Expression&gt; returns TRUE
+ and uses for comparions operator (=).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21774"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Array, is the target array</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Expression&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is either a simple value to scan for, or code block</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the start element to scan.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, is the number element to scan from the starting position.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lBack&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Logical, if TRUE - scan from end of array (default FALSE)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns a numeric value representing the array position of the last
+ element scanned.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21809"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> arr := {"Ann", "Mary", "Jhon", "Suzi"}
+ ASCAN(arr, "Mary")    //	--&#62; 2</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21813"
+></A
+><H3
+><A
+NAME="FUNCTIONASIZE"
+></A
+>Function  ASIZE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ASIZE(&#60;aTarget&#62;, &#60;nLength&#62;) --&#62; aTarget&#13;</PRE
+><P
+>  ASIZE() is an array function that changes the actual length of the
+ &lt;aTarget&gt; array.  The array is shortened or lengthened to match the
+ specified length.  If the array is shortened, elements at the end of the
+ array are lost.  If the array is lengthened, new elements are added to
+ the end of the array and assigned NIL.</P
+><P
+> 
+ ASIZE() is similar to AADD() which adds a single new element to the end
+ of an array and optionally assigns a new value at the same time.  Note
+ that ASIZE() is different from AINS() and ADEL(), which do not actually
+ change the array's length.</P
+><P
+> 
+ Note:  ASIZE() only supports single-dimensional arrays.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21822"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to grow or shrink.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLength&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new size of the array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ASIZE() returns a reference to the target array, &lt;aTarget&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+> <A
+HREF="categarray.html#FUNCTIONADEL"
+>ADEL()</A
+> <A
+HREF="categarray.html#FUNCTIONAFILL"
+>AFILL()</A
+> <A
+HREF="categarray.html#FUNCTIONAINS"
+>AINS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21850"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate adding new elements and deleting
+ existing elements:
+ 
+ aArray := { 1 }          // Result: aArray is { 1 }
+ ASIZE(aArray, 3)         // Result: aArray is { 1, NIL, NIL }
+ ASIZE(aArray, 1)         // Result: aArray is { 1 }
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21854"
+></A
+><H3
+><A
+NAME="FUNCTIONASORT"
+></A
+>Function  ASORT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ASORT(&#60;aTarget&#62;, [&#60;nStart&#62;],[&#60;nCount&#62;], [&#60;bOrder&#62;]) --&#62; aTarget&#13;</PRE
+><P
+> ASORT() is an array function that sorts all or part of an array
+ containing elements of a single data type.  Data types that can be
+ sorted include character, date, logical, and numeric.</P
+><P
+> 
+ If the &lt;bOrder&gt; argument is not specified, the default order is
+ ascending.  Elements with low values are sorted toward the top of the
+ array (first element), while elements with high values are sorted toward
+ the bottom of the array (last element).</P
+><P
+> 
+ If the &lt;bOrder&gt; block argument is specified, it is used to determine the
+ sorting order.  Each time the block is evaluated, two elements from the
+ target array are passed as block parameters.  The block must return true
+ (.T.) if the elements are in sorted order.  This facility can be used to
+ create a descending or dictionary order sort.  See the examples below.</P
+><P
+> 
+ When sorted, character strings are ordered in ASCII sequence; logical
+ values are sorted with false (.F.) as the low value; date values are
+ sorted chronologically; and numeric values are sorted by magnitude.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21862"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to be sorted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first element of the sort.  If not specified, the
+ default starting position is one.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of elements to be sorted.  If not specified,
+ all elements in the array beginning with the starting element are
+ sorted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional code block used to determine sorting order.
+ If not specified, the default order is ascending.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ASORT() returns a reference to the &lt;aTarget&gt; array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONASCAN"
+> ASCAN()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+>EVAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21898"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates an array of five unsorted elements, sorts
+ the array in ascending order, then sorts the array in descending
+ order using a code block:
+ 
+ aArray := { 3, 5, 1, 2, 4 }
+ ASORT(aArray)
+ // Result: { 1, 2, 3, 4, 5 }
+ 
+ ASORT(aArray,,, { |x, y| x &#62; y })
+ // Result: { 5, 4, 3, 2, 1 }
+ 
+ 
+ This example sorts an array of character strings in ascending
+ order, independent of case.  It does this by using a code block that
+ converts the elements to uppercase before they are compared:
+ 
+ aArray := { "Fred", Kate", "ALVIN", "friend" }
+ ASORT(aArray,,, { |x, y| UPPER(x) &#60; UPPER(y) })
+ 
+ This example sorts a nested array using the second element of
+ each subarray:
+ 
+ aKids := { {"Mary", 14}, {"Joe", 23}, {"Art", 16} }
+ aSortKids := ASORT(aKids,,, { |x, y| x[2] &#60; y[2] })
+ 
+ Result:
+ 
+ { {"Mary", 14}, {"Art", 16}, {"Joe", 23} }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21902"
+></A
+><H3
+><A
+NAME="FUNCTIONATAIL"
+></A
+>Function  ATAIL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ATAIL(&#60;aArray&#62;) --&#62; Element&#13;</PRE
+><P
+> ATAIL() is an array function that returns the highest numbered element
+ of an array.  It can be used in applications as shorthand for
+ &lt;aArray&gt;[LEN(&lt;aArray&gt;)] when you need to obtain the last element of an
+ array.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21907"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ATAIL() returns either a value or a reference to an array or object.
+ The array is not changed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONLEN"
+> LEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21927"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example creates a literal array and returns that
+ last element of the array:
+ 
+ aArray := {"a", "b", "c", "d"}
+ ? ATAIL(aArray)                     // Result: d</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21931"
+></A
+><H3
+><A
+NAME="FUNCTIONEMPTY"
+></A
+>Function  EMPTY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EMPTY(&#60;exp&#62;) --&#62; lEmpty&#13;</PRE
+><P
+> The EMPTY() function has a number of uses.  You can use it to determine
+ if a user entered a value into a Get object before committing changes to
+ a database file.  It can also determine whether a formal parameter is
+ NIL or unsupplied.  In addition, it can test an array for zero-length.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21936"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an expression of any data type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> EMPTY() returns true (.T.) if the expression results in an empty value;
+ otherwise, it returns false (.F.).  The criteria for determining whether
+ a value is considered empty depends on the data type of &lt;exp&gt; according
+ to the following rules:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+> List of Empty Values
+ ------------------------------------------------------------------------
+ Data Type    Contents
+ ------------------------------------------------------------------------
+ Array        Zero-length
+ Character    Spaces, tabs, CR/LF, or ("")
+ Numeric      0
+ Date         Null (CTOD(""))
+ Logical      False (.F.)
+ Memo         Same as character
+ NIL          NIL
+ ------------------------------------------------------------------------
+ </PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONLEN"
+> LEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21957"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate use of EMPTY() against several
+ different data types:
+ 
+ ? EMPTY(SPACE(5)), EMPTY("")        // Result: .T. .T.
+ ? EMPTY(0), EMPTY(CTOD(""))         // Result: .T. .T.
+ ? EMPTY(.F.), EMPTY(NIL)            // Result: .T. .T.
+ 
+ This example uses EMPTY() to determine whether the user
+ entered a value into the first Get object before writing the new
+ value to the database file:
+ 
+ LOCAL cCust := SPACE(15), nAmount := 0
+ USE Sales NEW
+ @ 10, 10 GET cCust
+ @ 11, 10 GET nAmount PICTURE "999.99"
+ READ
+ //
+ IF !EMPTY(cCust)
+ APPEND BLANK
+ REPLACE Sales-&#62;Cust WITH cCust, Sales-&#62;Amount ;
+ WITH nAmount
+ ENDIF
+ 
+ This example uses EMPTY() as part of the VALID clause to force
+ the user to enter data into the current Get object:
+ 
+ LOCAL cCode := SPACE(5)
+ @ 2, 5 SAY "Enter code" GET cCode VALID !EMPTY(cCode)
+ READ</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21961"
+></A
+><H3
+><A
+NAME="FUNCTIONFLEDIT"
+></A
+>Function  __FLEDIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> __Fledit( &#60;aSrc&#62;, &#60;aList&#62;) --&#62; &#60;aSelected&#62;&#13;</PRE
+><P
+> __FlEdit() searches each element of &lt;aList&gt;[1] (DBS_NAME) in &lt;aSrc&gt;.
+ If the element is found, this element of &lt;aSrs&gt; is added to
+ destination
+ array &lt;aSelected&gt;. According of other subelements (DBS_TYPE, DBS_LEN,
+ DBS_DEC) isn't checked.
+ Categories <B
+CLASS="COMMAND"
+>TCP</B
+> is the set of functions for work with
+ sockets.</P
+><P
+> 
+ For functions TCPListen() and TCPAccept() many thanks to Sergio Zayas.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21968"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSrc&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The initial array keeping all possible field's descriptions.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aList&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The Array keeping all fields to check.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The Array keeping all selectde field's descriptions.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBSTRUCT"
+> DBSTRUCT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21993"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aList:=GetUserList()  //Get user's defined field's list
+ aRealFlds:=__FlEdit(DbStruct(), aList) //and select only correct</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21997"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAADDITION"
+></A
+>Function  FT_AADDITION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AADDITION( &#60;aList1&#62;, &#60;aList2&#62; [, &#60;lTrimmer&#62; [, &#60;lCaseSens&#62; ] ] ) ;
+ --&#62; aNewArray&#13;</PRE
+><P
+> This function will add the elements unique of aList2 with aList1.
+ It returns a new array including all the elements of aList1
+ plus the unique elements of aList2.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22002"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aList1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the primary array.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aList2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the secondary array.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lTrimmer&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical value denoting whether leading or
+ trailing spaces should be included in the
+ comparison. If .T., then ignores spaces in
+ comparison, defaults to .T., .F. includes spaces.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lCaseSens&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical value denoting case sensitivity.
+ If .T., then comparison is sensitive to case,
+ defaults to .T., .F. ignores case.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An array of the union of aList1 and aList2.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22032"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aList1 := {"apple", "orange", "pear"}
+ aList2 := {"apple ", "banana", "PEAR"}
+ 
+ FT_AADDITION( aList1, aList2 )
+ // ignores spaces, sensitive to case
+ // returns {"apple","orange","pear","banana","PEAR"}
+ 
+ FT_AADDITION( aList1, aList2, , .F. )
+ // ignores spaces, not sensitive to case
+ // returns {"apple","orange","pear","banana"}
+ 
+ FT_AADDITION( aList1, aList2, .F., .F. )
+ // sensitive to spaces, not sensitive to case
+ // returns {"apple","orange","pear","apple ","banana"}</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22036"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAAVG"
+></A
+>Function  FT_AAVG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AAVG( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] ) --&#62; nAverage&#13;</PRE
+><P
+> This function is used to get a numeric average of selected or all
+ elements of an array.</P
+><P
+> 
+ This routine requires FT_ASUM().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22042"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array containing the elements to be averaged.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first array item to include,
+ defaults to first element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEndIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the last array element to include,
+ defaults to all elements.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The average of the specified array elements.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22067"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AAVG(aSubTotals)          // Get Average of Entire Array
+ 
+ FT_AAVG(aSubTotals, 5)       // Get Average of 5th Element On
+ 
+ FT_AAVG(aSubTotals, , 10)    // Get Average of 1st 10 Elements
+ 
+ FT_AAVG(aSubTotals, 5, 10)   // Get Average of Elements 5-10</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22071"
+></A
+><H3
+><A
+NAME="FUNCTIONFTADESSORT"
+></A
+>Function  FT_ADESSORT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ADESSORT( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] ) --&#62; aSorted&#13;</PRE
+><P
+> This function is used to sort an array in descending order, i.e., Z-A</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22076"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to be sorted
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first array item to include in the sort,
+ defaults to first element
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEndIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the last array element to include in the sort,
+ defaults to all elements</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The array, sorted in descending order.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22101"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ADESSORT(aNames)               // Sort the Entire Array
+ 
+ FT_ADESSORT(aNames, 5)            // Sort from the 5th Element On
+ 
+ FT_ADESSORT(aNames, , 10)         // Sort the 1st 10 Elements
+ 
+ FT_ADESSORT(aNames, 5, 10)        // Sort Elements 5-10</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22105"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAEMAXLEN"
+></A
+>Function  FT_AEMAXLEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AEMAXLEN( &#60;aArray&#62; [, &#60;nDimension&#62; [, &#60;nStart&#62; [, &#60;nCount&#62; ] ] ] ) ;
+ --&#62; nMaxlen&#13;</PRE
+><P
+> This function will measure each element of an array
+ dimension and return the longest element.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22110"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array containing the elements to be measured.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDimension&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array dimension to be measured,
+ defaults to first dimension.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting array element to include,
+ defaults to first array element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of array elements to process from
+ from &lt;nStart&gt;, defaults to remaining elements
+ in array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The length of the longest size element of an array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAEMINLEN"
+> FT_AEMINLEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22145"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AEMAXLEN(aArray)       // Measure the 1st dimension of an Array
+ 
+ FT_AEMAXLEN(aArray,2)     // Measure the 2nd dimension of an Array
+ 
+ FT_AEMAXLEN(aArray,2,,9)  // Measure Elements 1-9 of the
+ 2nd dimension or subarray
+ 
+ FT_AEMAXLEN(aArray,3,5,9) // Measure Elements 5-9 of the
+ 3rd dimension or subarray
+ 
+ FT_AEMAXLEN(aArray,3,5)   // Measure Elements 5 to last in the
+ 3rd dimension or subarray</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22149"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAEMINLEN"
+></A
+>Function  FT_AEMINLEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AEMINLEN( &#60;aArray&#62; [, &#60;nDimension&#62; [, &#60;nStart&#62; [, &#60;nCount&#62; ] ] ] )
+ --&#62; nMinlen&#13;</PRE
+><P
+> This function will measure each element of an array
+ dimension and return the shortest element.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22154"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array containing the elements to be measured.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDimension&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array dimension to be measured,
+ defaults to first dimension.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the starting array element to include,
+ defaults to first array element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of array elements to process from
+ from &lt;nStart&gt;, defaults to remaining elements
+ in array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The length of the shortest size element of an array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAEMAXLEN"
+> FT_AEMAXLEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22189"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AEMINLEN(aArray)       // Measure the 1st dimension of an Array
+ 
+ FT_AEMINLEN(aArray,2)     // Measure the 2nd dimension of an Array
+ 
+ FT_AEMINLEN(aArray,2,,9)  // Measure Elements 1-9 of 2nd dimension
+ 
+ FT_AEMINLEN(aArray,3,5,9) // Measure Elements 5-9 of 3rd dimension
+ 
+ FT_AEMINLEN(aArray,3,5)   // Measure Elements 5 to end of 3rd dimension</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22193"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAMEDIAN"
+></A
+>Function  FT_AMEDIAN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AMEDIAN( &#60;aArray&#62; [, &#60;nStart&#62; [, &#60;nEnd&#62; ] ] )
+ --&#62; nMedian&#13;</PRE
+><P
+> This function sorts the elements of a numeric array and
+ then returns the value in the middle element of the sorted
+ array.  If there is no exact middle value, then it returns
+ the average of the two middle values.  Half of the elements
+ are &gt; median and half are &lt; median.  A median average may
+ more reflect a more useful average when there are extreme
+ values in the set.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22198"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array containing the elements to be averaged.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first array element to include,
+ defaults to first element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEnd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the last array element to include,
+ defaults to last element.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The median average of the array elements</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22223"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AMEDIAN( aArray )      // Return Median for entire array
+ 
+ FT_AMEDIAN( aArray, 2)    // Return Median for elements from 2 to end
+ 
+ FT_AMEDIAN( aArray, ,9)   // Return Median for 1st 9 elements
+ 
+ FT_AMEDIAN( aArray,8,40 ) // Return Median for elements 8 to 40</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22227"
+></A
+><H3
+><A
+NAME="FUNCTIONFTANOMATCHES"
+></A
+>Function  FT_ANOMATCHES() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ANOMATCHES( &#60;aArray&#62;, &#60;bCompareBlock&#62; ;
+ [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] ) --&#62; nNoOfMatches&#13;</PRE
+><P
+> This function returns the number of array elements that, when passed
+ to the supplied code block, cause that code block to return a .T. value.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22232"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to be searched
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bCompareBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a code block containing the expression for
+ the array elements to be tested with.  Each element is passed
+ as a parameter to the block.  If the block returns .T., the
+ number of matches will be incremented by one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first array item to include in the search,
+ defaults to first element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEndIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the last array element to include in the search,
+ defaults to all elements.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The number of elements that cause the code block to return .T.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22262"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Search the Entire Array
+ FT_ANOMATCHES(aTries, { | x | x &#60;= 100 } )
+ 
+ // Search from the 5th Element On
+ FT_ANOMATCHES(aCodes, { | x | UPPER(x) == cCurrentCode }, 5)
+ 
+ // Search the 1st 10 Elements
+ FT_ANOMATCHES(aDates, { | x | IS_BETWEEN(DATE()-7,x,DATE() + 7) }, 10)
+ 
+ // Search Elements 5-10
+ FT_ANOMATCHES(aNames, { | x | x &#60;= cLastGoodName }, 5, 10)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22266"
+></A
+><H3
+><A
+NAME="FUNCTIONFTAREDIT"
+></A
+>Function  FT_AREDIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AREDIT( &#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;Array Name&#62;, ;
+ &#60;nElem&#62;, &#60;aHeadings&#62;, &#60;aBlocks&#62; [, &#60;bGetFunc&#62; ] ) --&#62; xElement&#13;</PRE
+><P
+> This function allows you to position yourself in an array,
+ add and delete rows with the &lt;F7&gt; and &lt;F8&gt; keys,
+ and pass a UDF with information to edit the individual gets.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22271"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, &lt;nRight&gt; are coordinates for TBrowse
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Array Name&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is name of 2 dimensional to array edit
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nElem&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>      is pointer for element in array
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aHeadings&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is array of column headings
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aBlocks&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    is array of blocks describing each array element
+ 
+ [ &lt;bGetFunc&gt; ] is get editing function for handling individual elements</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Value of element positioned on when exit FT_AREDIT()
+ The type of this value depends on what is displayed.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22306"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_AREDIT(3, 5, 18, 75, ar, @nElem, aHeadings, aBlocks)
+ 
+ This example will allow you to browse a 2 dimensional array
+ But you can't edit it since there is no GetBlock UDF
+ It allows the user to hit ENTER to select an element or ESC to
+ return 0
+ 
+ * This second example shows how to edit a 2 dimensional array
+ * as might be done to edit an invoice
+ 
+ LOCAL i, ar[3, 26], aBlocks[3], aHeadings[3]
+ LOCAL nElem := 1, bGetFunc
+ 
+ * Set up two dimensional array "ar"
+ 
+ FOR i = 1 TO 26
+ ar[1, i] := i          //  1  -&#62;  26  Numeric
+ ar[2, i] := CHR(i+64)  // "A" -&#62; "Z"  Character
+ ar[3, i] := CHR(91-i)  // "Z" -&#62; "A"  Character
+ NEXT i
+ 
+ * SET UP aHeadings Array for column headings
+ 
+ aHeadings  := { "Numbers", "Letters", "Reverse" }
+ 
+ * Need to set up individual array blocks for each TBrowse column
+ 
+ aBlocks[1] := {|| STR(ar[1, nElem], 2) } // prevent default 10 spaces
+ aBlocks[2] := {|| ar[2, nElem] }
+ aBlocks[3] := {|| ar[3, nElem] }
+ 
+ * set up TestGet() as the passed Get Function so FT_ArEdit knows how
+ * to edit the individual gets.
+ 
+ bGetFunc   := { | b, ar, nDim, nElem | TestGet(b, ar, nDim, nElem) }
+ SetColor( "N/W, W/N, , , W/N" )
+ CLEAR SCREEN
+ FT_AREDIT(3, 5, 18, 75, ar, @nElem, aHeadings, aBlocks, bGetFunc)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22310"
+></A
+><H3
+><A
+NAME="FUNCTIONFTASUM"
+></A
+>Function  FT_ASUM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ASUM( &#60;aArray&#62; [, &#60;nStartIndex&#62; [, &#60;nEndIndex&#62; ] ] ) --&#62; nSum&#13;</PRE
+><P
+> This function is to sum the elements of a numeric array or to sum the
+ lengths of a character array.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22315"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array containing the elements to be summed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first array item to include,
+ defaults to first element.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEndIndex&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the last array element to include,
+ defaults to all elements.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The sum of the elements of the array or the lengths of the elements.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22340"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  FT_ASUM(aSubTotals)               // Sum the Entire Array
+ 
+ FT_ASUM(aSubTotals, 5)            // Sum from the 5th Element On
+ 
+ FT_ASUM(aSubTotals, , 10)         // Sum the 1st 10 Elements
+ 
+ FT_ASUM(aSubTotals, 5, 10)        // Sum Elements 5-10</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22344"
+></A
+><H3
+><A
+NAME="FUNCTIONFTRESTARR"
+></A
+>Function  FT_RESTARR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RESTARR( &#60;cFileName&#62;, &#60;nErrorCode&#62; ) --&#62; aArray&#13;</PRE
+><P
+> FT_RESTARR() restores an array which was saved to
+ a disc file using FT_SAVEARR().</P
+><P
+> 
+ [10/1/92 Librarian note:</P
+><P
+> 
+ This function does not appear to work with multi-dimensional
+ arrays.  If you'd care to modify it to support this feature,
+ please do and send it to Glenn Scott 71620,1521.]</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22352"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a DOS file name.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nErrorCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> will return any DOS file error.
+ 
+ All arguments are required.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return an array variable.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTSAVEARR"
+> FT_SAVEARR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22377"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aArray := { {'Invoice 1',CTOD('04/15/91'),1234.32,.T.},;
+ {'Invoice 2',DATE(),234.98,.F.},;
+ {'Invoice 3',DATE() + 1,0,.T.}  }
+ nErrorCode := 0
+ FT_SAVEARR(aArray,'INVOICE.DAT',@nErrorCode)
+ IF nErrorCode = 0
+ aSave := FT_RESTARR('INVOICE.DAT',@nErrorCode)
+ IF nErrorCode # 0
+ ? 'Error restoring array'
+ ENDIF
+ ELSE
+ ? 'Error writing array'
+ ENDIF
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22381"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSAVEARR"
+></A
+>Function  FT_SAVEARR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SAVEARR( &#60;aArray&#62;, &#60;cFileName&#62;, &#60;nErrorCode&#62; ) --&#62; lRet&#13;</PRE
+><P
+> FT_SAVEARR() saves any Clipper array, except those
+ containing compiled code blocks, to a disc file.  The
+ array can be restored from the disc file using
+ FT_RESTARR().</P
+><P
+> 
+ [10/1/92 Librarian note:</P
+><P
+> 
+ This function does not appear to work with multi-dimensional
+ arrays.  If you'd care to modify it to support this feature,
+ please do and send it to Glenn Scott 71620,1521.]</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22390"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any Clipper array except those containing
+ compiled code blocks.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a DOS file name.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nErrorCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> will return any DOS file error.
+ 
+ All arguments are required.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .F. if there was a DOS file error or the array contained
+ code blocks, otherwise returns .T.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTRESTARR"
+> FT_RESTARR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22420"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aArray := { {'Invoice 1',CTOD('04/15/91'),1234.32,.T.},;
+ {'Invoice 2',DATE(),234.98,.F.},;
+ {'Invoice 3',DATE() + 1,0,.T.}  }
+ nErrorCode := 0
+ FT_SAVEARR(aArray,'INVOICE.DAT',@nErrorCode)
+ IF nErrorCode = 0
+ aSave := FT_RESTARR('INVOICE.DAT',@nErrorCode)
+ IF nErrorCode # 0
+ ? 'Error restoring array'
+ ENDIF
+ ELSE
+ ? 'Error writing array'
+ ENDIF
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22424"
+></A
+><H3
+><A
+NAME="FUNCTIONLEN"
+></A
+>Function  LEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LEN(&#60;cString&#62; | &#60;aTarget&#62;) --&#62; nCount&#13;</PRE
+><P
+> LEN() is a character and array function that returns the length of a
+ character string or the number of elements in an array.  With a
+ character string, each byte counts as one, including an embedded null
+ byte (CHR(0)).  By contrast, a null string ("") counts as zero.</P
+><P
+> 
+ For an array, LEN() returns the number of elements.  If the array is
+ multidimensional, subarrays count as one element.  This means that the
+ LEN() of a nested or multidimensional array simply returns the length of
+ the first dimension.  To determine the number of elements in other
+ dimensions, use LEN() on the subarrays as shown in the example below.
+ Note that nested arrays in xClipper need not have uniform dimensions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22430"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string to count.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTarget&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to count.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LEN() returns the length of a character string or the number of elements
+ in an array as an integer numeric value.  If the character string is a
+ null string ("") or the array is empty, LEN() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+> <A
+HREF="categarray.html#FUNCTIONASIZE"
+>ASIZE()</A
+> <A
+HREF="categstring.html#FUNCTIONLTRIM"
+>LTRIM()</A
+> <A
+HREF="categstring.html#FUNCTIONRTRIM"
+>RTRIM()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22458"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples demonstrate LEN() with various arguments:
+ 
+ ? LEN("string of characters")         // Result: 20
+ ? LEN("")                              // Result: 0
+ ? LEN(CHR(0))                        // Result: 1
+ //
+ LOCAL aTest[10]
+ ? LEN(aTest)                           // Result: 10
+ 
+ This example creates a literal two-dimensional array, and then
+ returns the number of elements in the subarray contained in the first
+ element of the original array:
+ 
+ LOCAL aArray := { {1, 2}, {1, 2}, {1, 2} }
+ ? LEN(aArray)                        // Result: 3
+ ? LEN(aArray[1])                     // Result: 2
+ 
+ This example navigates a multidimensional array using LEN():
+ 
+ LOCAL aArray := { {1, 2}, {1, 2}, {1, 2} }
+ LOCAL nRow, nColumn, nRowCount, nColumnCount
+ 
+ //
+ nRowCount = LEN(aArray)
+ FOR nRow = 1 TO nRowCount
+ nColumnCount = LEN(aArray[nRow])
+ FOR nColumn = 1 TO nColumnCount
+ ? nRow, nColumn, aArray[nRow][nColumn]
+ NEXT
+ NEXT
+ 
+ In this example a function returns an array of numeric values
+ that describe the dimensions of a nested or multidimensional array.
+ The function assumes that the array has uniform dimensions:
+ 
+ FUNCTION Dimensions( aArray )
+ LOCAL aDims := {}
+ DO WHILE ( VALTYPE(aArray) == "A" )
+ AADD( aDims, LEN(aArray) )
+ aArray := aArray[1]
+ ENDDO
+ RETURN (aDims)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22462"
+></A
+><H3
+><A
+NAME="FUNCTIONMAP"
+></A
+>Function  MAP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MAP() 	--&#62; &#60;oObject&#62;&#13;</PRE
+><P
+> MAP() createst new empty object (associative array) and returns it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22467"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns empty object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22477"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aMap := MAP()
+ aMap:Name := "User1"
+ aMap:Phone := "111-11-11"
+ aMap:PhoneCount := 12
+ 
+ PrintInfo(aMap)	     // Users name: User1
+ // Phone     : 111-11-11
+ // Count     :  13
+ ////////////////
+ static function PrintInfo( Obj )
+ qout ("Users name: "+Obj:Name)
+ qout ("Phone     : "+Obj:Phone)
+ Obj:PhoneCount ++
+ qout ("Count     : "+str(Obj:PhoneCount, 3))
+ return .t.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22481"
+></A
+><H3
+><A
+NAME="FUNCTIONMAPMODIFY"
+></A
+>Function  MAPMODIFY </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MAPMODIFY(&#60;oObj&#62;, &#60;lMode&#62;) 	--&#62; &#60;lOldMode&#62;&#13;</PRE
+><P
+> MAPMODIFY() includes/excludes the control mode for attributes when
+ this attributes try changes.</P
+><P
+> 
+ If &lt;lMode&gt; is TRUE and source object &lt;oObj&gt; contents method &lt;Modify&gt;,
+ then before changes attributes value automatically called method
+ oObj:Modify(&lt;nHashAttr&gt;, &lt;vNewValue&gt;). When &lt;nHashAttr&gt; is the
+ attribute hash code, &lt;vNewValue&gt; new value, what must be assigned.
+ The &lt;Modify&gt; method must returned realy value for modifyed attribute.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22488"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oObj&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Object, is the source object.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Logical, is the new mode value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns logical value - old control mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONMAP"
+> MAP()</A
+> <A
+HREF="categstring.html#FUNCTIONHASHSTR"
+> HASHSTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22514"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> static function modify(selfobj, HashAttr, Val)
+ local ret
+ ret := Val
+ if HashAttr == hashstr("GROUP")
+ ret := Val
+ if Val == NIL
+ ret := "WORKGROUP"
+ endif
+ endif
+ return ret
+ 
+ Person := MAP()
+ Person:NAME := "User1"
+ Person:GROUP := "WORKGROUP"
+ Person:PASSWD := "****"
+ Person:MODIFY := @modify()
+ 
+ ? Person:GROUP		// --&#62; WORKGROUP
+ 
+ Person:GROUP := NIL
+ 
+ ? Person:GROUP		// --&#62; NIL
+ 
+ Person:GROUP := "ABC"
+ 
+ ? Person:GROUP		// --&#62; ABC
+ 
+ MAPMODIFY(Person, .T.)
+ Person:GROUP := NIL
+ ? Person:GROUP		// --&#62; WORKGROUP
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22518"
+></A
+><H3
+><A
+NAME="FUNCTIONTYPE"
+></A
+>Function  TYPE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TYPE(&#60;cExp&#62;) --&#62; cType&#13;</PRE
+><P
+>  TYPE() is a system function that returns the type of the specified
+ expression.  It can test expression validity as long as the expression
+ uses xCLIPPER.LIB functions and does not reference local or static
+ variables, user-defined functions, or built-in functions supplied in
+ EXTEND.LIB.</P
+><P
+> 
+ TYPE() is like VALTYPE() but uses the macro operator (&amp;) to determine
+ the type of the argument.  This precludes the use of TYPE() to determine
+ the type of local and static variables.  VALTYPE(), by contrast,
+ evaluates an expression and determines the data type of the return
+ value.  This lets you determine the type of user-defined functions as
+ well as local and static variables.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22524"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character expression whose type is to be determined.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> can be a field, with or without the alias, a private or public
+ variable, or an expression of any type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> TYPE() returns one of the following characters:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+>TYPE() Return Values
+ ------------------------------------------------------------------------
+ Returns   Meaning
+ ------------------------------------------------------------------------
+ A         Array
+ B         Block
+ C         Character
+ D         Date
+ L         Logical
+ M         Memo
+ N         Numeric
+ O         Object
+ U         NIL, local, or static
+ UE        Error syntactical
+ UI        Error indeterminate
+ ------------------------------------------------------------------------
+ </PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONVALTYPE"
+> VALTYPE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22550"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples demonstrate various results from invocations of
+ TYPE():
+ 
+ ? TYPE('SUBSTR("Hi There", 4, 5)')      // Result: C
+ ? TYPE("UDF()")                         // Result: UI
+ ? TYPE('IF(.T., "true", 12)')           // Result: C
+ 
+ This example shows two methods for testing for the existence
+ and type of declared parameters:
+ 
+ FUNCTION TestParams
+ PARAMETERS cParam1, nParam2
+ IF cParam1 = NIL
+ ? "First parameter was not passed"
+ cParam1 := "Default value"
+ ENDIF
+ 
+ IF TYPE('nParam2') == "U"
+ ? "Second parameter was not passed"
+ ENDIF
+ .
+ . &#60;statements&#62;
+ .
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22554"
+></A
+><H3
+><A
+NAME="FUNCTIONVALTYPE"
+></A
+>Function  VALTYPE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> VALTYPE(&#60;exp&#62;) --&#62; cType&#13;</PRE
+><P
+> VALTYPE() is a system function that takes a single argument, evaluates
+ it, and returns a one-character string describing the data type of the
+ return value.  It is similar to TYPE(), but differs by actually
+ evaluating the specified argument and determining the type of the return
+ value.  For this reason, you can determine the type of local and static
+ variables, user-defined functions, and EXTEND.LIB functions.  TYPE(), by
+ contrast, uses the macro operator (&amp;) to evaluate the type of its
+ argument.  Note that if the argument does not exist, an error
+ ("undefined error") will occur, unlike TYPE which will return "U."</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22559"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an expression of any type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> VALTYPE() returns a single character representing the data type returned
+ by &lt;exp&gt;.  VALTYPE() returns one of the following characters:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+>VALTYPE() Return Values
+ ------------------------------------------------------------------------
+ Returns   Meaning
+ ------------------------------------------------------------------------
+ A         Array
+ B         Block
+ C         Character
+ D         Date
+ L         Logical
+ M         Memo
+ N         Numeric
+ O         Object
+ U         NIL
+ ------------------------------------------------------------------------
+ </PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONTYPE"
+> TYPE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22580"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show the return values for several data types:
+ 
+ ? VALTYPE(1)                // Result: N
+ ? VALTYPE("GOOB")           // Result: C
+ ? VALTYPE(NIL)              // Result: U
+ ? VALTYPE(array)            // Result: A
+ ? VALTYPE(block)            // Result: B
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categc-api.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categlogical.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>C-API</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>LOGICAL</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

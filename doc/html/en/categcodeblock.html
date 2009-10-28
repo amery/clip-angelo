@@ -1,0 +1,912 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CODEBLOCK</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="TASK"
+HREF="categtask.html"><LINK
+REL="NEXT"
+TITLE="VIDEO"
+HREF="categvideo.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categtask.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categvideo.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGCODEBLOCK">CODEBLOCK</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN36748"
+></A
+><H2
+>Name</H2
+>CODEBLOCK&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN36751"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>&#60;vData&#62;             <A
+HREF="categcodeblock.html#FUNCTIONCLIP"
+>CLIP(&#60;sFuncName&#62;, [&#60;Param1&#62;, ..., &#60;ParamN&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categsystem.html#FUNCTIONCOMPILEFILE"
+>COMPILEFILE(&#60;sFileName&#62;, &#60;sFlags&#62;, &#60;@sError&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONCOMPILESTRING"
+>COMPILESTRING(&#60;sString&#62;, &#60;@sError&#62;)</A
+>
+bCurrentErrorHandler<A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+>ERRORBLOCK([&#60;bErrorHandler&#62;])</A
+>
+LastBlockValue      <A
+HREF="categcodeblock.html#FUNCTIONEVAL"
+>EVAL(&#60;bBlock&#62;, [&#60;BlockArg list&#62;])</A
+>
+bFieldBlock         <A
+HREF="categcodeblock.html#FUNCTIONFIELDBLOCK"
+>FIELDBLOCK(&#60;cFieldName&#62;)</A
+>
+bFieldWBlock        <A
+HREF="categcodeblock.html#FUNCTIONFIELDWBLOCK"
+>FIELDWBLOCK(&#60;cFieldName&#62;, &#60;nWorkArea&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONLOAD"
+>LOAD(&#60;sFileName&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONLOADBLOCK"
+>LOADBLOCK(&#60;sFileName&#62;)</A
+>
+bMemvarBlock        <A
+HREF="categcodeblock.html#FUNCTIONMEMVARBLOCK"
+>MEMVARBLOCK(&#60;cMemvarName&#62;)</A
+>
+&#60;nTaskID&#62;           <A
+HREF="categtask.html#FUNCTIONSTART"
+>START(&#60;vTask&#62;, [&#60;vPar1&#62;,,, &#60;vParN&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN36765"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36768"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIP"
+></A
+>Function  CLIP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CLIP(&#60;sFuncName&#62;, [&#60;Param1&#62;, ..., &#60;ParamN&#62;) 	--&#62; &#60;vData&#62;&#13;</PRE
+><P
+>  CLIP() evaluates function with name &lt;sFuncName&gt; and returns result this function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36773"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFuncName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the function name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Param1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>,...&lt;paramN&gt;	is are parameters for function &lt;sFuncName&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the result of evaluate &lt;sFuncName&gt; function.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36793"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  CLIP("substr","asdfghjkl",2,3) 		// --&#62; "sdf"
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36797"
+></A
+><H3
+><A
+NAME="FUNCTIONEVAL"
+></A
+>Function  EVAL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EVAL(&#60;bBlock&#62;, [&#60;BlockArg list&#62;]) --&#62; LastBlockValue&#13;</PRE
+><P
+>  EVAL() is a code block function.  It is the most basic code block
+ evaluation facility in the xClipper system.  A code block is a special
+ data value that refers to a piece of compiled program code.  For more
+ information on code blocks, refer to the "Basic Concepts" chapter in the
+ Programming and Utilities Guide.</P
+><P
+> 
+ To execute or evaluate a code block, call EVAL() with the block value
+ and any parameters.  The parameters are supplied to the block when it is
+ executed.  Code blocks may be a series of expressions separated by
+ commas.  When a code block is evaluated, the returned value is the value
+ of the last expression in the block.</P
+><P
+> 
+ The xClipper compiler usually compiles a code block at compile time.
+ There are, however, occasions at runtime when you may need to compile a
+ code block from a character string.  You can do this by using the macro
+ operator (&amp;).</P
+><P
+> 
+ EVAL() is often used to create iteration functions.  These are functions
+ that apply a block to each member of a data structure.  AEVAL(),
+ ASORT(), ASCAN(), and DBEVAL() are iteration functions (e.g., AEVAL()
+ applies a block to each element within an array).</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36807"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bBlock&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the code block to be evaluated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;BlockArg list&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a list of arguments to send to the code block
+ before it is evaluated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> EVAL() returns the value of the last expression within the block.  A
+ code block can return a value of any type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAEVAL"
+> AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONASCAN"
+>ASCAN()</A
+> <A
+HREF="categarray.html#FUNCTIONASORT"
+>ASORT()</A
+> <A
+HREF="categdatabase.html#FUNCTIONDBEVAL"
+>DBEVAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36835"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example creates a code block that increments a number,
+ and then evaluates it:
+ 
+ bBlock := { |nArg| nArg + 1 }
+ ? EVAL(bBlock, 1)                     // Result: 2
+ 
+ This example demonstrates compiling a code block at runtime
+ using the macro operator (&#38;amp;):
+ 
+ // Compile a string to a block
+ bBlock := &#38;amp;("{ |nArg| nArg + 1 }")
+ 
+ // Evaluate the block
+ ? EVAL(bBlock, 1)                     // Result: 2
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36839"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDBLOCK"
+></A
+>Function  FIELDBLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDBLOCK(&#60;cFieldName&#62;) --&#62; bFieldBlock&#13;</PRE
+><P
+> FIELDBLOCK() is a database function that builds a code block.  When
+ executed with an argument, the code block created by this function
+ assigns the value of the argument to &lt;cFieldName&gt;.  When executed
+ without an argument, the code block retrieves the value of &lt;cFieldName&gt;.</P
+><P
+> 
+ Note that the specified field variable may not exist when the code block
+ is created, but must exist before the code block is executed.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36845"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFieldName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the field to which the set-get block
+ will refer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDBLOCK() returns a code block that, when evaluated, sets (assigns)
+ or gets (retrieves) the value of the given field.  If &lt;cFieldName&gt; does
+ not exist in the specified work area, FIELDBLOCK() returns an empty
+ block.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONFIELDWBLOCK"
+> FIELDWBLOCK()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONMEMVARBLOCK"
+>MEMVARBLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36866"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example compares FIELDBLOCK() to a code block created
+ using the macro operator.  Note that using FIELDBLOCK() avoids the
+ speed and size overhead of the macro operator:
+ 
+ // Set-Get block defined using macro operator
+ bSetGet := &#38;amp;( "{ |setVal| IF( setVal == NIL,;
+ FName, FName := setVal ) }" )
+ // Set-Get block defined using FIELDBLOCK()
+ 
+ // bSetGet created here is the functional
+ // equivalent of bSetGet above
+ bSetGet := FIELDBLOCK("FName")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36870"
+></A
+><H3
+><A
+NAME="FUNCTIONFIELDWBLOCK"
+></A
+>Function  FIELDWBLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FIELDWBLOCK(&#60;cFieldName&#62;, &#60;nWorkArea&#62;) --&#62; bFieldWBlock&#13;</PRE
+><P
+> FIELDWBLOCK() is a database function that builds a code block.  When
+ evaluated with the EVAL() function, the code block first selects the
+ designated &lt;nWorkArea&gt;.  If an argument was passed, the code block then
+ assigns the value of the argument to &lt;cFieldName&gt;.  If no argument was
+ passed, the code block retrieves the value of &lt;cFieldName&gt;.  The
+ original work area is then reselected before the code block returns
+ control.</P
+><P
+> 
+ Note that the specified field variable may not exist when the code block
+ is created but must exist before the code block is executed.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36876"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFieldName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the field specified as a character
+ string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWorkArea&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the work area number where the field resides
+ specified as a numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FIELDWBLOCK() returns a code block that, when evaluated, sets (assigns)
+ or gets (retrieves) the value of &lt;cFieldName&gt; in the work area
+ designated by &lt;nWorkArea&gt;.  If &lt;cFieldName&gt; does not exist in the
+ specified work area, FIELDWBLOCK() returns an empty block.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONFIELDBLOCK"
+> FIELDBLOCK()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONMEMVARBLOCK"
+>MEMVARBLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36902"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example compares FIELDWBLOCK() to a code block created
+ using the macro operator.  Note that using FIELDWBLOCK() avoids the
+ speed and size overhead of the macro operator:
+ 
+ // Set-Get block for work area 1 defined with
+ // macro operator
+ bSetGet := &#38;amp;( "{ |setVal| IF( setVal == NIL, ;
+ 1-&#62;FName, 1-&#62;FName := setVal ) }" )
+ // Set-Get block defined using FIELDWBLOCK()
+ 
+ // bSetGet created here is the functional
+ // equivalent of bSetGet above
+ bSetGet := FIELDWBLOCK("FName", 1)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN36906"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMVARBLOCK"
+></A
+>Function  MEMVARBLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMVARBLOCK(&#60;cMemvarName&#62;) --&#62; bMemvarBlock&#13;</PRE
+><P
+> The code block created by MEMVARBLOCK() has two operations depending on
+ whether an argument is passed to the code block when it is evaluated.
+ If evaluated with an argument, it assigns the value of the argument to
+ &lt;cMemvarName&gt;.  If evaluated without an argument, the code block
+ retrieves the value of &lt;cMemvarName&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN36911"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMemvarName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the variable referred to by the set-get
+ block, specified as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMVARBLOCK() returns a code block that when evaluated sets (assigns) or
+ gets (retrieves) the value of the given memory variable.  If
+ &lt;cMemvarName&gt; does not exist, MEMVARBLOCK() returns NIL.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONFIELDBLOCK"
+> FIELDBLOCK()</A
+> <A
+HREF="categcodeblock.html#FUNCTIONFIELDWBLOCK"
+>FIELDWBLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN36932"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example compares MEMVARBLOCK() to a code block created
+ using the macro operator (&#38;amp;).  Note that using MEMVARBLOCK() allows
+ you to avoid the speed and size overhead of the macro operator:
+ 
+ PRIVATE var := "This is a string"
+ //
+ // Set-Get block defined using macro operator
+ bSetGet := &#38;amp;( "{ |setVal|;
+ IF( setVal == NIL, var, var := setVal ) }" )
+ // Set-Get block defined using MEMVARBLOCK()
+ 
+ // bSetGet created here is the functional
+ // equivalent of bSetGet above
+ bSetGet := MEMVARBLOCK("var")</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categtask.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categvideo.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TASK</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>VIDEO</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Clipper compatible compiler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE=" Introduction"
+HREF="introduction.html"><LINK
+REL="NEXT"
+TITLE="Clip license"
+HREF="license.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="license.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="ABOUT">Chapter 2. Clipper compatible compiler</H1
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Preprocessor. </B
+>Fully compatible with CA-Clipper with some
+new possibilities.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Compiler. </B
+>slight incompability with CA-Clipper, which may be resolved easily,
+using the "search and replace" method.
+In addition it can compile to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+> C program,
+byte-code, dynamic library and mixed C+byte-code. </I
+></SPAN
+></P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Very fast and efficient OO-model. </B
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>Difference from CA-Clipper reveals itself in part of descriptions and making
+an object, but in part of using the ready objects syntax and logic of
+functioning is completely the same.</TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>It is possible to write programs on CLIP, without using other syntax excepting OOP.</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>Initial support syntax from FS,CAVO,FoxPro.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>C-API. </B
+>has much more possibilities than CA-Clipper.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Full international support . </B
+>Including adjustment on any code page of any language on any keyboard
+(with stelnet emulator only or on consoles),
+substitution of string constants during execution and changing a logic of
+functioning with strings, given for functions <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>alpha, digit, lower, upper,</I
+></SPAN
+> subscripted weight factors etc.
+Support two-bytes charsets <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>BIG5, GB</I
+></SPAN
+>,
+may be Korean, Japan too.</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+> GUI, based on GTK. </B
+>Provides using of all widgets and processing the events</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+> Using of dynamic libraries,. </B
+>loading and execution of the byte-code from external files ( in run-time, too ).</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Compatibility. </B
+><P
+></P
+><UL
+><LI
+><P
+>up to <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Clipper 5.3 </I
+></SPAN
+> (support of objects <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>menu, button, check</I
+></SPAN
+>
+and other <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>get-objects</I
+></SPAN
+>), as well as standard classes <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>tbrowse,get,error</I
+></SPAN
+>.</P
+></LI
+><LI
+><P
+> Are implemented a lot of CA_Tools functions,
+including all functions for processing the lines, dates, files, mathematicians.</P
+></LI
+><LI
+><P
+> support all SIX functions and features</P
+></LI
+><LI
+><P
+> MEM,DBF,DBT,FPT,NTX,CTX,CDX,NSX...</P
+></LI
+><LI
+><P
+> VFP data types: datetime,currency</P
+></LI
+><LI
+><P
+> RDD allows to use your own drivers, as well as use a driver, combined from
+several different drivers.</P
+></LI
+><LI
+><P
+>RDD also allows to use only OO-style, without using of aliases</P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Multitask support. </B
+>Builtin simple non-preemptive multitask model</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>CODB - CLIP Object Data Base. </B
+>Library and utils for object storehouse</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>SQL. </B
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>libraries and classes for direct access to SQL-servers (PG,MySql,Oracle,Interbase) </TD
+></TR
+><TR
+><TD
+>ODBC and ODBC bridge to Windows drivers.</TD
+></TR
+><TR
+><TD
+>SQL-interpreter and commands, compatible with FoxPro</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>Other possibilities . </B
+><P
+></P
+><UL
+><LI
+><P
+>Overloading operators for objects.</P
+></LI
+><LI
+><P
+>Support of regular expressions.</P
+></LI
+><LI
+><P
+>function for TCP/IP sockets connections</P
+></LI
+><LI
+><P
+>COM_() functions</P
+></LI
+><LI
+><P
+>Rushmore like technology, but more fast and efficient.</P
+></LI
+><LI
+><P
+>Support of very-large-scale numbers with unlimited accuracy.</P
+></LI
+><LI
+><P
+>Support of graphic files PNG,GD,JPEG and primitives like lines,
+    rectangles, firing ranges, circumferences etc.</P
+></LI
+><LI
+><P
+>Several common classes for word processorses, <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>html/cgi </I
+></SPAN
+>programms.</P
+></LI
+><LI
+><P
+>Several utilities for interpreting the patterns of the documents,
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>www_sql,clip_bl, clip_blank, clip_sql, clip_hindex, clip_hseek</I
+></SPAN
+> etc.</P
+></LI
+><LI
+><P
+>multiwindows interactive debugger.</P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+> Supported OS'es. </B
+>Linux, FreeBSD, OpenBSD, SPARC &amp; x86 Solaris, IBM mainframe with TurboLinux, Win32 ( with CYGWIN development tools)</P
+></DIV
+><DIV
+CLASS="FORMALPARA"
+><P
+><B
+>TODO list. </B
+><P
+></P
+><UL
+><LI
+><P
+>Windows support</P
+></LI
+><LI
+><P
+>FiveWin compatiblies.</P
+></LI
+><LI
+><P
+>FoxPro compatiblies.</P
+></LI
+></UL
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="license.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Introduction</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Clip license</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

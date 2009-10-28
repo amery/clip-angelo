@@ -38,20 +38,20 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-ctitest$(EXESUFF): ctitest.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctitest$(EXESUFF): ctitest.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swe $(INCDIR) $< $(o_files) $(ADD_OBJS) $(LIBS)
 
-ctifd$(EXESUFF): ctifd.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctifd$(EXESUFF): ctifd.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -swe $(INCDIR) -M  $< $(o_files) $(ADD_OBJS) $(LIBS)
 
-ctit$(EXESUFF): ctit.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+ctit$(EXESUFF): ctit.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 #	$(CLIP) -swe -M  ctit.prg $(o_files) $(ADD_OBJS)
 	$(CLIP) -o$@ $(INCDIR) -swe $< $(o_files) $(ADD_OBJS) -lclip-fw $(LIBS)
 
-browsecombo$(EXESUFF): browsecombo.prg $(o_files) $(CLIP) $(Depend_on)
+browsecombo$(EXESUFF): browsecombo.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ $(INCDIR) -swe $< $(o_files) $(ADD_OBJS) $(LIBS)
 

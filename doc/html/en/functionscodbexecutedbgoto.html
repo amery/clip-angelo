@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CODBEXECUTE()-DBGOTO()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="A2EDIT()-CODBCONNECT()"
+HREF="functionsa2editcodbconnect.html"><LINK
+REL="NEXT"
+TITLE="DBGOTOP()-EXP()"
+HREF="functionsdbgotopexp.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsa2editcodbconnect.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsdbgotopexp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSCODBEXECUTEDBGOTO">CODBEXECUTE()-DBGOTO()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN18134"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+> CODB_EXECUTE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Execute query.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETANSWER"
+> CODB_GET_ANSWER</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check if answer of query is error.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETCOLUMN"
+> CODB_GET_COLUMN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get result column name by its index.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETERROR"
+> CODB_GET_ERROR</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get error description.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETMETAOBJECT"
+> CODB_GET_METAOBJECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get metaobject content by ID.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETOBJECT"
+> CODB_GET_OBJECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get object content by ID.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBGETRESULT"
+> CODB_GET_RESULT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get query result as array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBNUMCOLUMNS"
+> CODB_NUM_COLUMNS</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get number of columns in query result.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBNUMROWS"
+> CODB_NUM_ROWS</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get number of rows in query result.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBPUTMETAOBJECT"
+> CODB_PUT_METAOBJECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Put metaobject in database.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBPUTOBJECT"
+> CODB_PUT_OBJECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Put object in database.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOL"
+> COL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the screen cursor column position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONCOLORSELECT"
+> COLORSELECT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Activate attribute in current color settings</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMCOUNT"
+> COM_COUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Counts the number of characters in the input buffer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMDTR"
+> COM_DTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Queries/sets the Data Terminal Ready (DTR) status.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMFLUSH"
+> COM_FLUSH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Clears the receiving buffer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMHARD"
+> COM_HARD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Turns the hardware handshake (automatic CTS) on/off.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMINIT"
+> COM_INIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Initializes the port parameters.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMNUM"
+> COM_NUM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the number of the highest available serial interface port</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMOPEN"
+> COM_OPEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Opens the port and initializes the buffer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONCOMPILEFILE"
+> COMPILEFILE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Compile file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONCOMPILESTRING"
+> COMPILESTRING()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Compile string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMREAD"
+> COM_READ()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Reads characters from the receiving buffer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMRTS"
+> COM_RTS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Queries/sets the RTS status.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMSEND"
+> COM_SEND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Transmits data.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMSFLUSH"
+> COM_SFLUSH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Flush sending buffer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMSOFT"
+> COM_SOFT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Queries or sets the software handshake (automatic XON/XOFF).</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categserialio.html#FUNCTIONCOMTIMEOUT"
+> COM_TIMEOUT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set timeout for all operations in 1/10 seconds.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCSCOUNT"
+> CSCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns the number specified chars into source string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCTOD"
+> CTOD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date string to a date value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+> CURDIR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current DOS directory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDATE"
+> DATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the system date as a date value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDAY"
+> DAY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the day of the month as a numeric value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBAPPEND"
+> DBAPPEND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Append a new record to the database open in the current work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARFILTER"
+> DBCLEARFILTER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Clear a filter condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARINDEX"
+> DBCLEARINDEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close all indexes for the current work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLEARRELATION"
+> DBCLEARRELATION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Clear active relations</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEALL"
+> DBCLOSEALL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close all occupied work areas</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCLOSEAREA"
+> DBCLOSEAREA()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close a work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCOMMIT"
+> DBCOMMIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Flush pending updates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCOMMITALL"
+> DBCOMMITALL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Flush pending updates in all work areas</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCREATE"
+> DBCREATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create a database file from a database structure array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBCREATEINDEX"
+> DBCREATEINDEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create an index file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBDELETE"
+> DBDELETE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Mark a record for deletion</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBEDIT"
+> DBEDIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Browse records in a table layout</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBEVAL"
+> DBEVAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Evaluate a code block for each record matching a scope and condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBF"
+> DBF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return current alias name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBFILTER"
+> DBFILTER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current filter expression as a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBGOBOTTOM"
+> DBGOBOTTOM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Move to the last logical record</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONDBGOTO"
+> DBGOTO()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Position record pointer to a specific identity</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsa2editcodbconnect.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsdbgotopexp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>A2EDIT()-CODBCONNECT()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DBGOTOP()-EXP()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

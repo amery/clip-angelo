@@ -8,7 +8,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_error.ch"
 #include "ci_dbinfo.ch"
 

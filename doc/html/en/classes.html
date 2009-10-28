@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CLIP Classes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="RDDs peculiarities"
+HREF="rddrdds.html"><LINK
+REL="NEXT"
+TITLE="Class  CODBDEPOSITORY "
+HREF="classcodbdepository.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="PART"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="rddrdds.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classcodbdepository.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="PART"
+><A
+NAME="CLASSES"><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+>I. CLIP Classes</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="classcodbdepository.html"
+>Class  CODBDEPOSITORY</A
+>&nbsp;--&nbsp; The essence this CODB class is storehouse of stored objects - objects
+ whouse structure descript into dictionary. </DT
+><DT
+><A
+HREF="classcodbdictionary.html"
+>Class  CODBDICTIONARY</A
+>&nbsp;--&nbsp; The essence this CODB class is storehouse of metadata - objects
+ what keeping specifier other objects of classes: DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP </DT
+><DT
+><A
+HREF="classcodbformatter.html"
+>Class  CODBFORMATTER</A
+>&nbsp;--&nbsp; Class CODBFORMATTER format output for result in codb-query library. </DT
+><DT
+><A
+HREF="classcodbidlist.html"
+>Class  CODBIDLIST</A
+>&nbsp;--&nbsp; CODB class are destined to select objects by assertion and represenation
+ its in table-navigationy mode. </DT
+><DT
+><A
+HREF="classcodblist.html"
+>Class  CODBLIST</A
+>&nbsp;--&nbsp; CODB Class are destined to control of the list accessibile dictionary.
+ 
+ In yours system (computer, local network, VPN, internet) may be many
+ CODB data sourses (in configuration by default 32,000,000 ). CODB it is
+ those class what provide DB supporting with methods description for
+ access to certain CODB.
+ 
+ The information keeping into $CLIPROOT/etc/codb.dbf </DT
+><DT
+><A
+HREF="classdatetime.html"
+>Class  DATETIME</A
+>&nbsp;--&nbsp; Class are destined to control of date and time values. </DT
+><DT
+><A
+HREF="classfind.html"
+>Class  FIND</A
+>&nbsp;--&nbsp; </DT
+><DT
+><A
+HREF="classhistory.html"
+>Class  HISTORY</A
+>&nbsp;--&nbsp; Class are destined to control listing of history. </DT
+><DT
+><A
+HREF="classlistitem.html"
+>Class  LISTITEM</A
+>&nbsp;--&nbsp; Class are destined to control of
+ associated in list data values. For example, it can be list of files. </DT
+><DT
+><A
+HREF="classmedit.html"
+>Class  MEDIT</A
+>&nbsp;--&nbsp; Class are destined to control multi TEXTEDIT objects. </DT
+><DT
+><A
+HREF="classqueue.html"
+>Class  QUEUE</A
+>&nbsp;--&nbsp; Class  are destined to control queues make from arbitrary data. </DT
+><DT
+><A
+HREF="classsortedarray.html"
+>Class  SORTEDARRAY</A
+>&nbsp;--&nbsp; Class are destined to control of sorted data. </DT
+><DT
+><A
+HREF="classstack.html"
+>Class  STACK</A
+>&nbsp;--&nbsp; Class are destined to control stack arbitrary data. </DT
+><DT
+><A
+HREF="classtextedit.html"
+>Class  TEXTEDIT</A
+>&nbsp;--&nbsp; Class are destined to manipulating text data - load/save from
+ file/string, insert, delete, manipulation with marked data and
+ clipboard, formated text and more. TEXTEDIT is a base class for
+ function memoedit and class MEDIT. </DT
+><DT
+><A
+HREF="classuibutton.html"
+>Class  UIBUTTON</A
+>&nbsp;--&nbsp; Class of button. </DT
+><DT
+><A
+HREF="classuibuttonbar.html"
+>Class  UIBUTTONBAR</A
+>&nbsp;--&nbsp; Class for panel with buttons. Inherit properties and methods of class <A
+HREF="classuihbox.html"
+>UIHBox</A
+>. </DT
+><DT
+><A
+HREF="classuicheckbox.html"
+>Class  UICHECKBOX</A
+>&nbsp;--&nbsp; Checkbox class. </DT
+><DT
+><A
+HREF="classuichildwindow.html"
+>Class  UICHILDWINDOW</A
+>&nbsp;--&nbsp; Class of child window. </DT
+><DT
+><A
+HREF="classuichoice.html"
+>Class  UICHOICE</A
+>&nbsp;--&nbsp; Edit field with choice button. Inherits fields and method from class <A
+HREF="classuiedit.html"
+>UIEdit</A
+>. </DT
+><DT
+><A
+HREF="classuicolor.html"
+>Class  UICOLOR</A
+>&nbsp;--&nbsp; Color class. </DT
+><DT
+><A
+HREF="classuicombobox.html"
+>Class  UICOMBOBOX</A
+>&nbsp;--&nbsp; Class of combo box. </DT
+><DT
+><A
+HREF="classuidocument.html"
+>Class  UIDOCUMENT</A
+>&nbsp;--&nbsp; Class for document window. It inherits properties and methods of class <A
+HREF="classuichildwindow.html"
+>UIChildWindow</A
+>. </DT
+><DT
+><A
+HREF="classuidriver.html"
+>Class  UIDRIVER</A
+>&nbsp;--&nbsp; </DT
+><DT
+><A
+HREF="classuiedit.html"
+>Class  UIEDIT</A
+>&nbsp;--&nbsp; Class of single line text entry. </DT
+><DT
+><A
+HREF="classuiedittext.html"
+>Class  UIEDITTEXT</A
+>&nbsp;--&nbsp; Class for multi-line text editor. </DT
+><DT
+><A
+HREF="classuifont.html"
+>Class  UIFONT</A
+>&nbsp;--&nbsp; Font class. </DT
+><DT
+><A
+HREF="classuiform.html"
+>Class  UIFORM</A
+>&nbsp;--&nbsp; Class for manipulate form in XFL format. This format is described is section XFL forms. </DT
+><DT
+><A
+HREF="classuiframe.html"
+>Class  UIFRAME</A
+>&nbsp;--&nbsp; Class of frame. </DT
+><DT
+><A
+HREF="classuigrid.html"
+>Class  UIGRID</A
+>&nbsp;--&nbsp; Class of grid for placement widgets. </DT
+><DT
+><A
+HREF="classuihbox.html"
+>Class  UIHBOX</A
+>&nbsp;--&nbsp; Class of horizontal placement panel. </DT
+><DT
+><A
+HREF="classuiimage.html"
+>Class  UIIMAGE</A
+>&nbsp;--&nbsp; Class of image. </DT
+><DT
+><A
+HREF="classuilabel.html"
+>Class  UILABEL</A
+>&nbsp;--&nbsp; Class of text label. </DT
+><DT
+><A
+HREF="classuilayout.html"
+>Class  UILAYOUT</A
+>&nbsp;--&nbsp; Class of area for placement widgets at fixed positions. </DT
+><DT
+><A
+HREF="classuimainwindow.html"
+>Class  UIMAINWINDOW</A
+>&nbsp;--&nbsp; Class of main application window. It is inherited from class <A
+HREF="classuiwindow.html"
+>UIWindow</A
+>. On main application window close application will be exited. </DT
+><DT
+><A
+HREF="classuimenu.html"
+>Class  UIMENU</A
+>&nbsp;--&nbsp; Class of menu bar. </DT
+><DT
+><A
+HREF="classuimenucheckeditem.html"
+>Class  UIMENUCHECKEDITEM</A
+>&nbsp;--&nbsp; Class of checked menu item. Object of this class was created by method addChecked() of class <A
+HREF="classuimenu.html"
+>UIMenu</A
+>. </DT
+><DT
+><A
+HREF="classuimenuitem.html"
+>Class  UIMENUITEM</A
+>&nbsp;--&nbsp; Class of menu item. Object of this class was created by method add() of class <A
+HREF="classuimenu.html"
+>UIMenu</A
+>. </DT
+><DT
+><A
+HREF="classuipopupmenu.html"
+>Class  UIPOPUPMENU</A
+>&nbsp;--&nbsp; Class of popup menu. </DT
+><DT
+><A
+HREF="classuiprogressbar.html"
+>Class  UIPROGRESSBAR</A
+>&nbsp;--&nbsp; Progress indicator class. </DT
+><DT
+><A
+HREF="classuiradiobutton.html"
+>Class  UIRADIOBUTTON</A
+>&nbsp;--&nbsp; Class of radio button. </DT
+><DT
+><A
+HREF="classuiradiogroup.html"
+>Class  UIRADIOGROUP</A
+>&nbsp;--&nbsp; Class of radio buttons group. </DT
+><DT
+><A
+HREF="classuislider.html"
+>Class  UISLIDER</A
+>&nbsp;--&nbsp; Slider class. </DT
+><DT
+><A
+HREF="classuisplitter.html"
+>Class  UISPLITTER</A
+>&nbsp;--&nbsp; Line with two panes arranged vertically or horizontally. </DT
+><DT
+><A
+HREF="classuistatusbar.html"
+>Class  UISTATUSBAR</A
+>&nbsp;--&nbsp; Class of statusbar. </DT
+><DT
+><A
+HREF="classuitable.html"
+>Class  UITABLE</A
+>&nbsp;--&nbsp; Class of table (multicolumn list). </DT
+><DT
+><A
+HREF="classuitableitem.html"
+>Class  UITABLEITEM</A
+>&nbsp;--&nbsp; Class of table item. Object of this class was created by method addRow() of class <A
+HREF="classuitable.html"
+>UITable</A
+>. </DT
+><DT
+><A
+HREF="classuitimer.html"
+>Class  UITIMER</A
+>&nbsp;--&nbsp; Timer. </DT
+><DT
+><A
+HREF="classuitoolbar.html"
+>Class  UITOOLBAR</A
+>&nbsp;--&nbsp; Class of toolbar. </DT
+><DT
+><A
+HREF="classuitoolbutton.html"
+>Class  UITOOLBUTTON</A
+>&nbsp;--&nbsp; Class of menu item. Object of this class was created by method addButton() of class <A
+HREF="classuitoolbar.html"
+>UIToolBar</A
+>. </DT
+><DT
+><A
+HREF="classuitree.html"
+>Class  UITREE</A
+>&nbsp;--&nbsp; Class of hierarchical multi-column lists (tree view). </DT
+><DT
+><A
+HREF="classuitreeitem.html"
+>Class  UITREEITEM</A
+>&nbsp;--&nbsp; Class of tree node. Object of this class was created by method addNode() of class <A
+HREF="classuitree.html"
+>UITree</A
+>. </DT
+><DT
+><A
+HREF="classuivbox.html"
+>Class  UIVBOX</A
+>&nbsp;--&nbsp; Class of vertical widget placement panel. </DT
+><DT
+><A
+HREF="classuiwindow.html"
+>Class  UIWINDOW</A
+>&nbsp;--&nbsp; Class of separate window. </DT
+><DT
+><A
+HREF="classuiworkspace.html"
+>Class  UIWORKSPACE</A
+>&nbsp;--&nbsp; Class of application instance. </DT
+><DT
+><A
+HREF="classxmltag.html"
+>Class  XMLTAG</A
+>&nbsp;--&nbsp; Class of XML tag. This class is used in XML parsing. </DT
+><DT
+><A
+HREF="classxmltree.html"
+>Class  XMLTREE</A
+>&nbsp;--&nbsp; Class of XML DOM tree. This class is used for manipulate XML DOM tree. </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rddrdds.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classcodbdepository.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>RDDs peculiarities</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  CODBDEPOSITORY</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

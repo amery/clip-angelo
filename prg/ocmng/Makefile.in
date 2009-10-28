@@ -19,6 +19,7 @@ exe_files 			= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 o_files 				= 		$(addsuffix .o, $(basename $(O_PRG) ) )
 SRC_C_files 		= 		$(sort $(c_files) )
 SRC_PRG_files 		= 		$(sort $(prg_files) $(O_PRG) )
+E_clip 				=
 export
 
 ######################################################################################
@@ -39,7 +40,7 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-ocmng$(EXESUFF): ocmng.prg  $(o_files) $(INCS) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+ocmng$(EXESUFF): ocmng.prg  $(o_files) $(INCS) Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\
@@ -48,7 +49,7 @@ ocmng$(EXESUFF): ocmng.prg  $(o_files) $(INCS) Makefile $(CLIP) $(LIBCLIP) $(Dep
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(o_files) $(LIBS) ;		\
 	fi
 
-xml2xmo$(EXESUFF): xml2xmo.prg  $(o_files) $(INCS) $(CLIP) $(LIBCLIP) $(Depend_on)
+xml2xmo$(EXESUFF): xml2xmo.prg  $(o_files) $(INCS) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\

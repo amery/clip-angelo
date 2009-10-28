@@ -1,0 +1,1862 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  CODBDICTIONARY </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  CODBDEPOSITORY "
+HREF="classcodbdepository.html"><LINK
+REL="NEXT"
+TITLE="Class  CODBFORMATTER "
+HREF="classcodbformatter.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classcodbdepository.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classcodbformatter.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSCODBDICTIONARY">Class  CODBDICTIONARY</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN2552"
+></A
+><H2
+>Name</H2
+> CODBDICTIONARY &nbsp;--&nbsp; The essence this CODB class is storehouse of metadata - objects
+ what keeping specifier other objects of classes: DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN2555"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> coDictionaryNew(&#60;sDictID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;) --&#62; CODBDICTIONARY object
+ coDictionary:New(&#60;sDictID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;)  --&#62; CODBDICTIONARY object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSCODBDICTIONARY"
+></A
+><H2
+>Description </H2
+><P
+> 
+ The essence this CODB class is storehouse of metadata - objects what keeping specifier other objects of classes: DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2561"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2563"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;ClassName&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> 	CODBDICTIONARY</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Error&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>		String, the error description what araised within running last operation.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2574"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2576"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-APPEND"
+>APPEND</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Append object to storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-ATTRBODYBYNAME"
+>ATTRBODYBYNAME</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns object of metaclass ATTR.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-CHECKBODY"
+>CHECKBODY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Checks object a valid metaclass.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-CLASSBODYBYNAME"
+>CLASSBODYBYNAME</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns object of metaclass CLASS.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-CLOSE"
+>CLOSE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close opened files.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-COUNTER"
+>COUNTER</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns counter value.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-CREATE"
+>CREATE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create empty dictionary.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-DELETE"
+>DELETE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete object from storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-GETVALUE"
+>GETVALUE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get object from storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-HASHNAME"
+>HASHNAME</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns properties name by hashcode.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-IDLIST"
+>IDLIST</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns object of class IDLIST.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-NEW"
+>NEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Initiation new CODBDICTIONARY object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-OPEN"
+>OPEN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open all necessary files.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-PADRBODY"
+>PADRBODY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Makes data representation.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-SELECT"
+>SELECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns identifier list of selected objects.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdictionary.html#CLASS-CODBDICTIONARY-UPDATE"
+>UPDATE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Update object into storehouse.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2643"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-APPEND"
+></A
+>Method CODBDICTIONARY:APPEND()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Append(&#60;oData&#62;, &#60;sClassName&#62;) 	--&#62; &#60;sDataID&#62;</PRE
+><P
+> Append() appends new object &lt;oData&gt; to storehouse as object of class &lt;sClassName&gt; and returns objects identifier &lt;sDataID&gt;.</P
+><P
+> The structure description of added metadata see in section <A
+HREF="codbmetadata.html"
+>CODB metadata</A
+></P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2651"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, new object to keeping</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class name - one of DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;sDataID&gt; - identifier registered object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2671"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-ATTRBODYBYNAME"
+></A
+>Method CODBDICTIONARY:ATTRBODYBYNAME()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> AttrBodyByName(&#60;sObjClassName&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> AttrBodyByName() returns &lt;oData&gt; - object of class ATTR with name &lt;sClassObjName&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2676"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassObjName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;oData&gt; - object of class ATTR.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2691"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-CHECKBODY"
+></A
+>Method CODBDICTIONARY:CHECKBODY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CheckBody(&#60;oData&#62;, &#60;sClassName&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> CheckBody() checks object &lt;oData&gt; a valid metaclass &lt;sClassName&gt;. If object is a valid, CheckBody() fills &lt;oData&gt; properties the default values if necessary.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2697"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, object to check</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, metaclass name - one of DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2717"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-CLASSBODYBYNAME"
+></A
+>Method CODBDICTIONARY:CLASSBODYBYNAME()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ClassBodyByName(&#60;sObjClassName&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> ClassBodyByName() returns &lt;oData&gt; - object of class CLASS with name &lt;sClassObjName&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2722"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassObjName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;oData&gt; - object of class CLASS.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2737"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-CLOSE"
+></A
+>Method CODBDICTIONARY:CLOSE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Close() 	--&#62; TRUE || FALSE</PRE
+><P
+> Close() is close files or connection with SQL server.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2742"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if files closed.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2752"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-COUNTER"
+></A
+>Method CODBDICTIONARY:COUNTER()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Counter(&#60;sCounterName&#62;, &#60;nDep&#62;[, &#60;nValue&#62;]) 	--&#62; &#60;nCounter&#62;</PRE
+><P
+> Counter() returns &lt;nCounter&gt; the current value for counter with name &lt;sCounterName&gt; into depository with number &lt;nDep&gt;.</P
+><P
+> If specified &lt;nValue&gt;, then counter &lt;sCounterName&gt; takes new value &lt;nValue&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2758"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sCounterName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, counter name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDep&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, the depository number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, the new counter value</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns current counter value.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2783"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-CREATE"
+></A
+>Method CODBDICTIONARY:CREATE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Create() 	--&#62; TRUE || FALSE</PRE
+><P
+> Create() returns TRUE if new empty ditionary created. Usualy, this method do not needy to direct invitation. It's call automaticaly when new dictionary appending into CODBLIST.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2789"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if new empty dictionary created.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2799"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-DELETE"
+></A
+>Method CODBDICTIONARY:DELETE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Delete(&#60;sDataID&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Delete() deletes object with identifier &lt;sDataID&gt; from dictionary.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2805"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDataID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	String, the objects identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if object was deleted.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2820"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-GETVALUE"
+></A
+>Method CODBDICTIONARY:GETVALUE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetValue(&#60;sDataID&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> GetValue() gets form dictionary and returns object &lt;oData&gt; with identifier &lt;sDataID&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2826"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDataID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	String, the objects identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt; with identifier &lt;sDataID&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2841"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-HASHNAME"
+></A
+>Method CODBDICTIONARY:HASHNAME()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> HashName(&#60;nHashCode&#62;) 	--&#62; &#60;sName&#62;</PRE
+><P
+> HashName() returns &lt;sName&gt; properties name by hashcode &lt;nHashCode&gt; or empty string if unfortunately.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2846"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHashCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, hashcode</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns properties name by hashcode.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2861"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-IDLIST"
+></A
+>Method CODBDICTIONARY:IDLIST()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> IdList(&#60;sClassName&#62;[, &#60;nOrder&#62;][, &#60;sName&#62;][, &#60;sWhere&#62;]) 	--&#62; &#60;oIDList&#62;</PRE
+><P
+> IdList() returns &lt;oIDList&gt; - object of class <A
+HREF="classcodbidlist.html"
+>CODBIDLIST</A
+>.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2867"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, metaclass name - one of DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, the index number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, value &lt;Name&gt; attribute to search</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sWhere&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, the searching condition</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;oIDList&gt; - object of class IDLIST.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2897"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-NEW"
+></A
+>Method CODBDICTIONARY:NEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> New(&#60;sDictID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;) --&#62; CODBDICTIONARY object</PRE
+><P
+> New() inits new CODBDICTIONARY object and returns it.</P
+><P
+> If object &lt;sDictID&gt; already exist, New() openes and returns this dictionary.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2903"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDictID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Stirng, the dictionary identifier</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sUser&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, the user name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sPasswd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>       String, the password to access</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new CODBDICTIONARY object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2928"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-OPEN"
+></A
+>Method CODBDICTIONARY:OPEN()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Open() 	--&#62; TRUE || FALSE</PRE
+><P
+> Open() openes all necessary files or openes connection with SQL server.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2934"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if files opened.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2944"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-PADRBODY"
+></A
+>Method CODBDICTIONARY:PADRBODY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PadrBody(&#60;oData&#62;, &#60;sClassName&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> PadrBody() makes data representation for &lt;oData&gt; to metaclass &lt;sClassName&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2950"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, source object</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, metaclass name - one of DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2970"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-SELECT"
+></A
+>Method CODBDICTIONARY:SELECT()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Select(&#60;sClassName&#62;[, &#60;nOrder&#62;][, &#60;sName&#62;][, &#60;sWhere&#62;]) 	--&#62; &#60;aIdent&#62;</PRE
+><P
+> Select() returns for class &lt;sClassName&gt; identifier list &lt;aIdent&gt; selected objects in order &lt;nOrder&gt; whose attribute &lt;Name&gt; == &lt;sName&gt; and attributes equal &lt;sWhere&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2976"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, metaclass name - one of DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, the index number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, value &lt;Name&gt; attribute to search</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sWhere&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, the searching condition</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;aIdent&gt; array of object identifier what equal searching condition.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3006"
+></A
+><H3
+><A
+NAME="CLASS-CODBDICTIONARY-UPDATE"
+></A
+>Method CODBDICTIONARY:UPDATE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Update(&#60;oData&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Update() updates object &lt;oData&gt; into storehouse. If dictinary have not object with identifier &lt;oData:ID&gt;, Update() returns FALSE.</P
+><P
+> The structure description of metadata see in section <A
+HREF="codbmetadata.html"
+>CODB metadata</A
+></P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3014"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, object to updating
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if object updated.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3029"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN3031"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> /* create new object of class CODICTIONARY */
+ oDict := coDictionary():new("MY001")
+ oDict:open()
+ ....
+ 
+ /* create new object specifier */
+ depBody := map()
+ depBody:name := "depository for Russian global information"
+ ...
+ /* append object to dictionary */
+ dep_id := oDict:append(depBody,"DEPOSIT")
+ 
+ /* check error */
+ if !empty(oDict:error)
+ ? "Error:",oDict:error
+ endif
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3033"
+></A
+><H2
+>See also</H2
+><P
+><A
+HREF="classcodblist.html"
+> CODBLIST</A
+> </P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3037"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classcodbdepository.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classcodbformatter.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  CODBDEPOSITORY</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  CODBFORMATTER</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

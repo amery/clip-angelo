@@ -1,0 +1,1684 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DISKUTILS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CODB-QUERY"
+HREF="categcodb-query.html"><LINK
+REL="NEXT"
+TITLE="PACK/UNPACK"
+HREF="categpackunpack.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categcodb-query.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categpackunpack.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGDISKUTILS">DISKUTILS</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN23497"
+></A
+><H2
+>Name</H2
+>DISKUTILS&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN23500"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nFiles              <A
+HREF="categdiskutils.html#FUNCTIONADIR"
+>ADIR([&#60;cFilespec&#62;],[&#60;aFilenames&#62;],[&#60;aSizes&#62;],[&#60;aDates&#62;], [&#60;aTimes&#62;],[&#60;aAttributes&#62;])</A
+>
+cDirectory          <A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+>CURDIR([&#60;cDrivespec&#62;])</A
+>
+nSuccess            <A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+>DIRCHANGE(&#60;cDir&#62;)</A
+>
+nSuccess            <A
+HREF="categdiskutils.html#FUNCTIONDIRMAKE"
+>DIRMAKE(&#60;cNewDir&#62;)</A
+>
+nSuccess            <A
+HREF="categdiskutils.html#FUNCTIONDIRREMOVE"
+>DIRREMOVE(&#60;cDirName&#62;)</A
+>
+lSuccess            <A
+HREF="categdiskutils.html#FUNCTIONDISKCHANGE"
+>DISKCHANGE(&#60;cDrive&#62;)</A
+>
+cDrive              <A
+HREF="categdiskutils.html#FUNCTIONDISKNAME"
+>DISKNAME()</A
+>
+nBytes              <A
+HREF="categdiskutils.html#FUNCTIONDISKSPACE"
+>DISKSPACE([&#60;nDrive&#62;])</A
+>
+&#60;sDosFileName&#62;      <A
+HREF="categdiskutils.html#FUNCTIONDOSPATH"
+>DOSPATH(&#60;sUnixFileName&#62;)</A
+>
+&#60;sUnixPath&#62;         <A
+HREF="categdiskutils.html#FUNCTIONMAKEPATH"
+>MAKEPATH(&#60;sDosPath&#62;)</A
+>
+&#60;sPath&#62;             <A
+HREF="categdiskutils.html#FUNCTIONSTARTPATH"
+>STARTPATH()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN23514"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23517"
+></A
+><H3
+><A
+NAME="FUNCTIONADIR"
+></A
+>Function  ADIR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ADIR([&#60;cFilespec&#62;],[&#60;aFilenames&#62;],[&#60;aSizes&#62;],[&#60;aDates&#62;],
+ [&#60;aTimes&#62;],[&#60;aAttributes&#62;]) --&#62; nFiles&#13;</PRE
+><P
+> ADIR() is an array function that performs two basic operations.  First,
+ it returns the number of files matching the file specification.  Second,
+ it fills a series of arrays with file names, sizes, dates, times, and
+ attributes.</P
+><P
+> 
+ ADIR() is a compatibility function and therefore not recommended.  It is
+ superseded by the DIRECTORY() function which returns all file
+ information in a multidimensional array.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23523"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFilespec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the path specification of files to include in the
+ scan of the DEFAULT directory.  It is a standard file specification that
+ can include the wildcard characters * and ?, as well as a drive and path
+ reference.  If omitted, the default specification is *.*.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFilenames&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the file names matching</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFilespec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.  Each element contains the file name and extension as a
+ character string in all uppercase letters.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSizes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the sizes of the corresponding
+ files in the &lt;aFilenames&gt; array.  Each element is a numeric data type.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aDates&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the dates of the corresponding
+ files in the &lt;aFilenames&gt; array.  Each element is a date data type.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aTimes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with the times of the corresponding
+ files in the &lt;aFilenames&gt; array.  Each element filled contains a
+ character string of the form: hh:mm:ss.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aAttributes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the array to fill with attributes of the
+ corresponding files in the &lt;aFilenames&gt; array.  Each element is a
+ character string.  If &lt;aAttributes&gt; is specified, hidden, system, and
+ directory files are included as well as normal files.  If &lt;aAttributes&gt;
+ is not specified, only normal files are included.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ADIR() returns the number of files matching the directory skeleton
+ described in &lt;cFilespec&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+> ACHOICE()</A
+> <A
+HREF="categarray.html#FUNCTIONAEVAL"
+>AEVAL()</A
+> <A
+HREF="categarray.html#FUNCTIONASCAN"
+>ASCAN()</A
+> <A
+HREF="categarray.html#FUNCTIONASORT"
+>ASORT()</A
+> <A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+>DIRECTORY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23577"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates an array to hold the names of all .txt
+ files in the current DEFAULT directory, then uses AEVAL() to list
+ them to the console:
+ 
+ LOCAL aFiles[ADIR("*.TXT")]
+ ADIR("*.TXT", aFiles)
+ AEVAL(aFiles, { |element| QOUT(element) })</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23581"
+></A
+><H3
+><A
+NAME="FUNCTIONCURDIR"
+></A
+>Function  CURDIR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CURDIR([&#60;cDrivespec&#62;]) --&#62; cDirectory&#13;</PRE
+><P
+> CURDIR() is an environment function that gives you the name of the
+ current DOS directory, ignoring the SET DEFAULT and SET PATH settings.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23586"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDrivespec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the letter of the disk drive to query.  If
+ not specified, the default is the current DOS drive.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> CURDIR() returns the current DOS directory of the drive specified by
+ &lt;cDrivespec&gt; as a character string without either leading or trailing
+ backslash (\) characters.
+ 
+ If an error occurs, or the current directory of the specified drive is
+ the root directory, CURDIR() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILE"
+> FILE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23606"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate various CURDIR() results:
+ 
+ ? CURDIR("E:")     // Result: null string--root directory
+ ? CURDIR("C")      // Result: dir1\dir2
+ ? CURDIR("C:")     // Result: dir1\dir2
+ ? CURDIR()         // Result: null string--root directory
+ ? CURDIR("A")      // Result: null string--drive not ready</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23610"
+></A
+><H3
+><A
+NAME="FUNCTIONDIRCHANGE"
+></A
+>Function  DIRCHANGE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DIRCHANGE(&#60;cDir&#62;) --&#62; nSuccess&#13;</PRE
+><P
+> DIRCHANGE() changes the current DOS directory.  This function may also
+ be used to determine whether or not a directory exists.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23615"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDir&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the directory to change to, including the
+ drive.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DIRCHANGE() returns 0 if successful; -1 if there is an argument error.
+ Otherwise, DIRCHANGE() returns the DOS error code.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+> CURDIR()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDIRMAKE"
+>DIRMAKE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDIRREMOVE"
+>DIRREMOVE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDISKCHANGE"
+>DISKCHANGE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23638"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example attempts to change to the "c:\dos"
+ directory.  If it is unsuccessful, an error message is displayed.
+ 
+ nResult :=  DIRCHANGE("c:\dos")
+ 
+ IF nResult != 0
+ ? "Cannot change directory. "
+ DO CASE
+ CASE nResult == 3
+ ?? "Directory does not exist."
+ CASE nResult == 5
+ ?? "Access to directory denied."
+ END
+ BREAK
+ ENDIF
+ 
+ You may also use something like this:
+ 
+ DIRCHANGE( "..\..\test" )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23642"
+></A
+><H3
+><A
+NAME="FUNCTIONDIRMAKE"
+></A
+>Function  DIRMAKE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DIRMAKE(&#60;cNewDir&#62;) --&#62; nSuccess&#13;</PRE
+><P
+> DIRMAKE() creates a specified directory.  Note that first you must have
+ sufficient rights to create a directory.  To create nested
+ subdirectories, you must create each subdirectory separately, starting
+ from the top-level directory that you want to create (see example
+ below.)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23647"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cNewDir&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the directory to be created, including an
+ optional drive.  If you do not specify a drive, the current one is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DIRMAKE() returns 0 if successful; -1 if there is an argument error.
+ Otherwise, DIRMAKE() returns the DOS error code.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+> DIRCHANGE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDIRREMOVE"
+>DIRREMOVE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23668"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example assumes that C:\TEST exists and uses DIRMAKE()
+ twice to create a nested subdirectory under it:
+ 
+ DIRMAKE("c:\test\one")    // Create top-most one
+ nResult := DIRMAKE("c:\test\one\two")
+ IF nResult != 0
+ ? "Cannot make directory, DOS error ", nResult
+ BREAK
+ ENDIF
+ 
+ You may also use something like this:
+ 
+ DIRMAKE( ".\test" )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23672"
+></A
+><H3
+><A
+NAME="FUNCTIONDIRREMOVE"
+></A
+>Function  DIRREMOVE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DIRREMOVE(&#60;cDirName&#62;) --&#62; nSuccess&#13;</PRE
+><P
+> DIRREMOVE() removes a specified directory.  Note that you must first
+ have sufficient rights to delete a directory.  A directory must be empty
+ in order to be deleted.  Therefore, to delete a directory that contains
+ subdirectories, you must first delete the subdirectories (see example
+ below).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23677"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDirName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the directory to erase, including an
+ optional drive.  If you do not specify a drive, the current one is used.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DIRREMOVE() returns 0 if successful; -1 if there is an argument error.
+ Otherwise, DIRREMOVE returns the DOS error code.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+> DIRCHANGE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDIRMAKE"
+>DIRMAKE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23698"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses DIRREMOVE() to delete a subdirectory named
+ C:\TEST\ONE, which only contains an empty subdirectory named
+ C:\TEST\ONE\TWO:
+ 
+ DIRREMOVE("c:\test\one\two")        // First delete lowest dir
+ nResult := DIRREMOVE("c:\test\one")  // Then delete higher dir
+ IF nResult != 0
+ ? "Cannot remove directory, DOS error ", siResult
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23702"
+></A
+><H3
+><A
+NAME="FUNCTIONDISKCHANGE"
+></A
+>Function  DISKCHANGE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISKCHANGE(&#60;cDrive&#62;) --&#62; lSuccess&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23708"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies the letter of the disk drive to change to.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISKCHANGE() returns true (.T.) if successful; otherwise, it returns
+ false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+> DIRCHANGE()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDISKNAME"
+>DISKNAME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23729"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses DISKCHANGE() to change to drive "D":
+ 
+ IF DISKCHANGE("D:")
+ ? "Successfully changed"
+ ELSE
+ ? "Not changed"
+ ENDIF
+ 
+ 
+ This example builds a string that contains all currently
+ available drives on your system:
+ 
+ FUNCTION AllDrives()
+ LOCAL wI, cDrives := ""
+ 
+ FOR wI := 1 TO 26
+ IF DISKCHANGE( Chr(wI + 64) )
+ cDrives := cDrives + Chr(wI + 64)
+ ENDIF
+ NEXT
+ RETURN cDrives</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23733"
+></A
+><H3
+><A
+NAME="FUNCTIONDISKNAME"
+></A
+>Function  DISKNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISKNAME() --&#62; cDrive&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23739"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISKNAME() returns the letter of the current DOS drive, without a
+ trailing colon.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+> CURDIR()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDISKCHANGE"
+>DISKCHANGE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23755"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example illustrates the relationship between
+ DISKNAME()and DISKCHANGE() and shows that DISKNAME() is unaffected by
+ the SET DEFAULT TO command:
+ 
+ ? DISKNAME()      // C
+ SET DEFAULT TO A
+ ? DISKNAME()      // C
+ DISKCHANGE("A")
+ ? DISKNAME()      // A
+ DISKCHANGE("C")
+ ? DISKNAME()      // C</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23759"
+></A
+><H3
+><A
+NAME="FUNCTIONDISKSPACE"
+></A
+>Function  DISKSPACE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DISKSPACE([&#60;nDrive&#62;]) --&#62; nBytes&#13;</PRE
+><P
+> DISKSPACE() is an environment function that determines the number of
+ available bytes remaining on the specified disk drive.  It is useful
+ when COPYing or SORTing to another drive to determine if there is enough
+ space available before initiating the operation.  You may also use
+ DISKSPACE() with RECSIZE() and RECCOUNT() to create a procedure to back
+ up database files.</P
+><P
+> 
+ DISKSPACE() ignores the SET DEFAULT drive setting.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23765"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of the drive to query, where one is drive A,
+ two is B, three is C, etc.  The default is the current DOS drive if</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDrive&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is omitted or specified as zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DISKSPACE() returns the number of bytes of empty space on the specified
+ disk drive as an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+> LASTREC()</A
+> <A
+HREF="categdatabase.html#FUNCTIONLUPDATE"
+>LUPDATE()</A
+> <A
+HREF="categdatabase.html#FUNCTIONRECSIZE"
+>RECSIZE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23792"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example is a user-defined function that demonstrates the
+ use of DISKSPACE() to back up a database file to another drive:
+ 
+ FUNCTION BackUp( cTargetFile, cTargetDrive )
+ LOCAL nSpaceNeeded, nTargetDrive
+ //
+ nSpaceNeeded := INT((RECSIZE() * ;
+ LASTREC()) + HEADER() + 1)
+ nTargetDrive := ASC(UPPER(cTargetDrive)) - 64
+ //
+ IF DISKSPACE(nTargetDrive) &#60; nSpaceNeeded
+ RETURN .F.
+ ENDIF
+ COPY TO (cTargetDrive + ":" + cTargetFile)
+ //
+ RETURN .T.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23796"
+></A
+><H3
+><A
+NAME="FUNCTIONDOSPATH"
+></A
+>Function  DOSPATH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DOSPATH(&#60;sUnixFileName&#62;) 	--&#62; &#60;sDosFileName&#62;&#13;</PRE
+><P
+> DOSPATH() uses specified in CLIP function <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET("C", ...)</A
+>
+ values and returns UNIX file name as DOS file name.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23802"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sUnixFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the file name in UNIX style.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns file name in DOS style.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23817"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  SET("C:", "/usr/home/user1")
+ sUnixFileName := "/usr/home/user1/test.prg"
+ 
+ ? DOSPATH(sUnixFileName) 	// --&#62; C:\test.prg
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23821"
+></A
+><H3
+><A
+NAME="FUNCTIONMAKEPATH"
+></A
+>Function  MAKEPATH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+>  MAKEPATH(&#60;sDosPath&#62;) 	--&#62; &#60;sUnixPath&#62;
+ &#13;</PRE
+><P
+>  MAKEPATH() converts string with path to file in DOS-style &lt;sDosPath&gt; to string with path in UNIX-style &lt;sUnixPath&gt;</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23826"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDosPath&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, is the path to file in DOS style.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Returns string &lt;sUnixPath&gt;, what equal the DOS-style path to file &lt;sDosPath&gt;
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFOPEN"
+> FOPEN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23846"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  SET("C:\", "/usr/home/user1/")
+ sFileName := "C:\clip\include\clip.ch"
+ 
+ ? MAKEPATH(sFileName)		// --&#62; /usr/home/user1/clip/include/clip.ch
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN23850"
+></A
+><H3
+><A
+NAME="FUNCTIONSTARTPATH"
+></A
+>Function  STARTPATH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> STARTPATH() 	--&#62; &#60;sPath&#62;&#13;</PRE
+><P
+>  STARTPATH() returns the string &lt;sPath&gt; what contain full path and name of started program.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN23855"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the string &lt;sPath&gt; what contain full path and name of started program.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONCURDIR"
+> CURDIR()</A
+> <A
+HREF="categdiskutils.html#FUNCTIONDIRCHANGE"
+> DIRCHANGE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN23871"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  ? CURDIR()		// --&#62; /usr/home/user1/test
+ ? STARTPATH()		// --&#62; /usr/home/user1/test/mytest
+ 
+ ? DIRCHANGE("mybase")	// --&#62; 0
+ 
+ ? CURDIR()		// --&#62; /usr/home/user1/test/mybase
+ ? STARTPATH()		// --&#62; /usr/home/user1/test/mytest
+ </PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categcodb-query.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categpackunpack.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CODB-QUERY</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>PACK/UNPACK</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

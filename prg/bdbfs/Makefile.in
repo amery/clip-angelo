@@ -49,7 +49,7 @@ hash1 :
 
 cfg :
 
-bdbf$(EXESUFF):	bdbf.prg $(o_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+bdbf$(EXESUFF):	bdbf.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -s -g -o $@ -e $< $(o_files) $(LIBS) ;	\

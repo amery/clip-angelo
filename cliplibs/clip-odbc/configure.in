@@ -9,7 +9,7 @@ Check_Include 		odbc.h 					xyz 	clip-odbc 		Yes 	/usr/local/easysoft/oob/client
 																																				"http://www.easysoft.com/products/data_access"
 
 echo "LIBODBC = -L$LIBODBC" 	>>Makefile.ini
-echo "LIBOOB = -L$LIBOOB" 	>>Makefile.ini
+echo "LIBOOB = -L$LIBOOB" 		>>Makefile.ini
 
 #!/bin/sh
 

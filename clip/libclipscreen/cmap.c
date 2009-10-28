@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "ci_charset.h"
+#include "charset.h"
 
 char *CLIPROOT=".";
 

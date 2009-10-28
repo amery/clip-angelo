@@ -26,7 +26,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-crypto$(EXESUFF): crypto.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+crypto$(EXESUFF): crypto.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewN -s -l -M $< -lclip-crypto $(LIBS)
 

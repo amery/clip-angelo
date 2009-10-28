@@ -34,7 +34,7 @@ cleanc :
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-clip_cld$(EXESUFF) : clip_cld.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
+clip_cld$(EXESUFF) : clip_cld.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;											\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -esM $< $(o_files); 	\

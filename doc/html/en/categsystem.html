@@ -1,0 +1,3243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SYSTEM</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="NEXT"
+TITLE="C-API"
+HREF="categc-api.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categc-api.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGSYSTEM">SYSTEM</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN20306"
+></A
+><H2
+>Name</H2
+>SYSTEM&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN20309"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>TRUE || FALSE       <A
+HREF="categsystem.html#FUNCTIONCOMPILEFILE"
+>COMPILEFILE(&#60;sFileName&#62;, &#60;sFlags&#62;, &#60;@sError&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONCOMPILESTRING"
+>COMPILESTRING(&#60;sString&#62;, &#60;@sError&#62;)</A
+>
+&#60;cPath&#62;             <A
+HREF="categsystem.html#FUNCTIONDEFPATH"
+>DefPath()</A
+>
+aDirectory          <A
+HREF="categsystem.html#FUNCTIONDIRECTORY"
+>DIRECTORY(&#60;cDirSpec&#62;, [&#60;cAttributes&#62;])</A
+>
+nOsCode             <A
+HREF="categsystem.html#FUNCTIONDOSERROR"
+>DOSERROR([&#60;nNewOsCode&#62;])</A
+>
+bCurrentErrorHandler<A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+>ERRORBLOCK([&#60;bErrorHandler&#62;])</A
+>
+nCurrentReturnCode  <A
+HREF="categsystem.html#FUNCTIONERRORLEVEL"
+>ERRORLEVEL([&#60;nNewReturnCode&#62;])</A
+>
+nErrorCode          <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+>
+cString             <A
+HREF="categsystem.html#FUNCTIONGETENV"
+>GETENV(&#60;cEnvironmentVariable&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONLOAD"
+>LOAD(&#60;sFileName&#62;)</A
+>
+&#60;CodeBlock&#62;         <A
+HREF="categsystem.html#FUNCTIONLOADBLOCK"
+>LOADBLOCK(&#60;sFileName&#62;)</A
+>
+nKbytes             <A
+HREF="categsystem.html#FUNCTIONMEMORY"
+>MEMORY(&#60;nExp&#62;)</A
+>
+lError              <A
+HREF="categsystem.html#FUNCTIONNETERR"
+>NETERR([&#60;lNewError&#62;])</A
+>
+cWorkstationName    <A
+HREF="categsystem.html#FUNCTIONNETNAME"
+>NETNAME()</A
+>
+cOsName             <A
+HREF="categsystem.html#FUNCTIONOS"
+>OS()</A
+>
+nLastArgumentPos    <A
+HREF="categsystem.html#FUNCTIONPCOUNT"
+>PCOUNT()</A
+>
+nSourceLine         <A
+HREF="categsystem.html#FUNCTIONPROCLINE"
+>PROCLINE([&#60;nActivation&#62;])</A
+>
+cProcedureName      <A
+HREF="categsystem.html#FUNCTIONPROCNAME"
+>PROCNAME([&#60;nActivation&#62;])</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+CurrentSetting      <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET(&#60;nSpecifier&#62;, [&#60;expNewSetting&#62;], [&#60;lOpenMode&#62;])</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONSLEEP"
+>SLEEP(&#60;nSec&#62;)</A
+>
+&#60;nResultCode&#62;       <A
+HREF="categsystem.html#FUNCTIONSYSCMD"
+>SYSCMD(&#60;sCmd&#62;, &#60;sStdin&#62;, @&#60;sResult&#62;, @&#60;sError&#62;)</A
+>
+&#60;vOldLimitValue&#62;    <A
+HREF="categsystem.html#FUNCTIONULIMIT"
+>ULIMIT(&#60;sResName&#62;, &#60;vLimitVal&#62;)</A
+>
+cVersion            <A
+HREF="categsystem.html#FUNCTIONVERSION"
+>VERSION()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN20336"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20339"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMPILEFILE"
+></A
+>Function  COMPILEFILE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COMPILEFILE(&#60;sFileName&#62;, &#60;sFlags&#62;, &#60;@sError&#62;) 	--&#62; TRUE || FALSE&#13;</PRE
+><P
+>  COMPILEFILE() compiles file &lt;sFileName&gt; with flags &lt;sFlags&gt; and returns
+ TRUE in success, in other returns FALSE and &lt;sError&gt; contents error description.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20345"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the file name to compiling.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFlags&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, is the compiller flags (by default "-p").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sError&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, is the error description</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if file compilled without errors.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20370"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  sFileName := FILEDIALOG("*.prg")
+ err := ""
+ lCF := COMPILEFILE(sFileName,,@err)
+ if iCF
+ qout("Compiller: OK")
+ else
+ qout("Compiller: error"+ err)
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20374"
+></A
+><H3
+><A
+NAME="FUNCTIONCOMPILESTRING"
+></A
+>Function  COMPILESTRING() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> COMPILESTRING(&#60;sString&#62;, &#60;@sError&#62;) 	--&#62; &#60;CodeBlock&#62;&#13;</PRE
+><P
+>  COMPILESTRING() compiles string &lt;sString&gt; to code block and returns it.
+ If error was created, &lt;sError&gt; kept error description.</P
+><P
+> 
+ Sourse string can contents any CLIP construstions and command with the
+ exlusion not static functions declaration. &lt;sString&gt; must begin with
+ parameters descriptions (if it need) without functions/procedures declaration. See examples.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20380"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the source string</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sError&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the error description</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the code block, what was compilled from a source string.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20400"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> /* source string */
+ str:="
+ parameters p1,p2
+ qout(p1,p2)
+ localfunc1(p1,p2)
+ return p1+p2
+ static function localfunc1(fp1,fp2)
+ qout('called local function in string compiled block')
+ return p1-p2"
+ 
+ /* compile string */
+ block:=COMPILESTRING(str,@err)
+ if empty(err)
+ x:=eval(block,1,2) 	// returns values  p1 and p2
+ ? x 			// returns values  p1+p2
+ else
+ ? err 			// error description
+ endif
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20404"
+></A
+><H3
+><A
+NAME="FUNCTIONDEFPATH"
+></A
+>Function  DEFPATH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DefPath() --&#62; &#60;cPath&#62;&#13;</PRE
+><P
+> Returns the path defined in SET DEFAULT command with ending
+ PATH_DELIM or ":" symbol. If SET DEFAULT path isn't defined (empty),
+ nothing is added.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20409"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The new path string.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20419"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> SET DEFAULT TO c:\FOX
+ ? Set(_SET_DEFAULT) // 'c:\fox'
+ ? DefPath()         // 'c:\fox\'
+ 
+ SET DEFAULT TO D
+ ? Set(_SET_DEFAULT) // 'D'
+ ? DefPath()         // 'D:'</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20423"
+></A
+><H3
+><A
+NAME="FUNCTIONDIRECTORY"
+></A
+>Function  DIRECTORY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DIRECTORY(&#60;cDirSpec&#62;, [&#60;cAttributes&#62;]) --&#62; aDirectory&#13;</PRE
+><P
+> DIRECTORY() is an environment function that returns information about
+ files in the current or specified directory.  It is similar to ADIR(),
+ but returns a single array instead of adding values to a series of
+ existing arrays passed by reference.</P
+><P
+> 
+ Use DIRECTORY() to perform actions on groups of files.  In combination
+ with AEVAL(), you can define a block that can be applied to all files
+ matching the specified &lt;cDirSpec&gt;.</P
+><P
+> 
+ The header file, Directry.ch, in the \include subdirectory
+ contains #defines for the subarray subscripts, so that the references to
+ each file subarray are more readable.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20430"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDirSpec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> identifies the drive, directory and file specification
+ for the directory search.  Wildcards are allowed in the file
+ specification.  If &lt;cDirSpec&gt; is omitted, the default value is *.*.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cAttributes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies inclusion of files with special attributes
+ in the returned information.  &lt;cAttributes&gt; is a string containing one
+ or more of the following characters:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+>DIRECTORY() Attributes
+------------------------------------------------------------------------
+Attribute    Meaning
+------------------------------------------------------------------------
+H            Include hidden files
+S            Include system files
+D            Include directories
+V            Search for the DOS volume label and exclude all other files
+------------------------------------------------------------------------</PRE
+>
+ 
+ Normal files are always included in the search, unless you specify V.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DIRECTORY() returns an array of subarrays, with each subarray containing
+ information about each file matching &lt;cDirSpec&gt;.  The subarray has the
+ following structure:
+ 
+ <PRE
+CLASS="PROGRAMLISTING"
+>DIRECTORY() Subarray Structure
+ ------------------------------------------------------------------------
+ Position     Metasymbol     Directry.ch
+ ------------------------------------------------------------------------
+ 1            cName          F_NAME
+ 2            cSize          F_SIZE
+ 3            dDate          F_DATE
+ 4            cTime          F_TIME
+ 5            cAttributes    F_ATTR
+ ------------------------------------------------------------------------
+ </PRE
+>
+ 
+ If no files are found matching &lt;cDirSpec&gt; or if &lt;cDirSpec&gt; is an illegal
+ path or file specification, DIRECTORY() returns an empty ({}) array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAEVAL"
+> AEVAL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20457"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates an array of information about files in
+ the current directory and then lists the names of the files using
+ AEVAL() and QOUT():
+ 
+ #include "directry.ch"
+ //
+ aDirectory := DIRECTORY("*.*", "D")
+ AEVAL( aDirectory, {|aFile| QOUT(aFile[F_NAME])} )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20461"
+></A
+><H3
+><A
+NAME="FUNCTIONDOSERROR"
+></A
+>Function  DOSERROR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DOSERROR([&#60;nNewOsCode&#62;]) --&#62; nOsCode&#13;</PRE
+><P
+> DOSERROR() is an error function that returns the last DOS error code
+ associated with an activation of the runtime error block.  When a
+ runtime error occurs, the DOSERROR() function is set to the current DOS
+ error if the operation has an associated DOS error.  The function value
+ is retained until another runtime error occurs.  If the failed operation
+ has no associated DOS error, the DOSERROR() returns zero.  With low-
+ level file functions, FERROR() returns the same value as DOSERROR().</P
+><P
+> 
+ Through use of the optional &lt;nNewOsCode&gt;, you may customize to the
+ reporting activation the returned value for any DOS error.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20467"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNewOsCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, if specified, alters the value returned by DOSERROR().
+ The value must be a numeric value that reflects a DOS error number.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DOSERROR() returns the DOS error number as an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONERRORBLOCK"
+> ERRORBLOCK()</A
+> <A
+HREF="categsystem.html#FUNCTIONFERROR"
+>FERROR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20488"
+></A
+><H3
+><A
+NAME="FUNCTIONERRORBLOCK"
+></A
+>Function  ERRORBLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ERRORBLOCK([&#60;bErrorHandler&#62;]) --&#62; bCurrentErrorHandler&#13;</PRE
+><P
+> ERRORBLOCK() is an error function that defines an error handler to
+ execute whenever a runtime error occurs.  Specify the error handler as a
+ code block with the following form,</P
+><P
+> 
+ { |&lt;oError&gt;| &lt;expression list&gt;,... }</P
+><P
+> 
+ where &lt;oError&gt; is an error object containing information about the
+ error.  Within the code block, messages can be sent to the error object
+ to obtain information about the error.  Returning true (.T.) from the
+ error handling block retries the failed operation and false (.F.)
+ resumes processing.</P
+><P
+> 
+ The error handling code block can be specified either as a list of
+ expressions or as a call to a user-defined function.  A call to a user-
+ defined function is more useful since you can use xClipper control
+ statements instead of expressions.  This is particularly the case if
+ there is a BEGIN SEQUENCE pending and you want to BREAK to the nearest
+ RECOVER statement.</P
+><P
+> 
+ As this implies, error handling blocks can be used in combination with
+ BEGIN SEQUENCE...END control structures.  Within an error handling
+ block, you handle device, low-level, and common errors that have a
+ general recovery mechanism.  If the operation needs specific error
+ handling, define a BEGIN SEQUENCE then BREAK to the RECOVER statement,
+ returning the error object for local processing.  See the example below.</P
+><P
+> 
+ If no &lt;bErrorHandler&gt; has been specified using ERRORBLOCK() and a
+ runtime error occurs, the default error handling block is evaluated.
+ This error handler displays a descriptive message to the screen, sets
+ the ERRORLEVEL() to 1, then QUITs the program.</P
+><P
+> 
+ Since ERRORBLOCK() returns the current error handling block, it is
+ possible to specify an error handling block for an operation saving the
+ current error handling block, then restore it after the operation has
+ completed.  Also, error handlers specified as code blocks, can be passed
+ to procedures and user-defined functions, and RETURNed as values.</P
+><P
+> 
+ For more information on the structure and operations of error objects,
+ refer to the Error class entry in this chapter and the "Error Handling
+ Strategies" chapter in the Programming and Utilities Guide.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20500"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bErrorHandler&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the code block to execute whenever a runtime
+ error occurs.  When evaluated, the &lt;bErrorHandler&gt; is passed an error
+ object as an argument by the system.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ERRORBLOCK() returns the current error handling code block.  If no error
+ handling block has been posted since the program was invoked,
+ ERRORBLOCK() returns the default error handling block.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20515"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This code fragment posts, and then calls an error handling
+ block when there is an error within a BEGIN SEQUENCE construct:
+ 
+ LOCAL bErrorHandler, bLastHandler, objErr
+ bErrorHandler := { |oError| ;
+ MyErrorHandler(oError) }
+ //
+ // Save current handler
+ bLastHandler := ERRORBLOCK(bErrorHandler)
+ //
+ BEGIN SEQUENCE
+ .
+ . &#60;operation statements&#62;
+ .
+ // Receive error object from BREAK
+ RECOVER USING oErrorInfo
+ .
+ . &#60;recovery statements&#62;
+ .
+ END
+ ERRORBLOCK(bLastHandler)      // Restore handler
+ RETURN
+ 
+ FUNCTION MyErrorHandler( oError )
+ //
+ BREAK oError      // Return error object to RECOVER
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20519"
+></A
+><H3
+><A
+NAME="FUNCTIONERRORLEVEL"
+></A
+>Function  ERRORLEVEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ERRORLEVEL([&#60;nNewReturnCode&#62;]) --&#62; nCurrentReturnCode&#13;</PRE
+><P
+> ERRORLEVEL() is a dual purpose environment function.  It returns the
+ current xClipper return code and optionally sets a new return code.
+ The return code is a value set by a child process so the parent process
+ can test the termination state of the child process.  Typically, the
+ parent process is OS and the child process is an application program.
+ Retrieve a return code with the OS ERRORLEVEL command or INT 21
+ Function 4Dh.</P
+><P
+> 
+ When a xClipper program terminates, the return code is set to 1 if the
+ process ends with a fatal error.  If the process ends normally, the
+ return code is set to zero, or the last ERRORLEVEL() set in the program.</P
+><P
+> 
+ Typically, you would set a return code with ERRORLEVEL() to indicate an
+ error state to the program that invoked the current xClipper program.
+ In most cases this is the application batch file.  Here you would test
+ the return code using the OS ERRORLEVEL command.  Refer to your OS
+ manual for more information.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20526"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNewReturnCode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the new return code setting.  This can be a
+ value between zero and 255.  The default value at startup is zero.  If
+ not specified, ERRORLEVEL() reports the current setting without
+ assigning a new value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ERRORLEVEL() returns the current xClipper exit code as a numeric
+ value, if one has been set using ERRORLEVEL() with an argument;
+ otherwise, it returns zero.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20541"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example saves the current xClipper return code, then
+ sets a new value:
+ 
+ nOldCode := ERRORLEVEL()      // Get current error level
+ ERRORLEVEL(1)                 // Set new error level
+ 
+ This example uses ERRORLEVEL() to set a return code that can
+ be tested by the parent process:
+ 
+ #define ERR_FILE_MISSING      255
+ #define ERR_POST_INCOMPLETE   254
+ //
+ IF !FILE("Sysfile.dbf")
+ @ 0, 0
+ @ 1, 0
+ @ 0, 0 SAY "Fatal error: System ;
+ file is missing...quitting"
+ ERRORLEVEL(ERR_FILE_MISSING)
+ QUIT
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20545"
+></A
+><H3
+><A
+NAME="FUNCTIONFERROR"
+></A
+>Function  FERROR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FERROR() --&#62; nErrorCode&#13;</PRE
+><P
+> FERROR() is a low-level file function that indicates a DOS error after a
+ file function is used.  These functions include FCLOSE(), FCREATE(),
+ FERASE(), FOPEN(), FREAD(), FREADSTR(), and FRENAME().  FERROR() retains
+ its value until the next execution of a file function.</P
+><P
+> 
+ Warning!  This function allows low-level access to DOS files and
+ devices.  It should be used with extreme care and requires a thorough
+ knowledge of the operating system.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20551"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> FERROR() returns the DOS error from the last file operation as an
+ integer numeric value.  If there is no error, FERROR() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONDOSERROR"
+> DOSERROR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+>FCLOSE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFCREATE"
+>FCREATE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFERASE"
+>FERASE()</A
+> <A
+HREF="categfileio.html#FUNCTIONFOPEN"
+>FOPEN()</A
+> <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20571"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example tests FERROR() after the creation of a binary
+ file and displays an error message if the create fails:
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FCREATE("Temp.txt", FC_NORMAL)
+ IF FERROR() != 0
+ ? "Cannot create file, DOS error ", FERROR()
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20575"
+></A
+><H3
+><A
+NAME="FUNCTIONGETENV"
+></A
+>Function  GETENV() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GETENV(&#60;cEnvironmentVariable&#62;) --&#62; cString&#13;</PRE
+><P
+> GETENV() is an environment function that lets you retrieve information
+ from the OS environment into an application program.  Typically, this
+ is configuration information, including path names, that gives the
+ location of files (database, index, label, or reports).  This function
+ is particularly useful for network environments.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20580"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cEnvironmentVariable&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the OS environment variable.
+ When specifying this argument, you can use any combination of uppercase
+ and lowercase letters; GETENV() is not case-sensitive.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> GETENV() returns the contents of the specified OS environment variable
+ as a character string.  If the variable cannot be found, GETENV()
+ returns a null string ("").</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20595"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example retrieves the current OS PATH setting, making it
+ the current xClipper PATH:
+ 
+ cPath := GETENV("PATH")
+ SET PATH TO (cPath)
+ 
+ This example uses environment variables to configure the
+ specific locations of files.  When you set up a system, define
+ environment variables that contain the location of various file types
+ as well as the xCLIPPER environment variable.
+ 
+ C&#62;SET LOC_DBF=&#60;database file path&#62;
+ C&#62;SET LOC_NTX=&#60;index file path&#62;
+ C&#62;SET LOC_RPT=&#60;report file path&#62;
+ 
+ In the configuration section of your application program, assign the
+ contents of the environment variables to variables.  Then when you
+ access a file, preface the reference with the path variable as
+ follows:
+ 
+ cDdfDirectory := GETENV("LOC_DBF")
+ USE (cDdfDirectory + "Invoices")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20599"
+></A
+><H3
+><A
+NAME="FUNCTIONLOAD"
+></A
+>Function  LOAD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LOAD(&#60;sFileName&#62;) 	--&#62; &#60;CodeBlock&#62;&#13;</PRE
+><P
+> LOAD() reades file &lt;sFileName&gt; and returns code block.
+ &lt;sFile&gt; is the byte-code file "filename.po" or dynamic library "filename.so".
+ After loading all not static functions are accessible to use.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20604"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the byte-code file name od dymanic library file name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns code block, what was loaded from file.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20619"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  /* test.po */
+ local a
+ a := "Hello, world!"
+ return a
+ /////////////////////////
+ 
+ block := LOAD("test.po")
+ 
+ qout( eval(block) )	// --&#62; Hello, world!
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20623"
+></A
+><H3
+><A
+NAME="FUNCTIONLOADBLOCK"
+></A
+>Function  LOADBLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LOADBLOCK(&#60;sFileName&#62;) 	--&#62; &#60;CodeBlock&#62;&#13;</PRE
+><P
+>  LOADBLOCK() loades byte-code file &lt;sFileName&gt; and returns code block.
+ Byte-code file can be created:</P
+><P
+> 
+ clip -p filename.prg</P
+><P
+> 
+ The rules and structure of filename.prg must be corresponded are rules
+ for string from function <A
+HREF="categsystem.html#FUNCTIONCOMPILESTRING"
+>COMPILESTRING()</A
+>.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20631"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sFileName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the byte-code file name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns code block, what was loaded from byte-code file.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20646"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  block := LOADBLOCK("test.po")
+ 
+ eval(block, "1", 2)
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20650"
+></A
+><H3
+><A
+NAME="FUNCTIONMEMORY"
+></A
+>Function  MEMORY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MEMORY(&#60;nExp&#62;) --&#62; nKbytes&#13;</PRE
+><P
+> MEMORY() is an environment function that reports various states of free
+ pool memory.  (Free pool is the dynamic region of memory that stores
+ character strings and executes RUN commands.)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20655"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that determines the type of value MEMORY()
+ returns as follows:
+ 
+ 
+<PRE
+CLASS="PROGRAMLISTING"
+> MEMORY() Argument Values
+------------------------------------------------------------------------
+Value     Meaning
+------------------------------------------------------------------------
+0         Estimated total space available for character values
+1         Largest contiguous block available for character values
+2         Area available for RUN commands
+------------------------------------------------------------------------</PRE
+></P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MEMORY() returns an integer numeric value representing the amount of
+ memory available, in one -kilobyte increments.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20671"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses MEMORY() before a RUN command to determine
+ if there is enough memory available to execute the external program:
+ 
+ #define MEM_CHAR   0
+ #define MEM_BLOCK   1
+ #define MEM_RUN      2
+ //
+ IF MEMORY(MEM_RUN) &#62;= 128
+ RUN MYPROG
+ ELSE
+ ? "Not enough memory to RUN"
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20675"
+></A
+><H3
+><A
+NAME="FUNCTIONNETERR"
+></A
+>Function  NETERR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> NETERR([&#60;lNewError&#62;]) --&#62; lError&#13;</PRE
+><P
+> NETERR() is a network function.  It is a global flag set by USE,
+ USE...EXCLUSIVE, and APPEND BLANK in a network environment.  It is used
+ to test whether any of these commands have failed by returning true
+ (.T.) in the following situations:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> NETERR() Causes
+ ------------------------------------------------------------------------
+ Command             Cause
+ ------------------------------------------------------------------------
+ USE                 USE EXCLUSIVE by another process
+ USE...EXCLUSIVE     USE EXCLUSIVE or USE by another process
+ APPEND BLANK        FLOCK() or RLOCK() of LASTREC() + 1 by another user
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ NETERR() is generally applied in a program by testing it following a USE
+ or APPEND BLANK command.  If it returns false (.F.), you can perform the
+ next operation.  If the command is USE, you can open index files.  If it
+ is APPEND BLANK, you can assign values to the new record with a REPLACE
+ or @...GET command.  Otherwise, you must handle the error by either
+ retrying the USE or APPEND BLANK, or terminating the current operation
+ with a BREAK or RETURN.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20683"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lNewError&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, if specified, sets the value returned by NETERR() to
+ the specified status.  &lt;lNewError&gt; can be either true (.T.) or false
+ (.F.).  Setting NETERR() to a specified value allows the runtime error
+ handler to control the way certain file errors are handled.  For more
+ information, refer to Errorsys.prg.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NETERR() returns true (.T.) if a USE or APPEND BLANK fails.  The initial
+ value of NETERR() is false (.F.).  If the current process is not running
+ under a network operating system, NETERR() always returns false (.F.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+> RLOCK()</A
+> <A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+>FLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20704"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates typical usage of NETERR().  If the
+ USE succeeds, the index files are opened and processing continues.
+ If the USE fails, a message displays and control returns to the
+ nearest BEGIN SEQUENCE construct:
+ 
+ USE Customer SHARED NEW
+ IF !NETERR()
+ SET INDEX TO CustNum, CustOrders, CustZip
+ ELSE
+ ? "File is in use by another"
+ BREAK
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20708"
+></A
+><H3
+><A
+NAME="FUNCTIONNETNAME"
+></A
+>Function  NETNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> NETNAME() --&#62; cWorkstationName&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20714"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NETNAME() returns the workstation identification as a character string
+ up to 15 characters in length.  If the workstation identification was
+ never set or the application is not operating under the IBM PC Network,
+ it returns a null string ("").</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20724"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates the NETNAME() result when a
+ workstation is started as a network node with a station identifier of
+ "STATION 1":
+ 
+ ? NETNAME()               // Result: STATION 1
+ 
+ This example demonstrates the NETNAME() result when a
+ workstation is started as a stand-alone unit:
+ 
+ ? NETNAME()               // Result: ""</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20728"
+></A
+><H3
+><A
+NAME="FUNCTIONOS"
+></A
+>Function  OS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> OS() --&#62; cOsName&#13;</PRE
+><P
+> OS() is an environment function that returns the name of the disk
+ operating system under which the current workstation is operating.  The
+ name is returned in the form of the operating system name followed by
+ the version number.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20733"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> OS() returns the operating system name as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONVERSION"
+> VERSION()</A
+> <A
+HREF="categsystem.html#FUNCTIONGETENV"
+>GETENV()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20749"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses OS() to report the operating system under
+ which the current workstation is running:
+ 
+ ? OS()                  // Result: LINUX</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20753"
+></A
+><H3
+><A
+NAME="FUNCTIONPCOUNT"
+></A
+>Function  PCOUNT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PCOUNT() --&#62; nLastArgumentPos&#13;</PRE
+><P
+> PCOUNT() reports the position of the last argument in the list of
+ arguments passed when a procedure or user-defined function is invoked.
+ This information is useful when determining whether arguments were left
+ off the end of the argument list.  Arguments skipped in the middle of
+ the list are still included in the value returned.</P
+><P
+> 
+ To determine if a parameter did not receive a value, test it for NIL.
+ Skipped parameters are uninitialized and, therefore, return NIL when
+ accessed.  Another method is to test parameters with the VALTYPE()
+ function.  This can establish whether the argument was passed and
+ enforce the correct type at the same time.  If a parameter was not
+ supplied, a default value can be assigned.</P
+><P
+> 
+ For more information on passing parameters, refer to the "Basic
+ Concepts" chapter in the Programming and Utilities Guide.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20760"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PCOUNT() returns, as an integer numeric value, the position of the last
+ argument passed.  If no arguments are passed, PCOUNT() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONVALTYPE"
+> VALTYPE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20775"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example is a user-defined function that opens a database
+ file and uses PCOUNT() to determine whether the calling procedure
+ passed the name of the database file to be opened.  If the name was
+ not passed, OpenFile() asks for the name:
+ 
+ FUNCTION OpenFile( cFile )
+ IF PCOUNT() = 0
+ ACCEPT "File to use: " TO cFile
+ ENDIF
+ USE (cFile)
+ RETURN (NETERR())</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20779"
+></A
+><H3
+><A
+NAME="FUNCTIONPROCLINE"
+></A
+>Function  PROCLINE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PROCLINE([&#60;nActivation&#62;]) --&#62; nSourceLine&#13;</PRE
+><P
+> PROCLINE() queries the xClipper activation stack to determine the last
+ line executed in a currently executing procedure, user-defined function,
+ or code block.  The activation stack is an internal structure that
+ maintains a record of each procedure, function, or code block
+ invocation.  A line number is relative to the beginning of the original
+ source file.  A line includes a comment, blank line, preprocessor
+ directive, and a continued line.  A multistatement line is counted as a
+ single line.</P
+><P
+> 
+ For the current activation, PROCLINE() returns the number of the current
+ line.  For a previous activation, PROCLINE() returns the number of the
+ line that invoked the procedure or a user-defined function in which
+ PROCLINE() is invoked.</P
+><P
+> 
+ If the activation being queried is a code block evaluation, PROCLINE()
+ returns the line number of the procedure in which the code block was
+ originally defined.</P
+><P
+> 
+ PROCLINE() is used with PROCNAME() to report debugging information.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20787"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nActivation&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that specifies which activation to
+ query.  Zero refers to the current activation, one refers to the
+ previous activation, etc.  If not specified, the default value is zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PROCLINE() returns the line number of the last line executed in a
+ currently executing procedure, function, or code block as an integer
+ numeric value.  If the /L compiler option suppresses line number
+ information, PROCLINE() always returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONPROCNAME"
+> PROCNAME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20807"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example, PROCLINE() returns the line number for the
+ current activation, followed by the line number of the previous
+ activation:
+ 
+ // First line of source file
+ MyFunction()
+ RETURN
+ 
+ FUNCTION MyFunction
+ ? PROCLINE()      // Result: 6 (current activation)
+ ? PROCLINE(1)      // Result: 2 (previous activation)
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20811"
+></A
+><H3
+><A
+NAME="FUNCTIONPROCNAME"
+></A
+>Function  PROCNAME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PROCNAME([&#60;nActivation&#62;]) --&#62; cProcedureName&#13;</PRE
+><P
+> PROCNAME() queries the xClipper activation stack to determine the name
+ of a currently executing procedure, user-defined function, or code
+ block.  The activation stack is an internal structure that maintains a
+ record of each procedure, function, or code block invocation.</P
+><P
+> 
+ For the current activation, PROCNAME() returns the name of the current
+ procedure or user-defined function.  For a previous activation,
+ PROCNAME() returns the name of the procedure or user-defined function
+ that invoked the current procedure.</P
+><P
+> 
+ If the activation being queried is a code block evaluation, PROCNAME()
+ returns the name of the procedure or user-defined function that defined
+ the code block, preceded by "b".  If the activation being queried is a
+ memvar, PROCNAME() returns the name preceded by "M-&gt;".</P
+><P
+> 
+ PROCNAME() is used with PROCLINE() to report debugging information.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20819"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nActivation&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> specifies which activation to query.  A value of zero
+ refers to the current activation, a value of one refers to the previous
+ activation, etc.  If unspecified, the default value is zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> PROCNAME() returns the name of a currently executing procedure,
+ function, or code block, as a character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONPROCLINE"
+> PROCLINE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20839"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example is a user-defined function you can call during a
+ debugging phase of program development in order to display the
+ activation stack with line numbers:
+ 
+ FUNCTION ListStack( cMessage )
+ LOCAL nActivation := 1
+ ? cMessage
+ DO WHILE !(PROCNAME(nActivation) == "")
+ ? "Called from:", PROCNAME(nActivation),;
+ "(" + LTRIM(STR(PROCLINE(nActivation))) + ")"
+ nActivation++
+ ENDDO
+ QUIT
+ RETURN NIL</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20843"
+></A
+><H3
+><A
+NAME="FUNCTIONQOUT"
+></A
+>Function  QOUT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> QOUT([&#60;exp list&#62;]) --&#62; NIL
+ QQOUT([&#60;exp list&#62;]) --&#62; NIL&#13;</PRE
+><P
+> QOUT() and QQOUT() are console functions.  These are the functional
+ primitives that create the ? and ?? commands, respectively.  Like the ?
+ and ?? commands, they display the results of one or more expressions to
+ the console.  QOUT() outputs carriage return and line feed characters
+ before displaying the results of &lt;exp list&gt;.  QQOUT() displays the
+ results of &lt;exp list&gt; at the current ROW() and COL() position.  When
+ QOUT() and QQOUT() display to the console, ROW() and COL() are updated.
+ If SET PRINTER is ON, PROW() and PCOL() are updated instead.  If &lt;exp
+ list&gt; is specified, both QOUT() and QQOUT() display a space between the
+ results of each expression.</P
+><P
+> 
+ You can use QOUT() and QQOUT() for console display within an expression.
+ This is particularly useful for blocks, iteration functions such as
+ AEVAL() and DBEVAL(), and in a list of statements in the output pattern
+ of a user-defined command definition.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20849"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp list&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a comma-separated list of expressions (of any data
+ type other than array or block) to display to the console.  If no
+ argument is specified and QOUT() is specified, a carriage return/line
+ feed pair is displayed.  If QQOUT() is specified without arguments,
+ nothing displays.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> QOUT() and QQOUT() always return NIL.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20864"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example uses QOUT() with AEVAL() to list the contents of
+ a literal array to the console:
+ 
+ LOCAL aElements := { 1, 2, 3, 4, 5 }
+ AEVAL(aElements, { |element| QOUT(element) })
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20868"
+></A
+><H3
+><A
+NAME="FUNCTIONSET"
+></A
+>Function  SET() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SET(&#60;nSpecifier&#62;, [&#60;expNewSetting&#62;], [&#60;lOpenMode&#62;]) --&#62; CurrentSetting&#13;</PRE
+><P
+> SET() is a system function that lets you inspect or change the values of
+ the xClipper system settings.  For information on the meaning and
+ legal values for a particular setting, refer to the associated command
+ or function.</P
+><P
+> 
+ Use a manifest constant to specify the setting to be inspected or
+ changed.  These constants are defined in a header file called Set.ch.
+ This header file should be included at the top of any source file which
+ uses SET().</P
+><P
+> 
+ Set.ch also defines a constant called _SET_COUNT.  This constant is
+ equal to the number of settings that can be changed or inspected with
+ SET(), allowing the construction of a generic function that preserves
+ all settings (see example below).</P
+><P
+> 
+ Note:  The numeric values of the manifest constants in Set.ch are
+ version-dependent and should never be used directly; the manifest
+ constants should always be used.</P
+><P
+> 
+ If &lt;nSpecifier&gt; or &lt;expNewSetting&gt; is invalid, the call to SET() is
+ ignored.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+> Set Values Defined in Set.ch
+ ------------------------------------------------------------------------
+ Constant            Value Type     Associated Command or Function
+ ------------------------------------------------------------------------
+ _SET_EXACT          Logical        SET EXACT
+ _SET_FIXED          Logical        SET FIXED
+ _SET_DECIMALS       Numeric        SET DECIMALS
+ _SET_DATEFORMAT     Character      SET DATE
+ _SET_EPOCH          Numeric        SET EPOCH
+ _SET_PATH           Character      SET PATH
+ _SET_DEFAULT        Character      SET DEFAULT
+ _SET_EXCLUSIVE      Logical        SET EXCLUSIVE
+ _SET_SOFTSEEK       Logical        SET SOFTSEEK
+ _SET_UNIQUE         Logical        SET UNIQUE
+ _SET_DELETED        Logical        SET DELETED
+ _SET_CANCEL         Logical        SETCANCEL()
+ _SET_DEBUG          Numeric        ALTD()
+ _SET_COLOR          Character      SETCOLOR()
+ _SET_CURSOR         Numeric        SETCURSOR()
+ _SET_CONSOLE        Logical        SET CONSOLE
+ _SET_ALTERNATE      Logical        SET ALTERNATE
+ _SET_ALTFILE        Character      SET ALTERNATE TO
+ _SET_DEVICE         Character      SET DEVICE
+ _SET_PRINTER        Logical        SET PRINTER
+ _SET_PRINTFILE      Character      SET PRINTER TO
+ _SET_MARGIN         Numeric        SET MARGIN
+ _SET_BELL           Logical        SET BELL
+ _SET_CONFIRM        Logical        SET CONFIRM
+ _SET_ESCAPE         Logical        SET ESCAPE
+ _SET_INSERT         Logical        READINSERT()
+ _SET_EXIT           Logical        READEXIT()
+ _SET_INTENSITY      Logical        SET INTENSITY
+ _SET_SCOREBOARD     Logical        SET SCOREBOARD
+ _SET_DELIMITERS     Logical        SET DELIMITERS
+ _SET_DELIMCHARS     Character      SET DELIMITERS TO
+ _SET_WRAP           Logical        SET WRAP
+ _SET_MESSAGE        Numeric        SET MESSAGE
+ _SET_MCENTER        Logical        SET MESSAGE
+ ------------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ Note:  _SET_EXTRAFILE and _SET_SCROLLBREAK have no corresponding
+ commands.  _SET_EXTRAFILE lets you specify an additional alternate file,
+ and _SET_SCROLLBREAK lets you toggle the interpretation of Ctrl+S.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20880"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSpecifier&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that identifies the setting to be
+ inspected or changed.  &lt;nSpecifier&gt; should be supplied as a manifest
+ constant (see below).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expNewSetting&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional argument that specifies a new value
+ for the &lt;nSpecifier&gt;.  The type of &lt;expNewSetting&gt; depends on</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSpecifier&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lOpenMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical value that indicates whether or not files
+ opened for the following settings, _SET_ALTFILE, _SET_PRINTFILE, _SET_EXTRAFILE
+ should be truncated or opened in append mode.  A value of false (.F.)
+ means the file should be truncated.  A value of true (.T.) means the file
+ should be opened in append mode.  In either case, if the file does not
+ exist, it is created.
+ 
+ If this argument is not specified, the default is append mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SET() returns the current value of the specified setting.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20910"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In this example a user-defined function preserves or restores
+ all global settings.  This function might be used on entry to a
+ subsystem to ensure that the subsystem does not affect the state of
+ the program that called it:
+ 
+ #include "Set.ch"
+ //
+ 
+ FUNCTION SetAll( aNewSets )
+ LOCAL aCurrentSets[_SET_COUNT], nCurrent
+ IF ( aNewSets != NIL )   // Set new and return current
+ FOR nCurrent := 1 TO _SET_COUNT
+ aCurrentSets[nCurrent] := ;
+ SET(nCurrent, aNewSets[nCurrent])
+ NEXT
+ ELSE         // Just return current
+ FOR nCurrent := 1 TO _SET_COUNT
+ aCurrentSets[nCurrent] := SET(nCurrent)
+ NEXT
+ ENDIF
+ RETURN (aCurrentSets)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20914"
+></A
+><H3
+><A
+NAME="FUNCTIONSLEEP"
+></A
+>Function  SLEEP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SLEEP(&#60;nSec&#62;) 	--&#62; NIL&#13;</PRE
+><P
+> SLEEP() makes the program sleep until seconds have  elapsed.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20919"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		Numeric, is the number os seconds and/or milliseconds.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns NIL.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20934"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  do while 100
+ ? time()
+ SLEEP(10.50)
+ enddo
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20938"
+></A
+><H3
+><A
+NAME="FUNCTIONSYSCMD"
+></A
+>Function  SYSCMD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SYSCMD(&#60;sCmd&#62;, &#60;sStdin&#62;, @&#60;sResult&#62;, @&#60;sError&#62;) 	--&#62; &#60;nResultCode&#62;&#13;</PRE
+><P
+> SYSCMD() runs system command &lt;sCmd&gt; and sends to this command string &lt;sStdin&gt;
+ to a standart input. All output stream will be write to &lt;sResult&gt;, and
+ all error stream to &lt;sError&gt;.</P
+><P
+> 
+ &lt;sResult&gt; and &lt;sError&gt; can't be constants.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20944"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sCmd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, is the command.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sStdin&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the input string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sResult&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the string of result.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sErrot&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the error description.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns -1 on error or returns status of command.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN20974"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  err_buf1=space(0)
+ res_buf1=space(0)
+ 
+ err_buf2=space(0)
+ res_buf2=space(0)
+ 
+ result_code1 := SYSCMD("ls -l", "", @res_buf1, @err_buf1)
+ 
+ ? result_code1
+ ? res_buf1
+ ? err_bus1
+ ?
+ 
+ result_code2 := SYSCMD("grep test ", res_buf1, @res_buf2, @err_buf2)
+ 
+ ? result_code2
+ ? res_buf2
+ ? err_bus2
+ ?
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN20978"
+></A
+><H3
+><A
+NAME="FUNCTIONULIMIT"
+></A
+>Function  ULIMIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ULIMIT(&#60;sResName&#62;, &#60;vLimitVal&#62;) 	--&#62; &#60;vOldLimitValue&#62;&#13;</PRE
+><P
+> ULIMIT() sets new limit value &lt;vLimitVal&gt; to use system resource with name &lt;sResName&gt;
+ and returns old value for this resource.</P
+><P
+> 
+ The list of resource names see in ulimit.ch</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN20984"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sResName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, is the resource name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vLimitVal&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	is the new limit value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns old limit value for system resource &lt;sResName&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21004"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  #include &#60;ulimit.ch&#62;
+ 
+ /* set the max size for stack */
+ 
+ ? ULIMIT( ULIMIT_STACK, 1024 )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21008"
+></A
+><H3
+><A
+NAME="FUNCTIONVERSION"
+></A
+>Function  VERSION() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> VERSION() --&#62; cVersion&#13;</PRE
+><P
+> VERSION() is an environment function that returns the version of the
+ xClipper library, EXTEND.LIB.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21013"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> VERSION() returns the version number of the xClipper library,
+ EXTEND.LIB, as a character value.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categc-api.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CLIP Functions by categories</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>C-API</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

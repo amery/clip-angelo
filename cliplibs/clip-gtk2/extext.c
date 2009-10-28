@@ -18,7 +18,7 @@
 #include "ci_clip-gtk2.ch"
 #include "ci_clip-gtk2.h"
 #include "ci_clip-gdk2.h"
-#include "ci_gtkextext.h"
+#include "ci_gtk2extext.h"
 #include "ci_bmpxpm.h"
 
 #ifdef OS_CYGWIN

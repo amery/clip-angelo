@@ -155,7 +155,7 @@
 #include <sys/ioctl.h>
 #endif
 
-#include "../include.h/ci_clip.h"
+#include "ci_clip.h"
 #include "ci_scankey.h"
 
 /* #define DBG  */

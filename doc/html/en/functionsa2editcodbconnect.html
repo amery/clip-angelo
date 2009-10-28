@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>A2EDIT()-CODBCONNECT()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="NEXT"
+TITLE="CODBEXECUTE()-DBGOTO()"
+HREF="functionscodbexecutedbgoto.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionscodbexecutedbgoto.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSA2EDITCODBCONNECT">A2EDIT()-CODBCONNECT()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN17929"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONA2EDIT"
+> A2EDIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Browse 2D array in a table layout</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAADD"
+> AADD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Add a new element to the end of an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONABS"
+> ABS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the absolute value of a numeric expression</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+> ACHOICE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Execute a pop-up menu</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONACLONE"
+> ACLONE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Duplicate a nested or multidimensional array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONACOPY"
+> ACOPY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Copy elements from one array to another</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONADDSLASHES"
+> ADDSLASHES()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns string with slashes (\).</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONADEL"
+> ADEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete an array element</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONADIR"
+> ADIR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Fill a series of arrays with directory information</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAEVAL"
+> AEVAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Execute a code block for each element in an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONAFIELDS"
+> AFIELDS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Fill arrays with the structure of the current database file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAFILL"
+> AFILL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Fill an array with a specified value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONAINS"
+> AINS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Insert a NIL element into an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONALERT"
+> ALERT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a simple modal dialog box</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONALIAS"
+> ALIAS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a specified work area alias</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONALLTRIM"
+> ALLTRIM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove leading and trailing spaces from a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONARRAY"
+> ARRAY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create an uninitialized array of specified length</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONASC"
+> ASC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a character to its ASCII value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONASCAN"
+> ASCAN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Scan an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONASIZE"
+> ASIZE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Grow or shrink an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONASORT"
+> ASORT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sort an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONAT"
+> AT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the position of a substring within a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONATAIL"
+> ATAIL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the highest numbered element of an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONBETWEEN"
+> BETWEEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check value.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a 16-bit signed integer to a numeric value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+> BIN2L()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a 32-bit signed integer to a numeric value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+> BIN2W()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a 16-bit unsigned integer to a numeric value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBOF"
+> BOF()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine when beginning of file is encountered</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONBROWSE"
+> BROWSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Browse records within a window</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBUNZIP2"
+> BUNZIP2()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Uncompress string with BZIP2 alghoritm.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2"
+> BZIP2()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Compress string with bZIP2 alghoritm.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2CLOSE"
+> BZIP2CLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close bZIP2 file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2OPEN"
+> BZIP2OPEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open bZip2 file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2READ"
+> BZIP2READ()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read data from bZIP2 file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categpackunpack.html#FUNCTIONBZIP2WRITE"
+> BZIP2WRITE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write data to bZIP2 file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCDOW"
+> CDOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to a character day of the week</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONCHR"
+> CHR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert an ASCII code to a character value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONCLIP"
+> CLIP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Evaluate function.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARND"
+> _CLIP_PARND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Retrieve a numeric parameter as a double.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNI"
+> _CLIP_PARNI()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Retrieve a numeric parameter as an integer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNL"
+> _CLIP_PARNL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Retrieve a numeric parameter as a long.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPRETND"
+> _CLIP_RETND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Post a numeric return value using a double type.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPRETNI"
+> _CLIP_RETNI()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Post a numeric return value using an int type.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPRETNL"
+> _CLIP_RETNL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Post a numeric return value using a long type.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPSTORND"
+> _CLIP_STORND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPSTORNI"
+> _CLIP_STORNI()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPSTORNL"
+> _CLIP_STORNL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCMONTH"
+> CMONTH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date to a character month name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBCLOSE"
+> CODB_CLOSE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Disconnect from CODB databases.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodb-query.html#FUNCTIONCODBCONNECT"
+> CODB_CONNECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Connect to CODB databases.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionscodbexecutedbgoto.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CLIP Functions in alhabetic order</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CODBEXECUTE()-DBGOTO()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

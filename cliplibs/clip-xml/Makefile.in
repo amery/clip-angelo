@@ -25,7 +25,7 @@ prg_files 			= 			$(sort 					\
 											xmltree.prg 	\
 											xpath.prg 		\
 									)
-o_files 				= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 
 HDRS					= 			include/ci_clip-expat.ch
 HASHSRCS 			= 			$(SRC) $(HDRS)

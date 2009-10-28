@@ -33,11 +33,11 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-my001$(EXESUFF):  my001.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my001$(EXESUFF):  my001.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -eswn $< $(LIBS)
 
-cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+cgi_currency$(EXESUFF): cgi_currency.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -ew -M $< $(LIBS)
 

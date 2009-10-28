@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>MPOSTOLC()-RTRIM()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="INT()-MONTH()"
+HREF="functionsintmonth.html"><LINK
+REL="NEXT"
+TITLE="RUNBLANK()-USEDRIVER()"
+HREF="functionsrunblankusedriver.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsintmonth.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsrunblankusedriver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSMPOSTOLCRTRIM">MPOSTOLC()-RTRIM()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN19776"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMPOSTOLC"
+> MPOSTOLC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return line and column position of a formatted string based on a specified</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMPRESENT"
+> MPRESENT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if a mouse is present</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMRESTSTATE"
+> MRESTSTATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Re-establish the previous state of a mouse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMRIGHTDOWN"
+> MRIGHTDOWN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the status of the right mouse button</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMROW"
+> MROW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine a mouse cursor's screen row position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSAVESTATE"
+> MSAVESTATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save the current state of a mouse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSETBOUNDS"
+> MSETBOUNDS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set screen boundaries for the mouse cursor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCLIP"
+> MSETCLIP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Define an inclusion region</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSETCURSOR"
+> MSETCURSOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine a mouse's visibility</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSETPOS"
+> MSETPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set a new position for the mouse cursor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSHOW"
+> MSHOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display the mouse pointer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMSTATE"
+> MSTATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current mouse state</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONNETERR"
+> NETERR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if a network command has failed</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONNETNAME"
+> NETNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current workstation identification</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONNEXTKEY"
+> NEXTKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read the pending key in the keyboard buffer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONNOSNOW"
+> NOSNOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle snow suppression</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDBAGEXT"
+> ORDBAGEXT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the default order bag RDD extension</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDBAGNAME"
+> ORDBAGNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the order bag name of a specific order</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONORDLISTADD"
+> ORDLISTADD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Add orders to the order list</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONOS"
+> OS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the operating system name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONOUTERR"
+> OUTERR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a list of values to the standard error device</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONOUTSTD"
+> OUTSTD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a list of values to the standard output device</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Pad character, date, and numeric values with a fill character</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONPARAM"
+> PARAM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns paarameter value.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONPCOL"
+> PCOL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current column position of the printhead</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONPCOUNT"
+> PCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the position of the last actual parameter passed</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONPROCLINE"
+> PROCLINE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the source line number of the current or previous activation</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONPROCNAME"
+> PROCNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the name of the current or previous procedure or user-defined function</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONPROW"
+> PROW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current row position of the printhead</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONQOUT"
+> QOUT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a list of expressions to the console</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRAT"
+> RAT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the position of the last occurrence of a substring</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADEXIT"
+> READEXIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle Up arrow and Down arrow as READ exit keys</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADFORMAT"
+> READFORMAT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return and optionally, set the code block that implements a format (.fmt)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADINSERT"
+> READINSERT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle the current insert mode for READ and MEMOEDIT()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADKEY"
+> READKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine what key terminated a READ</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADKILL"
+> READKILL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return, and optionally set, whether the current READ should be exited</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADMODAL"
+> READMODAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Activate a full-screen editing mode for a GetList</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADUPDATED"
+> READUPDATED()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine whether any GET variables changed during a READ and optionally</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONREADVAR"
+> READVAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current GET/MENU variable name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRECCOUNT"
+> RECCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the number of records in the current database (.dbf) file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRECNO"
+> RECNO()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the identity at the position of the record pointer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRECSIZE"
+> RECSIZE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the record length of a database (.dbf) file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONREPLICATE"
+> REPLICATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a string repeated a specified number of times</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONRESTSCREEN"
+> RESTSCREEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a saved screen region to a specified location</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRIGHT"
+> RIGHT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a substring beginning with the rightmost character</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONRLOCK"
+> RLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Lock the current record in the active work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONROUND"
+> ROUND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a numeric value rounded to a specified number of digits</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONROW"
+> ROW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the screen row position of the cursor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONRSTR"
+> RSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONRTRIM"
+> RTRIM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove trailing spaces from a character string</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsintmonth.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsrunblankusedriver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>INT()-MONTH()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>RUNBLANK()-USEDRIVER()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

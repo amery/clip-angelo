@@ -28,7 +28,7 @@ hash1 :
 
 cfg :
 
-eglade$(EXESUFF): eglade.prg  $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+eglade$(EXESUFF): eglade.prg  $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -ewlNs $<  $(o_files) $(LIBS)
 

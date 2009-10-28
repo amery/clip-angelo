@@ -189,7 +189,7 @@
 #include <ctype.h>
 #include <math.h>
 #include "ci_error.ch"
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 
 #define ADDLEX(lex) if(rd->rmfilter) astrcat(&rd->rmfilter,&rd->rmflen,(lex))
 

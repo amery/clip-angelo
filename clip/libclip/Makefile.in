@@ -5,7 +5,7 @@
 #
 #
 Local_Depend 		= 		../include/*.ch 	\
-								../include.h/*.h
+								../include/*.h
 
 LIB					= 		libclip.a
 SLIB					= 		libclip$(DLLSUFF)
@@ -78,7 +78,7 @@ clip.1: clip.html
 $(LIB): $(ALIBS) $(EXTOBJS) $(MLIB) Makefile $(CLIP)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $(LIB) $(SLIB) libclip.nm libclip.ex
-	$(E_mkl)joinlib$(SCRIPTSUFF) $(LIB) $(ALIBS) $(MLIB)
+	$(E_mkl)$(Clip_B_Dir)/joinlib$(SCRIPTSUFF) $(LIB) $(ALIBS) $(MLIB)
 	$(E_mkl)ranlib $(LIB)
 
 $(SLIB): $(LIB)  Makefile $(CLIP)#test.o
@@ -126,6 +126,9 @@ pot:
 
 install: all
 	$(E_cp)$(CLIP_CP) $(LIB) $(Clip_L_Dir)/
+	$(E_e)banner clip 			>&0
+	$(E_e)banner library 		>&0
+	$(E_e)banner is ok 			>&0
 
 inst_dir:
 	$(E_mkD)[ -d $(INSTDIR) ] 									\
@@ -182,11 +185,11 @@ endif
 inst_locale:
 	$(E_xx)tar cf - locale.po | (cd $(INSTDIR) && tar xf -)
 	$(E_rm)rm -rf$(V) `find $(INSTDIR)/locale.po -type d -name CVS -print`
-	$(E_xx)CLIPROOT=$(INSTDIR) clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
+	$(E_xx)CLIPROOT=$(INSTDIR) $(Clip_B_Dir)/clip_msgfmt$(SCRIPTSUFF) $(INSTDIR)
 
 
 inst_lib:
-	$(E_cp)clip_cp$(SCRIPTSUFF) $(LIB) $(INSTDIR)/lib
+	$(E_cp)$(Clip_B_Dir)/clip_cp$(SCRIPTSUFF) $(LIB) $(INSTDIR)/lib
 	$(E_cp)cp -f$(V) $(SLIB) $(INSTDIR)/lib; chmod 0755 $(INSTDIR)/lib/$(SLIB)
 	$(E_cp)[ "$(SLIBREAL)" = "$(SLIB)" ] || cp -f$(V) $(SLIBREAL) $(INSTDIR)/lib
 
@@ -205,12 +208,6 @@ inst_screen:
 inst_codb:
 
 inst_ch: $(INST_MEMDEBUG_H)
-	$(E_xx)tar c$(V)f - include.h/clip.h include.h/_win32.h include.h/hash.h Makefile.tdoc libclipscreen/charset.h \
-		| (cd $(INSTDIR)/include && tar x$(V)f -)
-	$(E_xx)cd libcliprdd && tar cf - btree.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_xx)cd libclipdbfsql && tar cf - *.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_xx)cd libcliptask && tar cf - *.h | (cd $(INSTDIR)/include && tar xf -)
-	$(E_xx)cd include && tar cf - * | (cd $(INSTDIR)/include && tar xf -)
 
 inst_memdebug_h:
 	$(E_xx)tar cf - memdebug/malloc.h memdebug/malloc_str.h \
@@ -221,7 +218,7 @@ inst_doc:
 inst_xclip:
 
 inst_end:
-	$(E_xx)inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
+	$(E_xx)$(Clip_B_Dir)/inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
 
 include $(Makefile_end_in)
 

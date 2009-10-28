@@ -2,7 +2,7 @@
 #                                            clip/libclipscreen/Makefile.in
 #
 Local_Depend 		= 			../include/*.ch 		\
-									../include.h/*.h
+									../include/*.h
 
 c_files 				= 			$(sort 					\
 												tcaps.c 		\
@@ -28,7 +28,7 @@ CMAPOBJS 			= 			charset.o \
 
 ADDLIBS 				=
 o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
-SRC_C_files 		= 			$(sort $(c_files) charset.c kdb.c cmap.c )
+SRC_C_files 		= 			$(sort $(c_files) charset.c kbd.c cmap.c )
 SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
@@ -42,9 +42,10 @@ hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-libclipscreen
 
 cfg :
-	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/libclipscreen
-	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/libclipscreen/
-	$(E_cp)cp --remove-destination -fu$(V) ci_charset.h $(Clip_I_Dir)/
+#	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/libclipscreen
+	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
+#	libclipscreen/
+#	$(E_cp)cp --remove-destination -fu$(V) ci_charset.h $(Clip_I_Dir)/
 	$(E_cp)cp --remove-destination -Rfu$(V) install/* $(INSTDIR)/
 
 kbd$(EXESUFF): $(KBDOBJS) Makefile

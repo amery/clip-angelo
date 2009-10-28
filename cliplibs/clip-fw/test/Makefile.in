@@ -22,7 +22,7 @@ cfg :
 
 links :
 
-t$(EXESUFF):	t.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+t$(EXESUFF):	t.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -e -s -M $< $(LIBS)
 

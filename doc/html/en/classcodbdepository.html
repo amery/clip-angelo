@@ -1,0 +1,1629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  CODBDEPOSITORY </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="NEXT"
+TITLE="Class  CODBDICTIONARY "
+HREF="classcodbdictionary.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classcodbdictionary.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSCODBDEPOSITORY">Class  CODBDEPOSITORY</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN2136"
+></A
+><H2
+>Name</H2
+> CODBDEPOSITORY &nbsp;--&nbsp; The essence this CODB class is storehouse of stored objects - objects
+ whouse structure descript into dictionary. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN2139"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> coDepositioryNew(&#60;sDictID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;) --&#62; CODBDEPOSITORY object
+ coDepository:New(&#60;sDictID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;)  --&#62; CODBDEPOSITORY object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSCODBDEPOSITORY"
+></A
+><H2
+>Description </H2
+><P
+> 
+ The essence this CODB class is storehouse of stored objects - objects whouse structure descript into dictionary.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2145"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2147"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;ClassName&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> 	CODBDEPOSITORY</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Error&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>		String, the error description what araised within running last operation.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2158"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2160"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-APPEND"
+>APPEND</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Append object to storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-CHECKBODY"
+>CHECKBODY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Checks object a valid class.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-CLOSE"
+>CLOSE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close opened files.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-CREATE"
+>CREATE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create empty depository.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-DELETE"
+>DELETE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete object from storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-GETVALUE"
+>GETVALUE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get object from storehouse.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-ID4PRIMARYKEY"
+>ID4PRIMARYKEY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns object identifier.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-IDLIST"
+>IDLIST</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns object of class IDLIST.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-NEW"
+>NEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Initiation new CODBDEPOSITORY object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-OPEN"
+>OPEN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open all necessary files.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-PADRBODY"
+>PADRBODY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Makes data representation.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-SELECT"
+>SELECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns identifier list of selected objects.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbdepository.html#CLASS-CODBDEPOSITORY-UPDATE"
+>UPDATE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Update object into storehouse.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2215"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-APPEND"
+></A
+>Method CODBDEPOSITORY:APPEND()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Append(&#60;oData&#62;, &#60;sClassID&#62;) 	--&#62; &#60;sDataID&#62;</PRE
+><P
+> Append() appends new object &lt;oData&gt; to storehouse as object of class &lt;sClassID&gt; and returns objects identifier &lt;sDataID&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2221"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, new object to keeping</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;sDataID&gt; - identifier registered object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2241"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-CHECKBODY"
+></A
+>Method CODBDEPOSITORY:CHECKBODY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CheckBody(&#60;oData&#62;, &#60;sClassID&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> CheckBody() checks object &lt;oData&gt; a valid class &lt;sClassID&gt;. If object is a valid, CheckBody() fills &lt;oData&gt; properties the default values if necessary.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2247"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, object to check</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2267"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-CLOSE"
+></A
+>Method CODBDEPOSITORY:CLOSE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Close() 	--&#62; TRUE || FALSE</PRE
+><P
+> Close() is close files or connection with SQL server.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2272"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if files closed.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2282"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-CREATE"
+></A
+>Method CODBDEPOSITORY:CREATE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Create() 	--&#62; TRUE || FALSE</PRE
+><P
+> Create() returns TRUE if new empty depository created. Usualy, this method do not needy to direct invitation. It's call automaticaly when new depository appending to CODBDICTIONARY.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2288"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if new empty depository created.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2298"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-DELETE"
+></A
+>Method CODBDEPOSITORY:DELETE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Delete(&#60;sDataID&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Delete() deletes object with identifier &lt;sDataID&gt; from depository.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2304"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDataID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	String, the objects identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if object was deleted.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2319"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-GETVALUE"
+></A
+>Method CODBDEPOSITORY:GETVALUE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetValue(&#60;sDataID&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> GetValue() gets form depository and returns object &lt;oData&gt; with identifier &lt;sDataID&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2325"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDataID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	String, the objects identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt; with identifier &lt;sDataID&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2340"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-ID4PRIMARYKEY"
+></A
+>Method CODBDEPOSITORY:ID4PRIMARYKEY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Id4PrimaryKey(&#60;sClassName&#62;, &#60;sKeyName&#62;, &#60;KeyValue&#62;) 	--&#62; &#60;sDataID&#62;</PRE
+><P
+> Id4ProperyKey() returns &lt;sDataID&gt; - identifier of founded object whouse properties with name &lt;sKeyName&gt; is equal &lt;KeyValue&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2345"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sKeyName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, the properties name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;KeyValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	the value of properties</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;sDataID&gt; - identifier of founded object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2370"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-IDLIST"
+></A
+>Method CODBDEPOSITORY:IDLIST()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> IdList(&#60;sClassID&#62;[, &#60;nOrder&#62;][, &#60;sName&#62;][, &#60;sWhere&#62;]) 	--&#62; &#60;oIDList&#62;</PRE
+><P
+> IdList() returns &lt;oIDList&gt; - object of class <A
+HREF="classcodbidlist.html"
+>CODBIDLIST</A
+>.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2376"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class identifier</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, the index number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, value &lt;Name&gt; attribute to search</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sWhere&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, the searching condition</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;oIDList&gt; - object of class IDLIST.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2406"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-NEW"
+></A
+>Method CODBDEPOSITORY:NEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> New(&#60;sDepID&#62;, &#60;sUser&#62;, &#60;sPasswd&#62;) --&#62; CODBDEPOSITORY object</PRE
+><P
+> New() inits new CODBDEPOSITORY object and returns it.</P
+><P
+> If object &lt;sDepID&gt; already exist, New() openes and returns this ddepository.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2412"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sDepID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Stirng, the depository identifier</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sUser&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, the user name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sPasswd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>       String, the password to access</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new CODBDEPOSITORY object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2437"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-OPEN"
+></A
+>Method CODBDEPOSITORY:OPEN()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Open() 	--&#62; TRUE || FALSE</PRE
+><P
+> Open() openes all necessary files or openes connection with SQL server.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2443"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if files opened.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2453"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-PADRBODY"
+></A
+>Method CODBDEPOSITORY:PADRBODY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> PadrBody(&#60;oData&#62;, &#60;sClassID&#62;) 	--&#62; &#60;oData&#62;</PRE
+><P
+> PadrBody() makes data representation for &lt;oData&gt; to class &lt;sClassID&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2459"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, source object</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class identifier
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object &lt;oData&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2479"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-SELECT"
+></A
+>Method CODBDEPOSITORY:SELECT()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Select(&#60;sClassID&#62;[, &#60;nOrder&#62;][, &#60;sName&#62;][, &#60;sWhere&#62;]) 	--&#62; &#60;aIdent&#62;</PRE
+><P
+> Select() returns for class &lt;sClassID&gt; identifier list &lt;aIdent&gt; selected objects in order &lt;nOrder&gt; whose attribute &lt;Name&gt; == &lt;sName&gt; and attributes equal &lt;sWhere&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2485"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sClassID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, class identifier</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nOrder&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Numeric, the index number</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, value &lt;Name&gt; attribute to search</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sWhere&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, the searching condition</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns &lt;aIdent&gt; array of object identifier what equal searching condition.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN2515"
+></A
+><H3
+><A
+NAME="CLASS-CODBDEPOSITORY-UPDATE"
+></A
+>Method CODBDEPOSITORY:UPDATE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Update(&#60;oData&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Update() updates object &lt;oData&gt; into storehouse. If depositoy have not object with identifier &lt;oData:ID&gt;, Update() returns FALSE.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN2521"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 	Object, object to updating</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if object updated.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2536"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN2538"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> * open first depository from MY001
+ oDep:=coDepository():new("MY00101")
+ oDep:open()
+ oDict:=oDep:dictionary()
+ * get currency metadata
+ currBody:=oDict:classBodyByName("currency")
+ if empty(currBody)
+ ? "Class 'currency' not found in dictionary"
+ quit
+ endif
+ *this data may be load from txt or dbf source file
+ data:={;
+ {"USD","USA dollar"},;
+ {"UUU","UUU dollar"},;
+ {"RUR","Russian rubl"},;
+ {"RUA","Ukraina rubl :)"};
+ }
+ * add currency objects
+ for i=1 to len(data)
+ obj:=map()
+ obj:code := data[i][1]
+ obj:name := data[i][2]
+ obj_id := oDep:id4primaryKey("currency","code",obj:code)
+ if empty(obj_id)
+ oDep:append(obj,currBody:id)
+ else
+ /* object exist in depository */
+ obj:id := obj_id
+ oDep:update(obj)
+ endif
+ if !empty(oDep:error)
+ ? "Error:",oDep:error
+ else
+ ? "currency object '"+obj:code+"' added to depository"
+ endif
+ next
+ ? "To depository added ",len(data)," objects"
+ c_list:=oDep:select(currBody:id,,,'code="U"')
+ ? "Select currency objects with code='U':",c_list
+ c_list:=oDep:select(currBody:id)
+ ? "Select all currency objects:",c_list
+ ? "Loading objects body:"
+ for i=1 to len(c_list)
+ obj:=oDep:getValue(c_list[i])
+ ? "code=",obj:code, "name=",obj:name
+ next
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2540"
+></A
+><H2
+>See also</H2
+><P
+><A
+HREF="classcodblist.html"
+> CODBLIST</A
+> </P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN2544"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classcodbdictionary.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CLIP Classes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  CODBDICTIONARY</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

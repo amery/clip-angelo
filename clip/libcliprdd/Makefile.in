@@ -1,8 +1,7 @@
 #
 #                                            clip/libcliprdd/Makefile.in
 #
-Local_Depend 	= 		../include/*.ch 		\
-							../include.h/*.h
+Local_Depend 	= 		../include/*.ch 		
 
 c_files 			= 		$(sort 						\
 										rddclip.c 		\
@@ -20,9 +19,9 @@ c_files 			= 		$(sort 						\
 
 PROG 				= 		cliprdd
 ADDLIBS 			=
-o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
-SRC_C_files 		= 			$(sort $(c_files) )
-SRC_PRG_files 		= 			$(sort $(prg_files) )
+o_files 			= 		$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 	= 		$(sort $(c_files) )
+SRC_PRG_files 	= 		$(sort $(prg_files) )
 
 export
 
@@ -55,7 +54,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-rddclip.o:	rddclip.c ../include.h/ci_rdd.h Makefile
+rddclip.o:	rddclip.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -64,7 +63,7 @@ rddclip.o:	rddclip.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-rdd.o:		rdd.c ../include.h/ci_rdd.h Makefile
+rdd.o:		rdd.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -73,7 +72,7 @@ rdd.o:		rdd.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-dbf.o:		dbf.c ../include.h/ci_rdd.h Makefile
+dbf.o:		dbf.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -82,7 +81,7 @@ dbf.o:		dbf.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-ntx.o:		ntx.c ../include.h/ci_rdd.h Makefile
+ntx.o:		ntx.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -91,7 +90,7 @@ ntx.o:		ntx.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-cdx.o:		cdx.c ../include.h/ci_rdd.h Makefile
+cdx.o:		cdx.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -100,7 +99,7 @@ cdx.o:		cdx.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-dbt.o:		dbt.c ../include.h/ci_rdd.h Makefile
+dbt.o:		dbt.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -109,7 +108,7 @@ dbt.o:		dbt.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-fpt.o:		fpt.c ../include.h/ci_rdd.h Makefile
+fpt.o:		fpt.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -118,7 +117,7 @@ fpt.o:		fpt.c ../include.h/ci_rdd.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-rushmore.o:	rushmore.c ../include.h/ci_rdd.h Makefile
+rushmore.o:	rushmore.c ../include/ci_rdd.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -136,7 +135,7 @@ btree.o:	btree.c ci_btree.h Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-six.o:		six.c ../include.h/ci_rdd.h ../include/ci_six.ch Makefile
+six.o:		six.c ../include/ci_rdd.h ../include/ci_six.ch Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -145,7 +144,7 @@ six.o:		six.c ../include.h/ci_rdd.h ../include/ci_six.ch Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-hiper.o:	hiper.c ../include.h/ci_rdd.h ci_btree.h Makefile
+hiper.o:	hiper.c ../include/ci_rdd.h ci_btree.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\

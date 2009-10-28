@@ -2,7 +2,7 @@
 #                                            clip/libclipclasses/Makefile.in
 #
 Local_Depend 		= 		../include/*.ch 		\
-								../include.h/*.h
+								../include/*.h
 
 CLIPFLAGS 			+= 	-n
 PROG 					= 		clipclasses

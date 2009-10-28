@@ -1,0 +1,1436 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>xBase and Clipper language compatible compiler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="NEXT"
+TITLE=" Introduction"
+HREF="introduction.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="CLIP"><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="CLIP">xBase and Clipper language compatible compiler</H1
+><DIV
+><DIV
+CLASS="ABSTRACT"
+><A
+NAME="AEN4"><P
+></P
+><P
+>Object oriented, CA-Clipper compatible compiler</P
+><P
+></P
+></DIV
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="introduction.html"
+>Introduction</A
+></DT
+><DT
+>2. <A
+HREF="about.html"
+>Clipper compatible compiler</A
+></DT
+><DT
+>3. <A
+HREF="license.html"
+>Clip license</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="license.html#AEN144"
+>Clip license description</A
+></DT
+><DT
+>3.2. <A
+HREF="x151.html"
+>Gnu Public License</A
+></DT
+><DD
+><DL
+><DT
+>3.2.1. <A
+HREF="x151.html#AEN158"
+>Preamble</A
+></DT
+><DT
+>3.2.2. <A
+HREF="x151.html#AEN168"
+>TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</A
+></DT
+><DT
+>3.2.3. <A
+HREF="x151.html#AEN218"
+>NO WARRANTY</A
+></DT
+><DT
+>3.2.4. <A
+HREF="x151.html#AEN222"
+>How to Apply These Terms to Your New Programs</A
+></DT
+></DL
+></DD
+><DT
+>3.3. <A
+HREF="x250.html"
+>The original text of the GPL license</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="envir.html"
+>Environment variables</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="envir.html#AEN257"
+>This variables are standart, but here is their description:</A
+></DT
+><DT
+>4.2. <A
+HREF="x309.html"
+>Following environment variables are defines libraries names:</A
+></DT
+><DT
+>4.3. <A
+HREF="x325.html"
+>Environment variables are using for defines, where CLIP-files are placed:</A
+></DT
+><DT
+>4.4. <A
+HREF="x341.html"
+>Environment variables are useful for localization and working with the different codepages:</A
+></DT
+><DT
+>4.5. <A
+HREF="x361.html"
+>Other environment variables:</A
+></DT
+><DT
+>4.6. <A
+HREF="x405.html"
+>Setting of environment variables.</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="installation.html"
+>Clip installation</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="installation.html#PREFACE"
+>Before install</A
+></DT
+><DT
+>5.2. <A
+HREF="local-inst.html"
+>Local installation.</A
+></DT
+><DT
+>5.3. <A
+HREF="sys-inst.html"
+>System-wide installation</A
+></DT
+><DT
+>5.4. <A
+HREF="select-inst.html"
+>Selective installation</A
+></DT
+><DT
+>5.5. <A
+HREF="patching.html"
+>Patching your distribution</A
+></DT
+><DT
+>5.6. <A
+HREF="cyg-inst.html"
+>Cygwin installation</A
+></DT
+><DT
+>5.7. <A
+HREF="cyg-bin.html"
+>Clip Cygwin binaries</A
+></DT
+><DT
+>5.8. <A
+HREF="cyg-sources.html"
+>Building Clip for Cygwin from the sources</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="compiler.html"
+>Compiler</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="compiler.html#COMPUSAGE"
+>Usage</A
+></DT
+><DT
+>6.2. <A
+HREF="compoptions.html"
+>Options</A
+></DT
+><DT
+>6.3. <A
+HREF="compexamples.html"
+>Examples</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="prb.html"
+>Possible problems and uncompatibilities</A
+></DT
+><DT
+>8. <A
+HREF="dev.html"
+>Terminals, keyboard, mouse, localization</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="dev.html#DEVTERMINALS"
+>Terminals</A
+></DT
+><DT
+>8.2. <A
+HREF="devkeyboard.html"
+>Keyboard</A
+></DT
+><DT
+>8.3. <A
+HREF="devmouse.html"
+>Mouse</A
+></DT
+><DT
+>8.4. <A
+HREF="devlocalization.html"
+>Localization</A
+></DT
+></DL
+></DD
+><DT
+>9. <A
+HREF="localisation.html"
+>CLIP localisation</A
+></DT
+><DD
+><DL
+><DT
+>9.1. <A
+HREF="localisation.html#AEN1060"
+>CLIP runtime localisation</A
+></DT
+><DD
+><DL
+><DT
+>9.1.1. <A
+HREF="localisation.html#AEN1062"
+>The LANG environment variable, directory $CLIPROOT/lang</A
+></DT
+><DT
+>9.1.2. <A
+HREF="localisation.html#AEN1074"
+>Keymaps and keymap table generation.</A
+></DT
+><DT
+>9.1.3. <A
+HREF="localisation.html#AEN1098"
+>Charsets, uni-files, utilites for generation</A
+></DT
+></DL
+></DD
+><DT
+>9.2. <A
+HREF="x1121.html"
+>Message translation</A
+></DT
+><DD
+><DL
+><DT
+>9.2.1. <A
+HREF="x1121.html#AEN1123"
+>Gettext and utils for po-files translation</A
+></DT
+><DT
+>9.2.2. <A
+HREF="x1121.html#AEN1132"
+>CLIP po-files and dirs, clip_msg* utils</A
+></DT
+></DL
+></DD
+><DT
+>9.3. <A
+HREF="x1166.html"
+>Writing and translation the CLIP documentation.</A
+></DT
+><DD
+><DL
+><DT
+>9.3.1. <A
+HREF="x1166.html#AEN1174"
+>CLIP makefiles and .po manipulation utilities</A
+></DT
+><DT
+>9.3.2. <A
+HREF="x1166.html#WRITING-DOCBOOK"
+>Writing Documentation with DocBook</A
+></DT
+><DT
+>9.3.3. <A
+HREF="x1166.html#SGML-ENVIRONMENT"
+>The SGML Environment</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>10. <A
+HREF="langext.html"
+>Language extensions</A
+></DT
+><DD
+><DL
+><DT
+>10.1. <A
+HREF="langext.html#LEINTRODUCTION"
+>Introduction</A
+></DT
+><DT
+>10.2. <A
+HREF="leswitch.html"
+>SWITCH statement</A
+></DT
+><DT
+>10.3. <A
+HREF="leref.html"
+>Assign of the reference</A
+></DT
+><DT
+>10.4. <A
+HREF="lefuncarray.html"
+>Support FoxPro style for array access</A
+></DT
+><DT
+>10.5. <A
+HREF="lefuncblock.html"
+>Support call codeblock via function</A
+></DT
+><DT
+>10.6. <A
+HREF="lehex.html"
+>Hexadecimal constants</A
+></DT
+><DT
+>10.7. <A
+HREF="lerational.html"
+>Rational arithmetic</A
+></DT
+><DT
+>10.8. <A
+HREF="lemap.html"
+>Associative arrays</A
+></DT
+><DT
+>10.9. <A
+HREF="leforin.html"
+>FOR ... IN statement</A
+></DT
+><DT
+>10.10. <A
+HREF="lestrarr.html"
+>Strings as arrays</A
+></DT
+><DT
+>10.11. <A
+HREF="leoomodel.html"
+>OO model</A
+></DT
+><DD
+><DL
+><DT
+>10.11.1. <A
+HREF="leoomodel.html#LEOOINTRO"
+>Introduction in OO model</A
+></DT
+><DT
+>10.11.2. <A
+HREF="leoomodel.html#LEOOMODIF"
+>Control of change attributes</A
+></DT
+><DT
+>10.11.3. <A
+HREF="leoomodel.html#LEOORECOVER"
+>Recovering/reviving objects</A
+></DT
+><DT
+>10.11.4. <A
+HREF="leoomodel.html#LEOOOVERLOAD"
+>Overloading operators for objects</A
+></DT
+><DT
+>10.11.5. <A
+HREF="leoomodel.html#LEOOCONCLUSION"
+>Conclusion</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>11. <A
+HREF="rdd.html"
+>Replaceable Database Drivers (RDD)</A
+></DT
+><DD
+><DL
+><DT
+>11.1. <A
+HREF="rdd.html#RDDOVERVIEW"
+>Overview</A
+></DT
+><DT
+>11.2. <A
+HREF="rddrdds.html"
+>RDDs peculiarities</A
+></DT
+><DD
+><DL
+><DT
+>11.2.1. <A
+HREF="rddrdds.html#RDDTABLES"
+>Table drivers</A
+></DT
+><DT
+>11.2.2. <A
+HREF="rddrdds.html#RDDINDEXES"
+>Index drivers</A
+></DT
+><DT
+>11.2.3. <A
+HREF="rddrdds.html#RDDMEMO"
+>Memo drivers</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>I. <A
+HREF="classes.html"
+>CLIP Classes</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="classcodbdepository.html"
+>Class  CODBDEPOSITORY</A
+>&nbsp;--&nbsp; The essence this CODB class is storehouse of stored objects - objects
+ whouse structure descript into dictionary. </DT
+><DT
+><A
+HREF="classcodbdictionary.html"
+>Class  CODBDICTIONARY</A
+>&nbsp;--&nbsp; The essence this CODB class is storehouse of metadata - objects
+ what keeping specifier other objects of classes: DEPOSIT,EXTENT,ATTR,COUNTER,INDEX,CLASS,TCOLUMN,TVIEW,REPORT,PLUGINS,USER,GROUP </DT
+><DT
+><A
+HREF="classcodbformatter.html"
+>Class  CODBFORMATTER</A
+>&nbsp;--&nbsp; Class CODBFORMATTER format output for result in codb-query library. </DT
+><DT
+><A
+HREF="classcodbidlist.html"
+>Class  CODBIDLIST</A
+>&nbsp;--&nbsp; CODB class are destined to select objects by assertion and represenation
+ its in table-navigationy mode. </DT
+><DT
+><A
+HREF="classcodblist.html"
+>Class  CODBLIST</A
+>&nbsp;--&nbsp; CODB Class are destined to control of the list accessibile dictionary.
+ 
+ In yours system (computer, local network, VPN, internet) may be many
+ CODB data sourses (in configuration by default 32,000,000 ). CODB it is
+ those class what provide DB supporting with methods description for
+ access to certain CODB.
+ 
+ The information keeping into $CLIPROOT/etc/codb.dbf </DT
+><DT
+><A
+HREF="classdatetime.html"
+>Class  DATETIME</A
+>&nbsp;--&nbsp; Class are destined to control of date and time values. </DT
+><DT
+><A
+HREF="classfind.html"
+>Class  FIND</A
+>&nbsp;--&nbsp; </DT
+><DT
+><A
+HREF="classhistory.html"
+>Class  HISTORY</A
+>&nbsp;--&nbsp; Class are destined to control listing of history. </DT
+><DT
+><A
+HREF="classlistitem.html"
+>Class  LISTITEM</A
+>&nbsp;--&nbsp; Class are destined to control of
+ associated in list data values. For example, it can be list of files. </DT
+><DT
+><A
+HREF="classmedit.html"
+>Class  MEDIT</A
+>&nbsp;--&nbsp; Class are destined to control multi TEXTEDIT objects. </DT
+><DT
+><A
+HREF="classqueue.html"
+>Class  QUEUE</A
+>&nbsp;--&nbsp; Class  are destined to control queues make from arbitrary data. </DT
+><DT
+><A
+HREF="classsortedarray.html"
+>Class  SORTEDARRAY</A
+>&nbsp;--&nbsp; Class are destined to control of sorted data. </DT
+><DT
+><A
+HREF="classstack.html"
+>Class  STACK</A
+>&nbsp;--&nbsp; Class are destined to control stack arbitrary data. </DT
+><DT
+><A
+HREF="classtextedit.html"
+>Class  TEXTEDIT</A
+>&nbsp;--&nbsp; Class are destined to manipulating text data - load/save from
+ file/string, insert, delete, manipulation with marked data and
+ clipboard, formated text and more. TEXTEDIT is a base class for
+ function memoedit and class MEDIT. </DT
+><DT
+><A
+HREF="classuibutton.html"
+>Class  UIBUTTON</A
+>&nbsp;--&nbsp; Class of button. </DT
+><DT
+><A
+HREF="classuibuttonbar.html"
+>Class  UIBUTTONBAR</A
+>&nbsp;--&nbsp; Class for panel with buttons. Inherit properties and methods of class <A
+HREF="classuihbox.html"
+>UIHBox</A
+>. </DT
+><DT
+><A
+HREF="classuicheckbox.html"
+>Class  UICHECKBOX</A
+>&nbsp;--&nbsp; Checkbox class. </DT
+><DT
+><A
+HREF="classuichildwindow.html"
+>Class  UICHILDWINDOW</A
+>&nbsp;--&nbsp; Class of child window. </DT
+><DT
+><A
+HREF="classuichoice.html"
+>Class  UICHOICE</A
+>&nbsp;--&nbsp; Edit field with choice button. Inherits fields and method from class <A
+HREF="classuiedit.html"
+>UIEdit</A
+>. </DT
+><DT
+><A
+HREF="classuicolor.html"
+>Class  UICOLOR</A
+>&nbsp;--&nbsp; Color class. </DT
+><DT
+><A
+HREF="classuicombobox.html"
+>Class  UICOMBOBOX</A
+>&nbsp;--&nbsp; Class of combo box. </DT
+><DT
+><A
+HREF="classuidocument.html"
+>Class  UIDOCUMENT</A
+>&nbsp;--&nbsp; Class for document window. It inherits properties and methods of class <A
+HREF="classuichildwindow.html"
+>UIChildWindow</A
+>. </DT
+><DT
+><A
+HREF="classuidriver.html"
+>Class  UIDRIVER</A
+>&nbsp;--&nbsp; </DT
+><DT
+><A
+HREF="classuiedit.html"
+>Class  UIEDIT</A
+>&nbsp;--&nbsp; Class of single line text entry. </DT
+><DT
+><A
+HREF="classuiedittext.html"
+>Class  UIEDITTEXT</A
+>&nbsp;--&nbsp; Class for multi-line text editor. </DT
+><DT
+><A
+HREF="classuifont.html"
+>Class  UIFONT</A
+>&nbsp;--&nbsp; Font class. </DT
+><DT
+><A
+HREF="classuiform.html"
+>Class  UIFORM</A
+>&nbsp;--&nbsp; Class for manipulate form in XFL format. This format is described is section XFL forms. </DT
+><DT
+><A
+HREF="classuiframe.html"
+>Class  UIFRAME</A
+>&nbsp;--&nbsp; Class of frame. </DT
+><DT
+><A
+HREF="classuigrid.html"
+>Class  UIGRID</A
+>&nbsp;--&nbsp; Class of grid for placement widgets. </DT
+><DT
+><A
+HREF="classuihbox.html"
+>Class  UIHBOX</A
+>&nbsp;--&nbsp; Class of horizontal placement panel. </DT
+><DT
+><A
+HREF="classuiimage.html"
+>Class  UIIMAGE</A
+>&nbsp;--&nbsp; Class of image. </DT
+><DT
+><A
+HREF="classuilabel.html"
+>Class  UILABEL</A
+>&nbsp;--&nbsp; Class of text label. </DT
+><DT
+><A
+HREF="classuilayout.html"
+>Class  UILAYOUT</A
+>&nbsp;--&nbsp; Class of area for placement widgets at fixed positions. </DT
+><DT
+><A
+HREF="classuimainwindow.html"
+>Class  UIMAINWINDOW</A
+>&nbsp;--&nbsp; Class of main application window. It is inherited from class <A
+HREF="classuiwindow.html"
+>UIWindow</A
+>. On main application window close application will be exited. </DT
+><DT
+><A
+HREF="classuimenu.html"
+>Class  UIMENU</A
+>&nbsp;--&nbsp; Class of menu bar. </DT
+><DT
+><A
+HREF="classuimenucheckeditem.html"
+>Class  UIMENUCHECKEDITEM</A
+>&nbsp;--&nbsp; Class of checked menu item. Object of this class was created by method addChecked() of class <A
+HREF="classuimenu.html"
+>UIMenu</A
+>. </DT
+><DT
+><A
+HREF="classuimenuitem.html"
+>Class  UIMENUITEM</A
+>&nbsp;--&nbsp; Class of menu item. Object of this class was created by method add() of class <A
+HREF="classuimenu.html"
+>UIMenu</A
+>. </DT
+><DT
+><A
+HREF="classuipopupmenu.html"
+>Class  UIPOPUPMENU</A
+>&nbsp;--&nbsp; Class of popup menu. </DT
+><DT
+><A
+HREF="classuiprogressbar.html"
+>Class  UIPROGRESSBAR</A
+>&nbsp;--&nbsp; Progress indicator class. </DT
+><DT
+><A
+HREF="classuiradiobutton.html"
+>Class  UIRADIOBUTTON</A
+>&nbsp;--&nbsp; Class of radio button. </DT
+><DT
+><A
+HREF="classuiradiogroup.html"
+>Class  UIRADIOGROUP</A
+>&nbsp;--&nbsp; Class of radio buttons group. </DT
+><DT
+><A
+HREF="classuislider.html"
+>Class  UISLIDER</A
+>&nbsp;--&nbsp; Slider class. </DT
+><DT
+><A
+HREF="classuisplitter.html"
+>Class  UISPLITTER</A
+>&nbsp;--&nbsp; Line with two panes arranged vertically or horizontally. </DT
+><DT
+><A
+HREF="classuistatusbar.html"
+>Class  UISTATUSBAR</A
+>&nbsp;--&nbsp; Class of statusbar. </DT
+><DT
+><A
+HREF="classuitable.html"
+>Class  UITABLE</A
+>&nbsp;--&nbsp; Class of table (multicolumn list). </DT
+><DT
+><A
+HREF="classuitableitem.html"
+>Class  UITABLEITEM</A
+>&nbsp;--&nbsp; Class of table item. Object of this class was created by method addRow() of class <A
+HREF="classuitable.html"
+>UITable</A
+>. </DT
+><DT
+><A
+HREF="classuitimer.html"
+>Class  UITIMER</A
+>&nbsp;--&nbsp; Timer. </DT
+><DT
+><A
+HREF="classuitoolbar.html"
+>Class  UITOOLBAR</A
+>&nbsp;--&nbsp; Class of toolbar. </DT
+><DT
+><A
+HREF="classuitoolbutton.html"
+>Class  UITOOLBUTTON</A
+>&nbsp;--&nbsp; Class of menu item. Object of this class was created by method addButton() of class <A
+HREF="classuitoolbar.html"
+>UIToolBar</A
+>. </DT
+><DT
+><A
+HREF="classuitree.html"
+>Class  UITREE</A
+>&nbsp;--&nbsp; Class of hierarchical multi-column lists (tree view). </DT
+><DT
+><A
+HREF="classuitreeitem.html"
+>Class  UITREEITEM</A
+>&nbsp;--&nbsp; Class of tree node. Object of this class was created by method addNode() of class <A
+HREF="classuitree.html"
+>UITree</A
+>. </DT
+><DT
+><A
+HREF="classuivbox.html"
+>Class  UIVBOX</A
+>&nbsp;--&nbsp; Class of vertical widget placement panel. </DT
+><DT
+><A
+HREF="classuiwindow.html"
+>Class  UIWINDOW</A
+>&nbsp;--&nbsp; Class of separate window. </DT
+><DT
+><A
+HREF="classuiworkspace.html"
+>Class  UIWORKSPACE</A
+>&nbsp;--&nbsp; Class of application instance. </DT
+><DT
+><A
+HREF="classxmltag.html"
+>Class  XMLTAG</A
+>&nbsp;--&nbsp; Class of XML tag. This class is used in XML parsing. </DT
+><DT
+><A
+HREF="classxmltree.html"
+>Class  XMLTREE</A
+>&nbsp;--&nbsp; Class of XML DOM tree. This class is used for manipulate XML DOM tree. </DT
+></DL
+></DD
+><DT
+>II. <A
+HREF="abfunctions.html"
+>CLIP Functions in alhabetic order</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="functionsa2editcodbconnect.html"
+>A2EDIT()-CODBCONNECT()</A
+></DT
+><DT
+><A
+HREF="functionscodbexecutedbgoto.html"
+>CODBEXECUTE()-DBGOTO()</A
+></DT
+><DT
+><A
+HREF="functionsdbgotopexp.html"
+>DBGOTOP()-EXP()</A
+></DT
+><DT
+><A
+HREF="functionsfaccessfreadstr.html"
+>FACCESS()-FREADSTR()</A
+></DT
+><DT
+><A
+HREF="functionsfrenamefte2d.html"
+>FRENAME()-FTE2D()</A
+></DT
+><DT
+><A
+HREF="functionsfteasterftmgetpage.html"
+>FTEASTER()-FTMGETPAGE()</A
+></DT
+><DT
+><A
+HREF="functionsftmgetposftsavesets.html"
+>FTMGETPOS()-FTSAVESETS()</A
+></DT
+><DT
+><A
+HREF="functionsftsavrgninkey.html"
+>FTSAVRGN()-INKEY()</A
+></DT
+><DT
+><A
+HREF="functionsintmonth.html"
+>INT()-MONTH()</A
+></DT
+><DT
+><A
+HREF="functionsmpostolcrtrim.html"
+>MPOSTOLC()-RTRIM()</A
+></DT
+><DT
+><A
+HREF="functionsrunblankusedriver.html"
+>RUNBLANK()-USEDRIVER()</A
+></DT
+><DT
+><A
+HREF="functionsvalyear.html"
+>VAL()-YEAR()</A
+></DT
+></DL
+></DD
+><DT
+>III. <A
+HREF="ctfunctions.html"
+>CLIP Functions by categories</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="categsystem.html"
+>SYSTEM</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categc-api.html"
+>C-API</A
+>&nbsp;--&nbsp; C-functions that allows using C-language along with CLIP.</DT
+><DT
+><A
+HREF="categarray.html"
+>ARRAY</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categlogical.html"
+>LOGICAL</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categenvironment.html"
+>ENVIRONMENT</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categcodb-query.html"
+>CODB-QUERY</A
+>&nbsp;--&nbsp; Library for work with CODB databases by queries.</DT
+><DT
+><A
+HREF="categdiskutils.html"
+>DISKUTILS</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categpackunpack.html"
+>PACK/UNPACK</A
+>&nbsp;--&nbsp; Functions pack/unpack and compress/uncompress data or file.</DT
+><DT
+><A
+HREF="categtcp.html"
+>TCP</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categinfo.html"
+>INFO</A
+>&nbsp;--&nbsp; Functions for access to some information about values, functions, parameters, and so.</DT
+><DT
+><A
+HREF="categstring.html"
+>STRING</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categnumeric.html"
+>NUMERIC</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categobject.html"
+>OBJECT</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categfileio.html"
+>FILE/IO</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categdosbios.html"
+>DOS/BIOS</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categmenusprompts.html"
+>MENUS/PROMPTS</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categcrypto.html"
+>CRYPTO</A
+>&nbsp;--&nbsp; Functions for cryptography based on OpenSSL technology.</DT
+><DT
+><A
+HREF="categnetware.html"
+>NETWARE</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categdatetime.html"
+>DATE/TIME</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categkeyboardmouse.html"
+>KEYBOARD/MOUSE</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categgame.html"
+>GAME</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categclip-xml.html"
+>CLIP-XML</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categterminalio.html"
+>TERMINAL/IO</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categserialio.html"
+>SERIAL I/O</A
+>&nbsp;--&nbsp; Functions for using communication over COM-ports.</DT
+><DT
+><A
+HREF="categtask.html"
+>TASK</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categcodeblock.html"
+>CODEBLOCK</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categvideo.html"
+>VIDEO</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categcgifcgi.html"
+>CGI/FCGI</A
+>&nbsp;--&nbsp; Functions for using CGI or FCGI technology of WEB-servers.</DT
+><DT
+><A
+HREF="categconversion.html"
+>CONVERSION</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categdatabase.html"
+>DATABASE</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categmiscellaneous.html"
+>MISCELLANEOUS</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categclip-ui.html"
+>CLIP-UI</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="categunderconstruction.html"
+>UNDERCONSTRUCTION</A
+>&nbsp;--&nbsp;</DT
+></DL
+></DD
+><DT
+>12. <A
+HREF="codb.html"
+>CODB- CLIP Object Data Base.</A
+></DT
+><DD
+><DL
+><DT
+>12.1. <A
+HREF="codb.html#CODBSPECIFICATION"
+>Specification</A
+></DT
+><DT
+>12.2. <A
+HREF="codbmetadata.html"
+>Metadata classes</A
+></DT
+><DD
+><DL
+><DT
+>12.2.1. <A
+HREF="codbmetadata.html#CODBDEPOSIT"
+><B
+CLASS="COMMAND"
+>DEPOSIT</B
+> the description of metadata "depository"</A
+></DT
+><DT
+>12.2.2. <A
+HREF="codbmetadata.html#CODBEXTENT"
+><B
+CLASS="COMMAND"
+>EXTENT</B
+> the description of metadata "extent"</A
+></DT
+><DT
+>12.2.3. <A
+HREF="codbmetadata.html#CODBATTR"
+><B
+CLASS="COMMAND"
+>ATTR</B
+> the attribute description of keeping object</A
+></DT
+><DT
+>12.2.4. <A
+HREF="codbmetadata.html#CODBCOUNTER"
+><B
+CLASS="COMMAND"
+>COUNTER</B
+>the counter description</A
+></DT
+><DT
+>12.2.5. <A
+HREF="codbmetadata.html#CODBINDEX"
+><B
+CLASS="COMMAND"
+>INDEX</B
+> the index description</A
+></DT
+><DT
+>12.2.6. <A
+HREF="codbmetadata.html#CODBCLASS"
+><B
+CLASS="COMMAND"
+>CLASS</B
+> the structure description</A
+></DT
+><DT
+>12.2.7. <A
+HREF="codbmetadata.html#CODBTCOLUMN"
+><B
+CLASS="COMMAND"
+>TCOLUMN</B
+>the table column description</A
+></DT
+><DT
+>12.2.8. <A
+HREF="codbmetadata.html#CODBTVIEW"
+><B
+CLASS="COMMAND"
+>TVIEW</B
+>the table view description</A
+></DT
+><DT
+>12.2.9. <A
+HREF="codbmetadata.html#CODBREPORT"
+><B
+CLASS="COMMAND"
+>REPORT</B
+>the report description</A
+></DT
+><DT
+>12.2.10. <A
+HREF="codbmetadata.html#CODBPLUGINS"
+><B
+CLASS="COMMAND"
+>PLUGINS</B
+>the plugins modules description</A
+></DT
+><DT
+>12.2.11. <A
+HREF="codbmetadata.html#CODBUSER"
+><B
+CLASS="COMMAND"
+>USER</B
+>the user description</A
+></DT
+><DT
+>12.2.12. <A
+HREF="codbmetadata.html#CODBGROUP"
+><B
+CLASS="COMMAND"
+>GROUP</B
+>the description of users group</A
+></DT
+></DL
+></DD
+><DT
+>12.3. <A
+HREF="codbclasses.html"
+>Controling classes.</A
+></DT
+><DT
+>12.4. <A
+HREF="codbexample.html"
+>Examples</A
+></DT
+><DT
+>12.5. <A
+HREF="codbutils.html"
+>Utilities</A
+></DT
+></DL
+></DD
+><DT
+>13. <A
+HREF="sql.html"
+>Working with SQL servers</A
+></DT
+><DD
+><DL
+><DT
+>13.1. <A
+HREF="sql.html#AEN41280"
+>Features</A
+></DT
+><DT
+>13.2. <A
+HREF="sqlquickstart.html"
+>Quick start</A
+></DT
+><DD
+><DL
+><DT
+>13.2.1. <A
+HREF="sqlquickstart.html#AEN41296"
+>Building an application</A
+></DT
+><DT
+>13.2.2. <A
+HREF="sqlquickstart.html#AEN41334"
+>Step by step</A
+></DT
+></DL
+></DD
+><DT
+>13.3. <A
+HREF="sqlapi.html"
+>SQL API reference</A
+></DT
+><DD
+><DL
+><DT
+>13.3.1. <A
+HREF="sqlapi.html#SQLSQLLIST"
+>SQLList()</A
+></DT
+><DT
+>13.3.2. <A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+></DT
+><DT
+>13.3.3. <A
+HREF="sqlapi.html#SQLTCONNECT"
+>TConnect class</A
+></DT
+><DT
+>13.3.4. <A
+HREF="sqlapi.html#SQLTROWSET"
+>TRowset class</A
+></DT
+></DL
+></DD
+><DT
+>13.4. <A
+HREF="sqlrdbms.html"
+>RDBMS specific</A
+></DT
+><DD
+><DL
+><DT
+>13.4.1. <A
+HREF="sqlrdbms.html#SQLMYSQL"
+>MySQL</A
+></DT
+><DT
+>13.4.2. <A
+HREF="sqlrdbms.html#SQLPOSTGRESQL"
+>PostgreSQL</A
+></DT
+><DT
+>13.4.3. <A
+HREF="sqlrdbms.html#SQLORACLE"
+>Oracle 8i</A
+></DT
+><DT
+>13.4.4. <A
+HREF="sqlrdbms.html#SQLINTERBASE"
+>Interbase/Firebird</A
+></DT
+><DT
+>13.4.5. <A
+HREF="sqlrdbms.html#SQLODBC"
+>ODBC driver manager</A
+></DT
+><DT
+>13.4.6. <A
+HREF="sqlrdbms.html#SQLDBTCP"
+>DBTCP proxy server for ODBC connections</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>14. <A
+HREF="sockets.html"
+>Working with sockets</A
+></DT
+><DD
+><DL
+><DT
+>14.1. <A
+HREF="sockets.html#SOCKINTRO"
+>Introduction</A
+></DT
+><DT
+>14.2. <A
+HREF="sockfuncs.html"
+>TCP functions</A
+></DT
+><DT
+>14.3. <A
+HREF="sockexample.html"
+>Example</A
+></DT
+></DL
+></DD
+><DT
+>15. <A
+HREF="utilites.html"
+>Utilites</A
+></DT
+><DD
+><DL
+><DT
+>15.1. <A
+HREF="utilites.html#UTIL-CLIPMAKESLIB"
+>clip_makeslib</A
+></DT
+><DT
+>15.2. <A
+HREF="util-makelib.html"
+>clip_makelib</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Tables</B
+></DT
+><DT
+>10-1. <A
+HREF="leoomodel.html#AEN1825"
+>Overloaded operations</A
+></DT
+><DT
+>11-1. <A
+HREF="rddrdds.html#RDDFIELDTYPES"
+>Field types</A
+></DT
+><DT
+>11-2. <A
+HREF="rddrdds.html#RDDINDEXFEATURES"
+>Index features summary</A
+></DT
+><DT
+>13-1. <A
+HREF="sqlrdbms.html#AEN42731"
+>Implemented MySQL data types</A
+></DT
+><DT
+>13-2. <A
+HREF="sqlrdbms.html#AEN42856"
+>Implemented PostgreSQL data types</A
+></DT
+><DT
+>13-3. <A
+HREF="sqlrdbms.html#AEN43021"
+>Implemented Oracle data types</A
+></DT
+><DT
+>13-4. <A
+HREF="sqlrdbms.html#AEN43143"
+>Implemented Interbase data types</A
+></DT
+><DT
+>13-5. <A
+HREF="sqlrdbms.html#AEN43230"
+>Implemented ODBC data types</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Examples</B
+></DT
+><DT
+>9-1. <A
+HREF="localisation.html#AEN1067"
+>Sample $CLIPROOT/lang/ru_RU.KOI8-R file</A
+></DT
+><DT
+>9-2. <A
+HREF="localisation.html#AEN1071"
+>Sample $CLIPROOT/term/linux-console file</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Introduction</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

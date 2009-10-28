@@ -1,0 +1,4447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SQL API reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Working with SQL servers"
+HREF="sql.html"><LINK
+REL="PREVIOUS"
+TITLE="Quick start"
+HREF="sqlquickstart.html"><LINK
+REL="NEXT"
+TITLE="RDBMS specific"
+HREF="sqlrdbms.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="sqlquickstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 13. Working with SQL servers</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="sqlrdbms.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SQLAPI">13.3. SQL API reference</H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLSQLLIST">13.3.1. SQLList()</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>SQLList() --&#62; aAvailableDrivers</PRE
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41386">13.3.1.1. Return value</H3
+><P
+>An array of drivers as series of subarrays, one per available driver.
+The first element of subarray contains short ID of driver;
+the second - the name of RDBMS accessed by driver;
+the third - driver description.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41389">13.3.1.2. Description</H3
+><P
+><B
+CLASS="COMMAND"
+>SQLList()</B
+> is used to obtain the list of available
+SQL drivers. The driver is available when it's library is linked with
+an application. If there are no linked SQL drivers an empty array
+is returned.</P
+><P
+>The first element of subarray representing a driver contains RDBMS's ID
+(short CHARACTER value associated with driver), which is used as
+&#60;cRDBMS&#62; parameter of TConnect constructor
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41395">13.3.1.3. Example</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>$cat test.prg
+// test.prg
+procedure Main()
+? SQLList()[1]
+? SQLList()[2]
+return NIL
+
+$clip -e test.prg -lclip-mysql -lclip-postgres
+$./test
+{MS, MySQL, Generic MySQL for CLIP driver, v.1.0},
+{PG, PostgreSQL, Generic PostgreSQL for CLIP driver v.1.0}</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLCONNECTNEW">13.3.2. ConnectNew()</H2
+><PRE
+CLASS="PROGRAMLISTING"
+>ConnectNew(&#60;cRDBMS&#62;,[&#60;RDBMS specific&#62;,...],[&#60;cCharset&#62;],[&#60;cIsolation&#62;])
+	--&#62; TConnect object</PRE
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41401">13.3.2.1. Parameters</H3
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cRDBMS&#62;</B
+></DT
+><DD
+><P
+>RDBMS identifier; see desired <A
+HREF="sqlrdbms.html"
+>RDBMS</A
+> information</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;RDBMS specific&#62;</B
+></DT
+><DD
+><P
+>a number of RDBMS specific parameters; see desired
+<A
+HREF="sqlrdbms.html"
+>RDBMS</A
+> information</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cCharset&#62;</B
+></DT
+><DD
+><P
+>(9th parameter) backend charset</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cIsolation&#62;</B
+></DT
+><DD
+><P
+>(10th parameter) default transaction isolation level; see desired
+<A
+HREF="sqlrdbms.html"
+>RDBMS</A
+> information</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41427">13.3.2.2. Return value</H3
+><P
+>TConnect object.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41430">13.3.2.3. Description</H3
+><P
+><B
+CLASS="COMMAND"
+>ConnectNew()</B
+> connects to a SQL server, constructs and
+returns TConnect object.
+That object can be used to start/stop transactions, to execute SQL statements,
+and to obtain a set of rows by SELECT statement.</P
+><P
+>Optional parameter <B
+CLASS="COMMAND"
+>&#60;cCharset&#62;</B
+> is used to
+indicate that server uses different from client charset. All string
+transformations are made then automatically.
+If not passed, SET("SQL_CHARSET") is used. Note, that changing
+SET("SQL_CHARSET") after connection to the server has no effect for this
+connection.</P
+><P
+>If optional parameter <B
+CLASS="COMMAND"
+>&#60;cIsolation&#62;</B
+>
+is not passed, an appropriate SET variable is used, for example
+SET("OR_ISOLATION_LEVEL") for Oracle. If there is no such SET variable, the
+SET("SQL_ISOLATION_LEVEL") is used.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Default isolation level can be overrided by
+<A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+> parameters. Changing value
+of an appropriate SET variable after connect wouldn't help.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>When an application completes access to the SQL server it should disconnect
+from the server and release system resources by calling
+<A
+HREF="sqlapi.html#SQLCONNDESTROY"
+>TConnect:Destroy()</A
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN41443">13.3.2.4. Example</H3
+><P
+>In this example the connection to the local PostgreSQL server is performed.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>conn := ConnectNew("PG",,,,,"template1")
+...
+conn:Destroy()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLTCONNECT">13.3.3. TConnect class</H2
+><P
+>TConnect class constructor and member functions are listed below:</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN41450"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TConnect constructor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCOMMAND"
+>TConnect:Command()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>execute SQL statement</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCOMMIT"
+>TConnect:Commit()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>commit transaction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCONNDESTROY"
+>TConnect:Destroy()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>disconnect from the server and destroy TConnect object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TRowset constructor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLROLLBACK"
+>TConnect:Rollback()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>rollback transaction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>start transaction</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLCOMMAND">13.3.3.1. TConnect:Command()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Command(&#60;cSQL&#62;,[&#60;aParameters&#62;]) --&#62; nAffectedRows</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41487">13.3.3.1.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cSQL&#62;</B
+></DT
+><DD
+><P
+>a string containing SQL statement to be executed</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;aParameters&#62;</B
+></DT
+><DD
+><P
+>an array contaning SQL parameters as a series of subarrays,
+one per parameter. Each subarray must contain at least two elements. The first
+is parameter name, the second is the parameter value. Third element
+is used only with <A
+HREF="sqlrdbms.html#SQLORACLE"
+>Oracle</A
+> (and is required),
+and contains a numeric data type identifier.
+Optional fourth element is used to indicate a binary value;
+if passed .T. no charset transformations take place</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41501">13.3.3.1.2. Return value</H4
+><P
+>A number of affected rows.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41504">13.3.3.1.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Command()</B
+> is used to execute non-SELECT statements.
+'Non-SELECT' means any SQL statement that does not return rows. To execute
+a statement that returns rows use
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> even if you are
+not interested in the results.</P
+><P
+>SQL statement may have parameters. Parameter names in
+<B
+CLASS="COMMAND"
+>&#60;cSQL&#62;</B
+> must be preceded with ':' character.
+Parameter values are passed in two dimensional array
+<B
+CLASS="COMMAND"
+>&#60;aParameters&#62;</B
+>.</P
+><P
+>If there is no active transaction, changes made by executing
+<B
+CLASS="COMMAND"
+>&#60;cSQL&#62;</B
+> are committed implicitly.
+If you need another behavior you have to start transaction
+explicitly by invoking <A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+>.</P
+><P
+>Return value is a number of affected rows, for example number of deleted rows
+in the case of DELETE statement.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41516">13.3.3.1.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>conn:Command("CREATE TABLE mytable (fname char(20),lname char(20))")
+conn:Command("INSERT INTO mytable VALUES (:firstname,:lastname)",;
+	{{"firstname","John"},{"lastname","Smith"}})
+? conn:Command("DELETE FROM mytable WHERE fname=:fname",;
+	{{"fname","John"}}) // 1</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLCOMMIT">13.3.3.2. TConnect:Commit()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Commit() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41522">13.3.3.2.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Commit()</B
+> commit all changes made after
+invoking <A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+> and ends transaction.
+If there is no active transaction an error is generated.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41527">13.3.3.2.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>conn:Start()
+// ...
+// some changes
+// ...
+conn:Commit()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLCONNDESTROY">13.3.3.3. TConnect:Destroy()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Destroy() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41533">13.3.3.3.1. Description</H4
+><P
+>When an application completes access to the SQL server it should disconnect
+from the server and release system resources by calling
+<B
+CLASS="COMMAND"
+>Destroy()</B
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41537">13.3.3.3.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>conn := ConnectNew("PG",,,,,"template1")
+// ...
+// do some work
+// ...
+conn:Destroy()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLCREATEROWSET">13.3.3.4. TConnect:CreateRowset()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>CreateRowset(;
+	&#60;cSelectSQL&#62;,;
+	[&#60;aParameters&#62;],;
+	[&#60;cInsertSQL&#62;],;
+	[&#60;cDeleteSQL&#62;],;
+	[&#60;cUpdateSQL&#62;],;
+	[&#60;cRefreshSQL&#62;],;
+	[&#60;cIdName&#62;],;
+	[&#60;aOrders&#62;],;
+	[&#60;cGenIdSQL&#62;],;
+	[&#60;lNoFetch&#62;],;
+	[&#60;bEval&#62;],;
+	[&#60;nEvery&#62;];
+) --&#62; TRowset object</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41543">13.3.3.4.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cSelectSQL&#62;</B
+></DT
+><DD
+><P
+>a string containing SQL query to be executed</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;aParameters&#62;</B
+></DT
+><DD
+><P
+>an array contaning SQL parameters as a series of subarrays,
+one per parameter. Each subarray must contain at least two elements. The first
+is parameter name, the second is the parameter value. Third element
+is used only with <A
+HREF="sqlrdbms.html#SQLORACLE"
+>Oracle</A
+> (and is required),
+and contains a numeric data type identifier.
+Optional fourth element is used to indicate a binary value;
+if passed .T. no charset transformations take place. Parameters and their
+values passed in &#60;aParameters&#62; can be used in any of
+SQL statements described below</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cInsertSQL&#62;</B
+></DT
+><DD
+><P
+>SQL statement to be executed when a new row is added to the set</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cDeleteSQL&#62;</B
+></DT
+><DD
+><P
+>SQL statement to be executed when a row is deleted from the set</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cUpdateSQL&#62;</B
+></DT
+><DD
+><P
+>SQL statement to be executed when a row is changed</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cRefreshSQL&#62;</B
+></DT
+><DD
+><P
+>SQL query to be executed to refresh the current row in the set</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cIdName&#62;</B
+></DT
+><DD
+><P
+>name of the 'row ID' field (only for <A
+HREF="sqlrdbms.html#SQLINTERBASE"
+>Interbase</A
+>,
+<A
+HREF="sqlrdbms.html#SQLODBC"
+>ODBC</A
+> and <A
+HREF="sqlrdbms.html#SQLDBTCP"
+>DBTCP</A
+>)</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;aOrders&#62;</B
+></DT
+><DD
+><P
+>an array with definitions of the local orders to be created as a series
+of subarrays, one per order. First element of subarray defines the name of
+the order, second - a field name or code block to be evaluated to get the
+key value. Third element is required only for character keys and defines
+the length of the key.</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cGenIdSQL&#62;</B
+></DT
+><DD
+><P
+>SQL statement to be executed for getting a new unique row ID value,
+which will be used with &#60;cInsertSQL&#62; (only for
+<A
+HREF="sqlrdbms.html#SQLINTERBASE"
+>Interbase</A
+>)</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;lNoFetch&#62;</B
+></DT
+><DD
+><P
+>logical value defining the fetching mode. If passed .F. all rows
+are fetched immediately, if .T. - rows are fetched later on demand.
+Default is .F.</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;bEval&#62;</B
+></DT
+><DD
+><P
+>a code block to be evaluated during fetching process. TRowset object
+is passed to the code block as a parameter.
+If &#60;bEval&#62; returns .F. fetching process aborts. It is ignored in
+'fetch on demand' mode (when &#60;lNoFetch&#62; is .T.)</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nEvery&#62;</B
+></DT
+><DD
+><P
+>an interval of rows when &#60;bEval&#62; should be evaluated (if passed).
+Default is 1, i.e. &#60;bEval&#62; is evaluated after each fetched row</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41611">13.3.3.4.2. Return value</H4
+><P
+><A
+HREF="sqlapi.html#SQLTROWSET"
+>TRowset</A
+> object.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41615">13.3.3.4.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>CreateRowset()</B
+> executes SELECT query, builds
+a set of resulting rows and returns a TRowset object. Thus it may be
+considered as a TRowset class constructor. 'SELECT query' means any
+valid SQL statement returning rows. Usage of any other kind of SQL statement
+in &#60;cSelectSQL&#62; will result in an error.</P
+><P
+>&#60;cInsertSQL&#62;, &#60;cDeleteSQL&#62;, &#60;cUpdateSQL&#62;
+are optional parameters that make easier modification of data in the database.
+If not passed, corresponding changes in the set don't reflect in the tables
+of database. &#60;cInsertSQL&#62; is executed automatically by
+<A
+HREF="sqlapi.html#SQLAPPEND"
+>TRowset:Append()</A
+> method. In the same way
+&#60;cDeleteSQL&#62; is executed by
+<A
+HREF="sqlapi.html#SQLDELETE"
+>TRowset:Delete()</A
+> method, and
+&#60;cUpdateSQL&#62; is executed by
+<A
+HREF="sqlapi.html#SQLWRITE"
+>TRowset:Write()</A
+> method.</P
+><P
+>&#60;cRefreshSQL&#62; is automatically executed by
+<A
+HREF="sqlapi.html#SQLREFRESHCURRENT"
+>TRowset:RefreshCurrent()</A
+> method.
+It must have the same list of fields as &#60;cSelectSQL&#62;.</P
+><P
+>The row set intended to modifying must contain an unique field (row ID),
+which is used to bind rows in the database tables and rows in the set.
+You should explicitly include that field to the list of requesting fields
+in the SELECT query. There is various approach to that issue in
+various RDBMS's.</P
+><P
+></P
+><UL
+><LI
+><P
+>Some RDBMS's provide a 'hidden' field for that purpose (ROWID in
+<A
+HREF="sqlrdbms.html#SQLORACLE"
+>Oracle</A
+>, OID in
+<A
+HREF="sqlrdbms.html#SQLPOSTGRESQL"
+>PostgreSQL</A
+>).
+Such field is created for any table by default,
+even if you did not describe it in the CREATE TABLE statement.
+PostgreSQL understands such syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>SELECT oid,* FROM mytable</PRE
+><P
+>In the contrast, Oracle does not allow such syntax. You should enumerate
+all fields by the name:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>SELECT rowid,fname,lname FROM mytable</PRE
+></LI
+><LI
+><P
+>Some RDBMS's provide autoincremental fields for that purpose.
+<A
+HREF="sqlrdbms.html#SQLMYSQL"
+>MySQL</A
+>'s CREATE TABLE syntax allows to
+create table with such field by
+using AUTO_INCREMENT clause in the field's definition. CLIP discerns
+such field and uses it as row ID. You don't need to do anything more to
+indicate a field as row ID except for definition a field with AUTO_INCREMENT
+clause in CREATE TABLE statement.</P
+></LI
+><LI
+><P
+>Some RDBMS's (<A
+HREF="sqlrdbms.html#SQLINTERBASE"
+>Interbase</A
+>)
+provide triggers and unique number generators.
+A typical approach in such case is to define a trigger BEFORE INSERT,
+which gets an unique ID from generator and assigns it to the 'row ID' field.
+But there is no way to determine 'row ID' value of newly inserted row.
+I.e., you can't UPDATE or DELETE just INSERTed row (a row INSERTed
+after TRowset object was created). You have two choices:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>design your application considering this limitation (never UPDATE
+a newly INSERTed rows);</P
+></LI
+><LI
+><P
+>don't use trigger BEFORE INSERT, but provide &#60;cGenIdSQL&#62;
+parameter containing SQL query to the generator. That statement must
+return an unique ID from generator which then will be assigned to the field
+with name &#60;cIdName&#62; during executing &#60;cInsertSQL&#62;
+statement.</P
+></LI
+></OL
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Interbase's RDB$DB_KEY attribute intended to be a 'row ID' is not actually.
+It is rather a 'row address' which can be changed (like RECNO() which
+can be changed after PACK). Therefore it's not used as 'row ID'.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>In the case of RDBMS's not providing any of features described above (ODBC,
+DBTCP),
+you should pass &#60;cIdName&#62; parameter with the name of 'row ID'
+field and should design your application so that a newly INSERTed row never
+is changed or deleted.</P
+></LI
+></UL
+><P
+>SQL statements &#60;cInsertSQL&#62;, &#60;cDeleteSQL&#62;, &#60;cUpdateSQL&#62;
+and &#60;cRefreshSQL&#62; get values of current row fields through parameters
+with the same name as row set's field name. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;cSelectSQL&#62;  - SELECT DriverID AS id,fname,lname FROM mytable
+&#60;cInsertSQL&#62;  - INSERT INTO mytable (fname,lname) VALUES (:fname,:lname)
+&#60;cUpdateSQL&#62;  - UPDATE mytable SET fname=:fname,lname=:lname WHERE DriverId=:id
+&#60;cDeleteSQL&#62;  - DELETE FROM mytable WHERE DriverId=:id
+&#60;cRefreshSQL&#62; - SELECT DriverID,fname,lname FROM mytable WHERE DriverId=:id</PRE
+><P
+>There are three macros: %FIELDS, %VALUES for use in
+&#60;cInsertSQL&#62;; %LIST for use in &#60;cUpdateSQL&#62;.
+%FIELDS is expanded as list of field names; %VALUES - as parameter names;
+%LIST - as list of fields and corresponding parameters. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>INSERT INTO mytable (%FIELDS) VALUES (%VALUES)
+UPDATE mytable SET %LIST</PRE
+><P
+>There are two modes of fetching rows controlled by
+&#60;lNoFetch&#62; parameter: full fetching and fetching on demand.</P
+><P
+></P
+><UL
+><LI
+><P
+>In the first mode (&#60;lNoFetch&#62;==.F.)
+all selected rows have been fetched before
+<B
+CLASS="COMMAND"
+>CreateRowset()</B
+> terminates. You can immediately
+use <A
+HREF="sqlapi.html#SQLLASTREC"
+>TRowset:Lastrec()</A
+> to determine the number
+of selected rows in this mode. You can use &#60;bEval&#62; code block
+to observe and to manage fetching process.</P
+></LI
+><LI
+><P
+>In the second mode (&#60;lNoFetch&#62;==.T.)
+rows are fetched later on demand (during the navigation
+through the set). This mode is more faster but
+<B
+CLASS="COMMAND"
+>Lastrec()</B
+> returns actual number
+of selected rows only after all rows have been fetched. &#60;bEval&#62;
+parameter is ignored in this mode.</P
+></LI
+></UL
+><P
+>When an application completes using the row set, it should release
+the set by calling <A
+HREF="sqlapi.html#SQLRSDESTROY"
+>TRowset:Destroy()</A
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41664">13.3.3.4.4. Examples</H4
+><P
+></P
+><UL
+><LI
+><P
+>Simple example which creates a row set not intended to modifying:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable WHERE fname = 'John'")
+rs:Browse()</PRE
+></LI
+><LI
+><P
+>Creating a row set using SQL parameters in SELECT query:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable WHERE fname = :par1",;
+	{{"par1","John"}})
+rs:Browse()</PRE
+></LI
+><LI
+><P
+>Creating a row set intended to modifying:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",NIL,;
+	"INSERT INTO mytable (%FIELDS) VALUES (%VALUES)",;
+	"DELETE FROM mytable WHERE id=:id",;
+	"UPDATE mytable SET fname=:fname,lname=:lname",;
+	"SELECT id,fname,lname FROM mytable WHERE id=:id",;
+	"id")</PRE
+></LI
+><LI
+><P
+>Creating a row set with local orders 'id' and 'fullname':</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,,,,,,;
+	{{"id","id"},;
+	{"fullname",{|rs| rs:GetValue("fname")+rs:GetValue("lname")},40}})
+rs:Browse()                 // show rows in natural order
+rs:SetOrder("id")
+rs:Browse()                 // show rows ordered by id
+rs:SetOrder("fullname")
+rs:Browse()                 // show rows ordered by fname and lname</PRE
+></LI
+><LI
+><P
+>Using &#60;bEval&#62; to observe fetching process (printing a dot every
+100 rows), which can be stopped by pressing ESC:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,,;
+	{|| qqout("."),inkey() != K_ESC}, 100)
+rs:browse()</PRE
+></LI
+><LI
+><P
+>Fetching rows on demand:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,.T.)
+rs:Gotop()
+? rs:Fetched() // 1
+? rs:Lastrec() // 0
+for i:=1 to 100
+	rs:Skip()
+	? rs:Fetched() // 2,3,...,101
+next
+rs:FetchAll()
+? rs:Lastrec() == rs:Fetched() // .T.</PRE
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLROLLBACK">13.3.3.5. TConnect:Rollback()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Rollback() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41688">13.3.3.5.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Rollback()</B
+> discards all changes made after
+invoking <A
+HREF="sqlapi.html#SQLSTART"
+>TConnect:Start()</A
+> and ends transaction.
+If there is no active transaction an error is generated.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41693">13.3.3.5.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>conn:Start()
+// ...
+// some changes
+// ...
+conn:Rollback()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLSTART">13.3.3.6. TConnect:Start()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Start([&#60;cIsolation&#62;],[&#60;cLockTables&#62;]) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41699">13.3.3.6.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cIsolation&#62;</B
+></DT
+><DD
+><P
+>a string defining isolation level to be used during transaction. This
+parameter overrides default isolation level defined by
+&#60;cIsolation&#62; parameter of
+<A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+> function.
+See desired <A
+HREF="sqlrdbms.html"
+>RDBMS</A
+> section about what
+values can be passed with this parameter</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cLockTables&#62;</B
+></DT
+><DD
+><P
+>this parameter is used only with <A
+HREF="sqlrdbms.html#SQLINTERBASE"
+>Interbase</A
+>
+and defines which tables should be locked and how</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41715">13.3.3.6.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Start()</B
+> starts new transaction. There must be
+no active transaction, otherwise an error is generated. Transaction should
+be sometime stopped (either must be commited or must be rolled back by invoking
+<A
+HREF="sqlapi.html#SQLCOMMIT"
+>TConnect:Commit()</A
+> or
+<A
+HREF="sqlapi.html#SQLROLLBACK"
+>TConnect:Rollback()</A
+> function).</P
+><P
+>If there is no active transaction all changes to the database are commited
+immediately after executing each SQL statement.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41722">13.3.3.6.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>conn:Start()
+// ...
+// some changes
+// ...
+conn:Commit() // commit changes</PRE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="SQLTROWSET">13.3.4. TRowset class</H2
+><P
+>TRowset class constructor and member functions are listed below:</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN41728"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>TRowset constructor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLAPPEND"
+>TRowset:Append()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>append a new row to the row set</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLBOF"
+>TRowset:Bof()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine when beginning of set is encountered</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLBROWSE"
+>TRowset:Browse()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>browse rows within a window</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLCREATEORDER"
+>TRowset:CreateOrder()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>create new local order</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLDELETE"
+>TRowset:Delete()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>delete a row from the row set</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLRSDESTROY"
+>TRowset:Destroy()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>destroy TRowset object</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLEOF"
+>TRowset:Eof()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine when end of set is encountered</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFETCHALL"
+>TRowset:FetchAll()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>fetch all unfetched rows</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFETCHED"
+>TRowset:Fetched()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine the number of fetched rows</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDBINARY"
+>TRowset:FieldBinary()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine if a given field is binary</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDBLOCK"
+>TRowset:FieldBlock()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return a set/get code block for a given field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDDEC"
+>TRowset:FieldDec()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine number of decimal digits in a given field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDLEN"
+>TRowset:FieldLen()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine length of a given field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDNAME"
+>TRowset:FieldName()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return the name of a field with a given position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDNO"
+>TRowset:FieldNo()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return the position of a field with a given name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDNULLABLE"
+>TRowset:FieldNullable()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine if a given field is nullable</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDTYPE"
+>TRowset:FieldType()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return XBase type of the field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDTYPESQL"
+>TRowset:FieldTypeSQL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return RDBMS type of the field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLFIELDUNSIGNED"
+>TRowset:FieldUnsigned()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine if a given field is unsigned</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLGETVALUE"
+>TRowset:GetValue()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>retrieve the value of a field in the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLGOBOTTOM"
+>TRowset:GoBottom()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>move to the last logical row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLGOTO"
+>TRowset:Goto()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>move to the specified row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLGOTOP"
+>TRowset:GoTop()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>move to the first logical row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLKEYNO"
+>TRowset:KeyNo()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine logical position of the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLLASTREC"
+>TRowset:Lastrec()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>determine the number of rows in the set</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLNFIELDS"
+>TRowset:NFields()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return the number of fields in the set</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLREAD"
+>TRowset:Read()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>read the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLRECNO"
+>TRowset:Recno()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>return the position of the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLREFRESHALL"
+>TRowset:RefreshAll()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>refresh the set by repeated executing the SELECT query</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLREFRESHCURRENT"
+>TRowset:RefreshCurrent()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>refresh the current row by executing &#60;cRefreshSQL&#62;</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLSEEK"
+>TRowset:Seek()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>move to the row having the specified key value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>set the controlling order</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLSETVALUE"
+>TRowset:SetValue()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>set the value of a field in the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLSKIP"
+>TRowset:Skip()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>move relative to the current row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="sqlapi.html#SQLWRITE"
+>TRowset:Write()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>write the current row</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLAPPEND">13.3.4.1. TRowset:Append()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Append(&#60;oRow&#62;) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41881">13.3.4.1.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;oRow&#62;</B
+></DT
+><DD
+><P
+>an object with fields values</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41889">13.3.4.1.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Append()</B
+> appends a new row to the row set and
+assigns &#60;oRow&#62; attributes values to the approprate fields of
+newly inserted row.</P
+><P
+>If row set was created with &#60;cInsertSQL&#62; parameter,
+the latter is executed on the SQL server with newly inserted values.</P
+><P
+>If the row set was created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> is .T.),
+all unfetched rows are fetched before processing.</P
+><P
+><B
+CLASS="COMMAND"
+>Append()</B
+> increases rows count returning by
+<A
+HREF="sqlapi.html#SQLLASTREC"
+>TRowset:Lastrec()</A
+>.</P
+><P
+>Current row position moves to the new row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41900">13.3.4.1.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,;
+	"INSERT INTO mytable (fname,lname) VALUES (:fname,:lname)")
+obj := map()          // create an empty object
+obj:fname := "John"   // set attributes with the same names as fields
+obj:lname := "Smith"  // ...
+// add new row and execute
+// INSERT INTO mytable (fname,lname) VALUES ('John','Smith')
+rs:Append(obj)</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLBOF">13.3.4.2. TRowset:Bof()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Bof() --&#62; lBoundary</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41906">13.3.4.2.1. Return value</H4
+><P
+>True (.T.) after an attempt to skip backward beyond the first logical row in
+the set; otherwise it returns false (.F.). If the set contains no rows
+it returns true (.T.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41909">13.3.4.2.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Bof()</B
+> is used to test for a boundary condition when
+you are moving the row pointer backward through a set using
+<A
+HREF="sqlapi.html#SQLSKIP"
+>TRowset:Skip()</A
+> function.</P
+><P
+>Once <B
+CLASS="COMMAND"
+>Bof()</B
+> is set to true (.T.), it retains its value
+until there is another attempt to move the row pointer.</P
+><P
+><B
+CLASS="COMMAND"
+>TRowset:Skip()</B
+> is the only row movement function
+that can set <B
+CLASS="COMMAND"
+>Bof()</B
+> to true (.T.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41919">13.3.4.2.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+? rs:Recno() // 1
+? rs:Bof()   // .F.
+rs:Skip(-1)
+? rs:Recno() // 1
+? rs:Bof()   // .T.</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLBROWSE">13.3.4.3. TRowset:Browse()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Browse([&#60;nTop&#62;],[&#60;nLeft&#62;],[&#60;nBottom&#62;],[&#60;nRight&#62;],;
+	[&#60;asColumns&#62;],[&#60;asHeaders&#62;],[&#60;anWidths&#62;]) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41925">13.3.4.3.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nTop&#62;,&#60;nLeft&#62;,&#60;nBottom&#62;,&#60;nRight&#62;</B
+></DT
+><DD
+><P
+>define the window coordinates. If not specified, the default window coordinates
+are 1, 0 to MAXROW(), and MAXCOL().</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;asColumns&#62;</B
+></DT
+><DD
+><P
+>an array of strings containing field names to use as column values</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;asHeaders&#62;</B
+></DT
+><DD
+><P
+>a parallel array of strings contaning headings for each column</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;anWidths&#62;</B
+></DT
+><DD
+><P
+>a parallel array containing widths for each column</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41948">13.3.4.3.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Browse()</B
+> is a user interface function
+that provides a simple browser for rows in the set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41952">13.3.4.3.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,,,,,,,,.T.)
+rs:Browse(,,,,{"fname","lname"},{"First name","Last name"},{20,20})</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLCREATEORDER">13.3.4.4. TRowset:CreateOrder()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>CreateOrder(&#60;cOrderName&#62;,&#60;cFieldName&#62;|&#60;bExpression&#62;,[&#60;nKeyLength&#62;]) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41958">13.3.4.4.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cOrderName&#62;</B
+></DT
+><DD
+><P
+>defines the name of an order to be created</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>a name of the field which values are used as keys</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;bExpression&#62;</B
+></DT
+><DD
+><P
+>a code block used to evaluate keys; it receives TRowset object as parameter</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nKeyLength&#62;</B
+></DT
+><DD
+><P
+>a length of the key; it is required for character keys</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41981">13.3.4.4.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>CreateOrder()</B
+> is used to create a local order.
+Under 'local order' is meant an index in memory controlling logical order of
+rows in the set. Once created, order can be set as controlling by
+<A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+> function. Besides,
+controlling order can be used to locate row having a given key by
+<A
+HREF="sqlapi.html#SQLSEEK"
+>TRowset:Seek()</A
+> function.</P
+><P
+>If rowset is created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>
+is .T.), all rows are fetched implicitly before processing.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41989">13.3.4.4.3. Example</H4
+><P
+>This example creates two orders ('birthdate' and 'fullname');
+shows rows ordered by birth date and full name, and seeks for a person
+whose name begins with 'Joh':</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT bdate,fname,lname FROM employee")
+rs:CreateOrder("birthdate","bdate")
+rs:CreateOrder("fullname",{|rs| rs:GetValue("fname")+rs:GetValue("lname")},40)
+rs:SetOrder("birthdate")
+rs:Browse()
+rs:SetOrder("fullname")
+rs:Browse()
+? rs:Seek("Joh") // .T.
+row := rs:Read()
+? row:fname       // John</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLDELETE">13.3.4.5. TRowset:Delete()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Delete() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN41996">13.3.4.5.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Delete()</B
+> deletes the current row from the set.</P
+><P
+>If row set was created with &#60;cDeleteSQL&#62; parameter,
+the latter is executed on the SQL server with the value of 'row id' field
+of the current record.</P
+><P
+>If the row set was created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> is .T.),
+all unfetched rows are fetched before processing.</P
+><P
+><B
+CLASS="COMMAND"
+>Delete()</B
+> decreases rows count returning by
+<A
+HREF="sqlapi.html#SQLLASTREC"
+>TRowset:Lastrec()</A
+>.</P
+><P
+>If there is no controlling order the current row position remains the same,
+or moves to the last row (when deleted a row with Recno()==Lastrec()).</P
+><P
+>If there is controlling order (set using
+<A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+>)
+the current row position moves to the row having the next key, or
+moves to the last logical row (when a row having biggest key value is deleted).</P
+><P
+>If the last remained row is deleted, both <A
+HREF="sqlapi.html#SQLBOF"
+>Bof()</A
+>
+and <A
+HREF="sqlapi.html#SQLEOF"
+>Eof()</A
+> status are switched to true (.T.)
+and <A
+HREF="sqlapi.html#SQLRECNO"
+>TRowset:Recno()</A
+> returns zero (0).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42013">13.3.4.5.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,,;
+	"DELETE FROM mytable WHERE id=:id")
+? rs:Lastrec() // 10
+// delete a row and execute
+// DELETE FROM mytable WHERE id=...
+rs:Delete()
+? rs:Lastrec() // 9</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLRSDESTROY">13.3.4.6. TRowset:Destroy()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Destroy() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42019">13.3.4.6.1. Description</H4
+><P
+>When an application completes using the row set, it should release
+the set by calling <B
+CLASS="COMMAND"
+>TRowset:Destroy()</B
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42023">13.3.4.6.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+// ...
+// do some work
+// ...
+rs:Destroy()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLEOF">13.3.4.7. TRowset:Eof()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Eof() --&#62; lBoundary</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42029">13.3.4.7.1. Return value</H4
+><P
+>True (.T.) after an attempt to skip forward beyond the last logical row
+in the set; otherwise it returns false (.F.). If the set contains no rows
+it returns true (.T.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42032">13.3.4.7.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Eof()</B
+> is used to test for a boundary condition when
+you are moving the row pointer forward through a set using
+<A
+HREF="sqlapi.html#SQLSKIP"
+>TRowset:Skip()</A
+> function.</P
+><P
+>Once <B
+CLASS="COMMAND"
+>Eof()</B
+> is set to true (.T.), it retains its value
+until there is another attempt to move the row pointer.</P
+><P
+>TRowset:Skip() is the only row movement function that can set
+<B
+CLASS="COMMAND"
+>Eof()</B
+> to true (.T.).</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Unlike standard XBase's command <B
+CLASS="COMMAND"
+>SKIP</B
+>,
+<A
+HREF="sqlapi.html#SQLSKIP"
+>TRowset:Skip()</A
+> never moves beyond the last
+logical row. When <B
+CLASS="COMMAND"
+>TRowset:Eof()</B
+> returns .T. the
+current row position is certainly the last logical row, not
+<B
+CLASS="COMMAND"
+>Lastrec()</B
+>+1.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42047">13.3.4.7.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+rs:GoBottom()
+? rs:Recno() // 100
+? rs:Eof()   // .F.
+rs:Skip()
+? rs:Recno() // 100
+? rs:Eof()   // .T.
+rs:Skip(-1)
+? rs:Recno() // 99
+? rs:Eof()   // .F.</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFETCHALL">13.3.4.8. TRowset:FetchAll()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FetchAll() --&#62; nLastrec</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42053">13.3.4.8.1. Return value</H4
+><P
+>The number of rows in the set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42056">13.3.4.8.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FetchAll()</B
+> fetches all unfetched rows. It is useful
+when row set has been created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>
+is .T.). If there is no unfetched rows <B
+CLASS="COMMAND"
+>FetchAll()</B
+>
+has no effect.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42062">13.3.4.8.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable",,,,,,,,,.T.)
+? rs:Lastrec()  // 0
+? rs:Fetched()  // 1
+? rs:FetchAll() // number of selected rows
+? rs:Lastrec()  //         - " -
+? rs:Fetched()  //         - " -</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFETCHED">13.3.4.9. TRowset:Fetched()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Fetched() --&#62; nNumberOfFetchedRows</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42068">13.3.4.9.1. Return value</H4
+><P
+>Number of already fetched rows.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42071">13.3.4.9.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Fetched()</B
+> is used to determine how much rows are fetched
+already. It is useful in &#60;bEval&#62; code block parameter of
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>, and when
+row set has been created in 'fetch on demand' mode.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42076">13.3.4.9.3. Examples</H4
+><P
+></P
+><UL
+><LI
+><P
+>Print the number of already fetched rows during fetching process:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,,;
+	{|rs| qout(rs:Fetched())},100)</PRE
+></LI
+><LI
+><P
+>Using <B
+CLASS="COMMAND"
+>Fetched()</B
+> with row set created in 'fetch on demand'
+mode:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,.T.)
+? rs:Fetched() // 1
+rs:Skip()
+? rs:Fetched() // 2
+rs:Skip(100)
+? rs:Fetched() // 102</PRE
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDBINARY">13.3.4.10. TRowset:FieldBinary()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldBinary(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; lBinary</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42089">13.3.4.10.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42102">13.3.4.10.2. Return value</H4
+><P
+>True (.T.) if the given field is binary; false (.F.) otherwise.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42105">13.3.4.10.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldBinary()</B
+> is used to determine if a character field
+is binary. Charset transformations don't take place with the values of
+binary field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42109">13.3.4.10.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldBinary("fname") // .F.</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDBLOCK">13.3.4.11. TRowset:FieldBlock()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldBlock(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; bBlock</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42115">13.3.4.11.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42128">13.3.4.11.2. Return value</H4
+><P
+>A code block that, when evaluated, sets (assigns) or gets (retrieves)
+the value of the given field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42131">13.3.4.11.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldBlock()</B
+> builds a set/get code block for a given field.
+When executed with an argument, the code block created by this function
+assigns the value of the argument to a given field.  When executed
+without an argument, the code block retrieves the value of a given field.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Change the set using that code block does not cause immediate execution of
+&#60;cUpdateSQL&#62; (parameter passed to
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>).
+<A
+HREF="sqlapi.html#SQLWRITE"
+>Write()</A
+> and all row movement functions
+(<A
+HREF="sqlapi.html#SQLGOTOP"
+>Gotop()</A
+>,
+<A
+HREF="sqlapi.html#SQLGOBOTTOM"
+>Gobottom()</A
+>,
+<A
+HREF="sqlapi.html#SQLGOTO"
+>Goto()</A
+> and <A
+HREF="sqlapi.html#SQLSKIP"
+>Skip()</A
+>)
+are only functions that initiate reflection the change on the SQL server.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42143">13.3.4.11.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>cb := rs:FieldBlock("fname")
+? eval(cb)   // 'John'
+eval(cb,'Richard')
+? eval(cb)   // 'Richard'
+rs:Write(rs:Read()) // cause UPDATE-ing on the server</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDDEC">13.3.4.12. TRowset:FieldDec()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldDec(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; nDec</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42149">13.3.4.12.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42162">13.3.4.12.2. Return value</H4
+><P
+>A number of decimal digits used in a given numeric field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42165">13.3.4.12.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldDec()</B
+> is used to determine the number of decimal
+digits in a given field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42169">13.3.4.12.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldDec("salary")</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDLEN">13.3.4.13. TRowset:FieldLen()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldLen(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; nDec</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42175">13.3.4.13.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42188">13.3.4.13.2. Return value</H4
+><P
+>A length of the field (in terms of used RDBMS).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42191">13.3.4.13.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldLen()</B
+> is used to determine the length of a given field,
+in terms of used RDBMS. For example, the length of a field of type 'FLOAT' is 4.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42195">13.3.4.13.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldLen("salary")</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDNAME">13.3.4.14. TRowset:FieldName()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldName(&#60;nFieldNo&#62;) --&#62; cFieldName</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42201">13.3.4.14.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42209">13.3.4.14.2. Return value</H4
+><P
+>The name of field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42212">13.3.4.14.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldName()</B
+> is used to determine the name of a field with
+a given position.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42216">13.3.4.14.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldName(1) // fname</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDNO">13.3.4.15. TRowset:FieldNo()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldName(&#60;cFieldName&#62;) --&#62; nFieldNo</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42222">13.3.4.15.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42230">13.3.4.15.2. Return value</H4
+><P
+>The position of the field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42233">13.3.4.15.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldNo()</B
+> is used to determine the position of a field with
+a given name.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42237">13.3.4.15.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldName('fname') // 1</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDNULLABLE">13.3.4.16. TRowset:FieldNullable()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldNullable(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; lNullable</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42243">13.3.4.16.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42256">13.3.4.16.2. Return value</H4
+><P
+>True (.T.) if the given field is nullable; false (.F.) otherwise (NOT NULL).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42259">13.3.4.16.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldNullable()</B
+> is used to determine if a field is nullable,
+i.e. not 'NOT NULL'.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42263">13.3.4.16.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldNullable("fname") // .T.</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDTYPE">13.3.4.17. TRowset:FieldType()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldType(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; cType</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42269">13.3.4.17.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42282">13.3.4.17.2. Return value</H4
+><P
+>Type of a field (in terms of XBase).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42285">13.3.4.17.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldType()</B
+> is used to determine the type of a given field.
+It returns a single character that designates the data type of
+the data field. <B
+CLASS="COMMAND"
+>FieldType()</B
+> returns the following
+characters for the various data field types:</P
+><P
+></P
+><UL
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>C</I
+></SPAN
+> - character string</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>N</I
+></SPAN
+> - numeric</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>D</I
+></SPAN
+> - date</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>T</I
+></SPAN
+> - datetime</P
+></LI
+><LI
+><P
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>L</I
+></SPAN
+> - logical</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42306">13.3.4.17.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldType("salary") // 'N'</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDTYPESQL">13.3.4.18. TRowset:FieldTypeSQL()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldTypeSQL(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; nType</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42312">13.3.4.18.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42325">13.3.4.18.2. Return value</H4
+><P
+>Numeric type of a field (in terms of used RDBMS).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42328">13.3.4.18.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldTypeSQL()</B
+> is used to determine the type of a given field,
+in terms of used RDBMS. Specific RDBMS types are defined in corresponding *.ch
+files.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42332">13.3.4.18.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldTypeSQL("salary")</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLFIELDUNSIGNED">13.3.4.19. TRowset:FieldUnsigned()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>FieldUnsigned(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; lUnsigned</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42338">13.3.4.19.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42351">13.3.4.19.2. Return value</H4
+><P
+>True (.T.) if the given field is unsigned; false (.F.) otherwise.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42354">13.3.4.19.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>FieldUnsigned()</B
+> is used to determine if a numeric field
+is unsigned.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42358">13.3.4.19.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:FieldUnsigned("salary") // .T.</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLGETVALUE">13.3.4.20. TRowset:GetValue()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>GetValue(&#60;nFieldNo&#62; | &#60;cFieldName&#62;) --&#62; xValue</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42364">13.3.4.20.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42377">13.3.4.20.2. Return value</H4
+><P
+>A value of current row's field.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42380">13.3.4.20.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>GetValue()</B
+> is used to retrieve the value of a field
+in the current row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42384">13.3.4.20.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:GetValue('fname') // John</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLGOBOTTOM">13.3.4.21. TRowset:GoBottom()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>GoBottom() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42390">13.3.4.21.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>GoBottom()</B
+> moves the row position to the last logical row.</P
+><P
+>If the row set was created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>
+is .T.), all unfetched rows are fetched before processing.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42396">13.3.4.21.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs:CreateRowset("SELECT * FROM mytable",,,,,,,,,.T.)
+? rs:Recno()   // 1
+? rs:Lastrec() // 0 (there remain unfetched rows)
+rs:GoBottom()
+? rs:Recno()   // number of selected rows
+? rs:Lastrec() // number of selected rows (no unfetched rows remain)</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLGOTO">13.3.4.22. TRowset:Goto()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Goto(&#60;nRowPosition&#62;) --&#62; nNewPosition</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42402">13.3.4.22.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nRowPosition&#62;</B
+></DT
+><DD
+><P
+>the position to move to</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42410">13.3.4.22.2. Return value</H4
+><P
+>New position of current row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42413">13.3.4.22.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Goto()</B
+> is used to move to the specified physical
+row position. If controlling order is not physical (set by
+<A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+>),
+physical position can be different from logical position.</P
+><P
+>If &#60;nRowPosition&#62; is less than 1, <B
+CLASS="COMMAND"
+>Goto()</B
+>
+moves to the first physical row, and <A
+HREF="sqlapi.html#SQLBOF"
+>Bof()</A
+>
+state is set to true (.T.). If &#60;nRowPosition&#62; is larger than
+<A
+HREF="sqlapi.html#SQLLASTREC"
+>Lastrec()</A
+>, <B
+CLASS="COMMAND"
+>Goto()</B
+> moves
+to the last physical row, and <A
+HREF="sqlapi.html#SQLEOF"
+>Eof()</A
+> state
+is set to true (.T.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42424">13.3.4.22.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>for i:=1 to rs:Lastrec()
+	rs:goto(i)
+	? rs:Read()
+next</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLGOTOP">13.3.4.23. TRowset:GoTop()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>GoTop() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42430">13.3.4.23.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>GoTop()</B
+> moves the row position to the first logical row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42434">13.3.4.23.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs:CreateRowset("SELECT fname,lname FROM mytable")
+? rs:Recno()   // 1
+rs:CreateOrder("fname","fname",20)
+rs:SetOrder("fname")
+rs:GoTop()
+? rs:Recno()   // the position of first logical row</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLKEYNO">13.3.4.24. TRowset:KeyNo()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>KeyNo() --&#62; nPosition</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42440">13.3.4.24.1. Return value</H4
+><P
+>The logical position of the current row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42443">13.3.4.24.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>KeyNo()</B
+> is used to determine the logical number of
+the current row. If there is no controlling order (created by
+<A
+HREF="sqlapi.html#SQLCREATEORDER"
+>TRowset:CreateOrder()</A
+> and set by
+<A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+>), <B
+CLASS="COMMAND"
+>KeyNo()</B
+>
+returns the physical row position, i.e. it works just like
+<A
+HREF="sqlapi.html#SQLRECNO"
+>TRowset:Recno()</A
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42451">13.3.4.24.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+rs:CreateOrder("fname","fname",20)
+? rs:KeyNo(), rs:Recno() // 1, 1 (no controlling order)
+rs:SetOrder("fname")     // set controlling order by fname
+? rs:KeyNo(), rs:Recno() // N, 1
+rs:GoTop()
+? rs:KeyNo(), rs:Recno() // 1, M</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLLASTREC">13.3.4.25. TRowset:Lastrec()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Lastrec() --&#62; nLastrec</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42457">13.3.4.25.1. Return value</H4
+><P
+>The number of rows in the set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42460">13.3.4.25.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Lastrec()</B
+> determines the number of rows in the set.</P
+><P
+>If the row set was created in 'fetch on demand' mode (&#60;lNoFetch&#62;
+parameter of <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> is .T.),
+<B
+CLASS="COMMAND"
+>Lastrec()</B
+> can return 0 (if there remain unfetched rows).
+The number of fetched rows can be determined using
+<A
+HREF="sqlapi.html#SQLFETCHED"
+>TRowset:Fetched()</A
+> function.
+<A
+HREF="sqlapi.html#SQLFETCHALL"
+>TRowset:FetchAll()</A
+> can be used to fetch
+the remainder of unfetched rows. After that, <B
+CLASS="COMMAND"
+>Lastrec()</B
+>
+will return actual number of rows.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42470">13.3.4.25.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable",,,,,,,,,.T.)
+? rs:Lastrec() // 0
+rs:FetchAll()
+? rs:Lastrec() // number of selected rows</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLNFIELDS">13.3.4.26. TRowset:NFields()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>NFields() --&#62; nFields</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42476">13.3.4.26.1. Return value</H4
+><P
+>The number of fields in the row set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42479">13.3.4.26.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>NFields()</B
+> determines the number of fields in the row set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42483">13.3.4.26.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+? rs:NFields() // 2</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLREAD">13.3.4.27. TRowset:Read()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Read() --&#62; oRow</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42489">13.3.4.27.1. Return value</H4
+><P
+>An object containing all fields of current row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42492">13.3.4.27.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Read()</B
+> retrieves the current row values into an object.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42496">13.3.4.27.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+? rs:Read():fname // John
+? rs:Read():lname // Smith</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLRECNO">13.3.4.28. TRowset:Recno()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Recno() --&#62; nPosition</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42502">13.3.4.28.1. Return value</H4
+><P
+>The physical position of the current row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42505">13.3.4.28.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Recno()</B
+> used to determine the physical position of
+the current row. If there are no rows in the set, it returns 0.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42509">13.3.4.28.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+? rs:Recno() // 1
+rs:Skip()
+? rs:Recno() // 2
+rs:Goto(100)
+? rs:Recno() // 100</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLREFRESHALL">13.3.4.29. TRowset:RefreshAll()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>RefreshAll() --&#62; nLastrec</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42515">13.3.4.29.1. Return value</H4
+><P
+>The number of rows in the set.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42518">13.3.4.29.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>RefreshAll()</B
+> refreshes the row set by repeatedly
+executing &#60;cSelectSQL&#62; passed to the TRowset constructor
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+> with
+SQL parameters passed in &#60;aParameters&#62;. The physical
+row position remains the same, or moves to the last physical row.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42523">13.3.4.29.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+rs:Browse()
+rs:RefreshAll()
+rs:Browse()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLREFRESHCURRENT">13.3.4.30. TRowset:RefreshCurrent()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>RefreshCurrent() --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42529">13.3.4.30.1. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>RefreshCurrent()</B
+> refreshes the current row of the set
+by executing &#60;cRefreshSQL&#62; passed to the TRowset constructor
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>.
+If &#60;cRefreshSQL&#62; not passed, <B
+CLASS="COMMAND"
+>RefreshCurrent()</B
+>
+has no effect.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42535">13.3.4.30.2. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,,,,;
+	"SELECT id,fname,lname FROM mytable WHERE id=:id")
+? rs:Read()
+rs:RefreshCurrent()
+? rs:Read()</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLSEEK">13.3.4.31. TRowset:Seek()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Seek(&#60;xKeyValue&#62;,[&#60;lSoft&#62;]) --&#62; lFound</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42541">13.3.4.31.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;xKeyValue&#62;</B
+></DT
+><DD
+><P
+>a value of the key associated with the desired row</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;lSoft&#62;</B
+></DT
+><DD
+><P
+>logical value that specifies whether a soft seek is to be performed.
+This determines how the work area is positioned if the specified key
+value is not found (see below)</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42554">13.3.4.31.2. Return value</H4
+><P
+>True (.T.) if the specified key value was found; otherwise, false (.F.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42557">13.3.4.31.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Seek()</B
+> moves to the first logical row whose key
+value is equal to &#60;xKeyValue&#62;. If such row is found, it becomes
+the current row and <B
+CLASS="COMMAND"
+>Seek()</B
+> returns true (.T.);
+otherwise, it returns false (.F.). For a normal (not soft) seek,
+the row set is positioned to the last logical row
+and <A
+HREF="sqlapi.html#SQLEOF"
+>TRowset:Eof()</A
+> returns true (.T.);
+for a soft seek, the row set is positioned to the first row whose key
+value is greater than the specified key value.  If no such row exists,
+the row set is positioned to the last logical row and
+<B
+CLASS="COMMAND"
+>TRowset:Eof()</B
+> returns true (.T.).</P
+><P
+>For a row set with no controlling order (created by
+<A
+HREF="sqlapi.html#SQLCREATEORDER"
+>TRowset:CreateOrder()</A
+> and prescribed controlling
+by <A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+>),
+<B
+CLASS="COMMAND"
+>Seek()</B
+> has no effect.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42568">13.3.4.31.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+rs:CreateOrder("fname","fname",20)
+rs:SetOrder("fname")
+? rs:Seek("John")</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLSETORDER">13.3.4.32. TRowset:SetOrder()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>SetOrder([&#60;cOrderName&#62;]) --&#62; cOrderName</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42574">13.3.4.32.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cOrderName&#62;</B
+></DT
+><DD
+><P
+>the name of the order to be set controlling</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42582">13.3.4.32.2. Return value</H4
+><P
+>The name of previously controlling order or NIL (physical order).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42585">13.3.4.32.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>SetOrder()</B
+> activates an order created by
+<A
+HREF="sqlapi.html#SQLCREATEORDER"
+>TRowset:CreateOrder()</A
+>
+(makes it controlling). It returns the name of previously controlling
+order.</P
+><P
+>If passed an empty string, <B
+CLASS="COMMAND"
+>SetOrder()</B
+> causes the row set
+to be accessed in physical (<A
+HREF="sqlapi.html#SQLRECNO"
+>TRowset:Recno()</A
+>)
+order.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42593">13.3.4.32.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+rs:CreateOrder("fname","fname",20)
+rs:Browse() // browse rows in physical order
+rs:SetOrder("fname")
+rs:Browse() // browse rows ordered by first name
+rs:SetOrder("")
+rs:Browse() // browse in physical order again</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLSETVALUE">13.3.4.33. TRowset:SetValue()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>SetValue(&#60;nFieldNo&#62; | &#60;cFieldName&#62;, &#60;xValue&#62;) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42599">13.3.4.33.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nFieldNo&#62;</B
+></DT
+><DD
+><P
+>the position of the field in the list of fields</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;cFieldName&#62;</B
+></DT
+><DD
+><P
+>the name of the field</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>&#60;xValue&#62;</B
+></DT
+><DD
+><P
+>the value to be assigned to the field</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42617">13.3.4.33.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>SetValue()</B
+> assignes &#60;xValue&#62; to the field
+in the current row.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Unlike <A
+HREF="sqlapi.html#SQLWRITE"
+>TRowset:Write()</A
+> function,
+<B
+CLASS="COMMAND"
+>SetValue()</B
+> does not cause immediate reflection the change
+on the SQL server. One of the row movement functions must arise
+to cause reflection (executing &#60;cUpdateSQL&#62; statement,
+passed to the TRowset constructor
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>).</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42626">13.3.4.33.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM mytable")
+? rs:GetValue("fname") // John
+rs:SetValue("fname","Sean")
+? rs:GetValue("fname") // Sean</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLSKIP">13.3.4.34. TRowset:Skip()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Skip([&#60;nRows&#62;]) --&#62; nRows</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42632">13.3.4.34.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;nRows&#62;</B
+></DT
+><DD
+><P
+>the number of logical rows to move, relatively to the current row.
+A positive value means to skip forward, and a negative value means
+to skip backward.  If omitted, a value of 1 is assumed</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42640">13.3.4.34.2. Return value</H4
+><P
+>Actual number of rows skipped.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42643">13.3.4.34.3. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Skip()</B
+> moves either forward or backward relatively
+to the current row. Attempting to skip forward beyond the last logical
+row positions the row set to the last logical row and
+<A
+HREF="sqlapi.html#SQLEOF"
+>TRowset:Eof()</A
+> returns true (.T.).
+Attempting to skip backward beyond the first logical row positions
+the row set to the first logical row and
+<A
+HREF="sqlapi.html#SQLBOF"
+>TRowset:Bof()</A
+> returns true (.T.).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42649">13.3.4.34.4. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM mytable")
+while !rs:Eof()
+	? rs:Read()
+	rs:Skip()
+enddo</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="SQLWRITE">13.3.4.35. TRowset:Write()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+>Write(&#60;oRow&#62;) --&#62; NIL</PRE
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42655">13.3.4.35.1. Parameters</H4
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>&#60;oRow&#62;</B
+></DT
+><DD
+><P
+>an object containing new field values</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42663">13.3.4.35.2. Description</H4
+><P
+><B
+CLASS="COMMAND"
+>Write()</B
+> assigns new values to the current row's fields.
+It tries then to reflect the changes on the SQL server by executing
+&#60;cUpdateSQL&#62; statement passed to the TRowset constructor
+<A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>TConnect:CreateRowset()</A
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H4
+CLASS="SECTION"
+><A
+NAME="AEN42668">13.3.4.35.3. Example</H4
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT id,fname,lname FROM mytable",,,,;
+	"UPDATE mytable SET fname=:fname,lname=:lname WHERE id=:id")
+oRow := map()
+oRow:fname := "John"
+oRow:lname := "Smith"
+rs:Write(oRow)
+? rs:GetValue("fname") // John
+? rs:GetValue("lname") // Smith</PRE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="sqlquickstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="sqlrdbms.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Quick start</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="sql.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>RDBMS specific</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -45,59 +45,59 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-clipgtktest$(EXESUFF): clipgtktest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+clipgtktest$(EXESUFF): clipgtktest.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -esw clipgtktest.prg -lclip-gtk $(LIBS)
 
-accel$(EXESUFF): accel.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+accel$(EXESUFF): accel.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -ews -M accel.prg -lclip-gtk $(LIBS)
 
-clist_test$(EXESUFF): clist_test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+clist_test$(EXESUFF): clist_test.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -ewsn $< -lclip-gtk $(LIBS)
 
-note$(EXESUFF): note.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+note$(EXESUFF): note.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -ews -M note.prg -lclip-gtk $(LIBS)
 
-tbrow$(EXESUFF): tbrow.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+tbrow$(EXESUFF): tbrow.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -ews -M tbrow.prg -lclip-gtk $(LIBS)
 
-simple$(EXESUFF): simple.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+simple$(EXESUFF): simple.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  $(CLIPFLAGS) -ews simple.prg -lclip-gtk $(LIBS)
 
-winpic$(EXESUFF): winpic.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+winpic$(EXESUFF): winpic.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -ews winpic.prg -lclip-gtk $(LIBS)
 
-window$(EXESUFF): window.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+window$(EXESUFF): window.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -ews window.prg -lclip-gtk $(LIBS)
 
-test_gtk$(EXESUFF): test_gtk.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test_gtk$(EXESUFF): test_gtk.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -ews test_gtk.prg -lclip-gtk $(LIBS)
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test$(EXESUFF): test.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -ews test.prg -lclip-gtk $(LIBS)
 
-test_image$(EXESUFF): test_image.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test_image$(EXESUFF): test_image.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -esw test_image.prg -lclip-gtk $(LIBS)
 
-test_list$(EXESUFF): test_list.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test_list$(EXESUFF): test_list.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -es test_list.prg -lclip-gtk $(LIBS)
 
-t$(EXESUFF): t.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+t$(EXESUFF): t.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -esw t.prg -lclip-gtk $(LIBS)
 
-ifactory$(EXESUFF): ifactory.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+ifactory$(EXESUFF): ifactory.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@  -esw ifactory.prg -lclip-gtk $(LIBS)
 

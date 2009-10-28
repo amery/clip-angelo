@@ -2,7 +2,7 @@
 #                                            clip/libclipmain/Makefile.in
 #
 Local_Depend 	= 		../include/*.ch 		\
-							../include.h/*.h
+							../include/*.h
 
 c_files 			= 		$(sort 							\
 										cliphash.c 			\
@@ -44,10 +44,9 @@ c_files 			= 		$(sort 							\
 
 ADDOBJS 			= 		../libclipscreen/charset.o
 PROG 				= 		clipmain
-C_FLAGS 			+= 	-I../include.h
 ADDLIBS =
 o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
-SRC_C_files 		= 			$(sort $(c_files) )
+SRC_C_files 		= 			$(c_files) clip.y clic_c.lex hasher.lex plural.y rt.y clic.lex clic.y
 SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
@@ -76,7 +75,7 @@ include $(Makefile_o_in)
 
 ../libclipscreen/charset.o : ../libclipscreen/charset.c Makefile
 	$(E_cd)cd ../libclipscreen  															\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )	\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )	\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 plural.tab.o : plural.tab.c Makefile
@@ -88,7 +87,7 @@ plural.tab.o : plural.tab.c Makefile
 		$(CC) $(C_FLAGS) -c $< ; 						\
 	fi
 
-clic.tab.o : clic.tab.c ../include.h/ci_clic.h Makefile
+clic.tab.o : clic.tab.c ../include/ci_clic.h Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) $(C_FLAGS) -g -c $< ; 					\
@@ -147,14 +146,14 @@ clic_name.c : clic.tab.c Makefile
 	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
 	$(E_e)echo "#endif" 																	>>clic_name.c
 
-clic.tab.c : clic.y ../include.h/ci_clic.h
+clic.tab.c : clic.y ../include/ci_clic.h
 	$(E_xx)$(YACC) -bclic -v -d clic.y
 
 lex.cl.c : clic_c.lex clic.tab.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Pcl clic_c.lex
 
-lex.hash.c : hasher.lex ../include.h/ci_cliphash.h
+lex.hash.c : hasher.lex ../include/ci_cliphash.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Phash hasher.lex
 
@@ -167,7 +166,7 @@ plural.tab.c : plural.y
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -bplural -pplural plural.y
 
-rt.tab.c : rt.y ../include.h/ci_clic.h
+rt.tab.c : rt.y ../include/ci_clic.h
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -brt -prt -v -d rt.y
 

@@ -1,0 +1,547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Options</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Compiler"
+HREF="compiler.html"><LINK
+REL="PREVIOUS"
+TITLE="Compiler"
+HREF="compiler.html"><LINK
+REL="NEXT"
+TITLE="Examples"
+HREF="compexamples.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="compiler.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Compiler</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="compexamples.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="COMPOPTIONS">6.2. Options</H1
+><P
+>Any of the CLIP compiler options described below can be placed in the
+<B
+CLASS="COMMAND"
+>.cliprc</B
+> file in the current directory; or in
+the <B
+CLASS="COMMAND"
+>$HOME/.cliprc</B
+> file; or in any file in the
+<B
+CLASS="COMMAND"
+>$CLIPROOT/cliprc</B
+> directory. For example,
+you could create a file <B
+CLASS="COMMAND"
+>.cliprc</B
+> in your home directory
+with the following content:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>-r
+-l
+-Scp866</PRE
+><P
+>It results in compiling with <B
+CLASS="COMMAND"
+>-r -l -Scp866</B
+> options,
+even if you don't specify them explicitly.</P
+><P
+>The list of options follows.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><B
+CLASS="COMMAND"
+>-h, --help</B
+></DT
+><DD
+><P
+>display a short usage help and exit</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-H, --help-environment</B
+></DT
+><DD
+><P
+>display a short help about acceptable environment variables and exit; see
+more detailed information in the chapter
+<A
+HREF="envir.html"
+>Environment variables</A
+></P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-V, --version</B
+></DT
+><DD
+><P
+>display CLIP compiler version and exit</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-v[&#60;level&#62;], --verbose[=&#60;level&#62;]</B
+></DT
+><DD
+><P
+>set/increase verbose level; possible values of &#60;level&#62; are from
+0 (silent) to 6 (most verbose); default is 1</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-a, --auto-memvar[=1|0]</B
+></DT
+><DD
+><P
+>declare any variable included in a PRIVATE, PUBLIC, or PARAMETERS
+statement as MEMVAR</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-w, --namespace-warning[=1|0]</B
+></DT
+><DD
+><P
+>generate warning messages for undeclared or unaliased (ambiguous)
+variable references</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-e, --exec</B
+></DT
+><DD
+><P
+>generate executable file</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-c, --compile</B
+></DT
+><DD
+><P
+>stop after generation C code</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-g,-b, --debug[=1|0]</B
+></DT
+><DD
+><P
+>include debugging information in the object file</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-t, --show-syntax-tree</B
+></DT
+><DD
+><P
+>print generated program syntax tree</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-o&#60;name&#62;, --output=&#60;name&#62;</B
+></DT
+><DD
+><P
+>place executable in file &#60;name&#62;</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-d&#60;name&#62;, --outdir=&#60;name&#62;</B
+></DT
+><DD
+><P
+>define the location of the output object files</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-O, --optimise[=&#60;val&#62;]</B
+></DT
+><DD
+><P
+>set optimisation level for C compiler</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-M, --main</B
+></DT
+><DD
+><P
+>use the code of the first file in the file list as a program start point
+(automatic definition of the <B
+CLASS="COMMAND"
+>MAIN</B
+> procedure)</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-n, --nomain</B
+></DT
+><DD
+><P
+>suppress the automatic definition of a procedure with the same name as
+the program file (.prg)</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-p, --pcode</B
+></DT
+><DD
+><P
+>generate pseudocode (P-code) module; see <A
+HREF="categsystem.html#FUNCTIONLOAD"
+>Load()</A
+>
+function description</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-l, --c-pcode</B
+></DT
+><DD
+><P
+>compile in C+P-code mode; smaller size of an output file,
+either an object or an executable</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-s, --shared</B
+></DT
+><DD
+><P
+>create an shared object; when used with <B
+CLASS="COMMAND"
+>-e</B
+> option
+it results in linking with shared run-time library (libclip.so), which
+gives a smaller size executable; see <B
+CLASS="COMMAND"
+>-r</B
+> option</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-r, --shared-exec</B
+></DT
+><DD
+><P
+>always when possible link with shared libraries; smaller size of an executable</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-I&#60;path&#62;, --include-path=&#60;path&#62;</B
+></DT
+><DD
+><P
+>add the specified directory to the INCLUDE path list</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-L&#60;path&#62;, --library-path=&#60;path&#62;</B
+></DT
+><DD
+><P
+>add the specified directory to the list of path that CLIP will search for
+libraries</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-D&#60;name&#62;, --define=&#60;name&#62;</B
+></DT
+><DD
+><P
+>define macro &#60;name&#62;</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-D&#60;name=value&#62;, --define=&#60;name=value&#62;</B
+></DT
+><DD
+><P
+>define macro &#60;name&#62; as &#60;value&#62;</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-U[&#60;filename&#62;], --use-std-ch[=&#60;filename&#62;]</B
+></DT
+><DD
+><P
+>identifies an alternate standard header file to preprocess in place of
+the supplied STD.CH which is used automatically</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-S&#60;charset&#62;, --source-charset=&#60;charset&#62;</B
+></DT
+><DD
+><P
+>define charset of the string constants used in the source files (.prg);
+CLIP_HOSTCS environment variable is used by default; see chapter
+<A
+HREF="envir.html"
+>Environment variables</A
+> for details</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-T&#60;charet&#62;, --target-charset=&#60;charset&#62;</B
+></DT
+><DD
+><P
+>define charset of the string constants to be used for an application's output;
+CLIP_HOSTCS environment variable is used by default; see chapter
+<A
+HREF="envir.html"
+>Environment variables</A
+> for details</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-P, --preprocess</B
+></DT
+><DD
+><P
+>stop after the preprocessing stage; the output is preprocessed source
+code, which is sent to the standard output</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-C, --show-command</B
+></DT
+><DD
+><P
+>print command definitions at the preprocessing stage</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-R, --noremove-c</B
+></DT
+><DD
+><P
+>do not remove temporary '.c' files</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-N, --names</B
+></DT
+><DD
+><P
+>generate warnings about unresolved function names; see CLIP_NAMES
+environment variable description in the chapter
+<A
+HREF="envir.html"
+>Environment variable</A
+></P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>--static,--full-static</B
+></DT
+><DD
+><P
+>Don`t use shared libraries, ignore -r -s switches, include
+all CLIP or system libraries to executable file.</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-E&#60;name&#62;=&#60;value&#62;, --environment=&#60;name&#62;=&#60;value&#62;</B
+></DT
+><DD
+><P
+>set &#60;name&#62; environment variable's value to &#60;value&#62;
+for a compilation time</P
+></DD
+><DT
+><B
+CLASS="COMMAND"
+>-q &#60;word&#62;, --compat=&#60;word&#62;</B
+></DT
+><DD
+><P
+>set syntax compatability mode; possible values:</P
+><P
+></P
+><UL
+><LI
+><P
+>	<B
+CLASS="COMMAND"
+>no-as-word</B
+> - AS clause in variables definitions is not
+	acceptable; it's default behavior
+	</P
+></LI
+><LI
+><P
+>	<B
+CLASS="COMMAND"
+>as-word</B
+> - AS clause in variables defintions is
+	acceptable
+	</P
+></LI
+></UL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="compiler.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="compexamples.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Compiler</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="compiler.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Examples</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,605 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  STACK </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  SORTEDARRAY "
+HREF="classsortedarray.html"><LINK
+REL="NEXT"
+TITLE="Class  TEXTEDIT "
+HREF="classtextedit.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classsortedarray.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classtextedit.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSSTACK">Class  STACK</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN7617"
+></A
+><H2
+>Name</H2
+> STACK &nbsp;--&nbsp; Class are destined to control stack arbitrary data. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN7620"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> StackNew() 	--&#62; new Stack object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSSTACK"
+></A
+><H2
+>Description </H2
+><P
+> 
+ Class are destined to control stack arbitrary data.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7626"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7628"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Data&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Array, an array of data.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7635"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7637"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classstack.html#CLASS-STACK-FREE"
+>FREE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Free stack.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classstack.html#CLASS-STACK-LEN"
+>LEN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get stack length.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classstack.html#CLASS-STACK-POP"
+>POP</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get last pushed data.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classstack.html#CLASS-STACK-PUSH"
+>PUSH</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Push data to the stack.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classstack.html#CLASS-STACK-STACKNEW"
+>STACKNEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> STACK object constructor.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7660"
+></A
+><H3
+><A
+NAME="CLASS-STACK-FREE"
+></A
+>Method STACK:FREE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Free() 	--&#62; .t.</PRE
+><P
+> Free() is removed all elements from stack.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7665"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Always returns TRUE.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7675"
+></A
+><H3
+><A
+NAME="CLASS-STACK-LEN"
+></A
+>Method STACK:LEN()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Len() 	--&#62; nLenStack</PRE
+><P
+> Len() is return  elements count of stack.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7680"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns a numeric value - elements count of stack.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7690"
+></A
+><H3
+><A
+NAME="CLASS-STACK-POP"
+></A
+>Method STACK:POP()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Pop() 	--&#62; vData</PRE
+><P
+> Pop() is return last pushed data in to stack. If stack has no elements function return NIL</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7695"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns a last pushed element.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7705"
+></A
+><H3
+><A
+NAME="CLASS-STACK-PUSH"
+></A
+>Method STACK:PUSH()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Push(&#60;vData&#62;) 	--&#62; nLenStack</PRE
+><P
+> Push() is inserted arbitrary data to the end of stack.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7710"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - a data to be insert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns numeric value is a number pushed element in to stack.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7725"
+></A
+><H3
+><A
+NAME="CLASS-STACK-STACKNEW"
+></A
+>Method STACK:STACKNEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> StackNew() 	--&#62; new Stack object</PRE
+><P
+> StackNew() is constructs and returns new stack object. That class can be used to storage, access, control arbitrary data.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7730"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new STACK object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7740"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN7742"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  st := StackNew()
+ st:push("Some value")	// --&#62; 1
+ st:push(123)		// --&#62; 2
+ ? st:Len()	// --&#62;2
+ ? st:pop()	// 123
+ ? st:Len()	// --&#62; 1
+ st:Free()	// --&#62; .T.
+ ? st:Len()	// --&#62; 0
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7744"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classsortedarray.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classtextedit.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  SORTEDARRAY</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  TEXTEDIT</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

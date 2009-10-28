@@ -9,7 +9,7 @@ prg_files 				=			$(sort 							\
 													zoomimage.prg 		\
 										)
 
-exe_files 				= 				$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
+exe_files 				= 			$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 SRC_PRG_files 			= 			$(prg_files)
 LIBS 						+= 		-lclip-gtk2
 export
@@ -32,15 +32,15 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+pixbuf_demo$(EXESUFF) : pixbuf_demo.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsl $< $(LIBS)
 
-pixbuf_scale$(EXESUFF) : pixbuf_scale.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+pixbuf_scale$(EXESUFF) : pixbuf_scale.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsl $< $(LIBS)
 
-zoomimage$(EXESUFF) : zoomimage.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+zoomimage$(EXESUFF) : zoomimage.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsl $< $(LIBS)
 

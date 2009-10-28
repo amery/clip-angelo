@@ -1,0 +1,1147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>C-API</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="SYSTEM"
+HREF="categsystem.html"><LINK
+REL="NEXT"
+TITLE="ARRAY"
+HREF="categarray.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categsystem.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categarray.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGC-API">C-API</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN21026"
+></A
+><H2
+>Name</H2
+>C-API&nbsp;--&nbsp; C-functions that allows using C-language along with CLIP.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN21029"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>double              <A
+HREF="categc-api.html#FUNCTIONCLIPPARND"
+>_clip_parnd(ClipMachine * cm,int num)</A
+>
+int                 <A
+HREF="categc-api.html#FUNCTIONCLIPPARNI"
+>_clip_parni(ClipMachine * cm,int num)</A
+>
+long                <A
+HREF="categc-api.html#FUNCTIONCLIPPARNL"
+>_clip_parnl(ClipMachine * cm,int num)</A
+>
+void                <A
+HREF="categc-api.html#FUNCTIONCLIPRETND"
+>_clip_retnd(ClipMachine * cm,double n)</A
+>
+void                <A
+HREF="categc-api.html#FUNCTIONCLIPRETNI"
+>_clip_retni(ClipMachine * cm,int n)</A
+>
+void                <A
+HREF="categc-api.html#FUNCTIONCLIPRETNL"
+>_clip_retnl(ClipMachine * cm,long n)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN21038"
+></A
+><H2
+>Description </H2
+><P
+>CLIP's C-API is a set of C-functions that allows using C-language
+along with CLIP. It could be necessary for writing some speed critical
+functions of your project; for writing "wrappers" for existing 3rd party
+functions or whole libraries, etc. Besides, learning C-API will help you
+understand internal structure of CLIP.</P
+><P
+>&#13;C-functions aimed to be used with CLIP (that is, which can be called
+from some CLIP function, 'exported functions' in further) are in
+separate C source file(s). This file must include "clip.h", which
+contains declarations of C-API functions and structures.</P
+><P
+>&#13;Each exported function's name must have prefix 'clip_' and the name itself
+must be in capital letters. Type of function must be 'int' and it
+must get one and only parameter of type 'ClipMachine *', which is a pointer
+to the structure containing context of the current CLIP Virtual Machine.</P
+><P
+>&#13;Exported function should return 0 (zero) if successful, or appropriate
+error code (those described in error.ch, with 'EG_' prefix).</P
+><P
+>&#13;<PRE
+CLASS="PROGRAMLISTING"
+>Example:
+/* my.c */
+#include &#38;lt;stdio.h&#38;gt;
+#include "clip.h"
+
+int clip_MYFUNCTION(ClipMachine *cm)
+{
+printf("Hello from MyFunction()\n");
+return 0;
+}
+/* end of my.c */
+
+/* test.prg */
+MyFunction()
+/* end of test.prg */
+
+Compilation:
+
+gcc -c -I${CLIPROOT}/include my.c
+clip -eM test.prg my.o
+
+Running:
+#./test
+Hello from MyFunction
+#</PRE
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21046"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPPARND"
+></A
+>Function  _CLIP_PARND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_parnd(ClipMachine * cm,int num) --&#62; double&#13;</PRE
+><P
+> _clip_parnd() retrieves a numeric value passed as a parameter from CLIP
+ and converts it to a double type.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21051"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;num&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - position of the parameter in parameters list</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_parnd() returns the value of the specified parameter as a double type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNI"
+> _clip_parni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPPARNL"
+>_clip_parnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETND"
+>_clip_retnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORND"
+>_clip_stornd()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21074"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ double num = _clip_parnd(cm,1);
+ /* ... */
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21078"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPPARNI"
+></A
+>Function  _CLIP_PARNI() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_parni(ClipMachine * cm,int num) --&#62; int&#13;</PRE
+><P
+> _clip_parni() retrieves a numeric value passed as a parameter from CLIP
+ and converts it to an int type.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21083"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;num&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - position of the parameter in parameters list</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_parni() returns the value of the specified parameter as an int type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARND"
+> _clip_parnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPPARNL"
+>_clip_parnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNI"
+>_clip_retni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORNI"
+>_clip_storni()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21106"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ int num = _clip_parni(cm,1);
+ /* ... */
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21110"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPPARNL"
+></A
+>Function  _CLIP_PARNL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_parnl(ClipMachine * cm,int num) --&#62; long&#13;</PRE
+><P
+> _clip_parnl() retrieves a numeric value passed as a parameter from CLIP
+ and converts it to a long type.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21115"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;num&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - position of the parameter in parameters list</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_parnl() returns the value of the specified parameter as a long type.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNI"
+> _clip_parni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPPARND"
+>_clip_parnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNL"
+>_clip_retnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORNL"
+>_clip_stornl()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21138"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ long num = _clip_parnl(cm,1);
+ /* ... */
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21142"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPRETND"
+></A
+>Function  _CLIP_RETND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_retnd(ClipMachine * cm,double n) --&#62; void&#13;</PRE
+><P
+> _clip_retnd() posts a numeric value into CLIP's return value area.
+ When your exported function returns control to the calling CLIP
+ program, the posted value becomes the CLIP return value of your
+ exported function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21147"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;n&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - a numeric expression of double type</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_retnd() has no return value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARND"
+> _clip_parnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNI"
+>_clip_retni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNL"
+>_clip_retnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORND"
+>_clip_stornd()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21170"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ double n;
+ /* ... */
+ _clip_retnd(cm,n);
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21174"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPRETNI"
+></A
+>Function  _CLIP_RETNI() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_retni(ClipMachine * cm,int n) --&#62; void&#13;</PRE
+><P
+> _clip_retni() posts a numeric value into CLIP's return value area.
+ When your exported function returns control to the calling CLIP
+ program, the posted value becomes the CLIP return value of your
+ exported function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21179"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;n&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - a numeric expression of integer type</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_retni() has no return value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNI"
+> _clip_parni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETND"
+>_clip_retnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNL"
+>_clip_retnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORNI"
+>_clip_storni()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21202"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ int n;
+ /* ... */
+ _clip_retni(cm,n);
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21206"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPRETNL"
+></A
+>Function  _CLIP_RETNL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_retnl(ClipMachine * cm,long n) --&#62; void&#13;</PRE
+><P
+> _clip_retnl() posts a numeric value into CLIP's return value area.
+ When your exported function returns control to the calling CLIP
+ program, the posted value becomes the CLIP return value of your
+ exported function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21211"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;n&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - a numeric expression of long type</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> _clip_retnl() has no return value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categc-api.html#FUNCTIONCLIPPARNL"
+> _clip_parnl()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETNI"
+>_clip_retni()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPRETND"
+>_clip_retnd()</A
+> <A
+HREF="categc-api.html#FUNCTIONCLIPSTORNL"
+>_clip_stornl()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN21234"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "clip.h"
+ 
+ int clip_MYFUNCTION(ClipMachine * cm)
+ {
+ long n;
+ /* ... */
+ _clip_retnl(cm,n);
+ return 0;
+ }</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21238"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPSTORND"
+></A
+>Function  _CLIP_STORND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+></PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21244"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21254"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPSTORNI"
+></A
+>Function  _CLIP_STORNI() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_storni(ClipMachine * mp, int n, int num, int ind) --&#62; int&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21260"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN21270"
+></A
+><H3
+><A
+NAME="FUNCTIONCLIPSTORNL"
+></A
+>Function  _CLIP_STORNL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> _clip_stornl(ClipMachine * mp, long n, int num, int ind) --&#62; int&#13;</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN21276"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categsystem.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categarray.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SYSTEM</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ARRAY</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

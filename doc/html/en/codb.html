@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CODB- CLIP Object Data Base.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="UNDERCONSTRUCTION"
+HREF="categunderconstruction.html"><LINK
+REL="NEXT"
+TITLE="Metadata classes"
+HREF="codbmetadata.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categunderconstruction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="codbmetadata.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="CODB">Chapter 12. CODB- CLIP Object Data Base.</H1
+><P
+>For better understanding of this document it is necessary to read sections
+of the documentation <A
+HREF="langext.html#LEINTRODUCTION"
+>language extensions</A
+> and especially attentively
+the chapter <A
+HREF="leoomodel.html"
+>OO-model</A
+>. If you won't understand them - further reading
+has no sense.</P
+><P
+><B
+CLASS="COMMAND"
+>CODB</B
+> consists of the dictionary ( metadata storehouse ) and a number of
+depositories for data objects.</P
+><P
+><B
+CLASS="COMMAND"
+>CODB</B
+> is not OO storehouse as it is in classical OO-programming (C ++, SmallTalk...).
+<B
+CLASS="COMMAND"
+>CODB</B
+> is an object database, i.e. storehouse of objects with some OO elements.</P
+><P
+>In particular, the "private" properties is not supported - for the simple reason that
+<B
+CLASS="COMMAND"
+>CODB</B
+> core must know about all properties of an object. But instead of
+"private" there is an opportunity to store objects with properties,
+which aren't described in metadata.</P
+><P
+>Thus, if the object with extra properties will be stored, using the method
+method depository:append(obj), all those extra properties will be kept
+completely, but the type checking, content checking and indexation will not
+work for them.</P
+><P
+>While reading such an object all properties will be accessible and
+the programmer is fully responsible for the content of those extra properties.
+If he will not describe them in the documentation, they may be considered
+as "private" :).</P
+><P
+>Inheritance is supported, but only from one superclass, and the properties
+ and indexes are inherited only.
+ </P
+><P
+>Polymorphism currently is not supported, because object methods are not kept.
+Possibly, the following versions of <B
+CLASS="COMMAND"
+>CODB</B
+> will support object methods keeping
+and polymorphism. Currently only event handlers ( analogues of triggers in
+ RDBMS ) are available - it is possible to realize polymorphism partially
+using them, if necessary.</P
+><P
+>Main concepts:</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN40973"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Class</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>the set of substances with identical properties</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Object</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>the substance belonging to any class</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>The stored object</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>object which is kept in storehouse, there is other name
+for such objects - "permanent" or "constant"</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>The comment:</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>In some ODB, especially based on C ++, the metadata are not permanent.
+In such ODB metadata are known only at compile time and are not kept
+in dictionaries. In <B
+CLASS="COMMAND"
+>CODB</B
+> both metadata and the stored data are permanent
+because they are kept in DB and are accessible at run-time</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Property</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a part of an object, the attribute of an object, it may be of any type</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Method</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a program code which an object may execute</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Metadata</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>objects which describes the structure of other objects</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Dictionary</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>storehouse of metadata</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Depository</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a place where stored objects are kept ( the structure of these
+ objects is described in the dictionary )</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Essence</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a string which describes the content of stored object</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Extent</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a part of depository for storage of related objects belonging to
+different classes. The fragmentation of depositry on extents depends on
+the essence of the whole data kept, the number of stored objects, their relations
+etc. It is defined at a design time</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><P
+>If to consider these concepts from the point of RDBMS:</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN41024"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>CODB</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>RDBMS</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Dictionary</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a place where descriptions of databases, tables, fields, users,
+views, triggers and others is stored</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Metadata</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>the data used by RDBMS for the internal needs</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Depository</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>database</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Extent</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>this concept is not present in RDBMS, but it may
+be a part of database, which keeps some tables. For example, tables which names
+ begins with a letter "A", a letter "B", .....</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Class</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>the table</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Object</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a record of the table</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>Property</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>a field of a record</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CODBSPECIFICATION">12.1. Specification</H1
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Theoretically <B
+CLASS="COMMAND"
+>CODB</B
+> may keep the data in any low level storehouse:
+ TXT, SDF, XML, DBF, SQL, others ODB, CORBA...
+At the present time only a driver for DBF+CDX files is implemented.
+The driver is written on CLIP, it's sources are about 60k.</P
+></LI
+><LI
+><P
+>Identification of all objects is global, i.e. using the identifier of an
+object it is possible to determine the dictionary and depository it is related to.
+The length of the identifier of an object is defined at compile time,
+the configuration is in codbcfg.ch. In a standard configuration the identifier
+of any object ( meta or stored ) occupies 12 bytes and consists of:</P
+><P
+></P
+><UL
+><LI
+><P
+>The identifier of the dictionary - 5 bytes.</P
+></LI
+><LI
+><P
+>The identifier of the depository - 2 bytes.</P
+></LI
+><LI
+><P
+>The identifier of an object in depository - 5 bytes.</P
+></LI
+></UL
+><P
+>Only Latin letters and digits are used in the identifier, so the number of
+dictionaries is no more than 32^5 = 2^25 = ~32 000 000.
+At each dictionary there may be 32^2 = ~1000 depositories.
+The number of extents inside the depository is limited only by the number of
+files in the directory or number of tables supported by RDBMS.
+The number of objects in one depository is no more than 32^5 = ~32 000 000.</P
+></LI
+><LI
+><P
+>The speed of objects recording to the database using the DBF driver is about
+200 per second ( Celeron 400/128M ), it depends on the size of object slightly.
+The speed of reading without caching is about 2000 per second.
+If an application server and objects caching will be used, the speed of
+reading will increase presumably in 3-4 times.</P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categunderconstruction.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="codbmetadata.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>UNDERCONSTRUCTION</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Metadata classes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

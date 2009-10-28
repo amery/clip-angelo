@@ -4,7 +4,7 @@
 # main parts
 #
 #
-prg_files 			= 			clip_mk_depend.prg test.prg
+prg_files 			= 			test.prg
 o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 SRC_C_files 		= 			$(sort $(c_files) )
 SRC_PRG_files 		= 			$(sort $(prg_files) )
@@ -32,7 +32,8 @@ install: all
 
 test$(EXESUFF) : test.prg Makefile
 	$(E_e)$(Trace_clip)
-	$(E_clip)$(CLIP) $(CLIPFLAGS) -es -o $@ $<
+#	$(E_clip)
+	$(CLIP) $(CLIPFLAGS) -o $@ -ges $<
 # $(LIBCLIP)
 	./$@
 	$(E_xx)banner Clip 		>&0

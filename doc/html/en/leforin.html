@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FOR ... IN statement</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="PREVIOUS"
+TITLE="Associative arrays"
+HREF="lemap.html"><LINK
+REL="NEXT"
+TITLE="Strings as arrays"
+HREF="lestrarr.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="lemap.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Language extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="lestrarr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LEFORIN">10.9. FOR ... IN statement</H1
+><P
+><B
+CLASS="COMMAND"
+>FOR ... IN</B
+> statement is a control structure that
+executes a block of statements for all elements of an associative array.</P
+><P
+>Syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>FOR &#60;element&#62; IN &#60;associative_array&#62;
+	&#60;statements&#62;...
+NEXT</PRE
+><P
+>Before processing the block of statements,
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;element&#62;</I
+></SPAN
+> variable takes value of the next
+element of <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;associative_array&#62;</I
+></SPAN
+>.</P
+><P
+>Another syntax of <B
+CLASS="COMMAND"
+>FOR ... IN</B
+> statement allows to execute
+a block of statements for hash codes identifying all elements of
+an associative array:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>FOR &#60;key&#62; IN &#60;associative_array&#62; KEYS
+	&#60;statements&#62;...
+NEXT</PRE
+><P
+>For example</P
+><PRE
+CLASS="PROGRAMLISTING"
+>m := map()
+m:qwer := 12
+m:asdf := "hello"
+for member in m
+	? member
+next
+//         12
+// hello
+
+for key in m keys
+	? key,m[key]
+next
+// 304733034         12
+// 1190707477 hello</PRE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="lemap.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="lestrarr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Associative arrays</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Strings as arrays</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

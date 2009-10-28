@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CGI/FCGI</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="VIDEO"
+HREF="categvideo.html"><LINK
+REL="NEXT"
+TITLE="CONVERSION"
+HREF="categconversion.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categvideo.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categconversion.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGCGIFCGI">CGI/FCGI</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN37290"
+></A
+><H2
+>Name</H2
+>CGI/FCGI&nbsp;--&nbsp; Functions for using CGI or FCGI technology of WEB-servers.</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN37293"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>lAccepted           <A
+HREF="categcgifcgi.html#FUNCTIONFCGIACCEPT"
+>FCGI_ACCEPT()</A
+>
+NIL                 <A
+HREF="categcgifcgi.html#FUNCTIONFCGIFLUSH"
+>FCGI_FLUSH()</A
+>
+mapEnv              <A
+HREF="categcgifcgi.html#FUNCTIONFCGIGETENV"
+>FCGI_GETENV(&#60;cName&#62;) --&#62; cValue FCGI_GETENV()</A
+>
+cStdInData          <A
+HREF="categcgifcgi.html#FUNCTIONFCGIREAD"
+>FCGI_READ()</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN37300"
+></A
+><H2
+>Description </H2
+><P
+>Category CGI/FCGI include description of functions for
+using CGI or FCGI technology of WEB-servers.</P
+><P
+>&#13;For using need linking clip-fcgi library:</P
+><P
+>&#13;clip -e test.prg -lclip-fcgi</P
+><P
+>&#13;</P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37306"
+></A
+><H3
+><A
+NAME="FUNCTIONFCGIACCEPT"
+></A
+>Function  FCGI_ACCEPT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCGI_ACCEPT() --&#62; lAccepted&#13;</PRE
+><P
+> When the connection is accepted, all steram output (via ? or
+ QOUT() or similar functions will be redirected to server. The output is
+ buffered; you can use function FCGI_FLUSH() to explicitly flush output
+ buffers.</P
+><P
+> 
+ Note that real end of transaction happens when you again call
+ FCGI_ACCEPT(), this corresponds to termination of CGI program.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37312"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIGETENV"
+> FCGI_GETENV()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIREAD"
+>FCGI_READ()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIFLUSH"
+>FCGI_FLUSH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37329"
+></A
+><H3
+><A
+NAME="FUNCTIONFCGIFLUSH"
+></A
+>Function  FCGI_FLUSH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCGI_FLUSH() --&#62; NIL&#13;</PRE
+><P
+> Flush all buffered data to FCGI server peer.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37334"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIGETENV"
+> FCGI_GETENV()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIREAD"
+>FCGI_READ()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIACCEPT"
+>FCGI_ACCEPT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37351"
+></A
+><H3
+><A
+NAME="FUNCTIONFCGIGETENV"
+></A
+>Function  FCGI_GETENV() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCGI_GETENV(&#60;cName&#62;) --&#62; cValue
+ FCGI_GETENV() --&#62; mapEnv&#13;</PRE
+><P
+> When the connection is accepted, WWW server sends some
+ environment variables (well-known in CGI programming) via FCGI protocol.
+ The function FCGI_GETENV() give access to this variables.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37356"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> - name of environment variable.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return value of environment variable, or map all variables as name/value pairs.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIREAD"
+> FCGI_READ()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIFLUSH"
+>FCGI_FLUSH()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIACCEPT"
+>FCGI_ACCEPT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN37378"
+></A
+><H3
+><A
+NAME="FUNCTIONFCGIREAD"
+></A
+>Function  FCGI_READ() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FCGI_READ() --&#62; cStdInData&#13;</PRE
+><P
+> This function read exactly CONTENT_LENGTH bytes, where
+ CONTENT_LENGTH is a number, supplied by HTTP client</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN37383"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Data from StdIn.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIGETENV"
+> FCGI_GETENV()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIFLUSH"
+>FCGI_FLUSH()</A
+> <A
+HREF="categcgifcgi.html#FUNCTIONFCGIACCEPT"
+>FCGI_ACCEPT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categvideo.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categconversion.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>VIDEO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CONVERSION</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

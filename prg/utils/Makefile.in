@@ -51,7 +51,7 @@ install:all
 	$(E_cp)cp --remove-destination -fpu$(V) .macro $(INSTDIR)/etc
 	$(E_cp)cp --remove-destination -fpu$(V) .templ $(INSTDIR)/etc
 
-clip_prg$(EXESUFF): clip_prg.prg Makefile $(CLIP) $(LIBCLIP)
+clip_prg$(EXESUFF): clip_prg.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $< ;		\
@@ -60,7 +60,7 @@ clip_prg$(EXESUFF): clip_prg.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
+clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -69,7 +69,7 @@ clip_run$(EXESUFF): clip_run.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(LIBCLIP)
+clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -78,7 +78,7 @@ clip_bl$(EXESUFF): clip_bl.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_mk_depend$(EXESUFF) :  clip_mk_depend.prg Makefile $(CLIP) $(LIBCLIP)
+clip_mk_depend$(EXESUFF) :  clip_mk_depend.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .o,.g,$<) ] ; then 		\
 		$(Trace_clip_d) ; 									\
 		$(CLIP) $(CLIPFLAGS) -g -es -o $@ $< ; 		\
@@ -87,7 +87,7 @@ clip_mk_depend$(EXESUFF) :  clip_mk_depend.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -es -o $@ $< ; 			\
 	fi
 
-clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(LIBCLIP)
+clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -96,7 +96,7 @@ clip_we$(EXESUFF): clip_we.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_hv$(EXESUFF): clip_hv.prg Makefile $(CLIP) $(LIBCLIP)
+clip_hv$(EXESUFF): clip_hv.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -105,7 +105,7 @@ clip_hv$(EXESUFF): clip_hv.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_fl$(EXESUFF): clip_fl.prg Makefile $(CLIP) $(LIBCLIP)
+clip_fl$(EXESUFF): clip_fl.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -114,7 +114,7 @@ clip_fl$(EXESUFF): clip_fl.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_dbf2txt$(EXESUFF): clip_dbf2txt.prg Makefile $(CLIP) $(LIBCLIP)
+clip_dbf2txt$(EXESUFF): clip_dbf2txt.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -M -g -o $@ -e $<  ;		\
@@ -123,7 +123,7 @@ clip_dbf2txt$(EXESUFF): clip_dbf2txt.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -M -o $@ -e $<  ;			\
 	fi
 
-clip_blank$(EXESUFF): clip_blank.prg Makefile $(CLIP) $(LIBCLIP)
+clip_blank$(EXESUFF): clip_blank.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $<  ;			\
@@ -132,7 +132,7 @@ clip_blank$(EXESUFF): clip_blank.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -e $<  ;				\
 	fi
 
-www_clip$(EXESUFF): www_clip.prg Makefile $(CLIP) $(LIBCLIP)
+www_clip$(EXESUFF): www_clip.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $<  ;			\
@@ -141,7 +141,7 @@ www_clip$(EXESUFF): www_clip.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -e $<  ;				\
 	fi
 
-wcl2prg$(EXESUFF): wcl2prg.prg Makefile $(CLIP) $(LIBCLIP)
+wcl2prg$(EXESUFF): wcl2prg.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $<  ;			\
@@ -150,7 +150,7 @@ wcl2prg$(EXESUFF): wcl2prg.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -e $<  ;				\
 	fi
 
-sqlrun$(EXESUFF): sqlrun.prg Makefile $(CLIP) $(LIBCLIP)
+sqlrun$(EXESUFF): sqlrun.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 	\
 		$(Trace_clip_d) 	;									\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -e $<  ;			\

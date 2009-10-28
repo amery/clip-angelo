@@ -28,7 +28,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_psql$(EXESUFF): my_psql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my_psql$(EXESUFF): my_psql.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewMs my_psql.prg -lclip-postgres $(LIBS)
 

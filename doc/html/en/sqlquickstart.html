@@ -1,0 +1,517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Quick start</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Working with SQL servers"
+HREF="sql.html"><LINK
+REL="PREVIOUS"
+TITLE="Working with SQL servers"
+HREF="sql.html"><LINK
+REL="NEXT"
+TITLE="SQL API reference"
+HREF="sqlapi.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="sql.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 13. Working with SQL servers</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="sqlapi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SQLQUICKSTART">13.2. Quick start</H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN41296">13.2.1. Building an application</H2
+><P
+>To build an application working with desired SQL server you have to
+install appropriate clip-&#60;rdbms&#62; package.
+The following packages are available currently:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>clip-postgres</DT
+><DD
+><P
+>PostgreSQL by (c) The PostgreSQL Global Development Group
+<A
+HREF="http://www.postgresql.org"
+TARGET="_top"
+>http://www.postgresql.org</A
+></P
+></DD
+><DT
+>clip-mysql</DT
+><DD
+><P
+>MySQL
+<A
+HREF="http://www.mysql.com"
+TARGET="_top"
+>http://www.mysql.com</A
+></P
+></DD
+><DT
+>clip-oracle</DT
+><DD
+><P
+>Oracle 8i by (c) Oracle Corporation
+<A
+HREF="http://www.oracle.com"
+TARGET="_top"
+>http://www.oracle.com</A
+></P
+></DD
+><DT
+>clip-odbc</DT
+><DD
+><P
+>ODBC driver manager
+<A
+HREF="http://www.microsoft.com"
+TARGET="_top"
+>http://www.microsoft.com</A
+></P
+></DD
+><DT
+>clip-interbase</DT
+><DD
+><P
+>Interbase/Firebird by (c) Borland/Inprise
+<A
+HREF="http://www.interbase.com"
+TARGET="_top"
+>http://www.interbase.com</A
+></P
+></DD
+><DT
+>clip-dbtcp</DT
+><DD
+><P
+>DBTCP proxy server for ODBC connections
+<A
+HREF="http://www.fastflow.it/dbftp"
+TARGET="_top"
+>http://www.fastflow.it/dbftp</A
+></P
+></DD
+></DL
+></DIV
+><P
+>Once installed desired package you can build an application like this:</P
+><PRE
+CLASS="SCREEN"
+><TT
+CLASS="PROMPT"
+>bash$ </TT
+><B
+CLASS="COMMAND"
+>clip -e test.prg -lclip-mysql</B
+></PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN41334">13.2.2. Step by step</H2
+><P
+>Before you will be able to make something you should create a connect to
+the server. The function <A
+HREF="sqlapi.html#SQLCONNECTNEW"
+>ConnectNew()</A
+>
+is intended for that purpose. ConnectNew() - is a constructor of the class
+<A
+HREF="sqlapi.html#SQLTCONNECT"
+>TConnect</A
+>, i.e. it returns
+a TConnect object on success. Once obtained that object can be used to
+execute SQL statements, to select a set of desired rows, to start and
+end transactions. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>conn := ConnectNew(...)  // obtain a connection
+conn:Start()             // start a transaction
+
+conn:Command("UPDATE emp SET name='Total' WHERE name='Rust'")
+// next time, in pay office i'll say: "My name is Total"
+
+conn:Rollback()          // just kidding :) cancel the change</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Several connections can be made simultaneously. Moreover,
+it is possible to connect to several various servers simultaneously.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>SQL statements and queries can have parameters. Parameter names must be
+preceded with ':'. Parameter values are passed in the bidimensional array -
+one row per parameter. First column contains parameter name, second - the value.
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>conn:Command("UPDATE emp SET fname=:fname,lname=:lname",;
+	{{"fname","John"},{"lname","Smith"}})</PRE
+><P
+>TConnect member function <A
+HREF="sqlapi.html#SQLCREATEROWSET"
+>CreateRowset()</A
+>
+is used to obtain a set of rows - result of SELECT statement. It returns
+an object of TRowset class. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM emp WHERE fname=:fname",{{"fname","John"}})
+rs:Browse()    // simple BROWSE for TRowset</PRE
+><P
+>TRowset member functions allow you to navigate through the set of result rows.
+Here they are:
+<A
+HREF="sqlapi.html#SQLBOF"
+>Bof()</A
+>, <A
+HREF="sqlapi.html#SQLEOF"
+>Eof()</A
+>,
+<A
+HREF="sqlapi.html#SQLSKIP"
+>Skip()</A
+>, <A
+HREF="sqlapi.html#SQLGOTO"
+>Goto()</A
+>,
+<A
+HREF="sqlapi.html#SQLGOTOP"
+>GoTop()</A
+>, <A
+HREF="sqlapi.html#SQLGOBOTTOM"
+>GoBottom()</A
+>,
+<A
+HREF="sqlapi.html#SQLLASTREC"
+>Lastrec()</A
+>, <A
+HREF="sqlapi.html#SQLRECNO"
+>Recno()</A
+>.</P
+><P
+>Two functions are intended to read/write the current row:
+<A
+HREF="sqlapi.html#SQLREAD"
+>Read()</A
+> and <A
+HREF="sqlapi.html#SQLWRITE"
+>Write()</A
+>.
+Read() returns an object whose structure is the same as the structure of the
+row. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM emp")
+? rs:Recno(), rs:Read() // 1 {FNAME: John, LNAME: Smith}</PRE
+><P
+>Write() function receives an object and sets the values of fields
+whose names are in compliance with the attribute names of that object.
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>? rs:Read()            // {FNAME: John, LNAME: Smith}
+obj := map()
+obj:fname := "Robert"
+obj:salary := 10000
+rs:Write(obj)
+? rs:Read()            // {FNAME: Robert, LNAME: Smith}</PRE
+><P
+>You can add row to the set (<A
+HREF="sqlapi.html#SQLAPPEND"
+>Append()</A
+>)
+and delete (<A
+HREF="sqlapi.html#SQLDELETE"
+>Delete()</A
+>).
+Append() receives parameter - obj. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM emp")
+? rs:Lastrec() // 100
+obj := map()
+obj:fname := "Homer"
+obj:lname := "Simpson"
+rs:Append(obj)
+? rs:Lastrec() // 101
+? rs:Read()    // {FNAME: Homer, LNAME: Simpson}
+rs:Delete()
+? rs:Lastrec() // 100</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>All changes performed by Write(), Append(), Delete() are applied to the set
+only. However, three additional parameters (&#60;cInsertSQL&#62;, &#60;cDeleteSQL&#62;,
+&#60;cUpdateSQL&#62;) can be passed to CreateRowset(). If passed,
+&#60;cInsertSQL&#62;
+will be executed implicitly by invoking Append() method. Likewise,
+&#60;cDeleteSQL&#62; and &#60;cUpdateSQL&#62; will be used when
+Delete() and Write() have been invoked. An unique ID of the row should be
+SELECTed in the case of Write() and Delete(). (Read about this issue
+documentation on the driver of desired <A
+HREF="sqlrdbms.html"
+>RDBMS</A
+>.)
+For example:</P
+></TD
+></TR
+></TABLE
+></DIV
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT rowid,fname,lname FROM emp",,;
+	"INSERT INTO emp values (:fname,:lname)",;
+	"DELETE FROM emp WHERE rowid=:rowid",;
+	"UPDATE emp SET fname=:fname,lname=:lname WHERE rowid=:rowid")</PRE
+><P
+>If amount of matched rows can't be estimated two parameters 
+&#60;bEval&#62; and &#60;nEvery&#62; will be helpful. Code block &#60;bEval&#62;
+will be executed during fetching process after each fetched &#60;nEvery&#62;
+rows. If it returns .F. the process breaks. Thus you could make
+a progressbar for huge result sets and cancel fetching.
+This example prints '.' per 100 rows and can be cancelled by pressing ESC.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,,;
+	{|| qqout("."), inkey() != K_ESC},100)</PRE
+><P
+>For the same reason (when amount of matched rows can't be estimated)
+you may direct TRowset to not fetch all found rows immediately,
+but fetch them on demand.
+There is another one parameter &#60;lNoFetch&#62; for this purpose.
+If passed .T., CreateRowset() terminates at once. But number of matched rows
+can't be obtained while not fetched rows are remained. To fetch the rest
+of them <A
+HREF="sqlapi.html#SQLFETCHALL"
+>TRowset:FetchAll()</A
+> function could
+be used. <A
+HREF="sqlapi.html#SQLFETCHED"
+>TRowset:Fetched()</A
+> returns number
+of rows fetched at the moment. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT * FROM hugetable",,,,,,,,,.T.)
+rs:Gotop()
+? rs:Fetched() // 1
+? rs:Lastrec() // 0
+for i:=1 to 100
+	rs:Skip()
+	? rs:Fetched() // 2,3,...,101
+next
+rs:FetchAll()
+? rs:Lastrec() == rs:Fetched() // .T.</PRE
+><P
+>TRowset supports so-called 'local orders'. 'Local order' is an index created
+on the client side and it allows to change an order of rows in the set. It is
+mostly the same as standard RDD indices, but it's time life is limited by
+row set's life time, i.e. it is located in the memory and does not
+occupy any files. <A
+HREF="sqlapi.html#SQLCREATEORDER"
+>TRowset:CreateOrder()</A
+>
+creates an order with given name,
+<A
+HREF="sqlapi.html#SQLSETORDER"
+>TRowset:SetOrder()</A
+> activates an order.
+For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>rs := conn:CreateRowset("SELECT fname,lname FROM emp")
+
+// create an order 'Firstname' on the 'fname' field. Key length is 20 chars.
+rs:CreateOrder("Firstname","fname",20)
+
+// create an order 'Lastname' on the 'lname' field. Key length is 20 chars.
+rs:CreateOrder("Lastname","lname",20)
+
+// create an order 'Fullname' on the both 'fname' and 'lname' fields.
+// Key length is 40 chars.
+rs:CreateOrder("Fullname",{|rs| rs:GetValue("fname")+rs:GetValue("lname")},20)
+
+rs:SetOrder("Firstname")
+rs:Browse() // show rows sorted by first name
+
+rs:SetOrder("Lastname")
+rs:Browse() // show rows sorted by last name
+
+rs:SetOrder("Fullname")
+rs:Browse() // show rows sorted by fname and lname</PRE
+><P
+>Now we shall proceed to the description of SQL related classes and functons.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="sql.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="sqlapi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Working with SQL servers</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="sql.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SQL API reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

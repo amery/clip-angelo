@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Environment variables are useful for localization and working with the different codepages:</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Environment variables"
+HREF="envir.html"><LINK
+REL="PREVIOUS"
+TITLE="Environment variables are using for defines, where CLIP-files are placed:"
+HREF="x325.html"><LINK
+REL="NEXT"
+TITLE="Other environment variables:"
+HREF="x361.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x325.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Environment variables</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x361.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN341">4.4. Environment variables are useful for localization and working with the different codepages:</H1
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>CLIP_LANG</DT
+><DD
+><P
+>		use for setting codepage of constant-string in sources during the compilation (if the command line switches -T and -S are not set and the file .clipcharset is not present). If this variable isn't set, the consindent value takes from LANG variable
+	  </P
+><P
+></P
+></DD
+><DT
+>CLIP_HOSTCS</DT
+><DD
+><P
+>		is specifies an inner representation of the strings (default - value of CLIP_LANG in compilation time)
+	  </P
+></DD
+><DT
+>CLIP_CLIENTCS</DT
+><DD
+><P
+>		is defines an output codepage for terminal (default - value of CLIP_LANG in compilation time). If in runtime it's don't match with CLIP_HOSTCS, then the output will be recoded
+	  </P
+></DD
+><DT
+>CLIP_LOCALE</DT
+><DD
+><P
+>		main variable, which defines a charset, using by CLIP-program.If it isn't set, then CLIP_CLIENTCS, CLIP_CHARSET and CHARSET will be checked
+	  </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x325.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x361.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Environment variables are using for defines, where CLIP-files are placed:</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="envir.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Other environment variables:</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

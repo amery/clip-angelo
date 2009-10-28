@@ -19,7 +19,7 @@ hash1 :
 
 cfg :
 
-ftosgml$(EXESUFF) :	ftosgml.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
+ftosgml$(EXESUFF) :	ftosgml.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
@@ -28,7 +28,7 @@ ftosgml$(EXESUFF) :	ftosgml.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
-ctosgml$(EXESUFF) :	ctosgml.prg $(o_files) Makefile $(CLIP) $(LIBCLIP)
+ctosgml$(EXESUFF) :	ctosgml.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\

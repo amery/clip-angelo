@@ -3,11 +3,12 @@
 #
 Depend_on 		=		$(Clip_L_Dir)/libclip-codb.so 	\
 							$(Clip_L_Dir)/libcodb-query.so
-LIBS  			= 		-lclip-codb -lcodb-query
+LIBS  			= 		-L$(Clip_L_Dir) -lclip-codb -lcodb-query
 prg_files 		= 		codb.prg
 exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 SRC_C_files 	= 		$(sort $(c_files) )
 SRC_PRG_files 	= 		$(sort $(prg_files) )
+E_clip 				=
 
 export
 
@@ -27,7 +28,7 @@ cleanc :
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-codb$(EXESUFF): codb.prg $(o_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+codb$(EXESUFF): codb.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 							\
 		$(Trace_clip_d) 	;															\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -eslNn $< $(o_files) $(LIBS) ;	\

@@ -20,6 +20,7 @@ o_files 			= 		$(addsuffix .o, $(basename $(prg_files) ) )
 LIBS 				+= 	-lclip-codb -lclip-gtk -lclip $(PIXBUFLIBS)
 SRC_C_files 	= 		$(sort $(c_files) )
 SRC_PRG_files 	= 		$(sort $(prg_files) codb_abx.prg )
+E_clip 				=
 
 export
 
@@ -43,7 +44,7 @@ cleanc : $(DIRS_TO_SCAN)
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-codb_abx$(EXESUFF): codb_abx.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_abx$(EXESUFF): codb_abx.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\

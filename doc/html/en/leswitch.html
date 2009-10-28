@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SWITCH statement</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="PREVIOUS"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="NEXT"
+TITLE="Assign of the reference"
+HREF="leref.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="langext.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Language extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="leref.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LESWITCH">10.2. SWITCH statement</H1
+><P
+><B
+CLASS="COMMAND"
+>SWITCH</B
+> statement is a control structure that
+executes one of several blocks of the statements depending on the value
+of an expression.</P
+><P
+>Syntax:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>[DO] SWITCH &#60;expression&#62;
+	CASE &#60;const11&#62;[,&#60;const12&#62;,...]
+		&#60;statements&#62;,...
+	[ CASE &#60;const21&#62;[,&#60;const22&#62;,...] ]
+		&#60;statements&#62;,...
+	[ OTHERWISE ]
+		&#60;statements&#62;,...
+END[SWITCH]</PRE
+><P
+>It evaluates <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&#60;expression&#62;</I
+></SPAN
+>,
+looks for it's value in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CASE</I
+></SPAN
+> constants,
+and executes associated block of statements. If none
+of the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CASE</I
+></SPAN
+> constants are equal to the
+expression value, it executes the block of statements following
+the <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>OTHERWISE</I
+></SPAN
+> statement (if exist).</P
+><P
+>Only numeric and character constants are allowed in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CASE</I
+></SPAN
+>
+statement.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><B
+CLASS="COMMAND"
+>SWITCH</B
+> is more effective than similar
+<B
+CLASS="COMMAND"
+>DO CASE</B
+> statement.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="leref.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Language extensions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Assign of the reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

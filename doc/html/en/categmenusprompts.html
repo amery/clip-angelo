@@ -1,0 +1,4647 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>MENUS/PROMPTS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="DOS/BIOS"
+HREF="categdosbios.html"><LINK
+REL="NEXT"
+TITLE="CRYPTO"
+HREF="categcrypto.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categdosbios.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categcrypto.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGMENUSPROMPTS">MENUS/PROMPTS</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN29345"
+></A
+><H2
+>Name</H2
+>MENUS/PROMPTS&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN29348"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nPosition           <A
+HREF="categmenusprompts.html#FUNCTIONACHOICE"
+>ACHOICE(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;, &#60;acMenuItems&#62;, [&#60;alSelectableItems&#62; | &#60;lSelectableItems&#62;], [&#60;cUserFunction&#62;], [&#60;nInitialItem&#62;], [&#60;nWindowRow&#62;])</A
+>
+nChoice             <A
+HREF="categmenusprompts.html#FUNCTIONALERT"
+>ALERT( &#60;cMessage&#62;, [&#60;aOptions&#62;] )</A
+>
+nOption             <A
+HREF="categmenusprompts.html#FUNCTIONFTACH2TB"
+>FT_Ach2tb( &#60;nToprow&#62;,&#60;nTopcol&#62;[,&#60;nBotrow&#62;][,&#60;nBotcol&#62;],&#60;aArrey&#62;,     ; [&#60;cBoxtype&#62;],[&#60;cBoxcolor&#62;],[&#60;cBoxtitle&#62;],[&#60;nTitlePos&#62;],        ; [&#60;cUselcolor&#62;],[&#60;cTitlecolor&#62;],[&#60;cBarcolor&#62;],[&#60;cHkcolor&#62;],     ; [&#60;lShadow&#62;],[&#60;lExecute&#62;],[&#60;nMsgrow&#62;],[&#60;nMsgcol&#62;],              ; [&#60;cMsg.color&#62;],[cElevbar],[cEbarcolor],[&#60;cEbarside&#62;],          ; [&#60;cNoSelcolor&#62;],[&#60;cTagch&#62;],[&#60;nStartelem&#62;],[&#60;lRscreen&#62;],        ; [&#60;nTimeout&#62;],[&#60;nTimeoutval&#62;],[&#60;cUserfunc&#62;] )</A
+>
+                    <A
+HREF="categmenusprompts.html#FUNCTIONFTADDER"
+>FT_Adder()</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTBLINK"
+>FT_BLINK( &#60;cMsg&#62;, [ &#60;nRow&#62; ], [ &#60;nCol&#62; ] )</A
+>
+nRecno              <A
+HREF="categmenusprompts.html#FUNCTIONFTBRWSWHL"
+>FT_BRWSWHL( &#60;aFields&#62;, &#60;bWhileCond&#62;, &#60;cKey&#62;,                  ; [ &#60;nFreeze&#62; ], [ &#60;lSaveScrn&#62; ], [ &#60;cColorList&#62; ], ; [ &#60;cColorShadow&#62; ], [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ],      ; [ &#60;nBottom&#62; ], [ &#60;nRight&#62; ]</A
+>
+aClrData            <A
+HREF="categmenusprompts.html#FUNCTIONFTCLRSEL"
+>FT_ClrSel( &#60;aClrData&#62;, [ &#60;lClrMode&#62; ], [ &#60;cTestChr&#62; ]</A
+>
+lKeyMatch           <A
+HREF="categmenusprompts.html#FUNCTIONFTDISPMSG"
+>FT_DISPMSG( &#60;aMessageArray&#62;, [ &#60;cKey2Check&#62; ], [ &#60;nTopBoxRow&#62; ], [ &#60;nLeftBoxColumn&#62; ], [ &#60;cnBoxType&#62; ], [ &#60;lShadow&#62; ] )</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTFILL"
+>FT_FILL( &#60;aSubArrayName&#62;, &#60;cMenuSelection&#62;, &#60;bFunction&#62;, &#60;lSelectable&#62; )</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTMENU1"
+>FT_MENU1( &#60;acBarNames&#62;, &#60;acOptions&#62;, &#60;acAction&#62;, &#60;acColors&#62; [, &#60;nTopRow&#62; ], [ &#60;lShadow&#62; ] )</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTMENU2"
+>FT_MENU2( &#60;aMenuarray&#62; [, &#60;cColors&#62; ] )</A
+>
+                    <A
+HREF="categmenusprompts.html#FUNCTIONFTMENUTO"
+>#include "FTMENUTO.CH"  MENU TO &#60;var&#62; [COLD]</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTPENDING"
+>FT_PENDING ( &#60;cMsg&#62;, [ &#60;nRow&#62; ], [ &#60;nCol&#62; ], ; [ &#60;nWait&#62; ], [ &#60;cColor&#62; ] )</A
+>
+cDayOfWeek          <A
+HREF="categmenusprompts.html#FUNCTIONFTPICKDAY"
+>FT_PICKDAY()</A
+>
+                    <A
+HREF="categmenusprompts.html#FUNCTIONFTPROMPT"
+>#include "FTMENUTO.CH"  @ &#60;nRow&#62;, &#60;nCol&#62; PROMPT &#60;cPrompt&#62;                     ; [COLOR &#60;cColor&#62;]                     ; [MESSAGE &#60;cMessage&#62;]                 ; [MSGROW &#60;nMsgRow&#62;]                   ; [MSGCOL &#60;nMsgCol&#62;]                   ; [MSGCOLOR &#60;cMsgColor&#62;]               ; [TRIGGER &#60;nTrigger&#62;]                 ; [TRIGGERCOLOR &#60;cTriggerColor&#62;]       ; [HOME &#60;nHome&#62;]                       ; [END &#60;nEnd&#62;]                         ; [UP &#60;nUp&#62;]                           ; [DOWN &#60;nDown&#62;]                       ; [LEFT &#60;nLeft&#62;]                       ; [RIGHT &#60;nRight&#62;]                     ; [EXECUTE &#60;bExec&#62;]                    ;</A
+>
+nil                 <A
+HREF="categmenusprompts.html#FUNCTIONFTSLEEP"
+>FT_SLEEP( &#60;nSeconds&#62;, [&#60;nInitial&#62;] )</A
+>
+NIL                 <A
+HREF="categmenusprompts.html#FUNCTIONFTXBOX"
+>FT_XBOX( [ &#60;cJustType&#62; ], [ &#60;cRetWait&#62; ], [ &#60;cBorType&#62; ],   ; [ &#60;cBorColor&#62; ], [ &#60;cBoxColor&#62; ], [ &#60;nStartRow&#62; ], ; [ &#60;nStartCol&#62; ], &#60;cLine1&#62;,  &#60;cLine2&#62;, &#60;cLine3&#62;,    ; &#60;cLine4&#62;, &#60;cLine5&#62;, &#60;cLine6&#62;, &#60;cLine7&#62;, &#60;cLine8&#62; )</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN29368"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29371"
+></A
+><H3
+><A
+NAME="FUNCTIONACHOICE"
+></A
+>Function  ACHOICE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ACHOICE(&#60;nTop&#62;, &#60;nLeft&#62;, &#60;nBottom&#62;, &#60;nRight&#62;,
+ &#60;acMenuItems&#62;,
+ [&#60;alSelectableItems&#62; | &#60;lSelectableItems&#62;],
+ [&#60;cUserFunction&#62;],
+ [&#60;nInitialItem&#62;],
+ [&#60;nWindowRow&#62;]) --&#62; nPosition&#13;</PRE
+><P
+> ACHOICE() is a user interface function that can create various kinds of
+ pop-up menus.  Each menu uses an array of character strings as menu
+ items and a parallel array of logical values to determine whether items
+ are selectable.  When you invoke ACHOICE(), the list of menu items is
+ displayed within the specified window coordinates.  When the user
+ presses Return, the current item is selected, and ACHOICE() returns the
+ position of the menu item in &lt;acMenuItems&gt;.  When the user presses Esc,
+ ACHOICE() aborts and returns zero.</P
+><P
+> 
+ The menu items scroll if the number of items in &lt;acMenuItems&gt; exceeds
+ the number of rows in the menu window, and the user attempts to move the
+ highlight beyond the top or bottom of the menu window.  Note that the
+ highlight does not wrap when you reach the top or bottom of the list of
+ items.  Pressing the first letter does, however, wrap the highlight
+ within the set of items whose first letter matches the key you press.</P
+><P
+> 
+ Navigating the menu:  ACHOICE() has two modes depending on
+ whether the &lt;cUserFunction&gt; argument is specified.  If it is not
+ specified the following navigation keys are active:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>ACHOICE() Keys (No User Function)
+ ---------------------------------------------------------------------
+ Key            Action
+ ---------------------------------------------------------------------
+ Up arrow       Go to previous item
+ Down arrow     Go to next item
+ Home           Go to first item in menu
+ End            Go to last item in menu
+ Ctrl+Home      Go to first item in window
+ Ctrl+End       Go to last item in window
+ PgUp           Go to previous page
+ PgDn           Go to next page
+ Ctrl+PgUp      Go to the first item in menu
+ Ctrl+PgDn      Go to last item in menu
+ Return         Select current item
+ Esc            Abort selection
+ Left arrow     Abort selection
+ Right arrow    Abort selection
+ First Letter   Go to next item beginning with first letter
+ ---------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ Color:  Menu items are displayed in standard color, the
+ highlight in enhanced color, and the unavailable items in the
+ unselected color.  For example, the following color statement</P
+><P
+> 
+ SETCOLOR("W+/N, BG+/B, , , W/N")</P
+><P
+> 
+ displays a menu that is bright white on black, the highlight is
+ bright cyan on blue, and the unavailable menu items are dim white on
+ black.</P
+><P
+> 
+ User function: Like the other user interface functions,
+ ACHOICE() supports a user function.  The user function is specified
+ when you want to nest ACHOICE() invocations to create hierarchical
+ menus or to redefine keys.</P
+><P
+> 
+ When a user function is specified, ACHOICE() processes only a limited
+ set of keys automatically.  These are listed in the following table.
+ All other keys generate a key exception which passes control to the
+ user function for handling.  Control is also passed to the user
+ function when ACHOICE() goes idle (i.e., when there are no more keys
+ to process).</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>ACHOICE() Keys (User Function Specified)
+ ---------------------------------------------------------------------
+ Key          Action
+ ---------------------------------------------------------------------
+ Uparrow      Go to previous item
+ Dnarrow      Go to next item
+ Ctrl+Home    Go to first item in window
+ Ctrl+End     Go to last item in window
+ PgUp         Go to previous page
+ PgDn         Go to next page
+ Ctrl+PgUp    Go to the first item in menu
+ Ctrl+PgDn    Go to last item in menu
+ ---------------------------------------------------------------------
+ </PRE
+>
+ When ACHOICE() executes the user function, it automatically passes
+ the following three parameters:</P
+><P
+> 
+ -  The current ACHOICE() mode</P
+><P
+> 
+ -  The current element in the array of items</P
+><P
+> 
+ -  The relative row position within the menu window</P
+><P
+> 
+ The mode indicates the current state of ACHOICE() depending on the
+ key pressed and the action taken by ACHOICE() prior to executing the
+ user function.  The mode parameter has the following possible values:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>ACHOICE() Modes
+ ---------------------------------------------------------------------
+ Mode    Achoice.ch     Description
+ ---------------------------------------------------------------------
+ 0       AC_IDLE        Idle
+ 1       AC_HITTOP      Attempt to cursor past top of list
+ 2       AC_HITBOTTOM   Attempt to cursor past bottom of list
+ 3       AC_EXCEPT      Keystroke exceptions
+ 4       AC_NOITEM      No selectable items
+ ---------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ After the user function has performed whatever operations are
+ appropriate to the ACHOICE() mode or LASTKEY(), it must RETURN a
+ value requesting ACHOICE() to perform an operation from the following
+ set of actions:</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>ACHOICE() User Function Return Values
+ ---------------------------------------------------------------------
+ Value   Achoice.ch     Action
+ ---------------------------------------------------------------------
+ 0       AC_ABORT       Abort selection
+ 1       AC_SELECT      Make selection
+ 2       AC_CONT        Continue ACHOICE()
+ 3       AC_GOTO        Go to the next item whose first character
+ matches the key pressed
+ ---------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29396"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt; and &lt;nBottom&gt;, &lt;nRight&gt; are the upper-
+ left and lower-right window coordinates.  Row values can range from zero
+ to MAXROW() and column values can range from zero to MAXCOL().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acMenuItems&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of character strings to display as the
+ menu items.  The individual menu items are later identified by their
+ numeric positions in this array.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;alSelectableItems&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a parallel array of logical values--one
+ element for each item in &lt;acMenuItems&gt;--that specify the selectable menu
+ items.  Elements can be logical values or character strings.  ACHOICE()
+ will not permit a null string and stops displaying if it encounters one.
+ If the element is a character string, it is evaluated as a macro
+ expression which should evaluate to a logical data type.  In either
+ case, a value of false (.F.) means that the corresponding menu item is
+ not available, and a value of true (.T.) means that it is available.  If
+ you specify &lt;lSelectableItems&gt; instead of an array, false (.F.) makes
+ all menu items unavailable and true (.T.) makes all menu items
+ available.  By default, all menu items are available for selection.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUserFunction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a user-defined function that executes
+ when an unrecognizable key is pressed.  Specify the function name as a
+ character expression without parentheses or arguments.  Note that the
+ behavior of ACHOICE() is affected by the presence of this argument.
+ Refer to the discussion below for further information.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInitialItem&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the position in the &lt;acMenuItems&gt; array of the
+ item that will be highlighted when the menu is initially displayed.  If
+ you specify an unavailable menu item or no argument at all, the initial
+ menu item is the first selectable item in the array.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWindowRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of the window row on which the initial
+ menu item will appear.  Row numbering begins with zero.  By default, the
+ initial menu item appears as close to the top of the window as possible,
+ without leaving any empty rows at the bottom.  Thus, if there are enough
+ menu items following the initial one to fill up the window, the initial
+ form will appear on the first row (row zero) of the menu.  This function
+ argument is used to control the initial menu appearance when there are
+ more menu items than will fit in the window.
+ 
+ As with all functions, optional arguments are omitted by using a comma
+ instead of the actual argument.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ACHOICE() returns the numeric position in the &lt;acMenuItems&gt; array of the
+ menu item selected.  If the selection process is aborted, ACHOICE()
+ returns zero.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29436"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses two literal arrays to specify the menu items
+ and selection criteria.  After the menu is displayed and the user
+ makes a selection, the name of the selected menu item is displayed:
+ 
+ acMenuItems := {"One", "Two", "-------", "Three"}
+ alSelectableItems := {.T., .T., .F., .T.}
+ nPosition := ACHOICE(10, 10, 12, 15, acMenuItems,;
+ alSelectableItems)
+ ? acMenuItems[nPosition]
+ 
+ This example declares an array of menu items and supplies a
+ user-defined function which displays a message with each highlighted
+ choice:
+ 
+ #include "achoice.ch"
+ #include "inkey.ch"
+ 
+ PROCEDURE Main()
+ 
+ LOCAL acMenuItems[4], cUserFunction, nRetVal
+ LOCAL nKey, nPos
+ 
+ acMenuItems[1] := "Add"
+ acMenuItems[2] := "Edit"
+ acMenuItems[3] := "Delete"
+ acMenuItems[4] := "Update"
+ 
+ CLS
+ 
+ nPos := ACHOICE( 10, 10, 13, 15, acMenuItems,;
+ .T., "cUserFunction" )
+ DO CASE
+ CASE nPos == 1
+ //  Put ADD routine here
+ CASE nPos == 2
+ //  Put EDIT routine here
+ CASE nPos == 3
+ //  Put DELETE routine here
+ CASE nPos ==4
+ //  Put UPDATE routine here
+ ENDCASE
+ 
+ RETURN
+ 
+ 
+ FUNCTION cUserFunction( nMode, nCurElement, nRowPos )
+ 
+ LOCAL nRetVal := AC_CONT     // Default, Continue
+ LOCAL nKey := LASTKEY()
+ 
+ DO CASE
+ // After all pending keys are processed, display message
+ CASE nMode == AC_IDLE
+ DO CASE
+ CASE nCurElement == 1
+ @ 22, 5 SAY " Adding   "
+ CASE nCurElement == 2
+ @ 22, 5 SAY " Editing  "
+ CASE nCurElement ==  3
+ @ 22, 5 SAY " Deleting "
+ CASE nCurElement ==  4
+ @ 22, 5 SAY " Updating "
+ ENDCASE
+ 
+ nRetVal := AC_CONT            // Continue ACHOICE()
+ 
+ CASE nMode == AC_HITTOP          // Attempt to go past Top
+ TONE( 100, 3 )
+ CASE nMode == AC_HITBOTTOM       // Attempt to go past
+ // Bottom
+ TONE( 100, 3 )
+ 
+ CASE nMode == AC_EXCEPT          // Key Exception
+ DO CASE
+ CASE nKey == K_RETURN         // If RETURN key, select
+ nRetVal := AC_SELECT
+ CASE nKey == K_ESC            // If ESCAPE key, abort
+ nRetVal := AC_ABORT
+ OTHERWISE
+ nRetVal := AC_GOTO      // Otherwise, go to item
+ ENDCASE
+ ENDCASE
+ 
+ RETURN nRetVal
+ 
+ The next example declares the arrays, specifies a selection
+ condition for one of the menu items, and supplies a user function:
+ 
+ EXTERNAL UPDATED
+ //
+ FUNCTION MyMenu
+ LOCAL acMenuItems[4], alSelectableItems[4],;
+ cUserFunction := "DoIt"
+ //
+ acMenuItems[1] := "Add Record"
+ acMenuItems[2] := "Edit Record"
+ acMenuItems[3] := "Delete Record"
+ acMenuItems[4] := "Update Record"
+ //
+ alSelectableItems[1] := .T.
+ alSelectableItems[2] := .T.
+ alSelectableItems[3] := .T.
+ alSelectableItems[4] := "!UPDATED()"
+ // Selection condition
+ 
+ RETURN ACHOICE(10, 10, 12, 15, acMenuItems,;
+ alSelectableItems, cUserFunction)
+ 
+ This example uses two arrays to specify menu items and
+ corresponding action blocks.  After the menu is displayed and the
+ user makes a selection, the ACHOICE() return value is used to
+ determine which action block of the aActionItems array is evaluated:
+ 
+ PROCEDURE Main()
+ LOCAL nChoice
+ LOCAL aMenuItems := { "Add Record   ", ;
+ "Edit Record  ", ;
+ "Delete Record", ;
+ "Update Record"   }
+ 
+ LOCAL aActionItems := { {|| AddFunc()  }, ;
+ {|| EditFunc() }, ;
+ {|| DelFunc()  }, ;
+ {|| UpdFunc()  }  }
+ 
+ nChoice := ACHOICE( 10, 10, 13, 22, aMenuItems )
+ 
+ IF nChoice == 0
+ QUIT      // ESCAPE was pressed
+ ENDIF
+ 
+ EVAL( aActionItems[nChoice] )
+ 
+ RETURN</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29440"
+></A
+><H3
+><A
+NAME="FUNCTIONALERT"
+></A
+>Function  ALERT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ALERT( &#60;cMessage&#62;, [&#60;aOptions&#62;] ) --&#62; nChoice&#13;</PRE
+><P
+>  The ALERT() function creates a simple modal dialog.  It is useful in
+ error handlers and other "pause" functions.  The user can respond by
+ moving a highlight bar and pressing the Return or SpaceBar keys, or by
+ pressing the key corresponding to the first letter of the option.  If
+ &lt;aOptions&gt; is not supplied, a single "Ok" option is presented.</P
+><P
+> 
+ ALERT() is sensitive to the presence or absence of the xClipper
+ full-screen I/O system.  If the full-screen system is not present,
+ ALERT() uses standard I/O to display the message and options tty-style
+ (i.e., 80-column, without word wrap, each line ended with carriage
+ return/linefeed).</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29448"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMessage&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the message text displayed and centered in the alert
+ box.  If the message contains one or more semicolons, the text after the
+ semicolons is centered on succeeding lines in the dialog box.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aOptions&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines a list of up to 4 possible responses to the
+ dialog box.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ALERT() returns a numeric value indicating which option was chosen.  If
+ the Esc key is pressed, the value returned is zero.
+ 
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29468"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example demonstrates use of an alert dialog box.  First,
+ the array of options is defined, the ALERT() function gets the user's
+ selection, and finally, the user's choice is handled with a DO
+ CASE...ENDCASE control structure:
+ 
+ #define AL_SAVE         1
+ #define AL_CANCEL      2
+ #define AL_CONT         3
+ 
+ // Define an array of options
+ aOptions := {"Save", "Don't Save", "Continue"}
+ 
+ // Display the dialog box and get the user's selection
+ nChoice  := ALERT("File has changed...", aOptions)
+ 
+ // Handle the user's request
+ DO CASE
+ CASE nChoice == AL_SAVE
+ ? "Save"
+ CASE nChoice == AL_CANCEL
+ ? "Don't Save"
+ CASE nChoice == AL_CONT
+ ? "Continue"
+ OTHERWISE
+ ? "Escape"
+ ENDCASE
+ //
+ RETURN
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29472"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACH2TB"
+></A
+>Function  FT_ACH2TB() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_Ach2tb( &#60;nToprow&#62;,&#60;nTopcol&#62;[,&#60;nBotrow&#62;][,&#60;nBotcol&#62;],&#60;aArrey&#62;,     ;
+ [&#60;cBoxtype&#62;],[&#60;cBoxcolor&#62;],[&#60;cBoxtitle&#62;],[&#60;nTitlePos&#62;],        ;
+ [&#60;cUselcolor&#62;],[&#60;cTitlecolor&#62;],[&#60;cBarcolor&#62;],[&#60;cHkcolor&#62;],     ;
+ [&#60;lShadow&#62;],[&#60;lExecute&#62;],[&#60;nMsgrow&#62;],[&#60;nMsgcol&#62;],              ;
+ [&#60;cMsg.color&#62;],[cElevbar],[cEbarcolor],[&#60;cEbarside&#62;],          ;
+ [&#60;cNoSelcolor&#62;],[&#60;cTagch&#62;],[&#60;nStartelem&#62;],[&#60;lRscreen&#62;],        ;
+ [&#60;nTimeout&#62;],[&#60;nTimeoutval&#62;],[&#60;cUserfunc&#62;] )
+ --&#62; nOption
+ &#13;</PRE
+><P
+> FT_Ach2tb() is a greatly enhanced, fully featured, and now mouse-
+ supported replacement for Achoice(), based on a Tbrowse object.
+ Each element of &lt;aArray&gt; (the array you pass to it) is itself an
+ array.  Each element can solely composed of "Option" (below), but
+ may be composed as follows to take full advantage of the function's
+ features:</P
+><P
+> 
+ Option   ,     Message      ,HotKeyPos,HotKeyColor,Selectable
+ { "Utilities","System Utilities", 3       ,"+gr/b"    ,.T. }</P
+><P
+> 
+ All elements except for the first, the option itself, are optional.
+ IF 'Message' is NIL, no message is displayed.  'HotKeyPos' is the
+ position within 'Option' of the hotkey.  In the example above, the
+ hotkey for 'Utilities' is the first 'i', i.e., at position 3.  The
+ default is 1.  'HotKeyColor' is the color to use for the hotkey
+ display.  The default is hiwhite  on the current background color.
+ 'Selectable' is a logical indicating whether or not that option can
+ be selected.  The default is .T.</P
+><P
+> 
+ The A_CHOICE() UDC in FT_ACH2T.CH makes using FT_ACH2TB() a breeze.
+ The myriad of parameters can be written in any order.  Only &lt;nToprow&gt;,
+ &lt;nTopcol&gt;, and &lt;aArrey&gt; are required.  See the example below.</P
+><P
+> 
+ There may be some confusion over 'unselected' and 'unselectable'
+ options.  The former refers to any option not currently covered
+ by the selection bar.  The latter refers to options you have
+ designated unselectable in subelement 5 of &lt;aArray&gt;, i.e., by
+ writing .F.</P
+><P
+> 
+ To enable tagging, pass any ASCII character as &lt;cTagchar&gt;.  To
+ tag/untag all options, press [SPACE].  To tag/untag individual
+ options, press [+] and [-] respectively.  On press of [+], browse
+ moves to the next element in the display.  To test for the tagged
+ status of an option, use the WAS_TAGGED() UDC in FT_ACH2T.CH. To
+ check the entire array for tags, use Aeval() in conjunction with
+ Was_Tagged() as in the example below.  When tagging is enabled, the
+ string "Tags" will be written across the bottom row of the box in
+ hiwhite on the current background color.</P
+><P
+> 
+ Because FT_ACH2TB() takes over the [SPACE],[+], and [-] keys, it saves
+ any SET KEY procedures you might have set them to, and restores same
+ on returning.  Any other procedures you might have SET KEYs to will
+ fly when FT_ACH2TB() is called...thanks to the Inkey() replacement,
+ SKINkey().</P
+><P
+> 
+ The pice de resistance of FT_ACH2TB() is its ability to execute
+ a user function designed entirely by you.  It is called after each
+ keypress, and because it is completely open-ended, extends the
+ the reach of FT_ACH2TB() to the limits of Clipper.  See the docu-
+ mentation under &lt;bUserfunc&gt; above.</P
+><P
+> </P
+><P
+> 
+ Test compile:  CLIPPER ft_ach2t /n/w/m/dFT_TEST
+ Test link   :  RTLINK FI ft_ach2t LIB nanfor /pll:base50</P
+><P
+> </P
+><P
+> 
+ Mouse support</P
+><P
+> 
+ Mouse support is provided via the Nanforum Toolkit FT_M* functions.
+ Most actions are tied to the left button.  The equivalent of pressing
+ [Esc] comes via the right button.  These left button clicks will
+ produce the designated actions:</P
+><P
+> 
+ Mouse cursor outside box                :  K_ENTER (select option)</P
+><P
+> 
+ Mouse cursor at box top left corner     :  browse:goTop()</P
+><P
+> 
+ bottom left corner  :  browse:goBottom()</P
+><P
+> 
+ top right corner    :  browse:pageUp()</P
+><P
+> 
+ bottom right corner :  browse:pageDown()</P
+><P
+> </P
+><P
+> 
+ Mouse cursor at option, tagging ENabled</P
+><P
+> 
+ Selection bar moves to option, subsequent press to tag or untag.  Do
+ this for as many options as you want to tag/untag, then move mouse
+ cursor outside the box.  Press again to select.  Tagging overrides
+ &lt;lExecute&gt;, so with tagging on and &lt;lExecute&gt; .F., subsequent presses
+ while inside the box coordinates simply tag/untag.</P
+><P
+> </P
+><P
+> 
+ Mouse cursor at option, tagging DISabled</P
+><P
+> 
+ IF &lt;lExecute&gt; is turned on, the option is immediately selected.  If
+ turned off, selection bar moves to option.  Press again to select.</P
+><P
+> </P
+><P
+> </P
+><P
+> 
+ To Disable Mouse Support</P
+><P
+> 
+ Compile with /dNOMOUSE</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29506"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nToprow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the top row of the box to be drawn.  Required.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTopcol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the top column of the box to be drawn.  Required.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBotrow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the bottom row of the box to be drawn.  The default is</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nToprow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>+Len(&lt;aArrey&gt;)+1 or maxrow()-2, whichever is less.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nBotcol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is the bottom column of the box to be drawn.  The default
+ is &lt;nTopcol&gt;+width of the widest element in &lt;aArrey&gt; +2.
+ 
+ It's been pointed out that the number of commas required to default
+ the &lt;nBotrow&gt; and &lt;nBotcol&gt; params. is at least slightly confusing.
+ So, some documentation on the requirements:
+ Default both:                           7,9,,   ARRAY:
+ Default &lt;nBotrow&gt;, specify &lt;nBotcol&gt;:   7,9,,20 ARRAY:
+ Default &lt;nBotcol&gt;, specify &lt;nBotrow&gt;:   7,9,15, ARRAY:
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aArrey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>    is the arrey of options to present to the user.  Each
+ element can hold as many as five subelements, or as few as one.
+ Required.  Additional documentation below.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cnBoxtype&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the type of box to draw.  Uses DispBox().  The
+ default is a double-line box.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBoxcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the color with which to draw the box.  The default is
+ Setcolor().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBoxtitle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is title of the box drawn on &lt;nToprow&gt;.  The default is
+ no title.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTitlepos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the starting column position (to the right of</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTopcol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>) at which to draw &lt;cBoxtitle&gt;.  The default is 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUselcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the color with which to draw unselected options.
+ The default is Setcolor().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTitlecolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the color with which to draw the box title.  The
+ default is yellow on red.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBarcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the color with which to draw the selection bar.
+ The default is yellow on black.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cHkcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the default color with which to draw the hotkeys for
+ for each option.  This is used when no hotkey color is supplied
+ in &lt;aArrey&gt;.  The default is hiwhite on the current background
+ color.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cShadow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   is a character string, either "L" or "R" (for left or
+ right) to designate the side of the box where a shadow will appear.
+ Leave this NIL to avoid drawing a shadow.  You might also leave
+ this NIL if you choose to use a .C or .ASM shadow function, which
+ is a good idea.  Shadoww(), included below, is flat-out SLOW.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lExecute&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  turn on/off execution of option when first letter is
+ pressed.  Rule:  setting in element 5 of each &lt;aArrey&gt; subarray
+ overrides &lt;lexecute&gt;.  If that element is left NIL, the &lt;lexecute&gt;
+ setting is used.  If &lt;lexecute&gt; is not passed and element 5 is NIL,
+ auto execution is turned ON.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgrow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the row on which to draw a message for each option.
+ The default is two rows below the bottom of the box.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgcol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the column at which to draw a message for each option.
+ The default is &lt;nTopcol&gt; +2.  To CENTER the message, pass "C".
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the default color with which to draw messages.  This
+ color is used when element 4 of each &lt;aArrey&gt; subarray is left NIL.
+ The default is Setcolor().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cElevbar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the ASCII character to use as the elevator bar drawn
+ on the box.  Leave this NIL to draw no elevator bar.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cEbarcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the color with which to draw the elevator bar.
+ This is ignored if &lt;cElevbar&gt; is NIL.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cEbarside&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is a character string, either "L" or "R" (for left or
+ right) to designate the side of the box on which to draw the
+ elevator bar.  This is ignored if &lt;cElevbar&gt; is NIL.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cNoselcolor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the color with which to draw unselectable options.
+ The default is white on black.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTagchar&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ASCII character to use to draw tags that would
+ appear to the right of each option.  The default is *DIS*abled
+ tagging.  The default tag is chr(251).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartelem&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the number of the option where the selection bar
+ will first be placed.  Leave this NIL to begin at option 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lRestscrn&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is a logical to designate whether or not the screen
+ coordinates occupied by the box and/or shadow should be restored
+ before FT_Ach2tb() returns.  The default is .T.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeout&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is the number of seconds after which FT_ACH2TB() will
+ timeout and return to the function/proced. which called it.  The
+ default is 0.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeoutVal&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional alternative numeric value FT_ACH2TB() will
+ RETURN when/if it times out.  The default is the current element
+ number.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bUserfunc&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  is a code block containing a function call to be
+ executed after each key press.  You need to write just two formal
+ parameters to allow the run-time passing of the key pressed and the
+ current element number, e.g.:
+ { |key,num| Myfunc( key,num [,other params.] ) }
+ Unlimited extra parameters may be passed.  Of course, make certain
+ to also write 'receptors' for them in 'Myfunc()' itself...as in the
+ above example.  The default is NO user function.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> the number of the selected option, or 0 if [Esc] is pressed.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29666"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nOpt := A_CHOICE( 7,9,, ARRAY:t_array )   // the minimum
+ 
+ nOpt := A_CHOICE( 7,9,, ;
+ ARRAY:t_arrey ;
+ USERFUNC:{|a,b| UserFunc(a,b,any1)};
+ BOXTYPE:B_SINGLE  ;
+ BOXTITLE:title  ;
+ SHADOW:"FT" ;
+ TAGCHAR:chr(17) ;
+ REST_SCREEN:.F. ;
+ AUTOEXEC:.F. ;
+ MES_COLOR:MSG_COLOR ;
+ ELEVBAR:'|' ;
+ NOSELCOLOR:"bg/n" ;
+ MES_COL:"C" )
+ 
+ Check only the RETURNed element for whether tagged:
+ IF( Was_Tagged(chr(17),t_arrey,nOpt), MoreProcessing(), )
+ 
+ Check entire 't_arrey':
+ Aeval( t_arrey,{|e,n| IF( Was_Tagged(chr(17),t_arrey,n ), ;
+ MoreProcessing(t_arrey),NIL ) } )
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29670"
+></A
+><H3
+><A
+NAME="FUNCTIONFTADDER"
+></A
+>Function  FT_ADDER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_Adder()&#13;</PRE
+><P
+> PopAdder() gives you an adding machine inside your Clipper 5.2
+ application. It has the basic functions add, subtract, multiply,
+ and divide. You may move it from one side of the screen to the
+ other. It even displays a scrollable tape, if you want it.</P
+><P
+> </P
+><P
+> 
+ There are a few HOT Keys while using the Adder:</P
+><P
+> 
+ &lt;D&gt;ecimals - change # of decimals
+ &lt;M&gt;ove     - the Adder from right display to left
+ &lt;T&gt;ape     - turn the Tape Display On or Off
+ &lt;S&gt;croll   - the tape display
+ &lt;DEL&gt; --- -- 1st Clear entry
+  -- 2nd Clear ADDER
+ &lt;ESC&gt;      - Quit
+ &lt;F10&gt;      - return a &lt;TOTAL&gt; to the active get</P
+><P
+> </P
+><P
+> 
+ A couple of notes about the adder:</P
+><P
+> </P
+><P
+> 
+ 1.) It was designed to be used on an Enhanced keyboard with
+ separate &lt;DELETE&gt; key. &lt;DELETE&gt; is used to clear the adder.
+ However, it will still work on a Standard keyboard.</P
+><P
+> 
+ 2.) You do not have to display the tape. You may turn it on
+ at any time by pressing &lt;T&gt;. You may SCROLL back through
+ the tape once there are more than 16 entries in the
+ adder, by pressing &lt;S&gt;.</P
+><P
+> 
+ 3.) To Quit the Adder just press &lt;ESC&gt;. To return your Total
+ to the application press &lt;F10&gt;. The adder will place the
+ Total in the active GET variable using oGet:VarPut(). The
+ adder will only return a Total to a numerical GET!</P
+><P
+> 
+ 4.) There are many support functions that you might find
+ interesting. They are part of my personal library, but
+ are necessary to the operation of the adder.
+ You might want to pull these out to reduce the overall
+ size of the adder. Many are worth at least a little
+ time studying.</P
+><P
+> 
+ 5.) To make FT_Adder a Hot key from inside your application
+ at the beginning of your application add the line:</P
+><P
+> 
+ SET KEY K_ALT_A  TO FT_Adder</P
+><P
+> 
+ This will make &lt;ALT-A&gt; a key "Hot" and permit you to
+ Pop - Up the adder from anywhere in the application.</P
+><P
+> 
+ 6.) If you use FT_INKEY(), you can even have active hotkeys
+ in an INKEY().</P
+><P
+> </P
+><P
+> </P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29693"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL .... but optionally places Total of calculation in active
+ Get variable using oGet:VARPUT()</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29703"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBLINK"
+></A
+>Function  FT_BLINK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BLINK( &#60;cMsg&#62;, [ &#60;nRow&#62; ], [ &#60;nCol&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> A quick way to blink a msg on screen in the CURRENT colors.
+ Restores colors on return.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29708"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsg&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the string to blink.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen row for @...SAY, default current.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen col for @...say, default current.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29733"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BLINK( "WAIT", 5, 10 )   // Blinks "WAIT" in current colors @ 5,10
+ 
+ @5,10 SAY "WAIT - Printing Report"
+ FT_BLINK( "..." )           //  Blink "..." after wait message...</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29737"
+></A
+><H3
+><A
+NAME="FUNCTIONFTBRWSWHL"
+></A
+>Function  FT_BRWSWHL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_BRWSWHL( &#60;aFields&#62;, &#60;bWhileCond&#62;, &#60;cKey&#62;,                  ;
+ [ &#60;nFreeze&#62; ], [ &#60;lSaveScrn&#62; ], [ &#60;cColorList&#62; ], ;
+ [ &#60;cColorShadow&#62; ], [ &#60;nTop&#62; ], [ &#60;nLeft&#62; ],      ;
+ [ &#60;nBottom&#62; ], [ &#60;nRight&#62; ] --&#62; nRecno&#13;</PRE
+><P
+> This is a demonstration of TBrowse with a WHILE condition for an
+ indexed database.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29742"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aFields&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is array of field blocks of fields you want to display.
+ Example to set up last name and first name in array:
+ aFields := {}
+ AADD(aFields, {"Last Name" , {||Names-&gt;Last}  } )
+ AADD(aFields, {"First Name", {||Names-&gt;First} } )
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bWhileCond&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the limiting WHILE condition as a block.
+ Example 1: { ||Names-&gt;Last == "JONES" }
+ Example 2: { ||Names-&gt;Last == "JONES" .AND. Names-&gt;First == "A"  }
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the key to find top condition of WHILE.
+ cLast  := "JONES     "
+ cFirst := "A"
+ Example 1: cKey := cLast
+ Example 2: cKey := cLast + cFirst
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nFreeze&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is number of fields to freeze in TBrowse.  Defaults
+ to 0 if not passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lSaveScrn&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical indicating whether or not you want to
+ save the screen from the calling program.  Defaults to .T. if
+ not passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorList&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a list of colors for the TBrowse columns.
+ The 1st color is used as SAY/TBrowse Background and the
+ 3rd and 4th colors are used as part of column:defColor := {3, 4}
+ 
+ Thus if you pass a cColorList, you MUST pass at least 4 colors.
+ Defaults to "N/W, N/BG, B/W, B/BG, B/W, B/BG, R/W, B/R" if not passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColorShad&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the color of the TBrowse box shadow.  Defaults
+ to "N/N" if not passed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>, &lt;nLeft&gt;, &lt;nBottom&gt;, &lt;nRight&gt; are the coordinates of
+ the area to display the TBrowse in.  Defaults to 2, 2,
+ MAXROW() - 2, MAXCOL() - 2 with shadowed box, i.e. full screen.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRecno is the number of the record selected by the &lt;Enter&gt; key.
+ 0 is returned if there are either no records matching the WHILE
+ condition or an &lt;Esc&gt; is pressed instead of an &lt;Enter&gt;</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29792"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> * This example will only show those people with last name of "JONES"
+ * in the TBNames.dbf which contains at least the fields:
+ * Last, First, City AND is indexed on Last + First.
+ LOCAL nRecSel    := 0
+ LOCAL aFields    := {}
+ LOCAL bWhile     := {||TBNames-&#62;Last = "JONES"}
+ LOCAL cKey       := "JONES"
+ LOCAL nFreeze    := 1
+ LOCAL lSaveScrn  := .t.
+ LOCAL cColorList := "N/W, N/BG, B/W, B/BG, B/W, B/BG, R/W, B/R"
+ LOCAL cColorShad := "N/N"
+ 
+ USE TBNames INDEX TBNames NEW // indexed on Last + First
+ 
+ * Pass Heading as character and Field as Block including Alias
+ * To eliminate the need to use FIELDWBLOCK() function in FT_BRWSWHL()
+ AADD(aFields, {"Last Name" , {||TBNames-&#62;Last}  } )
+ AADD(aFields, {"First Name", {||TBNames-&#62;First} } )
+ AADD(aFields, {"City"      , {||TBNames-&#62;City}  } )
+ 
+ IF FT_BRWSWHL( aFields, bWhile, cKey, nFreeze, lSaveScrn, ;
+ cColorList, cColorShad, 3, 6, MaxRow() - 2, MaxCol() - 6) == 0
+ ? "Sorry, NO Records Were Selected"
+ ELSE
+ ? "You Selected: " + TBNames-&#62;Last +" "+ ;
+ TBNames-&#62;First +" "+ TBNames-&#62;City
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29796"
+></A
+><H3
+><A
+NAME="FUNCTIONFTCLRSEL"
+></A
+>Function  FT_CLRSEL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ClrSel( &#60;aClrData&#62;, [ &#60;lClrMode&#62; ], [ &#60;cTestChr&#62; ] --&#62; aClrData&#13;</PRE
+><P
+> This function allows users to select their own colour combinations
+ for all the different types of screen I/O in a typical application.
+ This facilitates an easy implementation of Ted Means' replacement
+ of the  @..PROMPT/MENU TO found in the NanForum Toolkit.  If you are
+ not using FT_MENUTO(), you can specify "A" for setting type and have
+ a normal colour string returned.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29801"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aClrData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of subarrays, with each subarray containing
+ information about the colour settings.
+ 
+ The subarray has the following structure:
+ 
+ [1]  cName    is the name of this colour setting i.e. "Pick List"
+ Maximum length is 20 bytes
+ 
+ [2]  cClrStr  is the current colour string
+ Default is "W/N,N/W,N/N,N/N,N/W"
+ 
+ If Setting type is "M" (Menu) the colours are...
+ 1.  Prompt Colour
+ 2.  Message Colour
+ 3.  HotKey Colour
+ 4.  LightBar Colour
+ 5.  LightBar HotKey Colour
+ 
+ Note: While there are many ways to code the individual
+ colour combinations,  they should be in the same
+ format that gets returned from SETCOLOR(), so
+ the defaults can be found in the colour palette.
+ 
+ foreground [+] / background [*]
+ i.e. "GR+/BG*, N/W*, N+/N, , W/N"
+ 
+ [3]  cType  is the type of colour setting
+ Default is "W" (Window)
+ 
+ T = Title     Only 1 colour element
+ D = Desktop   Background colour and character
+ M = Menu      For FT_Menuto() style menus
+ W = Window    Windows with radio buttons
+ G = Get       For use with @ SAY...
+ B = Browse    For tBrowse() and *dbEdit()
+ A = aChoice   Pick-lists etc...
+ 
+ W/G/B/A are functionally the same but will provide
+ a more appropriate test display.
+ 
+ [4]  cFillChar  is the character (for desktop background only)
+ Default is CHR(177) "              "
+ 
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lClrMode&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   .T.  use colour palette
+ .F.  use monochrome palette
+ 
+ Default is the ISCOLOR() setting
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTestChr&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  2 Byte character string for colour test display
+ 
+ Default is the CHR(254)+CHR(254)
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An array identical to the one passed, with new selected colours</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29826"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL aClrs   := {}
+ LOCAL lColour := ISCOLOR()
+ LOCAL cChr    := CHR(254) + CHR(254)
+ 
+ SET SCOREBOARD Off
+ SETBLINK( .F. )       // Allow bright backgrounds
+ 
+ *.... a typical application might have the following different settings
+ *     normally these would be stored in a .dbf/.dbv
+ aClrs := {;
+ { "Desktop",        "N/BG",                         "D", " " }, ;
+ { "Title",          "N/W",                          "T"      }, ;
+ { "Top Menu",       "N/BG,N/W,W+/BG,W+/N,GR+/N",    "M"      }, ;
+ { "Sub Menu",       "W+/N*,GR+/N*,GR+/N*,W+/R,G+/R","M"      }, ;
+ { "Standard Gets",  "W/B,  W+/N,,, W/N",            "G"      }, ;
+ { "Nested Gets",    "N/BG, W+/N,,, W/N",            "G"      }, ;
+ { "Help",           "N/G,  W+/N,,, W/N",            "W"      }, ;
+ { "Error Messages", "W+/R*,N/GR*,,,N/R*",           "W"      }, ;
+ { "Database Query", "N/BG, N/GR*,,,N+/BG",          "B"      }, ;
+ { "Pick List",      "N/GR*,W+/B,,, BG/GR*",         "A"      }  ;
+ }
+ 
+ aClrs := FT_ClrSel( aClrs, lColour, cChr )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29830"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDISPMSG"
+></A
+>Function  FT_DISPMSG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DISPMSG( &#60;aMessageArray&#62;, [ &#60;cKey2Check&#62; ],
+ [ &#60;nTopBoxRow&#62; ], [ &#60;nLeftBoxColumn&#62; ],
+ [ &#60;cnBoxType&#62; ], [ &#60;lShadow&#62; ] ) --&#62; lKeyMatch&#13;</PRE
+><P
+> FT_DISPMSG() is a multi-purpose pop-up for user messages.
+ Multiple lines may be displayed, each with a different attribute.
+ The box will be automatically centered on the screen, or the row
+ and/or column can be specified by the programmer.  It also centers
+ each line of the message within the box.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29835"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aMessageArray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a multidimensional array of messages to be
+ displayed and the color attributes for each message.
+ 
+ The first dimension of the array contains one or more elements,
+ each representing one line in the message box, up to the maximum
+ number of rows on the screen.
+ 
+ Within each line of the message individual characters or groups
+ of characters may be delimited with braces ([]).  The braces will
+ be stripped out and the character(s) inside those braces will be
+ highlighted.
+ 
+ The second dimension of the array contains a color attribute for
+ the corresponding element in dimension one, plus one additional
+ element for the color of the box border.  Dimension two will
+ always contain one more element than dimension one.  If an
+ attribute is omitted, the last color selected will be used.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Key2Check&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string of one or more keys to check
+ for.  If omitted, the message is displayed and control is returned
+ to the calling procedure.  If one character is specified,
+ FT_DISPMSG() waits for one keypress, restores the screen and
+ returns.  If multiple characters are specified, FT_DISPMSG()
+ remains in a loop until one of the specified keys has been
+ pressed, then restores the screen and returns.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTopBoxRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the upper row for the message box.  If omitted, the
+ box is centered vertically.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeftBoxColumn&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the leftmost column for the box.  If omitted, the
+ box is centered horizontally.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cnBoxType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of characters or a variable for the box
+ border.  See the DISPBOX() function.  If omitted, a double box is
+ drawn.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lShadow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical variable.  If true (.T.) or omitted, it
+ uses FT_SHADOW() to add a transparent shadow to the box.  If
+ false (.F.), the box is drawn without the shadow.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> If &lt;Key2Check&gt; is not specified, FT_DISPMSG() will return false
+ (.F.).
+ 
+ If &lt;Key2Check&gt; is a one-character string, FT_DISPMSG() will return
+ true (.T.) if the user presses that key, or false (.F.) if any
+ other key is pressed.
+ 
+ If &lt;Key2Check&gt; consists of multiple characters, it will lock the
+ user in a loop until one of those keys are pressed and return the
+ INKEY() value of the keypress.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29875"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following example displays a simple two-line message
+ and returns immediately to the calling routine.
+ 
+ FT_DISPMSG( { { "Printing Report"                    , ;
+ "Press [ESC] To Interrupt" }         , ;
+ { "W+/B*", "W/B", "GR+/B" } } )
+ 
+ The next example displays a message and waits for a key press.
+ 
+ FT_DISPMSG( { { "Press [D] To Confirm Deletion"      , ;
+ "Or Any Other Key To Abort" }        , ;
+ { "W+/B", "W+/B", "GR+/B" } }          , ;
+ "D" )
+ 
+ The next example displays a one-line message centered on row 5
+ and returns to the calling procedure.
+ 
+ FT_DISPMSG( { { "Please Do Not Interrupt" }   , ;
+ { "W+/B", "GR+/B" } }          , ;
+ , 5, )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29879"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFILL"
+></A
+>Function  FT_FILL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_FILL( &#60;aSubArrayName&#62;, &#60;cMenuSelection&#62;, &#60;bFunction&#62;,
+ &#60;lSelectable&#62; ) --&#62; NIL&#13;</PRE
+><P
+> FT_FILL() is a function used to set up the menu options prior
+ to calling FT_MENU1().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29884"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aSubArrayName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a sub-array of &lt;acOptions&gt; in FT_MENU1()
+ denoting the group in which to include the selection --
+ e.g., acOptions[1]
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMenuSelection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the character string that will appear on
+ the menu.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bFunction&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the code block to be executed when that menu
+ option is selected.  i.e. {|| MyFunction() } would execute
+ the function called MyFunction().  {|| .f.} would exit the
+ FT_MENU1 and return to the calling routine.   {|| .T.} would
+ do nothing.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lSelectable&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical variable that determines whether
+ the corresponding menu option is selectable or not.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTMENU1"
+> FT_MENU1()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29919"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_FILL( aOptions[1], 'A. Execute A Dummy Procedure' , {|| fubar()}, .t. )
+ 
+ The above would be added to the sub-menu associated with the first menu
+ bar item, would execute the function FUBAR() when that option was
+ selected, and would be selectable.
+ 
+ 
+ FT_FILL( aOptions[3], 'B. Enter Daily Charges'       , {|| .t.},     .f. )
+ 
+ The above would be added to the sub-menu associated with the third menu
+ bar item, and would be unselectable.
+ 
+ 
+ FT_FILL( aOptions[2], 'C. Enter Payments On Accounts', {|| .t.},     .t. )
+ 
+ The above would be added to the sub-menu associated with the second menu
+ bar item, and would be selectable, but would do nothing when selected.
+ 
+ 
+ FT_FILL( aOptions[4], 'C. Exit'                      , {|| .f.},     .t. )
+ 
+ The above would be added to the sub-menu associated with the fourth menu
+ bar item, and would be selectable, and would exit FT_MENU1() when chosen.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29923"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMENU1"
+></A
+>Function  FT_MENU1() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MENU1( &#60;acBarNames&#62;, &#60;acOptions&#62;, &#60;acAction&#62;,
+ &#60;acColors&#62; [, &#60;nTopRow&#62; ], [ &#60;lShadow&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> FT_MENU1() is a function that displays a pulldown menu for each item
+ on the menu bar and executes the corresponding function for the item
+ selected.  When a called function returns false, FT_MENU1 returns
+ control to the calling program.</P
+><P
+> 
+ Valid keystrokes and their corresponding actions:</P
+><P
+> 
+ Home             -  Activates Pulldown for first item on the menu bar
+ End              -  Activates Pulldown for last item on the menu bar
+ Left Arrow       -  Activates next Pulldown to the left
+ Right Arrow      -  Activates next Pulldown to the right
+ Tab              -  Same as Right Arrow
+ Shift-Tab        -  Same as Left Arrow
+ Page Up          -  Top item on current Pulldown menu
+ Page Down        -  Bottom item on current Pulldown menu
+ Enter            -  Selects current item
+ Alpha Character  -  Moves to closest match and selects
+ Alt-&lt;Key&gt;        -  Moves to corresponding menu bar item
+ Escape           -  Prompts for confirmation and either returns to
+ the calling routine or resumes</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29930"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acBarNames&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character array containing the names to appear
+ on the menu bar.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acOptions&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a multi-dimensional array with one element for each
+ selection to appear on the pulldown menus.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;acColors&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array containing the colors for the menu groups.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTopRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value that determines the row for the menu
+ bar.  If omitted, it defaults to 0.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lShadow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical variable.  If true (.T.) or omitted, it
+ uses FT_SHADOW() to add a transparent shadow to the each
+ pulldown menu.  If false (.F.), the menu is drawn without
+ the shadow.
+ 
+ All arguments except nTopRow and lShadow are required.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTFILL"
+> FT_FILL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN29970"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Declare arrays
+ LOCAL aColors  := {}
+ LOCAL aBar     := { " ENTER/EDIT ", " REPORTS ", " DISPLAY " }
+ 
+ // Include the following two lines of code in your program, as is.
+ // The first creates aOptions with the same length as aBar.  The
+ // second assigns a three-element array to each element of aOptions.
+ LOCAL aOptions[ LEN( aBar ) ]
+ AEVAL( aBar, { |x,i| aOptions[i] := { {},{},{} } } )
+ 
+ // fill color array
+ // Box Border, Menu Options, Menu Bar, Current Selection, Unselected
+ aColors := IF( lColor, {"W+/G", "N/G", "N/G", "N/W", "N+/G"}, ;
+ {"W+/N", "W+/N", "W/N", "N/W","W/N"} )
+ 
+ // array for first pulldown menu
+ FT_FILL( aOptions[1], 'A. Execute A Dummy Procedure' , {|| fubar()}, .t. )
+ FT_FILL( aOptions[1], 'B. Enter Daily Charges'       , {|| .t.},     .f. )
+ FT_FILL( aOptions[1], 'C. Enter Payments On Accounts', {|| .t.},     .t. )
+ 
+ // array for second pulldown menu
+ FT_FILL( aOptions[2], 'A. Print Member List'         , {|| .t.},     .t. )
+ FT_FILL( aOptions[2], 'B. Print Active Auto Charges' , {|| .t.},     .t. )
+ 
+ // array for third pulldown menu
+ FT_FILL( aOptions[3], 'A. Transaction Totals Display', {|| .t.},     .t. )
+ FT_FILL( aOptions[3], 'B. Display Invoice Totals'    , {|| .t.},     .t. )
+ FT_FILL( aOptions[3], 'C. Exit To DOS'               , {|| .f.},     .t. )
+ 
+ Call FT_FILL() once for each item on each pulldown menu, passing it
+ three parameters:
+ 
+ FT_FILL( &#60;cMenuSelection&#62;, &#60;bCodeBlock&#62;, &#60;lSelectable&#62;
+ 
+ &#60;cMenuSelection&#62; is a character string which will be displayed on
+ the pulldown menu.
+ 
+ &#60;bCodeBlock&#62; should contain one of the following:
+ 
+ A function name to execute, which in turn should return .T. or .F.
+ FT_MENU1 WILL RETURN CONTROL TO THE CALLING PROGRAM IF .F. IS
+ RETURNED OR CONTINUE IF .T. IS RETURNED.
+ 
+ .F. WHICH WILL CAUSE FT_MENU1 TO RETURN CONTROL TO THE CALLING
+ PROGRAM.
+ 
+ .T. WHICH WILL DO NOTHING.  THIS ALLOWS THE DEVELOPER TO DESIGN A
+ SKELETON MENU STRUCTURE PRIOR TO COMPLETING ALL OF THE SUBROUTINES.
+ 
+ // CALL FT_MENU1
+ FT_MENU1( aBar, aOptions, aColors, 0 )
+ 
+ NOTE: FT_MENU1() disables Alt-C and Alt-D in order to make them
+ available for the menu bar.  It enables Alt-D and resets
+ Alt-C to its previous state prior to calling each function.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN29974"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMENU2"
+></A
+>Function  FT_MENU2() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MENU2( &#60;aMenuarray&#62; [, &#60;cColors&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> This function greatly simplifies the process of displaying light-bar
+ menus.  All prompts are padded out with spaces so they are the same
+ length, a box is drawn around the prompts, the box is automatically
+ centered on the screen, and the underlying screen is restored after
+ a menu selection has been made.</P
+><P
+> 
+ Additionally, because you can tie action blocks to each menu
+ option, you can save on a lot of DO CASE or IF..ELSEIF code in your
+ main program.  See the test code for a succinct demonstration.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN29980"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aMenuarray&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of menu options, messages, and action
+ blocks.
+ 
+ Each element in this array is a nested array with the structure:
+ 
+ element[x, 1] = menu option
+ element[x, 2] = message to be displayed when option is highlighted
+ element[x, 3] = code block to be executed when option is selected
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColors&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string containing colors for the prompts, in the same
+ format as that returned by Set( _SET_COLOR ).  If not supplied,
+ colors default to the current color setting.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30000"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL mainmenu := ;
+ { { "Data Entry", "Enter data",   { || FT_MENU2(datamenu)  } }, ;
+ { "Reports",    "Hard copy",    { || FT_MENU2(repmenu)   } }, ;
+ { "Maintenance","Reindex files",{ || FT_MENU2(maintmenu) } }, ;
+ { "Quit", "See ya later" } }
+ FT_MENU2(mainmenu)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30004"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMENUTO"
+></A
+>Function  FT_MENUTO() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "FTMENUTO.CH"
+ 
+ MENU TO &#60;var&#62; [COLD]&#13;</PRE
+><P
+> This enhanced version of MENU TO requires the inclusion of the header
+ file FTMENUTO.CH in any source file that uses it.  It may be used in
+ place of the standard Clipper MENU TO command.  However, in the
+ interests of functionality it is NOT 100% compatible (in particular,
+ you should make sure that the target memvar exists before executing
+ the menu -- the Clipper version will create a PRIVATE memvar for you
+ if it does not already exist, but this version does not).  No whining!
+ If compatibility is such a big deal then use the standard Clipper
+ command.</P
+><P
+> 
+ Note that this command can also be called using function-style
+ syntax.  See the entry for FT_MENUTO() for further details.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30010"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;var&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of the variable to which the result of the menu
+ selection should be assigned.
+ 
+ [COLD] is optional and if specified indicates that trigger characters
+ should be treated as "cold," i.e. rather than causing the menu item
+ to be selected it only causes the light bar to move to that selection.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTPROMPT"
+> FT_Prompt()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30030"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "FTMENUTO.CH"
+ 
+ // Simple command
+ 
+ MENU TO memvar
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30034"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPENDING"
+></A
+>Function  FT_PENDING() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PENDING ( &#60;cMsg&#62;, [ &#60;nRow&#62; ], [ &#60;nCol&#62; ], ;
+ [ &#60;nWait&#62; ], [ &#60;cColor&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> A good way to display information messages during the running
+ of an application is to send them all to the SAME line on the
+ screen where users are expected to look for them. In order to
+ give users a chance to read the current message before the next one
+ is displayed we may need to insert a delay after each message.</P
+><P
+> 
+ FT_PENDING() function displays messages by keeping track of
+ the time of the last message and providing a delay ONLY if the next
+ pending message is issued much too soon after the current one.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30041"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsg&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the message string to display.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen row for message display, default row 24.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen col for message display, default col 0.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWait&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional wait (sec) between messages, default 5 sec.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional color string for displayed messages, default
+ is white text over red background.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30076"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PENDING("Message one",20,0,3,"W+/G") // Displays "Message one."
+ // sets row to 20, col to 0.
+ // wait to 3 and color to
+ // bright white over green.
+ FT_PENDING("Message two")   // Displays "Message two", after 5 sec.
+ FT_PENDING("Message three") // Displays "Message three", after 5 sec.
+ 
+ 
+ Note that default row, col, wait time and color need to be set only
+ once in the very first call to FT_PENDING() and only if the internal
+ default values are not appropriate.
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30080"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPICKDAY"
+></A
+>Function  FT_PICKDAY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_PICKDAY() --&#62; cDayOfWeek&#13;</PRE
+><P
+> This function is ideal if you need the user to select a day.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30085"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Character string containing day of week</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30095"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> mday := FT_PICKDAY()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30099"
+></A
+><H3
+><A
+NAME="FUNCTIONFTPROMPT"
+></A
+>Function  FT_PROMPT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "FTMENUTO.CH"
+ 
+ @ &#60;nRow&#62;, &#60;nCol&#62; PROMPT &#60;cPrompt&#62;                     ;
+ [COLOR &#60;cColor&#62;]                     ;
+ [MESSAGE &#60;cMessage&#62;]                 ;
+ [MSGROW &#60;nMsgRow&#62;]                   ;
+ [MSGCOL &#60;nMsgCol&#62;]                   ;
+ [MSGCOLOR &#60;cMsgColor&#62;]               ;
+ [TRIGGER &#60;nTrigger&#62;]                 ;
+ [TRIGGERCOLOR &#60;cTriggerColor&#62;]       ;
+ [HOME &#60;nHome&#62;]                       ;
+ [END &#60;nEnd&#62;]                         ;
+ [UP &#60;nUp&#62;]                           ;
+ [DOWN &#60;nDown&#62;]                       ;
+ [LEFT &#60;nLeft&#62;]                       ;
+ [RIGHT &#60;nRight&#62;]                     ;
+ [EXECUTE &#60;bExec&#62;]                    ;
+ &#13;</PRE
+><P
+> Clipper's @...PROMPT and MENU TO commands are fine as far as
+ they go.  But many times you need more flexibility.  As
+ you'll no doubt notice if you read the argument list, this
+ function is almost completely flexible. You can adjust
+ locations and colors for every part of the prompt and its
+ associated message.  In addition, since you can control the
+ effect of the arrow keys, you can allow both horizontal and
+ vertical movement, or even disable certain arrow keys if you
+ so desire.  Support for nested menus is also available, since
+ the prompts are stored in stack-based static arrays.</P
+><P
+> 
+ Note that this command can also be called using function-style
+ syntax.  See the entry for FT_PROMPT() for further details.</P
+><P
+> 
+ This enhanced version of @...PROMPT requires the inclusion of
+ the header file FTMENUTO.CH in any source file that uses it.
+ It is may be used in place of the standard Clipper @...PROMPT
+ command.  However, in the interests of functionality it is NOT
+ 100% compatible.  No whining!  If compatibility is such a big
+ deal then use the standard Clipper commands.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30107"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the row at which the prompt is to appear.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the column at which the prompt will appear.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cPrompt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the menu item string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the color attribute of the prompt.  Note
+ that two colors are required; one for the standard setting and one
+ for the enhanced setting (i.e. the light bar color).  See the example
+ below if this isn't clear.  If &lt;cColor&gt; is not specified then the
+ current SetColor() value is used by default.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMessage&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the message associated with the
+ prompt. If not specified, then no message will be displayed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the row at which the message, if any,
+ will appear.  If not specified, the default is the current setting
+ of the SET MESSAGE TO command.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMsgCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the column at which the message, if
+ any, will appear.  If not specified, the default is either zero or
+ centered, depending on the current setting of the CENTER option of
+ the SET MESSAGE TO command.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMsgColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the color attribute of the message.
+ If not specified, the default is the same as the prompt color.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTrigger&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the position within the prompt string
+ where the trigger character is located.  If not specified, the
+ default is one.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTriggerColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is the color attribute of the trigger
+ character.  Note that two colors are required; one for the standard
+ setting and one for the enhanced setting (i.e. the light bar color).
+ See the example below if this isn't clear.  If &lt;cTriggerColor&gt; is not
+ specified then the default is the same color as the rest of the
+ prompt.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHome&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes active
+ when the home key is pressed.  If not specified, the default is
+ the first prompt.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nEnd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes active
+ when the end key is pressed.  If not specified, the default is
+ the last prompt.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nUp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes active
+ when the up arrow key is pressed.  If not specified, the
+ default is the previous prompt.  The current setting of SET
+ WRAP TO is obeyed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDown&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes
+ active when the down arrow key is pressed.  If not
+ specified, the default is the next prompt.  The current
+ setting of SET WRAP TO is obeyed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRight&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes
+ active when the right arrow key is pressed.  If not
+ specified, the default is the next prompt.  The current
+ setting of SET WRAP TO is obeyed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nLeft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and specifies which prompt becomes
+ active when the left arrow is pressed.  If not specified,
+ the default is the previous prompt.  The current setting of
+ SET WRAP TO is obeyed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;bExec&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is optional and is a code block to evaluate whenever
+ the menu item to which it belongs is selected.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30202"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> #include "FTMENUTO.CH"
+ 
+ // Simple prompt
+ @ 1, 1 PROMPT "Menu choice #1"
+ 
+ // Prompt with color
+ @ 3, 1 PROMPT "Menu choice #2" COLOR "W+/R,W+/B"
+ 
+ // Prompt with a message
+ @ 5, 1 PROMPT "Menu choice #3" MESSAGE "Go to lunch"
+ 
+ // Prompt with pinpoint message control
+ @ 7, 1 PROMPT "Menu choice #4" MESSAGE "Drop Dead" ;
+ MSGROW 22 MSGCOL 4 MSGCOLOR "GR+/N"
+ 
+ // Prompt with a trigger character ("#" character)
+ @11, 1 PROMPT "Menu choice #6" TRIGGER 13
+ 
+ // Prompt with trigger character color control
+ @13, 1 PROMPT "Menu Choice #7" TRIGGER 13 TRIGGERCOLOR "R+/BG,G+/N"
+ 
+ // Prompt with right and left arrow keys disabled
+ @15, 1 PROMPT "Menu Choice #8" RIGHT 8 LEFT 8</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30206"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSLEEP"
+></A
+>Function  FT_SLEEP </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SLEEP( &#60;nSeconds&#62;, [&#60;nInitial&#62;] ) --&#62; nil&#13;</PRE
+><P
+> This routine will wait a specified period of time. It provides
+ resolution based upon the execution of the SECONDS() function.
+ It does not use an input state such as INKEY(). The specified time
+ is the minimum time sleeping and will usually be slightly longer.</P
+><P
+> 
+ The second optional argument allows one to begin timing an event
+ prior to executing some operation. This is useful when, for example,
+ you input a key or mouse click and wish to do something but still want
+ to note if the user double entered (mouse or key) within a certain time
+ which in turn may have meaning within your program's context.</P
+><P
+> 
+ The routine correctly handles passing through midnight but will not
+ work for more than 24 hours.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30213"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nSeconds&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of seconds to pause
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInitial&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional clock value (from a call to SECONDS())
+ from which the &lt;nSeconds&gt; seconds are to elapse. Useful
+ for setting a minimum time between the start of events
+ which could take a variable amount of time due to the
+ execution of intervening code.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30233"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> Example 1:
+ FT_SLEEP(10.0)    &#38;&#38; Sleep for 10.0 seconds
+ Example 2:
+ nTime=SECONDS()   &#38;&#38; usually after some interupt from mouse or
+ &#38;&#38; keyboard
+ 
+ ... intervening code ...
+ 
+ FT_SLEEP(0.5, nTime) &#38;&#38; Sleep until the sytem clock is
+ &#38;&#38; nTime+0.5 seconds.
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30237"
+></A
+><H3
+><A
+NAME="FUNCTIONFTXBOX"
+></A
+>Function  FT_XBOX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_XBOX( [ &#60;cJustType&#62; ], [ &#60;cRetWait&#62; ], [ &#60;cBorType&#62; ],   ;
+ [ &#60;cBorColor&#62; ], [ &#60;cBoxColor&#62; ], [ &#60;nStartRow&#62; ], ;
+ [ &#60;nStartCol&#62; ], &#60;cLine1&#62;,  &#60;cLine2&#62;, &#60;cLine3&#62;,    ;
+ &#60;cLine4&#62;, &#60;cLine5&#62;, &#60;cLine6&#62;, &#60;cLine7&#62;, &#60;cLine8&#62; ) --&#62; NIL&#13;</PRE
+><P
+> FT_XBOX() allows the programmer to display a message box on the screen
+ without needing to calculate the dimensions of the box.  Only the upper
+ left corner needs to be defined.  The function will calculate the lower
+ right corner based on the number and length of strings passed.</P
+><P
+> 
+ A maximum of eight strings can be displayed.  If a string is too long
+ to fit on the screen it is truncated.</P
+><P
+> 
+ The first seven parameters are optional.  The default settings are:
+ Lines of text are centered.
+ Control is returned to the calling routine immediately.
+ A single line border is painted.
+ The border is black on white.
+ The text is white on black.
+ The box is centered both vertically and horizontally.</P
+><P
+> 
+ WARNING:  Shadowing is achieved by a call to FT_SHADOW(), an assembly
+ routine not found in this .PRG.  In order to use XBOX,
+ SHADOW.OBJ must also be present somewhere (if you are using
+ NANFOR.LIB, then it is).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30245"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cJustType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character indicating the type of text justification.
+ "L" or "l" will cause the text to be left-justified in the box.
+ Centered text is the default.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cRetWait&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character which determines if the function will wait
+ for a keypress after displaying the box.  "W" or "w" will cause the
+ function to wait for a keypress before returning control to the
+ calling routine.  Not waiting is the default
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBorType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character which determines whether a single or double
+ border will be displayed.  "D" or "d" will cause a double border to
+ be displayed.  A single border is the default.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBorColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string denoting the border color.  'N/W' is
+ the default if this parameter is not a string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cBoxColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string denoting the text color.  'W/N' is
+ the default if this parameter is not a string.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number denoting the starting row.  If '99' is passed,
+ the box is centered vertically.  If necessary, nStartRow is decreased
+ so the entire box can be displayed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nStartCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number denoting the starting column.  If '99' is passed,
+ the box is centered horizontally.  If necessary, nStartCol is decreased
+ so the entire box can be displayed.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cLine1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> thru &lt;cLine8&gt; are 1 to 8 character strings to be displayed.
+ They are truncated to fit on the screen if necessary.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30295"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> The following displays a two-line box with default settings:
+ 
+ FT_XBOX(,,,,,,,'This is a test','of the XBOX() function')
+ 
+ The following uses all optional parameters and displays a three-line
+ box.  The box is left-justified with a double border.  It has a yellow
+ on red border and white on blue text.  The function will wait for a
+ keypress before returning control to the calling routine.
+ 
+ FT_XBOX('L','W','D','GR+/R','W/B',5,10,'It is so nice',;
+ 'to not have to do the messy chore',;
+ 'of calculating the box size!')</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categdosbios.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categcrypto.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DOS/BIOS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CRYPTO</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -3,19 +3,14 @@
 # outputs log files on screen.
 #
 export LogFileNr=$*
-source $Clip_F_F
+source init/functions.f
 [ -f ./configure.ini ] && source ./configure.ini
 
 export MultiFile="n"
 export Edit=""
 cd $Clip_T_Dir
 export FileNameToBrowse=""
-if [ -f compile.err.0.sh ] ; then
-	export FileNameToBrowse="$FileNameToBrowse compile.err.0.sh"
-fi
-if [ -f compile.log.0.sh ] ; then
-	export FileNameToBrowse="$FileNameToBrowse compile.log.0.sh"
-fi
+export FileNameToBrowse="$FileNameToBrowse compile*.*.sh"
 if [ -f askbin.log ] ; then
 	export FileNameToBrowse="$FileNameToBrowse askbin.log"
 fi
@@ -25,7 +20,7 @@ fi
 if [ -f asklibrary.log ] ; then
 	export FileNameToBrowse="$FileNameToBrowse asklibrary.log"
 fi
-source $Clip_M_Dir/bin/GetEdit.sh
+source $Clip_M_Dir/init/GetEdit.sh
 export Edit=$(cat "$Clip_S_Dir/Edit.setup.ini" )
 export MultiFile=$(cat "$Clip_S_Dir/MultiFile.setup.ini" )
 export FileToBrowse=""

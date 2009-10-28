@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  CODBFORMATTER </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  CODBDICTIONARY "
+HREF="classcodbdictionary.html"><LINK
+REL="NEXT"
+TITLE="Class  CODBIDLIST "
+HREF="classcodbidlist.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classcodbdictionary.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classcodbidlist.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSCODBFORMATTER">Class  CODBFORMATTER</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN3045"
+></A
+><H2
+>Name</H2
+> CODBFORMATTER &nbsp;--&nbsp; Class CODBFORMATTER format output for result in codb-query library. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN3048"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> CODBFormatter() --&#62; CODBFORMATTER object
+ </PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSCODBFORMATTER"
+></A
+><H2
+>Description </H2
+><P
+> 
+ Class CODBFORMATTER format output for result of <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+>.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3055"
+></A
+><H2
+>Attributes</H2
+><P
+>No attributes</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3058"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3060"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbformatter.html#CLASS-CODBFORMATTER-CODBFORMATTER"
+>CODBFORMATTER</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Constructor CODBFORMATTER class.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodbformatter.html#CLASS-CODBFORMATTER-SHOW"
+>SHOW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Format <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> result.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3072"
+></A
+><H3
+><A
+NAME="CLASS-CODBFORMATTER-CODBFORMATTER"
+></A
+>Method CODBFORMATTER:CODBFORMATTER()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CODBFormatter() --&#62; CODBFORMATTER object</PRE
+><P
+> CODBFormatter() inits new CODBFORMATTER object and returns it. Object have two internal formatting parameters: &lt;obj:options:hide_titles&gt; - hide column titles and &lt;obj:options:delim&gt; - string for separation of columns.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3077"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new CODBFORMATTER object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3087"
+></A
+><H3
+><A
+NAME="CLASS-CODBFORMATTER-SHOW"
+></A
+>Method CODBFORMATTER:SHOW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> show(&#60;res&#62;) --&#62; sResult</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3093"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;res&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- Object. Result of <A
+HREF="categcodb-query.html#FUNCTIONCODBEXECUTE"
+>codb_execute()</A
+> call.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> String. Formatted result.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3109"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN3111"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> db := codb_connect()
+ e := codb_get_error( db )
+ if e != NIL
+ ?? "ERROR codb_connect(): " + e + chr(10)
+ return 1
+ endif
+ fmt := CODBFormatter()
+ fmt:obj:options:hide_titles := .T.
+ res := codb_execute( db, 'show databases' )
+ ? fmt:show()
+ codb_close( db )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3113"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No depends of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classcodbdictionary.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classcodbidlist.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  CODBDICTIONARY</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  CODBIDLIST</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,900 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>RDDs peculiarities</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Replaceable Database Drivers (RDD)"
+HREF="rdd.html"><LINK
+REL="PREVIOUS"
+TITLE="Replaceable Database Drivers (RDD)"
+HREF="rdd.html"><LINK
+REL="NEXT"
+TITLE="CLIP Classes"
+HREF="classes.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="rdd.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 11. Replaceable Database Drivers (RDD)</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="RDDRDDS">11.2. RDDs peculiarities</H1
+><P
+>There are following subdrivers:</P
+><P
+></P
+><UL
+><LI
+><P
+>table drivers: DBF, FOX and VFP</P
+></LI
+><LI
+><P
+>index drivers: NTX, CTX, CDX, IDX</P
+></LI
+><LI
+><P
+>memo drivers: DBT, FPT</P
+></LI
+></UL
+><P
+>The following RDDs (in conception of Clipper) consist of these subdrivers:</P
+><P
+></P
+><UL
+><LI
+><P
+>DBFNTX: DBF + NTX + DBT</P
+></LI
+><LI
+><P
+>DBFCTX: DBF + CTX + DBT</P
+></LI
+><LI
+><P
+>DBFCDX: FOX + CDX + FPT</P
+></LI
+><LI
+><P
+>DBFIDX: FOX + IDX + FPT</P
+></LI
+><LI
+><P
+>SIXCDX: FOX + CDX + FPT synonym for DBFCDX</P
+></LI
+><LI
+><P
+>VFPCDX: VFP + CDX + FPT</P
+></LI
+></UL
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="RDDTABLES">11.2.1. Table drivers</H2
+><P
+>CLIP discerns the type of table to be opened using file signature,
+i.e. the table is opened successfully even if specified table RDD
+is different. But that does not apply to memo files and indexes.</P
+><P
+>DBF and FOX drivers are mostly the same. The only difference is
+file signature for tables with memo (0xF5 with FOX, 0x83 with DBF).
+VFP driver operates with Visual FoxPro tables. VFP table have
+different header, and provides some possibilities that are missing
+in usual DBF format, e.g. possibility of creating binary fields and
+nullable fields (5th and 6th elements in the field description,
+used in DBCREATE() and DBSTRUCT()).</P
+><P
+>All table drivers support all field types, described below.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="RDDFIELDTYPES"><P
+><B
+>Table 11-1. Field types</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Field type</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Identifier(s)</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Size in table</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CHARACTER</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'C'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1 ... 65534</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Character strings</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARCHAR<A
+NAME="RDDFN1"
+HREF="#FTN.RDDFN1"
+>[a]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'V'
+<A
+NAME="RDDFN2"
+HREF="#FTN.RDDFN2"
+>[b]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1 ... 65534</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Variable length character strings</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>NUMERIC</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'N', 'F'
+<A
+NAME="RDDFN3"
+HREF="#FTN.RDDFN3"
+>[c]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1 ... 20</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Integers or fractions</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>CURRENCY</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'Y'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>8</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Monetary amounts</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DOUBLE</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'B'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>8</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Double precision floating point numbers</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>INTEGER</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'I'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;,
+'V(4)'<A
+HREF="rddrdds.html#FTN.RDDFN2"
+>[b]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>4</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Integer values</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATE</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'D', 'V(3)'<A
+HREF="rddrdds.html#FTN.RDDFN2"
+>[b]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>8 (3 bytes with V(3))</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Chronological data consisting of year, month, day</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>DATETIME</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'T'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>8</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Chronological data consisting of year, month, day and time</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>LOGICAL</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'L'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Boolean values of true or false</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>MEMO</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'M'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>10 (4 with VFP)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Data of any type
+<A
+NAME="RDDFN4"
+HREF="#FTN.RDDFN4"
+>[d]</A
+>
+ with no size limits</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>BLOB<A
+NAME="AEN2021"
+HREF="#FTN.AEN2021"
+>[e]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'P'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;,
+'G'<A
+HREF="rddrdds.html#FTN.RDDFN3"
+>[c]</A
+>&#62;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>10 (4 with VFP)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Binary data of any type
+<A
+HREF="rddrdds.html#FTN.RDDFN4"
+>[d]</A
+>&#62;
+ with no size limits</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>VARIANT<A
+NAME="AEN2031"
+HREF="#FTN.AEN2031"
+>[f]</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>'X'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>10 ... 127</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Data of any xBase type (CHARACTER, NUMERIC, DATE, DATETIME or LOGICAL)</TD
+></TR
+></TBODY
+><TR
+><TD
+COLSPAN="4"
+>Notes:<BR><A
+NAME="FTN.RDDFN1"
+>a. </A
+>VARCHAR type allows to store character data of any size. At that,
+the first &#60;size_of_field&#62; - 6 bytes are stored in .DBF file itself,
+remaining are stored in MEMO file. In the time of indexing,
+only those bytes stored in .DBF are used.<BR><A
+NAME="FTN.RDDFN2"
+>b. </A
+>Borrowed from SIx library<BR><A
+NAME="FTN.RDDFN3"
+>c. </A
+>Borrowed from VFP<BR><A
+NAME="FTN.RDDFN4"
+>d. </A
+>Available with FPT memo driver, only CHARACTER with DBT<BR><A
+NAME="FTN.AEN2021"
+>e. </A
+>BLOB type is always binary, regardless of binary status in field description,
+passed to DBCREATE() function.<BR><A
+NAME="FTN.AEN2031"
+>f. </A
+>VARIANT type allows to store the data of any basic xBase type. Character
+strings can be of size &#60;size_of_field&#62; - 2 (two bytes are
+reserved for storing type and length). VARIANT fields can be indexed.
+The order of values of various types in index is as the following:
+CHARACTER, LOGICAL, DATE, DATETIME, NUMERIC.<BR></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="RDDINDEXES">11.2.2. Index drivers</H2
+><P
+>The following table summarizes the availability of key features across
+index drivers.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="RDDINDEXFEATURES"><P
+><B
+>Table 11-2. Index features summary</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Item</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>NTX</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CTX</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>IDX</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>CDX</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Order management (tag support)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Number of orders (tags) per file</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>63</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>1</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No limit</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Number of order bags (files) per work area</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No limit</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No limit</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No limit</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No limit</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Conditional indexes (FOR clause)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Temporary (partial) indexes (WHILE clause)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Descending via DESCENDING clause</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Unique via the UNIQUE clause</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>EVAL and EVERY clause support</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Structural indexes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Maximum key expression length (bytes)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>256</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>256</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>255</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>255</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Maximum FOR condition length (bytes)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>256</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>256</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>255</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>255</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Scoped relations support</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Filter and FOR clause optimization (MachSIx/Rushmore technology)</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>No</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>Yes</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="RDDMEMO">11.2.3. Memo drivers</H2
+><P
+>There are two memo drivers DBT and FPT. DBT memo files are used with
+DBFNTX and DBFCTX RDDs. DBT file format is fully compatible with Clipper.
+FPT memo files used with DBFCDX and DBFIDX RDDs have more powerful format,
+that can store not only textual data, but any other data. FPT
+file can store any CLIP data type, including objects, binary data
+(e.g. images), etc.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rdd.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Replaceable Database Drivers (RDD)</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="rdd.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CLIP Classes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

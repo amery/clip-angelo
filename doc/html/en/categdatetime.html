@@ -1,0 +1,6125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DATE/TIME</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="NETWARE"
+HREF="categnetware.html"><LINK
+REL="NEXT"
+TITLE="KEYBOARD/MOUSE"
+HREF="categkeyboardmouse.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categnetware.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categkeyboardmouse.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGDATETIME">DATE/TIME</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN30780"
+></A
+><H2
+>Name</H2
+>DATE/TIME&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN30783"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONBETWEEN"
+>BETWEEN(&#60;TargetData&#62;, &#60;FirstData&#62;, &#60;SecondData&#62;)</A
+>
+cDayName            <A
+HREF="categdatetime.html#FUNCTIONCDOW"
+>CDOW(&#60;dExp&#62;)</A
+>
+cMonth              <A
+HREF="categdatetime.html#FUNCTIONCMONTH"
+>CMONTH(&#60;dDate&#62;)</A
+>
+dDate               <A
+HREF="categdatetime.html#FUNCTIONCTOD"
+>CTOD(&#60;cDate&#62;)</A
+>
+dSystem             <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+>
+nDay                <A
+HREF="categdatetime.html#FUNCTIONDAY"
+>DAY(&#60;dDate&#62;)</A
+>
+nDay                <A
+HREF="categdatetime.html#FUNCTIONDOW"
+>DOW(&#60;dDate&#62;)</A
+>
+cDate               <A
+HREF="categdatetime.html#FUNCTIONDTOC"
+>DTOC(&#60;dDate&#62;)</A
+>
+cDate               <A
+HREF="categdatetime.html#FUNCTIONDTOS"
+>DTOS(&#60;dDate&#62;)</A
+>
+lEmpty              <A
+HREF="categarray.html#FUNCTIONEMPTY"
+>EMPTY(&#60;exp&#62;)</A
+>
+dDate               <A
+HREF="categdatetime.html#FUNCTIONFTACCTADJ"
+>FT_ACCTADJ( [ &#60;dGivenDate&#62; ], [ &#60;lIsEnd&#62; ] )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTACCTMONTH"
+>FT_ACCTMONTH( [ &#60;dGivenDate&#62; ], [ &#60;nMonthNum&#62; ] )</A
+>
+aDateinfo           <A
+HREF="categdatetime.html#FUNCTIONFTACCTQTR"
+>FT_ACCTQTR( [ &#60;dGivenDate&#62; ], [ &#60;nQtrNum&#62; ] )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+>FT_ACCTWEEK( [ &#60;dGivenDate&#62; ], [ &#60;nWeekNum&#62; ] )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTACCTYEAR"
+>FT_ACCTYEAR( [ &#60;dGivenDate&#62; ] )</A
+>
+nTrueDays           <A
+HREF="categdatetime.html#FUNCTIONFTADDWKDY"
+>FT_ADDWKDY( &#60;dStart&#62;, &#60;nWorkDays&#62; )</A
+>
+aRetVal             <A
+HREF="categdatetime.html#FUNCTIONFTCALENDAR"
+>FT_CALENDAR ( [ &#60;nRow&#62; ], [ &#60;nCol&#62; ], [ &#60;cColor&#62; ], [ &#60;lShadow&#62; ] , [ &#60;lShowHelp&#62; ] )</A
+>
+cMILTIME            <A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+>FT_CIV2MIL( &#60;cCIVTIME&#62; )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+>FT_DATECNFG( [ &#60;cFYStart&#62; ], [ &#60;nDow&#62; ] )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTDAYOFYR"
+>FT_DAYOFYR( [ &#60;dGivenDate&#62; ], [ &#60;nDayNum&#62; ], [ &#60;lIsAcct&#62; ] )</A
+>
+nDays               <A
+HREF="categdatetime.html#FUNCTIONFTDAYTOBOW"
+>FT_DAYTOBOW( [ &#60;dGivenDate&#62; ] )</A
+>
+&#60;nResult&#62;           <A
+HREF="categdatetime.html#FUNCTIONFTDOY"
+>FT_DOY( &#60;dDate&#62; )</A
+>
+dEdate              <A
+HREF="categdatetime.html#FUNCTIONFTEASTER"
+>FT_EASTER( &#60;xYear&#62; )</A
+>
+nMINUTES            <A
+HREF="categdatetime.html#FUNCTIONFTELAPMIN"
+>FT_ELAPMIN( &#60;cTIME1&#62;, &#60;cTIME2&#62; )</A
+>
+aTimedata           <A
+HREF="categdatetime.html#FUNCTIONFTELAPSED"
+>FT_ELAPSED([ &#60;dStart&#62; ], [ &#60;dEnd&#62; ], ; &#60;cTimeStart&#62;, &#60;cTimeEnd&#62;)</A
+>
+cDiff               <A
+HREF="categdatetime.html#FUNCTIONFTELTIME"
+>FT_ELTIME( &#60;cTime1&#62;, &#60;cTime2&#62; )</A
+>
+dFirstDay           <A
+HREF="categdatetime.html#FUNCTIONFTFDAY"
+>FT_FDAY( [ &#60;dDateToChk&#62; ] )</A
+>
+dLastDay            <A
+HREF="categdatetime.html#FUNCTIONFTLDAY"
+>FT_LDAY( [ &#60;dDateToChk&#62; ] )</A
+>
+dDate               <A
+HREF="categdatetime.html#FUNCTIONFTMADD"
+>FT_MADD( [ &#60;dGivenDate&#62; ], [ &#60;nAddMonths&#62; ], [ &#60;lMakeEOM&#62; ] )</A
+>
+dMILTIME            <A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+>FT_MIL2CIV( &#60;cCIVTIME&#62; )</A
+>
+nMINUTE             <A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+>FT_MIL2MIN( &#60;cMILTIME&#62; )</A
+>
+aDHM_               <A
+HREF="categdatetime.html#FUNCTIONFTMIN2DHM"
+>FT_MIN2DHM( &#60;nMinutes&#62; )</A
+>
+cMILTIME            <A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+>FT_MIN2MIL( &#60;nMINUTE&#62; )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTMONTH"
+>FT_MONTH( [ &#60;dGivenDate&#62; ], [nMonthNum] )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTQTR"
+>FT_QTR( [ &#60;dGivenDate&#62; ], [ &#60;nQtrNum&#62; ] )</A
+>
+cMILTIME            <A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+>FT_SYS2MIL()</A
+>
+aDateinfo           <A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+>FT_WEEK( [ &#60;dGivenDate&#62; ], [ &#60;nWeekNum&#62; ] )</A
+>
+nDays               <A
+HREF="categdatetime.html#FUNCTIONFTWORKDAYS"
+>FT_WORKDAYS( [ &#60;dStart&#62; ], [ &#60;dStop&#62; ] )</A
+>
+&#60;nResult&#62;           <A
+HREF="categdatetime.html#FUNCTIONFTWOY"
+>FT_WOY( &#60;dDate&#62; )</A
+>
+aDateInfo           <A
+HREF="categdatetime.html#FUNCTIONFTYEAR"
+>FT_YEAR( [ &#60;dGivenDate&#62; ] )</A
+>
+dLarger             <A
+HREF="categnumeric.html#FUNCTIONMAX"
+>MAX(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nLarger MAX(&#60;dExp1&#62;, &#60;dExp2&#62;)</A
+>
+dSmaller            <A
+HREF="categnumeric.html#FUNCTIONMIN"
+>MIN(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nSmaller MIN(&#60;dExp1&#62;, &#60;dExp2&#62;)</A
+>
+nMonth              <A
+HREF="categdatetime.html#FUNCTIONMONTH"
+>MONTH(&#60;dDate&#62;)</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+nSeconds            <A
+HREF="categdatetime.html#FUNCTIONSECONDS"
+>SECONDS()</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONSLEEP"
+>SLEEP(&#60;nSec&#62;)</A
+>
+cTimeString         <A
+HREF="categdatetime.html#FUNCTIONTIME"
+>TIME()</A
+>
+cFormatString       <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM(&#60;exp&#62;, &#60;cSayPicture&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+>
+nYear               <A
+HREF="categdatetime.html#FUNCTIONYEAR"
+>YEAR(&#60;dDate&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN30837"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30840"
+></A
+><H3
+><A
+NAME="FUNCTIONCDOW"
+></A
+>Function  CDOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CDOW(&#60;dExp&#62;) --&#62; cDayName&#13;</PRE
+><P
+> CDOW() is a date conversion function used in formatting date displays
+ for reports, labels, and screens.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30845"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> CDOW() returns the name of the day of the week as a character string.
+ The first letter is uppercase and the rest of the string is lowercase.
+ For a null date value, CDOW() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCTOD"
+> CTOD()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDAY"
+>DAY()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDOW"
+>DOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30868"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate CDOW():
+ 
+ ? DATE()                      // Result: 09/01/90
+ ? CDOW(DATE())                // Result: Friday
+ ? CDOW(DATE() + 7)            // Result: Friday
+ ? CDOW(CTOD("06/12/90"))      // Result: Tuesday</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30872"
+></A
+><H3
+><A
+NAME="FUNCTIONCMONTH"
+></A
+>Function  CMONTH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CMONTH(&#60;dDate&#62;) --&#62; cMonth&#13;</PRE
+><P
+> CMONTH() is a date conversion function useful for creating formatted
+ date strings that can be used in reports, labels, or screens.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30877"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> CMONTH() returns the name of the month as a character string from a date
+ value with the first letter uppercase and the rest of the string
+ lowercase.  For a null date value, CMONTH() returns a null string ("").</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCDOW"
+> CDOW()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDAY"
+>DAY()</A
+> <A
+HREF="categdatetime.html#FUNCTIONMONTH"
+>MONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONYEAR"
+>YEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30901"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate CMONTH():
+ 
+ ? CMONTH(DATE())                     // Result: September
+ ? CMONTH(DATE() + 45)                // Result: October
+ ? CMONTH(CTOD("12/01/94"))           // Result: December
+ ? SUBSTR(CMONTH(DATE()), 1, 3) +;
+ STR(DAY(DATE()))                  // Result: Sep 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30905"
+></A
+><H3
+><A
+NAME="FUNCTIONCTOD"
+></A
+>Function  CTOD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> CTOD(&#60;cDate&#62;) --&#62; dDate&#13;</PRE
+><P
+> CTOD() is a character conversion function that converts a character
+ string to a date.  To initialize an empty date for date entry, specify
+ &lt;cDate&gt; as a null string (""), SPACE(8), or "  /  /  ".</P
+><P
+> 
+ CTOD() is used whenever you need a literal date value.  Some examples
+ are:</P
+><P
+> 
+ Initializing a variable to a date value</P
+><P
+> 
+ Specifying a literal date string as an argument of a RANGE
+ clause of @...GET</P
+><P
+> 
+ Specifying a literal date string in order to perform date
+ arithmetic</P
+><P
+> 
+ Comparing the result of a date expression to a literal date
+ string</P
+><P
+> 
+ REPLACEing a date field with a literal date string</P
+><P
+> 
+ CTOD() is the inverse of DTOC() which converts a date value to a
+ character string in the format specified by SET DATE and SET CENTURY.
+ DTOS() also converts a date value to a character string in the form
+ yyyymmdd.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30917"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string consisting of numbers representing the
+ month, day, and year separated by any character other than a number.
+ The month, day, and year digits must be specified in accordance with the
+ SET DATE format.  If the century digits are not specified, the century
+ is determined by the rules of SET EPOCH.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> CTOD() returns a date value.  If &lt;cDate&gt; is not a valid date, CTOD()
+ returns an empty date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDATE"
+> DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOC"
+>DTOC()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOS"
+>DTOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30939"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example uses CTOD() to initialize two date variables,
+ using one as a GET and the other for RANGE validation:
+ 
+ SET CENTURY ON
+ dBegin := CTOD("01-26-1876")
+ dCurrent := CTOD("")
+ @ 10, 10 SAY "Enter date:" GET dCurrent ;
+ RANGE dBegin, DATE()
+ READ
+ 
+ This example uses CTOD() to create a date value within a FOR
+ condition:
+ 
+ USE Inventory NEW
+ REPLACE ALL Inventory-&#62;Price WITH ;
+ Inventory-&#62;Price * 1.1 FOR ;
+ Inventory-&#62;InvDate &#60; CTOD("10/10/90")</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30943"
+></A
+><H3
+><A
+NAME="FUNCTIONDATE"
+></A
+>Function  DATE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DATE() --&#62; dSystem&#13;</PRE
+><P
+> DATE() is a date function that provides a means of initializing memory
+ variables to the current date, comparing other date values to the
+ current date, and performing date arithmetic relative to the current
+ date.</P
+><P
+> 
+ The display format for dates is controlled by the SET DATE command.  The
+ default format is mm/dd/yy.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30949"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DATE() returns the system date as a date value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCTOD"
+> CTOD()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOC"
+>DTOC()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOS"
+>DTOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30966"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show the DATE() function used in various ways:
+ 
+ ? DATE()                 // Result: 09/01/90
+ ? DATE() + 30            // Result: 10/01/90
+ ? DATE() - 30            // Result: 08/02/90
+ dDate := DATE()
+ ? CMONTH(dDate)          // Result: September</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30970"
+></A
+><H3
+><A
+NAME="FUNCTIONDAY"
+></A
+>Function  DAY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DAY(&#60;dDate&#62;) --&#62; nDay&#13;</PRE
+><P
+> DAY() is a date conversion function used to convert a date value to the
+ day of a month.  This function is used in combination with CMONTH() and
+ YEAR() to format dates.  In addition, it is often used in various date
+ calculations.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30975"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DAY() returns a number in the range of zero to 31 as an integer numeric
+ value.  If the month is February, leap years are considered.  If the
+ date argument is February 29 and the year is not a leap year, DAY()
+ returns zero.  If the date argument is empty, DAY() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCDOW"
+> CDOW()</A
+> <A
+HREF="categdatetime.html#FUNCTIONCMONTH"
+>CMONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDOW"
+>DOW()</A
+> <A
+HREF="categdatetime.html#FUNCTIONMONTH"
+>MONTH()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONYEAR"
+>YEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31000"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show the DAY() function used several ways:
+ 
+ ? DATE()                             // Result: 09/01/90
+ ? DAY(DATE())                        // Result: 1
+ ? DAY(DATE()) + 1                    // Result: 2
+ ? DAY(CTOD("12/01/94"))              // Result: 1
+ 
+ This example uses DAY() in combination with CMONTH() and
+ YEAR() to format a date value:
+ 
+ ? CMONTH(DATE()) + STR(DAY(DATE())) +;
+ "," + STR(YEAR(DATE()))      // Result: June 15, 1990</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31004"
+></A
+><H3
+><A
+NAME="FUNCTIONDOW"
+></A
+>Function  DOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DOW(&#60;dDate&#62;) --&#62; nDay&#13;</PRE
+><P
+> DOW() is a date conversion function that converts a date value to a
+ number identifying the day of the week.  It is useful when you want date
+ calculations on a weekly basis.  DOW() is similar to CDOW(), which
+ returns the day of week as a character string instead of a number.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31009"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DOW() returns the day of the week as a number between zero and seven.
+ The first day of the week is one (Sunday) and the last day is seven
+ (Saturday).  If &lt;dDate&gt; is empty, DOW() returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCDOW"
+> CDOW()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDAY"
+>DAY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31031"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate CDOW() and its relationship to
+ DOW():
+ 
+ ? DATE()                        // Result: 09/01/89
+ ? DOW(DATE())                  // Result: 3
+ ? CDOW(DATE())                  // Result: Tuesday
+ ? DOW(DATE() - 2)               // Result: 1
+ ? CDOW(DATE() - 2)            // Result: Sunday
+ 
+ This is a user-defined function that uses DOW() to calculate
+ the date of last Monday from any other date:
+ 
+ FUNCTION LastMonday(dDate)
+ RETURN (dDate - DOW(dDate) + 2)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31035"
+></A
+><H3
+><A
+NAME="FUNCTIONDTOC"
+></A
+>Function  DTOC() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DTOC(&#60;dDate&#62;) --&#62; cDate&#13;</PRE
+><P
+> DTOC() is a date conversion function used for formatting purposes when
+ you want to display the date in the SET DATE format and when a character
+ expression is required (in a LABEL FORM, for example).  If you need a
+ specialized date format, you can use TRANSFORM() or a custom expression.</P
+><P
+> 
+ If you are INDEXing a date in combination with a character string, use
+ DTOS() instead of DTOC() to convert the date value to a character
+ string.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31041"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DTOC() returns a character string representation of a date value.  The
+ return value is formatted in the current date format.  The default
+ format is mm/dd/yy.  A null date returns a string of spaces equal in
+ length to the current date format.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCTOD"
+> CTOD()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOS"
+>DTOS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31063"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show general uses of DTOC():
+ 
+ ? DATE()                  // Result: 09/01/90
+ ? DTOC(DATE())            // Result: 09/01/90
+ ? "Today is " + DTOC(DATE())
+ // Result: Today is 09/01/90</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31067"
+></A
+><H3
+><A
+NAME="FUNCTIONDTOS"
+></A
+>Function  DTOS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DTOS(&#60;dDate&#62;) --&#62; cDate&#13;</PRE
+><P
+> DTOS() is a date conversion function that is used when creating index
+ expressions consisting of a date value and a character expression.
+ DTOS() converts a date value to a character string that can be
+ concatenated to any other character expression.  The return value is
+ structured to preserve date order (year, month, and day).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31072"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to convert.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> DTOS() returns a character string eight characters long in the format
+ yyyymmdd.  When &lt;dDate&gt; is a null date (CTOD("")), DTOS() returns a
+ string of eight spaces.  The return value is not affected by the current
+ date format.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCTOD"
+> CTOD()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDTOC"
+>DTOC()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31094"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate DTOS() in conjunction with several
+ other functions:
+ 
+ ? DATE()                        // Result: 09/01/90
+ 
+ ? DTOS(DATE())                  // Result: 19900901
+ ? LEN(DTOS(CTOD("")))           // Result: 8
+ 
+ This example demonstrates how to create an index with a
+ compound date and character key using DTOS():
+ 
+ USE Sales NEW
+ INDEX ON DTOS(Date) + Salesman TO DateName</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31098"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACCTADJ"
+></A
+>Function  FT_ACCTADJ() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ACCTADJ( [ &#60;dGivenDate&#62; ], [ &#60;lIsEnd&#62; ] ) --&#62; dDate&#13;</PRE
+><P
+> Called by other FT_ACCT.. functions. The algorithm is:</P
+><P
+> 
+ Beginning of period mode:</P
+><P
+> 
+ If dGivenDate is in last 3 days of work week
+ Return next week's start date
+ Else
+ Return this week's start date
+ Endif</P
+><P
+> 
+ End of period mode:</P
+><P
+> 
+ If dGivenDate is in last 4 days of work week
+ Return this week's end date
+ Else
+ Return prior week's end date
+ Endif</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31107"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any valid format.
+ Defaults to DATE() if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lIsEnd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical variable. .F. = adjust for beginning of
+ period mode, .T. = adjust for end of period mode.  Defaults to
+ beginning of period mode.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An adjusted date dependent upon mode and work week start day.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTDAYTOBOW"
+> FT_DAYTOBOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31133"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> Beginning of period mode (lIsEnd == .F.)
+ 
+ dDate := Ctod( "01/31/91" )  // In last 3 days of work week
+ ? FT_ACCTADJ( dDate )        // 02/03/91 (next week's start)
+ 
+ dDate := Ctod( "03/31/91" )  // Not in last 3 days of work week
+ ? FT_ACCTADJ( dDate )        // 03/31/91 (this week's start)
+ 
+ End of period mode (lIsEnd == .T.)
+ 
+ dDate := Ctod( "01/31/91" )  // In last 4 days of work week
+ ? FT_ACCTADJ( dDate, .T. )   // 02/02/91 (this week's end)
+ 
+ dDate := Ctod( "03/31/91" )  // Not in last 4 days of work week
+ ? FT_ACCTADJ( dDate, .T. )   // 03/30/91 (prior week's end)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31137"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACCTMONTH"
+></A
+>Function  FT_ACCTMONTH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ACCTMONTH( [ &#60;dGivenDate&#62; ], [ &#60;nMonthNum&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_ACCTMONTH() creates an array containing data about the
+ accounting month containing the given date.</P
+><P
+> 
+ An accounting period has the following characteristics:</P
+><P
+> 
+ If the first week of the period contains 4 or more 'work'
+ days, it is included in the period; otherwise, the first
+ week was included in the prior period.</P
+><P
+> 
+ If the last week of the period contains 4 or more 'work'
+ days it is included in the period; otherwise, the last week
+ is included in the next period.  This results in 13 week
+ 'quarters' and 4 or 5 week 'months'.  Every 5 or 6 years, a
+ 'quarter' will contain 14 weeks and the year will contain 53
+ weeks.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31145"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMonthNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 12 signifying a month.
+ Defaults to current month if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and month as a character string "YYYYMM"
+ aDateInfo[2] - The beginning date of the accounting month
+ aDateInfo[3] - The ending date of the accounting month</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+> FT_ACCTWEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTQTR"
+> FT_ACCTQTR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTYEAR"
+> FT_ACCTYEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31173"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about accounting month containing 9/15/90
+ aDateInfo := FT_ACCTMONTH( Ctod("09/15/90") )
+ ? aDateInfo[1]   //  199009       (9th month)
+ ? aDateInfo[2]   //  09/02/90     beginning of month 9
+ ? aDateInfo[3]   //  09/29/90     end of month 9
+ 
+ // get info about accounting month 5 in year containing 9/15/90
+ aDateInfo := FT_ACCTMONTH( Ctod("09/15/90"), 5 )
+ ? aDateInfo[1]   //  199005
+ ? aDateInfo[2]   //  04/29/89   beginning of month 5
+ ? aDateInfo[3]   //  06/02/90   end of month 5</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31177"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACCTQTR"
+></A
+>Function  FT_ACCTQTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ACCTQTR( [ &#60;dGivenDate&#62; ], [ &#60;nQtrNum&#62; ] ) --&#62; aDateinfo&#13;</PRE
+><P
+> FT_ACCTQTR() creates an array containing data about the
+ accounting quarter containing the given date.</P
+><P
+> 
+ An accounting period has the following characteristics:</P
+><P
+> 
+ If the first week of the period contains 4 or more 'work'
+ days, it is included in the period; otherwise, the first
+ week was included in the prior period.</P
+><P
+> 
+ If the last week of the period contains 4 or more 'work'
+ days it is included in the period; otherwise, the last week
+ is included in the next period.  This results in 13 week
+ 'quarters' and 4 or 5 week 'months'.  Every 5 or 6 years, a
+ 'quarter' will contain 14 weeks and the year will contain 53
+ weeks.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31185"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nQtrNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 4 signifying a quarter.
+ Defaults to current quarter if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and qtr. as a character string "YYYYQQ"
+ aDateInfo[2] - The beginning date of the accounting quarter
+ aDateInfo[3] - The ending date of the accounting quarter</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+> FT_ACCTWEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTMONTH"
+> FT_ACCTMONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTYEAR"
+> FT_ACCTYEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31213"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about accounting month containing 9/15/90
+ aDateInfo := FT_ACCTQTR( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  199003       (3rd quarter)
+ ? aDateInfo[2]   //  07/01/90     beginning of quarter 3
+ ? aDateInfo[3]   //  09/29/90     end of quarter 3
+ 
+ // get info about accounting qtr. 2 in year containing 9/15/90
+ aDateInfo := FT_ACCTQTR( CTOD("09/15/90"), 2 )
+ ? aDateInfo[1]   //  199002
+ ? aDateInfo[2]   //  04/01/89   beginning of quarter 2
+ ? aDateInfo[3]   //  06/30/90   end of quarter 2</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31217"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACCTWEEK"
+></A
+>Function  FT_ACCTWEEK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ACCTWEEK( [ &#60;dGivenDate&#62; ], [ &#60;nWeekNum&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_ACCTWEEK() returns an array containing data about the
+ accounting week containing the given date.</P
+><P
+> 
+ An accounting period has the following characteristics:</P
+><P
+> 
+ If the first week of the period contains 4 or more 'work'
+ days, it is included in the period; otherwise, the first
+ week was included in the prior period.</P
+><P
+> 
+ If the last week of the period contains 4 or more 'work'
+ days it is included in the period; otherwise, the last week
+ is included in the next period.  This results in 13 week
+ 'quarters' and 4 or 5 week 'months'.  Every 5 or 6 years, a
+ 'quarter' will contain 14 weeks and the year will contain 53
+ weeks.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31225"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWeekNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 52 signifying a week.
+ Defaults to current week if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and week as a character string "YYYYWW"
+ aDateInfo[2] - The beginning date of the accounting week
+ aDateInfo[3] - The ending date of the accounting week</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTMONTH"
+> FT_ACCTMONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTQTR"
+> FT_ACCTQTR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTYEAR"
+> FT_ACCTYEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31253"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about accounting week containing 9/15/90
+ aDateInfo := FT_ACCTWEEK( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  199037       (37th week)
+ ? aDateInfo[2]   //  09/09/90     beginning of week 37
+ ? aDateInfo[3]   //  09/15/90     end of week 37
+ 
+ // get info about accounting week 25 in year containing 9/15/90
+ aDateInfo := FT_ACCTWEEK( CTOD("09/15/90"), 25 )
+ ? aDateInfo[1]   //  199025
+ ? aDateInfo[2]   //  06/17/89   beginning of week 25
+ ? aDateInfo[3]   //  06/23/90   end of week 25</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31257"
+></A
+><H3
+><A
+NAME="FUNCTIONFTACCTYEAR"
+></A
+>Function  FT_ACCTYEAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ACCTYEAR( [ &#60;dGivenDate&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_ACCTYEAR() creates an array containing data about the
+ accounting year containing the given date.</P
+><P
+> 
+ An accounting period has the following characteristics:</P
+><P
+> 
+ If the first week of the period contains 4 or more 'work'
+ days, it is included in the period; otherwise, the first
+ week was included in the prior period.</P
+><P
+> 
+ If the last week of the period contains 4 or more 'work'
+ days it is included in the period; otherwise, the last week
+ is included in the next period.  This results in 13 week
+ 'quarters' and 4 or 5 week 'months'.  Every 5 or 6 years, a
+ 'quarter' will contain 14 weeks and the year will contain 53
+ weeks.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31265"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year as a character string "YYYY"
+ aDateInfo[2] - The beginning date of the accounting year
+ aDateInfo[3] - The ending date of the accounting year</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+> FT_ACCTWEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTMONTH"
+> FT_ACCTMONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTQTR"
+> FT_ACCTQTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31288"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about accounting year containing 9/15/90
+ aDateInfo := FT_ACCTYEAR( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  1990
+ ? aDateInfo[2]   //  12/31/89    beginning of year
+ ? aDateInfo[3]   //  12/29/90    end of year</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31292"
+></A
+><H3
+><A
+NAME="FUNCTIONFTADDWKDY"
+></A
+>Function  FT_ADDWKDY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ADDWKDY( &#60;dStart&#62;, &#60;nWorkDays&#62; ) --&#62; nTrueDays&#13;</PRE
+><P
+> Let's say you are given the problem:</P
+><P
+> 
+ "All invoices are due 10 working days from the date they
+ are printed.  Please display the due date on the invoice."</P
+><P
+> 
+ When is the due date?  Assuming you are printing the invoices
+ today, your answer is:</P
+><P
+> 
+ dDueDate := DATE() + ft_addWkDay( DATE(), 10 )</P
+><P
+> 
+ A work day is defined as Monday through Friday.  Unfortunately
+ this routine does _not_ account for holidays.</P
+><P
+> 
+ This documentation was written by Glenn Scott so if it's wrong,
+ blame him.</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31303"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> = date to start adding from</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWorkDays&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> = number of workdays to add</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nTrueDays&gt; = Number of actual days to add to &lt;dStart&gt; in
+ order to add the required &lt;nWorkDays&gt;</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTWORKDAYS"
+> FT_WORKDAYS()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31328"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Postdate 5 working days from the first of January
+ dPost := CTOD("01/01/91")
+ dPost += FT_ADDWKDY( dPost, 5 )   // returns 7 true days
+ ? dPost                          //  01/08/91
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31332"
+></A
+><H3
+><A
+NAME="FUNCTIONFTCALENDAR"
+></A
+>Function  FT_CALENDAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_CALENDAR ( [ &#60;nRow&#62; ], [ &#60;nCol&#62; ], [ &#60;cColor&#62; ], [ &#60;lShadow&#62; ] ,
+ [ &#60;lShowHelp&#62; ] ) --&#62; aRetVal&#13;</PRE
+><P
+> FT_CALENDAR() simply displays today's date, time and julian
+ day in a two line display with an optional box shadow. Cursor keys may
+ be used to page through the calendar by day, week, month or year
+ increments. Returns an 8 element array of calendar data:</P
+><P
+> 
+ Element  Value
+ [1]      Date in current date format.
+ [2]      Numeric month number.
+ [3]      Numeric day number.
+ [4]      Numeric year number.
+ [5]      Month in character format.
+ [6]      Day of the week in character format.
+ [7]      Numeric Julian day.
+ [8]      Current time in time format.</P
+><P
+> 
+ WARNING: FT_CALENDAR uses FT_SHADOW and FT_XBOX
+ from the Nanforum Toolkit!</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31340"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen row for calendar display,
+ default row 1.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nCol&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional screen col for calendar display,
+ default col 63.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cColor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional color string for displayed messages,
+ default is bright white text over green background.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lShadow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical variable. If true (.T.),
+ it uses FT_SHADOW() to add a transparent shadow
+ to the display, default (.F.).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lShowHelp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional logical variable. If true, uses
+ FT_XBOX to display  a four line help message
+ if the F1 key is pressed, default (.F.).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> aRetVal  is an 8 element array containing date, month, day, year,
+ month (in character format), day of the week, julian day
+ and current time.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDAYOFYR"
+> FT_DAYOFYR()
+ </A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31380"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  LOCAL aRetVal[8]
+ CLS
+ aRetVal := FT_CALENDAR (10,40,'W+/RB',.T.,.T.)
+ ?aRetVal[1]      // Result: 04/20/91
+ ?aRetVal[2]      // Result:   4
+ ?aRetVal[3]      // Result:  20
+ ?aRetVal[4]      // Result:  1991
+ ?aRetVal[5]      // Result: April
+ ?aRetVal[6]      // Result: Saturday
+ ?aRetVal[7]      // Result:        110
+ ?aRetVal[8]      // Result: 12:45:20
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31384"
+></A
+><H3
+><A
+NAME="FUNCTIONFTCIV2MIL"
+></A
+>Function  FT_CIV2MIL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_CIV2MIL( &#60;cCIVTIME&#62; ) --&#62; cMILTIME&#13;</PRE
+><P
+> Converts time from 12-hour civilian format to military.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31389"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cCIVTIME&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  character string of form hh:mm (am,pm,n or m),
+ where 0&lt;hh&lt;12.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cMILTIME&gt;  character string of form hhmm, where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+> FT_MIL2CIV()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+> FT_SYS2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31412"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_CIV2MIL( " 5:40 pm" ) --&#62; 1740
+ 
+ FT_CIV2MIL( " 5:40 am" ) --&#62; 0540
+ 
+ FT_CIV2MIL( "12:00 n" ) --&#62; 1200
+ 
+ FT_CIV2MIL( "12:00 m" ) --&#62; 0000
+ 
+ Caution:  leading blanks are irrelevant; p,a,n,m must be preceded by
+ one and only one space.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31416"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDATECNFG"
+></A
+>Function  FT_DATECNFG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DATECNFG( [ &#60;cFYStart&#62; ], [ &#60;nDow&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_DATECNFG() is called internally by many of the date functions
+ in the library to determine the beginning of year date and
+ beginning of week day.</P
+><P
+> 
+ The default beginning of the year is January 1st and the default
+ beginning of the week is Sunday (day 1).  Either or both of these
+ settings may be changed by calling FT_DATECNFG() with the proper
+ arguments.  They will retain their values for the duration of the
+ program or until they are changed again by a subsequent call to
+ FT_DATECNFG().</P
+><P
+> 
+ It is not necessary to call FT_DATECNFG() unless you need to
+ change the defaults.</P
+><P
+> 
+ FT_DATECNFG() affects the following library functions:</P
+><P
+> 
+ FT_WEEK()       FT_ACCTWEEK()       FT_DAYTOBOW()
+ FT_MONTH()      FT_ACCTMONTH()      FT_DAYOFYR()
+ FT_QTR()        FT_ACCTQTR()        FT_ACCTADJ()
+ FT_YEAR()       FT_ACCTYEAR()</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31425"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cFYStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character date string in the user's system date
+ format, i.e., the same as the user would enter for CTOD().  If
+ this argument is NIL, the current value is unchanged.
+ 
+ Note: The year portion of the date string must be present and
+ be a valid year; however, it has no real meaning.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 7 (1 = Sunday) indicating the
+ desired start of a work week.  If this argument is NIL,
+ the current value is unchanged.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A 2-element array containing the following information:
+ 
+ aDateInfo[1] - an ANSI date string indicating the beginning
+ date of the year.  Only the month and day are
+ meaningful.
+ 
+ aDateInfo[2] - the number of the first day of the week
+ (1 = Sunday)
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTADJ"
+> FT_ACCTADJ()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31450"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Configure library date functions to begin year on
+ //  July 1st.
+ 
+ FT_DATECNFG("07/01/80")    // year is insignificant
+ 
+ // Examples of return values:
+ 
+ //  System date format: American           aArray[1]    aArray[2]
+ 
+ aArray := FT_DATECNFG()              //  '1980.01.01'     1 (Sun.)
+ aArray := FT_DATECNFG('07/01/80')    //  '1980.07.01'     1 (Sun.)
+ aArray := FT_DATECNFG('07/01/80', 2) //  '1980.07.01'     2 (Mon.)
+ aArray := FT_DATECNFG( , 2 )         //  '1980.01.01'     2 (Mon.)
+ 
+ //  System date format: British
+ 
+ aArray := FT_DATECNFG('01/07/80', 2) //  '1980.07.01'     2 (Mon.)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31454"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDAYOFYR"
+></A
+>Function  FT_DAYOFYR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DAYOFYR( [ &#60;dGivenDate&#62; ], [ &#60;nDayNum&#62; ], [ &#60;lIsAcct&#62; ] )
+ --&#62; aDateInfo&#13;</PRE
+><P
+> FT_DAYOFYR() returns an array containing data about a day in the
+ calendar or fiscal year containing the given date.</P
+><P
+> 
+ The beginning of year date defaults to January 1st but may be
+ changed with FT_DATECNFG().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31460"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any valid format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDayNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 371, signifying a day of a year.
+ Defaults to current day if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lIsAcct&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical which specifies the type of year to base
+ the return value on:  .F. = calendar or fiscal year,
+ .T. = accounting year.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ If &lt;nDayNum&gt; is specified:
+ 
+ aDateInfo[1] - The date of the specified day number
+ aDateInfo[2] - The beginning date of the year
+ aDateInfo[3] - The ending date of the year
+ 
+ If &lt;nDayNum&gt; is not specified:
+ 
+ aDateInfo[1] - The year and day as a character string "YYYYDDD"
+ aDateInfo[2] - The beginning date of the year
+ aDateInfo[3] - The ending date of the year</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31490"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aDateInfo := FT_DAYOFYR( CTOD("03/31/91") )
+ ? aDateInfo[1]        // 1991090    (90th day of year 1991)
+ ? aDateInfo[2]        // 01/01/91
+ ? aDateInfo[3]        // 12/31/91
+ 
+ aDateInfo := FT_DAYOFYR( , 90 )    // assume current date is 3/31/91
+ ? aDateInfo[1]        // 03/31/91    (90th day of year)
+ ? aDateInfo[2]        // 01/01/91
+ ? aDateInfo[3]        // 12/31/91
+ 
+ aDateInfo := FT_DAYOFYR( , 90, .T. )
+ ? aDateInfo[1]        // 03/29/91    (90th day of accounting year)
+ ? aDateInfo[2]        // 12/30/90    (1st day of accounting year)
+ ? aDateInfo[3]        // 12/28/91    (last day of accounting year)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31494"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDAYTOBOW"
+></A
+>Function  FT_DAYTOBOW() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DAYTOBOW( [ &#60;dGivenDate&#62; ] ) --&#62; nDays&#13;</PRE
+><P
+> FT_DAYTOBOW() returns the number of days to the beginning of the
+ week.  Normally this will be one less than the value that
+ would be returned by the Clipper function DOW(), unless the
+ day for the beginning of the week has been changed with
+ FT_DATECNFG().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31499"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any valid date format.
+ Defaults to current date if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A positive number of days to beginning of week, range 0 to 6.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+> FT_ACCTWEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+> FT_WEEK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31521"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> dDate := CTOD( "09/15/90" )
+ 
+ ? DOW( dDate )               // 7
+ ? CDOW( dDate )              // Saturday
+ ? FT_DAYTOBOW( dDate )       // 6
+ 
+ // change beginning of week to Friday  (yeah!)
+ FT_DATECNFG( , 6 )
+ ? DOW( dDate )               // 7
+ ? CDOW( dDate )              // Saturday
+ ? FT_DAYTOBOW( dDate )       // 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31525"
+></A
+><H3
+><A
+NAME="FUNCTIONFTDOY"
+></A
+>Function  FT_DOY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_DOY( &#60;dDate&#62; ) --&#62; &#60;nResult&#62;&#13;</PRE
+><P
+> Finds the day number, considering 01/01 as day 1
+ Handles dates with CENTURY ON|OFF, to allow for 21st century.
+ Date validation must be external to this function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31530"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date in the form "mm/dd/yy" or "mm/dd/yyyy"</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return numeric position of day within the year.
+ Return NIL if parameter does not conform.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31545"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These code fragments find the day number, given a date.
+ 
+ // literal character date
+ dDate  := CTOD("01/01/91")
+ nDayNum := FT_DOY(dDate)              // result:  1
+ 
+ // presume DOS date to be 01/06/91
+ nDayNum := FT_DOY(DATE())             // result:  6
+ 
+ // date input
+ cDate  := SPACE(8)
+ @ 4,10 get cDate PICT "##/##/##"      // input 07/04/91
+ READ
+ nDayNum := FT_DOY(CTOD(cDate))        // result: 185
+ 
+ // last day of year
+ nDayNum := FT_DOY(CTOD("12/31/91"))    // result: 365
+ 
+ For a demonstration of this function, compile and link the
+ program WOY.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31549"
+></A
+><H3
+><A
+NAME="FUNCTIONFTEASTER"
+></A
+>Function  FT_EASTER() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_EASTER( &#60;xYear&#62; ) --&#62; dEdate&#13;</PRE
+><P
+> Returns the date of Easter for any year after 1582 up to Clipper's
+ limit which the manual states is 9999, but the Guide agrees with
+ the actual imposed limit of 2999.</P
+><P
+> 
+ This function can be useful in calender type programs that indicate
+ when holidays occur.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31555"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The actual date that Easter occurs.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31565"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> dEdate := FT_EASTER( 1990 )     &#38;&#38; returns 04/15/1990</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31569"
+></A
+><H3
+><A
+NAME="FUNCTIONFTELAPMIN"
+></A
+>Function  FT_ELAPMIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELAPMIN( &#60;cTIME1&#62;, &#60;cTIME2&#62; ) --&#62; nMINUTES&#13;</PRE
+><P
+> Finds the arithmetic difference between time two times
+ (time 2 - time 1).
+ If time 2 is smaller than time 1, a NEGATIVE value is returned.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31574"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTIME1, cTIME2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  character strings of military form "hhmm",
+ where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nMINUTES&gt;</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTELTIME"
+> FT_ELTIME()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31596"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELAPMIN( "1718", "2040" ) --&#62;  322
+ FT_ELAPMIN( "2040", "1718" ) --&#62; -322</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31600"
+></A
+><H3
+><A
+NAME="FUNCTIONFTELAPSED"
+></A
+>Function  FT_ELAPSED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELAPSED([ &#60;dStart&#62; ], [ &#60;dEnd&#62; ], ;
+ &#60;cTimeStart&#62;, &#60;cTimeEnd&#62;) --&#62; aTimedata&#13;</PRE
+><P
+> FT_ELAPSED() calculates the elapsed time between two Date/Time events.</P
+><P
+> 
+ It returns an array which contains the following data:</P
+><P
+> 
+ aRetVal[1,1]  Integer Days      aRetVal[1,2] Total Days    (nn.nnnn)
+ aRetVal[2,1]  Integer Hours     aRetVal[2,2] Total Hours   (nn.nnnn)
+ aRetVal[3,1]  Integer Minutes   aRetVal[3,2] Total Minutes (nn.nnnn)
+ aRetVal[4,1]  Integer Seconds   aRetVal[4,2] Total Seconds (nn)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31607"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format. Defaults to DATE().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dEnd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format. Defaults to DATE().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTimeStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a valid Time string of the format 'hh:mm:ss' where
+ hh is hours in 24-hour format.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTimeEnd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a valid Time string of the format 'hh:mm:ss' where
+ hh is hours in 24-hour format.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A two-dimensional array containing elapsed time data.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31637"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELAPSED(CTOD('11/28/90'), CTOD('11/30/90'), '08:00:00', '12:10:30')
+ will return:
+ 
+ aRetVal[1,1] --&#62;  2 (Days)        aRetVal[1,2] --&#62;    2.1740  Days
+ aRetVal[2,1] --&#62;  4 (Hours)       aRetVal[2,2] --&#62;   52.1750  Hours
+ aRetVal[3,1] --&#62; 10 (Minutes)     aRetVal[3,2] --&#62; 3130.5000  Minutes
+ aRetVal[4,1] --&#62; 30 (Seconds)     aRetVal[4,2] --&#62; 187830     Seconds</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31641"
+></A
+><H3
+><A
+NAME="FUNCTIONFTELTIME"
+></A
+>Function  FT_ELTIME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELTIME( &#60;cTime1&#62;, &#60;cTime2&#62; ) --&#62; cDiff&#13;</PRE
+><P
+> Return the absolute difference between two times in hh:mm:ss format
+ in character hours, minutes and seconds (hh:mm:ss).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31646"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cTime1, cTime2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  character strings representing times in
+ hh:mm:ss format.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cDiff&gt;  character string representing time difference in
+ hh:mm:ss format.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTELAPMIN"
+> FT_ELAPMIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31668"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ELTIME( "22:40:12", "23:55:17" ) --&#62; 01:15:05
+ FT_ELTIME( "23:55:17", "22:40:12" ) --&#62; 01:15:05</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31672"
+></A
+><H3
+><A
+NAME="FUNCTIONFTFDAY"
+></A
+>Function  FT_FDAY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_FDAY( [ &#60;dDateToChk&#62; ] ) --&#62; dFirstDay&#13;</PRE
+><P
+> This function will return the first day of the month of the date
+ passed, or the first day of the current month if no argument is
+ supplied.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31677"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDateToChk&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date within a month for which you want to find
+ the first date of that month.  If not passed or is an incorrect type,
+ defaults to current system date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A Clipper date value representing the first date of the month.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTLDAY"
+> FT_LDAY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31697"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> dDate := CTOD( "09/15/90" )
+ ? FT_FDAY( dDate )             // 09/01/90
+ ? FT_FDAY()                    // 03/01/91  (current month)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31701"
+></A
+><H3
+><A
+NAME="FUNCTIONFTLDAY"
+></A
+>Function  FT_LDAY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_LDAY( [ &#60;dDateToChk&#62; ] ) --&#62; dLastDay&#13;</PRE
+><P
+> This function will return the last day of the month of the date
+ passed, or the last day of the current month if no argument is
+ supplied.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31706"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDateToChk&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date within a month for which you want to find
+ the last date of that month.  If not passed or is an incorrect
+ type, defaults to current system date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A Clipper date value representing the last date of the month.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTFDAY"
+> FT_FDAY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31726"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> dDate := CTOD( "09/15/90" )
+ ? FT_LDAY( dDate )             // 09/30/90
+ ? FT_LDAY()                    // 03/31/91  (current month)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31730"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMADD"
+></A
+>Function  FT_MADD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MADD( [ &#60;dGivenDate&#62; ], [ &#60;nAddMonths&#62; ], [ &#60;lMakeEOM&#62; ] )
+ --&#62; dDate&#13;</PRE
+><P
+> FT_MADD() adds or subtracts months to/from a given date.</P
+><P
+> 
+ If MakeEOM is passed and dGivenDate is the last day of a month,
+ it will return the EOM of calculated month.  Otherwise it will
+ return the same day as the day of the passed date.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31736"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format. Defaults to
+ current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nAddMonths&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of months to be added or subtracted.
+ Defaults to 0 if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lMakeEOM&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical variable indicating whether or not to
+ force the returned date to the last date of the month.  It only
+ affects the returned date if &lt;dGivenDate&gt; is an end-of-month date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A date.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDAYOFYR"
+> FT_DAYOFYR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTDAYTOBOW"
+> FT_DAYTOBOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31767"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> dDate := CTOD( "09/15/90" )
+ ? FT_MADD( dDate, 1 )        // 10/15/90
+ ? FT_MADD( dDate, -2 )       // 07/15/90
+ 
+ // force EOM
+ dDate := CTOD( "04/30/91" )
+ ? FT_MADD( dDate, 1 )        // 05/30/91
+ ? FT_MADD( dDate, 1, .T. )   // 05/31/91  &#60;- forced EOM
+ ? FT_MADD( dDate, 2 )        // 06/30/91
+ ? FT_MADD( dDate, 2, .T. )   // 06/30/91  &#60;- June only has 30 days
+ ? FT_MADD( dDate, 3 )        // 07/30/91
+ ? FT_MADD( dDate, 3, .T. )   // 07/31/91  &#60;- forced EOM
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31771"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMIL2CIV"
+></A
+>Function  FT_MIL2CIV() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIL2CIV( &#60;cCIVTIME&#62; ) --&#62; dMILTIME&#13;</PRE
+><P
+> Converts time from military to civilian format</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31776"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMILTIME&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  character string of form hhmm, where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cCIVTIME&gt;  character string of form hh:mm (am,pm,n or m),
+ where 0&lt;hh&lt;12.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+> FT_CIV2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+> FT_SYS2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31799"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIL2CIV( "1640" ) --&#62;  4:40 pm
+ 
+ FT_MIL2CIV( "0440" ) --&#62;  4:40 am
+ 
+ FT_MIL2CIV( "1200" ) --&#62; 12:00 n
+ 
+ FT_MIL2CIV( "0000" ) and FT_MIL2CIV( "2400" ) --&#62; 12:00 m
+ 
+ Caution:  leading blanks are irrelevant.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31803"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMIL2MIN"
+></A
+>Function  FT_MIL2MIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIL2MIN( &#60;cMILTIME&#62; ) --&#62; nMINUTE&#13;</PRE
+><P
+> Converts time in military format to number of minute of the day.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31808"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cMILTIME&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  character string of form hhmm, where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;nMINOFDAY&gt;  numeric value representing minute of day.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+> FT_CIV2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+> FT_MIL2CIV()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+> FT_SYS2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31831"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIL2MIN( "1729" ) --&#62; 1049</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31835"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMIN2DHM"
+></A
+>Function  FT_MIN2DHM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIN2DHM( &#60;nMinutes&#62; ) --&#62; aDHM_&#13;</PRE
+><P
+> Converts numeric minutes into a character array containing
+ days, hours &amp; minutes.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31840"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMinutes&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  the number of minutes.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;aDHM_&gt;
+ where:
+ aDHM_[1] = cDAYS, aDHM_[2] = cHours, aDHM_[3] = cMinutes</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31855"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aDHM_ = MIN2DHM(16789) --&#62; aDHM_[1] = 11, aDHM_[2] = 15, aDHM_[3] = 49</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31859"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMIN2MIL"
+></A
+>Function  FT_MIN2MIL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIN2MIL( &#60;nMINUTE&#62; ) --&#62; cMILTIME&#13;</PRE
+><P
+> Converts minute of the day to military format time.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31864"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMINUTE&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  numeric integer representing minute of day.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cMILTIME&gt;  character string of form hhmm, where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+> FT_MIL2CIV()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+> FT_CIV2MIL()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTSYS2MIL"
+> FT_SYS2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31887"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MIN2MIL( 279 ) --&#62; 0439</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31891"
+></A
+><H3
+><A
+NAME="FUNCTIONFTMONTH"
+></A
+>Function  FT_MONTH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_MONTH( [ &#60;dGivenDate&#62; ], [nMonthNum] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_MONTH() returns an array containing data about the month
+ containing the given date.</P
+><P
+> 
+ Normally the return data will be based on a year beginning
+ on January 1st with weeks beginning on Sunday.</P
+><P
+> 
+ The beginning of year date and/or beginning of week day can be
+ changed by using FT_DATECNFG(), which will affect all subsequent
+ calls to FT_MONTH() until another call to FT_DATECNFG().</P
+><P
+> 
+ The beginning of year date and beginning of week day may be reset
+ to January 1 and Sunday by calling FT_DATECNFG() with no
+ parameters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31899"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMonthNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 12 signifying a month.
+ Defaults to current month if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and month as a character string "YYYYMM"
+ aDateInfo[2] - The beginning date of the month
+ aDateInfo[3] - The ending date of the month</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+> FT_WEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTQTR"
+> FT_QTR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTYEAR"
+> FT_YEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31927"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about month containing 9/15/90
+ aDateInfo := FT_MONTH( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  199009       (9th month)
+ ? aDateInfo[2]   //  09/01/90     beginning of month 9
+ ? aDateInfo[3]   //  09/30/90     end of week month 9
+ 
+ // get info about month 5 in year containing 9/15/90
+ aDateInfo := FT_MONTH( CTOD("09/15/90"), 5 )
+ ? aDateInfo[1]   //  199005
+ ? aDateInfo[2]   //  05/01/90   beginning of month 5
+ ? aDateInfo[3]   //  05/31/90   end of month 5
+ 
+ // get info about month 5 in current year (1991)
+ aDateInfo := FT_MONTH( , 5 )
+ ? aDateInfo[1]   //  199105
+ ? aDateInfo[2]   //  05/01/91   beginning of month 5
+ ? aDateInfo[3]   //  05/31/91   end of month 5</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31931"
+></A
+><H3
+><A
+NAME="FUNCTIONFTQTR"
+></A
+>Function  FT_QTR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_QTR( [ &#60;dGivenDate&#62; ], [ &#60;nQtrNum&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_QTR() returns an array containing data about the quarter
+ containing the given date.</P
+><P
+> 
+ Normally the return data will be based on a year beginning
+ on January 1st with weeks beginning on Sunday.</P
+><P
+> 
+ The beginning of year date and/or beginning of week day can be
+ changed by using FT_DATECNFG(), which will affect all subsequent
+ calls to FT_QTR() until another call to FT_DATECNFG().</P
+><P
+> 
+ The beginning of year date and beginning of week day may be reset
+ to January 1 and Sunday by calling FT_DATECNFG() with no
+ parameters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31939"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nQtrNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 4 signifying a quarter.
+ Defaults to current quarter if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and quarter as a character string "YYYYQQ"
+ aDateInfo[2] - The beginning date of the quarter
+ aDateInfo[3] - The ending date of the quarter</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+> FT_WEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMONTH"
+> FT_MONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTYEAR"
+> FT_YEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31967"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about quarter containing 9/15/90
+ aDateInfo := FT_QTR( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  199003       (3rd quarter)
+ ? aDateInfo[2]   //  07/01/90     beginning of quarter 3
+ ? aDateInfo[3]   //  09/30/90     end of week quarter 3
+ 
+ // get info about quarter 2 in year containing 9/15/90
+ aDateInfo := FT_QTR( CTOD("09/15/90"), 2 )
+ ? aDateInfo[1]   //  199002
+ ? aDateInfo[2]   //  04/01/90   beginning of quarter 2
+ ? aDateInfo[3]   //  06/30/90   end of quarter 2
+ 
+ // get info about quarter 2 in current year (1991)
+ aDateInfo := FT_QTR( , 2 )
+ ? aDateInfo[1]   //  199102
+ ? aDateInfo[2]   //  04/01/91   beginning of quarter 2
+ ? aDateInfo[3]   //  06/30/91   end of quarter 2</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31971"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSYS2MIL"
+></A
+>Function  FT_SYS2MIL() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SYS2MIL() --&#62; cMILTIME&#13;</PRE
+><P
+> Return current system time as character string in military format.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN31976"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> &lt;cMILTIME&gt;  character string of form hhmm, where 0&lt;=hh&lt;24.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+> FT_MIL2CIV()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+> FT_CIV2MIL()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN31992"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SYS2MIL() --&#62; 1623</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN31996"
+></A
+><H3
+><A
+NAME="FUNCTIONFTWEEK"
+></A
+>Function  FT_WEEK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_WEEK( [ &#60;dGivenDate&#62; ], [ &#60;nWeekNum&#62; ] ) --&#62; aDateinfo&#13;</PRE
+><P
+> FT_WEEK() returns an array containing data about the week
+ containing the given date.</P
+><P
+> 
+ Normally the return data will be based on a year beginning
+ on January 1st with weeks beginning on Sunday.</P
+><P
+> 
+ The beginning of year date and/or beginning of week day can be
+ changed by using FT_DATECNFG(), which will affect all subsequent
+ calls to FT_WEEK() until another call to FT_DATECNFG().</P
+><P
+> 
+ The beginning of year date and beginning of week day may be reset
+ to January 1 and Sunday by calling FT_DATECNFG() with no
+ parameters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32004"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nWeekNum&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a number from 1 to 53 signifying a week.
+ Defaults to current week if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year and week as a character string "YYYYWW"
+ aDateInfo[2] - The beginning date of the week
+ aDateInfo[3] - The ending date of the week</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMONTH"
+> FT_MONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTQTR"
+> FT_QTR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTYEAR"
+> FT_YEAR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTDAYTOBOW"
+> FT_DAYTOBOW()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32033"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // get info about week containing 9/15/90
+ aDateInfo := FT_WEEK( CTOD("09/15/90") )
+ ? aDateInfo[1]   //  199037       (37th week)
+ ? aDateInfo[2]   //  09/09/90     beginning of week 37
+ ? aDateInfo[3]   //  09/15/90     end of week 37
+ 
+ // get info about week 25 in year containing 9/15/90
+ aDateInfo := FT_WEEK( CTOD("09/15/90"), 25 )
+ ? aDateInfo[1]   //  199025
+ ? aDateInfo[2]   //  06/17/90   beginning of week 25
+ ? aDateInfo[3]   //  06/23/90   end of week 25
+ 
+ // get info about week 25 in current year( 1991 )
+ aDateInfo := FT_WEEK( , 25 )
+ ? aDateInfo[1]   //  199025
+ ? aDateInfo[2]   //  06/16/91   beginning of week 25
+ ? aDateInfo[3]   //  06/22/91   end of week 25</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32037"
+></A
+><H3
+><A
+NAME="FUNCTIONFTWORKDAYS"
+></A
+>Function  FT_WORKDAYS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_WORKDAYS( [ &#60;dStart&#62; ], [ &#60;dStop&#62; ] ) --&#62; nDays&#13;</PRE
+><P
+> FT_WORKDAYS() returns a number indicating the number of work days
+ between two dates.  Work days are considered Monday through Friday.
+ (The five day work week none of us Clipper programmers have.)</P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32043"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dStart&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the beginning value for the date range.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dStop&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the ending value for the date range.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The number of work days (Monday through Friday) between two dates.
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32063"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_WorkDays( CTOD("5/16/91"), CTOD("5/20/91") ) // 3  (Th - Mo)
+ ? FT_WorkDays( CTOD("5/18/91"), CTOD("5/19/91") ) // 0  (Sa - Su)
+ ? FT_WorkDays( CTOD("5/17/91"), CTOD("5/17/91") ) // 1  (Fr - Fr)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32067"
+></A
+><H3
+><A
+NAME="FUNCTIONFTWOY"
+></A
+>Function  FT_WOY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_WOY( &#60;dDate&#62; ) --&#62; &#60;nResult&#62;&#13;</PRE
+><P
+> Considers a full week as starting on Sunday, ending on Saturday.
+ First week of year (week 1) may start on any day, and thus
+ contain any number of days.
+ Final week of year (week 53) may contain any number of days.
+ Handles dates with CENTURY ON|OFF, to allow for 21st century.
+ Date validation must be external to this function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32072"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a date in the form "mm/dd/yy" or "mm/dd/yyyy"</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Return numeric position of week within the year or NIL if
+ parameter does not conform.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32087"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These code fragments find the week number, given a date.
+ 
+ // literal character date
+ dDate  := CTOD("01/01/91")
+ nWkNum := FT_WOY(dDate)              // result:  1
+ 
+ // presume DOS date to be 01/06/91
+ nWkNum := FT_WOY(DATE())             // result:  2
+ 
+ // date input
+ cDate  := SPACE(8)
+ @ 4,10 get cDate PICT "##/##/##"     // input 07/04/91
+ READ
+ nWkNum := FT_WOY(CTOD(cDate))        // result: 27
+ 
+ // last day of year
+ nWkNum := FT_WOY(CTOD("12/31/91"))    // result: 53
+ 
+ For a demonstration of this function, compile and link the
+ program WOY.PRG in the Nanforum Toolkit source code.</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32091"
+></A
+><H3
+><A
+NAME="FUNCTIONFTYEAR"
+></A
+>Function  FT_YEAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_YEAR( [ &#60;dGivenDate&#62; ] ) --&#62; aDateInfo&#13;</PRE
+><P
+> FT_YEAR() returns an array containing data about the year
+ containing the given date.</P
+><P
+> 
+ Normally the return data will be based on a year beginning
+ on January 1st.</P
+><P
+> 
+ The beginning of year date can be changed by using FT_DATECNFG(),
+ which will affect all subsequent calls to FT_YEAR() until another
+ call to FT_DATECNFG().</P
+><P
+> 
+ The beginning of year date may be reset to January 1 by calling
+ FT_DATECNFG() with no parameters.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32099"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dGivenDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is any valid date in any date format.  Defaults
+ to current system date if not supplied.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A three element array containing the following data:
+ 
+ aDateInfo[1] - The year as a character string "YYYY"
+ aDateInfo[2] - The beginning date of the year
+ aDateInfo[3] - The ending date of the year</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTWEEK"
+> FT_WEEK()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTMONTH"
+> FT_MONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONFTQTR"
+> FT_QTR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32122"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // Get info about year containing 9/15/90, assuming default
+ // beginning of year is January 1st.
+ aDateInfo := FT_YEAR( Ctod("09/15/90") )
+ ? aDateInfo[1]   //  1990
+ ? aDateInfo[2]   //  01/01/90     beginning of year
+ ? aDateInfo[3]   //  12/31/90     end of year
+ 
+ // get info about current year (1991).
+ aDateInfo := FT_YEAR()
+ ? aDateInfo[1]   //  1991
+ ? aDateInfo[2]   //  01/01/91   beginning of year
+ ? aDateInfo[3]   //  12/31/91   end of year</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32126"
+></A
+><H3
+><A
+NAME="FUNCTIONMONTH"
+></A
+>Function  MONTH() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MONTH(&#60;dDate&#62;) --&#62; nMonth&#13;</PRE
+><P
+> MONTH() is a date conversion function that is useful when you require a
+ numeric month value during calculations for such things as periodic
+ reports.  MONTH() is a member of a group of functions that return
+ components of a date value as numeric values.  The group includes DAY()
+ and YEAR() to return the day and year values as numerics.  CMONTH() is a
+ related function that allows you to return the name of the month from a
+ date value.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32131"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MONTH() returns an integer numeric value in the range of zero to 12.
+ Specifying a null date (CTOD("")) returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONCMONTH"
+> CMONTH()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDAY"
+>DAY()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDOW"
+>DOW()</A
+> <A
+HREF="categdatetime.html#FUNCTIONYEAR"
+>YEAR()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32154"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples return the month of the system date:
+ 
+ ? DATE()                        // Result: 09/01/90
+ ? MONTH(DATE())                 // Result: 9
+ ? MONTH(DATE()) + 1             // Result: 10
+ 
+ This example demonstrates MONTH() acting on a null date:
+ 
+ #define NULL_DATE   (CTOD(""))
+ ? MONTH(NULL_DATE)              // Result: 0</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32158"
+></A
+><H3
+><A
+NAME="FUNCTIONSECONDS"
+></A
+>Function  SECONDS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SECONDS() --&#62; nSeconds&#13;</PRE
+><P
+> SECONDS() is a time function that provides a simple method of
+ calculating elapsed time during program execution, based on the system
+ clock.  It is related to the TIME() function which returns the system
+ time as a string in the form hh:mm:ss.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32163"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SECONDS() returns the system time as a numeric value in the form
+ seconds.hundredths.  The numeric value returned is the number of seconds
+ elapsed since midnight, and is based on a twenty-four hour clock in a
+ range from 0 to 86399.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONTIME"
+> TIME()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32178"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example contrasts the value of TIME() with SECONDS():
+ 
+ ? TIME()               // Result: 10:00:00
+ ? SECONDS()            // Result: 36000.00
+ 
+ This example uses SECONDS() to track elapsed time in seconds:
+ 
+ LOCAL nStart, nElapsed
+ nStart:= SECONDS()
+ .
+ . &#60;statements&#62;
+ .
+ nElapsed:= SECONDS() - nStart
+ ? "Elapsed: " + LTRIM(STR(nElapsed)) + " seconds"</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32182"
+></A
+><H3
+><A
+NAME="FUNCTIONTIME"
+></A
+>Function  TIME() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TIME() --&#62; cTimeString&#13;</PRE
+><P
+> TIME() is a time function that displays the system time on the screen or
+ prints it on a report.  TIME() is related to SECONDS() which returns the
+ integer value representing the number of seconds since midnight.
+ SECONDS() is generally used in place of TIME() for time calculations.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32187"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> TIME() returns the system time as a character string in the form
+ hh:mm:ss.  hh is hours in 24-hour format, mm is minutes, and ss is
+ seconds.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONSECONDS"
+> SECONDS()</A
+> <A
+HREF="categstring.html#FUNCTIONSUBSTR"
+>SUBSTR()</A
+> <A
+HREF="categdatetime.html#FUNCTIONDATE"
+>DATE()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32204"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show the results of TIME() used with SUBSTR()
+ to extract the hour, minutes, and seconds digits:
+ 
+ ? TIME()                       // Result: 10:37:17
+ ? SUBSTR(TIME(), 1, 2)         // Result: 10
+ ? SUBSTR(TIME(), 4, 2)         // Result: 37
+ ? SUBSTR(TIME(), 7, 2)         // Result: 17</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN32208"
+></A
+><H3
+><A
+NAME="FUNCTIONYEAR"
+></A
+>Function  YEAR() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> YEAR(&#60;dDate&#62;) --&#62; nYear&#13;</PRE
+><P
+> YEAR() is a date conversion function that converts a date value to a
+ numeric year value.  Use it in calculations for things like periodic
+ reports or for formatting date displays.</P
+><P
+> 
+ YEAR() is a member of a group of functions that return components of a
+ date value as numeric values.  The group includes DAY() and MONTH()
+ which return the day and month values as numeric values.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN32214"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dDate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the date value to be converted.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> YEAR() returns the year of the specified date value including the
+ century digits as a four-digit numeric value.  The value returned is not
+ affected by the current DATE or CENTURY format.  Specifying a null date
+ (CTOD("")) returns zero.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONDAY"
+> DAY()</A
+> <A
+HREF="categdatetime.html#FUNCTIONMONTH"
+>MONTH()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN32235"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples illustrate YEAR() using the system date:
+ 
+ ? DATE()                    // Result: 09/20/90
+ ? YEAR(DATE())              // Result: 1990
+ ? YEAR(DATE()) + 11         // Result: 2001
+ 
+ This example creates a user-defined function using YEAR() to
+ format a date value in the following form: month day, year.
+ 
+ ? Mdy(DATE())               // Result: September 20, 1990
+ 
+ FUNCTION Mdy( dDate )
+ RETURN CMONTH(dDate) + " " + ;
+ LTRIM(STR(DAY(dDate)));
+ + "," + STR(YEAR(dDate))</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categnetware.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categkeyboardmouse.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>NETWARE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>KEYBOARD/MOUSE</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

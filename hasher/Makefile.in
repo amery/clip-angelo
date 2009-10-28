@@ -39,7 +39,11 @@ cleanc :
 
 $(Clip_B_Dir)/clip_hashextract$(EXESUFF) : Makefile
 	$(E_cd)cd $(Clip_M_Dir)/clip/tools 														\
-		&& ( ( [ -f Makefile ] && [ -f $(CONFIGURE_SH) ] ) || $(CONFIGURE_SH) ) 	\
+		&& ( ( [ -f Makefile ] 																	\
+					&& [ -f $(CONFIGURE_SH) ] 													\
+				) 																						\
+				|| $(CONFIGURE_SH) $(MAKECMDGOALS) 											\
+			) 																							\
 		&& $(MAKE) $(MAKEFLAGS) clip_hashextract$(EXESUFF) $(ADDMAKECMDGOALS)
 
 cfg :

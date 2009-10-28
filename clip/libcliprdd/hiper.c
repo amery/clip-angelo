@@ -5,7 +5,7 @@
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_error.ch"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>

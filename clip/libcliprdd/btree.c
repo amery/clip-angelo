@@ -131,8 +131,8 @@
 #if defined(__GNUC__)
    #include <unistd.h>
 #endif
-#include "../include.h/ci_rdd.h"
-#include "./ci_btree.h"
+#include "ci_rdd.h"
+#include "ci_btree.h"
 #include "ci_error.ch"
 #ifdef HAVE_MMAN_H
    #include <sys/mman.h>

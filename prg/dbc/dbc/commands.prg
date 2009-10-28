@@ -63,11 +63,11 @@
                )
 
 #ifdef RDD_AX
-#ifdef __HARBOUR__
-#include "ads.ch"
-#else
-#include "axntxcdx.ch"
-#endif
+	#ifdef __HARBOUR__
+		#include "ads.ch"
+	#else
+		#include "axntxcdx.ch"
+	#endif
 #endif
 #include "ci_deflist.ch"
 

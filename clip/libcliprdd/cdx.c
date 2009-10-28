@@ -461,9 +461,9 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <ctype.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_error.ch"
-#include "./ci_btree.h"
+#include "ci_btree.h"
 #include "ci_clipcfg.h"
 #ifdef HAVE_REGEX_H
 	#include <regex.h>

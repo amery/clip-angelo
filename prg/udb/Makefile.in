@@ -33,6 +33,7 @@ o_files 			= 		$(addsuffix .o, $(basename $(AB_PRG) ) )
 
 SRC_C_files 		= 			$(sort $(c_files) )
 SRC_PRG_files 		= 			$(sort $(prg_files) $(AB_PRG) )
+E_clip 				=
 export
 
 ######################################################################################
@@ -75,7 +76,7 @@ install : all
 	$(E_cp)cp --remove-destination -fpu$(V) codb_export$(EXESUFF) $(INSTDIR)/bin/
 	$(E_cp)cp --remove-destination -fpu$(V) codb_arename$(EXESUFF) $(INSTDIR)/bin/
 
-test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test$(EXESUFF): test.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -84,7 +85,7 @@ test$(EXESUFF): test.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-test2$(EXESUFF): test2.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+test2$(EXESUFF): test2.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -93,7 +94,7 @@ test2$(EXESUFF): test2.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_make$(EXESUFF): codb_make.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_make$(EXESUFF): codb_make.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -102,7 +103,7 @@ codb_make$(EXESUFF): codb_make.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_load$(EXESUFF): codb_load.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_load$(EXESUFF): codb_load.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -111,7 +112,7 @@ codb_load$(EXESUFF): codb_load.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_export$(EXESUFF): codb_export.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_export$(EXESUFF): codb_export.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -120,7 +121,7 @@ codb_export$(EXESUFF): codb_export.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_pack$(EXESUFF): codb_pack.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_pack$(EXESUFF): codb_pack.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -129,7 +130,7 @@ codb_pack$(EXESUFF): codb_pack.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_reindex$(EXESUFF): codb_reindex.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_reindex$(EXESUFF): codb_reindex.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -138,7 +139,7 @@ codb_reindex$(EXESUFF): codb_reindex.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_rcheck$(EXESUFF): codb_rcheck.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_rcheck$(EXESUFF): codb_rcheck.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 				\
 		$(Trace_clip_d) 	;												\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;			\
@@ -147,7 +148,7 @@ codb_rcheck$(EXESUFF): codb_rcheck.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) $(LIBS) ;	\
 	fi
 
-codb_check$(EXESUFF): codb_check.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_check$(EXESUFF): codb_check.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -156,7 +157,7 @@ codb_check$(EXESUFF): codb_check.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_addobj$(EXESUFF): codb_addobj.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_addobj$(EXESUFF): codb_addobj.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;	\
@@ -165,7 +166,7 @@ codb_addobj$(EXESUFF): codb_addobj.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;		\
 	fi
 
-codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;											\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(LIBS) ;		\
@@ -174,7 +175,7 @@ codb_arename$(EXESUFF): codb_arename.prg $(CLIP) $(LIBCLIP) $(Depend_on)
 		$(CLIP) $(CLIPFLAGS) -o $@ -esM $< $(LIBS) ;			\
 	fi
 
-codb_ab$(EXESUFF): codb_ab.prg $(o_files) $(CLIP) $(LIBCLIP) $(Depend_on)
+codb_ab$(EXESUFF): codb_ab.prg $(o_files) $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -esM $< $(o_files) $(LIBS) ;	\

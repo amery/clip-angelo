@@ -1,6 +1,5 @@
 #!/bin/sh -u
 
 cp -f$V ../configure.ini ../Makefile.ini .
-echo "C_FLAGS += -I $PWD/include.h" >>Makefile.ini
 
 touch configure.ok

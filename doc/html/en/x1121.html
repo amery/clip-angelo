@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Message translation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP localisation"
+HREF="localisation.html"><LINK
+REL="PREVIOUS"
+TITLE="CLIP localisation"
+HREF="localisation.html"><LINK
+REL="NEXT"
+TITLE="Writing and translation the CLIP documentation."
+HREF="x1166.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="localisation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. CLIP localisation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1166.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN1121">9.2. Message translation</H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1123">9.2.1. Gettext and utils for po-files translation</H2
+><P
+><I
+CLASS="FIRSTTERM"
+>Gettext</I
+> is a common package, widely used
+for message <I
+CLASS="FIRSTTERM"
+>localisation</I
+>.</P
+><P
+>The <SPAN
+CLASS="QUOTE"
+>"gettext"</SPAN
+> package have two main parts -
+the message extraction and preparing utilites, 
+and a library for runtime message handling.</P
+><P
+>CLIP use some <SPAN
+CLASS="QUOTE"
+>"gettext"</SPAN
+> utilities for message
+extracting and preparing of message files, but use own code for runtime 
+message handling.</P
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1132">9.2.2. CLIP po-files and dirs, clip_msg* utils</H2
+><P
+>CLIP have number of utilites to make the message handling
+easier.</P
+><P
+></P
+><P
+><B
+>Locale message roadmap:</B
+></P
+><UL
+><LI
+><P
+>Extracting of message and creating the .pot (po-template) file.</P
+><P
+>For extracting messages from C sources may be used 
+<B
+CLASS="COMMAND"
+>xgettext</B
+> command from <B
+CLASS="COMMAND"
+>gettext</B
+>
+package.</P
+><P
+>CLIP automatically extract messages, quoted in [] brackets, and
+store them in
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>$CLIPROOT/locale/pot/&lt;modulename&gt;/&lt;filename&gt;.pot</I
+></SPAN
+>
+file.</P
+><P
+>The <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&lt;modulename&gt;</I
+></SPAN
+> determined by CLIP from current
+working directory name, or may be specified by environment variable 
+<A
+HREF="envir.html"
+>CLIP_MODULE</A
+>.</P
+><P
+>The <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>&lt;filename&gt;</I
+></SPAN
+> determined from name
+of compiled file.</P
+></LI
+><LI
+><P
+>Use script <B
+CLASS="COMMAND"
+>clip_msgmerge</B
+> to merge .pot files
+from directory $CLIPROOT/locale.pot with translated .po files
+in directory $CLIPROOT/locale.po.</P
+><P
+><B
+CLASS="COMMAND"
+>clip_msgmerge</B
+> merge files for all locales in
+$CLIPROOT/locale.po/&lt;locale&gt;. To add new locale you just need
+create appropriate directory, for example, $CLIPROOT/locale.po/ru_RU.KOI8-R
+for locale ru_RU.KOI8-R.</P
+></LI
+><LI
+><P
+>You must edit created .po files in any text editor, or use
+specialized po-file editor, like <B
+CLASS="COMMAND"
+>kbabel</B
+>
+from KDE suite.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Charset definition in .po file.</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Please check the field 
+<SPAN
+CLASS="QUOTE"
+>"Content-Type: text/plain; charset=ASCII"</SPAN
+>
+in first entry of .po file. You must set valid value of charset,
+used in this file (for example, 
+<SPAN
+CLASS="QUOTE"
+>"Content-Type: text/plain; charset=KOI8-R"</SPAN
+>).
+This is very important for correct message handling.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>And the last step: invoke script <B
+CLASS="COMMAND"
+>clip_msgfmt</B
+>
+to format messages into compiled message file in directory
+$CLIPROOT/locale.mo</P
+><P
+>Now, CLIP runtime will fetch nesessary messages from this
+files, and substitute it in your program.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="localisation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1166.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CLIP localisation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="localisation.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Writing and translation the CLIP documentation.</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

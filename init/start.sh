@@ -41,7 +41,6 @@ elif [[ "$option" = "1" ]] || [[ "$option" = "home" ]] || [[ "$option" = "clean"
 	touch $Clip_B_Dir/0 || true
 	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
 		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
 	fi
 	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "2" ]] || [[ "$option" = "local" ]] ; then
@@ -56,7 +55,6 @@ elif [[ "$option" = "2" ]] || [[ "$option" = "local" ]] ; then
 	touch $Clip_B_Dir/0 || true
 	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
 		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
 	fi
 	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "3" ]] || [[ "$option" = "opt" ]] ; then
@@ -71,7 +69,6 @@ elif [[ "$option" = "3" ]] || [[ "$option" = "opt" ]] ; then
 	touch $Clip_B_Dir/0 || true
 	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
 		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
 	fi
 	rm -f $Clip_B_Dir/0
 elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
@@ -86,7 +83,6 @@ elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 	touch $Clip_B_Dir/0 || true
 	if ! [[ -f "$Clip_B_Dir/0" ]] ; then
 		echo "Yoy have NO WRITE RIGHTS on $INSTDIR"
-		exit 1
 	fi
 	rm -f $Clip_B_Dir/0
 #elif [[ "$option" = "5" ]] || [[ "$option" = "sys" ]] ; then
@@ -137,4 +133,4 @@ echo "cd $HOME/bin" 							>>$Clip_B_Dir/linkall.sh
 echo "ln -sf$V $INSTDIR/bin/* ./" 		>>$Clip_B_Dir/linkall.sh
 
 chmod +x $Clip_B_Dir/linkall.sh
-set >start.set.txt
+#set >start.set.txt

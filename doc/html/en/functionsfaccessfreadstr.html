@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FACCESS()-FREADSTR()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="DBGOTOP()-EXP()"
+HREF="functionsdbgotopexp.html"><LINK
+REL="NEXT"
+TITLE="FRENAME()-FTE2D()"
+HREF="functionsfrenamefte2d.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsdbgotopexp.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsfrenamefte2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSFACCESSFREADSTR">FACCESS()-FREADSTR()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN18544"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFACCESS"
+> FACCESS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check access to file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIACCEPT"
+> FCGI_ACCEPT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Accept FCGI connecton from server peer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIFLUSH"
+> FCGI_FLUSH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Flush all buffered data to FCGI server peer.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIGETENV"
+> FCGI_GETENV()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return value of environment variable, or map all variables as name/value pairs.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcgifcgi.html#FUNCTIONFCGIREAD"
+> FCGI_READ()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read output of WWW server, passed via FCGI protocol.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCLOSE"
+> FCLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close an open binary file and write DOS buffers to disk</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFCOUNT"
+> FCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the number of fields in the current .dbf file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFCREATE"
+> FCREATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create and/or truncate a binary file to zero-length</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFERASE"
+> FERASE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete a file from disk</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONFERROR"
+> FERROR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Test for errors after a binary file operation</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFERRORSTR"
+> FERRORSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONFIELDBLOCK"
+> FIELDBLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a set-get code block for a given field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDGET"
+> FIELDGET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Retrieve the value of a field using the ordinal position of the field in the</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDNAME"
+> FIELDNAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a field name from the current database (.dbf) file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDPOS"
+> FIELDPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the position of a field in a work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFIELDPUT"
+> FIELDPUT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the value of a field variable using the ordinal position of the field in</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONFIELDWBLOCK"
+> FIELDWBLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a set-get code block for a field in a given work area</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILE"
+> FILE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if files exist in the xClipper default directory or path</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILEATTR"
+> FILEATTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILEATTRS"
+> FILEATTRS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns string - file attributes.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFILEGETSTR"
+> FILEGETSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns string.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFKLABEL"
+> FKLABEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return function key name</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFKMAX"
+> FKMAX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return number of function keys as a constant</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFLEDIT"
+> __FLEDIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Select the appointed elements from the array of a DbStruct() type.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFLOCK"
+> FLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Lock an open and shared database file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2HEX"
+> FN_BIN2HEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a binary string to hexidecimal</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNBIN2I"
+> FN_BIN2I()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a binary string to numeric</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNCLRBIT"
+> FN_CLRBIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Clear a bit in a number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNERROR"
+> FN_ERROR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return current error status for a Netware Library function</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFNGETFSI"
+> FN_GETFSI()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNHEX2BIN"
+> FN_HEX2BIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a hexidecimal string to to binary</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNI2BIN"
+> FN_I2BIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert an integer to binary string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNIPXINIT"
+> FN_IPXINIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> This function gets the entry address for the IPX interface.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNIS3X"
+> FN_IS3X()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Is the current server a 3.x server?</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNISBIT"
+> FN_ISBIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if a specified bit is set</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNISNET"
+> FN_ISNET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if user is on functioning NetWare node</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNNAMEL"
+> FN_NAMEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> General purpose string to length+string packet function</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFNNETVER"
+> FN_NETVER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNNONULL"
+> FN_NONULL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Strip a string of trailing nulls</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNPEEKSTR"
+> FN_PEEKSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read a string of bytes from memory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNPFEVAL"
+> FN_PFEVAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set preferred server and eval block</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNPOKESTR"
+> FN_POKESTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a string of bytes to memory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNSETBIT"
+> FN_SETBIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set a bit in a number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNSETERR"
+> _FNSETERR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the current Netware Library error status</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNSSFROMP"
+> FN_SSFROMP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove the file server name from a path string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmiscellaneous.html#FUNCTIONFNTOGBIT"
+> FN_TOGBIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Toggle a bit in a number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFOPEN"
+> FOPEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open a binary file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONFOUND"
+> FOUND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the previous search operation succeeded</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFREAD"
+> FREAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read characters from a binary file into a buffer variable</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+> FREADSTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Read characters from a binary file</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsdbgotopexp.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsfrenamefte2d.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DBGOTOP()-EXP()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FRENAME()-FTE2D()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

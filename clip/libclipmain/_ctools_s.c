@@ -246,7 +246,7 @@
 #include <stdarg.h>
 #include <errno.h>
 
-#include "libclipscreen/ci_screen.h"
+#include "ci_screen.h"
 #include "ci_error.ch"
 #include "ci_hashcode.h"
 

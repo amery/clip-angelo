@@ -27,7 +27,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-sheet$(EXESUFF): sheet.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+sheet$(EXESUFF): sheet.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ew -s -l $< -lclip-gtkextra -lclip-gtk $(LIBS)
 

@@ -27,7 +27,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_isql$(EXESUFF): my_isql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my_isql$(EXESUFF): my_isql.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) $(CLIPFLAGS) -o$@ -ewMs $< -lclip-odbc -L$(LIBODBC) -lodbc
 

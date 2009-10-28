@@ -20,7 +20,7 @@ hash1 :
 
 cfg :
 
-rtfdemo$(EXESUFF) : rtfdemo.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+rtfdemo$(EXESUFF) : rtfdemo.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewslM $< -lclip-rtf
 

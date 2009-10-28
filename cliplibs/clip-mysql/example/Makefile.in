@@ -26,7 +26,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_mysql$(EXESUFF): my_mysql.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my_mysql$(EXESUFF): my_mysql.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewMs $< -lclip-mysql $(LIBS)
 

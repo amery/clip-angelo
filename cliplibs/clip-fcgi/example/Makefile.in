@@ -26,7 +26,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-clip_echo.fcgi$(EXESUFF): clip_echo.fcgi.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+clip_echo.fcgi$(EXESUFF): clip_echo.fcgi.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_rm)$(Trace_clip)
 	$(CLIP) -o$@ -ewsl -M $< -lclip-fcgi $(LIBS)
 

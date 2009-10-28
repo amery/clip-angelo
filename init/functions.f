@@ -223,18 +223,19 @@ function banner ()
 
 function beep_on ()
 	{
-		if [ -x /usr/bin/beep ] ;then
-			echo " beep beep" 	>/dev/null
+#		if [ -x /usr/bin/beep ] ;then
+#			echo " beep beep" 	>/dev/null
 #			/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
-		elif [ -x /usr/bin/gnubeep ] ;then
-			echo " beep beep" 	>/dev/null
+#		elif [ -x /usr/bin/gnubeep ] ;then
+#			echo " beep beep" 	>/dev/null
 #			/usr/bin/gnubeep -b
-		elif [ -x /usr/bin/mplayer ] ; then
-			# mplayer -vo null $Clip_M_Dir/sounds/Kopete_Received.ogg &
+#		el
+		if [ -x /usr/bin/mplayer ] ; then
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/Kopete_Received.ogg >/dev/null
 			echo " beep mplayer beep" 	>/dev/null
 			echo "" 					>&0
 		elif [ -x /usr/bin/play ] ; then
-			# play -ao alsa $Clip_M_Dir/sounds/Kopete_Received.ogg &
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/Kopete_Received.ogg >/dev/null
 			echo " beep play beep" 	>/dev/null
 			echo "" 					>&0
 		else
@@ -988,11 +989,11 @@ function create_var ()
 function deception ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-#			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav &
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-#			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav &
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
 			echo " pitty play pitty" 	>&0
 			echo "" 								>&0
 		else
@@ -1012,6 +1013,21 @@ function error ()
 		#  waits for a key pressed
 		# & breaks the program
 		#
+		if [ -x /usr/bin/mplayer ] ; then
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
+			echo " pitty mplayer pitty" 	>&0
+			echo "" 								>&0
+		elif [ -x /usr/bin/play ] ; then
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
+			echo " pitty play pitty" 	>&0
+			echo "" 								>&0
+		else
+			beep_on
+			beep_on
+			beep_on
+			echo " pitty pitty" 		>&0
+			echo "" 								>&0
+		fi
 		OnScreen 1 "...............error.............."
 		OnScreen 1 "...............error.............."
 		OnScreen 0
@@ -1176,6 +1192,7 @@ function GetArch ()
 			else
 				ARCH=i586
 			fi
+			[ -d $Clip_S_Dir ] || mkdir -p$V $Clip_S_Dir
 			echo $ARCH >$Clip_S_Dir/ARCH.setup.ini
 		done
 		if [ $yz -eq 2 ] && [[ $C64 = "x86_64" ]] ; then
@@ -1480,11 +1497,11 @@ function TotalFiles ()
 function trumpet ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-#			mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav &
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav >/dev/null
 			echo " successful mplayer" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-#			play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav &
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav >/dev/null
 			echo " successful play " 		>&0
 			echo "" 								>&0
 		else

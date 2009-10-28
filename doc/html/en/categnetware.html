@@ -1,0 +1,1557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>NETWARE</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="CRYPTO"
+HREF="categcrypto.html"><LINK
+REL="NEXT"
+TITLE="DATE/TIME"
+HREF="categdatetime.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categcrypto.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categdatetime.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGNETWARE">NETWARE</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN30433"
+></A
+><H2
+>Name</H2
+>NETWARE&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN30436"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nStatNum            <A
+HREF="categnetware.html#FUNCTIONFTNWLSTAT"
+>FT_NWLSTAT()</A
+>
+nRc                 <A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+>FT_NWSEMCLOSE( &#60;nHandle&#62; )</A
+>
+nRc                 <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+>FT_NWSEMEX( &#60;nHandle&#62;, &#60;@nValue&#62;, &#60;@nOpenCnt&#62; )</A
+>
+lRet                <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+>FT_NWSEMLOCK ( &#60;cSemaphore&#62;, &#60;@nHandle&#62; )</A
+>
+nRc                 <A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+>FT_NWSEMOPEN( &#60;cName&#62;, &#60;nInitVal&#62;, &#60;@nHandle&#62;, &#60;@nOpenCnt&#62; )</A
+>
+nRc                 <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+>FT_NWSEMSIG( nHandle )</A
+>
+lRet                <A
+HREF="categnetware.html#FUNCTIONFTNWSEMUNLOCK"
+>FT_NWSEMUNLOCK( &#60;nHandle&#62; )</A
+>
+nRc                 <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+>FT_NWSEMWAIT( &#60;nHandle&#62; [, nTimeout ] )</A
+>
+cUid                <A
+HREF="categnetware.html#FUNCTIONFTNWUID"
+>FT_NWUID( [ &#60;nConnection&#62; ] )</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN30448"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30451"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWLSTAT"
+></A
+>Function  FT_NWLSTAT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWLSTAT() --&#62; nStatNum&#13;</PRE
+><P
+> In order to find out information about a particular node logged
+ in to a NetWare server, you will need the logical
+ station number, also known as a "connection number."  This
+ function will return that number.  This will be a number from 1 to 100
+ under NetWare 286, or from 1 to 250 under NetWare 386.  This is *not*
+ the same as a physical station number.</P
+><P
+> 
+ This function requires FT_INT86().</P
+><P
+> 
+ This function does NOT test for the existence of the NetWare shell.
+ The behavior is undefined if no shell is loaded.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30458"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A numeric corresponding to the current logical station number
+ assigned by NetWare.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30468"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOut( "Logical station: " + str( FT_NWLSTAT() ) )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30472"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMCLOSE"
+></A
+>Function  FT_NWSEMCLOSE() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMCLOSE( &#60;nHandle&#62; ) --&#62; nRc&#13;</PRE
+><P
+> Call FT_NWSEMCLOSE() when the app is finished.  This decrements
+ the open count for the semaphore.  If the open count hits zero,
+ the semaphore is deleted by NetWare.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30477"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle, returned from a previous call
+ to FT_NWSEMOPEN().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRc, a numeric, as follows:
+ 
+ 0 - success
+ 255 - invalid semaphore handle</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30501"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOUT( "Close returns:  " + STR( FT_NWSEMCLOSE( nHandle ) ) )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30505"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMEX"
+></A
+>Function  FT_NWSEMEX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMEX( &#60;nHandle&#62;, &#60;@nValue&#62;, &#60;@nOpenCnt&#62; ) --&#62; nRc&#13;</PRE
+><P
+> See the description for FT_NWSEMOPEN().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30510"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle, returned from a previous call
+ to FT_NWSEMOPEN().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;@nValue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> will get the current semaphore value.  THIS NUMERIC
+ ARGUMENT MUST BE PASSED BY REFERENCE!
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;@nOpenCnt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> will get the current number of workstations
+ that have opened the semaphore.  THIS NUMERIC ARGUMENT MUST BE
+ PASSED BY REFERENCE!</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRc, a numeric, as follows:
+ 
+ 0 - success
+ 255 - invalid semaphore handle
+ 
+ In addition, nValue will be set to the semaphore's current value,
+ and nOpenCnt will be set to the number of stations that have
+ opened the semaphore.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+> FT_NWSEMCLOSE()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30544"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nInitVal := 2
+ nHandle  := 0
+ nOpenCnt := 0
+ 
+ FT_NWSEMOPEN( "Semaphore Test", nInitVal, @nHandle, @nOpenCnt )
+ 
+ nRc := FT_NWSEMWAIT( nHandle )
+ IF nRc == 254
+ QOUT( "All slots for this resource are currently in use" )
+ QUIT
+ ENDIF
+ 
+ FT_NWSEMEX( nHandle, @nValue, @nOpenCnt )
+ QOUT( "Semaphore test--&#62; Open at [" + ;
+ ALLTRIM(STR(nOpenCnt))        + ;
+ "] stations, value is ["      + ;
+ ALLTRIM(STR(nValue)) + "]" )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30548"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMLOCK"
+></A
+>Function  FT_NWSEMLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMLOCK ( &#60;cSemaphore&#62;, &#60;@nHandle&#62; ) --&#62; lRet&#13;</PRE
+><P
+> FT_NWSEMLOCK() uses the Nanforum Toolkit's NetWare Semaphore API
+ functions in order to provide a general purpose "lock" you can use in
+ a NetWare environment.</P
+><P
+> 
+ An interesting byproduct of NetWare's semaphore functions is
+ the "open count" which tells you how many connections have this
+ semaphore open.  This is different from the semaphore's _value_,
+ which is set when the semaphore is opened and changed with
+ signal() and wait().</P
+><P
+> 
+ The point of semaphores is that you don't care how many users
+ are using the resource; you merely wait on a semaphore until
+ the resource becomes available or you give up.  When you're done,
+ you signal it and off you go.</P
+><P
+> 
+ Back to the open count.  FT_NWSEMLOCK() opens the semaphore
+ as named in &lt;cSemaphore&gt;.  After it is opened, the open count
+ is checked.  If it is anything other than 1, that means someone
+ else has it (or you failed in your open) so the semaphore is
+ closed and the "lock" is refused.  If the value is 1, then your
+ app is that 1 station so the "lock" is granted.</P
+><P
+> 
+ You can use a semaphore lock to control access to anything
+ that Clipper's RLOCK() and FLOCK() can't help you with, such
+ as text files written with the low level file i/o functions,
+ etc.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30557"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSemaphore&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the name of a semaphore you want to "lock."</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore's handle, if you get the lock.
+ THIS MUST BE PASSED BY REFERENCE!</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> lRet == .t. if you get the lock, .f. if you don't.
+ If the lock succeeds, &lt;nHandle&gt; will contain the semaphore
+ handle.  If it fails, the value of &lt;nHandle&gt; is undefined.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMUNLOCK"
+> FT_NWSEMUNLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30586"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL nHandle := 0
+ IF FT_NWSEMLOCK( "k:\apps\error.log", @nHandle )
+ // Note, you aren't actually LOCKING this file, you are
+ // just locking a semaphore by the same name.  As long as
+ // all apps that might be using this file are cooperating
+ // with the same kind of semaphore lock, you can effectively
+ // control access to the file.
+ ELSE
+ QOUT("Couldn't lock file.")
+ ENDIF
+ * Processing, then:
+ FT_NWSEMUNLOCK( nHandle )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30590"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMOPEN"
+></A
+>Function  FT_NWSEMOPEN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMOPEN( &#60;cName&#62;, &#60;nInitVal&#62;, &#60;@nHandle&#62;, &#60;@nOpenCnt&#62; ) --&#62; nRc&#13;</PRE
+><P
+> A semaphore is simply a label that indirectly controls network
+ activity.  There is a semaphore name, which can be up to 127
+ characters, and an associated value, which can range from 0 to
+ 127.</P
+><P
+> 
+ A semaphore can be used for many things, but is most often used
+ to limit the number of users in an application, and to control
+ access to a network resource.</P
+><P
+> 
+ A semaphore essentially allows you to place locks on resources
+ other than files.</P
+><P
+> 
+ An application begins the process by calling FT_NWSEMOPEN().
+ If the semaphore doesn't exist, NetWare will create it.
+ FT_NWSEMOPEN() returns a handle that is used in other semaphore
+ calls.</P
+><P
+> 
+ Applications use FT_NWSEMWAIT() to wait for a semaphore to
+ become available.  FT_NWSEMWAIT() decrements the semaphore's
+ value by 1.  If the value &gt; 0, then the application should
+ be allowed to access the semaphore's resource.  If the value
+ goes negative, then the application is placed in a queue.
+ How long your app is in the queue is determined by how you
+ set the timeout parameter.  If you can't get the resource in
+ the time you allot, you're let out of the queue and the
+ value increments by 1 again.</P
+><P
+> 
+ When an application finishes with a semaphore, it should
+ call FT_NWSEMSIG() to increment the value, and then
+ FT_NWSEMCLOSE() to close the semaphore.  When the semaphore's
+ open count goes to 0, NetWare deletes it.</P
+><P
+> 
+ FT_NWSEMEX() can be used to examine the value and open count
+ without affecting them.</P
+><P
+> 
+ For an interesting discussion on the operating system aspects
+ of semaphores, check "Operating Systems Design and Implementation"
+ by A. Tanenbaum, page 60.  For more details on NetWare's
+ semaphore facilities, refer to Charles Rose's "Programmer's
+ Guide to NetWare".  The "Programmer's Guide" will make an
+ excellent companion guide to the source code for all NetWare
+ functions in the Nanforum Toolkit.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30602"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cName&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore name, maximum length is 127 characters.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInitVal&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the initial value for the semaphore.  It must start
+ as a positive number, to a maximum of 127.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;@nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle.  THIS MUST BE PASSED BY
+ REFERENCE!  On exit, &lt;nHandle&gt; will contain a numeric value that
+ refers to the opened semaphore.  You will need it to pass to
+ other semaphore functions!  PASS IT BY REFERENCE!
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;@nOpenCnt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of stations that have opened the
+ semaphore.  THIS MUST BE PASSED BY REFERENCE! On exit, &lt;nOpenCnt&gt;
+ will contain a numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRc, a numeric result code, as follows:
+ 
+ 0 - success
+ 254 - Invalid semaphore name length
+ 255 - Invalid semaphore value
+ 
+ &lt;nHandle&gt; will contain the semaphore handle, and
+ &lt;nOpenCnt&gt; will contain the number of stations that have opened
+ the semaphore.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+> FT_NWSEMCLOSE()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30641"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL nInitVal, nRc, nHandle, nOpenCnt
+ 
+ nInitVal := 2
+ nRc      := FT_NWSEMOPEN( "Semaphore Test", nInitVal, ;
+ @nHandle, @nOpenCnt )
+ 
+ IF nRc != 0
+ QOUT =: "Error: " + STR( nRc ) )
+ QUIT
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30645"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMSIG"
+></A
+>Function  FT_NWSEMSIG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMSIG( nHandle ) --&#62; nRc&#13;</PRE
+><P
+> Use FT_NWSEMSIG() when your app has finished with the resource
+ locked by a semaphore.  This will increase the value (thus
+ making a slot available to another app).</P
+><P
+> 
+ For more information, see the description under FT_NWSEMOPEN().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30651"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle, returned from a previous call
+ to FT_NWSEMOPEN().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRc, a numeric, as follows
+ 
+ 0 - success
+ 1 - semaphore overflow ( value &gt; 127 )
+ 255 - invalid semaphore handle</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+> FT_NWSEMCLOSE()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30675"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOUT( "Signal returns: " + STR( FT_NWSEMSIG( nHandle ) ) )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30679"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMUNLOCK"
+></A
+>Function  FT_NWSEMUNLOCK() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMUNLOCK( &#60;nHandle&#62; ) --&#62; lRet&#13;</PRE
+><P
+>  This call unlocks a semaphore prevsiously locked via FT_NWSEMLOCK().
+ It is important that you get a valid semaphore handle from
+ FT_NWSEMLOCK() before you use this call.  Make sure when you call
+ FT_NWSEMLOCK() that you pass a numeric parameter in for the handle
+ BY REFERENCE.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30684"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle returned from FT_NWSEMLOCK()</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> lRet == .t. if you successfully unlock the semaphore, .f. if
+ you don't.  If this call fails, it could be that you're passing
+ an invalid semaphore handle.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30708"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> LOCAL nHandle := 0
+ IF FT_NWSEMLOCK( "k:\apps\error.log", @nHandle )
+ // Note, you aren't actually LOCKING this file, you are
+ // just locking a semaphore by the same name.  As long as
+ // all apps that might be using this file are cooperating
+ // with the same kind of semaphore lock, you can effectively
+ // control access to the file.
+ ELSE
+ QOUT("Couldn't lock file.")
+ ENDIF
+ * Processing, then:
+ FT_NWSEMUNLOCK( nHandle )
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30712"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWSEMWAIT"
+></A
+>Function  FT_NWSEMWAIT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMWAIT( &#60;nHandle&#62; [, nTimeout ] ) --&#62; nRc&#13;</PRE
+><P
+> See the description for the FT_NWSEMOPEN() function.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30717"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nHandle&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the semaphore handle, returned from a previous call
+ to FT_NWSEMOPEN().
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nTimeOut&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an optional parameter telling how long you wish to
+ wait on this semaphore.  This is a numeric indicating the number
+ of clock ticks (approx 1/18 sec ) to wait.  A zero (the default)
+ means "don't wait."</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRc, a numeric, as follows:
+ 
+ 0 - success
+ 254 - timeout failure
+ 255 - invalid semaphore handle</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+> FT_NWSEMCLOSE()</A
+> <A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30746"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWSEMOPEN( "Semaphore Test", nInitVal, @nHandle, @nOpenCnt )
+ 
+ nRc := FT_NWSEMWAIT( nHandle )
+ IF nRc == 254
+ QOUT( "All slots for this resource are currently in use" )
+ QUIT
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN30750"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNWUID"
+></A
+>Function  FT_NWUID() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NWUID( [ &#60;nConnection&#62; ] ) --&#62; cUid&#13;</PRE
+><P
+> FT_NWUID() returns the current NetWare userid, or "login
+ name."  This is useful for implementing security or audit
+ trail procedures within your programs.</P
+><P
+> 
+ There is no simple way a user can "fool" this function into
+ retrieving an incorrect value, provided a NetWare shell is loaded.</P
+><P
+> 
+ This function requires FT_INT86() and FT_NWLSTAT()</P
+><P
+> 
+ This function does NOT test for the existence of the NetWare shell.
+ The behavior is undefined if no shell is loaded. You'll usually get
+ garbage.  This function has not been tested on NetWare 386.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN30758"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nConnection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a connection number, or logical station number,
+ to find a userid for.  Under NetWare 286, this number can be from
+ 1 to 100.  Under NetWare 386, 1-250.  If not supplied, FT_NWUID()
+ defaults to the current connection (i.e., the connection running
+ the application).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> A string containing the userid, or "login name."
+ The maximum length of this string, as defined by current
+ versions of Novell NetWare, is 48 characters.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN30773"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> QOut( "I am: " + FT_NWUID() )
+ 
+ FOR x := 1 TO 100
+ cUid := FT_NWUID( x )
+ IF .NOT Empty( cUid )
+ QOut( Str( x, 3 ) + Space(3) + cUid )
+ ENDIF
+ NEXT</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categcrypto.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categdatetime.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>CRYPTO</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DATE/TIME</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

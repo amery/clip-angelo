@@ -1,0 +1,426 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  UIDOCUMENT </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  UICOMBOBOX "
+HREF="classuicombobox.html"><LINK
+REL="NEXT"
+TITLE="Class  UIDRIVER "
+HREF="classuidriver.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classuicombobox.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classuidriver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSUIDOCUMENT">Class  UIDOCUMENT</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN11162"
+></A
+><H2
+>Name</H2
+> UIDOCUMENT &nbsp;--&nbsp; Class for document window. It inherits properties and methods of class <A
+HREF="classuichildwindow.html"
+>UIChildWindow</A
+>. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN11166"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> UIDocument([&#60;caption&#62;],&#60;parent&#62;,[&#60;name&#62;])	--&#62; UIDocument object
+ </PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSUIDOCUMENT"
+></A
+><H2
+>Description </H2
+><P
+> 
+ Class UIDocument</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN11172"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN11174"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;className&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>	- Class name. Value should be "UIDocument".</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;actions&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>	- Button bar. Type is <A
+HREF="classuibuttonbar.html"
+>UIButtonBar</A
+>.</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;userSpace&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>	- Scrolled region for widget placement. <A
+HREF="classuivbox.html"
+>UIVBox</A
+> object.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN11191"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN11193"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classuidocument.html#CLASS-UIDOCUMENT-UIDOCUMENT"
+>UIDOCUMENT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Constructor. Create child window with button bar at bottom and scrolled region for widget placement.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN11200"
+></A
+><H3
+><A
+NAME="CLASS-UIDOCUMENT-UIDOCUMENT"
+></A
+>Method UIDOCUMENT:UIDOCUMENT()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> UIDocument([&#60;caption&#62;],&#60;parent&#62;,[&#60;name&#62;])	--&#62; UIDocument object</PRE
+><P
+></P
+><P
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN11206"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;caption&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- String. Caption of child window.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;parent&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	- Window object. Parent window which should be contains child window. Before create first child window for this parent window must be called method setMDI().</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;name&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		- String. Window name.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+>NIL</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN11230"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN11232"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> /* Create main window and document window */
+ win := UIMainWindow("Main window")
+ win:setMDI()
+ docWindow := UIDocument("Document", win, "doc")
+ 
+ /* Add edit field and button for close document window */
+ docWindow:userSpace:add(UIEdit())
+ docWindow:actions:add(UIButton(, "&#38;Close", {|| docWindow:close() } )))
+ 
+ /* Show these windows */
+ docWindow:show()
+ win:show()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN11234"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classuicombobox.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classuidriver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  UICOMBOBOX</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  UIDRIVER</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -27,7 +27,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "../include.h/ci_clip.h"
+#include "ci_clip.h"
 
 #define MAXRETURNSIZE 64
 	   /* max length of 'goto' string */

@@ -1,0 +1,2719 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>NUMERIC</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="STRING"
+HREF="categstring.html"><LINK
+REL="NEXT"
+TITLE="OBJECT"
+HREF="categobject.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categstring.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categobject.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGNUMERIC">NUMERIC</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN27199"
+></A
+><H2
+>Name</H2
+>NUMERIC&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN27202"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nPositive           <A
+HREF="categnumeric.html#FUNCTIONABS"
+>ABS(&#60;nExp&#62;)</A
+>
+nCode               <A
+HREF="categstring.html#FUNCTIONASC"
+>ASC(&#60;cExp&#62;)</A
+>
+TRUE || FALSE       <A
+HREF="categstring.html#FUNCTIONBETWEEN"
+>BETWEEN(&#60;TargetData&#62;, &#60;FirstData&#62;, &#60;SecondData&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+>BIN2I(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L(&#60;cSignedInt&#62;)</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W(&#60;cUnsignedInt&#62;)</A
+>
+cChar               <A
+HREF="categstring.html#FUNCTIONCHR"
+>CHR(&#60;nCode&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONDSTRTON"
+>DSTRTON(&#60;sString&#62;)</A
+>
+lEmpty              <A
+HREF="categarray.html#FUNCTIONEMPTY"
+>EMPTY(&#60;exp&#62;)</A
+>
+nAntilogarithm      <A
+HREF="categnumeric.html#FUNCTIONEXP"
+>EXP(&#60;nExponent&#62;)</A
+>
+&#60;nValue&#62;            <A
+HREF="categstring.html#FUNCTIONFSTRTON"
+>FSTRTON(&#60;sString&#62;)</A
+>
+nGCD                <A
+HREF="categnumeric.html#FUNCTIONFTGCD"
+>FT_GCD( &#60;nNumber1&#62;, &#60;nNumber2&#62; )</A
+>
+nNetPV              <A
+HREF="categnumeric.html#FUNCTIONFTNETPV"
+>FT_NETPV( &#60;nInitialInvestment&#62;, &#60;nInterestRate&#62;, &#60;aCashFlow&#62; ; [, &#60;nNoOfCashFlows&#62; ] )</A
+>
+nRand               <A
+HREF="categnumeric.html#FUNCTIONFTRAND1"
+>FT_RAND1( &#60;nMax&#62; )</A
+>
+nNumber             <A
+HREF="categnumeric.html#FUNCTIONFTROUND"
+>FT_ROUND( &#60;nNumber&#62; [, &#60;nRoundToAmount&#62;           ; [, &#60;cRoundType&#62;  [, &#60;cRoundDirection&#62;   ; [, &#60;nAcceptableError&#62; ] ] ] ] )</A
+>
+&#60;sStr&#62;              <A
+HREF="categstring.html#FUNCTIONHASHNAME"
+>HASHNAME(&#60;nHashCode&#62;)</A
+>
+&#60;nHashCode&#62;         <A
+HREF="categstring.html#FUNCTIONHASHSTR"
+>HASHSTR(&#60;sStr&#62;)</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN(&#60;nInteger&#62;)</A
+>
+nInteger            <A
+HREF="categnumeric.html#FUNCTIONINT"
+>INT(&#60;nExp&#62;)</A
+>
+lBoolean            <A
+HREF="categstring.html#FUNCTIONISDIGIT"
+>ISDIGIT(&#60;cString&#62;)</A
+>
+cBinaryInteger      <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN(&#60;nExp&#62;)</A
+>
+nCount              <A
+HREF="categarray.html#FUNCTIONLEN"
+>LEN(&#60;cString&#62; | &#60;aTarget&#62;)</A
+>
+nNaturalLog         <A
+HREF="categnumeric.html#FUNCTIONLOG"
+>LOG(&#60;nExp&#62;)</A
+>
+dLarger             <A
+HREF="categnumeric.html#FUNCTIONMAX"
+>MAX(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nLarger MAX(&#60;dExp1&#62;, &#60;dExp2&#62;)</A
+>
+dSmaller            <A
+HREF="categnumeric.html#FUNCTIONMIN"
+>MIN(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nSmaller MIN(&#60;dExp1&#62;, &#60;dExp2&#62;)</A
+>
+nRemainder          <A
+HREF="categnumeric.html#FUNCTIONMOD"
+>MOD(&#60;nDividend&#62;, &#60;nDivisor&#62;)</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+nRounded            <A
+HREF="categnumeric.html#FUNCTIONROUND"
+>ROUND(&#60;nNumber&#62;, &#60;nDecimals&#62;)</A
+>
+nRoot               <A
+HREF="categnumeric.html#FUNCTIONSQRT"
+>SQRT(&#60;nNumber&#62;)</A
+>
+cFormatString       <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM(&#60;exp&#62;, &#60;cSayPicture&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+nNumber             <A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL(&#60;cNumber&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN27238"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27241"
+></A
+><H3
+><A
+NAME="FUNCTIONABS"
+></A
+>Function  ABS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ABS(&#60;nExp&#62;) --&#62; nPositive&#13;</PRE
+><P
+>  ABS() is a numeric function that determines the magnitude of a numeric
+ value independent of its sign.  It lets you, for example, obtain the
+ difference between two numbers as a positive value without knowing in
+ advance which of the two is larger.</P
+><P
+> 
+ As a formalism, ABS(x) is defined in terms of its argument, x, as
+ follows: if x &gt;= 0, ABS(x) returns x; otherwise, ABS(x) returns the
+ negation of x.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27249"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the numeric expression to be evaluated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  ABS() returns a number representing the absolute value of its argument.
+ The return value is a positive number or zero.
+ 
+ </P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27264"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples show typical results from ABS():
+ 
+ nNum1 := 100
+ nNum2 := 150
+ ? nNum1 - nNum2                  // Result: -50
+ ? ABS(nNum1 - nNum2)             // Result: 50
+ ? ABS(nNum2 - nNum1)             // Result: 50
+ ? ABS(-12)                       // Result: 12
+ ? ABS(0)                         // Result: 0
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27268"
+></A
+><H3
+><A
+NAME="FUNCTIONBIN2I"
+></A
+>Function  BIN2I() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BIN2I(&#60;cSignedInt&#62;) --&#62; nNumber&#13;</PRE
+><P
+> BIN2I() is a low-level file function that is used with FREAD() to
+ convert a two-byte character string formatted as a signed integer to a
+ xClipper numeric data type.  This is most useful when you are reading
+ foreign file types and want to read numeric data in its native format.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27273"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSignedInt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string in the form of a 16-bit signed
+ integer number--least significant byte first.  Only the first two
+ characters are used by the function; all others are ignored.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> BIN2I() returns an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+> BIN2L()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+>FREADSTR()</A
+> <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN()</A
+> <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27298"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  This example opens a database file using low-level file
+ functions and reads the date of last update (bytes 1-3).  The result
+ is the same as with LUPDATE():
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FOPEN("Sales.dbf", FO_READ)
+ //
+ // Point to byte 1 in the file
+ FSEEK(nHandle, 1, FS_SET)
+ //
+ // Read date of last update
+ nYear := BIN2I(FREADSTR(nHandle, 1) + CHR(0))
+ nMonth := BIN2I(FREADSTR(nHandle, 1) + CHR(0))
+ nDay := BIN2I(FREADSTR(nHandle, 1) + CHR(0))
+ //
+ ? LTRIM(STR(nMonth)), LTRIM(STR(nDay)), LTRIM(STR(nYear))
+ FCLOSE(nHandle)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27302"
+></A
+><H3
+><A
+NAME="FUNCTIONBIN2L"
+></A
+>Function  BIN2L() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BIN2L(&#60;cSignedInt&#62;) --&#62; nNumber&#13;</PRE
+><P
+> BIN2L() is a low-level file function that is used with FREAD() to
+ convert a four-byte character string formatted as a signed integer to a
+ xClipper numeric data type.  This is most useful when you are reading
+ foreign file types and want to read numeric data in its native format.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27307"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSignedInt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string in the form of a 32-bit signed
+ integer number--least significant byte first.  Only the first four
+ characters are used by the function; all others are ignored.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> BIN2L() returns an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+>FREADSTR()</A
+> <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN()</A
+> <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27332"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens a database file using low-level file
+ functions and reads the number of records (bytes 4-7).  The result is
+ the same as with LASTREC():
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FOPEN("Sales.dbf", FO_READ)
+ // Note:  Sales.dbf contains 84 records
+ //
+ // Point to byte 4
+ FSEEK(nHandle, 4, FS_SET)
+ //
+ // Read the number of records
+ cRecords := SPACE(4)
+ FREAD(nHandle, @cRecords, 4)
+ //
+ ? LTRIM(STR(BIN2L(cRecords)))         // Result: 84
+ FCLOSE(nHandle)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27336"
+></A
+><H3
+><A
+NAME="FUNCTIONBIN2W"
+></A
+>Function  BIN2W() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> BIN2W(&#60;cUnsignedInt&#62;) --&#62; nNumber&#13;</PRE
+><P
+> BIN2W() is a low-level file function that is used with FREAD() to
+ convert a two-byte character string formatted as an unsigned integer to
+ a xClipper numeric data type.  This is most useful when you are
+ reading from a binary file and want to read data in its native format.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27341"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cUnsignedInt&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string in the form of a 16-bit
+ unsigned integer number--least significant byte first.  Only the first
+ two characters are used by the function; all others are ignored.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> BIN2W() returns an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREAD"
+>FREAD()</A
+> <A
+HREF="categfileio.html#FUNCTIONFREADSTR"
+>FREADSTR()</A
+> <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN()</A
+> <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27366"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens a database file using low-level file
+ functions and reads the number of bytes per record (bytes 10-11).
+ The result is the same as with RECSIZE():
+ 
+ #include "Fileio.ch"
+ //
+ nHandle := FOPEN("Sales.dbf", FO_READ)
+ // Note:  The length of a record in Sales.dbf is 124
+ //
+ // Point to byte 10, the first record size byte
+ FSEEK(nHandle, 10, FS_SET)
+ //
+ // Read record size
+ cRecSize := SPACE(2)
+ FREAD(nHandle, @cRecSize, 2)
+ //
+ ? LTRIM(STR(BIN2W(cRecSize)))            // Result: 124
+ FCLOSE(nHandle)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27370"
+></A
+><H3
+><A
+NAME="FUNCTIONEXP"
+></A
+>Function  EXP() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> EXP(&#60;nExponent&#62;) --&#62; nAntilogarithm&#13;</PRE
+><P
+> EXP() is a mathematical function that calculates the value, y, (the
+ antilogarithm) of the following equation,</P
+><P
+> 
+ e**x = y</P
+><P
+> 
+ where e is the base of natural logarithms (2.71828...) and x is
+ &lt;nExponent&gt;.  The maximum value of &lt;nExponent&gt; is 45 before a numeric
+ overflow occurs.  EXP() and LOG() are inverse functions.</P
+><P
+> 
+ The number of decimal places displayed is determined solely by SET
+ DECIMALS regardless of the current SET FIXED value.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27378"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExponent&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the natural logarithm for which a numeric value is to
+ be calculated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> EXP() returns a numeric value that is equivalent to the value e raised
+ to the specified power.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONLOG"
+> LOG()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27398"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example demonstrates several invocations of EXP():
+ 
+ ? EXP(1)                       // Result: 2.72
+ SET DECIMALS TO 10
+ ? EXP(1)                       // Result: 2.7182818285
+ ? LOG(EXP(1))                  // Result: 1.0000000000</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27402"
+></A
+><H3
+><A
+NAME="FUNCTIONFTGCD"
+></A
+>Function  FT_GCD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_GCD( &#60;nNumber1&#62;, &#60;nNumber2&#62; ) --&#62; nGCD&#13;</PRE
+><P
+> This function calculates the greatest common divisor between 2 numbers,
+ i.e., the largest number that will divide into both numbers evenly.  It
+ will return zero (0) if either number is zero.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27407"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the first number to find the GCD of.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber2&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the second number to find the GCD of.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The greatest common divisor of the 2 numbers, or 0 if either is 0.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27427"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> ? FT_GCD(10,15)                  // Result: 5
+ ? FT_GCD(108,54)                 // Result: 54
+ ? FT_GCD(102,54)                 // Result: 6
+ ? FT_GCD(111,17)                 // Result: 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27431"
+></A
+><H3
+><A
+NAME="FUNCTIONFTNETPV"
+></A
+>Function  FT_NETPV() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_NETPV( &#60;nInitialInvestment&#62;, &#60;nInterestRate&#62;, &#60;aCashFlow&#62; ;
+ [, &#60;nNoOfCashFlows&#62; ] ) --&#62; nNetPV&#13;</PRE
+><P
+> This function calculates the net present value, the difference
+ between the cost of an initial investment and the present value
+ of the expected cash flow(s) from the investment.  The present
+ value of the expected cashflow(s) is calculated at the specified
+ interest rate, which is often referred to as the "cost of capital".</P
+><P
+> 
+ This function can be used to evaluate alternative investments.
+ The larger the NPV, the more profitable the investment.  See
+ also the FutureValue and PresentValue for further explanations.
+ The formula to calculate the net present value is:</P
+><P
+> 
+ NetPresentValue = SUM(CashFlow[i] / ((1 + InterestRate) ** i))
+ FOR i = 1 TO NoOfCashFlows</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27438"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInitialInvestment&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the amount of cash invested for purposes
+ of generating the cash flows.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInterestRate&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the annual interest rate used to discount
+ expected cash flows (10.5% = 10.5, not .105).
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;aCashFlow&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an array of the expected cash receipts each year.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNoOfCashFlows&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number of years cash flows are expected
+ (optional, Len( aCashFlow ) ).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The difference between the initial investment and the discounted
+ cash flow in dollars.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27468"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nNetPresentValue := FT_NETPV(10000, 10, { 10000,15000,16000,17000 } )</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27472"
+></A
+><H3
+><A
+NAME="FUNCTIONFTRAND1"
+></A
+>Function  FT_RAND1() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RAND1( &#60;nMax&#62; ) --&#62; nRand&#13;</PRE
+><P
+> Generates a non-integer random number based on the Linear
+ Congruential Method.</P
+><P
+> 
+ If you need a random number between 1 and &lt;nMax&gt; inclusive, INT()
+ the result and add 1.</P
+><P
+> 
+ If you need a random number between 0 and &lt;nMax&gt; inclusive,
+ then you should ROUND() the result.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27479"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nMax&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Maximum limit of value to be produced.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> nRand is a random number between 0 (inclusive) and &lt;nMax&gt; (exclusive).</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27494"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> nResult := INT( FT_RAND1(100) ) + 1    // 1 &#60;= nResult &#60;= 100
+ nResult := ROUND( FT_RAND1(100), 0 )   // 0 &#60;= nResult &#60;= 100
+ nResult := FT_RAND1( 1 )               // 0 &#60;= nResult &#60; 1</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27498"
+></A
+><H3
+><A
+NAME="FUNCTIONFTROUND"
+></A
+>Function  FT_ROUND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_ROUND( &#60;nNumber&#62; [, &#60;nRoundToAmount&#62;           ;
+ [, &#60;cRoundType&#62;  [, &#60;cRoundDirection&#62;   ;
+ [, &#60;nAcceptableError&#62; ] ] ] ] )           --&#62; nNumber&#13;</PRE
+><P
+> This function will allow you to round a number.  The following can
+ be specified:
+ a. Direction (up, down or normal - normal is 4/5 convention)
+ b. Type (whole, decimal, fraction)
+ c. Amount (100's, 5 decimals, 16th, etc.)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27503"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the number to round
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nRoundToAmount&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the fraction to round to or the number of places,
+ default is 2.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cRoundType&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the type of rounding desired
+ 
+ "D" for Decimal       (3 for thousandth, 1/1000)  (default)
+ "F" for Fraction      (3 for thirds, 1/3)
+ "W" for Whole numbers (3 for thousand, 1000)
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cRoundDirection&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the direction to round the number toward
+ 
+ "U" to round Up      1.31 --&gt;  1.4
+ -1.31 --&gt; -1.4
+ "D" to round Down    1.36 --&gt;  1.3
+ -1.36 --&gt; -1.3
+ "N" to round Normal  1.5  --&gt;  2
+ -1.5  --&gt; -2
+ 1.49 --&gt;  1
+ -1.49 --&gt; -1
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nAcceptableError&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the amount that is considered acceptable
+ to be within, i.e., if you're within this amount of the number
+ you don't need to round</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The number, rounded as specified.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27538"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> // round normal to 2 decimal places
+ nDollars := FT_ROUND(nDollars)
+ 
+ // round normal to 6 decimal places
+ nIntRate := FT_ROUND(nIntRate, 6)
+ 
+ // round to nearest thousands
+ nPrice   := FT_ROUND(nPrice, 3, NEAREST_WHOLE_NUMBER)
+ 
+ // round Up to nearest third
+ nAmount  := FT_ROUND(nAmount, 3, NEAREST_FRACTION, ROUND_UP)
+ 
+ // round down to 3 decimals Within .005
+ nAvg     := FT_ROUND(nAvg, 3, , ROUND_DOWN, .005)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27542"
+></A
+><H3
+><A
+NAME="FUNCTIONI2BIN"
+></A
+>Function  I2BIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> I2BIN(&#60;nInteger&#62;) --&#62; cBinaryInteger&#13;</PRE
+><P
+> I2BIN() is a low-level file function that converts an integer numeric
+ value to a character string formatted as a binary integer--least
+ significant byte first.  I2BIN() is used with FWRITE() to convert a
+ xClipper numeric to a standard binary form.  The inverse of I2BIN() is
+ BIN2I().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27547"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nInteger&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is an integer numeric value to be converted.  Decimal
+ digits are truncated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> I2BIN() returns a two-byte character string containing a 16-bit binary
+ integer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categstring.html#FUNCTIONCHR"
+>CHR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE()</A
+> <A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+>L2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27572"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example opens a database file using low-level file
+ functions and writes a new date of the last update to bytes 1-3:
+ 
+ #include "Fileio.ch"
+ //
+ nHandle = FOPEN("Sales.dbf", FO_READWRITE)
+ //
+ // Convert date of last update to int
+ nYear = I2BIN(90)
+ nMonth = I2BIN(12)
+ nDay = I2BIN(15)
+ //
+ // Point to the date of last update
+ FSEEK(nHandle, 1, FS_SET)
+ //
+ // Write the new update date using only the first byte
+ FWRITE(nHandle, nYear, 1)
+ FWRITE(nHandle, nMonth, 1)
+ FWRITE(nHandle, nDay, 1)
+ FCLOSE(nHandle)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27576"
+></A
+><H3
+><A
+NAME="FUNCTIONINT"
+></A
+>Function  INT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> INT(&#60;nExp&#62;) --&#62; nInteger&#13;</PRE
+><P
+>  INT() is a numeric function that converts a numeric value to an integer
+ by truncating--not rounding--all digits to the right of the decimal
+ point.  INT() is useful in operations where the decimal portion of a
+ number is not needed.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27583"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric expression to be converted to an integer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> INT() returns an integer numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONROUND"
+> ROUND()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27603"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples demonstrate the results of various invocations
+ of the INT() function:
+ 
+ ? INT(100.00)               // Result: 100
+ ? INT(.5)                     // Result: 0
+ ? INT(-100.75)               // Result: -100
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27607"
+></A
+><H3
+><A
+NAME="FUNCTIONL2BIN"
+></A
+>Function  L2BIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> L2BIN(&#60;nExp&#62;) --&#62; cBinaryInteger&#13;</PRE
+><P
+> L2BIN() is a low-level file function used with FWRITE() to write
+ xClipper numeric values to a binary file.  This function is like
+ I2BIN() which formats a xClipper numeric to a 16-bit binary value.</P
+><P
+> 
+ L2BIN() is the inverse function of BIN2L().</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27613"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the numeric value to be converted.  Decimal digits are
+ truncated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> L2BIN() returns a four-byte character string formatted as a 32-bit
+ binary integer.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONBIN2I"
+> BIN2I()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2L"
+>BIN2L()</A
+> <A
+HREF="categnumeric.html#FUNCTIONBIN2W"
+>BIN2W()</A
+> <A
+HREF="categstring.html#FUNCTIONCHR"
+>CHR()</A
+> <A
+HREF="categfileio.html#FUNCTIONFWRITE"
+>FWRITE()</A
+> <A
+HREF="categnumeric.html#FUNCTIONI2BIN"
+>I2BIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27638"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example creates a new binary file, and then writes a
+ series of numbers to the files using L2BIN() to convert the numeric
+ value to 32-bit binary form:
+ 
+ #include "Fileio.ch"
+ //
+ LOCAL nNumber, nHandle
+ nHandle := FCREATE("MyFile", FC_NORMAL)
+ FOR nNumber := 1 TO 100
+ FWRITE(nHandle, L2BIN(nNumber) + CHR(0))
+ NEXT
+ FCLOSE(nHandle)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27642"
+></A
+><H3
+><A
+NAME="FUNCTIONLOG"
+></A
+>Function  LOG() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> LOG(&#60;nExp&#62;) --&#62; nNaturalLog&#13;</PRE
+><P
+> LOG() is a numeric function that calculates the natural logarithm of a
+ number and is the inverse of EXP().  The natural logarithm has a base of
+ e which is approximately 2.7183.  The LOG() function returns x in the
+ following equation,</P
+><P
+> 
+ e**x = y</P
+><P
+> 
+ where y is the numeric expression used as the LOG() argument (i.e.,
+ LOG(y) = x).  Due to mathematical rounding, the values returned by LOG()
+ and EXP() may not agree exactly (i.e., EXP(LOG(x)) may not always equal
+ x).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27649"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a numeric value greater than zero to be converted to its
+ natural logarithm.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> LOG() returns the natural logarithm as a numeric value.  If &lt;nExp&gt; is
+ less than or equal to zero, LOG() returns a numeric overflow (displayed
+ as a row of asterisks).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONEXP"
+> EXP()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27669"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples demonstrate various results of LOG():
+ 
+ ? LOG(10)                  // Result: 2.30
+ ? LOG(10 * 2)            // Result: 3.00
+ ? EXP(LOG(1))            // Result: 1.00
+ ? LOG(2.71)               // Result: 1.00
+ 
+ This example is a user-defined function that returns the base
+ 10 logarithm:
+ 
+ FUNCTION Log10( nNumber )
+ IF nNumber &#62; 0
+ RETURN LOG(nNumber)/LOG(10)
+ ELSE
+ RETURN NIL
+ ENDIF</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27673"
+></A
+><H3
+><A
+NAME="FUNCTIONMAX"
+></A
+>Function  MAX() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MAX(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nLarger
+ MAX(&#60;dExp1&#62;, &#60;dExp2&#62;) --&#62; dLarger&#13;</PRE
+><P
+> MAX() is a numeric and date function that ensures the value of an
+ expression is larger than a specified minimum.  The inverse of MAX() is
+ MIN(), which returns the lesser of two numeric or date values.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27678"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nExp2&gt; are the numeric values to be compared.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dExp1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;dExp2&gt; are the date values to be compared.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MAX() returns the larger of the two arguments.  The value returned is
+ the same type as the arguments.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONMIN"
+> MIN()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27703"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In these examples MAX() returns the greater of two numeric
+ values:
+ 
+ ? MAX(1, 2)                     // Result: 2
+ ? MAX(2, 1)                     // Result: 2
+ 
+ In these examples MAX() compares date values:
+ 
+ ? DATE()                           // Result: 09/01/90
+ ? MAX(DATE(), DATE() + 30)         // Result: 10/01/90
+ ? MAX(DATE(), CTOD(""))            // Result: 09/01/90</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27707"
+></A
+><H3
+><A
+NAME="FUNCTIONMIN"
+></A
+>Function  MIN() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MIN(&#60;nExp1&#62;, &#60;nExp2&#62;) --&#62; nSmaller
+ MIN(&#60;dExp1&#62;, &#60;dExp2&#62;) --&#62; dSmaller&#13;</PRE
+><P
+> MIN() is a numeric and date function that ensures the value of an
+ expression is smaller than a specified minimum.  The inverse of MIN() is
+ MAX() which returns the greater of two numeric or date values.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27712"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nExp1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;nExp2&gt; are the numeric values to be compared.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;dExp1&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> and &lt;dExp2&gt; are the date values to be compared.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MIN() returns the smaller of the two arguments.  The value returned is
+ the same data type as the arguments.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONMAX"
+> MAX()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27737"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> In these examples MIN() returns the smaller of two numeric
+ values:
+ 
+ ? MIN(99, 100)                  // Result: 99
+ ? MIN(100, 99)                  // Result: 99
+ 
+ In these examples MIN() compares date values:
+ 
+ ? DATE()                        // Result: 09/01/90
+ ? MIN(DATE(), DATE() + 30)      // Result: 09/01/90</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27741"
+></A
+><H3
+><A
+NAME="FUNCTIONMOD"
+></A
+>Function  MOD() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> MOD(&#60;nDividend&#62;, &#60;nDivisor&#62;) --&#62; nRemainder&#13;</PRE
+><P
+> MOD() is a numeric function that emulates the dBASE III PLUS MOD()
+ function.</P
+><P
+> 
+ MOD() is supplied as a compatibility function and therefore not
+ recommended.  It is superseded entirely by the modulus operator (%).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27747"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDividend&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the dividend of the division operation.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDivisor&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the divisor of the division operation.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> MOD() returns a number representing the remainder of &lt;nDividend&gt; divided
+ by &lt;nDivisor&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27767"
+></A
+><H3
+><A
+NAME="FUNCTIONROUND"
+></A
+>Function  ROUND() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ROUND(&#60;nNumber&#62;, &#60;nDecimals&#62;) --&#62; nRounded&#13;</PRE
+><P
+> ROUND() is a numeric function that rounds &lt;nNumber&gt; to the number of
+ places specified by &lt;nDecimals&gt;.  Specifying a zero or negative value
+ for &lt;nDecimals&gt; allows rounding of whole numbers.  A negative
+ &lt;nDecimals&gt; indicates the number of digits to the left of the decimal
+ point to round.  Digits between five to nine (inclusive) are rounded up.
+ Digits below five are rounded down.</P
+><P
+> 
+ The display of the return value does not obey the DECIMALS setting
+ unless SET FIXED is ON.  With SET FIXED OFF, the display of the return
+ value contains as many decimal digits as you specify for &lt;nDecimals&gt;, or
+ zero, if &lt;nDecimals&gt; is less than one.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27773"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the numeric value to be rounded.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nDecimals&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> defines the number of decimal places to retain.
+ Specifying a negative &lt;nDecimals&gt; value rounds whole number digits.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> ROUND() returns a numeric value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONSTR"
+> STR()</A
+> <A
+HREF="categstring.html#FUNCTIONVAL"
+>VAL()</A
+> <A
+HREF="categnumeric.html#FUNCTIONINT"
+>INT()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27800"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  These examples round values with decimal digits:
+ 
+ SET DECIMALS TO 2
+ SET FIXED ON
+ //
+ ? ROUND(10.4, 0)                     // Result: 10.00
+ ? ROUND(10.5, 0)                     // Result: 11.00
+ ? ROUND(10.51, 0)                    // Result: 11.00
+ ? ROUND(10.49999999999999, 2)        // Result: 10.50
+ 
+ These examples use a negative &#60;nDecimals&#62; argument to round
+ numeric values to whole number values:
+ 
+ ? ROUND(101.99, -1)                  // Result: 100.00
+ ? ROUND(109.99, -1)                  // Result: 110.00
+ ? ROUND(109.99, -2)                  // Result: 100.00
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN27804"
+></A
+><H3
+><A
+NAME="FUNCTIONSQRT"
+></A
+>Function  SQRT() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SQRT(&#60;nNumber&#62;) --&#62; nRoot&#13;</PRE
+><P
+> SQRT() is a numeric function used anywhere in a numeric calculation to
+ compute a square root (e.g., in an expression that calculates standard
+ deviation).</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN27809"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nNumber&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a positive number for which the square root is to be
+ computed.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> SQRT() returns a numeric value calculated to double precision.  The
+ number of decimal places displayed is determined solely by SET DECIMALS
+ regardless of SET FIXED.  A negative &lt;nNumber&gt; returns zero.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN27824"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> These examples show various results of SQRT():
+ 
+ SET DECIMALS TO 5
+ //
+ ? SQRT(2)                 // Result: 1.41421
+ ? SQRT(4)                 // Result: 2.00000
+ ? SQRT(4) ** 2            // Result: 4.00000
+ ? SQRT(2) ** 2            // Result: 2.00000</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categstring.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categobject.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>STRING</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>OBJECT</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

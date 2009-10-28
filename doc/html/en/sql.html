@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Working with SQL servers</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Utilities"
+HREF="codbutils.html"><LINK
+REL="NEXT"
+TITLE="Quick start"
+HREF="sqlquickstart.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="codbutils.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="sqlquickstart.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="SQL">Chapter 13. Working with SQL servers</H1
+><P
+>Rushad Nabiullin
+<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:rust@itk.ru"
+>rust@itk.ru</A
+>&#62;</TT
+></P
+><P
+>CLIP provides simple but powerful tools for access to the various SQL
+servers. The underlying principles of this tools are considered in this
+chapter. Some features and possibilities and related classes and functions
+are described below.</P
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN41280">13.1. Features</H1
+><P
+>Some of the features and possibilities are listed below.</P
+><P
+></P
+><UL
+><LI
+><P
+>CLIP unifies use of the various SQL servers thus hiding individual
+peculiarities of their APIs from developers as many as possible.
+Nevertheless you should know SQL dialect of desired RDBMS.</P
+></LI
+><LI
+><P
+>Transactions are supported. By default each SQL statement works
+in it's own transaction (each statement is enclosed in pair of START/COMMIT
+implicitly).
+Nevertheless it is possible to accomplish a sequence of the statements
+in one transaction by calling explicitly START and COMMIT or ROLLBACK
+functions in appropriate points.</P
+></LI
+><LI
+><P
+>Local ordering allow change the order of rows locally, no more need to charge
+the server by almost the same query with different ORDER BY clause. Also, local
+orders allow fast seek for desired row in huge the result set.</P
+></LI
+><LI
+><P
+>Automation of mirroring updates in database. You may provide appropriate
+UPDATE, DELETE, INSERT statements which will be executed automaticly after
+update of the local set of the selected rows.</P
+></LI
+><LI
+><P
+>Two fetch modes - full fetch and fetch on demand. In first mode all result
+rows are fetched after execution of SELECT statement. The fetching process
+can be observed and cancelled by user defined function. In second mode
+the fetching is accomplished as far as particular row has been addressed.
+Such kind of execution is helpful when amount of result rows can't
+be estimated.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="codbutils.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="sqlquickstart.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Utilities</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Quick start</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

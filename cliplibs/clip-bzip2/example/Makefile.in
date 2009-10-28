@@ -26,7 +26,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-bz2$(EXESUFF): bz2.prg Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+bz2$(EXESUFF): bz2.prg Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewN -s -l -M $< $(LIBS)
 

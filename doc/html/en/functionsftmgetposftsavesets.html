@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FTMGETPOS()-FTSAVESETS()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="FTEASTER()-FTMGETPAGE()"
+HREF="functionsfteasterftmgetpage.html"><LINK
+REL="NEXT"
+TITLE="FTSAVRGN()-INKEY()"
+HREF="functionsftsavrgninkey.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsfteasterftmgetpage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsftsavrgninkey.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSFTMGETPOSFTSAVESETS">FTMGETPOS()-FTSAVESETS()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN19159"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETPOS"
+> FT_MGETPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get mouse cursor position and button status</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETSENS"
+> FT_MGETSENS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get the mouse sensitivity parameters</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETX"
+> FT_MGETX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get mouse cursor row position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMGETY"
+> FT_MGETY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get mouse cursor column position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMHIDECRS"
+> FT_MHIDECRS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Decrement internal mouse cursor flag and hide mouse cursor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIL2CIV"
+> FT_MIL2CIV()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert time in military format to civilian format.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIL2MIN"
+> FT_MIL2MIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert time in military format to number of minute of day.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIN2DHM"
+> FT_MIN2DHM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert numeric minutes to days, hours and minutes.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMIN2MIL"
+> FT_MIN2MIL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert minute of day to military format time.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINIT"
+> FT_MINIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Initialize the mouse driver, vars and return status of mouse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMINREGION"
+> FT_MINREGION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Test if the mouse cursor is in the passed region</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMMICKEYS"
+> FT_MMICKEYS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get mickeys</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTMONTH"
+> FT_MONTH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return Calendar or Fiscal Month Data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMRESET"
+> FT_MRESET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Reset mouse driver and return status of mouse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETCOORD"
+> FT_MSETCOORD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Position the mouse cursor using text screen coordinates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPAGE"
+> FT_MSETPAGE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the display page for the mouse pointer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETPOS"
+> FT_MSETPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Position the mouse cursor using virtual screen coordinates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSETSENS"
+> FT_MSETSENS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set the mouse sensitivity parameters</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMSHOWCRS"
+> FT_MSHOWCRS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Increment internal cursor flag and display mouse cursor</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMVERSION"
+> FT_MVERSION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get the mouse driver version</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMXLIMIT"
+> FT_MXLIMIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set vertical bounds of mouse using virtual screen coord.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONFTMYLIMIT"
+> FT_MYLIMIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set horiz. bounds of mouse using virtual screen coordinates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONFTNETPV"
+> FT_NETPV()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Calculate net present value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTNOOCCUR"
+> FT_NOOCCUR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find the number of times one string occurs in another</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTNTOW"
+> FT_NTOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Translate numeric value to words</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWLSTAT"
+> FT_NWLSTAT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current Novell NetWare logical station number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMCLOSE"
+> FT_NWSEMCLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close a NetWare semaphore</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMEX"
+> FT_NWSEMEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Examine a NetWare semaphore's value and open count</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMLOCK"
+> FT_NWSEMLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform a semaphore "lock"</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMOPEN"
+> FT_NWSEMOPEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open or create a NetWare semaphore</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMSIG"
+> FT_NWSEMSIG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Signal a NetWare semaphore (increment)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMUNLOCK"
+> FT_NWSEMUNLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> "Unlock" a semaphore locked by FT_NWSEMLOCK()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWSEMWAIT"
+> FT_NWSEMWAIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Wait on a NetWare semaphore (decrement)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnetware.html#FUNCTIONFTNWUID"
+> FT_NWUID()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current Novell NetWare User ID</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTPCHR"
+> FT_PCHR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert printer control codes</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categgame.html#FUNCTIONFTPEGS"
+> FT_PEGS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> FT_PEGS GAME (all work and no play...)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTPENDING"
+> FT_PENDING()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display same-line pending messages after a wait.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTPICKDAY"
+> FT_PICKDAY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Picklist of days of week</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTPOPVID"
+> FT_POPVID()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Restore previously saved video states.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTPROMPT"
+> FT_PROMPT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Define a menu item for use with FT_MenuTo()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTPUSHVID"
+> FT_PUSHVID()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save current video states on internal stack.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTQTR"
+> FT_QTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return Calendar or Fiscal Quarter Data.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONFTRAND1"
+> FT_RAND1()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Generate a random number</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTRESTARR"
+> FT_RESTARR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Restore a Clipper array from a disc file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categenvironment.html#FUNCTIONFTRESTSETS"
+> FT_RESTSETS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Restore status of all SET command settings</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTRGNSTACK"
+> FT_RGNSTACK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Push or pop a saved screen region on or off the stack</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONFTROUND"
+> FT_ROUND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Rounds a number to a specific place</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categvideo.html#FUNCTIONFTRSTRGN"
+> FT_RSTRGN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Restore region of the screen saved with FT_SAVRGN()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTSAVEARR"
+> FT_SAVEARR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save Clipper array to a disc file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categenvironment.html#FUNCTIONFTSAVESETS"
+> FT_SAVESETS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Save the status of all the SET command settings</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsfteasterftmgetpage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsftsavrgninkey.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FTEASTER()-FTMGETPAGE()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FTSAVRGN()-INKEY()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

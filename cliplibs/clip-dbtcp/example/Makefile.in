@@ -26,7 +26,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-my_dbtcp$(EXESUFF): my_dbtcp.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+my_dbtcp$(EXESUFF): my_dbtcp.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_rm)$(Trace_clip)
 	$(CLIP) -o$@ -eMwls $< -lclip-dbtcp
 

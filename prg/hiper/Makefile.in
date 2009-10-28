@@ -5,6 +5,7 @@ prg_files 		= 		$(sort 							\
 										clip_hindex.prg 	\
 										clip_hseek.prg 	\
 							)
+##
 exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(prg_files) ) )
 SRC_C_files 	= 		$(sort $(c_files) )
 SRC_PRG_files 	= 		$(sort $(prg_files) )
@@ -20,7 +21,7 @@ hash1 :
 
 cfg :
 
-install :	all
+install : all
 	$(E_cp)cp --remove-destination -fpu$(V) clip_hindex$(EXESUFF) $(INSTDIR)/bin/clip_hindex$(EXESUFF)
 	$(E_cp)cp --remove-destination -fpu$(V) clip_hseek$(EXESUFF) $(INSTDIR)/bin/clip_hseek$(EXESUFF)
 
@@ -32,19 +33,19 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(LIBCLIP)
+clip_hindex$(EXESUFF):	clip_hindex.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
-		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
 	else 																\
 		$(Trace_clip) 		;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\
 	fi
 
-clip_hseek$(EXESUFF):	clip_hseek.prg Makefile $(CLIP) $(LIBCLIP)
+clip_hseek$(EXESUFF):	clip_hseek.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 		\
 		$(Trace_clip_d) 	;										\
-		$(CLIP) $(CLIPFLAGS) -g -o$@ -e $< ; 				\
+		$(CLIP) $(CLIPFLAGS) -o$@ -g -eslN $< ; 			\
 	else 																\
 		$(Trace_clip) 		;										\
 		$(CLIP) $(CLIPFLAGS) -o$@ -e $< ;					\

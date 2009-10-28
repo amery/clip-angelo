@@ -405,10 +405,10 @@
 #endif
 
 #include "ci_set.ch"
-#include "libclipscreen/ci_screen.h"
+#include "ci_screen.h"
 #include "ci_hashcode.h"
 #include "ci_rational.h"
-#include "libclipscreen/ci_charset.h"
+#include "ci_charset.h"
 
 extern char *_get_unix_name(ClipMachine * cm, char *dname);
 static void set_printer_charset(ClipMachine * mp);

@@ -1,0 +1,989 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  CODBLIST </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  CODBIDLIST "
+HREF="classcodbidlist.html"><LINK
+REL="NEXT"
+TITLE="Class  DATETIME "
+HREF="classdatetime.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classcodbidlist.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classdatetime.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSCODBLIST">Class  CODBLIST</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN3691"
+></A
+><H2
+>Name</H2
+> CODBLIST &nbsp;--&nbsp; CODB Class are destined to control of the list accessibile dictionary.
+ 
+ In yours system (computer, local network, VPN, internet) may be many
+ CODB data sourses (in configuration by default 32,000,000 ). CODB it is
+ those class what provide DB supporting with methods description for
+ access to certain CODB.
+ 
+ The information keeping into $CLIPROOT/etc/codb.dbf </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN3694"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> CODBListNew() --&#62; CODB object
+ CODBList:New()  --&#62; CODB object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSCODBLIST"
+></A
+><H2
+>Description </H2
+><P
+> 
+ CODB Class are destined to control of the list accessibile dictionary.</P
+><P
+>  In yours system (computer, local network, VPN, internet) may be many CODB data sourses (in configuration by default 32,000,000 ). CODB it is those class what provide DB supporting with methods description for access to certain CODB.</P
+><P
+>  The information keeping into $CLIPROOT/etc/codb.dbf</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3702"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3704"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;ClassName&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> 	CODBLIST</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Error&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>		String, the error description what araised within running last operation.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3715"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3717"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-APPEND"
+>APPEND</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Add to list new CODB specifier.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-CLOSE"
+>CLOSE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close DB.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-CONNECT"
+>CONNECT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Open DB.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-EXISTID"
+>EXISTID</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check CODB identifier into list accessible CODB.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-GETVALUE"
+>GETVALUE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get dictionary by CODB identifier.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-LIST"
+>LIST</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns list CODB what registered in system.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-NEW"
+>NEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Initiation new CODBLIST object.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classcodblist.html#CLASS-CODBLIST-UPDATE"
+>UPDATE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Update CODB description.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3752"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-APPEND"
+></A
+>Method CODBLIST:APPEND()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Append(&#60;oCodbData&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Append() returns TRUE if new CODB specifier added. The &lt;oCodbData&gt; must be contain property &lt;ID&gt;. This property specified CODB identifier.</P
+><P
+> The &lt;oCodbData&gt; can be contain property &lt;TYPE&gt; - the type of dictionary. By default it is CODB_DICTTYPE_DEFAULT. If &lt;TYPE&gt; is "DBF", then &lt;oCodbData&gt; can be contain attribute &lt;PATH&gt; - full path to dbf file (by default it is /home/$USER/codb+&lt;ID&gt;)</P
+><P
+> The properties of &lt;oCodbData&gt; see in file &lt;"codbcfg.ch"&gt; <PRE
+CLASS="PROGRAMLISTING"
+>ID - CODB identifier and this one  dictionary identifier (5 byte) NAME - CODB name TYPE - driver type to access to data: DBF - DBF (by default) MS  - MySQL PG  - Postgress OR  - Oracle IB  - Interbase and Firebird ODBC - ODBC data source PATH - path to data (only for DBF) HOST - name and IP address SQL server PORT - TCP port of SQL server USER - SQL-server user DBNAME - DB name into SQL server </PRE
+></P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3761"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oCodbData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Object, new CODB specifier.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if new CODB added.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3776"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-CLOSE"
+></A
+>Method CODBLIST:CLOSE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Close() 	--&#62; NIL</PRE
+><P
+> Close() closes all files, connections, DB.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3781"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns NIL.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3791"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-CONNECT"
+></A
+>Method CODBLIST:CONNECT()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Connect(&#60;sCodbID&#62;[, &#60;sUser&#62;[, &#60;sPasswd&#62;]]) 	--&#62; &#60;oDict&#62;</PRE
+><P
+> Connect() openes DB with identifier &lt;sCodbID&gt;. Made connect with SQL-server (if source is SQL-server) or openes necessary files and returns object of DICTIONARY class &lt;oDict&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3797"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sCodbID&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>   	String, identifier CODB</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sUser&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		String, users name</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sPasswd&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	String, password to access to CODB</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object of DICTIONARY class - &lt;oDict&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3822"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-EXISTID"
+></A
+>Method CODBLIST:EXISTID()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> ExistId(&#60;sCodbId&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> ExistId() returns TRUE if CODB with identifier &lt;sCodbId&gt; is exist into list of registered CODB. In other returns FALSE.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3828"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sCodbId&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> String, the CODB identifier (english alpha-betical symbols and numerics)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if CODB with identifier &lt;sCodbId&gt; is exist into list of registered CODB.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3843"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-GETVALUE"
+></A
+>Method CODBLIST:GETVALUE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetValue(&#60;sCodbID&#62;) 	--&#62; &#60;oDict&#62;</PRE
+><P
+> GetValue() returns object of DICTIONARY class - &lt;oDict&gt; with identifier &lt;sCodbID&gt;.</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3849"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;sCodbId&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> String, the CODB identifier (english alpha-betical symbols and numerics)</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns object of DICTIONARY class - &lt;oDict&gt; with identifier &lt;sCodbID&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3864"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-LIST"
+></A
+>Method CODBLIST:LIST()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> List() 	--&#62; &#60;aList&#62;</PRE
+><P
+> List() returns list of registered CODB - &lt;aList&gt;. Every element of &lt;aList&gt; is string what contain CODB identifier and CODB name via &lt;:&gt;</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3869"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns list of registered CODB - &lt;aList&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3879"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-NEW"
+></A
+>Method CODBLIST:NEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> New() --&#62; CODBLIST object</PRE
+><P
+> New() inits new CODBLIST object and returns it.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3884"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new CODBLIST object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN3894"
+></A
+><H3
+><A
+NAME="CLASS-CODBLIST-UPDATE"
+></A
+>Method CODBLIST:UPDATE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Update(&#60;oCodbData&#62;) 	--&#62; TRUE || FALSE</PRE
+><P
+> Update() returns TRUE if CODB specifier updated. The &lt;oCodbData&gt; must be contain property &lt;ID&gt;. This property specified CODB identifier.</P
+><P
+> The &lt;oCodbData&gt; can be contain property &lt;TYPE&gt; - the type of dictionary. By default it is CODB_DICTTYPE_DEFAULT. If &lt;TYPE&gt; is "DBF", then &lt;oCodbData&gt; can be contain attribute &lt;PATH&gt; - full path to dbf file (by default it is /home/$USER/codb+&lt;ID&gt;)</P
+><P
+> &lt;::Error&gt; contain error descriptions if araised.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN3901"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;oCodbData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Object, CODB specifier to updating.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if specifier CODB updated.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3916"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN3918"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  dList := codbList():new()
+ 
+ if !empty(dList:error)
+ ? "Error:" dList:error
+ quit
+ endif
+ 
+ dle      := map()
+ dle:id   := "MY001"
+ dle:name := "my first CODB"
+ dle:type := "DBF"
+ dle:path := "/home/my_user_name/codb/MY001"
+ 
+ if dList:existId(dle:ID)
+ dList:update(dle)
+ else
+ dList:append(dle)
+ endif
+ 
+ if !empty(dList:error)
+ ? "Error:" dList:error
+ quit
+ endif
+ 
+ oDict := dList:connect("MY001")
+ ? oDict  // see descriptions of DICTIONARY class
+ 
+ dList:close()
+ quit
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3920"
+></A
+><H2
+>See also</H2
+><P
+><A
+HREF="classcodbdictionary.html"
+> CODBDICTIONARY</A
+> </P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN3924"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classcodbidlist.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classdatetime.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  CODBIDLIST</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  DATETIME</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

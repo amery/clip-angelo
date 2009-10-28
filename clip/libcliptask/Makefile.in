@@ -2,7 +2,7 @@
 #                                            clip/libcliptask/Makefile.in
 #
 Local_Depend 		= 		../include/*.ch 		\
-								../include.h/*.h
+								../include/*.h
 
 TEST_ADDOBJS 		= 										\
 								../compiler/coll.o 		\
@@ -36,22 +36,23 @@ include $(Makefile_o_in)
 
 ../libclipmain/coll.o : ../libclipmain/coll.c Makefile
 	$(E_cd)cd ../libclipmain																		\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH)  $(MAKECMDGOALS)) )		\
 		&& $(MAKE)  coll.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ../libclipmain/list.o : ../libclipmain/list.c Makefile
 	$(E_cd)cd ../libclipmain  																		\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )		\
 		&& $(MAKE)  list.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ../libclipmain/hash.o : ../libclipmain/hash.c Makefile
 	$(E_cd)cd ../libclipmain  																		\
-		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) ) )		\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )		\
 		&& $(MAKE)  hash.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 ci_cl_cfg.h :
 	$(E_e)$(Trace)
 	$(E_xx)./cl_conf
+	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
 
 pth_task.o: pth_task.c ci_task.h  Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\

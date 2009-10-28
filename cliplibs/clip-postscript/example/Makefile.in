@@ -32,7 +32,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-testform$(EXESUFF): testform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+testform$(EXESUFF): testform.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsNln $(CLIPFLAGS) $< $(LIBS)
 

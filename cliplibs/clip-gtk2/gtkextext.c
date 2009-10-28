@@ -29,7 +29,7 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkprivate.h>
-#include "ci_gtkextext.h"
+#include "ci_gtk2extext.h"
 
 #define TEXT_BORDER_ROOM 2
 #define CURSOR_TIMEOUT 350

@@ -19,8 +19,8 @@
 ## 			undefined variable. 	This can be helpful when you are trying to
 ## 			debug makefiles which use variables in complex ways.
 ##
-AllSrcs 				= 			$(wildcard *.prg) $(wildcard *.c)
-AllG 					= 			$(addsuffix .g,$(basename $(AllSrcs)))
+AllSrcs 				= 			$(SRC_C_files) $(SRC_PRG_files) $(SRC_C_files2) $(SRC_PRG_files2)
+AllG 					= 			$(addsuffix .g,$(basename $(AllSrcs) ) )
 Depend_on 			=
 Local_Depend 		=
 prg_files 			=
@@ -51,8 +51,8 @@ ADDOBJS 				=
 #ADDLIBS 			=
 ADDOBJS2 			=
 ADDLIBS2 			=
-LIBCLIP 				= 		$(Clip_L_Dir)/libclip.so
-CLIPLIB 				= 		-L$(Clip_L_Dir) -lclip
+FULL_LIBCLIP 		= 		$(Clip_L_Dir)/libclip.so
+L_CLIPLIB 			= 		-L$(Clip_L_Dir) -lclip
 BINS 					=
 DIRS_TO_SCAN 		=
 DOC =

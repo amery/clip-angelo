@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Clip installation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Setting of environment variables."
+HREF="x405.html"><LINK
+REL="NEXT"
+TITLE="Local installation."
+HREF="local-inst.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x405.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="local-inst.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="INSTALLATION">Chapter 5. Clip installation</H1
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="PREFACE">5.1. Before install</H1
+><P
+>Clip is distributing in a source and binaries variants from the main ftp
+server and mirrors.</P
+><P
+>Binaries variant (except Cygwin) depends on a distributive
+and not available from ftp servers.</P
+><P
+>Source distributions present in two variants: splitted by packages and
+all-in-one variant.</P
+><P
+>You can download all that you need from the main ftp server
+ftp://ftp.itk.ru/pub/clip or from mirrors:</P
+><P
+></P
+><UL
+><LI
+><P
+>very fast, every night updated ftp://ftp.linux.ru.net/mirrors/clip</P
+></LI
+><LI
+><P
+>another good server ftp://ftp.lastik.ru/clip</P
+></LI
+><LI
+><P
+>or from sourceforge.net server http://sourceforge.net/projects/x-clip</P
+></LI
+></UL
+><P
+>There you can find many files:</P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>clip-prg-&lt;version&gt;.tgz</TD
+><TD
+>SRC: all source packages and documentation</TD
+></TR
+><TR
+><TD
+>clip_dev.tgz</TD
+><TD
+>SRC: base package, == CA-Clipper 5.3</TD
+></TR
+><TR
+><TD
+>clip_docs.tgz</TD
+><TD
+>HTML: base documentation, all packages including private documentation of private functions.</TD
+></TR
+><TR
+><TD
+>clip_mysql.tgz</TD
+><TD
+>SRC: MySQL client</TD
+></TR
+><TR
+><TD
+>clip_oracle.tgz</TD
+><TD
+>SRC: Oracle client</TD
+></TR
+><TR
+><TD
+>clip_odbc.tgz</TD
+><TD
+>SRC: ODBC client</TD
+></TR
+><TR
+><TD
+>clip_postgres.tgz</TD
+><TD
+>SRC: Postgres client</TD
+></TR
+><TR
+><TD
+>clip_interbase.tgz</TD
+><TD
+>SRC: Interbase &amp; FireBird client</TD
+></TR
+><TR
+><TD
+>clip_gtk.tgz</TD
+><TD
+>SRC: GUI library over GTK</TD
+></TR
+><TR
+><TD
+>clip_gtkextra.tgz</TD
+><TD
+>SRC: GUI library over GTKextra</TD
+></TR
+><TR
+><TD
+>clip_fw.tgz</TD
+><TD
+>SRC: FiveWin-like classes &amp; commands</TD
+></TR
+><TR
+><TD
+>clip_gd.tgz</TD
+><TD
+>SRC: library for PNG (and more) files and business histograms</TD
+></TR
+><TR
+><TD
+>clip_gzip.tgz</TD
+><TD
+>SRC: library for supprt gz files</TD
+></TR
+><TR
+><TD
+>clip_bzip2.tgz</TD
+><TD
+>SRC: library for supprt bz2 files</TD
+></TR
+><TR
+><TD
+>clip_com.tgz</TD
+><TD
+>SRC: COM_*() functions from Tools</TD
+></TR
+><TR
+><TD
+>clip_crypto.tgz</TD
+><TD
+>SRC: Simmetric block ciphers encrypt/decrypt functions</TD
+></TR
+><TR
+><TD
+>clip_rtf.tgz</TD
+><TD
+>SRC: Rich text format library by Thomas Marchione</TD
+></TR
+><TR
+><TD
+>clip_cti.tgz</TD
+><TD
+>SRC: Clip text interface library, base for text FiveWin and FoxPro-like windows</TD
+></TR
+><TR
+><TD
+>clip_udb.tgz</TD
+><TD
+>SRC: Clip universal (object) data base, the object orientired data base</TD
+></TR
+><TR
+><TD
+>clip_oasis.tgz</TD
+><TD
+>SRC: libraries from the-oasis.net</TD
+></TR
+><TR
+><TD
+>clip_prg.tgz</TD
+><TD
+>SRC: base utils - debugger, text editor, ... include preprocessor (PP) by Ron Pinkas, bdbf by Yevgen Bondar, ....</TD
+></TR
+><TR
+><TD
+>clip_dbu.tgz</TD
+><TD
+>SRC: CA_DBU &amp; CA_DBU53 adapted for Clip</TD
+></TR
+><TR
+><TD
+>clip_fcgi.tgz</TD
+><TD
+>SRC: FastCGI Clip library</TD
+></TR
+><TR
+><TD
+>dbc.tgz</TD
+><TD
+>SRC: DBU (C) Aleksandr Kresin</TD
+></TR
+><TR
+><TD
+>cygwin_trunc.rar</TD
+><TD
+>BIN: Cygwin developer tools for migration from unix to win32 platforms (trunc - it`s truncated by ITK distribution)</TD
+></TR
+><TR
+><TD
+>clip_win32_bin.rar</TD
+><TD
+>BIN: Clip and base libraries for Win32+Cygwin</TD
+></TR
+><TR
+><TD
+>gtk_std_win32.rar</TD
+><TD
+>BIN: GTK+ standart libraries for Windows, installing after Cygwin and before Clip</TD
+></TR
+><TR
+><TD
+>gtkextra_std_win32.rar</TD
+><TD
+>BIN: extension for GTK+ libraries for Windows, installing after Cygwin and GTK+, and before Clip</TD
+></TR
+><TR
+><TD
+>clip_gtk_win32.rar</TD
+><TD
+>BIN: Clip library over GTK+, generated from clip_gtk package</TD
+></TR
+><TR
+><TD
+>clip_gtkextra_win32.rar</TD
+><TD
+>BIN: Clip library over GTK+ extra, generated from clip_gtkextra package</TD
+></TR
+><TR
+><TD
+>cygwin_patch.rar</TD
+><TD
+>BIN: fixing some problems with Cygwin</TD
+></TR
+><TR
+><TD
+>patch.tgz</TD
+><TD
+>SRC: latest fixes and addons for Clip base packages (dev &amp; doc)</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+>The easiest way to install the whole Clip is getting all-in-one package
+clip-prg-&lt;version&gt;.tgz unpack it and compile.</P
+><P
+></P
+><P
+><B
+>To download and unpack:</B
+></P
+><UL
+><LI
+><P
+>Download file(s) from ITK's ftp server or it mirrors and save it in a safe place.</P
+></LI
+><LI
+><P
+>Untar it with the command #tar xzf clip-prg-&lt;version&gt;.tgz Now you have directory clip-prg-&lt;version&gt;.</P
+></LI
+><LI
+><P
+>#cd clip-prg-&lt;version&gt; Now you are in your new directory</P
+></LI
+></UL
+><P
+>You have two choices for the next step: you may install in local or system
+variant. What is that means?</P
+><P
+></P
+><UL
+><LI
+><P
+>in local installation the all Clip-related files will be in your own home  directory, binaries will be linked into $HOME/bin, CLIPROOT defaults to ../cliproot, shared libraries would be with the full path in executable. This variant is easier and not need to act as root.</P
+></LI
+><LI
+><P
+>in system-wide installation by default binaries linked into /usr/local/bin,  CLIPROOT points to /usr/local/clip, shared libraries without path in executable are linked into /usr/lib. This type of installation requires is action with superuser rights.</P
+></LI
+></UL
+><P
+>Clip local variant may be best for you (especially due to frequently patches
+and new versions) if you make a test or working on your system as a single person.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x405.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="local-inst.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Setting of environment variables.</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Local installation.</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

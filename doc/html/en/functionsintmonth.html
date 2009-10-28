@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>INT()-MONTH()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="FTSAVRGN()-INKEY()"
+HREF="functionsftsavrgninkey.html"><LINK
+REL="NEXT"
+TITLE="MPOSTOLC()-RTRIM()"
+HREF="functionsmpostolcrtrim.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsftsavrgninkey.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsmpostolcrtrim.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSINTMONTH">INT()-MONTH()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN19571"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONINT"
+> INT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a numeric value to an integer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISALPHA"
+> ISALPHA()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the leftmost character in a string is alphabetic</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONISCOLOR"
+> ISCOLOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the current computer has color capability</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISDIGIT"
+> ISDIGIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the leftmost character in a character string is a digit</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONISFIELD"
+> ISFIELD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Checks if a varialbe name is a field name of DB.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONISFUNCTION"
+> ISFUNCTION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Checks if a varialbe name is a function name.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISLOWER"
+> ISLOWER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the leftmost character is a lowercase letter</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONISMEMVAR"
+> ISMEMVAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Checks if a varialbe name is a memory variable name.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONISPRINTER"
+> ISPRINTER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine whether LPT1 is ready</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONISUPPER"
+> ISUPPER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine if the leftmost character in a string is uppercase</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONL2BIN"
+> L2BIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a xClipper numeric value to a 32-bit binary integer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONLASTKEY"
+> LASTKEY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the INKEY() value of the last key extracted from the keyboard buffer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONLASTREC"
+> LASTREC()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the number of records in the current .dbf file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONLEFT"
+> LEFT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Extract a substring beginning with the first character in a string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONLEN"
+> LEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the length of a character string or the number of elements in an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONLIKE"
+> LIKE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check confirmity string to simple mask.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONLOAD"
+> LOAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Load byte-code file or dynamic library.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONLOADBLOCK"
+> LOADBLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Load byte-code file.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONLOG"
+> LOG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Calculate the natural logarithm of a numeric value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONLOWER"
+> LOWER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert uppercase characters to lowercase</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONLTRIM"
+> LTRIM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Remove leading spaces from a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatabase.html#FUNCTIONLUPDATE"
+> LUPDATE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the last modification date of a database (.dbf) file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdiskutils.html#FUNCTIONMAKEPATH"
+> MAKEPATH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns path to file in UNIX style.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONMAP"
+> MAP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Create new empty object (associative array)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categclip-ui.html#FUNCTIONMAPGET"
+> MAPGET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get value from associated array by its key. If specified key is not found, value &lt;defVal&gt; is returned.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONMAPKEYS"
+> MAPKEYS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONMAPMODIFY"
+> MAPMODIFY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Include/exclude control mode for attributes changing.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONMAX"
+> MAX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the larger of two numeric or date values</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONMAXCOL"
+> MAXCOL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the maximum visible screen column</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONMAXROW"
+> MAXROW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the maximum visible screen row</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMCOL"
+> MCOL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the mouse cursor's screen column position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMDBLCLK"
+> MDBLCLK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the double-click speed threshold of the mouse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOEDIT"
+> MEMOEDIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display or edit character strings and memo fields</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOLINE"
+> MEMOLINE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Extract a line of text from a character string or memo field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOREAD"
+> MEMOREAD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the contents of a disk file as a character string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categsystem.html#FUNCTIONMEMORY"
+> MEMORY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the amount of available free pool memory</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOTRAN"
+> MEMOTRAN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Replace carriage return/linefeeds in character strings</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMEMOWRIT"
+> MEMOWRIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Write a character string or memo field to a disk file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categcodeblock.html#FUNCTIONMEMVARBLOCK"
+> MEMVARBLOCK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return a set-get code block for a given memory variable</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONMEMVARGET"
+> MEMVARGET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns MEMVAR value.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categinfo.html#FUNCTIONMEMVARSET"
+> MEMVARSET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sets MEMVAR value.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categterminalio.html#FUNCTIONMENUMODAL"
+> MENUMODAL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Activate a top bar menu</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMHIDE"
+> MHIDE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Hide the mouse pointer</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONMIN"
+> MIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the smaller of two numeric or date values</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMLCOUNT"
+> MLCOUNT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Count the number of lines in a character string or memo field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMLCTOPOS"
+> MLCTOPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the byte position of a formatted string based on line and column</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categkeyboardmouse.html#FUNCTIONMLEFTDOWN"
+> MLEFTDOWN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the press status of the left mouse button</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONMLPOS"
+> MLPOS()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Determine the position of a line in a character string or memo field</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categnumeric.html#FUNCTIONMOD"
+> MOD()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the modulus of two numbers</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONMONTH"
+> MONTH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert a date value to the number of the month</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsftsavrgninkey.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsmpostolcrtrim.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FTSAVRGN()-INKEY()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MPOSTOLC()-RTRIM()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

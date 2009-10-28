@@ -27,7 +27,7 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(o_files) Makefile $(CLIP) $(LIBCLIP) $(Depend_on)
+cobra_clnt1$(EXESUFF) : cobra_clnt1.prg $(o_files) Makefile $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 			\
 		$(Trace_clip_d) 	;											\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) ;	\

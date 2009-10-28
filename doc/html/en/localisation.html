@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>CLIP localisation</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Localization"
+HREF="devlocalization.html"><LINK
+REL="NEXT"
+TITLE="Message translation"
+HREF="x1121.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="devlocalization.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1121.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="LOCALISATION">Chapter 9. CLIP localisation</H1
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN1060">9.1. CLIP runtime localisation</H1
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1062">9.1.1. The LANG environment variable, directory $CLIPROOT/lang</H2
+><P
+>The CLIP runtime system on program start check existance of some files,
+and treat it content as environment variables name/value pairs.
+(See <A
+HREF="envir.html"
+>CLIP environment description</A
+>)</P
+><P
+>The first useful file is $CLIPROOT/lang/$LANG, where value of CLIPROOT
+will be taken from environment, or if there is nothing, from builtin
+(compiled-in) value, and LANG is a value of environment (also known as
+locale). If LANG is empty, CLIP check also CHARSET variable.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1067"><P
+><B
+>Example 9-1. Sample $CLIPROOT/lang/ru_RU.KOI8-R file</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>#CLIP_KEYMAP is used in raw keyborard mode
+CLIP_KEYMAP=ru-koi8-r</PRE
+></DIV
+><P
+>The next file is $CLIPROOT/term/$TERM, where TERM is variable, 
+which identified type of used terminal.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1071"><P
+><B
+>Example 9-2. Sample $CLIPROOT/term/linux-console file</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+># switch on linux console raw keyboard
+CLIP_SCANMODE=IOCTL</PRE
+></DIV
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1074">9.1.2. Keymaps and keymap table generation.</H2
+><P
+>Keymaps are used in raw keyboard mode, it is possible (for now) on
+Linux console, and on some kind of terminals, which can be switched into
+scancode mode by escape sequence.</P
+><P
+>CLIP use the same keymaps as Linux kernel, and scancode processing is
+borrowed from the kernel sources. That means, you can easy add new keymaps
+and to modify it as required.</P
+><P
+></P
+><P
+><B
+>Adding new keymap:</B
+></P
+><UL
+><LI
+><P
+>Copy appropriate keymap from 
+<B
+CLASS="COMMAND"
+>/usr/share/keymaps</B
+>
+(on any Linux distribution):</P
+><PRE
+CLASS="PROGRAMLISTING"
+><TT
+CLASS="PROMPT"
+>#</TT
+> cp /usr/share/keymaps/i386/qwerty/ru1.kmap.gz .
+<TT
+CLASS="PROMPT"
+>#</TT
+> gunzip ru1.kmap.gz</PRE
+></LI
+><LI
+><P
+>Use <B
+CLASS="COMMAND"
+>$CLIPROOT/keymaps/genmap.sh</B
+>
+for generation CLIP-readable keymap:</P
+><PRE
+CLASS="PROGRAMLISTING"
+># $CLIPROOT/keymaps/genmap.sh `pwd`/ru1.kmap &#62;ru-koi8-r</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Absolute path warning</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Parameter of <B
+CLASS="COMMAND"
+>genmap.sh</B
+>
+must have absolute pathname.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>Copy keymap to <B
+CLASS="COMMAND"
+>$CLIPROOT/keymaps</B
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+># cp ru-koi8-r $CLIPROOT/keymaps/</PRE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECT2"
+><H2
+CLASS="SECT2"
+><A
+NAME="AEN1098">9.1.3. Charsets, uni-files, utilites for generation</H2
+><P
+>Charsets are used for recoding terminal input and output,
+for dealing with terminal pseudographics, to determine the sort order,
+and for recoding file and database in/out througput.</P
+><P
+>As with keymaps, CLIP use own format for storing charsets, but
+have utilite for generation from standard charset-to-unicode
+mapping.</P
+><P
+></P
+><P
+><B
+>Adding new charset:</B
+></P
+><UL
+><LI
+><P
+>Copy appropriate charset mapping from 
+<B
+CLASS="COMMAND"
+>/usr/share/consoletrans</B
+>
+(on any Linux distribution):</P
+><PRE
+CLASS="PROGRAMLISTING"
+># zcat /usr/share/consoletrans/koi8-r.sfm.gz &#62; koi8-r.uni</PRE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="/docbook-dsssl/note.gif"
+HSPACE="5"
+ALT="Note"></TD
+><TH
+ALIGN="LEFT"
+VALIGN="CENTER"
+><B
+>Fullness of Unicode mapping</B
+></TH
+></TR
+><TR
+><TD
+>&nbsp;</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Some Unicode mapping files provide mapping only for part of 
+full 256 symbols in charset. For such exceptions, you probably must
+manually append absent characters.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>Use the <B
+CLASS="COMMAND"
+>gen_tbl</B
+> utilite for .tbl file generation:</P
+><PRE
+CLASS="PROGRAMLISTING"
+><TT
+CLASS="PROMPT"
+>#</TT
+> zcat $CLIPROOT/charsets/UnicodeData-2.1.8.txt.gz | \
+<TT
+CLASS="PROMPT"
+>#</TT
+> 	$CLIPROOT/bin/gen_tbl koi8-r.uni &#62; koi8-r.tbl</PRE
+></LI
+><LI
+><P
+>Copy .uni and .tbl files to <B
+CLASS="COMMAND"
+>$CLIPROOT/charsets</B
+>:</P
+><PRE
+CLASS="PROGRAMLISTING"
+># cp koi8-r.uni koi8-r.tbl $CLIPROOT/charsets</PRE
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="devlocalization.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1121.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Localization</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Message translation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

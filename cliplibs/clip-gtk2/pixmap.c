@@ -13,7 +13,7 @@
 
 #include "ci_clip-gtk2.ch"
 #include "ci_clip-gtk2.h"
-#include "ci_bmpxpm.h"
+#include "ci_2_bmpxpm.h"
 
 #ifdef OS_CYGWIN
 	#include "sys\cygwin.h"

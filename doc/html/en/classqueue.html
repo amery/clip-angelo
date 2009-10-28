@@ -1,0 +1,824 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  QUEUE </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  MEDIT "
+HREF="classmedit.html"><LINK
+REL="NEXT"
+TITLE="Class  SORTEDARRAY "
+HREF="classsortedarray.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classmedit.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classsortedarray.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSQUEUE">Class  QUEUE</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN7059"
+></A
+><H2
+>Name</H2
+> QUEUE &nbsp;--&nbsp; Class  are destined to control queues make from arbitrary data. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN7062"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> QueueNew() --&#62; QUEUE object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSQUEUE"
+></A
+><H2
+>Description </H2
+><P
+> 
+ Class  are destined to control queues make from arbitrary data.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7068"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7070"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;ClassName&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> 	QUEUE</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Data&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>		Array, array of arbitrary data.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7081"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7083"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-EMPTY"
+>EMPTY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Check queue.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-FREE"
+>FREE</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Free queue.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-GET"
+>GET</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get data from queue.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-HEAD"
+>HEAD</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get first data from queue.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-LEN"
+>LEN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get queue length.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-PUT"
+>PUT</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Put data to queue.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-QUEUENEW"
+>QUEUENEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> QUEUE object constructor.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classqueue.html#CLASS-QUEUE-TAIL"
+>TAIL</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get last data from queue.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7118"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-EMPTY"
+></A
+>Method QUEUE:EMPTY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Empty() --&#62; TRUE || FALSE</PRE
+><P
+> Empty() returns TRUE if queue is empty and FALSE if other.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7123"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE if queue is empty and FALSE if other.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7133"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-FREE"
+></A
+>Method QUEUE:FREE()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Free() --&#62; TRUE</PRE
+><P
+> Free() is removes all items from queue and returns TRUE.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7138"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns TRUE.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7148"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-GET"
+></A
+>Method QUEUE:GET()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Get() --&#62; &#60;vData&#62;</PRE
+><P
+> Get() is returns first queues element and removes it from queue.</P
+><P
+> If queue is empty Get() returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7154"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the first element into queue.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7164"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-HEAD"
+></A
+>Method QUEUE:HEAD()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Head() --&#62; &#60;vData&#62;</PRE
+><P
+> Head() is returns first queues element but not removes it from queue.</P
+><P
+> If queue is empty Head() returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7170"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the first element into queue.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7180"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-LEN"
+></A
+>Method QUEUE:LEN()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Len() --&#62; &#60;nLen&#62;</PRE
+><P
+> Len() is returns queue length - the count elements into queue.</P
+><P
+> If queue is empty Len() returns 0.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7186"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the queue length.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7196"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-PUT"
+></A
+>Method QUEUE:PUT()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Put(&#60;vData&#62;) --&#62; &#60;nItem&#62;</PRE
+><P
+> Put() is inserts new element into queue immediately after to the last element and returns it number.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7201"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;vData&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  - data to putting</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the number newly element of &lt;::Data&gt;</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7216"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-QUEUENEW"
+></A
+>Method QUEUE:QUEUENEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> QueueNew() --&#62; QUEUE object</PRE
+><P
+> QueueNew() is constructs and returns new QUEUE object. That class can be use to manipulating( put, get, read) queues made from arbitrary types data.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7221"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Method returns new QUEUE object.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7231"
+></A
+><H3
+><A
+NAME="CLASS-QUEUE-TAIL"
+></A
+>Method QUEUE:TAIL()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Tail() --&#62; &#60;vData&#62;</PRE
+><P
+> Tail() is returns last queues element but not removes it from queue.</P
+><P
+> If queue is empty Tail() returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7237"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns the last element into queue.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7247"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN7249"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  que := QueueNew()	// --&#62; new Queue object
+ que:Put( Time() )	// --&#62; 1
+ que:Put( Date() )	// --&#62; 2
+ 
+ ? que:Len()		// --&#62; 2
+ 
+ ? que:Tail()		// --&#62; 17-03-2003
+ ? que:Len()		// --&#62; 2
+ 
+ que:Get()		// --&#62; "12:14:56:01"
+ ? que:Len()		// --&#62; 1
+ 
+ que:Free()
+ ? que:Len()		// --&#62; 0
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7251"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classmedit.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classsortedarray.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  MEDIT</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  SORTEDARRAY</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

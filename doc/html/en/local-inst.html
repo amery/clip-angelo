@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Local installation.</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Clip installation"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Clip installation"
+HREF="installation.html"><LINK
+REL="NEXT"
+TITLE="System-wide installation"
+HREF="sys-inst.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECT1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Clip installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="sys-inst.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="LOCAL-INST">5.2. Local installation.</H1
+><P
+>Firstly you must set up CLIPROOT environment variable. Also you must add
+$CLIPROOT/bin to your path. You can do this (if your command interpreter is bash) by
+adding following lines at the end of your local bash_profile:</P
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>export CLIP_LANG=en_EN.CP437 #or ru_RU.KOI8-R</TD
+></TR
+><TR
+><TD
+>export CLIPROOT=$HOME/cliproot</TD
+></TR
+><TR
+><TD
+>export PATH=$CLIPROOT/bin:$PATH</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+><P
+>and relogin to make this settings actual.</P
+><P
+>You may not want to set CLIPROOT environment variable. In this case CLIPROOT
+will be in the same level as your clip-prg-&lt;version&gt; directory ("make local"
+will make ../cliproot directory). Binaries from the clip_dev package will be
+soft-linked in your $HOME/bin.</P
+><P
+></P
+><P
+><B
+>Some notes:</B
+></P
+><UL
+><LI
+><P
+>In OS Solaris must be installed "GNU bin utils" and path for it must be in  first: export PATH=/usr/local/bin;...</P
+></LI
+><LI
+><P
+>If GNU maker in your system have name "gmake", add to environment variable MAKE=gmake</P
+></LI
+></UL
+><P
+>Now you can go in your clip-prg-&lt;version&gt; and</P
+><P
+>#make local</P
+><P
+>If your PATH is setted, you can start working with Clip immediately.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="sys-inst.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Clip installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>System-wide installation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

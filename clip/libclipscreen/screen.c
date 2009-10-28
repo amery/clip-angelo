@@ -402,7 +402,7 @@
 */
 
 #include <string.h>
-#include "../include.h/ci_clip.h"
+#include "ci_clip.h"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -455,7 +455,7 @@ static int w32_readch(void);
 #endif
 
 #ifdef USE_TASKS
-#include "../libcliptask/ci_task.h"
+#include "ci_task.h"
 #endif
 
 #ifndef timercmp

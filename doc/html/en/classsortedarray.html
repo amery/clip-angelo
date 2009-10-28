@@ -1,0 +1,1407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Class  SORTEDARRAY </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Classes"
+HREF="classes.html"><LINK
+REL="PREVIOUS"
+TITLE="Class  QUEUE "
+HREF="classqueue.html"><LINK
+REL="NEXT"
+TITLE="Class  STACK "
+HREF="classstack.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="classqueue.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="classstack.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CLASSSORTEDARRAY">Class  SORTEDARRAY</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN7259"
+></A
+><H2
+>Name</H2
+> SORTEDARRAY &nbsp;--&nbsp; Class are destined to control of sorted data. </DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN7262"><H2
+>Synopsis</H2
+><PRE
+CLASS="SYNOPSIS"
+> tSortedArrayNew() 	--&#62; SortedArray object
+ tSortedArray() 		--&#62; SortedArray object</PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="DESCRCLASSSORTEDARRAY"
+></A
+><H2
+>Description </H2
+><P
+> 
+ Class are destined to control of sorted data.</P
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7268"
+></A
+><H2
+>Attributes</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7270"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Items&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Array, an array of items for sorting</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Error&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> String, when error arisen, &lt;Error&gt; contains error description</TD
+></TR
+><TR
+><TD
+ALIGN="RIGHT"
+VALIGN="TOP"
+><B
+CLASS="COMMAND"
+>&#60;Found&#62;</B
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Logical, if TRUE, then item founded by seeking.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7285"
+></A
+><H2
+>Methods</H2
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7287"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-ADD"
+>ADD</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Add new element to sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-DEL"
+>DEL</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Removes some data from SORTEDARRAY.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-DELITEM"
+>DELITEM</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Delete element from sorted array by index.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-GETDATA"
+>GETDATA</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get element data by index in sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-GETFIRST"
+>GETFIRST</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get first item data are sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-GETITEM"
+>GETITEM</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get item are sorted array by index.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-GETKEY"
+>GETKEY</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get element keys by index in sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-GETLAST"
+>GETLAST</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Get last item data are sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-HARDSEEK"
+>HARDSEEK</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Hard seek element in sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-LEN"
+>LEN</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Returns count items into SORTEDARRAY.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-SEEK"
+>SEEK</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Seek element in sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-SOFTSEEK"
+>SOFTSEEK</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Soft seek element in sorted array.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-TSORTEDARRAYNEW"
+>TSORTEDARRAYNEW</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> SORTEDARRAY constructor.</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7342"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-ADD"
+></A
+>Method SORTEDARRAY:ADD()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Add(&#60;nKey&#62;, &#60;Value&#62;) 	--&#62; .T./.F.</PRE
+><P
+> Add() is added new item to class SortedArray with key &lt;nKey&gt; and value &lt;Value&gt;. Every item of sorted array is array containes only two elements: key (&lt;nKey&gt;) and value (&lt;Value&gt;). Items with low keys &lt;nKey&gt; are sorted toward the top of the array. If &lt;nKey&gt; or &lt;Value&gt; not specified then attribute &lt;Error&gt; will be contain error description.</P
+><P
+> You can add several items with identical keys. In this case class SortedArray will contain all these items and item can be inserted at suitable place.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7348"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, a sorting key</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Value&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	a value to be added in to &lt;Items&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> If adding is success then returns value is TRUE , else is FALSE</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7368"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-DEL"
+></A
+>Method SORTEDARRAY:DEL()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Del(&#60;nKey&#62;, &#60;Value&#62;)    --&#62; .T. || .F.
+ Delete(&#60;nKey&#62;, &#60;Value&#62;) --&#62; .T. || .F.
+ DelKey(&#60;nKey&#62;, &#60;Value&#62;) --&#62; .T. || .F.</PRE
+><P
+> Del(), Delete(), DelKey() is deleted item from sorted array by key and value.</P
+><P
+> If parameters &lt;nKey&gt; or &lt;Value&gt; not spacified then methods returns FALSE and write error description to attribute &lt;Error&gt;.</P
+><P
+> When element with &lt;nKey&gt; and &lt;Value&gt; not found methods returns FALSE and write error description to attribute &lt;Error&gt;.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7375"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>  Numeric, a specified key value.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;Value&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> a data value to be delete from sorted array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> In successfully returns value is TRUE else is FALSE.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7395"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-DELITEM"
+></A
+>Method SORTEDARRAY:DELITEM()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> DelItem(&#60;nPos&#62;)    --&#62; .T. || .F.</PRE
+><P
+> DelItem() is removed item from sorted array by index and returns TRUE.</P
+><P
+> If &lt;nPos&gt; without of bound sorted array then method return FALSE and write to attribute &lt;Error&gt; error descriptions.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7401"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, items index in sorted array.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> In successfully  returns value is TRUE else FALSE.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7416"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-GETDATA"
+></A
+>Method SORTEDARRAY:GETDATA()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetData(&#60;nPos&#62;)    --&#62; data</PRE
+><P
+> GetData() gets data value by item index in sorted array and returns it if found, otherwise it returns NIL. If index is without of bound sorted array or is NIL then attribute &lt;Error&gt; to be keep error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7421"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, item index in sorted array</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns data value by item index.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7436"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-GETFIRST"
+></A
+>Method SORTEDARRAY:GETFIRST()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetFirst()    --&#62; data value</PRE
+><P
+> GetFirst() gets data value first items sorted array and returns it.</P
+><P
+> If no items in sorted array it returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7442"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns data value of first item sorted array.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7452"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-GETITEM"
+></A
+>Method SORTEDARRAY:GETITEM()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetItem(&#60;nPos&#62;)    --&#62; aItem</PRE
+><P
+> GetItem() gets key value and data value by item index in sorted array and returns array containes it. In other case it returns NIL. If index is without of bound sorted array or is NIL then attribute &lt;Error&gt; to be keep error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7457"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, item index in sorted array</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns array that contain key value and data value.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7472"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-GETKEY"
+></A
+>Method SORTEDARRAY:GETKEY()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetKey(&#60;nPos&#62;)    --&#62; nKeyValue</PRE
+><P
+> GetKey() gets key value by item index in sorted array and returns it if found, otherwise it returns NIL. If index is without of bound sorted array or is NIL then attribute &lt;Error&gt; to be keep error description.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7477"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nPos&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, item index in sorted array</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns key value by item index.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7492"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-GETLAST"
+></A
+>Method SORTEDARRAY:GETLAST()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> GetLast()    --&#62; data value</PRE
+><P
+> GetLast() gets data value last added items in to sorted array and returns it. If no items in sorted array it returns NIL.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7497"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns data value of last item sorted array.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7507"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-HARDSEEK"
+></A
+>Method SORTEDARRAY:HARDSEEK()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> HardSeek(&#60;nKey&#62;)    --&#62; nPos</PRE
+><P
+> HardSeek() calls method <A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-SEEK"
+>Seek()</A
+> as Seek(&lt;nKey&gt;, .F.)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7513"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, a specified key value that you search.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns item index whose key value is equal &lt;nKey&gt; if specified
+ key value was found, otherwise it returns Len()+1.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7528"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-LEN"
+></A
+>Method SORTEDARRAY:LEN()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Len() 	--&#62; nCount</PRE
+><P
+> Len() is returned sorted array length what equal lenght of &lt;Items&gt;.</P
+><P
+> If sorted array is empty, then method returns zero.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7534"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns sorted array length.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7544"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-SEEK"
+></A
+>Method SORTEDARRAY:SEEK()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> Seek(&#60;nKey&#62;[, &#60;lSoft&#62;])    --&#62; nPos</PRE
+><P
+> Seek() moves to the first item whose key is equal to &lt;nKey&gt;. If such a item is found, it becomes to current item and Seek() returns item index in sorted array, attribute &lt;Found&gt; sets to TRUE, otherwise it returns Len() +1 position and attribute &lt;Found&gt; sets to FALSE The positioning in sorted array is as followes: for normal (hard) seek (lSoft is .F.), the sorted array is positioned to Len() + 1; for a soft seek, the sorted array positioned to the first item whose key value is greather than specified key &lt;nKey&gt;. If no such item exist, the sorted array positioned to Len()+1 and returns Len() + 1 and sets attribute &lt;Found&gt; sets to FALSE.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7549"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, a specified key value that you search.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lSoft&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	Logical, is an optional logical value that specifies whether a soft seek
+ is to be perfomed. This determines how the sorted array is
+ positioned if the specified key not found.
+ 
+ By default &lt;lSoft&gt; is .F.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns item index whose key value is equal &lt;nKey&gt; if specified
+ key value was found, otherwise it returns Len()+1.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7569"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-SOFTSEEK"
+></A
+>Method SORTEDARRAY:SOFTSEEK()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> SoftSeek(&#60;nKey&#62;)    --&#62; nPos</PRE
+><P
+> SoftSeek() calls method <A
+HREF="classsortedarray.html#CLASS-SORTEDARRAY-SEEK"
+>Seek()</A
+> as Seek(&lt;nKey&gt;, .T.)</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7575"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;nKey&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Numeric, a specified key value that you search.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Is returns item index whose key value is equal &lt;nKey&gt; if specified
+ key value was found, otherwise it returns the first item whose key value is
+ greather than specified key &lt;nKey&gt;.</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN7590"
+></A
+><H3
+><A
+NAME="CLASS-SORTEDARRAY-TSORTEDARRAYNEW"
+></A
+>Method SORTEDARRAY:TSORTEDARRAYNEW()</H3
+><PRE
+CLASS="PROGRAMLISTING"
+> tSortedArrayNew() 	--&#62; SortedArray object
+ tSortedArray() 		--&#62; SortedArray object</PRE
+><P
+> tSortedArrayNew() is constructs and returns new sorted array object. That class can be used to storage, access, control sorted data.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN7595"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Returns new SORTEDARRAY object</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7605"
+></A
+><H2
+>Example:</H2
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN7607"><P
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  sArr := tSortedArrayNew()
+ sArr:Add("January"  , {1 , "January"  })
+ sArr:Add("February" , {2 , "February" })
+ sArr:Add("March"    , {3 , "March"    })
+ sArr:Add("April"    , {4 , "April"    })
+ sArr:Add("May"	    , {5 , "May"      })
+ sArr:Add("June"	    , {6 , "June"     })
+ sArr:Add("July"	    , {7 , "July"     })
+ sArr:Add("August"   , {8 , "August"   })
+ sArr:Add("September", {9 , "September"})
+ sArr:Add("October"  , {10, "October"  })
+ sArr:Add("November" , {11, "November" })
+ sArr:Add("December" , {12, "December" })
+ 
+ ? sArr:Len()			// 12
+ 
+ ? sArr:GetFirst()		// {         4, April}
+ ? sArr:GetLast()		// {         9, September}
+ 
+ ? sArr:Seek("May")		// 9
+ ? sArr:Seek("Monday")		// 13
+ ? sArr:SoftSeek("Monday")	// 10
+ ? sArr:HardSeek("Monday")	// 13
+ 
+ ? sArr:GetItem(3)		// {December, {        12, December}}
+ ? sArr:GetData(3)		// {        12, December}
+ 
+ ? sArr:DelItem(3)		// .T.
+ ? sArr:Len()			// 11
+ 
+ ? sArr:GetItem(3)		// {February, {         2, February}}
+ ? sArr:GetData(3)		// {         2, February}
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN7609"
+></A
+><H2
+> </H2
+><P
+><B
+CLASS="COMMAND"
+>Platforms</B
+></P
+><P
+> No dependies of platform.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="classqueue.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="classstack.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Class  QUEUE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="classes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Class  STACK</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

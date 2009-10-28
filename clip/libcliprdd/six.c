@@ -378,7 +378,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <ctype.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_six.ch"
 #include "ci_error.ch"
 #include "ci_set.ch"

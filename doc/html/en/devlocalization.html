@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Localization</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Terminals, keyboard, mouse, localization"
+HREF="dev.html"><LINK
+REL="PREVIOUS"
+TITLE="Mouse"
+HREF="devmouse.html"><LINK
+REL="NEXT"
+TITLE="CLIP localisation"
+HREF="localisation.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="devmouse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Terminals, keyboard, mouse, localization</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="localisation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="DEVLOCALIZATION">8.4. Localization</H1
+><P
+>Localization of CLIP application includes localization of display devices,
+keyboard, string constants and embedded functions.</P
+><P
+>Display devices are console, terminal, terminal emulator.
+One can execute their localization by standard for OS means, i.e.
+font loading, terminal localization by burning the BIOS,
+or by loading a special display/keyboard driver.</P
+><P
+>In the case of scan-mode keyboard layout and encoding
+are made up by means of creating keymap-file and generation
+on its base file - description for CLIP's builtin keyboard driver.</P
+><P
+>Some clipper-functions (such as upper,lower,isalpha, isdigit) have
+national features - pseudographics, weight coefficients for string
+indexing and comparison etc.
+Utility $CLIPROOT/bin/gen_tbl is intended for creating the file - description
+of national features of that functions.
+For the more details see <A
+HREF="localisation.html"
+>Localisation</A
+>
+chapter.</P
+><P
+>CLIP has special setting for the using DBF data by different users with
+different charsets simultaneously:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>set("DBF_CHARSET","cp866")</PRE
+><P
+>or in the command form:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>set dbf charset to cp866</PRE
+><P
+>where cp866 is name of tbl-file with national features description.</P
+><P
+>May be so that data stored in DBF with one charset, program operates in
+another and client displays in third (see above about
+<A
+HREF="dev.html#DEVTERMINALS"
+>terminals</A
+>).</P
+><P
+>There is possibility to set charset used by printer too:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>set("PRINTER_CHARSET","cp866")</PRE
+><P
+>or in the command form:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>set printer charset to cp866</PRE
+><P
+>CLIP compiler stores all string constants defined as [string_data]
+at the $CLIPROOT/locale.pot subdirectories.
+So there is possibility for all these constants to make the
+translations for another languages.</P
+><P
+>At run time CLIP application reads environment variable LANG
+and then gets appropriate constants from $CLIPROOT/locale.po subdirectories.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="devmouse.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="localisation.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Mouse</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="dev.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CLIP localisation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

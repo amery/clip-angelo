@@ -1,0 +1,798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>LOGICAL</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="ARRAY"
+HREF="categarray.html"><LINK
+REL="NEXT"
+TITLE="ENVIRONMENT"
+HREF="categenvironment.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categarray.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categenvironment.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGLOGICAL">LOGICAL</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN22587"
+></A
+><H2
+>Name</H2
+>LOGICAL&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN22590"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>lEmpty              <A
+HREF="categarray.html#FUNCTIONEMPTY"
+>EMPTY(&#60;exp&#62;)</A
+>
+Value               <A
+HREF="categlogical.html#FUNCTIONIF"
+>IF(&#60;lCondition&#62;, &#60;expTrue&#62;, &#60;expFalse&#62;)</A
+>
+Value               <A
+HREF="categlogical.html#FUNCTIONIIF"
+>[I]IF(&#60;lCondition&#62;, &#60;expTrue&#62;, &#60;expFalse&#62;)</A
+>
+NIL                 <A
+HREF="categsystem.html#FUNCTIONQOUT"
+>QOUT([&#60;exp list&#62;]) --&#62; NIL QQOUT([&#60;exp list&#62;])</A
+>
+cFormatString       <A
+HREF="categlogical.html#FUNCTIONTRANSFORM"
+>TRANSFORM(&#60;exp&#62;, &#60;cSayPicture&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONTYPE"
+>TYPE(&#60;cExp&#62;)</A
+>
+cType               <A
+HREF="categarray.html#FUNCTIONVALTYPE"
+>VALTYPE(&#60;exp&#62;)</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22600"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22603"
+></A
+><H3
+><A
+NAME="FUNCTIONIF"
+></A
+>Function  IF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> IF(&#60;lCondition&#62;, &#60;expTrue&#62;, &#60;expFalse&#62;) --&#62; Value&#13;</PRE
+><P
+> IF() is a logical conversion function.  It is one of the most powerful
+ and versatile functions in xClipper.  It provides a mechanism to
+ evaluate a condition within an expression.  With this ability you can
+ convert a logical expression to another data type.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22608"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical expression to be evaluated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expTrue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value, a condition-expression, of any data type,
+ returned if &lt;lCondition&gt; is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expFalse&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value, of any date type, returned if &lt;lCondition&gt;
+ is false (.F.).  This argument need not be the same data type as</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expTrue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> IF() returns the evaluation of &lt;expTrue&gt; if &lt;lCondition&gt; evaluates to
+ true (.T.) and &lt;expFalse&gt; if it evaluates to false (.F.).  The value
+ returned is the data type of the valid condition-expression.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONIIF"
+> IIF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22643"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example converts a logical data value to a numeric data
+ value:
+ 
+ lPaid = .T.
+ ? IF(lPaid, 1, 0)               // Result: 1
+ 
+ In this example a logical field is formatted depending on
+ whether the Customer is past due or not:
+ 
+ @ ROW() + 1, 25 SAY IF(lPaid, SPACE(10), "Go get 'em")
+ 
+ If you are printing forms, you can print an indicating symbol
+ in different columns depending on the value of a logical field:
+ 
+ @ ROW(), IF(InHospital, 10, 12) SAY "X"
+ 
+ You can also use IF() to force the LABEL FORM to print blank
+ lines.  Enter the following expression when you create the label with
+ RL.EXE:
+ 
+ IF(EMPTY(Company), CHR(255), Company)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22647"
+></A
+><H3
+><A
+NAME="FUNCTIONIIF"
+></A
+>Function  IIF() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> [I]IF(&#60;lCondition&#62;, &#60;expTrue&#62;, &#60;expFalse&#62;) --&#62; Value&#13;</PRE
+><P
+> IIF() is a logical conversion function.  It is one of the most powerful
+ and versatile functions in xClipper.  It provides a mechanism to
+ evaluate a condition within an expression.  With this ability you can
+ convert a logical expression to another data type.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22652"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;lCondition&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a logical expression to be evaluated.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expTrue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value, a condition-expression, of any data type,
+ returned if &lt;lCondition&gt; is true (.T.).</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expFalse&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value, of any date type, returned if &lt;lCondition&gt;
+ is false (.F.).  This argument need not be the same data type as</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;expTrue&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> IIF() returns the evaluation of &lt;expTrue&gt; if &lt;lCondition&gt; evaluates to
+ true (.T.) and &lt;expFalse&gt; if it evaluates to false (.F.).  The value
+ returned is the data type of the valid condition-expression.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categlogical.html#FUNCTIONIF"
+> IF()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22687"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example converts a logical data value to a numeric data
+ value:
+ 
+ lPaid = .T.
+ ? IIF(lPaid, 1, 0)               // Result: 1
+ 
+ In this example a logical field is formatted depending on
+ whether the Customer is past due or not:
+ 
+ @ ROW() + 1, 25 SAY IIF(lPaid, SPACE(10), "Go get 'em")
+ 
+ If you are printing forms, you can print an indicating symbol
+ in different columns depending on the value of a logical field:
+ 
+ @ ROW(), IIF(InHospital, 10, 12) SAY "X"
+ 
+ You can also use IIF() to force the LABEL FORM to print blank
+ lines.  Enter the following expression when you create the label with
+ RL.EXE:
+ 
+ IIF(EMPTY(Company), CHR(255), Company)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22691"
+></A
+><H3
+><A
+NAME="FUNCTIONTRANSFORM"
+></A
+>Function  TRANSFORM() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> TRANSFORM(&#60;exp&#62;, &#60;cSayPicture&#62;) --&#62; cFormatString&#13;</PRE
+><P
+> TRANSFORM() is a conversion function that formats character, date,
+ logical, and numeric values according to a specified picture string that
+ includes a combination of picture function and template strings.
+ TRANSFORM() formats data for output to the screen or the printer in the
+ same manner as the PICTURE clause of the @...SAY command.</P
+><P
+> 
+ Function string:  A picture function string specifies
+ formatting rules that apply to the TRANSFORM() return value as a
+ whole, rather than to particular character positions within &lt;exp&gt;.
+ The function string consists of the @ character, followed by one or
+ more additional characters, each of which has a particular meaning
+ (see table below).  If a function string is present, the @ character
+ must be the leftmost character of the picture string, and the
+ function string must not contain spaces.  A function string may be
+ specified alone or with a template string.  If both are present, the
+ function string must precede the template string, and the two must be
+ separated by a single space.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>TRANSFORM() Functions
+ ---------------------------------------------------------------------
+ Function     Action
+ ---------------------------------------------------------------------
+ B            Displays numbers left-justified
+ C            Displays CR after positive numbers
+ D            Displays date in SET DATE format
+ E            Displays date in British format
+ R            Nontemplate characters are inserted
+ X            Displays DB after negative numbers
+ Z            Displays zeros as blanks
+ (            Encloses negative numbers in parentheses
+ !            Converts alphabetic characters to uppercase
+ ---------------------------------------------------------------------
+ </PRE
+></P
+><P
+> 
+ Template string:  A picture template string specifies
+ formatting rules on a character-by-character basis.  The template
+ string consists of a series of characters, some of which have special
+ meanings (see table below).  Each position in the template string
+ corresponds to a position in the value of the &lt;exp&gt; argument.
+ Because TRANSFORM() uses a template, it can insert formatting
+ characters such as commas, dollar signs, and parentheses.</P
+><P
+> 
+ Characters in the template string that have no assigned meanings are
+ copied literally into the return value.  If the @R picture function
+ is used, these characters are inserted between characters of the
+ return value; otherwise, they overwrite the corresponding characters
+ of the return value.  A template string may be specified alone or
+ with a function string.  If both are present, the function string
+ must precede the template string, and the two must be separated by a
+ single space.</P
+><P
+> 
+ <PRE
+CLASS="PROGRAMLISTING"
+>TRANSFORM() Templates
+ ---------------------------------------------------------------------
+ Template     Action
+ ---------------------------------------------------------------------
+ A,N,X,9,#    Displays digits for any data type
+ L            Displays logicals as "T" or "F"
+ Y            Displays logicals as "Y" or "N"
+ !            Converts an alphabetic character to uppercase
+ $            Displays a dollar sign in place of a leading space in a
+ numeric
+ *            Displays an asterisk in place of a leading space in a
+ numeric
+ .            Specifies a decimal point position
+ ,            Specifies a comma position
+ ---------------------------------------------------------------------
+ </PRE
+></P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22703"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;exp&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is the value to be formatted.  This expression can be any
+ valid xClipper data type except array, code block, and NIL.
+ </P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cSayPicture&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a string of picture and template characters that
+ describes the format of the returned character string.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> TRANSFORM() converts &lt;exp&gt; to a formatted character string as defined by
+ &lt;cSayPicture&gt;.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONPAD"
+> PAD()</A
+> <A
+HREF="categstring.html#FUNCTIONSTR"
+>STR()</A
+> <A
+HREF="categstring.html#FUNCTIONUPPER"
+>UPPER()</A
+> <A
+HREF="categstring.html#FUNCTIONLOWER"
+>LOWER()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22731"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> This example formats a number into a currency format using a
+ template:
+ 
+ ? TRANSFORM(123456, "$999,999")    // Result: $123,456
+ 
+ This example formats a character string using a function:
+ 
+ ? TRANSFORM("to upper", "@!")      // Result: TO UPPER</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categarray.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categenvironment.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ARRAY</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ENVIRONMENT</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

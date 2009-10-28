@@ -907,7 +907,7 @@ load_dll(ClipMachine * mp, const char *name, struct Coll *names, ClipVar * resp)
 	if (s)
 		snprintf(buf, sizeof(buf), "%s", name);
 	else
-		snprintf(buf, sizeof(buf), "%s/lib/%s", CLIPROOT, name);
+		snprintf(buf, sizeof(buf), "%s/lib/%s ", CLIPROOT, name);
 
 	if (!loaded_dlls)
 	{

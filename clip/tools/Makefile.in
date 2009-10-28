@@ -4,7 +4,7 @@
 # main parts
 #
 #
-Local_Depend 	= 		../include.h/*.h		\
+Local_Depend 	= 		../include/*.h		\
 							../include/*.ch
 
 c_files		=		$(sort 									\
@@ -35,7 +35,7 @@ SCRIPTS 			= 		$(sort 								 			\
 										clip_msgmerge$(SCRIPTSUFF) 	\
 										add_meta_tag$(SCRIPTSUFF) 		\
 							)
-SRC_C_files 		= 			$(sort $(c_files) po_util.c )
+SRC_C_files 		= 			$(c_files) po_util.c clip.y clic_c.lex hasher.lex plural.y rt.y clic.lex clic.y
 SRC_PRG_files 		= 			$(sort $(prg_files) )
 
 export
@@ -61,7 +61,7 @@ FORCE :
 	$(E_cd)cd ../libclipmain 					\
 		&& ( [ -f Makefile ] 					\
 				|| ( [ -x $(CONFIGURE_SH) ] 	\
-						&& $(CONFIGURE_SH) 		\
+						&& $(CONFIGURE_SH) $(MAKECMDGOALS) 		\
 					) 									\
 			)											\
 		&& $(MAKE) coll.o
@@ -70,7 +70,7 @@ FORCE :
 	$(E_cd)cd ../libclipmain 					\
 		&& ( [ -f Makefile ]						\
 				|| ( [ -x $(CONFIGURE_SH) ] 	\
-						&& $(CONFIGURE_SH) 		\
+						&& $(CONFIGURE_SH) $(MAKECMDGOALS) 		\
 					) 									\
 			)											\
 		&& $(MAKE) _win32.o
@@ -79,7 +79,7 @@ FORCE :
 	$(E_cd)cd ../libclipscreen  				\
 		&& ( [ -f Makefile ]						\
 				|| ( [ -x $(CONFIGURE_SH) ] 	\
-						&& $(CONFIGURE_SH) 		\
+						&& $(CONFIGURE_SH)  $(MAKECMDGOALS)		\
 					) 									\
 			)											\
 		&& $(MAKE) charset.o
@@ -295,14 +295,14 @@ clic_name.c: clic.tab.c Makefile
 	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
 	$(E_e)echo "#endif" 																	>>clic_name.c
 
-clic.tab.c: clic.y ../include.h/ci_clic.h
+clic.tab.c: clic.y ../include/ci_clic.h
 	$(E_xx)$(YACC) -bclic -v -d clic.y
 
 lex.cl.c: clic_c.lex clic.tab.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Pcl clic_c.lex
 
-lex.hash.c: hasher.lex ../include.h/ci_cliphash.h
+lex.hash.c: hasher.lex ../include/ci_cliphash.h
 	$(E_e)$(Trace_flex)
 	$(E_xx)flex -Phash hasher.lex
 
@@ -315,7 +315,7 @@ plural.tab.c: plural.y
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -bplural -pplural plural.y
 
-rt.tab.c: rt.y ../include.h/ci_clic.h
+rt.tab.c: rt.y ../include/ci_clic.h
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -brt -prt -v -d rt.y
 

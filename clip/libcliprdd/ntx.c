@@ -282,9 +282,9 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include "../include.h/ci_rdd.h"
+#include "ci_rdd.h"
 #include "ci_error.ch"
-#include "./ci_btree.h"
+#include "ci_btree.h"
 #ifdef HAVE_MMAN_H
 #include <sys/mman.h>
 #endif

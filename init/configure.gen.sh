@@ -20,11 +20,21 @@ source $Clip_M_Dir/init/check.packages.sh
 if [[ $? != 0 ]] ; then
 	exit 1
 fi
+#[ -d $HOME/bin ] || mkdir -p$V $HOME/bin
+#cp -f$V init/compile.sh $HOME/bin
+#if [ -x compile.sh ] ; then
+#	echo
+#else
+#	warning "Your $HOME/bin is not in your path.  Please modify $HOME./bash_profile"
+#	warning "Your PATH is set to $PATH"
+#	export PATH=$PATH:$HOME/bin
+#fi
 CLIP_CMDSTR="-w,-l,-N"
 FORCEALIGN=""
 MLIB=""
 MDBG=""
 osname="LINUX"
+Std_include="-I /usr/include"
 OPTFLAGS=""
 STATICLINK=""
 NO_GETTEXT=""
@@ -98,9 +108,9 @@ CLIPROOT="$INSTDIR"
 #	initial C_FLAGS
 #
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
-C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $DEBUGFLAGS $OPTFLAGS"
+C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $Std_include $DEBUGFLAGS $OPTFLAGS"
 #C_FLAGS="-Wall -fPIC -Iinclude.clip"
-CLIPFLAGS="-I include -I include.clip -wlON $DEBUGFLAGS  $OPTFLAGS"
+CLIPFLAGS="-I include -I include.clip -wlON $Std_include $DEBUGFLAGS  $OPTFLAGS"
 C_LIBS="-L$Clip_L_Dir -lclip"
 ADD_CFLAGS="-fPIC"
 uname=`uname -s`
@@ -436,7 +446,8 @@ echo "export V=$V"  																							>&3
 echo "export ICONV_INC=$ICONV_INC"   																	>&3
 echo "export ICONV_LIB=\"$ICONV_LIB\""																	>&3
 echo "export PO_BINS=\"$PO_BINS\""																		>&3
-echo "export YACC=$YACC"																		>&3
+echo "export PATH=\"$PATH\""																				>&3
+echo "export YACC=$YACC"																					>&3
 echo "export WaitForCheck=$WaitForCheck"																>&3
 echo																												>&3
 exec																												3>&-
@@ -714,9 +725,4 @@ if [[ $? != 0 ]] ; then
 	error $0 $LINENO
 	exit 1
 fi
-echo "-v0
--O
--r
--l" > $INSTDIR/cliprc/clipflags
-
 set >configure.gen.set.txt

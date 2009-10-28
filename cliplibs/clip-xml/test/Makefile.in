@@ -26,7 +26,7 @@ hash1 :
 
 install : all
 
-test_expat$(EXESUFF): test_expat.c $(CLIP) $(LIBCLIP) $(Depend_on)
+test_expat$(EXESUFF): test_expat.c $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CC) $(C_FLAGS) -o$@ $< $(LIBS)
 

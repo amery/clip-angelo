@@ -257,11 +257,11 @@
 #include "ci_clip.h"
 #include "ci_clipvm.h"
 #include "ci_hash.h"
-#include "libclipscreen/ci_screen.h"
+#include "ci_screen.h"
 #include "ci_error.ch"
 #include "ci_hashcode.h"
 #include "ci_rational.h"
-#include "libclipscreen/ci_charset.h"
+#include "ci_charset.h"
 #include "ci_coll.h"
 #include "ci_rdd.h"
 

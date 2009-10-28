@@ -25,7 +25,7 @@
 #include <string.h>
 #include <errno.h>
 
-#include "../include.h/ci_clip.h"
+#include "ci_clip.h"
 #include "ci_scankey.h"
 
 #define MAX_NR_FUNC	256	/* max nr of strings assigned to keys */

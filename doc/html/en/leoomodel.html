@@ -1,0 +1,681 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>OO model</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Language extensions"
+HREF="langext.html"><LINK
+REL="PREVIOUS"
+TITLE="Strings as arrays"
+HREF="lestrarr.html"><LINK
+REL="NEXT"
+TITLE="Replaceable Database Drivers (RDD)"
+HREF="rdd.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="lestrarr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 10. Language extensions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rdd.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LEOOMODEL">10.11. OO model</H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="LEOOINTRO">10.11.1. Introduction in OO model</H2
+><P
+>Firstly, some words about CA-Clipper built-in OO model. Its OO is based
+on ordinary array, and any call like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj:attribute</PRE
+><P
+>or</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj:method()</PRE
+><P
+>results in the situation when in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>obj</I
+></SPAN
+> array there is searching of an element
+whose first element coincides with attribute or method name, and such
+search is executed linearly and is practically analogues to</P
+><PRE
+CLASS="PROGRAMLISTING"
+>ascan(obj,{|x|x[1]=="attribute"})</PRE
+><P
+>function, which greatly reduces the efficiency of OO model of pure
+CA-Clipper. This, of course, is rather a simplified
+explanation, but the sense is still that as described.</P
+><P
+>We believe, now it's clear for what purpose association arrays were
+made. OO model based on association arrays is faster by an order.</P
+><P
+>At the same time, there's no need in expressions like</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj:=TClass(class_name):new()</PRE
+><P
+>and in <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>TClass</I
+></SPAN
+> class itself, which raises
+OO model efficiency.</P
+><P
+>How could you make your own class? It's very simple:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>function MyClassNew()
+obj:=map() // empty object
+clone(MyClass2New(),obj) // adoption of MyClass2 structure
+clone(MyClass3New(),obj) // adoption of MyClass3 structure
+// if there are coinciding attributes or
+// methods, elements of the last class
+// become main.
+obj:attribute1:=0
+obj:attribute2:=date()
+obj:method1:=@func1() // method1 becomes a function reference
+obj:method2:=@func2()
+// these functions must be defined in
+// the same .prg file as static
+// if methods have been addopted from other classes,
+// they will be reassigned to indicated classes
+return obj // returning a ready object
+
+static function func1
+::attribute1++
+return NIL
+static function func2(self)
+self:attribute1--
+return self</PRE
+><P
+>Also, we'd like to add two simple rules:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>The attribute is created when something, including NIL, is assigned to it.</P
+></LI
+><LI
+><P
+>At any moment in run-time,the method can assign or reassign any
+function announced in this module as static function, or can adopt
+this function from another object, as a usual assignment of values:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>myObj1:method1 := myObj2:methodX</PRE
+></LI
+></OL
+><P
+>In what way can objects be used? As in CA-Clipper, or even more simply:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj:=MyClassNew()
+obj:method1()
+? obj:attribute1</PRE
+><P
+>In an object, <B
+CLASS="COMMAND"
+>destroy()</B
+>
+method can be announced, but it isn't quite destructor, which is usual
+in languages of the third generation. There is a local <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>obj</I
+></SPAN
+>
+variable, and this is just an object. Upon leaving the function body,
+this variable, along with all its data, is destroyed. Now, let's consider the
+case of an object having an attribute</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj:hFile:=fopen("somefile")</PRE
+><P
+>When destroying <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>obj</I
+></SPAN
+>, it's necessary
+to close <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>hFile</I
+></SPAN
+>, but the compiler doesn't know
+this; the compiler (rather a virtual machine) only knows that in
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>hFile</I
+></SPAN
+>
+there's a number and will destroy the number only, but the file will
+remain open. Just for such purposes <B
+CLASS="COMMAND"
+>destroy()</B
+> is intended,
+and it'll called (if it exists ) before destroying <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>obj</I
+></SPAN
+>
+variable.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>static function my_destroy()
+fclose(::hFile)
+return</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="LEOOMODIF">10.11.2. Control of change attributes</H2
+><P
+>If it's necessary to control changes of object attributes, make
+<B
+CLASS="COMMAND"
+>modify()</B
+> method and invoke</P
+><PRE
+CLASS="PROGRAMLISTING"
+>mapmodify(obj, .t. )</PRE
+><P
+><B
+CLASS="COMMAND"
+>modify()</B
+> method is called before changing value
+of any object attribute. Two parameters are passed to
+<B
+CLASS="COMMAND"
+>modify()</B
+>: hash code of attribute to be changed
+and new value to be assigned to it. <B
+CLASS="COMMAND"
+>modify()</B
+>
+should return the value to assign to the attribute. For example:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>obj := MyObj()
+obj:attr1 := "bye"
+? obj:attr1,obj:attr2 // hello world
+
+function MyObj()
+local obj := map()
+obj:attr1 := ""
+obj:attr2 := "world"
+obj:modify := @mymodify()
+mapmodify(obj,.t.)
+return obj
+
+static function mymodify(self,hash,value)
+if hash == hash_ATTR1 .and. value == "bye"
+	return "hello" // don't be so pessimistic :)
+endif
+return value</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="LEOORECOVER">10.11.3. Recovering/reviving objects</H2
+><P
+>CLIP is able to store the data of any type to MEMO fields, including
+objects. But there is no way to store object methods (methods can be
+changed).</P
+><P
+>Recovering is made with the following steps: data are decoded; if data are of
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>object</I
+></SPAN
+> type and object have <SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>CLASSNAME</I
+></SPAN
+>
+attribute then called function
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>_recover_&#38;(var:CLASSNAME)(var)</I
+></SPAN
+>.
+This function must assign this object methods.</P
+><P
+>This feature can be used to send object as string via e-mail or TCP :)</P
+><P
+>Here is an example of using this feature:</P
+><PRE
+CLASS="PROGRAMLISTING"
+>x:=asdfNew() /* Constructor */
+? "x:m1",x:m1() /* See wheter it works */
+? "x:m2",x:m2()
+y:=var2str(x) /* object -&#62; string */
+/* or field-&#62;memo_field:=x */
+? "y=",y
+z:=str2var(y) /* string -&#62; object, _recover_asdf() is called automatically */
+/* or z:=field-&#62;memo_field */
+? "z=",z
+? "z:m1",z:m1() /* see wheter it works now */
+? "z:m2",z:m2()
+return
+
+function asdfNew()
+local o:=map()
+o:classname := "ASDF"
+o:a1 := "asdf"
+o:a2 := "qwer"
+_recover_asdf(o)
+return o
+
+function _recover_asdf(o)
+o:m1 :=@asdf_1()
+o:m2 :=@asdf_2()
+? "recovering"
+return o
+
+static function asdf_1
+? "asdf_1",::a1
+return ::a1
+
+static function asdf_2
+? "asdf_2",::a2
+return ::a1</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="LEOOOVERLOAD">10.11.4. Overloading operators for objects</H2
+><P
+>CLIP supports overloading of the operations.
+Operations that can be overloaded and corresponding
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>operator</I
+></SPAN
+> methods are listed in the table below.</P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN1825"><P
+><B
+>Table 10-1. Overloaded operations</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><THEAD
+><TR
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Operation</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Method</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Operation</TH
+><TH
+ALIGN="LEFT"
+VALIGN="TOP"
+>Method</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'+'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_add</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'-'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_sub</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'*'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_mul</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'/'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_div</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'%'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_mod</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'^'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_pow</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'|'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_or</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'&amp;'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_and</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'$'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_in</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'='</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_eq</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'=='</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_eeq</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'!='</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_neq</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'&#60;'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_lt</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'&#62;'</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_gt</TD
+></TR
+><TR
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'&#60;='</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_le</TD
+><TD
+ALIGN="CENTER"
+VALIGN="TOP"
+>'&#62;='</TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+>operator_ge</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>Here is an example of using operations overloading.</P
+><PRE
+CLASS="PROGRAMLISTING"
+>car1 := newBMW()
+car2 := newKAMAZ()
+? car1 &#62; car2 // .F. (weight of Kamaz is much more :)
+car := car1+car2
+? car:model // Scrap
+? car:weight // 10000
+// 10000 kilograms of the scarp-iron :)
+
+function newCar()
+local obj := map()
+obj:model := ""
+obj:weight := 0
+obj:operator_gt := @car_gt()
+obj:operator_add := @car_add()
+return obj
+
+static function car_gt(car)
+return ::weight &#62; car:weight
+
+static function car_add(car)
+local obj := newCar()
+obj:model := "Scrap"
+obj:weight := ::weight+car:weight
+return obj
+
+function newBMW()
+local obj := newCar() // adopt Car class
+obj:model := "BMW"
+obj:weight := 2000
+return obj
+
+function newKAMAZ()
+local obj := newCar() // adopt Car class
+obj:model := "KAMAZ"
+obj:weight := 8000
+return obj</PRE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="LEOOCONCLUSION">10.11.5. Conclusion</H2
+><P
+>Due to such OO model and compiling into C-program, there appears
+a possibility to write TBrowse and Get standard classes in Clipper itself.
+At the same time, the efficiency of these classes is not worse than
+those written in pure C in CA-Clipper.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="lestrarr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rdd.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Strings as arrays</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langext.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Replaceable Database Drivers (RDD)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

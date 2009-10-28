@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ENVIRONMENT</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions by categories"
+HREF="ctfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="LOGICAL"
+HREF="categlogical.html"><LINK
+REL="NEXT"
+TITLE="CODB-QUERY"
+HREF="categcodb-query.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="REFENTRY"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="categlogical.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="categcodb-query.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="CATEGENVIRONMENT">ENVIRONMENT</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN22738"
+></A
+><H2
+>Name</H2
+>ENVIRONMENT&nbsp;--&nbsp;</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN22741"><H2
+>Function</H2
+><PRE
+CLASS="SYNOPSIS"
+>nCurrentReturnCode  <A
+HREF="categsystem.html#FUNCTIONERRORLEVEL"
+>ERRORLEVEL([&#60;nNewReturnCode&#62;])</A
+>
+lResult             <A
+HREF="categenvironment.html#FUNCTIONFTLINKED"
+>FT_LINKED( &#60;cString&#62; )</A
+>
+NIL                 <A
+HREF="categenvironment.html#FUNCTIONFTRESTSETS"
+>FT_RESTSETS( [ &#60;aOldSets&#62; ] )</A
+>
+aOldSets            <A
+HREF="categenvironment.html#FUNCTIONFTSAVESETS"
+>FT_SAVESETS()</A
+>
+&#60;lOldState&#62;         <A
+HREF="categenvironment.html#FUNCTIONFTSETCENTURY"
+>FT_SETCENTURY( [ &#60;lNewSetState&#62; ] )</A
+>
+cString             <A
+HREF="categsystem.html#FUNCTIONGETENV"
+>GETENV(&#60;cEnvironmentVariable&#62;)</A
+>
+nKbytes             <A
+HREF="categsystem.html#FUNCTIONMEMORY"
+>MEMORY(&#60;nExp&#62;)</A
+>
+lError              <A
+HREF="categsystem.html#FUNCTIONNETERR"
+>NETERR([&#60;lNewError&#62;])</A
+>
+cWorkstationName    <A
+HREF="categsystem.html#FUNCTIONNETNAME"
+>NETNAME()</A
+>
+cOsName             <A
+HREF="categsystem.html#FUNCTIONOS"
+>OS()</A
+>
+CurrentSetting      <A
+HREF="categsystem.html#FUNCTIONSET"
+>SET(&#60;nSpecifier&#62;, [&#60;expNewSetting&#62;], [&#60;lOpenMode&#62;])</A
+></PRE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN22755"
+></A
+><H2
+>Description </H2
+><P
+></P
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22758"
+></A
+><H3
+><A
+NAME="FUNCTIONFTLINKED"
+></A
+>Function  FT_LINKED() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_LINKED( &#60;cString&#62; ) --&#62; lResult&#13;</PRE
+><P
+>  This function would be used in data driven application to determine
+ whether or not a macro compiled function was linked in.</P
+><P
+> 
+ Several functions can be passed, and nested, in &lt;cString&gt;.</P
+><P
+> 
+ Caveat: Some function calls are converted by the preprocessor
+ into other function calls. You cannot have these types of
+ functions in a macro compiled string as they never exist at
+ runtime. FT_LINKED will correctly tell you that they are invalid.</P
+><P
+> 
+ For instance: there is no function called SORT() in any of the
+ Nantucket LIBraries, but it is a valid CLIPPER command because the
+ preprocessor will convert it to other function calls.</P
+><P
+> </P
+><P
+> </P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22768"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><TT
+CLASS="PARAMETER"
+><I
+>&#60;cString&#62;</I
+></TT
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> is a character string containing one or more function
+ calls</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> .T. if all functions within the string are currently linked into
+ the application, .F. if one or more aren't.  See below for a
+ definition of "function."</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22783"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+>  cString := "FT_GoodFunc(BadFunc(3,2))"
+ IF FT_LINKED(cString)
+ EVAL( &#38;("{||"+cString+"}") )
+ ELSE
+ ALERT("Error: "+cString+" was not linked in. Called by FT_LINKED()")
+ ENDIF
+ 
+ </PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22787"
+></A
+><H3
+><A
+NAME="FUNCTIONFTRESTSETS"
+></A
+>Function  FT_RESTSETS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RESTSETS( [ &#60;aOldSets&#62; ] ) --&#62; NIL&#13;</PRE
+><P
+> This function "restores" the SET Settings, i.e., it sets them to the
+ values in the array aOldSets.  The following SETs are not currently
+ supported: FILTER, FORMAT, FUNCTION, INDEX, KEYS, MODE, ORDER,
+ PROCEDURE, RELATION, TYPEAHEAD</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22792"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> NIL</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categenvironment.html#FUNCTIONFTSAVESETS"
+> FT_SAVESETS()</A
+> <A
+HREF="categenvironment.html#FUNCTIONFTSETCENTURY"
+> FT_SETCENTURY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22808"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_RESTSETS(aOldSets)</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22812"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSAVESETS"
+></A
+>Function  FT_SAVESETS() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SAVESETS() --&#62; aOldSets&#13;</PRE
+><P
+> This function saves the SET Settings, i.e., it copies them into an
+ array, aOldSets.  The following SETs are not currently supported:
+ FILTER, FORMAT, FUNCTION, INDEX, KEYS, MODE, ORDER, PROCEDURE,
+ RELATION, TYPEAHEAD</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22817"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> An array containing the values of the supported SETs.</P
+></TD
+></TR
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>See also :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categenvironment.html#FUNCTIONFTRESTSETS"
+> FT_RESTSETS()</A
+> <A
+HREF="categenvironment.html#FUNCTIONFTSETCENTURY"
+> FT_SETCENTURY()</A
+> </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22833"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> aOldSets := FT_SAVESETS()</PRE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="REFSECT2"
+><A
+NAME="AEN22837"
+></A
+><H3
+><A
+NAME="FUNCTIONFTSETCENTURY"
+></A
+>Function  FT_SETCENTURY() </H3
+><PRE
+CLASS="PROGRAMLISTING"
+> FT_SETCENTURY( [ &#60;lNewSetState&#62; ] ) --&#62; &#60;lOldState&#62;&#13;</PRE
+><P
+> This function returns the state (ON/OFF, TRUE/FALSE) of the CENTURY
+ and optionally sets it ON or OFF.</P
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN22842"><P
+></P
+><TABLE
+BORDER="0"
+WIDTH="100%"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+WIDTH="20%"
+ALIGN="RIGHT"
+VALIGN="TOP"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="EMPHASIS"
+>Returns :</I
+></SPAN
+></TD
+><TD
+WIDTH="80%"
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> The state of the CENTURY setting upon entry to the routine</P
+></TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><DIV
+CLASS="INFORMALEXAMPLE"
+><A
+NAME="AEN22852"><P
+></P
+><P
+><B
+CLASS="COMMAND"
+>Example :</B
+></P
+><PRE
+CLASS="PROGRAMLISTING"
+> lOldState := FT_SETCENTURY()     // Get current CENTURY Setting
+ 
+ lOldState := FT_SETCENTURY(.T.)  // Get the current CENTURY Setting
+ // and turn it on (set it to TRUE)
+ 
+ lOldState := FT_SETCENTURY(.F.)  // Get the current CENTURY Setting
+ // and turn it off (set it to FALSE)</PRE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="categlogical.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="categcodb-query.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>LOGICAL</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ctfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>CODB-QUERY</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

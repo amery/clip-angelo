@@ -54,7 +54,7 @@ cfg :
 
 include/ci_clip-gtkextracfg.h : $(CONFIGURE_SH)
 	$(E_e)$(Trace)
-	$(E_xx)$(CONFIGURE_SH)
+	$(E_xx)$(CONFIGURE_SH) $(MAKECMDGOALS)
 
 cleanc:
 	$(E_rm)rm -rf$(V) *.b $(TARGET).* include/ci_clip-gtkextracfg.h

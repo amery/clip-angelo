@@ -9,7 +9,7 @@
 #include <expat.h>
 
 #include "ci_clip.h"
-#include "libclipscreen/ci_charset.h"
+#include "ci_charset.h"
 
 #include "ci_hashcode.h"
 #include "ci_clip-expat.h"

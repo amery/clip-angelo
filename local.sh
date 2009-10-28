@@ -1,6 +1,4 @@
 #!/bin/bash -u
+export WaitTime=1
 init/compile.sh "local"
-if [[ $? != 0 ]] ; then
-	init/Make.clean.sh
-fi
 [ -f ./local ] && rm -fv ./local

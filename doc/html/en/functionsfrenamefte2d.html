@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FRENAME()-FTE2D()</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.76b+
+"><LINK
+REL="HOME"
+TITLE="xBase and Clipper language compatible compiler"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="CLIP Functions in alhabetic order"
+HREF="abfunctions.html"><LINK
+REL="PREVIOUS"
+TITLE="FACCESS()-FREADSTR()"
+HREF="functionsfaccessfreadstr.html"><LINK
+REL="NEXT"
+TITLE="FTEASTER()-FTMGETPAGE()"
+HREF="functionsfteasterftmgetpage.html"><meta http-equiv="Content-Type" content="text/html; charset=ascii"></HEAD
+><BODY
+CLASS="ARTICLE"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>xBase and Clipper language compatible compiler</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functionsfaccessfreadstr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functionsfteasterftmgetpage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="ARTICLE"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="FUNCTIONSFRENAMEFTE2D">FRENAME()-FTE2D()</H1
+><HR></DIV
+><DIV
+CLASS="INFORMALTABLE"
+><A
+NAME="AEN18749"><P
+></P
+><TABLE
+BORDER="0"
+CLASS="CALSTABLE"
+><TBODY
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFRENAME"
+> FRENAME()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Change the name of a file</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFSEEK"
+> FSEEK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set a binary file pointer to a new position</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFSTRTON"
+> FSTRTON()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert string as "float"  to xClipper-numeric.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAADDITION"
+> FT_AADDITION()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Add elements unique of source array to target array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAAVG"
+> FT_AAVG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Average numeric values in an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTADJ"
+> FT_ACCTADJ()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Adjust beginning or ending fiscal pd. dates to acctg. dates</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTMONTH"
+> FT_ACCTMONTH()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return accounting month data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTQTR"
+> FT_ACCTQTR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return accounting quarter data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTWEEK"
+> FT_ACCTWEEK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return accounting week data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTACCTYEAR"
+> FT_ACCTYEAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return accounting year data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTACH2TB"
+> FT_ACH2TB()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Replace ACHOICE() with a Tbrowse object &amp; multiple features.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFTADAPTER"
+> FT_ADAPTER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTADDER"
+> FT_ADDER()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Pop up a simple calculator</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTADDWKDY"
+> FT_ADDWKDY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return true number of days to add given number of workdays</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTADESSORT"
+> FT_ADESSORT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sort an array in descending order</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAEMAXLEN"
+> FT_AEMAXLEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find longest element within an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAEMINLEN"
+> FT_AEMINLEN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find shortest element within an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAMEDIAN"
+> FT_AMEDIAN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find middle value in array, or average of two middle values</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTANOMATCHES"
+> FT_ANOMATCHES()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find the number of array elements meeting a condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTAREDIT"
+> FT_AREDIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> 2 dimensional array editing function using TBrowse</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categarray.html#FUNCTIONFTASUM"
+> FT_ASUM()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Sum the elements of an array</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTAT2"
+> FT_AT2()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find position of the nth occurrence of a substring</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBITCLR"
+> FT_BITCLR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Clear (reset) selected bit in a byte</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBITSET"
+> FT_BITSET()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set selected bit in a byte</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTBLINK"
+> FT_BLINK()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a blinking message on the screen</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTBRWSWHL"
+> FT_BRWSWHL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Browse an indexed database limited to a while condition</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTBYT2BIT"
+> FT_BYT2BIT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert byte to string of 1's and 0's</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTBYT2HEX"
+> FT_BYT2HEX()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert byte to hexadecimal version of its binary value</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEAND"
+> FT_BYTEAND()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform bit-wise AND on two ASCII characters (bytes)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTENEG"
+> FT_BYTENEG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform bit-wise negation on an ASCII character</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTENOT"
+> FT_BYTENOT()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform bit-wise NOT on an ASCII character (byte)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEOR"
+> FT_BYTEOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform bit-wise OR on two ASCII characters (bytes)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categstring.html#FUNCTIONFTBYTEXOR"
+> FT_BYTEXOR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Perform bit-wise XOR on two ASCII characters (bytes)</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTCALENDAR"
+> FT_CALENDAR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display date/time calendar, find a date, return calendar data.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTCIV2MIL"
+> FT_CIV2MIL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert usual civilian format time to military time.</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTCLRSEL"
+> FT_CLRSEL()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> User Selectable Colour Routine</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTD2E"
+> FT_D2E()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert decimal to scientific notation</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDATECNFG"
+> FT_DATECNFG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set beginning of year/week for FT_ date functions</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDAYOFYR"
+> FT_DAYOFYR()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return calendar, fiscal or accounting day data</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDAYTOBOW"
+> FT_DAYTOBOW()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Calculate no. of days between date and beginning of week</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTDEC2BIN"
+> FT_DEC2BIN()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert decimal to binary</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTDFCLOSE"
+> FT_DFCLOSE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Close file displayed by FT_DISPFILE()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categfileio.html#FUNCTIONFTDFSETUP"
+> FT_DFSETUP()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Set up parameters for FT_DISPFILE()</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categunderconstruction.html#FUNCTIONFTDISPFILE"
+> FT_DISPFILE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Under construction</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categmenusprompts.html#FUNCTIONFTDISPMSG"
+> FT_DISPMSG()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Display a message and optionally waits for a keypress</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTDOSVER"
+> FT_DOSVER</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the current DOS major and minor version as a string</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdatetime.html#FUNCTIONFTDOY"
+> FT_DOY()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Find number of day within year</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTDSKFREE"
+> FT_DSKFREE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the amount of available disk space</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categdosbios.html#FUNCTIONFTDSKSIZE"
+> FT_DSKSIZE()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Return the maximum capacity of a fixed disk</TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><A
+HREF="categconversion.html#FUNCTIONFTE2D"
+> FT_E2D()</A
+></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+> Convert scientific notation string to a decimal</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functionsfaccessfreadstr.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functionsfteasterftmgetpage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FACCESS()-FREADSTR()</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="abfunctions.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FTEASTER()-FTMGETPAGE()</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

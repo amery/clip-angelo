@@ -36,11 +36,11 @@ cleanc:
 distcleanc :
 	$(E_rm)rm -rf$(V) *.g
 
-uitest$(EXESUFF): uitest.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+uitest$(EXESUFF): uitest.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewslM $(CLIPFLAGS) $< $(LIBS) $(EXTRALIBS)
 
-uiform$(EXESUFF): uiform.prg $(CLIP) $(LIBCLIP) $(Depend_on)
+uiform$(EXESUFF): uiform.prg $(CLIP) $(FULL_LIBCLIP) $(Depend_on)
 	$(E_e)$(Trace_clip)
 	$(CLIP) -o$@ -ewsln $(CLIPFLAGS) $< $(LIBS) $(EXTRALIBS)
 
