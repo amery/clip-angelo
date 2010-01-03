@@ -1,15 +1,7 @@
 /*
-$Log: plural.y,v $
-Revision 1.1  2006/06/22 19:35:17  itk
-uri: init sf.net repository
-
-Revision 1.2  2003/07/03 07:15:56  clip
-fix a lot of warnings
-paul
-
-Revision 1.1  2002/10/30 12:17:26  clip
-support for plural forms in i18n messages
-paul
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 
 */
 %{

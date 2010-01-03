@@ -102,138 +102,140 @@ static time_t mtime = 0;
 static int
 password_conversation(int num_msg, const struct pam_message **msg, struct pam_response **resp, void *appdata_ptr)
 {
-	if (num_msg != 1 || msg[0]->msg_style != PAM_PROMPT_ECHO_OFF)
-	{
-		fprintf(stderr, "ERROR: Unexpected PAM converstaion '%d/%s'\n", msg[0]->msg_style, msg[0]->msg);
-		return PAM_CONV_ERR;
-	}
-	if (!appdata_ptr)
-	{
-		/* Workaround for Solaris 2.6 where the PAM library is broken
-		 * and does not pass appdata_ptr to the conversation routine
-		 */
-		appdata_ptr = password;
-	}
-	if (!appdata_ptr)
-	{
-		fprintf(stderr, "ERROR: No password available to password_converstation!\n");
-		return PAM_CONV_ERR;
-	}
-	*resp = calloc(num_msg, sizeof(struct pam_response));
-	if (!*resp)
-	{
-		fprintf(stderr, "ERROR: Out of memory!\n");
-		return PAM_CONV_ERR;
-	}
-	(*resp)[0].resp = strdup((char *) appdata_ptr);
-	(*resp)[0].resp_retcode = 0;
+   if (num_msg != 1 || msg[0]->msg_style != PAM_PROMPT_ECHO_OFF)
+    {
+       fprintf(stderr, "ERROR: Unexpected PAM converstaion '%d/%s'\n", msg[0]->msg_style, msg[0]->msg);
+       return PAM_CONV_ERR;
+    }
+   if (!appdata_ptr)
+    {
+      /* Workaround for Solaris 2.6 where the PAM library is broken
+       * and does not pass appdata_ptr to the conversation routine
+       */
+       appdata_ptr = password;
+    }
+   if (!appdata_ptr)
+    {
+       fprintf(stderr, "ERROR: No password available to password_converstation!\n");
+       return PAM_CONV_ERR;
+    }
+   *resp = calloc(num_msg, sizeof(struct pam_response));
+   if (!*resp)
+    {
+       fprintf(stderr, "ERROR: Out of memory!\n");
+       return PAM_CONV_ERR;
+    }
+   (*resp)[0].resp = strdup((char *) appdata_ptr);
+   (*resp)[0].resp_retcode = 0;
 
-	return ((*resp)[0].resp ? PAM_SUCCESS : PAM_CONV_ERR);
+   return ((*resp)[0].resp ? PAM_SUCCESS : PAM_CONV_ERR);
 }
 
 static struct pam_conv conv = {
-	&password_conversation,
-	NULL
+   &password_conversation,
+   NULL
 };
 
 void
 signal_received(int sig)
 {
-	reset_pam = 1;
-	signal(sig, signal_received);
+   reset_pam = 1;
+   signal(sig, signal_received);
 }
 
 int
 main(int argc, char *argv[])
 {
-	pam_handle_t *pamh = NULL;
-	int retval, r;
-	char *user;
+   pam_handle_t *pamh = NULL;
 
-	/* char *password; */
-	char buf[BUFSIZE];
-	time_t pamh_created = 0;
+   int       retval, r;
 
-	signal(SIGHUP, signal_received);
+   char     *user;
 
-	/* make standard output line buffered */
-	setvbuf(stdout, NULL, _IOLBF, 0);
+  /* char *password; */
+   char      buf[BUFSIZE];
 
-	retval = PAM_SUCCESS;
-	while (fgets(buf, BUFSIZE, stdin))
+   time_t    pamh_created = 0;
+
+   signal(SIGHUP, signal_received);
+
+  /* make standard output line buffered */
+   setvbuf(stdout, NULL, _IOLBF, 0);
+
+   retval = PAM_SUCCESS;
+   while (fgets(buf, BUFSIZE, stdin))
+    {
+       user = buf;
+       password = strchr(buf, '\n');
+       if (!password)
 	{
-		user = buf;
-		password = strchr(buf, '\n');
-		if (!password)
-		{
-			fprintf(stderr, "authenticator: Unexpected input '%s'\n", buf);
-			fprintf(stdout, "ERR\n");
-			continue;
-		}
-		*password = '\0';
-		password = strchr(buf, ' ');
-		if (!password)
-		{
-			fprintf(stderr, "authenticator: Unexpected input '%s'\n", buf);
-			fprintf(stdout, "ERR\n");
-			continue;
-		}
-		*password++ = '\0';
+	   fprintf(stderr, "authenticator: Unexpected input '%s'\n", buf);
+	   fprintf(stdout, "ERR\n");
+	   continue;
+	}
+       *password = '\0';
+       password = strchr(buf, ' ');
+       if (!password)
+	{
+	   fprintf(stderr, "authenticator: Unexpected input '%s'\n", buf);
+	   fprintf(stdout, "ERR\n");
+	   continue;
+	}
+       *password++ = '\0';
 
-		conv.appdata_ptr = (char *) password;	/* from buf above. not allocated */
+       conv.appdata_ptr = (char *) password;	/* from buf above. not allocated */
 #ifdef PAM_CONNECTION_TTL
-		if (pamh_created + PAM_CONNECTION_TTL >= time(NULL))
-			reset_pam = 1;
+       if (pamh_created + PAM_CONNECTION_TTL >= time(NULL))
+	  reset_pam = 1;
 #endif
-		if (reset_pam && pamh)
-		{
-			/* Close previous PAM connection */
-			retval = pam_end(pamh, retval);
-			if (retval != PAM_SUCCESS)
-			{
-				fprintf(stderr, "ERROR: failed to release PAM authenticator\n");
-			}
-			pamh = NULL;
-		}
-		if (!pamh)
-		{
-			/* Initialize PAM connection */
-			retval = pam_start(PAM_SERVICE_NAME, 0, &conv, &pamh);
-			if (retval != PAM_SUCCESS)
-			{
-				fprintf(stderr, "ERROR: failed to create PAM authenticator\n");
-			}
-			reset_pam = 0;
-			pamh_created = time(NULL);
-		}
-		if (retval == PAM_SUCCESS)
-			retval = pam_set_item(pamh, PAM_USER, user);
-		if (retval == PAM_SUCCESS)
-			retval = pam_set_item(pamh, PAM_CONV, &conv);
-		if (retval == PAM_SUCCESS)
-			retval = pam_authenticate(pamh, 0);
-		if (retval == PAM_SUCCESS)
-			retval = pam_acct_mgmt(pamh, 0);
-		if (retval == PAM_SUCCESS)
-		{
-			fprintf(stdout, "OK\n");
-		}
-		else
-		{
-			fprintf(stdout, "ERR\n");
-			/*fprintf(stdout, "%s\n", pam_strerror(pamh, retval));*/
-		}
-	}
-
-	if (pamh)
+       if (reset_pam && pamh)
 	{
-		r = pam_end(pamh, retval);
-		if (r != PAM_SUCCESS)
-		{
-			pamh = NULL;
-			fprintf(stderr, "ERROR: failed to release PAM authenticator\n");
-		}
+	  /* Close previous PAM connection */
+	   retval = pam_end(pamh, retval);
+	   if (retval != PAM_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: failed to release PAM authenticator\n");
+	    }
+	   pamh = NULL;
 	}
-	return (retval == PAM_SUCCESS ? 0 : 1);	/* indicate success */
-}
+       if (!pamh)
+	{
+	  /* Initialize PAM connection */
+	   retval = pam_start(PAM_SERVICE_NAME, 0, &conv, &pamh);
+	   if (retval != PAM_SUCCESS)
+	    {
+	       fprintf(stderr, "ERROR: failed to create PAM authenticator\n");
+	    }
+	   reset_pam = 0;
+	   pamh_created = time(NULL);
+	}
+       if (retval == PAM_SUCCESS)
+	  retval = pam_set_item(pamh, PAM_USER, user);
+       if (retval == PAM_SUCCESS)
+	  retval = pam_set_item(pamh, PAM_CONV, &conv);
+       if (retval == PAM_SUCCESS)
+	  retval = pam_authenticate(pamh, 0);
+       if (retval == PAM_SUCCESS)
+	  retval = pam_acct_mgmt(pamh, 0);
+       if (retval == PAM_SUCCESS)
+	{
+	   fprintf(stdout, "OK\n");
+	}
+       else
+	{
+	   fprintf(stdout, "ERR\n");
+	  /*fprintf(stdout, "%s\n", pam_strerror(pamh, retval)); */
+	}
+    }
 
+   if (pamh)
+    {
+       r = pam_end(pamh, retval);
+       if (r != PAM_SUCCESS)
+	{
+	   pamh = NULL;
+	   fprintf(stderr, "ERROR: failed to release PAM authenticator\n");
+	}
+    }
+   return (retval == PAM_SUCCESS ? 0 : 1);	/* indicate success */
+}

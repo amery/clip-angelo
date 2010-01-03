@@ -42,7 +42,13 @@ c_files 			= 		$(sort 							\
 										_win32.c 			\
 	   					)
 
+#	   								clicgt.c 			\#
+
 ADDOBJS 			= 		../libclipscreen/charset.o
+#\
+#							../compiler/clip.c 				\
+#							../compiler/clicutil.c
+#
 PROG 				= 		clipmain
 ADDLIBS =
 o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
@@ -77,6 +83,16 @@ include $(Makefile_o_in)
 	$(E_cd)cd ../libclipscreen  															\
 		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )	\
 		&& $(MAKE) charset.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
+
+../compiler/clip.o : ../compiler/clip.c Makefile
+	$(E_cd)cd ../compiler  															\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )	\
+		&& $(MAKE) clip.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
+
+../compiler/clicutil.o : ../compiler/clicutil.c Makefile
+	$(E_cd)cd ../compiler  															\
+		&& ( [ -f Makefile ] || ( [ -x $(CONFIGURE_SH) ] && $(CONFIGURE_SH) $(MAKECMDGOALS) ) )	\
+		&& $(MAKE) clicutil.o $(MAKEFLAGS) $(ADDMAKECMDGOALS)
 
 plural.tab.o : plural.tab.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\

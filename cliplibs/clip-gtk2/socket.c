@@ -14,93 +14,112 @@
 
 /**********************************************************/
 /* Signals table */
-static SignalTable socket_signals[] =
-{
-	{"plug-added",	GSF( widget_signal_handler ),	ESF( object_emit_signal ), GTK_PLUG_ADDED_SIGNAL},
-	{"plug-removed",GSF( widget_signal_handler ),	ESF( object_emit_signal ), GTK_PLUG_REMOVED_SIGNAL},
-	{"", NULL, NULL, 0}
+static SignalTable socket_signals[] = {
+   {"plug-added", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_PLUG_ADDED_SIGNAL},
+   {"plug-removed", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_PLUG_REMOVED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /* Register widget signals table in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_socket() { return GTK_TYPE_SOCKET; }
-long _clip_type_socket() { return GTK_WIDGET_SOCKET; }
-const char * _clip_type_name_socket() { return "GTK_WIDGET_SOCKET"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_socket()
+{
+   return GTK_TYPE_SOCKET;
+}
+
+long
+_clip_type_socket()
+{
+   return GTK_WIDGET_SOCKET;
+}
+
+const char *
+_clip_type_name_socket()
+{
+   return "GTK_WIDGET_SOCKET";
+}
 
 int
-clip_INIT___SOCKET(ClipMachine *cm)
+clip_INIT___SOCKET(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_socket, _clip_type_name_socket, _gtk_type_socket,  _gtk_type_container, socket_signals);
-	return 0;
+   _wtype_table_put(_clip_type_socket, _clip_type_name_socket, _gtk_type_socket, _gtk_type_container, socket_signals);
+   return 0;
 }
+
 /**********************************************************/
 
 /**** SOCKET constructor ****/
 int
-clip_GTK_SOCKETNEW(ClipMachine * cm)
+clip_GTK_SOCKETNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	GtkWidget *wid = NULL;
-        C_widget *cwid ;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
+   GtkWidget *wid = NULL;
 
-	wid = gtk_socket_new();
+   C_widget *cwid;
 
-	if (!wid) goto err;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
 
-	cwid = _register_widget(cm, wid, cv);
+   wid = gtk_socket_new();
 
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
+   if (!wid)
+      goto err;
 
-	return 0;
-err:
-	return 1;
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_SOCKETSTEAL(ClipMachine * cm)
+clip_GTK_SOCKETSTEAL(ClipMachine * ClipMachineMemory)
 {
-	C_widget *csocket = _fetch_cw_arg(cm);
-        GdkNativeWindow id = _clip_parni(cm, 2);
+   C_widget *csocket = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(csocket,GTK_IS_SOCKET);
-        CHECKARG(2, NUMERIC_t);
+   GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_socket_steal(GTK_SOCKET(csocket->widget), id);
+   CHECKCWID(csocket, GTK_IS_SOCKET);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_socket_steal(GTK_SOCKET(csocket->widget), id);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_SOCKETADDID(ClipMachine * cm)
+clip_GTK_SOCKETADDID(ClipMachine * ClipMachineMemory)
 {
-	C_widget *csocket = _fetch_cw_arg(cm);
-        GdkNativeWindow id = _clip_parni(cm, 2);
+   C_widget *csocket = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(csocket,GTK_IS_SOCKET);
-        CHECKARG(2, NUMERIC_t);
+   GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_socket_add_id(GTK_SOCKET(csocket->widget), id);
+   CHECKCWID(csocket, GTK_IS_SOCKET);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_socket_add_id(GTK_SOCKET(csocket->widget), id);
+
+   return 0;
+ err:
+   return 1;
 }
-
 
 int
-clip_GTK_SOCKETGETID(ClipMachine * cm)
+clip_GTK_SOCKETGETID(ClipMachine * ClipMachineMemory)
 {
-	C_widget *csocket = _fetch_cw_arg(cm);
+   C_widget *csocket = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(csocket,GTK_IS_SOCKET);
+   CHECKCWID(csocket, GTK_IS_SOCKET);
 
-	_clip_retni(cm, gtk_socket_get_id(GTK_SOCKET(csocket->widget)));
+   _clip_retni(ClipMachineMemory, gtk_socket_get_id(GTK_SOCKET(csocket->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-

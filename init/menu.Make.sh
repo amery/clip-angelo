@@ -1,9 +1,7 @@
-#!/bin/sh -u
+#!/bin/sh
 #
 #
-if [[ "$USER" != "root" ]] ; then
-	[ -f config/user ] || echo $USER >config/user
-fi
+[ -f config/user ] || echo $USER >config/user
 if ! [ -x /bin/bash ] ; then
 	echo "Please DO install bash packages"
 	echo "Because the script files are written for BASH"
@@ -79,12 +77,12 @@ if ! [ -f "$Clip_M_Dir/release.sequence" ] ; then
 	[ -x ../create.release.number.sh ] && ../create.release.number.sh
 fi
 export release_sequence=$(cat "$Clip_M_Dir/release.sequence")
-export seq_no=$release_version
-Version="1.0"
+export seq_no=$release_sequence-$release_version
+Version="1.1"
 if [[ "$USER" != "root" ]] ; then
 	echo $USER >"$Clip_M_Dir/user"
 fi
-
+rm -f$V $Clip_M_Dir/temp/*
 ########################################################################################################"
 #
 OnScreen 5 "loading ..........."
@@ -93,8 +91,8 @@ OnScreen 5 "loading ..........."
 #/		$Clip_M_Dir/README 			\
 #/		$Clip_M_Dir/license.gnu
 OnScreen 2
-export varx=
-#read -p "Press <ENTER> to continue" varx >&0
+export varX=
+#read -p "Press <ENTER> to continue" varX >&0
 #beep_on
 export >/dev/null
 let trt=-1
@@ -104,25 +102,35 @@ export LC_MESSAGES=C
 export CLIP_NAMES=yes
 export pwd=`pwd`
 export WaitForCheck="Y"
-[ -f configure.ini ] && source configure.ini
 source init/start.sh 1
+let trt=-1
 while [ $trt -eq -1 ] ; do
+while [ $trt -eq -1 ] ; do
+#	exec 									1>&-
+#	exec 									2>&-
+#	exec 									0>&-
+	[ -d $HOME/my_make/clip-prg.32-64.prg.detail/clip-prg.32-64 ] \
+		&& cp -Rfpu$V $HOME/my_make/clip-prg.32-64.prg.detail/clip-prg.32-64/* $Clip_M_Dir/.
 	export RootMode="0"
 	export ARCH=$(GetArch 0)
 	OnScreen 0
 	trt=0
 	OnScreen 20
 #/	sleep .5
-	banner clip v.$release_version
+	banner clip
+	banner Version
+	banner $release_version
 #/	sleep .5
-	banner R-$release_sequence
+	banner Release
+	banner $release_sequence
 #/	sleep .5
-	banner menu v.$Version
+	banner menu
+	banner v.$Version
 #/	sleep .5
 	OnScreen 2
 	cd $Clip_M_Dir
 	export MenuNr=0
-	Menu_Select[$MenuNr]="cancel        "
+	Menu_Select[$MenuNr]="cancel/abort  "
 	Menu_command[$MenuNr]="cancel"
 	      Menu2[$MenuNr]="                                                              |"
 	let ++MenuNr
@@ -134,18 +142,27 @@ while [ $trt -eq -1 ] ; do
 	Menu_Select[$MenuNr]="force.clean   "
 	Menu_command[$MenuNr]="force.clean.sh"
 			Menu2[$MenuNr]=" : forces clean because of errors                             |"
-#	export CleanNr=$MenuNr
+	export ForceCleanNr=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="distclean     "
 	Menu_command[$MenuNr]="distclean"
-			Menu2[$MenuNr]=" : clean + installed files                                    |"
+			Menu2[$MenuNr]=" : cleans config files + clean                                |"
 	export DistcleanNr=$MenuNr
+	let ++MenuNr
+	Menu_Select[$MenuNr]="uninstall     "
+	Menu_command[$MenuNr]="uninstall"
+			Menu2[$MenuNr]=" : cleans all installed files  + clean                        |"
+	export UnInstallNr=$MenuNr
 	export Separetor1=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="new-config    "
 	Menu_command[$MenuNr]="new-config"
 			Menu2[$MenuNr]=" : cleans & changes your configuration settings               |"
 	export new_configuration=$MenuNr
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="indent        "
+#	Menu_command[$MenuNr]="indent"
+#			Menu2[$MenuNr]=" : indents .c & .h files with the settings of tools/ci_mindent|"
 #	let ++MenuNr
 #	Menu_Select[$MenuNr]="arch        "
 #	Menu_command[$MenuNr]="arch"
@@ -175,6 +192,10 @@ while [ $trt -eq -1 ] ; do
 	Menu_Select[$MenuNr]="opt           "
 	Menu_command[$MenuNr]="opt"
 			Menu2[$MenuNr]=" : /opt/clip(32/64)                         NEEDS root access |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="sys           "
+#	Menu_command[$MenuNr]="sys"
+#			Menu2[$MenuNr]=" : /usr/bin                                 NEEDS root access |"
 #	let ++MenuNr
 #	Menu_Select[$MenuNr]="opt-debug   "
 #	Menu_command[$MenuNr]="opt-debug"
@@ -280,7 +301,7 @@ while [ $trt -eq -1 ] ; do
 		export SpaceReleaseVersion="$SpaceReleaseVersion "
 	done
 	export SpaceReleaseSequence=" "
-	let nii=30
+	let nii=37
 	while [ $nii -gt ${#seq_no} ] ; do
 		let --nii
 		export SpaceReleaseSequence="$SpaceReleaseSequence "
@@ -292,10 +313,11 @@ while [ $trt -eq -1 ] ; do
 		export SpaceWillUse="$SpaceWillUse "
 	done
 #/	sleep .5
+	beep_on
 	banner Arch
 #/	sleep .5
 	banner $ARCH
-#/	sleep .5
+	sleep .5
 	echo $BigLineSeparator 																													>&0
 	echo "         Your system : CPU : $(uname -p)
                   CPU type : $(uname -m)
@@ -304,13 +326,13 @@ while [ $trt -eq -1 ] ; do
                    release : $(uname -r)" 																							>&0
 	echo $BigLineSeparator 																													>&0
 #	echo "$SpaceWhiteLine" 																													>&0
-	echo "#            Clip installer/Menu version : $Version for arch $ARCH$SpaceInstaller  #" 						>&0
+	echo "#   Clip installer/Menu version : $release_sequence-$Version for arch $ARCH$SpaceInstaller  #" 			>&0
 #	echo "$SpaceWhiteLine" 																													>&0
 	echo $BigLineSeparator 																													>&0
 #	echo "$SpaceWhiteLine" 																													>&0
 	echo "#  Clip compiler, debugger, libraries & tools version : $release_version$SpaceReleaseVersion  #" 		>&0
 	echo "#                                  (yyyy-mm-dd)  date : $release_date                      #"			>&0
-	echo "#                                    release sequence : $release_sequence$SpaceReleaseSequence  #" 	>&0
+	echo "#                                    release sequence : $release_sequence$SpaceReleaseSequence    #" 	>&0
 #	echo "#                                                date : $sequence_date           #"							>&0
 #	echo "$SpaceWhiteLine" 																													>&0
 	echo $BigLineSeparator
@@ -386,6 +408,9 @@ while [ $trt -eq -1 ] ; do
 		#[ -x viewlogfile.sh ] &&
 		init/viewlogfile.sh
 		let trt=-1
+	elif [ $trt -eq $ForceCleanNr ] ; then
+		./force.clean.sh
+		let trt=-1
 #	elif [[ $trt == $CleanNr ]] ; then
 #		$MAKE ${Menu_command[$varX]}
 #		if [ $? = 0 ] ; then
@@ -413,6 +438,63 @@ while [ $trt -eq -1 ] ; do
 #		fi
 #		rm -Rf$V Makefile.ini Makefile configure.ini
 #		source bin/init_Mkfile.sh
+	elif [ $trt -eq $UnInstallNr ] ; then
+		varX=-1
+		while [[ $varX -lt 0 ]] || [[ $varX -gt 4 ]] ; do
+			beep_on
+			OnScreen 10
+			echo "#####################################"
+			echo "#   [0]  |  cancel/abort            #"
+			echo "#####################################"
+			echo "#   [1]  |  Uninstall 'local'       #"
+			echo "#   [2]  |  Uninstall 'home'        #"
+			echo "#   [3]  |  Uninstall 'usr.local'   #"
+			echo "#   [4]  |  Uninstall 'opt'         #"
+#			echo "#   [5]  |  Uninstall 'sys'"        #
+			echo "#####################################"
+			echo ""
+			read -p "Your choice + <enter> : " varX >&0
+		done
+		if [[ $varX -eq 0 ]] ; then
+			exit 0
+		elif [[ $varX -eq 1 ]] ; then
+			[ -f Makefile ] || ./configure "clean"
+			$MAKE clean
+			rm -Rf$V $Clip_H_Dir/clip32 || true
+			rm -Rf$V $Clip_H_Dir/clip64 || true
+			rm -Rf$V $Clip_H_Dir/ci_clip32 || true
+			rm -Rf$V $Clip_H_Dir/ci_clip64 || true
+		elif [[ $varX -eq 2 ]] ; then
+			[ -f Makefile ] || ./configure "clean"
+			$MAKE clean
+		elif [[ $varX -eq 3 ]] ; then
+			[ -f Makefile ] || ./configure "clean"
+			$MAKE clean
+			su -c "(rm -Rf$V /usr/local/clip32 || true) && \
+					(rm -Rf$V /usr/local/clip64 || true) && \
+					(rm -Rf$V /usr/local/ci_clip32 || true) && \
+					(rm -Rf$V /usr/local/ci_clip64 || true)"
+		elif [[ $varX -eq 4 ]] ; then
+			[ -f Makefile ] || ./configure "clean"
+			$MAKE clean
+			su -c "(rm -Rf$V /opt/clip32 || true) && \
+					(rm -Rf$V /opt/clip64 || true) && \
+					(rm -Rf$V /opt/ci_clip32 || true) && \
+					(rm -Rf$V /opt/ci_clip64 || true)"
+#		elif [[ $varX -eq 5 ]] ; then
+#			[ -f Makefile ] || ./configure "clean"
+#			$MAKE clean
+#			su -c "(rm -Rf$V $Clip_H_Dir/clip32 || true) && \
+#					(rm -Rf$V $Clip_H_Dir/clip64 || true )&& \
+#					(rm -Rf$V $Clip_H_Dir/ci_clip32 || true) && \
+#					(rm -Rf$V $Clip_H_Dir/ci_clip64 || true)"
+		fi
+		rm -Rf$V $HOME/clip32 || true
+		rm -Rf$V $HOME/clip64 || true
+		rm -Rf$V $HOME/ci_clip32 || true
+		rm -Rf$V $HOME/ci_clip64 || true
+		trumpet
+		exit 0
 	elif [ $trt -eq $new_configuration ] ; then
 		rm -Rf$V $Clip_S_Dir/*
 		#rm -f$V $Clip_T_Dir/*
@@ -436,7 +518,7 @@ if [[ "${Menu_Select[$varX]}" = "usr.local" ]] ; then
 #		OnScreen 1 DO NOT forget to run clean as root
 #		OnScreen 1 "or run 1st make user(-debug)" under normal user
 #		OnScreen 1 "or run 1st make user" under normal user
-#		read -p "Press <ENTER> to continue" varx >&0
+#		read -p "Press <ENTER> to continue" varX >&0
 	fi
 fi
 if [[ "${Menu_Select[$varX]}" = "opt" ]] ; then
@@ -451,7 +533,7 @@ if [[ "${Menu_Select[$varX]}" = "opt" ]] ; then
 #		OnScreen 1 DO NOT forget to run clean as root
 #		OnScreen 1 "or run 1st make user(-debug)" under normal user
 #		OnScreen 1 "or run 1st make user" under normal user
-#		read -p "Press <ENTER> to continue" varx >&0
+#		read -p "Press <ENTER> to continue" varX >&0
 	fi
 fi
 export Command_line="$MAKE $Parameter ${Menu_command[$varX]} "
@@ -498,13 +580,18 @@ export >/dev/null
 #fi
 echo $VerbosityLog >$Clip_S_Dir/VerbosityLog.setup.ini
 rm -f $Clip_T_Dir/*
-[ -f configure.ini ] && source configure.ini
+if [ -f ./configure.ini ] ; then
+	source ./configure.ini
+fi
 export >/dev/null
 if [[ -f ./${Menu_command[$varX]}.sh ]] ; then
 	if [[ "$RootMode" = "1" ]] ; then
 		su -c "./${Menu_command[$varX]}.sh"
 	else
 		./${Menu_command[$varX]}.sh
+		if [[ $? != 0 ]] ; then
+		 ErrorLevel=1
+	  fi
 	fi
 else
 	[ -f Makefile ] || ./configure ${Menu_Select[$varX]}
@@ -543,27 +630,33 @@ else
 #	OnScreen Menu $VerbosityLog
 	$Command_line
 fi
-#if [ $? = 0 ] ; then
+if [ $? = 0 ] && [ -f $Clip_M_Dir/config/compile.ok ] ; then
 #	exec 									1>&-
 #	exec 									2>&-
-#	trumpet
-#	OnScreen 2
-#	banner "$Parameter ${Menu_command[$varX]}  done."
-#	OnScreen 2 ".......................done 1>&2"
-#	OnScreen 2 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
-#else
+	trumpet
+	OnScreen 2
+	banner ".$Parameter"
+	banner "${Menu_command[$varX]}"
+	banner "done."
+	OnScreen 2 ".......................done 1>&2"
+	OnScreen 2 "::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+else
 #	exec 									1>&-
 #	exec 									2>&-
-#	deception
-#	OnScreen 2
-#	banner "$Parameter ${Menu_command[$varX]} error(s)"
-#	sleep 2
-#	$Clip_C_Dir/viewlogfile.sh
-#fi
+	deception
+	OnScreen 2
+	banner ".$Parameter"
+	banner "${Menu_command[$varX]}"
+	banner "error(s)"
+	sleep 2
+	$Clip_M_Dir/init/viewlogfile.sh
+fi
 #date
 #export >/dev/null
 #if [[ "$VerbosityLog" != "3" ]] ; then
 #fi
-beep_on
-beep_on
-beep_on
+#beep_on
+#beep_on
+#beep_on
+let trt=-1
+done

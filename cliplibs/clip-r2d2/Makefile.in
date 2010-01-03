@@ -57,7 +57,7 @@ hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-r2d2
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/ci_r2d2lib.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch $(Clip_I_Dir)/
 
 cleanc :
 	$(E_rm)rm -f$(V) *.c $(TARGET).*

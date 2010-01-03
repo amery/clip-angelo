@@ -2,397 +2,13 @@
 	Copyright (C) 2001  ITK
 	Author   : Paul Lasarev <paul@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
+
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 */
 /* [ */
 %{
-/*
- * $Log: clic.y,v $
- * Revision 1.1  2006/06/22 19:35:15  itk
- * uri: init sf.net repository
- *
- * Revision 1.84  2006/01/04 08:06:04  clip
- * uri: small fix
- *
- * Revision 1.82  2005/12/19 10:59:04  clip
- * uri: some fix about output compiler messages to stderr
- *
- * Revision 1.81  2004/07/19 13:41:31  clip
- * rust: DO proc WITH ... didn't respect () (pass by value)
- *
- * Revision 1.80  2003/12/17 09:46:42  clip
- * uri: "f->fname" as "alias->fname" not as "field->fname"
- *
- * Revision 1.79  2003/03/25 14:20:59  clip
- * uri: *gettext changed to _clic_*gettext
- *
- * Revision 1.78  2003/01/05 12:32:25  clip
- * possible fixes #95,#98
- * paul
- *
- * Revision 1.77  2003/01/05 10:34:22  clip
- * possible fixes #98
- * paul
- *
- * Revision 1.76  2003/01/05 07:45:44  clip
- * fix sigsegv on compile
- * closes #96
- * paul
- *
- * Revision 1.75  2002/12/05 09:41:01  clip
- * use '=' at operator level as assign
- * closes #68
- * paul
- *
- * Revision 1.74  2002/12/04 09:05:52  clip
- * possible profile cleanup in _clip_eval
- * paul
- *
- * Revision 1.73  2002/11/27 13:40:44  clip
- * initial _CGET_ pseudofunction(bug 62):
- * _CGET_(var[i1,i2,i3,...]) -> __CGET__(@var[i1,i2,i3],{i1,i2,i3},"var",...)
- * paul
- *
- * Revision 1.72  2002/11/06 12:03:41  clip
- * add plural locale construction:
- * [asdf] ^ num_expr == ngettext("asdf", "asdf", num_expr)
- * paul
- *
- * Revision 1.71  2002/10/25 11:54:33  clip
- * localized messages for clip itself
- * paul
- *
- * Revision 1.70  2002/10/11 10:27:11  clip
- * primary support for search of unresolved function names:
- * clip compler flag -N and/or envar CLIP_NAMES=yes will generate
- * files .ex (external refs) and .nm (defined names)
- * clip_makeslib will join .ex and .nm files if CLIP_NAMES=yes
- * new util clip_makelib also will join .ex .nm
- * new util clip_cp may be used to copy lib/obj files and correspond
- * .ex .nm files automatic
- * Closes: #17
- * paul
- *
- * Revision 1.69  2002/10/10 08:30:37  clip
- * &(expr) do not auto-codestr in codeblocks.
- * Closes #16
- * paul
- *
- * Revision 1.68  2002/08/15 12:18:34  clip
- * fix warnings in new bison
- * paul
- *
- * Revision 1.67  2002/08/15 07:46:52  clip
- * comm
- * paul
- *
- * Revision 1.66  2002/08/13 06:44:14  clip
- * fix for empty msgid in i18n strings
- * paul
- *
- * Revision 1.65  2002/08/08 09:33:24  clip
- * preproc fix for define/command priority
- * paul
- *
- * Revision 1.64  2002/06/30 08:08:31  clip
- * new preprocessor code
- * paul
- *
- * Revision 1.63  2002/05/16 07:05:22  clip
- * fix for _field->(a)->... syntax
- * paul
- *
- * Revision 1.62  2002/04/16 14:56:15  clip
- * bug in exprlist node - wrong stack fixup
- * paul
- *
- * Revision 1.61  2002/04/05 12:34:14  clip
- * "&()" preproc fix
- * "&a[1]" runtime fix
- * vardef place
- * paul
- *
- * Revision 1.60  2002/04/05 07:24:33  clip
- * wrong init in vardefs in func body
- * paul
- *
- * Revision 1.59  2002/04/03 13:32:53  clip
- * now possible use in init vars, declared in the same operator:
- * local a:=1, b:=a+1
- * paul
- *
- * Revision 1.58  2002/02/28 13:08:38  clip
- * split static func & static proc states
- * paul
- *
- * Revision 1.57  2002/02/05 08:30:57  clip
- * #translate directive improvements
- * paul
- *
- * Revision 1.56  2002/01/31 10:00:02  clip
- * &NAME.NUMBER fix
- * paul
- *
- * Revision 1.55  2002/01/14 12:39:59  clip
- * REF keyword in vardef
- * paul
- *
- * Revision 1.54  2002/01/07 07:26:35  clip
- * AS syntax cleanup
- * paul
- *
- * Revision 1.53  2002/01/05 12:50:48  clip
- * LOCAL a,b AS typename
- * STATIC a,b AS typename
- * func( a AS typename, b)
- * recognized, but yet not used
- * paul
- *
- * Revision 1.52  2002/01/04 09:12:46  clip
- * field +=
- * paul
- *
- * Revision 1.51  2001/12/24 13:51:01  clip
- * bad commands like
- * APEND BLANK
- * now will generate syntax error
- * paul
- *
- * Revision 1.50  2001/12/21 12:53:30  clip
- * +=, ... for fields
- * paul
- *
- * Revision 1.49  2001/12/21 11:48:20  clip
- *  (cAlias)->&(cf) := nSum    // ����� �� ����
- * paul
- *
- * Revision 1.48  2001/12/18 10:23:17  clip
- * field declaration
- * paul
- *
- * Revision 1.47  2001/12/10 13:40:31  clip
- * fox-compatible operators:
- * dimension a1(1),a2(1,2),a3(1,2,3)
- * a1(1) = "asdasd"
- * a2(1,1) = "32142"
- *
- * paul
- *
- * Revision 1.46  2001/12/10 12:09:30  clip
- * reduce '(' expr ')' to expr
- * paul
- *
- * Revision 1.45  2001/12/10 08:44:50  clip
- * {n.n.n} as DATE expression
- * paul
- *
- * Revision 1.44  2001/11/22 10:44:19  clip
- * expr: '(' expr_list ')' stack fix
- * paul
- *
- * Revision 1.43  2001/10/31 06:11:21  clip
- * DO func WITH x
- * take arguments by reference
- *
- * Revision 1.42  2001/10/29 06:51:21  clip
- * fix text fopen modes
- * paul
- *
- * Revision 1.41  2001/10/28 14:17:31  clip
- * (asdf)->fld := expr
- *
- * Revision 1.40  2001/10/15 11:12:28  clip
- * negative constants in CASE labels
- *
- * Revision 1.39  2001/09/05 05:30:26  clip
- * CODEBLOCK/CODESTR now can have paramters, f.e:
- * CODESTR(|a| f->first==a) will generate string
- * {|A|FIELD->FIRST==A}
- * paul
- *
- * Revision 1.38  2001/09/04 08:26:59  clip
- * CODEBLOCK pseudofunction
- * process codeblocks with macro calls as CODEBLOCK
- * paul
- *
- * Revision 1.37  2001/08/27 09:45:30  clip
- * switch operator
- * paul
- *
- * Revision 1.36  2001/08/24 14:38:46  clip
- * CODESTR pseudofunction
- * paul
- *
- * Revision 1.35  2001/08/23 13:52:06  clip
- * merge with NEWLOCALS
- * paul
- *
- * Revision 1.34.2.6  2001/08/21 13:20:11  clip
- * fix
- * paul
- *
- * Revision 1.34.2.5  2001/08/21 12:10:35  clip
- * local init in codeblock, f.e.:
- *
- * local a:={1,2,3}
- * cb:={|x|local(b:=a[2]),iif(x==NIL,b,b:=x)}
- * ? eval(cb)
- * ? a
- * ? eval(cb,'dddd')
- * ? a
- * ?
- *
- * paul
- *
- * Revision 1.34.2.4  2001/08/21 09:33:09  clip
- * runtime macro blocks {||&s}
- * paul
- *
- * Revision 1.34.2.3  2001/08/20 12:32:09  clip
- * macro in blocks
- * paul
- *
- * Revision 1.34.2.2  2001/08/20 10:43:09  clip
- * macro in blocks
- * paul
- *
- * Revision 1.34.2.1  2001/08/20 07:13:47  clip
- * block with macro
- * fields with macro
- * paul
- *
- * Revision 1.34  2001/07/25 13:47:26  clip
- * wrong /PROCNAME file procedure name
- * paul
- *
- * Revision 1.33  2001/06/22 08:29:50  clip
- * wrong op orger in 'NAME & mname'  macro
- * paul
- *
- * Revision 1.32  2001/06/09 08:13:28  clip
- * unary +
- * paul
- *
- * Revision 1.31  2001/05/30 09:45:43  clip
- * for .. in .. [keys]
- * paul
- *
- * Revision 1.30  2001/05/04 07:05:15  clip
- * procline filename
- * paul
- *
- * Revision 1.29  2001/04/16 07:29:39  clip
- * -> ( expr_list )
- * paul
- *
- * Revision 1.28  2001/04/03 09:17:00  clip
- * license errors
- * paul
- *
- * Revision 1.27  2001/03/30 11:51:02  clip
- * add copyright
- *
- * Revision 1.26  2001/02/22 14:09:11  clip
- * FOREACH take off
- * paul
- *
- * Revision 1.25  2001/02/21 12:52:58  clip
- * append HASHNAME(hash) - inverce to HASHSTR(str)
- *
- * append obj:modify() trigger:
- * modify(obj,hash,newval) -> real new val
- * MAPMODIFY(obj, enable) switch modify processing
- *
- * paul
- *
- * Revision 1.24  2000/12/09 12:13:28  clip
- * locale
- * paul
- *
- * Revision 1.23  2000/12/08 11:55:27  clip
- * start localisation
- * paul
- *
- * Revision 1.22  2000/12/07 07:19:38  clip
- * [ string_constants ] - prepare for i18n
- * linear sequence of func names in .po
- * paul
- *
- * Revision 1.21  2000/11/29 08:20:39  clip
- * x call
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.20  2000/11/20 13:46:50  clip
- * (asdf)->(expr)
- * paul
- *
- * Revision 1.19  2000/08/01 12:05:38  clip
- * append _thread.c
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.18  2000/05/27 00:15:16  clip
- * (asdf)=expr
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.17  2000/05/26 23:50:42  clip
- * (name)=expr
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.16  2000/05/25 16:00:38  clip
- * macro in codeblocks
- * break
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.15  2000/05/20 18:37:26  clip
- * change hash function
- * append HASH_xxxx extraction into hashcode.h
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.14  2000/05/12 20:57:02  clip
- * '(' expr_list ')'
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.13  2000/05/11 15:02:34  clip
- * {,,} now is 3 element-array
- * Paul Lasarev <paul@itk.ru>
- *
- * Revision 1.12  2000/04/29 20:13:56  clip
- * *** empty log message ***
- *
- * Revision 1.11  2000/04/29 20:08:48  clip
- * '(' expr ')' -> '(' expr ')'
- *
- * Revision 1.10  2000/04/29 19:49:32  clip
- * array elment object call
- *
- * Revision 1.9  2000/04/15 20:57:31  paul
- * mandrake fixes
- *
- * Revision 1.8  2000/03/30 16:25:10  paul
- * PARAM
- *
- * Revision 1.7  2000/03/20 18:59:45  paul
- * __field__ directive
- *
- * Revision 1.6  2000/03/18 21:58:09  paul
- * *** empty log message ***
- *
- * Revision 1.5  2000/03/16 19:29:11  paul
- * f->m-> , m->f-> fixed
- *
- * Revision 1.4  2000/03/03 21:37:33  paul
- * preprocessor bug fix, warnings removed
- *
- * Revision 1.3  1999/10/29 19:28:30  paul
- * bug in macroassign (stack was corrupted)
- *
- * Revision 1.2  1999/10/26 15:42:15  paul
- * change NOT priority
- *
- * Revision 1.1  1999/10/25 16:39:27  paul
- * first entry
- *
- */
-
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -540,20 +156,20 @@ file:		{ }
 			if ($2)
 			{
 				if ( $2->isExec )
-					curFunction->lastExec=1;
-				append_Node( curFunction->body, $2);
+					curFunction->lastExec_of_Function=1;
+				append_Node( curFunction->Node_body_of_Function, $2);
 			}
 		}
 	| file CTEXT
 		{
-			if (curFunction==curFile->main)
-				append_Node(curFile->ctext, new_LangNode($2));
+			if (curFunction==curFile->Function_main_of_File)
+				append_Node(curFile->Node_ctext_of_File, new_LangNode($2));
 			else
-				append_Node(curFunction->body, new_LangNode($2));
+				append_Node(curFunction->Node_body_of_Function, new_LangNode($2));
 		}
 	| file STATIC CTEXT
 		{
-			append_Node(curFile->ctextStatic, new_LangNode($3));
+			append_Node(curFile->Node_ctextStatic_of_File, new_LangNode($3));
 		};
 
 function:	FUNCTION	{$$=1; lex_vardef(1);}
@@ -577,7 +193,7 @@ operlist:	{ $$=new_OperListNode(); push_operlist($$); }
 			if ($2)
 			{
 				if ( $2->isExec )
-					curFunction->lastExec=1;
+					curFunction->lastExec_of_Function=1;
 				append_Node( $$, $2);
 			}
 		}
@@ -588,13 +204,13 @@ oper:                	{ $$=NULL; }
 		{
 			eof_checks();
 			curFunction=new_Function($2,$3,$1,0,0,0);
-			curFunction->typename = $4;
+			curFunction->typename_of_Function = $4;
 			lex_vardef(0);
 			add_Function(curFile, curFunction);
-			curStatics=curFunction->statics;
+			curStatics=curFunction->VarColl_statics_of_Function;
 			fin_Function(curFunction);
 			pop_operlist();
-			push_operlist(curFunction->body);
+			push_operlist(curFunction->Node_body_of_Function);
 			$$=NULL;
 		}
 
@@ -602,14 +218,14 @@ oper:                	{ $$=NULL; }
 		{
 			eof_checks();
 			curFunction=new_Function($2,$3,$1,0,0,0);
-			curFunction->isProc=1;
-			curFunction->typename = $4;
+			curFunction->isProc_of_Function=1;
+			curFunction->typename_of_Function = $4;
 			lex_vardef(0);
 			add_Function(curFile, curFunction);
-			curStatics=curFunction->statics;
+			curStatics=curFunction->VarColl_statics_of_Function;
 			fin_Function(curFunction);
 			pop_operlist();
-			push_operlist(curFunction->body);
+			push_operlist(curFunction->Node_body_of_Function);
 			$$=NULL;
 		}
 	| EXTERN namelist	{
@@ -618,19 +234,19 @@ oper:                	{ $$=NULL; }
 			for(i=0;i<$2->count;i++)
 			{
 				VAR(char, vp, $2->items[i]);
-				if (insert_Coll( &curFile->externFunctions, vp)<0)
+				if (insert_Coll( &curFile->Coll_externFunctions_of_File, vp)<0)
 					free(vp);
 				else
 				{
 					for(s=vp; *s; ++s)
 						*s=toupper(*s);
-					insert_Coll( &curFile->undeclExternFunctions, strdup(vp));
+					insert_Coll( &curFile->Coll_undeclExternFunctions_of_File, strdup(vp));
 				}
 			}
 			removeAll_Coll($2);
 			delete_Coll($2);
 			$$=NULL;
-			if (curFunction->lastExec)
+			if (curFunction->lastExec_of_Function)
 				yyerror("EXTERN after executable statements");
 		}
 	| LOCAL {
@@ -713,7 +329,7 @@ oper:                	{ $$=NULL; }
 
 				$$=NULL;
 				for(i=0; i< cp->count; ++i)
-					append_Coll(&curFile->externModules, cp->items[i]);
+					append_Coll(&curFile->Coll_externModules_of_File, cp->items[i]);
 
 				removeAll_Coll(cp);
 				delete_Coll(cp);
@@ -722,8 +338,8 @@ oper:                	{ $$=NULL; }
 				char *s = $2;
 
 				$$=NULL;
-				free(curFile->main->name);
-				curFile->main->name = s;
+				free(curFile->Function_main_of_File->name_of_Function);
+				curFile->Function_main_of_File->name_of_Function = s;
 				for(; *s; ++s)
 					*s = toupper(*s);
 			}
@@ -774,13 +390,13 @@ oper:                	{ $$=NULL; }
 
 	| WHILE
 		{ CM;
-			if (!curFunction->inLoop)
+			if (!curFunction->inLoop_of_Function)
 				{ loop_line = cl_line; loop_file = currentFile(); }
-			curFunction->inLoop++;
+			curFunction->inLoop_of_Function++;
 		}
 	  expr '\n' operlist enddo
 		{
-			curFunction->inLoop--;
+			curFunction->inLoop_of_Function--;
 			$$=new_WhileNode($3,$5);
 			pop_operlist();
 		}
@@ -795,43 +411,43 @@ oper:                	{ $$=NULL; }
 
 	| EXIT  {
 			CM;
-			if (!curFunction->inLoop)
+			if (!curFunction->inLoop_of_Function)
 				yyerror("EXIT statement out of loop");
 			$$=new_LoopExitNode(0);
 		}
 
 	| LOOP  {
 			CM;
-			if (!curFunction->inLoop)
+			if (!curFunction->inLoop_of_Function)
 				yyerror("LOOP statement out of loop");
 			$$=new_LoopExitNode(1);
 		}
 
 	|  for name eassign expr TO expr step '\n' { lex_initial(); } operlist next
 		{
-			curFunction->inLoop--;
+			curFunction->inLoop_of_Function--;
 			$$=new_ForNode($2,$4,$6,$7,$10);
 			pop_operlist();
 		}
 
 	| for name IN expr keys '\n' { lex_initial(); } operlist next
 		{
-			curFunction->inLoop--;
+			curFunction->inLoop_of_Function--;
 			$$=new_ForeachNode($2,$4,$8,$5);
 			pop_operlist();
 		}
 
 	| BEGSEQ curseq {
 			CM;
-			curFunction->seqNo = ++curFunction->allSeqNo;
-			if (!curFunction->seqLevel)
+			curFunction->seqNo_of_Function = ++curFunction->allSeqNo_of_Function;
+			if (!curFunction->seqLevel_of_Function)
 			{
 				seq_line = cl_line;
 				seq_file = currentFile();
 			}
-			curFunction->seqLevel++;
-			ARR_REALLOC(int, curFunction->seqStack, curFunction->seqLevel);
-			curFunction->seqStack[curFunction->seqLevel-1]=$2;
+			curFunction->seqLevel_of_Function++;
+			ARR_REALLOC(int, curFunction->seqStack_of_Function, curFunction->seqLevel_of_Function);
+			curFunction->seqStack_of_Function[curFunction->seqLevel_of_Function-1]=$2;
 		}
 	  operlist
 		{
@@ -900,8 +516,8 @@ switchlist:	switchbeg
 	| switchlist switchlabel '\n' operlist
 		{
 			SwitchEl *nl = NEW(SwitchEl);
-			nl->labels = $2;
-			nl->operlist = $4;
+			nl->labels_of_SwitchEl = $2;
+			nl->operlist_of_SwitchEl = $4;
 			insert_Coll($1, nl);
 			$$ = $1;
 			pop_operlist();
@@ -928,9 +544,9 @@ switchlabel: CASE mconstant
 
 for: FOR
 		{  CM;
-			if (!curFunction->inLoop)
+			if (!curFunction->inLoop_of_Function)
 				{ loop_line = cl_line; loop_file = currentFile(); }
-			curFunction->inLoop++;
+			curFunction->inLoop_of_Function++;
 		}
 	;
 
@@ -947,23 +563,23 @@ recoverr:  function NAME paramlist type_def '\n'	{}
 	;
 
 recover:	{
-			$$.curseq = curFunction->seqNo;
+			$$.curseq = curFunction->seqNo_of_Function;
 			$$.operlist = 0;
 			$$.using = 0;
-			curFunction->seqNo=curFunction->seqStack[curFunction->seqLevel-1];
-			curFunction->seqLevel--;
+			curFunction->seqNo_of_Function=curFunction->seqStack_of_Function[curFunction->seqLevel_of_Function-1];
+			curFunction->seqLevel_of_Function--;
 		}
 	| recoverr
 		{
 			yyerror("unclosed BEGIN SEQUENCE");
-			curFunction->seqNo=curFunction->seqStack[curFunction->seqLevel-1];
-			curFunction->seqLevel--;
+			curFunction->seqNo_of_Function=curFunction->seqStack_of_Function[curFunction->seqLevel_of_Function-1];
+			curFunction->seqLevel_of_Function--;
 			YYERROR;
 		}
 	| RECOVER curseq using '\n'
 		{
-			curFunction->seqNo=curFunction->seqStack[curFunction->seqLevel-1];
-			curFunction->seqLevel--;
+			curFunction->seqNo_of_Function=curFunction->seqStack_of_Function[curFunction->seqLevel_of_Function-1];
+			curFunction->seqLevel_of_Function--;
 		}
 	 operlist
 		{
@@ -974,7 +590,7 @@ recover:	{
 		}
 	;
 
-curseq:		{$$ = curFunction->seqNo; }
+curseq:		{$$ = curFunction->seqNo_of_Function; }
 	;
 
 using:		{ $$=NULL; }
@@ -1222,15 +838,15 @@ expr:	constant
 			int haveMacro = 0;
 			fin_Function(curFunction);
 
-			append_Node(curFunction->body,new_ReturnNode(el,1));
+			append_Node(curFunction->Node_body_of_Function,new_ReturnNode(el,1));
 
-			npp->func->body->pass(npp->func->body, SearchMacro, 0, &haveMacro);
+			npp->func->Node_body_of_Function->pass(npp->func->Node_body_of_Function, SearchMacro, 0, &haveMacro);
 
 			if (haveMacro)
 			{
 				/* transform into CODEBLOCK(exprlist)" */
-				remove_Coll(&curFile->codeblocks, npp->func);
-				np = new_MacroNode(new_CodestrNode(el,1,curFunction->params),0);
+				remove_Coll(&curFile->Coll_codeblocks_of_File, npp->func);
+				np = new_MacroNode(new_CodestrNode(el,1,curFunction->VarColl_params_of_Function),0);
 			}
 			curFunction = $3;
 
@@ -1242,22 +858,22 @@ expr:	constant
 	| PARBEG expr ']' { $$=new_ParnNode($2); }
 	| PARAMBEG expr ')' { $$=new_ParnNode($2); }
 
-	| CODESTR bparam_list {  curFunction->code_params=$2; }
-		exprlist ')' { $$=new_CodestrNode($4,0,$2); curFunction->code_params=0; }
-	| CODEBLOCK bparam_list {  curFunction->code_params=$2; }
-		exprlist ')' { $$=new_MacroNode(new_CodestrNode($4,1,$2),0); curFunction->code_params=0; }
+	| CODESTR bparam_list {  curFunction->VarColl_code_params_of_Function=$2; }
+		exprlist ')' { $$=new_CodestrNode($4,0,$2); curFunction->VarColl_code_params_of_Function=0; }
+	| CODEBLOCK bparam_list {  curFunction->VarColl_code_params_of_Function=$2; }
+		exprlist ')' { $$=new_MacroNode(new_CodestrNode($4,1,$2),0); curFunction->VarColl_code_params_of_Function=0; }
 
 	| LOCAL '(' func
 		{
-			if (curFunction->upfunc)
-				curFunction = curFunction->upfunc;
+			if (curFunction->Function_upfunc_of_Function)
+				curFunction = curFunction->Function_upfunc_of_Function;
 		}
 		vardef ')'
 		{
 			Node *np;
 			curFunction = $3;
 			np = new_LocalDefNode($5, 0, 1);
-			prepend_Node(curFunction->body, np);
+			prepend_Node(curFunction->Node_body_of_Function, np);
 			$$ = new_NilConstNode();
 			CM;
 		}
@@ -1645,14 +1261,14 @@ clic_parse(const char *filename, FILE *stream)
 		}
 		*e = toupper(*e);
 	}
-	curFile->mname = strdup(path);
+	curFile->mname_of_File = strdup(path);
 	if (nomain_flag)
 		strncat(path,"_m",sizeof(path));
 
-	curFunction=curFile->main=mainFunction=new_Function(strdup(path),new_VarColl(),nomain_flag?0:1,1,0,0);
+	curFunction=curFile->Function_main_of_File=mainFunction=new_Function(strdup(path),new_VarColl(),nomain_flag?0:1,1,0,0);
 	fin_Function(curFunction);
-	fileStatics=curStatics=mainFunction->statics;
-	push_operlist(curFunction->body);
+	fileStatics=curStatics=mainFunction->VarColl_statics_of_Function;
+	push_operlist(curFunction->Node_body_of_Function);
 	if (nomain_flag)
 		mainFunction = 0;
 	add_Function(curFile, curFunction);
@@ -1699,7 +1315,7 @@ clic_parse(const char *filename, FILE *stream)
 static void
 check_main()
 {
-	if (!mainFunction && curFunction==curFile->main)
+	if (!mainFunction && curFunction==curFile->Function_main_of_File)
 		yyerror("executable operator outside of function (-n flag is active)");
 }
 
@@ -1771,10 +1387,10 @@ yywarning(const char *s, ... )
 void
 eof_checks(void)
 {
-	if (curFunction->inLoop>0)
+	if (curFunction->inLoop_of_Function>0)
 	{
 		yyerror("unclosed loop statement (level %d, begin at line %d file %s)",
-			curFunction->inLoop, loop_line, fileName(loop_file) );
+			curFunction->inLoop_of_Function, loop_line, fileName(loop_file) );
 		/*curFunction->inLoop = 0;*/
 	}
 	if (if_depth)
@@ -1783,10 +1399,10 @@ eof_checks(void)
 			if_depth, if_line, fileName(if_file) );
 		if_depth = 0;
 	}
-	if (curFunction->seqLevel>0)
+	if (curFunction->seqLevel_of_Function>0)
 	{
 		yyerror("unclosed SEQUENCE statement (level %d, begin at line %d file %s)",
-			curFunction->seqLevel, seq_line, fileName(seq_file) );
+			curFunction->seqLevel_of_Function, seq_line, fileName(seq_file) );
 		/*curFunction->seqLevel = 0;*/
 	}
 }

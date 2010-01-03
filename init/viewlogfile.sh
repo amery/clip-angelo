@@ -1,4 +1,4 @@
-#!/bin/bash -ue
+#!/bin/bash 
 #
 # outputs log files on screen.
 #
@@ -10,15 +10,15 @@ export MultiFile="n"
 export Edit=""
 cd $Clip_T_Dir
 export FileNameToBrowse=""
-export FileNameToBrowse="$FileNameToBrowse compile*.*.sh"
+FileNameToBrowse="$FileNameToBrowse compile*sh"
 if [ -f askbin.log ] ; then
-	export FileNameToBrowse="$FileNameToBrowse askbin.log"
+	FileNameToBrowse="$FileNameToBrowse askbin.log"
 fi
 if [ -f askinclude.log ] ; then
-	export FileNameToBrowse="$FileNameToBrowse askinclude.log"
+	FileNameToBrowse="$FileNameToBrowse askinclude.log"
 fi
 if [ -f asklibrary.log ] ; then
-	export FileNameToBrowse="$FileNameToBrowse asklibrary.log"
+	FileNameToBrowse="$FileNameToBrowse asklibrary.log"
 fi
 source $Clip_M_Dir/init/GetEdit.sh
 export Edit=$(cat "$Clip_S_Dir/Edit.setup.ini" )
@@ -41,7 +41,7 @@ for nFileName in $FileNameToBrowse ; do
 		echo "                                         "    >&3
 		exec                                                3>&-
 		sed -e "s/\`/\'/g" <$Clip_M_Dir/temp/temp$LogFileNr.log >$nFileName
-		export FileToBrowse="$FileToBrowse $nFileName"
+		FileToBrowse="$FileToBrowse $nFileName"
 	fi
 done
 if [ "$FileToBrowse"1 != ""1 ] ; then

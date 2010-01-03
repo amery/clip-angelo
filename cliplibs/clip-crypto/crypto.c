@@ -28,162 +28,176 @@
 #include "ci_clip.h"
 #include "ci_error.ch"
 
-
 #define BLOCK_SIZE 4096
 
 static void
 crypto_init(void)
 {
-	static int inited = 0;
-	if (inited)
-		return;
+   static int inited = 0;
 
-	OpenSSL_add_all_algorithms();
+   if (inited)
+      return;
 
-	inited = 1;
+   OpenSSL_add_all_algorithms();
+
+   inited = 1;
 }
 
-static int do_cipher(ClipMachine *mp, int operation);
+static int do_cipher(ClipMachine * mp, int operation);
 
-static const char* alg_names[] =
-{
+static const char *alg_names[] = {
 #include "names.h"
-0
+   0
 };
 
 int
-clip_EVP_ALG_LIST(ClipMachine *mp)
+clip_EVP_ALG_LIST(ClipMachine * mp)
 {
-	const char *s;
-	int i, n;
-	ClipVar *rp = RETPTR(mp), *ap;
-	long vect[1];
+   const char *s;
 
-	for(i=0, n=0; (s=alg_names[i]); i++, n++)
-		;
-	vect[0] = n;
-	_clip_array(mp, rp, 1, vect);
+   int       i, n;
 
-	ap = _clip_vptr(rp);
+   ClipVar  *rp = RETPTR(mp), *ap;
 
-	for(i=0; (s=alg_names[i]); i++)
-	{
-		ClipVar *vp;
-		vp = ap->a.items + i;
-		vp->t.type = CHARACTER_t;
-		vp->s.str.buf = strdup(s);
-		vp->s.str.len = strlen(s);
-	}
+   long      vect[1];
 
-	return 0;
+   for (i = 0, n = 0; (s = alg_names[i]); i++, n++)
+      ;
+   vect[0] = n;
+   _clip_array(mp, rp, 1, vect);
+
+   ap = _clip_vptr(rp);
+
+   for (i = 0; (s = alg_names[i]); i++)
+    {
+       ClipVar  *vp;
+
+       vp = ap->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + i;
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = strdup(s);
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(s);
+    }
+
+   return 0;
 }
 
 /*
 EVP_ENCRYPT(cStr, cKey [, [cMethod='des-ede3-cbc'] [, [cDigestMethod='md5'] [, [cInitVector='']]]]) --> cEncrypted
 */
 int
-clip_EVP_ENCRYPT(ClipMachine *mp)
+clip_EVP_ENCRYPT(ClipMachine * mp)
 {
-	return do_cipher(mp, 1);
+   return do_cipher(mp, 1);
 }
 
 /*
 EVP_DECRYPT(cStr, cKey [, [cMethod='des-ede3-cbc'] [, [cDigestMethod='md5'] [, [cInitVector='']]]]) --> cEncrypted
 */
 int
-clip_EVP_DECRYPT(ClipMachine *mp)
+clip_EVP_DECRYPT(ClipMachine * mp)
 {
-	return do_cipher(mp, 0);
+   return do_cipher(mp, 0);
 }
 
 static int
-do_cipher(ClipMachine *mp, int operation)
+do_cipher(ClipMachine * mp, int operation)
 {
-	const EVP_CIPHER *cipher = 0;
-	const EVP_MD *digest = 0;
-	char *cipher_name, *digest_name;
-	char *key_str, *data, *iv_str, *data_ptr;
-	int key_len=0, data_len=0, iv_len=0;
-	EVP_CIPHER_CTX ectx;
-	unsigned char iv[EVP_MAX_IV_LENGTH];
-	unsigned char key[EVP_MAX_KEY_LENGTH];
-	char ebuf[BLOCK_SIZE + 8];
-	unsigned int ebuflen;
-	char *obuf = 0;
-	unsigned int olen = 0;
-	int l;
+   const EVP_CIPHER *cipher = 0;
 
-	crypto_init();
+   const EVP_MD *digest = 0;
 
-	if (mp->argc<2)
-		return EG_ARG;
+   char     *cipher_name, *digest_name;
 
-	cipher_name = _clip_parc(mp, 3);
-	if (!cipher_name)
-		cipher_name = "des-ede3-cbc";
+   char     *key_str, *data, *iv_str, *data_ptr;
 
-	digest_name = _clip_parc(mp, 4);
-	if (!digest_name)
-		digest_name  = "md5";
+   int       key_len = 0, data_len = 0, iv_len = 0;
 
-	data = _clip_parcl(mp, 1, &data_len);
-	if (!data)
-		return EG_ARG;
+   EVP_CIPHER_CTX ectx;
 
-	key_str = _clip_parcl(mp, 2, &key_len);
-	if (!key_str)
-		return EG_ARG;
+   unsigned char iv[EVP_MAX_IV_LENGTH];
 
-	memset(iv, 0, sizeof(iv));
-	memset(key, 0, sizeof(key));
+   unsigned char key[EVP_MAX_KEY_LENGTH];
 
-	iv_str = _clip_parcl(mp, 5, &iv_len);
-	if (iv_str)
-	{
-		if (iv_len>sizeof(iv))
-			iv_len = sizeof(iv);
-		memcpy(iv, iv_str, iv_len);
-	}
+   char      ebuf[BLOCK_SIZE + 8];
 
-	cipher = EVP_get_cipherbyname(cipher_name);
-	if (!cipher)
-		return EG_ARG;
+   unsigned int ebuflen;
 
-	digest = EVP_get_digestbyname(digest_name);
-	if (!digest)
-		return EG_ARG;
+   char     *obuf = 0;
 
+   unsigned int olen = 0;
 
-	EVP_BytesToKey(cipher, (EVP_MD*)digest, (const unsigned char *)"clip", (const unsigned char *)key_str, key_len, 1, key, iv);
-	EVP_CipherInit(&ectx, cipher, key, iv, operation);
+   int       l;
 
-	for(l=0, data_ptr=data; l<data_len; )
-	{
-		int ll = data_len - l;
+   crypto_init();
 
-		if (ll > BLOCK_SIZE)
-			ll = BLOCK_SIZE;
+   if (mp->argc < 2)
+      return EG_ARG;
 
-		ebuflen = sizeof(ebuf);
-		EVP_CipherUpdate(&ectx, (unsigned char *)ebuf, (int *)&ebuflen, (unsigned char *)data_ptr, ll);
+   cipher_name = _clip_parc(mp, 3);
+   if (!cipher_name)
+      cipher_name = "des-ede3-cbc";
 
-		obuf = (char*) realloc( obuf, olen + ebuflen);
-		memcpy(obuf + olen, ebuf, ebuflen);
-		olen += ebuflen;
+   digest_name = _clip_parc(mp, 4);
+   if (!digest_name)
+      digest_name = "md5";
 
-		l += ll;
-		data_ptr += ll;
-	}
+   data = _clip_parcl(mp, 1, &data_len);
+   if (!data)
+      return EG_ARG;
 
-	EVP_CipherFinal(&ectx, (unsigned char *)ebuf, (int *)&ebuflen);
+   key_str = _clip_parcl(mp, 2, &key_len);
+   if (!key_str)
+      return EG_ARG;
 
-	obuf = (char*) realloc( obuf, olen + ebuflen + 1);
-	memcpy(obuf + olen, ebuf, ebuflen);
-	olen += ebuflen;
-	obuf[olen] = 0;
+   memset(iv, 0, sizeof(iv));
+   memset(key, 0, sizeof(key));
 
-	_clip_retcn_m(mp, obuf, olen);
+   iv_str = _clip_parcl(mp, 5, &iv_len);
+   if (iv_str)
+    {
+       if (iv_len > sizeof(iv))
+	  iv_len = sizeof(iv);
+       memcpy(iv, iv_str, iv_len);
+    }
 
-	return 0;
+   cipher = EVP_get_cipherbyname(cipher_name);
+   if (!cipher)
+      return EG_ARG;
+
+   digest = EVP_get_digestbyname(digest_name);
+   if (!digest)
+      return EG_ARG;
+
+   EVP_BytesToKey(cipher, (EVP_MD *) digest, (const unsigned char *) "clip",
+		  (const unsigned char *) key_str, key_len, 1, key, iv);
+   EVP_CipherInit(&ectx, cipher, key, iv, operation);
+
+   for (l = 0, data_ptr = data; l < data_len;)
+    {
+       int       ll = data_len - l;
+
+       if (ll > BLOCK_SIZE)
+	  ll = BLOCK_SIZE;
+
+       ebuflen = sizeof(ebuf);
+       EVP_CipherUpdate(&ectx, (unsigned char *) ebuf, (int *) &ebuflen, (unsigned char *) data_ptr, ll);
+
+       obuf = (char *) realloc(obuf, olen + ebuflen);
+       memcpy(obuf + olen, ebuf, ebuflen);
+       olen += ebuflen;
+
+       l += ll;
+       data_ptr += ll;
+    }
+
+   EVP_CipherFinal(&ectx, (unsigned char *) ebuf, (int *) &ebuflen);
+
+   obuf = (char *) realloc(obuf, olen + ebuflen + 1);
+   memcpy(obuf + olen, ebuf, ebuflen);
+   olen += ebuflen;
+   obuf[olen] = 0;
+
+   _clip_retcn_m(mp, obuf, olen);
+
+   return 0;
 }
-

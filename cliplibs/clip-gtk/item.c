@@ -14,56 +14,76 @@
 
 /**********************************************************/
 /* Signals table */
-static SignalTable item_signals[] =
-{
-	{"select",  	GSF( widget_signal_handler ), ESF( object_emit_signal ), GTK_SELECT_SIGNAL},
-	{"toggle",  	GSF( widget_signal_handler ), ESF( object_emit_signal ), GTK_TOGGLE_SIGNAL},
-	{"deselect",	GSF( widget_signal_handler ), ESF( object_emit_signal ), GTK_DESELECT_SIGNAL},
-	{"", NULL, NULL, 0}
+static SignalTable item_signals[] = {
+   {"select", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_SELECT_SIGNAL},
+   {"toggle", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_TOGGLE_SIGNAL},
+   {"deselect", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_DESELECT_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /* Register item signals table in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_item() { return GTK_TYPE_ITEM; }
-long _clip_type_item() { return GTK_WIDGET_ITEM; }
-const char * _clip_type_name_item() { return "GTK_WIDGET_ITEM"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_item()
+{
+   return GTK_TYPE_ITEM;
+}
+
+long
+_clip_type_item()
+{
+   return GTK_WIDGET_ITEM;
+}
+
+const char *
+_clip_type_name_item()
+{
+   return "GTK_WIDGET_ITEM";
+}
 
 int
-clip_INIT___ITEM(ClipMachine *cm)
+clip_INIT___ITEM(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_item, _clip_type_name_item, _gtk_type_item, _gtk_type_container, item_signals);
-	return 0;
+   _wtype_table_put(_clip_type_item, _clip_type_name_item, _gtk_type_item, _gtk_type_container, item_signals);
+   return 0;
 }
+
 /**********************************************************/
 
 int
-clip_GTK_ITEMSELECT(ClipMachine * cm)
+clip_GTK_ITEMSELECT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *citm = _fetch_cw_arg(cm);
-        CHECKCWID(citm,GTK_IS_ITEM);
-        gtk_item_select(GTK_ITEM(citm->widget));
-	return 0;
-err:
-	return 1;
+   C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
+   CHECKCWID(citm, GTK_IS_ITEM);
+   gtk_item_select(GTK_ITEM(citm->widget));
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ITEMDESELECT(ClipMachine * cm)
+clip_GTK_ITEMDESELECT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *citm = _fetch_cw_arg(cm);
-        CHECKCWID(citm,GTK_IS_ITEM);
-        gtk_item_deselect(GTK_ITEM(citm->widget));
-	return 0;
-err:
-	return 1;
+   C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
+   CHECKCWID(citm, GTK_IS_ITEM);
+   gtk_item_deselect(GTK_ITEM(citm->widget));
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ITEMTOGGLE(ClipMachine * cm)
+clip_GTK_ITEMTOGGLE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *citm = _fetch_cw_arg(cm);
-        CHECKCWID(citm,GTK_IS_ITEM);
-        gtk_item_toggle(GTK_ITEM(citm->widget));
-	return 0;
-err:
-	return 1;
+   C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
+   CHECKCWID(citm, GTK_IS_ITEM);
+   gtk_item_toggle(GTK_ITEM(citm->widget));
+   return 0;
+ err:
+   return 1;
 }

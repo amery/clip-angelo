@@ -20,14 +20,20 @@ Makefile.ini : $(CONFIGURE_SH)
 	$(E_cp)cp --remove-destination -fpu$(V) $(Clip_M_Dir)/configure.ini $(Clip_M_Dir)/Makefile.ini ../
 	$(E_xx)$(CONFIGURE_SH) $(CONFIGURE_SH)
 
+indent : Makefile
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
+
 depend : Makefile $(DIRS_TO_SCAN) example FORCE
 	$(E_xx)$(Clip_M_Dir)/init/MakeDepend.sh
 
-Makefile : 		Makefile.in 		\
-					../Makefile.ini 	\
-					./configure.in 	\
-					./configure 		\
-					$(Local_Depend) 	\
+Makefile : 		Makefile.in 			\
+					../Makefile.ini 		\
+					./configure.in 		\
+					./configure 			\
+					$(Local_Depend) 		\
 					$(AllG)
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
@@ -78,7 +84,7 @@ M_config : cleanc Makefile cfg $(DIRS_TO_SCAN) example hash1 FORCE
 	$(E_ln)[ -d ./include.clip ] 	\
 				|| ln -sf$(V) $(Clip_I_Dir) ./include.clip
 	$(E_cp)cp --remove-destination -fpu$(V) ../Makefile.ini ../configure.ini ./
-	$(E_xx)[ -f Makefile ] || $(CONFIGURE_SH) $(CONFIGURE_SH)
+	$(E_xx)[ -f Makefile ] || $(CONFIGURE_SH) $@
 	$(E_e)echo "config for" $(PWD) "is ok" 	>&0
 	$(E_e)echo "config for" $(PWD) "is ok" 	>&1
 	$(E_e)echo "config for" $(PWD) "is ok" 	>&2
@@ -104,7 +110,6 @@ clean : $(DIRS_TO_SCAN) example cleanc
 							*.nm 					\
 							*.ntx 				\
 							*.o 					\
-							*.ok 					\
 							*.output 			\
 							*.pa 					\
 							*.po 					\
@@ -153,7 +158,8 @@ clean : $(DIRS_TO_SCAN) example cleanc
 					&& rm -f$(V) configure	\
 			) 										\
 			|| true
-
+#							*.ok 					\
+#
 $(ATARGET) : $(o_files) $(ADDOBJS) Makefile $(CLIP) $(Depend_on)
 	$(E_e)$(Trace_lib)
 	$(E_rm)rm -f$(V) $(TARGET).*

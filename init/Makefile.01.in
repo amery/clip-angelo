@@ -32,7 +32,7 @@ SRC_PRG_files2 	=
 SRC_C_files 		=
 SRC_C_files2 		=
 MAKEFLAGS 			+= 		--warn-undefined-variables
-ADDMAKECMDGOALS 	+=
+#ADDMAKECMDGOALS 	+= 	example
 DLLLIBSUFF 			= 		.a
 PROGS					= 		xyzs
 PROG 					= 		xyz
@@ -56,6 +56,7 @@ L_CLIPLIB 			= 		-L$(Clip_L_Dir) -lclip
 BINS 					=
 DIRS_TO_SCAN 		=
 DOC =
+COMPILE_FLAGS 		= 		-symbolic
 Debug_Make			=1
 E_mkl 				=@
 E_mkSl 				=@
@@ -71,10 +72,11 @@ E_mkD 				=@
 E_rm 					=@
 E_xx 					=@
 define Trace
-	echo [MAKE] : $(value PWD)/$@ because of : $? >&0 ; 	\
 	echo [MAKE] : $(value PWD)/$@ because of : $? >&1 ; 	\
 	echo [MAKE] : $(value PWD)/$@ because of : $? >&2
 endef
+#	echo [MAKE] : $(value PWD)/$@ because of : $? >&0 ; 	\
+#
 define Trace_cc
 	$(Trace) ;								\
 	echo [CC] $(value PWD)/$@ 	>&2 ; \

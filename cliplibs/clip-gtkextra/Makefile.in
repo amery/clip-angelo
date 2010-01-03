@@ -38,7 +38,9 @@ C_FLAGS  			+= 		$(DEFS) $(MEMDBGFLAGS) -I../include/clip-gtk $(XCFLAGS)
 ADDLIBS 				=
 SRC_C_files 		= 			$(sort $(c_files) )
 SRC_PRG_files 		= 			$(sort $(prg_files) )
-
+E_cc=
+E_c=
+E_clip=
 export
 
 ######################################################################################

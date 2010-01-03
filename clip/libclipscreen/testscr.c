@@ -42,125 +42,132 @@
 #include <string.h>
 #include "ci_screen.h"
 
-char *CLIPROOT=".";
+char     *CLIPROOT = ".";
+
 extern char **environ;
-int i;
+
+int       i;
 
 int
 _clip_logg()
 {
-	return 0;
+   return 0;
 }
 
 int
 clip_task_select_if(int fd, void *p1, void *p2, void *p3, void *p4)
 {
-	return select(fd, p1, p2, p3, p4);
+   return select(fd, p1, p2, p3, p4);
 }
 
 static const char *
 colorname(int i)
 {
-	switch (i)
-	{
-	case COLOR_BLACK:
-		return "BLACK     ";
-	case COLOR_BLUE:
-		return "BLUE      ";
-	case COLOR_GREEN:
-		return "GREEN     ";
-	case COLOR_CYAN:
-		return "CYAN      ";
-	case COLOR_RED:
-		return "RED       ";
-	case COLOR_MAGENTA:
-		return "MAGENTA   ";
-	case COLOR_YELLOW:
-		return "YELLOW    ";
-	case COLOR_WHITE:
-		return "WHITE     ";
-	case COLOR_HI_BLACK:
-		return "HI_BLACK  ";
-	case COLOR_HI_BLUE:
-		return "HI_BLUE   ";
-	case COLOR_HI_GREEN:
-		return "HI_GREEN  ";
-	case COLOR_HI_CYAN:
-		return "HI_CYAN   ";
-	case COLOR_HI_RED:
-		return "HI_RED    ";
-	case COLOR_HI_MAGENTA:
-		return "HI_MAGENTA";
-	case COLOR_HI_YELLOW:
-		return "HI_YELLOW ";
-	case COLOR_HI_WHITE:
-		return "HI_WHITE  ";
-	}
-	return "";
+   switch (i)
+    {
+    case COLOR_BLACK:
+       return "BLACK     ";
+    case COLOR_BLUE:
+       return "BLUE      ";
+    case COLOR_GREEN:
+       return "GREEN     ";
+    case COLOR_CYAN:
+       return "CYAN      ";
+    case COLOR_RED:
+       return "RED       ";
+    case COLOR_MAGENTA:
+       return "MAGENTA   ";
+    case COLOR_YELLOW:
+       return "YELLOW    ";
+    case COLOR_WHITE:
+       return "WHITE     ";
+    case COLOR_HI_BLACK:
+       return "HI_BLACK  ";
+    case COLOR_HI_BLUE:
+       return "HI_BLUE   ";
+    case COLOR_HI_GREEN:
+       return "HI_GREEN  ";
+    case COLOR_HI_CYAN:
+       return "HI_CYAN   ";
+    case COLOR_HI_RED:
+       return "HI_RED    ";
+    case COLOR_HI_MAGENTA:
+       return "HI_MAGENTA";
+    case COLOR_HI_YELLOW:
+       return "HI_YELLOW ";
+    case COLOR_HI_WHITE:
+       return "HI_WHITE  ";
+    }
+   return "";
 }
 
 int
 main()
 {
-	ScreenBase base;
-	Screen *scr;
-	unsigned long key;
-	char errbuf[64];
-	char buf[128];
-	int r, l;
+   ScreenBase base;
 
-	if ((r = init_tty(&base, 0, environ, 0, NULL, errbuf, sizeof(errbuf))))
-	{
-		write(2, errbuf, strlen(errbuf));
-		write(2, "\n", 1);
-		return 1;
-	}
+   Screen   *scr;
 
-	scr = new_Screen(&base);
-	clear_Screen(scr);
+   unsigned long key;
 
-	for (i = 0; i < 16; i++)
-	{
-		sprintf(buf, "fg color %d (%s)", i, colorname(i));
-		l = strlen(buf);
-		memcpy(scr->chars[i] + 10, buf, l);
-		memset(scr->colors[i] + 10, i | COLOR_BACK_BLACK, l);
-		scr->touched[i] = 1;
-	}
-	for (i = 0; i < 8; i++)
-	{
-		sprintf(buf, "bg color %d (%s)", i, colorname(i));
-		l = strlen(buf);
-		memcpy(scr->chars[i + 16] + 10, buf, l);
-		memset(scr->colors[i + 16] + 10, COLOR_HI_WHITE | (i << 4), l);
-		scr->touched[i + 16] = 1;
-	}
-	sync_Screen(scr,0);
-	write(1, "asdf", 4);
-	key = get_Key(&base);
+   char      errbuf[64];
 
-	redraw_Screen(scr,0);
-	sprintf(scr->chars[0], "%lx", key);
-	scr->touched[0] = 1;
-	beep_Screen(scr);
-	sync_Screen(scr,0);
+   char      buf[128];
 
-	key = get_Key(&base);
+   int       r, l;
 
-	sprintf(scr->chars[0], "%lx", key);
-	scr->touched[0] = 1;
-	beep_Screen(scr);
-	sync_Screen(scr,0);
+   if ((r = init_tty(&base, 0, environ, 0, NULL, errbuf, sizeof(errbuf))))
+    {
+       write(2, errbuf, strlen(errbuf));
+       write(2, "\n", 1);
+       return 1;
+    }
 
-	key = get_Key(&base);
+   scr = new_Screen(&base);
+   clear_Screen(scr);
 
-	sprintf(scr->chars[0], "%lx; press any key...", key);
-	scr->touched[0] = 1;
-	beep_Screen(scr);
-	sync_Screen(scr,0);
-	key = get_Key(&base);
+   for (i = 0; i < 16; i++)
+    {
+       sprintf(buf, "fg color %d (%s)", i, colorname(i));
+       l = strlen(buf);
+       memcpy(scr->chars[i] + 10, buf, l);
+       memset(scr->colors[i] + 10, i | COLOR_BACK_BLACK, l);
+       scr->touched[i] = 1;
+    }
+   for (i = 0; i < 8; i++)
+    {
+       sprintf(buf, "bg color %d (%s)", i, colorname(i));
+       l = strlen(buf);
+       memcpy(scr->chars[i + 16] + 10, buf, l);
+       memset(scr->colors[i + 16] + 10, COLOR_HI_WHITE | (i << 4), l);
+       scr->touched[i + 16] = 1;
+    }
+   sync_Screen(scr, 0);
+   write(1, "asdf", 4);
+   key = get_Key(&base);
 
-	destroy_tty(&base);
+   redraw_Screen(scr, 0);
+   sprintf(scr->chars[0], "%lx", key);
+   scr->touched[0] = 1;
+   beep_Screen(scr);
+   sync_Screen(scr, 0);
 
-	return 0;
+   key = get_Key(&base);
+
+   sprintf(scr->chars[0], "%lx", key);
+   scr->touched[0] = 1;
+   beep_Screen(scr);
+   sync_Screen(scr, 0);
+
+   key = get_Key(&base);
+
+   sprintf(scr->chars[0], "%lx; press any key...", key);
+   scr->touched[0] = 1;
+   beep_Screen(scr);
+   sync_Screen(scr, 0);
+   key = get_Key(&base);
+
+   destroy_tty(&base);
+
+   return 0;
 }

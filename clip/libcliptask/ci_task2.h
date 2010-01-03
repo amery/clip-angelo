@@ -19,7 +19,6 @@
 
  */
 
-
 #define TASK_STACK_MIN        16384
 #define NEW(typ) ((typ*) calloc(sizeof(typ),1))
 
@@ -27,6 +26,3 @@
 #include "ci_list.h"
 #include "ci_coll.h"
 #include "ci_hash.h"
-
-
-

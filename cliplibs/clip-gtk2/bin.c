@@ -16,31 +16,43 @@
 /*********************** SIGNALS **************************/
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_bin() { return GTK_TYPE_BIN; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_bin()
+{
+   return GTK_TYPE_BIN;
+}
 
-long _clip_type_bin() { return GTK_WIDGET_BIN; }
+long
+_clip_type_bin()
+{
+   return GTK_WIDGET_BIN;
+}
 
-const char * _clip_type_name_bin()  { return "GTK_OBJECT_BIN"; }
+const char *
+_clip_type_name_bin()
+{
+   return "GTK_OBJECT_BIN";
+}
 
 /* Register  in global table */
 int
-clip_INIT___BIN(ClipMachine *cm)
+clip_INIT___BIN(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_bin,  _clip_type_name_bin,  _gtk_type_bin,  _gtk_type_container, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_bin, _clip_type_name_bin, _gtk_type_bin, _gtk_type_container, NULL);
+   return 0;
 }
 
 int
-clip_GTK_BINGETCHILD(ClipMachine * cm)
+clip_GTK_BINGETCHILD(ClipMachine * ClipMachineMemory)
 {
-	C_widget      *cbin = _fetch_cw_arg(cm);
+   C_widget *cbin = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCWID(cbin, GTK_IS_BIN);
+   CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cbin, GTK_IS_BIN);
 
-        gtk_bin_get_child(GTK_BIN(cbin->widget));
+   gtk_bin_get_child(GTK_BIN(cbin->widget));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-

@@ -1,5 +1,5 @@
-#ifndef CI__TCP_CH__
-#define CI__TCP_CH__
+#ifndef CN__TCP_CH__
+#define CN__TCP_CH__
 
 #define TCP_IO_TIMEOUT 60000
 #define TCP_LISTEN_TIMEOUT 1000

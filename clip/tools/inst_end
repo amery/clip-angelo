@@ -10,8 +10,8 @@
 chown -R root $INSTDIR 2>/dev/null || exit 0
 chmod -R a+r,go-w $INSTDIR
 
-cd  $INSTDIR/usr/share/terminfo \
-	|| cd $INSTDIR/usr/lib/terminfo \
+cd  /usr/share/terminfo \
+	|| cd /usr/lib/terminfo \
 	|| exit 0
 
 cd l || exit 0

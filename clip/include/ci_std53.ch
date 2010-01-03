@@ -3,7 +3,7 @@
 
 #include "ci_Set.ch"
 /* Don`t remove this line, it`s only for CLIP compiler */
-*charset koi8-r
+**charset koi8-r
 
 
 #command DO WHILE <exp>         => while <exp>

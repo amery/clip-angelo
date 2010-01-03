@@ -16,1054 +16,1207 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
-handler_signal(GtkFileChooser *filech, C_signal *cs)
+static    gint
+handler_signal(GtkFileChooser * filech, C_signal * cs)
 {
-	OBJECTPREPARECV(cs,cv);
-	OBJECTINVOKESIGHANDLER(cs,cv);
+   OBJECTPREPARECV(cs, cv);
+   OBJECTINVOKESIGHANDLER(cs, cv);
 }
-static SignalTable file_chooser_signals[] =
-{
-	{"current-folder-changed",	GSF( handler_signal ), ESF( object_emit_signal ), GTK_CURRENT_FOLDER_CHANGED_SIGNAL},
-	{"file-activated",		GSF( handler_signal ), ESF( object_emit_signal ), GTK_FILE_ACTIVATED_SIGNAL},
-	{"selection-changed",		GSF( handler_signal ), ESF( object_emit_signal ), GTK_SELECTION_CHANGED_SIGNAL},
-	{"update-preview",		GSF( handler_signal ), ESF( object_emit_signal ), GTK_UPDATE_PREVIEW_SIGNAL},
-	{"", NULL, NULL, 0}
+
+static SignalTable file_chooser_signals[] = {
+   {"current-folder-changed", GSF(handler_signal), ESF(object_emit_signal),
+    GTK_CURRENT_FOLDER_CHANGED_SIGNAL},
+   {"file-activated", GSF(handler_signal), ESF(object_emit_signal),
+    GTK_FILE_ACTIVATED_SIGNAL},
+   {"selection-changed", GSF(handler_signal), ESF(object_emit_signal),
+    GTK_SELECTION_CHANGED_SIGNAL},
+   {"update-preview", GSF(handler_signal), ESF(object_emit_signal),
+    GTK_UPDATE_PREVIEW_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_file_chooser() { return GTK_TYPE_FILE_CHOOSER; }
-long _clip_type_file_chooser() { return GTK_OBJECT_FILE_CHOOSER; }
-const char * _clip_type_name_file_chooser()  { return "GTK_OBJECT_FILE_CHOOSER"; }
-
-CLIP_DLLEXPORT GtkType _gtk_type_file_chooser_dialog() { return GTK_TYPE_FILE_CHOOSER_DIALOG; }
-long _clip_type_file_chooser_dialog() { return GTK_WIDGET_FILE_CHOOSER_DIALOG; }
-const char * _clip_type_name_file_chooser_dialog()  { return "GTK_WIDGET_FILE_CHOOSER_DIALOG"; }
-
-CLIP_DLLEXPORT GtkType _gtk_type_file_chooser_widget() { return GTK_TYPE_FILE_CHOOSER_WIDGET; }
-long _clip_type_file_chooser_widget() { return GTK_WIDGET_FILE_CHOOSER_WIDGET; }
-const char * _clip_type_name_file_chooser_widget()  { return "GTK_WIDGET_FILE_CHOOSER_WIDGET"; }
-
-int
-clip_INIT___FILECHOOSER(ClipMachine *cm)
+CLIP_DLLEXPORT GtkType
+_gtk_type_file_chooser()
 {
-	_wtype_table_put(_clip_type_file_chooser,  _clip_type_name_file_chooser,  _gtk_type_file_chooser,  NULL, file_chooser_signals);
-	_wtype_table_put(_clip_type_file_chooser_dialog,  _clip_type_name_file_chooser_dialog,  _gtk_type_file_chooser_dialog,  _gtk_type_dialog, NULL);
-	_wtype_table_put(_clip_type_file_chooser_widget,  _clip_type_name_file_chooser_widget,  _gtk_type_file_chooser_widget,  _gtk_type_vbox, NULL);
-	return 0;
+   return GTK_TYPE_FILE_CHOOSER;
+}
+
+long
+_clip_type_file_chooser()
+{
+   return GTK_OBJECT_FILE_CHOOSER;
+}
+
+const char *
+_clip_type_name_file_chooser()
+{
+   return "GTK_OBJECT_FILE_CHOOSER";
+}
+
+CLIP_DLLEXPORT GtkType
+_gtk_type_file_chooser_dialog()
+{
+   return GTK_TYPE_FILE_CHOOSER_DIALOG;
+}
+
+long
+_clip_type_file_chooser_dialog()
+{
+   return GTK_WIDGET_FILE_CHOOSER_DIALOG;
+}
+
+const char *
+_clip_type_name_file_chooser_dialog()
+{
+   return "GTK_WIDGET_FILE_CHOOSER_DIALOG";
+}
+
+CLIP_DLLEXPORT GtkType
+_gtk_type_file_chooser_widget()
+{
+   return GTK_TYPE_FILE_CHOOSER_WIDGET;
+}
+
+long
+_clip_type_file_chooser_widget()
+{
+   return GTK_WIDGET_FILE_CHOOSER_WIDGET;
+}
+
+const char *
+_clip_type_name_file_chooser_widget()
+{
+   return "GTK_WIDGET_FILE_CHOOSER_WIDGET";
 }
 
 int
-clip_GTK_FILECHOOSERERRORQUARK(ClipMachine * cm)
+clip_INIT___FILECHOOSER(ClipMachine * ClipMachineMemory)
 {
-	GQuark error_quark;
-        C_object *cerr;
-
-	error_quark = gtk_file_chooser_error_quark();
-
-	if (error_quark)
-	{
-		cerr = _register_object(cm, &error_quark, GTK_TYPE_OBJECT,NULL,NULL);
-		if (cerr) _clip_mclone(cm,RETPTR(cm),&cerr->obj);
-	}
-
-	return 0;
-}
-
-
-int
-clip_GTK_FILECHOOSERSETACTION(ClipMachine * cm)
-{
-        C_object *cchooser   = _fetch_co_arg(cm);
-        GtkFileChooserAction action = _clip_parni(cm, 2);
-
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, NUMERIC_t);
-
-	gtk_file_chooser_set_action(GTK_FILE_CHOOSER(cchooser->object), action);
-
-	return 0;
-err:
-	return 1;
+   _wtype_table_put(_clip_type_file_chooser, _clip_type_name_file_chooser, _gtk_type_file_chooser, NULL, file_chooser_signals);
+   _wtype_table_put(_clip_type_file_chooser_dialog,
+		    _clip_type_name_file_chooser_dialog, _gtk_type_file_chooser_dialog, _gtk_type_dialog, NULL);
+   _wtype_table_put(_clip_type_file_chooser_widget,
+		    _clip_type_name_file_chooser_widget, _gtk_type_file_chooser_widget, _gtk_type_vbox, NULL);
+   return 0;
 }
 
 int
-clip_GTK_FILECHOOSERGETACTION(ClipMachine * cm)
+clip_GTK_FILECHOOSERERRORQUARK(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   GQuark    error_quark;
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   C_object *cerr;
 
-	_clip_retni(cm, (int)gtk_file_chooser_get_action(GTK_FILE_CHOOSER(cchooser->object)));
+   error_quark = gtk_file_chooser_error_quark();
 
-	return 0;
-err:
-	return 1;
+   if (error_quark)
+    {
+       cerr = _register_object(ClipMachineMemory, &error_quark, GTK_TYPE_OBJECT, NULL, NULL);
+       if (cerr)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cerr->obj);
+    }
+
+   return 0;
 }
 
 int
-clip_GTK_FILECHOOSERSETLOCALONLY(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETACTION(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gboolean       set = _clip_parl(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, LOGICAL_t);
+   GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(cchooser->object), set);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_set_action(GTK_FILE_CHOOSER(cchooser->object), action);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETLOCALONLY(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETACTION(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	_clip_retl(cm, gtk_file_chooser_get_local_only(GTK_FILE_CHOOSER(cchooser->object)));
+   _clip_retni(ClipMachineMemory, (int) gtk_file_chooser_get_action(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETSELECTMILTIPLE(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETLOCALONLY(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gboolean       set = _clip_parl(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, LOGICAL_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(cchooser->object), set);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_set_local_only(GTK_FILE_CHOOSER(cchooser->object), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETSELECTMULTIPLE(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETLOCALONLY(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	_clip_retl(cm, gtk_file_chooser_get_select_multiple(GTK_FILE_CHOOSER(cchooser->object)));
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_get_local_only(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETCURRENTNAME(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETSELECTMILTIPLE(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	LOCALE_TO_UTF(name);
-	gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(cchooser->object), name);
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_set_select_multiple(GTK_FILE_CHOOSER(cchooser->object), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETFILENAME(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETSELECTMULTIPLE(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(cchooser->object), name));
-        FREE_TEXT(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_get_select_multiple(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETFILENAME(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETCURRENTNAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
-	name = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(cchooser->object));
-	LOCALE_FROM_UTF(name);
-        _clip_retc(cm, name);
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(name);
+   gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(cchooser->object), name);
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSELECTFILENAME(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETFILENAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_select_filename(GTK_FILE_CHOOSER(cchooser->object), name));
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
-}
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(cchooser->object), name));
+   FREE_TEXT(name);
 
-
-int
-clip_GTK_FILECHOOSERUNSELECTFILENAME(ClipMachine * cm)
-{
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name = _clip_parc(cm, 2);
-
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
-
-	LOCALE_TO_UTF(name);
-	gtk_file_chooser_unselect_filename(GTK_FILE_CHOOSER(cchooser->object), name);
-        FREE_TEXT(name);
-
-	return 0;
-err:
-	return 1;
-}
-
-
-int
-clip_GTK_FILECHOOSERSELECTALL(ClipMachine * cm)
-{
-        C_object *cchooser = _fetch_co_arg(cm);
-
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-
-	gtk_file_chooser_select_all(GTK_FILE_CHOOSER(cchooser->object));
-
-	return 0;
-err:
-	return 1;
-}
-
-
-int
-clip_GTK_FILECHOOSERUNSELECTALL(ClipMachine * cm)
-{
-        C_object *cchooser = _fetch_co_arg(cm);
-
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-
-	gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(cchooser->object));
-
-	return 0;
-err:
-	return 1;
-}
-
-
-int
-clip_GTK_FILECHOOSERGETFILENAMES(ClipMachine * cm)
-{
-        C_object *cchooser = _fetch_co_arg(cm);
-        GSList       *list ;
-        ClipVar        *cv = RETPTR(cm);
-        long             l;
-
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-
-	list = gtk_file_chooser_get_filenames(GTK_FILE_CHOOSER(cchooser->object));
-        l = g_slist_length(list);
-
-	_clip_array(cm, cv, 1, &l);
-        for (l=0; list; list=g_slist_next(list), l++)
-        {
-        	ClipVar c;
-                gchar *str;
-                memset(&c, 0, sizeof(c));
-                str = (gchar *)list->data;
-                _clip_var_str(str, strlen(str), &c);
-                _clip_aset(cm, cv, &c, 1, &l);
-                _clip_destroy(cm, &c);
-                g_free(str);
-        }
-        g_slist_free(list);
-
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETCURRENTFOLDER(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETFILENAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   gchar    *name;
 
-	LOCALE_TO_UTF(name);
-	gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(cchooser->object), name);
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   name = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(cchooser->object));
+   LOCALE_FROM_UTF(name);
+   _clip_retc(ClipMachineMemory, name);
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETCURRENTFOLDER(ClipMachine * cm)
+clip_GTK_FILECHOOSERSELECTFILENAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
-	name = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(cchooser->object));
-	LOCALE_FROM_UTF(name);
-        _clip_retc(cm, name);
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_select_filename(GTK_FILE_CHOOSER(cchooser->object), name));
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERUNSELECTFILENAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
-	uri = gtk_file_chooser_get_uri(GTK_FILE_CHOOSER(cchooser->object));
-	LOCALE_FROM_UTF(uri);
-        _clip_retc(cm, uri);
-        FREE_TEXT(uri);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(name);
+   gtk_file_chooser_unselect_filename(GTK_FILE_CHOOSER(cchooser->object), name);
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERSELECTALL(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri  = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	LOCALE_TO_UTF(uri);
-	gtk_file_chooser_set_uri(GTK_FILE_CHOOSER(cchooser->object), uri);
-        FREE_TEXT(uri);
+   gtk_file_chooser_select_all(GTK_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSELECTURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERUNSELECTALL(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri  = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	LOCALE_TO_UTF(uri);
-	_clip_retl(cm, gtk_file_chooser_select_uri(GTK_FILE_CHOOSER(cchooser->object), uri));
-        FREE_TEXT(uri);
+   gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERUNSELECTURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETFILENAMES(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri  = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   GSList   *list;
 
-	LOCALE_TO_UTF(uri);
-	gtk_file_chooser_select_uri(GTK_FILE_CHOOSER(cchooser->object), uri);
-        FREE_TEXT(uri);
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	return 0;
-err:
-	return 1;
+   long      l;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   list = gtk_file_chooser_get_filenames(GTK_FILE_CHOOSER(cchooser->object));
+   l = g_slist_length(list);
+
+   _clip_array(ClipMachineMemory, cv, 1, &l);
+   for (l = 0; list; list = g_slist_next(list), l++)
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
+   g_slist_free(list);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETURIS(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETCURRENTFOLDER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GSList       *list ;
-        ClipVar        *cv = RETPTR(cm);
-        long             l;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
-	list = gtk_file_chooser_get_uris(GTK_FILE_CHOOSER(cchooser->object));
-        l = g_slist_length(list);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	_clip_array(cm, cv, 1, &l);
-        for (l=0; list; list=g_slist_next(list), l++)
-        {
-        	ClipVar c;
-                gchar *str;
-                memset(&c, 0, sizeof(c));
-                str = (gchar *)list->data;
-                _clip_var_str(str, strlen(str), &c);
-                _clip_aset(cm, cv, &c, 1, &l);
-                _clip_destroy(cm, &c);
-        }
-        g_slist_free(list);
+   LOCALE_TO_UTF(name);
+   gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(cchooser->object), name);
+   FREE_TEXT(name);
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETCURRENTFOLDERURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETCURRENTFOLDER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri  = _clip_parc(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   gchar    *name;
 
-	LOCALE_TO_UTF(uri);
-	_clip_retl(cm, gtk_file_chooser_set_current_folder_uri(GTK_FILE_CHOOSER(cchooser->object), uri));
-        FREE_TEXT(uri);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   name = gtk_file_chooser_get_current_folder(GTK_FILE_CHOOSER(cchooser->object));
+   LOCALE_FROM_UTF(name);
+   _clip_retc(ClipMachineMemory, name);
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETCURRENTFOLDERURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *uri ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *uri;
 
-	uri = gtk_file_chooser_get_current_folder_uri(GTK_FILE_CHOOSER(cchooser->object));
-	LOCALE_FROM_UTF(uri);
-        _clip_retc(cm, uri);
-        FREE_TEXT(uri);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   uri = gtk_file_chooser_get_uri(GTK_FILE_CHOOSER(cchooser->object));
+   LOCALE_FROM_UTF(uri);
+   _clip_retc(ClipMachineMemory, uri);
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETPREVIEWWIDGET(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_widget     *cwid = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKCWID(cwid, GTK_IS_WIDGET);
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
-	gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(cchooser->object),
-		GTK_WIDGET(cwid->widget));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(uri);
+   gtk_file_chooser_set_uri(GTK_FILE_CHOOSER(cchooser->object), uri);
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETPREVIEWWIDGET(ClipMachine * cm)
+clip_GTK_FILECHOOSERSELECTURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GtkWidget     *wid;
-        C_widget     *cwid ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
-	wid = gtk_file_chooser_get_preview_widget(GTK_FILE_CHOOSER(cchooser->object));
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, NULL);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   LOCALE_TO_UTF(uri);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_select_uri(GTK_FILE_CHOOSER(cchooser->object), uri));
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETPREVIEWWIDGETACTIVE(ClipMachine * cm)
+clip_GTK_FILECHOOSERUNSELECTURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gboolean       set = _clip_parl(cm, 2);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, LOGICAL_t);
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
-	gtk_file_chooser_set_preview_widget_active(GTK_FILE_CHOOSER(cchooser->object), set);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(uri);
+   gtk_file_chooser_select_uri(GTK_FILE_CHOOSER(cchooser->object), uri);
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETPREVIEWWIDGETACTIVE(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETURIS(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   GSList   *list;
 
-	_clip_retl(cm, gtk_file_chooser_get_preview_widget_active(GTK_FILE_CHOOSER(cchooser->object)));
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	return 0;
-err:
-	return 1;
+   long      l;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   list = gtk_file_chooser_get_uris(GTK_FILE_CHOOSER(cchooser->object));
+   l = g_slist_length(list);
+
+   _clip_array(ClipMachineMemory, cv, 1, &l);
+   for (l = 0; list; list = g_slist_next(list), l++)
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+    }
+   g_slist_free(list);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETUSEPREVIEWLABEL(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETCURRENTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
-	_clip_retl(cm, gtk_file_chooser_get_use_preview_label(GTK_FILE_CHOOSER(cchooser->object)));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(uri);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_set_current_folder_uri(GTK_FILE_CHOOSER(cchooser->object), uri));
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETPREVIEWFILENAME(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETCURRENTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gchar    *uri;
 
-	_clip_retc(cm, gtk_file_chooser_get_preview_filename(GTK_FILE_CHOOSER(cchooser->object)));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   uri = gtk_file_chooser_get_current_folder_uri(GTK_FILE_CHOOSER(cchooser->object));
+   LOCALE_FROM_UTF(uri);
+   _clip_retc(ClipMachineMemory, uri);
+   FREE_TEXT(uri);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETPREVIEWURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETPREVIEWWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser   = _fetch_co_arg(cm);
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	_clip_retc(cm, gtk_file_chooser_get_preview_uri(GTK_FILE_CHOOSER(cchooser->object)));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_set_preview_widget(GTK_FILE_CHOOSER(cchooser->object), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETEXTRAWIDGET(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETPREVIEWWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_widget     *cwid = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKCWID(cwid, GTK_IS_WIDGET);
+   GtkWidget *wid;
 
-	gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(cchooser->object),
-		GTK_WIDGET(cwid->widget));
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   wid = gtk_file_chooser_get_preview_widget(GTK_FILE_CHOOSER(cchooser->object));
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETEXTRAWIDGET(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETPREVIEWWIDGETACTIVE(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GtkWidget     *wid;
-        C_widget     *cwid ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	wid = gtk_file_chooser_get_extra_widget(GTK_FILE_CHOOSER(cchooser->object));
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, NULL);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
+
+   gtk_file_chooser_set_preview_widget_active(GTK_FILE_CHOOSER(cchooser->object), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERADDFILTER(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETPREVIEWWIDGETACTIVE(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_object  *cfilter = _fetch_cobject(cm, _clip_spar(cm, 2));
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-	CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(cchooser->object),
-		GTK_FILE_FILTER(cfilter->object));
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_get_preview_widget_active(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERREMOVEFILTER(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETUSEPREVIEWLABEL(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_object  *cfilter = _fetch_cobject(cm, _clip_spar(cm, 2));
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-	CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	gtk_file_chooser_remove_filter(GTK_FILE_CHOOSER(cchooser->object),
-		GTK_FILE_FILTER(cfilter->object));
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_get_use_preview_label(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERLISTFILTERS(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETPREVIEWFILENAME(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GSList       *list ;
-        ClipVar        *cv = RETPTR(cm);
-        long             l;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	list = gtk_file_chooser_list_filters(GTK_FILE_CHOOSER(cchooser->object));
-        l = g_slist_length(list);
+   _clip_retc(ClipMachineMemory, gtk_file_chooser_get_preview_filename(GTK_FILE_CHOOSER(cchooser->object)));
 
-	_clip_array(cm, cv, 1, &l);
-        for (l=0; list; list=g_slist_next(list), l++)
-        {
-                GtkFileFilter *filter;
-                C_object *cfilter;
-
-                filter = GTK_FILE_FILTER(list->data);
-                cfilter = _list_get_cobject(cm, filter);
-                if (!cfilter) cfilter = _register_object(cm, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
-                if (cfilter)
-                	_clip_aset(cm, cv, &cfilter->obj, 1, &l);
-        }
-        g_slist_free(list);
-
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERSETFILTER(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETPREVIEWURI(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_object  *cfilter = _fetch_cobject(cm, _clip_spar(cm, 2));
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-	CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(cchooser->object),
-		GTK_FILE_FILTER(cfilter->object));
+   _clip_retc(ClipMachineMemory, gtk_file_chooser_get_preview_uri(GTK_FILE_CHOOSER(cchooser->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERGETFILTER(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETEXTRAWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        C_object  *cfilter ;
-        GtkFileFilter *filter;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	filter = gtk_file_chooser_get_filter(GTK_FILE_CHOOSER(cchooser->object));
-        if (filter)
-        {
-                cfilter = _list_get_cobject(cm, filter);
-                if (!cfilter) cfilter = _register_object(cm, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
-                if (cfilter)
-                	_clip_mclone(cm, RETPTR(cm), &cfilter->obj);
-        }
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+
+   gtk_file_chooser_set_extra_widget(GTK_FILE_CHOOSER(cchooser->object), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERADDSHORTCUTFOLDER(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETEXTRAWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name  = _clip_parc(cm, 2);
-        GError      *error ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   GtkWidget *wid;
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(cchooser->object), name, &error));
-        FREE_TEXT(name);
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   wid = gtk_file_chooser_get_extra_widget(GTK_FILE_CHOOSER(cchooser->object));
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDER(ClipMachine * cm)
+clip_GTK_FILECHOOSERADDFILTER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name  = _clip_parc(cm, 2);
-        GError      *error ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_remove_shortcut_folder(GTK_FILE_CHOOSER(cchooser->object), name, &error));
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(cchooser->object), GTK_FILE_FILTER(cfilter->object));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERS(ClipMachine * cm)
+clip_GTK_FILECHOOSERREMOVEFILTER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GSList       *list ;
-        ClipVar        *cv = RETPTR(cm);
-        long             l;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	list = gtk_file_chooser_list_shortcut_folders(GTK_FILE_CHOOSER(cchooser->object));
-        l = g_slist_length(list);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
 
-	_clip_array(cm, cv, 1, &l);
-        for (l=0; list; list=g_slist_next(list), l++)
-        {
-        	ClipVar c;
-                gchar *str;
-                memset(&c, 0, sizeof(c));
-                str = (gchar *)list->data;
-                _clip_var_str(str, strlen(str), &c);
-                _clip_aset(cm, cv, &c, 1, &l);
-                _clip_destroy(cm, &c);
-                g_free(str);
-        }
-        g_slist_free(list);
+   gtk_file_chooser_remove_filter(GTK_FILE_CHOOSER(cchooser->object), GTK_FILE_FILTER(cfilter->object));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERADDSHORTCUTFOLDERURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERLISTFILTERS(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name  = _clip_parc(cm, 2);
-        GError      *error ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   GSList   *list;
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_add_shortcut_folder_uri(GTK_FILE_CHOOSER(cchooser->object), name, &error));
-        FREE_TEXT(name);
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	return 0;
-err:
-	return 1;
+   long      l;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   list = gtk_file_chooser_list_filters(GTK_FILE_CHOOSER(cchooser->object));
+   l = g_slist_length(list);
+
+   _clip_array(ClipMachineMemory, cv, 1, &l);
+   for (l = 0; list; list = g_slist_next(list), l++)
+    {
+       GtkFileFilter *filter;
+
+       C_object *cfilter;
+
+       filter = GTK_FILE_FILTER(list->data);
+       cfilter = _list_get_cobject(ClipMachineMemory, filter);
+       if (!cfilter)
+	  cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
+       if (cfilter)
+	  _clip_aset(ClipMachineMemory, cv, &cfilter->obj, 1, &l);
+    }
+   g_slist_free(list);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDERURI(ClipMachine * cm)
+clip_GTK_FILECHOOSERSETFILTER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        gchar        *name  = _clip_parc(cm, 2);
-        GError      *error ;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
-        CHECKARG(2, CHARACTER_t);
+   C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	LOCALE_TO_UTF(name);
-	_clip_retl(cm, gtk_file_chooser_remove_shortcut_folder_uri(GTK_FILE_CHOOSER(cchooser->object), name, &error));
-        FREE_TEXT(name);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
 
-	return 0;
-err:
-	return 1;
+   gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(cchooser->object), GTK_FILE_FILTER(cfilter->object));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERURIS(ClipMachine * cm)
+clip_GTK_FILECHOOSERGETFILTER(ClipMachine * ClipMachineMemory)
 {
-        C_object *cchooser = _fetch_co_arg(cm);
-        GSList       *list ;
-        ClipVar        *cv = RETPTR(cm);
-        long             l;
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   C_object *cfilter;
 
-	list = gtk_file_chooser_list_shortcut_folder_uris(GTK_FILE_CHOOSER(cchooser->object));
-        l = g_slist_length(list);
+   GtkFileFilter *filter;
 
-	_clip_array(cm, cv, 1, &l);
-        for (l=0; list; list=g_slist_next(list), l++)
-        {
-        	ClipVar c;
-                gchar *str;
-                memset(&c, 0, sizeof(c));
-                str = (gchar *)list->data;
-                _clip_var_str(str, strlen(str), &c);
-                _clip_aset(cm, cv, &c, 1, &l);
-                _clip_destroy(cm, &c);
-                g_free(str);
-        }
-        g_slist_free(list);
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
-	return 0;
-err:
-	return 1;
+   filter = gtk_file_chooser_get_filter(GTK_FILE_CHOOSER(cchooser->object));
+   if (filter)
+    {
+       cfilter = _list_get_cobject(ClipMachineMemory, filter);
+       if (!cfilter)
+	  cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
+       if (cfilter)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfilter->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
+
+int
+clip_GTK_FILECHOOSERADDSHORTCUTFOLDER(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(cchooser->object), name, &error));
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDER(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_remove_shortcut_folder(GTK_FILE_CHOOSER(cchooser->object), name, &error));
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERS(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   list = gtk_file_chooser_list_shortcut_folders(GTK_FILE_CHOOSER(cchooser->object));
+   l = g_slist_length(list);
+
+   _clip_array(ClipMachineMemory, cv, 1, &l);
+   for (l = 0; list; list = g_slist_next(list), l++)
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
+   g_slist_free(list);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_FILECHOOSERADDSHORTCUTFOLDERURI(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_add_shortcut_folder_uri(GTK_FILE_CHOOSER(cchooser->object), name, &error));
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDERURI(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   LOCALE_TO_UTF(name);
+   _clip_retl(ClipMachineMemory, gtk_file_chooser_remove_shortcut_folder_uri(GTK_FILE_CHOOSER(cchooser->object), name, &error));
+   FREE_TEXT(name);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERURIS(ClipMachine * ClipMachineMemory)
+{
+   C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
+
+   CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
+
+   list = gtk_file_chooser_list_shortcut_folder_uris(GTK_FILE_CHOOSER(cchooser->object));
+   l = g_slist_length(list);
+
+   _clip_array(ClipMachineMemory, cv, 1, &l);
+   for (l = 0; list; list = g_slist_next(list), l++)
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
+   g_slist_free(list);
+
+   return 0;
+ err:
+   return 1;
+}
+
 /*****************************************************************************/
 /******************* FILE CHOOSER DIALOG *************************************/
 int
-clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * cm)
+clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-        ClipVar       *cv  = _clip_spar(cm, 1);
-        gchar      *title  = _clip_parc(cm, 2);
-        C_widget  *cparent = _fetch_cwidget(cm, _clip_spar(cm, 3));
-        GtkFileChooserAction action = _clip_parni(cm, 4);
-        GtkWidget     *wid;
-        C_widget     *cwid ;
-        gchar  *button[20], *response_id[20] ;
-        gint  i, j, n;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
 
-        CHECKOPT2(1, NUMERIC_t, MAP_t);
-	CHECKOPT(2, CHARACTER_t);
-        CHECKCWIDOPT(cparent, GTK_IS_WINDOW);
-        CHECKARG(4, NUMERIC_t);
-	memset(button, 0, sizeof(button));
-	memset(response_id, 0, sizeof(response_id));
-        n = _clip_parinfo(cm, 0);
-	for (i=0, j=5; j<n; j += 2, i++)
-        {
-		CHECKOPT(j, CHARACTER_t);
-                if (_clip_parinfo(cm, j) == UNDEF_t)
-                	break;
-		CHECKOPT(j+1, CHARACTER_t);
-		button[i] = _clip_parc(cm, j);
-		response_id[i] = _clip_parc(cm, j+1);
-		LOCALE_TO_UTF(button[i]);
-		LOCALE_TO_UTF(response_id[i]);
-        }
+   C_widget *cparent = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	if (title) LOCALE_TO_UTF(title);
-	wid = gtk_file_chooser_dialog_new((title)?title:NULL,
-		GTK_WINDOW(cparent->widget),
-		action,
-		button[0],  response_id[0],  button[1],  response_id[1],
-		button[2],  response_id[2],  button[3],  response_id[3],
-		button[4],  response_id[4],  button[5],  response_id[5],
-		button[6],  response_id[6],  button[7],  response_id[7],
-		button[8],  response_id[8],  button[9],  response_id[9],
-		button[10], response_id[10], button[11], response_id[11],
-		button[12], response_id[12], button[13], response_id[13],
-		button[14], response_id[14], button[15], response_id[15],
-		button[16], response_id[16], button[17], response_id[17],
-		button[18], response_id[18], button[19], response_id[19],
-		NULL );
-	for (i=0; i<n-5; i ++)
-        {
-		FREE_TEXT(button[i]);
-		FREE_TEXT(response_id[i]);
-        }
-	if (title) FREE_TEXT(title);
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, cv);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 4);
+
+   GtkWidget *wid;
+
+   C_widget *cwid;
+
+   gchar    *button[20], *response_id[20];
+
+   gint      i, j, n;
+
+   CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKOPT(2, CHARACTER_type_of_ClipVarType);
+   CHECKCWIDOPT(cparent, GTK_IS_WINDOW);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   memset(button, 0, sizeof(button));
+   memset(response_id, 0, sizeof(response_id));
+   n = _clip_parinfo(ClipMachineMemory, 0);
+   for (i = 0, j = 5; j < n; j += 2, i++)
+    {
+       CHECKOPT(j, CHARACTER_type_of_ClipVarType);
+       if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
+	  break;
+       CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
+       button[i] = _clip_parc(ClipMachineMemory, j);
+       response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
+       LOCALE_TO_UTF(button[i]);
+       LOCALE_TO_UTF(response_id[i]);
+    }
+
+   if (title)
+      LOCALE_TO_UTF(title);
+   wid = gtk_file_chooser_dialog_new((title) ? title : NULL,
+				     GTK_WINDOW(cparent->widget),
+				     action,
+				     button[0], response_id[0], button[1],
+				     response_id[1], button[2],
+				     response_id[2], button[3],
+				     response_id[3], button[4],
+				     response_id[4], button[5],
+				     response_id[5], button[6],
+				     response_id[6], button[7],
+				     response_id[7], button[8],
+				     response_id[8], button[9],
+				     response_id[9], button[10],
+				     response_id[10], button[11],
+				     response_id[11], button[12],
+				     response_id[12], button[13],
+				     response_id[13], button[14],
+				     response_id[14], button[15],
+				     response_id[15], button[16],
+				     response_id[16], button[17],
+				     response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
+   for (i = 0; i < n - 5; i++)
+    {
+       FREE_TEXT(button[i]);
+       FREE_TEXT(response_id[i]);
+    }
+   if (title)
+      FREE_TEXT(title);
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * cm)
+clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 {
-        ClipVar       *cv  = _clip_spar(cm, 1);
-        gchar      *title  = _clip_parc(cm, 2);
-        C_widget  *cparent = _fetch_cwidget(cm, _clip_spar(cm, 3));
-        GtkFileChooserAction action = _clip_parni(cm, 4);
-        gchar     *backend = _clip_parc(cm, 5);
-        GtkWidget     *wid;
-        C_widget     *cwid ;
-        gchar  *button[20], *response_id[20] ;
-        gint  i, j, n;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
 
-        CHECKOPT2(1, NUMERIC_t, MAP_t);
-	CHECKOPT(2, CHARACTER_t);
-        CHECKCWIDOPT(cparent, GTK_IS_WINDOW);
-        CHECKARG(4, NUMERIC_t);
-	CHECKOPT(5, CHARACTER_t);
+   C_widget *cparent = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	memset(button, 0, sizeof(button));
-	memset(response_id, 0, sizeof(response_id));
+   GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 4);
 
-        n = _clip_parinfo(cm, 0);
-	for (i=0, j=6; j<n; j += 2, i++)
-        {
-		CHECKOPT(j, CHARACTER_t);
-                if (_clip_parinfo(cm, j) == UNDEF_t)
-                	break;
-		CHECKOPT(j+1, CHARACTER_t);
-		button[i] = _clip_parc(cm, j);
-		response_id[i] = _clip_parc(cm, j+1);
-		LOCALE_TO_UTF(button[i]);
-		LOCALE_TO_UTF(response_id[i]);
-        }
+   gchar    *backend = _clip_parc(ClipMachineMemory, 5);
 
-	if (title) LOCALE_TO_UTF(title);
-	wid = gtk_file_chooser_dialog_new((title)?title:NULL,
-		GTK_WINDOW(cparent->widget),
-		action,
-                backend,
-		button[0],  response_id[0],  button[1],  response_id[1],
-		button[2],  response_id[2],  button[3],  response_id[3],
-		button[4],  response_id[4],  button[5],  response_id[5],
-		button[6],  response_id[6],  button[7],  response_id[7],
-		button[8],  response_id[8],  button[9],  response_id[9],
-		button[10], response_id[10], button[11], response_id[11],
-		button[12], response_id[12], button[13], response_id[13],
-		button[14], response_id[14], button[15], response_id[15],
-		button[16], response_id[16], button[17], response_id[17],
-		button[18], response_id[18], button[19], response_id[19],
-		NULL);
-	for (i=0; i<n-6; i ++)
-        {
-		FREE_TEXT(button[i]);
-		FREE_TEXT(response_id[i]);
-        }
-	if (title) FREE_TEXT(title);
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, cv);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   GtkWidget *wid;
+
+   C_widget *cwid;
+
+   gchar    *button[20], *response_id[20];
+
+   gint      i, j, n;
+
+   CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKOPT(2, CHARACTER_type_of_ClipVarType);
+   CHECKCWIDOPT(cparent, GTK_IS_WINDOW);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, CHARACTER_type_of_ClipVarType);
+
+   memset(button, 0, sizeof(button));
+   memset(response_id, 0, sizeof(response_id));
+
+   n = _clip_parinfo(ClipMachineMemory, 0);
+   for (i = 0, j = 6; j < n; j += 2, i++)
+    {
+       CHECKOPT(j, CHARACTER_type_of_ClipVarType);
+       if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
+	  break;
+       CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
+       button[i] = _clip_parc(ClipMachineMemory, j);
+       response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
+       LOCALE_TO_UTF(button[i]);
+       LOCALE_TO_UTF(response_id[i]);
+    }
+
+   if (title)
+      LOCALE_TO_UTF(title);
+   wid = gtk_file_chooser_dialog_new((title) ? title : NULL,
+				     GTK_WINDOW(cparent->widget),
+				     action,
+				     backend,
+				     button[0], response_id[0], button[1],
+				     response_id[1], button[2],
+				     response_id[2], button[3],
+				     response_id[3], button[4],
+				     response_id[4], button[5],
+				     response_id[5], button[6],
+				     response_id[6], button[7],
+				     response_id[7], button[8],
+				     response_id[8], button[9],
+				     response_id[9], button[10],
+				     response_id[10], button[11],
+				     response_id[11], button[12],
+				     response_id[12], button[13],
+				     response_id[13], button[14],
+				     response_id[14], button[15],
+				     response_id[15], button[16],
+				     response_id[16], button[17],
+				     response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
+   for (i = 0; i < n - 6; i++)
+    {
+       FREE_TEXT(button[i]);
+       FREE_TEXT(response_id[i]);
+    }
+   if (title)
+      FREE_TEXT(title);
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 /*****************************************************************************/
 /******************* FILE CHOOSER WIDGET *************************************/
 
 int
-clip_GTK_FILECHOOSERWIDGETNEW(ClipMachine * cm)
+clip_GTK_FILECHOOSERWIDGETNEW(ClipMachine * ClipMachineMemory)
 {
-        ClipVar        *cv = _clip_spar(cm, 1);
-        GtkFileChooserAction action = _clip_parni(cm, 2);
-        GtkWidget     *wid;
-        C_widget     *cwid ;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-        CHECKOPT2(1, NUMERIC_t, MAP_t);
-        CHECKARG(2, NUMERIC_t);
+   GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
 
-	wid = gtk_file_chooser_widget_new(action);
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, cv);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   GtkWidget *wid;
+
+   C_widget *cwid;
+
+   CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   wid = gtk_file_chooser_widget_new(action);
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FILECHOOSERWIDGETNEWWITHBACKEND(ClipMachine * cm)
+clip_GTK_FILECHOOSERWIDGETNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 {
-        ClipVar        *cv = _clip_spar(cm, 1);
-        GtkFileChooserAction action = _clip_parni(cm, 2);
-        gchar     *backend = _clip_parc(cm, 2);
-        GtkWidget     *wid;
-        C_widget     *cwid;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-        CHECKOPT2(1, NUMERIC_t, MAP_t);
-        CHECKARG(2, NUMERIC_t);
-        CHECKARG(3, CHARACTER_t);
+   GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
 
-	wid = gtk_file_chooser_widget_new_with_backend(action, backend);
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, cv);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-	return 0;
-err:
-	return 1;
+   gchar    *backend = _clip_parc(ClipMachineMemory, 2);
+
+   GtkWidget *wid;
+
+   C_widget *cwid;
+
+   CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+
+   wid = gtk_file_chooser_widget_new_with_backend(action, backend);
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }

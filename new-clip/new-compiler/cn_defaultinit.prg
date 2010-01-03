@@ -1,0 +1,46 @@
+Procedure cn_DefaultInit ()
+	if Empty ( p_aUseStdCh ) ;	aAdd ( p_aUseStdCh, "cn_std.ch") ; 	EndIf
+	If Empty ( p_sOutDir ) ; 	p_sOutDir := "./"   	; 	EndIf
+	If Empty ( p_sOutPut ) ; 	p_sOutPut := ""    ; 	EndIf
+	If Empty ( p_sSourcePrg )  ; 	p_sSourcePrg := ""   	; 	EndIf
+	If Empty ( p_sSourceCharset ) 	; 	p_sSourceCharset := ""   ; 	EndIf
+	If Empty ( p_sTargetCharset ) 	; 	p_sTargetCharset := ""   ; 	EndIf
+	If Empty ( veCC )   	; 	veCC := "gcc"    	; 	EndIf
+	If Empty ( veCDBG )   ; 	veCDBG := "-g"    ; 	EndIf
+/*	If Empty ( veCFLAGS )   ; 	veCFLAGS := ""    ; 	EndIf */
+	If Empty ( veCLIP_CHARSET ) ;  veCLIP_CHARSET := "" ; 	EndIf
+	If Empty ( veCLIP_CLIENTCS ) ;  veCLIP_CLIENTCS := "" ; 	EndIf
+	If Empty ( veCLIP_CMDSTR )  ; 	veCLIP_CMDSTR := "" ; 	EndIf
+	If Empty ( veCLIP_COLORMAP ) ;  veCLIP_COLORMAP := "" ; 	EndIf
+	If Empty ( veCLIP_DLINECHARS ) ;  veCLIP_DLINECHARS := "" ; 	EndIf
+	If Empty ( veCLIP_HOSTCS ) ;  veCLIP_HOSTCS := "" ; 	EndIf
+	If Empty ( veCLIP_KEYMAP ) ;  veCLIP_KEYMAP := "" ; 	EndIf
+	If Empty ( veCLIP_LANG ) ;  veCLIP_LANG := "" ; 	EndIf
+	If Empty ( veCLIP_LC_ALL ) ;  veCLIP_LC_ALL := "" ; 	EndIf
+	If Empty ( veCLIPLIB )  	; 	veCLIPLIB := "libclip.a" 	; 	EndIf
+	If Empty ( veCLIPLIBS )  	; 	veCLIPLIBS := "" ; 	EndIf
+	If Empty ( veCLIP_LINECHARS ) ;  veCLIP_LINECHARS := "" ; 	EndIf
+	If Empty ( veCLIP_LOCALE ) ;  veCLIP_LOCALE := "" ; 	EndIf
+	If Empty ( veCLIP_LOCALE_ROOT ) 	; 	veCLIP_LOCALE_ROOT := "" ; 	EndIf
+	If Empty ( veCLIP_LOGLEVEL ) ;  veCLIP_LOGLEVEL := "" ; 	EndIf
+	If Empty ( veCLIP_MODULE )  	; 	veCLIP_MODULE := "" 	; 	EndIf
+	If Empty ( veCLIP_NAMES )  	; 	veCLIP_NAMES := "" ; EndIf
+	If Empty ( veCLIPROOT ) ; veCLIPROOT := "" 	; 	EndIf
+	If Empty ( veCLIP_SCANMODE ) ;  veCLIP_SCANMODE := "" ; 	EndIf
+	If Empty ( veCLIP_SCANSTART ) ;  veCLIP_SCANSTART := "" ; 	EndIf
+	If Empty ( veCLIP_SCANSTOP ) ;  veCLIP_SCANSTOP := "" ; 	EndIf
+	If Empty ( veCLIPSLIB ) ; veCLIPSLIB := "libclip.so" ; 	EndIf
+	If Empty ( veCLIP_TERM ) ;  veCLIP_TERM := "" ; 	EndIf
+	If Empty ( veCOMPILE_FLAG ) ; veCOMPILE_FLAG := "-c" ; EndIf
+	If Empty ( veCOPT ) ; veCOPT := "-O2" ; EndIf
+	If Empty ( veINCLUDE_FLAG ) ; veINCLUDE_FLAG := "-I" ; 	EndIf
+	If Empty ( veLANG ) ;  veLANG := "" ; 	EndIf
+	If Empty ( veLC_ALL ) ;  veLC_ALL := "" ; 	EndIf
+	If Empty ( veLIBSUF ) ;  veLIBSUF := ".a" ;	EndIf
+	If Empty ( veOBJSUF ) ;  veOBJSUF := ".o" ; 	EndIf
+	If Empty ( veOUT_FLAG ) ;  veOUT_FLAG := "-o" ; 	EndIf
+	If Empty ( veSFLAGS ) ;  veSFLAGS := "-shared" ; 	EndIf
+	If Empty ( veSLIBSUF ) ;  veSLIBSUF := ".so" ; 	EndIf
+	If Empty ( veSOBJSUF ) ;  veSOBJSUF := ".so" ; 	EndIf
+	If Empty ( veTERM ) ;  veTERM := "" ; 	EndIf
+

@@ -1,14 +1,8 @@
-#!/bin/sh -u
+#!/bin/sh
 #
-#	Configure script for clip
+#	Configure script for clip by Angelo GIRARDI 2009-11-14
+# 	adapted from
 #	Paul Lasarev - 2000.
-#
-
-#
-# added by Angelo for 64 bits compilation
-#
-#
-# added
 #
 $Clip_M_Dir/init/create.dir.sh
 source $Clip_M_Dir/init/functions.f
@@ -20,15 +14,10 @@ source $Clip_M_Dir/init/check.packages.sh
 if [[ $? != 0 ]] ; then
 	exit 1
 fi
-#[ -d $HOME/bin ] || mkdir -p$V $HOME/bin
-#cp -f$V init/compile.sh $HOME/bin
-#if [ -x compile.sh ] ; then
-#	echo
-#else
-#	warning "Your $HOME/bin is not in your path.  Please modify $HOME./bash_profile"
-#	warning "Your PATH is set to $PATH"
-#	export PATH=$PATH:$HOME/bin
-#fi
+INSTALL_ROOT="false"
+if [[ "$option" = "sys" ]] || [[ "$option" = "opt" ]] || [[ "$option" = "usr.local" ]] ; then
+	INSTALL_ROOT="true"
+fi
 CLIP_CMDSTR="-w,-l,-N"
 FORCEALIGN=""
 MLIB=""
@@ -46,8 +35,13 @@ PO_COMPAT=""
 #SCRIPTSUFF=$C64.sh
 DEBUGFLAGS="-DCLIP_DEBUG"
 DEBUGFLAGS="-DDEBUGGING_CLIP"
-DEBUGFLAGS=""
+#DEBUGFLAGS=""
 STD_LIBDIR=""
+if [[ "$C64" == "64" ]] ; then
+	STD_LIB_DIR=/lib64:/usr/lib$C64:/usr/lib$C64:/usr/lib
+else
+STD_LIB_DIR=/lib:/usr/lib$C64:/usr/lib
+fi
 STD_LIB_DIR=/usr/lib$C64
 DLLSUFF=".so"
 DLLREALSUFF=".so"
@@ -108,14 +102,14 @@ CLIPROOT="$INSTDIR"
 #	initial C_FLAGS
 #
 #C_FLAGS="-Wall -I. $DEBUGFLAGS $OPTFLAGS $MDBG"
-C_FLAGS="-Wall -fPIC -I include -Iinclude.clip $Std_include $DEBUGFLAGS $OPTFLAGS"
+C_FLAGS="-Wall -fPIC -I. -I include -Iinclude.clip $Std_include $DEBUGFLAGS $OPTFLAGS"
 #C_FLAGS="-Wall -fPIC -Iinclude.clip"
-CLIPFLAGS="-I include -I include.clip -wlON $Std_include $DEBUGFLAGS  $OPTFLAGS"
+CLIPFLAGS="-I. -I include -I include.clip -wlON $Std_include $DEBUGFLAGS  $OPTFLAGS"
 C_LIBS="-L$Clip_L_Dir -lclip"
 ADD_CFLAGS="-fPIC"
 uname=`uname -s`
 uver=`uname -r`
-seq_no=$(cat $Clip_M_Dir/release.version)
+##seq_no=$(cat $Clip_M_Dir/release.version)
 ####remark from Uri: "hostname -f" on Solaris changed hostname !
 ####                 and "hname" not used in this script.
 #hname=`hostname -f 2>/dev/null`
@@ -215,11 +209,12 @@ MINGW)
 LINUX)
 	if [[ $C64 = "64" ]] ; then
 		LD_PRG="ld -A x86_64 -Bdynamic --dynamic-linker --libexecdir=/usr/lib$C64 -L/usr/lib$C64 /lib$C64/ld-linux-x86_64.so.2 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
+		ADDLIBS="-L/lib$C64 -L/usr/lib$C64 -L/usr/local/lib$C64 -L/lib -L/usr/lib -L/usr/local/lib -ldl -lm"
 	else
 		LD_PRG="ld -A i586 -Bdynamic --dynamic-linker -L/usr/lib$C64 /lib$C64/ld-linux.so.2 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
+		ADDLIBS="-L/lib$C64 -L/usr/lib$C64 -L/usr/local/lib$C64 -ldl -lm"
 	fi
 	LD_END="-L/usr/lib$C64 /usr/lib$C64/crtn.o -lc"
-	ADDLIBS="-L/usr/lib$C64 -ldl -lm"
 	LDS_PRG="ld -Bstatic -L/usr/lib$C64 /usr/lib$C64/crt1.o /usr/lib$C64/crti.o"
 	LDS_END="-L/usr/lib$C64 /usr/lib$C64/crtn.o -lc -lc_pic"
 	USE_LD=yes
@@ -321,6 +316,7 @@ $CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c -liconv  -L/opt/liconv
 if [ $? = 0 ] ; then
 	ICONV_LIB="-liconv  -L/opt/iconv/lib"
 	ICONV_INC="\"/opt/iconv/include/iconv.h\""
+	LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/iconv/lib"
 	HAVE_ICONV=yes
 else
 	echo "Error of NO IMPORTANCE" >&0
@@ -330,6 +326,7 @@ else
 	if [ $? = 0 ] ; 	then
 		ICONV_LIB="-liconv  -L/usr/local/lib"
 		ICONV_INC="\"/usr/local/include/iconv.h\""
+		LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 		HAVE_ICONV=yes
 	else
 		$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c
@@ -416,8 +413,10 @@ echo "export DLLIB=$DLLIB" 																				>&3
 echo "export DLLREALSUFF=$DLLREALSUFF" 																>&3
 echo "export DLLSUFF=$DLLSUFF"  																			>&3
 echo "export EXESUFF=$EXESUFF" 																			>&3
+echo "export INSTALL_ROOT=$INSTALL_ROOT" 																>&3
 echo "export INSTDIR=$CLIP_ROOT"																			>&3
 echo "export LD_END=\"$LD_END\""																			>&3
+echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH"														>&3
 echo "export LD_PRG=\"$LD_PRG\"" 																		>&3
 echo "export LDS_END=\"$LDS_END\""																		>&3
 echo "export LDS_PRG=\"$LDS_PRG\""																		>&3
@@ -496,7 +495,7 @@ rm -f$V Makefile.tmp
 # 		|| true
 cp --remove-destination -fu$V $Clip_I_Dir/Makefile.ini $Clip_M_Dir/
 echo ". done."
-printf "configure: creating clipcfg.h .."
+printf "configure: creating ci_clipcfg.h .."
 exec																		3>ci_clipcfg.h
 echo "/* Created automatically by \"configure\" */"		>&3
 echo "#ifndef CLIP_CONFIG_H"										>&3
@@ -504,7 +503,7 @@ echo "#define CLIP_CONFIG_H"										>&3
 echo																		>&3
 exec 																		3>&-
 exec																													3>temp$$1$$2
-echo "#define CLIP_VERSION \"$(cat $Clip_M_Dir/release.version)\""								>&3
+echo "#define CLIP_VERSION \"$seq_no\""																	>&3
 echo "#define DLLIB \"$DLLIB\""																				>&3
 echo "#define ADDLIBS \"$ADDLIBS\""																			>&3
 echo "#define ADD_CFLAGS \"$ADD_CFLAGS\"" 																>&3

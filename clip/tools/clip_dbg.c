@@ -108,7 +108,6 @@
 #include <stdarg.h>
 #include <fcntl.h>
 
-
 #ifndef OS_MINGW
 #include <termios.h>
 #include <sys/wait.h>
@@ -125,18 +124,22 @@
 
 #undef select
 
-
 extern char *optarg;
+
 extern int optind, opterr, optopt;
-static char in_path[256] =
-{0};
-static char out_path[256] =
-{0};
+static char in_path[256] = { 0 };
+static char out_path[256] = { 0 };
+
 static FILE *fin = 0;
+
 static int fout = -1;
+
 static pid_t tpid = 0, mpid = 0;
+
 static pid_t pid = 0;
+
 static int log_level = 0;
+
 static char *progname = "";
 
 static const char usage_str[] = "clip_dbg local commands:\n\
@@ -147,23 +150,24 @@ static const char usage_str[] = "clip_dbg local commands:\n\
 ";
 
 #ifdef _WIN32
-int mkfifo(const char * path, mode_t mode)
+int
+mkfifo(const char *path, mode_t mode)
 {
-	return -1;
+   return -1;
 }
 #endif
 
 static int
 is_dig(char *str)
 {
-	int c;
+   int       c;
 
-	while ((c = *str++))
-	{
-		if (!isdigit(c))
-			return 0;
-	}
-	return 1;
+   while ((c = *str++))
+    {
+       if (!isdigit(c))
+	  return 0;
+    }
+   return 1;
 }
 
 struct termios term, oterm;
@@ -171,66 +175,66 @@ struct termios term, oterm;
 static void
 cleanup(int code)
 {
-	if (fin)
-		fclose(fin);
-	if (fout >= 0)
-		close(fout);
-	if (in_path[0])
-		remove(in_path);
-	if (out_path[0])
-		remove(out_path);
+   if (fin)
+      fclose(fin);
+   if (fout >= 0)
+      close(fout);
+   if (in_path[0])
+      remove(in_path);
+   if (out_path[0])
+      remove(out_path);
 #ifndef OS_MINGW
-	if (tpid != 0)
-	{
-		int status;
+   if (tpid != 0)
+    {
+       int       status;
 
-		kill(tpid, SIGTERM);
-		waitpid(tpid, &status, 0);
-	}
+       kill(tpid, SIGTERM);
+       waitpid(tpid, &status, 0);
+    }
 #endif
 
-	tcsetattr(0, TCSANOW, &oterm);
-	write(1, "\n", 1);
+   tcsetattr(0, TCSANOW, &oterm);
+   write(1, "\n", 1);
 
-	exit(code);
+   exit(code);
 }
 
 static void
-logg(int level, const char *fmt,...)
+logg(int level, const char *fmt, ...)
 {
-	va_list ap;
+   va_list   ap;
 
-	if (level > log_level)
-		return;
+   if (level > log_level)
+      return;
 
-	va_start(ap, fmt);
-	vfprintf(stderr, fmt, ap);
-	va_end(ap);
-	fputc('\n', stderr);
-	fflush(stderr);
+   va_start(ap, fmt);
+   vfprintf(stderr, fmt, ap);
+   va_end(ap);
+   fputc('\n', stderr);
+   fflush(stderr);
 }
 
 static void
 sigfunc(int sig)
 {
-	cleanup(100 + sig);
+   cleanup(100 + sig);
 }
 
 static void
 sigpipe(int sig)
 {
-	fprintf(stderr, "\ndebugged program '%s' died.\n", progname);
-	cleanup(100 + sig);
+   fprintf(stderr, "\ndebugged program '%s' died.\n", progname);
+   cleanup(100 + sig);
 }
 
 static void
 usage(void)
 {
-	fprintf(stderr, "CLIP debugger commandline frontend\n");
-	fprintf(stderr, "usage: clip_dbg [-hv] progname|pid\n");
-	fprintf(stderr, "\t-h\tthis help\n");
-	fprintf(stderr, "\t-v\tverbose output\n");
-	exit(0);
+   fprintf(stderr, "CLIP debugger commandline frontend\n");
+   fprintf(stderr, "usage: clip_dbg [-hv] progname|pid\n");
+   fprintf(stderr, "\t-h\tthis help\n");
+   fprintf(stderr, "\t-v\tverbose output\n");
+   exit(0);
 }
 
 static void
@@ -241,382 +245,388 @@ sigusr(int sig)
 static void
 split_vector(char *str, char ***vpp, int *lenp)
 {
-	int l;
-	char *tok;
+   int       l;
 
-	while ((tok = strtok(str, " \t\n")))
-	{
-		str = 0;
-		if (!*tok)
-			continue;
-		l = (*lenp)++;
-		*vpp = (char **) realloc(*vpp, (l + 1) * sizeof(char *));
+   char     *tok;
 
-		(*vpp)[l] = tok;
-	}
+   while ((tok = strtok(str, " \t\n")))
+    {
+       str = 0;
+       if (!*tok)
+	  continue;
+       l = (*lenp)++;
+       *vpp = (char **) realloc(*vpp, (l + 1) * sizeof(char *));
+
+       (*vpp)[l] = tok;
+    }
 }
 
 static int pipe_flag = 0;
+
 enum
 {
-	P_Norm,
-	P_Nl,
-	P_NlDot,
+   P_Norm,
+   P_Nl,
+   P_NlDot,
 }
 pipe_state = P_Norm;
 
 static FILE *pipe_tmp = 0;
+
 static char pipe_name[L_tmpnam];
+
 static char *pipe_command = 0;
 
 static void
 start_pipe(char *op, char *cmd)
 {
-	char buf[4096];
+   char      buf[4096];
 
-	if (pipe_flag)
-		return;
+   if (pipe_flag)
+      return;
 
-	//if (!tmpnam(pipe_name))
-	if (!mkstemp(pipe_name))
-		return;
+  //if (!tmpnam(pipe_name))
+   if (!mkstemp(pipe_name))
+      return;
 
-	pipe_tmp = fopen(pipe_name, "w");
+   pipe_tmp = fopen(pipe_name, "w");
 
-	if (!pipe_tmp)
-		return;
+   if (!pipe_tmp)
+      return;
 
-	pipe_flag = 1;
+   pipe_flag = 1;
 
-	snprintf(buf, sizeof(buf), "cat %s %s %s", pipe_name, op, cmd);
+   snprintf(buf, sizeof(buf), "cat %s %s %s", pipe_name, op, cmd);
 
-	free(pipe_command);
-	pipe_command = strdup(buf);
+   free(pipe_command);
+   pipe_command = strdup(buf);
 }
 
 static void
 char_pipe(int ch)
 {
-	switch (pipe_state)
+   switch (pipe_state)
+    {
+    case P_Norm:
+       if (ch == '\n')
+	  pipe_state = P_Nl;
+       fputc(ch, pipe_tmp);
+       break;
+    case P_Nl:
+       if (ch == '.')
+	  pipe_state = P_NlDot;
+       else
 	{
-	case P_Norm:
-		if (ch == '\n')
-			pipe_state = P_Nl;
-		fputc(ch, pipe_tmp);
-		break;
-	case P_Nl:
-		if (ch == '.')
-			pipe_state = P_NlDot;
-		else
-		{
-			if (ch != '\n')
-				pipe_state = P_Norm;
-			fputc(ch, pipe_tmp);
-		}
-		break;
-	case P_NlDot:
-		pipe_state = P_Norm;
-		if (ch == '\n')
-		{
-			fclose(pipe_tmp);
-			system(pipe_command);
-			remove(pipe_name);
-			pipe_flag = 0;
-			write(1, "\n", 1);
-			rl_forced_update_display();
-		}
-		else
-		{
-			fputc('.', pipe_tmp);
-			fputc(ch, pipe_tmp);
-		}
-		break;
+	   if (ch != '\n')
+	      pipe_state = P_Norm;
+	   fputc(ch, pipe_tmp);
 	}
+       break;
+    case P_NlDot:
+       pipe_state = P_Norm;
+       if (ch == '\n')
+	{
+	   fclose(pipe_tmp);
+	   system(pipe_command);
+	   remove(pipe_name);
+	   pipe_flag = 0;
+	   write(1, "\n", 1);
+	   rl_forced_update_display();
+	}
+       else
+	{
+	   fputc('.', pipe_tmp);
+	   fputc(ch, pipe_tmp);
+	}
+       break;
+    }
 
 }
 
 static void
 process_line(char *bp)
 {
-	char obuf[1024];
-	char **argv = 0;
-	int argc = 0;
-	int i, l;
-	char *s;
+   char      obuf[1024];
 
-	if (*bp)
-		add_history(bp);
-	else
-	{
-		HIST_ENTRY *p = previous_history();
-		if (p)
-			bp = p->line;
-	}
+   char    **argv = 0;
 
-	if (bp[0] == '!')
-	{
-		system(bp + 1);
-		return;
-	}
+   int       argc = 0;
 
-	s = strchr(bp, '|');
-	if (s && s[1])
-	{
-		start_pipe("|", s + 1);
-		*s = 0;
-	}
-	else
-	{
-		s = strchr(bp, '>');
-		if (s && s[1])
-		{
-			start_pipe(">", s + 1);
-			*s = 0;
-		}
-	}
+   int       i, l;
 
-	split_vector(bp, &argv, &argc);
+   char     *s;
+
+   if (*bp)
+      add_history(bp);
+   else
+    {
+       HIST_ENTRY *p = previous_history();
+
+       if (p)
+	  bp = p->line;
+    }
+
+   if (bp[0] == '!')
+    {
+       system(bp + 1);
+       return;
+    }
+
+   s = strchr(bp, '|');
+   if (s && s[1])
+    {
+       start_pipe("|", s + 1);
+       *s = 0;
+    }
+   else
+    {
+       s = strchr(bp, '>');
+       if (s && s[1])
+	{
+	   start_pipe(">", s + 1);
+	   *s = 0;
+	}
+    }
+
+   split_vector(bp, &argv, &argc);
 
 #if 0
-	if (argc && !strcasecmp(argv[0], "quit"))
-		cleanup(0);
+   if (argc && !strcasecmp(argv[0], "quit"))
+      cleanup(0);
 #endif
 
-	obuf[0] = 0;
-	for (i = 0; i < argc; i++)
-	{
-		l = strlen(obuf);
-		snprintf(obuf + l, sizeof(obuf) - l, "%s ", argv[i]);
-	}
+   obuf[0] = 0;
+   for (i = 0; i < argc; i++)
+    {
+       l = strlen(obuf);
+       snprintf(obuf + l, sizeof(obuf) - l, "%s ", argv[i]);
+    }
 
-	l = strlen(obuf);
+   l = strlen(obuf);
 
-	snprintf(obuf + l, sizeof(obuf) - l, "\n");
-	l = strlen(obuf);
+   snprintf(obuf + l, sizeof(obuf) - l, "\n");
+   l = strlen(obuf);
 
-	if (fwrite(obuf, l, 1, fin) != 1)
-	{
-		fprintf(stderr, "cannot write to PID %lu\n",
-			(unsigned long) pid);
-		cleanup(1);
-	}
-	fflush(fin);
+   if (fwrite(obuf, l, 1, fin) != 1)
+    {
+       fprintf(stderr, "cannot write to PID %lu\n", (unsigned long) pid);
+       cleanup(1);
+    }
+   fflush(fin);
 #ifndef OS_MINGW
-	if (kill(pid, SIGUSR1))
-	{
-		fprintf(stderr, "cannot send signal to PID %lu\n",
-			(unsigned long) pid);
-		cleanup(1);
-	}
+   if (kill(pid, SIGUSR1))
+    {
+       fprintf(stderr, "cannot send signal to PID %lu\n", (unsigned long) pid);
+       cleanup(1);
+    }
 #endif
 
-	free(argv);
+   free(argv);
 #ifdef HAVE_READLINE_ALREADY_PROMPTED
-	rl_already_prompted = 1;
+   rl_already_prompted = 1;
 #endif
 }
 
 int
 main(int argc, char **argv)
 {
-	int ch;
-	char prompt[96];
+   int       ch;
 
-	while ((ch = getopt(argc, argv, "hv")) != EOF)
+   char      prompt[96];
+
+   while ((ch = getopt(argc, argv, "hv")) != EOF)
+    {
+       switch (ch)
 	{
-		switch (ch)
-		{
-		case 'v':
-			log_level++;
-			break;
-		case 'h':
-			usage();
-		}
+	case 'v':
+	   log_level++;
+	   break;
+	case 'h':
+	   usage();
+	}
+    }
+
+   argc -= optind;
+   argv += optind;
+
+   if (argc < 1)
+      usage();
+
+   progname = argv[0];
+
+   if (is_dig(progname))
+    {
+       pid = strtoul(progname, 0, 10);
+    }
+   else
+    {
+       char      path[256];
+
+       FILE     *file;
+
+       snprintf(path, sizeof(path), "%s.pid", progname);
+       file = fopen(path, "r");
+       if (file)
+	{
+	   unsigned long ul;
+
+	   if (fscanf(file, "%lu", &ul) == 1)
+	      pid = ul;
+	   fclose(file);
 	}
 
-	argc -= optind;
-	argv += optind;
-
-	if (argc < 1)
-		usage();
-
-	progname = argv[0];
-
-	if (is_dig(progname))
+       if (pid == 0)
 	{
-		pid = strtoul(progname, 0, 10);
+	   snprintf(path, sizeof(path), "pidof -s %s", progname);
+	   file = popen(path, "r");
+	   if (file)
+	    {
+	       unsigned long ul;
+
+	       if (fscanf(file, "%lu", &ul) == 1)
+		  pid = ul;
+	       pclose(file);
+	    }
 	}
-	else
-	{
-		char path[256];
-		FILE *file;
+    }
 
-		snprintf(path, sizeof(path), "%s.pid", progname);
-		file = fopen(path, "r");
-		if (file)
-		{
-			unsigned long ul;
+   if (pid == 0)
+    {
+       fprintf(stderr, "cannot determine PID of target process '%s'\n", progname);
+       exit(1);
+    }
 
-			if (fscanf(file, "%lu", &ul) == 1)
-				pid = ul;
-			fclose(file);
-		}
+   tcgetattr(0, &term);
+   oterm = term;
+   term.c_lflag &= ~ICANON;
+   term.c_cc[VTIME] = 1;
+   tcsetattr(0, TCSANOW, &term);
 
-		if (pid == 0)
-		{
-			snprintf(path, sizeof(path), "pidof -s %s", progname);
-			file = popen(path, "r");
-			if (file)
-			{
-				unsigned long ul;
-
-				if (fscanf(file, "%lu", &ul) == 1)
-					pid = ul;
-				pclose(file);
-			}
-		}
-	}
-
-	if (pid == 0)
-	{
-		fprintf(stderr, "cannot determine PID of target process '%s'\n", progname);
-		exit(1);
-	}
-
-	tcgetattr(0, &term);
-	oterm = term;
-	term.c_lflag &= ~ICANON;
-	term.c_cc[VTIME] = 1;
-	tcsetattr(0, TCSANOW, &term);
-
-	signal(SIGINT, sigfunc);
-	signal(SIGTERM, sigfunc);
+   signal(SIGINT, sigfunc);
+   signal(SIGTERM, sigfunc);
 #ifndef OS_MINGW
-	signal(SIGHUP, sigfunc);
-	signal(SIGPIPE, sigpipe);
-	signal(SIGUSR1, sigusr);
+   signal(SIGHUP, sigfunc);
+   signal(SIGPIPE, sigpipe);
+   signal(SIGUSR1, sigusr);
 #endif
-	signal(SIGILL, sigfunc);
-	signal(SIGSEGV, sigfunc);
+   signal(SIGILL, sigfunc);
+   signal(SIGSEGV, sigfunc);
 
-	snprintf(in_path, sizeof(in_path), "/tmp/clip_dbg.%lu.in", (unsigned long) pid);
-	remove(in_path);
-	if (mkfifo(in_path, 0600))
-	{
-		fprintf(stderr, "clip_dbg: cannot create FIFO '%s': %s\n",
-			in_path, strerror(errno));
-		cleanup(3);
-	}
+   snprintf(in_path, sizeof(in_path), "/tmp/clip_dbg.%lu.in", (unsigned long) pid);
+   remove(in_path);
+   if (mkfifo(in_path, 0600))
+    {
+       fprintf(stderr, "clip_dbg: cannot create FIFO '%s': %s\n", in_path, strerror(errno));
+       cleanup(3);
+    }
 
-	logg(1, "fifo %s created successfully", in_path);
+   logg(1, "fifo %s created successfully", in_path);
 
-	snprintf(out_path, sizeof(out_path), "/tmp/clip_dbg.%lu.out", (unsigned long) pid);
-	remove(out_path);
-	if (mkfifo(out_path, 0600))
-	{
-		fprintf(stderr, "clip_dbg: cannot create FIFO '%s': %s\n",
-			out_path, strerror(errno));
-		cleanup(4);
-	}
-	logg(1, "fifo %s created successfully", out_path);
+   snprintf(out_path, sizeof(out_path), "/tmp/clip_dbg.%lu.out", (unsigned long) pid);
+   remove(out_path);
+   if (mkfifo(out_path, 0600))
+    {
+       fprintf(stderr, "clip_dbg: cannot create FIFO '%s': %s\n", out_path, strerror(errno));
+       cleanup(4);
+    }
+   logg(1, "fifo %s created successfully", out_path);
 
 #ifndef OS_MINGW
-	if (kill(pid, SIGUSR1))
-	{
-		fprintf(stderr, "clip_dbg: cannot send signal SIGUSR1 to pid %lu: %s\n",
-			(unsigned long) pid, strerror(errno));
-		cleanup(7);
-	}
-#endif
-
-	fin = fopen(in_path, "w");
-	if (!fin)
-	{
-		fprintf(stderr, "clip_dbg: cannot open FIFO '%s': %s\n",
-			in_path, strerror(errno));
-		cleanup(5);
-	}
-	setvbuf(fin, 0, _IOLBF, 0);
-	/*setvbuf(stdin, 0, _IOLBF, 0); */
-	/*setvbuf(stdout, 0, _IOLBF, 0); */
-	logg(1, "fifo %s opened for writing", in_path);
-
-	fwrite("\n", 1, 1, fin);
-	logg(1, "signal SIGUSR1 sent to pid %lu", (unsigned long) pid);
-
-	fout = open(out_path, O_RDONLY, 0);
-	if (fout < 0)
-	{
-		fprintf(stderr, "clip_dbg: cannot open FIFO '%s': %s\n",
-			out_path, strerror(errno));
-		cleanup(6);
-	}
-#ifndef OS_MINGW
-	fcntl(fout, F_SETFL, O_NONBLOCK);
+   if (kill(pid, SIGUSR1))
+    {
+       fprintf(stderr, "clip_dbg: cannot send signal SIGUSR1 to pid %lu: %s\n", (unsigned long) pid, strerror(errno));
+       cleanup(7);
+    }
 #endif
 
-	logg(1, "fifo %s opened for reading", out_path);
-	mpid = getpid();
+   fin = fopen(in_path, "w");
+   if (!fin)
+    {
+       fprintf(stderr, "clip_dbg: cannot open FIFO '%s': %s\n", in_path, strerror(errno));
+       cleanup(5);
+    }
+   setvbuf(fin, 0, _IOLBF, 0);
+  /*setvbuf(stdin, 0, _IOLBF, 0); */
+  /*setvbuf(stdout, 0, _IOLBF, 0); */
+   logg(1, "fifo %s opened for writing", in_path);
 
-	write(1, usage_str, sizeof(usage_str)-1);
+   fwrite("\n", 1, 1, fin);
+   logg(1, "signal SIGUSR1 sent to pid %lu", (unsigned long) pid);
 
-	snprintf(prompt, sizeof(prompt), "clip_dbg %s > ", progname);
-	rl_callback_handler_install(prompt, process_line);
-	write(1, "?\n", 2);
+   fout = open(out_path, O_RDONLY, 0);
+   if (fout < 0)
+    {
+       fprintf(stderr, "clip_dbg: cannot open FIFO '%s': %s\n", out_path, strerror(errno));
+       cleanup(6);
+    }
+#ifndef OS_MINGW
+   fcntl(fout, F_SETFL, O_NONBLOCK);
+#endif
 
-	while (1)
+   logg(1, "fifo %s opened for reading", out_path);
+   mpid = getpid();
+
+   write(1, usage_str, sizeof(usage_str) - 1);
+
+   snprintf(prompt, sizeof(prompt), "clip_dbg %s > ", progname);
+   rl_callback_handler_install(prompt, process_line);
+   write(1, "?\n", 2);
+
+   while (1)
+    {
+       fd_set    rfs;
+
+       int       r, l;
+
+       char      buf[1024];
+
+       FD_ZERO(&rfs);
+       FD_SET(fout, &rfs);
+       FD_SET(fileno(stdin), &rfs);
+
+       r = select(fout + 1, &rfs, 0, 0, 0);
+       if (r < 0)
+	  break;
+
+       if (FD_ISSET(fout, &rfs))
 	{
-		fd_set rfs;
-		int r, l;
-		char buf[1024];
+	   l = read(fout, buf, sizeof(buf));
+	   if (l <= 0)
+	      break;
+	   if (pipe_flag)
+	    {
+	       int       i;
 
-		FD_ZERO(&rfs);
-		FD_SET(fout, &rfs);
-		FD_SET(fileno(stdin), &rfs);
-
-		r = select(fout + 1, &rfs, 0, 0, 0);
-		if (r < 0)
-			break;
-
-		if (FD_ISSET(fout, &rfs))
-		{
-			l = read(fout, buf, sizeof(buf));
-			if (l <= 0)
-				break;
-			if (pipe_flag)
-			{
-				int i;
-
-				for (i = 0; i < l; i++)
-					char_pipe(buf[i]);
-			}
-			else
-			{
-				if (write(1, buf, l) < l)
-					break;
-				rl_forced_update_display();
-				continue;
-			}
-		}
-		if (FD_ISSET(fileno(stdin), &rfs))
-		{
-			if (!pipe_flag)
-			{
-				rl_callback_read_char();
-			}
-		}
+	       for (i = 0; i < l; i++)
+		  char_pipe(buf[i]);
+	    }
+	   else
+	    {
+	       if (write(1, buf, l) < l)
+		  break;
+	       rl_forced_update_display();
+	       continue;
+	    }
 	}
+       if (FD_ISSET(fileno(stdin), &rfs))
+	{
+	   if (!pipe_flag)
+	    {
+	       rl_callback_read_char();
+	    }
+	}
+    }
 
-	cleanup(0);
+   cleanup(0);
 
-	return 0;
+   return 0;
 }
 #else
 int
 main(int argc, char **argv)
 {
-	printf("\nYour system don`t have readline library \n");
-	printf("clip_dbg will not work for your system\n");
-	return 1;
+   printf("\nYour system don`t have readline library \n");
+   printf("clip_dbg will not work for your system\n");
+   return 1;
 }
 #endif

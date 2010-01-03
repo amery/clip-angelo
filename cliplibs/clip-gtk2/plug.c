@@ -14,77 +14,96 @@
 
 /**********************************************************/
 /* Signals table */
-static SignalTable plug_signals[] =
-{
-	{"embedded",	GSF( widget_signal_handler ),	ESF( object_emit_signal ), GTK_EMBEDDED_SIGNAL},
-	{"", NULL, NULL, 0}
+static SignalTable plug_signals[] = {
+   {"embedded", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_EMBEDDED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /* Register widget signals table in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_plug() { return GTK_TYPE_PLUG; }
-long _clip_type_plug() { return GTK_WIDGET_PLUG; }
-const char * _clip_type_name_plug() { return "GTK_WIDGET_PLUG"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_plug()
+{
+   return GTK_TYPE_PLUG;
+}
+
+long
+_clip_type_plug()
+{
+   return GTK_WIDGET_PLUG;
+}
+
+const char *
+_clip_type_name_plug()
+{
+   return "GTK_WIDGET_PLUG";
+}
 
 int
-clip_INIT___PLUG(ClipMachine *cm)
+clip_INIT___PLUG(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_plug, _clip_type_name_plug, _gtk_type_plug,  _gtk_type_window, plug_signals);
-	return 0;
+   _wtype_table_put(_clip_type_plug, _clip_type_name_plug, _gtk_type_plug, _gtk_type_window, plug_signals);
+   return 0;
 }
+
 /**********************************************************/
 
 /**** PLUG constructor ****/
 int
-clip_GTK_PLUGCONSTRUCT(ClipMachine * cm)
+clip_GTK_PLUGCONSTRUCT(ClipMachine * ClipMachineMemory)
 {
-	C_widget    *cplug = _fetch_cw_arg(cm);
-	GdkNativeWindow id = _clip_parni(cm, 2);
+   C_widget *cplug = _fetch_cw_arg(ClipMachineMemory);
 
-        CHECKARG(2, NUMERIC_t);
-	CHECKCWID(cplug,GTK_IS_PLUG);
+   GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_plug_construct(GTK_PLUG(cplug->widget), id);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cplug, GTK_IS_PLUG);
 
-	return 0;
-err:
-	return 1;
+   gtk_plug_construct(GTK_PLUG(cplug->widget), id);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_PLUGNEW(ClipMachine * cm)
+clip_GTK_PLUGNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar        *cv = _clip_spar(cm, 1);
-	GdkNativeWindow id = _clip_parni(cm, 2);
-	GtkWidget *wid = NULL;
-        C_widget *cwid ;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-        CHECKARG(2, NUMERIC_t);
+   GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
-	wid = gtk_plug_new(id);
+   GtkWidget *wid = NULL;
 
-	if (!wid) goto err;
+   C_widget *cwid;
 
-	cwid = _register_widget(cm, wid, cv);
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
+   wid = gtk_plug_new(id);
 
-	return 0;
-err:
-	return 1;
+   if (!wid)
+      goto err;
+
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_PLUGGETID(ClipMachine * cm)
+clip_GTK_PLUGGETID(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cplug = _fetch_cw_arg(cm);
+   C_widget *cplug = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cplug,GTK_IS_PLUG);
+   CHECKCWID(cplug, GTK_IS_PLUG);
 
-	_clip_retni(cm, (int)gtk_plug_get_id(GTK_PLUG(cplug->widget)));
+   _clip_retni(ClipMachineMemory, (int) gtk_plug_get_id(GTK_PLUG(cplug->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-

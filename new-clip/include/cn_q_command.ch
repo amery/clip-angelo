@@ -1,0 +1,2 @@
+#command QUIT					=> __Quit()
+

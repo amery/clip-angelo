@@ -30,7 +30,7 @@ ADDLIBS 				=
 o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
 SRC_C_files 		= 			$(sort $(c_files) charset.c kbd.c cmap.c )
 SRC_PRG_files 		= 			$(sort $(prg_files) )
-
+E_cc=
 export
 
 ######################################################################################

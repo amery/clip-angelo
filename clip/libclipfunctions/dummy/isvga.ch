@@ -1,0 +1,2 @@
+FUNCTION ISVGA()
+  RETURN .F.

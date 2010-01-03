@@ -8,8 +8,8 @@ start of logging CVS
 
 */
 
-#ifndef CI_TCAPS_H
-#define CI_TCAPS_H
+#ifndef CN_TCAPS_H
+#define CN_TCAPS_H
 
 /* BOOLS */
 #define NO_bw     0
@@ -39,7 +39,6 @@ start of logging CVS
 #define NO_msgr   20
 #define NO_pt     21
 
-
 #define MAX_BOOL  22
 
 /* NUMS */
@@ -55,7 +54,6 @@ start of logging CVS
 
 #define NO_Nb      9
 #define NO_Nf      10
-
 
 #define MAX_NUM  11
 
@@ -181,8 +179,6 @@ start of logging CVS
 #define NO_mc5	115
 #define NO_mc5p	116
 
-
-
 #define MAX_STR  117
 
 /* KEYS */
@@ -275,7 +271,6 @@ start of logging CVS
 
 #define NO_acsc	     86
 
-
 #define NO_kfnd	     87
 #define NO_kbeg	     88
 #define NO_kcan	     89
@@ -291,37 +286,37 @@ start of logging CVS
 
 typedef struct Terminfo
 {
-	char *name;
-	char bools[MAX_BOOL];
-        int nums[MAX_NUM];
-        short strings[MAX_STR];
-        short keys[MAX_KEY];
-        char *buf;
-        int bufsize;
-        int bufpos;
+   char     *name;
+   char      bools[MAX_BOOL];
+   int       nums[MAX_NUM];
+   short     strings[MAX_STR];
+   short     keys[MAX_KEY];
+   char     *buf;
+   int       bufsize;
+   int       bufpos;
 } Terminfo;
 
-void init_Terminfo(Terminfo *tp);
-void destroy_Terminfo(Terminfo *tp);
+void      init_Terminfo(Terminfo * tp);
+
+void      destroy_Terminfo(Terminfo * tp);
 
 /* all references from *infos will be into *bufp (and *bufp will be realloc'ed) */
-int read_tcap( int fnum, char **fnames, /* names of termcap files */
-		int tnum, Terminfo *infos, char *errbuf, int errbuflen );
+int       read_tcap(int fnum, char **fnames,	/* names of termcap files */
+		    int tnum, Terminfo * infos, char *errbuf, int errbuflen);
 
-int read_tinfo( int fnum, char **fnames, /* names of terminfo root dirs */
-		int tnum, Terminfo *infos, char *errbuf, int errbuflen  );
+int       read_tinfo(int fnum, char **fnames,	/* names of terminfo root dirs */
+		     int tnum, Terminfo * infos, char *errbuf, int errbuflen);
 
-int read_term( int fnum, char **fnames, /* if first fname is a dir, use terminfo, else tcap */
-		int tnum, Terminfo *infos, char *errbuf, int errbuflen  );
+int       read_term(int fnum, char **fnames,	/* if first fname is a dir, use terminfo, else tcap */
+		    int tnum, Terminfo * infos, char *errbuf, int errbuflen);
 
-int read_tcapbuf( char *buf, Terminfo * info, char *Errbuf, int Errbuflen);
-
+int       read_tcapbuf(char *buf, Terminfo * info, char *Errbuf, int Errbuflen);
 
 typedef struct
 {
-	const char *name;
-	short no;
-	char type;
+   const char *name;
+   short     no;
+   char      type;
 }
 TermcapBucket;
 

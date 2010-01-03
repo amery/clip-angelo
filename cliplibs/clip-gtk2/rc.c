@@ -14,17 +14,15 @@
 #include "ci_clip-gtk2.h"
 
 int
-clip_GTK_RCPARSESTRING(ClipMachine * cm)
+clip_GTK_RCPARSESTRING(ClipMachine * ClipMachineMemory)
 {
-        const gchar *str = _clip_parc(cm, 1);
+   const gchar *str = _clip_parc(ClipMachineMemory, 1);
 
-        CHECKARG(1, CHARACTER_t);
+   CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
-	gtk_rc_parse_string(str);
+   gtk_rc_parse_string(str);
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-
-

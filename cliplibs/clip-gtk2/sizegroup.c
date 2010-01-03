@@ -16,120 +16,142 @@
 /*********************** SIGNALS **************************/
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_size_group() { return GTK_TYPE_SIZE_GROUP; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_size_group()
+{
+   return GTK_TYPE_SIZE_GROUP;
+}
 
-long _clip_type_size_group() { return GTK_OBJECT_SIZE_GROUP; }
+long
+_clip_type_size_group()
+{
+   return GTK_OBJECT_SIZE_GROUP;
+}
 
-const char * _clip_type_name_size_group()  { return "GTK_OBJECT_SIZE_GROUP"; }
+const char *
+_clip_type_name_size_group()
+{
+   return "GTK_OBJECT_SIZE_GROUP";
+}
 
 /* Register  in global table */
 int
-clip_INIT___SIZEGROUP(ClipMachine *cm)
+clip_INIT___SIZEGROUP(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_size_group,  _clip_type_name_size_group,  _gtk_type_size_group,  _gtk_type_object, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_size_group, _clip_type_name_size_group, _gtk_type_size_group, _gtk_type_object, NULL);
+   return 0;
 }
 
 /******************************************************************************
 * gtk_SizeGroupNew(clipObj, nSizeGroupMode) --> new sizeGroup object
 ******************************************************************************/
 int
-clip_GTK_SIZEGROUPNEW(ClipMachine * cm)
+clip_GTK_SIZEGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-        ClipVar           *cv = _clip_spar(cm, 1);
-        GtkSizeGroupMode mode = _clip_parni(cm, 2);
-        GtkSizeGroup   *group ;
-        C_object      *cgroup ;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKARG(2, NUMERIC_t);
+   GtkSizeGroupMode mode = _clip_parni(ClipMachineMemory, 2);
 
-        group = gtk_size_group_new( mode );
+   GtkSizeGroup *group;
 
-	if (group)
-        {
-        	cgroup = _register_object(cm, group, GTK_TYPE_SIZE_GROUP, cv, NULL);
-                if (cgroup) _clip_mclone(cm, RETPTR(cm), &cgroup->obj);
-        }
+   C_object *cgroup;
 
-	return 0;
-err:
-	return 1;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   group = gtk_size_group_new(mode);
+
+   if (group)
+    {
+       cgroup = _register_object(ClipMachineMemory, group, GTK_TYPE_SIZE_GROUP, cv, NULL);
+       if (cgroup)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgroup->obj);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_SizeGroupSetMode(sizeGroupObj, nMode) --> NIL
 ******************************************************************************/
 int
-clip_GTK_SIZEGROUPSETMODE(ClipMachine * cm)
+clip_GTK_SIZEGROUPSETMODE(ClipMachine * ClipMachineMemory)
 {
-	C_object      *cgroup = _fetch_co_arg(cm);
-        GtkSizeGroupMode mode = _clip_parni(cm, 2);
+   C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
-        CHECKARG(2, NUMERIC_t);
+   GtkSizeGroupMode mode = _clip_parni(ClipMachineMemory, 2);
 
-        gtk_size_group_set_mode(GTK_SIZE_GROUP(cgroup->object), mode );
+   CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_size_group_set_mode(GTK_SIZE_GROUP(cgroup->object), mode);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_SizeGroupGetMode(sizeGroupObj) --> nMode
 ******************************************************************************/
 int
-clip_GTK_SIZEGROUPGETMODE(ClipMachine * cm)
+clip_GTK_SIZEGROUPGETMODE(ClipMachine * ClipMachineMemory)
 {
-	C_object      *cgroup = _fetch_co_arg(cm);
+   C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
+   CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
 
-        _clip_retni(cm, gtk_size_group_get_mode(GTK_SIZE_GROUP(cgroup->object)));
+   _clip_retni(ClipMachineMemory, gtk_size_group_get_mode(GTK_SIZE_GROUP(cgroup->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_SizeGroupAddWidget(sizeGroupObj, widget) --> NIL
 ******************************************************************************/
 int
-clip_GTK_SIZEGROUPADDWIDGET(ClipMachine * cm)
+clip_GTK_SIZEGROUPADDWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_object      *cgroup = _fetch_co_arg(cm);
-        C_widget        *cwid = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
-        CHECKARG2(2, MAP_t, NUMERIC_t); CHECKCWID(cwid, GTK_IS_WIDGET);
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        gtk_size_group_add_widget(GTK_SIZE_GROUP(cgroup->object), GTK_WIDGET(cwid->widget));
+   CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	return 0;
-err:
-	return 1;
+   gtk_size_group_add_widget(GTK_SIZE_GROUP(cgroup->object), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_SizeGroupRemoveWidget(sizeGroupObj, widget) --> NIL
 ******************************************************************************/
 int
-clip_GTK_SIZEGROUPREMOVEWIDGET(ClipMachine * cm)
+clip_GTK_SIZEGROUPREMOVEWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_object      *cgroup = _fetch_co_arg(cm);
-        C_widget        *cwid = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG2(1,MAP_t, NUMERIC_t); CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
-        CHECKARG2(2, MAP_t, NUMERIC_t); CHECKCWID(cwid, GTK_IS_WIDGET);
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        gtk_size_group_remove_widget(GTK_SIZE_GROUP(cgroup->object), GTK_WIDGET(cwid->widget));
+   CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cgroup, GTK_IS_SIZE_GROUP(cgroup->object));
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	return 0;
-err:
-	return 1;
+   gtk_size_group_remove_widget(GTK_SIZE_GROUP(cgroup->object), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
-
-

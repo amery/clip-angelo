@@ -4,7 +4,9 @@ if ! [[ "$USER" = "root" ]] ; then
 #	User=$(cat config/user)
 #	chown -Rc $User *
 fi
-[ -f ./usr.local ] && rm -fv ./usr.local
+if [ -f ./usr.local ] ; then
+	rm -fv ./usr.local
+fi
 #User=$(cat config/user)
 #if [[ "$User" != "root" ]] ; then
 #	chown -Rc $User *

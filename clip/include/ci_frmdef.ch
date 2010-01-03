@@ -9,8 +9,8 @@
 *
 */
 
-#ifndef CI_FRM_DEFINED
-#define CI_FRM_DEFINED
+#ifndef CN_FRM_DEFINED
+#define CN_FRM_DEFINED
 
 
 // Report array definitions

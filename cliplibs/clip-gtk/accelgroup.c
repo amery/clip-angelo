@@ -17,61 +17,79 @@
 /**********************************************************/
 
 /* Register menu item signals table in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_accel_group()  { return GTK_TYPE_ACCEL_GROUP; }
-long _clip_type_accel_group()  { return GTK_OBJECT_ACCEL_GROUP; }
-const char * _clip_type_name_accel_group()  { return "GTK_WIDGET_ACCEL_GROUP"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_accel_group()
+{
+   return GTK_TYPE_ACCEL_GROUP;
+}
+
+long
+_clip_type_accel_group()
+{
+   return GTK_OBJECT_ACCEL_GROUP;
+}
+
+const char *
+_clip_type_name_accel_group()
+{
+   return "GTK_WIDGET_ACCEL_GROUP";
+}
 
 int
-clip_INIT___ACCEL_GROUP(ClipMachine *cm)
+clip_INIT___ACCEL_GROUP(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_accel_group, _clip_type_name_accel_group, _gtk_type_accel_group, NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_accel_group, _clip_type_name_accel_group, _gtk_type_accel_group, NULL, NULL);
+   return 0;
 }
+
 /**********************************************************/
 
 /****  AccelGroup constructor ****/
 int
-clip_GTK_ACCELGROUPNEW(ClipMachine * cm)
+clip_GTK_ACCELGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv  = _clip_spar(cm, 1);
-	GtkAccelGroup *accelg = NULL;
-	C_object *cobj;
-	CHECKOPT(1,MAP_t);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	accelg = gtk_accel_group_new();
-	if (!accelg) goto err;
-	cobj = _register_object(cm, accelg, GTK_TYPE_ACCEL_GROUP, cv, NULL);
-	_clip_mclone(cm,RETPTR(cm),&cobj->obj);
-	return 0;
-err:
-	return 1;
+   GtkAccelGroup *accelg = NULL;
+
+   C_object *cobj;
+
+	CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   accelg = gtk_accel_group_new();
+   if (!accelg)
+      goto err;
+   cobj = _register_object(ClipMachineMemory, accelg, GTK_TYPE_ACCEL_GROUP, cv, NULL);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cobj->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 /****  Locks the given accelerator group ****/
 int
-clip_GTK_ACCELGROUPLOCK(ClipMachine * cm)
+clip_GTK_ACCELGROUPLOCK(ClipMachine * ClipMachineMemory)
 {
-	C_object *caccelg = _fetch_co_arg(cm);
-	CHECKCOBJ(caccelg,GTK_IS_ACCEL_GROUP(caccelg));
+   C_object *caccelg = _fetch_co_arg(ClipMachineMemory);
 
-	gtk_accel_group_lock(GTK_ACCEL_GROUP(caccelg->object));
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(caccelg, GTK_IS_ACCEL_GROUP(caccelg));
+
+   gtk_accel_group_lock(GTK_ACCEL_GROUP(caccelg->object));
+   return 0;
+ err:
+   return 1;
 }
-
 
 /****  Unlocks the given accelerator group ****/
 int
-clip_GTK_ACCELGROUPUNLOCK(ClipMachine * cm)
+clip_GTK_ACCELGROUPUNLOCK(ClipMachine * ClipMachineMemory)
 {
-	C_object *caccelg = _fetch_co_arg(cm);
-	CHECKCOBJ(caccelg,GTK_IS_ACCEL_GROUP(caccelg));
+   C_object *caccelg = _fetch_co_arg(ClipMachineMemory);
 
-	gtk_accel_group_unlock(GTK_ACCEL_GROUP(caccelg->object));
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(caccelg, GTK_IS_ACCEL_GROUP(caccelg));
+
+   gtk_accel_group_unlock(GTK_ACCEL_GROUP(caccelg->object));
+   return 0;
+ err:
+   return 1;
 }
-
-

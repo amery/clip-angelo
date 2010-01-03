@@ -17,3 +17,11 @@ rm -fv */*/*/*/*.ok
 rm -fv */*/*/*/*/*.ok
 rm -fv */*/*/*/*/*/*.ok
 rm -fv */*/*/*/*/*/*/*.ok
+rm -fv *.no
+rm -fv */*.no
+rm -fv */*/*.no
+rm -fv */*/*/*.no
+rm -fv */*/*/*/*.no
+rm -fv */*/*/*/*/*.no
+rm -fv */*/*/*/*/*/*.no
+rm -fv */*/*/*/*/*/*/*.no

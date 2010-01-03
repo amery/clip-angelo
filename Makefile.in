@@ -3,7 +3,7 @@
 #
 #
 #
-#ADDMAKECMDGOALS = example
+ADDMAKECMDGOALS = example
 # tests
 #							to initiate in /init/Makefile.02.in
 ## 	-i ignore errors
@@ -29,7 +29,11 @@ DIRS_TO_SCAN 		= 		clip 			\
 								cliplibs 	\
 								prg 			\
 								example
-
+								#\
+								#new-clip 	\
+								#test-new-clip
+#
+export
 all :
 	exec init/menu.make.sh
 
@@ -39,8 +43,10 @@ home : $(Clip_M_Dir)/config/home.ok
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 $(Clip_M_Dir)/config/home.ok :
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)[ -f $(Clip_M_Dir)/config/home.ok ] 	\
 		|| $(MAKE) clean
 	$(E_xx)./configure "home"
@@ -54,8 +60,10 @@ opt : $(Clip_M_Dir)/config/opt.ok
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 $(Clip_M_Dir)/config/opt.ok :
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)[ -f $(Clip_M_Dir)/config/opt.ok ] 	\
 		|| $(MAKE) clean
 	$(E_xx)./configure "opt"
@@ -68,8 +76,10 @@ local : $(Clip_M_Dir)/config/local.ok
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 $(Clip_M_Dir)/config/local.ok :
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)[ -f $(Clip_M_Dir)/config/local.ok ] 	\
 		|| $(MAKE) clean
 	$(E_xx)./configure "local"
@@ -81,10 +91,15 @@ usr.local : $(Clip_M_Dir)/config/usr.local.ok
 	$(E_xx)User=$(shell cat $(Clip_M_Dir)/user) && chown -Rc $$User $(Clip_M_Dir)/.
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
+	$(E_xx)cd $(Clip_M_Dir) \
+		&& chown -Rc $(cat config/user) *
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 $(Clip_M_Dir)/config/usr.local.ok :
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)[ -f $(Clip_M_Dir)/config/usr.local.ok ] 	\
 		|| $(MAKE) clean
 	$(E_xx)./configure "usr.local"
@@ -100,8 +115,10 @@ $(Clip_M_Dir)/config/usr.local.ok :
 #	$(E_e)banner $@ ok 	>&1
 #	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 #	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+#	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 #$(Clip_M_Dir)/config/sys.ok :
+#	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 #	$(E_rm)[ -f $(Clip_M_Dir)/config/sys.ok ] 	\
 #		|| $(MAKE) clean
 #	$(E_xx)./configure "sys"
@@ -114,6 +131,7 @@ hash1 :
 	$(E_xx)$(MAKE) hasher hash
 
 M_config : Makefile hasher $(DIRS_TO_SCAN) FORCE hash1
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_e)$(Trace)
 	$(E_xx)touch $(Clip_M_Dir)/config/config_check.ok
 	$(E_e)banner $@ ok
@@ -163,12 +181,17 @@ install : Makefile $(DIRS_TO_SCAN)
 	$(E_e)echo $(Clip_D_Dir) 		>&1
 	$(E_e)echo $(Clip_D_Dir) 		>&0
 
+uninstall :
+	$(MAKE) distclean
+
 cleanc :
+	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
 	$(E_rm)rm -f$(V) 	Makefile 					\
 							Makefile.ini 				\
-							$(Clip_M_Dir)/config/* 	\
 							configure.ini || true
+#							$(Clip_M_Dir)/config/* 	\
+#
 	$(E_rm)rm -f$(V) 	sys 					\
 							home 					\
 							usr.local 			\
@@ -180,12 +203,14 @@ cleanc :
 							*.set
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
-
+forceclean:
+	./force.clean.sh
 clean : $(DIRS_TO_SCAN) hasher cleanc
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 distcleanc :
 	$(E_rm)$(MAKE) clean
@@ -197,16 +222,26 @@ distclean : distcleanc $(DIRS_TO_SCAN) example cleanc
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
+
+indent : Makefile $(DIRS_TO_SCAN) FORCE
+	$(E_e)banner $@ ok 	>&1
+	$(E_e)banner $@ ok 	>&0
+	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
+	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 depend : Makefile $(DIRS_TO_SCAN) FORCE
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 packages: clean src tgz rpm deb
 	$(E_e)banner $@ ok 	>&1
 	$(E_e)banner $@ ok 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 lp: NODBU=no
 lp: src cleanroot local deb tgz rpm
@@ -217,6 +252,7 @@ deb: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 rpm: clean
 	$(E_xx)./mkrpm
@@ -224,6 +260,7 @@ rpm: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 rpm-home: clean
 	$(E_xx)./mkrpm -home
@@ -231,6 +268,7 @@ rpm-home: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 rpm-opt: clean
 	$(E_xx)./mkrpm -opt
@@ -238,6 +276,7 @@ rpm-opt: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 rpm-local: clean
 	$(E_xx)./mkrpm -local
@@ -245,6 +284,7 @@ rpm-local: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 rpm-sys: clean
 	$(E_xx)./mkrpm -sys
@@ -252,6 +292,7 @@ rpm-sys: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 tgz: clean
 	$(E_xx)./mktgz
@@ -259,6 +300,7 @@ tgz: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 tbz tbz2 tar.bz2: clean
 	$(E_xx)./mktgz -bzip2
@@ -266,6 +308,7 @@ tbz tbz2 tar.bz2: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 src: clean
 	$(E_xx)./mksrc
@@ -273,6 +316,7 @@ src: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 doc: clean
 	$(E_xx)./mkdoc
@@ -280,6 +324,7 @@ doc: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 src_p: clean
 	$(E_xx)./mksrc_p
@@ -287,6 +332,7 @@ src_p: clean
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 ucommit:
 	$(E_xx)./cvs_ucommit
@@ -294,6 +340,7 @@ ucommit:
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 commit:
 	$(E_xx)./cvs_commit
@@ -301,6 +348,7 @@ commit:
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 update:
 	$(E_xx)./cvs_update
@@ -308,6 +356,7 @@ update:
 	$(E_e)banner $@ ok 	>&0
 	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
 	$(E_e)$(Trace)

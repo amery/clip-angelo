@@ -1,0 +1,2 @@
+	function dosidle
+	return .t.

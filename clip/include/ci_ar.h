@@ -1,16 +1,18 @@
 
 /* Typed in by Richard */
 /* minor changes for linux */
-#ifndef CI__AR_H
-#define CI__AR_H
+/*
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
+*/
+#ifndef CN__AR_H
+#define CN__AR_H
 
 #define ARMAG "!<arch>\n"
 #define SARMAG 8
 #define ARFMAG "`\n"
 
-struct ar_hdr
-{
-	char ar_name[16], ar_date[12], ar_uid[6], ar_gid[6], ar_mode[8], ar_size[10], ar_fmag[2];
-};
+#include "ci_ar/typedef_struct_ar_hdr.h"
 
 #endif /* _AR_H */

@@ -16,399 +16,447 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
-handle_action_activated_signal(GtkEntryCompletion *completion, gint index, C_signal *cs)
+static    gint
+handle_action_activated_signal(GtkEntryCompletion * completion, gint index, C_signal * cs)
 {
-	OBJECTPREPARECV(cs,cv);
-        _clip_mputn(cs->co->cmachine, &cv, HASH_INDEX, index);
-	OBJECTINVOKESIGHANDLER(cs,cv);
+   OBJECTPREPARECV(cs, cv);
+   _clip_mputn(cs->co->cmachine, &cv, HASH_INDEX, index);
+   OBJECTINVOKESIGHANDLER(cs, cv);
 }
-static gint
-handle_match_selected_signal(GtkEntryCompletion *completion, GtkTreeModel *model, GtkTreeIter *iter, C_signal *cs)
-{
-	C_object *cmodel, *citer;
-	OBJECTPREPARECV(cs,cv);
-        cmodel = _list_get_cobject(cs->co->cmachine, model);
-        if (!cmodel) cmodel = _register_object(cs->co->cmachine, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
-        _clip_madd(cs->co->cmachine, &cv, HASH_TREEMODEL, &cmodel->obj);
 
-        citer = _list_get_cobject(cs->co->cmachine, iter);
-        if (!citer) citer = _register_object(cs->co->cmachine, iter, GTK_TYPE_TREE_ITER, NULL, NULL);
-        _clip_madd(cs->co->cmachine, &cv, HASH_TREEITER, &citer->obj);
-	OBJECTINVOKESIGHANDLER(cs,cv);
-}
-static SignalTable entry_completion_signals[] =
+static    gint
+handle_match_selected_signal(GtkEntryCompletion * completion, GtkTreeModel * model, GtkTreeIter * iter, C_signal * cs)
 {
-	{"action-activated",	GSF( handle_action_activated_signal ), ESF( object_emit_signal ), GTK_ACTION_ACTIVATED_SIGNAL},
-	{"match-selected",	GSF( handle_match_selected_signal ), ESF( object_emit_signal ), GTK_MATCH_SELECTED_SIGNAL},
-	{"", NULL, NULL, 0}
+   C_object *cmodell, *citer;
+
+   OBJECTPREPARECV(cs, cv);
+   cmodell = _list_get_cobject(cs->co->cmachine, model);
+   if (!cmodell)
+      cmodell = _register_object(cs->co->cmachine, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
+   _clip_madd(cs->co->cmachine, &cv, HASH_TREEMODEL, &cmodell->obj);
+
+   citer = _list_get_cobject(cs->co->cmachine, iter);
+   if (!citer)
+      citer = _register_object(cs->co->cmachine, iter, GTK_TYPE_TREE_ITER, NULL, NULL);
+   _clip_madd(cs->co->cmachine, &cv, HASH_TREEITER, &citer->obj);
+   OBJECTINVOKESIGHANDLER(cs, cv);
+}
+
+static SignalTable entry_completion_signals[] = {
+   {"action-activated", GSF(handle_action_activated_signal),
+    ESF(object_emit_signal), GTK_ACTION_ACTIVATED_SIGNAL},
+   {"match-selected", GSF(handle_match_selected_signal),
+    ESF(object_emit_signal), GTK_MATCH_SELECTED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_entry_completion() { return GTK_TYPE_ENTRY_COMPLETION; }
-
-long _clip_type_entry_completion() { return GTK_OBJECT_ENTRY_COMPLETION; }
-
-const char * _clip_type_name_entry_completion()  { return "GTK_OBJECT_ENTRY_COMPLETION"; }
-
-int
-clip_INIT___ENTRYCOMPLETION(ClipMachine *cm)
+CLIP_DLLEXPORT GtkType
+_gtk_type_entry_completion()
 {
-	_wtype_table_put(_clip_type_entry_completion,  _clip_type_name_entry_completion,  _gtk_type_entry_completion,  NULL, entry_completion_signals);
-	return 0;
+   return GTK_TYPE_ENTRY_COMPLETION;
+}
+
+long
+_clip_type_entry_completion()
+{
+   return GTK_OBJECT_ENTRY_COMPLETION;
+}
+
+const char *
+_clip_type_name_entry_completion()
+{
+   return "GTK_OBJECT_ENTRY_COMPLETION";
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONNEW(ClipMachine * cm)
+clip_INIT___ENTRYCOMPLETION(ClipMachine * ClipMachineMemory)
 {
-	ClipVar *cv       = _clip_spar(cm,1);
-        GtkEntryCompletion *completion;
-        C_object *ccompletion;
-
-	CHECKOPT(1,MAP_t);
-
-	completion = gtk_entry_completion_new();
-
-	if (completion)
-	{
-		ccompletion = _list_get_cobject(cm,completion);
-		if (!ccompletion) ccompletion = _register_object(cm,completion,GTK_TYPE_ENTRY_COMPLETION,cv,NULL);
-		if (ccompletion) _clip_mclone(cm,RETPTR(cm),&ccompletion->obj);
-	}
-
-	return 0;
-err:
-	return 1;
-}
-
-
-int
-clip_GTK_ENTRYCOMPLETIONGETENTRY(ClipMachine * cm)
-{
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        C_widget *cwid;
-        GtkWidget *wid;
-
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-
-	wid = gtk_entry_completion_get_entry(GTK_ENTRY_COMPLETION(ccompletion->object));
-
-	if (wid)
-        {
-        	cwid = _list_get_cwidget(cm, wid);
-                if (!cwid) cwid = _register_widget(cm, wid, NULL);
-                if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-        }
-
-	return 0;
-err:
-	return 1;
+   _wtype_table_put(_clip_type_entry_completion,
+		    _clip_type_name_entry_completion, _gtk_type_entry_completion, NULL, entry_completion_signals);
+   return 0;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETMODEL(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONNEW(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        C_object *cmodel = _fetch_cobject(cm, _clip_spar(cm, 2));
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-	CHECKCOBJ(cmodel, GTK_IS_TREE_MODEL(cmodel->object));
+   GtkEntryCompletion *completion;
 
-	gtk_entry_completion_set_model(GTK_ENTRY_COMPLETION(ccompletion->object),
-		GTK_TREE_MODEL(cmodel->object));
+   C_object *ccompletion;
 
-	return 0;
-err:
-	return 1;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   completion = gtk_entry_completion_new();
+
+   if (completion)
+    {
+       ccompletion = _list_get_cobject(ClipMachineMemory, completion);
+       if (!ccompletion)
+	  ccompletion = _register_object(ClipMachineMemory, completion, GTK_TYPE_ENTRY_COMPLETION, cv, NULL);
+       if (ccompletion)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccompletion->obj);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONGETMODEL(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETENTRY(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        C_object *cmodel;
-        GtkTreeModel *model;
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   C_widget *cwid;
 
-	model = gtk_entry_completion_get_model(GTK_ENTRY_COMPLETION(ccompletion->object));
+   GtkWidget *wid;
 
-	if (model)
-	{
-		cmodel = _list_get_cobject(cm,model);
-		if (!cmodel) cmodel = _register_object(cm,model,GTK_TYPE_TREE_MODEL,NULL,NULL);
-		if (cmodel) _clip_mclone(cm,RETPTR(cm),&cmodel->obj);
-	}
-	return 0;
-err:
-	return 1;
-}
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
+   wid = gtk_entry_completion_get_entry(GTK_ENTRY_COMPLETION(ccompletion->object));
 
-static
-gboolean _match_func(GtkEntryCompletion *completion, const gchar *key, GtkTreeIter *iter, gpointer data)
-{
-	C_var *c = (C_var*)data;
-	C_object *ccomp = _list_get_cobject(c->cm, completion);
-	C_object *citer = _list_get_cobject(c->cm, iter);
-	ClipVar stack[4];
-	ClipVar res;
-        gboolean ret = TRUE;
-	if (!ccomp)
-		ccomp = _register_object(c->cm,completion,GTK_TYPE_ENTRY_COMPLETION, NULL, NULL);
-	if (!citer)
-		citer = _register_object(c->cm,iter,GTK_TYPE_TREE_ITER, NULL, NULL);
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
-	memset(&stack,0,sizeof(stack)); memset( &res, 0, sizeof(ClipVar) );
-	_clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
-	_clip_mclone(c->cw->cmachine, &stack[1], &ccomp->obj);
-        _clip_var_str((gchar *)key, strlen(key), &stack[2]);
-	_clip_mclone(c->cw->cmachine, &stack[3], &citer->obj);
-
-	if ( _clip_eval( c->cm, &(c->cfunc), 4, stack, &res ) == 0 )
-        	ret = res.t.type == LOGICAL_t ? res.l.val : ret;
-
-	_clip_destroy(c->cm, &res);
-	_clip_destroy(c->cm, &stack[0]);
-	_clip_destroy(c->cm, &stack[1]);
-	_clip_destroy(c->cm, &stack[2]);
-	_clip_destroy(c->cm, &stack[3]);
-	return ret;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETMATCHFUNC(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONSETMODEL(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        ClipVar  *func = _clip_spar(cm, 2);
-        C_var *c = 0;
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG2(2, PCODE_t, CCODE_t);
+   C_object *cmodell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	c->cm = cm; c->co = ccompletion; _clip_mclone(cm, &c->cfunc, func);
-	gtk_entry_completion_set_match_func(GTK_ENTRY_COMPLETION(ccompletion->object),
-		(GtkEntryCompletionMatchFunc)_match_func, c, NULL);
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKCOBJ(cmodell, GTK_IS_TREE_MODEL(cmodell->object));
 
-	return 0;
-err:
-	return 1;
+   gtk_entry_completion_set_model(GTK_ENTRY_COMPLETION(ccompletion->object), GTK_TREE_MODEL(cmodell->object));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETMINIMUMKEYLENGTH(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETMODEL(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint length = _clip_parni(cm, 2);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, NUMERIC_t);
+   C_object *cmodell;
 
-	gtk_entry_completion_set_minimum_key_length(GTK_ENTRY_COMPLETION(ccompletion->object),
-		length);
+   GtkTreeModel *model;
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+
+   model = gtk_entry_completion_get_model(GTK_ENTRY_COMPLETION(ccompletion->object));
+
+   if (model)
+    {
+       cmodell = _list_get_cobject(ClipMachineMemory, model);
+       if (!cmodell)
+	  cmodell = _register_object(ClipMachineMemory, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
+       if (cmodell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodell->obj);
+    }
+   return 0;
+ err:
+   return 1;
+}
+
+static    gboolean
+_match_func(GtkEntryCompletion * completion, const gchar * key, GtkTreeIter * iter, gpointer data)
+{
+   C_var    *c = (C_var *) data;
+
+   C_object *ccomp = _list_get_cobject(c->ClipMachineMemory, completion);
+
+   C_object *citer = _list_get_cobject(c->ClipMachineMemory, iter);
+
+   ClipVar   stack[4];
+
+   ClipVar   res;
+
+   gboolean  ret = TRUE;
+
+   if (!ccomp)
+      ccomp = _register_object(c->ClipMachineMemory, completion, GTK_TYPE_ENTRY_COMPLETION, NULL, NULL);
+   if (!citer)
+      citer = _register_object(c->ClipMachineMemory, iter, GTK_TYPE_TREE_ITER, NULL, NULL);
+
+   memset(&stack, 0, sizeof(stack));
+   memset(&res, 0, sizeof(ClipVar));
+   _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
+   _clip_mclone(c->cw->cmachine, &stack[1], &ccomp->obj);
+   _clip_var_str((gchar *) key, strlen(key), &stack[2]);
+   _clip_mclone(c->cw->cmachine, &stack[3], &citer->obj);
+
+   if (_clip_eval(c->ClipMachineMemory, &(c->cfunc), 4, stack, &res) == 0)
+      ret =
+       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+
+   _clip_destroy(c->ClipMachineMemory, &res);
+   _clip_destroy(c->ClipMachineMemory, &stack[0]);
+   _clip_destroy(c->ClipMachineMemory, &stack[1]);
+   _clip_destroy(c->ClipMachineMemory, &stack[2]);
+   _clip_destroy(c->ClipMachineMemory, &stack[3]);
+   return ret;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONGETMINIMUMKEYLENGTH(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONSETMATCHFUNC(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
 
-	_clip_parni(cm, gtk_entry_completion_get_minimum_key_length(GTK_ENTRY_COMPLETION(ccompletion->object)));
+   C_var    *c = 0;
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
+
+   c->ClipMachineMemory = ClipMachineMemory;
+   c->co = ccompletion;
+   _clip_mclone(ClipMachineMemory, &c->cfunc, func);
+   gtk_entry_completion_set_match_func(GTK_ENTRY_COMPLETION
+				       (ccompletion->object), (GtkEntryCompletionMatchFunc) _match_func, c, NULL);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONCOMPLETE(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONSETMINIMUMKEYLENGTH(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   gint      length = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_entry_completion_complete(GTK_ENTRY_COMPLETION(ccompletion->object));
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_entry_completion_set_minimum_key_length(GTK_ENTRY_COMPLETION(ccompletion->object), length);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONINSERTACTIONTEXT(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETMINIMUMKEYLENGTH(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint    index = _clip_parni(cm, 2);
-        gchar   *text = _clip_parc(cm, 3);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, NUMERIC_t);CHECKARG(3, CHARACTER_t);
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-	index --;
-        LOCALE_TO_UTF(text);
-	gtk_entry_completion_insert_action_text(GTK_ENTRY_COMPLETION(ccompletion->object),
-		index, text);
-	FREE_TEXT(text);
+   _clip_parni(ClipMachineMemory, gtk_entry_completion_get_minimum_key_length(GTK_ENTRY_COMPLETION(ccompletion->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONINSERTACTIONMARKUP(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONCOMPLETE(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint    index = _clip_parni(cm, 2);
-        gchar   *text = _clip_parc(cm, 3);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, NUMERIC_t);CHECKARG(3, CHARACTER_t);
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-	index --;
-        LOCALE_TO_UTF(text);
-	gtk_entry_completion_insert_action_markup(GTK_ENTRY_COMPLETION(ccompletion->object),
-		index, text);
-	FREE_TEXT(text);
+   gtk_entry_completion_complete(GTK_ENTRY_COMPLETION(ccompletion->object));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONDELETEACTION(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONINSERTACTIONTEXT(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint    index = _clip_parni(cm, 2);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, NUMERIC_t);
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
-	index --;
-	gtk_entry_completion_delete_action(GTK_ENTRY_COMPLETION(ccompletion->object),
-		index);
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+
+   index--;
+   LOCALE_TO_UTF(text);
+   gtk_entry_completion_insert_action_text(GTK_ENTRY_COMPLETION(ccompletion->object), index, text);
+   FREE_TEXT(text);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETTEXTCOLUMN(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONINSERTACTIONMARKUP(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint    index = _clip_parni(cm, 2);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, NUMERIC_t);
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
-	index --;
-	gtk_entry_completion_set_text_column(GTK_ENTRY_COMPLETION(ccompletion->object),
-		index);
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
 
-	return 0;
-err:
-	return 1;
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+
+   index--;
+   LOCALE_TO_UTF(text);
+   gtk_entry_completion_insert_action_markup(GTK_ENTRY_COMPLETION(ccompletion->object), index, text);
+   FREE_TEXT(text);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_ENTRYCOMPLETIONDELETEACTION(ClipMachine * ClipMachineMemory)
+{
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
+
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   index--;
+   gtk_entry_completion_delete_action(GTK_ENTRY_COMPLETION(ccompletion->object), index);
+
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_ENTRYCOMPLETIONSETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
+{
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
+
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   index--;
+   gtk_entry_completion_set_text_column(GTK_ENTRY_COMPLETION(ccompletion->object), index);
+
+   return 0;
+ err:
+   return 1;
 }
 
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 6)
 int
-clip_GTK_ENTRYCOMPLETIONGETINLINECOMPLETION(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETINLINECOMPLETION(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-	_clip_retl(cm, gtk_entry_completion_get_inline_completion(GTK_ENTRY_COMPLETION(ccompletion->object)));
+   _clip_retl(ClipMachineMemory, gtk_entry_completion_get_inline_completion(GTK_ENTRY_COMPLETION(ccompletion->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONGETPOPUPCOMPLETION(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETPOPUPCOMPLETION(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-	_clip_retl(cm, gtk_entry_completion_get_popup_completion(GTK_ENTRY_COMPLETION(ccompletion->object)));
+   _clip_retl(ClipMachineMemory, gtk_entry_completion_get_popup_completion(GTK_ENTRY_COMPLETION(ccompletion->object)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONGETTEXTCOLUMN(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONGETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gint           column   ;
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   gint      column;
 
-	column = gtk_entry_completion_get_text_column(GTK_ENTRY_COMPLETION(ccompletion->object));
-        column ++;
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-        _clip_retni(cm, column);
+   column = gtk_entry_completion_get_text_column(GTK_ENTRY_COMPLETION(ccompletion->object));
+   column++;
 
-	return 0;
-err:
-	return 1;
+   _clip_retni(ClipMachineMemory, column);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONINSERTPREFIX(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONINSERTPREFIX(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
-	gtk_entry_completion_insert_prefix(GTK_ENTRY_COMPLETION(ccompletion->object));
+   gtk_entry_completion_insert_prefix(GTK_ENTRY_COMPLETION(ccompletion->object));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETINLINECOMPLETION(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONSETINLINECOMPLETION(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gboolean          set   = _clip_parl(cm, 2);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, LOGICAL_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_entry_completion_set_inline_completion(GTK_ENTRY_COMPLETION(ccompletion->object), set);
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_entry_completion_set_inline_completion(GTK_ENTRY_COMPLETION(ccompletion->object), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_ENTRYCOMPLETIONSETPOPUPCOMPLETION(ClipMachine * cm)
+clip_GTK_ENTRYCOMPLETIONSETPOPUPCOMPLETION(ClipMachine * ClipMachineMemory)
 {
-        C_object *ccompletion   = _fetch_co_arg(cm);
-        gboolean          set   = _clip_parl(cm, 2);
+   C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
-        CHECKARG(2, LOGICAL_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_entry_completion_set_popup_completion(GTK_ENTRY_COMPLETION(ccompletion->object), set);
+   CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_entry_completion_set_popup_completion(GTK_ENTRY_COMPLETION(ccompletion->object), set);
+
+   return 0;
+ err:
+   return 1;
 }
 #endif
-

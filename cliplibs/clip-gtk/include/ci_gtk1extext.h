@@ -23,7 +23,8 @@
 #define _GTK_EXTEXT_H_
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 #include <gdk/gdk.h>
@@ -53,55 +54,62 @@ extern "C" {
 #define PROPERTY_REMOVEALL 1
 #define PROPERTY_MERGE 2
 
-typedef struct _GtkExText GtkExText;
-typedef struct _GtkExTextClass GtkExTextClass;
+  typedef struct _GtkExText GtkExText;
+  typedef struct _GtkExTextClass GtkExTextClass;
 
-typedef struct _GtkExTextMatch {
+  typedef struct _GtkExTextMatch
+  {
     gint startpos;
     gint endpos;
-} GtkExTextMatch;
+  } GtkExTextMatch;
 
-enum {
+  enum
+  {
     EXTEXT_UNDO_INSERT,
     EXTEXT_UNDO_REMOVE
-};
+  };
 
-typedef struct _GtkExTextUndoEntry {
+  typedef struct _GtkExTextUndoEntry
+  {
     gboolean insert;
     guint start;
     guint length;
     gchar *text;
-} GtkExTextUndoEntry;
+  } GtkExTextUndoEntry;
 
 /* GtkExTextStyle Setup font and bg/fg colors */
 /* to use in textdocument */
 #define GTK_EXTEXT_STYLE_BG 0x0001
 #define GTK_EXTEXT_STYLE_UNDER 0x0002
 #define GTK_EXTEXT_STYLE_STRIKE 0x0004
-typedef struct _GtkExTextStyle {
-    GdkFont *font;          /* font */
-    GdkColor fg_color;      /* bg_color */
-    GdkColor bg_color;      /* fg_color */
+  typedef struct _GtkExTextStyle
+  {
+    GdkFont *font;		/* font */
+    GdkColor fg_color;		/* bg_color */
+    GdkColor bg_color;		/* fg_color */
     gchar key[32];
     guint16 flags;
     gint rbearing;
     gint lbearing;
     gint ascent;
     gint descent;
-} GtkExTextStyle;
+  } GtkExTextStyle;
 
-typedef struct _Regex {
+  typedef struct _Regex
+  {
     struct re_pattern_buffer buf;
     struct re_registers reg;
-} Regex;
+  } Regex;
 
-typedef enum {
+  typedef enum
+  {
     SYNTAX_TABLE,
     PATTERN_TABLE,
     EMBEDDED_TABLE
-} GtkExTextHighlightTableType;
+  } GtkExTextHighlightTableType;
 
-typedef struct _GtkExTextSyntaxEntry {
+  typedef struct _GtkExTextSyntaxEntry
+  {
     gchar *start;
     Regex regex_start;
     Regex regex_end;
@@ -112,9 +120,10 @@ typedef struct _GtkExTextSyntaxEntry {
     guint16 flags;
     gpointer data;
     gint ref_count;
-} GtkExTextSyntaxEntry;
+  } GtkExTextSyntaxEntry;
 
-typedef struct _GtkExTextPatternEntry {
+  typedef struct _GtkExTextPatternEntry
+  {
     Regex regex;
     gchar key[32];
     GdkFont *font;
@@ -123,9 +132,10 @@ typedef struct _GtkExTextPatternEntry {
     guint16 flags;
     gpointer data;
     gint ref_count;
-} GtkExTextPatternEntry;
+  } GtkExTextPatternEntry;
 
-typedef struct _GtkExTextEmbeddedEntry {
+  typedef struct _GtkExTextEmbeddedEntry
+  {
     Regex outside;
     Regex inside;
     gchar key[32];
@@ -135,31 +145,34 @@ typedef struct _GtkExTextEmbeddedEntry {
     guint16 flags;
     gpointer data;
     gint ref_count;
-} GtkExTextEmbeddedEntry;
+  } GtkExTextEmbeddedEntry;
 
-typedef struct _GtkExTextHighlightTable {
+  typedef struct _GtkExTextHighlightTable
+  {
     GtkExTextHighlightTableType type;
     GList *entries;
     Regex regex_all;
-} GtkExTextHighlightTable;
+  } GtkExTextHighlightTable;
 
 /* Line struct */
 /* holds all lines */
 /* all lines ends with "\n" character */
-typedef struct _Lines {     /* 20 bytes */
+  typedef struct _Lines
+  {				/* 20 bytes */
     guint16 length;
-    guint16 flags;          /* unused at the moment */
+    guint16 flags;		/* unused at the moment */
     guint16 width;
     guint16 height;
     GdkPixmap *pixmap;
     GdkBitmap *mask;
-    gpointer user_data;     /* possible for the user to set */
+    gpointer user_data;		/* possible for the user to set */
     struct _Lines *next;
     struct _Lines *prev;
-} Lines;
+  } Lines;
 
 /* Property is used  to set a property mark in the textdoc*/
-typedef struct _GtkExTextProperty {
+  typedef struct _GtkExTextProperty
+  {
     /* startpos from begining of text */
     guint startpos;
     /* endpos from begining of text */
@@ -171,13 +184,14 @@ typedef struct _GtkExTextProperty {
     struct _GtkExTextProperty *prev;
     /* pointer to GtkExTextStyle */
     GtkExTextStyle *style;
-} GtkExTextProperty;
+  } GtkExTextProperty;
 
 /* this is a wrapped and should be public for the user */
 /* this calculates startpos and endpos */
 /* and the return it to the user */
 /* structure is READONLY for the user */
-typedef struct _GtkExTextLineData {
+  typedef struct _GtkExTextLineData
+  {
     /* in text startpos */
     gint startpos;
     /* in text endpos */
@@ -188,18 +202,20 @@ typedef struct _GtkExTextLineData {
     GtkExTextProperty *property_first;
     /* the real lineptr */
     Lines *lineptr;
-} GtkExTextLineData;
+  } GtkExTextLineData;
 
-typedef struct _extext_cursor {
+  typedef struct _extext_cursor
+  {
     gboolean hide;
     gint offsetx;
     gint x;
     gint y;
     gint w;
     gint h;
-} extext_cursor;
+  } extext_cursor;
 
-struct _GtkExText {
+  struct _GtkExText
+  {
     /* Old GtkEditable stuff */
     GtkWidget widget;
     guint current_pos;
@@ -250,9 +266,9 @@ struct _GtkExText {
 
     /* line cache coding see source for more info */
 
-    Lines *line_start;      /* the line first */
-    Lines *line_end;        /* the line cache last */
-    Lines *line_ptr;        /* current position  */
+    Lines *line_start;		/* the line first */
+    Lines *line_end;		/* the line cache last */
+    Lines *line_ptr;		/* current position  */
 
     gint line_count;
 
@@ -261,8 +277,8 @@ struct _GtkExText {
     gint scroll_line_count;
 
     GtkExTextLineData *scroll_line_start;
-    gint line_number;       /* current line number */
-    gint column_number;     /* current column number */
+    gint line_number;		/* current line number */
+    gint column_number;		/* current column number */
     //gint lci_bak;
 
     extext_cursor cursor;
@@ -316,15 +332,16 @@ struct _GtkExText {
     GtkExTextHighlightTable *syntax_table;
     GtkExTextHighlightTable *pattern_table;
     GtkExTextHighlightTable *embedded_table;
-};
+  };
 
-struct _GtkExTextClass {
+  struct _GtkExTextClass
+  {
     GtkWidgetClass parent_class;
 
     /* Signals from GtkEditable */
     void (*insert_text) (GtkExText * text,
-                         const gchar * new_text, gint length,
-                         gint * position);
+			 const gchar * new_text, gint length,
+			 gint * position);
     void (*delete_text) (GtkExText * text, gint start_pos, gint end_pos);
     void (*changed) (GtkExText * text);
     void (*move_to_row) (GtkExText * text, gint row);
@@ -335,17 +352,17 @@ struct _GtkExTextClass {
     /* End of GtkEditable signals */
 
       gint (*property_text_insert) (GtkExText * text,
-                                    GtkExTextProperty * prop, gint startpos,
-                                    gint endpos);
+				    GtkExTextProperty * prop, gint startpos,
+				    gint endpos);
       gint (*property_text_remove) (GtkExText * text,
-                                    GtkExTextProperty * prop, gint startpos,
-                                    gint endpos);
+				    GtkExTextProperty * prop, gint startpos,
+				    gint endpos);
     void (*property_destroy) (GtkExText * text, GtkExTextProperty * prop);
       gint (*undo_changed) (GtkExText * text);
 
     void (*set_scroll_adjustments) (GtkExText * text,
-                                    GtkAdjustment * hadjustment,
-                                    GtkAdjustment * vadjustment);
+				    GtkAdjustment * hadjustment,
+				    GtkAdjustment * vadjustment);
 
     /* Is called everytime cursor comes to a new property */
     void (*property_mark) (GtkExText * text, GtkExTextProperty * prop);
@@ -356,211 +373,210 @@ struct _GtkExTextClass {
       gint (*line_remove) (GtkExText * text, gint line_number);
     void (*margin_enter) (GtkExText * text, gint line);
     void (*margin_exit) (GtkExText * text, gint line);
-    void (*margin_clicked) (GtkExText * text, GdkEventButton * ev,
-                            gint line);
+    void (*margin_clicked) (GtkExText * text, GdkEventButton * ev, gint line);
 
     /* line_funcs */
     GtkExTextLineData *(*line_by_offset) (GtkExText * text, gint y,
-                                          gint * newoffsety);
+					  gint * newoffsety);
       gint (*column_by_offset) (GtkExText * text, GtkExTextLineData * data,
-                                gint x, gint * newoffsetx);
-};
+				gint x, gint * newoffsetx);
+  };
 
 
 /* GtkWidget API */
-GtkType gtk_extext_get_type ();
-GtkWidget *gtk_extext_new ();
-void gtk_extext_set_adjustments (GtkExText * text, GtkAdjustment * hadj,
-                                 GtkAdjustment * vadj);
+  GtkType gtk_extext_get_type ();
+  GtkWidget *gtk_extext_new ();
+  void gtk_extext_set_adjustments (GtkExText * text, GtkAdjustment * hadj,
+				   GtkAdjustment * vadj);
 /* text API */
 
-void gtk_extext_insert (GtkExText * text, const gchar * chars, gint len);
-void gtk_extext_insert_with_style (GtkExText * text,
-                                   const char *chars, gint len,
-                                   gchar * stylekey, gpointer userdata);
+  void gtk_extext_insert (GtkExText * text, const gchar * chars, gint len);
+  void gtk_extext_insert_with_style (GtkExText * text,
+				     const char *chars, gint len,
+				     gchar * stylekey, gpointer userdata);
 
-void gtk_extext_insert_text (GtkExText * text,
-                             const gchar * new_text,
-                             gint new_text_length, gint * position);
+  void gtk_extext_insert_text (GtkExText * text,
+			       const gchar * new_text,
+			       gint new_text_length, gint * position);
 
-void gtk_extext_delete_text (GtkExText * text, gint startpos, gint endpos);
-void gtk_extext_select_region (GtkExText * text, gint start, gint end);
-gchar *gtk_extext_get_chars (GtkExText * text, gint start, gint end);
+  void gtk_extext_delete_text (GtkExText * text, gint startpos, gint endpos);
+  void gtk_extext_select_region (GtkExText * text, gint start, gint end);
+  gchar *gtk_extext_get_chars (GtkExText * text, gint start, gint end);
 
-gint gtk_extext_get_length (GtkExText * text);
-guchar gtk_extext_get_char_at_pos (GtkExText * text, gint pos);
+  gint gtk_extext_get_length (GtkExText * text);
+  guchar gtk_extext_get_char_at_pos (GtkExText * text, gint pos);
 
-void gtk_extext_set_popup_menu (GtkExText * text, GtkWidget * widget,
-                                GtkWidget * marginmenu);
+  void gtk_extext_set_popup_menu (GtkExText * text, GtkWidget * widget,
+				  GtkWidget * marginmenu);
 
 /* Line and column API */
-GtkExTextLineData *gtk_extext_get_line_data (GtkExText * text, gint line,
-                                             GtkExTextLineData * old);
-gboolean gtk_extext_get_line_data_prev (GtkExText * text,
-                                        GtkExTextLineData * cur);
-gboolean gtk_extext_get_line_data_next (GtkExText * text,
-                                        GtkExTextLineData * cur);
+  GtkExTextLineData *gtk_extext_get_line_data (GtkExText * text, gint line,
+					       GtkExTextLineData * old);
+  gboolean gtk_extext_get_line_data_prev (GtkExText * text,
+					  GtkExTextLineData * cur);
+  gboolean gtk_extext_get_line_data_next (GtkExText * text,
+					  GtkExTextLineData * cur);
 
-gint gtk_extext_set_line (GtkExText * text, gint pos);
-gint gtk_extext_get_line (GtkExText * text);
+  gint gtk_extext_set_line (GtkExText * text, gint pos);
+  gint gtk_extext_get_line (GtkExText * text);
 
-GtkExTextLineData *gtk_extext_get_first_visible_line (GtkExText * text);
-GtkExTextLineData *gtk_extext_get_line_by_char_pos (GtkExText * text,
-                                                    gint pos,
-                                                    GtkExTextLineData *
-                                                    data);
-GtkExTextLineData *gtk_extext_get_line_by_offset (GtkExText * text, gint y,
-                                                  gint * newoffsety);
+  GtkExTextLineData *gtk_extext_get_first_visible_line (GtkExText * text);
+  GtkExTextLineData *gtk_extext_get_line_by_char_pos (GtkExText * text,
+						      gint pos,
+						      GtkExTextLineData *
+						      data);
+  GtkExTextLineData *gtk_extext_get_line_by_offset (GtkExText * text, gint y,
+						    gint * newoffsety);
 
-gpointer gtk_extext_get_line_userdata (GtkExText * text, gint line);
-void gtk_extext_set_line_userdata (GtkExText * text, gint line,
-                                   gpointer userdata);
-void gtk_extext_set_line_pixmap (GtkExText * text, gint line,
-                                 GdkPixmap * pixmap, GdkBitmap * mask);
-gboolean gtk_extext_get_line_pixmap (GtkExText * text, gint line,
-                                     GdkPixmap ** pixmap,
-                                     GdkBitmap ** mask);
+  gpointer gtk_extext_get_line_userdata (GtkExText * text, gint line);
+  void gtk_extext_set_line_userdata (GtkExText * text, gint line,
+				     gpointer userdata);
+  void gtk_extext_set_line_pixmap (GtkExText * text, gint line,
+				   GdkPixmap * pixmap, GdkBitmap * mask);
+  gboolean gtk_extext_get_line_pixmap (GtkExText * text, gint line,
+				       GdkPixmap ** pixmap,
+				       GdkBitmap ** mask);
 
-gint gtk_extext_set_column (GtkExText * text, gint col);
-gint gtk_extext_get_column (GtkExText * text);
-gint gtk_extext_get_abs_column (GtkExText * text, gint pos);
-gint gtk_extext_get_next_tab_stop (GtkExText * text, gint pos);
-gint gtk_extext_get_column_by_offset (GtkExText * text,
-                                      GtkExTextLineData * linedataptr,
-                                      gint x, gint * newx);
+  gint gtk_extext_set_column (GtkExText * text, gint col);
+  gint gtk_extext_get_column (GtkExText * text);
+  gint gtk_extext_get_abs_column (GtkExText * text, gint pos);
+  gint gtk_extext_get_next_tab_stop (GtkExText * text, gint pos);
+  gint gtk_extext_get_column_by_offset (GtkExText * text,
+					GtkExTextLineData * linedataptr,
+					gint x, gint * newx);
 
 /* Undo funcs */
-gint gtk_extext_undo_get_max (GtkExText * text);
-gboolean gtk_extext_undo_set_max (GtkExText * text, gint max);
-gboolean gtk_extext_undo_is_empty (GtkExText * text);
-gboolean gtk_extext_redo_is_empty (GtkExText * text);
-void gtk_extext_undo_clear_all (GtkExText * text);
-gboolean gtk_extext_undo (GtkExText * text);
-gboolean gtk_extext_redo (GtkExText * text);
+  gint gtk_extext_undo_get_max (GtkExText * text);
+  gboolean gtk_extext_undo_set_max (GtkExText * text, gint max);
+  gboolean gtk_extext_undo_is_empty (GtkExText * text);
+  gboolean gtk_extext_redo_is_empty (GtkExText * text);
+  void gtk_extext_undo_clear_all (GtkExText * text);
+  gboolean gtk_extext_undo (GtkExText * text);
+  gboolean gtk_extext_redo (GtkExText * text);
 
 /* Style functions */
-GtkExTextStyle *gtk_extext_style_insert (GtkExText * text,
-                                         gchar * stylename, GdkFont * font,
-                                         GdkColor * fg, GdkColor * bg,
-                                         guint16 flags);
-GtkExTextStyle *gtk_extext_style_get (GtkExText * text, gchar * key);
-void gtk_extext_style_remove (GtkExText * textclass, gchar * key);
-void gtk_extext_style_set (GtkWidget * widget, GtkStyle * old);
+  GtkExTextStyle *gtk_extext_style_insert (GtkExText * text,
+					   gchar * stylename, GdkFont * font,
+					   GdkColor * fg, GdkColor * bg,
+					   guint16 flags);
+  GtkExTextStyle *gtk_extext_style_get (GtkExText * text, gchar * key);
+  void gtk_extext_style_remove (GtkExText * textclass, gchar * key);
+  void gtk_extext_style_set (GtkWidget * widget, GtkStyle * old);
 
 /* Property functions */
-GtkExTextProperty *gtk_extext_property_insert (GtkExText * text,
-                                               gchar * key, gint startpos,
-                                               gint endpos, gpointer data,
-                                               gint typ,
-                                               GtkExTextProperty * prev);
-GtkExTextProperty *gtk_extext_property_remove (GtkExText * text,
-                                               GtkExTextProperty * remove);
-GtkExTextProperty *gtk_extext_property_get_at_pos (GtkExText * text,
-                                                   gint pos,
-                                                   GtkExTextProperty * cur);
-GtkExTextProperty *gtk_extext_property_move_all (GtkExText * text, gint pos,
-                                                 gint diff,
-                                                 GtkExTextProperty * cur);
-GtkExTextProperty *gtk_extext_property_remove_all (GtkExText * text,
-                                                   gint start, gint end,
-                                                   GtkExTextProperty * cur);
-GtkExTextProperty *gtk_extext_property_nearest_forward (GtkExText * text,
-                                                        gint pos,
-                                                        GtkExTextProperty *
-                                                        cur);
-GtkExTextProperty *gtk_extext_property_nearest_backward (GtkExText * text,
-                                                         gint pos,
-                                                         GtkExTextProperty *
-                                                         cur);
-GtkExTextProperty *gtk_extext_property_get_current (GtkExText * text);
+  GtkExTextProperty *gtk_extext_property_insert (GtkExText * text,
+						 gchar * key, gint startpos,
+						 gint endpos, gpointer data,
+						 gint typ,
+						 GtkExTextProperty * prev);
+  GtkExTextProperty *gtk_extext_property_remove (GtkExText * text,
+						 GtkExTextProperty * remove);
+  GtkExTextProperty *gtk_extext_property_get_at_pos (GtkExText * text,
+						     gint pos,
+						     GtkExTextProperty * cur);
+  GtkExTextProperty *gtk_extext_property_move_all (GtkExText * text, gint pos,
+						   gint diff,
+						   GtkExTextProperty * cur);
+  GtkExTextProperty *gtk_extext_property_remove_all (GtkExText * text,
+						     gint start, gint end,
+						     GtkExTextProperty * cur);
+  GtkExTextProperty *gtk_extext_property_nearest_forward (GtkExText * text,
+							  gint pos,
+							  GtkExTextProperty *
+							  cur);
+  GtkExTextProperty *gtk_extext_property_nearest_backward (GtkExText * text,
+							   gint pos,
+							   GtkExTextProperty *
+							   cur);
+  GtkExTextProperty *gtk_extext_property_get_current (GtkExText * text);
 
 /* utils returns true if found and the startpos and endpos will be updated */
 /* you must initiate the startpos with some value */
 /* for example startpos=gtk_extext_get_position() */
 
-gboolean gtk_extext_get_current_word (GtkExText * text, gint * startpos,
-                                      gint * endpos);
-gboolean gtk_extext_get_next_word (GtkExText * text, gint * startpos,
-                                   gint * endpos);
-gboolean gtk_extext_get_previous_word (GtkExText * text, gint * startpos,
-                                       gint * endpos);
+  gboolean gtk_extext_get_current_word (GtkExText * text, gint * startpos,
+					gint * endpos);
+  gboolean gtk_extext_get_next_word (GtkExText * text, gint * startpos,
+				     gint * endpos);
+  gboolean gtk_extext_get_previous_word (GtkExText * text, gint * startpos,
+					 gint * endpos);
 
-void gtk_extext_freeze (GtkExText * text);
-void gtk_extext_thaw (GtkExText * text);
+  void gtk_extext_freeze (GtkExText * text);
+  void gtk_extext_thaw (GtkExText * text);
 
-void gtk_extext_set_pseudo_select (GtkExText * text, gint start, gint end);
+  void gtk_extext_set_pseudo_select (GtkExText * text, gint start, gint end);
 
-void gtk_extext_set_use_spaces (GtkExText * text, gboolean spaces);
-void gtk_extext_set_draw_numbers (GtkExText * text, gboolean draw);
-void gtk_extext_set_draw_pixmaps (GtkExText * text, gboolean draw);
-void gtk_extext_set_pixmap_size (GtkExText * text, gint size);
+  void gtk_extext_set_use_spaces (GtkExText * text, gboolean spaces);
+  void gtk_extext_set_draw_numbers (GtkExText * text, gboolean draw);
+  void gtk_extext_set_draw_pixmaps (GtkExText * text, gboolean draw);
+  void gtk_extext_set_pixmap_size (GtkExText * text, gint size);
 
-void gtk_extext_set_select_line (GtkExText * text, gboolean select);
-void gtk_extext_set_cursor_blink (GtkExText * text, gboolean blink);
-void gtk_extext_set_draw_cursor (GtkExText * text, gboolean draw);
-void gtk_extext_set_full_selection (GtkExText * text, gboolean full);
-void gtk_extext_set_show_newlines (GtkExText * text, gboolean show);
-void gtk_extext_set_show_whitespace (GtkExText * text, gboolean show);
+  void gtk_extext_set_select_line (GtkExText * text, gboolean select);
+  void gtk_extext_set_cursor_blink (GtkExText * text, gboolean blink);
+  void gtk_extext_set_draw_cursor (GtkExText * text, gboolean draw);
+  void gtk_extext_set_full_selection (GtkExText * text, gboolean full);
+  void gtk_extext_set_show_newlines (GtkExText * text, gboolean show);
+  void gtk_extext_set_show_whitespace (GtkExText * text, gboolean show);
 
-gint gtk_extext_get_tab_width (GtkExText * text);
-void gtk_extext_set_tab_width (GtkExText * text, gint width);
-void gtk_extext_set_use_tab_stops (GtkExText * text, gboolean tab_stops);
+  gint gtk_extext_get_tab_width (GtkExText * text);
+  void gtk_extext_set_tab_width (GtkExText * text, gint width);
+  void gtk_extext_set_use_tab_stops (GtkExText * text, gboolean tab_stops);
 
-void gtk_extext_set_position (GtkExText * text, gint pos);
-gint gtk_extext_get_position (GtkExText * text);
-gboolean gtk_extext_get_editable (GtkExText * text);
-void gtk_extext_set_editable (GtkExText * text, gboolean r);
+  void gtk_extext_set_position (GtkExText * text, gint pos);
+  gint gtk_extext_get_position (GtkExText * text);
+  gboolean gtk_extext_get_editable (GtkExText * text);
+  void gtk_extext_set_editable (GtkExText * text, gboolean r);
 
-void gtk_extext_cut_clipboard (GtkExText * text);
-void gtk_extext_copy_clipboard (GtkExText * text);
-void gtk_extext_paste_clipboard (GtkExText * text);
+  void gtk_extext_cut_clipboard (GtkExText * text);
+  void gtk_extext_copy_clipboard (GtkExText * text);
+  void gtk_extext_paste_clipboard (GtkExText * text);
 
-void gtk_extext_delete_selection (GtkExText * text);
-void gtk_extext_set_no_selection (GtkExText * text, gboolean draw);
+  void gtk_extext_delete_selection (GtkExText * text);
+  void gtk_extext_set_no_selection (GtkExText * text, gboolean draw);
 
-GtkType gtk_extext_get_type (void);
+  GtkType gtk_extext_get_type (void);
 
-gboolean gtk_extext_compile_regex (const gchar * pattern, Regex * regex);
+  gboolean gtk_extext_compile_regex (const gchar * pattern, Regex * regex);
 
-void gtk_extext_set_highlight (GtkExText * text, gboolean value);
-void gtk_extext_highlight (GtkExText * text);
+  void gtk_extext_set_highlight (GtkExText * text, gboolean value);
+  void gtk_extext_highlight (GtkExText * text);
 
-GtkExTextHighlightTable *gtk_extext_syntax_table_new (GList * entries);
-GtkExTextHighlightTable *gtk_extext_pattern_table_new (GList * entries);
-GtkExTextHighlightTable *gtk_extext_embedded_table_new (GList * entries);
+  GtkExTextHighlightTable *gtk_extext_syntax_table_new (GList * entries);
+  GtkExTextHighlightTable *gtk_extext_pattern_table_new (GList * entries);
+  GtkExTextHighlightTable *gtk_extext_embedded_table_new (GList * entries);
 
-void gtk_extext_table_free (GtkExTextHighlightTable * table);
+  void gtk_extext_table_free (GtkExTextHighlightTable * table);
 
-GList *gtk_extext_syntax_entry_new (GList * entries, gchar * name,
-                                    gchar * start, gchar * end,
-                                    GdkColor * fg, GdkColor * bg,
-                                    GdkFont * font, guint16 flags,
-                                    gpointer data);
-GList *gtk_extext_pattern_entry_new (GList * entries, gchar * name,
-                                     gchar * start, GdkColor * fg,
-                                     GdkColor * bg, GdkFont * font,
-                                     guint16 flags, gpointer data);
-GList *gtk_extext_embedded_entry_new (GList * entries, gchar * name,
-                                      gchar * outside, gchar * inside,
-                                      GdkColor * fg, GdkColor * bg,
-                                      GdkFont * font, guint16 flags,
-                                      gpointer data);
+  GList *gtk_extext_syntax_entry_new (GList * entries, gchar * name,
+				      gchar * start, gchar * end,
+				      GdkColor * fg, GdkColor * bg,
+				      GdkFont * font, guint16 flags,
+				      gpointer data);
+  GList *gtk_extext_pattern_entry_new (GList * entries, gchar * name,
+				       gchar * start, GdkColor * fg,
+				       GdkColor * bg, GdkFont * font,
+				       guint16 flags, gpointer data);
+  GList *gtk_extext_embedded_entry_new (GList * entries, gchar * name,
+					gchar * outside, gchar * inside,
+					GdkColor * fg, GdkColor * bg,
+					GdkFont * font, guint16 flags,
+					gpointer data);
 
-void gtk_extext_install_table (GtkExText * text,
-                               GtkExTextHighlightTable * table);
+  void gtk_extext_install_table (GtkExText * text,
+				 GtkExTextHighlightTable * table);
 
 #define GTK_EXTEXT_INDEX(extext,index) (index < extext->part1len ? \
                                   extext->text[index] : extext->part2text[index])
 
 /* search routines */
-gboolean gtk_extext_search (GtkExText * text, gchar * search, gint pos,
-                            gboolean iscase, gboolean forward,
-                            GtkExTextMatch * m);
+  gboolean gtk_extext_search (GtkExText * text, gchar * search, gint pos,
+			      gboolean iscase, gboolean forward,
+			      GtkExTextMatch * m);
 
 /* Regex functions */
-gint gtk_extext_regex_search (GtkExText * text, gint start, Regex * regex,
-                              gboolean forward, GtkExTextMatch * m);
-gint gtk_extext_regex_match (GtkExText * text, gint pos, Regex * regex);
+  gint gtk_extext_regex_search (GtkExText * text, gint start, Regex * regex,
+				gboolean forward, GtkExTextMatch * m);
+  gint gtk_extext_regex_match (GtkExText * text, gint pos, Regex * regex);
 
 #ifdef __cplusplus
 }

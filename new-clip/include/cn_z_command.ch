@@ -1,0 +1,2 @@
+#command ZAP							 		=> __dbZap()
+

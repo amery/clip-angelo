@@ -2,82 +2,12 @@
     Copyright (C) 2001  ITK
     Author   : Paul Lasarev <paul@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
-*/
-/*
-   $Log: _thread.c,v $
-   Revision 1.3  2007/01/23 14:12:08  itk
-   uri: some new code for new tasks
 
-   Revision 1.2  2007/01/23 10:46:22  itk
-   uri: some redisign for new task model
-
-   Revision 1.1  2006/06/22 19:01:31  itk
-   uri: initial
-
-   Revision 1.15  2004/10/13 14:49:19  clip
-   uri: small fix
-
-   Revision 1.14  2004/01/25 10:23:40  clip
-   uri: fix bug in exit procedures and inkey()
-
-   Revision 1.13  2003/04/29 11:09:39  clip
-   memleak on start()
-   possibly closes #140
-   paul
-
-   Revision 1.12  2001/11/26 07:51:09  clip
-   start() now can take reference to (possible static) function or codeblock
-   as first parameter
-   paul
-
-   Revision 1.11  2001/11/14 13:07:21  clip
-   add TASKSENDMSG, TASKPEEKMSG, TASKGETMSG functions
-   paul
-
-   Revision 1.10  2001/11/14 12:01:51  clip
-   seq_no
-   paul
-
-   Revision 1.9  2001/11/14 06:38:02  clip
-   fix crash on exit after START
-   paul
-
-   Revision 1.8  2001/11/13 13:43:24  clip
-   uri: __file__ -> __FILE__
-
-   Revision 1.7  2001/11/13 12:31:01  clip
-   share functions between tasks
-   TASKID() function
-   paul
-
-   Revision 1.6  2001/11/13 11:22:12  clip
-   TASKSTOP() stop task switching
-   TASKSTART() start task switching
-   TASKSTOP()/TASKSTART() pairs may be nested
-   paul
-
-   Revision 1.5  2001/11/13 09:31:37  clip
-   START('funcname'[, arg1 ... argN])
-   can now put arg1-argN to call of funcname
-   paul
-
-   Revision 1.4  2001/11/12 14:13:46  clip
-   START(cFuncname) now work :)
-   paul
-
-   Revision 1.3  2001/04/03 09:17:00  clip
-   license errors
-   paul
-
-   Revision 1.2  2001/03/30 11:51:02  clip
-   add copyright
-
-   Revision 1.1  2000/08/01 12:05:37  clip
-   append _thread.c
-   Paul Lasarev <paul@itk.ru>
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 
 */
-
 #include <string.h>
 
 #include "ci_clip.h"
@@ -90,194 +20,203 @@
 
 typedef struct
 {
-	ClipMachine *mp;
-	char *name;
-	ClipVar block;
-	ClipVar *stack;
-	int argc;
+   ClipMachine *ClipMachineMemory;
+   char     *name;
+   ClipVar   block;
+   ClipVar  *stack;
+   int       argc;
 }
 start_data;
 
 static void *
 task_run(void *data)
 {
-	start_data *sp = (start_data*) data;
-	ClipMachine *mp = sp->mp;
-	int r;
-	void *ret;
+   start_data *sp = (start_data *) data;
 
-	sp->mp = new_ClipMachine(mp->screen);
+   ClipMachine *ClipMachineMemory = sp->ClipMachineMemory;
 
-	if (sp->name)
-		r = _clip_clip(sp->mp, sp->name, sp->argc, sp->stack, 0);
-	else
-		r = _clip_eval(sp->mp, &sp->block, sp->argc, sp->stack, 0);
+   int       r;
 
-	if (r)
-		_clip_logg(0, "task_run: cannot start function '%s'", sp->name);
+  void     *ret;
 
-	/*printf("\ntask_run done\n");*/
-	return ret;
+   sp->ClipMachineMemory = new_ClipMachine(ClipMachineMemory->screen);
+
+   if (sp->name)
+      ret = _clip_clip(sp->ClipMachineMemory, sp->name, sp->argc, sp->stack, 0);
+   else
+      ret = _clip_eval(sp->ClipMachineMemory, &sp->block, sp->argc, sp->stack, 0);
+
+   if (r)
+      _clip_logg(0, "task_run: cannot start function '%s'", sp->name);
+
+  /*printf("\ntask_run done\n"); */
+  /*	   return r; */
+return ret;
 }
 
 static void
 task_destroy(void *data)
 {
-	start_data *sp = (start_data*) data;
-	int i;
+   start_data *sp = (start_data *) data;
 
-	/*printf("\ntask_destroy\n");*/
+   int       i;
 
-	for(i=0; i<sp->argc+1; i++)
-		_clip_destroy(sp->mp, sp->stack+i);
+  /*printf("\ntask_destroy\n"); */
 
-	if (sp->name)
-		free(sp->name);
-	else
-		_clip_destroy(sp->mp, &sp->block);
+   for (i = 0; i < sp->argc + 1; i++)
+      _clip_destroy(sp->ClipMachineMemory, sp->stack + i);
+
+   if (sp->name)
+      free(sp->name);
+   else
+      _clip_destroy(sp->ClipMachineMemory, &sp->block);
 
 #if 1
-	delete_ClipMachine(sp->mp);
+   delete_ClipMachine(sp->ClipMachineMemory);
 #endif
-	free(sp->stack);
-	free(sp);
+   free(sp->stack);
+   free(sp);
 }
-
 
 /*
  *    taskid := start(main_func)
  */
 int
-clip_START(ClipMachine * mp)
+clip_START(ClipMachine * ClipMachineMemory)
 {
-	Task *tp;
-	char *name, *tname="block";
-	start_data *sp;
-	int argc = mp->argc-1;
-	int i;
-	ClipVar *stack;
-	static int first = 1;
-	int type;
+   Task     *tp;
 
+   char     *name, *tname = "block";
 
-	type = _clip_parinfo(mp, 1);
-	if (type != CHARACTER_t && type != CCODE_t && type != PCODE_t)
-		return EG_ARG;
+   start_data *sp;
 
-	name = _clip_parc(mp, 1);
+   int       argc = ClipMachineMemory->argc - 1;
 
-	stack = (ClipVar *) malloc(sizeof(ClipVar) * (argc + 1));
-	memset(stack, 0, sizeof(ClipVar) * (argc + 1));
+   int       i;
 
-	for (i = 0; i < argc; ++i)
-		_clip_clone(mp, stack + i, ARGPTR(mp, i + 2));
+   ClipVar  *stack;
 
-	sp = (start_data*) calloc(sizeof(start_data), 1);
-	sp->stack = stack;
-	sp->argc = argc;
-	if (name)
-		tname = sp->name = strdup(name);
-	else
-		_clip_clone(mp, &sp->block, _clip_spar(mp, 1));
-	sp->mp = mp;
+   static int first = 1;
 
-	tp = Task_new(tname, 4096*32, sp, task_run, task_destroy);
+   int       type;
 
-	if (tp == NULL)
-		_clip_retnl(mp,-1);
+   type = _clip_parinfo(ClipMachineMemory, 1);
+   if (type != CHARACTER_type_of_ClipVarType && type != CCODE_type_of_ClipVarType && type != PCODE_type_of_ClipVarType)
+      return EG_ARG;
 
-	_clip_retnl(mp, Task_get_id(tp));
+   name = _clip_parc(ClipMachineMemory, 1);
 
-	Task_start(tp);
-	if (first)
-	{
-		Task_start_sheduler();
-		first = 0;
-	}
-	Task_yield();
+   stack = (ClipVar *) malloc(sizeof(ClipVar) * (argc + 1));
+   memset(stack, 0, sizeof(ClipVar) * (argc + 1));
 
-	return 0;
+   for (i = 0; i < argc; ++i)
+      _clip_clone(ClipMachineMemory, stack + i, ARGPTR(ClipMachineMemory, i + 2));
+
+   sp = (start_data *) calloc(sizeof(start_data), 1);
+   sp->stack = stack;
+   sp->argc = argc;
+   if (name)
+      tname = sp->name = strdup(name);
+   else
+      _clip_clone(ClipMachineMemory, &sp->block, _clip_spar(ClipMachineMemory, 1));
+   sp->ClipMachineMemory = ClipMachineMemory;
+
+   tp = Task_new(tname, 4096 * 32, sp, task_run, task_destroy);
+
+   if (tp == NULL)
+      _clip_retnl(ClipMachineMemory, -1);
+
+   _clip_retnl(ClipMachineMemory, Task_get_id(tp));
+
+   Task_start(tp);
+   if (first)
+    {
+       Task_start_sheduler();
+       first = 0;
+    }
+   Task_yield();
+
+   return 0;
 }
-
-
 
 #else
 
 int
-clip_START(ClipMachine * mp)
+clip_START(ClipMachine * ClipMachineMemory)
 {
-	_clip_trap_printf(mp, __FILE__, __LINE__, "TASK sheduler not implemented for OS %s", OSNAME);
-	return _clip_call_errblock(mp, 1);
+   _clip_trap_printf(ClipMachineMemory, __FILE__, __LINE__, "TASK sheduler not implemented for OS %s", OSNAME);
+   return _clip_call_errblock(ClipMachineMemory, 1);
 }
 
 #endif
 
 int
-clip_TASKSTOP(ClipMachine * mp)
+clip_TASKSTOP(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	Task_STOP();
+   Task_STOP();
 #endif
-	return 0;
+   return 0;
 }
 
 int
-clip_TASKSTART(ClipMachine * mp)
+clip_TASKSTART(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	Task_START();
+   Task_START();
 #endif
-	return 0;
+   return 0;
 }
 
 /*
 	TASKID() -> nID (-1 if no active tasks)
 */
 int
-clip_TASKID(ClipMachine *mp)
+clip_TASKID(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	_clip_retnl(mp, Task_ID());
+   _clip_retnl(ClipMachineMemory, Task_ID());
 #endif
-	return 0;
+   return 0;
 }
 
 int
-clip_TASKVERSION(ClipMachine *mp)
+clip_TASKVERSION(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	_clip_retni(mp, Task_version());
+   _clip_retni(ClipMachineMemory, Task_version());
 #endif
-	return 0;
+   return 0;
 }
 
 #ifdef USE_TASKS
 
 typedef struct
 {
-	ClipMachine *mp;
-	ClipVar var;
+   ClipMachine *ClipMachineMemory;
+   ClipVar   var;
 }
 msg_data;
 
 static void
 msg_data_destroy(void *data)
 {
-	msg_data *m = (msg_data *) data;
-	_clip_destroy(m->mp, &m->var);
-	free(m);
+   msg_data *m = (msg_data *) data;
+
+   _clip_destroy(m->ClipMachineMemory, &m->var);
+   free(m);
 }
 
 static msg_data *
-msg_data_new(ClipMachine *mp, ClipVar *vp)
+msg_data_new(ClipMachine * ClipMachineMemory, ClipVar * vp)
 {
-	msg_data *rp;
+   msg_data *rp;
 
-	rp = (msg_data *) calloc(sizeof(msg_data), 1);
-	rp->mp = mp;
-	_clip_clone(mp, &rp->var, vp);
+   rp = (msg_data *) calloc(sizeof(msg_data), 1);
+   rp->ClipMachineMemory = ClipMachineMemory;
+   _clip_clone(ClipMachineMemory, &rp->var, vp);
 
-	return rp;
+   return rp;
 }
 
 #endif
@@ -287,31 +226,34 @@ msg_data_new(ClipMachine *mp, ClipVar *vp)
 	send var vMsg to task with id nReceiverID
 */
 int
-clip_TASKSENDMSG(ClipMachine * mp)
+clip_TASKSENDMSG(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	long receiver;
-	ClipVar *vp;
-	int wait = 0, r;
-	TaskMessage *tp;
+   long      receiver;
 
-	if (mp->argc<2)
-		return EG_ARG;
+   ClipVar  *vp;
 
-	receiver = _clip_parnl(mp, 1);
-	vp = _clip_par(mp, 2);
-	wait = _clip_parl(mp,3);
-	tp = TaskMessage_new(HASH_VarMessage, msg_data_new(mp, vp), msg_data_destroy);
+   int       wait = 0, r;
 
-	if (wait)
-		r = Task_sendMessageWait(receiver, tp);
-	else
-		r = Task_sendMessage(receiver, tp);
+   TaskMessage *tp;
 
-	_clip_retl(mp, r);
+   if (ClipMachineMemory->argc < 2)
+      return EG_ARG;
+
+   receiver = _clip_parnl(ClipMachineMemory, 1);
+   vp = _clip_par(ClipMachineMemory, 2);
+   wait = _clip_parl(ClipMachineMemory, 3);
+   tp = TaskMessage_new(HASH_VarMessage, msg_data_new(ClipMachineMemory, vp), msg_data_destroy);
+
+   if (wait)
+      r = Task_sendMessageWait(receiver, tp);
+   else
+      r = Task_sendMessage(receiver, tp);
+
+   _clip_retl(ClipMachineMemory, r);
 
 #endif
-	return 0;
+   return 0;
 }
 
 /*
@@ -320,22 +262,23 @@ clip_TASKSENDMSG(ClipMachine * mp)
 	If no messages available, immediate return NIL
 */
 int
-clip_TASKPEEKMSG(ClipMachine * mp)
+clip_TASKPEEKMSG(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	TaskMessage *tp;
+   TaskMessage *tp;
 
-	tp = Task_peekMessage();
-	if (tp)
-	{
-		msg_data *m;
-		m = (msg_data*) TaskMessage_get_data(tp);
-		_clip_clone(mp, RETPTR(mp), &m->var);
-		Task_respond(tp);
-	}
+   tp = Task_peekMessage();
+   if (tp)
+    {
+       msg_data *m;
+
+       m = (msg_data *) TaskMessage_get_data(tp);
+       _clip_clone(ClipMachineMemory, RETPTR(ClipMachineMemory), &m->var);
+       Task_respond(tp);
+    }
 
 #endif
-	return 0;
+   return 0;
 }
 
 /*
@@ -344,24 +287,21 @@ clip_TASKPEEKMSG(ClipMachine * mp)
 	If no messages available, wait forever
 */
 int
-clip_TASKGETMSG(ClipMachine * mp)
+clip_TASKGETMSG(ClipMachine * ClipMachineMemory)
 {
 #ifdef USE_TASKS
-	TaskMessage *tp;
+   TaskMessage *tp;
 
-	tp = Task_getMessage();
-	if (tp)
-	{
-		msg_data *m;
-		m = (msg_data*) TaskMessage_get_data(tp);
-		_clip_clone(mp, RETPTR(mp), &m->var);
-		Task_respond(tp);
-	}
+   tp = Task_getMessage();
+   if (tp)
+    {
+       msg_data *m;
+
+       m = (msg_data *) TaskMessage_get_data(tp);
+       _clip_clone(ClipMachineMemory, RETPTR(ClipMachineMemory), &m->var);
+       Task_respond(tp);
+    }
 
 #endif
-	return 0;
+   return 0;
 }
-
-
-
-

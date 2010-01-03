@@ -18,126 +18,147 @@
 /* TextMark has no signals */
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_text_mark() { return GTK_TYPE_TEXT_MARK; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_text_mark()
+{
+   return GTK_TYPE_TEXT_MARK;
+}
 
-long _clip_type_text_mark() { return GTK_OBJECT_TEXT_MARK; }
+long
+_clip_type_text_mark()
+{
+   return GTK_OBJECT_TEXT_MARK;
+}
 
-const char * _clip_type_name_text_mark()  { return "GTK_OBJECT_TEXT_MARK"; }
+const char *
+_clip_type_name_text_mark()
+{
+   return "GTK_OBJECT_TEXT_MARK";
+}
 
 int
-clip_INIT___TEXTMARK(ClipMachine *cm)
+clip_INIT___TEXTMARK(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_text_mark,  _clip_type_name_text_mark,  _gtk_type_text_mark,  NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_text_mark, _clip_type_name_text_mark, _gtk_type_text_mark, NULL, NULL);
+   return 0;
 }
 
 /******************************************************************************
 * gtk_TextMarkSetVisible( textMark, visibility ) --> NIL
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKSETVISIBLE(ClipMachine * cm)
+clip_GTK_TEXTMARKSETVISIBLE(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        gboolean   visibility = _clip_parl(cm, 2);
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
-        CHECKARG(2, LOGICAL_t);
+   gboolean  visibility = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_text_mark_set_visible(GTK_TEXT_MARK(cmark->object), visibility);
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
+   gtk_text_mark_set_visible(GTK_TEXT_MARK(cmark->object), visibility);
 
-
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_TextMarkGetVisible( textMark ) --> TRUE || FALSE
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKGETVISIBLE(ClipMachine * cm)
+clip_GTK_TEXTMARKGETVISIBLE(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        gboolean   visibility;
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   gboolean  visibility;
 
-	visibility = gtk_text_mark_get_visible(GTK_TEXT_MARK(cmark->object));
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
 
-	_clip_retl(cm, visibility);
+   visibility = gtk_text_mark_get_visible(GTK_TEXT_MARK(cmark->object));
 
-	return 0;
-err:
-	return 1;
+   _clip_retl(ClipMachineMemory, visibility);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_TextMarkGetDeleted( textMark ) --> TRUE || FALSE
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKGETDELETED(ClipMachine * cm)
+clip_GTK_TEXTMARKGETDELETED(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        gboolean      deleted ;
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   gboolean  deleted;
 
-	deleted = gtk_text_mark_get_deleted(GTK_TEXT_MARK(cmark->object));
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
 
-	_clip_retl(cm, deleted);
+   deleted = gtk_text_mark_get_deleted(GTK_TEXT_MARK(cmark->object));
 
-	return 0;
-err:
-	return 1;
+   _clip_retl(ClipMachineMemory, deleted);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_TextMarkGetName( textMark ) --> sMarkName
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKGETNAME(ClipMachine * cm)
+clip_GTK_TEXTMARKGETNAME(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        gchar           *name ;
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   gchar    *name;
 
-	name = (gchar *)gtk_text_mark_get_name(GTK_TEXT_MARK(cmark->object));
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
 
-	_clip_retc(cm, name);
+   name = (gchar *) gtk_text_mark_get_name(GTK_TEXT_MARK(cmark->object));
 
-	return 0;
-err:
-	return 1;
+   _clip_retc(ClipMachineMemory, name);
+
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_TextMarkGetBuffer( textMark ) --> textBufferObj
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKGETBUFFER(ClipMachine * cm)
+clip_GTK_TEXTMARKGETBUFFER(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        GtkTextBuffer *buffer ;
-        C_object     *cbuffer ;
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   GtkTextBuffer *buffer;
 
-	buffer = gtk_text_mark_get_buffer(GTK_TEXT_MARK(cmark->object));
+   C_object *cbuffer;
 
-	if (buffer)
-	{
-		cbuffer = _list_get_cobject(cm,buffer);
-		if (!cbuffer) cbuffer = _register_object(cm,buffer,GTK_TYPE_TEXT_BUFFER,NULL,NULL);
-		if (cbuffer) _clip_mclone(cm,RETPTR(cm),&cbuffer->obj);
-	}
-	return 0;
-err:
-	return 1;
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+
+   buffer = gtk_text_mark_get_buffer(GTK_TEXT_MARK(cmark->object));
+
+   if (buffer)
+    {
+       cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
+       if (!cbuffer)
+	  cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
+       if (cbuffer)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_TextMarkGetLeftGravity( textMark ) --> TRUE || FALSE
@@ -147,19 +168,20 @@ err:
 * is not actually on the left when displayed.
 ******************************************************************************/
 int
-clip_GTK_TEXTMARKGETLEFTGRAVITY(ClipMachine * cm)
+clip_GTK_TEXTMARKGETLEFTGRAVITY(ClipMachine * ClipMachineMemory)
 {
-        C_object       *cmark = _fetch_co_arg(cm);
-        gboolean      gravity ;
+   C_object *cmark = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1,MAP_t); CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
+   gboolean  gravity;
 
-	gravity = gtk_text_mark_get_left_gravity(GTK_TEXT_MARK(cmark->object));
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
 
-	_clip_retl(cm, gravity);
+   gravity = gtk_text_mark_get_left_gravity(GTK_TEXT_MARK(cmark->object));
 
-	return 0;
-err:
-	return 1;
+   _clip_retl(ClipMachineMemory, gravity);
+
+   return 0;
+ err:
+   return 1;
 }
-

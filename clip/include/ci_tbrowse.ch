@@ -1,5 +1,5 @@
-#ifndef CI_TBR_DEFINED
-#define CI_TBR_DEFINED
+#ifndef CN_TBR_DEFINED
+#define CN_TBR_DEFINED
 
 /* tBrowse ApplyKey() method return codes */
 #define TBR_EXIT        -1

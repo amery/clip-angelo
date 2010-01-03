@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash 
 H_Dir="$HOME/"
 export V=v
 Clip_M_Dir="$PWD"

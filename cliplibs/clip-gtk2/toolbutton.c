@@ -16,476 +16,565 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static SignalTable toolbutton_signals[] =
-{
-	{"clicked",	GSF( widget_signal_handler ), ESF( object_emit_signal ), GTK_CLICKED_SIGNAL},
-	{"", NULL, NULL, 0}
+static SignalTable toolbutton_signals[] = {
+   {"clicked", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_CLICKED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
-static SignalTable toggle_toolbutton_signals[] =
-{
-	{"toggled",	GSF( widget_signal_handler ), ESF( object_emit_signal ), GTK_TOGGLED_SIGNAL},
-	{"", NULL, NULL, 0}
+static SignalTable toggle_toolbutton_signals[] = {
+   {"toggled", GSF(widget_signal_handler), ESF(object_emit_signal),
+    GTK_TOGGLED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
-
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_tool_button() { return GTK_TYPE_TOOL_BUTTON; }
-long _clip_type_tool_button() { return GTK_WIDGET_TOOL_BUTTON; }
-const char * _clip_type_name_tool_button()  { return "GTK_WIDGET_TOOL_BUTTON"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_tool_button()
+{
+   return GTK_TYPE_TOOL_BUTTON;
+}
 
-CLIP_DLLEXPORT GtkType _gtk_type_toggle_tool_button() { return GTK_TYPE_TOGGLE_TOOL_BUTTON; }
-long _clip_type_toggle_tool_button() { return GTK_WIDGET_TOGGLE_TOOL_BUTTON; }
-const char * _clip_type_name_toggle_tool_button()  { return "GTK_WIDGET_TOGGLE_TOOL_BUTTON"; }
+long
+_clip_type_tool_button()
+{
+   return GTK_WIDGET_TOOL_BUTTON;
+}
 
+const char *
+_clip_type_name_tool_button()
+{
+   return "GTK_WIDGET_TOOL_BUTTON";
+}
 
-CLIP_DLLEXPORT GtkType _gtk_type_radio_tool_button() { return GTK_TYPE_RADIO_TOOL_BUTTON; }
-long _clip_type_radio_tool_button() { return GTK_WIDGET_TOGGLE_TOOL_BUTTON; }
-const char * _clip_type_name_radio_tool_button()  { return "GTK_WIDGET_RADIO_TOOL_BUTTON"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_toggle_tool_button()
+{
+   return GTK_TYPE_TOGGLE_TOOL_BUTTON;
+}
+
+long
+_clip_type_toggle_tool_button()
+{
+   return GTK_WIDGET_TOGGLE_TOOL_BUTTON;
+}
+
+const char *
+_clip_type_name_toggle_tool_button()
+{
+   return "GTK_WIDGET_TOGGLE_TOOL_BUTTON";
+}
+
+CLIP_DLLEXPORT GtkType
+_gtk_type_radio_tool_button()
+{
+   return GTK_TYPE_RADIO_TOOL_BUTTON;
+}
+
+long
+_clip_type_radio_tool_button()
+{
+   return GTK_WIDGET_TOGGLE_TOOL_BUTTON;
+}
+
+const char *
+_clip_type_name_radio_tool_button()
+{
+   return "GTK_WIDGET_RADIO_TOOL_BUTTON";
+}
+
 /* Register toolitem in global table */
 int
-clip_INIT___TOOLBUTTON(ClipMachine *cm)
+clip_INIT___TOOLBUTTON(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_tool_button,  _clip_type_name_tool_button,  _gtk_type_tool_button,  _gtk_type_tool_item, toolbutton_signals);
-	_wtype_table_put(_clip_type_toggle_tool_button,  _clip_type_name_toggle_tool_button,  _gtk_type_toggle_tool_button,  _gtk_type_tool_button, toggle_toolbutton_signals);
-	_wtype_table_put(_clip_type_radio_tool_button,  _clip_type_name_radio_tool_button,  _gtk_type_radio_tool_button,  _gtk_type_tool_button, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_tool_button, _clip_type_name_tool_button,
+		    _gtk_type_tool_button, _gtk_type_tool_item, toolbutton_signals);
+   _wtype_table_put(_clip_type_toggle_tool_button,
+		    _clip_type_name_toggle_tool_button,
+		    _gtk_type_toggle_tool_button, _gtk_type_tool_button, toggle_toolbutton_signals);
+   _wtype_table_put(_clip_type_radio_tool_button,
+		    _clip_type_name_radio_tool_button, _gtk_type_radio_tool_button, _gtk_type_tool_button, NULL);
+   return 0;
 }
 
 /**** ------------------ ****/
 int
-clip_GTK_TOOLBUTTONNEW(ClipMachine * cm)
+clip_GTK_TOOLBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_widget *cwid = _fetch_cwidget(cm, _clip_spar(cm, 2));
-	gchar   *label = _clip_parc(cm, 3);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKOPT(2, MAP_t); CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
-	CHECKOPT(3, CHARACTER_t);
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	if (label) LOCALE_TO_UTF(label);
-	item = gtk_tool_button_new((cwid)?GTK_WIDGET(cwid->widget):NULL,
-		(label)?label:NULL);
-	if (label) FREE_TEXT(label);
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   gchar    *label = _clip_parc(ClipMachineMemory, 3);
+
+   GtkToolItem *item;
+
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKOPT(2, MAP_type_of_ClipVarType);
+   CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
+   CHECKOPT(3, CHARACTER_type_of_ClipVarType);
+
+   if (label)
+      LOCALE_TO_UTF(label);
+   item = gtk_tool_button_new((cwid) ? GTK_WIDGET(cwid->widget) : NULL, (label) ? label : NULL);
+   if (label)
+      FREE_TEXT(label);
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
+
 int
-clip_GTK_TOOLBUTTONNEWFROMSTOCK(ClipMachine * cm)
+clip_GTK_TOOLBUTTONNEWFROMSTOCK(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	gchar   *label = _clip_parc(cm, 2);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKARG(2, CHARACTER_t);
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
 
-	item = gtk_tool_button_new_from_stock(label);
+   GtkToolItem *item;
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   item = gtk_tool_button_new_from_stock(label);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
+
 /**** ------------------ ****/
 
 int
-clip_GTK_TOOLBUTTONSETLABEL(ClipMachine * cm)
+clip_GTK_TOOLBUTTONSETLABEL(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	gchar    *label = _clip_parc(cm, 2);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
-	CHECKOPT(2, CHARACTER_t);
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
 
-	LOCALE_TO_UTF(label);
-	gtk_tool_button_set_label(GTK_TOOL_BUTTON(cbutton->widget),
-		label);
-	FREE_TEXT(label);
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   LOCALE_TO_UTF(label);
+   gtk_tool_button_set_label(GTK_TOOL_BUTTON(cbutton->widget), label);
+   FREE_TEXT(label);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONGETLABEL(ClipMachine * cm)
+clip_GTK_TOOLBUTTONGETLABEL(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	gchar    *label ;
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   gchar    *label;
 
-	label = (gchar *)gtk_tool_button_get_label(GTK_TOOL_BUTTON(cbutton->widget));
-	if (label)
-	{
-		LOCALE_FROM_UTF(label);
-		_clip_retc(cm, label);
-		FREE_TEXT(label);
-	}
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
 
-	return 0;
-err:
-	return 1;
+   label = (gchar *) gtk_tool_button_get_label(GTK_TOOL_BUTTON(cbutton->widget));
+   if (label)
+    {
+       LOCALE_FROM_UTF(label);
+       _clip_retc(ClipMachineMemory, label);
+       FREE_TEXT(label);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONSETUSEUNDERLINE(ClipMachine * cm)
+clip_GTK_TOOLBUTTONSETUSEUNDERLINE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	gboolean    set = _clip_parl(cm, 2);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
-	CHECKOPT(2, LOGICAL_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_tool_button_set_use_underline(GTK_TOOL_BUTTON(cbutton->widget),
-		set);
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKOPT(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_tool_button_set_use_underline(GTK_TOOL_BUTTON(cbutton->widget), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONGETUSEUNDERLINE(ClipMachine * cm)
+clip_GTK_TOOLBUTTONGETUSEUNDERLINE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
 
-	_clip_retl(cm, gtk_tool_button_get_use_underline(GTK_TOOL_BUTTON(cbutton->widget)));
+   _clip_retl(ClipMachineMemory, gtk_tool_button_get_use_underline(GTK_TOOL_BUTTON(cbutton->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONSETSTOCKID(ClipMachine * cm)
+clip_GTK_TOOLBUTTONSETSTOCKID(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	gchar    *stock = _clip_parc(cm, 2);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
-	CHECKOPT(2, CHARACTER_t);
+   gchar    *stock = _clip_parc(ClipMachineMemory, 2);
 
-	gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(cbutton->widget),
-		stock);
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(cbutton->widget), stock);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONGETSTOCKID(ClipMachine * cm)
+clip_GTK_TOOLBUTTONGETSTOCKID(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
 
-	_clip_retc(cm, (gchar *)gtk_tool_button_get_stock_id(GTK_TOOL_BUTTON(cbutton->widget)));
+   _clip_retc(ClipMachineMemory, (gchar *) gtk_tool_button_get_stock_id(GTK_TOOL_BUTTON(cbutton->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONSETICONWIDGET(ClipMachine * cm)
+clip_GTK_TOOLBUTTONSETICONWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	C_widget *cwid  = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
-	CHECKCWID(cwid, GTK_IS_WIDGET);
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(cbutton->widget),
-		GTK_WIDGET(cwid->widget));
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	return 0;
-err:
-	return 1;
+   gtk_tool_button_set_icon_widget(GTK_TOOL_BUTTON(cbutton->widget), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONGETICONWIDGET(ClipMachine * cm)
+clip_GTK_TOOLBUTTONGETICONWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	GtkWidget *wid;
-	C_widget *cwid;
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   GtkWidget *wid;
 
-	wid = gtk_tool_button_get_icon_widget(GTK_TOOL_BUTTON(cbutton->widget));
-	if (wid)
-	{
-		cwid = _list_get_cwidget(cm, wid);
-		if (!cwid) cwid = _register_widget(cm, wid, NULL);
-		if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-	}
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+
+   wid = gtk_tool_button_get_icon_widget(GTK_TOOL_BUTTON(cbutton->widget));
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONSETLABELWIDGET(ClipMachine * cm)
+clip_GTK_TOOLBUTTONSETLABELWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	C_widget *cwid  = _fetch_cwidget(cm, _clip_spar(cm, 2));
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
-	CHECKCWID(cwid, GTK_IS_WIDGET);
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	gtk_tool_button_set_label_widget(GTK_TOOL_BUTTON(cbutton->widget),
-		GTK_WIDGET(cwid->widget));
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	return 0;
-err:
-	return 1;
+   gtk_tool_button_set_label_widget(GTK_TOOL_BUTTON(cbutton->widget), GTK_WIDGET(cwid->widget));
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOOLBUTTONGETLABELWIDGET(ClipMachine * cm)
+clip_GTK_TOOLBUTTONGETLABELWIDGET(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	GtkWidget *wid;
-	C_widget *cwid;
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+   GtkWidget *wid;
 
-	wid = gtk_tool_button_get_label_widget(GTK_TOOL_BUTTON(cbutton->widget));
-	if (wid)
-	{
-		cwid = _list_get_cwidget(cm, wid);
-		if (!cwid) cwid = _register_widget(cm, wid, NULL);
-		if (cwid) _clip_mclone(cm, RETPTR(cm), &cwid->obj);
-	}
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   CHECKCWID(cbutton, GTK_IS_TOOL_BUTTON);
+
+   wid = gtk_tool_button_get_label_widget(GTK_TOOL_BUTTON(cbutton->widget));
+   if (wid)
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************/
 /**************************** TOGGLE TOOL BUTTON ******************************/
 
 int
-clip_GTK_TOGGLETOOLBUTTONNEW(ClipMachine * cm)
+clip_GTK_TOGGLETOOLBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
+   GtkToolItem *item;
 
-	item = gtk_toggle_tool_button_new();
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   item = gtk_toggle_tool_button_new();
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOGGLETOOLBUTTONNEWFROMSTOCK(ClipMachine * cm)
+clip_GTK_TOGGLETOOLBUTTONNEWFROMSTOCK(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	gchar   *label = _clip_parc(cm, 2);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKARG(2, CHARACTER_t);
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
 
-	item = gtk_toggle_tool_button_new_from_stock(label);
+   GtkToolItem *item;
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   item = gtk_toggle_tool_button_new_from_stock(label);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOGGLETOOLBUTTONSETACTIVE(ClipMachine * cm)
+clip_GTK_TOGGLETOOLBUTTONSETACTIVE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	gboolean    set = _clip_parl(cm, 2);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOGGLE_TOOL_BUTTON);
-	CHECKOPT(2, LOGICAL_t);
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
-	gtk_toggle_tool_button_set_active(GTK_TOGGLE_TOOL_BUTTON(cbutton->widget),
-		set);
+   CHECKCWID(cbutton, GTK_IS_TOGGLE_TOOL_BUTTON);
+   CHECKOPT(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_toggle_tool_button_set_active(GTK_TOGGLE_TOOL_BUTTON(cbutton->widget), set);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_TOGGLETOOLBUTTONGETACTIVE(ClipMachine * cm)
+clip_GTK_TOGGLETOOLBUTTONGETACTIVE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cbutton, GTK_IS_TOGGLE_TOOL_BUTTON);
+   CHECKCWID(cbutton, GTK_IS_TOGGLE_TOOL_BUTTON);
 
-	_clip_retl(cm, gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(cbutton->widget)));
+   _clip_retl(ClipMachineMemory, gtk_toggle_tool_button_get_active(GTK_TOGGLE_TOOL_BUTTON(cbutton->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
+
 /******************************************************************************/
 /**************************** RADIO TOOL BUTTON *******************************/
 
 int
-clip_GTK_RADIOTOOLBUTTONNEW(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_object *cgroup = _fetch_cobject(cm, _clip_spar(cm, 2));
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCOBJOPT(cgroup, GTK_IS_OBJECT(cgroup->object));
+   C_object *cgroup = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	item = gtk_radio_tool_button_new((cgroup)?(GSList *)(cgroup->object):NULL);
+   GtkToolItem *item;
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCOBJOPT(cgroup, GTK_IS_OBJECT(cgroup->object));
+
+   item = gtk_radio_tool_button_new((cgroup) ? (GSList *) (cgroup->object) : NULL);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_RADIOTOOLBUTTONNEWFROMSTOCK(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONNEWFROMSTOCK(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_object *cgroup = _fetch_cobject(cm, _clip_spar(cm, 2));
-	gchar   *label = _clip_parc(cm, 3);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCOBJOPT(cgroup, GTK_IS_OBJECT(cgroup->object));
-	CHECKARG(3, CHARACTER_t);
+   C_object *cgroup = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	item = gtk_radio_tool_button_new_from_stock((cgroup)?(GSList *)(cgroup->object):NULL,
-		label);
+   gchar    *label = _clip_parc(ClipMachineMemory, 3);
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   GtkToolItem *item;
+
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCOBJOPT(cgroup, GTK_IS_OBJECT(cgroup->object));
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+
+   item = gtk_radio_tool_button_new_from_stock((cgroup) ? (GSList *) (cgroup->object) : NULL, label);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_RADIOTOOLBUTTONNEWFROMWIDGET(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONNEWFROMWIDGET(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_widget *cgroup = _fetch_cwidget(cm, _clip_spar(cm, 2));
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCWIDOPT(cgroup, GTK_IS_RADIO_TOOL_BUTTON);
+   C_widget *cgroup = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	item = gtk_radio_tool_button_new_from_widget((cgroup)?GTK_RADIO_TOOL_BUTTON(cgroup->widget):NULL);
+   GtkToolItem *item;
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCWIDOPT(cgroup, GTK_IS_RADIO_TOOL_BUTTON);
+
+   item = gtk_radio_tool_button_new_from_widget((cgroup) ? GTK_RADIO_TOOL_BUTTON(cgroup->widget) : NULL);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
-
 
 int
-clip_GTK_RADIOTOOLBUTTONNEWWITHSTOCKFROMWIDGET(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONNEWWITHSTOCKFROMWIDGET(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_widget *cgroup = _fetch_cwidget(cm, _clip_spar(cm, 2));
-	gchar   *label = _clip_parc(cm, 3);
-	GtkToolItem *item;
-	C_widget *cbutton;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCWIDOPT(cgroup, GTK_IS_RADIO_TOOL_BUTTON);
-	CHECKARG(3, CHARACTER_t);
+   C_widget *cgroup = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	item = gtk_radio_tool_button_new_with_stock_from_widget((cgroup)?GTK_RADIO_TOOL_BUTTON(cgroup->widget):NULL,
-		label);
+   gchar    *label = _clip_parc(ClipMachineMemory, 3);
 
-	if (!item) goto err;
-	cbutton = _register_widget(cm, GTK_WIDGET(item), cv);
-	_clip_mclone(cm,RETPTR(cm),&cbutton->obj);
-	return 0;
-err:
-	return 1;
+   GtkToolItem *item;
+
+   C_widget *cbutton;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCWIDOPT(cgroup, GTK_IS_RADIO_TOOL_BUTTON);
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+
+   item = gtk_radio_tool_button_new_with_stock_from_widget((cgroup) ? GTK_RADIO_TOOL_BUTTON(cgroup->widget) : NULL, label);
+
+   if (!item)
+      goto err;
+   cbutton = _register_widget(ClipMachineMemory, GTK_WIDGET(item), cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbutton->obj);
+   return 0;
+ err:
+   return 1;
 }
-
 
 int
-clip_GTK_RADIOTOOLBUTTONGETGROUP(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONGETGROUP(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	GSList  * list ;
-	C_object *cgroup ;
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCWIDOPT(cbutton, GTK_IS_RADIO_TOOL_BUTTON);
+   GSList   *list;
 
-	list = gtk_radio_tool_button_get_group(GTK_RADIO_TOOL_BUTTON(cbutton->widget));
+   C_object *cgroup;
 
-	if (list)
-	{
-		cgroup = _list_get_cobject(cm, list);
-		if (!cgroup) cgroup = _register_object(cm, list, GTK_TYPE_OBJECT, NULL, NULL);
-		_clip_mclone(cm,RETPTR(cm),&cgroup->obj);
-	}
-	return 0;
-err:
-	return 1;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCWIDOPT(cbutton, GTK_IS_RADIO_TOOL_BUTTON);
+
+   list = gtk_radio_tool_button_get_group(GTK_RADIO_TOOL_BUTTON(cbutton->widget));
+
+   if (list)
+    {
+       cgroup = _list_get_cobject(ClipMachineMemory, list);
+       if (!cgroup)
+	  cgroup = _register_object(ClipMachineMemory, list, GTK_TYPE_OBJECT, NULL, NULL);
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgroup->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
-
 
 int
-clip_GTK_RADIOTOOLBUTTONSETGROUP(ClipMachine * cm)
+clip_GTK_RADIOTOOLBUTTONSETGROUP(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cbutton = _fetch_cw_arg(cm);
-	C_object  *cgroup = _fetch_cobject(cm, _clip_spar(cm, 2));
+   C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKOPT(1,MAP_t);
-	CHECKCWIDOPT(cbutton, GTK_IS_RADIO_TOOL_BUTTON);
-	CHECKCOBJ(cgroup, GTK_IS_OBJECT(cgroup->object));
+   C_object *cgroup = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	gtk_radio_tool_button_set_group(GTK_RADIO_TOOL_BUTTON(cbutton->widget),
-		(GSList *)(cgroup->object));
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKCWIDOPT(cbutton, GTK_IS_RADIO_TOOL_BUTTON);
+   CHECKCOBJ(cgroup, GTK_IS_OBJECT(cgroup->object));
 
-	return 0;
-err:
-	return 1;
+   gtk_radio_tool_button_set_group(GTK_RADIO_TOOL_BUTTON(cbutton->widget), (GSList *) (cgroup->object));
+
+   return 0;
+ err:
+   return 1;
 }
-
-

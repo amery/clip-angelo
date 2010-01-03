@@ -19,57 +19,89 @@
 /**********************************************************/
 
 /* Register layout signals table in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_layout() { return GTK_TYPE_LAYOUT; }
-long _clip_type_layout() { return GTK_WIDGET_LAYOUT; }
-const char * _clip_type_name_layout() { return "GTK_WIDGET_LAYOUT"; }
-
-int
-clip_INIT___LAYOUT(ClipMachine *cm)
+CLIP_DLLEXPORT GtkType
+_gtk_type_layout()
 {
-	_wtype_table_put(_clip_type_layout, _clip_type_name_layout, _gtk_type_layout, _gtk_type_container, NULL);
-	return 0;
+   return GTK_TYPE_LAYOUT;
 }
-int
-clip_GTK_LAYOUTNEW(ClipMachine * cm)
-{
-	ClipVar * cv     = _clip_spar(cm, 1);
-	C_widget * chadj = _fetch_cwidget(cm,_clip_spar(cm, 2));
-	C_widget * cvadj = _fetch_cwidget(cm,_clip_spar(cm, 3));
-	GtkWidget *wid = NULL;
-	C_widget *cwid;
-	GtkAdjustment *hadj, *vadj;
-	CHECKOPT(1,MAP_t);
-	CHECKOPT2(2,MAP_t,NUMERIC_t); CHECKCWIDOPT(chadj,GTK_IS_ADJUSTMENT);
-	CHECKOPT2(3,MAP_t,NUMERIC_t); CHECKCWIDOPT(cvadj,GTK_IS_ADJUSTMENT);
 
-	hadj = chadj ? GTK_ADJUSTMENT(chadj->widget) : NULL;
-	vadj = cvadj ? GTK_ADJUSTMENT(cvadj->widget) : NULL;
-	wid = gtk_layout_new(hadj,vadj);
-	if (!wid) goto err;
-	cwid = _register_widget(cm, wid, cv);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+long
+_clip_type_layout()
+{
+   return GTK_WIDGET_LAYOUT;
+}
+
+const char *
+_clip_type_name_layout()
+{
+   return "GTK_WIDGET_LAYOUT";
 }
 
 int
-clip_GTK_LAYOUTPUT(ClipMachine * cm)
+clip_INIT___LAYOUT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *ccon = _fetch_cw_arg(cm);
-	C_widget *cwid = _fetch_cwidget(cm,_clip_spar(cm,2));
-	gint x = _clip_parni(cm,3);
-	gint y = _clip_parni(cm,4);
-	CHECKARG2(2,MAP_t,NUMERIC_t);
-	CHECKOPT(3,NUMERIC_t); CHECKOPT(4,NUMERIC_t);
-	CHECKCWID(ccon,GTK_IS_LAYOUT); CHECKCWID(cwid,GTK_IS_WIDGET);
-	if (_clip_parinfo(cm,3) == UNDEF_t) x = cwid->widget->allocation.x;
-	if (_clip_parinfo(cm,4) == UNDEF_t) y = cwid->widget->allocation.y;
-	gtk_layout_put(GTK_LAYOUT(ccon->widget), cwid->widget, x,y);
+   _wtype_table_put(_clip_type_layout, _clip_type_name_layout, _gtk_type_layout, _gtk_type_container, NULL);
+   return 0;
+}
 
-	return 0;
-err:
-	return 1;
+int
+clip_GTK_LAYOUTNEW(ClipMachine * ClipMachineMemory)
+{
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
+   GtkWidget *wid = NULL;
+
+   C_widget *cwid;
+
+   GtkAdjustment *hadj, *vadj;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
+   CHECKOPT2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWIDOPT(cvadj, GTK_IS_ADJUSTMENT);
+
+   hadj = chadj ? GTK_ADJUSTMENT(chadj->widget) : NULL;
+   vadj = cvadj ? GTK_ADJUSTMENT(cvadj->widget) : NULL;
+   wid = gtk_layout_new(hadj, vadj);
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
+}
+
+int
+clip_GTK_LAYOUTPUT(ClipMachine * ClipMachineMemory)
+{
+   C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
+
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(ccon, GTK_IS_LAYOUT);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
+      x = cwid->widget->allocation.x;
+   if (_clip_parinfo(ClipMachineMemory, 4) == UNDEF_type_of_ClipVarType)
+      y = cwid->widget->allocation.y;
+   gtk_layout_put(GTK_LAYOUT(ccon->widget), cwid->widget, x, y);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /* These disable and enable moving and repainting the scrolling window
@@ -77,62 +109,69 @@ err:
  * offsets but do not want it to repaint itself, you should use these
  * functions. */
 int
-clip_GTK_LAYOUTFREEZE(ClipMachine * cm)
+clip_GTK_LAYOUTFREEZE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *clay = _fetch_cw_arg(cm);
-	CHECKCWID(clay,GTK_IS_LAYOUT);
-	gtk_layout_freeze(GTK_LAYOUT(clay->widget));
-	return 0;
-err:
-	return 1;
+   C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
+
+   CHECKCWID(clay, GTK_IS_LAYOUT);
+   gtk_layout_freeze(GTK_LAYOUT(clay->widget));
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_LAYOUTTHAW(ClipMachine * cm)
+clip_GTK_LAYOUTTHAW(ClipMachine * ClipMachineMemory)
 {
-	C_widget *clay = _fetch_cw_arg(cm);
-	CHECKCWID(clay,GTK_IS_LAYOUT);
-	gtk_layout_thaw(GTK_LAYOUT(clay->widget));
-	return 0;
-err:
-	return 1;
-}
+   C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
 
+   CHECKCWID(clay, GTK_IS_LAYOUT);
+   gtk_layout_thaw(GTK_LAYOUT(clay->widget));
+   return 0;
+ err:
+   return 1;
+}
 
 /* Alena: set vertical adjustment for layout */
 int
-clip_GTK_LAYOUTSETVADJUSTMENT(ClipMachine * cm)
+clip_GTK_LAYOUTSETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *clay = _fetch_cw_arg(cm);
-	C_widget * cadj = _fetch_cwidget(cm,_clip_spar(cm, 2));
-	GtkAdjustment *adj;
-	CHECKCWID(clay,GTK_IS_LAYOUT);
-	CHECKOPT2(2,MAP_t,NUMERIC_t); CHECKCWIDOPT(cadj,GTK_IS_ADJUSTMENT);
+   C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
 
-	adj = cadj ? GTK_ADJUSTMENT(cadj->widget) : NULL;
-	gtk_layout_set_vadjustment(GTK_LAYOUT(clay->widget), adj);
+   C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	return 0;
-err:
-	return 1;
+   GtkAdjustment *adj;
+
+   CHECKCWID(clay, GTK_IS_LAYOUT);
+   CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
+
+   adj = cadj ? GTK_ADJUSTMENT(cadj->widget) : NULL;
+   gtk_layout_set_vadjustment(GTK_LAYOUT(clay->widget), adj);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /* Alena: set horizontal adjustment for layout */
 int
-clip_GTK_LAYOUTSETHADJUSTMENT(ClipMachine * cm)
+clip_GTK_LAYOUTSETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *clay = _fetch_cw_arg(cm);
-	C_widget * cadj = _fetch_cwidget(cm,_clip_spar(cm, 2));
-	GtkAdjustment *adj;
-	CHECKCWID(clay,GTK_IS_LAYOUT);
-	CHECKOPT2(2,MAP_t,NUMERIC_t); CHECKCWIDOPT(cadj,GTK_IS_ADJUSTMENT);
+   C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
 
-	adj = cadj ? GTK_ADJUSTMENT(cadj->widget) : NULL;
-	gtk_layout_set_hadjustment(GTK_LAYOUT(clay->widget), adj);
+   C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	return 0;
-err:
-	return 1;
+   GtkAdjustment *adj;
+
+   CHECKCWID(clay, GTK_IS_LAYOUT);
+   CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
+
+   adj = cadj ? GTK_ADJUSTMENT(cadj->widget) : NULL;
+   gtk_layout_set_hadjustment(GTK_LAYOUT(clay->widget), adj);
+
+   return 0;
+ err:
+   return 1;
 }
-
-

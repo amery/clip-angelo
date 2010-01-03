@@ -1,6 +1,6 @@
 #include "ci_config.ch"
 
-#ifndef CI_LANG_DEFINED
+#ifndef CN_LANG_DEFINED
 	#define LANG_ARRAY_STRING	[array]
 	#define LANG_CBLOCK_STRING	[Block]
 	#define LANG_YES_STRING		[Yes]
@@ -37,7 +37,7 @@
 	#define DATE_WEEK7     [Saturday]
 
 
-#define CI_LANG_DEFINED
+#define CN_LANG_DEFINED
 
 #endif
 

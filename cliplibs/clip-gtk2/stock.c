@@ -13,20 +13,31 @@
 #include "ci_clip-gtk2.ch"
 #include "ci_clip-gtk2.h"
 
-
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_stock_item() { return GTK_TYPE_STOCK_ITEM; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_stock_item()
+{
+   return GTK_TYPE_STOCK_ITEM;
+}
 
-long _clip_type_stock_item() { return GTK_OBJECT_STOCK_ITEM; }
+long
+_clip_type_stock_item()
+{
+   return GTK_OBJECT_STOCK_ITEM;
+}
 
-const char * _clip_type_name_stock_item()  { return "GTK_OBJECT_STOCK_ITEM"; }
+const char *
+_clip_type_name_stock_item()
+{
+   return "GTK_OBJECT_STOCK_ITEM";
+}
 
 /* Register in global table */
 int
-clip_INIT___STOCKITEM(ClipMachine *cm)
+clip_INIT___STOCKITEM(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_stock_item,  _clip_type_name_stock_item,  _gtk_type_stock_item,  NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_stock_item, _clip_type_name_stock_item, _gtk_type_stock_item, NULL, NULL);
+   return 0;
 }
 
 /* gtk_StockAdd(aStocks, nStocks) --> NUL                                     */
@@ -38,154 +49,169 @@ clip_INIT___STOCKITEM(ClipMachine *cm)
 /*   TRANSL_DOMAIN - string,                                                  */
 
 int
-clip_GTK_STOCKADD(ClipMachine * cm)
+clip_GTK_STOCKADD(ClipMachine * ClipMachineMemory)
 {
-	ClipArrVar *cv   = (ClipArrVar *)_clip_vptr(_clip_spar(cm,1));
-        guint    n_items = _clip_parni(cm, 2);
-        GtkStockItem       *items;
-        gint                    i;
+   ClipArrVar *cv = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 1));
 
-	CHECKARG(1, ARRAY_t);
-        CHECKARG(2, NUMERIC_t);
+   guint     n_items = _clip_parni(ClipMachineMemory, 2);
 
-	if (cv->count < n_items)
-        	n_items = cv->count;
-	items = malloc(n_items*sizeof(GtkStockItem));
-        memset(items, 0, n_items*sizeof(GtkStockItem));
-	for (i=0; i<n_items; i++)
-        {
-        	GtkStockItem it;
-                _map_to_stock_item(cm, &cv->items[i], &it);
-                items[i] = it;
-        }
+   GtkStockItem *items;
 
-	gtk_stock_add(items, n_items);
+   gint      i;
 
-        free(items);
+   CHECKARG(1, ARRAY_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
-}
+   if (cv->count_of_ClipArrVar < n_items)
+      n_items = cv->count_of_ClipArrVar;
+   items = malloc(n_items * sizeof(GtkStockItem));
+   memset(items, 0, n_items * sizeof(GtkStockItem));
+   for (i = 0; i < n_items; i++)
+    {
+       GtkStockItem it;
 
+       _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
+       items[i] = it;
+    }
 
-int
-clip_GTK_STOCKADDSTATIC(ClipMachine * cm)
-{
-	ClipArrVar *cv   = (ClipArrVar *)_clip_vptr(_clip_spar(cm,1));
-        guint    n_items = _clip_parni(cm, 2);
-        GtkStockItem       *items;
-        gint                    i;
+   gtk_stock_add(items, n_items);
 
-	CHECKARG(1, ARRAY_t);
-        CHECKARG(2, NUMERIC_t);
+   free(items);
 
-	if (cv->count < n_items)
-        	n_items = cv->count;
-	items = malloc(n_items*sizeof(GtkStockItem));
-        memset(items, 0, n_items*sizeof(GtkStockItem));
-	for (i=0; i<n_items; i++)
-        {
-        	GtkStockItem it;
-                _map_to_stock_item(cm, &cv->items[i], &it);
-                items[i] = it;
-        }
-
-	gtk_stock_add_static(items, n_items);
-
-        free(items);
-
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_STOCKITEMCOPY(ClipMachine * cm)
+clip_GTK_STOCKADDSTATIC(ClipMachine * ClipMachineMemory)
 {
-	ClipVar *cv   = _clip_spar(cm,1);
-        ClipVar           *newcv = 0;
-        GtkStockItem        item;
-        GtkStockItem    *newitem;
+   ClipArrVar *cv = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 1));
 
-	CHECKARG(1, MAP_t);
+   guint     n_items = _clip_parni(ClipMachineMemory, 2);
 
-        _map_to_stock_item(cm, cv, &item);
+   GtkStockItem *items;
 
-	newitem = gtk_stock_item_copy(&item);
+   gint      i;
 
-	_stock_item_to_map(cm, newcv, newitem);
+   CHECKARG(1, ARRAY_type_of_ClipVarType);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
-        _clip_mclone(cm, RETPTR(cm), newcv);
+   if (cv->count_of_ClipArrVar < n_items)
+      n_items = cv->count_of_ClipArrVar;
+   items = malloc(n_items * sizeof(GtkStockItem));
+   memset(items, 0, n_items * sizeof(GtkStockItem));
+   for (i = 0; i < n_items; i++)
+    {
+       GtkStockItem it;
 
-	return 0;
-err:
-	return 1;
+       _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
+       items[i] = it;
+    }
+
+   gtk_stock_add_static(items, n_items);
+
+   free(items);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_STOCKITEMFREE(ClipMachine * cm)
+clip_GTK_STOCKITEMCOPY(ClipMachine * ClipMachineMemory)
 {
-	ClipVar *cv   = _clip_spar(cm,1);
-        GtkStockItem        item;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKARG(1, MAP_t);
+   ClipVar  *newcv = 0;
 
-        _map_to_stock_item(cm, cv, &item);
+   GtkStockItem item;
 
-	gtk_stock_item_free(&item);
+   GtkStockItem *newitem;
 
-	return 0;
-err:
-	return 1;
+   CHECKARG(1, MAP_type_of_ClipVarType);
+
+   _map_to_stock_item(ClipMachineMemory, cv, &item);
+
+   newitem = gtk_stock_item_copy(&item);
+
+   _stock_item_to_map(ClipMachineMemory, newcv, newitem);
+
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), newcv);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_STOCKLISTIDS(ClipMachine * cm)
+clip_GTK_STOCKITEMFREE(ClipMachine * ClipMachineMemory)
 {
-	ClipVar  *cv = RETPTR(cm);
-        GSList *list;
-        long    i, n;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	list = gtk_stock_list_ids();
+   GtkStockItem item;
 
-        n = g_slist_length(list);
-        if (n>0)
-        {
-        	_clip_array(cm, cv, 1, &n);
-                for (i=0; list; list=g_slist_next(list), i++)
-                {
-                	ClipVar  c;
-                        gchar *str;
+   CHECKARG(1, MAP_type_of_ClipVarType);
 
-			str = (gchar *)list->data;
-                	_clip_var_str(str, strlen(str), &c);
-                	_clip_aset(cm, cv, &c, 1, &i);
-                        _clip_destroy(cm, &c);
-                        g_free(str);
-                }
-                g_slist_free(list);
-        }
+   _map_to_stock_item(ClipMachineMemory, cv, &item);
 
-	return 0;
+   gtk_stock_item_free(&item);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_STOCKLOOKUP(ClipMachine * cm)
+clip_GTK_STOCKLISTIDS(ClipMachine * ClipMachineMemory)
 {
-	gchar *stock_id	= _clip_parc(cm, 1);
-	ClipVar     *cv	= _clip_spar(cm, 2);
-        GtkStockItem        item;
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	CHECKARG(1, CHARACTER_t);
-	CHECKARG(2, MAP_t);
+   GSList   *list;
 
-        _map_to_stock_item(cm, cv, &item);
+   long      i, n;
 
-	_clip_retl(cm, gtk_stock_lookup(stock_id, &item));
+   list = gtk_stock_list_ids();
 
-	return 0;
-err:
-	return 1;
+   n = g_slist_length(list);
+   if (n > 0)
+    {
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (i = 0; list; list = g_slist_next(list), i++)
+	{
+	   ClipVar   c;
+
+	   gchar    *str;
+
+	   str = (gchar *) list->data;
+	   _clip_var_str(str, strlen(str), &c);
+	   _clip_aset(ClipMachineMemory, cv, &c, 1, &i);
+	   _clip_destroy(ClipMachineMemory, &c);
+	   g_free(str);
+	}
+       g_slist_free(list);
+    }
+
+   return 0;
 }
 
+int
+clip_GTK_STOCKLOOKUP(ClipMachine * ClipMachineMemory)
+{
+   gchar    *stock_id = _clip_parc(ClipMachineMemory, 1);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
+   GtkStockItem item;
+
+   CHECKARG(1, CHARACTER_type_of_ClipVarType);
+   CHECKARG(2, MAP_type_of_ClipVarType);
+
+   _map_to_stock_item(ClipMachineMemory, cv, &item);
+
+   _clip_retl(ClipMachineMemory, gtk_stock_lookup(stock_id, &item));
+
+   return 0;
+ err:
+   return 1;
+}

@@ -2,8 +2,8 @@
 	Data types for Win32 clipboard functions
 */
 
-#ifndef CI_CLIPBRD_DEFINED
-#define CI_CLIPBRD_DEFINED
+#ifndef CN_CLIPBRD_DEFINED
+#define CN_CLIPBRD_DEFINED
 
 #define CF_TEXT			1
 #define CF_BITMAP		2

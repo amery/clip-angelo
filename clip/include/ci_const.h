@@ -1,35 +1,19 @@
 /*
-   $Log: const.h,v $
-   Revision 1.1  2006/06/22 19:35:16  itk
-   uri: init sf.net repository
-
-   Revision 1.2  2000/05/24 18:34:22  clip
-   _clip_push_area
-   indents all
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.1  1999/10/25 16:39:28  paul
-   first entry
-
-   * Revision 1.1  1997/03/12  14:51:38  paul
-   * initial
-   *
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
  */
 
-#ifndef CI_CONST_H
-#define CI_CONST_H
-
-typedef struct
-{
-	int type;
-	char *str;
-}
-ConstStruct;
+#ifndef CN_CONST_H
+#define CN_CONST_H
+#include "ci_const/typedef_struct_ConstStruct.h"
 
 ConstStruct *new_ConstStruct(int type);
-void delete_ConstStruct(void *cp);
 
-void print_ConstStruct(ConstStruct * cp, FILE * file);
-void printString(FILE * stream, const char *str);
+void      delete_ConstStruct(void *cp);
+
+void      print_ConstStruct(ConstStruct * cp, FILE * file);
+
+void      printString(FILE * stream, const char *str);
 
 #endif

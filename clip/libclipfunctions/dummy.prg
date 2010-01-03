@@ -3,112 +3,41 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-*****************************************************
-function linedraw
-return
-*****************************************************
-function rundos
-return
-*****************************************************
-function altdel
-return 0
-*****************************************************
-function mouse_move()
-return 0
-*****************************************************
-function mousekey()
-return 0
-*****************************************************
-function mouptr_on()
-return .t.
-*****************************************************
-function mouptr_off()
-return .t.
-*****************************************************
-function mrelease()
-return 0
-*****************************************************
-function moumaxrow()
-return 0
-*****************************************************
-function moumaxcol()
-return 0
-*****************************************************
-function setmouse()
-return .t.
-
-*****************************************************
-function setblink()
-return .t.
-
-*****************************************************
-function csetcurs(lvisible)
-	local ret
-	ret:=setcursor()!=0
-	if lVisible != NIL
-		setcursor(iif(lvisible,1,0))
-	endif
-return ret
-*****************************************************
-function _isgraphics()
-return .f.
-************************************************************
-function cretry()
-return 0
-*****************************************************
-function kbdEmulate()
-return 0
-*****************************************************
-function tone()
-	__beep()
-return .t.
-*****************************************************
-function sound
-	__beep()
-return .t.
-*****************************************************
-function kbdspeed()
-return .t.
-*****************************************************
-function vgapalette()
-return .t.
-*****************************************************
-FUNCTION Network()
-  RETURN ( .T. )
-*****************************************************
-FUNCTION NOSNOW()
-  RETURN NIL
-*****************************************************
-FUNCTION ISVGA()
-  RETURN .F.
-*****************************************************
-FUNCTION ISEGA()
-  RETURN .F.
-*****************************************************
-	function setmode()
-	return .t.
-*****************************************************
-	function getmode
-	return "CGA80(.t.)"
-*****************************************************
-	function cga80
-	return .t.
-*****************************************************
-	function vga28
-	return .f.
-*****************************************************
-	function vga50
-	return .f.
-*****************************************************
-	function fontload
-	return 0
-*****************************************************
-	function fontselect
-	return 0
-*****************************************************
-	function fontreset
-	return .t.
-*****************************************************
-	function dosidle
-	return .t.
-
+**********************************************************************
+**********************************************************************
+**********************************************************************
+**********************************************************************
+#include "dummy/linedraw.ch"
+#include "dummy/rundos.ch"
+#include "dummy/altdel.ch"
+#include "dummy/mouse_move.ch"
+#include "dummy/mousekey.ch"
+#include "dummy/mouptr_on.ch"
+#include "dummy/mouptr_off.ch"
+#include "dummy/mrelease.ch"
+#include "dummy/moumaxrow.ch"
+#include "dummy/moumaxcol.ch"
+#include "dummy/setmouse.ch"
+#include "dummy/setblink.ch"
+#include "dummy/csetcurs.ch"
+#include "dummy/_isgraphics.ch"
+#include "dummy/cretry.ch"
+#include "dummy/kbdEmulate.ch"
+#include "dummy/tone.ch"
+#include "dummy/sound.ch"
+#include "dummy/kbdspeed.ch"
+#include "dummy/vgapalette.ch"
+#include "dummy/Network.ch"
+#include "dummy/NOSNOW.ch"
+#include "dummy/ISVGA.ch"
+#include "dummy/ISEGA.ch"
+#include "dummy/setmode.ch"
+#include "dummy/getmode.ch"
+#include "dummy/cga80.ch"
+#include "dummy/vga28.ch"
+#include "dummy/vga50.ch"
+#include "dummy/fontload.ch"
+#include "dummy/fontselect.ch"
+#include "dummy/fontreset.ch"
+#include "dummy/dosidle.ch"
+**********************************************************************

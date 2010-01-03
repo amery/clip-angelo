@@ -1,5 +1,5 @@
-#ifndef CI_LB_DEFINED
-#define CI_LB_DEFINED
+#ifndef CN_LB_DEFINED
+#define CN_LB_DEFINED
 
 #define LB_REMARK   1       /* Character, remark from label file */
 #define LB_HEIGHT   2       /* Numeric, label height             */

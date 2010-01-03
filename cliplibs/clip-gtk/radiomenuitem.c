@@ -17,85 +17,125 @@
 /**********************************************************/
 
 /* Register radio menu item in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_radio_menu_item() { return GTK_TYPE_RADIO_MENU_ITEM; }
-long _clip_type_radio_menu_item() { return GTK_WIDGET_RADIO_MENU_ITEM; }
-const char * _clip_type_name_radio_menu_item() { return "GTK_WIDGET_RADIO_MENU_ITEM"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_radio_menu_item()
+{
+   return GTK_TYPE_RADIO_MENU_ITEM;
+}
 
-CLIP_DLLEXPORT GtkType _gtk_type_radio_menu_group() { return GTK_WIDGET_RADIO_MENU_GROUP; }
-long _clip_type_radio_menu_group() { return GTK_WIDGET_RADIO_MENU_GROUP; }
-const char * _clip_type_name_radio_menu_group() { return "GTK_WIDGET_RADIO_MENU_GROUP"; }
+long
+_clip_type_radio_menu_item()
+{
+   return GTK_WIDGET_RADIO_MENU_ITEM;
+}
+
+const char *
+_clip_type_name_radio_menu_item()
+{
+   return "GTK_WIDGET_RADIO_MENU_ITEM";
+}
+
+CLIP_DLLEXPORT GtkType
+_gtk_type_radio_menu_group()
+{
+   return GTK_WIDGET_RADIO_MENU_GROUP;
+}
+
+long
+_clip_type_radio_menu_group()
+{
+   return GTK_WIDGET_RADIO_MENU_GROUP;
+}
+
+const char *
+_clip_type_name_radio_menu_group()
+{
+   return "GTK_WIDGET_RADIO_MENU_GROUP";
+}
 
 int
-clip_INIT___RADIO_MENU_ITEM(ClipMachine *cm)
+clip_INIT___RADIO_MENU_ITEM(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_radio_menu_item, _clip_type_name_radio_menu_item, _gtk_type_radio_menu_item, _gtk_type_check_menu_item, NULL);
-	_wtype_table_put(_clip_type_radio_menu_group, _clip_type_name_radio_menu_group, _gtk_type_radio_menu_group, NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_radio_menu_item,
+		    _clip_type_name_radio_menu_item, _gtk_type_radio_menu_item, _gtk_type_check_menu_item, NULL);
+   _wtype_table_put(_clip_type_radio_menu_group, _clip_type_name_radio_menu_group, _gtk_type_radio_menu_group, NULL, NULL);
+   return 0;
 }
+
 /**********************************************************/
 
 /**** Radio menu item constructor ****/
 int
-clip_GTK_RADIOMENUITEMNEW(ClipMachine * cm)
+clip_GTK_RADIOMENUITEMNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-	C_widget *cgrp = _fetch_cwidget(cm,_clip_spar(cm, 2));
-	char *   label = _clip_parc(cm, 3);
-	GtkWidget *wid = NULL;
-        C_widget *cwid;
-        GSList  *group = NULL;
-	CHECKOPT(1,MAP_t);
-	CHECKOPT2(2,MAP_t,NUMERIC_t);
-	CHECKOPT(3,CHARACTER_t);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	if (cgrp && cgrp->type != GTK_WIDGET_RADIO_MENU_GROUP) goto err;
+   C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	if (_clip_parinfo(cm,3) == CHARACTER_t)
-	{
-		LOCALE_TO_UTF(label);
-		if (cgrp && cgrp->data)
-			group = gtk_radio_menu_item_group(
-				GTK_RADIO_MENU_ITEM(((GSList*)(cgrp->data))->data));
-		wid = gtk_radio_menu_item_new_with_label(group,label);
-        	FREE_TEXT(label);
-        }
-        else
-        {
-		if (cgrp && cgrp->data)
-			group = gtk_radio_menu_item_group(
-				GTK_RADIO_MENU_ITEM(((GSList*)(cgrp->data))->data));
-		wid = gtk_radio_menu_item_new(group);
-	}
-	if (cgrp && !cgrp->data)
-		cgrp->data = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(wid));
+   char     *label = _clip_parc(ClipMachineMemory, 3);
 
-        if (!wid) goto err;
+   GtkWidget *wid = NULL;
 
-	cwid = _register_widget(cm, wid, cv);
-        _clip_mclone(cm,RETPTR(cm),&cwid->obj);
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   GSList   *group = NULL;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(3, CHARACTER_type_of_ClipVarType);
+
+   if (cgrp && cgrp->type != GTK_WIDGET_RADIO_MENU_GROUP)
+      goto err;
+
+   if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
+    {
+       LOCALE_TO_UTF(label);
+       if (cgrp && cgrp->data)
+	  group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       wid = gtk_radio_menu_item_new_with_label(group, label);
+       FREE_TEXT(label);
+    }
+   else
+    {
+       if (cgrp && cgrp->data)
+	  group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       wid = gtk_radio_menu_item_new(group);
+    }
+   if (cgrp && !cgrp->data)
+      cgrp->data = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(wid));
+
+   if (!wid)
+      goto err;
+
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+
+   return 0;
+ err:
+   return 1;
 }
+
 /**** ------------------ ****/
 
 /**** Radio menu group constructor ****/
 int
-clip_GTK_RADIOMENUGROUPNEW(ClipMachine * cm)
+clip_GTK_RADIOMENUGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar * cv   = _clip_spar(cm, 1);
-        C_widget *cwid;
-	CHECKOPT(1,MAP_t);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	cwid = _register_widget(cm, NULL, cv);
-        cwid->type = _clip_type_radio_menu_group();
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
+   C_widget *cwid;
 
-	return 0;
-err:
-	return 1;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   cwid = _register_widget(ClipMachineMemory, NULL, cv);
+   cwid->type = _clip_type_radio_menu_group();
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+
+   return 0;
+ err:
+   return 1;
 }
+
 /**** ------------------ ****/
 
 /* Sets a RadioButton's group. It should be noted that this does not
@@ -103,57 +143,65 @@ err:
  * changing the group, it is likely you will need to re-arrange the
  * user interface to reflect these changes. */
 int
-clip_GTK_RADIOMENUITEMSETGROUP(ClipMachine * cm)
+clip_GTK_RADIOMENUITEMSETGROUP(ClipMachine * ClipMachineMemory)
 {
-	C_widget *citm = _fetch_cw_arg(cm);
-	C_widget *cgrp = _fetch_cwidget(cm,_clip_spar(cm,2));
-        GSList * group = NULL, *item;
-        GtkRadioMenuItem *rmitem, *active_item = NULL;
-	CHECKARG2(2,MAP_t,NUMERIC_t);
-        CHECKCWID(citm,GTK_IS_RADIO_MENU_ITEM);
-        if (cgrp && cgrp->type != GTK_WIDGET_RADIO_MENU_GROUP) goto err;
-	if (cgrp && cgrp->data)
-        {
-		group = gtk_radio_menu_item_group(
-			GTK_RADIO_MENU_ITEM(((GSList*)(cgrp->data))->data));
-		for (item=group; item; item=item->next)
-        	{
-        		rmitem = GTK_RADIO_MENU_ITEM(item->data);
-        		if (GTK_CHECK_MENU_ITEM(rmitem)->active) active_item = rmitem;
-        	}
+   C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
+   C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   GSList   *group = NULL, *item;
+
+   GtkRadioMenuItem *rmitem, *active_item = NULL;
+
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(citm, GTK_IS_RADIO_MENU_ITEM);
+   if (cgrp && cgrp->type != GTK_WIDGET_RADIO_MENU_GROUP)
+      goto err;
+   if (cgrp && cgrp->data)
+    {
+       group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       for (item = group; item; item = item->next)
+	{
+	   rmitem = GTK_RADIO_MENU_ITEM(item->data);
+	   if (GTK_CHECK_MENU_ITEM(rmitem)->active)
+	      active_item = rmitem;
 	}
-	gtk_radio_menu_item_set_group(GTK_RADIO_MENU_ITEM(citm->widget),group);
-	if (group)
-		for (item=group; item; item=item->next)
-        	{
-        		rmitem = GTK_RADIO_MENU_ITEM(item->data);
-                	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(rmitem), FALSE);
-        	}
-        if (active_item)
-         	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(active_item), TRUE);
-	if (cgrp && cgrp->data)
-		cgrp->data = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(citm->widget));
-        return 0;
-err:
-	return 1;
+    }
+   gtk_radio_menu_item_set_group(GTK_RADIO_MENU_ITEM(citm->widget), group);
+   if (group)
+      for (item = group; item; item = item->next)
+       {
+	  rmitem = GTK_RADIO_MENU_ITEM(item->data);
+	  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(rmitem), FALSE);
+       }
+   if (active_item)
+      gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(active_item), TRUE);
+   if (cgrp && cgrp->data)
+      cgrp->data = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(citm->widget));
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_RADIOMENUITEMSETSTYLE(ClipMachine * cm)
+clip_GTK_RADIOMENUITEMSETSTYLE(ClipMachine * ClipMachineMemory)
 {
-	C_widget   *citm = _fetch_cw_arg(cm);
-	ClipVar  *mstyle = _clip_spar(cm,2);
-	GtkStyle *style;
-        GtkWidget *wid;
-        CHECKCWID(citm,GTK_IS_ITEM);
-	CHECKARG(2,MAP_t);
-        wid = GTK_BIN(&(GTK_ITEM(citm->widget)->bin))->child;
-	style = gtk_style_copy(wid->style);
-        //gtk_style_unref(wid->style);
-	_map_to_style(cm, mstyle, style);
-	gtk_widget_set_style (wid, style);
-	return 0;
-err:
-	return 1;
-}
+   C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
 
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
+
+   GtkStyle *style;
+
+   GtkWidget *wid;
+
+   CHECKCWID(citm, GTK_IS_ITEM);
+   CHECKARG(2, MAP_type_of_ClipVarType);
+   wid = GTK_BIN(&(GTK_ITEM(citm->widget)->bin))->child;
+   style = gtk_style_copy(wid->style);
+  //gtk_style_unref(wid->style);
+   _map_to_style(ClipMachineMemory, mstyle, style);
+   gtk_widget_set_style(wid, style);
+   return 0;
+ err:
+   return 1;
+}

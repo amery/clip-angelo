@@ -3,36 +3,10 @@
 	Author  : Paul Lasarev <paul@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
 
-	$Log: ncp.c,v $
-	Revision 1.1  2006/06/22 19:01:35  itk
-	uri: initial
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 
-	Revision 1.6  2004/05/19 08:32:18  clip
-	rust: fix for ./configure -m
-
-	Revision 1.5  2003/09/02 14:27:42  clip
-	changes for MINGW from
-	Mauricio Abre <maurifull@datafull.com>
-	paul
-
-	Revision 1.4  2002/04/22 14:05:12  clip
-	add _clip_creat
-	creat & open modes on ncpfs
-	paul
-
-	Revision 1.3  2002/04/22 11:43:58  clip
-	ncp fix
-	paul
-
-	Revision 1.2  2002/04/22 11:33:08  clip
-	include fix
-	paul
-
-	Revision 1.1  2002/04/22 11:11:20  clip
-	remove ncp code from rdd/dbf.c
-	create ncp module
-	add ncp usage in _file/diskutil _set_lock call
-	paul
 */
 
 #include <string.h>
@@ -50,124 +24,125 @@
 
 #include "ci_ncp_fs.h"
 
-
 int
 ncp_is_ncpfs(int fd)
 {
-	struct ncp_fs_info ncp_fs_info;
-		int r;
+   struct ncp_fs_info ncp_fs_info;
 
-	memset(&ncp_fs_info, 0, sizeof(ncp_fs_info));
+   int       r;
 
-	ncp_fs_info.version = NCP_GET_FS_INFO_VERSION;
-	r = ioctl(fd, NCP_IOC_GET_FS_INFO, &ncp_fs_info);
+   memset(&ncp_fs_info, 0, sizeof(ncp_fs_info));
 
-	if (r || !ncp_fs_info.connection)
-			return 0;
-		return 1;
+   ncp_fs_info.version = NCP_GET_FS_INFO_VERSION;
+   r = ioctl(fd, NCP_IOC_GET_FS_INFO, &ncp_fs_info);
+
+   if (r || !ncp_fs_info.connection)
+      return 0;
+   return 1;
 }
 
 int
 ncp_is_ncpfs_filename(char *filename)
 {
-		int fd, r;
+   int       fd, r;
 
-	fd = open(filename, O_RDONLY);
-		if (fd<0)
-			return 0;
+   fd = open(filename, O_RDONLY);
+   if (fd < 0)
+      return 0;
 
-	r = ncp_is_ncpfs(fd);
+   r = ncp_is_ncpfs(fd);
 
-	close(fd);
-		return r;
+   close(fd);
+   return r;
 }
 
 int
 ncp_openmode(int fd, int exclusive)
 {
-	int r;
+   int       r;
 
-	if (!ncp_is_ncpfs(fd))
-			return 0;
+   if (!ncp_is_ncpfs(fd))
+      return 0;
 
-	r = ioctl(fd, NCP_IOC_OPENMODE, &exclusive);
+   r = ioctl(fd, NCP_IOC_OPENMODE, &exclusive);
 
-	/* invalid ioctl for this kernel */
-	if (r == EINVAL)
-			return 0;
+  /* invalid ioctl for this kernel */
+   if (r == EINVAL)
+      return 0;
 
-	return r;
+   return r;
 }
 
 int
 ncp_fcntl(int fd, int flag, void *argp)
 {
-	struct ncp_lock_ioctl ncp_lock_ioctl;
-	struct flock *fl;
-		int r, ret;
+   struct ncp_lock_ioctl ncp_lock_ioctl;
 
-	switch(flag)
-	{
-	case F_SETLK:
-	case F_SETLKW:
-		case F_UNLCK:
-		break;
-	case F_GETLK:
-	default:
-			return fcntl(fd, flag, argp);
-	}
+   struct flock *fl;
 
-	if (!ncp_is_ncpfs(fd))
-			return fcntl(fd, flag, argp);
+   int       r, ret;
 
-	/* do fcntl anyway */
-		ret = fcntl(fd, flag, argp);
-		if (ret)
-			return ret;
+   switch (flag)
+    {
+    case F_SETLK:
+    case F_SETLKW:
+    case F_UNLCK:
+       break;
+    case F_GETLK:
+    default:
+       return fcntl(fd, flag, argp);
+    }
 
-	fl = (struct flock *)argp;
+   if (!ncp_is_ncpfs(fd))
+      return fcntl(fd, flag, argp);
 
-	memset(&ncp_lock_ioctl, 0, sizeof(ncp_lock_ioctl));
-	switch (fl->l_type)
-	{
-		case F_WRLCK:
-			ncp_lock_ioctl.cmd = NCP_LOCK_EX;
-				break;
-		case F_RDLCK:
-			ncp_lock_ioctl.cmd = NCP_LOCK_SH;
-				break;
-		case F_UNLCK:
-			ncp_lock_ioctl.cmd = NCP_LOCK_CLEAR;
-				break;
-	}
+  /* do fcntl anyway */
+   ret = fcntl(fd, flag, argp);
+   if (ret)
+      return ret;
 
-	ncp_lock_ioctl.origin = 0;
-	ncp_lock_ioctl.offset = fl->l_start;
-	ncp_lock_ioctl.length = fl->l_len;
-	ncp_lock_ioctl.timeout = NCP_LOCK_DEFAULT_TIMEOUT;
+   fl = (struct flock *) argp;
 
-	/* and do ncpfs-specific ioctl */
+   memset(&ncp_lock_ioctl, 0, sizeof(ncp_lock_ioctl));
+   switch (fl->l_type)
+    {
+    case F_WRLCK:
+       ncp_lock_ioctl.cmd = NCP_LOCK_EX;
+       break;
+    case F_RDLCK:
+       ncp_lock_ioctl.cmd = NCP_LOCK_SH;
+       break;
+    case F_UNLCK:
+       ncp_lock_ioctl.cmd = NCP_LOCK_CLEAR;
+       break;
+    }
 
-	for(;;)
-		{
-		r = ioctl(fd, NCP_IOC_LOCKUNLOCK, &ncp_lock_ioctl);
+   ncp_lock_ioctl.origin = 0;
+   ncp_lock_ioctl.offset = fl->l_start;
+   ncp_lock_ioctl.length = fl->l_len;
+   ncp_lock_ioctl.timeout = NCP_LOCK_DEFAULT_TIMEOUT;
+
+  /* and do ncpfs-specific ioctl */
+
+   for (;;)
+    {
+       r = ioctl(fd, NCP_IOC_LOCKUNLOCK, &ncp_lock_ioctl);
 #if 0
-				printf("\nncp ioctl: cmd %d, off 0x%x, len 0x%x, r %d, errno %d",
-					ncp_lock_ioctl.cmd,
-					ncp_lock_ioctl.offset, ncp_lock_ioctl.length, r, errno);
+       printf("\nncp ioctl: cmd %d, off 0x%x, len 0x%x, r %d, errno %d",
+	      ncp_lock_ioctl.cmd, ncp_lock_ioctl.offset, ncp_lock_ioctl.length, r, errno);
 #endif
-				if (!r)
-					return 0;
+       if (!r)
+	  return 0;
 
-				if (errno == EAGAIN && fl->l_type == F_SETLKW )
-				{
-						sleep(1);
-						continue;
-				}
-				break;
-		}
+       if (errno == EAGAIN && fl->l_type == F_SETLKW)
+	{
+	   sleep(1);
+	   continue;
+	}
+       break;
+    }
 
-	return r;
+   return r;
 }
 
 #else
@@ -175,29 +150,25 @@ ncp_fcntl(int fd, int flag, void *argp)
 int
 ncp_is_ncpfs(int fd)
 {
-	return -1;
+   return -1;
 }
-
 
 int
 ncp_is_ncpfs_filename(char *filename)
 {
-	return -1;
+   return -1;
 }
 
 int
 ncp_openmode(int fd, int exclusive)
 {
-	return 0;
+   return 0;
 }
 
 int
 ncp_fcntl(int fd, int flag, void *argp)
 {
-	return fcntl(fd, flag, argp);
+   return fcntl(fd, flag, argp);
 }
 
-
 #endif
-
-

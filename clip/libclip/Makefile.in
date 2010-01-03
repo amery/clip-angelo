@@ -139,9 +139,6 @@ inst_dir:
 		|| mkdir -p$(V) $(INSTDIR)/keymaps
 	$(E_mkD)[ -d $(INSTDIR)/include ] 						\
 		|| mkdir -p$(V) $(INSTDIR)/include
-	$(E_mkD)[ -d $(INSTDIR)/include/libclipmemdebug ] 	\
-		|| [ ! -d libclipmemdebug ] 							\
-		|| mkdir -p$(V) $(INSTDIR)/include/libclipmemdebug
 	$(E_mkD)[ -d $(INSTDIR)/bin ] 							\
 		|| mkdir -p$(V) $(INSTDIR)/bin
 	$(E_mkD)[ -d $(INSTDIR)/lib ] 							\
@@ -207,7 +204,7 @@ inst_screen:
 
 inst_codb:
 
-inst_ch: $(INST_MEMDEBUG_H)
+inst_ch:# $(INST_MEMDEBUG_H)
 
 inst_memdebug_h:
 	$(E_xx)tar cf - memdebug/malloc.h memdebug/malloc_str.h \

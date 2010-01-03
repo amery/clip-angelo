@@ -18,21 +18,34 @@
 /* ItemFactory has no signals */
 
 /**********************************************************/
-CLIP_DLLEXPORT GtkType _gtk_type_item_factory() { return GTK_TYPE_ITEM_FACTORY; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_item_factory()
+{
+   return GTK_TYPE_ITEM_FACTORY;
+}
 
-long _clip_type_item_factory() { return GTK_OBJECT_ITEM_FACTORY; }
+long
+_clip_type_item_factory()
+{
+   return GTK_OBJECT_ITEM_FACTORY;
+}
 
-const char * _clip_type_name_item_factory()  { return "GTK_OBJECT_ITEM_FACTORY"; }
+const char *
+_clip_type_name_item_factory()
+{
+   return "GTK_OBJECT_ITEM_FACTORY";
+}
 
 int
-clip_INIT___ITEMFACTORY(ClipMachine *cm)
+clip_INIT___ITEMFACTORY(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_item_factory,  _clip_type_name_item_factory,  _gtk_type_item_factory,  NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_item_factory, _clip_type_name_item_factory, _gtk_type_item_factory, NULL, NULL);
+   return 0;
 }
+
 /*
 static void
-__itemfactory_destroy_data(ClipMachine * cm, C_object * co)
+__itemfactory_destroy_data(ClipMachine * ClipMachineMemory, C_object * co)
 {
 	if (co && co->data)
         {
@@ -41,47 +54,57 @@ __itemfactory_destroy_data(ClipMachine * cm, C_object * co)
 }
 */
 static void
-_item_factory_callback1(gpointer data, guint callback_action, GtkWidget *wid)
+_item_factory_callback1(gpointer data, guint callback_action, GtkWidget * wid)
 {
-	C_var *c = (C_var*)data;
-	C_widget *c_wid = _list_get_cwidget(c->cm, wid);
-	ClipVar stack[2];
-	ClipVar res;
-	if (!c_wid)
-		c_wid = _register_widget(c->cm,wid, NULL);
-	if (c_wid)
-	{
-		memset(&stack,0,sizeof(stack)); memset( &res, 0, sizeof(ClipVar) );
-		_clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
-		_clip_mclone(c->co->cmachine, &stack[1], &c_wid->obj);
-		//stack[1] = c_wid->obj;
-		_clip_eval( c->cm, &(c->cfunc), 2, stack, &res );
-		_clip_destroy(c->cm, &res);
-		_clip_destroy(c->cm, &stack[0]);
-		_clip_destroy(c->cm, &stack[1]);
-	}
+   C_var    *c = (C_var *) data;
+
+   C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, wid);
+
+   ClipVar   stack[2];
+
+   ClipVar   res;
+
+   if (!c_wid)
+      c_wid = _register_widget(c->ClipMachineMemory, wid, NULL);
+   if (c_wid)
+    {
+       memset(&stack, 0, sizeof(stack));
+       memset(&res, 0, sizeof(ClipVar));
+       _clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
+       _clip_mclone(c->co->cmachine, &stack[1], &c_wid->obj);
+      //stack[1] = c_wid->obj;
+       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
+       _clip_destroy(c->ClipMachineMemory, &res);
+       _clip_destroy(c->ClipMachineMemory, &stack[0]);
+       _clip_destroy(c->ClipMachineMemory, &stack[1]);
+    }
 }
 
 static void
-_item_factory_callback2(GtkWidget *wid, gpointer data, guint callback_action)
+_item_factory_callback2(GtkWidget * wid, gpointer data, guint callback_action)
 {
-	C_var *c = (C_var*)data;
-	C_widget *c_wid = _list_get_cwidget(c->cm, wid);
-	ClipVar stack[2];
-	ClipVar res;
-	if (!c_wid)
-		c_wid = _register_widget(c->cm,wid, NULL);
-	if (c_wid)
-	{
-		memset(&stack,0,sizeof(stack)); memset( &res, 0, sizeof(ClipVar) );
-		_clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
-		_clip_mclone(c->co->cmachine, &stack[1], &c_wid->obj);
-		//stack[1] = c_wid->obj;
-		_clip_eval( c->cm, &(c->cfunc), 2, stack, &res );
-		_clip_destroy(c->cm, &res);
-		_clip_destroy(c->cm, &stack[0]);
-		_clip_destroy(c->cm, &stack[1]);
-	}
+   C_var    *c = (C_var *) data;
+
+   C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, wid);
+
+   ClipVar   stack[2];
+
+   ClipVar   res;
+
+   if (!c_wid)
+      c_wid = _register_widget(c->ClipMachineMemory, wid, NULL);
+   if (c_wid)
+    {
+       memset(&stack, 0, sizeof(stack));
+       memset(&res, 0, sizeof(ClipVar));
+       _clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
+       _clip_mclone(c->co->cmachine, &stack[1], &c_wid->obj);
+      //stack[1] = c_wid->obj;
+       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
+       _clip_destroy(c->ClipMachineMemory, &res);
+       _clip_destroy(c->ClipMachineMemory, &stack[0]);
+       _clip_destroy(c->ClipMachineMemory, &stack[1]);
+    }
 }
 
 /******************************************************************************
@@ -89,235 +112,278 @@ _item_factory_callback2(GtkWidget *wid, gpointer data, guint callback_action)
 * container_type is  one of :GTK_TYPE_MENU_BAR, GTK_TYPE_MENU or GTK_TYPE_OPTION_MENU
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYNEW(ClipMachine * cm)
+clip_GTK_ITEMFACTORYNEW(ClipMachine * ClipMachineMemory)
 {
-        gint		itype = INT_OPTION(cm, 1, CLIP_GTK_TYPE_MENU_BAR);
-        const gchar     *path = _clip_parc(cm, 2);
-        C_object      *caccel = _fetch_cobject(cm, _clip_spar(cm, 3));
-        C_object       *citem ;
-        GtkItemFactory  *item ;
-        GtkType		 type = 0;
+   gint      itype = INT_OPTION(ClipMachineMemory, 1, CLIP_GTK_TYPE_MENU_BAR);
 
-	CHECKARG(1, NUMERIC_t);
-	CHECKARG(2, CHARACTER_t);
-	CHECKOPT(3, MAP_t); CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
+   const gchar *path = _clip_parc(ClipMachineMemory, 2);
 
-        switch (itype)
-        {
-        	case CLIP_GTK_TYPE_MENU_BAR: type = GTK_TYPE_MENU_BAR; break;
-        	case CLIP_GTK_TYPE_MENU: type = GTK_TYPE_MENU; break;
-        	case CLIP_GTK_TYPE_OPTION_MENU: type = GTK_TYPE_OPTION_MENU; break;
-        }
+   C_object *caccel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	item = gtk_item_factory_new(type, path, GTK_ACCEL_GROUP(caccel->object));
+   C_object *citem;
 
-	if (item)
-	{
-		citem = _list_get_cobject(cm,item);
-		if (!citem) citem = _register_object(cm,item,GTK_TYPE_ITEM_FACTORY,NULL,NULL);
-		if (citem) _clip_mclone(cm,RETPTR(cm),&citem->obj);
-	}
-	return 0;
-err:
-	return 1;
+   GtkItemFactory *item;
+
+   GtkType   type = 0;
+
+   CHECKARG(1, NUMERIC_type_of_ClipVarType);
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+   CHECKOPT(3, MAP_type_of_ClipVarType);
+   CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
+
+   switch (itype)
+    {
+    case CLIP_GTK_TYPE_MENU_BAR:
+       type = GTK_TYPE_MENU_BAR;
+       break;
+    case CLIP_GTK_TYPE_MENU:
+       type = GTK_TYPE_MENU;
+       break;
+    case CLIP_GTK_TYPE_OPTION_MENU:
+       type = GTK_TYPE_OPTION_MENU;
+       break;
+    }
+
+   item = gtk_item_factory_new(type, path, GTK_ACCEL_GROUP(caccel->object));
+
+   if (item)
+    {
+       citem = _list_get_cobject(ClipMachineMemory, item);
+       if (!citem)
+	  citem = _register_object(ClipMachineMemory, item, GTK_TYPE_ITEM_FACTORY, NULL, NULL);
+       if (citem)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citem->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryConstruct( itemFactory, container_type, spath, accel_group ) --> NIL
 * container_type is  one of :GTK_TYPE_MENU_BAR, GTK_TYPE_MENU or GTK_TYPE_OPTION_MENU
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYCONSTRUCT(ClipMachine * cm)
+clip_GTK_ITEMFACTORYCONSTRUCT(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        GtkType		 type = INT_OPTION(cm, 2, GTK_TYPE_MENU_BAR);
-        const gchar     *path = _clip_parc(cm, 3);
-        C_object      *caccel = _fetch_cobject(cm, _clip_spar(cm, 4));
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-	CHECKARG(2, NUMERIC_t);
-	CHECKARG(3, CHARACTER_t);
-	CHECKOPT(4, MAP_t); CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
+   GtkType   type = INT_OPTION(ClipMachineMemory, 2, GTK_TYPE_MENU_BAR);
 
-	gtk_item_factory_construct(GTK_ITEM_FACTORY(citem->object), type,
-		path, GTK_ACCEL_GROUP(caccel->object));
+   const gchar *path = _clip_parc(ClipMachineMemory, 3);
 
-	return 0;
-err:
-	return 1;
+   C_object *caccel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 4));
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, CHARACTER_type_of_ClipVarType);
+   CHECKOPT(4, MAP_type_of_ClipVarType);
+   CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
+
+   gtk_item_factory_construct(GTK_ITEM_FACTORY(citem->object), type, path, GTK_ACCEL_GROUP(caccel->object));
+
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryAddForeign( accel_widget, sfull_path, accel_group, nkeyvalue, modifiers ) --> NIL
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYADDFOREIGN(ClipMachine * cm)
+clip_GTK_ITEMFACTORYADDFOREIGN(ClipMachine * ClipMachineMemory)
 {
-        C_widget        *cwid = _fetch_cw_arg(cm);
-        const gchar     *path = _clip_parc(cm, 2);
-        C_object      *caccel = _fetch_cobject(cm, _clip_spar(cm, 3));
-        gint           keyval = _clip_parni(cm, 4);
-        GdkModifierType	 type = _clip_parni(cm, 5);
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCWID(cwid, GTK_IS_WIDGET);
-	CHECKARG(2, CHARACTER_t);
-	CHECKOPT(3, MAP_t); CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
-	CHECKARG(4, NUMERIC_t);
-	CHECKARG(5, NUMERIC_t);
+   const gchar *path = _clip_parc(ClipMachineMemory, 2);
 
-	gtk_item_factory_add_foreign(GTK_WIDGET(cwid->widget),
-		path, GTK_ACCEL_GROUP(caccel->object), keyval, type);
+   C_object *caccel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	return 0;
-err:
-	return 1;
+   gint      keyval = _clip_parni(ClipMachineMemory, 4);
+
+   GdkModifierType type = _clip_parni(ClipMachineMemory, 5);
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+   CHECKOPT(3, MAP_type_of_ClipVarType);
+   CHECKCOBJOPT(caccel, GTK_IS_ACCEL_GROUP(caccel->object));
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+
+   gtk_item_factory_add_foreign(GTK_WIDGET(cwid->widget), path, GTK_ACCEL_GROUP(caccel->object), keyval, type);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_ItemFactoryFromWidget( widget ) --> itemFactory
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYFROMWIDGET(ClipMachine * cm)
+clip_GTK_ITEMFACTORYFROMWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_widget        *cwid = _fetch_cw_arg(cm);
-        C_object       *citem ;
-        GtkItemFactory  *item;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCWID(cwid, GTK_IS_WIDGET);
+   C_object *citem;
 
-	item = gtk_item_factory_from_widget(GTK_WIDGET(cwid->widget));
+   GtkItemFactory *item;
 
-	if (item)
-	{
-		citem = _list_get_cobject(cm,item);
-		if (!citem) citem = _register_object(cm,item,GTK_TYPE_ITEM_FACTORY,NULL,NULL);
-		if (citem) _clip_mclone(cm,RETPTR(cm),&citem->obj);
-	}
-	return 0;
-err:
-	return 1;
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+
+   item = gtk_item_factory_from_widget(GTK_WIDGET(cwid->widget));
+
+   if (item)
+    {
+       citem = _list_get_cobject(ClipMachineMemory, item);
+       if (!citem)
+	  citem = _register_object(ClipMachineMemory, item, GTK_TYPE_ITEM_FACTORY, NULL, NULL);
+       if (citem)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citem->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryPathFromWidget( widget ) --> spath
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYPATHFROMWIDGET(ClipMachine * cm)
+clip_GTK_ITEMFACTORYPATHFROMWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_widget        *cwid = _fetch_cw_arg(cm);
-        gchar            *str ;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCWID(cwid, GTK_IS_WIDGET);
+   gchar    *str;
 
-	str = (gchar *)gtk_item_factory_path_from_widget(GTK_WIDGET(cwid->widget));
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
 
-	_clip_retc(cm, str);
-	return 0;
-err:
-	return 1;
+   str = (gchar *) gtk_item_factory_path_from_widget(GTK_WIDGET(cwid->widget));
+
+   _clip_retc(ClipMachineMemory, str);
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryGetItem( itemFactory, spath ) --> widget
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYGETITEM(ClipMachine * cm)
+clip_GTK_ITEMFACTORYGETITEM(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        const gchar     *path = _clip_parc(cm, 2);
-        GtkWidget        *wid ;
-        C_widget        *cwid ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, CHARACTER_t);
+   const gchar *path = _clip_parc(ClipMachineMemory, 2);
 
-	wid = gtk_item_factory_get_item(GTK_ITEM_FACTORY(citem->object), path);
+   GtkWidget *wid;
 
-	if (!wid) goto err;
-	cwid = _register_widget(cm, wid, NULL);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid;
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   wid = gtk_item_factory_get_item(GTK_ITEM_FACTORY(citem->object), path);
+
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, NULL);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryGetWidget( itemFactory, spath ) --> widget
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYGETWIDGET(ClipMachine * cm)
+clip_GTK_ITEMFACTORYGETWIDGET(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        const gchar     *path = _clip_parc(cm, 2);
-        GtkWidget        *wid ;
-        C_widget        *cwid ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, CHARACTER_t);
+   const gchar *path = _clip_parc(ClipMachineMemory, 2);
 
-	wid = gtk_item_factory_get_widget(GTK_ITEM_FACTORY(citem->object), path);
+   GtkWidget *wid;
 
-	if (!wid) goto err;
-	cwid = _register_widget(cm, wid, NULL);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid;
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
+
+   wid = gtk_item_factory_get_widget(GTK_ITEM_FACTORY(citem->object), path);
+
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, NULL);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_ItemFactoryGetWidgetByAction( itemFactory, naction ) --> widget
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYGETWIDGETBYACTION(ClipMachine * cm)
+clip_GTK_ITEMFACTORYGETWIDGETBYACTION(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        gint           action = _clip_parni(cm, 2);
-        GtkWidget        *wid ;
-        C_widget        *cwid ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, NUMERIC_t);
+   gint      action = _clip_parni(ClipMachineMemory, 2);
 
-	wid = gtk_item_factory_get_widget_by_action(
-		GTK_ITEM_FACTORY(citem->object), action);
+   GtkWidget *wid;
 
-	if (!wid) goto err;
-	cwid = _register_widget(cm, wid, NULL);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid;
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   wid = gtk_item_factory_get_widget_by_action(GTK_ITEM_FACTORY(citem->object), action);
+
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, NULL);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_ItemFactoryGetItemByAction( itemFactory, naction ) --> widget
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYGETITEMBYACTION(ClipMachine * cm)
+clip_GTK_ITEMFACTORYGETITEMBYACTION(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        gint           action = _clip_parni(cm, 2);
-        GtkWidget        *wid ;
-        C_widget        *cwid ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, NUMERIC_t);
+   gint      action = _clip_parni(ClipMachineMemory, 2);
 
-	wid = gtk_item_factory_get_item_by_action(
-		GTK_ITEM_FACTORY(citem->object), action);
+   GtkWidget *wid;
 
-	if (!wid) goto err;
-	cwid = _register_widget(cm, wid, NULL);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid;
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+
+   wid = gtk_item_factory_get_item_by_action(GTK_ITEM_FACTORY(citem->object), action);
+
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, NULL);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
@@ -345,193 +411,257 @@ err:
 * 	"<LastBranch>"	-> create a right justified item to hold sub items
 *****************************************************************************/
 int
-clip_GTK_ITEMFACTORYCREATEITEM(ClipMachine * cm)
+clip_GTK_ITEMFACTORYCREATEITEM(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        ClipArrVar   *cventry = (ClipArrVar *)_clip_vptr(_clip_par(cm, 2));
-        gint             type = INT_OPTION(cm, 3, 1);
-        GtkItemFactoryEntry entry ;
-	ClipVar *cfunc ;
-        C_var		*data ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, ARRAY_t);
-        CHECKARG(3, NUMERIC_t);
+   ClipArrVar *cventry = (ClipArrVar *) _clip_vptr(_clip_par(ClipMachineMemory, 2));
 
+   gint      type = INT_OPTION(ClipMachineMemory, 3, 1);
 
+   GtkItemFactoryEntry entry;
 
+   ClipVar  *cfunc;
 
-        entry.path = (cventry->items[0].t.type==UNDEF_t)?NULL:cventry->items[0].s.str.buf;
-        entry.accelerator = (cventry->items[1].t.type==UNDEF_t)?NULL:cventry->items[1].s.str.buf;
+   C_var    *data;
 
-	cfunc = &cventry->items[2];
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, ARRAY_type_of_ClipVarType);
+   CHECKARG(3, NUMERIC_type_of_ClipVarType);
 
-	data = NEW(C_var);
-	data->cm = cm; data->co = citem;
-	_clip_mclone(cm, &data->cfunc, cfunc);
+   entry.path =
+    (cventry->ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[0].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
+   entry.accelerator =
+    (cventry->ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[1].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
 
-        if (type == 1)
-               	entry.callback = (cfunc==NULL)?0:(GtkItemFactoryCallback1)_item_factory_callback1;
-        else
-               	entry.callback = (cfunc==NULL)?0:(GtkItemFactoryCallback2)_item_factory_callback2;
+   cfunc = &cventry->ClipVar_items_of_ClipArrVar[2];
 
-	entry.callback_action = (cventry->items[3].t.type==UNDEF_t)?0:(guint)cventry->items[3].n.d;
-	entry.item_type = (cventry->items[4].t.type==UNDEF_t)?NULL:cventry->items[4].s.str.buf;
+   data = NEW(C_var);
+   data->ClipMachineMemory = ClipMachineMemory;
+   data->co = citem;
+   _clip_mclone(ClipMachineMemory, &data->cfunc, cfunc);
 
-	gtk_item_factory_create_item(GTK_ITEM_FACTORY(citem->object), &entry,
-		data, type);
+   if (type == 1)
+      entry.callback = (cfunc == NULL) ? 0 : (GtkItemFactoryCallback1) _item_factory_callback1;
+   else
+      entry.callback = (cfunc == NULL) ? 0 : (GtkItemFactoryCallback2) _item_factory_callback2;
 
-	return 0;
-err:
-	return 1;
+   entry.callback_action =
+    (cventry->ClipVar_items_of_ClipArrVar[3].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? 0 : (guint) cventry->ClipVar_items_of_ClipArrVar[3].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+   entry.item_type =
+    (cventry->ClipVar_items_of_ClipArrVar[4].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[4].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
+
+   gtk_item_factory_create_item(GTK_ITEM_FACTORY(citem->object), &entry, data, type);
+
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryCreateItems( itemFactory, array_entry ) --> NIL
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYCREATEITEMS(ClipMachine * cm)
+clip_GTK_ITEMFACTORYCREATEITEMS(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        ClipArrVar   *cventry = (ClipArrVar *)_clip_vptr(_clip_par(cm, 2));
-        gint             i, n ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, ARRAY_t);
+   ClipArrVar *cventry = (ClipArrVar *) _clip_vptr(_clip_par(ClipMachineMemory, 2));
 
-	n = cventry->count;
+   gint      i, n;
 
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, ARRAY_type_of_ClipVarType);
 
-	for (i=0; i<n; i++)
-        {
-         	ClipArrVar *it = (ClipArrVar *)_clip_vptr(cventry->items[i].a.items);
-		ClipVar *cfunc ;
-        	C_var       *c ;
-                GtkItemFactoryEntry entry;
+   n = cventry->count_of_ClipArrVar;
 
-         	entry.path = (it->items[0].t.type==UNDEF_t)?NULL:it->items[0].s.str.buf;
-         	entry.accelerator = (it->items[1].t.type==UNDEF_t)?NULL:it->items[1].s.str.buf;
+   for (i = 0; i < n; i++)
+    {
+       ClipArrVar *it =
+	(ClipArrVar *) _clip_vptr(cventry->ClipVar_items_of_ClipArrVar[i].ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar);
+       ClipVar  *cfunc;
 
-		cfunc = (it->items[2].t.type==UNDEF_t)?NULL:&it->items[2];
+       C_var    *c;
 
+       GtkItemFactoryEntry entry;
 
-		c = NEW(C_var);
-		c->cm = cm; c->co = citem;
-		_clip_mclone(cm, &c->cfunc, cfunc);
+       entry.path =
+	(it->ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : it->ClipVar_items_of_ClipArrVar[0].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
+       entry.accelerator =
+	(it->ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : it->ClipVar_items_of_ClipArrVar[1].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
 
-                entry.callback = (cfunc==NULL)?0:(GtkItemFactoryCallback1)_item_factory_callback1;
+       cfunc =
+	(it->ClipVar_items_of_ClipArrVar[2].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : &it->ClipVar_items_of_ClipArrVar[2];
 
-		entry.callback_action = 1;
-		entry.item_type = (it->items[4].t.type==UNDEF_t)?0:it->items[4].s.str.buf;
-                //citem->destroy = __itemfactory_destroy_data;
-                //citem->data = c;
-		gtk_item_factory_create_item(GTK_ITEM_FACTORY(citem->object), &entry,
-			c, 1);
-        }
+       c = NEW(C_var);
+       c->ClipMachineMemory = ClipMachineMemory;
+       c->co = citem;
+       _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
 
-	return 0;
-err:
-	return 1;
+       entry.callback = (cfunc == NULL) ? 0 : (GtkItemFactoryCallback1) _item_factory_callback1;
+
+       entry.callback_action = 1;
+       entry.item_type =
+	(it->ClipVar_items_of_ClipArrVar[4].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? 0 : it->ClipVar_items_of_ClipArrVar[4].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
+      //citem->destroy = __itemfactory_destroy_data;
+      //citem->data = c;
+       gtk_item_factory_create_item(GTK_ITEM_FACTORY(citem->object), &entry, c, 1);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
-
 
 /******************************************************************************
 * gtk_ItemFactoryDeleteItem( itemFactory, spath ) --> NIL
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYDELETEITEM(ClipMachine * cm)
+clip_GTK_ITEMFACTORYDELETEITEM(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        const gchar     *path = _clip_parc(cm, 2);
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, CHARACTER_t);
+   const gchar *path = _clip_parc(ClipMachineMemory, 2);
 
-	gtk_item_factory_delete_item(GTK_ITEM_FACTORY(citem->object), path );
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_item_factory_delete_item(GTK_ITEM_FACTORY(citem->object), path);
+
+   return 0;
+ err:
+   return 1;
 }
+
 /******************************************************************************
 * gtk_ItemFactoryDeleteEntry( itemFactory, entry ) --> NIL
 *****************************************************************************/
 int
-clip_GTK_ITEMFACTORYDELETEENTRY(ClipMachine * cm)
+clip_GTK_ITEMFACTORYDELETEENTRY(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        ClipArrVar   *cventry = (ClipArrVar *)_clip_vptr(_clip_par(cm, 2));
-        GtkItemFactoryEntry entry ;
-	ClipVar *cfunc ;
-        C_var		*data ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, ARRAY_t);
+   ClipArrVar *cventry = (ClipArrVar *) _clip_vptr(_clip_par(ClipMachineMemory, 2));
 
-        entry.path = (cventry->items[0].t.type==UNDEF_t)?NULL:cventry->items[0].s.str.buf;
-        entry.accelerator = (cventry->items[1].t.type==UNDEF_t)?NULL:cventry->items[1].s.str.buf;
+   GtkItemFactoryEntry entry;
 
-	cfunc = &cventry->items[2];
+   ClipVar  *cfunc;
 
-	data = NEW(C_var);
-	data->cm = cm; data->co = citem;
-	_clip_mclone(cm, &data->cfunc, cfunc);
+   C_var    *data;
 
-        entry.callback = (cfunc==NULL)?0:(GtkItemFactoryCallback1)_item_factory_callback1;
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, ARRAY_type_of_ClipVarType);
 
-	entry.callback_action = (cventry->items[3].t.type==UNDEF_t)?0:(guint)cventry->items[3].n.d;
-	entry.item_type = (cventry->items[4].t.type==UNDEF_t)?NULL:cventry->items[4].s.str.buf;
+   entry.path =
+    (cventry->ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[0].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
+   entry.accelerator =
+    (cventry->ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[1].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
 
-	gtk_item_factory_delete_entry(GTK_ITEM_FACTORY(citem->object), &entry);
+   cfunc = &cventry->ClipVar_items_of_ClipArrVar[2];
 
-	return 0;
-err:
-	return 1;
+   data = NEW(C_var);
+   data->ClipMachineMemory = ClipMachineMemory;
+   data->co = citem;
+   _clip_mclone(ClipMachineMemory, &data->cfunc, cfunc);
+
+   entry.callback = (cfunc == NULL) ? 0 : (GtkItemFactoryCallback1) _item_factory_callback1;
+
+   entry.callback_action =
+    (cventry->ClipVar_items_of_ClipArrVar[3].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? 0 : (guint) cventry->ClipVar_items_of_ClipArrVar[3].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+   entry.item_type =
+    (cventry->ClipVar_items_of_ClipArrVar[4].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+     UNDEF_type_of_ClipVarType) ? NULL : cventry->ClipVar_items_of_ClipArrVar[4].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+    buf_of_ClipBuf;
+
+   gtk_item_factory_delete_entry(GTK_ITEM_FACTORY(citem->object), &entry);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
 * gtk_ItemFactoryDeleteEntries( itemFactory, array_entry ) --> NIL
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYDELETEENTRIES(ClipMachine * cm)
+clip_GTK_ITEMFACTORYDELETEENTRIES(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        ClipArrVar   *cventry = (ClipArrVar *)_clip_vptr(_clip_par(cm, 2));
-        gint             i, n ;
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, ARRAY_t);
+   ClipArrVar *cventry = (ClipArrVar *) _clip_vptr(_clip_par(ClipMachineMemory, 2));
 
-	n = cventry->count;
+   gint      i, n;
 
-	for (i=0; i<n; i++)
-        {
-         	ClipArrVar *it = (ClipArrVar *)_clip_vptr(cventry->items[i].a.items);
-		ClipVar *cfunc ;
-        	C_var       *c ;
-                GtkItemFactoryEntry entry;
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, ARRAY_type_of_ClipVarType);
 
-         	entry.path = (it->items[0].t.type==UNDEF_t)?NULL:it->items[0].s.str.buf;
-         	entry.accelerator = (it->items[1].t.type==UNDEF_t)?NULL:it->items[1].s.str.buf;
+   n = cventry->count_of_ClipArrVar;
 
-		cfunc = (it->items[2].t.type==UNDEF_t)?NULL:&it->items[2];
+   for (i = 0; i < n; i++)
+    {
+       ClipArrVar *it =
+	(ClipArrVar *) _clip_vptr(cventry->ClipVar_items_of_ClipArrVar[i].ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar);
+       ClipVar  *cfunc;
 
+       C_var    *c;
 
-		c = NEW(C_var);
-		c->cm = cm; c->co = citem;
-		_clip_mclone(cm, &c->cfunc, cfunc);
+       GtkItemFactoryEntry entry;
 
-                entry.callback = (cfunc==NULL)?0:(GtkItemFactoryCallback1)_item_factory_callback1;
+       entry.path =
+	(it->ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : it->ClipVar_items_of_ClipArrVar[0].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
+       entry.accelerator =
+	(it->ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : it->ClipVar_items_of_ClipArrVar[1].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
 
-		entry.callback_action = 1;
-		entry.item_type = (it->items[4].t.type==UNDEF_t)?0:it->items[4].s.str.buf;
-		gtk_item_factory_delete_entry(GTK_ITEM_FACTORY(citem->object), &entry);
-        }
+       cfunc =
+	(it->ClipVar_items_of_ClipArrVar[2].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? NULL : &it->ClipVar_items_of_ClipArrVar[2];
 
-	return 0;
-err:
-	return 1;
+       c = NEW(C_var);
+       c->ClipMachineMemory = ClipMachineMemory;
+       c->co = citem;
+       _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
+
+       entry.callback = (cfunc == NULL) ? 0 : (GtkItemFactoryCallback1) _item_factory_callback1;
+
+       entry.callback_action = 1;
+       entry.item_type =
+	(it->ClipVar_items_of_ClipArrVar[4].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	 UNDEF_type_of_ClipVarType) ? 0 : it->ClipVar_items_of_ClipArrVar[4].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.
+	buf_of_ClipBuf;
+       gtk_item_factory_delete_entry(GTK_ITEM_FACTORY(citem->object), &entry);
+    }
+
+   return 0;
+ err:
+   return 1;
 }
 
 /******************************************************************************
@@ -539,26 +669,28 @@ err:
 * itemFactory of type GLIP_GTK_TYPE_MENU
 ******************************************************************************/
 int
-clip_GTK_ITEMFACTORYPOPUP(ClipMachine * cm)
+clip_GTK_ITEMFACTORYPOPUP(ClipMachine * ClipMachineMemory)
 {
-        C_object       *citem = _fetch_co_arg(cm);
-        gint                x = _clip_parni(cm, 2);
-        gint                y = _clip_parni(cm, 3);
-        gint     mouse_button = _clip_parni(cm, 4);
-        guint32          time = _clip_parni(cm, 5);
+   C_object *citem = _fetch_co_arg(ClipMachineMemory);
 
-	CHECKARG(1, MAP_t); CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
-        CHECKARG(2, NUMERIC_t);
-        CHECKARG(3, NUMERIC_t);
-        CHECKARG(4, NUMERIC_t);
-        CHECKARG(5, NUMERIC_t);
+   gint      x = _clip_parni(ClipMachineMemory, 2);
 
-	gtk_item_factory_popup(GTK_ITEM_FACTORY(citem->object), x, y,
-        	mouse_button, time );
+   gint      y = _clip_parni(ClipMachineMemory, 3);
 
-	return 0;
-err:
-	return 1;
+   gint      mouse_button = _clip_parni(ClipMachineMemory, 4);
+
+   guint32   time = _clip_parni(ClipMachineMemory, 5);
+
+   CHECKARG(1, MAP_type_of_ClipVarType);
+   CHECKCOBJ(citem, GTK_IS_ITEM_FACTORY(citem->object));
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, NUMERIC_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+
+   gtk_item_factory_popup(GTK_ITEM_FACTORY(citem->object), x, y, mouse_button, time);
+
+   return 0;
+ err:
+   return 1;
 }
-
-

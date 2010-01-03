@@ -2,27 +2,13 @@
     Copyright (C) 2001  ITK
     Author   : Paul Lasarev <paul@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
+
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
+
 */
 %{
-/*
-$Log: clic_c.lex,v $
-Revision 1.1  2006/06/22 19:35:15  itk
-uri: init sf.net repository
-
-Revision 1.5  2004/04/21 08:06:53  clip
-uri: some fix for new flex
-
-Revision 1.4  2001/04/03 09:17:00  clip
-license errors
-paul
-
-Revision 1.3  2001/03/30 11:51:02  clip
-add copyright
-
-Revision 1.2  1999/10/26 19:11:17  paul
-start cvs logging
-
-*/
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>

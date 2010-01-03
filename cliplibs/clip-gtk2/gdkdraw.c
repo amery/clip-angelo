@@ -17,53 +17,71 @@
 
 /**********************************************************/
 int
-clip_GDK_DRAWABLEGETIMAGE(ClipMachine * cm)
+clip_GDK_DRAWABLEGETIMAGE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	gint             x = _clip_parni(cm,2);
-	gint             y = _clip_parni(cm,3);
-	gint         width = _clip_parni(cm,4);
-	gint        height = _clip_parni(cm,5);
-	GdkDrawable *drw = NULL;
-        GdkImage    *img ;
-        C_object   *cimg ;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG(2,NUMERIC_t);  CHECKARG(3,NUMERIC_t);
-	CHECKARG(4,NUMERIC_t);  CHECKARG(4,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	img = gdk_drawable_get_image(drw, x,y, width,height);
-        if (img)
-        {
-        	cimg = _list_get_cobject(cm, img);
-		if (!cimg) cimg = _register_object(cm,img,GDK_TYPE_IMAGE, NULL, NULL);
-		if (cimg) _clip_mclone(cm, RETPTR(cm),&cimg->obj);
-        }
-	return 0;
-err:
-	return 1;
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      width = _clip_parni(ClipMachineMemory, 4);
+
+   gint      height = _clip_parni(ClipMachineMemory, 5);
+
+   GdkDrawable *drw = NULL;
+
+   GdkImage *img;
+
+   C_object *cimg;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG(2, NUMERIC_type_of_ClipVarType);
+   CHECKARG(3, NUMERIC_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   img = gdk_drawable_get_image(drw, x, y, width, height);
+   if (img)
+    {
+       cimg = _list_get_cobject(ClipMachineMemory, img);
+       if (!cimg)
+	  cimg = _register_object(ClipMachineMemory, img, GDK_TYPE_IMAGE, NULL, NULL);
+       if (cimg)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cimg->obj);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWABLESETCOLORMAP(ClipMachine * cm)
+clip_GDK_DRAWABLESETCOLORMAP(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *ccm = _fetch_cobject(cm,_clip_spar(cm,2));
-	GdkDrawable *drw = NULL;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(ccm,GDK_IS_COLORMAP(ccm->object));
+   C_object *ccm = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   GdkDrawable *drw = NULL;
 
-	gdk_drawable_set_colormap(drw, GDK_COLORMAP(ccm->object));
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(ccm, GDK_IS_COLORMAP(ccm->object));
 
-	return 0;
-err:
-	return 1;
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   gdk_drawable_set_colormap(drw, GDK_COLORMAP(ccm->object));
+
+   return 0;
+ err:
+   return 1;
 }
+
 /* Draws a rectangular outline or filled rectangle, using the foreground
  * color and other attributes of the GdkGC. */
 
@@ -74,27 +92,41 @@ err:
  * rectangle with corners at (0, 0), (0, 20), (20, 20), and (20, 0), which makes
  * it 21 pixels wide and 21 pixels high. */
 int
-clip_GDK_DRAWRECTANGLE(ClipMachine * cm)
+clip_GDK_DRAWRECTANGLE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint        filled = BOOL_OPTION(cm,3,TRUE);
-	gint             x = _clip_parni(cm,4);
-	gint             y = _clip_parni(cm,5);
-	gint         width = _clip_parni(cm,6);
-	gint        height = _clip_parni(cm,7);
-	GdkDrawable *drw = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKOPT2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKOPT(3,LOGICAL_t); CHECKOPT(4,NUMERIC_t);  CHECKOPT(5,NUMERIC_t);
-	CHECKOPT(6,NUMERIC_t);  CHECKOPT(7,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_rectangle(drw, GDK_GC(cgc->object), filled, x,y, width,height);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   gint      filled = BOOL_OPTION(ClipMachineMemory, 3, TRUE);
+
+   gint      x = _clip_parni(ClipMachineMemory, 4);
+
+   gint      y = _clip_parni(ClipMachineMemory, 5);
+
+   gint      width = _clip_parni(ClipMachineMemory, 6);
+
+   gint      height = _clip_parni(ClipMachineMemory, 7);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKOPT(3, LOGICAL_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(7, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_rectangle(drw, GDK_GC(cgc->object), filled, x, y, width, height);
+   return 0;
+ err:
+   return 1;
 }
+
 /*
 gc : a GdkGC.
 filled : TRUE if the arc should be filled, producing a 'pie slice'.
@@ -107,452 +139,600 @@ angle2 : the end angle of the arc, relative to angle1, in 1/64ths of a degree.
 */
 
 int
-clip_GDK_DRAWARC(ClipMachine * cm)
+clip_GDK_DRAWARC(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint        filled = BOOL_OPTION(cm,3,TRUE);
-	gint             x = _clip_parni(cm,4);
-	gint             y = _clip_parni(cm,5);
-	gint         width = _clip_parni(cm,6);
-	gint        height = _clip_parni(cm,7);
-	gint        angle1 = _clip_parni(cm,8);
-	gint        angle2 = _clip_parni(cm,9);
-	GdkDrawable *drw = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKOPT2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKOPT(3,LOGICAL_t); CHECKOPT(4,NUMERIC_t);  CHECKOPT(5,NUMERIC_t);
-	CHECKOPT(6,NUMERIC_t);  CHECKOPT(7,NUMERIC_t);
-	CHECKOPT(8,NUMERIC_t);  CHECKOPT(9,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_arc(drw, GDK_GC(cgc->object), filled,
-		x, y, width, height, angle1, angle2);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   gint      filled = BOOL_OPTION(ClipMachineMemory, 3, TRUE);
+
+   gint      x = _clip_parni(ClipMachineMemory, 4);
+
+   gint      y = _clip_parni(ClipMachineMemory, 5);
+
+   gint      width = _clip_parni(ClipMachineMemory, 6);
+
+   gint      height = _clip_parni(ClipMachineMemory, 7);
+
+   gint      angle1 = _clip_parni(ClipMachineMemory, 8);
+
+   gint      angle2 = _clip_parni(ClipMachineMemory, 9);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKOPT(3, LOGICAL_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(7, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(8, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(9, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_arc(drw, GDK_GC(cgc->object), filled, x, y, width, height, angle1, angle2);
+   return 0;
+ err:
+   return 1;
 }
 
 /* Alena */
 int
-clip_GDK_DRAWPOINT(ClipMachine *cm)
+clip_GDK_DRAWPOINT(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint             x = _clip_parni(cm,3);
-	gint             y = _clip_parni(cm,4);
-	GdkDrawable *drw = NULL;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG(3,NUMERIC_t);  CHECKARG(4,NUMERIC_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_point(drw, GDK_GC(cgc->object), x, y);
-	return 0;
-err:
-	return 1;
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG(3, NUMERIC_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_point(drw, GDK_GC(cgc->object), x, y);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWPOINTS(ClipMachine *cm)
+clip_GDK_DRAWPOINTS(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-        ClipVar      *carr = _clip_spar(cm, 3);
-	GdkDrawable   *drw = NULL;
-        GdkPoint       *gp = NULL;
-        ClipArrVar    *cgp = NULL;
-        int              i ;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG(3,ARRAY_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        cgp = (ClipArrVar*)_clip_vptr(carr);
-	gp = malloc(cgp->count * sizeof(GdkPoint));
-	for(i=0; i<cgp->count; i++)
-        {
-        	ClipArrVar *ca;
-        	if (cgp->items[i].t.type != ARRAY_t)
-                	goto err;
-        	ca = (ClipArrVar*)_clip_vptr(((ClipVar*)&cgp->items[i]));
-        	gp[i].x = (gint)((ClipVar*)&ca->items[0])->n.d;
-        	gp[i].y = (gint)((ClipVar*)&ca->items[1])->n.d;
-	}
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_points(drw, GDK_GC(cgc->object), gp, cgp->count);
-	free(gp);
-	return 0;
-err:
-	return 1;
+   ClipVar  *carr = _clip_spar(ClipMachineMemory, 3);
+
+   GdkDrawable *drw = NULL;
+
+   GdkPoint *gp = NULL;
+
+   ClipArrVar *cgp = NULL;
+
+   int       i;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG(3, ARRAY_type_of_ClipVarType);
+
+   cgp = (ClipArrVar *) _clip_vptr(carr);
+   gp = malloc(cgp->count_of_ClipArrVar * sizeof(GdkPoint));
+   for (i = 0; i < cgp->count_of_ClipArrVar; i++)
+    {
+       ClipArrVar *ca;
+
+       if (cgp->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != ARRAY_type_of_ClipVarType)
+	  goto err;
+       ca = (ClipArrVar *) _clip_vptr(((ClipVar *) & cgp->ClipVar_items_of_ClipArrVar[i]));
+       gp[i].x = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[0])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       gp[i].y = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[1])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+    }
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_points(drw, GDK_GC(cgc->object), gp, cgp->count_of_ClipArrVar);
+   free(gp);
+   return 0;
+ err:
+   return 1;
 }
+
 /* Draws a line, using the foreground color and other attributes of the GdkGC. */
 int
-clip_GDK_DRAWLINE(ClipMachine *cm)
+clip_GDK_DRAWLINE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint            x1 = _clip_parni(cm,3);
-	gint            y1 = _clip_parni(cm,4);
-	gint            x2 = _clip_parni(cm,5);
-	gint            y2 = _clip_parni(cm,6);
-	GdkDrawable *drw = NULL;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKOPT2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKOPT(3,NUMERIC_t);  CHECKOPT(4,NUMERIC_t);
-	CHECKOPT(5,NUMERIC_t);  CHECKOPT(6,NUMERIC_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_line(drw, GDK_GC(cgc->object), x1, y1, x2, y2);
-	return 0;
-err:
-	return 1;
+   gint      x1 = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y1 = _clip_parni(ClipMachineMemory, 4);
+
+   gint      x2 = _clip_parni(ClipMachineMemory, 5);
+
+   gint      y2 = _clip_parni(ClipMachineMemory, 6);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, NUMERIC_type_of_ClipVarType);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_line(drw, GDK_GC(cgc->object), x1, y1, x2, y2);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWLINES(ClipMachine *cm)
+clip_GDK_DRAWLINES(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-        ClipVar      *carr = _clip_spar(cm, 3);
-	GdkDrawable   *drw = NULL;
-        GdkPoint       *gp = NULL;
-        ClipArrVar    *cgp ;
-        int              i ;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG(3,ARRAY_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        cgp = (ClipArrVar*)_clip_vptr(carr);
-	gp = malloc(cgp->count * sizeof(GdkPoint));
-	for(i=0; i<cgp->count; i++)
-        {
-        	ClipArrVar *ca;
-        	if (cgp->items[i].t.type != ARRAY_t)
-                	goto err;
-        	ca = (ClipArrVar*)_clip_vptr(((ClipVar*)&cgp->items[i]));
-        	gp[i].x = (gint)((ClipVar*)&ca->items[0])->n.d;
-        	gp[i].y = (gint)((ClipVar*)&ca->items[1])->n.d;
-	}
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_lines(drw, GDK_GC(cgc->object), gp, cgp->count);
-	free(gp);
-	return 0;
-err:
-	return 1;
+   ClipVar  *carr = _clip_spar(ClipMachineMemory, 3);
+
+   GdkDrawable *drw = NULL;
+
+   GdkPoint *gp = NULL;
+
+   ClipArrVar *cgp;
+
+   int       i;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG(3, ARRAY_type_of_ClipVarType);
+
+   cgp = (ClipArrVar *) _clip_vptr(carr);
+   gp = malloc(cgp->count_of_ClipArrVar * sizeof(GdkPoint));
+   for (i = 0; i < cgp->count_of_ClipArrVar; i++)
+    {
+       ClipArrVar *ca;
+
+       if (cgp->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != ARRAY_type_of_ClipVarType)
+	  goto err;
+       ca = (ClipArrVar *) _clip_vptr(((ClipVar *) & cgp->ClipVar_items_of_ClipArrVar[i]));
+       gp[i].x = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[0])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       gp[i].y = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[1])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+    }
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_lines(drw, GDK_GC(cgc->object), gp, cgp->count_of_ClipArrVar);
+   free(gp);
+   return 0;
+ err:
+   return 1;
 }
+
 /* Draws a number of characters in the given font or fontset. */
 int
-clip_GDK_DRAWTEXT(ClipMachine *cm)
+clip_GDK_DRAWTEXT(ClipMachine * ClipMachineMemory)
 {
-	C_widget      *cwid = _fetch_cw_arg(cm);
-	C_object       *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	C_object      *font = _fetch_cobject(cm,_clip_spar(cm,3));
-	gint              x = _clip_parni(cm,4);
-	gint              y = _clip_parni(cm,5);
-        gchar         *text = _clip_parc(cm,6);
-	gint         length = _clip_parni(cm,7);
-	GdkDrawable    *drw = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKOPT2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKOPT2(3,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_FONT(font));
-	CHECKOPT(4,NUMERIC_t);  CHECKOPT(5,NUMERIC_t);
-	CHECKOPT(6,CHARACTER_t);  CHECKOPT(7,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	LOCALE_TO_UTF(text);
-	gdk_draw_text(drw, GDK_FONT(font->object), GDK_GC(cgc->object), x, y, text, length);
-	FREE_TEXT(text);
-	return 0;
-err:
-	return 1;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   C_object *font = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
+   gint      x = _clip_parni(ClipMachineMemory, 4);
+
+   gint      y = _clip_parni(ClipMachineMemory, 5);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 6);
+
+   gint      length = _clip_parni(ClipMachineMemory, 7);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKOPT2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_FONT(font));
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, CHARACTER_type_of_ClipVarType);
+   CHECKOPT(7, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   LOCALE_TO_UTF(text);
+   gdk_draw_text(drw, GDK_FONT(font->object), GDK_GC(cgc->object), x, y, text, length);
+   FREE_TEXT(text);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWPIXMAP(ClipMachine * cm)
+clip_GDK_DRAWPIXMAP(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	C_widget     *cpix = _fetch_cwidget(cm,_clip_spar(cm,3));
-	gint          xsrc = _clip_parni(cm,4);
-	gint          ysrc = _clip_parni(cm,5);
-	gint         xdest = _clip_parni(cm,6);
-	gint         ydest = _clip_parni(cm,7);
-	gint         width = _clip_parni(cm,8);
-	gint        height = _clip_parni(cm,9);
-	GdkDrawable *drw = NULL;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG2(1,NUMERIC_t,MAP_t); CHECKCWID(cwid, GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG2(3,NUMERIC_t,MAP_t); CHECKCWID(cpix,GTK_IS_WIDGET);
-	CHECKARG(4,NUMERIC_t);  CHECKARG(5,NUMERIC_t);
-	CHECKARG(6,NUMERIC_t);  CHECKARG(7,NUMERIC_t);
-	CHECKARG(8,NUMERIC_t);  CHECKARG(9,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget))
-		drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_pixmap(drw, GDK_GC(cgc->object), GTK_PIXMAP(cpix->widget)->pixmap, xsrc, ysrc, xdest, ydest, width,height);
-	return 0;
-err:
-	return 1;
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   C_widget *cpix = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
+   gint      xsrc = _clip_parni(ClipMachineMemory, 4);
+
+   gint      ysrc = _clip_parni(ClipMachineMemory, 5);
+
+   gint      xdest = _clip_parni(ClipMachineMemory, 6);
+
+   gint      ydest = _clip_parni(ClipMachineMemory, 7);
+
+   gint      width = _clip_parni(ClipMachineMemory, 8);
+
+   gint      height = _clip_parni(ClipMachineMemory, 9);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKARG2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCWID(cpix, GTK_IS_WIDGET);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+   CHECKARG(6, NUMERIC_type_of_ClipVarType);
+   CHECKARG(7, NUMERIC_type_of_ClipVarType);
+   CHECKARG(8, NUMERIC_type_of_ClipVarType);
+   CHECKARG(9, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_pixmap(drw, GDK_GC(cgc->object), GTK_PIXMAP(cpix->widget)->pixmap, xsrc, ysrc, xdest, ydest, width, height);
+   return 0;
+ err:
+   return 1;
 }
 
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 2)
 
 int
-clip_GDK_DRAWPIXBUF(ClipMachine * cm)
+clip_GDK_DRAWPIXBUF(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	C_object     *cpix = _fetch_cobject(cm,_clip_spar(cm,3));
-	gint          xsrc = _clip_parni(cm,4);
-	gint          ysrc = _clip_parni(cm,5);
-	gint         xdest = _clip_parni(cm,6);
-	gint         ydest = _clip_parni(cm,7);
-	gint         width = _clip_parni(cm,8);
-	gint        height = _clip_parni(cm,9);
-        GdkRgbDither   dit = _clip_parni(cm, 10);
-        gint          xdit = _clip_parni(cm, 11);
-        gint          ydit = _clip_parni(cm, 12);
-	GdkDrawable *drw = NULL;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKARG2(1,NUMERIC_t,MAP_t); CHECKCWID(cwid, GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG2(3,NUMERIC_t,MAP_t); CHECKCOBJ(cpix,GDK_IS_PIXBUF(cpix->object));
-	CHECKARG(4,NUMERIC_t);  CHECKARG(5,NUMERIC_t);
-	CHECKARG(6,NUMERIC_t);  CHECKARG(7,NUMERIC_t);
-	CHECKARG(8,NUMERIC_t);  CHECKARG(9,NUMERIC_t);
-	CHECKARG(10,NUMERIC_t);  CHECKARG(11,NUMERIC_t);
-	CHECKARG(12,NUMERIC_t);
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget))
-		drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_pixbuf(drw, GDK_GC(cgc->object), GDK_PIXBUF(cpix->object),
-			xsrc, ysrc, xdest, ydest, width,height,
-			dit, xdit, ydit);
-	return 0;
-err:
-	return 1;
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   C_object *cpix = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
+   gint      xsrc = _clip_parni(ClipMachineMemory, 4);
+
+   gint      ysrc = _clip_parni(ClipMachineMemory, 5);
+
+   gint      xdest = _clip_parni(ClipMachineMemory, 6);
+
+   gint      ydest = _clip_parni(ClipMachineMemory, 7);
+
+   gint      width = _clip_parni(ClipMachineMemory, 8);
+
+   gint      height = _clip_parni(ClipMachineMemory, 9);
+
+   GdkRgbDither dit = _clip_parni(ClipMachineMemory, 10);
+
+   gint      xdit = _clip_parni(ClipMachineMemory, 11);
+
+   gint      ydit = _clip_parni(ClipMachineMemory, 12);
+
+   GdkDrawable *drw = NULL;
+
+   CHECKARG2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cpix, GDK_IS_PIXBUF(cpix->object));
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+   CHECKARG(6, NUMERIC_type_of_ClipVarType);
+   CHECKARG(7, NUMERIC_type_of_ClipVarType);
+   CHECKARG(8, NUMERIC_type_of_ClipVarType);
+   CHECKARG(9, NUMERIC_type_of_ClipVarType);
+   CHECKARG(10, NUMERIC_type_of_ClipVarType);
+   CHECKARG(11, NUMERIC_type_of_ClipVarType);
+   CHECKARG(12, NUMERIC_type_of_ClipVarType);
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_pixbuf(drw, GDK_GC(cgc->object), GDK_PIXBUF(cpix->object),
+		   xsrc, ysrc, xdest, ydest, width, height, dit, xdit, ydit);
+   return 0;
+ err:
+   return 1;
 }
 
 #endif
 
 int
-clip_GDK_DRAWSEGMENTS(ClipMachine *cm)
+clip_GDK_DRAWSEGMENTS(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-        ClipVar      *carr = _clip_spar(cm, 3);
-	GdkDrawable   *drw = NULL;
-        GdkSegment   *segm = NULL;
-        ClipArrVar    *cgp ;
-        int              i ;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKARG(3,ARRAY_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        cgp = (ClipArrVar*)_clip_vptr(carr);
-	segm = malloc(cgp->count * sizeof(GdkSegment));
-	for(i=0; i<cgp->count; i++)
-        {
-        	ClipArrVar *ca;
-        	if (cgp->items[i].t.type != ARRAY_t)
-                	goto err;
-        	ca = (ClipArrVar*)_clip_vptr(((ClipVar*)&cgp->items[i]));
-        	segm[i].x1 = (gint)((ClipVar*)&ca->items[0])->n.d;
-        	segm[i].y1 = (gint)((ClipVar*)&ca->items[1])->n.d;
-        	segm[i].x2 = (gint)((ClipVar*)&ca->items[2])->n.d;
-        	segm[i].y2 = (gint)((ClipVar*)&ca->items[3])->n.d;
-	}
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_segments(drw, GDK_GC(cgc->object), segm, cgp->count);
-	free(segm);
-	return 0;
-err:
-	return 1;
+   ClipVar  *carr = _clip_spar(ClipMachineMemory, 3);
+
+   GdkDrawable *drw = NULL;
+
+   GdkSegment *segm = NULL;
+
+   ClipArrVar *cgp;
+
+   int       i;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKARG(3, ARRAY_type_of_ClipVarType);
+
+   cgp = (ClipArrVar *) _clip_vptr(carr);
+   segm = malloc(cgp->count_of_ClipArrVar * sizeof(GdkSegment));
+   for (i = 0; i < cgp->count_of_ClipArrVar; i++)
+    {
+       ClipArrVar *ca;
+
+       if (cgp->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != ARRAY_type_of_ClipVarType)
+	  goto err;
+       ca = (ClipArrVar *) _clip_vptr(((ClipVar *) & cgp->ClipVar_items_of_ClipArrVar[i]));
+       segm[i].x1 = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[0])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       segm[i].y1 = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[1])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       segm[i].x2 = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[2])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       segm[i].y2 = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[3])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+    }
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_segments(drw, GDK_GC(cgc->object), segm, cgp->count_of_ClipArrVar);
+   free(segm);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWPOLYGON(ClipMachine *cm)
+clip_GDK_DRAWPOLYGON(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint        filled = BOOL_OPTION(cm,3,TRUE);
-        ClipVar      *carr = _clip_spar(cm, 4);
-	GdkDrawable   *drw = NULL;
-        GdkPoint       *gp = NULL;
-        ClipArrVar    *cgp = NULL;
-        int              i ;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t); CHECKCOBJ(cgc,GDK_IS_GC(cgc->object));
-	CHECKOPT(3, LOGICAL_t);
-	CHECKARG(4,ARRAY_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-        cgp = (ClipArrVar*)_clip_vptr(carr);
-	gp = malloc(cgp->count * sizeof(GdkPoint));
-	for(i=0; i<cgp->count; i++)
-        {
-        	ClipArrVar *ca;
-        	if (cgp->items[i].t.type != ARRAY_t)
-                	goto err;
-        	ca = (ClipArrVar*)_clip_vptr(((ClipVar*)&cgp->items[i]));
-        	gp[i].x = (gint)((ClipVar*)&ca->items[0])->n.d;
-        	gp[i].y = (gint)((ClipVar*)&ca->items[1])->n.d;
-	}
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
-	gdk_draw_polygon(drw, GDK_GC(cgc->object), filled, gp, cgp->count);
-	free(gp);
-	return 0;
-err:
-	return 1;
+   gint      filled = BOOL_OPTION(ClipMachineMemory, 3, TRUE);
+
+   ClipVar  *carr = _clip_spar(ClipMachineMemory, 4);
+
+   GdkDrawable *drw = NULL;
+
+   GdkPoint *gp = NULL;
+
+   ClipArrVar *cgp = NULL;
+
+   int       i;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKCOBJ(cgc, GDK_IS_GC(cgc->object));
+   CHECKOPT(3, LOGICAL_type_of_ClipVarType);
+   CHECKARG(4, ARRAY_type_of_ClipVarType);
+
+   cgp = (ClipArrVar *) _clip_vptr(carr);
+   gp = malloc(cgp->count_of_ClipArrVar * sizeof(GdkPoint));
+   for (i = 0; i < cgp->count_of_ClipArrVar; i++)
+    {
+       ClipArrVar *ca;
+
+       if (cgp->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != ARRAY_type_of_ClipVarType)
+	  goto err;
+       ca = (ClipArrVar *) _clip_vptr(((ClipVar *) & cgp->ClipVar_items_of_ClipArrVar[i]));
+       gp[i].x = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[0])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       gp[i].y = (gint) ((ClipVar *) & ca->ClipVar_items_of_ClipArrVar[1])->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+    }
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gdk_draw_polygon(drw, GDK_GC(cgc->object), filled, gp, cgp->count_of_ClipArrVar);
+   free(gp);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWLAYOUTLINE(ClipMachine *cm)
+clip_GDK_DRAWLAYOUTLINE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint             x = _clip_parni(cm,3);
-	gint             y = _clip_parni(cm,4);
-        C_object   *cpango = _fetch_cobject(cm, _clip_spar(cm, 5));
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	GdkDrawable *drw = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKOPT2(2,NUMERIC_t,MAP_t);
-	CHECKOPT2(3,NUMERIC_t,MAP_t);
-	CHECKOPT(4,NUMERIC_t);
-        CHECKCOBJ(cpango, GTK_IS_PANGO_LAYOUT_LINE(cpango	));
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gint      x = _clip_parni(ClipMachineMemory, 3);
 
-	gdk_draw_layout_line(drw, GDK_GC(cgc->object),
-				 x, y, (PangoLayoutLine *)(cpango->object));
-	return 0;
-err:
-	return 1;
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   C_object *cpango = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKOPT2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cpango, GTK_IS_PANGO_LAYOUT_LINE(cpango));
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   gdk_draw_layout_line(drw, GDK_GC(cgc->object), x, y, (PangoLayoutLine *) (cpango->object));
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWLAYOUTLINEWITHCOLORS(ClipMachine *cm)
+clip_GDK_DRAWLAYOUTLINEWITHCOLORS(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	gint             x = _clip_parni(cm,3);
-	gint             y = _clip_parni(cm,4);
-        C_object   *cpango = _fetch_cobject(cm, _clip_spar(cm, 5));
-        ClipVar    *color1 = _clip_spar(cm, 6);
-        ClipVar    *color2 = _clip_spar(cm, 7);
-        GdkColor    backgr, foregr;
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	GdkDrawable *drw = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t);
-	CHECKARG(3,NUMERIC_t);
-	CHECKARG(4,NUMERIC_t);
-        CHECKCOBJ(cpango, GTK_IS_PANGO_LAYOUT_LINE(cpango));
-        CHECKARG(6, MAP_t);
-        CHECKARG(7, MAP_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gint      x = _clip_parni(ClipMachineMemory, 3);
 
-	_map_colors_to_gdk(cm, color1, &foregr);
-	_map_colors_to_gdk(cm, color2, &backgr);
-	gdk_draw_layout_line_with_colors(drw, GDK_GC(cgc->object),
-				 x, y, (PangoLayoutLine *)(cpango->object),
-				 &foregr, &backgr );
-	return 0;
-err:
-	return 1;
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   C_object *cpango = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
+
+   ClipVar  *color1 = _clip_spar(ClipMachineMemory, 6);
+
+   ClipVar  *color2 = _clip_spar(ClipMachineMemory, 7);
+
+   GdkColor  backgr, foregr;
+
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG(3, NUMERIC_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJ(cpango, GTK_IS_PANGO_LAYOUT_LINE(cpango));
+   CHECKARG(6, MAP_type_of_ClipVarType);
+   CHECKARG(7, MAP_type_of_ClipVarType);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   _map_colors_to_gdk(ClipMachineMemory, color1, &foregr);
+   _map_colors_to_gdk(ClipMachineMemory, color2, &backgr);
+   gdk_draw_layout_line_with_colors(drw, GDK_GC(cgc->object), x, y, (PangoLayoutLine *) (cpango->object), &foregr, &backgr);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWDRAWABLE(ClipMachine *cm)
+clip_GDK_DRAWDRAWABLE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	C_widget     *csrc = _fetch_cwidget(cm, _clip_spar(cm, 3));
-	gint          xsrc = _clip_parni(cm,4);
-	gint          ysrc = _clip_parni(cm,5);
-	gint         xdest = _clip_parni(cm,6);
-	gint         ydest = _clip_parni(cm,7);
-	gint         width = _clip_parni(cm,8);
-	gint        height = _clip_parni(cm,9);
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	GdkDrawable *drw = NULL;
-	GdkDrawable *src = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKCWID(csrc,GTK_IS_WIDGET);
-	CHECKARG2(2,NUMERIC_t,MAP_t);
-	CHECKARG2(3,NUMERIC_t,MAP_t);
-	CHECKARG(4,NUMERIC_t);
-	CHECKARG(5,NUMERIC_t);
-	CHECKARG(6,NUMERIC_t);
-	CHECKARG(7,NUMERIC_t);
-	CHECKARG(8,NUMERIC_t);
-	CHECKARG(9,NUMERIC_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   C_widget *csrc = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	src = csrc->widget->window;
-	if (GTK_IS_PIXMAP(csrc->widget)) src = GTK_PIXMAP(csrc->widget)->pixmap;
+   gint      xsrc = _clip_parni(ClipMachineMemory, 4);
 
-	gdk_draw_drawable(drw, GDK_GC(cgc->object), src,
-				 xsrc, ysrc, xdest, ydest, width, height);
-	return 0;
-err:
-	return 1;
+   gint      ysrc = _clip_parni(ClipMachineMemory, 5);
+
+   gint      xdest = _clip_parni(ClipMachineMemory, 6);
+
+   gint      ydest = _clip_parni(ClipMachineMemory, 7);
+
+   gint      width = _clip_parni(ClipMachineMemory, 8);
+
+   gint      height = _clip_parni(ClipMachineMemory, 9);
+
+   GdkDrawable *drw = NULL;
+
+   GdkDrawable *src = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKCWID(csrc, GTK_IS_WIDGET);
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+   CHECKARG(6, NUMERIC_type_of_ClipVarType);
+   CHECKARG(7, NUMERIC_type_of_ClipVarType);
+   CHECKARG(8, NUMERIC_type_of_ClipVarType);
+   CHECKARG(9, NUMERIC_type_of_ClipVarType);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   src = csrc->widget->window;
+   if (GTK_IS_PIXMAP(csrc->widget))
+      src = GTK_PIXMAP(csrc->widget)->pixmap;
+
+   gdk_draw_drawable(drw, GDK_GC(cgc->object), src, xsrc, ysrc, xdest, ydest, width, height);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GDK_DRAWIMAGE(ClipMachine *cm)
+clip_GDK_DRAWIMAGE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	C_object      *cgc = _fetch_cobject(cm,_clip_spar(cm,2));
-	C_object     *cimg = _fetch_cobject(cm, _clip_spar(cm, 3));
-	gint          xsrc = _clip_parni(cm,4);
-	gint          ysrc = _clip_parni(cm,5);
-	gint         xdest = _clip_parni(cm,6);
-	gint         ydest = _clip_parni(cm,7);
-	gint         width = _clip_parni(cm,8);
-	gint        height = _clip_parni(cm,9);
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	GdkDrawable *drw = NULL;
-	GdkImage    *img = NULL;
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKCOBJ(cimg,GDK_IS_IMAGE(cimg->object));
-	CHECKARG2(2,NUMERIC_t,MAP_t);
-	CHECKARG2(3,NUMERIC_t,MAP_t);
-	CHECKARG(4,NUMERIC_t);
-	CHECKARG(5,NUMERIC_t);
-	CHECKARG(6,NUMERIC_t);
-	CHECKARG(7,NUMERIC_t);
-	CHECKARG(8,NUMERIC_t);
-	CHECKARG(9,NUMERIC_t);
+   C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   C_object *cimg = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
-	img = GDK_IMAGE(cimg->object);
+   gint      xsrc = _clip_parni(ClipMachineMemory, 4);
 
-	gdk_draw_image(drw, GDK_GC(cgc->object), img,
-				 xsrc, ysrc, xdest, ydest, width, height);
-	return 0;
-err:
-	return 1;
+   gint      ysrc = _clip_parni(ClipMachineMemory, 5);
+
+   gint      xdest = _clip_parni(ClipMachineMemory, 6);
+
+   gint      ydest = _clip_parni(ClipMachineMemory, 7);
+
+   gint      width = _clip_parni(ClipMachineMemory, 8);
+
+   gint      height = _clip_parni(ClipMachineMemory, 9);
+
+   GdkDrawable *drw = NULL;
+
+   GdkImage *img = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKCOBJ(cimg, GDK_IS_IMAGE(cimg->object));
+   CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
+   CHECKARG(4, NUMERIC_type_of_ClipVarType);
+   CHECKARG(5, NUMERIC_type_of_ClipVarType);
+   CHECKARG(6, NUMERIC_type_of_ClipVarType);
+   CHECKARG(7, NUMERIC_type_of_ClipVarType);
+   CHECKARG(8, NUMERIC_type_of_ClipVarType);
+   CHECKARG(9, NUMERIC_type_of_ClipVarType);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   img = GDK_IMAGE(cimg->object);
+
+   gdk_draw_image(drw, GDK_GC(cgc->object), img, xsrc, ysrc, xdest, ydest, width, height);
+   return 0;
+ err:
+   return 1;
 }
-
-

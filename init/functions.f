@@ -1,4 +1,4 @@
-#!/bin/bash -ue
+#!/bin/bash 
 #
 ############################################################################################################
 ############################################################################################################
@@ -42,6 +42,8 @@ export Total=1
 export TotalDone=1
 export TotalRemaining=1
 export Bban=1
+let Delay=0
+export Delay
 #ADDOBJS=""
 #BIN=""
 
@@ -223,24 +225,30 @@ function banner ()
 
 function beep_on ()
 	{
-#		if [ -x /usr/bin/beep ] ;then
-#			echo " beep beep" 	>/dev/null
-#			/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
-#		elif [ -x /usr/bin/gnubeep ] ;then
-#			echo " beep beep" 	>/dev/null
-#			/usr/bin/gnubeep -b
-#		el
-		if [ -x /usr/bin/mplayer ] ; then
-			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/Kopete_Received.ogg >/dev/null
-			echo " beep mplayer beep" 	>/dev/null
-			echo "" 					>&0
-		elif [ -x /usr/bin/play ] ; then
-			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/Kopete_Received.ogg >/dev/null
-			echo " beep play beep" 	>/dev/null
-			echo "" 					>&0
-		else
-			echo " beep beep" 	>/dev/null
-			echo "" 					>&0
+		local CurTime=$(date +%s)
+		local n01ii=0
+		let n01ii=$CurTime-$Delay
+		if [[ $n01ii -gt 30 ]] ; then
+			Delay=$(date +%s)
+#			if [ -x /usr/bin/beep ] ;then
+#				echo " beep beep" 	>/dev/null
+#				/usr/bin/beep -f50 -l 200 -d 100 - e/dev/audio
+#			elif [ -x /usr/bin/gnubeep ] ;then
+#				echo " beep beep" 	>/dev/null
+#				/usr/bin/gnubeep -b
+#			el
+			if [ -x /usr/bin/mplayer ] ; then
+				/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/Kopete_Received.ogg 1>/dev/null 2>/dev/null
+				echo " beep mplayer beep" 	>/dev/null
+				echo "" 					>&0
+			elif [ -x /usr/bin/play ] ; then
+				/usr/bin/play -ao alsa $Clip_M_Dir/sounds/Kopete_Received.ogg 1>/dev/null 2>/dev/null
+				echo " beep play beep" 	>/dev/null
+				echo "" 					>&0
+			else
+				echo " beep beep" 	>/dev/null
+				echo "" 					>&0
+			fi
 		fi
 
 	}
@@ -309,7 +317,7 @@ function Check_Bin ()
 		# sleep $SleepTime
 		OnScreen 0
 		if [ -z $WhatToFind ] ; then
-			error No parameter passed in calling function Check_Bin
+			error "No parameter passed in calling function Check_Bin"
 		fi
 		IdxToFind=0
 		if [ -f "$Clip_S_Dir/$WhatToFind/.set" ] ; then
@@ -319,10 +327,12 @@ function Check_Bin ()
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
 					ArrayToFind[$IdxToFind]=$fName
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
+					OnScreen 2 "Found : $WhatToFind requested by : $RequestedBy found in : $fName"
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
-					echo $fName
-					return 0
+					if [ -f $fName/$WhatToFind ] ; then
+						echo $fName
+						return
+				  	fi
 					let ++IdxToFind
 					# sleep $SleepTime
 				fi
@@ -357,9 +367,6 @@ function Check_Bin ()
 		fi
 		if [[ $Extension != xyz ]] ; then
 			WhatToFindTmp=$WhatToFind$Extension
-			if [ -f $WhereToFind/$WhatToFindTmp ] ; then
-				Found="$WhereToFind"
-			fi
 		fi
 		while [[ $varX = [nN] ]] ; do
 			CurIdx=0
@@ -369,8 +376,8 @@ function Check_Bin ()
 				WhereToFind=${ArrayToFind[$CurIdx]}
 				# sleep $SleepTime
 				if [[ "$WhereToFind" = "/" ]] ; then
-					banner Not Found
-					OnScreen 1 in : ${ArrayToFind[@]}
+					banner "Not Found"
+					OnScreen 1 "in : ${ArrayToFind[@]}"
 					OnScreen 2
 					tptptpt=0
 					while [ $tptptpt -le $CommentNr ] ; do
@@ -381,13 +388,13 @@ function Check_Bin ()
 					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
 					OnScreen 0 " or install package : $PackName"
 					OnScreen 0 " and [R]escan standard directories"
-					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 "${ArrayToFind[@]}"
 					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
 					if [[ $varX = [nN] ]] ; then
-						rm -f$V ../$RequestedBy.ok
+						rm -f$V ../$RequestedBy.ok	>&0
 						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
@@ -402,7 +409,7 @@ function Check_Bin ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy
+				OnScreen 0 "Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy"
 				# sleep $SleepTime
 				if [ -f $WhereToFind/$WhatToFind ] ; then
 					Found=$WhereToFind
@@ -416,25 +423,25 @@ function Check_Bin ()
 			# sleep $SleepTime
 			if [ -z "$Found" ] ; then
 				varX="Y"
-				banner Missing 																											>&0
-				OnScreen 0 Missing : $WhatToFind requested by : $RequestedBy "Package name(s)" : $PackName
+				banner "Missing" 																											>&0
+				OnScreen 0 "Missing : $WhatToFind requested by : $RequestedBy Package name(s) : $PackName"
 				echo "Missing : $WhatToFind requested by : $RequestedBy Package name(s) : $PackName" 				>&2
 				# sleep $SleepTime
 				if [[ $Important = YES ]] ; then
 					echo "#" 																		>>$LogFile
-					echo This package is REQUIRED 											>>$LogFile
+					echo "This package is REQUIRED" 											>>$LogFile
 					echo "#"																			>>$LogFile
 					# sleep $SleepTime
 				fi
-				echo Missing : $WhatToFind requested by : $RequestedBy 				>>$LogFile
+				echo "Missing : $WhatToFind requested by : $RequestedBy"				>>$LogFile
 				for IdxToFind in $PackName ; do
-					echo "Package name(s)" : $IdxToFind 									>>$LogFile
+					echo "Package name(s) : $IdxToFind" 									>>$LogFile
 				done
-				rm -f$V ../$RequestedBy.ok
+				rm -f$V ../$RequestedBy.ok 	>&0
 				touch ../$RequestedBy.no
 			else
 				beep_on
-				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $Found
+				OnScreen 2 "Found : $WhatToFind requested by : $RequestedBy found in : $Found"
 				OnScreen 2 "[s]earch path; is it Ok [y/n/s] : "
 				read -n 1 varX 	>&0
 				OnScreen 2
@@ -455,8 +462,8 @@ function Check_Bin ()
 					varX="N"
 					Found=""
 				else
-					rm -f$V ../$RequestedBy.ok
-					touch ../$RequestedBy.no
+					rm -f ../$RequestedBy.ok 	>&0
+					touch ../$RequestedBy.no 	>&0
 					Found=""
 					echo "z" 	>&0
 					varX="N"
@@ -477,10 +484,10 @@ function Check_Find ()
 		local HaveFound
 		local nii
 
-		HaveFound=$(find $WhereToFind -name $WhatToFind -printf "%h ")
+		HaveFound=$(find $WhereToFind -name $WhatToFind -printf "%h " 2>/dev/null)
 		Found=""
 		for nii in $HaveFound ; do
-			if [ -z $Found ] ; then
+			if [ -n $Found ] ; then
 				Found=$nii
 			fi
 		done
@@ -543,7 +550,7 @@ function Check_Include ()
 		done
 		OnScreen 0
 		if [ -z $WhatToFind ] ; then
-			error No parameter passed in calling function Check_Include
+			error "No parameter passed in calling function Check_Include"
 		fi
 		IdxToFind=0
 		if [ -f "$Clip_S_Dir/$WhatToFind/.set" ] ; then
@@ -552,10 +559,12 @@ function Check_Include ()
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
 					ArrayToFind[$IdxToFind]=$fName
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
+					OnScreen 2 "Found : $WhatToFind requested by : $RequestedBy found in : $fName"
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
-					echo $fName
-					return 0
+					if [ -f $fName/$WhatToFind ] ; then
+						echo $fName
+						return
+				  	fi
 					let ++IdxToFind
 				fi
 			done
@@ -581,9 +590,6 @@ function Check_Include ()
 		fi
 		if [[ $Extension != xyz ]] ; then
 			WhatToFindTmp=$WhatToFind$Extension
-			if [ -f $WhereToFind/$WhatToFindTmp ] ; then
-				Found=$WhereToFind
-			fi
 		fi
 		while [[ $varX = [nN] ]] ; do
 			CurIdx=0
@@ -592,25 +598,25 @@ function Check_Include ()
 				#OnScreen CurIdx : $CurIdx IdxToFind : $IdxToFind Seach in : ${ArrayToFind[$CurIdx]}
 				WhereToFind=${ArrayToFind[$CurIdx]}
 				if [[ "$WhereToFind" = "/" ]] ; then
-					banner Not Found
-					OnScreen 1 in : ${ArrayToFind[@]}
+					banner "Not Found"
+					OnScreen 1 "in : ${ArrayToFind[@]}"
 					OnScreen 2
 					tptptpt=0
 					while [ $tptptpt -le $CommentNr ] ; do
-						OnScreen 0 ${Comment[$tptptpt]}
+						OnScreen 0 "${Comment[$tptptpt]}"
 						let ++tptptpt
 					done
 					beep_on
 					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
 					OnScreen 0 " or install package : $PackName"
 					OnScreen 0 " and [R]escan standard directories"
-					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 "${ArrayToFind[@]}"
 					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX >&0
 					if [[ $varX = [nN] ]] ; then
-						rm -f$V ../$RequestedBy.ok
+						rm -f$V ../$RequestedBy.ok >&0
 						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
@@ -625,7 +631,7 @@ function Check_Include ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy
+				OnScreen 0 "Searching for : $WhatToFind in : $WhereToFind requested by : $RequestedBy"
 				if [ -f $WhereToFind/$WhatToFind ] ; then
 					Found=$WhereToFind
 				else
@@ -635,23 +641,23 @@ function Check_Include ()
 			done
 			if [ -z "$Found" ] ; then
 				varX="Y"
-				banner Missing 																											>&0
-				OnScreen 0 Missing : $WhatToFind requested by : $RequestedBy 'Package name(s)' : $PackName
+				banner "Missing"																											>&0
+				OnScreen 0 "Missing : $WhatToFind requested by : $RequestedBy 'Package name(s)' : $PackName"
 				echo "Missing : $WhatToFind requested by : $RequestedBy Package name(s) : $PackName" 				>&2
 				if [[ $Important = YES ]] ; then
 					echo "#"																			>>$LogFile
-					echo This package is REQUIRED 											>>$LogFile
+					echo "This package is REQUIRED" 											>>$LogFile
 					echo "#"																			>>$LogFile
 				fi
-				echo Missing : $WhatToFind requested by : $RequestedBy 				>>$LogFile
+				echo "Missing : $WhatToFind requested by : $RequestedBy" 			>>$LogFile
 				for IdxToFind in $PackName ; do
 					echo "Package name(s)" :  $IdxToFind 									>>$LogFile
 				done
-				rm -f$V ../$RequestedBy.ok
+				rm -f$V ../$RequestedBy.ok	>&0
 				touch ../$RequestedBy.no
 			else
 				beep_on
-				OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $Found
+				OnScreen 2 "Found : $WhatToFind requested by : $RequestedBy found in : $Found"
 				OnScreen 2 "[s]earch path; is it Ok [y/n/s] : "
 				read -n 1 varX 	>&0
 				OnScreen 2
@@ -672,8 +678,8 @@ function Check_Include ()
 					Found=""
 					varX="N"
 				else
-					rm -f$V ../$RequestedBy.ok
-					touch ../$RequestedBy.no
+					rm -fv ../$RequestedBy.ok 	>&0
+					touch ../$RequestedBy.no 	>&0
 					Found=""
 					echo "z" 	>&0
 					varX="N"
@@ -736,7 +742,7 @@ function Check_Library ()
 		done
 		OnScreen 0
 		if [ -z $WhatToFind ] ; then
-			error No parameter passed in calling function Check_Library
+			error "No parameter passed in calling function Check_Library"
 		fi
 		IdxToFind=0
 		if [ -f "$Clip_S_Dir/$WhatToFind/.set" ] ; then
@@ -744,12 +750,15 @@ function Check_Library ()
 			lList="$(cat $CurIdx)"
 			for fName in $lList ; do
 				if [[ x"$fName" != x"" ]] ; then
-					OnScreen 2 Found : $WhatToFind requested by : $RequestedBy found in : $fName
+					OnScreen 2 "Found : $WhatToFind requested by : $RequestedBy found in : $fName"
 					mkdir -p$V "$Clip_S_Dir/$WhatToFind/"
 					echo $fName >"$Clip_S_Dir/$WhatToFind/.set"
-					echo $fName
-					return 0
 					ArrayToFind[$IdxToFind]=$fName
+					if [ -f $fName/$WhatToFind.so ] || [ -f $fName/$WhatToFind.a ] ; then
+						OnScreen 2 "$fName $fName/$WhatToFind"
+						echo $fName
+						return
+				  	fi
 					let ++IdxToFind
 				fi
 			done
@@ -771,9 +780,6 @@ function Check_Library ()
 		fi
 		if [[ $Extension != xyz ]] ; then
 			WhatToFindTmp=$WhatToFind$Extension
-			if [ -f $WhereToFind/$WhatToFindTmp ] ; then
-				Found=$WhereToFind
-			fi
 		fi
 		while [[ $varX = [nN] ]] ; do
 			CurIdx=0
@@ -782,25 +788,25 @@ function Check_Library ()
 				#OnScreen CurIdx : $CurIdx IdxToFind : $IdxToFind Seach in : ${ArrayToFind[$CurIdx]}
 				WhereToFind=${ArrayToFind[$CurIdx]}
 				if [[ "$WhereToFind" = "/" ]] ; then
-					banner Not Found
-					OnScreen 1 in : ${ArrayToFind[@]}
+					banner "Not Found"
+					OnScreen 1 "in : ${ArrayToFind[@]}"
 					OnScreen 2
 					tptptpt=0
 					while [ $tptptpt -le $CommentNr ] ; do
-						OnScreen 0 ${Comment[$tptptpt]}
+						OnScreen 0 "${Comment[$tptptpt]}"
 						let ++tptptpt
 					done
 					beep_on
 					OnScreen 2 " Scan the all s[Y]stem : '$WhereToFind'"
 					OnScreen 0 " or install package : $PackName "
 					OnScreen 0 " and [R]escan standard directories "
-					OnScreen 0 ${ArrayToFind[@]}
+					OnScreen 0 "${ArrayToFind[@]}"
 					OnScreen 0 " or [N] skip : "
 					OnScreen 2
 					varX=" "
 					read -n 1 -p "Your choice : [Y/N/R] : " varX 	>&0
 					if [[ $varX = [nN] ]] ; then
-						rm -f$V ../$RequestedBy.ok
+						rm -f$V ../$RequestedBy.ok 	>&0
 						touch ../$RequestedBy.no
 						let ++CurIdx
 						continue
@@ -815,11 +821,11 @@ function Check_Library ()
 					fi
 				fi
 				#OnScreen 0 Working dir : $PWD
-				OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
+				OnScreen 0 "Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy"
 				if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 					Found=$WhereToFind
 				else
-					OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
+					OnScreen 0 "Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy"
 					Found=$(Check_Find $WhereToFind $WhatToFind$Extension )
 				fi
 				if [ -z "$Found" ] ; then
@@ -827,7 +833,7 @@ function Check_Library ()
 					if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 						Found=$WhereToFind
 					else
-						OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
+						OnScreen 0 "Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy"
 						Found=$(Check_Find $WhereToFind $WhatToFind$Extension )
 					fi
 					if [ -z "$Found" ] ; then
@@ -835,7 +841,7 @@ function Check_Library ()
 						if [ -f $WhereToFind/$WhatToFind$Extension ] ; then
 							Found=$WhereToFind
 						else
-							OnScreen 0 Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy
+							OnScreen 0 "Searching for : $WhatToFind$Extension in : $WhereToFind requested by : $RequestedBy"
 							Found=$(Check_Find $WhereToFind $WhatToFind.so )
 						fi
 					fi
@@ -844,19 +850,19 @@ function Check_Library ()
 			done
 			if [ -z "$Found" ] ; then
 				varX="Y"
-				banner Missing 																										>&0
-				OnScreen 0 Missing : $WhatToFind requested by : $RequestedBy "Package name(s)" : $PackName
+				banner "Missing" 																										>&0
+				OnScreen 0 "Missing : $WhatToFind requested by : $RequestedBy Package name(s) : $PackName"
 				echo "Missing : $WhatToFind requested by : $RequestedBy Package name(s) : $PackName" 			>&2
 				if [[ $Important = YES ]] ; then
 					echo "#"																			>>$LogFile
-					echo This package is REQUIRED 											>>$LogFile
+					echo "This package is REQUIRED" 											>>$LogFile
 					echo "#"																			>>$LogFile
 				fi
-				echo Missing : $WhatToFind requested by : $RequestedBy 				>>$LogFile
+				echo "Missing : $WhatToFind requested by : $RequestedBy" 			>>$LogFile
 				for IdxToFind in $PackName ; do
-					echo "Package name(s)" : $IdxToFind 									>>$LogFile
+					echo "Package name(s) : $IdxToFind" 									>>$LogFile
 				done
-				rm -f$V ../$RequestedBy.ok
+				rm -f$V ../$RequestedBy.ok 	>&0
 				touch ../$RequestedBy.no
 			else
 				beep_on
@@ -881,8 +887,8 @@ function Check_Library ()
 					Found=""
 					varX="N"
 				else
-					rm -f$V ../$RequestedBy.ok
-					touch ../$RequestedBy.no
+					rm -f ../$RequestedBy.ok 	>&0
+					touch ../$RequestedBy.no 	>&0
 					Found=""
 					echo "z" 	>&0
 					varX="N"
@@ -989,18 +995,15 @@ function create_var ()
 function deception ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
+			mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav 1>/dev/null 2>/dev/null
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
-			echo " pitty play pitty" 	>&0
+			play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav 1>/dev/null 2>/dev/null
+			echo " pitty play pitty" 		>&0
 			echo "" 								>&0
 		else
-			beep_on
-			beep_on
-			beep_on
-			echo " pitty pitty" 		>&0
+			echo " pitty pitty" 				>&0
 			echo "" 								>&0
 		fi
 	}
@@ -1014,18 +1017,18 @@ function error ()
 		# & breaks the program
 		#
 		if [ -x /usr/bin/mplayer ] ; then
-			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_error1.wav 1>/dev/null 2>/dev/null
 			echo " pitty mplayer pitty" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav >/dev/null
-			echo " pitty play pitty" 	>&0
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_error1.wav 1>/dev/null 2>/dev/null
+			echo " pitty play pitty" 		>&0
 			echo "" 								>&0
 		else
 			beep_on
 			beep_on
 			beep_on
-			echo " pitty pitty" 		>&0
+			echo " pitty pitty" 				>&0
 			echo "" 								>&0
 		fi
 		OnScreen 1 "...............error.............."
@@ -1497,11 +1500,11 @@ function TotalFiles ()
 function trumpet ()
 	{
 		if [ -x /usr/bin/mplayer ] ; then
-			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav >/dev/null
+			/usr/bin/mplayer -vo null $Clip_M_Dir/sounds/k3b_success1.wav 1>/dev/null 2>/dev/null
 			echo " successful mplayer" 	>&0
 			echo "" 								>&0
 		elif [ -x /usr/bin/play ] ; then
-			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav >/dev/null
+			/usr/bin/play -ao alsa $Clip_M_Dir/sounds/k3b_success1.wav 1>/dev/null 2>/dev/null
 			echo " successful play " 		>&0
 			echo "" 								>&0
 		else

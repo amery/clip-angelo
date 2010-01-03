@@ -2,6 +2,11 @@
     Copyright (C) 2001  ITK
     Authors  : Uri Hnykin <uri@itk.ru>, Paul Lasarev <paul@itk.ru>
     License : (GPL) http://www.itk.ru/clipper/license.html
+
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
+
 */
 
 #include <string.h>
@@ -23,392 +28,434 @@
    reg={{4, 8}}
 */
 int
-clip_SEARCH(ClipMachine * mp)
+clip_SEARCH(ClipMachine * ClipMachineMemory)
 {
-	int c, sl, length, i;
-	unsigned char *s = (unsigned char *)_clip_parcl(mp, 1, &sl);	/* pattern */
-	unsigned char *string = (unsigned char *)_clip_parcl(mp, 2, &length);	/* string */
-	unsigned char *str, *buf;
-	int start = _clip_parni(mp, 4) - 1;	/*from (start position) */
-	int range = _clip_parni(mp, 5) - 1;	/*range */
-	ClipVar *rg = _clip_par(mp, 3);		/*registers */
+   int       c, sl, length, i;
 
-	regex_t preg;
-	regmatch_t rmatch[RE_NREGS];
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &sl);	/* pattern */
 
-	if (s == NULL || string == NULL)
+   unsigned char *string = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &length);	/* string */
+
+   unsigned char *str, *buf;
+
+   int       start = _clip_parni(ClipMachineMemory, 4) - 1;	/*from (start position) */
+
+   int       range = _clip_parni(ClipMachineMemory, 5) - 1;	/*range */
+
+   ClipVar  *rg = _clip_par(ClipMachineMemory, 3);	/*registers */
+
+   regex_t   preg;
+
+   regmatch_t rmatch[RE_NREGS];
+
+   if (s == NULL || string == NULL)
+    {
+       _clip_retl(ClipMachineMemory, 0);
+       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
+    }
+   if (_clip_parinfo(ClipMachineMemory, 0) < 4)
+      start = 0;
+   if (_clip_parinfo(ClipMachineMemory, 0) < 5)
+      range = length;
+   if (range < 0)
+      start += range + 1;
+   if (start < 0)
+      start = 0;
+   range = abs(range) < length ? abs(range) : length;
+
+   str = (unsigned char *) malloc(range + 1);
+   memcpy(str, string + start, range);
+   str[range] = 0;
+
+   buf = (unsigned char *) malloc(sl + 1);
+   memcpy(buf, s, sl);
+   buf[sl] = 0;
+
+   for (i = 0; i < sl; i++, s++)
+    {
+       if ((*s) > 127)
+	  buf[i] = _clip_cmptbl[(*s)];
+    }
+   for (i = 0; i < range; i++, string++)
+    {
+       if (*(string + start) > 127)
+	  str[i] = _clip_cmptbl[*(string + start)];
+
+    }
+   memset(&preg, 0, sizeof(preg));
+
+   regcomp(&preg, (const char *) buf, REG_EXTENDED | (buf[0] == '^' ? REG_NEWLINE : 0));
+
+   if (regexec(&preg, (const char *) str, RE_NREGS, rmatch, 0 /*REG_NOTBOL */ ) == 0)
+    {
+       int       j;
+
+       for (j = 0; j < RE_NREGS; j++)
 	{
-		_clip_retl(mp, 0);
-		return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
-	}
-	if (_clip_parinfo(mp, 0) < 4)
-		start = 0;
-	if (_clip_parinfo(mp, 0) < 5)
-		range = length;
-	if (range < 0)
-		start += range + 1;
-	if (start < 0)
-		start = 0;
-	range = abs(range) < length ? abs(range) : length;
 
-	str = (unsigned char *) malloc(range + 1);
-	memcpy(str, string + start, range);
-	str[range] = 0;
+	   ClipVar  *st;
 
-	buf = (unsigned char *) malloc(sl + 1);
-	memcpy(buf, s, sl);
-	buf[sl] = 0;
+	   ClipVar  *ed;
 
-	for(i=0; i<sl; i++, s++)
-	{
-		if ((*s) > 127)
-			buf[i] = _clip_cmptbl[(*s)];
-	}
-	for(i=0; i<range; i++, string++)
-	{
-		if (*(string+start) > 127)
-			str[i] = _clip_cmptbl[*(string+start)];
+	   ClipVar  *el;
 
-	}
-	memset(&preg, 0, sizeof(preg));
+	   if ((_clip_parinfo(ClipMachineMemory, 0) < 3) || rmatch[j].rm_so == -1)
+	      break;
 
-	regcomp(&preg, (const char *)buf, REG_EXTENDED | (buf[0]=='^'?REG_NEWLINE:0));
+	   st = NEW(ClipVar);
+	   ed = NEW(ClipVar);
+	   el = NEW(ClipVar);
 
-	if (regexec(&preg, (const char *)str, RE_NREGS, rmatch, 0/*REG_NOTBOL*/) == 0)
-	{
-		int j;
+	   el->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = ARRAY_type_of_ClipVarType;
+	   el->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
 
-		for (j = 0; j < RE_NREGS; j++)
-		{
+	   st->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+	   st->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
+	   st->ClipType_t_of_ClipVar.memo_of_ClipType = 0;
+	   st->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = rmatch[j].rm_so + 1 + start;
 
-			ClipVar *st;
-			ClipVar *ed;
-			ClipVar *el;
+	   c = ++el->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_clone(ClipMachineMemory, el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, st);
 
-			if ((_clip_parinfo(mp, 0) < 3) || rmatch[j].rm_so == -1)
-				break;
+	   ed->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+	   ed->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
+	   ed->ClipType_t_of_ClipVar.memo_of_ClipType = 0;
+	   ed->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = rmatch[j].rm_eo + 1 + start;
 
-			st = NEW(ClipVar);
-			ed = NEW(ClipVar);
-			el = NEW(ClipVar);
+	   c = ++el->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_clone(ClipMachineMemory, el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, ed);
+	   c = ++rg->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_dup(ClipMachineMemory, rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, el);
 
-			el->t.type = ARRAY_t;
-			el->t.flags = F_NONE;
-
-			st->t.type = NUMERIC_t;
-			st->t.flags = F_NONE;
-			st->t.memo = 0;
-			st->n.d = rmatch[j].rm_so + 1 + start;
-
-			c = ++el->a.count;
-			el->a.items = (ClipVar *) realloc(el->a.items, sizeof(ClipVar) * c);
-			memset(el->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_clone(mp, el->a.items + c - 1, st);
-
-			ed->t.type = NUMERIC_t;
-			ed->t.flags = F_NONE;
-			ed->t.memo = 0;
-			ed->n.d = rmatch[j].rm_eo + 1 + start;
-
-			c = ++el->a.count;
-			el->a.items = (ClipVar *) realloc(el->a.items, sizeof(ClipVar) * c);
-			memset(el->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_clone(mp, el->a.items + c - 1, ed);
-			c = ++rg->a.count;
-			rg->a.items = (ClipVar *) realloc(rg->a.items, sizeof(ClipVar) * c);
-			memset(rg->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_dup(mp, rg->a.items + c - 1, el);
-
-			_clip_delete(mp, st);
-			_clip_delete(mp, ed);
-			_clip_delete(mp, el);
-
-		}
-		if (_clip_parinfo(mp, 0) > 2)
-			_clip_clone(mp, RETPTR(mp), rg);
-
-		_clip_retl(mp, 1);
+	   _clip_delete(ClipMachineMemory, st);
+	   _clip_delete(ClipMachineMemory, ed);
+	   _clip_delete(ClipMachineMemory, el);
 
 	}
-	else
-		_clip_retl(mp, 0);
-	regfree(&preg);
-	free(str);
-	free(buf);
-	return 0;
+       if (_clip_parinfo(ClipMachineMemory, 0) > 2)
+	  _clip_clone(ClipMachineMemory, RETPTR(ClipMachineMemory), rg);
+
+       _clip_retl(ClipMachineMemory, 1);
+
+    }
+   else
+      _clip_retl(ClipMachineMemory, 0);
+   regfree(&preg);
+   free(str);
+   free(buf);
+   return 0;
 }
 
 void
 destroy_c_regex(void *item)
 {
-	regex_t *preg = (regex_t *)item;
+   regex_t  *preg = (regex_t *) item;
 
-	regfree(preg);
-	free(preg);
+   regfree(preg);
+   free(preg);
 }
 
 int
-clip_RGCOMP(ClipMachine * mp)
+clip_RGCOMP(ClipMachine * ClipMachineMemory)
 {
-	int ret, sl, rc, i;
-	unsigned char *s = (unsigned char *)_clip_parcl(mp, 1, &sl);	/* pattern */
-	unsigned char *buf;
-	regex_t *preg = NULL;
+   int       ret, sl, rc, i;
 
-	if (s == NULL)
-	{
-		_clip_retl(mp, 0);
-		return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "RGCOMP");
-	}
-	preg = (regex_t*)malloc( sizeof(regex_t));
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &sl);	/* pattern */
 
-	buf = (unsigned char *) malloc(sl + 1);
-	memcpy(buf, s, sl);
-	buf[sl] = 0;
+   unsigned char *buf;
 
-	for(i=0; i<sl; i++, s++)
-	{
-		if ((*s) > 127)
-			buf[i] = _clip_cmptbl[(*s)];
-	}
-	rc = regcomp(preg, (const char *)buf, REG_EXTENDED | (buf[0]=='^'?REG_NEWLINE:0));
+   regex_t  *preg = NULL;
 
-	ret = _clip_store_c_item(mp, preg, _C_ITEM_TYPE_REGEX, destroy_c_regex);
-	_clip_retni(mp, ret);
-	free(buf);
+   if (s == NULL)
+    {
+       _clip_retl(ClipMachineMemory, 0);
+       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "RGCOMP");
+    }
+   preg = (regex_t *) malloc(sizeof(regex_t));
 
-	return 0;
+   buf = (unsigned char *) malloc(sl + 1);
+   memcpy(buf, s, sl);
+   buf[sl] = 0;
+
+   for (i = 0; i < sl; i++, s++)
+    {
+       if ((*s) > 127)
+	  buf[i] = _clip_cmptbl[(*s)];
+    }
+   rc = regcomp(preg, (const char *) buf, REG_EXTENDED | (buf[0] == '^' ? REG_NEWLINE : 0));
+
+   ret = _clip_store_c_item(ClipMachineMemory, preg, _C_ITEM_TYPE_REGEX, destroy_c_regex);
+   _clip_retni(ClipMachineMemory, ret);
+   free(buf);
+
+   return 0;
 }
 
 int
-clip_RGEXEC(ClipMachine * mp)
+clip_RGEXEC(ClipMachine * ClipMachineMemory)
 {
-	int c, length, i;
-	int item = _clip_parni(mp, 1);		/* container pattern */
-	unsigned char *string = (unsigned char *)_clip_parcl(mp, 2, &length);	/* string */
-	unsigned char *str;
-	int start = _clip_parni(mp, 4) - 1;	/*from (start position) */
-	int range = _clip_parni(mp, 5) - 1;	/*range */
-	int rerr;
-	ClipVar *rg = _clip_par(mp, 3);		/*registers */
+   int       c, length, i;
 
-	regex_t *preg = NULL;
-	regmatch_t rmatch[RE_NREGS];
+   int       item = _clip_parni(ClipMachineMemory, 1);	/* container pattern */
 
-	if (string == NULL)
+   unsigned char *string = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &length);	/* string */
+
+   unsigned char *str;
+
+   int       start = _clip_parni(ClipMachineMemory, 4) - 1;	/*from (start position) */
+
+   int       range = _clip_parni(ClipMachineMemory, 5) - 1;	/*range */
+
+   int       rerr;
+
+   ClipVar  *rg = _clip_par(ClipMachineMemory, 3);	/*registers */
+
+   regex_t  *preg = NULL;
+
+   regmatch_t rmatch[RE_NREGS];
+
+   if (string == NULL)
+    {
+       _clip_retl(ClipMachineMemory, 0);
+       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
+    }
+   if (_clip_parinfo(ClipMachineMemory, 0) < 4)
+      start = 0;
+   if (_clip_parinfo(ClipMachineMemory, 0) < 5)
+      range = length;
+   if (range < 0)
+      start += range + 1;
+   if (start < 0)
+      start = 0;
+   range = abs(range) < length ? abs(range) : length;
+
+   str = (unsigned char *) malloc(range + 1);
+   memcpy(str, string + start, range);
+   str[range] = 0;
+
+   for (i = 0; i <= abs(range) - start; i++, string++)
+    {
+       if (*(string + start) > 127)
+	  str[i] = _clip_cmptbl[*(string + start)];
+
+    }
+
+   preg = (regex_t *) _clip_fetch_c_item(ClipMachineMemory, item, _C_ITEM_TYPE_REGEX);
+   rerr = regexec(preg, (const char *) str, RE_NREGS, rmatch, 0);
+   if (rerr == 0)
+    {
+       int       j;
+
+       for (j = 0; j < RE_NREGS; j++)
 	{
-		_clip_retl(mp, 0);
-		return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
-	}
-	if (_clip_parinfo(mp, 0) < 4)
-		start = 0;
-	if (_clip_parinfo(mp, 0) < 5)
-		range = length;
-	if (range < 0)
-		start += range + 1;
-	if (start < 0)
-		start = 0;
-	range = abs(range) < length ? abs(range) : length;
 
-	str = (unsigned char *) malloc(range + 1);
-	memcpy(str, string + start, range);
-	str[range] = 0;
+	   ClipVar  *st;
 
-	for(i=0; i<=abs(range)-start; i++, string++)
-	{
-		if (*(string+start) > 127)
-			str[i] = _clip_cmptbl[*(string+start)];
+	   ClipVar  *ed;
 
-	}
+	   ClipVar  *el;
 
-	preg = (regex_t *) _clip_fetch_c_item(mp, item, _C_ITEM_TYPE_REGEX);
-	rerr = regexec(preg, (const char *)str, RE_NREGS, rmatch, 0);
-	if ( rerr == 0)
-	{
-		int j;
+	   if ((_clip_parinfo(ClipMachineMemory, 0) < 3) || rmatch[j].rm_so == -1)
+	      break;
 
-		for (j = 0; j < RE_NREGS; j++)
-		{
+	   st = NEW(ClipVar);
+	   ed = NEW(ClipVar);
+	   el = NEW(ClipVar);
 
-			ClipVar *st;
-			ClipVar *ed;
-			ClipVar *el;
+	   el->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = ARRAY_type_of_ClipVarType;
+	   el->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
 
-			if ((_clip_parinfo(mp, 0) < 3) || rmatch[j].rm_so == -1)
-				break;
+	   st->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+	   st->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
+	   st->ClipType_t_of_ClipVar.memo_of_ClipType = 0;
+	   st->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = rmatch[j].rm_so + 1 + start;
 
-			st = NEW(ClipVar);
-			ed = NEW(ClipVar);
-			el = NEW(ClipVar);
+	   c = ++el->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_clone(ClipMachineMemory, el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, st);
 
-			el->t.type = ARRAY_t;
-			el->t.flags = F_NONE;
+	   ed->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+	   ed->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
+	   ed->ClipType_t_of_ClipVar.memo_of_ClipType = 0;
+	   ed->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = rmatch[j].rm_eo + 1 + start;
 
-			st->t.type = NUMERIC_t;
-			st->t.flags = F_NONE;
-			st->t.memo = 0;
-			st->n.d = rmatch[j].rm_so + 1 + start;
+	   c = ++el->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_clone(ClipMachineMemory, el->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, ed);
+	   c = ++rg->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	   rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar =
+	    (ClipVar *) realloc(rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar, sizeof(ClipVar) * c);
+	   memset(rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, 0, sizeof(ClipVar));
+	   _clip_dup(ClipMachineMemory, rg->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + c - 1, el);
 
-			c = ++el->a.count;
-			el->a.items = (ClipVar *) realloc(el->a.items, sizeof(ClipVar) * c);
-			memset(el->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_clone(mp, el->a.items + c - 1, st);
-
-			ed->t.type = NUMERIC_t;
-			ed->t.flags = F_NONE;
-			ed->t.memo = 0;
-			ed->n.d = rmatch[j].rm_eo + 1 + start;
-
-			c = ++el->a.count;
-			el->a.items = (ClipVar *) realloc(el->a.items, sizeof(ClipVar) * c);
-			memset(el->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_clone(mp, el->a.items + c - 1, ed);
-			c = ++rg->a.count;
-			rg->a.items = (ClipVar *) realloc(rg->a.items, sizeof(ClipVar) * c);
-			memset(rg->a.items + c - 1, 0, sizeof(ClipVar));
-			_clip_dup(mp, rg->a.items + c - 1, el);
-
-			_clip_delete(mp, st);
-			_clip_delete(mp, ed);
-			_clip_delete(mp, el);
-
-		}
-		if (_clip_parinfo(mp, 0) > 2)
-			_clip_clone(mp, RETPTR(mp), rg);
-
-		_clip_retl(mp, 1);
+	   _clip_delete(ClipMachineMemory, st);
+	   _clip_delete(ClipMachineMemory, ed);
+	   _clip_delete(ClipMachineMemory, el);
 
 	}
-	else
-	{
-		 regerror(rerr, preg, (char *)str, range);
-		 _clip_retl(mp, 0);
-	}
-	free(str);
-	return 0;
+       if (_clip_parinfo(ClipMachineMemory, 0) > 2)
+	  _clip_clone(ClipMachineMemory, RETPTR(ClipMachineMemory), rg);
+
+       _clip_retl(ClipMachineMemory, 1);
+
+    }
+   else
+    {
+       regerror(rerr, preg, (char *) str, range);
+       _clip_retl(ClipMachineMemory, 0);
+    }
+   free(str);
+   return 0;
 }
 
 int
-clip_RGCANCEL(ClipMachine * mp)
+clip_RGCANCEL(ClipMachine * ClipMachineMemory)
 {
-	int item = _clip_parni(mp, 1);		/* container pattern */
-	_clip_destroy_c_item(mp, item, _C_ITEM_TYPE_REGEX);
-	return 0;
+   int       item = _clip_parni(ClipMachineMemory, 1);	/* container pattern */
+
+   _clip_destroy_c_item(ClipMachineMemory, item, _C_ITEM_TYPE_REGEX);
+   return 0;
 }
 
 int
-clip_SPLIT(ClipMachine * mp)
+clip_SPLIT(ClipMachine * ClipMachineMemory)
 {
-	int sl, length, i;
-	unsigned char *string = (unsigned char *)_clip_parcl(mp, 1, &length);	/* string */
-	unsigned char *s = (unsigned char *)_clip_parcl(mp, 2, &sl);	/* pattern */
-	unsigned char *str, *buf;
-	unsigned char *ustr;
-	int start = 0;					/*from (start position) */
-	int range = length;				/*range */
-	int b;
-	long l[2];
-	ClipVar *rg = RETPTR(mp);
+   int       sl, length, i;
 
-	regex_t preg;
-	regmatch_t rmatch[RE_NREGS];
+   unsigned char *string = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &length);	/* string */
 
-	if (s == NULL || string == NULL)
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &sl);	/* pattern */
+
+   unsigned char *str, *buf;
+
+   unsigned char *ustr;
+
+   int       start = 0;		/*from (start position) */
+
+   int       range = length;	/*range */
+
+   int       b;
+
+   long      l[2];
+
+   ClipVar  *rg = RETPTR(ClipMachineMemory);
+
+   regex_t   preg;
+
+   regmatch_t rmatch[RE_NREGS];
+
+   if (s == NULL || string == NULL)
+    {
+       _clip_retl(ClipMachineMemory, 0);
+       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
+    }
+
+   str = (unsigned char *) malloc(range + 1);
+   memcpy(str, string + start, range);
+   str[range] = 0;
+
+   buf = (unsigned char *) malloc(sl + 1);
+   memcpy(buf, s, sl);
+   buf[sl] = 0;
+
+   for (i = 0; i < sl; i++, s++)
+    {
+       if ((*s) > 127)
+	  buf[i] = _clip_cmptbl[(*s)];
+    }
+   ustr = string;
+   for (i = 0; i < range; i++, string++)
+    {
+       if (*(string + start) > 127)
+	  str[i] = _clip_cmptbl[*(string + start)];
+
+    }
+   memset(&preg, 0, sizeof(preg));
+
+   regcomp(&preg, (const char *) buf, REG_EXTENDED | (buf[0] == '^' ? REG_NEWLINE : 0));
+
+   l[0] = 0;
+   _clip_array(ClipMachineMemory, rg, 1, l);
+
+   b = 0;
+   while (b <= range)
+    {
+       if (regexec(&preg, (const char *) (str + b), RE_NREGS, rmatch, 0 /*REG_NOTBOL */ ) == 0)
 	{
-		_clip_retl(mp, 0);
-		return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "SEARCH");
+	   int       j = 0;
+
+	   ClipVar  *st;
+
+	   j = rmatch[0].rm_so;
+	   if (j == -1)
+	    {
+	       st = NEW(ClipVar);
+
+	       j = range - b;
+	       st->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	       st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf =
+		realloc(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, j + 1);
+	       memcpy(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, ustr + b, j);
+	       st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf[j] = 0;
+	       st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = j;
+	       _clip_aadd(ClipMachineMemory, rg, st);
+
+	       _clip_delete(ClipMachineMemory, st);
+	       break;
+	    }
+
+	   st = NEW(ClipVar);
+
+	   st->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf =
+	    realloc(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, j + 1);
+	   memcpy(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, ustr + b, j);
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf[j] = 0;
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = j;
+	   _clip_aadd(ClipMachineMemory, rg, st);
+
+	   _clip_delete(ClipMachineMemory, st);
+
+	   b += rmatch[0].rm_eo;
 	}
-
-	str = (unsigned char *) malloc(range + 1);
-	memcpy(str, string + start, range);
-	str[range] = 0;
-
-	buf = (unsigned char *) malloc(sl + 1);
-	memcpy(buf, s, sl);
-	buf[sl] = 0;
-
-	for(i=0; i<sl; i++, s++)
+       else
 	{
-		if ((*s) > 127)
-			buf[i] = _clip_cmptbl[(*s)];
+	   ClipVar  *st;
+
+	   int       j;
+
+	   st = NEW(ClipVar);
+
+	   j = range - b;
+	   st->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf =
+	    realloc(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, j + 1);
+	   memcpy(st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, ustr + b, j);
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf[j] = 0;
+	   st->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = j;
+	   _clip_aadd(ClipMachineMemory, rg, st);
+
+	   _clip_delete(ClipMachineMemory, st);
+	   break;
 	}
-	ustr = string;
-	for(i=0; i<range; i++, string++)
-	{
-		if (*(string+start) > 127)
-			str[i] = _clip_cmptbl[*(string+start)];
+    }				// while
 
-	}
-	memset(&preg, 0, sizeof(preg));
+   regfree(&preg);
+   free(str);
+   free(buf);
 
-	regcomp(&preg, (const char *)buf, REG_EXTENDED | (buf[0]=='^'?REG_NEWLINE:0));
-
-	l[0] = 0;
-	_clip_array(mp, rg, 1, l);
-
-	b = 0;
-	while (b <= range)
-	{
-		if (regexec(&preg, (const char *)(str+b), RE_NREGS, rmatch, 0/*REG_NOTBOL*/) == 0)
-		{
-			int j=0;
-
-
-			ClipVar *st;
-
-			j = rmatch[0].rm_so;
-			if (j == -1)
-			{
-				st = NEW(ClipVar);
-
-				j = range - b;
-				st->t.type = CHARACTER_t;
-				st->s.str.buf = realloc(st->s.str.buf, j+1);
-				memcpy(st->s.str.buf, ustr+b, j);
-				st->s.str.buf[j] = 0;
-				st->s.str.len = j;
-				_clip_aadd(mp, rg, st);
-
-				_clip_delete(mp, st);
-				break;
-			}
-
-			st = NEW(ClipVar);
-
-			st->t.type = CHARACTER_t;
-			st->s.str.buf = realloc(st->s.str.buf, j+1);
-			memcpy(st->s.str.buf, ustr+b, j);
-			st->s.str.buf[j] = 0;
-			st->s.str.len = j;
-			_clip_aadd(mp, rg, st);
-
-			_clip_delete(mp, st);
-
-			b += rmatch[0].rm_eo;
-		}
-		else
-		{
-			ClipVar *st;
-			int j;
-			st = NEW(ClipVar);
-
-			j = range - b;
-			st->t.type = CHARACTER_t;
-			st->s.str.buf = realloc(st->s.str.buf, j+1);
-			memcpy(st->s.str.buf, ustr+b, j);
-			st->s.str.buf[j] = 0;
-			st->s.str.len = j;
-			_clip_aadd(mp, rg, st);
-
-			_clip_delete(mp, st);
-			break;
-		}
-	} // while
-
-	regfree(&preg);
-	free(str);
-	free(buf);
-
-	return 0;
+   return 0;
 }
-

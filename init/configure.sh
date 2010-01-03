@@ -1,13 +1,31 @@
-#!/bin/bash -u
+#!/bin/bash
 echo "Configuring $PWD because of $*" >&0
 echo "Configuring $PWD because of $*" >&1
 echo "Configuring $PWD because of $*" >&2
+for nNames in * ; do
+	if [ -d nNames ] ; then
+		if [ -f $nNames.h ] ; then
+			for SubNames in $nNames/* ; do
+				if [ $SubNames -nt $nNames.h ] ; then
+					touch $nNames.h
+				fi
+			done
+		fi
+		if [ -f $nNames.ch ] ; then
+			for SubNames in $nNames/* ; do
+				if [ $SubNames -nt $nNames.ch ] ; then
+					touch $nNames.ch
+				fi
+			done
+		fi
+	fi
+done
 [ -f $PWD/configure.ok ] && rm -f$V $PWD/configure.ok
 source $Clip_M_Dir/configure.ini
 [ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
 [ -f ./Makefile.ini ] || cp --remove-destination -fpu$V $Clip_M_Dir/Makefile.ini $Clip_M_Dir/configure.ini ./
 if [ -f ./configure.in ] ; then
-	echo "#!/bin/bash -u" 									>./configure
+	echo "#!/bin/bash " 										>./configure
 	cat ./configure.ini 										>>./configure
 	echo "source $Clip_M_Dir/init/functions.f" 		>>./configure
 	cat ./configure.in  										>>./configure
@@ -20,7 +38,7 @@ fi
 touch $PWD/configure.ok
 touch $PWD/configure.ok
 touch $PWD/configure.ok
-if [[ "$1" = "clean" ]] || [[ "$1" = "distclean" ]] ;  then
+if [[ "$1" = "clean" ]] || [[ "$1" = "distclean" ]] || [[ "$1" = "M_config" ]]  ;  then
 	sleep 0
 else
 	sleep 1

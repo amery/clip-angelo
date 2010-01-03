@@ -1,4 +1,4 @@
-#!/bin/sh -ue
+#!/bin/sh 
 #
 
 cd temp

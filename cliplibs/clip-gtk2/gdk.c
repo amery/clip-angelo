@@ -14,94 +14,112 @@
 #include "ci_clip-gtk2.h"
 #include "ci_clip-gdk2.h"
 
-GtkType _gdk_type_cursor() { return GDK_OBJECT_CURSOR; }
-long _clip_type_cursor() { return GDK_OBJECT_CURSOR; }
-const char * _clip_type_name_cursor() { return "GDK_OBJECT_CURSOR"; }
+GtkType
+_gdk_type_cursor()
+{
+   return GDK_OBJECT_CURSOR;
+}
+
+long
+_clip_type_cursor()
+{
+   return GDK_OBJECT_CURSOR;
+}
+
+const char *
+_clip_type_name_cursor()
+{
+   return "GDK_OBJECT_CURSOR";
+}
 
 int
-clip_INIT___GDK(ClipMachine *cm)
+clip_INIT___GDK(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_cursor, _clip_type_name_cursor, _gdk_type_cursor, NULL, NULL);
-	return 0;
+   _wtype_table_put(_clip_type_cursor, _clip_type_name_cursor, _gdk_type_cursor, NULL, NULL);
+   return 0;
 }
+
 /**********************************************************/
 
 /* Returns the width of the screen in pixels. */
 int
-clip_GDK_SCREENWIDTH(ClipMachine * cm)
+clip_GDK_SCREENWIDTH(ClipMachine * ClipMachineMemory)
 {
-	_clip_retni(cm, gdk_screen_width());
-	return 0;
+   _clip_retni(ClipMachineMemory, gdk_screen_width());
+   return 0;
 }
 
 // Returns the height of the screen in pixels.
 int
-clip_GDK_SCREENHEIGHT(ClipMachine * cm)
+clip_GDK_SCREENHEIGHT(ClipMachine * ClipMachineMemory)
 {
-	_clip_retni(cm, gdk_screen_height());
-	return 0;
+   _clip_retni(ClipMachineMemory, gdk_screen_height());
+   return 0;
 }
 
 // Returns the width of the screen in millimeters.
 // Note that on many X servers this value will not be correct.
 int
-clip_GDK_SCREENWIDTHMM(ClipMachine * cm)
+clip_GDK_SCREENWIDTHMM(ClipMachine * ClipMachineMemory)
 {
-	_clip_retni(cm, gdk_screen_width_mm());
-	return 0;
+   _clip_retni(ClipMachineMemory, gdk_screen_width_mm());
+   return 0;
 }
 
 // Returns the height of the screen in millimeters.
 // Note that on many X servers this value will not be correct.
 int
-clip_GDK_SCREENHEIGHTMM(ClipMachine * cm)
+clip_GDK_SCREENHEIGHTMM(ClipMachine * ClipMachineMemory)
 {
-	_clip_retni(cm, gdk_screen_height_mm());
-	return 0;
+   _clip_retni(ClipMachineMemory, gdk_screen_height_mm());
+   return 0;
 }
 
 /* Emits a short beep. */
 int
-clip_GDK_BEEP(ClipMachine * cm)
+clip_GDK_BEEP(ClipMachine * ClipMachineMemory)
 {
-	gdk_beep();
-	return 0;
+   gdk_beep();
+   return 0;
 }
 
 static int
-gdk_object_cursor_destructor(ClipMachine *cm, C_object *ccur)
+gdk_object_cursor_destructor(ClipMachine * ClipMachineMemory, C_object * ccur)
 {
-	if (ccur && GDK_IS_CURSOR(ccur) && ccur->ref_count >= 0)
-		gdk_cursor_destroy(GDK_CURSOR(ccur->object));
-	return 0;
+   if (ccur && GDK_IS_CURSOR(ccur) && ccur->ref_count >= 0)
+      gdk_cursor_destroy(GDK_CURSOR(ccur->object));
+   return 0;
 }
 
 // Sets shape of mouse cursor
 int
-clip_GDK_WINDOWSETCURSOR(ClipMachine * cm)
+clip_GDK_WINDOWSETCURSOR(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cwin = _fetch_cw_arg(cm);
-	GdkCursorType cursor_type = _clip_parni(cm, 2);
+   C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwin,GTK_IS_WIDGET); CHECKOPT(2,NUMERIC_t);
+   GdkCursorType cursor_type = _clip_parni(ClipMachineMemory, 2);
 
-	if (cwin && cwin->widget)
+   CHECKCWID(cwin, GTK_IS_WIDGET);
+   CHECKOPT(2, NUMERIC_type_of_ClipVarType);
+
+   if (cwin && cwin->widget)
+    {
+       GdkCursor *cursor = gdk_cursor_new(cursor_type);
+
+       C_object *ccur;
+
+       if (cursor)
 	{
-		GdkCursor *cursor = gdk_cursor_new(cursor_type);
-		C_object *ccur;
-
-		if (cursor)
-		{
-			ccur = _register_object(cm,cursor,GDK_TYPE_CURSOR,NULL,
-				(coDestructor)gdk_object_cursor_destructor);
-			ccur->ref_count = 1;
-			_clip_mclone(cm,RETPTR(cm),&ccur->obj);
-		}
-		gdk_window_set_cursor(cwin->widget->window, cursor);
+	   ccur = _register_object(ClipMachineMemory, cursor, GDK_TYPE_CURSOR, NULL,
+				   (coDestructor) gdk_object_cursor_destructor);
+	   ccur->ref_count = 1;
+	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccur->obj);
 	}
-	return 0;
-err:
-	return 1;
+       gdk_window_set_cursor(cwin->widget->window, cursor);
+    }
+   return 0;
+ err:
+   return 1;
 }
 
 /* Grabs the pointer (usually a mouse) so that all events are passed to this
@@ -120,40 +138,52 @@ err:
  * applications expect to receive button press and release events in pairs.
  * It is equivalent to a pointer grab on the window with owner_events set to TRUE. */
 int
-clip_GDK_POINTERGRAB(ClipMachine * cm)
+clip_GDK_POINTERGRAB(ClipMachine * ClipMachineMemory)
 {
-	C_widget    *cwin = _fetch_cw_arg(cm);
-	GdkWindow *win = NULL;
-	gboolean owner_events = _clip_parl(cm,2);
-	GdkEventMask event_mask = _clip_parnl(cm,3);
-	C_widget *cconfine_to = _fetch_cwidget(cm,_clip_spar(cm,4));
-	GdkWindow *confine_to = NULL;
-	C_object *ccursor = _fetch_cobject(cm,_clip_spar(cm,5));
-	GdkCursor *cursor = NULL;
+   C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwin,GTK_IS_WIDGET);
-	CHECKOPT(2,LOGICAL_t); CHECKOPT(3,NUMERIC_t);
-	CHECKOPT2(4,MAP_t,NUMERIC_t); CHECKCWIDOPT(cwin,GTK_IS_WIDGET);
-	CHECKOPT2(5,MAP_t,NUMERIC_t); CHECKCOBJOPT(ccursor,GDK_IS_CURSOR(ccursor));
+   GdkWindow *win = NULL;
 
-	if (cwin && cwin->widget) win = cwin->widget->window;
-	if (cconfine_to && cconfine_to->widget) confine_to = cconfine_to->widget->window;
-	if (ccursor) cursor = GDK_CURSOR(ccursor->object);
+   gboolean  owner_events = _clip_parl(ClipMachineMemory, 2);
 
-	_clip_retni(cm,gdk_pointer_grab(win, owner_events, event_mask,
-		confine_to, cursor, GDK_CURRENT_TIME));
+   GdkEventMask event_mask = _clip_parnl(ClipMachineMemory, 3);
 
-	return 0;
-err:
-	return 1;
+   C_widget *cconfine_to = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 4));
+
+   GdkWindow *confine_to = NULL;
+
+   C_object *ccursor = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
+
+   GdkCursor *cursor = NULL;
+
+   CHECKCWID(cwin, GTK_IS_WIDGET);
+   CHECKOPT(2, LOGICAL_type_of_ClipVarType);
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT2(4, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCWIDOPT(cwin, GTK_IS_WIDGET);
+   CHECKOPT2(5, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKCOBJOPT(ccursor, GDK_IS_CURSOR(ccursor));
+
+   if (cwin && cwin->widget)
+      win = cwin->widget->window;
+   if (cconfine_to && cconfine_to->widget)
+      confine_to = cconfine_to->widget->window;
+   if (ccursor)
+      cursor = GDK_CURSOR(ccursor->object);
+
+   _clip_retni(ClipMachineMemory, gdk_pointer_grab(win, owner_events, event_mask, confine_to, cursor, GDK_CURRENT_TIME));
+
+   return 0;
+ err:
+   return 1;
 }
 
 /* Ungrabs the pointer, if it is grabbed by this application. */
 int
-clip_GDK_POINTERUNGRAB(ClipMachine * cm)
+clip_GDK_POINTERUNGRAB(ClipMachine * ClipMachineMemory)
 {
-	gdk_pointer_ungrab(GDK_CURRENT_TIME);
-	return 0;
+   gdk_pointer_ungrab(GDK_CURRENT_TIME);
+   return 0;
 }
 
 /* Returns TRUE if the pointer is currently grabbed by this application.
@@ -163,168 +193,189 @@ clip_GDK_POINTERUNGRAB(ClipMachine * cm)
  * if the grab window becomes unviewable. It also does not take passive
  * pointer grabs into account. */
 int
-clip_GDK_POINTERISGRABBED(ClipMachine * cm)
+clip_GDK_POINTERISGRABBED(ClipMachine * ClipMachineMemory)
 {
-	_clip_retl(cm,gdk_pointer_is_grabbed());
-	return 0;
+   _clip_retl(ClipMachineMemory, gdk_pointer_is_grabbed());
+   return 0;
 }
 
 /* Grabs the keyboard so that all events are passed to this application until
  * the keyboard is ungrabbed with gdk_keyboard_ungrab().
  * This overrides any previous keyboard grab by this client. */
 int
-clip_GDK_KEYBOARDGRAB(ClipMachine * cm)
+clip_GDK_KEYBOARDGRAB(ClipMachine * ClipMachineMemory)
 {
-	C_widget    *cwin = _fetch_cw_arg(cm);
-	GdkWindow *win = NULL;
-	gint owner_events = _clip_parl(cm,2);
+   C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
 
-	CHECKCWID(cwin,GTK_IS_WIDGET);
-	CHECKOPT(2,LOGICAL_t);
+   GdkWindow *win = NULL;
 
-	if (cwin && cwin->widget) win = cwin->widget->window;
+   gint      owner_events = _clip_parl(ClipMachineMemory, 2);
 
-	gdk_keyboard_grab(win, owner_events, GDK_CURRENT_TIME);
+   CHECKCWID(cwin, GTK_IS_WIDGET);
+   CHECKOPT(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   if (cwin && cwin->widget)
+      win = cwin->widget->window;
+
+   gdk_keyboard_grab(win, owner_events, GDK_CURRENT_TIME);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /* Ungrabs the keyboard, if it is grabbed by this application. */
 int
-clip_GDK_KEYBOARDUNGRAB(ClipMachine * cm)
+clip_GDK_KEYBOARDUNGRAB(ClipMachine * ClipMachineMemory)
 {
-	gdk_keyboard_ungrab(GDK_CURRENT_TIME);
-	return 0;
+   gdk_keyboard_ungrab(GDK_CURRENT_TIME);
+   return 0;
 }
-
 
 /* Converts a key value into a symbolic name. The names are the same as those
    in the <clip-gdk.ch> header file but without the leading "GDK_". */
 int
-clip_GDK_KEYVALNAME(ClipMachine * cm)
+clip_GDK_KEYVALNAME(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-	_clip_retc(cm, gdk_keyval_name(keyval));
-	return 0;
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
+
+   _clip_retc(ClipMachineMemory, gdk_keyval_name(keyval));
+   return 0;
 }
 
 /* Converts a key name to a key value. */
 int
-clip_GDK_KEYVALFROMNAME(ClipMachine * cm)
+clip_GDK_KEYVALFROMNAME(ClipMachine * ClipMachineMemory)
 {
-	gchar * keyval_name = CHAR_OPTION(cm, 1,"");
-	_clip_retni(cm, gdk_keyval_from_name(keyval_name));
-	return 0;
+   gchar    *keyval_name = CHAR_OPTION(ClipMachineMemory, 1, "");
+
+   _clip_retni(ClipMachineMemory, gdk_keyval_from_name(keyval_name));
+   return 0;
 }
 
 /* Returns TRUE if the given key value is in upper case. */
 int
-clip_GDK_KEYVALISUPPER(ClipMachine * cm)
+clip_GDK_KEYVALISUPPER(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-	_clip_retl(cm, gdk_keyval_is_upper(keyval));
-	return 0;
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
+
+   _clip_retl(ClipMachineMemory, gdk_keyval_is_upper(keyval));
+   return 0;
 }
 
 /* Returns TRUE if the given key value is in lower case. */
 int
-clip_GDK_KEYVALISLOWER(ClipMachine * cm)
+clip_GDK_KEYVALISLOWER(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-	_clip_retl(cm, gdk_keyval_is_lower(keyval));
-	return 0;
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
+
+   _clip_retl(ClipMachineMemory, gdk_keyval_is_lower(keyval));
+   return 0;
 }
 
 /* Converts a key value to upper case, if applicable. */
 int
-clip_GDK_KEYVALTOUPPER(ClipMachine * cm)
+clip_GDK_KEYVALTOUPPER(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-	_clip_retl(cm, gdk_keyval_to_upper(keyval));
-	return 0;
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
+
+   _clip_retl(ClipMachineMemory, gdk_keyval_to_upper(keyval));
+   return 0;
 }
 
 /* Converts a key value to lower case, if applicable. */
 int
-clip_GDK_KEYVALTOLOWER(ClipMachine * cm)
+clip_GDK_KEYVALTOLOWER(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-	_clip_retl(cm, gdk_keyval_to_lower(keyval));
-	return 0;
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
+
+   _clip_retl(ClipMachineMemory, gdk_keyval_to_lower(keyval));
+   return 0;
 }
 
 int
-clip_GDK_KEYVALTOUNICODE(ClipMachine * cm)
+clip_GDK_KEYVALTOUNICODE(ClipMachine * ClipMachineMemory)
 {
-	guint keyval = INT_OPTION(cm, 1,0);
-        wchar_t wc ; //= INT_OPTION(cm, 1,0);
-        gchar *result ;
-        int total_len, first, clen ;
-	wc  = gdk_keyval_to_unicode(keyval);
+   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
 
-  	total_len = 0;
-      	if (wc < 0x80)
-		total_len += 1;
-      	else if (wc < 0x800)
-		total_len += 2;
-      	else if (wc < 0x10000)
-		total_len += 3;
-      	else if (wc < 0x200000)
-		total_len += 4;
-      	else if (wc < 0x4000000)
-		total_len += 5;
-      	else
-		total_len += 6;
+   wchar_t   wc;		//= INT_OPTION(ClipMachineMemory, 1,0);
 
-  	result = calloc(total_len+1, sizeof(char));
+   gchar    *result;
 
-      	if (wc < 0x80)
-	{
-		first = 0;
-		clen = 1;
-	}
-      	else if (wc < 0x800)
-	{
-		first = 0xc0;
-		clen = 2;
-	}
-      	else if (wc < 0x10000)
-	{
-		first = 0xe0;
-		clen = 3;
-	}
-      	else if (wc < 0x200000)
-	{
-		first = 0xf0;
-		clen = 4;
-	}
-      	else if (wc < 0x4000000)
-	{
-		first = 0xf8;
-		clen = 5;
-	}
-      	else
-	{
-		first = 0xfc;
-		clen = 6;
-	}
+   int       total_len, first, clen;
 
-      	switch (clen)
-	{
-		case 6: result[5] = (wc & 0x3f) | 0x80; wc >>= 6; /* Fall through */
-		case 5: result[4] = (wc & 0x3f) | 0x80; wc >>= 6; /* Fall through */
-		case 4: result[3] = (wc & 0x3f) | 0x80; wc >>= 6; /* Fall through */
-		case 3: result[2] = (wc & 0x3f) | 0x80; wc >>= 6; /* Fall through */
-		case 2: result[1] = (wc & 0x3f) | 0x80; wc >>= 6; /* Fall through */
-		case 1: result[0] = wc | first;
+   wc = gdk_keyval_to_unicode(keyval);
 
-	}
+   total_len = 0;
+   if (wc < 0x80)
+      total_len += 1;
+   else if (wc < 0x800)
+      total_len += 2;
+   else if (wc < 0x10000)
+      total_len += 3;
+   else if (wc < 0x200000)
+      total_len += 4;
+   else if (wc < 0x4000000)
+      total_len += 5;
+   else
+      total_len += 6;
 
-	_clip_retc(cm, result);
-        free(result);
-	return 0;
+   result = calloc(total_len + 1, sizeof(char));
+
+   if (wc < 0x80)
+    {
+       first = 0;
+       clen = 1;
+    }
+   else if (wc < 0x800)
+    {
+       first = 0xc0;
+       clen = 2;
+    }
+   else if (wc < 0x10000)
+    {
+       first = 0xe0;
+       clen = 3;
+    }
+   else if (wc < 0x200000)
+    {
+       first = 0xf0;
+       clen = 4;
+    }
+   else if (wc < 0x4000000)
+    {
+       first = 0xf8;
+       clen = 5;
+    }
+   else
+    {
+       first = 0xfc;
+       clen = 6;
+    }
+
+   switch (clen)
+    {
+    case 6:
+       result[5] = (wc & 0x3f) | 0x80;
+       wc >>= 6;		/* Fall through */
+    case 5:
+       result[4] = (wc & 0x3f) | 0x80;
+       wc >>= 6;		/* Fall through */
+    case 4:
+       result[3] = (wc & 0x3f) | 0x80;
+       wc >>= 6;		/* Fall through */
+    case 3:
+       result[2] = (wc & 0x3f) | 0x80;
+       wc >>= 6;		/* Fall through */
+    case 2:
+       result[1] = (wc & 0x3f) | 0x80;
+       wc >>= 6;		/* Fall through */
+    case 1:
+       result[0] = wc | first;
+
+    }
+
+   _clip_retc(ClipMachineMemory, result);
+   free(result);
+   return 0;
 }
-
-

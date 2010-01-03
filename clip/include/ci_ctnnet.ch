@@ -1,4 +1,4 @@
-#ifndef CI_NTNNET
+#ifndef CN_NTNNET
 
 #define OBJ_WILD		65535	// Wild thing, you make
 					// my heart swing....
@@ -82,6 +82,6 @@
 	    NNETDELOBJ(<Username>,OBJ_GROUP [,<Server>])
 
 
-#define CI_NTNNET
+#define CN_NTNNET
 
 #endif

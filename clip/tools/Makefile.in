@@ -29,6 +29,7 @@ SCRIPTS 			= 		$(sort 								 			\
 										lowname$(SCRIPTSUFF) 			\
 										clip_makelib$(SCRIPTSUFF) 		\
 										clip_makeslib$(SCRIPTSUFF) 	\
+										ci_mindent$(SCRIPTSUFF) 		\
 										inst_end$(SCRIPTSUFF) 			\
 										tconv$(SCRIPTSUFF) 				\
 										clip_msgfmt$(SCRIPTSUFF) 		\
@@ -240,11 +241,15 @@ po_compat$(EXESUFF): po_util.o Makefile
 		$(CC) $(C_FLAGS) -o $@ po_compat.c po_util.o ; 		\
 	fi
 
-clip_bug$(SCRIPTSUFF) : Makefile
+clip_bug$(SCRIPTSUFF) : clip_bug Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) clip_bug $@
 
-joinlib$(SCRIPTSUFF) : inst_end Makefile
+ci_mindent$(SCRIPTSUFF) : cn_mindent Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) cn_mindent $@
+
+joinlib$(SCRIPTSUFF) : joinlib Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) joinlib  $@
 

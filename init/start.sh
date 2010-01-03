@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash 
 Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
@@ -101,11 +101,14 @@ elif [[ "$option" = "4" ]] || [[ "$option" = "usr.local" ]] ; then
 #	fi
 #	rm -f $Clip_B_Dir/0
 else
-	echo
-	echo "$0 options are : [ '' | home(default) | sys | opt | usr.local ]"
-	exit 1
+#	echo
+#	echo "$0 options are : [ '' | home(default) | sys | opt | usr.local ]"
+#	exit 1
+	option=1
+	source $Clip_M_Dir/init/start.sh $option
 fi
 #export CONFIGUR_SH=$Clip_M_Dir/init/config.sh
+export option
 export ARCH
 export C64
 export CLIP_CONFIGURE_FLAGS

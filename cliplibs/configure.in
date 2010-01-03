@@ -3,7 +3,6 @@
 #	Configure script for clip
 #	<uri@itk.ru>
 #
-beep_on
 #OnScreen 2 "DIRS_TO_SCAN = >Makefile.01"
 #echo "DIRS_TO_SCAN =" 												>Makefile.01
 DIRS_TO_SCAN=""
@@ -43,6 +42,7 @@ function Get_Check ()
 }
 #echo $AllDir
 for dName in $AllDir ; do
+	beep_on
 #	touch clip-$dName.ok
 #	echo $dName
 	VarX=""

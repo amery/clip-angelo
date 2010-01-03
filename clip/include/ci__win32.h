@@ -5,32 +5,24 @@
 */
 
 /*
-    $Log: _win32.h,v $
-    Revision 1.1  2006/06/22 19:35:15  itk
-    uri: init sf.net repository
-
-    Revision 1.2  2003/09/05 12:11:52  clip
-    uri: initial fixes for mingw+win32 from uri
-
-    Revision 1.1  2003/09/02 14:27:42  clip
-    changes for MINGW from
-    Mauricio Abre <maurifull@datafull.com>
-    paul
-
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 */
 
-#ifndef CI__WIN32_CLIP_H_
-#define CI__WIN32_CLIP_H_
+#ifndef CN__WIN32_CLIP_H_
+#define CN__WIN32_CLIP_H_
 
 /* don't touch next line!! must be EXACTLY as it is */
 #if defined(_WIN32) || defined(OS_MINGW) || defined(OS_CYGWIN)
 
-int w32fcntl(int fd, int flag, void *argp);
+int       w32fcntl(int fd, int flag, void *argp);
+
 #define fcntl w32fcntl
 
 #ifdef OS_CYGWIN
 #include <w32api/windows.h>
-#else  /* MingW support */
+#else /* MingW support */
 #include <windows.h>
 #include <winsock.h>
 #include <time.h>
@@ -60,36 +52,23 @@ int w32fcntl(int fd, int flag, void *argp);
 #define F_SHLCK		8
 
 #define O_NONBLOCK   0400
-struct flock {
-	short int l_type;
-	short int l_whence;
-#ifndef __USE_FILE_OFFSET64
-	long l_start;
-	long l_len;
-#else
-	long l_start;
-	long l_len;
-#endif
-  };
+#include "ci__win32/struct_flock.h"
+#include "ci__win32/struct timezone.h"
 
-struct timezone {
-	int tz_minuteswest;
-	int tz_dsttime;
-};
-
-struct tms {
-	clock_t tms_utime;
-	clock_t tms_stime;
-	clock_t tms_cutime;
-	clock_t tms_cstime;
-};
+#include "ci__win32/struct tms.h"
 
 unsigned long getpagesize();
-void usleep(unsigned int usecs);
-int gettimeofday(struct timeval *tv, struct timezone *tz);
-clock_t times(struct tms *buf);
-int inet_aton(const char *cp, struct in_addr *inap);
+
+void      usleep(unsigned int usecs);
+
+int       gettimeofday(struct timeval *tv, struct timezone *tz);
+
+clock_t   times(struct tms *buf);
+
+int       inet_aton(const char *cp, struct in_addr *inap);
+
 typedef unsigned int socklen_t;
+
 #define INET_ADDRSTRLEN 16
 
 #ifndef CLK_TCK
@@ -97,22 +76,14 @@ typedef unsigned int socklen_t;
 #endif
 
 /* termios */
-typedef unsigned char	cc_t;
-typedef unsigned int	speed_t;
-typedef unsigned int	tcflag_t;
+typedef unsigned char cc_t;
+
+typedef unsigned int speed_t;
+
+typedef unsigned int tcflag_t;
 
 #define NCCS 32
-struct termios
-  {
-    tcflag_t c_iflag;		/* input mode flags */
-    tcflag_t c_oflag;		/* output mode flags */
-    tcflag_t c_cflag;		/* control mode flags */
-    tcflag_t c_lflag;		/* local mode flags */
-    cc_t c_line;			/* line discipline */
-    cc_t c_cc[NCCS];		/* control characters */
-    speed_t c_ispeed;		/* input speed */
-    speed_t c_ospeed;		/* output speed */
-  };
+#include "ci__win32/struct_termios.h"
 
 /* c_cc characters */
 #define VINTR 0
@@ -243,8 +214,8 @@ struct termios
 #define  B4000000 0010017
 #define __MAX_BAUD B4000000
 #ifdef __USE_MISC
-# define CIBAUD	  002003600000		/* input baud rate (not used) */
-# define CRTSCTS  020000000000		/* flow control */
+# define CIBAUD	  002003600000	/* input baud rate (not used) */
+# define CRTSCTS  020000000000	/* flow control */
 #endif
 
 /* c_lflag bits */
@@ -284,13 +255,12 @@ struct termios
 #define	TCSADRAIN	1
 #define	TCSAFLUSH	2
 
-
 #define _IOT_termios /* Hurd ioctl type field.  */ \
   _IOT (_IOTS (cflag_t), 4, _IOTS (cc_t), NCCS, _IOTS (speed_t), 2)
 
+int       tcgetattr(int fd, struct termios *termios_p);
 
-int tcgetattr ( int fd, struct termios *termios_p );
-int tcsetattr ( int fd, int optional_actions, struct termios *termios_p);
+int       tcsetattr(int fd, int optional_actions, struct termios *termios_p);
 #endif
 #endif
 

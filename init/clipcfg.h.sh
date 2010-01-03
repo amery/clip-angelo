@@ -1,4 +1,4 @@
-#!/bin/bash -ue
+#!/bin/bash 
 #
 #source $Clip_F_F
 #if [ $? != 0 ] ; then

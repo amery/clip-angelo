@@ -1,4 +1,4 @@
-#!/bin/sh -u
+#!/bin/sh 
 #
 source ./configure.ini
 iName=""

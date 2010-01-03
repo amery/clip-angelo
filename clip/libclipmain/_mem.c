@@ -2,109 +2,12 @@
 	Copyright (C) 2001  ITK
 	Author   : Paul Lasarev <paul@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
+
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
+
 */
-/*
-   $Log: _mem.c,v $
-   Revision 1.2  2006/11/21 09:35:00  itk
-   uri: small fix in "restore from + getsys".
-
-   Revision 1.26  2005/08/08 09:00:30  clip
-   alena: fix for gcc 4
-
-   Revision 1.25  2005/03/31 11:47:42  clip
-   uri: small fix for support mem files from FOX
-
-   Revision 1.24  2004/06/10 09:35:22  clip
-   rust: minor fix in MEMVARLIST()
-
-   Revision 1.23  2004/06/03 09:59:37  clip
-   rust: minor fix in MEMVARLIST()
-
-   Revision 1.22  2004/05/07 10:18:34  clip
-   rust: MEMVARLIST(<pattern>,[<lPublics>],[<lExcept>])
-   <lPublics>: .t. - publics, .f. - privates, nil - all memvars
-
-   Revision 1.21  2003/08/19 11:49:18  clip
-   fix #155
-   paul
-
-   Revision 1.20  2002/08/27 13:31:57  clip
-   add _clip_ref_public_noadd func
-   fix for mem restore
-   paul
-
-   Revision 1.19  2002/08/26 07:13:50  clip
-   uri: strdup => memcpy in clip2dbf()
-
-   Revision 1.18  2002/08/23 14:43:11  clip
-   uri: warning fix
-
-   Revision 1.17  2002/08/23 10:28:03  clip
-   uri: small fix
-
-   Revision 1.16  2001/11/10 11:38:29  clip
-   uri: new desriptions commands SUM,COUNT, small bug in read_mem
-
-   Revision 1.15  2001/11/01 14:54:40  clip
-   _clip_path() - makes absolute path respecting SET DEFAULT, SET PATH etc
-   rust
-
-   Revision 1.14  2001/08/23 13:52:06  clip
-   merge with NEWLOCALS
-   paul
-
-   Revision 1.13.2.1  2001/08/23 13:03:30  clip
-   ref bug
-   paul
-
-   Revision 1.13  2001/06/13 13:05:47  clip
-   uri: add case flag in _clip_glob_match(), fixed all calls  this functions
-
-   Revision 1.12  2001/05/31 12:27:20  clip
-   _clip_clip
-   paul
-
-   Revision 1.11  2001/05/29 07:17:08  clip
-   register names in macro expr
-   paul
-
-   Revision 1.10  2001/04/05 10:08:17  clip
-   dbf/dbf.h not recured now
-   rust
-
-   Revision 1.9  2001/04/03 09:17:00  clip
-   license errors
-   paul
-
-   Revision 1.8  2001/03/30 11:51:02  clip
-   add copyright
-
-   Revision 1.7  2001/03/11 10:36:16  clip
-   some fixes
-   rust
-
-   Revision 1.6  2000/05/24 18:33:56  clip
-   _clip_push_area
-   indents all
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.5  2000/05/15 21:00:59  clip
-   ACOPY now work; _MSAVE, _MRESTORE .mem will appended automatically
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.4  2000/05/03 19:32:26  clip
-   add prefix 'clip_' to all clip functions
-
-   Revision 1.3  2000/03/31 17:27:50  paul
-   memfile
-
-   Revision 1.2  2000/03/31 17:00:47  paul
-   MRESTORE
-
-   Revision 1.1  2000/03/31 16:53:21  paul
-   memfile rw
-
- */
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -126,719 +29,763 @@
 
 typedef struct
 {
-	unsigned char name[11];
-	unsigned char type;
-	unsigned char reserved1[4];
-	unsigned char len;
-	unsigned char dec;
-	unsigned char reserved2[14];
+   unsigned char name[11];
+   unsigned char type;
+   unsigned char reserved1[4];
+   unsigned char len;
+   unsigned char dec;
+   unsigned char reserved2[14];
 }
 MemHeader;
 
 typedef struct
 {
-	unsigned char type;	/* 'C' 'N' 'D' 'L' 'M' */
-	unsigned char len;
-	unsigned char dec;
-	unsigned char flags;
-	union
-	{
-		double n;
-		struct
-		{
-			char *str;
-			int len;
-		}
-		c;
-		int l;
-		long d;		/* julian */
-	}
-	u;
+   unsigned char type;		/* 'C' 'N' 'D' 'L' 'M' */
+   unsigned char len;
+   unsigned char dec;
+   unsigned char flags;
+   union
+   {
+      double    n;
+      struct
+      {
+	 char     *str;
+	 int       len;
+      }
+      c;
+      int       l;
+      long      d;		/* julian */
+   }
+   u;
 }
 DbfData;
 
-DbfLocale *dbf_get_locale(ClipMachine * mp);
-int clip2dbf(ClipVar * vp, DbfData * dp);
-int dbf2clip(DbfData * dp, ClipVar * vp);
+DbfLocale *dbf_get_locale(ClipMachine * ClipMachineMemory);
+
+int       clip2dbf(ClipVar * vp, DbfData * dp);
+
+int       dbf2clip(DbfData * dp, ClipVar * vp);
 
 void
 destroy_DbfData(DbfData * vp)
 {
-	if (!vp)
-		return;
-	switch (vp->type)
-	{
-	case 'C':
-	case 'M':
-		if (!(vp->flags & DBFDATA_NONFREE))
-			free(vp->u.c.str);
-		break;
-	}
-	vp->type = 'U';
-	vp->flags = 0;
+   if (!vp)
+      return;
+   switch (vp->type)
+    {
+    case 'C':
+    case 'M':
+       if (!(vp->flags & DBFDATA_NONFREE))
+	  free(vp->u.c.str);
+       break;
+    }
+   vp->type = 'U';
+   vp->flags = 0;
 }
 
 int
 clip2dbf(ClipVar * vp, DbfData * dp)
 {
-	if (!vp || !dp)
-		return 1;
-	vp = _clip_vptr(vp);
-	switch (vp->t.type)
-	{
-	case CHARACTER_t:
-		dp->type = 'C';
-				/*
-		dp->u.c.str = strdup(vp->s.str.buf);
-				*/
-				dp->u.c.str = malloc(vp->s.str.len+1);
-		memcpy(dp->u.c.str,vp->s.str.buf,vp->s.str.len+1);
-		dp->u.c.len = vp->s.str.len;
+   if (!vp || !dp)
+      return 1;
+   vp = _clip_vptr(vp);
+   switch (vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+    {
+    case CHARACTER_type_of_ClipVarType:
+       dp->type = 'C';
+      /*
+         dp->u.c.str = strdup(vp->s.ClipBuf_str_of_ClipStrVar.buf);
+       */
+       dp->u.c.str = malloc(vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf + 1);
+       memcpy(dp->u.c.str, vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf,
+	      vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf + 1);
+       dp->u.c.len = vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf;
 
-		break;
-	case NUMERIC_t:
-		dp->type = 'N';
-		if (vp->t.memo)
-			dp->u.n = rational_toDouble(vp->r.r);
-		else
-			dp->u.n = vp->n.d;
-		break;
-	case LOGICAL_t:
-		dp->type = 'L';
-		dp->u.l = vp->l.val;
-		break;
-	case DATE_t:
-		dp->type = 'D';
-		dp->u.d = vp->d.julian;
-		break;
-	default:
-		return 1;
-	}
-	dp->len = (unsigned char) vp->t.len;
-	dp->dec = (unsigned char) vp->t.dec;
-	dp->flags = 0;
-	return 0;
+       break;
+    case NUMERIC_type_of_ClipVarType:
+       dp->type = 'N';
+       if (vp->ClipType_t_of_ClipVar.memo_of_ClipType)
+	  dp->u.n = rational_toDouble(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar);
+       else
+	  dp->u.n = vp->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       break;
+    case LOGICAL_type_of_ClipVarType:
+       dp->type = 'L';
+       dp->u.l = vp->ClipLogVar_l_of_ClipVar.value_of_ClipLogVar;
+       break;
+    case DATE_type_of_ClipVarType:
+       dp->type = 'D';
+       dp->u.d = vp->ClipDateVar_d_of_ClipVar.julian_of_ClipDateVar;
+       break;
+    default:
+       return 1;
+    }
+   dp->len = (unsigned char) vp->ClipType_t_of_ClipVar.len_of_ClipType;
+   dp->dec = (unsigned char) vp->ClipType_t_of_ClipVar.dec_of_ClipType;
+   dp->flags = 0;
+   return 0;
 }
 
 int
 dbf2clip(DbfData * dp, ClipVar * vp)
 {
-	if (!dp || !vp)
-		return 1;
-	memset(vp, 0, sizeof(ClipVar));
-	switch (dp->type)
-	{
-	case 'C':
-		vp->t.type = CHARACTER_t;
-		vp->s.str.buf = dp->u.c.str;
-		dp->u.c.str = 0;
-		vp->s.str.len = dp->u.c.len;
-		break;
-	case 'M':
-		vp->t.type = CHARACTER_t;
-		vp->s.str.buf = dp->u.c.str;
-		dp->u.c.str = 0;
-		vp->s.str.len = dp->u.c.len;
-		vp->t.memo = 1;
-		break;
-	case 'N':
-		vp->t.type = NUMERIC_t;
-		vp->t.memo = 0;
-		/*
-		   vp->t.memo= 1;
-		   vp->r.r = rational_double_init(dp->u.n);
-		   vp->t.len = dp->u.c.len;
-		 */
-		vp->n.d = dp->u.n;
-		//vp->t.dec = dp->u.c.dec;   ???????? ��� dec � dbf ?????
-		break;
-	case 'L':
-		vp->t.type = LOGICAL_t;
-		vp->l.val = dp->u.l;
-		break;
-	case 'D':
-		vp->t.type = DATE_t;
-		vp->d.julian = dp->u.d;
-		break;
-	default:
-		return 1;
-	}
-	vp->t.len = dp->len;
-	vp->t.dec = dp->dec;
+   if (!dp || !vp)
+      return 1;
+   memset(vp, 0, sizeof(ClipVar));
+   switch (dp->type)
+    {
+    case 'C':
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = dp->u.c.str;
+       dp->u.c.str = 0;
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = dp->u.c.len;
+       break;
+    case 'M':
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = dp->u.c.str;
+       dp->u.c.str = 0;
+       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = dp->u.c.len;
+       vp->ClipType_t_of_ClipVar.memo_of_ClipType = 1;
+       break;
+    case 'N':
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+       vp->ClipType_t_of_ClipVar.memo_of_ClipType = 0;
+      /*
+         vp->t.memo_of_ClipType= 1;
+         vp->r.r = rational_double_init(dp->u.n);
+         vp->t.len_of_ClipType = dp->u.c.len;
+       */
+       vp->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = dp->u.n;
+      //vp->t.dec = dp->u.c.dec;   ???????? ��� dec � dbf ?????
+       break;
+    case 'L':
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = LOGICAL_type_of_ClipVarType;
+       vp->ClipLogVar_l_of_ClipVar.value_of_ClipLogVar = dp->u.l;
+       break;
+    case 'D':
+       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = DATE_type_of_ClipVarType;
+       vp->ClipDateVar_d_of_ClipVar.julian_of_ClipDateVar = dp->u.d;
+       break;
+    default:
+       return 1;
+    }
+   vp->ClipType_t_of_ClipVar.len_of_ClipType = dp->len;
+   vp->ClipType_t_of_ClipVar.dec_of_ClipType = dp->dec;
 
-	return 0;
+   return 0;
 }
 
 static int
-mem_error(char *errbuf, int errbuflen, int line, const char *fmt,...)
+mem_error(char *errbuf, int errbuflen, int line, const char *fmt, ...)
 {
-	int l;
-	va_list ap;
+   int       l;
 
-	va_start(ap, fmt);
-	snprintf(errbuf, errbuflen, "MEM: %s, line %d: ", __FILE__, line);
-	l = strlen(errbuf);
-	vsnprintf(errbuf + l, errbuflen - l, fmt, ap);
-	va_end(ap);
-	return 1;
+   va_list   ap;
+
+   va_start(ap, fmt);
+   snprintf(errbuf, errbuflen, "MEM: %s, line %d: ", __FILE__, line);
+   l = strlen(errbuf);
+   vsnprintf(errbuf + l, errbuflen - l, fmt, ap);
+   va_end(ap);
+   return 1;
 }
 
 int
-read_MemFile(const char *path, DbfLocale * tbl,
-		 DbfData ** resp, char ***names, int *rescount,
-		 char *errbuf, int errbuflen)
+read_MemFile(const char *path, DbfLocale * tbl, DbfData ** resp, char ***names, int *rescount, char *errbuf, int errbuflen)
 {
-	int r = 0, i, line;
-	FILE *file;
-	MemHeader mh;
-	DbfData *dp;
+   int       r = 0, i, line;
 
-	file = fopen(path, "rb");
-	if (!file)
-		return mem_error(errbuf, errbuflen, __LINE__,
-				 "cannot open file '%s': %s",
-				 path, strerror(errno));
+   FILE     *file;
 
-	for (i = 0;; ++i)
+   MemHeader mh;
+
+   DbfData  *dp;
+
+   file = fopen(path, "rb");
+   if (!file)
+      return mem_error(errbuf, errbuflen, __LINE__, "cannot open file '%s': %s", path, strerror(errno));
+
+   for (i = 0;; ++i)
+    {
+       if (fread(&mh, sizeof(mh), 1, file) != 1)
 	{
-		if (fread(&mh, sizeof(mh), 1, file) != 1)
-		{
-			if (feof(file))
-				break;
-			line = __LINE__;
-			  readerr:
-			r = mem_error(errbuf, errbuflen, line,
-					  "file '%s' read error: %s", strerror(errno));
-			goto ret;
-		}
-
-		*resp = (DbfData *) realloc(*resp, ((*rescount) + 1) * sizeof(DbfData));
-		*names = (char **) realloc(*names, ((*rescount) + 1) * sizeof(char *));
-
-		dp = (*resp) + (*rescount);
-		memset(dp, 0, sizeof(DbfData));
-		(*names)[*rescount] = strdup((const char *)mh.name);
-		++(*rescount);
-
-		//printf("\ntype=%d,%x,len=%d,name=%s\n",mh.type,mh.type,mh.len,mh.name);
-		switch (mh.type)
-		{
-		case 'C':	/* string */
-		case 0xC3:	/* string */
-			{
-				char *sp;
-				int len;
-
-				len = mh.len | (mh.dec << 8);
-
-				sp = (char *) malloc(len);
-				if (fread(sp, len, 1, file) != 1)
-				{
-					line = __LINE__;
-					free(sp);
-					goto readerr;
-				}
-
-				dp->type = 'C';
-				dp->len = mh.len;
-				dp->dec = mh.dec;
-				dp->flags = 0;
-				dp->u.c.str = sp;
-				dp->u.c.len = --len;
-
-				while (len)
-				{
-					int s = *(unsigned char *) sp;
-
-					if (tbl && s > 127)
-						*sp = tbl->read[s - 128];
-					--len;
-					++sp;
-				}
-			}
-			break;
-		case 'L':	/* logic */
-		case 0xCC:	/* logic */
-			{
-				char ch;
-
-				if (fread(&ch, 1, 1, file) != 1)
-				{
-					line = __LINE__;
-					goto readerr;
-				}
-				dp->type = 'L';
-				dp->len = mh.len;
-				dp->dec = mh.dec;
-				dp->flags = 0;
-				dp->u.l = ch;
-			}
-			break;
-		case 'N':	/* numeric */
-		case 0xCE:	/* numeric */
-			{
-				double d = 0;
-				unsigned char buf[8];
-				int j;
-
-				if (fread(buf, 8, 1, file) != 1)
-				{
-					line = __LINE__;
-					goto readerr;
-				}
-				for (j = 0; j < 8; ++j)
-					((unsigned char *) &d)[j] = buf[j];
-
-				dp->type = 'N';
-				dp->len = mh.len;
-				dp->dec = mh.dec;
-				dp->flags = 0;
-				dp->u.n = d;
-			}
-			break;
-		case 'D':	/* date */
-		case 0xC4:	/* date */
-			{
-				double d = 0;
-				unsigned char buf[8];
-				int j;
-
-				if (fread(buf, 8, 1, file) != 1)
-				{
-					line = __LINE__;
-					goto readerr;
-				}
-				for (j = 0; j < 8; ++j)
-					((unsigned char *) &d)[j] = buf[j];
-
-				dp->type = 'D';
-				dp->len = mh.len;
-				dp->dec = mh.dec;
-				dp->flags = 0;
-				dp->u.d = d;
-			}
-			break;
-
-		default:
-			r = mem_error(errbuf, errbuflen, __LINE__,
-					  "invalid mem field type : 0x%0x", mh.type);
-			goto ret;
-		}
-
+	   if (feof(file))
+	      break;
+	   line = __LINE__;
+	 readerr:
+	   r = mem_error(errbuf, errbuflen, line, "file '%s' read error: %s", strerror(errno));
+	   goto ret;
 	}
 
-	  ret:
-	fclose(file);
+       *resp = (DbfData *) realloc(*resp, ((*rescount) + 1) * sizeof(DbfData));
+       *names = (char **) realloc(*names, ((*rescount) + 1) * sizeof(char *));
 
-	return r;
-}
+       dp = (*resp) + (*rescount);
+       memset(dp, 0, sizeof(DbfData));
+       (*names)[*rescount] = strdup((const char *) mh.name);
+       ++(*rescount);
 
-int
-write_MemFile(const char *path, DbfLocale * tbl,
-		  DbfData * arr, char **names, int acount,
-		  char *errbuf, int errbuflen)
-{
-	int r = 0, i, line;
-	FILE *file;
-	MemHeader mh;
-	DbfData *dp;
-
-	file = fopen(path, "wb");
-	if (!file)
-		return mem_error(errbuf, errbuflen, __LINE__,
-				 "cannot open file '%s': %s",
-				 path, strerror(errno));
-
-	for (i = 0; i < acount; ++i)
+      //printf("\ntype=%d,%x,len=%d,name=%s\n",mh.type,mh.type,mh.len,mh.name);
+       switch (mh.type)
 	{
-		dp = arr + i;
+	case 'C':		/* string */
+	case 0xC3:		/* string */
+	   {
+	      char     *sp;
 
-		memset(&mh, 0, sizeof(mh));
-		strncpy((char *)mh.name, names[i], 10);
+	      int       len;
 
-		switch (dp->type)
-		{
-		case 'C':
-			{
-				int len;
+	      len = mh.len | (mh.dec << 8);
 
-				len = dp->u.c.len + 1;
-				mh.type = 0xC3;
-				mh.len = len & 0xff;
-				mh.dec = (len >> 8) & 0xff;
-			}
-			break;
-		case 'L':
-			mh.type = 0xCC;
-			mh.len = 1;
-			break;
-		case 'N':
-			mh.type = 0xCE;
-			mh.len = dp->len;
-			mh.dec = dp->dec;
-			break;
-		case 'D':
-			mh.type = 0xC4;
-			mh.len = 1;
-			break;
-		default:
-			continue;
-		}
+	      sp = (char *) malloc(len);
+	      if (fread(sp, len, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  free(sp);
+		  goto readerr;
+	       }
 
-		if (fwrite(&mh, sizeof(mh), 1, file) != 1)
-		{
-			line = __LINE__;
-			  writerr:
-			r = mem_error(errbuf, errbuflen, line,
-					  "file '%s' write error: %s", strerror(errno));
-			goto ret;
-		}
+	      dp->type = 'C';
+	      dp->len = mh.len;
+	      dp->dec = mh.dec;
+	      dp->flags = 0;
+	      dp->u.c.str = sp;
+	      dp->u.c.len = --len;
 
-		switch (mh.type)
-		{
-		case 0xC3:	/* string */
-			{
-				char *sp;
-				int len;
-				int j;
+	      while (len)
+	       {
+		  int       s = *(unsigned char *) sp;
 
-				len = dp->u.c.len + 1;
-				sp = dp->u.c.str;
+		  if (tbl && s > 127)
+		     *sp = tbl->read[s - 128];
+		  --len;
+		  ++sp;
+	       }
+	   }
+	   break;
+	case 'L':		/* logic */
+	case 0xCC:		/* logic */
+	   {
+	      char      ch;
 
-				for (j = 0; j < len; ++j, ++sp)
-				{
-					int s = *(unsigned char *) sp;
+	      if (fread(&ch, 1, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  goto readerr;
+	       }
+	      dp->type = 'L';
+	      dp->len = mh.len;
+	      dp->dec = mh.dec;
+	      dp->flags = 0;
+	      dp->u.l = ch;
+	   }
+	   break;
+	case 'N':		/* numeric */
+	case 0xCE:		/* numeric */
+	   {
+	      double    d = 0;
 
-					if (tbl && s > 127)
-						s = tbl->write[s - 128];
-					if (fputc(s, file) == EOF)
-					{
-						line = __LINE__;
-						goto writerr;
-					}
-				}
-			}
-			break;
-		case 0xCC:	/* logic */
-			{
-				char ch;
+	      unsigned char buf[8];
 
-				ch = dp->u.l;
-				if (fputc(ch, file) == EOF)
-				{
-					line = __LINE__;
-					goto writerr;
-				}
-			}
-			break;
-		case 0xCE:	/* numeric */
-			{
-				double d;
-				unsigned char buf[8];
-				int j;
+	      int       j;
 
-				d = dp->u.n;
-				for (j = 0; j < 8; ++j)
-					buf[j] = ((unsigned char *) &d)[j];
-				if (fwrite(buf, 8, 1, file) != 1)
-				{
-					line = __LINE__;
-					goto writerr;
-				}
-			}
-			break;
-		case 0xC4:	/* date */
-			{
-				double d;
-				unsigned char buf[8];
-				int j;
+	      if (fread(buf, 8, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  goto readerr;
+	       }
+	      for (j = 0; j < 8; ++j)
+		 ((unsigned char *) &d)[j] = buf[j];
 
-				d = dp->u.d;
-				for (j = 0; j < 8; ++j)
-					buf[j] = ((unsigned char *) &d)[j];
-				if (fwrite(buf, 8, 1, file) != 1)
-				{
-					line = __LINE__;
-					goto writerr;
-				}
-			}
-			break;
-		}
+	      dp->type = 'N';
+	      dp->len = mh.len;
+	      dp->dec = mh.dec;
+	      dp->flags = 0;
+	      dp->u.n = d;
+	   }
+	   break;
+	case 'D':		/* date */
+	case 0xC4:		/* date */
+	   {
+	      double    d = 0;
+
+	      unsigned char buf[8];
+
+	      int       j;
+
+	      if (fread(buf, 8, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  goto readerr;
+	       }
+	      for (j = 0; j < 8; ++j)
+		 ((unsigned char *) &d)[j] = buf[j];
+
+	      dp->type = 'D';
+	      dp->len = mh.len;
+	      dp->dec = mh.dec;
+	      dp->flags = 0;
+	      dp->u.d = d;
+	   }
+	   break;
+
+	default:
+	   r = mem_error(errbuf, errbuflen, __LINE__, "invalid mem field type : 0x%0x", mh.type);
+	   goto ret;
 	}
 
-	  ret:
-	fclose(file);
+    }
 
-	return r;
+ ret:
+   fclose(file);
+
+   return r;
 }
+
 int
-clip___MCLEAR(ClipMachine * mp)
+write_MemFile(const char *path, DbfLocale * tbl, DbfData * arr, char **names, int acount, char *errbuf, int errbuflen)
 {
-	return 0;
+   int       r = 0, i, line;
+
+   FILE     *file;
+
+   MemHeader mh;
+
+   DbfData  *dp;
+
+   file = fopen(path, "wb");
+   if (!file)
+      return mem_error(errbuf, errbuflen, __LINE__, "cannot open file '%s': %s", path, strerror(errno));
+
+   for (i = 0; i < acount; ++i)
+    {
+       dp = arr + i;
+
+       memset(&mh, 0, sizeof(mh));
+       strncpy((char *) mh.name, names[i], 10);
+
+       switch (dp->type)
+	{
+	case 'C':
+	   {
+	      int       len;
+
+	      len = dp->u.c.len + 1;
+	      mh.type = 0xC3;
+	      mh.len = len & 0xff;
+	      mh.dec = (len >> 8) & 0xff;
+	   }
+	   break;
+	case 'L':
+	   mh.type = 0xCC;
+	   mh.len = 1;
+	   break;
+	case 'N':
+	   mh.type = 0xCE;
+	   mh.len = dp->len;
+	   mh.dec = dp->dec;
+	   break;
+	case 'D':
+	   mh.type = 0xC4;
+	   mh.len = 1;
+	   break;
+	default:
+	   continue;
+	}
+
+       if (fwrite(&mh, sizeof(mh), 1, file) != 1)
+	{
+	   line = __LINE__;
+	 writerr:
+	   r = mem_error(errbuf, errbuflen, line, "file '%s' write error: %s", strerror(errno));
+	   goto ret;
+	}
+
+       switch (mh.type)
+	{
+	case 0xC3:		/* string */
+	   {
+	      char     *sp;
+
+	      int       len;
+
+	      int       j;
+
+	      len = dp->u.c.len + 1;
+	      sp = dp->u.c.str;
+
+	      for (j = 0; j < len; ++j, ++sp)
+	       {
+		  int       s = *(unsigned char *) sp;
+
+		  if (tbl && s > 127)
+		     s = tbl->write[s - 128];
+		  if (fputc(s, file) == EOF)
+		   {
+		      line = __LINE__;
+		      goto writerr;
+		   }
+	       }
+	   }
+	   break;
+	case 0xCC:		/* logic */
+	   {
+	      char      ch;
+
+	      ch = dp->u.l;
+	      if (fputc(ch, file) == EOF)
+	       {
+		  line = __LINE__;
+		  goto writerr;
+	       }
+	   }
+	   break;
+	case 0xCE:		/* numeric */
+	   {
+	      double    d;
+
+	      unsigned char buf[8];
+
+	      int       j;
+
+	      d = dp->u.n;
+	      for (j = 0; j < 8; ++j)
+		 buf[j] = ((unsigned char *) &d)[j];
+	      if (fwrite(buf, 8, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  goto writerr;
+	       }
+	   }
+	   break;
+	case 0xC4:		/* date */
+	   {
+	      double    d;
+
+	      unsigned char buf[8];
+
+	      int       j;
+
+	      d = dp->u.d;
+	      for (j = 0; j < 8; ++j)
+		 buf[j] = ((unsigned char *) &d)[j];
+	      if (fwrite(buf, 8, 1, file) != 1)
+	       {
+		  line = __LINE__;
+		  goto writerr;
+	       }
+	   }
+	   break;
+	}
+    }
+
+ ret:
+   fclose(file);
+
+   return r;
+}
+
+int
+clip___MCLEAR(ClipMachine * ClipMachineMemory)
+{
+   return 0;
 }
 
 /* cName, ... */
 int
-clip___MXRELEASE(ClipMachine * mp)
+clip___MXRELEASE(ClipMachine * ClipMachineMemory)
 {
-	return 0;
+   return 0;
 }
 
 /* cPattern, bLike */
 int
-clip___MRELEASE(ClipMachine * mp)
+clip___MRELEASE(ClipMachine * ClipMachineMemory)
 {
-	return 0;
+   return 0;
 }
 
 /* cFilename, bAdditive */
 int
-clip___MRESTORE(ClipMachine * mp)
+clip___MRESTORE(ClipMachine * ClipMachineMemory)
 {
-	char *path = _clip_parc(mp, 1);
-		/*
-		int l_add  = _clip_parl(mp, 2);
-		*/
+   char     *path = _clip_parc(ClipMachineMemory, 1);
 
-	/*int isAdditive = _clip_parl(mp, 1); */
-	char buf[256], errbuf[256], p[256];
-	int r, i;
-	DbfData *vars = 0;
-	char **names = 0;
-	int nvars = 0;
-	char *e, *s;
+  /*
+     int l_add  = _clip_parl(ClipMachineMemory, 2);
+   */
 
-	strncpy(p,path,sizeof(p));
-	s = strrchr(p, '/');
-	e = strrchr(p, '\\');
-	s = (s>e)?s:e;
-	e = strrchr(p, '.');
-	if (!e || (s && e < s))
-		strcat(p, ".mem");
-	_clip_path(mp, p, buf, sizeof(buf), 0);
+  /*int isAdditive = _clip_parl(ClipMachineMemory, 1); */
+   char      buf[256], errbuf[256], p[256];
 
-	r = read_MemFile(buf, dbf_get_locale(mp),
-			 &vars, &names, &nvars, errbuf, sizeof(errbuf));
+   int       r, i;
 
-	if (!r)
+   DbfData  *vars = 0;
+
+   char    **names = 0;
+
+   int       nvars = 0;
+
+   char     *e, *s;
+
+   strncpy(p, path, sizeof(p));
+   s = strrchr(p, '/');
+   e = strrchr(p, '\\');
+   s = (s > e) ? s : e;
+   e = strrchr(p, '.');
+   if (!e || (s && e < s))
+      strcat(p, ".mem");
+   _clip_path(ClipMachineMemory, p, buf, sizeof(buf), 0);
+
+   r = read_MemFile(buf, dbf_get_locale(ClipMachineMemory), &vars, &names, &nvars, errbuf, sizeof(errbuf));
+
+   if (!r)
+    {
+       for (i = 0; i < nvars; i++)
 	{
-		for (i = 0; i < nvars; i++)
-		{
-			ClipVar *vp, tmp;
-			char *s;
-			long hash = _clip_casehashstr(names[i]);
+	   ClipVar  *vp, tmp;
 
-			s = strdup(names[i]);
-			HashTable_store(mp->hashnames, s, hash);
+	   char     *s;
 
-			vp = _clip_ref_public_noadd(mp, hash);
-			if (!vp)
-				vp = _clip_ref_memvar(mp, hash);
+	   long      hash = _clip_casehashstr(names[i]);
 
-			if (!vp)
-				continue;
-#if 0  /* 2006/11/21 restore in getsys bug fixed */
-			_clip_destroy(mp, vp);
-			dbf2clip(vars + i, vp);
+	   s = strdup(names[i]);
+	   HashTable_store(ClipMachineMemory->hashnames, s, hash);
+
+	   vp = _clip_ref_public_noadd(ClipMachineMemory, hash);
+	   if (!vp)
+	      vp = _clip_ref_memvar(ClipMachineMemory, hash);
+
+	   if (!vp)
+	      continue;
+#if 0				/* 2006/11/21 restore in getsys bug fixed */
+	   _clip_destroy(ClipMachineMemory, vp);
+	   dbf2clip(vars + i, vp);
 #else
-			dbf2clip(vars + i, &tmp);
-			if ( _clip_push(mp, &tmp) )
-				continue;
-			_clip_assign(mp, vp);
+	   dbf2clip(vars + i, &tmp);
+	   if (_clip_push(ClipMachineMemory, &tmp))
+	      continue;
+	   _clip_assign(ClipMachineMemory, vp);
 #endif
-		}
 	}
+    }
 
-	for (i = 0; i < nvars; i++)
-	{
-		destroy_DbfData(vars + i);
-		free(names[i]);
-	}
+   for (i = 0; i < nvars; i++)
+    {
+       destroy_DbfData(vars + i);
+       free(names[i]);
+    }
 
-	free(names);
-	free(vars);
+   free(names);
+   free(vars);
 
-	if (r)
-	{
-		_clip_trap_str(mp, mp->fp->filename, mp->fp->line, errbuf);
-		return EG_ARG;
-	}
+   if (r)
+    {
+       _clip_trap_str(ClipMachineMemory, ClipMachineMemory->fp->filename_of_ClipFrame,
+		      ClipMachineMemory->fp->line_of_ClipFrame, errbuf);
+       return EG_ARG;
+    }
 
-	return 0;
+   return 0;
 }
 
 /* cFilename, cPattern, bLike */
 int
-clip___MSAVE(ClipMachine * mp)
+clip___MSAVE(ClipMachine * ClipMachineMemory)
 {
-	char *path = _clip_parc(mp, 1);
-	char *pattern = _clip_parc(mp, 2);
-	int isLike = _clip_parl(mp, 3);
-	char buf[256], errbuf[64];
-	int r, i;
-	DbfData *vars = 0;
-	ClipFrame *fp;
-	Coll snames;
-	char *e, *s;
+   char     *path = _clip_parc(ClipMachineMemory, 1);
 
-	if (!path || !pattern)
-		return EG_ARG;
+   char     *pattern = _clip_parc(ClipMachineMemory, 2);
 
-	init_Coll(&snames, 0, strcasecmp);
+   int       isLike = _clip_parl(ClipMachineMemory, 3);
 
-	for (fp = mp->fp; fp; fp = fp->up)
+   char      buf[256], errbuf[64];
+
+   int       r, i;
+
+   DbfData  *vars = 0;
+
+   ClipFrame *fp;
+
+   Coll      snames;
+
+   char     *e, *s;
+
+   if (!path || !pattern)
+      return EG_ARG;
+
+   init_Coll(&snames, 0, strcasecmp);
+
+   for (fp = ClipMachineMemory->fp; fp; fp = fp->ClipFrame_up_of_ClipFrame)
+    {
+       if (fp->names_of_ClipFrame)
 	{
-		if (fp->names)
+	   ClipHashBucket *bp;
+
+	   for (i = 0; i < fp->names_of_ClipFrame->num_of_ClipHashNames; i++)
+	    {
+	       char     *nm;
+
+	       int       ind;
+
+	       bp = fp->names_of_ClipFrame->buckets_of_ClipHashNames + i;
+	       nm = fp->names_of_ClipFrame->mem_of_ClipHashNames + bp->offs_of_ClipHashBucket;
+	       if (!search_Coll(&snames, nm, &ind))
 		{
-			ClipHashBucket *bp;
+		   int       m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
 
-			for (i = 0; i < fp->names->num; i++)
-			{
-				char *nm;
-				int ind;
-
-				bp = fp->names->buckets + i;
-				nm = fp->names->mem + bp->offs;
-				if (!search_Coll(&snames, nm, &ind))
-				{
-					int m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
-
-					if ((m && isLike) || (!m && !isLike))
-						atInsert_Coll(&snames, nm, ind);
-				}
-			}
+		   if ((m && isLike) || (!m && !isLike))
+		      atInsert_Coll(&snames, nm, ind);
 		}
+	    }
 	}
+    }
 
-	for(r = HashTable_first(mp->hashnames); r; r = HashTable_next(mp->hashnames))
+   for (r = HashTable_first(ClipMachineMemory->hashnames); r; r = HashTable_next(ClipMachineMemory->hashnames))
+    {
+       char     *nm = (char *) HashTable_current(ClipMachineMemory->hashnames);
+
+       int       ind;
+
+       if (!search_Coll(&snames, nm, &ind))
 	{
-		char *nm = (char*) HashTable_current(mp->hashnames);
-		int ind;
-		if (!search_Coll(&snames, nm, &ind))
-		{
-			int m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
-			if ((m && isLike) || (!m && !isLike))
-				atInsert_Coll(&snames, nm, ind);
-		}
+	   int       m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
+
+	   if ((m && isLike) || (!m && !isLike))
+	      atInsert_Coll(&snames, nm, ind);
 	}
+    }
 
-	vars = NEWVECT(DbfData, snames.count);
+   vars = NEWVECT(DbfData, snames.count);
 
-	for (i = 0; i < snames.count; i++)
-	{
-		long hash;
-		ClipVar *vp;
+   for (i = 0; i < snames.count; i++)
+    {
+       long      hash;
 
-		hash = _clip_casehashstr(snames.items[i]);
+       ClipVar  *vp;
 
-		vp = _clip_ref_memvar(mp, hash);
-		clip2dbf(vp, vars + i);
-	}
+       hash = _clip_casehashstr(snames.items[i]);
 
-	_clip_path(mp, path, buf, sizeof(buf), 1);
+       vp = _clip_ref_memvar(ClipMachineMemory, hash);
+       clip2dbf(vp, vars + i);
+    }
 
-	e = strrchr(buf, '.');
-	s = strrchr(buf, '/');
-	if (!e || (s && e < s))
-		strncat(buf, ".mem", sizeof(buf));
+   _clip_path(ClipMachineMemory, path, buf, sizeof(buf), 1);
 
-	r = write_MemFile(buf, dbf_get_locale(mp),
-			  vars, (char **) snames.items, snames.count, errbuf, sizeof(errbuf));
+   e = strrchr(buf, '.');
+   s = strrchr(buf, '/');
+   if (!e || (s && e < s))
+      strncat(buf, ".mem", sizeof(buf));
 
-	for (i = 0; i < snames.count; i++)
-		destroy_DbfData(vars + i);
+   r = write_MemFile(buf, dbf_get_locale(ClipMachineMemory),
+		     vars, (char **) snames.items, snames.count, errbuf, sizeof(errbuf));
 
-	destroy_Coll(&snames);
-	free(vars);
+   for (i = 0; i < snames.count; i++)
+      destroy_DbfData(vars + i);
 
-	if (r)
-	{
-		_clip_trap_str(mp, mp->fp->filename, mp->fp->line, errbuf);
-		return EG_ARG;
-	}
+   destroy_Coll(&snames);
+   free(vars);
 
-	return 0;
+   if (r)
+    {
+       _clip_trap_str(ClipMachineMemory, ClipMachineMemory->fp->filename_of_ClipFrame,
+		      ClipMachineMemory->fp->line_of_ClipFrame, errbuf);
+       return EG_ARG;
+    }
+
+   return 0;
 }
 
 int
-clip_MEMVARLIST(ClipMachine * mp)
+clip_MEMVARLIST(ClipMachine * ClipMachineMemory)
 {
-	ClipVar* rp = RETPTR(mp);
-	char *pattern = _clip_parc(mp, 1);
-	int publ = _clip_parl(mp, 2);
-	int isLike = _clip_parl(mp, 3);
-	int all = _clip_parinfo(mp, 2) != LOGICAL_t;
-	ClipFrame *fp;
-	Coll snames;
-	int r,i;
-	int isPrivate,isPublic;
-	long dims[] = {0};
-	ClipVar vp;
+   ClipVar  *rp = RETPTR(ClipMachineMemory);
 
-	if (!pattern)
-		pattern = "*";
+   char     *pattern = _clip_parc(ClipMachineMemory, 1);
 
-	init_Coll(&snames, 0, strcasecmp);
+   int       publ = _clip_parl(ClipMachineMemory, 2);
 
-	for (fp = mp->fp; fp; fp = fp->up)
+   int       isLike = _clip_parl(ClipMachineMemory, 3);
+
+   int       all = _clip_parinfo(ClipMachineMemory, 2) != LOGICAL_type_of_ClipVarType;
+
+   ClipFrame *fp;
+
+   Coll      snames;
+
+   int       r, i;
+
+   int       isPrivate, isPublic;
+   long      dims[] = { 0 };
+   ClipVar   vp;
+
+   if (!pattern)
+      pattern = "*";
+
+   init_Coll(&snames, 0, strcasecmp);
+
+   for (fp = ClipMachineMemory->fp; fp; fp = fp->ClipFrame_up_of_ClipFrame)
+    {
+       if (fp->names_of_ClipFrame)
 	{
-		if (fp->names)
+	   ClipHashBucket *bp;
+
+	   for (i = 0; i < fp->names_of_ClipFrame->num_of_ClipHashNames; i++)
+	    {
+	       char     *nm;
+
+	       int       ind;
+
+	       bp = fp->names_of_ClipFrame->buckets_of_ClipHashNames + i;
+	       nm = fp->names_of_ClipFrame->mem_of_ClipHashNames + bp->offs_of_ClipHashBucket;
+	       if (!search_Coll(&snames, nm, &ind))
 		{
-			ClipHashBucket *bp;
+		   int       m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
 
-			for (i = 0; i < fp->names->num; i++)
-			{
-				char *nm;
-				int ind;
-
-				bp = fp->names->buckets + i;
-				nm = fp->names->mem + bp->offs;
-				if (!search_Coll(&snames, nm, &ind))
-				{
-					int m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
-
-					if ((m && !isLike) || (!m && isLike))
-						atInsert_Coll(&snames, nm, ind);
-				}
-			}
+		   if ((m && !isLike) || (!m && isLike))
+		      atInsert_Coll(&snames, nm, ind);
 		}
+	    }
 	}
+    }
 
-	for(r = HashTable_first(mp->hashnames); r; r = HashTable_next(mp->hashnames))
+   for (r = HashTable_first(ClipMachineMemory->hashnames); r; r = HashTable_next(ClipMachineMemory->hashnames))
+    {
+       char     *nm = (char *) HashTable_current(ClipMachineMemory->hashnames);
+
+       int       ind;
+
+       if (!search_Coll(&snames, nm, &ind))
 	{
-		char *nm = (char*) HashTable_current(mp->hashnames);
-		int ind;
-		if (!search_Coll(&snames, nm, &ind))
-		{
-			int m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
-			if ((m && !isLike) || (!m && isLike))
-				atInsert_Coll(&snames, nm, ind);
-		}
+	   int       m = (_clip_glob_match(nm, pattern, 1) == -1 ? 0 : 1);
+
+	   if ((m && !isLike) || (!m && isLike))
+	      atInsert_Coll(&snames, nm, ind);
 	}
+    }
 
-	_clip_array(mp, rp, 1, dims);
+   _clip_array(ClipMachineMemory, rp, 1, dims);
 
-	for (i = 0; i < snames.count; i++)
+   for (i = 0; i < snames.count; i++)
+    {
+       long      hash = _clip_casehashstr(snames.items[i]);
+
+       isPublic = !_clip_is_public(ClipMachineMemory, hash);
+       isPrivate = !_clip_is_private(ClipMachineMemory, hash);
+
+       if (all)
+	  r = isPublic || isPrivate;
+       else if (publ)
+	  r = isPublic;
+       else
+	  r = isPrivate;
+       if (r)
 	{
-		long hash = _clip_casehashstr(snames.items[i]);
-
-		isPublic  = !_clip_is_public(mp,hash);
-		isPrivate = !_clip_is_private(mp,hash);
-
-		if(all)
-			r = isPublic || isPrivate;
-		else if(publ)
-			r = isPublic;
-		else
-			r = isPrivate;
-		if(r)
-		{
-			_clip_var_str(snames.items[i],strlen(snames.items[i]),&vp);
-			_clip_aadd(mp,rp,&vp);
-			_clip_destroy(mp,&vp);
-		}
+	   _clip_var_str(snames.items[i], strlen(snames.items[i]), &vp);
+	   _clip_aadd(ClipMachineMemory, rp, &vp);
+	   _clip_destroy(ClipMachineMemory, &vp);
 	}
-	destroy_Coll(&snames);
-	return 0;
+    }
+   destroy_Coll(&snames);
+   return 0;
 }
-

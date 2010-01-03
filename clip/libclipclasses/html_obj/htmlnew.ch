@@ -1,0 +1,102 @@
+function HtmlNew( File, Title)
+
+	local obj:=map()
+
+	obj:className		:= "HTML"
+	obj:fileName		:= file
+        obj:Title		:= Title
+        obj:tags		:= {}
+
+	obj:loadUrl	 	:= @loadUrl()
+	obj:WriteToFile 	:= @WriteToFile()
+        obj:WriteToHttp		:= @WriteToHttp()
+        obj:__write		:= @writeDocument()
+        obj:addTag		:= @html_addTag()
+        obj:closeTag		:= @html_closeTag()
+        obj:setPageColor	:= @html_pageColor()
+        obj:setTextColor	:= @html_textColor()
+        obj:setBgImage		:= @html_bgImage()
+        obj:setCenter		:= @html_Center()
+        obj:startFont		:= @html_startFont()
+        obj:endFont		:= @html_endFont()
+        obj:endFontAll		:= @html_endFontAll()
+        obj:__setFont		:= @html_setFont()
+        obj:setFontType		:= @html_setFontType()
+        obj:say			:= @html_say()
+        obj:sayColor		:= @html_sayColor()
+        obj:space		:= @html_space()
+        obj:putImage		:= @html_putImage()
+        obj:text		:= @html_text()
+        obj:multiCol		:= @html_multiCol()
+        obj:putHeading		:= @html_putHeading()
+        obj:hLine		:= @html_hLine()
+        obj:paragraph		:= @html_paragraph()
+        obj:putBreak		:= @html_putBreak()
+
+        obj:startMarquee	:= @html_startMarquee()
+        obj:endMarquee		:= @html_endMarquee()
+        obj:__marquee		:= @html_marquee()
+
+        obj:url			:= @html_url()
+        obj:imageUrl		:= @html_imageUrl()
+        obj:imgUrl		:= @html_imageUrl()
+
+        obj:startTable		:= @html_startTable()
+        obj:endTable		:= @html_endTable()
+        obj:__table		:= @html_Table()
+        obj:THcell		:= @html_THcell()
+        obj:startTrow		:= @html_startTrow()
+        obj:endTrow		:= @html_endTrow()
+        obj:__Trow		:= @html_Trow()
+        obj:startTcell		:= @html_startTcell()
+        obj:endTcell		:= @html_endTcell()
+        obj:__Tcell		:= @html_Tcell()
+
+        obj:startList		:= @html_startList()
+        obj:listItem		:= @html_listItem()
+        obj:endList		:= @html_endList()
+        obj:__List		:= @html_list()
+
+        obj:startSelect		:= @html_startSelect()
+        obj:addOption		:= @html_addOption()
+        obj:endSelect		:= @html_endSelect()
+        obj:__select		:= @html_select()
+
+        obj:startForm		:= @html_startForm()
+        obj:endForm		:= @html_endForm()
+        obj:__form		:= @html_form()
+        obj:inputImage		:= @html_inputImage()
+        obj:checkBox		:= @html_checkBox()
+        obj:radioBox		:= @html_radioBox()
+        obj:formFile		:= @html_formFile()
+        obj:formHidden		:= @html_formHidden()
+        obj:formPasswd		:= @html_formPasswd()
+        obj:formText		:= @html_formText()
+        obj:formPassword	:= @html_formPasswd()
+        obj:formGet		:= @html_formGet()
+        obj:formReset		:= @html_formReset()
+        obj:formSubmit		:= @html_formSubmit()
+
+        obj:startFrameSet	:= @html_startFrameSet()
+        obj:frame		:= @html_frame()
+        obj:endFrameSet		:= @html_endFrameSet()
+        obj:__frameSet		:= @html_frameSet()
+
+        obj:addData  		:= @html_addData()
+        obj:put	    		:= @html_addData()
+        obj:QQout   		:= @html_qqout()
+        obj:Qout      		:= @html_qout()
+        obj:NewLine  		:= @html_newLine()
+
+	/* Create header for document */
+	obj:addTag(html_tagNew("HTML"))
+	obj:__head := obj:addTag(html_tagNew("HEAD"))
+	obj:__title:= obj:addTag(html_tagNew("TITLE"))
+        obj:addData(title)
+        obj:closeTag(obj:__title)
+        obj:closeTag(obj:__head)
+        obj:newLine()
+	obj:__body:=obj:addTag(html_tagNew("BODY"))
+        obj:newLine()
+
+return obj

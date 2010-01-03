@@ -3,32 +3,24 @@
 	Author  : Paul Lasarev <paul@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
 
-	$Log: ncp.h,v $
-	Revision 1.1  2006/06/22 19:35:17  itk
-	uri: init sf.net repository
-
-	Revision 1.2  2002/04/22 11:22:07  clip
-	include fix
-	paul
-
-	Revision 1.1  2002/04/22 11:11:20  clip
-	remove ncp code from rdd/dbf.c
-	create ncp module
-	add ncp usage in _file/diskutil _set_lock call
-	paul
-
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 */
-#ifndef CI_NCP_H
-#define CI_NCP_H
+#ifndef CN_NCP_H
+#define CN_NCP_H
 
 #include "ci_clipcfg.h"
 
 #define USE_NCPFS_LOCK 1
 
-int ncp_is_ncpfs(int fd);
-int ncp_is_ncpfs_filename(char *filename);
-int ncp_openmode(int fd, int exclusive);
-int ncp_fcntl(int fd, int flag, void *argp);
+int       ncp_is_ncpfs(int fd);
+
+int       ncp_is_ncpfs_filename(char *filename);
+
+int       ncp_openmode(int fd, int exclusive);
+
+int       ncp_fcntl(int fd, int flag, void *argp);
 
 #if defined(OS_LINUX) && defined(USE_NCPFS_LOCK)
 #define	USE_NCPFS	1

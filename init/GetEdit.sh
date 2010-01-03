@@ -1,4 +1,4 @@
-#!/bin/bash -ue
+#!/bin/bash 
 
 if [[ -f "$Clip_S_Dir/Edit.setup.ini" ]] ; then
 	export Edit=$(cat "$Clip_S_Dir/Edit.setup.ini" )

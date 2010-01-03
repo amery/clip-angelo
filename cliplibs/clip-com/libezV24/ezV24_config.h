@@ -45,14 +45,14 @@
 #define __EZV24_CONFIG_H__ 1
 
 #ifdef __cplusplus
-extern "C" {
+extern    "C"
+{
 #endif
-
 
 /* This is set to 1 (TRUE), if we need support for lock-files to protect the
  * opened device.
  */
-#ifdef __LINUX__ 
+#ifdef __LINUX__
 # ifdef __CYGWIN__
 #  define EZV24_WANT_LOCKFILE 1
 # else
@@ -62,7 +62,6 @@ extern "C" {
 # define EZV24_WANT_LOCKFILE 0
 #endif
 
-
 /* This is set 1 (TRUE), if we have POSIX complaint functions to access the
  * serial port.
  */
@@ -71,7 +70,6 @@ extern "C" {
 #else
 #define EZV24_POSIX_STYLE 0
 #endif
-
 
 /* If we have termios.h/cfmakeraw() we can use it by define a 1 (true). Use 0
  * (false) to do the setup manual.
@@ -87,19 +85,15 @@ extern "C" {
  */
 #define EZV24_LOCK_PATH "/var/lock"
 
-
 /* This is the file, where the library writes its log messages to. So you need
  * to have write access!
  */
 #define EZV24_LOG_FILE "ezv24.log"
 
-
 /* This is the character, that is used to detect the end of a line in
  * v24Gets().
  */
 #define EZV24_END_OF_STRING '\n'
-
-
 
 #ifdef __cplusplus
 };
@@ -107,4 +101,3 @@ extern "C" {
 
 #endif
 /* ==[End of file]========================================================== */
-

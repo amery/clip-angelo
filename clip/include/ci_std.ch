@@ -1,5 +1,5 @@
-#ifndef CI_STD_DEFINED
-#define CI_STD_DEFINED
+#ifndef CN_STD_DEFINED
+#define CN_STD_DEFINED
 
 #include "ci_config.ch"
 
@@ -9,11 +9,11 @@
 	#ifdef FOXPRO_COMPATIBLE
         	// ���� ������� fox.ch
 		#include "ci_std53.ch"
-                #include "ci_fox.ch"
-                #include "ci_foxsql.ch"
-        #else
+      #include "ci_fox.ch"
+      #include "ci_foxsql.ch"
+	#else
 		#include "ci_std53.ch"
-        #endif
+   #endif
 #endif
 
 #include "ci_clip.ch"

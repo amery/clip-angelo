@@ -1,0 +1,2 @@
+function vgapalette()
+return .t.

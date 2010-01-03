@@ -2,14 +2,43 @@ TO DO :
 
 	-	both compile mode under x86_64 environment;
 	-	clip_cld in 64 bits mode;
-	-	example(s) compile;
-	-	commented source;
-	-	better library dependency;
+	-	commented sourceq;
 	-	DOS/Windows environment;
 	-	CygWin environment;
 	-	MingW environment;
 	-	...
 	-	Any suggestion are welcome.
+
+Version 1.2.6.0.01 on 2010.01.03
+
+	- better library dependency;
+	- pseudo long name variables;
+
+	- 	Replaced all instances ClipMachine *cm and ClipMachine *mp
+		by ClipMachine *ClipMachineMemory => explicit long names use.
+
+	-	Replaced all instances from ClipVartype :
+		UNDEF_t
+		CHARACTER_t
+		NUMERIC_t
+		LOGICAL_t
+		DATE_t
+		ARRAY_t
+		MAP_t
+		OBJECT_t
+		CCODE_t
+		PCODE_t
+		MEMO_T
+		DATETIME_t	to 	*ype_of_ClipVarType;
+
+	-	Replaced all instances from ClipFlags :
+		F_NONE
+		F_MPTR
+		F_MSTAT
+		F_MREF		to 	*_of_ClipFlags;
+
+		and so on for other define struc;
+
 
 Version 1.2.3 on 2009-09-09.
 

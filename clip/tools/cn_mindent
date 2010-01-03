@@ -1,0 +1,27 @@
+#!/bin/sh
+SIMPLE_BACKUP_SUFFIX=.BAK
+export SIMPLE_BACKUP_SUFFIX
+# -l128 line length 128
+# -lc80 comment line length
+# -bad blank-lines-after-declarations
+# -bap -blank-lines-after-procedures
+# -sob Swallow optional blank lines
+# -nfc1 Do not format comments in the first column as normal
+# -d1 Set indentation of comments not to the right of code to N spaces
+# -ncdb Do not put comment delimiters on blank lines
+# -cd33 Put comments to the right of the declarations in column N
+# -bli0 Indent braces N spaces
+# -npcs no-space-after-function-call-names
+# -di1 Put variables in column N
+# -nbc no-blank-lines-after-commas
+# -psl Put the type of a procedure on the line before its name
+# -i8 Set indentation level to N spaces
+# -ip8 Indent parameter types in old-style function definitions by N spaces.
+# -lp Line up continued lines at parentheses
+# -ci0 Continuation indent of N spaces
+# -nsc Do not put a space after cast operators
+# -nce Do not cuddle `}' and `else'
+# $*
+
+indent -l128 -lc80 -bad -bap -sob -nfc1 -d1 -ncdb -cd33 -bli1 -npcs \
+	 -di10 -nbc -psl -i3 -ip8 -lp -ci1 -nce $*

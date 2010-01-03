@@ -3,7 +3,7 @@
 #ifdef __HARBOUR__
    #include "hbclass.ch"
 #else
-   #include "../ci_ppclass.ch"
+   #include "../cn_ppclass.ch"
 #endif
 
 Function Main()

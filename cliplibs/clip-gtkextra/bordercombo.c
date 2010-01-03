@@ -17,56 +17,74 @@
 #include "ci_clip-gtkextra.h"
 
 /**********************************************************/
-static gint
-handle_changed_signal (GtkWidget *widget, gint selection, C_signal *cs)
+static    gint
+handle_changed_signal(GtkWidget * widget, gint selection, C_signal * cs)
 {
-	PREPARECV(cs,cv);
-	_clip_mputn(cs->cw->cmachine, &cv, HASH_SELECTION, selection);
-        INVOKESIGHANDLER(widget,cs,cv);
+   PREPARECV(cs, cv);
+   _clip_mputn(cs->cw->cmachine, &cv, HASH_SELECTION, selection);
+   INVOKESIGHANDLER(widget, cs, cv);
 }
+
 /* Signals table */
-static SignalTable border_combo_signals[] =
-{
-	{"changed",		GSF( handle_changed_signal ), ESF( object_emit_signal ), GTK_CHANGED_SIGNAL },
-	{"", NULL, NULL, 0}
+static SignalTable border_combo_signals[] = {
+   {"changed", GSF(handle_changed_signal), ESF(object_emit_signal), GTK_CHANGED_SIGNAL},
+   {"", NULL, NULL, 0}
 };
 
 /**********************************************************/
 
 /* Register BorderCombo in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_border_combo() { return gtk_border_combo_get_type(); }
-long _clip_type_border_combo() { return GTK_WIDGET_BORDER_COMBO; }
-const char * _clip_type_name_border_combo() { return "GTK_WIDGET_BORDER_COMBO"; }
+CLIP_DLLEXPORT GtkType
+_gtk_type_border_combo()
+{
+   return gtk_border_combo_get_type();
+}
+
+long
+_clip_type_border_combo()
+{
+   return GTK_WIDGET_BORDER_COMBO;
+}
+
+const char *
+_clip_type_name_border_combo()
+{
+   return "GTK_WIDGET_BORDER_COMBO";
+}
 
 int
-clip_INIT___BORDER_COMBO(ClipMachine *cm)
+clip_INIT___BORDER_COMBO(ClipMachine * ClipMachineMemory)
 {
-	_wtype_table_put(_clip_type_border_combo, _clip_type_name_border_combo, _gtk_type_border_combo, _gtk_type_combo_box, border_combo_signals);
-	return 0;
+   _wtype_table_put(_clip_type_border_combo, _clip_type_name_border_combo, _gtk_type_border_combo, _gtk_type_combo_box,
+		    border_combo_signals);
+   return 0;
 }
 
 /**** BORDER COMBO constructor ****/
 int
-clip_GTK_BORDERCOMBONEW(ClipMachine * cm)
+clip_GTK_BORDERCOMBONEW(ClipMachine * ClipMachineMemory)
 {
-	ClipVar     * cv = _clip_spar (cm,1);
-	GtkWidget *wid = NULL;
-        C_widget *cwid, *cbutton, *ctable;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
 
-	CHECKOPT(1,MAP_t);
+   GtkWidget *wid = NULL;
 
-	wid = gtk_border_combo_new();
-        if (!wid) goto err;
-	cwid = _register_widget(cm, wid, cv);
-        cbutton = _register_widget(cm, GTK_COMBO_BOX(wid)->button, NULL);
-        ctable = _register_widget(cm, GTK_BORDER_COMBO(wid)->table, NULL);
-        _clip_madd(cm, &cwid->obj, HASH_BUTTON, &cbutton->obj);
-        _clip_madd(cm, &cwid->obj, HASH_TABLE, &ctable->obj);
-        _clip_mclone(cm,RETPTR(cm),&cwid->obj);
+   C_widget *cwid, *cbutton, *ctable;
 
-	return 0;
-err:
-	return 1;
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   wid = gtk_border_combo_new();
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+   cbutton = _register_widget(ClipMachineMemory, GTK_COMBO_BOX(wid)->button, NULL);
+   ctable = _register_widget(ClipMachineMemory, GTK_BORDER_COMBO(wid)->table, NULL);
+   _clip_madd(ClipMachineMemory, &cwid->obj, HASH_BUTTON, &cbutton->obj);
+   _clip_madd(ClipMachineMemory, &cwid->obj, HASH_TABLE, &ctable->obj);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+
+   return 0;
+ err:
+   return 1;
 }
-/**** ------------------ ****/
 
+/**** ------------------ ****/

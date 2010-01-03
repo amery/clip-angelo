@@ -1,5 +1,5 @@
-#ifndef __CLIP_GTK_EXTRA_H__
-#define __CLIP_GTK_EXTRA_H__
+#ifndef CI__CLIP_GTK_EXTRA_H__
+#define CI__CLIP_GTK_EXTRA_H__
 
 GtkType _gtk_type_sheet();
 GtkType _gtk_type_combo_box();

@@ -1,4 +1,4 @@
-#!/bin/bash -ux
+#!/bin/bash 
 ##
 ## 															config dir
 ##
@@ -6,7 +6,6 @@
 #
 # 		local variables defined here
 #
-beep_on
 
 echo We NEED to check if certain programs are installed  	>&0
 echo for a user friendly display and compatibility.			>&0

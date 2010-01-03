@@ -1,6 +1,6 @@
-#ifndef CI_FOXSQL_DEFINED
+#ifndef CN_FOXSQL_DEFINED
 
-#define CI_FOXSQL_DEFINED
+#define CN_FOXSQL_DEFINED
 
 #command CREATE TABLE <(filename)> ;
 		FROM [ARRAY] <arr> ;

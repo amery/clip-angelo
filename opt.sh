@@ -6,7 +6,9 @@ if ! [[ "$USER" = "root" ]] ; then
 #	chown -Rc $User *
 fi
 
-[ -f ./opt ] && rm -fv ./opt
+if [ -f ./opt ] ; then
+	rm -fv ./opt
+fi
 #User=$(cat config/user)
 #if [[ "$User" != "root" ]] ; then
 #	chown -Rc $User *

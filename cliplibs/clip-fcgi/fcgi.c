@@ -35,162 +35,171 @@
 extern char **environ;
 
 static FCGX_Stream *in = 0, *out = 0, *err = 0;
+
 static FCGX_ParamArray envp;
+
 static OutBuf obuf, ebuf;
+
 static int inited = 0;
+
 static int flush_bufs(void);
 
 int
-clip_FCGI_ACCEPT(ClipMachine *mp)
+clip_FCGI_ACCEPT(ClipMachine * mp)
 {
-	int r;
+   int       r;
 
-	if (inited)
-	{
-		flush_bufs();
-		FCGX_Finish();
-	}
+   if (inited)
+    {
+       flush_bufs();
+       FCGX_Finish();
+    }
 
-	r = FCGX_Accept(&in, &out, &err, &envp);
-	/*r = FCGI_Accept();*/
-	_clip_retl(mp, (r >= 0) ? 1 : 0);
+   r = FCGX_Accept(&in, &out, &err, &envp);
+  /*r = FCGI_Accept(); */
+   _clip_retl(mp, (r >= 0) ? 1 : 0);
 
-	if (!inited)
-	{
-		inited = 1;
+   if (!inited)
+    {
+       inited = 1;
 
-		init_Buf(&obuf);
-		init_Buf(&ebuf);
+       init_Buf(&obuf);
+       init_Buf(&ebuf);
 
-		mp->obuf = &obuf;
-		mp->ebuf = &ebuf;
-	}
+       mp->obuf = &obuf;
+       mp->ebuf = &ebuf;
+    }
 
-	return 0;
+   return 0;
 }
 
 static int
 flush_bufs(void)
 {
-	int r;
+   int       r;
 
-	r = obuf.ptr - obuf.buf;
-	if (r)
-	{
-		FCGX_PutStr(obuf.buf, r, out);
-		/*FCGI_fwrite(obuf.buf, 1, r, FCGI_stdout);*/
-		obuf.ptr = obuf.buf;
-	}
-	r = ebuf.ptr - ebuf.buf;
-	if (r)
-	{
-		FCGX_PutStr(ebuf.buf, r, err);
-		/*FCGI_fwrite(ebuf.buf, 1, r, FCGI_stderr);*/
-		ebuf.ptr = ebuf.buf;
-	}
+   r = obuf.ptr_of_OutBuf - obuf.buf_of_OutBuf;
+   if (r)
+    {
+       FCGX_PutStr(obuf.buf_of_OutBuf, r, out);
+      /*FCGI_fwrite(obuf.buf_of_OutBuf, 1, r, FCGI_stdout); */
+       obuf.ptr_of_OutBuf = obuf.buf_of_OutBuf;
+    }
+   r = ebuf.ptr_of_OutBuf - ebuf.buf_of_OutBuf;
+   if (r)
+    {
+       FCGX_PutStr(ebuf.buf_of_OutBuf, r, err);
+      /*FCGI_fwrite(ebuf.buf_of_OutBuf, 1, r, FCGI_stderr); */
+       ebuf.ptr_of_OutBuf = ebuf.buf_of_OutBuf;
+    }
 
-	/*r = FCGX_FFlush(out);*/
-	/*r = FCGI_fflush(FCGI_stdout);*/
-	/*FCGX_FFlush(err);*/
-	/*FCGI_fflush(FCGI_stderr);*/
+  /*r = FCGX_FFlush(out); */
+  /*r = FCGI_fflush(FCGI_stdout); */
+  /*FCGX_FFlush(err); */
+  /*FCGI_fflush(FCGI_stderr); */
 
-	return r;
+   return r;
 }
 
 int
-clip_FCGI_FLUSH(ClipMachine *mp)
+clip_FCGI_FLUSH(ClipMachine * mp)
 {
-	int r;
+   int       r;
 
-	if (!inited)
-		return EG_ARG;
+   if (!inited)
+      return EG_ARG;
 
-	r = flush_bufs();
+   r = flush_bufs();
 
-	_clip_retl(mp, !r);
+   _clip_retl(mp, !r);
 
-	return 0;
+   return 0;
 }
 
 int
-clip_FCGI_GETENV(ClipMachine *mp)
+clip_FCGI_GETENV(ClipMachine * mp)
 {
-	ClipVar *rp;
-	char *str = _clip_parc(mp, 1);
-	int i = 0;
+   ClipVar  *rp;
 
-	if (!inited)
-		return EG_ARG;
+   char     *str = _clip_parc(mp, 1);
 
-	if (str)
-	{
-		_clip_retc(mp, FCGX_GetParam(str, envp));
+   int       i = 0;
+
+   if (!inited)
+      return EG_ARG;
+
+   if (str)
+    {
+       _clip_retc(mp, FCGX_GetParam(str, envp));
 		/*_clip_retc(mp, getenv(str));*/
-	}
-	else
+    }
+   else
+    {
+       rp = RETPTR(mp);
+       _clip_map(mp, rp);
+       while (envp[i])
 	{
-		rp = RETPTR(mp);
-		_clip_map(mp, rp);
-		while (envp[i])
-		{
-			int l;
-			char *s = envp[i];
-			char *e;
-			/*char *s = environ[i];*/
+	   int       l;
 
-			l = strcspn(s, "=");
-			if (s[l]=='=')
-				e = s+l+1;
-			else
-				e = "";
-			_clip_mputc(mp, rp, _clip_casehashbytes(0, s, l), e, strlen(e));
-			i++;
-		}
+	   char     *s = envp[i];
+
+	   char     *e;
+
+	  /*char *s = environ[i]; */
+
+	   l = strcspn(s, "=");
+	   if (s[l] == '=')
+	      e = s + l + 1;
+	   else
+	      e = "";
+	   _clip_mputc(mp, rp, _clip_casehashbytes(0, s, l), e, strlen(e));
+	   i++;
 	}
-	return 0;
+    }
+   return 0;
 }
 
 /*
  * read CONTENT_LENGTH input and return as string
  */
 int
-clip_FCGI_READ(ClipMachine *mp)
+clip_FCGI_READ(ClipMachine * mp)
 {
-	char *clen;
-	int len;
+   char     *clen;
 
-	if (!inited)
-		return EG_ARG;
+   int       len;
 
-	clen =  FCGX_GetParam("CONTENT_LENGTH", envp);
-	/*clen =  getenv("CONTENT_LENGTH");*/
+   if (!inited)
+      return EG_ARG;
 
-	if (clen)
-		len = strtol(clen, NULL, 10);
-	else
-		len = 0;
+   clen = FCGX_GetParam("CONTENT_LENGTH", envp);
+  /*clen =  getenv("CONTENT_LENGTH"); */
 
-	if(len)
+   if (clen)
+      len = strtol(clen, NULL, 10);
+   else
+      len = 0;
+
+   if (len)
+    {
+       OutBuf    buf;
+
+       int       i, ch, l;
+
+       init_Buf(&buf);
+       for (i = 0; i < len; i++)
 	{
-		OutBuf buf;
-		int i, ch, l;
-
-		init_Buf(&buf);
-		for (i = 0; i < len; i++)
-		{
-			if ((ch = FCGX_GetChar(in)) < 0)
-			/*if ((ch = FCGI_fgetc(FCGI_stdin)) < 0)*/
-				break;
-			putByte_Buf(&buf, ch);
-		}
-		l = buf.ptr - buf.buf;
-		putByte_Buf(&buf, 0);
-		_clip_retcn_m(mp, buf.buf, l);
+	   if ((ch = FCGX_GetChar(in)) < 0)
+	     /*if ((ch = FCGI_fgetc(FCGI_stdin)) < 0) */
+	      break;
+	   putByte_Buf(&buf, ch);
 	}
-	else
-		_clip_retc(mp, "");
+       l = buf.ptr_of_OutBuf - buf.buf_of_OutBuf;
+       putByte_Buf(&buf, 0);
+       _clip_retcn_m(mp, buf.buf_of_OutBuf, l);
+    }
+   else
+      _clip_retc(mp, "");
 
-	return 0;
+   return 0;
 }
-
-

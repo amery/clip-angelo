@@ -1,126 +1,16 @@
 /*
-   $Log: clipvm.h,v $
-   Revision 1.1  2006/06/22 19:35:16  itk
-   uri: init sf.net repository
-
-   Revision 1.21  2003/03/25 10:31:13  clip
-   possible fixes #133
-   paul
-
-   Revision 1.20  2002/12/31 08:03:36  clip
-   assign to locals
-   closes #95
-   paul
-
-   Revision 1.19  2001/09/21 10:29:15  clip
-   memvar priority in macro
-   paul
-
-   Revision 1.18  2001/09/04 08:26:59  clip
-   CODEBLOCK pseudofunction
-   process codeblocks with macro calls as CODEBLOCK
-   paul
-
-   Revision 1.17  2001/08/27 09:45:31  clip
-   switch operator
-   paul
-
-   Revision 1.16  2001/08/24 14:38:47  clip
-   CODESTR pseudofunction
-   paul
-
-   Revision 1.15  2001/08/23 13:52:06  clip
-   merge with NEWLOCALS
-   paul
-
-   Revision 1.14.2.5  2001/08/23 10:13:42  clip
-   fix field/memvar order in references
-   paul
-
-   Revision 1.14.2.4  2001/08/22 13:52:39  clip
-   assign to field
-   paul
-
-   Revision 1.14.2.3  2001/08/21 14:29:39  clip
-   refernce to macro: b:=@&s
-   paul
-
-   Revision 1.14.2.2  2001/08/21 08:29:55  clip
-   reference assign (like b:=@a[1])
-   paul
-
-   Revision 1.14.2.1  2001/08/20 07:13:47  clip
-   block with macro
-   fields with macro
-   paul
-
-   Revision 1.14  2001/05/30 09:45:43  clip
-   for .. in .. [keys]
-   paul
-
-   Revision 1.13  2001/05/04 08:38:26  clip
-   assign_field with macro
-   paul
-
-   Revision 1.12  2001/01/19 08:43:33  clip
-   append RDD direct access in rt.y
-
-   functions (yet empty):
-   int _clip_rddfieldno(ClipMachine * mp, int rddno, long namehash);
-   int _clip_rddfield(ClipMachine * mp, int rddno, int fieldno);
-
-   syntax:
-   _rdd_ 2 <expr> _rdd_
-   for direct access to RDD 2 in <expr>
-   That means, rdd field names override normal fields/memvars
-
-   paul
-
-   Revision 1.11  2000/12/09 12:13:28  clip
-   locale
-   paul
-
-   Revision 1.10  2000/11/20 11:46:49  clip
-   add CLIP_PUSH_STRDUP vm command
-   rt compiler now use one
-   paul
-
-   Revision 1.9  2000/10/26 06:57:52  clip
-   for..next in .po
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.8  2000/05/24 18:34:18  clip
-   _clip_push_area
-   indents all
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.7  2000/05/24 16:56:35  clip
-   bugs
-   Paul Lasarev <paul@itk.ru>
-
-   Revision 1.6  2000/04/10 21:42:18  paul
-   field->&asdf := expr
-
-   Revision 1.5  2000/03/21 21:30:26  paul
-   uplocals in pcode
-
-   Revision 1.4  2000/03/20 18:59:49  paul
-   __field__ directive
-
-   Revision 1.3  1999/10/28 21:10:02  paul
-   runtime compiler: array access, obj calls
-
-   Revision 1.2  1999/10/26 19:11:25  paul
-   start cvs logging
+ 	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 
  */
 
-#ifndef CI_CLIPVM_H
-#define CI_CLIPVM_H
+#ifndef CN_CLIPVM_H
+#define CN_CLIPVM_H
 
 /* clip virtual machine codes */
 
-#define	CLIP_POP		0
+#define CLIP_POP		0
 #define CLIP_LINE		1
 #define CLIP_PUSH_NUM		2
 #define CLIP_PUSH_STR		3
@@ -252,19 +142,8 @@
 #define CLIP_REF_DESTROY	119
 #define CLIP_PUSH_REF_MEMVAR_NOADD	120
 
-typedef struct
-{
-	short len;
-	short offs;
-}
-OffsBucket;
-
-typedef struct
-{
-	long hash;
-	long offs;
-}
-HashBucket;
+#include "ci_clipvm/typedef_struct_OffsBucket.h"
+#include "ci_clipvm/typedef_struct_HashBucket.h"
 
 #define CLIPMAG "!<pobj>\n"
 #define CLIPMAGLEN 8

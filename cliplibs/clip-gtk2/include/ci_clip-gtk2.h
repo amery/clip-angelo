@@ -25,8 +25,8 @@ typedef struct _SignalTable		SignalTable;
 typedef struct _SignalTableObject	SignalTableObject;
 typedef struct _ExtraSignalTable	ExtraSignalTable;
 
-typedef void (*cwDestructor) (ClipMachine *cm, C_widget *cwid);
-typedef void (*coDestructor) (ClipMachine *cm, C_object *cobj);
+typedef void (*cwDestructor) (ClipMachine *ClipMachineMemory, C_widget *cwid);
+typedef void (*coDestructor) (ClipMachine *ClipMachineMemory, C_object *cobj);
 //typedef int (*EmitSignalFunction) (C_widget *cwid, const gchar *signal_name);
 typedef int (*EmitSignalFunction) (C_object *cobj, const gchar *signal_name);
 typedef GtkType (*TypeFunc) (void);
@@ -81,7 +81,7 @@ typedef struct
 	ClipVar cfunc;
 	ClipVar cfunc2;
 	unsigned int id;
-	ClipMachine *cm;
+	ClipMachine *ClipMachineMemory;
 	ClipVar *cv;
 	C_widget *cw;
 	C_object *co;
@@ -134,82 +134,82 @@ typedef struct _WTypeTable
 #define	FREE_TEXT(text)		if (text) g_free(text);
 
 #define CHECKARG(n,t) \
-  if((_clip_parinfo(cm,n)!=t)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" type",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKARG2(n,t,t2) \
-  if((_clip_parinfo(cm,n)!=t) && (_clip_parinfo(cm,n)!=t2)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t) && (_clip_parinfo(ClipMachineMemory,n)!=t2)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" or "#t2" type",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKARG3(n,t,t2,t3) \
-  if((_clip_parinfo(cm,n)!=t) && (_clip_parinfo(cm,n)!=t2) && (_clip_parinfo(cm,n)!=t3)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t) && (_clip_parinfo(ClipMachineMemory,n)!=t2) && (_clip_parinfo(ClipMachineMemory,n)!=t3)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" or "#t2" or "#t3" type",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKARG4(n,t,t2,t3,t4) \
-  if((_clip_parinfo(cm,n)!=t) && (_clip_parinfo(cm,n)!=t2) && (_clip_parinfo(cm,n)!=t3) && (_clip_parinfo(cm,n)!=t4)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t) && (_clip_parinfo(ClipMachineMemory,n)!=t2) && (_clip_parinfo(ClipMachineMemory,n)!=t3) && (_clip_parinfo(ClipMachineMemory,n)!=t4)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" or "#t2" or "#t3" or "#t4" type",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKOPT(n,t) \
-  if((_clip_parinfo(cm,n)!=t)&&(_clip_parinfo(cm,n)!=UNDEF_t)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t)&&(_clip_parinfo(ClipMachineMemory,n)!=UNDEF_type_of_ClipVarType)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" type or NIL",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKOPT2(n,t,t2) \
-  if((_clip_parinfo(cm,n)!=t)&&(_clip_parinfo(cm,n)!=t2)&&(_clip_parinfo(cm,n)!=UNDEF_t)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t)&&(_clip_parinfo(ClipMachineMemory,n)!=t2)&&(_clip_parinfo(ClipMachineMemory,n)!=UNDEF_type_of_ClipVarType)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" or "#t2" type or NIL",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
 #define CHECKOPT3(n,t,t2,t3) \
-  if((_clip_parinfo(cm,n)!=t)&&(_clip_parinfo(cm,n)!=t2)&&(_clip_parinfo(cm,n)!=t3)&&(_clip_parinfo(cm,n)!=UNDEF_t)){ \
+  if((_clip_parinfo(ClipMachineMemory,n)!=t)&&(_clip_parinfo(ClipMachineMemory,n)!=t2)&&(_clip_parinfo(ClipMachineMemory,n)!=t3)&&(_clip_parinfo(ClipMachineMemory,n)!=UNDEF_type_of_ClipVarType)){ \
     char err[100]; \
     sprintf(err,"Bad argument (%d), must be a "#t" or "#t2" or "#t3" type or NIL",n); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_ARG,err); \
     goto err; \
     }
 
-#define INT_OPTION(cm,n,d)	(_clip_parinfo(cm,n)==UNDEF_t ? d : _clip_parni(cm,n))
-#define LONG_OPTION(cm,n,d)	(_clip_parinfo(cm,n)==UNDEF_t ? d : _clip_parnl(cm,n))
-#define DBL_OPTION(cm,n,d)	(_clip_parinfo(cm,n)==UNDEF_t ? d : _clip_parnd(cm,n))
-#define CHAR_OPTION(cm,n,d)	(_clip_parinfo(cm,n)==UNDEF_t ? d : _clip_parc(cm,n))
-#define BOOL_OPTION(cm,n,d)	(_clip_parinfo(cm,n)==UNDEF_t ? d : _clip_parl(cm,n))
+#define INT_OPTION(ClipMachineMemory,n,d)	(_clip_parinfo(ClipMachineMemory,n)==UNDEF_type_of_ClipVarType ? d : _clip_parni(ClipMachineMemory,n))
+#define LONG_OPTION(ClipMachineMemory,n,d)	(_clip_parinfo(ClipMachineMemory,n)==UNDEF_type_of_ClipVarType ? d : _clip_parnl(ClipMachineMemory,n))
+#define DBL_OPTION(ClipMachineMemory,n,d)	(_clip_parinfo(ClipMachineMemory,n)==UNDEF_type_of_ClipVarType ? d : _clip_parnd(ClipMachineMemory,n))
+#define CHAR_OPTION(ClipMachineMemory,n,d)	(_clip_parinfo(ClipMachineMemory,n)==UNDEF_type_of_ClipVarType ? d : _clip_parc(ClipMachineMemory,n))
+#define BOOL_OPTION(ClipMachineMemory,n,d)	(_clip_parinfo(ClipMachineMemory,n)==UNDEF_type_of_ClipVarType ? d : _clip_parl(ClipMachineMemory,n))
 
-#define CWIDGET_ARG(cm,n)	(_fetch_cwidget(cm,_clip_spar(cm,n)))
-#define COBJECT_ARG(cm,n)	(_fetch_cobject(cm,_clip_spar(cm,n)))
+#define CWIDGET_ARG(ClipMachineMemory,n)	(_fetch_cwidget(ClipMachineMemory,_clip_spar(ClipMachineMemory,n)))
+#define COBJECT_ARG(ClipMachineMemory,n)	(_fetch_cobject(ClipMachineMemory,_clip_spar(ClipMachineMemory,n)))
 
 #define CHECKCWID(cwid,wt) \
   if(!cwid || !cwid->widget) { \
     char err[100]; \
     sprintf(err,"No widget"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOWIDGET,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOWIDGET,err); \
     goto err; \
     } \
   else \
     if (!(wt(cwid->widget))) { \
     char err[100]; \
     sprintf(err,"Widget have a wrong type ("#wt" failed)"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_WIDGETTYPE,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_WIDGETTYPE,err); \
     goto err; \
     }
 
@@ -217,14 +217,14 @@ typedef struct _WTypeTable
   if(!cobj || !cobj->object) { \
     char err[100]; \
     sprintf(err,"No object"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOOBJECT,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOOBJECT,err); \
     goto err; \
     } \
   else \
     if (!(wt)) { \
     char err[100]; \
     sprintf(err,"Object have a wrong type ("#wt" failed)"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_OBJECTTYPE,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_OBJECTTYPE,err); \
     goto err; \
     }
 
@@ -232,14 +232,14 @@ typedef struct _WTypeTable
   if(cwid && !cwid->widget) { \
     char err[100]; \
     sprintf(err,"No widget"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOWIDGET,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOWIDGET,err); \
     goto err; \
     } \
   else \
     if (cwid && !(wt(cwid->widget))) { \
     char err[100]; \
     sprintf(err,"Widget have a wrong type ("#wt" failed)"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_WIDGETTYPE,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_WIDGETTYPE,err); \
     goto err; \
     }
 
@@ -247,14 +247,14 @@ typedef struct _WTypeTable
   if(cobj && !cobj->object) { \
     char err[100]; \
     sprintf(err,"No object"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOOBJECT,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_NOOBJECT,err); \
     goto err; \
     } \
   else \
     if (cobj && !(wt)) { \
     char err[100]; \
     sprintf(err,"Object have a wrong type ("#wt" failed)"); \
-    _clip_trap_err(cm,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_OBJECTTYPE,err); \
+    _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_GTK_SYSTEM",EG_OBJECTTYPE,err); \
     goto err; \
     }
 
@@ -280,18 +280,18 @@ typedef struct _WTypeTable
 #define GTK_TREE_PATH(p)               ((GtkTreePath *)(p))
 
 GtkType _gtk_type_object(void);
-C_widget * _register_widget(ClipMachine *cm, GtkWidget *wid, ClipVar *cv);
-C_object * _register_object(ClipMachine * cm, void * data, long type, ClipVar * cv, coDestructor fDestroy);
-C_widget * _get_cwidget(ClipMachine *cm, GtkWidget *wid);
-C_object * _get_cobject(ClipMachine *cm, void *wid, long clip_type, coDestructor fDestroy);
-C_widget* _fetch_cwidget(ClipMachine* cm, ClipVar *cv);
-C_widget* _fetch_cwidgetn(ClipMachine* cm, int h);
-C_object* _fetch_cobject(ClipMachine* cm, ClipVar *cv);
-C_object* _fetch_cobjectn(ClipMachine* cm, int h);
-C_widget* _fetch_cw_arg(ClipMachine* cm);
-C_widget* _fetch_cw_opt(ClipMachine* cm);
-C_object* _fetch_co_arg(ClipMachine* cm);
-C_object* _fetch_co_opt(ClipMachine* cm);
+C_widget * _register_widget(ClipMachine *ClipMachineMemory, GtkWidget *wid, ClipVar *cv);
+C_object * _register_object(ClipMachine * ClipMachineMemory, void * data, long type, ClipVar * cv, coDestructor fDestroy);
+C_widget * _get_cwidget(ClipMachine *ClipMachineMemory, GtkWidget *wid);
+C_object * _get_cobject(ClipMachine *ClipMachineMemory, void *wid, long clip_type, coDestructor fDestroy);
+C_widget* _fetch_cwidget(ClipMachine* ClipMachineMemory, ClipVar *cv);
+C_widget* _fetch_cwidgetn(ClipMachine* ClipMachineMemory, int h);
+C_object* _fetch_cobject(ClipMachine* ClipMachineMemory, ClipVar *cv);
+C_object* _fetch_cobjectn(ClipMachine* ClipMachineMemory, int h);
+C_widget* _fetch_cw_arg(ClipMachine* ClipMachineMemory);
+C_widget* _fetch_cw_opt(ClipMachine* ClipMachineMemory);
+C_object* _fetch_co_arg(ClipMachine* ClipMachineMemory);
+C_object* _fetch_co_opt(ClipMachine* ClipMachineMemory);
 gint handle_signals( GtkWidget *widget, C_signal *cs, ClipVar *cv );
 gint object_handle_signals( C_signal *cs, ClipVar *cv );
 gint handle_events( GtkWidget *widget, GdkEvent *event, C_signal *cs );
@@ -304,43 +304,43 @@ WTypeTable * _wtype_table_get_first(void);
 void _wtype_table_destroy(WTypeTable *wt_item);
 char * _sig_name_by_id(long id);
 // Get colors for GTK+ from a map
-void _map_get_colors (ClipMachine *cm, ClipVar *map, double colors[]);
+void _map_get_colors (ClipMachine *ClipMachineMemory, ClipVar *map, double colors[]);
 // Put colors from GTK+ to a map
-void _map_put_colors (ClipMachine *cm, ClipVar *map, double colors[]);
+void _map_put_colors (ClipMachine *ClipMachineMemory, ClipVar *map, double colors[]);
 // Get colors for color selection from a map
-void _map_get_sel_colors (ClipMachine *cm, ClipVar *map, double colors[]);
-void _map_colors_to_gdk (ClipMachine *cm, ClipVar *map, GdkColor *gdk_color);
-void _map_colors_to_gdk_array (ClipMachine *cm, ClipVar *map, GdkColor gdk_color[]);
+void _map_get_sel_colors (ClipMachine *ClipMachineMemory, ClipVar *map, double colors[]);
+void _map_colors_to_gdk (ClipMachine *ClipMachineMemory, ClipVar *map, GdkColor *gdk_color);
+void _map_colors_to_gdk_array (ClipMachine *ClipMachineMemory, ClipVar *map, GdkColor gdk_color[]);
 // Get color and store it to map
-void _gdk_color_to_map (ClipMachine *cm, GdkColor gdk_color, ClipVar *col);
-void _map_to_gdk_color (ClipMachine *cm, GdkColor *gdk_color, ClipVar *col);
+void _gdk_color_to_map (ClipMachine *ClipMachineMemory, GdkColor gdk_color, ClipVar *col);
+void _map_to_gdk_color (ClipMachine *ClipMachineMemory, GdkColor *gdk_color, ClipVar *col);
 // Get array of colors and store it to array of maps
-void _gdk_array_to_map_colors (ClipMachine *cm, GdkColor gdk_colors[], ClipVar *a);
-void _style_to_map(ClipMachine *cm, GtkStyle *style, ClipVar *m_style);
-void _rc_style_to_map(ClipMachine *cm, GtkRcStyle *style, ClipVar *m_style);
-void _map_to_style(ClipMachine *cm, ClipVar *m_style, GtkStyle *style);
-void _map_to_rc_style(ClipMachine *cm, ClipVar *m_style, GtkRcStyle *style, GtkStateType state);
-gint _map_to_gdk_geometry(ClipMachine *cm, ClipVar *m_geom, GdkGeometry *geom);
-gint _arr_to_valist(ClipMachine *cm, ClipVar *marg, va_list valist);
-int _map_put_gdk_rectangle (ClipMachine *cm, ClipVar *map, GdkRectangle *region);
-void _list_put_cwidget(ClipMachine * cm, void *pointer, C_widget * cwid);
+void _gdk_array_to_map_colors (ClipMachine *ClipMachineMemory, GdkColor gdk_colors[], ClipVar *a);
+void _style_to_map(ClipMachine *ClipMachineMemory, GtkStyle *style, ClipVar *m_style);
+void _rc_style_to_map(ClipMachine *ClipMachineMemory, GtkRcStyle *style, ClipVar *m_style);
+void _map_to_style(ClipMachine *ClipMachineMemory, ClipVar *m_style, GtkStyle *style);
+void _map_to_rc_style(ClipMachine *ClipMachineMemory, ClipVar *m_style, GtkRcStyle *style, GtkStateType state);
+gint _map_to_gdk_geometry(ClipMachine *ClipMachineMemory, ClipVar *m_geom, GdkGeometry *geom);
+gint _arr_to_valist(ClipMachine *ClipMachineMemory, ClipVar *marg, va_list valist);
+int _map_put_gdk_rectangle (ClipMachine *ClipMachineMemory, ClipVar *map, GdkRectangle *region);
+void _list_put_cwidget(ClipMachine * ClipMachineMemory, void *pointer, C_widget * cwid);
 long _list_length_cwidget(void);
-C_widget * _list_get_cwidget(ClipMachine * cm, void *pointer);
-C_widget * _list_get_cwidget_by_data(ClipMachine * cm, void *data);
-void _list_put_cobject(ClipMachine * cm, void *pointer, C_object * cobj);
-C_object * _list_get_cobject(ClipMachine * cm, void *pointer);
-void _list_remove_cwidget(ClipMachine * cm, void *pointer);
+C_widget * _list_get_cwidget(ClipMachine * ClipMachineMemory, void *pointer);
+C_widget * _list_get_cwidget_by_data(ClipMachine * ClipMachineMemory, void *data);
+void _list_put_cobject(ClipMachine * ClipMachineMemory, void *pointer, C_object * cobj);
+C_object * _list_get_cobject(ClipMachine * ClipMachineMemory, void *pointer);
+void _list_remove_cwidget(ClipMachine * ClipMachineMemory, void *pointer);
 void destroy_c_widget(void *item);
 void destroy_c_object(void *item);
-void _list_remove_cobject(ClipMachine * cm);
+void _list_remove_cobject(ClipMachine * ClipMachineMemory);
 guint x_inkey( GdkEventKey *k, double *d );
 int object_emit_signal(C_object *cobj, const gchar *signal_name);
 //int object_emit_signal(C_widget *cwid, const gchar *signal_name);
 int object_emit_event(C_widget *cwid, const gchar *signal_name);
-int gdk_object_font_destructor(ClipMachine *cm, C_object *cfont);
-int gdk_object_gc_destructor(ClipMachine *cm, C_object *cgc);
-int gdk_object_colormap_destructor(ClipMachine *cm, C_object *ccmap);
-int gdk_object_window_destructor(ClipMachine *cm, C_object *cwin);
+int gdk_object_font_destructor(ClipMachine *ClipMachineMemory, C_object *cfont);
+int gdk_object_gc_destructor(ClipMachine *ClipMachineMemory, C_object *cgc);
+int gdk_object_colormap_destructor(ClipMachine *ClipMachineMemory, C_object *ccmap);
+int gdk_object_window_destructor(ClipMachine *ClipMachineMemory, C_object *cwin);
 #if 1
 char * _clip_locale_to_utf8(char *);
 char * _clip_locale_from_utf8(char *);
@@ -348,25 +348,25 @@ char * _clip_locale_from_utf8(char *);
 unsigned char * _clip_locale_to_utf8(unsigned char *);
 unsigned char * _clip_locale_from_utf8(unsigned char *);
 #endif
-int _map_put_gdk_rectangle (ClipMachine *cm, ClipVar *map, GdkRectangle *region);
-int _map_get_gdk_rectangle (ClipMachine *cm, ClipVar *map, GdkRectangle *region);
-void _map_to_gtk_accel_key (ClipMachine *cm, ClipVar *cv, GtkAccelKey *key);
-void _array_to_target_entry (ClipMachine *cm, ClipVar *cv, GtkTargetEntry *target);
-void _map_to_stock_item (ClipMachine *cm, ClipVar *cv, GtkStockItem *item);
-void _stock_item_to_map(ClipMachine *cm, ClipVar *cv, GtkStockItem *item);
+int _map_put_gdk_rectangle (ClipMachine *ClipMachineMemory, ClipVar *map, GdkRectangle *region);
+int _map_get_gdk_rectangle (ClipMachine *ClipMachineMemory, ClipVar *map, GdkRectangle *region);
+void _map_to_gtk_accel_key (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkAccelKey *key);
+void _array_to_target_entry (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkTargetEntry *target);
+void _map_to_stock_item (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkStockItem *item);
+void _stock_item_to_map(ClipMachine *ClipMachineMemory, ClipVar *cv, GtkStockItem *item);
 
-int _map_to_pango_rectangle (ClipMachine *cm, ClipVar *map, PangoRectangle *pos);
-int _pango_rectangle_to_map (ClipMachine *cm, ClipVar *map, PangoRectangle *pos);
+int _map_to_pango_rectangle (ClipMachine *ClipMachineMemory, ClipVar *map, PangoRectangle *pos);
+int _pango_rectangle_to_map (ClipMachine *ClipMachineMemory, ClipVar *map, PangoRectangle *pos);
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 4)
-void _file_filter_info_to_map (ClipMachine *cm, GtkFileFilterInfo *info, ClipVar *cv);
-void _map_to_file_filter_info(ClipMachine *cm, ClipVar *cv, GtkFileFilterInfo *info);
+void _file_filter_info_to_map (ClipMachine *ClipMachineMemory, GtkFileFilterInfo *info, ClipVar *cv);
+void _map_to_file_filter_info(ClipMachine *ClipMachineMemory, ClipVar *cv, GtkFileFilterInfo *info);
 
-void _list_put_action(ClipMachine * cm, void *pointer, ClipVar *cv);
-ClipVar * _list_get_action(ClipMachine * cm, void *pointer);
-void _list_remove_action(ClipMachine * cm, void *pointer);
-void _map_to_action_entry (ClipMachine *cm, ClipVar *cv, GtkActionEntry *act);
-void _map_to_toggle_action_entry (ClipMachine *cm, ClipVar *cv, GtkToggleActionEntry *act);
-void _map_to_radio_action_entry (ClipMachine *cm, ClipVar *cv, GtkRadioActionEntry *act);
+void _list_put_action(ClipMachine * ClipMachineMemory, void *pointer, ClipVar *cv);
+ClipVar * _list_get_action(ClipMachine * ClipMachineMemory, void *pointer);
+void _list_remove_action(ClipMachine * ClipMachineMemory, void *pointer);
+void _map_to_action_entry (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkActionEntry *act);
+void _map_to_toggle_action_entry (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkToggleActionEntry *act);
+void _map_to_radio_action_entry (ClipMachine *ClipMachineMemory, ClipVar *cv, GtkRadioActionEntry *act);
 GtkType _gtk_type_tool_button();
 
 #endif

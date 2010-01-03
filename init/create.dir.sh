@@ -1,4 +1,4 @@
-#!/bin/bash -u
+#!/bin/bash 
 ##
 ##              checks & creates installation directories
 ##

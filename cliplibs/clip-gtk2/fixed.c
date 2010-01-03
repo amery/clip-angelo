@@ -20,102 +20,135 @@
 /**********************************************************/
 
 /* Register Fixed in global table */
-CLIP_DLLEXPORT GtkType _gtk_type_fixed() { return GTK_TYPE_FIXED; }
-long _clip_type_fixed() { return GTK_WIDGET_FIXED; }
-const char * _clip_type_name_fixed() { return "GTK_WIDGET_FIXED"; }
-
-int
-clip_INIT___FIXED(ClipMachine *cm)
+CLIP_DLLEXPORT GtkType
+_gtk_type_fixed()
 {
-	_wtype_table_put(_clip_type_fixed, _clip_type_name_fixed, _gtk_type_fixed, _gtk_type_container, NULL);
-	return 0;
+   return GTK_TYPE_FIXED;
 }
-int
-clip_GTK_FIXEDNEW(ClipMachine * cm)
-{
-	ClipVar * cv     = _clip_spar(cm, 1);
-	GtkWidget *wid = NULL;
-        C_widget *cwid;
-	CHECKOPT(1,MAP_t);
 
-	wid = gtk_fixed_new();
-        if (!wid) goto err;
-	cwid = _register_widget(cm, wid, cv);
-	_clip_mclone(cm,RETPTR(cm),&cwid->obj);
-	return 0;
-err:
-	return 1;
+long
+_clip_type_fixed()
+{
+   return GTK_WIDGET_FIXED;
+}
+
+const char *
+_clip_type_name_fixed()
+{
+   return "GTK_WIDGET_FIXED";
+}
+
+int
+clip_INIT___FIXED(ClipMachine * ClipMachineMemory)
+{
+   _wtype_table_put(_clip_type_fixed, _clip_type_name_fixed, _gtk_type_fixed, _gtk_type_container, NULL);
+   return 0;
+}
+
+int
+clip_GTK_FIXEDNEW(ClipMachine * ClipMachineMemory)
+{
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   GtkWidget *wid = NULL;
+
+   C_widget *cwid;
+
+   CHECKOPT(1, MAP_type_of_ClipVarType);
+
+   wid = gtk_fixed_new();
+   if (!wid)
+      goto err;
+   cwid = _register_widget(ClipMachineMemory, wid, cv);
+   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+   return 0;
+ err:
+   return 1;
 }
 
 /* Adds a widget to a GtkFixed container at the given position. */
 int
-clip_GTK_FIXEDPUT(ClipMachine * cm)
+clip_GTK_FIXEDPUT(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cfix = _fetch_cw_arg(cm);
-	C_widget *cwid = _fetch_cwidget(cm,_clip_spar(cm,2));
-        gint x = _clip_parni(cm,3);
-        gint y = _clip_parni(cm,4);
-	CHECKARG2(2,MAP_t,NUMERIC_t);
-	CHECKOPT(3,NUMERIC_t); CHECKOPT(4,NUMERIC_t);
-        CHECKCWID(cfix,GTK_IS_FIXED); CHECKCWID(cwid,GTK_IS_WIDGET);
-        if (_clip_parinfo(cm,3) == UNDEF_t) x = cwid->widget->allocation.x;
-        if (_clip_parinfo(cm,4) == UNDEF_t) y = cwid->widget->allocation.y;
-        gtk_fixed_put(GTK_FIXED(cfix->widget), cwid->widget, x,y);
+   C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
 
-	return 0;
-err:
-	return 1;
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cfix, GTK_IS_FIXED);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
+      x = cwid->widget->allocation.x;
+   if (_clip_parinfo(ClipMachineMemory, 4) == UNDEF_type_of_ClipVarType)
+      y = cwid->widget->allocation.y;
+   gtk_fixed_put(GTK_FIXED(cfix->widget), cwid->widget, x, y);
+
+   return 0;
+ err:
+   return 1;
 }
 
 /* Moves a child of a GtkFixed container to the given position. */
 int
-clip_GTK_FIXEDMOVE(ClipMachine * cm)
+clip_GTK_FIXEDMOVE(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cfix = _fetch_cw_arg(cm);
-	C_widget *cwid = _fetch_cwidget(cm,_clip_spar(cm,2));
-        gint x = _clip_parni(cm,3);
-        gint y = _clip_parni(cm,4);
-	CHECKARG2(2,MAP_t,NUMERIC_t);
-	CHECKOPT(3,NUMERIC_t); CHECKOPT(4,NUMERIC_t);
-        CHECKCWID(cfix,GTK_IS_FIXED); CHECKCWID(cwid,GTK_IS_WIDGET);
-        if (_clip_parinfo(cm,3) == UNDEF_t) x = cwid->widget->allocation.x;
-        if (_clip_parinfo(cm,4) == UNDEF_t) y = cwid->widget->allocation.y;
-        gtk_fixed_move(GTK_FIXED(cfix->widget), cwid->widget, x,y);
+   C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
 
-	return 0;
-err:
-	return 1;
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKCWID(cfix, GTK_IS_FIXED);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
+      x = cwid->widget->allocation.x;
+   if (_clip_parinfo(ClipMachineMemory, 4) == UNDEF_type_of_ClipVarType)
+      y = cwid->widget->allocation.y;
+   gtk_fixed_move(GTK_FIXED(cfix->widget), cwid->widget, x, y);
+
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_FIXEDGETHASWINDOW(ClipMachine * cm)
+clip_GTK_FIXEDGETHASWINDOW(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cfix = _fetch_cw_arg(cm);
+   C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
 
-        CHECKCWID(cfix,GTK_IS_FIXED);
+   CHECKCWID(cfix, GTK_IS_FIXED);
 
-        _clip_retl(cm, gtk_fixed_get_has_window(GTK_FIXED(cfix->widget)));
+   _clip_retl(ClipMachineMemory, gtk_fixed_get_has_window(GTK_FIXED(cfix->widget)));
 
-	return 0;
-err:
-	return 1;
+   return 0;
+ err:
+   return 1;
 }
-
 
 int
-clip_GTK_FIXEDSETHASWINDOW(ClipMachine * cm)
+clip_GTK_FIXEDSETHASWINDOW(ClipMachine * ClipMachineMemory)
 {
-	C_widget *cfix = _fetch_cw_arg(cm);
-        gboolean  hasw = _clip_parl(cm, 2);
+   C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
 
-        CHECKCWID(cfix,GTK_IS_FIXED);
-        CHECKARG(2, LOGICAL_t);
+   gboolean  hasw = _clip_parl(ClipMachineMemory, 2);
 
-        gtk_fixed_set_has_window(GTK_FIXED(cfix->widget), hasw);
+   CHECKCWID(cfix, GTK_IS_FIXED);
+   CHECKARG(2, LOGICAL_type_of_ClipVarType);
 
-	return 0;
-err:
-	return 1;
+   gtk_fixed_set_has_window(GTK_FIXED(cfix->widget), hasw);
+
+   return 0;
+ err:
+   return 1;
 }
-
-

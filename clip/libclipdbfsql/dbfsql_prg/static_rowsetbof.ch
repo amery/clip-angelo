@@ -1,0 +1,2 @@
+STATIC FUNCTION rowsetBOF()
+RETURN SQLBof(::rowset)

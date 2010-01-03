@@ -19,73 +19,89 @@
 #define GDK_IS_FONT(obj)	(((C_object*)(obj))->type == GDK_OBJECT_FONT)
 
 int
-clip_GTK_DRAWHLINE(ClipMachine *cm)
+clip_GTK_DRAWHLINE(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwin = _fetch_cw_arg(cm);
-	C_widget     *cwid = _fetch_cwidget(cm,_clip_spar(cm,2));
-	ClipVar    *mstyle = _clip_spar(cm,3);
-	gint            x1 = _clip_parni(cm,4);
-	gint            x2 = _clip_parni(cm,5);
-	gint             y = _clip_parni(cm,6);
+   C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
 
-	GtkStyle *style;
-	GdkWindow *win = NULL;
-	GdkRectangle *area = 0;
+   C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
-	CHECKCWID(cwin,GTK_IS_WIDGET);
-	CHECKARG(2,MAP_t);
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(3,MAP_t, NUMERIC_t);
-	CHECKOPT(4,NUMERIC_t); CHECKOPT(5,NUMERIC_t);  CHECKOPT(6,NUMERIC_t);
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 3);
 
-	win = cwin->widget->window;
-	style = gtk_style_new();
-	_map_to_style(cm, mstyle, style);
+   gint      x1 = _clip_parni(ClipMachineMemory, 4);
 
-	gtk_widget_set_style(cwin->widget, style);
+   gint      x2 = _clip_parni(ClipMachineMemory, 5);
 
-	area->x=0;
-	area->y=0;
-	area->width=300;
-	area->height=300;
-	gtk_draw_hline(style, win, GTK_STATE_NORMAL, x1, x2, y);
-	return 0;
-err:
-	return 1;
+   gint      y = _clip_parni(ClipMachineMemory, 6);
+
+   GtkStyle *style;
+
+   GdkWindow *win = NULL;
+
+   GdkRectangle *area = 0;
+
+   CHECKCWID(cwin, GTK_IS_WIDGET);
+   CHECKARG(2, MAP_type_of_ClipVarType);
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, NUMERIC_type_of_ClipVarType);
+
+   win = cwin->widget->window;
+   style = gtk_style_new();
+   _map_to_style(ClipMachineMemory, mstyle, style);
+
+   gtk_widget_set_style(cwin->widget, style);
+
+   area->x = 0;
+   area->y = 0;
+   area->width = 300;
+   area->height = 300;
+   gtk_draw_hline(style, win, GTK_STATE_NORMAL, x1, x2, y);
+   return 0;
+ err:
+   return 1;
 }
 
 int
-clip_GTK_DRAWBOX(ClipMachine *cm)
+clip_GTK_DRAWBOX(ClipMachine * ClipMachineMemory)
 {
-	C_widget     *cwid = _fetch_cw_arg(cm);
-	ClipVar    *mstyle = _clip_spar(cm,2);
-	gint    shadowType = INT_OPTION(cm,3,0);
-	gint            x1 = _clip_parni(cm,4);
-	gint            x2 = _clip_parni(cm,5);
-	gint         width = _clip_parni(cm,6);
-	gint        height = _clip_parni(cm,7);
+   C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
-	GtkStyle *style;
-	GdkDrawable *drw = NULL;
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
 
+   gint      shadowType = INT_OPTION(ClipMachineMemory, 3, 0);
 
-	CHECKCWID(cwid,GTK_IS_WIDGET);
-	CHECKARG2(2,MAP_t, NUMERIC_t);
-	CHECKOPT(3,NUMERIC_t); CHECKOPT(4,NUMERIC_t);  CHECKOPT(5,NUMERIC_t);
-	CHECKOPT(6,NUMERIC_t); CHECKOPT(7,NUMERIC_t);
+   gint      x1 = _clip_parni(ClipMachineMemory, 4);
 
-	style = gtk_style_new();
-	_map_to_style(cm, mstyle, style);
+   gint      x2 = _clip_parni(ClipMachineMemory, 5);
 
+   gint      width = _clip_parni(ClipMachineMemory, 6);
 
-	drw = cwid->widget->window;
-	if (GTK_IS_PIXMAP(cwid->widget)) drw = GTK_PIXMAP(cwid->widget)->pixmap;
+   gint      height = _clip_parni(ClipMachineMemory, 7);
 
-	gtk_draw_box(style, drw, GTK_STATE_NORMAL, shadowType, x1, x2, width, height);
+   GtkStyle *style;
 
-	return 0;
-err:
-	return 1;
+   GdkDrawable *drw = NULL;
+
+   CHECKCWID(cwid, GTK_IS_WIDGET);
+   CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(3, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(4, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(5, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(6, NUMERIC_type_of_ClipVarType);
+   CHECKOPT(7, NUMERIC_type_of_ClipVarType);
+
+   style = gtk_style_new();
+   _map_to_style(ClipMachineMemory, mstyle, style);
+
+   drw = cwid->widget->window;
+   if (GTK_IS_PIXMAP(cwid->widget))
+      drw = GTK_PIXMAP(cwid->widget)->pixmap;
+
+   gtk_draw_box(style, drw, GTK_STATE_NORMAL, shadowType, x1, x2, width, height);
+
+   return 0;
+ err:
+   return 1;
 }
-
-

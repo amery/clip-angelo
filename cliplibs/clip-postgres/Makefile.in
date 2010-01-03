@@ -33,7 +33,7 @@ hash1 :
 	$(E_xx)$(Clip_M_Dir)/init/LinkAllFiles.sh clip-postgres
 
 cfg :
-	$(E_cp)cp --remove-destination -fpu$(V) include/ci_postgres.ch $(Clip_I_Dir)/
+	$(E_cp)cp --remove-destination -fpu$(V) include/*.ch $(Clip_I_Dir)/
 
 have_lib:
 	$(E_if)test -f $(PGINCDIR)/libpq-fe.h

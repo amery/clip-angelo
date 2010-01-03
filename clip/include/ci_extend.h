@@ -4,10 +4,13 @@
 * Copyright (c) 1987,1988,1989,1990 Nantucket Corp.  ��� ����� �����������.
 *
 * Clipper ���������� ���������� ������� ������ ������ Microsoft C (large model)
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 */
 
-#ifndef CI_EXTEND_H
-#define CI_EXTEND_H
+#ifndef CN_EXTEND_H
+#define CN_EXTEND_H
 
 #ifndef CLIPPERDEFS
 
@@ -21,8 +24,11 @@
 #define NULL	0L
 
 typedef unsigned char byte;
+
 typedef unsigned int quant;
+
 typedef int Boolean;
+
 typedef double XDOUBLE;
 
 #define CLIPPERDEFS
@@ -45,38 +51,58 @@ typedef double XDOUBLE;
 
 /* ����������/��� ���������� */
 extern int _parinfo(int);
+
 extern int _parinfa(int, unsigned int);
 
 /* �������� ���������� */
-extern char *_parc(int,...);
-extern unsigned int _parcsiz(int,...);
-extern unsigned int _parclen(int,...);
-extern int _parni(int,...);
-extern long _parnl(int,...);
-extern XDOUBLE _parnd(int,...);
-extern int _parl(int,...);
-extern char *_pards(int,...);
+extern char *_parc(int, ...);
+
+extern unsigned int _parcsiz(int, ...);
+
+extern unsigned int _parclen(int, ...);
+
+extern int _parni(int, ...);
+
+extern long _parnl(int, ...);
+
+extern XDOUBLE _parnd(int, ...);
+
+extern int _parl(int, ...);
+
+extern char *_pards(int, ...);
 
 /* ������� �������� */
 extern void _retc(char far *);
+
 extern void _retclen(char far *, unsigned int);
+
 extern void _retni(int);
+
 extern void _retnl(long);
+
 extern void _retnd(XDOUBLE);
+
 extern void _retl(int);
+
 extern void _retds(char far *);
 
 /* ��� ������������� �������� (������� NIL) */
 extern void _ret(void);
 
 /* ������ �������� */
-int _storc(char far *, int,...);
-int _storclen(char far *, int,...);
-int _storni(int, int,...);
-int _stornl(long, int,...);
-int _stornd(XDOUBLE, int,...);
-int _storl(int, int,...);
-int _stords(char far *, int,...);
+int       _storc(char far *, int, ...);
+
+int       _storclen(char far *, int, ...);
+
+int       _storni(int, int, ...);
+
+int       _stornl(long, int, ...);
+
+int       _stornd(XDOUBLE, int, ...);
+
+int       _storl(int, int, ...);
+
+int       _stords(char far *, int, ...);
 
 /***
 * ���������:
@@ -86,7 +112,9 @@ int _stords(char far *, int,...);
 
 /*  ������������� ������ */
 extern void far *_xalloc(unsigned int numberOfBytes);
+
 extern void far *_xgrab(unsigned int numberOfBytes);
+
 extern void _xfree(void far * allocatedBlock);
 
 /* ������������� � Summer '87 */

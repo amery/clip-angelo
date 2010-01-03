@@ -1,4 +1,10 @@
-#!/bin/bash -u
+#!/bin/bash
 export WaitTime=1
 init/compile.sh "local"
-[ -f ./local ] && rm -fv ./local
+if [[ $? != 0 ]] ; then
+	rm -fv ./local
+	exit 1
+fi
+if [ -f ./local ] ; then
+	rm -fv ./local
+fi

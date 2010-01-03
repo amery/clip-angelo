@@ -2,278 +2,12 @@
 	Copyright (C) 2001  ITK
 	Author   : Paul Lasarev <paul@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
-*/
-/*
-$Log: rt.y,v $
-Revision 1.3  2007/09/12 19:22:35  estiloinfo
-Fixed memory leak in the parser
 
-Revision 1.2  2007/02/12 09:13:17  itk
-uri: many fixes for amd64
-
-Revision 1.1  2006/06/22 19:35:17  itk
-uri: init sf.net repository
-
-Revision 1.62  2003/11/05 11:20:58  clip
-fix POW in macro (closes #161)
-paul
-
-Revision 1.61  2003/08/13 10:36:42  clip
-extend limit of 255 local vars.
-fixes #151
-paul
-
-Revision 1.60  2003/05/07 11:11:12  clip
-rust: memory leak in _clip_compile_Block()
-
-Revision 1.59  2003/03/26 13:40:14  clip
-fix for memdebug build
-paul
-
-Revision 1.58  2003/03/17 08:24:59  clip
-Solaris 8 patches
-paul
-
-Revision 1.57  2003/02/07 10:26:10  clip
-method call for array elements
-closes #121
-paul
-
-Revision 1.56  2002/11/25 12:29:46  clip
-null expr in lists in runtime compiler
-closes #59
-paul
-
-Revision 1.55  2002/11/18 12:33:01  clip
-memv-> in runtime compiler
-closes #46
-paul
-
-Revision 1.54  2002/09/12 10:57:30  clip
-fix warnings
-paul
-
-Revision 1.53  2002/09/12 10:36:30  clip
-allow all chars with code > 127 be ident names in runtime compiler
-paul
-
-Revision 1.52  2002/05/28 08:43:11  clip
-pcount in rt compiler
-paul
-
-Revision 1.51  2002/04/15 13:26:10  clip
-param & pcount as varname in rt
-paul
-
-Revision 1.50  2002/03/27 13:33:01  clip
-SHORT overflow in .po with too much STRINGs.
-.po format changed
-paul
-
-Revision 1.49  2002/03/22 10:36:48  clip
-# in runtime compiler fix
-paul
-
-Revision 1.48  2002/02/20 15:57:23  clip
-fucked strtod locale dependence...
-paul
-
-Revision 1.47  2002/01/04 12:14:03  clip
-pcode was limited to 1 byte for array count
-paul
-
-Revision 1.46  2002/01/04 10:29:48  clip
-big module
-paul
-
-Revision 1.45  2001/12/26 13:46:42  clip
-1->fld
-paul
-
-Revision 1.44  2001/11/29 09:01:50  clip
-PCODE fix in rt compiler
-paul
-
-Revision 1.43  2001/10/31 06:41:15  clip
-1000.or.333
-now work right in runtime compiler
-
-Revision 1.42  2001/10/03 10:16:04  clip
-macro in rt.y
-
-Revision 1.41  2001/10/02 11:40:31  clip
-macro in rt compiler
-paul
-
-Revision 1.40  2001/09/04 08:26:59  clip
-CODEBLOCK pseudofunction
-process codeblocks with macro calls as CODEBLOCK
-paul
-
-Revision 1.39  2001/08/26 12:11:59  clip
-reflocals
-paul
-
-Revision 1.38  2001/08/26 09:10:06  clip
-references
-paul
-
-Revision 1.37  2001/08/23 13:52:06  clip
-merge with NEWLOCALS
-paul
-
-Revision 1.36.2.4  2001/08/23 12:58:48  clip
-assign to field in rt.y
-paul
-
-Revision 1.36.2.3  2001/08/21 13:40:00  clip
-fix
-paul
-
-Revision 1.36.2.2  2001/08/21 12:36:24  clip
-fix
-paul
-
-Revision 1.36.2.1  2001/08/16 15:35:24  clip
-fix
-paul
-
-Revision 1.36  2001/06/20 12:26:47  clip
-runtime compiler now recognise hex constants like 0xFF
-paul
-
-Revision 1.35  2001/06/14 12:36:26  clip
-stack deep fix in array constructor
-paul
-
-Revision 1.34  2001/06/09 08:13:28  clip
-unary +
-paul
-
-Revision 1.33  2001/06/06 11:46:41  clip
-rdd
-paul
-
-Revision 1.32  2001/05/29 07:17:08  clip
-register names in macro expr
-paul
-
-Revision 1.31  2001/05/15 07:02:17  clip
-modify memdebug call interface
-paul
-
-Revision 1.30  2001/05/12 11:40:10  clip
-strtod in rt.y
-paul
-
-Revision 1.29  2001/05/11 08:16:39  clip
-memory leak, unary minus, type with field in rt compiler
-paul
-
-Revision 1.28  2001/05/04 11:05:04  clip
-.or. .and. in runtime compiler
-paul
-
-Revision 1.27  2001/04/23 10:19:45  clip
-RUNTIME_COMPILED funcname for rt expression
-paul
-
-Revision 1.26  2001/04/03 09:17:01  clip
-license errors
-paul
-
-Revision 1.25  2001/03/30 11:51:03  clip
-add copyright
-
-Revision 1.24  2001/01/19 08:43:33  clip
-append RDD direct access in rt.y
-
-functions (yet empty):
-int _clip_rddfieldno(ClipMachine * mp, int rddno, long namehash);
-int _clip_rddfield(ClipMachine * mp, int rddno, int fieldno);
-
-syntax:
-_rdd_ 2 <expr> _rdd_
-for direct access to RDD 2 in <expr>
-That means, rdd field names override normal fields/memvars
-
-paul
-
-Revision 1.23  2000/12/20 12:35:13  clip
-privates in macro
-empty arrays in macro
-paul
-
-Revision 1.22  2000/11/21 11:31:13  clip
-io
-paul
-
-Revision 1.21  2000/11/20 12:59:01  clip
-10.2 default decimals
-destroy method in objs
-paul
-
-Revision 1.20  2000/11/20 11:46:49  clip
-add CLIP_PUSH_STRDUP vm command
-rt compiler now use one
-paul
-
-Revision 1.19  2000/05/27 18:41:55  clip
-push array
-Paul Lasarev <paul@itk.ru>
-
-Revision 1.18  2000/05/25 18:03:17  clip
-__field__ in rt
-Paul Lasarev <paul@itk.ru>
-
-Revision 1.17  2000/05/25 16:49:01  clip
-__field__ in rt.y
-absolute paths in #include
-Paul Lasarev <paul@itk.ru>
-
-Revision 1.16  2000/05/20 18:37:33  clip
-change hash function
-append HASH_xxxx extraction into hashcode.h
-Paul Lasarev <paul@itk.ru>
-
-Revision 1.15  2000/03/30 18:13:21  paul
-fields in macro
-
-Revision 1.14  2000/03/30 16:25:16  paul
-PARAM
-
-Revision 1.13  2000/03/30 14:46:18  paul
-one-letter words
-
-Revision 1.12  2000/03/03 21:37:40  paul
-preprocessor bug fix, warnings removed
-
-Revision 1.11  1999/10/29 20:49:59  paul
-string constants
-
-Revision 1.10  1999/10/29 19:39:52  paul
-Function init
-
-Revision 1.9  1999/10/29 19:28:33  paul
-bug in macroassign (stack was corrupted)
-
-Revision 1.8  1999/10/28 21:10:03  paul
-runtime compiler: array access, obj calls
-
-Revision 1.7  1999/10/28 16:34:24  paul
-fix: .not., iif, multiple strings
-
-Revision 1.6  1999/10/27 17:29:39  paul
-change param handling
-
-Revision 1.5  1999/10/26 20:42:48  paul
-add_deep
-
-Revision 1.4  1999/10/26 19:11:36  paul
-start cvs logging
+	Start total new system v. 0.0
+	with hard coded long name variables to have clear system
+	Angelo GIRARDI
 
 */
-
 %{
 
 #include <stdlib.h>
@@ -343,7 +77,7 @@ typedef struct Parser
 	char *beg;
 	char *end;
 	char *ptr;
-	ClipMachine *mp;
+	ClipMachine *ClipMachineMemory;
 	char *func;
 	int errcount;
 	char *errbuf;
@@ -375,18 +109,18 @@ typedef struct Parser
 #define NEWVECT(type,len) ((type*)calloc(sizeof(type),(len)))
 #define M_REALLOC(type,ptr,len) ((ptr)=(type*)realloc((ptr),sizeof(type)*(len)))
 
-#define MODBEG (bp->buf+8+2*sizeof(long))
-#define BEGOFFS (bp->ptr-MODBEG)
-#define CUROFFS (bp->ptr-bp->buf)
+#define MODBEG (bp->buf_of_OutBuf+8+2*sizeof(long))
+#define BEGOFFS (bp->ptr_of_OutBuf-MODBEG)
+#define CUROFFS (bp->ptr_of_OutBuf-bp->buf_of_OutBuf)
 
 #if 1
-#define LONGVAL(offs,val) (SETLONG(bp->buf+(offs),(val)))
-#define SHORTVAL(offs,val) (SETSHORT(bp->buf+(offs),(val)))
+#define LONGVAL(offs,val) (SETLONG(bp->buf_of_OutBuf+(offs),(val)))
+#define SHORTVAL(offs,val) (SETSHORT(bp->buf_of_OutBuf+(offs),(val)))
 #define LONGINCR(offs) ((offs)+=sizeof(long));
 #define SHORTINCR(offs) ((offs)+=sizeof(short));
 #else
-#define LONGVAL(offs) (*(long*)(bp->buf+(offs)))
-#define SHORTVAL(offs) (*(short*)(bp->buf+(offs)))
+#define LONGVAL(offs) (*(long*)(bp->buf_of_OutBuf+(offs)))
+#define SHORTVAL(offs) (*(short*)(bp->buf_of_OutBuf+(offs)))
 #define LONGINCR(offs) ((offs)+=sizeof(long));
 #define SHORTINCR(offs) ((offs)+=sizeof(short));
 #endif
@@ -396,7 +130,7 @@ typedef struct Parser
 #define	YYINITDEPTH 64
 #define PARSER ((Parser*)parser)
 #undef __GNUC__
-#define POS (PARSER->out->ptr-PARSER->out->buf)
+#define POS (PARSER->out->ptr_of_OutBuf-PARSER->out->buf_of_OutBuf)
 
 int rtlex();
 void rt_error(Parser *parser, char *fmt,...);
@@ -552,7 +286,7 @@ expr:	 NUMBER	{
 
 	| fieldptr mname {
 			$$=$2;
-			PARSER->out->ptr[-1] = CLIP_NOP;
+			PARSER->out->ptr_of_OutBuf[-1] = CLIP_NOP;
 			putByte_Buf(PARSER->out, CLIP_FIELD_POP_NAME);
 		}
 /*
@@ -642,7 +376,7 @@ expr:	 NUMBER	{
 		}
 
 	| fieldptr mname {
-			PARSER->out->ptr[-1] = CLIP_NOP;
+			PARSER->out->ptr_of_OutBuf[-1] = CLIP_NOP;
 		} ASSIGN expr {
 			$$=$2;
 			putByte_Buf(PARSER->out, CLIP_SWAP);
@@ -819,11 +553,11 @@ expr:	 NUMBER	{
 		{
 			putByte_Buf(PARSER->out, CLIP_GOTO);
 			putShort_Buf(PARSER->out, 0);
-			*(short*)(PARSER->out->buf+$5.pos+1) = (POS-($5.pos+1+sizeof(short)));
+			*(short*)(PARSER->out->buf_of_OutBuf+$5.pos+1) = (POS-($5.pos+1+sizeof(short)));
 		}
 	  nexpr ')'
 		{
-			*(short*)(PARSER->out->buf+$9.pos+1) = (POS-($9.pos+1+sizeof(short)));
+			*(short*)(PARSER->out->buf_of_OutBuf+$9.pos+1) = (POS-($9.pos+1+sizeof(short)));
 			$$=$3;
 		}
 
@@ -836,7 +570,7 @@ expr:	 NUMBER	{
 	  expr
 		{
 			$$=$1;
-			*(short*)(PARSER->out->buf+$3.pos+1) = (POS-($3.pos+1+sizeof(short)));
+			*(short*)(PARSER->out->buf_of_OutBuf+$3.pos+1) = (POS-($3.pos+1+sizeof(short)));
 		}
 
 	| expr OR pos
@@ -848,7 +582,7 @@ expr:	 NUMBER	{
 	  expr
 		{
 			$$=$1;
-			*(short*)(PARSER->out->buf+$3.pos+1) = (POS-($3.pos+1+sizeof(short)));
+			*(short*)(PARSER->out->buf_of_OutBuf+$3.pos+1) = (POS-($3.pos+1+sizeof(short)));
 		}
 	;
 
@@ -1381,11 +1115,11 @@ rtlex(yylvalp, pp)
 						long hash;
 
 						hash = yylvalp->Long = _clip_casehashbytes(0, beg, l);
-						s = (char *) HashTable_fetch(pp->mp->hashnames, hash);
+						s = (char *) HashTable_fetch(pp->ClipMachineMemory->hashnames, hash);
 						if (!s)
 						{
 							s = _clip_memdup(beg, l);
-							HashTable_store(pp->mp->hashnames, s, hash);
+							HashTable_store(pp->ClipMachineMemory->hashnames, s, hash);
 						}
 					}
 					tok = NAME;
@@ -1503,7 +1237,7 @@ rt_error(Parser *parser, char *fmt,...)
 static void
 put_function( OutBuf *bp, Function *fp, long *loffs, int isPub)
 {
-	int codelen=fp->out.ptr-fp->out.buf;
+	int codelen=fp->out.ptr_of_OutBuf-fp->out.buf_of_OutBuf;
 	int lp, i;
 
 	LONGVAL(*loffs,0);
@@ -1527,7 +1261,7 @@ put_function( OutBuf *bp, Function *fp, long *loffs, int isPub)
 	putByte_Buf(bp, 0); /* null-terminated func name */
 
 	LONGVAL(lp,BEGOFFS);
-	putBuf_Buf(bp, fp->out.buf, codelen);
+	putBuf_Buf(bp, fp->out.buf_of_OutBuf, codelen);
 }
 
 static void
@@ -1547,7 +1281,7 @@ destroy_Function(Function *fp)
 }
 
 int
-_clip_compile_Block(ClipMachine * mp, char *str, int len, ClipBlock * dest)
+_clip_compile_Block(ClipMachine * ClipMachineMemory, char *str, int len, ClipBlock * dest)
 {
 	Parser parser;
 	int ret=0,i;
@@ -1555,7 +1289,7 @@ _clip_compile_Block(ClipMachine * mp, char *str, int len, ClipBlock * dest)
 	memset(&parser, 0, sizeof(parser));
 	parser.beg = parser.ptr = str;
 	parser.end = str+len;
-	parser.mp=mp;
+	parser.ClipMachineMemory=ClipMachineMemory;
 	init_Function(&parser.main);
 	parser.curFunction = &parser.main;
 	parser.lex_state = L_norm;
@@ -1565,16 +1299,16 @@ _clip_compile_Block(ClipMachine * mp, char *str, int len, ClipBlock * dest)
 
 	if (ret)
 	{
-		dest->file = 0;
-		dest->func = 0;
-		_clip_trap_printf( mp, mp->fp->filename, mp->fp->line,
+		dest->file_of_ClipBlock = 0;
+		dest->function_of_ClipBlock = 0;
+		_clip_trap_printf( ClipMachineMemory, ClipMachineMemory->fp->filename_of_ClipFrame, ClipMachineMemory->fp->line_of_ClipFrame,
 			"runtime codeblock compiler: '%.*s': %s",
 			len, str, parser.errbuf);
 	}
 	else
 	{
 		/* generate full module */
-		ClipFile *file = dest->file = NEW(ClipFile);
+		ClipFile *file = dest->file_of_ClipBlock = NEW(ClipFile);
 		int l, foffs, soffs;
 		long loffs;
 		time_t ts;
@@ -1582,9 +1316,9 @@ _clip_compile_Block(ClipMachine * mp, char *str, int len, ClipBlock * dest)
 		int funcOffs, modlen;
 		OutBuf mod, *bp=&mod;
 
-		file->refCount = 1;
-		file->bodyMem = 1;
-		file->staticsMem = 3;
+		file->refCount_of_ClipFile = 1;
+		file->bodyMem_of_ClipFile = 1;
+		file->staticsMem_of_ClipFile = 3;
 
 		init_Buf(bp);
 
@@ -1649,15 +1383,15 @@ _clip_compile_Block(ClipMachine * mp, char *str, int len, ClipBlock * dest)
 			putLong_Buf(bp, 0);
 			putLong_Buf(bp, 0);
 		}
-		foffs = bp->ptr - bp->buf /*BEGOFFS*/ ;
+		foffs = bp->ptr_of_OutBuf - bp->buf_of_OutBuf /*BEGOFFS*/ ;
 		put_function(bp, &parser.main, &loffs, 1);
 		for(i=0;i<parser.codeblocks_count;++i)
 			put_function(bp, parser.codeblocks+i, &loffs, 0);
 		LONGVAL(modlen,BEGOFFS);
 
-		l = file->bodySize = CUROFFS;
-		file->mem = file->body = (char*)realloc(bp->buf, l);
-		dest->func = file->body+foffs;
+		l = file->bodySize_of_ClipFile = CUROFFS;
+		file->mem_of_ClipFile = file->body_of_ClipFile = (char*)realloc(bp->buf_of_OutBuf, l);
+		dest->function_of_ClipBlock = file->body_of_ClipFile+foffs;
 	}
 
 /*_return:*/
@@ -1709,7 +1443,7 @@ installName(Parser *parser, long hash, int memvar, int lval, long area, int fld)
 		else
 		{
 			int fno;
-			if (parser->rdd_flag1 && (fno=_clip_rddfieldno(parser->mp, parser->rdd_no, hash)) >= 0)
+			if (parser->rdd_flag1 && (fno=_clip_rddfieldno(parser->ClipMachineMemory, parser->rdd_no, hash)) >= 0)
 			{
 				putByte_Buf(parser->out, CLIP_RDDFIELD);
 				putShort_Buf(parser->out, parser->rdd_no);
