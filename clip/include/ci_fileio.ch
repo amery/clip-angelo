@@ -1,5 +1,5 @@
-#ifndef CN_FIO_DEFINED
-#define CN_FIO_DEFINED
+#ifndef CI_FIO_DEFINED
+#define CI_FIO_DEFINED
 
 #define F_ERROR            (-1)
 

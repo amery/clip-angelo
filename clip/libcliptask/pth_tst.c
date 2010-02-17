@@ -44,40 +44,36 @@
 static void *
 t1_func(void *arg)
 {
-   int       i;
-
-   long      val;
+   int i;
+   long val;
 
    val = (long) arg;
    FAILED_IF(val != 123) for (i = 0; i < 100; i++)
-    {
-       val += 10;
-       pth_yield(NULL);
-    }
+      {
+	 val += 10;
+	 pth_yield(NULL);
+      }
    return (void *) val;
 }
 
 static void *
 t2_func(void *arg)
 {
-   long      val;
-
-   pth_t     tid;
-
-   void     *rval;
-
-   int       rc;
+   long val;
+   pth_t tid;
+   void *rval;
+   int rc;
 
    val = (long) arg;
    if (val < 9)
-    {
-       val++;
-       fprintf(stderr, "Spawning thread %ld\n", val);
-       tid = pth_spawn(PTH_ATTR_DEFAULT, t2_func, (void *) (val));
-       FAILED_IF(tid == NULL) rc = pth_join(tid, &rval);
-       fprintf(stderr, "Joined thread %ld\n", val);
-       FAILED_IF(rc == FALSE) rval = (void *) ((long) arg * (long) rval);
-    }
+      {
+	 val++;
+	 fprintf(stderr, "Spawning thread %ld\n", val);
+	 tid = pth_spawn(PTH_ATTR_DEFAULT, t2_func, (void *) (val));
+	 FAILED_IF(tid == NULL) rc = pth_join(tid, &rval);
+	 fprintf(stderr, "Joined thread %ld\n", val);
+	 FAILED_IF(rc == FALSE) rval = (void *) ((long) arg * (long) rval);
+      }
    else
       rval = arg;
    return rval;
@@ -88,7 +84,7 @@ main(int argc, char *argv[])
 {
    fprintf(stderr, "\n=== TESTING GLOBAL LIBRARY API ===\n\n");
    {
-      int       version;
+      int version;
 
       fprintf(stderr, "Fetching library version\n");
       version = pth_version();
@@ -97,7 +93,7 @@ main(int argc, char *argv[])
 
    fprintf(stderr, "\n=== TESTING BASIC OPERATION ===\n\n");
    {
-      int       rc;
+      int rc;
 
       fprintf(stderr, "Initializing Pth system (spawns scheduler and main thread)\n");
       rc = pth_init();
@@ -110,12 +106,9 @@ main(int argc, char *argv[])
    fprintf(stderr, "\n=== TESTING BASIC THREAD OPERATION ===\n\n");
    {
       pth_attr_t attr;
-
-      pth_t     tid;
-
-      void     *val;
-
-      int       rc;
+      pth_t tid;
+      void *val;
+      int rc;
 
       fprintf(stderr, "Creating attribute object\n");
       attr = pth_attr_new();
@@ -131,11 +124,9 @@ main(int argc, char *argv[])
 
    fprintf(stderr, "\n=== TESTING NESTED THREAD OPERATION ===\n\n");
    {
-      pth_t     tid;
-
-      void     *val;
-
-      int       rc;
+      pth_t tid;
+      void *val;
+      int rc;
 
       fprintf(stderr, "Spawning thread 1\n");
       tid = pth_spawn(PTH_ATTR_DEFAULT, t2_func, (void *) (1));

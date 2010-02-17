@@ -69,46 +69,39 @@ clip_INIT___BUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
-   char     *pchar = _clip_parc(ClipMachineMemory, 3);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
+   char *pchar = _clip_parc(ClipMachineMemory, 3);
    GtkWidget *wid = NULL, *label = NULL;
-
    C_widget *cwid, *clabel = NULL;
-
-   guint     accel_key = 0;
-
+   guint accel_key = 0;
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
 
    if (pchar)
-    {
-       unsigned char *pc;
-
-       for (pc = (unsigned char *) title; pc && *pc; pc++)
-	  if (*pc == *pchar)
-	   {
-	      *pc = '_';
-	      accel_key = *(pc + 1);
-	   }
-    }
+      {
+	 unsigned char *pc;
+	 for (pc = (unsigned char *) title; pc && *pc; pc++)
+	    if (*pc == *pchar)
+	       {
+		  *pc = '_';
+		  accel_key = *(pc + 1);
+	       }
+      }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-    {
-       LOCALE_TO_UTF(title);
-       wid = gtk_button_new_with_label(title);
-       label = GTK_BIN(&(GTK_BUTTON(wid)->bin))->child;
-       if (pchar)
-	  accel_key = gtk_label_parse_uline(GTK_LABEL(label), title);
-       FREE_TEXT(title);
-    }
+      {
+	 LOCALE_TO_UTF(title);
+	 wid = gtk_button_new_with_label(title);
+	 label = GTK_BIN(&(GTK_BUTTON(wid)->bin))->child;
+	 if (pchar)
+	    accel_key = gtk_label_parse_uline(GTK_LABEL(label), title);
+	 FREE_TEXT(title);
+      }
    else
-    {
-       wid = gtk_button_new();
-    }
+      {
+	 wid = gtk_button_new();
+      }
    if (!wid)
       goto err;
 
@@ -134,7 +127,6 @@ int
 clip_GTK_BUTTONPRESSED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_button_pressed(GTK_BUTTON(cbtn->widget));
    return 0;
@@ -147,7 +139,6 @@ int
 clip_GTK_BUTTONRELEASED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_button_released(GTK_BUTTON(cbtn->widget));
    return 0;
@@ -160,7 +151,6 @@ int
 clip_GTK_BUTTONCLICKED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_button_clicked(GTK_BUTTON(cbtn->widget));
    return 0;
@@ -173,7 +163,6 @@ int
 clip_GTK_BUTTONENTER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_button_enter(GTK_BUTTON(cbtn->widget));
    return 0;
@@ -186,7 +175,6 @@ int
 clip_GTK_BUTTONLEAVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_button_leave(GTK_BUTTON(cbtn->widget));
    return 0;
@@ -201,9 +189,7 @@ int
 clip_GTK_BUTTONSETRELIEF(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   int       relief = _clip_parni(ClipMachineMemory, 2);
-
+   int relief = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
       relief = GTK_RELIEF_NORMAL;
@@ -219,7 +205,6 @@ int
 clip_GTK_BUTTONGETRELIEF(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    _clip_retni(ClipMachineMemory, gtk_button_get_relief(GTK_BUTTON(cbtn->widget)));
    return 0;
@@ -231,13 +216,9 @@ int
 clip_GTK_BUTTONSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
-
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
    GtkStyle *style;
-
    GtkWidget *wid;
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    CHECKARG(2, MAP_type_of_ClipVarType);
   /*alena - I'm think it is bad idea: wid = GTK_BIN(&(GTK_BUTTON(cbtn->widget)->bin))->child; */
@@ -259,9 +240,7 @@ int
 clip_GTK_BUTTONSETLABEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -278,9 +257,7 @@ int
 clip_GTK_BUTTONGETLABEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid;
-
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    cwid = _get_cwidget(ClipMachineMemory, GTK_BIN(&(GTK_BUTTON(cbtn->widget)->bin))->child);
 
@@ -295,9 +272,7 @@ int
 clip_GTK_BUTTONGETText(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text;
-
+   gchar *text;
    CHECKCWID(cbtn, GTK_IS_BUTTON);
    gtk_label_get(GTK_LABEL(GTK_BIN(&(GTK_BUTTON(cbtn->widget)->bin))->child), &text);
 

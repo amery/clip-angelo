@@ -1,2 +1,0 @@
-	function setmode()
-	return .t.

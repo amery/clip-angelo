@@ -73,12 +73,9 @@ int
 clip_GTK_TEXTTAGNEW(ClipMachine * ClipMachineMemory)
 {
 
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
    GtkTextTag *tag;
-
    C_object *ctag;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -87,13 +84,13 @@ clip_GTK_TEXTTAGNEW(ClipMachine * ClipMachineMemory)
    tag = gtk_text_tag_new(name);
 
    if (tag)
-    {
-       ctag = _list_get_cobject(ClipMachineMemory, tag);
-       if (!ctag)
-	  ctag = _register_object(ClipMachineMemory, tag, GTK_TYPE_TEXT_TAG, cv, NULL);
-       if (ctag)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctag->obj);
-    }
+      {
+	 ctag = _list_get_cobject(ClipMachineMemory, tag);
+	 if (!ctag)
+	    ctag = _register_object(ClipMachineMemory, tag, GTK_TYPE_TEXT_TAG, cv, NULL);
+	 if (ctag)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctag->obj);
+      }
    return 0;
  err:
    return 1;
@@ -106,8 +103,7 @@ int
 clip_GTK_TEXTTAGGETPRIORITY(ClipMachine * ClipMachineMemory)
 {
    C_object *ctag = _fetch_co_arg(ClipMachineMemory);
-
-   gint      priority;
+   gint priority;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(ctag, GTK_IS_TEXT_TAG(ctag->object));
@@ -127,8 +123,7 @@ int
 clip_GTK_TEXTTAGSETPRIORITY(ClipMachine * ClipMachineMemory)
 {
    C_object *ctag = _fetch_co_arg(ClipMachineMemory);
-
-   gint      priority = _clip_parni(ClipMachineMemory, 2);
+   gint priority = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(ctag, GTK_IS_TEXT_TAG(ctag->object));
@@ -169,10 +164,8 @@ int
 clip_GTK_TEXTATTRIBUTESNEW(ClipMachine * ClipMachineMemory)
 {
 
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_object *cattr;
-
    GtkTextAttributes *attr;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -181,13 +174,13 @@ clip_GTK_TEXTATTRIBUTESNEW(ClipMachine * ClipMachineMemory)
    attr = gtk_text_attributes_new();
 
    if (attr)
-    {
-       cattr = _list_get_cobject(ClipMachineMemory, attr);
-       if (!cattr)
-	  cattr = _register_object(ClipMachineMemory, attr, GTK_TYPE_TEXT_ATTRIBUTES, cv, NULL);
-       if (cattr)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattr->obj);
-    }
+      {
+	 cattr = _list_get_cobject(ClipMachineMemory, attr);
+	 if (!cattr)
+	    cattr = _register_object(ClipMachineMemory, attr, GTK_TYPE_TEXT_ATTRIBUTES, cv, NULL);
+	 if (cattr)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattr->obj);
+      }
    return 0;
  err:
    return 1;
@@ -201,9 +194,7 @@ clip_GTK_TEXTATTRIBUTESCOPY(ClipMachine * ClipMachineMemory)
 {
 
    C_object *cattr = _fetch_co_arg(ClipMachineMemory);
-
    GtkTextAttributes *attrN;
-
    C_object *cattrN;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -212,13 +203,13 @@ clip_GTK_TEXTATTRIBUTESCOPY(ClipMachine * ClipMachineMemory)
    attrN = gtk_text_attributes_copy(GTK_TEXT_ATTRIBUTES(cattr->object));
 
    if (attrN)
-    {
-       cattrN = _list_get_cobject(ClipMachineMemory, attrN);
-       if (!cattrN)
-	  cattrN = _register_object(ClipMachineMemory, attrN, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
-       if (cattrN)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattrN->obj);
-    }
+      {
+	 cattrN = _list_get_cobject(ClipMachineMemory, attrN);
+	 if (!cattrN)
+	    cattrN = _register_object(ClipMachineMemory, attrN, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
+	 if (cattrN)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattrN->obj);
+      }
    return 0;
  err:
    return 1;
@@ -232,9 +223,7 @@ clip_GTK_TEXTATTRIBUTESCOPYVALUES(ClipMachine * ClipMachineMemory)
 {
 
    C_object *cattr = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cattrN = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-
    GtkTextAttributes *attrN;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -246,13 +235,13 @@ clip_GTK_TEXTATTRIBUTESCOPYVALUES(ClipMachine * ClipMachineMemory)
    gtk_text_attributes_copy_values(GTK_TEXT_ATTRIBUTES(cattr->object), attrN);
 
    if (attrN)
-    {
-       cattrN = _list_get_cobject(ClipMachineMemory, attrN);
-       if (!cattrN)
-	  cattrN = _register_object(ClipMachineMemory, attrN, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
-       if (cattrN)
-	  _clip_mclone(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2), &cattrN->obj);
-    }
+      {
+	 cattrN = _list_get_cobject(ClipMachineMemory, attrN);
+	 if (!cattrN)
+	    cattrN = _register_object(ClipMachineMemory, attrN, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
+	 if (cattrN)
+	    _clip_mclone(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2), &cattrN->obj);
+      }
 
    return 0;
  err:

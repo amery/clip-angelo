@@ -28,10 +28,10 @@ init_Coll(Coll * coll, void (*Free) (void *), int (*compare) ( /* void*,void* */
    coll->duplicates = 0;
 }
 
-Coll     *
+Coll *
 new_Coll(void (*Free) (void *), int (*Compare) ())
 {
-   Coll     *ret = (Coll *) malloc(sizeof(Coll));
+   Coll *ret = (Coll *) malloc(sizeof(Coll));
 
    init_Coll(ret, Free, Compare);
    return ret;
@@ -56,7 +56,7 @@ delete_Coll(void *coll)
 void
 freeAll_Coll(Coll * coll)
 {
-   int       i;
+   int i;
 
    if (coll->_free)
       for (i = coll->count - 1; i >= 0; i--)
@@ -73,15 +73,15 @@ removeAll_Coll(Coll * coll)
 int
 indexOf_Coll(Coll * coll, void *item, int *index)
 {
-   int       i;
+   int i;
 
    for (i = coll->count - 1; i >= 0; i--)
       if (coll->items[i] == item)
-       {
-	  if (index)
-	     *index = i;
-	  return 1;
-       }
+	 {
+	    if (index)
+	       *index = i;
+	    return 1;
+	 }
    return 0;
 }
 
@@ -100,8 +100,7 @@ prepend_Coll(Coll * coll, void *item)
 static void
 setSize(Coll * coll, int size)
 {
-   void    **aItems;
-
+   void **aItems;
    aItems = (void **) malloc(size * sizeof(void *));
 
    if (coll->count != 0)
@@ -116,13 +115,13 @@ int
 atInsert_Coll(Coll * coll, void *item, int index)
 {
    if (coll->count == coll->size)
-    {
-       int       le = coll->count / 4;
+      {
+	 int le = coll->count / 4;
 
-       if (le < DELTA_SIZE)
-	  le = DELTA_SIZE;
-       setSize(coll, coll->count + le);
-    }
+	 if (le < DELTA_SIZE)
+	    le = DELTA_SIZE;
+	 setSize(coll, coll->count + le);
+      }
    if (index != coll->count)
       memmove(coll->items + index + 1, coll->items + index, (coll->count - index) * sizeof(void *));
 
@@ -155,21 +154,21 @@ insert_Coll(Coll * coll, void *item)
 int
 Insert_Coll(Coll * coll, void *item, int *index)
 {
-   int       i;
+   int i;
 
    if (!coll->compare)
-    {
-       append_Coll(coll, item);
-       return 1;
-    }
+      {
+	 append_Coll(coll, item);
+	 return 1;
+      }
 
    if (search_Coll(coll, item, &i) == 0 || coll->duplicates)
-    {
-       atInsert_Coll(coll, item, i);
-       if (index)
-	  *index = i;
-       return 1;
-    }
+      {
+	 atInsert_Coll(coll, item, i);
+	 if (index)
+	    *index = i;
+	 return 1;
+      }
    return 0;
 }
 
@@ -177,26 +176,26 @@ int
 remove_Coll(Coll * coll, void *item)
 {
 
-   int       index;
+   int index;
 
    if (indexOf_Coll(coll, item, &index))
-    {
-       atRemove_Coll(coll, index);
-       return 1;
-    }
+      {
+	 atRemove_Coll(coll, index);
+	 return 1;
+      }
    return 0;
 }
 
 int
 free_Coll(Coll * coll, void *item)
 {
-   int       index;
+   int index;
 
    if (indexOf_Coll(coll, item, &index))
-    {
-       atFree_Coll(coll, index);
-       return 1;
-    }
+      {
+	 atFree_Coll(coll, index);
+	 return 1;
+      }
    return 0;
 }
 
@@ -204,7 +203,7 @@ int
 search_Coll(Coll * coll, void *key, int *index)
 {
   /*void *p; */
-   int       l, h, res, i, c;
+   int l, h, res, i, c;
 
    if (!coll->compare)
       return 0;
@@ -212,22 +211,22 @@ search_Coll(Coll * coll, void *key, int *index)
    h = coll->count - 1;
    res = 0;
    while (l <= h)
-    {
-       i = (l + h) >> 1;
-       c = coll->compare(coll->items[i], key);
-       if (c < 0)
-	  l = i + 1;
-       else
-	{
-	   h = i - 1;
-	   if (c == 0)
+      {
+	 i = (l + h) >> 1;
+	 c = coll->compare(coll->items[i], key);
+	 if (c < 0)
+	    l = i + 1;
+	 else
 	    {
-	       res = 1;
-	       if (!coll->duplicates)
-		  l = i;
+	       h = i - 1;
+	       if (c == 0)
+		  {
+		     res = 1;
+		     if (!coll->duplicates)
+			l = i;
+		  }
 	    }
-	}
-    }
+      }
    if (index)
       *index = l;
    return res;

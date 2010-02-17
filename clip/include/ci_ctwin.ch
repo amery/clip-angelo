@@ -2,8 +2,8 @@
 	define symbols for function wbox()
 */
 
-#ifndef CN_WB_DEFINED
-#define CN_WB_DEFINED
+#ifndef CI_WB_DEFINED
+#define CI_WB_DEFINED
 
 #define WB_DOUBLE_CLEAR 	 0     /* ��� */
 #define WB_SINGLE_CLEAR 	 1     /* ��� */

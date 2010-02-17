@@ -49,10 +49,8 @@ clip_INIT___WINDOWGROUP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WINDOWGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_object *cwgrp;
-
    GtkWindowGroup *wgrp;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -60,13 +58,13 @@ clip_GTK_WINDOWGROUPNEW(ClipMachine * ClipMachineMemory)
    wgrp = gtk_window_group_new();
 
    if (wgrp)
-    {
-       cwgrp = _list_get_cobject(ClipMachineMemory, wgrp);
-       if (!cwgrp)
-	  cwgrp = _register_object(ClipMachineMemory, wgrp, GTK_TYPE_WINDOW_GROUP, cv, NULL);
-       if (cwgrp)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwgrp->obj);
-    }
+      {
+	 cwgrp = _list_get_cobject(ClipMachineMemory, wgrp);
+	 if (!cwgrp)
+	    cwgrp = _register_object(ClipMachineMemory, wgrp, GTK_TYPE_WINDOW_GROUP, cv, NULL);
+	 if (cwgrp)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwgrp->obj);
+      }
    return 0;
  err:
    return 1;
@@ -79,7 +77,6 @@ int
 clip_GTK_WINDOWGROUPADDWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_object *cwgrp = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -101,7 +98,6 @@ int
 clip_GTK_WINDOWGROUPREMOVEWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_object *cwgrp = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG(1, MAP_type_of_ClipVarType);

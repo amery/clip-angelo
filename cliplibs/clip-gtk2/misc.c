@@ -71,11 +71,8 @@ int
 clip_GTK_MISCSETALIGNMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmisc = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    xalign = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    yalign = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat xalign = _clip_parnd(ClipMachineMemory, 2);
+   gfloat yalign = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(cmisc, GTK_IS_MISC);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -89,11 +86,8 @@ int
 clip_GTK_MISCSETPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmisc = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    xpad = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    ypad = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat xpad = _clip_parnd(ClipMachineMemory, 2);
+   gfloat ypad = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(cmisc, GTK_IS_MISC);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -107,11 +101,8 @@ int
 clip_GTK_MISCGETALIGNMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmisc = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    xalign;
-
-   gfloat    yalign;
-
+   gfloat xalign;
+   gfloat yalign;
    CHECKCWID(cmisc, GTK_IS_MISC);
    gtk_misc_get_alignment(GTK_MISC(cmisc->widget), &xalign, &yalign);
    _clip_storni(ClipMachineMemory, xalign, 2, 0);
@@ -125,11 +116,8 @@ int
 clip_GTK_MISCGETPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmisc = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      xpad;
-
-   gint      ypad;
-
+   gint xpad;
+   gint ypad;
    CHECKCWID(cmisc, GTK_IS_MISC);
    gtk_misc_get_padding(GTK_MISC(cmisc->widget), &xpad, &ypad);
 
@@ -149,16 +137,11 @@ clip_GTK_MISCGETPADDING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ARROWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkArrowType arrow_type = _clip_parni(ClipMachineMemory, 2);
-
    GtkShadowType shadow_type = _clip_parni(ClipMachineMemory, 3);
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -180,11 +163,8 @@ int
 clip_GTK_ARROWSET(ClipMachine * ClipMachineMemory)
 {
    C_widget *carrow = _fetch_cw_arg(ClipMachineMemory);
-
    GtkArrowType arrow_type = _clip_parni(ClipMachineMemory, 2);
-
    GtkShadowType shadow_type = _clip_parni(ClipMachineMemory, 3);
-
    CHECKCWID(carrow, GTK_IS_ARROW);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);

@@ -48,13 +48,10 @@ clip_INIT___ACCEL_GROUP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkAccelGroup *accelg = NULL;
-
    C_object *cobj;
-
-	CHECKOPT(1, MAP_type_of_ClipVarType);
+   CHECKOPT(1, MAP_type_of_ClipVarType);
 
    accelg = gtk_accel_group_new();
    if (!accelg)
@@ -71,7 +68,6 @@ int
 clip_GTK_ACCELGROUPLOCK(ClipMachine * ClipMachineMemory)
 {
    C_object *caccelg = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(caccelg, GTK_IS_ACCEL_GROUP(caccelg));
 
    gtk_accel_group_lock(GTK_ACCEL_GROUP(caccelg->object));
@@ -85,7 +81,6 @@ int
 clip_GTK_ACCELGROUPUNLOCK(ClipMachine * ClipMachineMemory)
 {
    C_object *caccelg = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(caccelg, GTK_IS_ACCEL_GROUP(caccelg));
 
    gtk_accel_group_unlock(GTK_ACCEL_GROUP(caccelg->object));

@@ -20,8 +20,8 @@
 	Angelo GIRARDI
 	*/
 
-#ifndef CN__GETTEXT_H
-#define CN__GETTEXT_H 1
+#ifndef CI__GETTEXT_H
+#define CI__GETTEXT_H 1
 
 #include <stdio.h>
 
@@ -77,14 +77,47 @@ typedef unsigned long nls_uint32;
 #endif
 #endif
 /* Header for binary .mo file format.  */
-#include "ci_gettext/struct_mo_file_header.h"
-#include "ci_gettext/struct_string_des.h"
+   struct mo_file_header
+{
+  /* The magic number.  */
+   nls_uint32 magic;
+  /* The revision number of the file format.  */
+   nls_uint32 revision;
+  /* The number of strings pairs.  */
+   nls_uint32 nstrings;
+  /* Offset of table with start offsets of original strings.  */
+   nls_uint32 orig_tab_offset;
+  /* Offset of table with start offsets of translation strings.  */
+   nls_uint32 trans_tab_offset;
+  /* Size of hashing table.  */
+   nls_uint32 hash_tab_size;
+  /* Offset of first hashing entry.  */
+   nls_uint32 hash_tab_offset;
+};
 
+struct string_desc
+{
+  /* Length of addressed string.  */
+   nls_uint32 length;
+  /* Offset of string in file.  */
+   nls_uint32 offset;
+};
 
 #ifndef W
 #define W(flag, data) ((flag) ? SWAP (data) : (data))
 #endif
-#include "ci_gettext/struct_loaded_domain.h"
 
+struct loaded_domain
+{
+   const char *data;
+   int use_mmap;
+   size_t mmap_size;
+   int must_swap;
+   nls_uint32 nstrings;
+   struct string_desc *orig_tab;
+   struct string_desc *trans_tab;
+   nls_uint32 hash_size;
+   nls_uint32 *hash_tab;
+};
 
 #endif

@@ -42,8 +42,7 @@ _clip_type_name_file_selection()
 int
 clip_INIT___FILESELECTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_file_selection, _clip_type_name_file_selection,
-		    _gtk_type_file_selection, _gtk_type_window, NULL);
+   _wtype_table_put(_clip_type_file_selection, _clip_type_name_file_selection, _gtk_type_file_selection, _gtk_type_window, NULL);
    return 0;
 }
 
@@ -53,18 +52,12 @@ clip_INIT___FILESELECTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILESELECTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    C_widget *cfileop_dialog, *cdir_list, *cfile_list, *cok_btn, *ccancel_btn;
-
    C_widget *chist_pulldown, *cfileop_c_dir, *cfileop_del_file, *cfileop_ren_file;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -117,9 +110,7 @@ int
 clip_GTK_FILESELECTIONSETFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *filename = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *filename = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -138,9 +129,7 @@ int
 clip_GTK_FILESELECTIONGETFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *filename;
-
+   gchar *filename;
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    filename = (gchar *) gtk_file_selection_get_filename(GTK_FILE_SELECTION(cfsel->widget));
    LOCALE_FROM_UTF(filename);
@@ -159,9 +148,7 @@ int
 clip_GTK_FILESELECTIONCOMPLETE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *pattern = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *pattern = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -180,7 +167,6 @@ int
 clip_GTK_FILESELECTIONSHOWFILEOPBUTTONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    gtk_file_selection_show_fileop_buttons(GTK_FILE_SELECTION(cfsel->widget));
    return 0;
@@ -195,7 +181,6 @@ int
 clip_GTK_FILESELECTIONHIDEFILEOPBUTTONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    gtk_file_selection_hide_fileop_buttons(GTK_FILE_SELECTION(cfsel->widget));
    return 0;
@@ -207,30 +192,26 @@ int
 clip_GTK_FILESELECTIONGETSELECTIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar   **sel;
-
-   long      i;
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
+   gchar **sel;
+   long i;
+   ClipVar *cv = RETPTR(ClipMachineMemory);
 
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    sel = gtk_file_selection_get_selections(GTK_FILE_SELECTION(cfsel->widget));
    for (i = 0; sel[i] != NULL; i++);
    _clip_array(ClipMachineMemory, cv, 1, &i);
    for (i = 0; sel[i] != NULL; i++)
-    {
-       ClipVar   cstr;
+      {
+	 ClipVar cstr;
+	 gchar *str = sel[i];
 
-       gchar    *str = sel[i];
-
-       memset(&cstr, 0, sizeof(cstr));
-       LOCALE_FROM_UTF(str);
-       _clip_var_str(str, strlen(str), &cstr);
-       FREE_TEXT(str);
-       _clip_aset(ClipMachineMemory, cv, &cstr, 1, &i);
-       _clip_destroy(ClipMachineMemory, &cstr);
-    }
+	 memset(&cstr, 0, sizeof(cstr));
+	 LOCALE_FROM_UTF(str);
+	 _clip_var_str(str, strlen(str), &cstr);
+	 FREE_TEXT(str);
+	 _clip_aset(ClipMachineMemory, cv, &cstr, 1, &i);
+	 _clip_destroy(ClipMachineMemory, &cstr);
+      }
    g_strfreev(sel);
    return 0;
  err:
@@ -241,8 +222,7 @@ int
 clip_GTK_FILESELECTIONSETSELECTMULTIPLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  multiple = _clip_parl(ClipMachineMemory, 2);
+   gboolean multiple = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cfsel, GTK_IS_FILE_SELECTION);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);

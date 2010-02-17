@@ -1,6 +1,6 @@
 /*  ��� ������ �������� */
-#ifndef CN_CLIP_DEFINED
-#define CN_CLIP_DEFINED
+#ifndef CI_CLIP_DEFINED
+#define CI_CLIP_DEFINED
 
 #include "ci_set.ch"
 

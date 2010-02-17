@@ -47,8 +47,7 @@ _clip_type_name_font_combo()
 int
 clip_INIT___FONT_COMBO(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_font_combo, _clip_type_name_font_combo, _gtk_type_font_combo, _gtk_type_toolbar,
-		    font_combo_signals);
+   _wtype_table_put(_clip_type_font_combo, _clip_type_name_font_combo, _gtk_type_font_combo, _gtk_type_toolbar, font_combo_signals);
    return 0;
 }
 
@@ -56,10 +55,8 @@ clip_INIT___FONT_COMBO(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTCOMBONEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cname_combo, *csize_combo, *cbold_btn, *citalic_btn;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -89,15 +86,10 @@ int
 clip_GTK_FONTCOMBOSELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfnc = _fetch_cw_arg(ClipMachineMemory);
-
    const gchar *family = CHAR_OPTION(ClipMachineMemory, 2, "");
-
-   gboolean  bold = BOOL_OPTION(ClipMachineMemory, 3, FALSE);
-
-   gboolean  italic = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
-
-   gint      height = _clip_parni(ClipMachineMemory, 5);
-
+   gboolean bold = BOOL_OPTION(ClipMachineMemory, 3, FALSE);
+   gboolean italic = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
+   gint height = _clip_parni(ClipMachineMemory, 5);
    CHECKCWID(cfnc, GTK_IS_FONT_COMBO);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -113,15 +105,10 @@ int
 clip_GTK_FONTCOMBOSELECTNTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfnc = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      n = INT_OPTION(ClipMachineMemory, 2, 1);
-
-   gboolean  bold = BOOL_OPTION(ClipMachineMemory, 3, FALSE);
-
-   gboolean  italic = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
-
-   gint      height = _clip_parni(ClipMachineMemory, 5);
-
+   gint n = INT_OPTION(ClipMachineMemory, 2, 1);
+   gboolean bold = BOOL_OPTION(ClipMachineMemory, 3, FALSE);
+   gboolean italic = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
+   gint height = _clip_parni(ClipMachineMemory, 5);
    CHECKCWID(cfnc, GTK_IS_FONT_COMBO);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -137,14 +124,11 @@ int
 clip_GTK_FONTCOMBOGETFONT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfnc = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cfont;
-
    CHECKCWID(cfnc, GTK_IS_FONT_COMBO);
    cfont = _list_get_cobject(ClipMachineMemory, GTK_FONT_COMBO(cfnc->widget)->font);
    if (!cfont)
-      cfont = _register_object(ClipMachineMemory, GTK_FONT_COMBO(cfnc->widget)->font,
-			       GDK_OBJECT_FONT, NULL, (coDestructor) gdk_object_font_destructor);
+      cfont = _register_object(ClipMachineMemory, GTK_FONT_COMBO(cfnc->widget)->font, GDK_OBJECT_FONT, NULL, (coDestructor) gdk_object_font_destructor);
    if (cfont)
       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfont->obj);
    return 0;

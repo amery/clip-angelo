@@ -17,19 +17,15 @@
 #include "ci_clip-gtk2.h"
 
 static ClipVar _data_list;
-
 static ClipVar *data_list = &_data_list;
 
 static ClipVar _func_list;
-
 static ClipVar *func_list = &_func_list;
 
 static ClipVar _data_idle_list;
-
 static ClipVar *data_idle_list = &_data_idle_list;
 
 static ClipVar _func_idle_list;
-
 static ClipVar *func_idle_list = &_func_idle_list;
 
 /* Sets the current locale according to the program environment.
@@ -47,7 +43,7 @@ clip_GTK_SETLOCALE(ClipMachine * ClipMachineMemory)
 }
 
 #ifdef USE_TASKS
-static    gint
+static gint
 __idle_task_yield(gpointer data)
 {
    Task_sleep(10);
@@ -62,10 +58,8 @@ __idle_task_yield(gpointer data)
 CLIP_DLLEXPORT int
 clip_GTK_INIT(ClipMachine * ClipMachineMemory)
 {
-   int       n, i;
-
-   char     *par[20], **apar;
-
+   int n, i;
+   char *par[20], **apar;
    gtk_set_locale();
    memset(par, 0, sizeof(par));
    n = _clip_parinfo(ClipMachineMemory, 0);
@@ -92,10 +86,8 @@ clip_GTK_INIT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_INITCHECK(ClipMachine * ClipMachineMemory)
 {
-   int       n, i;
-
-   char     *par[20], **apar;
-
+   int n, i;
+   char *par[20], **apar;
    memset(par, 0, sizeof(par));
    n = _clip_parinfo(ClipMachineMemory, 0);
    par[0] = "";
@@ -112,8 +104,7 @@ clip_GTK_INITCHECK(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_EXIT(ClipMachine * ClipMachineMemory)
 {
-   int       err_code = _clip_parni(ClipMachineMemory, 1);
-
+   int err_code = _clip_parni(ClipMachineMemory, 1);
    gtk_exit(err_code);
    return 0;
 }
@@ -160,7 +151,7 @@ clip_GTK_MAINITERATION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_MAINITERATIONDO(ClipMachine * ClipMachineMemory)
 {
-   uint      blocking = _clip_parl(ClipMachineMemory, 1);
+   uint blocking = _clip_parl(ClipMachineMemory, 1);
 
    if (_clip_parinfo(ClipMachineMemory, 1) == UNDEF_type_of_ClipVarType)
       blocking = FALSE;
@@ -176,10 +167,10 @@ int
 clip_GTK_QUIT(ClipMachine * ClipMachineMemory)
 {
    if (gtk_main_level() == 1)
-    {
-       _list_remove_cobject(ClipMachineMemory);
-       _wtype_table_destroy(_wtype_table_get_first());
-    }
+      {
+	 _list_remove_cobject(ClipMachineMemory);
+	 _wtype_table_destroy(_wtype_table_get_first());
+      }
    gtk_main_quit();
    return 0;
 }
@@ -206,16 +197,14 @@ int
 clip_GTK_GRABGETCURRENT(ClipMachine * ClipMachineMemory)
 {
    GtkWidget *wid = gtk_grab_get_current();
-
    if (wid)
-    {
-       C_widget *cwid = _list_get_cwidget(ClipMachineMemory, wid);
-
-       if (!cwid)
-	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
-       if (cwid)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+      {
+	 C_widget *cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	 if (!cwid)
+	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	 if (cwid)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
    return 0;
 }
 
@@ -237,25 +226,21 @@ clip_GTK_GRABREMOVE(ClipMachine * ClipMachineMemory)
 static void
 _destroy__func(void *data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    if (c)
-    {
-       _clip_destroy(c->ClipMachineMemory, &c->cfunc);
-       free(&c->cfunc);
-       free(c);
-    }
+      {
+	 _clip_destroy(c->ClipMachineMemory, &c->cfunc);
+	 free(&c->cfunc);
+	 free(c);
+      }
 }
 
-static    gint
+static gint
 __func(void *data)
 {
-   ClipVar   res;
-
-   C_var    *c = (C_var *) data;
-
-   int       ret = TRUE;
-
+   ClipVar res;
+   C_var *c = (C_var *) data;
+   int ret = TRUE;
    memset(&res, 0, sizeof(ClipVar));
    _clip_eval(c->ClipMachineMemory, &c->cfunc, 0, NULL, &res);
    if (res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType)
@@ -264,17 +249,13 @@ __func(void *data)
    return ret;
 }
 
-static    gint
+static gint
 __timeout__func(void *data)
 {
-   ClipVar   res;
-
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[1];
-
-   int       ret = TRUE;
-
+   ClipVar res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[1];
+   int ret = TRUE;
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
    _clip_mclone(c->ClipMachineMemory, &stack[0], c->cv);
@@ -292,7 +273,7 @@ __timeout__func(void *data)
 int
 clip_GTK_INITADD(ClipMachine * ClipMachineMemory)
 {
-   C_var    *c;
+   C_var *c;
 
    CHECKARG2(1, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
@@ -309,26 +290,24 @@ clip_GTK_INITADD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_QUITADDDESTROY(ClipMachine * ClipMachineMemory)
 {
-   guint     main_level = INT_OPTION(ClipMachineMemory, 1, gtk_main_level());
-
+   guint main_level = INT_OPTION(ClipMachineMemory, 1, gtk_main_level());
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_object *cobj;
 
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
 
    if (cwid->objtype == GTK_OBJ_WIDGET)
-    {
-       CHECKCWID(cwid, GTK_IS_OBJECT);
-       gtk_quit_add_destroy(main_level, GTK_OBJECT(cwid->widget));
-    }
+      {
+	 CHECKCWID(cwid, GTK_IS_OBJECT);
+	 gtk_quit_add_destroy(main_level, GTK_OBJECT(cwid->widget));
+      }
    if (cwid->objtype == GTK_OBJ_OBJECT)
-    {
-       cobj = (C_object *) cwid;
-       CHECKCOBJ(cobj, GTK_IS_OBJECT(cobj->object));
-       gtk_quit_add_destroy(main_level, GTK_OBJECT(cobj->object));
-    }
+      {
+	 cobj = (C_object *) cwid;
+	 CHECKCOBJ(cobj, GTK_IS_OBJECT(cobj->object));
+	 gtk_quit_add_destroy(main_level, GTK_OBJECT(cobj->object));
+      }
    return 0;
  err:
    return 1;
@@ -338,9 +317,8 @@ clip_GTK_QUITADDDESTROY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_QUITADD(ClipMachine * ClipMachineMemory)
 {
-   guint     main_level = INT_OPTION(ClipMachineMemory, 1, gtk_main_level());
-
-   C_var    *c;
+   guint main_level = INT_OPTION(ClipMachineMemory, 1, gtk_main_level());
+   C_var *c;
 
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -358,7 +336,7 @@ clip_GTK_QUITADD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_QUITREMOVE(ClipMachine * ClipMachineMemory)
 {
-   guint     quit_handler_id = _clip_parni(ClipMachineMemory, 1);
+   guint quit_handler_id = _clip_parni(ClipMachineMemory, 1);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
 
@@ -377,11 +355,10 @@ _list_put_data(ClipMachine * ClipMachineMemory, gint id, ClipVar * cdata)
       _clip_mputn(ClipMachineMemory, data_list, (long) id, (long) cdata);
 }
 
-ClipVar  *
+ClipVar *
 _list_get_data(ClipMachine * ClipMachineMemory, gint id)
 {
-   double    d;
-
+   double d;
    if (id && data_list->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
       if (_clip_mgetn(ClipMachineMemory, data_list, (long) id, &d) == 0)
 	 return (ClipVar *) ((long) d);
@@ -404,11 +381,10 @@ _list_put_func(ClipMachine * ClipMachineMemory, gint id, ClipVar * cfunc)
       _clip_mputn(ClipMachineMemory, func_list, (long) id, (long) cfunc);
 }
 
-ClipVar  *
+ClipVar *
 _list_get_func(ClipMachine * ClipMachineMemory, gint id)
 {
-   double    d;
-
+   double d;
    if (id && func_list->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
       if (_clip_mgetn(ClipMachineMemory, func_list, (long) id, &d) == 0)
 	 return (ClipVar *) ((long) d);
@@ -430,9 +406,8 @@ _list_remove_func(ClipMachine * ClipMachineMemory, gint id)
 int
 clip_GTK_TIMEOUTADD(ClipMachine * ClipMachineMemory)
 {
-   guint32   interval = _clip_parnl(ClipMachineMemory, 1);
-
-   C_var    *c;
+   guint32 interval = _clip_parnl(ClipMachineMemory, 1);
+   C_var *c;
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -456,7 +431,7 @@ clip_GTK_TIMEOUTADD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TIMEOUTREMOVE(ClipMachine * ClipMachineMemory)
 {
-   guint     timeout_handler_id = _clip_parni(ClipMachineMemory, 1);
+   guint timeout_handler_id = _clip_parni(ClipMachineMemory, 1);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
 
@@ -473,17 +448,13 @@ clip_GTK_TIMEOUTREMOVE(ClipMachine * ClipMachineMemory)
    return 1;
 }
 
-static    gint
+static gint
 __idle__func(void *data)
 {
-   ClipVar   res;
-
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[1];
-
-   int       ret = TRUE;
-
+   ClipVar res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[1];
+   int ret = TRUE;
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
    _clip_mclone(c->ClipMachineMemory, &stack[0], c->cv);
@@ -504,11 +475,10 @@ _list_idle_put_data(ClipMachine * ClipMachineMemory, gint id, ClipVar * cdata)
       _clip_mputn(ClipMachineMemory, data_idle_list, (long) id, (long) cdata);
 }
 
-ClipVar  *
+ClipVar *
 _list_idle_get_data(ClipMachine * ClipMachineMemory, gint id)
 {
-   double    d;
-
+   double d;
    if (id && data_idle_list->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
       if (_clip_mgetn(ClipMachineMemory, data_idle_list, (long) id, &d) == 0)
 	 return (ClipVar *) ((long) d);
@@ -531,11 +501,10 @@ _list_idle_put_func(ClipMachine * ClipMachineMemory, gint id, ClipVar * cfunc)
       _clip_mputn(ClipMachineMemory, func_idle_list, (long) id, (long) cfunc);
 }
 
-ClipVar  *
+ClipVar *
 _list_idle_get_func(ClipMachine * ClipMachineMemory, gint id)
 {
-   double    d;
-
+   double d;
    if (id && func_idle_list->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
       if (_clip_mgetn(ClipMachineMemory, func_idle_list, (long) id, &d) == 0)
 	 return (ClipVar *) ((long) d);
@@ -556,9 +525,8 @@ _list_idle_remove_func(ClipMachine * ClipMachineMemory, gint id)
 int
 clip_GTK_IDLEADD(ClipMachine * ClipMachineMemory)
 {
-   C_var    *c;
-
-   guint     id;
+   C_var *c;
+   guint id;
 
    CHECKARG2(1, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
@@ -582,7 +550,7 @@ clip_GTK_IDLEADD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_IDLEREMOVE(ClipMachine * ClipMachineMemory)
 {
-   guint     idle_handler_id = _clip_parni(ClipMachineMemory, 1);
+   guint idle_handler_id = _clip_parni(ClipMachineMemory, 1);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
 
@@ -647,25 +615,18 @@ int
 clip_G_OBJECTGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cobj = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
-   gint      type = _clip_parni(ClipMachineMemory, 3);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
+   gint type = _clip_parni(ClipMachineMemory, 3);
 
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
 
-   GObject  *gobj;
-
-   gint      i;
-
-   gboolean  b;
-
-   gchar    *c;
-
-   gdouble   d;
+   GObject *gobj;
+   gint i;
+   gboolean b;
+   gchar *c;
+   gdouble d;
 
    if (cwid->objtype == GTK_OBJ_WIDGET)
       gobj = G_OBJECT(cwid->widget);
@@ -673,27 +634,27 @@ clip_G_OBJECTGET(ClipMachine * ClipMachineMemory)
       gobj = G_OBJECT(cobj->object);
 
    switch (type)
-    {
-    case CLIP_G_TYPE_INT:
-       g_object_get(gobj, name, &i, NULL);
-       _clip_retni(ClipMachineMemory, i);
-       break;
-    case CLIP_G_TYPE_DOUBLE:
-       g_object_get(gobj, name, &d, NULL);
-       _clip_retnd(ClipMachineMemory, d);
-       break;
-    case CLIP_G_TYPE_STRING:
-       g_object_get(gobj, name, &c, NULL);
-       LOCALE_FROM_UTF(c);
-       _clip_retc(ClipMachineMemory, c);
-       FREE_TEXT(c);
-       g_free(c);
-       break;
-    case CLIP_G_TYPE_BOOLEAN:
-       g_object_get(gobj, name, &b, NULL);
-       _clip_retnl(ClipMachineMemory, b);
-       break;
-    }
+      {
+      case CLIP_G_TYPE_INT:
+	 g_object_get(gobj, name, &i, NULL);
+	 _clip_retni(ClipMachineMemory, i);
+	 break;
+      case CLIP_G_TYPE_DOUBLE:
+	 g_object_get(gobj, name, &d, NULL);
+	 _clip_retnd(ClipMachineMemory, d);
+	 break;
+      case CLIP_G_TYPE_STRING:
+	 g_object_get(gobj, name, &c, NULL);
+	 LOCALE_FROM_UTF(c);
+	 _clip_retc(ClipMachineMemory, c);
+	 FREE_TEXT(c);
+	 g_free(c);
+	 break;
+      case CLIP_G_TYPE_BOOLEAN:
+	 g_object_get(gobj, name, &b, NULL);
+	 _clip_retnl(ClipMachineMemory, b);
+	 break;
+      }
    return 0;
  err:
    return 1;

@@ -1,2 +1,0 @@
-FUNCTION Network()
-  RETURN ( .T. )

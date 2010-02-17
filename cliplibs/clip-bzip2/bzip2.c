@@ -48,21 +48,17 @@ destroy_bzip_file(void *file)
 int
 clip_BZIP2OPEN(ClipMachine * mp)
 {
-   char     *fname = _clip_parc(mp, 1);
-
-   char     *mode = _clip_parc(mp, 2);
-
-   int      *err = NULL, ret;
-
-   char      buf[PATH_MAX];
-
-   BZFILE   *gz;
+   char *fname = _clip_parc(mp, 1);
+   char *mode = _clip_parc(mp, 2);
+   int *err = NULL, ret;
+   char buf[PATH_MAX];
+   BZFILE *gz;
 
    if (fname == NULL)
-    {
-       _clip_retni(mp, -1);
-       return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "GZIPOPEN");
-    }
+      {
+	 _clip_retni(mp, -1);
+	 return _clip_trap_err(mp, EG_ARG, 0, 0, __FILE__, __LINE__, "GZIPOPEN");
+      }
    if (mode == NULL)
       mode = "rb";
 
@@ -70,19 +66,19 @@ clip_BZIP2OPEN(ClipMachine * mp)
    if (strcmp(buf, "in") == 0)
       gz = BZPREF(bzdopen) (fileno(stdin), "rb");
    else
-    {
-       if (strcmp(buf, "out") == 0)
-	  gz = BZPREF(bzdopen) (fileno(stdout), "wb");
-       else
-	  gz = BZPREF(bzopen) (buf, mode);
-    }
+      {
+	 if (strcmp(buf, "out") == 0)
+	    gz = BZPREF(bzdopen) (fileno(stdout), "wb");
+	 else
+	    gz = BZPREF(bzopen) (buf, mode);
+      }
    if (!gz)
-    {
-       err = _clip_fetch_item(mp, HASH_ferror);
-       *err = errno;
-       _clip_retni(mp, -1);
-       return 0;
-    }
+      {
+	 err = _clip_fetch_item(mp, HASH_ferror);
+	 *err = errno;
+	 _clip_retni(mp, -1);
+	 return 0;
+      }
    ret = _clip_store_c_item(mp, gz, _C_ITEM_TYPE_FILE, destroy_bzip_file);
    _clip_retni(mp, ret);
    return 0;
@@ -91,13 +87,10 @@ clip_BZIP2OPEN(ClipMachine * mp)
 int
 clip_BZIP2READ(ClipMachine * mp)
 {
-   BZFILE   *gz;
-
-   char     *buf;
-
-   int      *err = NULL, fd, nb = 0;
-
-   long      ret = -1;
+   BZFILE *gz;
+   char *buf;
+   int *err = NULL, fd, nb = 0;
+   long ret = -1;
 
    fd = _clip_parni(mp, 1);
    buf = _clip_parcl(mp, 2, &nb);
@@ -107,10 +100,10 @@ clip_BZIP2READ(ClipMachine * mp)
       nb = _clip_parnl(mp, 3);
 
    if (gz == NULL || !buf)
-    {
-       _clip_retnl(mp, -1);
-       return 0;
-    }
+      {
+	 _clip_retnl(mp, -1);
+	 return 0;
+      }
 
    buf = (char *) malloc(nb);
 
@@ -118,10 +111,10 @@ clip_BZIP2READ(ClipMachine * mp)
    if (ret >= 0)
       _clip_storclen(mp, buf, ret, 2, 0);
    else
-    {
-       err = _clip_fetch_item(mp, HASH_ferror);
-       *err = errno;
-    }
+      {
+	 err = _clip_fetch_item(mp, HASH_ferror);
+	 *err = errno;
+      }
 
    _clip_retnl(mp, ret);
    free(buf);
@@ -132,23 +125,19 @@ clip_BZIP2READ(ClipMachine * mp)
 int
 clip_BZIP2WRITE(ClipMachine * mp)
 {
-   BZFILE   *gz;
-
-   int       len = 0, *err = NULL;
-
-   int       fd = _clip_parni(mp, 1);
-
-   char     *str = _clip_parcl(mp, 2, &len);
-
-   long      ret = -1, n = _clip_parnl(mp, 3);
+   BZFILE *gz;
+   int len = 0, *err = NULL;
+   int fd = _clip_parni(mp, 1);
+   char *str = _clip_parcl(mp, 2, &len);
+   long ret = -1, n = _clip_parnl(mp, 3);
 
    gz = _clip_fetch_c_item(mp, fd, _C_ITEM_TYPE_FILE);
 
    if (gz == NULL || !str)
-    {
-       _clip_retnl(mp, -1);
-       return 0;
-    }
+      {
+	 _clip_retnl(mp, -1);
+	 return 0;
+      }
    if (n <= 0 || n >= len)
       n = len;
    ret = BZPREF(bzwrite) (gz, (void *) str, n);
@@ -161,24 +150,22 @@ clip_BZIP2WRITE(ClipMachine * mp)
 int
 clip_BZIP2CLOSE(ClipMachine * mp)
 {
-   BZFILE   *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       ret = -1, *err = _clip_fetch_item(mp, HASH_ferror);
+   BZFILE *gz;
+   int fd = _clip_parni(mp, 1);
+   int ret = -1, *err = _clip_fetch_item(mp, HASH_ferror);
 
    gz = (BZFILE *) _clip_fetch_c_item(mp, fd, _C_ITEM_TYPE_FILE);
 
    if (gz == NULL)
-    {
-       *err = EBADF;
-    }
+      {
+	 *err = EBADF;
+      }
 
    else if (_clip_destroy_c_item(mp, fd, _C_ITEM_TYPE_FILE))
-    {
-       ret = 0;
-       *err = 0;
-    }
+      {
+	 ret = 0;
+	 *err = 0;
+      }
 
    _clip_retl(mp, (ret == 0));
    return 0;
@@ -196,8 +183,7 @@ write_ulong(char *dst, unsigned long l)
 static unsigned long
 read_ulong(char *src)
 {
-   return ((unsigned char) src[0])
-    | (((unsigned char) src[1]) << 8) | (((unsigned char) src[2]) << 16) | (((unsigned char) src[3]) << 24);
+   return ((unsigned char) src[0]) | (((unsigned char) src[1]) << 8) | (((unsigned char) src[2]) << 16) | (((unsigned char) src[3]) << 24);
 }
 
 /*
@@ -206,13 +192,10 @@ read_ulong(char *src)
 int
 clip_BZIP2(ClipMachine * mp)
 {
-   int       l, r;
-
+   int l, r;
    unsigned int rl;
-
-   int       level = 9;
-
-   char     *s, *rp, *rp1;
+   int level = 9;
+   char *s, *rp, *rp1;
 
    s = _clip_parcl(mp, 1, &l);
 
@@ -234,10 +217,10 @@ clip_BZIP2(ClipMachine * mp)
    r = BZPREF(bzBuffToBuffCompress) (rp1, &rl, s, l, level, 0, 0);
 
    if (r != BZ_OK)
-    {
-       free(rp);
-       return EG_MEM;
-    }
+      {
+	 free(rp);
+	 return EG_MEM;
+      }
 
    write_ulong(rp, l);
 
@@ -255,11 +238,9 @@ clip_BZIP2(ClipMachine * mp)
 int
 clip_BUNZIP2(ClipMachine * mp)
 {
-   int       l, r;
-
+   int l, r;
    unsigned int rl;
-
-   char     *s, *rp;
+   char *s, *rp;
 
    s = _clip_parcl(mp, 1, &l);
 
@@ -272,13 +253,13 @@ clip_BUNZIP2(ClipMachine * mp)
    r = BZPREF(bzBuffToBuffDecompress) (rp, &rl, s + 4, l - 4, 0, 0);
 
    if (r != BZ_OK)
-    {
-       free(rp);
-       if (r == BZ_DATA_ERROR)
-	  return EG_ARG;
-       else
-	  return EG_MEM;
-    }
+      {
+	 free(rp);
+	 if (r == BZ_DATA_ERROR)
+	    return EG_ARG;
+	 else
+	    return EG_MEM;
+      }
 
    _clip_retcn_m(mp, rp, rl);
 

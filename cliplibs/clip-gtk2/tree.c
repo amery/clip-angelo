@@ -15,11 +15,10 @@
 
 /**********************************************************/
 /* Signal handlers */
-static    gint
+static gint
 handle_sel_child_signal(GtkWidget * widget, GtkWidget * child, C_signal * cs)
 {
    C_widget *cchild = _get_cwidget(cs->cw->cmachine, child);
-
    PREPARECV(cs, cv);
    if (cchild)
       _clip_madd(cs->cw->cmachine, &cv, HASH_CHILD, &cchild->obj);
@@ -69,10 +68,8 @@ clip_INIT___TREE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TREENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -95,7 +92,6 @@ int
 clip_GTK_TREEAPPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -113,7 +109,6 @@ int
 clip_GTK_TREEPREPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -132,10 +127,8 @@ int
 clip_GTK_TREEINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      position = INT_OPTION(ClipMachineMemory, 3, 1) - 1;
+   gint position = INT_OPTION(ClipMachineMemory, 3, 1) - 1;
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -160,46 +153,38 @@ int
 clip_GTK_TREEREMOVEITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *items = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *items = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT3(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType, ARRAY_type_of_ClipVarType);
 
-   if (items->t.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType
-       || items->t.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType)
-    {
-       C_widget *citem = _fetch_cwidget(ClipMachineMemory, items);
-
-       gtk_tree_remove_item(GTK_TREE(ctree->widget), citem->widget);
-    }
-   if (items->t.ClipVartype_type_of_ClipType == ARRAY_type_of_ClipVarType)
-    {
-       GList    *list = NULL;
-
-       unsigned short i;
-
-       ClipVar  *item;
-
-       C_widget *citem;
-
-       for (i = 0; i < items->a.count; i++)
-	{
-	   item = &items->a.items[i];
-	   if (item->t.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType
-	       || item->t.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
+   if (items->t.type == MAP_type_of_ClipVarType || items->t.type == NUMERIC_type_of_ClipVarType)
+      {
+	 C_widget *citem = _fetch_cwidget(ClipMachineMemory, items);
+	 gtk_tree_remove_item(GTK_TREE(ctree->widget), citem->widget);
+      }
+   if (items->t.type == ARRAY_type_of_ClipVarType)
+      {
+	 GList *list = NULL;
+	 unsigned short i;
+	 ClipVar *item;
+	 C_widget *citem;
+	 for (i = 0; i < items->a.count; i++)
 	    {
-	       citem = _fetch_cwidget(ClipMachineMemory, item);
-	       CHECKCWID(citem, GTK_IS_TREE_ITEM);
-	       list = g_list_append(list, citem->widget);
+	       item = &items->a.items[i];
+	       if (item->t.type == NUMERIC_type_of_ClipVarType || item->t.type == MAP_type_of_ClipVarType)
+		  {
+		     citem = _fetch_cwidget(ClipMachineMemory, item);
+		     CHECKCWID(citem, GTK_IS_TREE_ITEM);
+		     list = g_list_append(list, citem->widget);
+		  }
 	    }
-	}
-       if (list)
-	{
-	   gtk_tree_remove_items(GTK_TREE(ctree->widget), list);
-	   g_list_free(list);
-	}
-    }
+	 if (list)
+	    {
+	       gtk_tree_remove_items(GTK_TREE(ctree->widget), list);
+	       g_list_free(list);
+	    }
+      }
    return 0;
  err:
    return 1;
@@ -214,10 +199,8 @@ int
 clip_GTK_TREECLEARITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      start = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
-
-   gint      end = INT_OPTION(ClipMachineMemory, 3, 1) - 1;
+   gint start = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
+   gint end = INT_OPTION(ClipMachineMemory, 3, 1) - 1;
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -235,8 +218,7 @@ int
 clip_GTK_TREESELECTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      item = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
+   gint item = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -252,8 +234,7 @@ int
 clip_GTK_TREEUNSELECTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      item = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
+   gint item = INT_OPTION(ClipMachineMemory, 2, 1) - 1;
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -270,7 +251,6 @@ int
 clip_GTK_TREESELECTCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -288,7 +268,6 @@ int
 clip_GTK_TREEUNSELECTCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -307,7 +286,6 @@ int
 clip_GTK_TREECHILDPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -332,7 +310,6 @@ int
 clip_GTK_TREESETSELECTIONMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSelectionMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -354,7 +331,6 @@ int
 clip_GTK_TREESETVIEWMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    GtkTreeViewMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -371,8 +347,7 @@ int
 clip_GTK_TREESETVIEWLINES(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  flag = _clip_parl(ClipMachineMemory, 2);
+   gboolean flag = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(ctree, GTK_IS_TREE);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -388,7 +363,6 @@ int
 clip_GTK_TREEREMOVEITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctree, GTK_IS_TREE);
@@ -417,9 +391,7 @@ int
 clip_GTK_TREEROOTTREE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *croot;
-
    CHECKCWID(ctree, GTK_IS_TREE);
    croot = _get_cwidget(ClipMachineMemory, GTK_WIDGET(GTK_TREE_ROOT_TREE(ctree->widget)));
    if (croot)
@@ -433,27 +405,22 @@ int
 clip_GTK_TREEGETSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctree = _fetch_cw_arg(ClipMachineMemory);
-
-   GList    *list;
-
+   GList *list;
    CHECKCWID(ctree, GTK_IS_TREE);
    list = GTK_TREE_SELECTION(ctree->widget);
    if (list)
-    {
-       C_widget *citem;
-
-       long      l = g_list_length(list);
-
-       ClipVar  *a = RETPTR(ClipMachineMemory);
-
-       _clip_array(ClipMachineMemory, a, 1, &l);
-       for (l = 0; list; list = g_list_next(list), l++)
-	{
-	   citem = _get_cwidget(ClipMachineMemory, list->data);
-	   if (citem)
-	      _clip_aset(ClipMachineMemory, a, &citem->obj, 1, &l);
-	}
-    }
+      {
+	 C_widget *citem;
+	 long l = g_list_length(list);
+	 ClipVar *a = RETPTR(ClipMachineMemory);
+	 _clip_array(ClipMachineMemory, a, 1, &l);
+	 for (l = 0; list; list = g_list_next(list), l++)
+	    {
+	       citem = _get_cwidget(ClipMachineMemory, list->data);
+	       if (citem)
+		  _clip_aset(ClipMachineMemory, a, &citem->obj, 1, &l);
+	    }
+      }
    return 0;
  err:
    return 1;

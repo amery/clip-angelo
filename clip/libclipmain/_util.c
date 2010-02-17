@@ -376,8 +376,8 @@ clip_COMPILE(ClipMachine * ClipMachineMemory)
    vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = PCODE_type_of_ClipVarType;
    vp->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
    vp->ClipType_t_of_ClipVar.count_of_ClipType = 1;
-   vp->ClipCodeVar_c_of_ClipVar.u.ClipBlock_block_of_ClipCodeVar = NEW(ClipBlock);
-   *vp->ClipCodeVar_c_of_ClipVar.u.ClipBlock_block_of_ClipCodeVar = block;
+	vp->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipBlock_block_of_ClipCodeVar = NEW(ClipBlock);
+	*vp->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipBlock_block_of_ClipCodeVar = block;
 
    CLEAR_CLIPVAR(rp);
    rp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = PCODE_type_of_ClipVarType;
@@ -405,7 +405,7 @@ BLOCK2STR(ClipMachine * ClipMachineMemory)
        return 1;
     }
 
-   bp = vp->ClipCodeVar_c_of_ClipVar.u.ClipBlock_block_of_ClipCodeVar;
+bp = vp->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipBlock_block_of_ClipCodeVar;
    rp = RETPTR(ClipMachineMemory);
    rp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
    rp->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
@@ -1903,11 +1903,11 @@ put_var(ClipMachine * ClipMachineMemory, ClipVar * vp, OutBuf * bp, Coll * refs)
 
 	      if (vp->ClipType_t_of_ClipVar.dec_of_ClipType)
 		 buf =
-		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10,
+	    rational_toString(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10,
 				    vp->ClipType_t_of_ClipVar.dec_of_ClipType, 0);
 	      else
 		 buf =
-		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10,
+	    rational_toString(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10,
 				    ClipMachineMemory->decimals, 0);
 	      put_str(bp, buf, strlen(buf));
 	      free(buf);
@@ -2157,7 +2157,7 @@ get_var(ClipMachine * ClipMachineMemory, ClipVar * vp, char **str, long *len)
 	  vp->ClipType_t_of_ClipVar.dec_of_ClipType = dec;
 	  vp->ClipType_t_of_ClipVar.memo_of_ClipType = memo;
 	  if (memo)
-	     vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar = rational_fromString(s);
+		  vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar = rational_fromString(s);
 	  else
 	   {
 	      int       dec;
@@ -2234,7 +2234,7 @@ get_var(ClipMachine * ClipMachineMemory, ClipVar * vp, char **str, long *len)
 	 /*sp->ClipType_t_of_ClipVar.count_of_ClipType = 1; */
 	  vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CCODE_type_of_ClipVarType;
 	  vp->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
-	  vp->ClipCodeVar_c_of_ClipVar.u.ClipFunction_function_of_ClipCodeVar = null_func;
+	  vp->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipFunction_function_of_ClipCodeVar = null_func;
        }
        break;
     case ARRAY_type_of_ClipVarType:

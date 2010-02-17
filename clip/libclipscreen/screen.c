@@ -437,31 +437,19 @@
 /* #define DBG */
 #ifdef _WIN32
 static int w32_console = 0;
-
 static CHAR_INFO *w32_screen = 0;
-
 static COORD w32_size, w32_beg, w32_end;
-
-HANDLE    w32_hStdIn = INVALID_HANDLE_VALUE, w32_hStdOut = INVALID_HANDLE_VALUE;	/* standard input, output handles */
-
+HANDLE w32_hStdIn = INVALID_HANDLE_VALUE, w32_hStdOut = INVALID_HANDLE_VALUE;	/* standard input, output handles */
 static unsigned char *w32_scan_buf = 0;
-
 static int w32_scan_buf_len = 0;
-
 static int w32_scan_buf_size = 0;
-
 static int w32_scrsize = 0;
 
 static void w32_flush(void);
-
 static void w32_clear(void);
-
 static void w32_set_cursor_shape(int cursor);
-
 static void w32_set_cursor(int r, int c);
-
 static void w32_beep(void);
-
 static int w32_readch(void);
 #endif
 
@@ -486,10 +474,8 @@ static Gpm_Connect conn;
 
 #define RAWMODE_ESC 117
 
-int       esc_delay_Screen = 300;
-
+int esc_delay_Screen = 300;
 static int has_esc = 0;
-
 static int xterm_mouse = 0, xterm_pos = 0, xterm_buttons = 0, xterm_x = 0, xterm_y = 0;
 
 #if 0
@@ -523,14 +509,11 @@ static char *FNAMES[] = {
 #define FNUM  6
 
 /* cursor goto handling with padding/delay checking */
-void      scr_tgoto(char *CM, int destcol, int destline, char *buf, int buflen);
-
-int       scr_tputs(const char *str, int affcnt, int (*put_c) (int, void *), void *par);
+void scr_tgoto(char *CM, int destcol, int destline, char *buf, int buflen);
+int scr_tputs(const char *str, int affcnt, int (*put_c) (int, void *), void *par);
 
 static char *scan_start = 0;
-
 static char *scan_stop = 0;
-
 typedef enum
 {
    ScanNone = 0,
@@ -538,20 +521,16 @@ typedef enum
    ScanTerminal,
 }
 ScanMode;
-
-ScanMode  scr_scan_mode = ScanNone;
-
+ScanMode scr_scan_mode = ScanNone;
 static void start_scan_mode(int fd);
-
 static void stop_scan_mode(int fd);
-
 static unsigned long get_wait_key(ScreenBase * base, long milliseconds, int raw);
 
 typedef struct
 {
-   char     *str;
+   char *str;
    unsigned long val;
-   int       strlen;
+   int strlen;
 }
 Keytab;
 
@@ -715,79 +694,79 @@ typedef struct
 {
    ScreenBase *base;
 
-   int       termcap_Visuals;
-   int       fd;
-   Screen   *realScreen;
+   int termcap_Visuals;
+   int fd;
+   Screen *realScreen;
 
-   char     *termcap_TI, *termcap_TE;
-   char     *termcap_KS, *termcap_KE;
-   char     *termcap_CM;
+   char *termcap_TI, *termcap_TE;
+   char *termcap_KS, *termcap_KE;
+   char *termcap_CM;
 
-   char     *termcap_GS, *termcap_GE;
-   char     *termcap_G1, *termcap_G2;
-   char     *termcap_AS, *termcap_AE;
+   char *termcap_GS, *termcap_GE;
+   char *termcap_G1, *termcap_G2;
+   char *termcap_AS, *termcap_AE;
 
-   char     *termcap_AC;
-   char     *termcap_AL, *termcap_DL;
-   char     *termcap_SF, *termcap_SR, *termcap_CS;
-   char     *termcap_CL, *termcap_CE;
-   char     *termcap_TS, *termcap_FS;
-   int       termcap_NF, termcap_NB;
+   char *termcap_AC;
+   char *termcap_AL, *termcap_DL;
+   char *termcap_SF, *termcap_SR, *termcap_CS;
+   char *termcap_CL, *termcap_CE;
+   char *termcap_TS, *termcap_FS;
+   int termcap_NF, termcap_NB;
 
-   char     *termcap_CF, *termcap_CB;
-   char     *termcap_MF, *termcap_MB;
-   char     *termcap_MD, *termcap_mb, *termcap_MH, *termcap_MR, *termcap_ME;
-   char     *termcap_SE, *termcap_SO;
+   char *termcap_CF, *termcap_CB;
+   char *termcap_MF, *termcap_MB;
+   char *termcap_MD, *termcap_mb, *termcap_MH, *termcap_MR, *termcap_ME;
+   char *termcap_SE, *termcap_SO;
 
-   char     *termcap_AF, *termcap_AB;
-   char     *termcap_SETF, *termcap_SETB;
+   char *termcap_AF, *termcap_AB;
+   char *termcap_SETF, *termcap_SETB;
 
-   char     *termcap_PO, *termcap_PF, *termcap_POO;
-   char     *termcap_Km, *termcap_Mi;
-   char     *termcap_Ct;
+   char *termcap_PO, *termcap_PF, *termcap_POO;
+   char *termcap_Km, *termcap_Mi;
+   char *termcap_Ct;
 
-   char      termcap_C2;
-   char      termcap_MS;
-   int       termcap_HS;
+   char termcap_C2;
+   char termcap_MS;
+   int termcap_HS;
 
-   char      termcap_xo;
-   int       termcap_XN, termcap_XF;
+   char termcap_xo;
+   int termcap_XN, termcap_XF;
 
-   char     *termcap_BL;
+   char *termcap_BL;
 
-   char     *termcap_IS;
-   char     *termcap_EA;
+   char *termcap_IS;
+   char *termcap_EA;
 
-   char     *termcap_VE;	/* normal visible */
-   char     *termcap_VS;	/* very visible */
-   char     *termcap_VI;	/* invisible */
+   char *termcap_VE;		/* normal visible */
+   char *termcap_VS;		/* very visible */
+   char *termcap_VI;		/* invisible */
 
-   int       termcap_lines;
-   int       termcap_columns;
+   int termcap_lines;
+   int termcap_columns;
 
    unsigned long next_key;
 
    unsigned char outbuf[1024];
    unsigned char *outptr;
 
-   int       lineDrawMode;
-   int       boldMode;
-   int       blinkMode;
-   int       useBlinkAttr, useBoldAttr;
-   int       oldcolor;
-   int       oldcursor;
-   int       matchpos, matchno, lomatch, himatch;
-   int       national_mode, has_meta1, has_meta2;
-   int       prev_national_mode, prev_has_meta1, prev_has_meta2;
-   int       key_count;
+   int lineDrawMode;
+   int boldMode;
+   int blinkMode;
+   int useBlinkAttr, useBoldAttr;
+   int oldcolor;
+   int oldcursor;
+   int matchpos, matchno, lomatch, himatch;
+   int national_mode, has_meta1, has_meta2;
+   int prev_national_mode, prev_has_meta1, prev_has_meta2;
+   int key_count;
 
-   short     ctab[16], btab[16];
-   int       scrool, rscrool;
+   short ctab[16], btab[16];
+   int scrool, rscrool;
 
-   char      meta_key[16];
-   char      meta1_key[16];
-   char      meta2_key[16];
-   char      national_key[16];
+   char meta_key[16];
+   char meta1_key[16];
+   char meta2_key[16];
+   char national_key[16];
 
    unsigned char nationalTable[128];
    unsigned char inputTable[256];
@@ -798,12 +777,12 @@ typedef struct
    struct termios start_mode;
    struct termios work_mode;
 
-   int       pg_mode;
-   int       utf8_mode;
+   int pg_mode;
+   int utf8_mode;
 
-   Keytab    keytab[KEYTAB_SIZE];
+   Keytab keytab[KEYTAB_SIZE];
 
-   Terminfo  terminfo;
+   Terminfo terminfo;
 }
 ScreenData;
 
@@ -814,35 +793,23 @@ static struct termios start_mode;
 static const char ascii_pg_chars[PG_SIZE] = " fv<>^#o:\\+>*-#+<++!#~--_#++++++|-++++++++|";
 
 static void init_ScreenData(ScreenData * dp);
-
 static void destroy_ScreenData(ScreenData * dp);
 
 /* termcap statics { */
 
 static void initKey(ScreenData * dp);
-
 static void termcap_clear_screen(ScreenData * dp);
-
 static void termcap_scroll(ScreenBase * base, int top, int bottom, int n);
-
 static void termcap_put_char(ScreenData * dp, int ch, int utf8term);
-
 static void termcap_put_graph_char(ScreenData * dp, int ch);
 
 static int termcap_put_raw_char(int c, void *p);
-
 static void termcap_put_raw_str(ScreenData * dp, const char *str);
-
 static void termcap_flush(ScreenData * dp);
-
 static void termcap_set_color(ScreenData * dp, int color);
-
 static void termcap_set_fgbg(ScreenData * dp, int fg, int bg);
-
 static void termcap_set_cursor(ScreenData * dp, int y, int x);
-
 static void termcap_beep(ScreenData * dp);
-
 static void termcap_set_cursor_shape(ScreenData * dp, int cursor);
 
 #define VisualBold	1
@@ -860,11 +827,11 @@ skipDelay(char *cp)
    while (*cp >= '0' && *cp <= '9')
       ++cp;
    if (*cp == '.')
-    {
-       ++cp;
-       while (*cp >= '0' && *cp <= '9')
-	  ++cp;
-    }
+      {
+	 ++cp;
+	 while (*cp >= '0' && *cp <= '9')
+	    ++cp;
+      }
    if (*cp == '*')
       ++cp;
    return (cp);
@@ -892,30 +859,28 @@ static const int cga_to_ansi[16] = {	/* ansi colors: */
 static void
 setColorMap(ScreenData * dp, char *fg, char *bg)
 {
-   short     buf[16];
-
-   int       i, fglen = 0;
-
-   int       bglen = 0;
+   short buf[16];
+   int i, fglen = 0;
+   int bglen = 0;
 
    if (dp->termcap_NF > 16 || dp->termcap_NF < 0)
       dp->termcap_NF = 16;
    if (dp->termcap_NB > 16 || dp->termcap_NB < 0)
       dp->termcap_NB = 16;
    if (!dp->termcap_MF)
-    {
-       if (!strncasecmp(dp->base->terminalName, "pc3", 3))
-	  dp->termcap_MF = "0125436789ADCBEF";
-       else
-	  dp->termcap_MF = "0123456789ABCDEF";
-    }
+      {
+	 if (!strncasecmp(dp->base->terminalName, "pc3", 3))
+	    dp->termcap_MF = "0125436789ADCBEF";
+	 else
+	    dp->termcap_MF = "0123456789ABCDEF";
+      }
    if (!dp->termcap_MB)
-    {
-       if (!strncasecmp(dp->base->terminalName, "pc3", 3))
-	  dp->termcap_MB = "0125436789ADCBEF";
-       else
-	  dp->termcap_MB = "0123456789ABCDEF";
-    }
+      {
+	 if (!strncasecmp(dp->base->terminalName, "pc3", 3))
+	    dp->termcap_MB = "0125436789ADCBEF";
+	 else
+	    dp->termcap_MB = "0123456789ABCDEF";
+      }
    for (i = 0; i < 16; ++i)
       dp->ctab[i] = dp->btab[i] = -1;
 
@@ -925,50 +890,50 @@ setColorMap(ScreenData * dp, char *fg, char *bg)
       bglen = strlen(bg);
 
    for (i = 0; i < 16 && i < dp->termcap_NF; ++i)
-    {
-       if (!dp->termcap_MF[i])
-	  break;
-       else if (dp->termcap_MF[i] >= '0' && dp->termcap_MF[i] <= '9')
-	  dp->ctab[dp->termcap_MF[i] - '0'] = i;
-       else if (dp->termcap_MF[i] >= 'A' && dp->termcap_MF[i] <= 'F')
-	  dp->ctab[dp->termcap_MF[i] - 'A' + 10] = i;
-    }
+      {
+	 if (!dp->termcap_MF[i])
+	    break;
+	 else if (dp->termcap_MF[i] >= '0' && dp->termcap_MF[i] <= '9')
+	    dp->ctab[dp->termcap_MF[i] - '0'] = i;
+	 else if (dp->termcap_MF[i] >= 'A' && dp->termcap_MF[i] <= 'F')
+	    dp->ctab[dp->termcap_MF[i] - 'A' + 10] = i;
+      }
    memcpy(buf, dp->ctab, sizeof(buf));
    for (i = 0; i < 16 && i < dp->termcap_NF && i < fglen; ++i)
-    {
-       if (fg[i] >= '0' && fg[i] <= '9')
-	  dp->ctab[i] = buf[fg[i] - '0'];
-       else if (fg[i] >= 'A' && fg[i] <= 'F')
-	  dp->ctab[i] = buf[fg[i] - 'A' + 10];
-    }
+      {
+	 if (fg[i] >= '0' && fg[i] <= '9')
+	    dp->ctab[i] = buf[fg[i] - '0'];
+	 else if (fg[i] >= 'A' && fg[i] <= 'F')
+	    dp->ctab[i] = buf[fg[i] - 'A' + 10];
+      }
    for (i = 0; i < 16 && i < dp->termcap_NB; ++i)
-    {
-       if (!dp->termcap_MB[i])
-	  break;
-       else if (dp->termcap_MB[i] >= '0' && dp->termcap_MB[i] <= '9')
-	  dp->btab[dp->termcap_MB[i] - '0'] = i;
-       else if (dp->termcap_MF[i] >= 'A' && dp->termcap_MF[i] <= 'F')
-	  dp->btab[dp->termcap_MB[i] - 'A' + 10] = i;
-    }
+      {
+	 if (!dp->termcap_MB[i])
+	    break;
+	 else if (dp->termcap_MB[i] >= '0' && dp->termcap_MB[i] <= '9')
+	    dp->btab[dp->termcap_MB[i] - '0'] = i;
+	 else if (dp->termcap_MF[i] >= 'A' && dp->termcap_MF[i] <= 'F')
+	    dp->btab[dp->termcap_MB[i] - 'A' + 10] = i;
+      }
    memcpy(buf, dp->btab, sizeof(buf));
    for (i = 0; i < 16 && i < dp->termcap_NB && i < bglen; ++i)
-    {
-       if (bg[i] >= '0' && bg[i] <= '9')
-	  dp->btab[i] = buf[bg[i] - '0'];
-       else if (bg[i] >= 'A' && bg[i] <= 'F')
-	  dp->btab[i] = buf[bg[i] - 'A' + 10];
-    }
+      {
+	 if (bg[i] >= '0' && bg[i] <= '9')
+	    dp->btab[i] = buf[bg[i] - '0'];
+	 else if (bg[i] >= 'A' && bg[i] <= 'F')
+	    dp->btab[i] = buf[bg[i] - 'A' + 10];
+      }
    for (i = 1; i < 8; ++i)
-    {
-       if (dp->ctab[i] >= 0 && dp->ctab[i + 8] < 0)
-	  dp->ctab[i + 8] = dp->ctab[i];
-       if (dp->ctab[i + 8] >= 0 && dp->ctab[i] < 0)
-	  dp->ctab[i] = dp->ctab[i + 8];
-       if (dp->btab[i] >= 0 && dp->btab[i + 8] < 0)
-	  dp->btab[i + 8] = dp->btab[i];
-       if (dp->btab[i + 8] >= 0 && dp->btab[i] < 0)
-	  dp->btab[i] = dp->btab[i + 8];
-    }
+      {
+	 if (dp->ctab[i] >= 0 && dp->ctab[i + 8] < 0)
+	    dp->ctab[i + 8] = dp->ctab[i];
+	 if (dp->ctab[i + 8] >= 0 && dp->ctab[i] < 0)
+	    dp->ctab[i] = dp->ctab[i + 8];
+	 if (dp->btab[i] >= 0 && dp->btab[i + 8] < 0)
+	    dp->btab[i + 8] = dp->btab[i];
+	 if (dp->btab[i + 8] >= 0 && dp->btab[i] < 0)
+	    dp->btab[i] = dp->btab[i + 8];
+      }
 }
 
 int
@@ -994,7 +959,6 @@ int
 restart_tty(ScreenBase * base)
 {
    struct termios ts;
-
    ScreenData *dp;
 
 #ifdef _WIN32
@@ -1017,14 +981,14 @@ restart_tty(ScreenBase * base)
    ts.c_cflag &= ~(CSIZE | PARENB);
    ts.c_cflag |= CS8;
    if (scr_scan_mode)
-    {
-       int       i;
+      {
+	 int i;
 
-       for (i = 0; i < NCCS; i++)
-	  ts.c_cc[i] = 0;
-       ts.c_lflag &= ~ISIG;
-       ts.c_cc[VINTR] = 0;
-    }
+	 for (i = 0; i < NCCS; i++)
+	    ts.c_cc[i] = 0;
+	 ts.c_lflag &= ~ISIG;
+	 ts.c_cc[VINTR] = 0;
+      }
    else
       ts.c_cc[VINTR] = 'C' - '@';
 
@@ -1032,15 +996,15 @@ restart_tty(ScreenBase * base)
    ts.c_cc[VMIN] = 1;
 
    if (!scr_scan_mode && dp->termcap_xo)
-    {
-       ts.c_cc[VSTOP] = dp->termcap_XF;
-       ts.c_cc[VSTART] = dp->termcap_XN;
-       ts.c_iflag |= IXON;
-    }
+      {
+	 ts.c_cc[VSTOP] = dp->termcap_XF;
+	 ts.c_cc[VSTART] = dp->termcap_XN;
+	 ts.c_iflag |= IXON;
+      }
    else
-    {
-       ts.c_iflag &= ~IXON;
-    }
+      {
+	 ts.c_iflag &= ~IXON;
+      }
 
 #ifdef VSUSP
    ts.c_cc[VSUSP] = 0;
@@ -1078,19 +1042,19 @@ exit_tty()
 
 #ifndef _WIN32
    if (xterm_mouse)		/* xterm */
-    {
-       const char msg[] = "\033[?1000l\033[?1001r";
+      {
+	 const char msg[] = "\033[?1000l\033[?1001r";
 
-       write(1, msg, sizeof(msg) - 1);
-    }
+	 write(1, msg, sizeof(msg) - 1);
+      }
 
   /* enable cursor */
 
    if (screen_data)
-    {
-       termcap_put_raw_str(screen_data, screen_data->termcap_VE);
-       termcap_flush(screen_data);
-    }
+      {
+	 termcap_put_raw_str(screen_data, screen_data->termcap_VE);
+	 termcap_flush(screen_data);
+      }
 
 #endif
 
@@ -1105,20 +1069,19 @@ exit_tty()
 static void
 squeesh_entry(char *entry)
 {
-   int       i, l = strlen(entry);
-
-   char     *s = entry;
+   int i, l = strlen(entry);
+   char *s = entry;
 
    for (i = 0; i < l - 2;)
-    {
-       if (s[i] == '%' && s[i + 1] == 'p' && isdigit(s[i + 2]))
-	{
-	   memmove(s + i, s + i + 3, l - i - 2);
-	   l -= 3;
-	}
-       else
-	  i++;
-    }
+      {
+	 if (s[i] == '%' && s[i + 1] == 'p' && isdigit(s[i + 2]))
+	    {
+	       memmove(s + i, s + i + 3, l - i - 2);
+	       l -= 3;
+	    }
+	 else
+	    i++;
+      }
 }
 
 static void
@@ -1127,15 +1090,15 @@ squeesh_if_need(char *entry)
    static int need_squeesh = 0, first = 1;
 
    if (first)
-    {
-      /* check for old-style tgoto - it don't und. %p1 */
-       char      buf[32];
+      {
+	/* check for old-style tgoto - it don't und. %p1 */
+	 char buf[32];
 
-       scr_tgoto("%p1%d", 2, 10, buf, sizeof(buf));
-       if (strcmp(buf, "10"))
-	  need_squeesh = 1;
-       first = 0;
-    }
+	 scr_tgoto("%p1%d", 2, 10, buf, sizeof(buf));
+	 if (strcmp(buf, "10"))
+	    need_squeesh = 1;
+	 first = 0;
+      }
    if (need_squeesh)
       squeesh_entry(entry);
 }
@@ -1143,88 +1106,85 @@ squeesh_if_need(char *entry)
 static char *
 get_env(char **envp, char *name)
 {
-   char     *s;
-
-   int       l;
-
-   int       ln = strlen(name);
+   char *s;
+   int l;
+   int ln = strlen(name);
 
    for (; (s = *envp); ++envp)
-    {
-       l = strcspn(s, "=");
-       if (ln == l && !memcmp(name, s, l))
-	{
-	   s += l;
-	   if (*s)
-	      return s + 1;
-	   else
-	      return s;
-	}
-    }
+      {
+	 l = strcspn(s, "=");
+	 if (ln == l && !memcmp(name, s, l))
+	    {
+	       s += l;
+	       if (*s)
+		  return s + 1;
+	       else
+		  return s;
+	    }
+      }
    return 0;
 }
 
 static char *
 read_oct(char *p)
 {
-   char     *r, *s;
-
-   char      c;
+   char *r, *s;
+   char c;
 
    r = s = strdup(p);
    while ((c = *p))
-    {
-       if (c == '\\')
-	{
-	   p++;
-	   c = *p;
-	   if (!c)
-	      break;
-	   switch (c)
+      {
+	 if (c == '\\')
 	    {
-	    case '0':
-	    case '1':
-	    case '2':
-	    case '3':
-	    case '4':
-	    case '5':
-	    case '6':
-	    case '7':
-	       if (p[1] && p[2] && isdigit(p[1]) && isdigit(p[2]))
-		{
-		   c = strtol(p, 0, 8);
-		   p += 2;
-		}
-	       break;
-	    case 't':
-	       c = '\t';
-	       break;
-	    case 'n':
-	       c = '\n';
-	       break;
-	    case 'r':
-	       c = '\r';
-	       break;
-	    case 'b':
-	       c = '\b';
-	       break;
-	    case 'v':
-	       c = '\v';
-	       break;
-	    case 'e':
-	       c = '\033';
-	       break;
-	    case 'a':
-	       c = '\007';
-	       break;
+	       p++;
+	       c = *p;
+	       if (!c)
+		  break;
+	       switch (c)
+		  {
+		  case '0':
+		  case '1':
+		  case '2':
+		  case '3':
+		  case '4':
+		  case '5':
+		  case '6':
+		  case '7':
+		     if (p[1] && p[2] && isdigit(p[1]) && isdigit(p[2]))
+			{
+			   c = strtol(p, 0, 8);
+			   p += 2;
+			}
+		     break;
+		  case 't':
+		     c = '\t';
+		     break;
+		  case 'n':
+		     c = '\n';
+		     break;
+		  case 'r':
+		     c = '\r';
+		     break;
+		  case 'b':
+		     c = '\b';
+		     break;
+		  case 'v':
+		     c = '\v';
+		     break;
+		  case 'e':
+		     c = '\033';
+		     break;
+		  case 'a':
+		     c = '\007';
+		     break;
+		  }
 	    }
-	}
 
-       *s = c;
-       s++;
+	 *s = c;
+	 s++;
 
-       p++;
-    }
+	 p++;
+      }
    *s = 0;
    return r;
 }
@@ -1233,27 +1193,18 @@ int
 init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChars * pg_table, char *errbuf, int errbuflen)
 {
    ScreenData *dp;
-
-   char     *p;
-
+   char *p;
 #ifndef OS_MINGW
    struct winsize ws;
 #endif
-   int       i, tfd;
-
-   int       translateGraphMode = 0;
-
+   int i, tfd;
+   int translateGraphMode = 0;
    static int first = 1;
-
-   char     *tcap;
-
-   int       fnum;
-
-   char    **fnames, *fbuf;
-
-   int       col = 0, row = 0;
-
-   int       ret = 0;
+   char *tcap;
+   int fnum;
+   char **fnames, *fbuf;
+   int col = 0, row = 0;
+   int ret = 0;
 
    memset(base, 0, sizeof(ScreenBase));
 
@@ -1261,10 +1212,10 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
    base->clear_on_exit = Clear_on_exit;
 
    if (!isatty(fd))
-    {
-       snprintf(errbuf, errbuflen, "can run only on terminal");
-       return -1;
-    }
+      {
+	 snprintf(errbuf, errbuflen, "can run only on terminal");
+	 return -1;
+      }
 
    p = get_env(envp, "TERM");
    if (!p)
@@ -1283,37 +1234,37 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
 #ifndef OS_MINGW
    p = get_env(envp, "CLIP_W32CONSOLE");
    if (p && *p)
-    {
-       if (!strcasecmp(p, "yes"))
-	{
+      {
+	 if (!strcasecmp(p, "yes"))
+	    {
 #endif
-	   CONSOLE_SCREEN_BUFFER_INFO info;
+	       CONSOLE_SCREEN_BUFFER_INFO info;
 
-	   if (w32_hStdOut == INVALID_HANDLE_VALUE)
-	      w32_hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
-	   if (w32_hStdIn == INVALID_HANDLE_VALUE)
-	      w32_hStdIn = GetStdHandle(STD_INPUT_HANDLE);
-	   if (w32_hStdOut == INVALID_HANDLE_VALUE || w32_hStdIn == INVALID_HANDLE_VALUE)
-	    {
-	       snprintf(errbuf, errbuflen, "cannot take w32 console");
-	       return -1;
-	    }
-	  /* set up mouse and window input */
-	   if (!SetConsoleMode(w32_hStdIn, ENABLE_MOUSE_INPUT))
-	    {
-	       snprintf(errbuf, errbuflen, "cannot set w32 console mode");
-	       return -1;
-	    }
-	   GetConsoleScreenBufferInfo(w32_hStdOut, &info);
-	   base->Columns = info.dwSize.X;
-	   base->Lines = info.dwSize.Y;
-	   col = info.dwCursorPosition.X;
-	   row = info.dwCursorPosition.Y;
-	   w32_console = 1;
-	   scr_scan_mode = ScanIoctl;
+	       if (w32_hStdOut == INVALID_HANDLE_VALUE)
+		  w32_hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	       if (w32_hStdIn == INVALID_HANDLE_VALUE)
+		  w32_hStdIn = GetStdHandle(STD_INPUT_HANDLE);
+	       if (w32_hStdOut == INVALID_HANDLE_VALUE || w32_hStdIn == INVALID_HANDLE_VALUE)
+		  {
+		     snprintf(errbuf, errbuflen, "cannot take w32 console");
+		     return -1;
+		  }
+	      /* set up mouse and window input */
+	       if (!SetConsoleMode(w32_hStdIn, ENABLE_MOUSE_INPUT))
+		  {
+		     snprintf(errbuf, errbuflen, "cannot set w32 console mode");
+		     return -1;
+		  }
+	       GetConsoleScreenBufferInfo(w32_hStdOut, &info);
+	       base->Columns = info.dwSize.X;
+	       base->Lines = info.dwSize.Y;
+	       col = info.dwCursorPosition.X;
+	       row = info.dwCursorPosition.Y;
+	       w32_console = 1;
+	       scr_scan_mode = ScanIoctl;
 #ifndef OS_MINGW
-	}
-    }
+	    }
+      }
 #endif
 
 #endif
@@ -1334,78 +1285,75 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
       fnames[i + 2] = FNAMES[i];
 
    if (tcap && *tcap)
-    {
-       char     *slp = strchr(tcap, '/');
+      {
+	 char *slp = strchr(tcap, '/');
+	 char *clp = strchr(tcap, ':');
+	 char *vlp = strchr(tcap, '|');
 
-       char     *clp = strchr(tcap, ':');
-
-       char     *vlp = strchr(tcap, '|');
-
-       if (slp && (!clp || clp > slp) && (!vlp || (vlp > clp && vlp > slp)))
-	{
-	  /* tcap is a list of files */
-	   char     *s;
-
-	   int       l;
-
-	   fnum = 0;
-	   for (s = tcap; *s;)
+	 if (slp && (!clp || clp > slp) && (!vlp || (vlp > clp && vlp > slp)))
 	    {
-	       l = strcspn(s, ":");
-	       fnum++;
-	       s += l;
-	       if (!*s)
-		  break;
-	       s++;
-	       l = strspn(s, ":");
-	       s += l;
-	    }
+	      /* tcap is a list of files */
+	       char *s;
+	       int l;
 
-	   fnames = (char **) alloca(sizeof(char *) * fnum);
+	       fnum = 0;
+	       for (s = tcap; *s;)
+		  {
+		     l = strcspn(s, ":");
+		     fnum++;
+		     s += l;
+		     if (!*s)
+			break;
+		     s++;
+		     l = strspn(s, ":");
+		     s += l;
+		  }
 
-	   fbuf = (char *) alloca((l = (strlen(tcap) + 1)));
-	   memcpy(fbuf, tcap, l);
+	       fnames = (char **) alloca(sizeof(char *) * fnum);
 
-	   fnum = 0;
-	   for (s = fbuf; *s;)
-	    {
-	       fnames[fnum] = s;
-	       l = strcspn(s, ":");
-	       fnum++;
-	       s += l;
-	       if (!*s)
-		  break;
-	       *s++ = 0;
-	       l = strspn(s, ":");
-	       s += l;
-	    }
-	   if (read_term(fnum, fnames, 1, &dp->terminfo, errbuf, errbuflen))
-	    {
+	       fbuf = (char *) alloca((l = (strlen(tcap) + 1)));
+	       memcpy(fbuf, tcap, l);
+
+	       fnum = 0;
+	       for (s = fbuf; *s;)
+		  {
+		     fnames[fnum] = s;
+		     l = strcspn(s, ":");
+		     fnum++;
+		     s += l;
+		     if (!*s)
+			break;
+		     *s++ = 0;
+		     l = strspn(s, ":");
+		     s += l;
+		  }
+	       if (read_term(fnum, fnames, 1, &dp->terminfo, errbuf, errbuflen))
+		  {
 #ifdef _WIN32
-	       if (!w32_console)
+		     if (!w32_console)
 #endif
-		  return -1;
+			return -1;
+		  }
 	    }
-	}
-       else
-	{
-	  /* tcap is a termcap entry */
-	   if (read_tcapbuf(tcap, &dp->terminfo, errbuf, errbuflen))
+	 else
 	    {
+	      /* tcap is a termcap entry */
+	       if (read_tcapbuf(tcap, &dp->terminfo, errbuf, errbuflen))
+		  {
 #ifdef _WIN32
-	       if (!w32_console)
+		     if (!w32_console)
 #endif
-		  return -1;
+			return -1;
+		  }
 	    }
-	}
-    }
+      }
    else if (read_term(fnum, fnames, 1, &dp->terminfo, errbuf, errbuflen))
-    {
+      {
 #ifdef _WIN32
-       if (!w32_console)
+	 if (!w32_console)
 #endif
-	  return -1;
-    }
+	    return -1;
+      }
 
    p = get_env(envp, "LINS");
    if (p && *p)
@@ -1425,28 +1373,28 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
 
 #ifdef _WIN32
    if (!w32_console)
-    {
+      {
 #endif
-       if (!dp->termcap_CM)
-	{
-	   snprintf(errbuf, errbuflen, "too dumb terminal '%s' (no cursor move capabilitie)", base->terminalName);
-	   free(base->terminalName);
-	   destroy_ScreenData(dp);
-	   free(dp);
-	   return -1;
-	}
+	 if (!dp->termcap_CM)
+	    {
+	       snprintf(errbuf, errbuflen, "too dumb terminal '%s' (no cursor move capabilitie)", base->terminalName);
+	       free(base->terminalName);
+	       destroy_ScreenData(dp);
+	       free(dp);
+	       return -1;
+	    }
 #ifdef _WIN32
-    }
+      }
 #endif
 
 #ifndef OS_MINGW
    if (ioctl(fd, TIOCGWINSZ, &ws) != -1)
-    {
-       if (!base->Lines && ws.ws_row > 0)
-	  base->Lines = ws.ws_row;
-       if (!base->Columns && ws.ws_col > 0)
-	  base->Columns = ws.ws_col;
-    }
+      {
+	 if (!base->Lines && ws.ws_row > 0)
+	    base->Lines = ws.ws_row;
+	 if (!base->Columns && ws.ws_col > 0)
+	    base->Columns = ws.ws_col;
+      }
 #endif
 
    if (!base->Lines && dp->termcap_lines > 0)
@@ -1456,10 +1404,10 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
       base->Columns = dp->termcap_columns;
 
    if (!base->Lines && !base->Columns)
-    {
-       base->Lines = 25;
-       base->Columns = 80;
-    }
+      {
+	 base->Lines = 25;
+	 base->Columns = 80;
+      }
 
    if (!base->Lines)
       base->Lines = 25;
@@ -1467,10 +1415,10 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
       base->Columns = 80;
 
    if (base->Lines < 2 || base->Columns <= 10)
-    {
-       snprintf(errbuf, errbuflen, "too small screen: is: %dx%d need: 2x10", base->Lines, base->Columns);
-       return -1;
-    }
+      {
+	 snprintf(errbuf, errbuflen, "too small screen: is: %dx%d need: 2x10", base->Lines, base->Columns);
+	 return -1;
+      }
 
    if (pg_table)
       memcpy(dp->pgTable, pg_table, 256);
@@ -1483,35 +1431,34 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
       dp->termcap_SF = dp->termcap_SR = 0;
 
    if (dp->termcap_ME)
-    {
-       if (dp->termcap_SO)
-	  dp->termcap_SO = skipDelay(dp->termcap_SO);
-       else if (dp->termcap_MR)
-	  dp->termcap_SO = skipDelay(dp->termcap_MR);
-    }
+      {
+	 if (dp->termcap_SO)
+	    dp->termcap_SO = skipDelay(dp->termcap_SO);
+	 else if (dp->termcap_MR)
+	    dp->termcap_SO = skipDelay(dp->termcap_MR);
+      }
 
    dp->termcap_Visuals = 0;
-   if ((dp->termcap_NF > 0 && dp->termcap_NB > 0 && dp->termcap_CF
-	&& (dp->termcap_CB || dp->termcap_C2)) || (dp->termcap_AF && dp->termcap_AB) || (dp->termcap_SETF && dp->termcap_SETB))
-    {
-       if (!dp->termcap_NF)
-	  dp->termcap_NF = 16;
-       if (!dp->termcap_NB)
-	  dp->termcap_NB = 16;
-       dp->termcap_Visuals |= VisualColors;
-       if (dp->termcap_CF /* && strstr(dp->termcap_CF,"%p1") */ )
-	  squeesh_if_need(dp->termcap_CF);
-       if (dp->termcap_CB)
-	  squeesh_if_need(dp->termcap_CB);
-       if (dp->termcap_AB)
-	  squeesh_if_need(dp->termcap_AB);
-       if (dp->termcap_AF)
-	  squeesh_if_need(dp->termcap_AF);
-       if (dp->termcap_SETF)
-	  squeesh_if_need(dp->termcap_SETF);
-       if (dp->termcap_SETB)
-	  squeesh_if_need(dp->termcap_SETB);
-    }
+   if ((dp->termcap_NF > 0 && dp->termcap_NB > 0 && dp->termcap_CF && (dp->termcap_CB || dp->termcap_C2)) || (dp->termcap_AF && dp->termcap_AB) || (dp->termcap_SETF && dp->termcap_SETB))
+      {
+	 if (!dp->termcap_NF)
+	    dp->termcap_NF = 16;
+	 if (!dp->termcap_NB)
+	    dp->termcap_NB = 16;
+	 dp->termcap_Visuals |= VisualColors;
+	 if (dp->termcap_CF /* && strstr(dp->termcap_CF,"%p1") */ )
+	    squeesh_if_need(dp->termcap_CF);
+	 if (dp->termcap_CB)
+	    squeesh_if_need(dp->termcap_CB);
+	 if (dp->termcap_AB)
+	    squeesh_if_need(dp->termcap_AB);
+	 if (dp->termcap_AF)
+	    squeesh_if_need(dp->termcap_AF);
+	 if (dp->termcap_SETF)
+	    squeesh_if_need(dp->termcap_SETF);
+	 if (dp->termcap_SETB)
+	    squeesh_if_need(dp->termcap_SETB);
+      }
    if (dp->termcap_MH)
       dp->termcap_Visuals |= VisualDim;
    if (dp->termcap_MD)
@@ -1541,26 +1488,23 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
       dp->uniTable[i] = i /*+ 256 */ ;
 
    if (dp->termcap_Ct && (tfd = open(dp->termcap_Ct, O_RDONLY)) >= 0)
-    {
-       read(tfd, dp->outputTable + 128 + 64, 64);	/* koi8 alpha's out translation */
-       read(tfd, dp->nationalTable + 32, 96);	/* 96-RED CYRILLIC 128 - NORMAL CYRILLIC TRANSLATION */
-       read(tfd, dp->inputTable + 128, 128);
-       if (read(tfd, dp->outputTable + 128, 64) == 64)	/* koi8 pseudograph out translation */
-	  translateGraphMode = 1;
+      {
+	 read(tfd, dp->outputTable + 128 + 64, 64);	/* koi8 alpha's out translation */
+	 read(tfd, dp->nationalTable + 32, 96);	/* 96-RED CYRILLIC 128 - NORMAL CYRILLIC TRANSLATION */
+	 read(tfd, dp->inputTable + 128, 128);
+	 if (read(tfd, dp->outputTable + 128, 64) == 64)	/* koi8 pseudograph out translation */
+	    translateGraphMode = 1;
 
-       close(tfd);
-    }
+	 close(tfd);
+      }
 
    {
-      char     *p1, *p2, *pp;
-
+      char *p1, *p2, *pp;
       cons_CharsetEntry *cs1 = 0, *cs2 = 0;
-
-      int       len1 = 0, len2 = 0;
-
+      int len1 = 0, len2 = 0;
 #ifdef _WIN32
      /*char pibuf[12]; */
-      char      pobuf[12];
+      char pobuf[12];
 #endif
 
       p1 = get_env(envp, "CLIP_HOSTCS");
@@ -1568,51 +1512,50 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
 
 #ifdef _WIN32
       if (w32_console)
-       {
-	  int       cp_num;
+	 {
+	    int cp_num;
 
-	 /*
-	    cp_num = GetConsoleCP();
-	    snprintf(pibuf, sizeof(pibuf), "cp%d", cp_num);
-	    if (!load_charset_name(pibuf, &cs1, &len1))
-	    p1 = pibuf;
-	  */
+	   /*
+	      cp_num = GetConsoleCP();
+	      snprintf(pibuf, sizeof(pibuf), "cp%d", cp_num);
+	      if (!load_charset_name(pibuf, &cs1, &len1))
+	      p1 = pibuf;
+	    */
 
-	  cp_num = GetConsoleOutputCP();
-	  snprintf(pobuf, sizeof(pobuf), "cp%d", cp_num);
-	  if (!load_charset_name(pobuf, &cs2, &len2))
-	     p2 = pobuf;
-       }
+	    cp_num = GetConsoleOutputCP();
+	    snprintf(pobuf, sizeof(pobuf), "cp%d", cp_num);
+	    if (!load_charset_name(pobuf, &cs2, &len2))
+	       p2 = pobuf;
+	 }
 #endif
       if (!p1 || !p2 || !*p1 || !*p2)
 	 goto norm;
 
       if (!cs1 && load_charset_name(p1, &cs1, &len1))
-       {
-	  snprintf(errbuf, errbuflen, "cannot load charset file '%s': %s", p1, strerror(errno));
-	  ret = 1;
-	  goto norm;
-       }
+	 {
+	    snprintf(errbuf, errbuflen, "cannot load charset file '%s': %s", p1, strerror(errno));
+	    ret = 1;
+	    goto norm;
+	 }
 
       make_uniTable(cs1, len1, dp->uniTable);
       if (strcasecmp(p2, "UTF-8") == 0 ||
 	  ((pp = get_env(envp, "LANG")) && (strstr(pp, ".UTF-8") != 0)) ||
-	  ((pp = get_env(envp, "LC_ALL")) && (strstr(pp, ".UTF-8") != 0)) ||
-	  ((pp = get_env(envp, "LC_CTYPE")) && (strstr(pp, ".UTF-8") != 0)))
-       {
-	 /*
-	    if ((pp = get_env(envp, "TERM")) && (strncasecmp(pp, "xterm",5) == 0))
-	  */
-	  _clip_logg(3, "UTF terminal detected");
-	  dp->utf8_mode = 1;
-       }
+	  ((pp = get_env(envp, "LC_ALL")) && (strstr(pp, ".UTF-8") != 0)) || ((pp = get_env(envp, "LC_CTYPE")) && (strstr(pp, ".UTF-8") != 0)))
+	 {
+	   /*
+	      if ((pp = get_env(envp, "TERM")) && (strncasecmp(pp, "xterm",5) == 0))
+	    */
+	    _clip_logg(3, "UTF terminal detected");
+	    dp->utf8_mode = 1;
+	 }
 
       if (!cs2 && load_charset_name(p2, &cs2, &len2))
-       {
-	  snprintf(errbuf, errbuflen, "cannot load charset file '%s': %s", p2, strerror(errno));
-	  ret = 2;
-	  goto norm;
-       }
+	 {
+	    snprintf(errbuf, errbuflen, "cannot load charset file '%s': %s", p2, strerror(errno));
+	    ret = 2;
+	    goto norm;
+	 }
 
       _clip_logg(3, "set out translation: %s -> %s", p1, p2);
 
@@ -1627,201 +1570,197 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
    }
 
    if (dp->termcap_Visuals & VisualGraph)
-    {
-       char     *g1 = dp->termcap_G1;
+      {
+	 char *g1 = dp->termcap_G1;
+	 char *g2 = dp->termcap_G2;
+	 char *p;
 
-       char     *g2 = dp->termcap_G2;
+	 p = get_env(envp, "CLIP_LINECHARS");
+	 if (p && *p)
+	    g1 = read_oct(p);
+	 p = get_env(envp, "CLIP_DLINECHARS");
+	 if (p && *p)
+	    g2 = read_oct(p);
 
-       char     *p;
+	 if (g2 && !g1)
+	    g1 = g2;
+	 if (g1 && !g2)
+	    g2 = g1;
 
-       p = get_env(envp, "CLIP_LINECHARS");
-       if (p && *p)
-	  g1 = read_oct(p);
-       p = get_env(envp, "CLIP_DLINECHARS");
-       if (p && *p)
-	  g2 = read_oct(p);
-
-       if (g2 && !g1)
-	  g1 = g2;
-       if (g1 && !g2)
-	  g2 = g1;
-
-       if (translateGraphMode)
-	{
-	  /* use RFC KOI8 standart:
-	     :g1=\200\201\204\211\205\206\212\207\202\210\203:
-	     :g2=\240\241\253\273\256\261\276\265\245\270\250:
-	   */
-	   g1 = "\200\201\204\211\205\206\212\207\202\210\203";
-	   g2 = "\240\241\253\273\256\261\276\265\245\270\250";
-	}
-       if (g1)
-	{
-	   i = strlen(g1);
-	   if (i > 0)
-	      base->pg_chars[PG_HLINE] = g1[0];
-	   if (i > 1)
-	      base->pg_chars[PG_VLINE] = g1[1];
-	   if (i > 2)
-	      base->pg_chars[PG_LLCORNER] = g1[2];
-	   if (i > 3)
-	      base->pg_chars[PG_BTEE] = g1[3];
-	   if (i > 4)
-	      base->pg_chars[PG_LRCORNER] = g1[4];
-	   if (i > 5)
-	      base->pg_chars[PG_LTEE] = g1[5];
-	   if (i > 6)
-	      base->pg_chars[PG_PLUS] = g1[6];
-	   if (i > 7)
-	      base->pg_chars[PG_RTEE] = g1[7];
-	   if (i > 8)
-	      base->pg_chars[PG_ULCORNER] = g1[8];
-	   if (i > 9)
-	      base->pg_chars[PG_TTEE] = g1[9];
-	   if (i > 10)
-	      base->pg_chars[PG_URCORNER] = g1[10];
-
-	   if (g2)
+	 if (translateGraphMode)
 	    {
-	       i = strlen(g2);
+	      /* use RFC KOI8 standart:
+	         :g1=\200\201\204\211\205\206\212\207\202\210\203:
+	         :g2=\240\241\253\273\256\261\276\265\245\270\250:
+	       */
+	       g1 = "\200\201\204\211\205\206\212\207\202\210\203";
+	       g2 = "\240\241\253\273\256\261\276\265\245\270\250";
+	    }
+	 if (g1)
+	    {
+	       i = strlen(g1);
 	       if (i > 0)
-		  base->pg_chars[PG_HLINE2] = g2[0];
+		  base->pg_chars[PG_HLINE] = g1[0];
 	       if (i > 1)
-		  base->pg_chars[PG_VLINE2] = g2[1];
+		  base->pg_chars[PG_VLINE] = g1[1];
 	       if (i > 2)
-		  base->pg_chars[PG_LLCORNER2] = g2[2];
+		  base->pg_chars[PG_LLCORNER] = g1[2];
 	       if (i > 3)
-		  base->pg_chars[PG_BTEE2] = g2[3];
+		  base->pg_chars[PG_BTEE] = g1[3];
 	       if (i > 4)
-		  base->pg_chars[PG_LRCORNER2] = g2[4];
+		  base->pg_chars[PG_LRCORNER] = g1[4];
 	       if (i > 5)
-		  base->pg_chars[PG_LTEE2] = g2[5];
+		  base->pg_chars[PG_LTEE] = g1[5];
 	       if (i > 6)
-		  base->pg_chars[PG_PLUS2] = g2[6];
+		  base->pg_chars[PG_PLUS] = g1[6];
 	       if (i > 7)
-		  base->pg_chars[PG_RTEE2] = g2[7];
+		  base->pg_chars[PG_RTEE] = g1[7];
 	       if (i > 8)
-		  base->pg_chars[PG_ULCORNER2] = g2[8];
+		  base->pg_chars[PG_ULCORNER] = g1[8];
 	       if (i > 9)
-		  base->pg_chars[PG_TTEE2] = g2[9];
+		  base->pg_chars[PG_TTEE] = g1[9];
 	       if (i > 10)
-		  base->pg_chars[PG_URCORNER2] = g2[10];
+		  base->pg_chars[PG_URCORNER] = g1[10];
 
+	       if (g2)
+		  {
+		     i = strlen(g2);
+		     if (i > 0)
+			base->pg_chars[PG_HLINE2] = g2[0];
+		     if (i > 1)
+			base->pg_chars[PG_VLINE2] = g2[1];
+		     if (i > 2)
+			base->pg_chars[PG_LLCORNER2] = g2[2];
+		     if (i > 3)
+			base->pg_chars[PG_BTEE2] = g2[3];
+		     if (i > 4)
+			base->pg_chars[PG_LRCORNER2] = g2[4];
+		     if (i > 5)
+			base->pg_chars[PG_LTEE2] = g2[5];
+		     if (i > 6)
+			base->pg_chars[PG_PLUS2] = g2[6];
+		     if (i > 7)
+			base->pg_chars[PG_RTEE2] = g2[7];
+		     if (i > 8)
+			base->pg_chars[PG_ULCORNER2] = g2[8];
+		     if (i > 9)
+			base->pg_chars[PG_TTEE2] = g2[9];
+		     if (i > 10)
+			base->pg_chars[PG_URCORNER2] = g2[10];
+
+		  }
 	    }
-	}
-       else if (dp->termcap_AC)
-	{
-	   int       l, i;
-
-	   char     *s = dp->termcap_AC;
-
-	   unsigned char *pg_chars = base->pg_chars;
-
-	   l = strlen(s);
-	   if (l % 2)
-	      l--;
-
-	   for (i = 0; i < l; i += 2)
+	 else if (dp->termcap_AC)
 	    {
-	       switch (s[i])
-		{
-		case '}':
-		   pg_chars[PG_STERLING] = s[i + 1];
-		   break;
-		case '.':
-		   pg_chars[PG_DARROW] = s[i + 1];
-		   break;
-		case ',':
-		   pg_chars[PG_LARROW] = s[i + 1];
-		   break;
-		case '+':
-		   pg_chars[PG_RARROW] = s[i + 1];
-		   break;
-		case '-':
-		   pg_chars[PG_UARROW] = s[i + 1];
-		   break;
-		case 'h':
-		   pg_chars[PG_BOARD] = s[i + 1];
-		   break;
-		case '~':
-		   pg_chars[PG_BULLET] = s[i + 1];
-		   break;
-		case 'a':
-		   pg_chars[PG_CKBOARD] = s[i + 1];
-		   break;
-		case 'f':
-		   pg_chars[PG_DEGREE] = s[i + 1];
-		   break;
-		case 'z':
-		   pg_chars[PG_GEQUAL] = s[i + 1];
-		   break;
-		case '{':
-		   pg_chars[PG_PI] = s[i + 1];
-		   break;
-		case 'q':
-		   pg_chars[PG_HLINE2] = pg_chars[PG_HLINE] = s[i + 1];
-		   break;
-		case 'i':
-		   pg_chars[PG_LANTERN] = s[i + 1];
-		   break;
-		case 'n':
-		   pg_chars[PG_PLUS2] = pg_chars[PG_PLUS] = s[i + 1];
-		   break;
-		case 'y':
-		   pg_chars[PG_LEQUAL] = s[i + 1];
-		   break;
-		case 'm':
-		   pg_chars[PG_LLCORNER2] = pg_chars[PG_LLCORNER] = s[i + 1];
-		   break;
-		case 'j':
-		   pg_chars[PG_LRCORNER2] = pg_chars[PG_LRCORNER] = s[i + 1];
-		   break;
-		case '|':
-		   pg_chars[PG_NEQUAL] = s[i + 1];
-		   break;
-		case 'g':
-		   pg_chars[PG_PLMINUS] = s[i + 1];
-		   break;
-		case 'o':
-		   pg_chars[PG_S1] = s[i + 1];
-		   break;
-		case 'p':
-		   pg_chars[PG_S3] = s[i + 1];
-		   break;
-		case 'r':
-		   pg_chars[PG_S7] = s[i + 1];
-		   break;
-		case 's':
-		   pg_chars[PG_S9] = s[i + 1];
-		   break;
-		case '0':
-		   pg_chars[PG_BLOCK] = s[i + 1];
-		   break;
-		case 'w':
-		   pg_chars[PG_TTEE2] = pg_chars[PG_TTEE] = s[i + 1];
-		   break;
-		case 'u':
-		   pg_chars[PG_RTEE2] = pg_chars[PG_RTEE] = s[i + 1];
-		   break;
-		case 't':
-		   pg_chars[PG_LTEE2] = pg_chars[PG_LTEE] = s[i + 1];
-		   break;
-		case 'v':
-		   pg_chars[PG_BTEE2] = pg_chars[PG_BTEE] = s[i + 1];
-		   break;
-		case 'l':
-		   pg_chars[PG_ULCORNER2] = pg_chars[PG_ULCORNER] = s[i + 1];
-		   break;
-		case 'k':
-		   pg_chars[PG_URCORNER2] = pg_chars[PG_URCORNER] = s[i + 1];
-		   break;
-		case 'x':
-		   pg_chars[PG_VLINE2] = pg_chars[PG_VLINE] = s[i + 1];
-		   break;
-		}
+	       int l, i;
+	       char *s = dp->termcap_AC;
+	       unsigned char *pg_chars = base->pg_chars;
+
+	       l = strlen(s);
+	       if (l % 2)
+		  l--;
+
+	       for (i = 0; i < l; i += 2)
+		  {
+		     switch (s[i])
+			{
+			case '}':
+			   pg_chars[PG_STERLING] = s[i + 1];
+			   break;
+			case '.':
+			   pg_chars[PG_DARROW] = s[i + 1];
+			   break;
+			case ',':
+			   pg_chars[PG_LARROW] = s[i + 1];
+			   break;
+			case '+':
+			   pg_chars[PG_RARROW] = s[i + 1];
+			   break;
+			case '-':
+			   pg_chars[PG_UARROW] = s[i + 1];
+			   break;
+			case 'h':
+			   pg_chars[PG_BOARD] = s[i + 1];
+			   break;
+			case '~':
+			   pg_chars[PG_BULLET] = s[i + 1];
+			   break;
+			case 'a':
+			   pg_chars[PG_CKBOARD] = s[i + 1];
+			   break;
+			case 'f':
+			   pg_chars[PG_DEGREE] = s[i + 1];
+			   break;
+			case 'z':
+			   pg_chars[PG_GEQUAL] = s[i + 1];
+			   break;
+			case '{':
+			   pg_chars[PG_PI] = s[i + 1];
+			   break;
+			case 'q':
+			   pg_chars[PG_HLINE2] = pg_chars[PG_HLINE] = s[i + 1];
+			   break;
+			case 'i':
+			   pg_chars[PG_LANTERN] = s[i + 1];
+			   break;
+			case 'n':
+			   pg_chars[PG_PLUS2] = pg_chars[PG_PLUS] = s[i + 1];
+			   break;
+			case 'y':
+			   pg_chars[PG_LEQUAL] = s[i + 1];
+			   break;
+			case 'm':
+			   pg_chars[PG_LLCORNER2] = pg_chars[PG_LLCORNER] = s[i + 1];
+			   break;
+			case 'j':
+			   pg_chars[PG_LRCORNER2] = pg_chars[PG_LRCORNER] = s[i + 1];
+			   break;
+			case '|':
+			   pg_chars[PG_NEQUAL] = s[i + 1];
+			   break;
+			case 'g':
+			   pg_chars[PG_PLMINUS] = s[i + 1];
+			   break;
+			case 'o':
+			   pg_chars[PG_S1] = s[i + 1];
+			   break;
+			case 'p':
+			   pg_chars[PG_S3] = s[i + 1];
+			   break;
+			case 'r':
+			   pg_chars[PG_S7] = s[i + 1];
+			   break;
+			case 's':
+			   pg_chars[PG_S9] = s[i + 1];
+			   break;
+			case '0':
+			   pg_chars[PG_BLOCK] = s[i + 1];
+			   break;
+			case 'w':
+			   pg_chars[PG_TTEE2] = pg_chars[PG_TTEE] = s[i + 1];
+			   break;
+			case 'u':
+			   pg_chars[PG_RTEE2] = pg_chars[PG_RTEE] = s[i + 1];
+			   break;
+			case 't':
+			   pg_chars[PG_LTEE2] = pg_chars[PG_LTEE] = s[i + 1];
+			   break;
+			case 'v':
+			   pg_chars[PG_BTEE2] = pg_chars[PG_BTEE] = s[i + 1];
+			   break;
+			case 'l':
+			   pg_chars[PG_ULCORNER2] = pg_chars[PG_ULCORNER] = s[i + 1];
+			   break;
+			case 'k':
+			   pg_chars[PG_URCORNER2] = pg_chars[PG_URCORNER] = s[i + 1];
+			   break;
+			case 'x':
+			   pg_chars[PG_VLINE2] = pg_chars[PG_VLINE] = s[i + 1];
+			   break;
+			}
+		  }
 	    }
-	}
-    }
+      }
 
    p = get_env(envp, "CLIP_SCANSTART");
    if (p && *p)
@@ -1833,52 +1772,51 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
 
    p = get_env(envp, "CLIP_KEYMAP");
    if (p && *p)
-    {
-       char      path[256];
+      {
+	 char path[256];
+	 FILE *file;
 
-       FILE     *file;
+	 snprintf(path, sizeof(path), "%s/keymaps/%s", CLIPROOT, p);
 
-       snprintf(path, sizeof(path), "%s/keymaps/%s", CLIPROOT, p);
-
-       file = fopen(path, "rt");
-       if (!file)
-	{
-	   snprintf(errbuf, errbuflen, "cannot read keymap file '%s': %s", path, strerror(errno));
-	   return -1;
-	}
-       if (load_keymap(file, errbuf, errbuflen))
-	{
-	   fclose(file);
-	   return -1;
-	}
-       fclose(file);
-    }
+	 file = fopen(path, "rt");
+	 if (!file)
+	    {
+	       snprintf(errbuf, errbuflen, "cannot read keymap file '%s': %s", path, strerror(errno));
+	       return -1;
+	    }
+	 if (load_keymap(file, errbuf, errbuflen))
+	    {
+	       fclose(file);
+	       return -1;
+	    }
+	 fclose(file);
+      }
 
    p = get_env(envp, "CLIP_SCANMODE");
    if (p && *p)
-    {
-       if (!strcasecmp(p, "ioctl"))
-	  scr_scan_mode = ScanIoctl;
-       else if (!strcasecmp(p, "terminal"))
-	  scr_scan_mode = ScanTerminal;
-    }
+      {
+	 if (!strcasecmp(p, "ioctl"))
+	    scr_scan_mode = ScanIoctl;
+	 else if (!strcasecmp(p, "terminal"))
+	    scr_scan_mode = ScanTerminal;
+      }
 
 #ifdef _WIN32
    if (!w32_console)
 #endif
       tcgetattr(dp->fd, &dp->start_mode);
    if (first)
-    {
-       start_scan_mode(0);
+      {
+	 start_scan_mode(0);
 
 #ifdef _WIN32
-       if (!w32_console)
+	 if (!w32_console)
 #endif
-	  tcgetattr(0, &start_mode);
-       first = 0;
-       screen_data = dp;
-       atexit(exit_tty);
-    }
+	    tcgetattr(0, &start_mode);
+	 first = 0;
+	 screen_data = dp;
+	 atexit(exit_tty);
+      }
 
    restart_tty(base);
    base->realScreen = new_Screen(base);
@@ -1887,51 +1825,50 @@ init_tty(ScreenBase * base, int fd, char **envp, int Clear_on_exit, ScreenPgChar
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       CHAR_INFO p;
+      {
+	 CHAR_INFO p;
+	 int i;
 
-       int       i;
+	 w32_size.X = base->Columns;
+	 w32_size.Y = base->Lines;
+	 w32_scrsize = base->Lines * base->Columns;
+	 w32_screen = (CHAR_INFO *) malloc(w32_scrsize * sizeof(CHAR_INFO));
 
-       w32_size.X = base->Columns;
-       w32_size.Y = base->Lines;
-       w32_scrsize = base->Lines * base->Columns;
-       w32_screen = (CHAR_INFO *) malloc(w32_scrsize * sizeof(CHAR_INFO));
-
-       p.Char.AsciiChar = ' ';
-       p.Attributes = 7;
-       for (i = 0; i < w32_scrsize; i++)
-	  w32_screen[i] = p;
-       w32_beg.X = 0;
-       w32_beg.Y = 0;
-       w32_end.X = w32_size.X - 1;
-       w32_end.Y = w32_size.Y - 1;
-       if (Clear_on_exit)
-	{
-	   w32_flush();
-	}
-    }
+	 p.Char.AsciiChar = ' ';
+	 p.Attributes = 7;
+	 for (i = 0; i < w32_scrsize; i++)
+	    w32_screen[i] = p;
+	 w32_beg.X = 0;
+	 w32_beg.Y = 0;
+	 w32_end.X = w32_size.X - 1;
+	 w32_end.Y = w32_size.Y - 1;
+	 if (Clear_on_exit)
+	    {
+	       w32_flush();
+	    }
+      }
    else
 #endif
-    {
+      {
 #if 0
-       termcap_put_raw_str(dp, dp->termcap_IS);
+	 termcap_put_raw_str(dp, dp->termcap_IS);
 #endif
 
-       termcap_put_raw_str(dp, dp->termcap_TI);
-       termcap_put_raw_str(dp, dp->termcap_VE);
-       termcap_put_raw_str(dp, dp->termcap_KS);
-       termcap_put_raw_str(dp, dp->termcap_EA);
-       termcap_put_raw_str(dp, dp->termcap_ME);
+	 termcap_put_raw_str(dp, dp->termcap_TI);
+	 termcap_put_raw_str(dp, dp->termcap_VE);
+	 termcap_put_raw_str(dp, dp->termcap_KS);
+	 termcap_put_raw_str(dp, dp->termcap_EA);
+	 termcap_put_raw_str(dp, dp->termcap_ME);
 
-       termcap_flush(dp);
+	 termcap_flush(dp);
 
-       termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
-       if (Clear_on_exit)
-	{
-	   termcap_clear_screen(dp);
-	   termcap_flush(dp);
-	}
-    }
+	 termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
+	 if (Clear_on_exit)
+	    {
+	       termcap_clear_screen(dp);
+	       termcap_flush(dp);
+	    }
+      }
 
    init_mouse(base, envp);
 
@@ -1952,24 +1889,24 @@ destroy_tty(struct ScreenBase *base)
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       if (base->clear_on_exit)
-	  w32_clear();
-    }
+      {
+	 if (base->clear_on_exit)
+	    w32_clear();
+      }
    else
 #endif
-    {
-       termcap_put_raw_str(dp, dp->termcap_ME);
-       termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
-       if (base->clear_on_exit)
-	  termcap_clear_screen(dp);
-       termcap_set_cursor(dp, base->Lines - 1, 0);
-      /*termcap_put_raw_str(dp, dp->termcap_TE); */
-       termcap_put_raw_str(dp, dp->termcap_FS);
-       termcap_put_raw_str(dp, dp->termcap_VE);
-       termcap_put_raw_str(dp, dp->termcap_KE);
-       termcap_flush(dp);
-    }
+      {
+	 termcap_put_raw_str(dp, dp->termcap_ME);
+	 termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
+	 if (base->clear_on_exit)
+	    termcap_clear_screen(dp);
+	 termcap_set_cursor(dp, base->Lines - 1, 0);
+	/*termcap_put_raw_str(dp, dp->termcap_TE); */
+	 termcap_put_raw_str(dp, dp->termcap_FS);
+	 termcap_put_raw_str(dp, dp->termcap_VE);
+	 termcap_put_raw_str(dp, dp->termcap_KE);
+	 termcap_flush(dp);
+      }
 
    restore_tty(base);
 
@@ -2012,7 +1949,7 @@ destroy_ScreenData(ScreenData * dp)
 static char *
 get_str(ScreenData * dp, int no)
 {
-   char     *rp;
+   char *rp;
 
    if (dp->terminfo.strings[no] == -1)
       return 0;
@@ -2027,7 +1964,7 @@ get_str(ScreenData * dp, int no)
 static char *
 get_key(ScreenData * dp, int no)
 {
-   char     *rp;
+   char *rp;
 
    if (dp->terminfo.keys[no] == -1)
       return 0;
@@ -2042,11 +1979,9 @@ get_key(ScreenData * dp, int no)
 static void
 init_ScreenData(ScreenData * dp)
 {
-   char     *bools = dp->terminfo.bools;
-
-   int      *nums = dp->terminfo.nums;
-
-   char     *s;
+   char *bools = dp->terminfo.bools;
+   int *nums = dp->terminfo.nums;
+   char *s;
 
    dp->termcap_TI = get_str(dp, NO_smcup);
    dp->termcap_TE = get_str(dp, NO_rmcup);
@@ -2184,34 +2119,31 @@ init_ScreenData(ScreenData * dp)
 void
 clear_Screen(Screen * scr)
 {
-   int       i, j;
-
+   int i, j;
    ScreenData *dp = (ScreenData *) scr->base->data;
-
-   int       Lines = scr->base->Lines;
-
-   int       Columns = scr->base->Columns;
+   int Lines = scr->base->Lines;
+   int Columns = scr->base->Columns;
 
    for (i = 0; i < Lines; ++i)
       for (j = 0; j < Columns; ++j)
-       {
-	  scr->chars[i][j] = scr->base->realScreen->chars[i][j] = ' ';
-	  scr->colors[i][j] = scr->base->realScreen->colors[i][j] = COLOR_WHITE | COLOR_BACK_BLACK;
-	  scr->attrs[i][j] = scr->base->realScreen->attrs[i][j] = 0;
-       }
+	 {
+	    scr->chars[i][j] = scr->base->realScreen->chars[i][j] = ' ';
+	    scr->colors[i][j] = scr->base->realScreen->colors[i][j] = COLOR_WHITE | COLOR_BACK_BLACK;
+	    scr->attrs[i][j] = scr->base->realScreen->attrs[i][j] = 0;
+	 }
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       w32_clear();
-    }
+      {
+	 w32_clear();
+      }
    else
 #endif
-    {
-       termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
-       termcap_clear_screen(dp);
-       termcap_flush(dp);
-    }
+      {
+	 termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
+	 termcap_clear_screen(dp);
+	 termcap_flush(dp);
+      }
 }
 
 void
@@ -2228,39 +2160,37 @@ setCtrlBreak_Screen(Screen * scr, int val)
 #endif
 
    if (val)
-    {
+      {
 #if 0
-       dp->work_mode.c_oflag |= OPOST;
+	 dp->work_mode.c_oflag |= OPOST;
 #endif
-       dp->work_mode.c_lflag |= ISIG;
-       dp->work_mode.c_cc[VINTR] = 'C' - '@';
-    }
+	 dp->work_mode.c_lflag |= ISIG;
+	 dp->work_mode.c_cc[VINTR] = 'C' - '@';
+      }
    else
-    {
+      {
 #if 0
-       dp->work_mode.c_oflag &= ~OPOST;
+	 dp->work_mode.c_oflag &= ~OPOST;
 #endif
-       dp->work_mode.c_lflag &= ~ISIG;
-       dp->work_mode.c_cc[VINTR] = 0;
-    }
+	 dp->work_mode.c_lflag &= ~ISIG;
+	 dp->work_mode.c_cc[VINTR] = 0;
+      }
    tcsetattr(dp->fd, TCSADRAIN, &dp->work_mode);
 }
 
 static int
 compkeys(void *ap, void *bp)
 {
-   int       cmp;
-
-   Keytab   *a = (Keytab *) ap;
-
-   Keytab   *b = (Keytab *) bp;
+   int cmp;
+   Keytab *a = (Keytab *) ap;
+   Keytab *b = (Keytab *) bp;
 
    if (!a->str)
-    {
-       if (!b->str)
-	  return (0);
-       return (1);
-    }
+      {
+	 if (!b->str)
+	    return (0);
+	 return (1);
+      }
    if (!b->str)
       return (-1);
    cmp = strcmp(a->str, b->str);
@@ -2270,13 +2200,10 @@ compkeys(void *ap, void *bp)
 static void
 initKey(ScreenData * dp)
 {
-   Keytab   *kp;
-
-   Keytab   *map = dp->keytab;
-
-   int       i;
-
-   char     *s;
+   Keytab *kp;
+   Keytab *map = dp->keytab;
+   int i;
+   char *s;
 
    memcpy(map, init_keytab, sizeof(init_keytab));
    map[0].str = dp->meta1_key;
@@ -2325,22 +2252,22 @@ initKey(ScreenData * dp)
 
    dp->key_count = 0;
    for (kp = map, i = 0; kp->val && i < KEYTAB_SIZE; kp++, i++)
-    {
-       dp->key_count++;
-       if (kp->str)
-	{
-	   kp->strlen = strlen(kp->str);
-	   if (kp->str[0])
+      {
+	 dp->key_count++;
+	 if (kp->str)
 	    {
-	       if (kp->str[0] < dp->lomatch)
-		  dp->lomatch = kp->str[0];
-	       if (kp->str[0] > dp->himatch)
-		  dp->himatch = kp->str[0];
+	       kp->strlen = strlen(kp->str);
+	       if (kp->str[0])
+		  {
+		     if (kp->str[0] < dp->lomatch)
+			dp->lomatch = kp->str[0];
+		     if (kp->str[0] > dp->himatch)
+			dp->himatch = kp->str[0];
+		  }
 	    }
-	}
-       else
-	  kp->strlen = 0;
-    }
+	 else
+	    kp->strlen = 0;
+      }
 
 }
 
@@ -2350,35 +2277,33 @@ static void
 termcap_put_char(ScreenData * dp, int ch, int utf8term)
 {
    if (dp->lineDrawMode)
-    {
-       if (dp->termcap_GE)
-	  termcap_put_raw_str(dp, dp->termcap_GE);
-       else if (dp->termcap_AE)
-	  termcap_put_raw_str(dp, dp->termcap_AE);
-       dp->lineDrawMode = 0;
-    }
+      {
+	 if (dp->termcap_GE)
+	    termcap_put_raw_str(dp, dp->termcap_GE);
+	 else if (dp->termcap_AE)
+	    termcap_put_raw_str(dp, dp->termcap_AE);
+	 dp->lineDrawMode = 0;
+      }
 
    if ((ch & 0x80) || (ch < 32))
-    {
-       int       pg;
+      {
+	 int pg;
 
-       if (dp->utf8_mode /*&& utf8term */ )
-	{
-	   char      utfch[7];
-
-	   int       n;
-
-	   n = u32toutf8(utfch, dp->uniTable[ch]);
-	   utfch[n] = 0;
-	   termcap_put_raw_str(dp, utfch);
-	}
-       else if (scr_scan_mode && ch > 32)
-	  termcap_put_raw_char(dp->outputTable[ch], dp);
-       else if (dp->pg_mode && (pg = dp->pgTable[ch]))
-	  termcap_put_graph_char(dp, (pg >= PG_SIZE) ? pg : dp->base->pg_chars[pg]);
-       else
-	  termcap_put_raw_char(dp->outputTable[ch], dp);
-    }
+	 if (dp->utf8_mode /*&& utf8term */ )
+	    {
+	       char utfch[7];
+	       int n;
+	       n = u32toutf8(utfch, dp->uniTable[ch]);
+	       utfch[n] = 0;
+	       termcap_put_raw_str(dp, utfch);
+	    }
+	 else if (scr_scan_mode && ch > 32)
+	    termcap_put_raw_char(dp->outputTable[ch], dp);
+	 else if (dp->pg_mode && (pg = dp->pgTable[ch]))
+	    termcap_put_graph_char(dp, (pg >= PG_SIZE) ? pg : dp->base->pg_chars[pg]);
+	 else
+	    termcap_put_raw_char(dp->outputTable[ch], dp);
+      }
    else
       termcap_put_raw_char(ch, dp);
 }
@@ -2387,13 +2312,13 @@ static void
 termcap_put_graph_char(ScreenData * dp, int ch)
 {
    if (!dp->lineDrawMode && (dp->termcap_GS || dp->termcap_AS))
-    {
-       if (dp->termcap_GS)
-	  termcap_put_raw_str(dp, dp->termcap_GS);
-       else
-	  termcap_put_raw_str(dp, dp->termcap_AS);
-       dp->lineDrawMode = 1;
-    }
+      {
+	 if (dp->termcap_GS)
+	    termcap_put_raw_str(dp, dp->termcap_GS);
+	 else
+	    termcap_put_raw_str(dp, dp->termcap_AS);
+	 dp->lineDrawMode = 1;
+      }
 
    if (scr_scan_mode)
       termcap_put_raw_char(dp->outputTable[ch], dp);
@@ -2431,7 +2356,7 @@ termcap_flush(ScreenData * dp)
 static void
 termcap_set_color(ScreenData * dp, int color)
 {
-   int       fg, bg;
+   int fg, bg;
 
   /*color &= 0xff; */
 
@@ -2439,110 +2364,110 @@ termcap_set_color(ScreenData * dp, int color)
       return;
 
    if (dp->lineDrawMode)
-    {
-       if (dp->termcap_GE)
-	  termcap_put_raw_str(dp, dp->termcap_GE);
-       else if (dp->termcap_AE)
-	  termcap_put_raw_str(dp, dp->termcap_AE);
-       dp->lineDrawMode = 0;
-    }
+      {
+	 if (dp->termcap_GE)
+	    termcap_put_raw_str(dp, dp->termcap_GE);
+	 else if (dp->termcap_AE)
+	    termcap_put_raw_str(dp, dp->termcap_AE);
+	 dp->lineDrawMode = 0;
+      }
 
    if (dp->termcap_Visuals & VisualColors)
-    {
-       termcap_set_fgbg(dp, color & 0xf, (color >> 4) & 0xf);
-       dp->oldcolor = color;
-       return;
-    }
+      {
+	 termcap_set_fgbg(dp, color & 0xf, (color >> 4) & 0xf);
+	 dp->oldcolor = color;
+	 return;
+      }
 
   /* Set dim/bold/inverse. */
    fg = color & 0xf;
    bg = color & 0xf0;
    switch (dp->termcap_Visuals & (VisualBold | VisualBlink | VisualDim | VisualInverse))
-    {
-    case VisualBold | VisualDim | VisualInverse:
-       if (bg)
-	{
-	   if (fg > 7)
-	      goto bold_inverse;
-	   else if (fg < 7)
-	      goto dim_inverse;
-	   else
-	      goto inverse;
-	}
-       if (fg > 7)
-	  goto bold;
-       if (fg < 7)
-	  goto dim;
-       goto normal;
-    case VisualDim | VisualInverse:
-       if (!bg)
-	{
-	   if (fg >= 7)
-	      goto normal;
-	   else
-	      goto dim;
-	}
-       if (fg >= 7)
-	  goto inverse;
-     dim_inverse:
-       termcap_put_raw_str(dp, dp->termcap_MH);
-       termcap_put_raw_str(dp, dp->termcap_SO);
-       break;
-    case VisualBold | VisualInverse:
-       if (!bg)
-	{
-	   if (fg <= 7)
-	      goto normal;
-	   else
-	      goto bold;
-	}
-       if (fg <= 7)
-	  goto inverse;
-     bold_inverse:
-       termcap_put_raw_str(dp, dp->termcap_MD);
-       termcap_put_raw_str(dp, dp->termcap_SO);
-       break;
-    case VisualBold | VisualDim:
-       if (fg > 7)
-	  goto bold;
-       if (fg < 7)
-	  goto dim;
-       if (bg & 8)
-	  goto blink;
-       goto normal;
-    case VisualInverse:
-       if (!bg)
-	  goto normal;
-     inverse:
-       termcap_put_raw_str(dp, dp->termcap_ME);
-       termcap_put_raw_str(dp, dp->termcap_SO);
-       break;
-    case VisualBold:
-       if (fg <= 7)
-	  goto normal;
-     bold:
-       termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
-       termcap_put_raw_str(dp, dp->termcap_MD);
-       break;
-    case VisualBlink:
-       if (bg <= 7)
-	  goto normal;
-     blink:
-       termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
-       termcap_put_raw_str(dp, dp->termcap_mb);
-       break;
-    case VisualDim:
-       if (fg >= 7)
-	  goto normal;
-     dim:
-       termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
-       termcap_put_raw_str(dp, dp->termcap_MH);
-       break;
-    case 0:
-     normal:
-       termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
-       break;
-    }
+      {
+      case VisualBold | VisualDim | VisualInverse:
+	 if (bg)
+	    {
+	       if (fg > 7)
+		  goto bold_inverse;
+	       else if (fg < 7)
+		  goto dim_inverse;
+	       else
+		  goto inverse;
+	    }
+	 if (fg > 7)
+	    goto bold;
+	 if (fg < 7)
+	    goto dim;
+	 goto normal;
+      case VisualDim | VisualInverse:
+	 if (!bg)
+	    {
+	       if (fg >= 7)
+		  goto normal;
+	       else
+		  goto dim;
+	    }
+	 if (fg >= 7)
+	    goto inverse;
+       dim_inverse:
+	 termcap_put_raw_str(dp, dp->termcap_MH);
+	 termcap_put_raw_str(dp, dp->termcap_SO);
+	 break;
+      case VisualBold | VisualInverse:
+	 if (!bg)
+	    {
+	       if (fg <= 7)
+		  goto normal;
+	       else
+		  goto bold;
+	    }
+	 if (fg <= 7)
+	    goto inverse;
+       bold_inverse:
+	 termcap_put_raw_str(dp, dp->termcap_MD);
+	 termcap_put_raw_str(dp, dp->termcap_SO);
+	 break;
+      case VisualBold | VisualDim:
+	 if (fg > 7)
+	    goto bold;
+	 if (fg < 7)
+	    goto dim;
+	 if (bg & 8)
+	    goto blink;
+	 goto normal;
+      case VisualInverse:
+	 if (!bg)
+	    goto normal;
+       inverse:
+	 termcap_put_raw_str(dp, dp->termcap_ME);
+	 termcap_put_raw_str(dp, dp->termcap_SO);
+	 break;
+      case VisualBold:
+	 if (fg <= 7)
+	    goto normal;
+       bold:
+	 termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
+	 termcap_put_raw_str(dp, dp->termcap_MD);
+	 break;
+      case VisualBlink:
+	 if (bg <= 7)
+	    goto normal;
+       blink:
+	 termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
+	 termcap_put_raw_str(dp, dp->termcap_mb);
+	 break;
+      case VisualDim:
+	 if (fg >= 7)
+	    goto normal;
+       dim:
+	 termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
+	 termcap_put_raw_str(dp, dp->termcap_MH);
+	 break;
+      case 0:
+       normal:
+	 termcap_put_raw_str(dp, dp->termcap_ME ? dp->termcap_ME : dp->termcap_SE);
+	 break;
+      }
    dp->oldcolor = color;
 }
 
@@ -2559,21 +2484,21 @@ termcap_set_cursor_shape(ScreenData * dp, int cursor)
 #endif
 
    switch (cursor)
-    {
-    case 0:
-    default:
-       termcap_put_raw_str(dp, dp->termcap_VE);
-       break;
-    case 1:
-       termcap_put_raw_str(dp, dp->termcap_VI);
-       break;
-    case 2:
-       if (dp->termcap_VS)
-	  termcap_put_raw_str(dp, dp->termcap_VS);
-       else
-	  termcap_put_raw_str(dp, dp->termcap_VE);
-       break;
-    }
+      {
+      case 0:
+      default:
+	 termcap_put_raw_str(dp, dp->termcap_VE);
+	 break;
+      case 1:
+	 termcap_put_raw_str(dp, dp->termcap_VI);
+	 break;
+      case 2:
+	 if (dp->termcap_VS)
+	    termcap_put_raw_str(dp, dp->termcap_VS);
+	 else
+	    termcap_put_raw_str(dp, dp->termcap_VE);
+	 break;
+      }
 
    dp->oldcursor = cursor;
 }
@@ -2584,9 +2509,8 @@ termcap_set_fgbg(ScreenData * dp, int fg, int bg)
   /* This should be optimized later. */
   /* For example, we could have an array of 128 color */
   /* switching escape strings, precompiled during Init phase. */
-   char      buf[32];
-
-   int       bold, blink;
+   char buf[32];
+   int bold, blink;
 
    fg = dp->ctab[fg];
    if (fg < 0)
@@ -2599,62 +2523,62 @@ termcap_set_fgbg(ScreenData * dp, int fg, int bg)
    blink = (bg & 0x8 && dp->useBlinkAttr ? 1 : 0);
 
    if ((bold ^ dp->boldMode) || (blink ^ dp->blinkMode))
-    {
-       termcap_put_raw_str(dp, dp->termcap_ME);
-       dp->boldMode = 0;
-       dp->blinkMode = 0;
-    }
+      {
+	 termcap_put_raw_str(dp, dp->termcap_ME);
+	 dp->boldMode = 0;
+	 dp->blinkMode = 0;
+      }
 
    if (bold && !dp->boldMode)
-    {
-       termcap_put_raw_str(dp, dp->termcap_MD);
-       dp->boldMode = 1;
-    }
+      {
+	 termcap_put_raw_str(dp, dp->termcap_MD);
+	 dp->boldMode = 1;
+      }
    if (blink && !dp->blinkMode)
-    {
-       termcap_put_raw_str(dp, dp->termcap_mb);
-       dp->blinkMode = 1;
-    }
+      {
+	 termcap_put_raw_str(dp, dp->termcap_mb);
+	 dp->blinkMode = 1;
+      }
 
    if (dp->termcap_AF && dp->termcap_AB)
-    {
-       scr_tgoto(dp->termcap_AF, 0, /*fg, */ cga_to_ansi[fg], buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-       scr_tgoto(dp->termcap_AB, 0, /*bg, */ cga_to_ansi[bg], buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-    }
+      {
+	 scr_tgoto(dp->termcap_AF, 0, /*fg, */ cga_to_ansi[fg], buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+	 scr_tgoto(dp->termcap_AB, 0, /*bg, */ cga_to_ansi[bg], buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+      }
    else if (dp->termcap_SETF && dp->termcap_SETB)
-    {
-       scr_tgoto(dp->termcap_SETF, 0, fg, /*cga_to_ansi[fg], */ buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-       scr_tgoto(dp->termcap_SETB, 0, bg, /*cga_to_ansi[bg], */ buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-    }
+      {
+	 scr_tgoto(dp->termcap_SETF, 0, fg, /*cga_to_ansi[fg], */ buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+	 scr_tgoto(dp->termcap_SETB, 0, bg, /*cga_to_ansi[bg], */ buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+      }
    else if (dp->termcap_C2 && dp->termcap_CF)
-    {
-       scr_tgoto(dp->termcap_CF, bg, fg,
-		/*cga_to_ansi[bg], cga_to_ansi[fg], */ buf, sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-    }
+      {
+	 scr_tgoto(dp->termcap_CF, bg, fg,
+		  /*cga_to_ansi[bg], cga_to_ansi[fg], */ buf, sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+      }
    else if (dp->termcap_CF && dp->termcap_CB)
-    {
-       scr_tgoto(dp->termcap_CF, 0, fg /* cga_to_ansi[fg] */ , buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-       scr_tgoto(dp->termcap_CB, 0, bg /* cga_to_ansi[bg] */ , buf,
-		 sizeof(buf));
-       termcap_put_raw_str(dp, buf);
-    }
+      {
+	 scr_tgoto(dp->termcap_CF, 0, fg /* cga_to_ansi[fg] */ , buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+	 scr_tgoto(dp->termcap_CB, 0, bg /* cga_to_ansi[bg] */ , buf,
+		   sizeof(buf));
+	 termcap_put_raw_str(dp, buf);
+      }
 }
 
 static void
 termcap_set_cursor(ScreenData * dp, int y, int x)
 {
-   char      buf[32];
+   char buf[32];
 
    scr_tgoto(dp->termcap_CM, x, y, buf, sizeof(buf));
    termcap_put_raw_str(dp, buf);
@@ -2664,13 +2588,13 @@ static void
 termcap_clear_screen(ScreenData * dp)
 {
    if (dp->lineDrawMode)
-    {
-       if (dp->termcap_GE)
-	  termcap_put_raw_str(dp, dp->termcap_GE);
-       else if (dp->termcap_AE)
-	  termcap_put_raw_str(dp, dp->termcap_AE);
-       dp->lineDrawMode = 0;
-    }
+      {
+	 if (dp->termcap_GE)
+	    termcap_put_raw_str(dp, dp->termcap_GE);
+	 else if (dp->termcap_AE)
+	    termcap_put_raw_str(dp, dp->termcap_AE);
+	 dp->lineDrawMode = 0;
+      }
    termcap_put_raw_str(dp, dp->termcap_ME);
    dp->boldMode = 0;
    termcap_set_cursor(dp, 0, 0);
@@ -2683,68 +2607,65 @@ static void
 termcap_scroll(ScreenBase * base, int top, int bottom, int n)
 {
    ScreenData *dp = (ScreenData *) base->data;
-
-   Screen   *realScreen = base->realScreen;
-
-   int       Lines = base->Lines;
-
-   int       Columns = base->Columns;
+   Screen *realScreen = base->realScreen;
+   int Lines = base->Lines;
+   int Columns = base->Columns;
 
    if (n > 0)
-    {
-       memmove(realScreen->chars[top + n], realScreen->chars[top], (bottom - top + 1 - n) * Columns);
-       memset(realScreen->chars[top], ' ', n * Columns);
-       memset(realScreen->colors[top], dp->oldcolor, n * Columns);
-       memset(realScreen->attrs[top], 0, n * Columns);
-       if (dp->termcap_SR && top == 0 && bottom == Lines - 1)
-	{
-	   termcap_set_cursor(dp, 0, 0);
-	   while (--n >= 0)
-	      termcap_put_raw_str(dp, dp->termcap_SR);
-	}
-       else if (dp->termcap_AL && dp->termcap_DL)
-	  while (--n >= 0)
-	   {
-	      termcap_set_cursor(dp, bottom, 0);
-	      termcap_put_raw_str(dp, dp->termcap_DL);
-	      termcap_set_cursor(dp, top, 0);
-	      termcap_put_raw_str(dp, dp->termcap_AL);
-	   }
-    }
+      {
+	 memmove(realScreen->chars[top + n], realScreen->chars[top], (bottom - top + 1 - n) * Columns);
+	 memset(realScreen->chars[top], ' ', n * Columns);
+	 memset(realScreen->colors[top], dp->oldcolor, n * Columns);
+	 memset(realScreen->attrs[top], 0, n * Columns);
+	 if (dp->termcap_SR && top == 0 && bottom == Lines - 1)
+	    {
+	       termcap_set_cursor(dp, 0, 0);
+	       while (--n >= 0)
+		  termcap_put_raw_str(dp, dp->termcap_SR);
+	    }
+	 else if (dp->termcap_AL && dp->termcap_DL)
+	    while (--n >= 0)
+	       {
+		  termcap_set_cursor(dp, bottom, 0);
+		  termcap_put_raw_str(dp, dp->termcap_DL);
+		  termcap_set_cursor(dp, top, 0);
+		  termcap_put_raw_str(dp, dp->termcap_AL);
+	       }
+      }
    else
-    {
-       memmove(realScreen->chars[top], realScreen->chars[top - n], (bottom - top + 1 + n) * Columns);
-       memset(realScreen->chars[bottom + n + 1], ' ', (-n) * Columns);
-       memset(realScreen->colors[bottom + n + 1], dp->oldcolor, (-n) * Columns);
-       memset(realScreen->attrs[bottom + n + 1], 0, (-n) * Columns);
-       if (dp->termcap_SF && top == 0 && bottom == Lines - 1)
-	{
-	   termcap_set_cursor(dp, Lines - 1, 0);
-	   while (++n <= 0)
-	      termcap_put_raw_str(dp, dp->termcap_SF);
-	}
-       else if (dp->termcap_AL && dp->termcap_DL)
-	  while (++n <= 0)
-	   {
-	      termcap_set_cursor(dp, top, 0);
-	      termcap_put_raw_str(dp, dp->termcap_DL);
-	      termcap_set_cursor(dp, bottom, 0);
-	      termcap_put_raw_str(dp, dp->termcap_AL);
-	   }
-    }
+      {
+	 memmove(realScreen->chars[top], realScreen->chars[top - n], (bottom - top + 1 + n) * Columns);
+	 memset(realScreen->chars[bottom + n + 1], ' ', (-n) * Columns);
+	 memset(realScreen->colors[bottom + n + 1], dp->oldcolor, (-n) * Columns);
+	 memset(realScreen->attrs[bottom + n + 1], 0, (-n) * Columns);
+	 if (dp->termcap_SF && top == 0 && bottom == Lines - 1)
+	    {
+	       termcap_set_cursor(dp, Lines - 1, 0);
+	       while (++n <= 0)
+		  termcap_put_raw_str(dp, dp->termcap_SF);
+	    }
+	 else if (dp->termcap_AL && dp->termcap_DL)
+	    while (++n <= 0)
+	       {
+		  termcap_set_cursor(dp, top, 0);
+		  termcap_put_raw_str(dp, dp->termcap_DL);
+		  termcap_set_cursor(dp, bottom, 0);
+		  termcap_put_raw_str(dp, dp->termcap_AL);
+	       }
+      }
 }
 
 static void
 termcap_beep(ScreenData * dp)
 {
    if (dp->lineDrawMode)
-    {
-       if (dp->termcap_GE)
-	  termcap_put_raw_str(dp, dp->termcap_GE);
-       else if (dp->termcap_AE)
-	  termcap_put_raw_str(dp, dp->termcap_AE);
-       dp->lineDrawMode = 0;
-    }
+      {
+	 if (dp->termcap_GE)
+	    termcap_put_raw_str(dp, dp->termcap_GE);
+	 else if (dp->termcap_AE)
+	    termcap_put_raw_str(dp, dp->termcap_AE);
+	 dp->lineDrawMode = 0;
+      }
    if (dp->termcap_BL)
       termcap_put_raw_str(dp, dp->termcap_BL);
    else
@@ -2764,9 +2685,8 @@ newMatch_Key(ScreenBase * base)
 static int
 cmp_first(const void *k1, const void *k2)
 {
-   char     *key = (char *) k1;
-
-   Keytab   *el = (Keytab *) k2;
+   char *key = (char *) k1;
+   Keytab *el = (Keytab *) k2;
 
    if (!el->str)
       return -1;
@@ -2780,183 +2700,178 @@ cmp_first(const void *k1, const void *k2)
 static int
 term_match_Key(ScreenBase * base, unsigned char b, unsigned long *keyp)
 {
-   int       trymatch = 0;
-
+   int trymatch = 0;
    unsigned char kb;
-
    unsigned long key = b;
-
    ScreenData *dp = (ScreenData *) base->data;
-
-   Keytab   *keytab = dp->keytab;
-
-   int       key_count = dp->key_count;
+   Keytab *keytab = dp->keytab;
+   int key_count = dp->key_count;
 
    if (xterm_mouse && xterm_pos)
-    {
-       int       mb, t, bb = 0;
-       static struct timeval tv1 = { 0, 0 }, tv2;
-       static int clicks = 0;
+      {
+	 int mb, t, bb = 0;
+	 static struct timeval tv1 = { 0, 0 }, tv2;
+	 static int clicks = 0;
 
-       switch (xterm_pos)
-	{
-	case 1:
-	   xterm_buttons = b - 040;
-	   xterm_pos = 2;
-	   return 0;
-	case 2:
-	   xterm_x = b - 040 - 1;
-	   xterm_pos = 3;
-	   return 0;
-	case 3:
-	default:
-	   xterm_y = b - 040 - 1;
-	   xterm_pos = 0;
-
-	   if (xterm_x < base->mouse_left)
-	      xterm_x = base->mouse_left;
-	   if (xterm_x > base->mouse_right)
-	      xterm_x = base->mouse_right;
-	   if (xterm_y < base->mouse_top)
-	      xterm_y = base->mouse_top;
-	   if (xterm_y > base->mouse_bottom)
-	      xterm_y = base->mouse_bottom;
-	   base->mouse_x = xterm_x;
-	   base->mouse_y = xterm_y;
-	   base->mouse_auto_visible = 1;
-
-	   mb = xterm_buttons & 0x3;
-	   if (mb != 3)
+	 switch (xterm_pos)
 	    {
-	       long      dt;
+	    case 1:
+	       xterm_buttons = b - 040;
+	       xterm_pos = 2;
+	       return 0;
+	    case 2:
+	       xterm_x = b - 040 - 1;
+	       xterm_pos = 3;
+	       return 0;
+	    case 3:
+	    default:
+	       xterm_y = b - 040 - 1;
+	       xterm_pos = 0;
 
-	       if (mb == 0)
-		  bb = MOUSE_BUTTONS_LEFT;
-	       else if (mb == 1)
-		  bb = MOUSE_BUTTONS_MIDDLE;
-	       else if (mb == 2)
-		  bb = MOUSE_BUTTONS_RIGHT;
-	       t = MOUSE_TYPE_DOWN;
-	       base->mouse_buttons = bb;
+	       if (xterm_x < base->mouse_left)
+		  xterm_x = base->mouse_left;
+	       if (xterm_x > base->mouse_right)
+		  xterm_x = base->mouse_right;
+	       if (xterm_y < base->mouse_top)
+		  xterm_y = base->mouse_top;
+	       if (xterm_y > base->mouse_bottom)
+		  xterm_y = base->mouse_bottom;
+	       base->mouse_x = xterm_x;
+	       base->mouse_y = xterm_y;
+	       base->mouse_auto_visible = 1;
 
-	       gettimeofday(&tv2, 0);
+	       mb = xterm_buttons & 0x3;
+	       if (mb != 3)
+		  {
+		     long dt;
 
-	       dt = (tv2.tv_sec - tv1.tv_sec) * 1000 + (tv2.tv_usec - tv1.tv_usec) / 1000;
+		     if (mb == 0)
+			bb = MOUSE_BUTTONS_LEFT;
+		     else if (mb == 1)
+			bb = MOUSE_BUTTONS_MIDDLE;
+		     else if (mb == 2)
+			bb = MOUSE_BUTTONS_RIGHT;
+		     t = MOUSE_TYPE_DOWN;
+		     base->mouse_buttons = bb;
 
-	       if (tv1.tv_sec && dt < base->mouse_dclick_speed)
-		{
-		   clicks++;
-		   clicks %= 2;
-		}
+		     gettimeofday(&tv2, 0);
+
+		     dt = (tv2.tv_sec - tv1.tv_sec) * 1000 + (tv2.tv_usec - tv1.tv_usec) / 1000;
+
+		     if (tv1.tv_sec && dt < base->mouse_dclick_speed)
+			{
+			   clicks++;
+			   clicks %= 2;
+			}
+		     else
+			clicks = 0;
+		  }
 	       else
-		  clicks = 0;
-	    }
-	   else
-	    {
-	       bb = base->mouse_buttons;
-	       if (bb == MOUSE_BUTTONS_LEFT)
-		  base->mouse_clicks_left++;
-	       if (bb == MOUSE_BUTTONS_RIGHT)
-		  base->mouse_clicks_right++;
-	       if (bb == MOUSE_BUTTONS_MIDDLE)
-		  base->mouse_clicks_middle++;
-	       base->mouse_buttons = 0;
-	       t = MOUSE_TYPE_UP | (MOUSE_TYPE_SINGLE << clicks);
-	       gettimeofday(&tv1, 0);
-	       clicks = 0;
-	    }
+		  {
+		     bb = base->mouse_buttons;
+		     if (bb == MOUSE_BUTTONS_LEFT)
+			base->mouse_clicks_left++;
+		     if (bb == MOUSE_BUTTONS_RIGHT)
+			base->mouse_clicks_right++;
+		     if (bb == MOUSE_BUTTONS_MIDDLE)
+			base->mouse_clicks_middle++;
+		     base->mouse_buttons = 0;
+		     t = MOUSE_TYPE_UP | (MOUSE_TYPE_SINGLE << clicks);
+		     gettimeofday(&tv1, 0);
+		     clicks = 0;
+		  }
 
-	   _clip_logg(3, "got xterm mouse event: type=%d y=%d x=%d buttons=%d clicks=%d", t, xterm_y, xterm_x, bb, clicks);
-	   key = MOUSE_MASK;
-	   key |= MOUSE_SET_TYPE(t);
-	   key |= MOUSE_SET_ROW(xterm_y);
-	   key |= MOUSE_SET_COL(xterm_x);
-	   key |= MOUSE_SET_BUTTONS(bb);
+	       _clip_logg(3, "got xterm mouse event: type=%d y=%d x=%d buttons=%d clicks=%d", t, xterm_y, xterm_x, bb, clicks);
+	       key = MOUSE_MASK;
+	       key |= MOUSE_SET_TYPE(t);
+	       key |= MOUSE_SET_ROW(xterm_y);
+	       key |= MOUSE_SET_COL(xterm_x);
+	       key |= MOUSE_SET_BUTTONS(bb);
 
-	   dp->next_key = key;
-	   *keyp = key;
-	   return 1;
-	}
-    }
+	       dp->next_key = key;
+	       *keyp = key;
+	       return 1;
+	    }
+      }
 
    if (dp->matchpos == 0)
-    {
-      /* if ( b>=lomatch && b<=himatch ) { */
-       dp->matchno = -1;
-       trymatch = 1;		/* check for begin of key string */
-      /* } */
-    }
+      {
+	/* if ( b>=lomatch && b<=himatch ) { */
+	 dp->matchno = -1;
+	 trymatch = 1;		/* check for begin of key string */
+	/* } */
+      }
    else
       trymatch = 1;
 
    has_esc = 0;
 
    if (trymatch)
-    {
-       if (dp->matchno < 0)
-	{
-	   Keytab   *kp;
-
-	   if (b == 27)
-	      has_esc = 1;
-
-	   kp = (Keytab *) bsearch(&b, keytab, key_count, sizeof(Keytab), cmp_first);
-
-	   if (!kp)
-	      goto end_match;
-	   while (kp > keytab && kp->str[0] == (char) b)
-	      kp--;
-	   dp->matchno = kp - keytab;
-	}
-       for (; dp->matchno < key_count; dp->matchno++)
-	{
-	   Keytab   *k = &keytab[dp->matchno];
-
-	   if (dp->matchpos == k->strlen)
-	      continue;
-	   if (dp->matchpos > k->strlen)
+      {
+	 if (dp->matchno < 0)
 	    {
-	       dp->matchpos = 0;
-	       return 0;
-	    }
-	   kb = k->str[dp->matchpos];
-	   if (kb != b)
-	      continue;
+	       Keytab *kp;
 
-	   dp->matchpos++;
-	   if (dp->matchpos == k->strlen)
-	    {			/* match ended */
-	       key = k->val;
-	       dp->matchpos = 0;
-	      /* dirty hack */
-	       if (xterm_mouse && k->str && k->strlen == 3 && !strcmp(k->str, "\033[M"))
-		{
-		   xterm_pos = 1;
-		   return 0;
-		}
-	       goto end_match;
-	    }
-	   return 0;		/* wait to continue matching */
-	}
+	       if (b == 27)
+		  has_esc = 1;
 
-       dp->matchpos = 0;
-       return 0;
-    }
+	       kp = (Keytab *) bsearch(&b, keytab, key_count, sizeof(Keytab), cmp_first);
+
+	       if (!kp)
+		  goto end_match;
+	       while (kp > keytab && kp->str[0] == (char) b)
+		  kp--;
+	       dp->matchno = kp - keytab;
+	    }
+	 for (; dp->matchno < key_count; dp->matchno++)
+	    {
+	       Keytab *k = &keytab[dp->matchno];
+
+	       if (dp->matchpos == k->strlen)
+		  continue;
+	       if (dp->matchpos > k->strlen)
+		  {
+		     dp->matchpos = 0;
+		     return 0;
+		  }
+	       kb = k->str[dp->matchpos];
+	       if (kb != b)
+		  continue;
+
+	       dp->matchpos++;
+	       if (dp->matchpos == k->strlen)
+		  {		/* match ended */
+		     key = k->val;
+		     dp->matchpos = 0;
+		    /* dirty hack */
+		     if (xterm_mouse && k->str && k->strlen == 3 && !strcmp(k->str, "\033[M"))
+			{
+			   xterm_pos = 1;
+			   return 0;
+			}
+		     goto end_match;
+		  }
+	       return 0;	/* wait to continue matching */
+	    }
+
+	 dp->matchpos = 0;
+	 return 0;
+      }
 
  end_match:
    if (!dp->has_meta2)
-    {
-       if (key == Meta1_key)
-	{
-	   dp->has_meta1 = 1;
-	   return 0;
-	}
-       else if (key == Meta2_key)
-	{
-	   dp->has_meta2 = 1;
-	   return 0;
-	}
-    }
+      {
+	 if (key == Meta1_key)
+	    {
+	       dp->has_meta1 = 1;
+	       return 0;
+	    }
+	 else if (key == Meta2_key)
+	    {
+	       dp->has_meta2 = 1;
+	       return 0;
+	    }
+      }
 
    if (dp->national_mode && key >= 64 && key < 128)
       key = dp->nationalTable[key];
@@ -2965,32 +2880,32 @@ term_match_Key(ScreenBase * base, unsigned char b, unsigned long *keyp)
    dp->prev_has_meta1 = dp->has_meta1;
    dp->prev_has_meta2 = dp->has_meta2;
    if (dp->has_meta1)
-    {
-       key = META1(key);
-       dp->has_meta1 = 0;
-    }
+      {
+	 key = META1(key);
+	 dp->has_meta1 = 0;
+      }
    if (dp->has_meta2)
-    {
-       key = META2(key);
-       dp->has_meta2 = 0;
-    }
+      {
+	 key = META2(key);
+	 dp->has_meta2 = 0;
+      }
 
    if (key == National_key)
-    {
-       dp->national_mode = !dp->national_mode;
-       return 0;
-    }
+      {
+	 dp->national_mode = !dp->national_mode;
+	 return 0;
+      }
 
    if (key == KEY_MOUSE)
-    {
-       if (xterm_mouse)
-	{
-	   xterm_pos = 1;
-	   return 0;
-	}
-       else
-	  key = KEY_F1;
-    }
+      {
+	 if (xterm_mouse)
+	    {
+	       xterm_pos = 1;
+	       return 0;
+	    }
+	 else
+	    key = KEY_F1;
+      }
 
    dp->next_key = key;
    *keyp = key;
@@ -3004,30 +2919,26 @@ getState_Key(ScreenBase * base)
    if (scr_scan_mode)
       return scan_state();
    else
-    {
-       ScreenData *dp = (ScreenData *) base->data;
+      {
+	 ScreenData *dp = (ScreenData *) base->data;
+	 int m1 = dp->prev_has_meta1;
+	 int m2 = dp->prev_has_meta2;
+	 int r = 0;
 
-       int       m1 = dp->prev_has_meta1;
-
-       int       m2 = dp->prev_has_meta2;
-
-       int       r = 0;
-
-       if (m1 && m2)
-	  r |= (1 << KEY_SHIFT);
-       else if (m1)
-	  r |= (1 << KEY_ALT);
-       else if (m2)
-	  r |= (1 << KEY_CTRL);
-       return r;
-    }
+	 if (m1 && m2)
+	    r |= (1 << KEY_SHIFT);
+	 else if (m1)
+	    r |= (1 << KEY_ALT);
+	 else if (m2)
+	    r |= (1 << KEY_CTRL);
+	 return r;
+      }
 }
 
 int
 setState_Key(ScreenBase * base, int value, int locktype)
 {
-   int       ret = 0;
-
+   int ret = 0;
   /* if (scr_scan_mode) */
    ret = set_scan_state(value, locktype);
 
@@ -3037,119 +2948,117 @@ setState_Key(ScreenBase * base, int value, int locktype)
 static int
 scan_match_Key(ScreenBase * base, unsigned char b, unsigned long *keyp)
 {
-   long      key;
+   long key;
 
    if (xterm_mouse && b == RAWMODE_ESC)
-    {
-       xterm_pos = 1;
-       return 0;
-    }
+      {
+	 xterm_pos = 1;
+	 return 0;
+      }
 
    if (xterm_mouse && xterm_pos)
-    {
-       int       mb, t, bb = 0;
-       static struct timeval tv1 = { 0, 0 }, tv2;
-       static int clicks = 0;
+      {
+	 int mb, t, bb = 0;
+	 static struct timeval tv1 = { 0, 0 }, tv2;
+	 static int clicks = 0;
 
-       switch (xterm_pos)
-	{
-	case 1:
-	   xterm_buttons = b;
-	   xterm_pos = 2;
-	   return 0;
-	case 2:
-	   xterm_x = b;
-	   xterm_pos = 3;
-	   return 0;
-	case 3:
-	default:
-	   xterm_y = b;
-	   xterm_pos = 0;
-
-	   if (xterm_x < base->mouse_left)
-	      xterm_x = base->mouse_left;
-	   if (xterm_x > base->mouse_right)
-	      xterm_x = base->mouse_right;
-	   if (xterm_y < base->mouse_top)
-	      xterm_y = base->mouse_top;
-	   if (xterm_y > base->mouse_bottom)
-	      xterm_y = base->mouse_bottom;
-	   base->mouse_x = xterm_x;
-	   base->mouse_y = xterm_y;
-	   base->mouse_auto_visible = 1;
-
-	   if (xterm_buttons & 0x4)
+	 switch (xterm_pos)
 	    {
-	       t = MOUSE_TYPE_MOVE;
-	       bb = base->mouse_buttons;
-	    }
-	   else
-	    {
-	       mb = xterm_buttons & 0x3;
-	       if (mb != 3)
-		{
-		   long      dt;
+	    case 1:
+	       xterm_buttons = b;
+	       xterm_pos = 2;
+	       return 0;
+	    case 2:
+	       xterm_x = b;
+	       xterm_pos = 3;
+	       return 0;
+	    case 3:
+	    default:
+	       xterm_y = b;
+	       xterm_pos = 0;
 
-		   if (mb == 0)
-		      bb = MOUSE_BUTTONS_LEFT;
-		   else if (mb == 1)
-		      bb = MOUSE_BUTTONS_MIDDLE;
-		   else if (mb == 2)
-		      bb = MOUSE_BUTTONS_RIGHT;
-		   base->mouse_buttons = bb;
+	       if (xterm_x < base->mouse_left)
+		  xterm_x = base->mouse_left;
+	       if (xterm_x > base->mouse_right)
+		  xterm_x = base->mouse_right;
+	       if (xterm_y < base->mouse_top)
+		  xterm_y = base->mouse_top;
+	       if (xterm_y > base->mouse_bottom)
+		  xterm_y = base->mouse_bottom;
+	       base->mouse_x = xterm_x;
+	       base->mouse_y = xterm_y;
+	       base->mouse_auto_visible = 1;
 
-		   gettimeofday(&tv2, 0);
-
-		   dt = (tv2.tv_sec - tv1.tv_sec) * 1000 + (tv2.tv_usec - tv1.tv_usec) / 1000;
-
-		   if (tv1.tv_sec && dt < base->mouse_dclick_speed)
-		    {
-		       clicks++;
-		       clicks %= 2;
-		    }
-		   else
-		      clicks = 0;
-
-		   t = MOUSE_TYPE_DOWN;
-		}
+	       if (xterm_buttons & 0x4)
+		  {
+		     t = MOUSE_TYPE_MOVE;
+		     bb = base->mouse_buttons;
+		  }
 	       else
-		{
-		   bb = base->mouse_buttons;
-		   if (bb == MOUSE_BUTTONS_LEFT)
-		      base->mouse_clicks_left++;
-		   if (bb == MOUSE_BUTTONS_RIGHT)
-		      base->mouse_clicks_right++;
-		   if (bb == MOUSE_BUTTONS_MIDDLE)
-		      base->mouse_clicks_middle++;
-		   base->mouse_buttons = 0;
-		   t = MOUSE_TYPE_UP | (MOUSE_TYPE_SINGLE << clicks);
-		   gettimeofday(&tv1, 0);
-		   clicks = 0;
-		}
+		  {
+		     mb = xterm_buttons & 0x3;
+		     if (mb != 3)
+			{
+			   long dt;
+
+			   if (mb == 0)
+			      bb = MOUSE_BUTTONS_LEFT;
+			   else if (mb == 1)
+			      bb = MOUSE_BUTTONS_MIDDLE;
+			   else if (mb == 2)
+			      bb = MOUSE_BUTTONS_RIGHT;
+			   base->mouse_buttons = bb;
+
+			   gettimeofday(&tv2, 0);
+
+			   dt = (tv2.tv_sec - tv1.tv_sec) * 1000 + (tv2.tv_usec - tv1.tv_usec) / 1000;
+
+			   if (tv1.tv_sec && dt < base->mouse_dclick_speed)
+			      {
+				 clicks++;
+				 clicks %= 2;
+			      }
+			   else
+			      clicks = 0;
+
+			   t = MOUSE_TYPE_DOWN;
+			}
+		     else
+			{
+			   bb = base->mouse_buttons;
+			   if (bb == MOUSE_BUTTONS_LEFT)
+			      base->mouse_clicks_left++;
+			   if (bb == MOUSE_BUTTONS_RIGHT)
+			      base->mouse_clicks_right++;
+			   if (bb == MOUSE_BUTTONS_MIDDLE)
+			      base->mouse_clicks_middle++;
+			   base->mouse_buttons = 0;
+			   t = MOUSE_TYPE_UP | (MOUSE_TYPE_SINGLE << clicks);
+			   gettimeofday(&tv1, 0);
+			   clicks = 0;
+			}
+		  }
+
+	       _clip_logg(3, "got xterm rawmode mouse event: type=%d y=%d x=%d xt_buttons=%d buttons=%d clicks=%d", t, xterm_y, xterm_x, xterm_buttons, bb, clicks);
+	       key = MOUSE_MASK;
+	       key |= MOUSE_SET_TYPE(t);
+	       key |= MOUSE_SET_ROW(xterm_y);
+	       key |= MOUSE_SET_COL(xterm_x);
+	       key |= MOUSE_SET_BUTTONS(bb);
+
+	       *keyp = key;
+	       return 1;
 	    }
-
-	   _clip_logg(3,
-		      "got xterm rawmode mouse event: type=%d y=%d x=%d xt_buttons=%d buttons=%d clicks=%d",
-		      t, xterm_y, xterm_x, xterm_buttons, bb, clicks);
-	   key = MOUSE_MASK;
-	   key |= MOUSE_SET_TYPE(t);
-	   key |= MOUSE_SET_ROW(xterm_y);
-	   key |= MOUSE_SET_COL(xterm_x);
-	   key |= MOUSE_SET_BUTTONS(bb);
-
-	   *keyp = key;
-	   return 1;
-	}
-    }
+      }
 
    key = scan_key(b);
 
    if (key)
-    {
-       *keyp = key;
-      //scan_reset();
-       return 1;
-    }
+      {
+	 *keyp = key;
+	//scan_reset();
+	 return 1;
+      }
    else
       return 0;
 }
@@ -3187,14 +3096,14 @@ getRaw_Key(ScreenBase * base)
    if (scr_scan_mode)
       scan_push(ch);
    else
-    {
-       unsigned long r = 0;
+      {
+	 unsigned long r = 0;
 
-       if (term_match_Key(base, ch, &r))
-	  return r;
-       else
-	  return 0;
-    }
+	 if (term_match_Key(base, ch, &r))
+	    return r;
+	 else
+	    return 0;
+      }
 
    return ch;
 #endif
@@ -3214,7 +3123,7 @@ getRawWait_Key(ScreenBase * base, long milliseconds)
 static int
 gpm_get_event(Gpm_Event * event)
 {
-   int       r;
+   int r;
 
    if (gpm_fd < 0)
       return 0;
@@ -3227,49 +3136,45 @@ static unsigned long
 get_gpm_mouse(ScreenBase * base)
 {
    unsigned long key = 0;
-
-   int       r;
-
+   int r;
    Gpm_Event event;
 
    r = gpm_get_event(&event);
    if (r > 0)
-    {
-       if (event.x < base->mouse_left)
-	  event.x = base->mouse_left;
-       if (event.x > base->mouse_right)
-	  event.x = base->mouse_right;
-       if (event.y < base->mouse_top)
-	  event.y = base->mouse_top;
-       if (event.y > base->mouse_bottom)
-	  event.y = base->mouse_bottom;
-       base->mouse_x = event.x;
-       base->mouse_y = event.y;
-       base->mouse_auto_visible = 1;
-       if (event.type & GPM_DOWN)
-	  base->mouse_buttons = event.buttons;
-       else if (event.type & GPM_UP)
-	{
-	   if (event.buttons & GPM_B_LEFT)
-	      base->mouse_clicks_left++;
-	   if (event.buttons & GPM_B_RIGHT)
-	      base->mouse_clicks_right++;
-	   if (event.buttons & GPM_B_MIDDLE)
-	      base->mouse_clicks_middle++;
-	   base->mouse_buttons = 0;
-	}
-    }
-   _clip_logg(3,
-	      "got gp_get_event: %d type=%d y=%d x=%d buttons=%d m_buttons=%d",
-	      r, event.type, event.y, event.x, event.buttons, base->mouse_buttons);
+      {
+	 if (event.x < base->mouse_left)
+	    event.x = base->mouse_left;
+	 if (event.x > base->mouse_right)
+	    event.x = base->mouse_right;
+	 if (event.y < base->mouse_top)
+	    event.y = base->mouse_top;
+	 if (event.y > base->mouse_bottom)
+	    event.y = base->mouse_bottom;
+	 base->mouse_x = event.x;
+	 base->mouse_y = event.y;
+	 base->mouse_auto_visible = 1;
+	 if (event.type & GPM_DOWN)
+	    base->mouse_buttons = event.buttons;
+	 else if (event.type & GPM_UP)
+	    {
+	       if (event.buttons & GPM_B_LEFT)
+		  base->mouse_clicks_left++;
+	       if (event.buttons & GPM_B_RIGHT)
+		  base->mouse_clicks_right++;
+	       if (event.buttons & GPM_B_MIDDLE)
+		  base->mouse_clicks_middle++;
+	       base->mouse_buttons = 0;
+	    }
+      }
+   _clip_logg(3, "got gp_get_event: %d type=%d y=%d x=%d buttons=%d m_buttons=%d", r, event.type, event.y, event.x, event.buttons, base->mouse_buttons);
    if (r == 1)
-    {
-       key = MOUSE_MASK;
-       key |= MOUSE_SET_TYPE(event.type);
-       key |= MOUSE_SET_ROW(event.y);
-       key |= MOUSE_SET_COL(event.x);
-       key |= MOUSE_SET_BUTTONS(event.buttons);
-    }
+      {
+	 key = MOUSE_MASK;
+	 key |= MOUSE_SET_TYPE(event.type);
+	 key |= MOUSE_SET_ROW(event.y);
+	 key |= MOUSE_SET_COL(event.x);
+	 key |= MOUSE_SET_BUTTONS(event.buttons);
+      }
    return key;
 }
 
@@ -3279,89 +3184,85 @@ unsigned long
 get_Key(ScreenBase * base)
 {
    unsigned char ch;
-
    unsigned long key;
 
    newMatch_Key(base);
    for (;;)
-    {
+      {
 #ifdef _WIN32
-       if (w32_console)
-	  ch = w32_readch();
-       else
+	 if (w32_console)
+	    ch = w32_readch();
+	 else
 #endif
-	{
-	   struct timeval tv;
-
-	   tv.tv_sec = esc_delay_Screen / 1000;
-	   tv.tv_usec = (esc_delay_Screen % 1000) * 1000;
+	    {
+	       struct timeval tv;
+	       tv.tv_sec = esc_delay_Screen / 1000;
+	       tv.tv_usec = (esc_delay_Screen % 1000) * 1000;
 #ifdef HAVE_GPM_H
-	   if (gpm_fd >= 0)
-	    {
-	       fd_set    rfs;
+	       if (gpm_fd >= 0)
+		  {
+		     fd_set rfs;
+		     int r, n;
 
-	       int       r, n;
+		   again:
+		     FD_ZERO(&rfs);
+		     FD_SET(gpm_fd, &rfs);
+		     FD_SET(base->fd, &rfs);
+		     n = base->fd;
+		     if (gpm_fd > n)
+			n = gpm_fd;
 
-	     again:
-	       FD_ZERO(&rfs);
-	       FD_SET(gpm_fd, &rfs);
-	       FD_SET(base->fd, &rfs);
-	       n = base->fd;
-	       if (gpm_fd > n)
-		  n = gpm_fd;
-
-	       r = select(n + 1, &rfs, 0, 0, 0);
-	       if (r > 0 && FD_ISSET(gpm_fd, &rfs))
-		{
-		   key = get_gpm_mouse(base);
-		   if (key)
-		      return key;
-		}
-	       if (!FD_ISSET(base->fd, &rfs))
-		{
-		   if (r == 0 && has_esc)
-		    {
-		       newMatch_Key(base);
-		       return 27;
-		    }
-		   goto again;
-		}
-	    }
-	   else
+		     r = select(n + 1, &rfs, 0, 0, 0);
+		     if (r > 0 && FD_ISSET(gpm_fd, &rfs))
+			{
+			   key = get_gpm_mouse(base);
+			   if (key)
+			      return key;
+			}
+		     if (!FD_ISSET(base->fd, &rfs))
+			{
+			   if (r == 0 && has_esc)
+			      {
+				 newMatch_Key(base);
+				 return 27;
+			      }
+			   goto again;
+			}
+		  }
+	       else
 #endif
-	    {
-	       fd_set    rfs;
+		  {
+		     fd_set rfs;
+		     int r, n;
 
-	       int       r, n;
+		   again1:
+		     FD_ZERO(&rfs);
+		     FD_SET(base->fd, &rfs);
+		     n = base->fd;
 
-	     again1:
-	       FD_ZERO(&rfs);
-	       FD_SET(base->fd, &rfs);
-	       n = base->fd;
+		     r = select(n + 1, &rfs, 0, 0, &tv);
 
-	       r = select(n + 1, &rfs, 0, 0, &tv);
+		     if (r < 0)
+			return 0;
 
-	       if (r < 0)
+		     if (!FD_ISSET(base->fd, &rfs))
+			{
+			   if (r == 0 && has_esc)
+			      {
+				 newMatch_Key(base);
+				 return 27;
+			      }
+
+			   goto again1;
+			}
+		  }
+
+	       if (read(base->fd, &ch, 1) < 1)
 		  return 0;
-
-	       if (!FD_ISSET(base->fd, &rfs))
-		{
-		   if (r == 0 && has_esc)
-		    {
-		       newMatch_Key(base);
-		       return 27;
-		    }
-
-		   goto again1;
-		}
 	    }
-
-	   if (read(base->fd, &ch, 1) < 1)
-	      return 0;
-	}
-       if (match_Key(base, ch, &key))
-	  return key;
-    }
+	 if (match_Key(base, ch, &key))
+	    return key;
+      }
 }
 
 #define tv_cmp(a,b,CMP) \
@@ -3400,9 +3301,7 @@ static unsigned long
 get_wait_key(ScreenBase * base, long milliseconds, int raw)
 {
    unsigned char ch;
-
    struct timeval end, tv, dt, etv;
-
    unsigned long key;
 
    gettimeofday(&tv, 0);
@@ -3418,200 +3317,192 @@ get_wait_key(ScreenBase * base, long milliseconds, int raw)
    if (raw && !scr_scan_mode)
       return 0;
    if (!raw && scr_scan_mode)
-    {
-       key = scan_check();
+      {
+	 key = scan_check();
 #ifdef DBG
-       printf("get_wait_key: %ld\r\n", key);
+	 printf("get_wait_key: %ld\r\n", key);
 #endif
-       if (key)
-	{
-	   scan_reset();
-	   return key;
-	}
-    }
+	 if (key)
+	    {
+	       scan_reset();
+	       return key;
+	    }
+      }
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       struct timeval timeout;
+      {
+	 struct timeval timeout;
+	 long ms_timeout;
 
-       long      ms_timeout;
-
-       for (;;)
-	{
-	   int       r;
-
-	   if (!raw)
+	 for (;;)
 	    {
-	       while (w32_scan_buf_len)
-		{
-		   ch = w32_readch();
-		   if (match_Key(base, ch, &key))
-		    {
-		       newMatch_Key(base);
-		       return key;
-		    }
-		}
-	    }
+	       int r;
 
-	   if (!milliseconds || timercmp(&end, &tv, <))
+	       if (!raw)
+		  {
+		     while (w32_scan_buf_len)
+			{
+			   ch = w32_readch();
+			   if (match_Key(base, ch, &key))
+			      {
+				 newMatch_Key(base);
+				 return key;
+			      }
+			}
+		  }
+
+	       if (!milliseconds || timercmp(&end, &tv, <))
+		  {
+		     timeout.tv_sec = 0;
+		     timeout.tv_usec = 0;
+		  }
+	       else
+		  {
+		     timer_sub(&end, &tv, &timeout);
+		  }
+
+	       ms_timeout = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
+
+#ifdef USE_TASKS
+	       r = Task_wait_read(0, ms_timeout);
+	       if (r)
+		  return 0;
+
+#else
+	       r = WaitForMultipleObjects(1, &w32_hStdIn, 1, ms_timeout);
+
+	       if (r != WAIT_OBJECT_0)
+		  return 0;
+
+#endif
+
+	       ch = w32_readch();
+	       if (raw && scr_scan_mode)
+		  {
+		    /*if (!scan_push(ch))
+		       goto again1; */
+		     scan_push(ch);
+#ifdef DBG
+		     printf("get_wait_key return %d\r\n", ch);
+#endif
+		     return ch;
+		  }
+	       if (match_Key(base, ch, &key))
+		  {
+		     newMatch_Key(base);
+		     return key;
+		  }
+	      /* again1: */
+	       gettimeofday(&tv, 0);
+
+	    }
+	 return 0;
+      }
+#endif
+
+   for (;;)
+      {
+	 struct timeval timeout;
+	 int r, n;
+	 fd_set rfs;
+	 int esc_tv = 0;
+
+	 if (!milliseconds || timercmp(&end, &tv, <))
 	    {
 	       timeout.tv_sec = 0;
 	       timeout.tv_usec = 0;
 	    }
-	   else
+	 else
 	    {
 	       timer_sub(&end, &tv, &timeout);
 	    }
 
-	   ms_timeout = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
-
-#ifdef USE_TASKS
-	   r = Task_wait_read(0, ms_timeout);
-	   if (r)
-	      return 0;
-
-#else
-	   r = WaitForMultipleObjects(1, &w32_hStdIn, 1, ms_timeout);
-
-	   if (r != WAIT_OBJECT_0)
-	      return 0;
-
-#endif
-
-	   ch = w32_readch();
-	   if (raw && scr_scan_mode)
+	 if (timercmp(&etv, &timeout, <))
 	    {
-	      /*if (!scan_push(ch))
-	         goto again1; */
-	       scan_push(ch);
-#ifdef DBG
-	       printf("get_wait_key return %d\r\n", ch);
+	       timeout = etv;
+	       esc_tv = 1;
+	    }
+
+	 FD_ZERO(&rfs);
+	 FD_SET(base->fd, &rfs);
+
+	 n = base->fd;
+#ifdef HAVE_GPM_H
+	 if (gpm_fd >= 0)
+	    {
+	       FD_SET(gpm_fd, &rfs);
+	       if (gpm_fd > n)
+		  n = gpm_fd;
+	    }
 #endif
+
+	 r = task_select(n + 1, &rfs, 0, 0, &timeout);
+
+	 if (r == 0 && esc_tv && has_esc)
+	    {
+	       newMatch_Key(base);
+	       return 27;
+	    }
+
+	 if (r < 1)
+	    {
+	       if (!milliseconds)
+		  return 0;
+	       else
+		  {
+		     gettimeofday(&tv, 0);
+		     if (timercmp(&tv, &end, >))
+			return 0;
+		     continue;
+		  }
+	    }
+
+#ifdef HAVE_GPM_H
+	 if (gpm_fd >= 0)
+	    {
+	       if (FD_ISSET(gpm_fd, &rfs))
+		  {
+		     key = get_gpm_mouse(base);
+		     if (key)
+			return key;
+		  }
+	    }
+#endif
+
+	 if (!FD_ISSET(base->fd, &rfs))
+	    continue;
+
+	 if (read(base->fd, &ch, 1) < 1)
+	    return 0;
+
+	 if (raw && scr_scan_mode)
+	    {
+	       if (!scan_push(ch))
+		  goto again;
 	       return ch;
 	    }
-	   if (match_Key(base, ch, &key))
+
+	 if (match_Key(base, ch, &key))
 	    {
 	       newMatch_Key(base);
 	       return key;
 	    }
-	  /* again1: */
-	   gettimeofday(&tv, 0);
-
-	}
-       return 0;
-    }
-#endif
-
-   for (;;)
-    {
-       struct timeval timeout;
-
-       int       r, n;
-
-       fd_set    rfs;
-
-       int       esc_tv = 0;
-
-       if (!milliseconds || timercmp(&end, &tv, <))
-	{
-	   timeout.tv_sec = 0;
-	   timeout.tv_usec = 0;
-	}
-       else
-	{
-	   timer_sub(&end, &tv, &timeout);
-	}
-
-       if (timercmp(&etv, &timeout, <))
-	{
-	   timeout = etv;
-	   esc_tv = 1;
-	}
-
-       FD_ZERO(&rfs);
-       FD_SET(base->fd, &rfs);
-
-       n = base->fd;
-#ifdef HAVE_GPM_H
-       if (gpm_fd >= 0)
-	{
-	   FD_SET(gpm_fd, &rfs);
-	   if (gpm_fd > n)
-	      n = gpm_fd;
-	}
-#endif
-
-       r = task_select(n + 1, &rfs, 0, 0, &timeout);
-
-       if (r == 0 && esc_tv && has_esc)
-	{
-	   newMatch_Key(base);
-	   return 27;
-	}
-
-       if (r < 1)
-	{
-	   if (!milliseconds)
-	      return 0;
-	   else
-	    {
-	       gettimeofday(&tv, 0);
-	       if (timercmp(&tv, &end, >))
-		  return 0;
-	       continue;
-	    }
-	}
-
-#ifdef HAVE_GPM_H
-       if (gpm_fd >= 0)
-	{
-	   if (FD_ISSET(gpm_fd, &rfs))
-	    {
-	       key = get_gpm_mouse(base);
-	       if (key)
-		  return key;
-	    }
-	}
-#endif
-
-       if (!FD_ISSET(base->fd, &rfs))
-	  continue;
-
-       if (read(base->fd, &ch, 1) < 1)
-	  return 0;
-
-       if (raw && scr_scan_mode)
-	{
-	   if (!scan_push(ch))
-	      goto again;
-	   return ch;
-	}
-
-       if (match_Key(base, ch, &key))
-	{
-	   newMatch_Key(base);
-	   return key;
-	}
-     again:
-       gettimeofday(&tv, 0);
-    }
+       again:
+	 gettimeofday(&tv, 0);
+      }
 }
 
 /* termcap capabilities ][ Screen  */
 
-Screen   *
+Screen *
 new_Screen(ScreenBase * base)
 {
-   int       i;
-
-   Screen   *scr;
-
-   char     *mem;
-
-   int       Lines = base->Lines;
-
-   int       Columns = base->Columns;
+   int i;
+   Screen *scr;
+   char *mem;
+   int Lines = base->Lines;
+   int Columns = base->Columns;
 
    scr = (Screen *) calloc(1, sizeof(Screen));
    scr->base = base;
@@ -3624,13 +3515,13 @@ new_Screen(ScreenBase * base)
    scr->lnums = (int *) (mem + Lines * Columns * 3 + Lines * sizeof(char *) * 3 + Lines * sizeof(int));
 
    for (i = 0; i < Lines; i++)
-    {
-       scr->chars[i] = (unsigned char *) (mem + Columns * i);
-       scr->colors[i] = (unsigned char *) (mem + Lines * Columns + Columns * i);
-       scr->attrs[i] = (unsigned char *) (mem + Lines * Columns * 2 + Columns * i);
-       scr->lnums[i] = i;
-       scr->touched[i] = 0;
-    }
+      {
+	 scr->chars[i] = (unsigned char *) (mem + Columns * i);
+	 scr->colors[i] = (unsigned char *) (mem + Lines * Columns + Columns * i);
+	 scr->attrs[i] = (unsigned char *) (mem + Lines * Columns * 2 + Columns * i);
+	 scr->lnums[i] = i;
+	 scr->touched[i] = 0;
+      }
 
    memset(mem, ' ', Lines * Columns);
    memset(mem + Lines * Columns, COLOR_WHITE | COLOR_BACK_BLACK, Lines * Columns);
@@ -3658,11 +3549,9 @@ beep_Screen(Screen * scr)
 void
 addLine_Screen(Screen * scr, int line, unsigned char attr)
 {
-   int       i;
-
-   int       Lines = scr->base->Lines;
-
-   int       Columns = scr->base->Columns;
+   int i;
+   int Lines = scr->base->Lines;
+   int Columns = scr->base->Columns;
 
    if (line < 0)
       line = 0;
@@ -3670,13 +3559,13 @@ addLine_Screen(Screen * scr, int line, unsigned char attr)
       line = Lines - 1;
 
    for (i = Lines - 1; i > line; i--)
-    {
-       memcpy(scr->chars[i], scr->chars[i - 1], Columns);
-       memcpy(scr->colors[i], scr->colors[i - 1], Columns);
-       memcpy(scr->attrs[i], scr->attrs[i - 1], Columns);
-       scr->lnums[i] = scr->lnums[i - 1];
-       scr->touched[i] = 1;
-    }
+      {
+	 memcpy(scr->chars[i], scr->chars[i - 1], Columns);
+	 memcpy(scr->colors[i], scr->colors[i - 1], Columns);
+	 memcpy(scr->attrs[i], scr->attrs[i - 1], Columns);
+	 scr->lnums[i] = scr->lnums[i - 1];
+	 scr->touched[i] = 1;
+      }
 
    scr->lnums[line] = -1;
    scr->touched[line] = 1;
@@ -3688,11 +3577,9 @@ addLine_Screen(Screen * scr, int line, unsigned char attr)
 void
 delLine_Screen(Screen * scr, int line, unsigned char attr)
 {
-   int       i;
-
-   int       Lines = scr->base->Lines;
-
-   int       Columns = scr->base->Columns;
+   int i;
+   int Lines = scr->base->Lines;
+   int Columns = scr->base->Columns;
 
    if (line < 0)
       line = 0;
@@ -3700,13 +3587,13 @@ delLine_Screen(Screen * scr, int line, unsigned char attr)
       line = Lines - 1;
 
    for (i = line; i < Lines - 1; i++)
-    {
-       memcpy(scr->chars[i], scr->chars[i + 1], Columns);
-       memcpy(scr->colors[i], scr->colors[i + 1], Columns);
-       memcpy(scr->attrs[i], scr->attrs[i + 1], Columns);
-       scr->lnums[i] = scr->lnums[i + 1];
-       scr->touched[i] = 1;
-    }
+      {
+	 memcpy(scr->chars[i], scr->chars[i + 1], Columns);
+	 memcpy(scr->colors[i], scr->colors[i + 1], Columns);
+	 memcpy(scr->attrs[i], scr->attrs[i + 1], Columns);
+	 scr->lnums[i] = scr->lnums[i + 1];
+	 scr->touched[i] = 1;
+      }
 
    scr->lnums[Lines - 1] = -1;
    scr->touched[Lines - 1] = 1;
@@ -3718,7 +3605,7 @@ delLine_Screen(Screen * scr, int line, unsigned char attr)
 void
 scroll_Screen(Screen * scr, int beg, int end, int num, unsigned char attr)
 {
-   int       columns = scr->base->Columns;
+   int columns = scr->base->Columns;
 
    scrollw_Screen(scr, beg, 0, end, columns - 1, num, attr);
 }
@@ -3726,11 +3613,9 @@ scroll_Screen(Screen * scr, int beg, int end, int num, unsigned char attr)
 void
 scrollw_Screen(Screen * scr, int beg, int left, int end, int right, int num, unsigned char attr)
 {
-   int       i, dw;
-
-   int       Lines = scr->base->Lines;
-
-   int       Columns = scr->base->Columns;
+   int i, dw;
+   int Lines = scr->base->Lines;
+   int Columns = scr->base->Columns;
 
    if (beg < 0)
       beg = 0;
@@ -3749,62 +3634,57 @@ scrollw_Screen(Screen * scr, int beg, int left, int end, int right, int num, uns
    for (i = beg; i <= end; i++)
       scr->touched[i] = 1;
    if (num > 0)
-    {
-       for (i = beg + num; i <= end; i++)
-	{
-	   memcpy(scr->chars[i - num] + left, scr->chars[i] + left, dw);
-	   memcpy(scr->colors[i - num] + left, scr->colors[i] + left, dw);
-	   memcpy(scr->attrs[i - num] + left, scr->attrs[i] + left, dw);
-	   scr->lnums[i - num] = scr->lnums[i];
-	  /*scr->touched[i - num] = 1; */
-	}
-       if (num > end)
-	  num = end;
-       for (i = end - num + 1; i <= end; i++)
-	{
-	   memset(scr->chars[i] + left, ' ', dw);
-	   memset(scr->colors[i] + left, attr, dw);
-	   memset(scr->attrs[i] + left, 0, dw);
-	   scr->lnums[i] = -1;
-	  /*scr->touched[i] = 1; */
-	}
-    }
+      {
+	 for (i = beg + num; i <= end; i++)
+	    {
+	       memcpy(scr->chars[i - num] + left, scr->chars[i] + left, dw);
+	       memcpy(scr->colors[i - num] + left, scr->colors[i] + left, dw);
+	       memcpy(scr->attrs[i - num] + left, scr->attrs[i] + left, dw);
+	       scr->lnums[i - num] = scr->lnums[i];
+	      /*scr->touched[i - num] = 1; */
+	    }
+	 if (num > end)
+	    num = end;
+	 for (i = end - num + 1; i <= end; i++)
+	    {
+	       memset(scr->chars[i] + left, ' ', dw);
+	       memset(scr->colors[i] + left, attr, dw);
+	       memset(scr->attrs[i] + left, 0, dw);
+	       scr->lnums[i] = -1;
+	      /*scr->touched[i] = 1; */
+	    }
+      }
    else
-    {
-       for (i = end + num; i >= beg; i--)
-	{
-	   memcpy(scr->chars[i - num] + left, scr->chars[i] + left, dw);
-	   memcpy(scr->colors[i - num] + left, scr->colors[i] + left, dw);
-	   memcpy(scr->attrs[i - num] + left, scr->attrs[i] + left, dw);
-	   scr->lnums[i - num] = scr->lnums[i];
-	  /*scr->touched[i - num] = 1; */
-	}
-       if ((0 - num) > beg)
-	  num = 0 - beg;
-       for (i = beg - num - 1; i >= beg; i--)
-	{
-	   memset(scr->chars[i] + left, ' ', dw);
-	   memset(scr->colors[i] + left, attr, dw);
-	   memset(scr->attrs[i] + left, 0, dw);
-	   scr->lnums[i] = -1;
-	  /*scr->touched[i] = 1; */
-	}
-    }
+      {
+	 for (i = end + num; i >= beg; i--)
+	    {
+	       memcpy(scr->chars[i - num] + left, scr->chars[i] + left, dw);
+	       memcpy(scr->colors[i - num] + left, scr->colors[i] + left, dw);
+	       memcpy(scr->attrs[i - num] + left, scr->attrs[i] + left, dw);
+	       scr->lnums[i - num] = scr->lnums[i];
+	      /*scr->touched[i - num] = 1; */
+	    }
+	 if ((0 - num) > beg)
+	    num = 0 - beg;
+	 for (i = beg - num - 1; i >= beg; i--)
+	    {
+	       memset(scr->chars[i] + left, ' ', dw);
+	       memset(scr->colors[i] + left, attr, dw);
+	       memset(scr->attrs[i] + left, 0, dw);
+	       scr->lnums[i] = -1;
+	      /*scr->touched[i] = 1; */
+	    }
+      }
 }
 
 static void
 syncLine(Screen * scr, int y, int utf8term)
 {
-   int       Lines = scr->base->Lines;
-
-   int       Columns = scr->base->Columns;
-
-   int       columns = (y == Lines - 1 ? Columns - 1 : Columns);
-
-   int       x, e, i, end, l, contnum;
-
+   int Lines = scr->base->Lines;
+   int Columns = scr->base->Columns;
+   int columns = (y == Lines - 1 ? Columns - 1 : Columns);
+   int x, e, i, end, l, contnum;
    unsigned char *chars, *ochars, *colors, *ocolors, *attrs, *oattrs;
-
    ScreenData *dp = (ScreenData *) scr->base->data;
 
    if (!scr->touched[y])
@@ -3833,173 +3713,169 @@ syncLine(Screen * scr, int y, int utf8term)
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       CHAR_INFO *p;
+      {
+	 CHAR_INFO *p;
 
-       if (y < w32_beg.Y)
-	  w32_beg.Y = y;
-       if (y > w32_end.Y)
-	  w32_end.Y = y;
-       if (x < w32_beg.X)
-	  w32_beg.X = x;
-       if (e > w32_end.X)
-	  w32_end.X = e;
+	 if (y < w32_beg.Y)
+	    w32_beg.Y = y;
+	 if (y > w32_end.Y)
+	    w32_end.Y = y;
+	 if (x < w32_beg.X)
+	    w32_beg.X = x;
+	 if (e > w32_end.X)
+	    w32_end.X = e;
 
-       for (p = w32_screen + y * w32_size.X + x; i <= e; i++, p++)
-	{
-	   int       ch;
+	 for (p = w32_screen + y * w32_size.X + x; i <= e; i++, p++)
+	    {
+	       int ch;
+	      /* int pg; */
 
-	  /* int pg; */
-
-	   ch = chars[i];
-	   p->Attributes = colors[i];
+	       ch = chars[i];
+	       p->Attributes = colors[i];
 /*
 			if (dp->pg_mode && ch < 32 && (pg = dp->pgTable[ch]))
 				ch = dp->base->pg_chars[pg];
 			else
 */
-	   ch = dp->outputTable[ch];
-	   p->Char.AsciiChar = ch;
+	       ch = dp->outputTable[ch];
+	       p->Char.AsciiChar = ch;
 
-	   ocolors[i] = colors[i];
-	   ochars[i] = chars[i];
-	   oattrs[i] = attrs[i];
-	}
+	       ocolors[i] = colors[i];
+	       ochars[i] = chars[i];
+	       oattrs[i] = attrs[i];
+	    }
 
-       return;
-    }
+	 return;
+      }
 #endif
 
 /* Search the first nonblank character from the end of line. */
    if (dp->termcap_CE)
-    {
-       int       p = columns - 1;
+      {
+	 int p = columns - 1;
 
-       if (chars[p] == ' ')
-	  while (p > 0 && chars[p] == chars[p - 1] && colors[p] == colors[p - 1] && attrs[p] == attrs[p - 1])
-	     --p;
-      /* If there are more than 4 characters to clear, use CE. */
-       if (e > p + 4 || (e > p && y >= Lines - 1))
-	  e = p - 1;
-    }
+	 if (chars[p] == ' ')
+	    while (p > 0 && chars[p] == chars[p - 1] && colors[p] == colors[p - 1] && attrs[p] == attrs[p - 1])
+	       --p;
+	/* If there are more than 4 characters to clear, use CE. */
+	 if (e > p + 4 || (e > p && y >= Lines - 1))
+	    e = p - 1;
+      }
 
    contnum = 0;
    for (; i <= e; i++, x++)
-    {
-       if (x >= Columns || y >= Lines)
-	  return;
+      {
+	 if (x >= Columns || y >= Lines)
+	    return;
 
-       if (chars[i] == ochars[i] && colors[i] == ocolors[i] && attrs[i] == oattrs[i])
-	{
-	   contnum = 0;
-	   continue;
-	}
+	 if (chars[i] == ochars[i] && colors[i] == ocolors[i] && attrs[i] == oattrs[i])
+	    {
+	       contnum = 0;
+	       continue;
+	    }
 
-       if (!contnum)
-	  termcap_set_cursor(dp, y, x);
-       contnum++;
-       termcap_set_color(dp, colors[i] /*& 0x7f */ );
-      /*if (colors[i] & 0x80) */
-       if (attrs[i] & PG_ATTR)
-	  termcap_put_graph_char(dp, chars[i]);
-       else
-	  termcap_put_char(dp, chars[i], utf8term);
-       ocolors[i] = colors[i];
-       ochars[i] = chars[i];
-       oattrs[i] = attrs[i];
-    }
+	 if (!contnum)
+	    termcap_set_cursor(dp, y, x);
+	 contnum++;
+	 termcap_set_color(dp, colors[i] /*& 0x7f */ );
+	/*if (colors[i] & 0x80) */
+	 if (attrs[i] & PG_ATTR)
+	    termcap_put_graph_char(dp, chars[i]);
+	 else
+	    termcap_put_char(dp, chars[i], utf8term);
+	 ocolors[i] = colors[i];
+	 ochars[i] = chars[i];
+	 oattrs[i] = attrs[i];
+      }
 
 /* Clear the end of line.
    First check if it is needed. */
 
    if (dp->termcap_CE && e < end)
-    {
-       termcap_set_cursor(dp, y, x);
-       termcap_set_color(dp, colors[i]);
-       termcap_put_raw_str(dp, dp->termcap_CE);
-       while (i <= end)
-	{
-	   ocolors[i] = colors[i];
-	   ochars[i] = chars[i];
-	   oattrs[i] = attrs[i];
-	   i++;
-	}
-    }
+      {
+	 termcap_set_cursor(dp, y, x);
+	 termcap_set_color(dp, colors[i]);
+	 termcap_put_raw_str(dp, dp->termcap_CE);
+	 while (i <= end)
+	    {
+	       ocolors[i] = colors[i];
+	       ochars[i] = chars[i];
+	       oattrs[i] = attrs[i];
+	       i++;
+	    }
+      }
 
 }
 
 void
 sync_Screen(Screen * scr, int utf8term)
 {
-   int       y;
-
-   int       line, n, topline, botline;
-
-   int       Lines = scr->base->Lines;
-
+   int y;
+   int line, n, topline, botline;
+   int Lines = scr->base->Lines;
    ScreenData *dp = (ScreenData *) scr->base->data;
 
 /* make scrolls */
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       w32_beg = w32_size;
-       w32_end.X = 0;
-       w32_end.Y = 0;
-    }
+      {
+	 w32_beg = w32_size;
+	 w32_end.X = 0;
+	 w32_end.Y = 0;
+      }
    else
 #endif
-    {
+      {
 
-       for (line = 0; line < Lines; line++)
-	{
-	  /* find next range to scrool */
+	 for (line = 0; line < Lines; line++)
+	    {
+	      /* find next range to scrool */
 
-	  /* skip fresh lines */
-	   while (line < Lines && scr->lnums[line] < 0)
-	      line++;
+	      /* skip fresh lines */
+	       while (line < Lines && scr->lnums[line] < 0)
+		  line++;
 
-	  /* last line reached - no range to scrool */
-	   if (line >= Lines)
-	      break;
+	      /* last line reached - no range to scrool */
+	       if (line >= Lines)
+		  break;
 
-	  /* top line found */
-	   topline = line;
+	      /* top line found */
+	       topline = line;
 
-	  /* skip range of old lines */
-	   while (line < Lines - 1 && scr->lnums[line] + 1 == scr->lnums[line + 1])
-	      line++;
+	      /* skip range of old lines */
+	       while (line < Lines - 1 && scr->lnums[line] + 1 == scr->lnums[line + 1])
+		  line++;
 
-	  /* bottom line found */
-	   botline = line;
+	      /* bottom line found */
+	       botline = line;
 
-	  /* compute number of scrools, >0 - forward */
-	   n = topline - scr->lnums[topline];
+	      /* compute number of scrools, >0 - forward */
+	       n = topline - scr->lnums[topline];
 
-	   if (n == 0)
-	      continue;
-	   else if (n > 0)
-	      topline = scr->lnums[topline];
-	   else if (n < 0)
-	      botline = scr->lnums[botline];
+	       if (n == 0)
+		  continue;
+	       else if (n > 0)
+		  topline = scr->lnums[topline];
+	       else if (n < 0)
+		  botline = scr->lnums[botline];
 
-	  /* do scrool */
-	   termcap_scroll(scr->base, topline, botline, n);
-	}
+	      /* do scrool */
+	       termcap_scroll(scr->base, topline, botline, n);
+	    }
 
-    }
+      }
    for (line = 0; line < Lines; line++)
       scr->lnums[line] = line;
 
    if (scr->base->mouse_present && !xterm_mouse && scr->base->mouse_visible && scr->base->mouse_auto_visible)
-    {
-       unsigned char *ptr;
+      {
+	 unsigned char *ptr;
 
-       ptr = scr->colors[scr->base->mouse_y] + scr->base->mouse_x;
-       *ptr = ~*ptr;
-       scr->touched[scr->base->mouse_y] = 1;
-    }
+	 ptr = scr->colors[scr->base->mouse_y] + scr->base->mouse_x;
+	 *ptr = ~*ptr;
+	 scr->touched[scr->base->mouse_y] = 1;
+      }
 
 /* update contens */
    for (y = 0; y < Lines; y++)
@@ -4007,50 +3883,44 @@ sync_Screen(Screen * scr, int utf8term)
 
 #ifdef _WIN32
    if (w32_console)
-    {
-       for (; scr->beeps > 0; --scr->beeps)
-	  w32_beep();
-       w32_set_cursor(scr->y, scr->x);
-       w32_set_cursor_shape(scr->cursor);
-       w32_flush();
-    }
+      {
+	 for (; scr->beeps > 0; --scr->beeps)
+	    w32_beep();
+	 w32_set_cursor(scr->y, scr->x);
+	 w32_set_cursor_shape(scr->cursor);
+	 w32_flush();
+      }
    else
 #endif
-    {
-       for (; scr->beeps > 0; --scr->beeps)
-	  termcap_beep(dp);
+      {
+	 for (; scr->beeps > 0; --scr->beeps)
+	    termcap_beep(dp);
 
-       termcap_set_cursor(dp, scr->y, scr->x);
-       termcap_set_cursor_shape(dp, scr->cursor);
+	 termcap_set_cursor(dp, scr->y, scr->x);
+	 termcap_set_cursor_shape(dp, scr->cursor);
 
-       termcap_flush(dp);
-    }
+	 termcap_flush(dp);
+      }
 
    if (scr->base->mouse_present && !xterm_mouse && scr->base->mouse_visible && scr->base->mouse_auto_visible)
-    {
-       unsigned char *ptr;
+      {
+	 unsigned char *ptr;
 
-       ptr = scr->colors[scr->base->mouse_y] + scr->base->mouse_x;
-       *ptr = ~*ptr;
-       scr->touched[scr->base->mouse_y] = 1;
-    }
+	 ptr = scr->colors[scr->base->mouse_y] + scr->base->mouse_x;
+	 *ptr = ~*ptr;
+	 scr->touched[scr->base->mouse_y] = 1;
+      }
 }
 
 void
 redraw_Screen(Screen * scr, int utf8term)
 {
-   int       i, j;
-
-   int       Lines;
-
-   int       Columns;
-
+   int i, j;
+   int Lines;
+   int Columns;
    ScreenData *dp;
-
    unsigned char **chars;
-
    unsigned char **colors;
-
    unsigned char **attrs;
 
    if (!scr)
@@ -4064,15 +3934,15 @@ redraw_Screen(Screen * scr, int utf8term)
    attrs = scr->base->realScreen->attrs;
 
    for (i = 0; i < Lines; ++i)
-    {
-       for (j = 0; j < Columns; ++j)
-	{
-	   chars[i][j] = ' ';
-	   colors[i][j] = COLOR_WHITE | COLOR_BACK_BLACK;
-	   attrs[i][j] = 0;
-	}
-       scr->touched[i] = 1;
-    }
+      {
+	 for (j = 0; j < Columns; ++j)
+	    {
+	       chars[i][j] = ' ';
+	       colors[i][j] = COLOR_WHITE | COLOR_BACK_BLACK;
+	       attrs[i][j] = 0;
+	    }
+	 scr->touched[i] = 1;
+      }
 
    termcap_set_color(dp, COLOR_WHITE | COLOR_BACK_BLACK);
    termcap_clear_screen(dp);
@@ -4094,37 +3964,36 @@ void
 setAttr_Screen(Screen * scr, int *pblink, int *pbold)
 {
    ScreenData *dp = (ScreenData *) scr->base->data;
-
-   int       blink, bold;
+   int blink, bold;
 
    blink = dp->useBlinkAttr;
    bold = dp->useBoldAttr;
 
    if (pblink)
-    {
-       if (*pblink >= 0)
-	  dp->useBlinkAttr = *pblink ? 1 : 0;
-       *pblink = blink;
-    }
+      {
+	 if (*pblink >= 0)
+	    dp->useBlinkAttr = *pblink ? 1 : 0;
+	 *pblink = blink;
+      }
    if (pbold)
-    {
-       if (*pbold >= 0)
-	  dp->useBoldAttr = *pbold ? 1 : 0;
-       *pbold = bold;
-    }
+      {
+	 if (*pbold >= 0)
+	    dp->useBoldAttr = *pbold ? 1 : 0;
+	 *pbold = bold;
+      }
 }
 
 static void
 set_rawmode(int fd, int mode)
 {
 #ifdef OS_LINUX
-   long      cmd;
+   long cmd;
 
    if (mode)
-    {
-      /*cmd = K_RAW; */
-       cmd = 0x00;
-    }
+      {
+	/*cmd = K_RAW; */
+	 cmd = 0x00;
+      }
    else
      /*cmd = K_XLATE; */
       cmd = 0x01;
@@ -4140,34 +4009,34 @@ static void
 start_scan_mode(int fd)
 {
    switch (scr_scan_mode)
-    {
-    case ScanNone:
-       break;
-    case ScanTerminal:
-       if (scan_start)
-	  write(fd, scan_start, strlen(scan_start));
-       break;
-    case ScanIoctl:
-       set_rawmode(fd, 1);
-       break;
-    }
+      {
+      case ScanNone:
+	 break;
+      case ScanTerminal:
+	 if (scan_start)
+	    write(fd, scan_start, strlen(scan_start));
+	 break;
+      case ScanIoctl:
+	 set_rawmode(fd, 1);
+	 break;
+      }
 }
 
 static void
 stop_scan_mode(int fd)
 {
    switch (scr_scan_mode)
-    {
-    case ScanNone:
-       break;
-    case ScanTerminal:
-       if (scan_stop)
-	  write(fd, scan_stop, strlen(scan_stop));
-       break;
-    case ScanIoctl:
-       set_rawmode(fd, 0);
-       break;
-    }
+      {
+      case ScanNone:
+	 break;
+      case ScanTerminal:
+	 if (scan_stop)
+	    write(fd, scan_stop, strlen(scan_stop));
+	 break;
+      case ScanIoctl:
+	 set_rawmode(fd, 0);
+	 break;
+      }
 }
 
 #ifdef _WIN32
@@ -4176,8 +4045,7 @@ static void
 w32_clear(void)
 {
    CHAR_INFO p;
-
-   int       i;
+   int i;
 
    p.Char.AsciiChar = ' ';
    p.Attributes = 7;
@@ -4193,7 +4061,7 @@ w32_clear(void)
 static void
 w32_set_cursor(int r, int c)
 {
-   COORD     coord;
+   COORD coord;
 
    coord.X = c;
    coord.Y = r;
@@ -4206,20 +4074,20 @@ w32_set_cursor_shape(int k)
    CONSOLE_CURSOR_INFO info;
 
    switch (k)
-    {
-    case 0:
-       info.bVisible = 1;
-       info.dwSize = 10;
-       break;
-    case 1:
-       info.bVisible = 0;
-       info.dwSize = 1;		/* ??? !!! $@!@#$% !!! */
-       break;
-    case 2:
-       info.bVisible = 1;
-       info.dwSize = 99;
-       break;
-    }
+      {
+      case 0:
+	 info.bVisible = 1;
+	 info.dwSize = 10;
+	 break;
+      case 1:
+	 info.bVisible = 0;
+	 info.dwSize = 1;	/* ??? !!! $@!@#$% !!! */
+	 break;
+      case 2:
+	 info.bVisible = 1;
+	 info.dwSize = 99;
+	 break;
+      }
    SetConsoleCursorInfo(w32_hStdOut, &info);
 }
 
@@ -4233,8 +4101,7 @@ static void
 w32_flush(void)
 {
    SMALL_RECT rect;
-
-   int       r;
+   int r;
 
    rect.Top = w32_beg.Y;
    rect.Left = w32_beg.X;
@@ -4257,12 +4124,12 @@ w32_get_scan_buf(void)
    unsigned char r = 0;
 
    if (w32_scan_buf_len)
-    {
-       r = w32_scan_buf[0];
-       --w32_scan_buf_len;
-       if (w32_scan_buf_len)
-	  memmove(w32_scan_buf, w32_scan_buf + 1, w32_scan_buf_len);
-    }
+      {
+	 r = w32_scan_buf[0];
+	 --w32_scan_buf_len;
+	 if (w32_scan_buf_len)
+	    memmove(w32_scan_buf, w32_scan_buf + 1, w32_scan_buf_len);
+      }
    return r;
 }
 
@@ -4270,14 +4137,14 @@ static void
 w32_put_scan_buf(unsigned char b)
 {
    if (w32_scan_buf_len == w32_scan_buf_size)
-    {
-       int       size = w32_scan_buf_size * 2;
+      {
+	 int size = w32_scan_buf_size * 2;
 
-       if (size < 8)
-	  size = 8;
-       w32_scan_buf_size = size;
-       w32_scan_buf = (unsigned char *) realloc(w32_scan_buf, size);
-    }
+	 if (size < 8)
+	    size = 8;
+	 w32_scan_buf_size = size;
+	 w32_scan_buf = (unsigned char *) realloc(w32_scan_buf, size);
+      }
 
    w32_scan_buf[w32_scan_buf_len] = b;
    w32_scan_buf_len++;
@@ -4287,40 +4154,36 @@ static void
 w32_push_key_event(KEY_EVENT_RECORD * kp)
 {
    unsigned char ch;
-
    unsigned short word;
-
-   int       i;
-
-   DWORD     pstate;
-
+   int i;
+   DWORD pstate;
    static int first = 1;
 
    word = kp->wVirtualScanCode;
    pstate = kp->dwControlKeyState;
 
    if (first && word != 0x45 && (pstate & NUMLOCK_ON))
-    {
-       first = 0;
-       scan_numlock_state = 1;
-    }
+      {
+	 first = 0;
+	 scan_numlock_state = 1;
+      }
 
 #ifdef DBG
    printf("\nread key: scan=0x%x pstate=0x%x count=%d down=%d\r\n", word, pstate, kp->wRepeatCount, kp->bKeyDown);
 #endif
    for (i = 0; i < kp->wRepeatCount; i++)
-    {
-       if ((pstate & ENHANCED_KEY) && (word != 0x45))
-	{
-	   ch = 0xe0;
-	   w32_put_scan_buf(ch);
-	}
-       ch = word /*& 0xff */ ;
+      {
+	 if ((pstate & ENHANCED_KEY) && (word != 0x45))
+	    {
+	       ch = 0xe0;
+	       w32_put_scan_buf(ch);
+	    }
+	 ch = word /*& 0xff */ ;
 
-       if (!kp->bKeyDown)
-	  ch |= 0x80;
-       w32_put_scan_buf(ch);
-    }
+	 if (!kp->bKeyDown)
+	    ch |= 0x80;
+	 w32_put_scan_buf(ch);
+      }
 }
 
 /*
@@ -4329,12 +4192,9 @@ w32_push_key_event(KEY_EVENT_RECORD * kp)
 static void
 w32_push_mouse_event(MOUSE_EVENT_RECORD * ClipMachineMemory)
 {
-   int       state = ClipMachineMemory->dwButtonState;
-
-   int       event = ClipMachineMemory->dwEventFlags;
-
-   int       bb, x, y, i;
-
+   int state = ClipMachineMemory->dwButtonState;
+   int event = ClipMachineMemory->dwEventFlags;
+   int bb, x, y, i;
    unsigned char sb[8];
 
    x = ClipMachineMemory->dwMousePosition.X;
@@ -4366,8 +4226,7 @@ static int
 w32_readch(void)
 {
    INPUT_RECORD inputBuffer;
-
-   DWORD     dwInputEvents;
+   DWORD dwInputEvents;
 
 #ifdef DBG
    printf("w32_readch()\r\n");
@@ -4378,22 +4237,20 @@ w32_readch(void)
    ReadConsoleInput(w32_hStdIn, &inputBuffer, 1, &dwInputEvents);
 
    if (inputBuffer.EventType == KEY_EVENT)
-    {
-       if (inputBuffer.Event.KeyEvent.bKeyDown
-	   && (inputBuffer.Event.KeyEvent.wVirtualScanCode == 27)
-	   && (inputBuffer.Event.KeyEvent.dwControlKeyState &
-	       (LEFT_ALT_PRESSED | RIGHT_ALT_PRESSED))
-	   && (inputBuffer.Event.KeyEvent.dwControlKeyState & (LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED)))
-	{
-	   printf("\nescape key pressed; exiting...\n");
-	   exit(1);
-	}
-       w32_push_key_event(&inputBuffer.Event.KeyEvent);
-    }
+      {
+	 if (inputBuffer.Event.KeyEvent.bKeyDown
+	     && (inputBuffer.Event.KeyEvent.wVirtualScanCode == 27)
+	     && (inputBuffer.Event.KeyEvent.dwControlKeyState & (LEFT_ALT_PRESSED | RIGHT_ALT_PRESSED)) && (inputBuffer.Event.KeyEvent.dwControlKeyState & (LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED)))
+	    {
+	       printf("\nescape key pressed; exiting...\n");
+	       exit(1);
+	    }
+	 w32_push_key_event(&inputBuffer.Event.KeyEvent);
+      }
    else if (inputBuffer.EventType == MOUSE_EVENT)
-    {
-       w32_push_mouse_event(&inputBuffer.Event.MouseEvent);
-    }
+      {
+	 w32_push_mouse_event(&inputBuffer.Event.MouseEvent);
+      }
 
    return w32_get_scan_buf();
 }
@@ -4403,10 +4260,10 @@ w32_readch(void)
 static void
 init_mouse(ScreenBase * base, char **envp)
 {
-   char     *term;
+   char *term;
 
 #ifndef _WIN32
-   char     *e;
+   char *e;
 #endif
 
    term = base->terminalName;
@@ -4432,26 +4289,25 @@ init_mouse(ScreenBase * base, char **envp)
 
    e = get_env(envp, "XTERM_MOUSE");
 
-   if ((e && (!strcasecmp(e, "yes") || !strcasecmp(e, "on")))
-       || !strncmp(term, "xterm", 5) || !strncmp(term, "rxvt", 4) || strstr(term, "xterm") || strstr(term, "rxvt"))
-    {
-       const char msg[] = "\033[?1001s\033[?1000h";
+   if ((e && (!strcasecmp(e, "yes") || !strcasecmp(e, "on"))) || !strncmp(term, "xterm", 5) || !strncmp(term, "rxvt", 4) || strstr(term, "xterm") || strstr(term, "rxvt"))
+      {
+	 const char msg[] = "\033[?1001s\033[?1000h";
 
-       xterm_mouse = 1;
+	 xterm_mouse = 1;
 
-      /* turn xterm mouse on */
+	/* turn xterm mouse on */
 
-       write(1, msg, sizeof(msg) - 1);
-       base->mouse_present = 1;
-       base->mouse_driver = "xterm";
+	 write(1, msg, sizeof(msg) - 1);
+	 base->mouse_present = 1;
+	 base->mouse_driver = "xterm";
 
-       return;
-    }
+	 return;
+      }
 #endif
 
 #ifdef HAVE_GPM_H
    {
-      int       r;
+      int r;
 
       memset(&conn, 0, sizeof(conn));
       conn.eventMask = GPM_MOVE | GPM_UP | GPM_DOWN | GPM_DRAG | GPM_DOUBLE;
@@ -4461,10 +4317,10 @@ init_mouse(ScreenBase * base, char **envp)
       gpm_zerobased = 1;
       r = Gpm_Open(&conn, 0);
       if (r >= 0)
-       {
-	  base->mouse_present = 1;
-	  base->mouse_driver = "LinuxConsoleGPM";
-       }
+	 {
+	    base->mouse_present = 1;
+	    base->mouse_driver = "LinuxConsoleGPM";
+	 }
       _clip_logg(3, "Gpm_Open return %d", r);
    }
 #endif
@@ -4473,8 +4329,7 @@ init_mouse(ScreenBase * base, char **envp)
 int
 setPgMode_Screen(Screen * scr, int newmode)
 {
-   int       r;
-
+   int r;
    ScreenData *dp;
 
    dp = ((ScreenData *) scr->base->data);
@@ -4487,8 +4342,7 @@ setPgMode_Screen(Screen * scr, int newmode)
 int
 setUtf8Mode_Screen(Screen * scr, int newmode)
 {
-   int       r;
-
+   int r;
    ScreenData *dp;
 
    dp = ((ScreenData *) scr->base->data);

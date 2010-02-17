@@ -58,8 +58,7 @@ _clip_type_name_radio_group()
 int
 clip_INIT___RADIO_BUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_radio_button, _clip_type_name_radio_button,
-		    _gtk_type_radio_button, _gtk_type_toggle_button, NULL);
+   _wtype_table_put(_clip_type_radio_button, _clip_type_name_radio_button, _gtk_type_radio_button, _gtk_type_toggle_button, NULL);
    _wtype_table_put(_clip_type_radio_group, _clip_type_name_radio_group, _gtk_type_radio_group, NULL, NULL);
    return 0;
 }
@@ -68,18 +67,12 @@ clip_INIT___RADIO_BUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_RADIOBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   char     *label = _clip_parc(ClipMachineMemory, 3);
-
+   char *label = _clip_parc(ClipMachineMemory, 3);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    GtkRadioButton *rb = NULL;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -90,19 +83,19 @@ clip_GTK_RADIOBUTTONNEW(ClipMachine * ClipMachineMemory)
       rb = ((GSList *) (cgrp->data))->data;
 
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
-    {
-       LOCALE_TO_UTF(label);
-       wid = gtk_radio_button_new_with_label_from_widget(rb, label);
-       if (cgrp && !cgrp->data)
-	  cgrp->data = gtk_radio_button_get_group(GTK_RADIO_BUTTON(wid));
-       FREE_TEXT(label);
-    }
+      {
+	 LOCALE_TO_UTF(label);
+	 wid = gtk_radio_button_new_with_label_from_widget(rb, label);
+	 if (cgrp && !cgrp->data)
+	    cgrp->data = gtk_radio_button_get_group(GTK_RADIO_BUTTON(wid));
+	 FREE_TEXT(label);
+      }
    else
-    {
-       wid = gtk_radio_button_new_from_widget(rb);
-       if (cgrp && !cgrp->data)
-	  cgrp->data = gtk_radio_button_get_group(GTK_RADIO_BUTTON(wid));
-    }
+      {
+	 wid = gtk_radio_button_new_from_widget(rb);
+	 if (cgrp && !cgrp->data)
+	    cgrp->data = gtk_radio_button_get_group(GTK_RADIO_BUTTON(wid));
+      }
    if (!wid)
       goto err;
 
@@ -120,10 +113,8 @@ clip_GTK_RADIOBUTTONNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_RADIOGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    cwid = _register_widget(ClipMachineMemory, NULL, cv);
@@ -146,11 +137,8 @@ int
 clip_GTK_RADIOBUTTONSETGROUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   GSList   *group = NULL;
-
+   GSList *group = NULL;
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cbtn, GTK_IS_RADIO_BUTTON);
    if (cgrp && cgrp->type != GTK_WIDGET_RADIO_GROUP)
@@ -169,13 +157,9 @@ int
 clip_GTK_RADIOBUTTONSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
-
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
    GtkStyle *style;
-
    GtkButton *button;
-
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    CHECKARG(2, MAP_type_of_ClipVarType);
 

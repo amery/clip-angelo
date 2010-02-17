@@ -428,11 +428,11 @@ print_var(ClipMachine * ClipMachineMemory, ClipVar * vp, int attr, int dev, int 
 
 	      if (vp->ClipType_t_of_ClipVar.dec_of_ClipType)
 		 buf =
-		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10,
+		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10,
 				    vp->ClipType_t_of_ClipVar.dec_of_ClipType, 0);
 	      else
 		 buf =
-		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10,
+		  rational_toString(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10,
 				    ClipMachineMemory->decimals, 0);
 	      out_any(ClipMachineMemory, buf, strlen(buf), attr, dev);
 	      free(buf);
@@ -762,7 +762,7 @@ _clip_strFunc(ClipMachine * ClipMachineMemory, ClipVar * v, int len, int dec, in
 
        char     *_buf;
 
-       _buf = rational_toString(v->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10, decd, 0);
+       _buf = rational_toString(v->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10, decd, 0);
        _lend = strlen(_buf);
        if (_lend < lend)
 	{
@@ -855,7 +855,7 @@ clip_RSTR(ClipMachine * ClipMachineMemory)
    if (v->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType
        && v->ClipType_t_of_ClipVar.memo_of_ClipType)
     {
-       s = rational_toString2(v->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar);
+       s = rational_toString2(v->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar);
        _clip_retcn_m(ClipMachineMemory, s, strlen(s));
     }
    return 0;
@@ -906,14 +906,14 @@ clip_STRZERO(ClipMachine * ClipMachineMemory)
        && v->ClipType_t_of_ClipVar.memo_of_ClipType)
     {
        if (len)
-	  s = rational_toString(v->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10, dec, 0);
+	  s = rational_toString(v->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10, dec, 0);
        else
 	{
 	   if (lend)
-	      s = rational_toString(v->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10, decd, 0);
+	      s = rational_toString(v->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10, decd, 0);
 	   else
 	      s =
-	       rational_toString(v->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10, ClipMachineMemory->decimals,
+	       rational_toString(v->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10, ClipMachineMemory->decimals,
 				 0);
 	}
        _clip_retcn_m(ClipMachineMemory, s, strlen(s));

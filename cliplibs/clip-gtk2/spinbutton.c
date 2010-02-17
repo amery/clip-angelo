@@ -15,7 +15,7 @@
 
 /*********************** SIGNALS **************************/
 
-static    gint
+static gint
 handle_change_value_signal(GtkSpinButton * sbutton, GtkScrollType * type, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -23,7 +23,7 @@ handle_change_value_signal(GtkSpinButton * sbutton, GtkScrollType * type, C_sign
    INVOKESIGHANDLER(GTK_WIDGET(sbutton), cs, cv);
 }
 
-static    gint
+static gint
 handle_input_signal(GtkSpinButton * sbutton, gpointer data, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -66,8 +66,7 @@ _clip_type_name_spin_button()
 int
 clip_INIT___SPIN_BUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_spin_button, _clip_type_name_spin_button,
-		    _gtk_type_spin_button, _gtk_type_entry, spin_button_signals);
+   _wtype_table_put(_clip_type_spin_button, _clip_type_name_spin_button, _gtk_type_spin_button, _gtk_type_entry, spin_button_signals);
    return 0;
 }
 
@@ -76,20 +75,13 @@ clip_INIT___SPIN_BUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SPINBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gfloat    climb_rate = DBL_OPTION(ClipMachineMemory, 3, 1);
-
-   guint     digits = INT_OPTION(ClipMachineMemory, 4, 1);
-
+   gfloat climb_rate = DBL_OPTION(ClipMachineMemory, 3, 1);
+   guint digits = INT_OPTION(ClipMachineMemory, 4, 1);
    GtkWidget *wid = NULL;
-
    GtkAdjustment *adj;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -109,16 +101,11 @@ clip_GTK_SPINBUTTONNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SPINBUTTONNEWWITHRANGE(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gdouble   min = _clip_parnd(ClipMachineMemory, 2);
-
-   gdouble   max = _clip_parnd(ClipMachineMemory, 3);
-
-   gdouble   step = _clip_parnd(ClipMachineMemory, 4);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gdouble min = _clip_parnd(ClipMachineMemory, 2);
+   gdouble max = _clip_parnd(ClipMachineMemory, 3);
+   gdouble step = _clip_parnd(ClipMachineMemory, 4);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -141,13 +128,9 @@ int
 clip_GTK_SPINBUTTONCONFIGURE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gfloat    climb_rate = DBL_OPTION(ClipMachineMemory, 3, 1);
-
-   guint     digits = INT_OPTION(ClipMachineMemory, 4, 1);
-
+   gfloat climb_rate = DBL_OPTION(ClipMachineMemory, 3, 1);
+   guint digits = INT_OPTION(ClipMachineMemory, 4, 1);
    GtkAdjustment *adj;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -170,9 +153,7 @@ int
 clip_GTK_SPINBUTTONSETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -187,13 +168,9 @@ int
 clip_GTK_SPINBUTTONGETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
-
+   ClipVar *cv = RETPTR(ClipMachineMemory);
    GtkAdjustment *adj;
-
    C_widget *cadj;
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    adj = gtk_spin_button_get_adjustment(GTK_SPIN_BUTTON(cspb->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -211,9 +188,7 @@ int
 clip_GTK_SPINBUTTONSETDIGITS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     digits = _clip_parni(ClipMachineMemory, 2);
-
+   guint digits = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_spin_button_set_digits(GTK_SPIN_BUTTON(cspb->widget), digits);
@@ -226,10 +201,8 @@ int
 clip_GTK_SPINBUTTONSETINCREMENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   step = _clip_parnd(ClipMachineMemory, 2);
-
-   gdouble   page = _clip_parnd(ClipMachineMemory, 3);
+   gdouble step = _clip_parnd(ClipMachineMemory, 2);
+   gdouble page = _clip_parnd(ClipMachineMemory, 3);
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -245,10 +218,8 @@ int
 clip_GTK_SPINBUTTONSETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   min = _clip_parnd(ClipMachineMemory, 2);
-
-   gdouble   max = _clip_parnd(ClipMachineMemory, 3);
+   gdouble min = _clip_parnd(ClipMachineMemory, 2);
+   gdouble max = _clip_parnd(ClipMachineMemory, 3);
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -264,8 +235,7 @@ int
 clip_GTK_SPINBUTTONGETVALUEASINT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      ret;
+   gint ret;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -281,7 +251,6 @@ int
 clip_GTK_SPINBUTTONGETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    _clip_retnd(ClipMachineMemory, gtk_spin_button_get_value(GTK_SPIN_BUTTON(cspb->widget)));
    return 0;
@@ -294,9 +263,7 @@ int
 clip_GTK_SPINBUTTONSETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_spin_button_set_value(GTK_SPIN_BUTTON(cspb->widget), value);
@@ -310,9 +277,7 @@ int
 clip_GTK_SPINBUTTONSETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSpinButtonUpdatePolicy policy = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_spin_button_set_update_policy(GTK_SPIN_BUTTON(cspb->widget), policy);
@@ -328,9 +293,7 @@ int
 clip_GTK_SPINBUTTONSETNUMERIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  numeric = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
-
+   gboolean numeric = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(cspb->widget), numeric);
@@ -344,11 +307,8 @@ int
 clip_GTK_SPINBUTTONSPIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSpinType direction = _clip_parni(ClipMachineMemory, 2);
-
-   gfloat    increment = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat increment = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -364,9 +324,7 @@ int
 clip_GTK_SPINBUTTONSETWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  wrap = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
-
+   gboolean wrap = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(cspb->widget), wrap);
@@ -379,9 +337,7 @@ int
 clip_GTK_SPINBUTTONSETCLIMBRATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    climb_rate = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat climb_rate = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_widget_set(cspb->widget, "climb-rate", climb_rate, NULL);
@@ -394,7 +350,6 @@ int
 clip_GTK_SPINBUTTONGETCLIMBRATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    _clip_retnd(ClipMachineMemory, GTK_SPIN_BUTTON(cspb->widget)->climb_rate);
    return 0;
@@ -408,9 +363,7 @@ int
 clip_GTK_SPINBUTTONSETSNAPTOTICKS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  snap_to_ticks = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
-
+   gboolean snap_to_ticks = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_spin_button_set_snap_to_ticks(GTK_SPIN_BUTTON(cspb->widget), snap_to_ticks);
@@ -425,7 +378,6 @@ int
 clip_GTK_SPINBUTTONUPDATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
    gtk_spin_button_update(GTK_SPIN_BUTTON(cspb->widget));
    return 0;
@@ -437,8 +389,7 @@ int
 clip_GTK_SPINBUTTONGETDIGITS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     ret;
+   guint ret;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -453,8 +404,7 @@ int
 clip_GTK_SPINBUTTONGETINCREMENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   step, page;
+   gdouble step, page;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -471,8 +421,7 @@ int
 clip_GTK_SPINBUTTONGETNUMERIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -488,8 +437,7 @@ int
 clip_GTK_SPINBUTTONGETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   min, max;
+   gdouble min, max;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -506,8 +454,7 @@ int
 clip_GTK_SPINBUTTONGETSNAPTOTICKS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 
@@ -523,7 +470,6 @@ int
 clip_GTK_SPINBUTTONGETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSpinButtonUpdatePolicy policy;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
@@ -540,8 +486,7 @@ int
 clip_GTK_SPINBUTTONGETWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cspb = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(cspb, GTK_IS_SPIN_BUTTON);
 

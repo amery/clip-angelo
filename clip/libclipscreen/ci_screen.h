@@ -86,39 +86,35 @@ start of logging CVS
 
 */
 
-#ifndef CN_SCREEN_H
-#define CN_SCREEN_H
+#ifndef CI_SCREEN_H
+#define CI_SCREEN_H
 
 /* cursor goto handling with padding/delay checking */
-void      scr_tgoto(char *CM, int destcol, int destline, char *buf, int buflen);
-
-int       scr_tputs(const char *str, int affcnt, int (*put_c) (int, void *), void *par);
+void scr_tgoto(char *CM, int destcol, int destline, char *buf, int buflen);
+int scr_tputs(const char *str, int affcnt, int (*put_c) (int, void *), void *par);
 
 struct ScreenBase;
 
 typedef unsigned char ScreenPgChars[256];
 
-int       init_tty(struct ScreenBase *base, int fd, char **envp,
-		   int clear_on_exit, ScreenPgChars * pg_chars, char *errbuf, int errbuflen);
-int       destroy_tty(struct ScreenBase *base);
+int init_tty(struct ScreenBase *base, int fd, char **envp, int clear_on_exit, ScreenPgChars * pg_chars, char *errbuf, int errbuflen);
+int destroy_tty(struct ScreenBase *base);
+int iscolor_tty(struct ScreenBase *base);
 
-int       iscolor_tty(struct ScreenBase *base);
-
-int       restore_tty(struct ScreenBase *base);	/* restore start mode */
-
-int       restart_tty(struct ScreenBase *base);	/* set work mode */
+int restore_tty(struct ScreenBase *base);	/* restore start mode */
+int restart_tty(struct ScreenBase *base);	/* set work mode */
 
 typedef struct Screen
 {
-   char     *mem;
+   char *mem;
    unsigned char **chars;
    unsigned char **colors;
    unsigned char **attrs;
-   int      *touched;
-   int      *lnums;		/* scroll info */
-   int       x, y;		/* cursor position */
-   int       beeps;
-   int       cursor;		/* 0 - normal; 1 - invisible; 2 - fullblock */
+   int *touched;
+   int *lnums;			/* scroll info */
+   int x, y;			/* cursor position */
+   int beeps;
+   int cursor;			/* 0 - normal; 1 - invisible; 2 - fullblock */
    struct ScreenBase *base;
 } Screen;
 
@@ -127,73 +123,56 @@ typedef struct Screen
 
 typedef struct ScreenBase
 {
-   int       Lines;
-   int       Columns;
-   int       clear_on_exit;
-   int       fd;
-   char     *terminalName;
-   Screen   *realScreen;
-   int       mouse_present;
-   int       mouse_y;
-   int       mouse_x;
-   int       mouse_visible;
-   int       mouse_auto_visible;
-   int       mouse_top;
-   int       mouse_bottom;
-   int       mouse_left;
-   int       mouse_right;
-   int       mouse_buttons;
-   int       mouse_dclick_speed;
-   int       mouse_clicks_left;
-   int       mouse_clicks_right;
-   int       mouse_clicks_middle;
+   int Lines;
+   int Columns;
+   int clear_on_exit;
+   int fd;
+   char *terminalName;
+   Screen *realScreen;
+   int mouse_present;
+   int mouse_y;
+   int mouse_x;
+   int mouse_visible;
+   int mouse_auto_visible;
+   int mouse_top;
+   int mouse_bottom;
+   int mouse_left;
+   int mouse_right;
+   int mouse_buttons;
+   int mouse_dclick_speed;
+   int mouse_clicks_left;
+   int mouse_clicks_right;
+   int mouse_clicks_middle;
    const char *mouse_driver;
    unsigned char pg_chars[PG_SIZE];
-   void     *data;
+   void *data;
 }
 ScreenBase;
 
-Screen   *new_Screen(ScreenBase * base);
+Screen *new_Screen(ScreenBase * base);
 
-void      clear_Screen(Screen * scr);
+void clear_Screen(Screen * scr);
+void setCtrlBreak_Screen(Screen * scr, int val);
+void delete_Screen(Screen * scr);
+void sync_Screen(Screen * scr, int utf8term);
+void redraw_Screen(Screen * scr, int utf8term);
+void addLine_Screen(Screen * scr, int line, unsigned char attr);
+void delLine_Screen(Screen * scr, int line, unsigned char attr);
+void scroll_Screen(Screen * scr, int beg, int end, int num, unsigned char attr);
+void scrollw_Screen(Screen * scr, int beg, int left, int end, int right, int num, unsigned char attr);
+void beep_Screen(Screen * scr);
+void setAttr_Screen(Screen * scr, int *blink, int *bold);
+int setPgMode_Screen(Screen * scr, int newmode);
 
-void      setCtrlBreak_Screen(Screen * scr, int val);
-
-void      delete_Screen(Screen * scr);
-
-void      sync_Screen(Screen * scr, int utf8term);
-
-void      redraw_Screen(Screen * scr, int utf8term);
-
-void      addLine_Screen(Screen * scr, int line, unsigned char attr);
-
-void      delLine_Screen(Screen * scr, int line, unsigned char attr);
-
-void      scroll_Screen(Screen * scr, int beg, int end, int num, unsigned char attr);
-
-void      scrollw_Screen(Screen * scr, int beg, int left, int end, int right, int num, unsigned char attr);
-
-void      beep_Screen(Screen * scr);
-
-void      setAttr_Screen(Screen * scr, int *blink, int *bold);
-
-int       setPgMode_Screen(Screen * scr, int newmode);
-
-void      newMatch_Key(ScreenBase * base);
-
-int       match_Key(ScreenBase * base, unsigned char b, unsigned long *keyp);	/* true if matched */
-
+void newMatch_Key(ScreenBase * base);
+int match_Key(ScreenBase * base, unsigned char b, unsigned long *keyp);	/* true if matched */
 unsigned long get_Key(ScreenBase * base);	/* wait forever */
-
 unsigned long getWait_Key(ScreenBase * base, long milliseconds);	/* 0 means nowait */
 
 unsigned long getRaw_Key(ScreenBase * base);
-
 unsigned long getRawWait_Key(ScreenBase * base, long milliseconds);
-
-int       getState_Key(ScreenBase * base);
-
-int       setState_Key(ScreenBase * base, int value, int locktype);
+int getState_Key(ScreenBase * base);
+int setState_Key(ScreenBase * base, int value, int locktype);
 
 /* esc delay, milliseconds */
 extern int esc_delay_Screen;

@@ -241,21 +241,21 @@ po_compat$(EXESUFF): po_util.o Makefile
 		$(CC) $(C_FLAGS) -o $@ po_compat.c po_util.o ; 		\
 	fi
 
-clip_bug$(SCRIPTSUFF) : clip_bug Makefile
+clip_bug$(SCRIPTSUFF) : Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) clip_bug $@
 
-ci_mindent$(SCRIPTSUFF) : cn_mindent Makefile
-	$(E_e)$(Trace)
-	$(E_cp)cp --remove-destination -f$(V) cn_mindent $@
-
-joinlib$(SCRIPTSUFF) : joinlib Makefile
+joinlib$(SCRIPTSUFF) : inst_end Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) joinlib  $@
 
 inst_end$(SCRIPTSUFF) : inst_end  Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) inst_end  $@
+
+ci_mindent$(SCRIPTSUFF) : cn_mindent  Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) cn_mindent  $@
 
 add_meta_tag$(SCRIPTSUFF) : add_meta_tag Makefile
 	$(E_e)$(Trace)
@@ -330,4 +330,10 @@ yacc: Makefile
 include $(Makefile_end_in)
 
 # DO NOT DELETE
+
+indent : Makefile
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
 

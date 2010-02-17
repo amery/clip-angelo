@@ -99,7 +99,7 @@ if [[ $? != 0 ]] ; then
 	exit 1
 fi
 cd "$Clip_M_Dir"
-#echo "export Clip_F_F=$Clip_M_Dir/init/functions.f" >>$Clip_I_Dir/clipcfg.sh
+#echo "export Clip_F_F=$Clip_M_Dir/init/functions.f.sh" >>$Clip_I_Dir/clipcfg.sh
 cp -f$V $Clip_I_Dir/Makefile.ini ./
 cp -f$V $Clip_I_Dir/clipcfg.sh ./configure.ini
 source ./configure.ini

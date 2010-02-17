@@ -96,27 +96,24 @@ int
 clip_GDK_WINDOWSETCURSOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkCursorType cursor_type = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
 
    if (cwin && cwin->widget)
-    {
-       GdkCursor *cursor = gdk_cursor_new(cursor_type);
+      {
+	 GdkCursor *cursor = gdk_cursor_new(cursor_type);
+	 C_object *ccur;
 
-       C_object *ccur;
-
-       if (cursor)
-	{
-	   ccur = _register_object(ClipMachineMemory, cursor, GDK_OBJECT_CURSOR, NULL,
-				   (coDestructor) gdk_object_cursor_destructor);
-	   ccur->ref_count = 1;
-	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccur->obj);
-	}
-       gdk_window_set_cursor(cwin->widget->window, cursor);
-    }
+	 if (cursor)
+	    {
+	       ccur = _register_object(ClipMachineMemory, cursor, GDK_OBJECT_CURSOR, NULL, (coDestructor) gdk_object_cursor_destructor);
+	       ccur->ref_count = 1;
+	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccur->obj);
+	    }
+	 gdk_window_set_cursor(cwin->widget->window, cursor);
+      }
    return 0;
  err:
    return 1;
@@ -141,19 +138,12 @@ int
 clip_GDK_POINTERGRAB(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
-
-   gint      owner_events = _clip_parl(ClipMachineMemory, 2);
-
+   gint owner_events = _clip_parl(ClipMachineMemory, 2);
    GdkEventMask event_mask = _clip_parnl(ClipMachineMemory, 3);
-
    C_widget *cconfine_to = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 4));
-
    GdkWindow *confine_to = NULL;
-
    C_object *ccursor = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
-
    GdkCursor *cursor = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -206,10 +196,8 @@ int
 clip_GDK_KEYBOARDGRAB(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
-
-   gint      owner_events = _clip_parl(ClipMachineMemory, 2);
+   gint owner_events = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -254,8 +242,7 @@ clip_GDK_KEYREPEATRESTORE(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALNAME(ClipMachine * ClipMachineMemory)
 {
-   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
-
+   guint keyval = INT_OPTION(ClipMachineMemory, 1, 0);
    _clip_retc(ClipMachineMemory, gdk_keyval_name(keyval));
    return 0;
 }
@@ -264,8 +251,7 @@ clip_GDK_KEYVALNAME(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALFROMNAME(ClipMachine * ClipMachineMemory)
 {
-   gchar    *keyval_name = CHAR_OPTION(ClipMachineMemory, 1, "");
-
+   gchar *keyval_name = CHAR_OPTION(ClipMachineMemory, 1, "");
    _clip_retni(ClipMachineMemory, gdk_keyval_from_name(keyval_name));
    return 0;
 }
@@ -274,8 +260,7 @@ clip_GDK_KEYVALFROMNAME(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALISUPPER(ClipMachine * ClipMachineMemory)
 {
-   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
-
+   guint keyval = INT_OPTION(ClipMachineMemory, 1, 0);
    _clip_retl(ClipMachineMemory, gdk_keyval_is_upper(keyval));
    return 0;
 }
@@ -284,8 +269,7 @@ clip_GDK_KEYVALISUPPER(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALISLOWER(ClipMachine * ClipMachineMemory)
 {
-   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
-
+   guint keyval = INT_OPTION(ClipMachineMemory, 1, 0);
    _clip_retl(ClipMachineMemory, gdk_keyval_is_lower(keyval));
    return 0;
 }
@@ -294,8 +278,7 @@ clip_GDK_KEYVALISLOWER(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALTOUPPER(ClipMachine * ClipMachineMemory)
 {
-   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
-
+   guint keyval = INT_OPTION(ClipMachineMemory, 1, 0);
    _clip_retl(ClipMachineMemory, gdk_keyval_to_upper(keyval));
    return 0;
 }
@@ -304,8 +287,7 @@ clip_GDK_KEYVALTOUPPER(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_KEYVALTOLOWER(ClipMachine * ClipMachineMemory)
 {
-   guint     keyval = INT_OPTION(ClipMachineMemory, 1, 0);
-
+   guint keyval = INT_OPTION(ClipMachineMemory, 1, 0);
    _clip_retl(ClipMachineMemory, gdk_keyval_to_lower(keyval));
    return 0;
 }

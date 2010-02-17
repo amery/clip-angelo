@@ -1,6 +1,0 @@
-static function __check_name(self,sName)
-	local ret:=alltrim(sName)
-	ret:=strtran(ret,".","_")
-	ret:=strtran(ret," ","_")
-	ret:=strtran(ret,"-","_")
-return alltrim(upper(ret))

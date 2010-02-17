@@ -17,11 +17,10 @@
 #include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
-static    gint
+static gint
 handle_set_focus_signal(GtkWindow * window, GtkWidget * widget, C_signal * cs)
 {
    C_widget *cwid;
-
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, widget);
    if (!cwid)
@@ -31,7 +30,7 @@ handle_set_focus_signal(GtkWindow * window, GtkWidget * widget, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_move_focus_signal(GtkWindow * window, GtkDirectionType arg1, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -39,7 +38,7 @@ handle_move_focus_signal(GtkWindow * window, GtkDirectionType arg1, C_signal * c
    INVOKESIGHANDLER(GTK_WIDGET(window), cs, cv);
 }
 
-static    gint
+static gint
 handle_frame_event_signal(GtkWindow * window, GdkEvent * event, C_signal * cs)
 {
    return handle_events(GTK_WIDGET(window), event, cs);
@@ -104,16 +103,11 @@ gint delete_window_handler( GtkWidget *widget, GdkEvent *event, gpointer data )
 int
 clip_GTK_WINDOWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
-   gint      typ = INT_OPTION(ClipMachineMemory, 3, 0);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
+   gint typ = INT_OPTION(ClipMachineMemory, 3, 0);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -123,11 +117,11 @@ clip_GTK_WINDOWNEW(ClipMachine * ClipMachineMemory)
    if (!wid)
       goto err;
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-    {
-       LOCALE_TO_UTF(title);
-       gtk_window_set_title(GTK_WINDOW(wid), title);
-       FREE_TEXT(title);
-    }
+      {
+	 LOCALE_TO_UTF(title);
+	 gtk_window_set_title(GTK_WINDOW(wid), title);
+	 FREE_TEXT(title);
+      }
   //cwid = (C_widget*)calloc( 1, sizeof(C_widget) );
    cwid = _register_widget(ClipMachineMemory, wid, cv);
    cwid->accel_group = gtk_accel_group_new();
@@ -148,13 +142,9 @@ int
 clip_GTK_WINDOWSETICONPIXMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cpix = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GdkPixmap *pix;
-
    GdkBitmap *bit;
-
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cpix, GTK_IS_PIXMAP);
@@ -173,19 +163,17 @@ int
 clip_GTK_WINDOWSETICONNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    if (cwin->widget->window)
-    {
-       LOCALE_TO_UTF(name);
-       gdk_window_set_icon_name(cwin->widget->window, name);
-       FREE_TEXT(name);
-       _clip_retl(ClipMachineMemory, TRUE);
-    }
+      {
+	 LOCALE_TO_UTF(name);
+	 gdk_window_set_icon_name(cwin->widget->window, name);
+	 FREE_TEXT(name);
+	 _clip_retl(ClipMachineMemory, TRUE);
+      }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;
@@ -199,17 +187,15 @@ int
 clip_GTK_WINDOWSETDECORATIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWMDecoration Decor = _clip_parni(ClipMachineMemory, 2);
-
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    if (cwin->widget->window)
-    {
-       gdk_window_set_decorations(cwin->widget->window, Decor);
-       _clip_retl(ClipMachineMemory, TRUE);
-    }
+      {
+	 gdk_window_set_decorations(cwin->widget->window, Decor);
+	 _clip_retl(ClipMachineMemory, TRUE);
+      }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;
@@ -221,8 +207,7 @@ int
 clip_GTK_WINDOWSETDECORATED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
+   gboolean setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -237,8 +222,7 @@ int
 clip_GTK_WINDOWGETDECORATED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting;
+   gboolean setting;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -255,17 +239,15 @@ int
 clip_GTK_WINDOWSETFUNCTIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWMFunction Func = _clip_parni(ClipMachineMemory, 2);
-
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    if (cwin->widget->window)
-    {
-       gdk_window_set_functions(cwin->widget->window, Func);
-       _clip_retl(ClipMachineMemory, TRUE);
-    }
+      {
+	 gdk_window_set_functions(cwin->widget->window, Func);
+	 _clip_retl(ClipMachineMemory, TRUE);
+      }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;
@@ -278,9 +260,7 @@ int
 clip_GTK_WINDOWSETPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  AutoShrink = FALSE, AllowShrink = TRUE, AllowGrow = TRUE;
-
+   gboolean AutoShrink = FALSE, AllowShrink = TRUE, AllowGrow = TRUE;
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
    CHECKOPT(4, LOGICAL_type_of_ClipVarType);
@@ -305,10 +285,10 @@ clip_GTK_WINDOWRAISE(ClipMachine * ClipMachineMemory)
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    if (cwin->widget->window)
-    {
-       gdk_window_raise(cwin->widget->window);
-       _clip_retl(ClipMachineMemory, TRUE);
-    }
+      {
+	 gdk_window_raise(cwin->widget->window);
+	 _clip_retl(ClipMachineMemory, TRUE);
+      }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;
@@ -321,9 +301,7 @@ int
 clip_GTK_WINDOWSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *title = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *title = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(title);
@@ -339,8 +317,7 @@ int
 clip_GTK_WINDOWGETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *title;
+   gchar *title;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -359,7 +336,6 @@ int
 clip_GTK_WINDOWACTIVATEFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cwin, GTK_IS_WINDOW);
    _clip_retni(ClipMachineMemory, gtk_window_activate_focus(GTK_WINDOW(cwin->widget)));
    return 0;
@@ -372,7 +348,6 @@ int
 clip_GTK_WINDOWACTIVATEDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cwin, GTK_IS_WINDOW);
    _clip_retni(ClipMachineMemory, gtk_window_activate_default(GTK_WINDOW(cwin->widget)));
    return 0;
@@ -385,9 +360,7 @@ int
 clip_GTK_WINDOWSETTRANSIENTFOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwin2 = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKCWID(cwin2, GTK_IS_WINDOW);
@@ -402,9 +375,7 @@ int
 clip_GTK_WINDOWSETMODAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  modal = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean modal = _clip_parl(ClipMachineMemory, 2);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
       modal = TRUE;
@@ -419,9 +390,7 @@ int
 clip_GTK_WINDOWGETMODAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  modal;
-
+   gboolean modal;
    CHECKCWID(cwin, GTK_IS_WINDOW);
    modal = gtk_window_get_modal(GTK_WINDOW(cwin->widget));
    _clip_retl(ClipMachineMemory, modal);
@@ -435,9 +404,7 @@ int
 clip_GTK_WINDOWSETFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -452,9 +419,7 @@ int
 clip_GTK_WINDOWGETFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid;
-
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
    cwid = _get_cwidget(ClipMachineMemory, gtk_window_get_focus(GTK_WINDOW(cwin->widget)));
@@ -470,9 +435,7 @@ int
 clip_GTK_WINDOWSETDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -489,10 +452,8 @@ int
 clip_GTK_WINDOWSETDEFAULTSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
-
-   gint      height = _clip_parni(ClipMachineMemory, 3);
+   gint width = _clip_parni(ClipMachineMemory, 2);
+   gint height = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -513,10 +474,8 @@ int
 clip_GTK_WINDOWGETDEFAULTSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width;
-
-   gint      height;
+   gint width;
+   gint height;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    gtk_window_get_default_size(GTK_WINDOW(cwin->widget), &width, &height);
@@ -538,9 +497,7 @@ int
 clip_GTK_WINDOWSETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      position = _clip_parni(ClipMachineMemory, 2);
-
+   gint position = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
    gtk_window_set_position(GTK_WINDOW(cwin->widget), position);
@@ -555,9 +512,7 @@ int
 clip_GTK_WINDOWSETROLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *role = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *role = _clip_parc(ClipMachineMemory, 2);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -572,7 +527,6 @@ int
 clip_GTK_WINDOWGETROLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    G_CONST_RETURN gchar *role;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -589,7 +543,6 @@ int
 clip_GTK_WINDOWADDACCELGROUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *caccg = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -607,7 +560,6 @@ int
 clip_GTK_WINDOWREMOVEACCELGROUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *caccg = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -634,8 +586,7 @@ int
 clip_GTK_WINDOWSETTYPEHINT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      hint = _clip_parni(ClipMachineMemory, 2);
+   gint hint = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -651,8 +602,7 @@ int
 clip_GTK_WINDOWGETTYPEHINT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      hint;
+   gint hint;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -669,8 +619,7 @@ int
 clip_GTK_WINDOWSETDESTROYWITHPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
+   gboolean setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -686,8 +635,7 @@ int
 clip_GTK_WINDOWGETDESTROYWITHPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting;
+   gboolean setting;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -703,8 +651,7 @@ int
 clip_GTK_WINDOWSETRESIZEABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  resizable = _clip_parl(ClipMachineMemory, 2);
+   gboolean resizable = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -720,8 +667,7 @@ int
 clip_GTK_WINDOWGETRESIZEABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  resizable;
+   gboolean resizable;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -751,8 +697,7 @@ int
 clip_GTK_WINDOWSETGRAVITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      gravity = _clip_parni(ClipMachineMemory, 2);
+   gint gravity = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -768,8 +713,7 @@ int
 clip_GTK_WINDOWGETGRAVITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      gravity;
+   gint gravity;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -786,8 +730,7 @@ int
 clip_GTK_WINDOWSETHASFRAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
+   gboolean setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -803,8 +746,7 @@ int
 clip_GTK_WINDOWGETHASFRAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting;
+   gboolean setting;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -821,14 +763,10 @@ int
 clip_GTK_WINDOWSETFRAMEDIMENSIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      left = _clip_parl(ClipMachineMemory, 2);
-
-   gint      top = _clip_parl(ClipMachineMemory, 3);
-
-   gint      right = _clip_parl(ClipMachineMemory, 4);
-
-   gint      bottom = _clip_parl(ClipMachineMemory, 5);
+   gint left = _clip_parl(ClipMachineMemory, 2);
+   gint top = _clip_parl(ClipMachineMemory, 3);
+   gint right = _clip_parl(ClipMachineMemory, 4);
+   gint bottom = _clip_parl(ClipMachineMemory, 5);
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -847,14 +785,10 @@ int
 clip_GTK_WINDOWGETFRAMEDIMENSIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      left;
-
-   gint      top;
-
-   gint      right;
-
-   gint      bottom;
+   gint left;
+   gint top;
+   gint right;
+   gint bottom;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -873,39 +807,33 @@ int
 clip_GTK_WINDOWSETICONLIST(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *items = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *items = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKOPT(2, ARRAY_type_of_ClipVarType);
 
    if (items->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == ARRAY_type_of_ClipVarType)
-    {
-       GList    *list = NULL;
-
-       unsigned short i;
-
-       ClipVar  *item;
-
-       C_object *citem;
-
-       for (i = 0; i < items->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-	{
-	   item = &items->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
-	   if (item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType
-	       || item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
+      {
+	 GList *list = NULL;
+	 unsigned short i;
+	 ClipVar *item;
+	 C_object *citem;
+	 for (i = 0; i < items->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
 	    {
-	       citem = _fetch_cobject(ClipMachineMemory, item);
-	       CHECKCOBJ(citem, GDK_IS_PIXBUF(citem->object));
-	       list = g_list_append(list, citem->object);
+	       item = &items->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
+	       if (item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType || item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
+		  {
+		     citem = _fetch_cobject(ClipMachineMemory, item);
+		     CHECKCOBJ(citem, GDK_IS_PIXBUF(citem->object));
+		     list = g_list_append(list, citem->object);
+		  }
 	    }
-	}
-       if (list)
-	{
-	   gtk_window_set_icon_list(GTK_WINDOW(cwin->widget), list);
-	   g_list_free(list);
-	}
-    }
+	 if (list)
+	    {
+	       gtk_window_set_icon_list(GTK_WINDOW(cwin->widget), list);
+	       g_list_free(list);
+	    }
+      }
 
    return 0;
  err:
@@ -916,7 +844,6 @@ int
 clip_GTK_WINDOWGETICONLIST(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *clist;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -933,7 +860,6 @@ int
 clip_GTK_WINDOWSETICON(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cicon = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -949,9 +875,7 @@ int
 clip_GTK_WINDOWGETICON(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkPixbuf *pixbuf;
-
    C_object *cicon;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -968,37 +892,32 @@ clip_GTK_WINDOWGETICON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WINDOWSETDEFAULTICONLIST(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *items = _clip_spar(ClipMachineMemory, 1);
+   ClipVar *items = _clip_spar(ClipMachineMemory, 1);
 
    CHECKOPT(1, ARRAY_type_of_ClipVarType);
 
    if (items->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == ARRAY_type_of_ClipVarType)
-    {
-       GList    *list = NULL;
-
-       unsigned short i;
-
-       ClipVar  *item;
-
-       C_object *citem;
-
-       for (i = 0; i < items->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-	{
-	   item = &items->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
-	   if (item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType
-	       || item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
+      {
+	 GList *list = NULL;
+	 unsigned short i;
+	 ClipVar *item;
+	 C_object *citem;
+	 for (i = 0; i < items->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
 	    {
-	       citem = _fetch_cobject(ClipMachineMemory, item);
-	       CHECKCOBJ(citem, GDK_IS_PIXBUF(citem->object));
-	       list = g_list_append(list, citem->object);
+	       item = &items->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
+	       if (item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType || item->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
+		  {
+		     citem = _fetch_cobject(ClipMachineMemory, item);
+		     CHECKCOBJ(citem, GDK_IS_PIXBUF(citem->object));
+		     list = g_list_append(list, citem->object);
+		  }
 	    }
-	}
-       if (list)
-	{
-	   gtk_window_set_default_icon_list(list);
-	   g_list_free(list);
-	}
-    }
+	 if (list)
+	    {
+	       gtk_window_set_default_icon_list(list);
+	       g_list_free(list);
+	    }
+      }
 
    return 0;
  err:
@@ -1019,60 +938,54 @@ clip_GTK_WINDOWGETDEFAULTICONLIST(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WINDOWLISTTOPLEVELS(ClipMachine * ClipMachineMemory)
 {
-   GList    *list;
+   GList *list;
 
    list = gtk_window_list_toplevels();
    if (list)
-    {
-       ClipVar  *cv = RETPTR(ClipMachineMemory);
-
-       long      l;
-
-       l = g_list_length(list);
-       _clip_array(ClipMachineMemory, cv, 1, &l);
-       for (l = 0; list; list = g_list_next(list), l++)
-	{
-	   GtkWindow *win;
-
-	   C_widget *cwin;
-
-	   win = (GtkWindow *) list->data;
-	   cwin = _list_get_cwidget(ClipMachineMemory, win);
-	   if (!cwin)
-	      cwin = _register_widget(ClipMachineMemory, GTK_WIDGET(win), NULL);
-	   if (cwin)
-	      _clip_aset(ClipMachineMemory, cv, &cwin->obj, 1, &l);
-	}
-    }
+      {
+	 ClipVar *cv = RETPTR(ClipMachineMemory);
+	 long l;
+	 l = g_list_length(list);
+	 _clip_array(ClipMachineMemory, cv, 1, &l);
+	 for (l = 0; list; list = g_list_next(list), l++)
+	    {
+	       GtkWindow *win;
+	       C_widget *cwin;
+	       win = (GtkWindow *) list->data;
+	       cwin = _list_get_cwidget(ClipMachineMemory, win);
+	       if (!cwin)
+		  cwin = _register_widget(ClipMachineMemory, GTK_WIDGET(win), NULL);
+	       if (cwin)
+		  _clip_aset(ClipMachineMemory, cv, &cwin->obj, 1, &l);
+	    }
+      }
    return 0;
 }
 
 int
 clip_GTK_WINDOWGETACTIVE(ClipMachine * ClipMachineMemory)
 {
-   GList    *list;
+   GList *list;
 
    list = gtk_window_list_toplevels();
    if (list)
-    {
-       for (; list; list = g_list_next(list))
-	{
-	   GtkWidget *win;
-
-	   C_widget *cwin;
-
-	   win = (GtkWidget *) list->data;
-	   if (win->state == GTK_STATE_ACTIVE)
+      {
+	 for (; list; list = g_list_next(list))
 	    {
-	       cwin = _list_get_cwidget(ClipMachineMemory, win);
-	       if (!cwin)
-		  cwin = _register_widget(ClipMachineMemory, win, NULL);
-	       if (cwin)
-		  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwin->obj);
-	       break;
+	       GtkWidget *win;
+	       C_widget *cwin;
+	       win = (GtkWidget *) list->data;
+	       if (win->state == GTK_STATE_ACTIVE)
+		  {
+		     cwin = _list_get_cwidget(ClipMachineMemory, win);
+		     if (!cwin)
+			cwin = _register_widget(ClipMachineMemory, win, NULL);
+		     if (cwin)
+			_clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwin->obj);
+		     break;
+		  }
 	    }
-	}
-    }
+      }
    return 0;
 }
 
@@ -1080,9 +993,7 @@ int
 clip_GTK_WINDOWADDMNEMONIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     keyval = _clip_parni(ClipMachineMemory, 2);
-
+   guint keyval = _clip_parni(ClipMachineMemory, 2);
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1100,9 +1011,7 @@ int
 clip_GTK_WINDOWREMOVEMNEMONIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     keyval = _clip_parni(ClipMachineMemory, 2);
-
+   guint keyval = _clip_parni(ClipMachineMemory, 2);
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1120,12 +1029,9 @@ int
 clip_GTK_WINDOWMNEMONICACTIVATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     keyval = _clip_parni(ClipMachineMemory, 2);
-
+   guint keyval = _clip_parni(ClipMachineMemory, 2);
    GdkModifierType modifier = _clip_parni(ClipMachineMemory, 3);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -1143,7 +1049,6 @@ int
 clip_GTK_WINDOWSETMNEMONICMODIFIER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkModifierType modifier = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1160,7 +1065,6 @@ int
 clip_GTK_WINDOWGETMNEMONICMODIFIER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkModifierType modifier;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
@@ -1287,16 +1191,11 @@ int
 clip_GTK_WINDOWBEGINRESIZEDRAG(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindowEdge edge = _clip_parni(ClipMachineMemory, 2);
-
-   gint      button = _clip_parni(ClipMachineMemory, 3);
-
-   gint      root_x = _clip_parni(ClipMachineMemory, 4);
-
-   gint      root_y = _clip_parni(ClipMachineMemory, 5);
-
-   guint32   timestamp = _clip_parni(ClipMachineMemory, 6);
+   gint button = _clip_parni(ClipMachineMemory, 3);
+   gint root_x = _clip_parni(ClipMachineMemory, 4);
+   gint root_y = _clip_parni(ClipMachineMemory, 5);
+   guint32 timestamp = _clip_parni(ClipMachineMemory, 6);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1317,14 +1216,10 @@ int
 clip_GTK_WINDOWBEGINMOVEDRAG(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      button = _clip_parni(ClipMachineMemory, 2);
-
-   gint      root_x = _clip_parni(ClipMachineMemory, 3);
-
-   gint      root_y = _clip_parni(ClipMachineMemory, 4);
-
-   guint32   timestamp = _clip_parni(ClipMachineMemory, 5);
+   gint button = _clip_parni(ClipMachineMemory, 2);
+   gint root_x = _clip_parni(ClipMachineMemory, 3);
+   gint root_y = _clip_parni(ClipMachineMemory, 4);
+   guint32 timestamp = _clip_parni(ClipMachineMemory, 5);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1344,10 +1239,8 @@ int
 clip_GTK_WINDOWRESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
-
-   gint      height = _clip_parni(ClipMachineMemory, 3);
+   gint width = _clip_parni(ClipMachineMemory, 2);
+   gint height = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -1364,10 +1257,8 @@ int
 clip_GTK_WINDOWGETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width;
-
-   gint      height;
+   gint width;
+   gint height;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -1384,10 +1275,8 @@ int
 clip_GTK_WINDOWMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      y = _clip_parni(ClipMachineMemory, 3);
+   gint x = _clip_parni(ClipMachineMemory, 2);
+   gint y = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -1404,10 +1293,8 @@ int
 clip_GTK_WINDOWGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      root_x;
-
-   gint      root_y;
+   gint root_x;
+   gint root_y;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
 
@@ -1434,10 +1321,8 @@ int
 clip_GTK_WINDOWPARSEGEOMETRY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    const char *geometry = _clip_parc(ClipMachineMemory, 2);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -1454,14 +1339,10 @@ int
 clip_GTK_WINDOWSETGEOMETRYHINTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *mgeom = _clip_par(ClipMachineMemory, 3);
-
+   ClipVar *mgeom = _clip_par(ClipMachineMemory, 3);
    GdkGeometry *geometry = 0;
-
-   gint      mask = 0;
+   gint mask = 0;
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -1536,8 +1417,7 @@ int
 clip_GTK_WINDOWSETKEEPABOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  set = _clip_parl(ClipMachineMemory, 2);
+   gboolean set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -1553,8 +1433,7 @@ int
 clip_GTK_WINDOWSETKEEPBELOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  set = _clip_parl(ClipMachineMemory, 2);
+   gboolean set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -1570,8 +1449,7 @@ int
 clip_GTK_WINDOWSETACCEPTFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  set = _clip_parl(ClipMachineMemory, 2);
+   gboolean set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cwin, GTK_IS_WINDOW);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -1630,8 +1508,7 @@ int
 clip_GTK_WINDOWSETFOCUSONMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  enable = _clip_parl(ClipMachineMemory, 2);
+   gboolean enable = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cwid, GTK_IS_WINDOW);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -1647,19 +1524,18 @@ int
 clip_GTK_WINDOWGETICONNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *name;
+   gchar *name;
 
    CHECKCWID(cwid, GTK_IS_WINDOW);
 
    name = (gchar *) gtk_window_get_icon_name(GTK_WINDOW(cwid->widget));
 
    if (name)
-    {
-       LOCALE_FROM_UTF(name);
-       _clip_retc(ClipMachineMemory, name);
-       FREE_TEXT(name);
-    }
+      {
+	 LOCALE_FROM_UTF(name);
+	 _clip_retc(ClipMachineMemory, name);
+	 FREE_TEXT(name);
+      }
 
    return 0;
  err:
@@ -1669,7 +1545,7 @@ clip_GTK_WINDOWGETICONNAME(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WINDOWSETDEFAULTICONNAME(ClipMachine * ClipMachineMemory)
 {
-   gchar    *name = _clip_parc(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -1684,8 +1560,7 @@ int
 clip_GTK_WINDOWSETICONNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cwid, GTK_IS_WINDOW);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);

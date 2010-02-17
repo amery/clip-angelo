@@ -64,10 +64,8 @@ _clip_type_name_color_selection_dialog()
 int
 clip_INIT___COLORSELECTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_color_selection,
-		    _clip_type_name_color_selection, _gtk_type_color_selection, _gtk_type_vbox, colorsel_signals);
-   _wtype_table_put(_clip_type_color_selection_dialog,
-		    _clip_type_name_color_selection_dialog, _gtk_type_color_selection_dialog, _gtk_type_window, NULL);
+   _wtype_table_put(_clip_type_color_selection, _clip_type_name_color_selection, _gtk_type_color_selection, _gtk_type_vbox, colorsel_signals);
+   _wtype_table_put(_clip_type_color_selection_dialog, _clip_type_name_color_selection_dialog, _gtk_type_color_selection_dialog, _gtk_type_window, NULL);
    return 0;
 }
 
@@ -77,12 +75,9 @@ clip_INIT___COLORSELECTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_color_selection_new();
@@ -112,9 +107,7 @@ int
 clip_GTK_COLORSELECTIONSETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-
    GtkUpdateType policy = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_color_selection_set_update_policy(GTK_COLOR_SELECTION(ccsel->widget), policy);
@@ -131,9 +124,7 @@ int
 clip_GTK_COLORSELECTIONSETOPACITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  use_opacity = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean use_opacity = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -150,12 +141,9 @@ int
 clip_GTK_COLORSELECTIONSETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
-
-   gdouble   color[4];
-
-   gdouble   k, max;
+   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
+   gdouble color[4];
+   gdouble k, max;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, MAP_type_of_ClipVarType);
@@ -184,13 +172,9 @@ int
 clip_GTK_COLORSELECTIONGETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-
    GtkColorSelection *colorsel;
-
-   ClipVar   mcolor;
-
-   gdouble   color[4];
-
+   ClipVar mcolor;
+   gdouble color[4];
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    colorsel = GTK_COLOR_SELECTION(ccsel->widget);
    gtk_color_selection_get_color(GTK_COLOR_SELECTION(ccsel->widget), color);
@@ -216,14 +200,10 @@ clip_GTK_COLORSELECTIONGETCOLOR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cvbox, *ccolorsel, *cokbtn, *cresetbtn, *ccancelbtn, *chlpbtn;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 

@@ -67,15 +67,8 @@ void        glade_set_custom_handler
 
 /* Previous declarations. */
 static SignalTable *_sig_table_by_name(GtkType wtype, const gchar * signame);
-
-static void _signal_connect_func(const gchar * handler_name,
-				 GObject * object,
-				 const gchar * signal_name,
-				 const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data);
-static void _signal_autoconnect_func(const gchar * handler_name,
-				     GObject * object,
-				     const gchar * signal_name,
-				     const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data);
+static void _signal_connect_func(const gchar * handler_name, GObject * object, const gchar * signal_name, const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data);
+static void _signal_autoconnect_func(const gchar * handler_name, GObject * object, const gchar * signal_name, const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data);
 /* End previous declarations. */
 
 /*
@@ -94,7 +87,7 @@ void glade_require (const gchar *library);
 int
 clip_GLADE_REQUIRE(ClipMachine * ClipMachineMemory)
 {
-   char     *lib = _clip_parc(ClipMachineMemory, 1);
+   char *lib = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
 
@@ -114,12 +107,9 @@ int
 clip_GLADE_XML_NEW(ClipMachine * ClipMachineMemory)
 {
    GladeXML *xml;
-
-   char     *fname = _clip_parc(ClipMachineMemory, 1);
-
-   char     *root = _clip_parc(ClipMachineMemory, 2);
-
-   char     *domain = _clip_parc(ClipMachineMemory, 3);
+   char *fname = _clip_parc(ClipMachineMemory, 1);
+   char *root = _clip_parc(ClipMachineMemory, 2);
+   char *domain = _clip_parc(ClipMachineMemory, 3);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
@@ -146,14 +136,10 @@ int
 clip_GLADE_XML_NEW_FROM_BUFFER(ClipMachine * ClipMachineMemory)
 {
    GladeXML *xml;
-
-   char     *buffer = _clip_parc(ClipMachineMemory, 1);
-
-   int       size = _clip_parni(ClipMachineMemory, 2);
-
-   char     *root = _clip_parc(ClipMachineMemory, 3);
-
-   char     *domain = _clip_parc(ClipMachineMemory, 4);
+   char *buffer = _clip_parc(ClipMachineMemory, 1);
+   int size = _clip_parni(ClipMachineMemory, 2);
+   char *root = _clip_parc(ClipMachineMemory, 3);
+   char *domain = _clip_parc(ClipMachineMemory, 4);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -181,12 +167,9 @@ int
 clip_GLADE_XML_CONSTRUCT(ClipMachine * ClipMachineMemory)
 {
    GladeXML *xml = (GladeXML *) _clip_parnl(ClipMachineMemory, 1);
-
-   char     *fname = _clip_parc(ClipMachineMemory, 2);
-
-   char     *root = _clip_parc(ClipMachineMemory, 3);
-
-   char     *domain = _clip_parc(ClipMachineMemory, 4);
+   char *fname = _clip_parc(ClipMachineMemory, 2);
+   char *root = _clip_parc(ClipMachineMemory, 3);
+   char *domain = _clip_parc(ClipMachineMemory, 4);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -210,11 +193,8 @@ clip_GLADE_XML_GET_WIDGET(ClipMachine * ClipMachineMemory)
 {
 
    GladeXML *xml;
-
-   char     *wname;
-
+   char *wname;
    GtkWidget *wid;
-
    C_widget *cwid;
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
@@ -226,21 +206,21 @@ clip_GLADE_XML_GET_WIDGET(ClipMachine * ClipMachineMemory)
    wid = glade_xml_get_widget(xml, wname);
 
    if (wid)
-    {
+      {
 
-      /*
-         Aqu� Clip crea sus estructuras para guardar el widget,
-         pero se produce una creaci�n parcial si el widget es
-         'compuesto'. p.ej. si es un widget GtkFileSelection
-         no se crean (en Clip) los widgets internos como filesel:okButton,
-         por tanto no se le puede asignar una se�al con gtk_signalConnect();
-         hay que hacerlo con glade_xml_signal_connect() � bien generar el
-         widget con glade_xml_get_widget() y conectarlo con gtk_signalConnect().
-       */
-       cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	/*
+	   Aqu� Clip crea sus estructuras para guardar el widget,
+	   pero se produce una creaci�n parcial si el widget es
+	   'compuesto'. p.ej. si es un widget GtkFileSelection
+	   no se crean (en Clip) los widgets internos como filesel:okButton,
+	   por tanto no se le puede asignar una se�al con gtk_signalConnect();
+	   hay que hacerlo con glade_xml_signal_connect() � bien generar el
+	   widget con glade_xml_get_widget() y conectarlo con gtk_signalConnect().
+	 */
+	 cwid = _register_widget(ClipMachineMemory, wid, NULL);
 
-       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
 
    return 0;
  err:
@@ -255,14 +235,10 @@ int
 clip_GLADE_XML_GET_WIDGET_PREFIX(ClipMachine * ClipMachineMemory)
 {
    GladeXML *xml;
-
-   char     *prefix;
-
-   GList    *list;
-
-   ClipVar  *arr = RETPTR(ClipMachineMemory);
-
-   long      ln;
+   char *prefix;
+   GList *list;
+   ClipVar *arr = RETPTR(ClipMachineMemory);
+   long ln;
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -278,22 +254,21 @@ clip_GLADE_XML_GET_WIDGET_PREFIX(ClipMachine * ClipMachineMemory)
    _clip_array(ClipMachineMemory, arr, 1, &ln);
 
    for (ln = 0; list; list = g_list_next(list), ln++)
-    {
-       GtkWidget *wid;
+      {
+	 GtkWidget *wid;
+	 C_widget *cwid;
 
-       C_widget *cwid;
+	 wid = GTK_WIDGET(list->data);
+	 if (wid)
+	    {
+	       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	       if (!cwid)
+		  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	       if (cwid)
+		  _clip_aset(ClipMachineMemory, arr, &cwid->obj, 1, &ln);
+	    }
 
-       wid = GTK_WIDGET(list->data);
-       if (wid)
-	{
-	   cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	   if (!cwid)
-	      cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	   if (cwid)
-	      _clip_aset(ClipMachineMemory, arr, &cwid->obj, 1, &ln);
-	}
-
-    }
+      }
    free(list);
    return 0;
  err:
@@ -307,7 +282,6 @@ int
 clip_GLADE_GET_WIDGET_NAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    const char *res;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -330,7 +304,6 @@ int
 clip_GLADE_GET_WIDGET_TREE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    GladeXML *xml;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -354,12 +327,9 @@ int
 clip_GLADE_XML_SIGNAL_CONNECT(ClipMachine * ClipMachineMemory)
 {
    GladeXML *xml = (GladeXML *) _clip_parnl(ClipMachineMemory, 1);
-
-   char     *handlername = _clip_parc(ClipMachineMemory, 2);
-
-   ClipVar  *clipf = _clip_spar(ClipMachineMemory, 3);
-
-   C_var    *data;
+   char *handlername = _clip_parc(ClipMachineMemory, 2);
+   ClipVar *clipf = _clip_spar(ClipMachineMemory, 3);
+   C_var *data;
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -399,17 +369,11 @@ clip_GLADE_XML_SIGNAL_AUTOCONNECT(ClipMachine * ClipMachineMemory)
                                              gboolean after,
                                              gpointer user_data);*/
 static void
-_signal_connect_func(const gchar * handler_name,
-		     GObject * object,
-		     const gchar * signal_name,
-		     const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data)
+_signal_connect_func(const gchar * handler_name, GObject * object, const gchar * signal_name, const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data)
 {
-   C_var    *c = (C_var *) user_data;
-
+   C_var *c = (C_var *) user_data;
    C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, object);
-
    SignalTable *sig_table = NULL;
-
    GtkSignalFunc sfunc;
 
    if (!c_wid)
@@ -417,38 +381,37 @@ _signal_connect_func(const gchar * handler_name,
       c_wid = _register_widget(c->ClipMachineMemory, GTK_WIDGET(object), NULL);
 
    if (c_wid)
-    {
-       C_signal *cs;
+      {
+	 C_signal *cs;
+	 c_wid->siglist = NEW(C_signal);
+	 cs = c_wid->siglist;
+	 if (!c_wid->siglist)
+	    {
+	       c_wid->siglist = NEW(C_signal);
+	       cs = c_wid->siglist;
+	    }
+	 else
+	    {
+	       for (cs = c_wid->siglist; cs && cs->next; cs = cs->next);
+	       cs->next = NEW(C_signal);
+	       cs = cs->next;
+	    }
 
-       c_wid->siglist = NEW(C_signal);
-       cs = c_wid->siglist;
-       if (!c_wid->siglist)
-	{
-	   c_wid->siglist = NEW(C_signal);
-	   cs = c_wid->siglist;
-	}
-       else
-	{
-	   for (cs = c_wid->siglist; cs && cs->next; cs = cs->next);
-	   cs->next = NEW(C_signal);
-	   cs = cs->next;
-	}
+	 sig_table = _sig_table_by_name(c_wid->type, (char *) signal_name);
+	 if (sig_table)
+	    {
+	       sfunc = sig_table->sigfunction;
+	       cs->cw = c_wid;
+	       cs->signame = sig_table->signame;
+	       cs->sigid = sig_table->sigid;
+	       _clip_mclone(c->ClipMachineMemory, &cs->cfunc, &c->cfunc);
 
-       sig_table = _sig_table_by_name(c_wid->type, (char *) signal_name);
-       if (sig_table)
-	{
-	   sfunc = sig_table->sigfunction;
-	   cs->cw = c_wid;
-	   cs->signame = sig_table->signame;
-	   cs->sigid = sig_table->sigid;
-	   _clip_mclone(c->ClipMachineMemory, &cs->cfunc, &c->cfunc);
-
-	   if (after)
-	      g_signal_connect_after(GTK_OBJECT(c_wid->widget), signal_name, GSF(sfunc), cs);
-	   else
-	      g_signal_connect(GTK_OBJECT(c_wid->widget), signal_name, GSF(sfunc), cs);
-	}
-    }
+	       if (after)
+		  g_signal_connect_after(GTK_OBJECT(c_wid->widget), signal_name, GSF(sfunc), cs);
+	       else
+		  g_signal_connect(GTK_OBJECT(c_wid->widget), signal_name, GSF(sfunc), cs);
+	    }
+      }
 }
 
 /*
@@ -460,49 +423,41 @@ void        glade_xml_signal_connect_full   (GladeXML *self,
 
 */
 static void
-_signal_autoconnect_func(const gchar * handler_name,
-			 GObject * object,
-			 const gchar * signal_name,
-			 const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data)
+_signal_autoconnect_func(const gchar * handler_name, GObject * object, const gchar * signal_name, const gchar * signal_data, GObject * connect_object, gboolean after, gpointer user_data)
 {
 /* Busca un funci�n con el mismo nombre que handler_name y genera el gestor de se�al. */
    ClipMachine *ClipMachineMemory = (ClipMachine *) user_data;
-
    ClipFunction *fp;
-
    ClipBlock *bp;
-
-   long      hash;
-
-   C_var    *cv;
-
-   ClipVar  *func;
+   long hash;
+   C_var *cv;
+   ClipVar *func;
 
   // Se busca la funcion
    hash = _clip_casehashbytes(0, handler_name, strlen(handler_name));
    if (!_clip_get_function(ClipMachineMemory, hash, &fp, &bp))
-    {
-       _clip_logg(3, "glade_xml_signal_autoconnect: not found function %s\n", handler_name);
-       return;
-    }
+      {
+	 _clip_logg(3, "glade_xml_signal_autoconnect: not found function %s\n", handler_name);
+	 return;
+      }
 
    func = NEW(ClipVar);
    func->ClipType_t_of_ClipVar.count_of_ClipType = 1;
    func->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
 
    if (bp)
-    {
-       bp->file_of_ClipBlock->refCount_of_ClipFile++;
-       func->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = PCODE_type_of_ClipVarType;
-       func->ClipCodeVar_c_of_ClipVar.u.ClipBlock_block_of_ClipCodeVar = NEW(ClipBlock);
-       *func->ClipCodeVar_c_of_ClipVar.u.ClipBlock_block_of_ClipCodeVar = *bp;
-    }
+      {
+			bp->file_of_ClipBlock->refCount_of_ClipFile++;
+	 func->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = PCODE_type_of_ClipVarType;
+	 func->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipBlock_block_of_ClipCodeVar = NEW(ClipBlock);
+	 *func->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipBlock_block_of_ClipCodeVar = *bp;
+      }
    else
-    {
-      /* It's Ok ??  */
-       func->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CCODE_type_of_ClipVarType;
-       func->ClipCodeVar_c_of_ClipVar.u.ClipFunction_function_of_ClipCodeVar = fp;
-    }
+      {
+	/* It's Ok ??  */
+	 func->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CCODE_type_of_ClipVarType;
+	 func->ClipCodeVar_c_of_ClipVar.union_of_ClipCodeVar.ClipFunction_function_of_ClipCodeVar = fp;
+      }
 
    cv = NEW(C_var);
    cv->ClipMachineMemory = ClipMachineMemory;
@@ -518,37 +473,34 @@ static SignalTable *
 _sig_table_by_name(GtkType wtype, const gchar * signame)
 {
    WTypeTable *wt_item = NULL;
-
    SignalTable *sig_table = NULL;
-
    ExtraSignalTable *extra_sig_table = NULL;
-
-   TypeFunc  tfun = NULL;
+   TypeFunc tfun = NULL;
 
    do
-    {
-      /* Get WTypeTable entry corresponding to type of this widget */
-       wt_item = _wtype_table_get(wtype);
-       sig_table = wt_item ? wt_item->signal_table : NULL;
-      /* Search the signal name in SignalTable */
-       for (; sig_table && sig_table->sigfunction; sig_table++)
-	{
-	   if (strcmp(sig_table->signame, signame) == 0)
-	      return sig_table;
-	}
-       extra_sig_table = wt_item ? wt_item->extra_signal_table : NULL;
-      /* Search the signal name in ExtraSignalTable */
-       for (; extra_sig_table && extra_sig_table->sigfunction; extra_sig_table = extra_sig_table->next)
-	{
-	   if (strcmp(extra_sig_table->signame, signame) == 0)
-	      return (SignalTable *) extra_sig_table;
-	}
-      /* if not found, get WTypeTable entry for parent type and continue searching */
-       if (wt_item)
-	  tfun = wt_item->fsuper_type;
-       if (tfun)
-	  wtype = tfun();
-    }
+      {
+	/* Get WTypeTable entry corresponding to type of this widget */
+	 wt_item = _wtype_table_get(wtype);
+	 sig_table = wt_item ? wt_item->signal_table : NULL;
+	/* Search the signal name in SignalTable */
+	 for (; sig_table && sig_table->sigfunction; sig_table++)
+	    {
+	       if (strcmp(sig_table->signame, signame) == 0)
+		  return sig_table;
+	    }
+	 extra_sig_table = wt_item ? wt_item->extra_signal_table : NULL;
+	/* Search the signal name in ExtraSignalTable */
+	 for (; extra_sig_table && extra_sig_table->sigfunction; extra_sig_table = extra_sig_table->next)
+	    {
+	       if (strcmp(extra_sig_table->signame, signame) == 0)
+		  return (SignalTable *) extra_sig_table;
+	    }
+	/* if not found, get WTypeTable entry for parent type and continue searching */
+	 if (wt_item)
+	    tfun = wt_item->fsuper_type;
+	 if (tfun)
+	    wtype = tfun();
+      }
    while (tfun);
    return NULL;
 }

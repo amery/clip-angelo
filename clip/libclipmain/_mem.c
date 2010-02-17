@@ -105,7 +105,7 @@ clip2dbf(ClipVar * vp, DbfData * dp)
     case NUMERIC_type_of_ClipVarType:
        dp->type = 'N';
        if (vp->ClipType_t_of_ClipVar.memo_of_ClipType)
-	  dp->u.n = rational_toDouble(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar);
+			 dp->u.n = rational_toDouble(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar);
        else
 	  dp->u.n = vp->ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
        break;

@@ -92,19 +92,14 @@
 #endif
 
 extern char *optarg;
-
 extern int optind;
 
 static int table_flag = 0;
-
 static int c_flag = 0, verbose_level = 0;
 
 static int print_table(char *arname);
-
 static int make_c_file(char *arname, int argc, char **argv);
-
 static int make_pa_file(char *arname, int argc, char **argv);
-
 static void v_printf(int level, const char *fmt, ...);
 
 static char tmp_file[255];
@@ -112,36 +107,35 @@ static char tmp_file[255];
 int
 main(int argc, char **argv)
 {
-   int       ch, i;
-
-   char     *arname;
+   int ch, i;
+   char *arname;
 
    tmp_file[0] = 0;
    while ((ch = getopt(argc, argv, "tchVv")) != EOF)
       switch (ch)
-       {
-       case 'V':
-	  printf("0.1\n");
-	  exit(0);
-       case 'v':
-	  verbose_level++;
-	  break;
-       case 't':
-	  table_flag = 1;
-	  break;
-       case 'c':
-	  c_flag = 1;
-	  break;
-       case 'h':
-	usage:
-       default:
-	  printf("usage: clipar [-tcvV] <file>.pa [<file>.po|<file>.pa...]\n");
-	  printf("\t-t print table of archive\n");
-	  printf("\t-c make C file\n");
-	  printf("\t-v increase verbose level\n");
-	  printf("\t-V print version and exit\n");
-	  exit(1);
-       }
+	 {
+	 case 'V':
+	    printf("0.1\n");
+	    exit(0);
+	 case 'v':
+	    verbose_level++;
+	    break;
+	 case 't':
+	    table_flag = 1;
+	    break;
+	 case 'c':
+	    c_flag = 1;
+	    break;
+	 case 'h':
+	  usage:
+	 default:
+	    printf("usage: clipar [-tcvV] <file>.pa [<file>.po|<file>.pa...]\n");
+	    printf("\t-t print table of archive\n");
+	    printf("\t-c make C file\n");
+	    printf("\t-v increase verbose level\n");
+	    printf("\t-V print version and exit\n");
+	    exit(1);
+	 }
    argc -= optind;
    argv += optind;
 
@@ -149,15 +143,15 @@ main(int argc, char **argv)
       goto usage;
 
    if (table_flag)
-    {
-       for (i = 0; i < argc; ++i)
-	{
-	   if (argc > 1)
-	      v_printf(0, "file '%s' table:\n", argv[i]);
-	   print_table(argv[i]);
-	}
-       return 0;
-    }
+      {
+	 for (i = 0; i < argc; ++i)
+	    {
+	       if (argc > 1)
+		  v_printf(0, "file '%s' table:\n", argv[i]);
+	       print_table(argv[i]);
+	    }
+	 return 0;
+      }
 
    arname = argv[0];
    argv++;
@@ -175,7 +169,7 @@ main(int argc, char **argv)
 static void
 error(const char *fmt, ...)
 {
-   va_list   ap;
+   va_list ap;
 
    va_start(ap, fmt);
    fprintf(stderr, "clipar: ");
@@ -190,7 +184,7 @@ error(const char *fmt, ...)
 static void
 v_printf(int level, const char *fmt, ...)
 {
-   va_list   ap;
+   va_list ap;
 
    va_start(ap, fmt);
    if (level > verbose_level)
@@ -205,22 +199,18 @@ v_printf(int level, const char *fmt, ...)
 static char *
 read_module(FILE * file)
 {
-   char     *ret = 0;
-
-   char      mag[8];
-
-   long      beg = ftell(file);
-
-   long      l;
-
-   char     *filename;
+   char *ret = 0;
+   char mag[8];
+   long beg = ftell(file);
+   long l;
+   char *filename;
 
    if (fread(mag, 8, 1, file) != 1)
-    {
-       if (feof(file))
-	  return 0;
-       goto ferr;
-    }
+      {
+	 if (feof(file))
+	    return 0;
+	 goto ferr;
+      }
    if (memcmp(mag, "!<pobj>\n", 8))
       error("invalid magic number");
    if (fread(&l, sizeof(l), 1, file) != 1)
@@ -246,47 +236,35 @@ read_module(FILE * file)
 static int
 print_table(char *arname)
 {
-   FILE     *file = fopen(arname, "rb");
-
-   char     *modp;
+   FILE *file = fopen(arname, "rb");
+   char *modp;
 
    if (!file)
       error("cannot open file '%s': %s", arname, strerror(errno));
 
    while ((modp = read_module(file)))
-    {
-       char     *modbeg = M_OFFS(modp, 2, 0);
+      {
+	 char *modbeg = M_OFFS(modp, 2, 0);
+	 int j;
+	 int modlen = *(long *) M_OFFS(modp, 1, 0);
+	 int funcnum = *(long *) M_OFFS(modp, 5, 2);
+	 int pubnum = *(long *) M_OFFS(modp, 4, 2);
+	 int initnum = *(short *) M_OFFS(modp, 8, 4 /*7, 5 */ );
+	 int exitnum = *(short *) M_OFFS(modp, 8, 5 /*7, 6 */ );
+	 time_t ts = *(long *) M_OFFS(modp, 0, 0);
+	 char *filename = M_OFFS(modp, 8, 6 /*7, 7 */ );
+	 long funcOffs = *(long *) M_OFFS(modp, 7, 4 /*6, 5 */ );
+	 long *fp = (long *) (modbeg + funcOffs);
 
-       int       j;
+	 v_printf(0, "%s: %d byte %d func %d pub %d inits %d exits %s", filename, modlen + 8 + 2 * sizeof(long), funcnum, pubnum, initnum, exitnum, ctime(&ts));
 
-       int       modlen = *(long *) M_OFFS(modp, 1, 0);
+	 for (j = 0; j < funcnum; ++j, fp += 2)
+	    {
+	       v_printf(1, "\t%d:\thash=0x%x\toffs=%ld\n", j, fp[0], fp[1]);
+	    }
 
-       int       funcnum = *(long *) M_OFFS(modp, 5, 2);
-
-       int       pubnum = *(long *) M_OFFS(modp, 4, 2);
-
-       int       initnum = *(short *) M_OFFS(modp, 8, 4 /*7, 5 */ );
-
-       int       exitnum = *(short *) M_OFFS(modp, 8, 5 /*7, 6 */ );
-
-       time_t    ts = *(long *) M_OFFS(modp, 0, 0);
-
-       char     *filename = M_OFFS(modp, 8, 6 /*7, 7 */ );
-
-       long      funcOffs = *(long *) M_OFFS(modp, 7, 4 /*6, 5 */ );
-
-       long     *fp = (long *) (modbeg + funcOffs);
-
-       v_printf(0, "%s: %d byte %d func %d pub %d inits %d exits %s",
-		filename, modlen + 8 + 2 * sizeof(long), funcnum, pubnum, initnum, exitnum, ctime(&ts));
-
-       for (j = 0; j < funcnum; ++j, fp += 2)
-	{
-	   v_printf(1, "\t%d:\thash=0x%x\toffs=%ld\n", j, fp[0], fp[1]);
-	}
-
-       free(modp);
-    }
+	 free(modp);
+      }
 
    fclose(file);
    return 0;
@@ -295,37 +273,34 @@ print_table(char *arname)
 static void
 read_file(char *name, Coll * cp, Coll * readed)
 {
-   FILE     *file = fopen(name, "rb");
-
-   char     *modp;
-
-   int       j;
+   FILE *file = fopen(name, "rb");
+   char *modp;
+   int j;
 
    if (!file)
       error("cannot open file '%s': %s", name, strerror(errno));
 
    for (j = 0; (modp = read_module(file)); ++j)
-    {
-      /*char *modbeg = M_OFFS(modp, 2, 0); */
-       char     *filename = M_OFFS(modp, 8, 6 /*7, 7 */ );
+      {
+	/*char *modbeg = M_OFFS(modp, 2, 0); */
+	 char *filename = M_OFFS(modp, 8, 6 /*7, 7 */ );
+	 char *e = strrchr(filename, '.');
 
-       char     *e = strrchr(filename, '.');
+	 if (!readed)
+	    {
+	      /* all modules */
+	       append_Coll(cp, modp);
+	       continue;
+	    }
 
-       if (!readed)
-	{
-	  /* all modules */
-	   append_Coll(cp, modp);
-	   continue;
-	}
-
-      /* skip internal .pa headers */
-       if (e && !strcmp(e, ".pa"))
-	  continue;
-      /* skip duplicated modules */
-       if (!insert_Coll(readed, filename))
-	  continue;
-       append_Coll(cp, modp);
-    }
+	/* skip internal .pa headers */
+	 if (e && !strcmp(e, ".pa"))
+	    continue;
+	/* skip duplicated modules */
+	 if (!insert_Coll(readed, filename))
+	    continue;
+	 append_Coll(cp, modp);
+      }
    v_printf(1, "read file '%s': %d modules\n", name, j);
 
    fclose(file);
@@ -355,7 +330,7 @@ write_long(FILE * file, long s)
 static void
 write_str(FILE * file, char *str)
 {
-   int       len = strlen(str);
+   int len = strlen(str);
 
    if (fwrite(str, len + 1, 1, file) != 1)
       fwerr(file);
@@ -370,8 +345,8 @@ write_buf(FILE * file, char *buf, int len)
 
 typedef struct
 {
-   long      hash;
-   long      offs;
+   long hash;
+   long offs;
 }
 OffsEntry;
 
@@ -379,7 +354,6 @@ static int
 cmp_OffsEntry(void *p1, void *p2)
 {
    OffsEntry *o1 = (OffsEntry *) p1;
-
    OffsEntry *o2 = (OffsEntry *) p2;
 
    if (o1->hash < o2->hash)
@@ -393,25 +367,16 @@ cmp_OffsEntry(void *p1, void *p2)
 static int
 make_pa_file(char *arname, int argc, char **argv)
 {
-   Coll      coll;
-
-   Coll      offs;
-
-   Coll      inits, exits;
-
-   Coll      readed;
-
-   int       i;
-
-   long      npub, nstat, modpos;
-
-   short     ninit, nexit;
-
-   FILE     *file;
-
-   time_t    ts;
-
-   long      mod_len, mod_beg, func_Offs, fp, end;
+   Coll coll;
+   Coll offs;
+   Coll inits, exits;
+   Coll readed;
+   int i;
+   long npub, nstat, modpos;
+   short ninit, nexit;
+   FILE *file;
+   time_t ts;
+   long mod_len, mod_beg, func_Offs, fp, end;
 
    init_Coll(&coll, free, NULL);
    init_Coll(&offs, NULL, cmp_OffsEntry);
@@ -427,67 +392,58 @@ make_pa_file(char *arname, int argc, char **argv)
    nstat = 0;
    modpos = 0;
    for (i = 0; i < coll.count; ++i)
-    {
-       char     *modp = (char *) coll.items[i];
+      {
+	 char *modp = (char *) coll.items[i];
+	 char *modbeg = M_OFFS(modp, 2, 0);
+	 long modlen = *(long *) M_OFFS(modp, 1, 0);
+	 long funcOffs = *(long *) M_OFFS(modp, 7, 4 /*6, 5 */ );
+	 long *f_p = (long *) (modbeg + funcOffs);
+	 long funcnum = *(long *) M_OFFS(modp, 4, 2);
 
-       char     *modbeg = M_OFFS(modp, 2, 0);
+	/*long allnum = *(long *) M_OFFS(modp, 5, 2); */
+	 short initnum = *(short *) M_OFFS(modp, 8, 4 /*7, 5 */ );
+	 short exitnum = *(short *) M_OFFS(modp, 8, 5 /*7, 6 */ );
+	 long statnum = *(long *) M_OFFS(modp, 3, 0);
+	 long *statOffs = (long *) M_OFFS(modp, 2, 0);
+	 int j;
 
-       long      modlen = *(long *) M_OFFS(modp, 1, 0);
+	 *statOffs = nstat;
+	 nstat += statnum;
+	 modpos += 8 + 2 * sizeof(long);
 
-       long      funcOffs = *(long *) M_OFFS(modp, 7, 4 /*6, 5 */ );
+	 for (j = 0; j < funcnum; ++j)
+	    {
+	       OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
 
-       long     *f_p = (long *) (modbeg + funcOffs);
+	       op->hash = *f_p;
+	       ++f_p;
+	       op->offs = *f_p + modpos;
+	       ++f_p;
+	       insert_Coll(&offs, op);
+	    }
+	 for (j = 0; j < initnum; ++j)
+	    {
+	       OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
 
-       long      funcnum = *(long *) M_OFFS(modp, 4, 2);
+	       op->hash = *f_p;
+	       ++f_p;
+	       op->offs = *f_p + modpos;
+	       ++f_p;
+	       insert_Coll(&inits, op);
+	    }
+	 for (j = 0; j < exitnum; ++j)
+	    {
+	       OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
 
-      /*long allnum = *(long *) M_OFFS(modp, 5, 2); */
-       short     initnum = *(short *) M_OFFS(modp, 8, 4 /*7, 5 */ );
+	       op->hash = *f_p;
+	       ++f_p;
+	       op->offs = *f_p + modpos;
+	       ++f_p;
+	       insert_Coll(&exits, op);
+	    }
 
-       short     exitnum = *(short *) M_OFFS(modp, 8, 5 /*7, 6 */ );
-
-       long      statnum = *(long *) M_OFFS(modp, 3, 0);
-
-       long     *statOffs = (long *) M_OFFS(modp, 2, 0);
-
-       int       j;
-
-       *statOffs = nstat;
-       nstat += statnum;
-       modpos += 8 + 2 * sizeof(long);
-
-       for (j = 0; j < funcnum; ++j)
-	{
-	   OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
-
-	   op->hash = *f_p;
-	   ++f_p;
-	   op->offs = *f_p + modpos;
-	   ++f_p;
-	   insert_Coll(&offs, op);
-	}
-       for (j = 0; j < initnum; ++j)
-	{
-	   OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
-
-	   op->hash = *f_p;
-	   ++f_p;
-	   op->offs = *f_p + modpos;
-	   ++f_p;
-	   insert_Coll(&inits, op);
-	}
-       for (j = 0; j < exitnum; ++j)
-	{
-	   OffsEntry *op = (OffsEntry *) malloc(sizeof(OffsEntry));
-
-	   op->hash = *f_p;
-	   ++f_p;
-	   op->offs = *f_p + modpos;
-	   ++f_p;
-	   insert_Coll(&exits, op);
-	}
-
-       modpos += modlen;
-    }
+	 modpos += modlen;
+      }
    npub = offs.count;
    ninit = inits.count;
    nexit = exits.count;
@@ -525,26 +481,26 @@ make_pa_file(char *arname, int argc, char **argv)
    modpos = fp - mod_beg + (npub + ninit + nexit) * sizeof(long) * 2;
 
    for (i = 0; i < offs.count; ++i)
-    {
-       OffsEntry *op = (OffsEntry *) offs.items[i];
+      {
+	 OffsEntry *op = (OffsEntry *) offs.items[i];
 
-       write_long(file, op->hash);
-       write_long(file, op->offs + modpos);
-    }
+	 write_long(file, op->hash);
+	 write_long(file, op->offs + modpos);
+      }
    for (i = 0; i < inits.count; ++i)
-    {
-       OffsEntry *op = (OffsEntry *) inits.items[i];
+      {
+	 OffsEntry *op = (OffsEntry *) inits.items[i];
 
-       write_long(file, op->hash);
-       write_long(file, op->offs + modpos);
-    }
+	 write_long(file, op->hash);
+	 write_long(file, op->offs + modpos);
+      }
    for (i = 0; i < exits.count; ++i)
-    {
-       OffsEntry *op = (OffsEntry *) exits.items[i];
+      {
+	 OffsEntry *op = (OffsEntry *) exits.items[i];
 
-       write_long(file, op->hash);
-       write_long(file, op->offs + modpos);
-    }
+	 write_long(file, op->hash);
+	 write_long(file, op->offs + modpos);
+      }
 
    end = ftell(file);
    fseek(file, mod_len, SEEK_SET);
@@ -554,15 +510,13 @@ make_pa_file(char *arname, int argc, char **argv)
    fseek(file, end, SEEK_SET);
 
    for (i = 0; i < coll.count; ++i)
-    {
-       char     *modp = (char *) coll.items[i];
+      {
+	 char *modp = (char *) coll.items[i];
+	 long modlen = *(long *) M_OFFS(modp, 1, 0);
+	 modlen += 8 + 2 * sizeof(long);
 
-       long      modlen = *(long *) M_OFFS(modp, 1, 0);
-
-       modlen += 8 + 2 * sizeof(long);
-
-       write_buf(file, modp, modlen);
-    }
+	 write_buf(file, modp, modlen);
+      }
 
    end = ftell(file);
   /*
@@ -577,21 +531,14 @@ make_pa_file(char *arname, int argc, char **argv)
 static int
 make_c_file(char *Arname, int argc, char **argv)
 {
-   int       ret = 0, i;
-
-   Coll      coll;
-
-   char     *modp, *modbeg;
-
-   FILE     *file = 0;
-
-   time_t    ts;
-
-   char      name[64], *e, *s, arname[256];
-
-   int       nstatics;
-
-   long      size;
+   int ret = 0, i;
+   Coll coll;
+   char *modp, *modbeg;
+   FILE *file = 0;
+   time_t ts;
+   char name[64], *e, *s, arname[256];
+   int nstatics;
+   long size;
 
    strncpy(arname, Arname, sizeof(arname));
    s = strrchr(arname, '/');
@@ -660,23 +607,21 @@ make_c_file(char *Arname, int argc, char **argv)
    fprintf(file, "\n};\n");
    fprintf(file, "\nstatic char %s_body[]=\n{\n", name);
    for (size = 0, i = 0; i < coll.count; ++i)
-    {
-       char     *mp = (char *) coll.items[i];
+      {
+	 char *mp = (char *) coll.items[i];
+	 long modlen = *(long *) M_OFFS(mp, 1, 0);
+	 long j, k;
 
-       long      modlen = *(long *) M_OFFS(mp, 1, 0);
+	 modlen += 8 + 2 * sizeof(long);
 
-       long      j, k;
-
-       modlen += 8 + 2 * sizeof(long);
-
-       for (j = 0; j < modlen;)
-	{
-	   fprintf(file, "\t");
-	   for (k = 0; k < 32 && j < modlen; ++j, ++k, ++size)
-	      fprintf(file, "%d,", mp[j]);
-	   fprintf(file, "\n");
-	}
-    }
+	 for (j = 0; j < modlen;)
+	    {
+	       fprintf(file, "\t");
+	       for (k = 0; k < 32 && j < modlen; ++j, ++k, ++size)
+		  fprintf(file, "%d,", mp[j]);
+	       fprintf(file, "\n");
+	    }
+      }
    fprintf(file, "\n};\n");
    fprintf(file, "\nstruct ClipFile ");
    for (i = 0; i < strlen(name); ++i)

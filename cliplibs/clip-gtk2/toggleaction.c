@@ -17,7 +17,7 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static    gint
+static gint
 handle_toggled_signal(GtkToggleAction * action, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -52,26 +52,19 @@ _clip_type_name_toggle_action()
 int
 clip_INIT___TOGGLEACTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_toggle_action, _clip_type_name_toggle_action,
-		    _gtk_type_toggle_action, _gtk_type_action, toggle_action_signals);
+   _wtype_table_put(_clip_type_toggle_action, _clip_type_name_toggle_action, _gtk_type_toggle_action, _gtk_type_action, toggle_action_signals);
    return 0;
 }
 
 int
 clip_GTK_TOGGLEACTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
-   gchar    *label = _clip_parc(ClipMachineMemory, 3);
-
-   gchar    *tooltip = _clip_parc(ClipMachineMemory, 4);
-
-   gchar    *stock_id = _clip_parc(ClipMachineMemory, 5);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
+   gchar *label = _clip_parc(ClipMachineMemory, 3);
+   gchar *tooltip = _clip_parc(ClipMachineMemory, 4);
+   gchar *stock_id = _clip_parc(ClipMachineMemory, 5);
    C_object *caction;
-
    GtkToggleAction *action;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -90,13 +83,13 @@ clip_GTK_TOGGLEACTIONNEW(ClipMachine * ClipMachineMemory)
    action = gtk_toggle_action_new(name, label, tooltip, stock_id);
 
    if (action)
-    {
-       caction = _list_get_cobject(ClipMachineMemory, action);
-       if (!caction)
-	  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_TOGGLE_ACTION, cv, NULL);
-       if (caction)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
-    }
+      {
+	 caction = _list_get_cobject(ClipMachineMemory, action);
+	 if (!caction)
+	    caction = _register_object(ClipMachineMemory, action, GTK_TYPE_TOGGLE_ACTION, cv, NULL);
+	 if (caction)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
+      }
 
    FREE_TEXT(name);
    FREE_TEXT(label);
@@ -128,8 +121,7 @@ int
 clip_GTK_TOGGLEACTIONSETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  is_active = _clip_parl(ClipMachineMemory, 2);
+   gboolean is_active = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_TOGGLE_ACTION(caction->object));
@@ -161,8 +153,7 @@ int
 clip_GTK_TOGGLEACTIONSETDRAWASRADIO(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  draw_as_radio = _clip_parl(ClipMachineMemory, 2);
+   gboolean draw_as_radio = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_TOGGLE_ACTION(caction->object));

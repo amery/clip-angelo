@@ -17,7 +17,7 @@
 #include "ci_clip-gtkextra.h"
 
 /**********************************************************/
-static    gint
+static gint
 handle_changed_signal(GtkWidget * widget, gint selection, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -55,8 +55,7 @@ _clip_type_name_border_combo()
 int
 clip_INIT___BORDER_COMBO(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_border_combo, _clip_type_name_border_combo, _gtk_type_border_combo, _gtk_type_combo_box,
-		    border_combo_signals);
+   _wtype_table_put(_clip_type_border_combo, _clip_type_name_border_combo, _gtk_type_border_combo, _gtk_type_combo_box, border_combo_signals);
    return 0;
 }
 
@@ -64,10 +63,8 @@ clip_INIT___BORDER_COMBO(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BORDERCOMBONEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cbutton, *ctable;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);

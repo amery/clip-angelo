@@ -15,7 +15,7 @@
 
 /**********************************************************/
 /* Signal handlers */
-static    gint
+static gint
 handle_trough_click_signal(GtkRange * wid, gint x, gint y, float *jump_perc, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -24,11 +24,10 @@ handle_trough_click_signal(GtkRange * wid, gint x, gint y, float *jump_perc, C_s
    INVOKESIGHANDLER(GTK_WIDGET(wid), cs, cv);
 }
 
-static    gint
+static gint
 handle_trough_keys_signal(GtkRange * wid, GdkEventKey * key, GtkScrollType * scroll, GtkTroughType * trough, C_signal * cs)
 {
-   double    keycode;
-
+   double keycode;
    PREPARECV(cs, cv);
    x_inkey(key, &keycode);
    _clip_mputn(cs->cw->cmachine, &cv, HASH_KEYCODE, keycode);
@@ -38,7 +37,7 @@ handle_trough_keys_signal(GtkRange * wid, GdkEventKey * key, GtkScrollType * scr
    INVOKESIGHANDLER(GTK_WIDGET(wid), cs, cv);
 }
 
-static    gint
+static gint
 handle_motion_signal(GtkRange * wid, gint xdelta, gint ydelta, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -104,13 +103,9 @@ int
 clip_GTK_RANGEGETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-
    GtkAdjustment *adj;
-
    C_widget *cadj;
-
-   ClipVar  *ret = RETPTR(ClipMachineMemory);
-
+   ClipVar *ret = RETPTR(ClipMachineMemory);
    CHECKCWID(crange, GTK_IS_RANGE);
    adj = gtk_range_get_adjustment(GTK_RANGE(crange->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -127,9 +122,7 @@ int
 clip_GTK_RANGESETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-
    GtkUpdateType policy = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_range_set_update_policy(GTK_RANGE(crange->widget), policy);
@@ -142,9 +135,7 @@ int
 clip_GTK_RANGESETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);

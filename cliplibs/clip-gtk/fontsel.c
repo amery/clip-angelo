@@ -61,10 +61,8 @@ _clip_type_name_font_selection_dialog()
 int
 clip_INIT___FONT_SELECTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_font_selection, _clip_type_name_font_selection,
-		    _gtk_type_font_selection, _gtk_type_notebook, NULL);
-   _wtype_table_put(_clip_type_font_selection_dialog,
-		    _clip_type_name_font_selection_dialog, _gtk_type_font_selection_dialog, _gtk_type_window, NULL);
+   _wtype_table_put(_clip_type_font_selection, _clip_type_name_font_selection, _gtk_type_font_selection, _gtk_type_notebook, NULL);
+   _wtype_table_put(_clip_type_font_selection_dialog, _clip_type_name_font_selection_dialog, _gtk_type_font_selection_dialog, _gtk_type_window, NULL);
    return 0;
 }
 
@@ -74,12 +72,9 @@ clip_INIT___FONT_SELECTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTSELECTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_font_selection_new();
@@ -100,11 +95,8 @@ int
 clip_GTK_FONTSELECTIONGETFONT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cfont;
-
-   GdkFont  *font;
-
+   GdkFont *font;
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    font = gtk_font_selection_get_font(GTK_FONT_SELECTION(cfsel->widget));
    if (!font)
@@ -124,7 +116,6 @@ int
 clip_GTK_FONTSELECTIONGETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    _clip_retc(ClipMachineMemory, gtk_font_selection_get_font_name(GTK_FONT_SELECTION(cfsel->widget)));
    return 0;
@@ -137,9 +128,7 @@ int
 clip_GTK_FONTSELECTIONSETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *font_name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *font_name = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -155,7 +144,6 @@ int
 clip_GTK_FONTSELECTIONGETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    _clip_retc(ClipMachineMemory, gtk_font_selection_get_preview_text(GTK_FONT_SELECTION(cfsel->widget)));
    return 0;
@@ -168,9 +156,7 @@ int
 clip_GTK_FONTSELECTIONSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *preview_text = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *preview_text = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -209,29 +195,17 @@ int
 clip_GTK_FONTSELECTIONSETFILTER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   int       filter_type = _clip_parni(ClipMachineMemory, 2);
-
-   int       font_type = _clip_parni(ClipMachineMemory, 3);
-
-   ClipVar  *cv_foundries = _clip_spar(ClipMachineMemory, 4);
-
-   ClipVar  *cv_weights = _clip_spar(ClipMachineMemory, 5);
-
-   ClipVar  *cv_slants = _clip_spar(ClipMachineMemory, 6);
-
-   ClipVar  *cv_setwidths = _clip_spar(ClipMachineMemory, 7);
-
-   ClipVar  *cv_spacings = _clip_spar(ClipMachineMemory, 8);
-
-   ClipVar  *cv_charsets = _clip_spar(ClipMachineMemory, 9);
-
-   gchar   **foundries, **weights, **slants, **setwidths, **spacings, **charsets;
-
-   int       i;
-
+   int filter_type = _clip_parni(ClipMachineMemory, 2);
+   int font_type = _clip_parni(ClipMachineMemory, 3);
+   ClipVar *cv_foundries = _clip_spar(ClipMachineMemory, 4);
+   ClipVar *cv_weights = _clip_spar(ClipMachineMemory, 5);
+   ClipVar *cv_slants = _clip_spar(ClipMachineMemory, 6);
+   ClipVar *cv_setwidths = _clip_spar(ClipMachineMemory, 7);
+   ClipVar *cv_spacings = _clip_spar(ClipMachineMemory, 8);
+   ClipVar *cv_charsets = _clip_spar(ClipMachineMemory, 9);
+   gchar **foundries, **weights, **slants, **setwidths, **spacings, **charsets;
+   int i;
    ClipArrVar *a;
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -240,97 +214,96 @@ clip_GTK_FONTSELECTIONSETFILTER(ClipMachine * ClipMachineMemory)
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       font_type = GTK_FONT_ALL;
    switch (cv_foundries->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       foundries = (gchar **) calloc(sizeof(*foundries), 2);
-       foundries[0] = cv_foundries->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_foundries);
-       foundries = (gchar **) calloc(sizeof(*foundries), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  foundries[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       foundries = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 foundries = (gchar **) calloc(sizeof(*foundries), 2);
+	 foundries[0] = cv_foundries->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_foundries);
+	 foundries = (gchar **) calloc(sizeof(*foundries), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    foundries[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 foundries = NULL;
+      }
    switch (cv_weights->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       weights = (gchar **) calloc(sizeof(*weights), 2);
-       weights[0] = cv_weights->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_weights);
-       weights = (gchar **) calloc(sizeof(*weights), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  weights[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       weights = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 weights = (gchar **) calloc(sizeof(*weights), 2);
+	 weights[0] = cv_weights->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_weights);
+	 weights = (gchar **) calloc(sizeof(*weights), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    weights[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 weights = NULL;
+      }
    switch (cv_slants->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       slants = (gchar **) calloc(sizeof(*slants), 2);
-       slants[0] = cv_slants->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_slants);
-       slants = (gchar **) calloc(sizeof(*slants), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  slants[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       slants = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 slants = (gchar **) calloc(sizeof(*slants), 2);
+	 slants[0] = cv_slants->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_slants);
+	 slants = (gchar **) calloc(sizeof(*slants), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    slants[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 slants = NULL;
+      }
    switch (cv_setwidths->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       setwidths = (gchar **) calloc(sizeof(*setwidths), 2);
-       setwidths[0] = cv_setwidths->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_setwidths);
-       setwidths = (gchar **) calloc(sizeof(*setwidths), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  setwidths[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       setwidths = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 setwidths = (gchar **) calloc(sizeof(*setwidths), 2);
+	 setwidths[0] = cv_setwidths->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_setwidths);
+	 setwidths = (gchar **) calloc(sizeof(*setwidths), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    setwidths[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 setwidths = NULL;
+      }
    switch (cv_spacings->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       spacings = (gchar **) calloc(sizeof(*spacings), 2);
-       spacings[0] = cv_spacings->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_spacings);
-       spacings = (gchar **) calloc(sizeof(*spacings), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  spacings[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       spacings = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 spacings = (gchar **) calloc(sizeof(*spacings), 2);
+	 spacings[0] = cv_spacings->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_spacings);
+	 spacings = (gchar **) calloc(sizeof(*spacings), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    spacings[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 spacings = NULL;
+      }
    switch (cv_charsets->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       charsets = (gchar **) calloc(sizeof(*charsets), 2);
-       charsets[0] = cv_charsets->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_charsets);
-       charsets = (gchar **) calloc(sizeof(*charsets), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  charsets[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       charsets = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 charsets = (gchar **) calloc(sizeof(*charsets), 2);
+	 charsets[0] = cv_charsets->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_charsets);
+	 charsets = (gchar **) calloc(sizeof(*charsets), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    charsets[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 charsets = NULL;
+      }
    CHECKOPT2(4, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(5, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(6, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(7, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(8, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(9, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
-   gtk_font_selection_set_filter(GTK_FONT_SELECTION(cfsel->widget),
-				 filter_type, font_type, foundries, weights, slants, setwidths, spacings, charsets);
+   gtk_font_selection_set_filter(GTK_FONT_SELECTION(cfsel->widget), filter_type, font_type, foundries, weights, slants, setwidths, spacings, charsets);
    if (foundries)
       free(foundries);
    if (weights)
@@ -358,14 +331,10 @@ clip_GTK_FONTSELECTIONSETFILTER(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTSELECTIONDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cokbtn, *capplybtn, *ccancelbtn;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -399,11 +368,8 @@ int
 clip_GTK_FONTSELECTIONDIALOGGETFONT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cfont;
-
-   GdkFont  *font;
-
+   GdkFont *font;
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    font = gtk_font_selection_dialog_get_font(GTK_FONT_SELECTION_DIALOG(cfsel->widget));
    if (!font)
@@ -423,7 +389,6 @@ int
 clip_GTK_FONTSELECTIONDIALOGGETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    _clip_retc(ClipMachineMemory, gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(cfsel->widget)));
    return 0;
@@ -436,9 +401,7 @@ int
 clip_GTK_FONTSELECTIONDIALOGSETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *font_name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *font_name = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -454,7 +417,6 @@ int
 clip_GTK_FONTSELECTIONDIALOGGETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    _clip_retc(ClipMachineMemory, gtk_font_selection_dialog_get_preview_text(GTK_FONT_SELECTION_DIALOG(cfsel->widget)));
    return 0;
@@ -467,9 +429,7 @@ int
 clip_GTK_FONTSELECTIONDIALOGSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *preview_text = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *preview_text = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -490,47 +450,35 @@ clip_GTK_FONTSELECTIONDIALOGSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 *		  the base filter is permanent.
 * font_type 	: the types of font to be shown. This is a bitwise combination of
 *		  GTK_FONT_BITMAP, GTK_FONT_SCALABLE and GTK_FONT_SCALABLE_BITMAP, or
-*		  GTK_FONT_ALL to show all three font typeClipStrVar_s_of_ClipVar.
+*		  GTK_FONT_ALL to show all three font types.
 * foundries 	: a NULL-terminated array of strings containing foundry names which
-*		  will be shown, or NULL to show all foundrieClipStrVar_s_of_ClipVar.
+*		  will be shown, or NULL to show all foundries.
 * weights 	: a NULL-terminated array of strings containing weight names which
-*		  will be shown, or NULL to show all weightClipStrVar_s_of_ClipVar.
+*		  will be shown, or NULL to show all weights.
 * slants 		: a NULL-terminated array of strings containing slant names which will
-*		  be shown, or NULL to show all slantClipStrVar_s_of_ClipVar.
+*		  be shown, or NULL to show all slants.
 * setwidths 	: a NULL-terminated array of strings containing setwidth names which
-*		  will be shown, or NULL to show all setwidthClipStrVar_s_of_ClipVar.
+*		  will be shown, or NULL to show all setwidths.
 * spacings 	: a NULL-terminated array of strings containing spacings which will be
-*		  shown, or NULL to show all spacingClipStrVar_s_of_ClipVar.
+*		  shown, or NULL to show all spacings.
 * charsets 	: a NULL-terminated array of strings containing charset names which will
-*		  be shown, or NULL to show all charsetClipStrVar_s_of_ClipVar.
+*		  be shown, or NULL to show all charsets.
 */
 int
 clip_GTK_FONTSELECTIONDIALOGSETFILTER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   int       filter_type = _clip_parni(ClipMachineMemory, 2);
-
-   int       font_type = _clip_parni(ClipMachineMemory, 3);
-
-   ClipVar  *cv_foundries = _clip_spar(ClipMachineMemory, 4);
-
-   ClipVar  *cv_weights = _clip_spar(ClipMachineMemory, 5);
-
-   ClipVar  *cv_slants = _clip_spar(ClipMachineMemory, 6);
-
-   ClipVar  *cv_setwidths = _clip_spar(ClipMachineMemory, 7);
-
-   ClipVar  *cv_spacings = _clip_spar(ClipMachineMemory, 8);
-
-   ClipVar  *cv_charsets = _clip_spar(ClipMachineMemory, 9);
-
-   gchar   **foundries, **weights, **slants, **setwidths, **spacings, **charsets;
-
-   int       i;
-
+   int filter_type = _clip_parni(ClipMachineMemory, 2);
+   int font_type = _clip_parni(ClipMachineMemory, 3);
+   ClipVar *cv_foundries = _clip_spar(ClipMachineMemory, 4);
+   ClipVar *cv_weights = _clip_spar(ClipMachineMemory, 5);
+   ClipVar *cv_slants = _clip_spar(ClipMachineMemory, 6);
+   ClipVar *cv_setwidths = _clip_spar(ClipMachineMemory, 7);
+   ClipVar *cv_spacings = _clip_spar(ClipMachineMemory, 8);
+   ClipVar *cv_charsets = _clip_spar(ClipMachineMemory, 9);
+   gchar **foundries, **weights, **slants, **setwidths, **spacings, **charsets;
+   int i;
    ClipArrVar *a;
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -539,98 +487,96 @@ clip_GTK_FONTSELECTIONDIALOGSETFILTER(ClipMachine * ClipMachineMemory)
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       font_type = GTK_FONT_ALL;
    switch (cv_foundries->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       foundries = (gchar **) calloc(sizeof(*foundries), 2);
-       foundries[0] = cv_foundries->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_foundries);
-       foundries = (gchar **) calloc(sizeof(*foundries), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  foundries[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       foundries = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 foundries = (gchar **) calloc(sizeof(*foundries), 2);
+	 foundries[0] = cv_foundries->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_foundries);
+	 foundries = (gchar **) calloc(sizeof(*foundries), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    foundries[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 foundries = NULL;
+      }
    switch (cv_weights->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       weights = (gchar **) calloc(sizeof(*weights), 2);
-       weights[0] = cv_weights->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_weights);
-       weights = (gchar **) calloc(sizeof(*weights), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  weights[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       weights = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 weights = (gchar **) calloc(sizeof(*weights), 2);
+	 weights[0] = cv_weights->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_weights);
+	 weights = (gchar **) calloc(sizeof(*weights), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    weights[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 weights = NULL;
+      }
    switch (cv_slants->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       slants = (gchar **) calloc(sizeof(*slants), 2);
-       slants[0] = cv_slants->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_slants);
-       slants = (gchar **) calloc(sizeof(*slants), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  slants[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       slants = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 slants = (gchar **) calloc(sizeof(*slants), 2);
+	 slants[0] = cv_slants->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_slants);
+	 slants = (gchar **) calloc(sizeof(*slants), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    slants[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 slants = NULL;
+      }
    switch (cv_setwidths->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       setwidths = (gchar **) calloc(sizeof(*setwidths), 2);
-       setwidths[0] = cv_setwidths->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_setwidths);
-       setwidths = (gchar **) calloc(sizeof(*setwidths), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  setwidths[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       setwidths = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 setwidths = (gchar **) calloc(sizeof(*setwidths), 2);
+	 setwidths[0] = cv_setwidths->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_setwidths);
+	 setwidths = (gchar **) calloc(sizeof(*setwidths), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    setwidths[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 setwidths = NULL;
+      }
    switch (cv_spacings->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       spacings = (gchar **) calloc(sizeof(*spacings), 2);
-       spacings[0] = cv_spacings->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_spacings);
-       spacings = (gchar **) calloc(sizeof(*spacings), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  spacings[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       spacings = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 spacings = (gchar **) calloc(sizeof(*spacings), 2);
+	 spacings[0] = cv_spacings->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_spacings);
+	 spacings = (gchar **) calloc(sizeof(*spacings), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    spacings[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 spacings = NULL;
+      }
    switch (cv_charsets->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       charsets = (gchar **) calloc(sizeof(*charsets), 2);
-       charsets[0] = cv_charsets->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-       break;
-    case ARRAY_type_of_ClipVarType:
-       a = (ClipArrVar *) _clip_vptr(cv_charsets);
-       charsets = (gchar **) calloc(sizeof(*charsets), a->count_of_ClipArrVar + 1);
-       for (i = 0; i < a->count_of_ClipArrVar; i++)
-	  charsets[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-    default:
-       charsets = NULL;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 charsets = (gchar **) calloc(sizeof(*charsets), 2);
+	 charsets[0] = cv_charsets->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	 break;
+      case ARRAY_type_of_ClipVarType:
+	 a = (ClipArrVar *) _clip_vptr(cv_charsets);
+	 charsets = (gchar **) calloc(sizeof(*charsets), a->count_of_ClipArrVar + 1);
+	 for (i = 0; i < a->count_of_ClipArrVar; i++)
+	    charsets[i] = a->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+      default:
+	 charsets = NULL;
+      }
    CHECKOPT2(4, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(5, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(6, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(7, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(8, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    CHECKOPT2(9, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
-   gtk_font_selection_dialog_set_filter(GTK_FONT_SELECTION_DIALOG
-					(cfsel->widget), filter_type,
-					font_type, foundries, weights, slants, setwidths, spacings, charsets);
+   gtk_font_selection_dialog_set_filter(GTK_FONT_SELECTION_DIALOG(cfsel->widget), filter_type, font_type, foundries, weights, slants, setwidths, spacings, charsets);
    if (foundries)
       free(foundries);
    if (weights)

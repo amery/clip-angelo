@@ -48,41 +48,39 @@
 #include <stdio.h>
 #include "ci_task.h"
 
-void     *
+void *
 run(void *data)
 {
-   int       i;
-
-   void     *ret = NULL;
+   int i;
+   void *ret = NULL;
 
    for (i = 0; i < 5; i++)
-    {
-       printf("task %ld cycle %d\n", Task_get_id(Task_get_currTask()), i);
-       Task_sleep(100);
-    }
+      {
+	 printf("task %ld cycle %d\n", Task_get_id(Task_get_currTask()), i);
+	 Task_sleep(100);
+      }
    return ret;
 }
 
 int
 main(int argc, char **argv)
 {
-   int       i;
-
-   Task     *tp;
+   int i;
+   Task *tp;
 
    for (i = 0; i < 3; i++)
-    {
-       tp = Task_new("task_test", 8192, 0, run, 0);
-       Task_start(tp);
-    }
+      {
+	 tp = Task_new("task_test", 8192, 0, run, 0);
+	 Task_start(tp);
+      }
 
    Task_start_sheduler();
 
    for (i = 0; i < 15; i++)
-    {
-       printf("main task: cycle %d\n", i);
-       Task_sleep(50);
-    }
+      {
+	 printf("main task: cycle %d\n", i);
+	 Task_sleep(50);
+      }
 
   /*Task_killAll(); */
    return 0;

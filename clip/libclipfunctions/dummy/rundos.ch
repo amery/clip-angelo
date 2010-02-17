@@ -1,2 +1,0 @@
-function rundos
-return

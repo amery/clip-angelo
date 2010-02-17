@@ -17,8 +17,7 @@ int
 clip_GTK_STYLENEW(ClipMachine * ClipMachineMemory)
 {
    GtkStyle *style;
-
-   ClipVar  *cstyle = RETPTR(ClipMachineMemory);
+   ClipVar *cstyle = RETPTR(ClipMachineMemory);
 
    _clip_map(ClipMachineMemory, cstyle);
    style = gtk_style_new();
@@ -30,10 +29,8 @@ clip_GTK_STYLENEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STYLECOPY(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cs = _clip_spar(ClipMachineMemory, 1);
-
-   ClipVar  *cstyle = RETPTR(ClipMachineMemory);
-
+   ClipVar *cs = _clip_spar(ClipMachineMemory, 1);
+   ClipVar *cstyle = RETPTR(ClipMachineMemory);
    GtkStyle *style = 0, *newstyle;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -49,12 +46,9 @@ clip_GTK_STYLECOPY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STYLEATTACH(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cs = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cs = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *cstyle = RETPTR(ClipMachineMemory);
-
+   ClipVar *cstyle = RETPTR(ClipMachineMemory);
    GtkStyle *style = 0, *newstyle;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -71,8 +65,7 @@ clip_GTK_STYLEATTACH(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STYLEDETACH(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cs = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cs = _clip_spar(ClipMachineMemory, 1);
    GtkStyle *style = 0;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -87,12 +80,9 @@ clip_GTK_STYLEDETACH(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STYLESETBACKGROUND(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cs = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cs = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkStateType t = _clip_parni(ClipMachineMemory, 3);
-
    GtkStyle *style = 0;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -110,26 +100,16 @@ clip_GTK_STYLESETBACKGROUND(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STYLEAPPLYDEFAULTBACKGROUND(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cs = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cs = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  set_bg = _clip_parl(ClipMachineMemory, 3);
-
+   gboolean set_bg = _clip_parl(ClipMachineMemory, 3);
    GtkStateType t = _clip_parni(ClipMachineMemory, 4);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 5);
-
-   gint      x = _clip_parni(ClipMachineMemory, 6);
-
-   gint      y = _clip_parni(ClipMachineMemory, 7);
-
-   gint      width = _clip_parni(ClipMachineMemory, 8);
-
-   gint      height = _clip_parni(ClipMachineMemory, 9);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 5);
+   gint x = _clip_parni(ClipMachineMemory, 6);
+   gint y = _clip_parni(ClipMachineMemory, 7);
+   gint width = _clip_parni(ClipMachineMemory, 8);
+   gint height = _clip_parni(ClipMachineMemory, 9);
    GtkStyle *style = 0;
-
    GdkRectangle rect;
 
    CHECKARG(1, MAP_type_of_ClipVarType);

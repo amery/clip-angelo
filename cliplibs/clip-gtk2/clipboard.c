@@ -18,9 +18,7 @@ int
 clip_GTK_CLIPBOARDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *catom = _fetch_co_arg(ClipMachineMemory);
-
    GtkClipboard *clipb;
-
    C_object *cclipb;
 
    if (!catom || catom->type != GDK_TYPE_ATOM)
@@ -29,11 +27,11 @@ clip_GTK_CLIPBOARDGET(ClipMachine * ClipMachineMemory)
    clipb = gtk_clipboard_get((GdkAtom) catom->object);
 
    if (clipb)
-    {
-       cclipb = _register_object(ClipMachineMemory, clipb, GTK_TYPE_CLIPBOARD, NULL, NULL);
-       if (cclipb)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cclipb->obj);
-    }
+      {
+	 cclipb = _register_object(ClipMachineMemory, clipb, GTK_TYPE_CLIPBOARD, NULL, NULL);
+	 if (cclipb)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cclipb->obj);
+      }
    return 0;
  err:
    return 1;
@@ -112,9 +110,7 @@ int
 clip_GTK_CLIPBOARDGETOWNER(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
-   GObject  *gobj;
-
+   GObject *gobj;
    C_object *cgobj;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
@@ -123,11 +119,11 @@ clip_GTK_CLIPBOARDGETOWNER(ClipMachine * ClipMachineMemory)
    gobj = gtk_clipboard_get_owner((GtkClipboard *) cclipb->object);
 
    if (gobj)
-    {
-       cgobj = _register_object(ClipMachineMemory, gobj, GTK_TYPE_OBJECT, NULL, NULL);
-       if (cgobj)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgobj->obj);
-    }
+      {
+	 cgobj = _register_object(ClipMachineMemory, gobj, GTK_TYPE_OBJECT, NULL, NULL);
+	 if (cgobj)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgobj->obj);
+      }
 
    return 0;
  err:
@@ -153,8 +149,7 @@ int
 clip_GTK_CLIPBOARDSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -172,48 +167,40 @@ clip_GTK_CLIPBOARDSETTEXT(ClipMachine * ClipMachineMemory)
 static void
 _clipboard_received_func(GtkClipboard * clipb, GtkSelectionData * seldata, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_object *c_obj = _list_get_cobject(c->ClipMachineMemory, clipb);
-
-   ClipVar   stack[3];
-
+   ClipVar stack[3];
    C_object *csel;
-
-   ClipVar   res;
-
+   ClipVar res;
    if (!c_obj)
       c_obj = _register_object(c->ClipMachineMemory, clipb, GTK_TYPE_CLIPBOARD, NULL, NULL);
 
    csel = _register_object(c->ClipMachineMemory, seldata, GTK_TYPE_OBJECT, NULL, NULL);
    if (c_obj)
-    {
-       memset(&stack, 0, sizeof(stack));
-       memset(&res, 0, sizeof(ClipVar));
-       _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
-       _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
-       _clip_mclone(c->cw->cmachine, &stack[2], &csel->obj);
-      //stack[0] = c->cw->obj;
-      //stack[1] = c_obj->obj;
-      //stack[2] = csel->obj;
-       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
-       _clip_destroy(c->ClipMachineMemory, &res);
-       _clip_destroy(c->ClipMachineMemory, &stack[0]);
-       _clip_destroy(c->ClipMachineMemory, &stack[1]);
-       _clip_destroy(c->ClipMachineMemory, &stack[2]);
-    }
+      {
+	 memset(&stack, 0, sizeof(stack));
+	 memset(&res, 0, sizeof(ClipVar));
+	 _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[2], &csel->obj);
+	//stack[0] = c->cw->obj;
+	//stack[1] = c_obj->obj;
+	//stack[2] = csel->obj;
+	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
+	 _clip_destroy(c->ClipMachineMemory, &res);
+	 _clip_destroy(c->ClipMachineMemory, &stack[0]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[1]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[2]);
+      }
 }
 
 int
 clip_GTK_CLIPBOARDREQUESTCONTENTS(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 3);
-
-   C_var    *c = 0;
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 3);
+   C_var *c = 0;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -224,8 +211,7 @@ clip_GTK_CLIPBOARDREQUESTCONTENTS(ClipMachine * ClipMachineMemory)
    c->ClipMachineMemory = ClipMachineMemory;
    c->co = cclipb;
    _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
-   gtk_clipboard_request_contents((GtkClipboard *) cclipb->object,
-				  (GdkAtom) catom->object, (GtkClipboardReceivedFunc) _clipboard_received_func, c);
+   gtk_clipboard_request_contents((GtkClipboard *) cclipb->object, (GdkAtom) catom->object, (GtkClipboardReceivedFunc) _clipboard_received_func, c);
 
    return 0;
  err:
@@ -235,18 +221,12 @@ clip_GTK_CLIPBOARDREQUESTCONTENTS(ClipMachine * ClipMachineMemory)
 static void
 _clipboard_text_received_func(GtkClipboard * clipb, const gchar * text, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_object *c_obj = _list_get_cobject(c->ClipMachineMemory, clipb);
-
-   ClipVar   stack[3];
-
-   gchar    *te;
-
-   ClipVar   t;
-
-   ClipVar   res;
-
+   ClipVar stack[3];
+   gchar *te;
+   ClipVar t;
+   ClipVar res;
    if (!c_obj)
       c_obj = _register_object(c->ClipMachineMemory, clipb, GTK_TYPE_CLIPBOARD, NULL, NULL);
 
@@ -255,33 +235,31 @@ _clipboard_text_received_func(GtkClipboard * clipb, const gchar * text, gpointer
    _clip_var_str(te, strlen(te), &t);
    FREE_TEXT(te);
    if (c_obj)
-    {
-       memset(&stack, 0, sizeof(stack));
-       memset(&res, 0, sizeof(ClipVar));
-       memset(&t, 0, sizeof(t));
-       _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
-       _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
-       _clip_mclone(c->cw->cmachine, &stack[2], &t);
-      //stack[0] = c->cw->obj;
-      //stack[1] = c_obj->obj;
-      //stack[2] = t;
-       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
-       _clip_destroy(c->ClipMachineMemory, &res);
-       _clip_destroy(c->ClipMachineMemory, &t);
-       _clip_destroy(c->ClipMachineMemory, &stack[0]);
-       _clip_destroy(c->ClipMachineMemory, &stack[1]);
-       _clip_destroy(c->ClipMachineMemory, &stack[2]);
-    }
+      {
+	 memset(&stack, 0, sizeof(stack));
+	 memset(&res, 0, sizeof(ClipVar));
+	 memset(&t, 0, sizeof(t));
+	 _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[2], &t);
+	//stack[0] = c->cw->obj;
+	//stack[1] = c_obj->obj;
+	//stack[2] = t;
+	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
+	 _clip_destroy(c->ClipMachineMemory, &res);
+	 _clip_destroy(c->ClipMachineMemory, &t);
+	 _clip_destroy(c->ClipMachineMemory, &stack[0]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[1]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[2]);
+      }
 }
 
 int
 clip_GTK_CLIPBOARDREQUESTTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
-
-   C_var    *c = 0;
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
+   C_var *c = 0;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -301,11 +279,8 @@ int
 clip_GTK_CLIPBOARDWAITFORCONTENTS(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkSelectionData *sel;
-
    C_object *csel;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
@@ -316,12 +291,12 @@ clip_GTK_CLIPBOARDWAITFORCONTENTS(ClipMachine * ClipMachineMemory)
    sel = gtk_clipboard_wait_for_contents((GtkClipboard *) cclipb->object, (GdkAtom) catom->object);
 
    if (sel)
-    {
-       csel = _register_object(ClipMachineMemory, sel, GTK_TYPE_SELECTION_DATA, NULL, NULL);
-       if (csel)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &csel->obj);
-       gtk_selection_data_free(sel);
-    }
+      {
+	 csel = _register_object(ClipMachineMemory, sel, GTK_TYPE_SELECTION_DATA, NULL, NULL);
+	 if (csel)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &csel->obj);
+	 gtk_selection_data_free(sel);
+      }
    return 0;
  err:
    return 1;
@@ -331,8 +306,7 @@ int
 clip_GTK_CLIPBOARDWAITFORTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *text;
+   gchar *text;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -340,12 +314,12 @@ clip_GTK_CLIPBOARDWAITFORTEXT(ClipMachine * ClipMachineMemory)
    text = gtk_clipboard_wait_for_text((GtkClipboard *) cclipb->object);
 
    if (text)
-    {
-       LOCALE_FROM_UTF(text);
-       _clip_retc(ClipMachineMemory, text);
-       FREE_TEXT(text);
-       g_free(text);
-    }
+      {
+	 LOCALE_FROM_UTF(text);
+	 _clip_retc(ClipMachineMemory, text);
+	 FREE_TEXT(text);
+	 g_free(text);
+      }
    return 0;
  err:
    return 1;
@@ -370,43 +344,36 @@ clip_GTK_CLIPBOARDWAITISTEXTAVAILABLE(ClipMachine * ClipMachineMemory)
 static void
 _clipboard_received(GtkClipboard * clipb, GdkPixbuf * pix, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_object *c_obj = _list_get_cobject(c->ClipMachineMemory, clipb);
-
    C_object *cpix = _list_get_cobject(c->ClipMachineMemory, pix);
-
-   ClipVar   stack[3];
-
-   ClipVar   res;
-
+   ClipVar stack[3];
+   ClipVar res;
    if (!c_obj)
       c_obj = _register_object(c->ClipMachineMemory, clipb, GTK_TYPE_CLIPBOARD, NULL, NULL);
    if (!cpix)
       cpix = _register_object(c->ClipMachineMemory, pix, GDK_TYPE_PIXBUF, NULL, NULL);
    if (c_obj)
-    {
-       memset(&stack, 0, sizeof(stack));
-       memset(&res, 0, sizeof(ClipVar));
-       _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
-       _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
-       _clip_mclone(c->cw->cmachine, &stack[2], &cpix->obj);
-       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
-       _clip_destroy(c->ClipMachineMemory, &res);
-       _clip_destroy(c->ClipMachineMemory, &stack[0]);
-       _clip_destroy(c->ClipMachineMemory, &stack[1]);
-       _clip_destroy(c->ClipMachineMemory, &stack[2]);
-    }
+      {
+	 memset(&stack, 0, sizeof(stack));
+	 memset(&res, 0, sizeof(ClipVar));
+	 _clip_mclone(c->cw->cmachine, &stack[0], &c->co->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[1], &c_obj->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[2], &cpix->obj);
+	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
+	 _clip_destroy(c->ClipMachineMemory, &res);
+	 _clip_destroy(c->ClipMachineMemory, &stack[0]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[1]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[2]);
+      }
 }
 
 int
 clip_GTK_CLIPBOARDREQUESTIMAGE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
-
-   C_var    *c = 0;
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
+   C_var *c = 0;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -428,10 +395,8 @@ int
 clip_GTK_CLIPBOARDSETCANSTORE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *ctag = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   gint      ntargets = _clip_parni(ClipMachineMemory, 3);
+   gint ntargets = _clip_parni(ClipMachineMemory, 3);
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
       goto err;
@@ -440,18 +405,17 @@ clip_GTK_CLIPBOARDSETCANSTORE(ClipMachine * ClipMachineMemory)
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
 
    if (ctag)
-    {
-       GtkTargetEntry *tags;
+      {
+	 GtkTargetEntry *tags;
+	 gint i;
 
-       gint      i;
-
-       tags = malloc(ctag->count_of_ClipArrVar * sizeof(GtkTargetEntry));
-       memset(tags, 0, sizeof(GtkTargetEntry) * ctag->count_of_ClipArrVar);
-       for (i = 0; i < ctag->count_of_ClipArrVar; i++)
-	  _array_to_target_entry(ClipMachineMemory, &ctag->ClipVar_items_of_ClipArrVar[i], &tags[i]);
-       gtk_clipboard_set_can_store((GtkClipboard *) cclipb->object, tags, ntargets);
-       free(tags);
-    }
+	 tags = malloc(ctag->count_of_ClipArrVar * sizeof(GtkTargetEntry));
+	 memset(tags, 0, sizeof(GtkTargetEntry) * ctag->count_of_ClipArrVar);
+	 for (i = 0; i < ctag->count_of_ClipArrVar; i++)
+	    _array_to_target_entry(ClipMachineMemory, &ctag->ClipVar_items_of_ClipArrVar[i], &tags[i]);
+	 gtk_clipboard_set_can_store((GtkClipboard *) cclipb->object, tags, ntargets);
+	 free(tags);
+      }
    else
       gtk_clipboard_set_can_store((GtkClipboard *) cclipb->object, NULL, ntargets);
 
@@ -464,7 +428,6 @@ int
 clip_GTK_CLIPBOARDSETIMAGE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cpix = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
@@ -497,9 +460,7 @@ int
 clip_GTK_CLIPBOARDWAITFORIMAGE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cpix;
-
    GdkPixbuf *pix;
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
@@ -508,13 +469,13 @@ clip_GTK_CLIPBOARDWAITFORIMAGE(ClipMachine * ClipMachineMemory)
    pix = gtk_clipboard_wait_for_image((GtkClipboard *) cclipb->object);
 
    if (pix)
-    {
-       cpix = _list_get_cobject(ClipMachineMemory, pix);
-       if (!cpix)
-	  cpix = _register_object(ClipMachineMemory, pix, GDK_TYPE_PIXBUF, NULL, NULL);
-       if (cpix)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpix->obj);
-    }
+      {
+	 cpix = _list_get_cobject(ClipMachineMemory, pix);
+	 if (!cpix)
+	    cpix = _register_object(ClipMachineMemory, pix, GDK_TYPE_PIXBUF, NULL, NULL);
+	 if (cpix)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpix->obj);
+      }
 
    return 0;
  err:
@@ -540,7 +501,6 @@ int
 clip_GTK_CLIPBOARDWAITISTARGETAVAILABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclipb = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    if (!cclipb || cclipb->type != GTK_TYPE_CLIPBOARD)
@@ -548,8 +508,7 @@ clip_GTK_CLIPBOARDWAITISTARGETAVAILABLE(ClipMachine * ClipMachineMemory)
    if (!catom || catom->type != GDK_TYPE_ATOM)
       goto err;
 
-   _clip_retl(ClipMachineMemory,
-	      gtk_clipboard_wait_is_target_available((GtkClipboard *) cclipb->object, (GdkAtom) (catom->object)));
+   _clip_retl(ClipMachineMemory, gtk_clipboard_wait_is_target_available((GtkClipboard *) cclipb->object, (GdkAtom) (catom->object)));
 
    return 0;
  err:

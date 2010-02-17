@@ -58,8 +58,7 @@ int
 clip_COM_NUM(ClipMachine * mp)
 {
    unsigned long bitmask = 0;
-
-   int       r;
+   int r;
 
    r = v24CountPorts(&bitmask);
 
@@ -77,21 +76,14 @@ COM_OPEN(nPort|cDevice,[dontused],[dontused],[dontused],l_RTSCTS,l_XONXOFF,lDebu
 int
 clip_COM_OPEN(ClipMachine * mp)
 {
-   int       no = _clip_parni(mp, 1);
-
-   char     *dev = _clip_parc(mp, 1);
-
-   char      buf[V24_SZ_PORTNAME + 1];
-
-   int       ctsrts = _clip_parl(mp, 5);
-
-   int       xonxoff = _clip_parl(mp, 6);
-
-   int       dbg = _clip_parl(mp, 7);
-
+   int no = _clip_parni(mp, 1);
+   char *dev = _clip_parc(mp, 1);
+   char buf[V24_SZ_PORTNAME + 1];
+   int ctsrts = _clip_parl(mp, 5);
+   int xonxoff = _clip_parl(mp, 6);
+   int dbg = _clip_parl(mp, 7);
    v24_port_t *gz;
-
-   int      *err, k;
+   int *err, k;
 
    if (!_clip_parinfo(mp, 5) && !!_clip_parinfo(mp, 5))
       ctsrts = 1;
@@ -100,22 +92,22 @@ clip_COM_OPEN(ClipMachine * mp)
       return EG_ARG;
 
    if (!dev)
-    {
-       v24PortName(no - 1, buf);
-       dev = buf;
-    }
+      {
+	 v24PortName(no - 1, buf);
+	 dev = buf;
+      }
 
    gz = v24OpenPort(dev, V24_STANDARD | V24_LOCK
 		   /*| V24_NO_DELAY */
 		    | (ctsrts ? V24_RTS_CTS : 0) | (xonxoff ? V24_XON_XOFF : 0) | V24_DROP_DTR | (dbg ? V24_DEBUG_ON : 0));
 
    if (!gz)
-    {
-       err = _clip_fetch_item(mp, HASH_ferror);
-       *err = errno;
-       _clip_retl(mp, 0);
-       return 0;
-    }
+      {
+	 err = _clip_fetch_item(mp, HASH_ferror);
+	 *err = errno;
+	 _clip_retl(mp, 0);
+	 return 0;
+      }
 
    k = _clip_store_c_item(mp, gz, _C_ITEM_TYPE_COMPORT, destroy_com_port);
 
@@ -130,10 +122,8 @@ int
 clip_COM_CLOSE(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       ret = -1, *err = _clip_fetch_item(mp, HASH_ferror);
+   int fd = _clip_parni(mp, 1);
+   int ret = -1, *err = _clip_fetch_item(mp, HASH_ferror);
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -144,10 +134,10 @@ clip_COM_CLOSE(ClipMachine * mp)
    if (gz == NULL)
       return EG_ARG;
    else if (_clip_destroy_c_item(mp, fd, _C_ITEM_TYPE_COMPORT))
-    {
-       ret = 0;
-       *err = 0;
-    }
+      {
+	 ret = 0;
+	 *err = 0;
+      }
 
    _clip_retl(mp, (ret == 0));
    return 0;
@@ -157,63 +147,63 @@ static int
 baud_val(int baud)
 {
    switch (baud)
-    {
-    default:
-       return V24_B9600;
-    case 0:
-       return V24_B0;
-    case 50:
-       return V24_B50;
-    case 75:
-       return V24_B75;
-    case 110:
-       return V24_B110;
-    case 134:
-       return V24_B134;
-    case 150:
-       return V24_B150;
-    case 200:
-       return V24_B200;
-    case 300:
-       return V24_B300;
-    case 600:
-       return V24_B600;
-    case 1200:
-       return V24_B1200;
-    case 1800:
-       return V24_B1800;
-    case 2400:
-       return V24_B2400;
-    case 4800:
-       return V24_B4800;
-    case 9600:
-       return V24_B9600;
-    case 19200:
-       return V24_B19200;
-    case 38400:
-       return V24_B38400;
-    case 57600:
-       return V24_B57600;
-    case 115200:
-       return V24_B115200;
-    }
+      {
+      default:
+	 return V24_B9600;
+      case 0:
+	 return V24_B0;
+      case 50:
+	 return V24_B50;
+      case 75:
+	 return V24_B75;
+      case 110:
+	 return V24_B110;
+      case 134:
+	 return V24_B134;
+      case 150:
+	 return V24_B150;
+      case 200:
+	 return V24_B200;
+      case 300:
+	 return V24_B300;
+      case 600:
+	 return V24_B600;
+      case 1200:
+	 return V24_B1200;
+      case 1800:
+	 return V24_B1800;
+      case 2400:
+	 return V24_B2400;
+      case 4800:
+	 return V24_B4800;
+      case 9600:
+	 return V24_B9600;
+      case 19200:
+	 return V24_B19200;
+      case 38400:
+	 return V24_B38400;
+      case 57600:
+	 return V24_B57600;
+      case 115200:
+	 return V24_B115200;
+      }
 }
 
 static int
 data_val(int data)
 {
    switch (data)
-    {
-    case 5:
-       return V24_5BIT;
-    case 6:
-       return V24_6BIT;
-    case 7:
-       return V24_7BIT;
-    default:
-    case 8:
-       return V24_8BIT;
-    }
+      {
+      case 5:
+	 return V24_5BIT;
+      case 6:
+	 return V24_6BIT;
+      case 7:
+	 return V24_7BIT;
+      default:
+      case 8:
+	 return V24_8BIT;
+      }
 }
 
 static int
@@ -223,17 +213,17 @@ parity_val(char *p)
       return V24_NONE;
 
    switch (toupper(p[0]))
-    {
-    case 'N':
-    default:
-       return V24_NONE;
-    case 'E':
-       return V24_EVEN;
-    case 'O':
-       return V24_ODD;
-    case 'I':
-       return V24_IGNORE;
-    }
+      {
+      case 'N':
+      default:
+	 return V24_NONE;
+      case 'E':
+	 return V24_EVEN;
+      case 'O':
+	 return V24_ODD;
+      case 'I':
+	 return V24_IGNORE;
+      }
 
 }
 
@@ -246,14 +236,10 @@ int
 clip_COM_INIT(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       ret = -1, *err;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       baud = 9600, data = 8, stop = 1;
-
-   char     *parity = "N";
+   int ret = -1, *err;
+   int fd = _clip_parni(mp, 1);
+   int baud = 9600, data = 8, stop = 1;
+   char *parity = "N";
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -290,12 +276,9 @@ int
 clip_COM_TIMEOUT(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       to = _clip_parni(mp, 2);
-
-   int       oto;
+   int fd = _clip_parni(mp, 1);
+   int to = _clip_parni(mp, 2);
+   int oto;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -304,16 +287,16 @@ clip_COM_TIMEOUT(ClipMachine * mp)
    gz = (v24_port_t *) _clip_fetch_c_item(mp, fd, _C_ITEM_TYPE_COMPORT);
 
    if (gz == NULL)
-    {
-       return EG_ARG;
-    }
+      {
+	 return EG_ARG;
+      }
 
    oto = gz->TimeoutValue;
 
    if (mp->argc > 1)
-    {
-       v24SetTimeouts(gz, to);
-    }
+      {
+	 v24SetTimeouts(gz, to);
+      }
 
    _clip_retni(mp, oto);
    return 0;
@@ -328,14 +311,10 @@ int
 clip_COM_SEND(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       len = 0, *err = NULL;
-
-   int       fd = _clip_parni(mp, 1);
-
-   char     *sptr = NULL, buf[2], *str = _clip_parcl(mp, 2, &len);
-
-   long      ret = -1;
+   int len = 0, *err = NULL;
+   int fd = _clip_parni(mp, 1);
+   char *sptr = NULL, buf[2], *str = _clip_parcl(mp, 2, &len);
+   long ret = -1;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -344,19 +323,19 @@ clip_COM_SEND(ClipMachine * mp)
    gz = (v24_port_t *) _clip_fetch_c_item(mp, fd, _C_ITEM_TYPE_COMPORT);
 
    if (_clip_parinfo(mp, 2) == NUMERIC_type_of_ClipVarType)
-    {
-       buf[0] = (char) _clip_parni(mp, 2);
-       buf[1] = 0;
-       len = 1;
-       sptr = buf;
-    }
+      {
+	 buf[0] = (char) _clip_parni(mp, 2);
+	 buf[1] = 0;
+	 len = 1;
+	 sptr = buf;
+      }
    else
       sptr = str;
 
    if (gz == NULL || !sptr)
-    {
-       return EG_ARG;
-    }
+      {
+	 return EG_ARG;
+      }
 
    ret = v24Write(gz, (unsigned char *) sptr, len);
    err = _clip_fetch_item(mp, HASH_ferror);
@@ -371,12 +350,9 @@ int
 clip_COM_READ(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   char     *buf;
-
-   int      *err = NULL, fd, nb = 0;
-
-   long      ret = -1;
+   char *buf;
+   int *err = NULL, fd, nb = 0;
+   long ret = -1;
 
    fd = _clip_parni(mp, 1);
    nb = _clip_parni(mp, 2);
@@ -397,16 +373,16 @@ clip_COM_READ(ClipMachine * mp)
 
    ret = v24Read(gz, (unsigned char *) buf, nb);
    if (ret < 0)
-    {
-       err = _clip_fetch_item(mp, HASH_ferror);
-       *err = errno;
-       ret = 0;
-       if (gz->Errno != V24_E_OK)
-	{
-	   free(buf);
-	   return EG_READ;
-	}
-    }
+      {
+	 err = _clip_fetch_item(mp, HASH_ferror);
+	 *err = errno;
+	 ret = 0;
+	 if (gz->Errno != V24_E_OK)
+	    {
+	       free(buf);
+	       return EG_READ;
+	    }
+      }
 
    buf = (char *) realloc(buf, ret + 1);
    buf[ret] = 0;
@@ -422,8 +398,7 @@ int
 clip_COM_FLUSH(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
+   int fd = _clip_parni(mp, 1);
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -445,8 +420,7 @@ int
 clip_COM_SFLUSH(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
+   int fd = _clip_parni(mp, 1);
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -469,12 +443,9 @@ int
 clip_COM_SOFT(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       flag = _clip_parl(mp, 2);
-
-   int       oflag;
+   int fd = _clip_parni(mp, 1);
+   int flag = _clip_parl(mp, 2);
+   int oflag;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -487,14 +458,14 @@ clip_COM_SOFT(ClipMachine * mp)
    oflag = gz->OpenFlags & V24_XON_XOFF;
 
    if (mp->argc > 1)
-    {
-       if (flag)
-	  gz->OpenFlags |= V24_XON_XOFF;
-       else
-	  gz->OpenFlags &= ~V24_XON_XOFF;
+      {
+	 if (flag)
+	    gz->OpenFlags |= V24_XON_XOFF;
+	 else
+	    gz->OpenFlags &= ~V24_XON_XOFF;
 
-       v24SetParameters(gz, gz->Baudrate, gz->Datasize, gz->Parity);
-    }
+	 v24SetParameters(gz, gz->Baudrate, gz->Datasize, gz->Parity);
+      }
 
    _clip_retl(mp, oflag ? 1 : 0);
 
@@ -509,12 +480,9 @@ int
 clip_COM_HARD(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       flag = _clip_parl(mp, 2);
-
-   int       oflag;
+   int fd = _clip_parni(mp, 1);
+   int flag = _clip_parl(mp, 2);
+   int oflag;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -527,14 +495,14 @@ clip_COM_HARD(ClipMachine * mp)
    oflag = gz->OpenFlags & V24_RTS_CTS;
 
    if (mp->argc > 1)
-    {
-       if (flag)
-	  gz->OpenFlags |= V24_RTS_CTS;
-       else
-	  gz->OpenFlags &= ~V24_RTS_CTS;
+      {
+	 if (flag)
+	    gz->OpenFlags |= V24_RTS_CTS;
+	 else
+	    gz->OpenFlags &= ~V24_RTS_CTS;
 
-       v24SetParameters(gz, gz->Baudrate, gz->Datasize, gz->Parity);
-    }
+	 v24SetParameters(gz, gz->Baudrate, gz->Datasize, gz->Parity);
+      }
 
    _clip_retl(mp, oflag ? 1 : 0);
 
@@ -549,12 +517,9 @@ int
 clip_COM_DTR(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       flag = _clip_parl(mp, 2);
-
-   int       oflag;
+   int fd = _clip_parni(mp, 1);
+   int flag = _clip_parl(mp, 2);
+   int oflag;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -566,9 +531,9 @@ clip_COM_DTR(ClipMachine * mp)
    oflag = 0;
 
    if (mp->argc > 1)
-    {
-       oflag = v24SetDTR(gz, flag);
-    }
+      {
+	 oflag = v24SetDTR(gz, flag);
+      }
 
    _clip_retl(mp, oflag ? 0 : 1);
 
@@ -579,12 +544,9 @@ int
 clip_COM_RTS(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       flag = _clip_parl(mp, 2);
-
-   int       oflag;
+   int fd = _clip_parni(mp, 1);
+   int flag = _clip_parl(mp, 2);
+   int oflag;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;
@@ -596,9 +558,9 @@ clip_COM_RTS(ClipMachine * mp)
    oflag = 0;
 
    if (mp->argc > 1)
-    {
-       oflag = v24SetRTS(gz, flag);
-    }
+      {
+	 oflag = v24SetRTS(gz, flag);
+      }
 
    _clip_retl(mp, oflag ? 0 : 1);
 
@@ -612,10 +574,8 @@ int
 clip_COM_COUNT(ClipMachine * mp)
 {
    v24_port_t *gz;
-
-   int       fd = _clip_parni(mp, 1);
-
-   int       n;
+   int fd = _clip_parni(mp, 1);
+   int n;
 
    if (fd < 1 || fd > 32)
       return EG_ARG;

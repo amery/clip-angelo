@@ -46,10 +46,8 @@ clip_INIT___INVISIBLE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_INVISIBLENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwid = NULL;
-
    GtkWidget *wid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -70,12 +68,9 @@ clip_GTK_INVISIBLENEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_INVISIBLENEWFORSCREEN(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_object *cscreen = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_widget *cwid = NULL;
-
    GtkWidget *wid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -97,7 +92,6 @@ int
 clip_GTK_INVISIBLESETSCREEN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cinvis = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cscreen = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cinvis, GTK_IS_INVISIBLE);
@@ -114,22 +108,20 @@ int
 clip_GTK_INVISIBLEGETSCREEN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cinvis = _fetch_cw_arg(ClipMachineMemory);
-
    GdkScreen *screen;
-
    C_object *cscreen;
 
    CHECKCWID(cinvis, GTK_IS_INVISIBLE);
 
    screen = gtk_invisible_get_screen(GTK_INVISIBLE(cinvis->widget));
    if (screen)
-    {
-       cscreen = _list_get_cobject(ClipMachineMemory, screen);
-       if (!cscreen)
-	  cscreen = _register_object(ClipMachineMemory, screen, GDK_TYPE_SCREEN, NULL, NULL);
-       if (cscreen)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cscreen->obj);
-    }
+      {
+	 cscreen = _list_get_cobject(ClipMachineMemory, screen);
+	 if (!cscreen)
+	    cscreen = _register_object(ClipMachineMemory, screen, GDK_TYPE_SCREEN, NULL, NULL);
+	 if (cscreen)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cscreen->obj);
+      }
    return 0;
  err:
    return 1;

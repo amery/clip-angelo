@@ -17,11 +17,10 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static    gint
+static gint
 handle_changed_signal(GtkRadioAction * action, GtkRadioAction * current, C_signal * cs)
 {
    C_object *ccur;
-
    OBJECTPREPARECV(cs, cv);
    ccur = _list_get_cobject(cs->co->cmachine, current);
    if (!ccur)
@@ -59,28 +58,20 @@ _clip_type_name_radio_action()
 int
 clip_INIT___RADIOACTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_radio_action, _clip_type_name_radio_action,
-		    _gtk_type_radio_action, _gtk_type_toggle_action, radio_action_signals);
+   _wtype_table_put(_clip_type_radio_action, _clip_type_name_radio_action, _gtk_type_radio_action, _gtk_type_toggle_action, radio_action_signals);
    return 0;
 }
 
 int
 clip_GTK_RADIOACTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
-   gchar    *label = _clip_parc(ClipMachineMemory, 3);
-
-   gchar    *tooltip = _clip_parc(ClipMachineMemory, 4);
-
-   gchar    *stock_id = _clip_parc(ClipMachineMemory, 5);
-
-   gint      value = _clip_parni(ClipMachineMemory, 6);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
+   gchar *label = _clip_parc(ClipMachineMemory, 3);
+   gchar *tooltip = _clip_parc(ClipMachineMemory, 4);
+   gchar *stock_id = _clip_parc(ClipMachineMemory, 5);
+   gint value = _clip_parni(ClipMachineMemory, 6);
    C_object *caction;
-
    GtkRadioAction *action;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -100,13 +91,13 @@ clip_GTK_RADIOACTIONNEW(ClipMachine * ClipMachineMemory)
    action = gtk_radio_action_new(name, label, tooltip, stock_id, value);
 
    if (action)
-    {
-       caction = _list_get_cobject(ClipMachineMemory, action);
-       if (!caction)
-	  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_RADIO_ACTION, cv, NULL);
-       if (caction)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
-    }
+      {
+	 caction = _list_get_cobject(ClipMachineMemory, action);
+	 if (!caction)
+	    caction = _register_object(ClipMachineMemory, action, GTK_TYPE_RADIO_ACTION, cv, NULL);
+	 if (caction)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
+      }
 
    FREE_TEXT(name);
    FREE_TEXT(label);
@@ -123,9 +114,7 @@ int
 clip_GTK_RADIOACTIONGETGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   GSList   *group;
-
+   GSList *group;
    C_object *cgroup;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -147,7 +136,6 @@ int
 clip_GTK_RADIOACTIONSETGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cgroup = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);

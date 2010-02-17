@@ -1,5 +1,5 @@
-#ifndef CN_CTMISC_DEFINED
-#define CN_CTMISC_DEFINED
+#ifndef CI_CTMISC_DEFINED
+#define CI_CTMISC_DEFINED
 
 /******************* DATATYPE() *******************/
 

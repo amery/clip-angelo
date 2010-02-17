@@ -63,8 +63,7 @@ int
 clip_INIT___FONT_SELECTION(ClipMachine * ClipMachineMemory)
 {
    _wtype_table_put(_clip_type_font_selection, _clip_type_name_font_selection, _gtk_type_font_selection, _gtk_type_vbox, NULL);
-   _wtype_table_put(_clip_type_font_selection_dialog,
-		    _clip_type_name_font_selection_dialog, _gtk_type_font_selection_dialog, _gtk_type_dialog, NULL);
+   _wtype_table_put(_clip_type_font_selection_dialog, _clip_type_name_font_selection_dialog, _gtk_type_font_selection_dialog, _gtk_type_dialog, NULL);
    return 0;
 }
 
@@ -74,12 +73,9 @@ clip_INIT___FONT_SELECTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTSELECTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_font_selection_new();
@@ -100,7 +96,6 @@ int
 clip_GTK_FONTSELECTIONGETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    _clip_retc(ClipMachineMemory, gtk_font_selection_get_font_name(GTK_FONT_SELECTION(cfsel->widget)));
    return 0;
@@ -113,9 +108,7 @@ int
 clip_GTK_FONTSELECTIONSETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *font_name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *font_name = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -131,7 +124,6 @@ int
 clip_GTK_FONTSELECTIONGETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    _clip_retc(ClipMachineMemory, (gchar *) gtk_font_selection_get_preview_text(GTK_FONT_SELECTION(cfsel->widget)));
    return 0;
@@ -144,9 +136,7 @@ int
 clip_GTK_FONTSELECTIONSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *preview_text = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *preview_text = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -169,14 +159,10 @@ clip_GTK_FONTSELECTIONSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTSELECTIONDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cokbtn, *capplybtn, *ccancelbtn;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -210,9 +196,7 @@ int
 clip_GTK_FONTSELECTIONDIALOGGETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *fontname;
-
+   gchar *fontname;
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    fontname = gtk_font_selection_dialog_get_font_name(GTK_FONT_SELECTION_DIALOG(cfsel->widget));
    _clip_retc(ClipMachineMemory, fontname);
@@ -226,9 +210,7 @@ int
 clip_GTK_FONTSELECTIONDIALOGSETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *font_name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *font_name = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -244,10 +226,8 @@ int
 clip_GTK_FONTSELECTIONDIALOGGETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
-   _clip_retc(ClipMachineMemory,
-	      (gchar *) gtk_font_selection_dialog_get_preview_text(GTK_FONT_SELECTION_DIALOG(cfsel->widget)));
+   _clip_retc(ClipMachineMemory, (gchar *) gtk_font_selection_dialog_get_preview_text(GTK_FONT_SELECTION_DIALOG(cfsel->widget)));
    return 0;
  err:
    return 1;
@@ -258,9 +238,7 @@ int
 clip_GTK_FONTSELECTIONDIALOGSETPREVIEWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfsel = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *preview_text = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *preview_text = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cfsel, GTK_IS_FONT_SELECTION_DIALOG);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)

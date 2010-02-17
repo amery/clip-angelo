@@ -38,39 +38,38 @@
 /* static data for TOKEN functions INIT, NEXT, END, AT, SEP */
 
 int
-clip_INIT_CTOOLS_STRING_SETS(ClipMachine * ClipMachineMemory)
+clip_INIT_CTOOLS_STRING_SETS(ClipMachine * ClipMemoryStore)
 {
-   char     *status, *setref, *atlike, *atsep, *delims, *dayweek, *numcount;
-
-   int      *charsort, *clearb, *cleara;
+   char *status, *setref, *atlike, *atsep, *delims, *dayweek, *numcount;
+   int *charsort, *clearb, *cleara;
 
    clearb = calloc(sizeof(int), 1);
    cleara = calloc(sizeof(int), 1);
 
    *((char *) clearb) = ' ';
-   _clip_store_item(ClipMachineMemory, HASH_setclearb, clearb);
+   _clip_store_item(ClipMemoryStore, HASH_setclearb, clearb);
    *cleara = 7;
-   _clip_store_item(ClipMachineMemory, HASH_setcleara, cleara);
+   _clip_store_item(ClipMemoryStore, HASH_setcleara, cleara);
 
    numcount = calloc(sizeof(long), 1);
 
-   _clip_store_item(ClipMachineMemory, HASH_numcount, numcount);
+   _clip_store_item(ClipMemoryStore, HASH_numcount, numcount);
 
    status = calloc(2, 1);
    status[0] = 't';
-   _clip_store_item(ClipMachineMemory, HASH_csetatmupa, status);
+   _clip_store_item(ClipMemoryStore, HASH_csetatmupa, status);
 
    charsort = calloc(4, sizeof(int));
 
-   _clip_store_item(ClipMachineMemory, HASH_charsort_param, charsort);
+   _clip_store_item(ClipMemoryStore, HASH_charsort_param, charsort);
 
    setref = calloc(2, 1);
    setref[0] = 't';
-   _clip_store_item(ClipMachineMemory, HASH_csetref, setref);
+   _clip_store_item(ClipMemoryStore, HASH_csetref, setref);
 
    atlike = calloc(2, 1);
    atlike[1] = '?';
-   _clip_store_item(ClipMachineMemory, HASH_setatlike, atlike);
+   _clip_store_item(ClipMemoryStore, HASH_setatlike, atlike);
 
   /* 5th int value and 2 strins with len==1 plus 0 character */
   /*
@@ -82,41 +81,35 @@ clip_INIT_CTOOLS_STRING_SETS(ClipMachine * ClipMachineMemory)
    */
    atsep = calloc(5 * sizeof(int) + 4, 1);
 
-   _clip_store_item(ClipMachineMemory, HASH_token_atsep, atsep);
+   _clip_store_item(ClipMemoryStore, HASH_token_atsep, atsep);
   /* string for 1th parameter tokeninit() */
-   _clip_store_item(ClipMachineMemory, HASH_token_string, NULL);
+   _clip_store_item(ClipMemoryStore, HASH_token_string, NULL);
   /* 256 flags of delimiters characters for 2th parameter tokeninit() */
    delims = calloc(256, 1);
-   _clip_store_item(ClipMachineMemory, HASH_token_delimiters, delims);
+   _clip_store_item(ClipMemoryStore, HASH_token_delimiters, delims);
    dayweek = calloc(2, 1);
    dayweek[0] = '1';
-   _clip_store_item(ClipMachineMemory, HASH_first_day_week, dayweek);
+   _clip_store_item(ClipMemoryStore, HASH_first_day_week, dayweek);
    return 0;
 }
 
 int
-clip_ADDASCII(ClipMachine * ClipMachineMemory)
+clip_ADDASCII(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       asc = _clip_parni(ClipMachineMemory, 2);
-
-   int       t2 = _clip_parinfo(ClipMachineMemory, 2);
-
-   int       pos = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(unsigned char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int asc = _clip_parni(ClipMemoryStore, 2);
+   int t2 = _clip_parinfo(ClipMemoryStore, 2);
+   int pos = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(unsigned char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || t2 != NUMERIC_type_of_ClipVarType)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ADDASCII");
-    }
-   if (_clip_parinfo(ClipMachineMemory, 0) < 3)
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ADDASCII");
+      }
+   if (_clip_parinfo(ClipMemoryStore, 0) < 3)
       pos = l;
    if (pos <= 0)
       pos = 1;
@@ -127,86 +120,76 @@ clip_ADDASCII(ClipMachine * ClipMachineMemory)
    memcpy(ret, str, l);
    ret[l] = 0;
    ret[pos] = str[pos] + asc;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CSETATMUPA(ClipMachine * ClipMachineMemory)
+clip_CSETATMUPA(ClipMachine * ClipMemoryStore)
 {
-   char     *status;
+   char *status;
 
-   status = _clip_fetch_item(ClipMachineMemory, HASH_csetatmupa);
-   _clip_retl(ClipMachineMemory, *status == 't');
-   if (_clip_parinfo(ClipMachineMemory, 0) > 0)
-    {
-       if (_clip_parl(ClipMachineMemory, 1))
-	  *status = 't';
-       else
-	  *status = 'f';
-    }
+   status = _clip_fetch_item(ClipMemoryStore, HASH_csetatmupa);
+   _clip_retl(ClipMemoryStore, *status == 't');
+   if (_clip_parinfo(ClipMemoryStore, 0) > 0)
+      {
+	 if (_clip_parl(ClipMemoryStore, 1))
+	    *status = 't';
+	 else
+	    *status = 'f';
+      }
    return 0;
 }
 
 int
-clip_ASCIISUM(ClipMachine * ClipMachineMemory)
+clip_ASCIISUM(ClipMachine * ClipMemoryStore)
 {
-   int       l, i;
-
-   long      ret = 0;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
+   int l, i;
+   long ret = 0;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
 
    if (str == NULL)
-    {
-       _clip_retnl(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ASCIISUM");
-    }
+      {
+	 _clip_retnl(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ASCIISUM");
+      }
    for (i = 0; i < l; i++)
       ret += str[i];
-   _clip_retnl(ClipMachineMemory, ret);
+   _clip_retnl(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_ASCPOS(ClipMachine * ClipMachineMemory)
+clip_ASCPOS(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
-   int       ret = 0;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       num = _clip_parni(ClipMachineMemory, 2);
+   int l;
+   int ret = 0;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int num = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ASCPOS");
-    }
-   if (_clip_parinfo(ClipMachineMemory, 0) < 2)
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ASCPOS");
+      }
+   if (_clip_parinfo(ClipMemoryStore, 0) < 2)
       num = l;
    if (num > 0 && num <= l)
       ret = str[num - 1];
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 unsigned char *
-_clip_atmupa(ClipMachine * ClipMachineMemory, unsigned char *sstr, int l1,
-	     unsigned char *str, int l2, int ignore, int count, int flag)
+_clip_atmupa(ClipMachine * ClipMemoryStore, unsigned char *sstr, int l1, unsigned char *str, int l2, int ignore, int count, int flag)
 {
    unsigned char *e1, *e2, *s, *beg, *end, *send;
-
-   int       cset = (*(unsigned char *) _clip_fetch_item(ClipMachineMemory, HASH_csetatmupa)) == 't';
-
-   char     *atlike = _clip_fetch_item(ClipMachineMemory, HASH_setatlike);
-
-   int       atlike0, atlike1;
-
-   int       sovp = 0;
+   int cset = (*(unsigned char *) _clip_fetch_item(ClipMemoryStore, HASH_csetatmupa)) == 't';
+   char *atlike = _clip_fetch_item(ClipMemoryStore, HASH_setatlike);
+   int atlike0, atlike1;
+   int sovp = 0;
 
    atlike0 = atlike[0];
    atlike1 = atlike[1];
@@ -218,292 +201,255 @@ _clip_atmupa(ClipMachine * ClipMachineMemory, unsigned char *sstr, int l1,
    if (ignore < 0)
       ignore = 0;
    for (e1 = str + ignore; e1 < end; e1++)
-    {
-       if (*e1 != *sstr)
-	  continue;
-       for (s = sstr, e2 = e1; s < send && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
-       if (s != send)
-	  continue;
-       if (flag)
-	  beg = e1;
-       if (!cset)
-	  e1 = e2 - 1;
-       if (!flag)
-	{
-	   if (count != 0 || (cset && count == 0))
-	      beg = e2;
-	   else
-	      beg = e1;
-	}
-       sovp++;
-       if (count != 0 && sovp >= count)
-	  break;
-    }
+      {
+	 if (*e1 != *sstr)
+	    continue;
+	 for (s = sstr, e2 = e1; s < send && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
+	 if (s != send)
+	    continue;
+	 if (flag)
+	    beg = e1;
+	 if (!cset)
+	    e1 = e2 - 1;
+	 if (!flag)
+	    {
+	       if (count != 0 || (cset && count == 0))
+		  beg = e2;
+	       else
+		  beg = e1;
+	    }
+	 sovp++;
+	 if (count != 0 && sovp >= count)
+	    break;
+      }
    if ((count != 0 && sovp < count) || sovp == 0)
       beg = str + l2;
    return beg;
 }
 
 int
-clip_AFTERATNUM(ClipMachine * ClipMachineMemory)
+clip_AFTERATNUM(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2;
-
+   int l, l1, l2;
    unsigned char *ret, *beg;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       count = _clip_parni(ClipMachineMemory, 3);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 4);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int count = _clip_parni(ClipMemoryStore, 3);
+   int ignore = _clip_parni(ClipMemoryStore, 4);
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "AFTERATNUM");
-    }
-   beg = _clip_atmupa(ClipMachineMemory, sstr, l1, str, l2, ignore, count, 0);
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "AFTERATNUM");
+      }
+   beg = _clip_atmupa(ClipMemoryStore, sstr, l1, str, l2, ignore, count, 0);
    l = str + l2 - beg;
    ret = malloc(l + 1);
    memcpy(ret, beg, l);
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_ATADJUST(ClipMachine * ClipMachineMemory)
+clip_ATADJUST(ClipMachine * ClipMemoryStore)
 {
-   int       l, le, l1, l2;
-
+   int l, le, l1, l2;
    unsigned char fillchr = ' ', *beg, *ret;
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int newpos = _clip_parni(ClipMemoryStore, 3);
+   int count = _clip_parni(ClipMemoryStore, 4);
+   int ignore = _clip_parni(ClipMemoryStore, 5);
+   int t6 = _clip_parinfo(ClipMemoryStore, 6);
 
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       newpos = _clip_parni(ClipMachineMemory, 3);
-
-   int       count = _clip_parni(ClipMachineMemory, 4);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 5);
-
-   int       t6 = _clip_parinfo(ClipMachineMemory, 6);
-
-   if (sstr == NULL || str == NULL || _clip_parinfo(ClipMachineMemory, 0) < 3)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ATADJUST");
-    }
+   if (sstr == NULL || str == NULL || _clip_parinfo(ClipMemoryStore, 0) < 3)
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ATADJUST");
+      }
    if (t6 == NUMERIC_type_of_ClipVarType)
-      fillchr = _clip_parni(ClipMachineMemory, 6);
+      fillchr = _clip_parni(ClipMemoryStore, 6);
    if (t6 == CHARACTER_type_of_ClipVarType)
-      fillchr = *(_clip_parc(ClipMachineMemory, 6));
+      fillchr = *(_clip_parc(ClipMemoryStore, 6));
 
-   beg = _clip_atmupa(ClipMachineMemory, sstr, l1, str, l2, ignore, count, 1);
+   beg = _clip_atmupa(ClipMemoryStore, sstr, l1, str, l2, ignore, count, 1);
    if (beg < str + l2)
-    {
-       le = beg - str;
-       if (le >= newpos)
-	  le = newpos - 1;
-       l = newpos + str + l2 - beg;
-       ret = malloc(l + 1);
-       memcpy(ret, str, le);
-       for (; le < newpos; le++)
-	  ret[le] = fillchr;
-       memcpy(ret + le, beg, l - le);
-       ret[l] = 0;
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-    }
+      {
+	 le = beg - str;
+	 if (le >= newpos)
+	    le = newpos - 1;
+	 l = newpos + str + l2 - beg;
+	 ret = malloc(l + 1);
+	 memcpy(ret, str, le);
+	 for (; le < newpos; le++)
+	    ret[le] = fillchr;
+	 memcpy(ret + le, beg, l - le);
+	 ret[l] = 0;
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+      }
    else
-      _clip_retcn(ClipMachineMemory, (char *) str, l2);
+      _clip_retcn(ClipMemoryStore, (char *) str, l2);
    return 0;
 }
 
 int
-clip_ATNUM(ClipMachine * ClipMachineMemory)
+clip_ATNUM(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *beg;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       count = _clip_parni(ClipMachineMemory, 3);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 4);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int count = _clip_parni(ClipMemoryStore, 3);
+   int ignore = _clip_parni(ClipMemoryStore, 4);
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ATNUM");
-    }
-   beg = _clip_atmupa(ClipMachineMemory, sstr, l1, str, l2, ignore, count, 1);
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ATNUM");
+      }
+   beg = _clip_atmupa(ClipMemoryStore, sstr, l1, str, l2, ignore, count, 1);
    if (beg < str + l2)
-      _clip_retni(ClipMachineMemory, beg - str + 1);
+      _clip_retni(ClipMemoryStore, beg - str + 1);
    else
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    return 0;
 }
 
 int
-clip_ATREPL(ClipMachine * ClipMachineMemory)
+clip_ATREPL(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, l3, sovp = 0, rcur, atlike0, atlike1;
-
+   int l, l1, l2, l3, sovp = 0, rcur, atlike0, atlike1;
    unsigned char *ret, *cur, *s, *e1, *e2, *end, *send, *buf;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   unsigned char *rstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l3);
-
-   int       count = _clip_parni(ClipMachineMemory, 4);
-
-   int       flag = _clip_parl(ClipMachineMemory, 5);
-
-   char     *atlike = _clip_fetch_item(ClipMachineMemory, HASH_setatlike);
-
-   int       cset = (*(unsigned char *) _clip_fetch_item(ClipMachineMemory, HASH_csetatmupa)) == 't';
-
-   int       rset = (*(unsigned char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   unsigned char *rstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l3);
+   int count = _clip_parni(ClipMemoryStore, 4);
+   int flag = _clip_parl(ClipMemoryStore, 5);
+   char *atlike = _clip_fetch_item(ClipMemoryStore, HASH_setatlike);
+   int cset = (*(unsigned char *) _clip_fetch_item(ClipMemoryStore, HASH_csetatmupa)) == 't';
+   int rset = (*(unsigned char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    atlike0 = atlike[0];
    atlike1 = atlike[1];
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ATREPL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ATREPL");
+      }
   /* check recursively at */
    for (s = rstr, end = rstr + l3; s < end; s++)
-    {
-       sovp = 0;
-       for (cur = sstr, e1 = s, send = sstr + l1; cur < send && e1 < end; cur++, e1++)
-	  if (*e1 == *cur)
-	     sovp++;
-       if (sovp == l1)
-	{
-	   cset = 0;
-	   break;
-	}
-    }
+      {
+	 sovp = 0;
+	 for (cur = sstr, e1 = s, send = sstr + l1; cur < send && e1 < end; cur++, e1++)
+	    if (*e1 == *cur)
+	       sovp++;
+	 if (sovp == l1)
+	    {
+	       cset = 0;
+	       break;
+	    }
+      }
    if (count < 0)
       count = 0;
    buf = str;
    if (l1 == 0)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) str, l2);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) str, l2);
+	 return 0;
+      }
    while (1)
-    {
-       l = 0;
-       ret = malloc(l + 1);
-       e1 = buf;
-       cur = buf;
-       end = buf + l2;
-       send = sstr + l1;
-       for (sovp = 0, rcur = 0; e1 < end; e1++)
-	{
-	   if (*e1 != *sstr)
-	      continue;
-	   for (s = sstr, e2 = e1; s < send && e2 < end && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
-	   if (s != send)
-	      continue;
-	   sovp++;
-	   if (flag && sovp != count)
-	      continue;
-	   l += e1 - cur + l3;
-	   ret = realloc(ret, l + 1);
-	   memcpy(ret + rcur, cur, e1 - cur);
-	   rcur += e1 - cur;
-	   memcpy(ret + rcur, rstr, l3);
-	   rcur += l3;
-	   e1 = e2 - 1;
-	   cur = e2;
-	   if (count != 0 && sovp == count)
+      {
+	 l = 0;
+	 ret = malloc(l + 1);
+	 e1 = buf;
+	 cur = buf;
+	 end = buf + l2;
+	 send = sstr + l1;
+	 for (sovp = 0, rcur = 0; e1 < end; e1++)
 	    {
-	       e1 = end;
-	       break;
+	       if (*e1 != *sstr)
+		  continue;
+	       for (s = sstr, e2 = e1; s < send && e2 < end && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
+	       if (s != send)
+		  continue;
+	       sovp++;
+	       if (flag && sovp != count)
+		  continue;
+	       l += e1 - cur + l3;
+	       ret = realloc(ret, l + 1);
+	       memcpy(ret + rcur, cur, e1 - cur);
+	       rcur += e1 - cur;
+	       memcpy(ret + rcur, rstr, l3);
+	       rcur += l3;
+	       e1 = e2 - 1;
+	       cur = e2;
+	       if (count != 0 && sovp == count)
+		  {
+		     e1 = end;
+		     break;
+		  }
 	    }
-	}
-       l += e1 - cur;
-       ret = realloc(ret, l + 1);
-       memcpy(ret + rcur, cur, e1 - cur);
-       ret[l] = 0;
-       if (buf != str)
-	  free(buf);
-       if (!cset || sovp == 0 || flag || count != 0)
-	  break;
-       buf = malloc(l + 1);
-       memcpy(buf, ret, l);
-       l2 = l;
-       free(ret);
-    }
-   if (rset && _clip_par_isref(ClipMachineMemory, 2))
-      _clip_par_assign_str(ClipMachineMemory, 2, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+	 l += e1 - cur;
+	 ret = realloc(ret, l + 1);
+	 memcpy(ret + rcur, cur, e1 - cur);
+	 ret[l] = 0;
+	 if (buf != str)
+	    free(buf);
+	 if (!cset || sovp == 0 || flag || count != 0)
+	    break;
+	 buf = malloc(l + 1);
+	 memcpy(buf, ret, l);
+	 l2 = l;
+	 free(ret);
+      }
+   if (rset && _clip_par_isref(ClipMemoryStore, 2))
+      _clip_par_assign_str(ClipMemoryStore, 2, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_BEFORATNUM(ClipMachine * ClipMachineMemory)
+clip_BEFORATNUM(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2;
-
+   int l, l1, l2;
    unsigned char *ret, *beg;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       count = _clip_parni(ClipMachineMemory, 3);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 4);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int count = _clip_parni(ClipMemoryStore, 3);
+   int ignore = _clip_parni(ClipMemoryStore, 4);
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "BEFORATNUM");
-    }
-   beg = _clip_atmupa(ClipMachineMemory, sstr, l1, str, l2, ignore, count, 1);
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "BEFORATNUM");
+      }
+   beg = _clip_atmupa(ClipMemoryStore, sstr, l1, str, l2, ignore, count, 1);
    l = beg - str;
    ret = malloc(l + 1);
    memcpy(ret, str, l);
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARADD(ClipMachine * ClipMachineMemory)
+clip_CHARADD(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       asc = _clip_parni(ClipMachineMemory, 2);
-
-   int       t2 = _clip_parinfo(ClipMachineMemory, 2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int asc = _clip_parni(ClipMemoryStore, 2);
+   int t2 = _clip_parinfo(ClipMemoryStore, 2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARADD");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARADD");
+      }
    if (t2 == CHARACTER_type_of_ClipVarType)
       asc = *s;
    ret = malloc(l1 + 1);
@@ -511,30 +457,26 @@ clip_CHARADD(ClipMachine * ClipMachineMemory)
    ret[l1] = 0;
    for (e = ret, end = ret + l1; e < end; e++)
       *e += asc;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_CHARAND(ClipMachine * ClipMachineMemory)
+clip_CHARAND(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *ret, *e, *end, *e2, *end2;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARAND");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARAND");
+      }
    ret = malloc(l1 + 1);
    memcpy(ret, str, l1);
    ret[l1] = 0;
@@ -542,325 +484,298 @@ clip_CHARAND(ClipMachine * ClipMachineMemory)
    for (e = ret, end = ret + l1; e < end;)
       for (e2 = s; e2 < end2 && e < end; e++, e2++)
 	 *e = (*e & *e2);
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_CHAREVEN(ClipMachine * ClipMachineMemory)
+clip_CHAREVEN(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHAREVEN");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHAREVEN");
+      }
    l = l1 / 2;
    ret = malloc(l + 1);
    for (i = 0, e = str + 1, end = str + l1; e < end; e += 2, i++)
       ret[i] = *e;
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARLIST(ClipMachine * ClipMachineMemory)
+clip_CHARLIST(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret, *buf, *e, *end, *s;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARLIST");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARLIST");
+      }
    l = 0;
    buf = calloc(256, 1);
    for (e = str, end = str + l1; e < end; e++)
-    {
-       s = buf + (*e);
-       if (*s == 0)
-	  l++;
-       *s = 1;
-    }
+      {
+	 s = buf + (*e);
+	 if (*s == 0)
+	    l++;
+	 *s = 1;
+      }
    ret = malloc(l + 1);
    for (i = 0, e = buf, end = buf + 256; e < end; e++)
-    {
-       if (*e == 0)
-	  continue;
-       ret[i] = e - buf;
-       i++;
-    }
+      {
+	 if (*e == 0)
+	    continue;
+	 ret[i] = e - buf;
+	 i++;
+      }
    ret[l] = 0;
    free(buf);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARMIRR(ClipMachine * ClipMachineMemory)
+clip_CHARMIRR(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARMIRR");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARMIRR");
+      }
    l = l1;
    ret = malloc(l + 1);
    for (l = 0, i = l1; i >= 0; i--, l++)
       ret[l] = str[i];
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARMIX(ClipMachine * ClipMachineMemory)
+clip_CHARMIX(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, i;
-
+   int l1, l2, i;
    unsigned char *ret;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL || str2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARMIX");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARMIX");
+      }
    if (l2 == 0)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) str1, l1);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) str1, l1);
+	 return 0;
+      }
 
    ret = malloc(l1 * 2 + 1);
    for (i = 0; i < l1; i++)
-    {
-       ret[i * 2] = str1[i % l1];
-       ret[i * 2 + 1] = str2[i % l2];
-    }
+      {
+	 ret[i * 2] = str1[i % l1];
+	 ret[i * 2 + 1] = str2[i % l2];
+      }
    ret[l1 * 2] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1 * 2);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1 * 2);
    return 0;
 }
 
 int
-clip_CHARNOLIST(ClipMachine * ClipMachineMemory)
+clip_CHARNOLIST(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret, *buf, *e, *end, *s;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
 
    if (str == NULL)
-    {
-       l = 256;
-       ret = malloc(l + 1);
-       for (i = 0; i < 256; i++)
-	  ret[i] = i;
-       ret[l] = 0;
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-       return 0;
-    }
+      {
+	 l = 256;
+	 ret = malloc(l + 1);
+	 for (i = 0; i < 256; i++)
+	    ret[i] = i;
+	 ret[l] = 0;
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+	 return 0;
+      }
    l = 0;
    buf = calloc(256, 1);
    for (e = str, end = str + l1; e < end; e++)
-    {
-       s = buf + (*e);
-       if (*s == 0)
-	  l++;
-       *s = 1;
-    }
+      {
+	 s = buf + (*e);
+	 if (*s == 0)
+	    l++;
+	 *s = 1;
+      }
    l = 256 - l;
    ret = malloc(l + 1);
    for (i = 0, e = buf, end = buf + 256; e < end; e++)
-    {
-       if (*e == 1)
-	  continue;
-       ret[i] = e - buf;
-       i++;
-    }
+      {
+	 if (*e == 1)
+	    continue;
+	 ret[i] = e - buf;
+	 i++;
+      }
    ret[l] = 0;
    free(buf);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARNOT(ClipMachine * ClipMachineMemory)
+clip_CHARNOT(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARNOT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARNOT");
+      }
    l = l1;
    ret = malloc(l + 1);
    for (i = 0; i < l1; i++)
       ret[i] = (~(str[i]));
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARODD(ClipMachine * ClipMachineMemory)
+clip_CHARODD(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, i;
-
+   int l, l1, i;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARODD");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARODD");
+      }
    l = (l1 + 1) / 2;
    ret = malloc(l + 2);
    for (i = 0, e = str, end = str + l1; e < end; e += 2, i++)
       ret[i] = *e;
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARONE(ClipMachine * ClipMachineMemory)
+clip_CHARONE(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, i;
-
+   int l, l1, l2, i;
    unsigned char *ret, *str, *s, *e, *end, *f, p;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARONE");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARONE");
+      }
    s = calloc(256, 1);
    if (str2 != NULL)
-    {
-       l = l2;
-       str = str2;
-       for (e = str1, end = str1 + l1; e < end; e++)
-	  s[(int) (*e)] = 1;
-    }
+      {
+	 l = l2;
+	 str = str2;
+	 for (e = str1, end = str1 + l1; e < end; e++)
+	    s[(int) (*e)] = 1;
+      }
    else
-    {
-       l = l1;
-       str = str1;
-       memset(s, 1, 256);
-    }
+      {
+	 l = l1;
+	 str = str1;
+	 memset(s, 1, 256);
+      }
    ret = malloc(l + 1);
    for (p = 0, e = str, end = str + l, i = 0; e < end; e++)
-    {
-       f = s + (*e);
-       if ((*f) == 0 || ((*f) == 1 && p != *e))
-	{
-	   ret[i] = *e;
-	   i++;
-	}
-       p = *e;
-    }
+      {
+	 f = s + (*e);
+	 if ((*f) == 0 || ((*f) == 1 && p != *e))
+	    {
+	       ret[i] = *e;
+	       i++;
+	    }
+	 p = *e;
+      }
    free(s);
    ret[i] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, i);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, i);
    return 0;
 }
 
 int
-clip_CHARONLY(ClipMachine * ClipMachineMemory)
+clip_CHARONLY(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, i;
-
+   int l, l1, l2, i;
    unsigned char *ret, *e, *end, *s;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL || str2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARONLY");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARONLY");
+      }
    l = l2;
    ret = malloc(l + 1);
    s = calloc(256, 1);
    for (e = str1, end = str1 + l1; e < end; e++)
       s[(int) (*e)] = 1;
    for (i = 0, e = str2, end = str2 + l2; e < end; e++)
-    {
-       if (s[(int) (*e)] == 1)
-	{
-	   ret[i] = *e;
-	   i++;
-	}
-    }
+      {
+	 if (s[(int) (*e)] == 1)
+	    {
+	       ret[i] = *e;
+	       i++;
+	    }
+      }
    free(s);
    ret[i] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, i);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, i);
    return 0;
 }
 
 int
-clip_CHAROR(ClipMachine * ClipMachineMemory)
+clip_CHAROR(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *ret, *e, *end, *e2, *end2;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHAROR");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHAROR");
+      }
    ret = malloc(l1 + 1);
    memcpy(ret, str, l1);
    ret[l1] = 0;
@@ -868,94 +783,78 @@ clip_CHAROR(ClipMachine * ClipMachineMemory)
    for (e = ret, end = ret + l1; e < end;)
       for (e2 = s; e2 < end2 && e < end; e++, e2++)
 	 *e = (*e | *e2);
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_CHARRELA(ClipMachine * ClipMachineMemory)
+clip_CHARRELA(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, l3, l4, ret = 0;
-
+   int l1, l2, l3, l4, ret = 0;
    unsigned char *e1, *e2, *e3 = NULL, *e4;
-
    unsigned char *ee1, *ee3;
-
    unsigned char *end1, *end2, *end3, *end4;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   unsigned char *str3 = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l3);
-
-   unsigned char *str4 = (unsigned char *) _clip_parcl(ClipMachineMemory, 4, &l4);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   unsigned char *str3 = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l3);
+   unsigned char *str4 = (unsigned char *) _clip_parcl(ClipMemoryStore, 4, &l4);
 
    if (str1 == NULL || str2 == NULL || str3 == NULL || str4 == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARRELA");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARRELA");
+      }
    if (l1 == 0 || l3 == 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return 0;
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return 0;
+      }
    end1 = str1 + l1;
    end3 = str3 + l3;
    end2 = str2 + l2 - l1 + 1;
    end4 = str4 + l4 - l3 + 1;
    for (e2 = str2, e4 = str4; e2 < end2; e2++, e4++)
-    {
-       for (e1 = str1, ee1 = e2; e1 < end1 && *e1 == *ee1; e1++, ee1++);
-       if (e1 == end1)
-	  for (e3 = str3, ee3 = e4; e3 < end3 && *e3 == *ee3; e3++, ee3++);
-       if (e1 == end1 && e3 == end3)
-	{
-	   ret = e2 - str2 + 1;
-	   break;
-	}
+      {
+	 for (e1 = str1, ee1 = e2; e1 < end1 && *e1 == *ee1; e1++, ee1++);
+	 if (e1 == end1)
+	    for (e3 = str3, ee3 = e4; e3 < end3 && *e3 == *ee3; e3++, ee3++);
+	 if (e1 == end1 && e3 == end3)
+	    {
+	       ret = e2 - str2 + 1;
+	       break;
+	    }
 
-    }
-   _clip_retni(ClipMachineMemory, ret);
+      }
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_CHARRELREP(ClipMachine * ClipMachineMemory)
+clip_CHARRELREP(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, l3, l4, l5, cpos;
-
+   int l, l1, l2, l3, l4, l5, cpos;
    unsigned char *e1, *e2, *e3 = NULL, *e4;
-
    unsigned char *ee1, *ee3, *cur, *ret;
-
    unsigned char *end1, *end2, *end3, *end4;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   unsigned char *str3 = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l3);
-
-   unsigned char *str4 = (unsigned char *) _clip_parcl(ClipMachineMemory, 4, &l4);
-
-   unsigned char *str5 = (unsigned char *) _clip_parcl(ClipMachineMemory, 5, &l5);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   unsigned char *str3 = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l3);
+   unsigned char *str4 = (unsigned char *) _clip_parcl(ClipMemoryStore, 4, &l4);
+   unsigned char *str5 = (unsigned char *) _clip_parcl(ClipMemoryStore, 5, &l5);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str1 == NULL || str2 == NULL || str3 == NULL || str4 == NULL || str5 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARRELREP");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARRELREP");
+      }
    if (l1 == 0 || l3 == 0)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) str4, l4);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) str4, l4);
+	 return 0;
+      }
    l = 0;
    cpos = 0;
    ret = malloc(l + 1);
@@ -965,126 +864,117 @@ clip_CHARRELREP(ClipMachine * ClipMachineMemory)
    end2 = str2 + l2 - l1 + 1;
    end4 = str4 + l4 - l3 + 1;
    for (e2 = str2, e4 = str4; e2 < end2 && e4 < end4; e2++, e4++)
-    {
-       for (e1 = str1, ee1 = e2; e1 < end1 && *e1 == *ee1; e1++, ee1++);
-       if (e1 == end1)
-	  for (e3 = str3, ee3 = e4; e3 < end3 && *e3 == *ee3; e3++, ee3++);
-       if (e1 == end1 && e3 == end3)
-	{
-	   l += e4 - cur + l5;
-	   ret = realloc(ret, l + 1);
-	   memcpy(ret + cpos, cur, e4 - cur);
-	   cpos += e4 - cur;
-	   memcpy(ret + cpos, str5, l5);
-	   cpos += l5;
-	   e2 += l3;
-	   e4 += l3;
-	   cur = e4;
-	}
+      {
+	 for (e1 = str1, ee1 = e2; e1 < end1 && *e1 == *ee1; e1++, ee1++);
+	 if (e1 == end1)
+	    for (e3 = str3, ee3 = e4; e3 < end3 && *e3 == *ee3; e3++, ee3++);
+	 if (e1 == end1 && e3 == end3)
+	    {
+	       l += e4 - cur + l5;
+	       ret = realloc(ret, l + 1);
+	       memcpy(ret + cpos, cur, e4 - cur);
+	       cpos += e4 - cur;
+	       memcpy(ret + cpos, str5, l5);
+	       cpos += l5;
+	       e2 += l3;
+	       e4 += l3;
+	       cur = e4;
+	    }
 
-    }
+      }
    l += str4 + l4 - cur;
    ret = realloc(ret, l + 1);
    memcpy(ret + cpos, cur, str4 + l4 - cur);
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 4))
-      _clip_par_assign_str(ClipMachineMemory, 4, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 4))
+      _clip_par_assign_str(ClipMemoryStore, 4, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARREM(ClipMachine * ClipMachineMemory)
+clip_CHARREM(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, i;
-
+   int l, l1, l2, i;
    unsigned char *ret, *e, *end, *s;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL || str2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARREM");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARREM");
+      }
    l = l2;
    ret = malloc(l + 1);
    s = calloc(256, 1);
    for (e = str1, end = str1 + l1; e < end; e++)
       s[(int) (*e)] = 1;
    for (i = 0, e = str2, end = str2 + l2; e < end; e++)
-    {
-       if (s[(int) (*e)] == 1)
-	  continue;
-       ret[i] = *e;
-       i++;
-    }
+      {
+	 if (s[(int) (*e)] == 1)
+	    continue;
+	 ret[i] = *e;
+	 i++;
+      }
    free(s);
    ret[i] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, i);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, i);
    return 0;
 }
 
 int
-clip_CHARREPL(ClipMachine * ClipMachineMemory)
+clip_CHARREPL(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, l3, pos, sovp;
-
+   int l, l1, l2, l3, pos, sovp;
    unsigned char *ret, *s, *e1, *end, *send;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   unsigned char *rstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l3);
-
-   int       flag = _clip_parl(ClipMachineMemory, 4);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   unsigned char *rstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l3);
+   int flag = _clip_parl(ClipMemoryStore, 4);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARREPL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARREPL");
+      }
    l = l2;
    ret = malloc(l + 1);
    memcpy(ret, str, l);
    ret[l] = 0;
    if (l1 == 0)
-    {
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-       return 0;
-    }
+      {
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+	 return 0;
+      }
    if (l1 == l3 && memcmp(sstr, rstr, l1) == 0)
-    {
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-       return 0;
-    }
+      {
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+	 return 0;
+      }
    while (1)
-    {
-       end = ret + l;
-       send = sstr + l1;
-       for (e1 = ret, sovp = 0; e1 < end; e1++)
-	{
-	   for (s = sstr; s < send && *s != *e1; s++);
-	   if (s == send)
-	      continue;
-	   sovp++;
-	   pos = s - sstr;
-	   if (pos >= l3)
-	      pos = l3 - 1;
-	   *e1 = rstr[pos];
+      {
+	 end = ret + l;
+	 send = sstr + l1;
+	 for (e1 = ret, sovp = 0; e1 < end; e1++)
+	    {
+	       for (s = sstr; s < send && *s != *e1; s++);
+	       if (s == send)
+		  continue;
+	       sovp++;
+	       pos = s - sstr;
+	       if (pos >= l3)
+		  pos = l3 - 1;
+	       *e1 = rstr[pos];
 
-	}
-       if (flag || sovp == 0)
-	  break;
-    }
-   if (rset && _clip_par_isref(ClipMachineMemory, 2))
-      _clip_par_assign_str(ClipMachineMemory, 2, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+	    }
+	 if (flag || sovp == 0)
+	    break;
+      }
+   if (rset && _clip_par_isref(ClipMemoryStore, 2))
+      _clip_par_assign_str(ClipMemoryStore, 2, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
@@ -1093,7 +983,7 @@ static ClipMachine *_clip_charsort_mp;
 int
 _clip_charsort(const void *a1, const void *a2)
 {
-   int       ret = 0, *set, i;
+   int ret = 0, *set, i;
 
    set = _clip_fetch_item(_clip_charsort_mp, HASH_charsort_param);
    for (i = set[2]; i < set[3] && ret == 0; i++)
@@ -1105,42 +995,32 @@ _clip_charsort(const void *a1, const void *a2)
 }
 
 int
-clip_CHARSORT(ClipMachine * ClipMachineMemory)
+clip_CHARSORT(ClipMachine * ClipMemoryStore)
 {
-   int       l, i, nsort, epos;
-
-   int      *set;
-
+   int l, i, nsort, epos;
+   int *set;
    unsigned char *ret, *beg, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       elen = _clip_parni(ClipMachineMemory, 2);
-
-   int       clen = _clip_parni(ClipMachineMemory, 3);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 4);
-
-   int       bpos = _clip_parni(ClipMachineMemory, 5);
-
-   int       slen = _clip_parni(ClipMachineMemory, 6);
-
-   int       flag = _clip_parl(ClipMachineMemory, 7);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int elen = _clip_parni(ClipMemoryStore, 2);
+   int clen = _clip_parni(ClipMemoryStore, 3);
+   int ignore = _clip_parni(ClipMemoryStore, 4);
+   int bpos = _clip_parni(ClipMemoryStore, 5);
+   int slen = _clip_parni(ClipMemoryStore, 6);
+   int flag = _clip_parl(ClipMemoryStore, 7);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSORT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSORT");
+      }
    for (i = 2; i < 7; i++)
-    {
-       if (_clip_parinfo(ClipMachineMemory, i) != LOGICAL_type_of_ClipVarType)
-	  continue;
-       flag = _clip_parl(ClipMachineMemory, i);
-       break;
-    }
+      {
+	 if (_clip_parinfo(ClipMemoryStore, i) != LOGICAL_type_of_ClipVarType)
+	    continue;
+	 flag = _clip_parl(ClipMemoryStore, i);
+	 break;
+      }
    ret = malloc(l + 1);
    memcpy(ret, str, l);
    ret[l] = 0;
@@ -1153,7 +1033,7 @@ clip_CHARSORT(ClipMachine * ClipMachineMemory)
    if ((clen + bpos) > elen)
       clen = elen - bpos;
    epos = bpos + clen;
-   if (_clip_parinfo(ClipMachineMemory, 6) != NUMERIC_type_of_ClipVarType)
+   if (_clip_parinfo(ClipMemoryStore, 6) != NUMERIC_type_of_ClipVarType)
       slen = l;
    if (slen <= 0)
       slen = 0;
@@ -1165,44 +1045,39 @@ clip_CHARSORT(ClipMachine * ClipMachineMemory)
    if (end > (ret + l))
       end = ret + l;
    if (elen > l || ignore > l || beg == end)
-    {
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-       return 0;
-    }
+      {
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+	 return 0;
+      }
    nsort = (end - beg) / elen;
-   set = _clip_fetch_item(ClipMachineMemory, HASH_charsort_param);
+   set = _clip_fetch_item(ClipMemoryStore, HASH_charsort_param);
    set[0] = flag;
    set[1] = elen;
    set[2] = bpos;
    set[3] = epos;
-   _clip_charsort_mp = ClipMachineMemory;
+   _clip_charsort_mp = ClipMemoryStore;
    qsort(beg, nsort, elen, _clip_charsort);
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARSPREAD(ClipMachine * ClipMachineMemory)
+clip_CHARSPREAD(ClipMachine * ClipMemoryStore)
 {
-   int       i, l1, l2, nl = 0, sl, cpos = 0, nch, och;
-
+   int i, l1, l2, nl = 0, sl, cpos = 0, nch, och;
    unsigned char *e, *end, *ret, *cur;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       l = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int l = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l2);
+   int ch = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL || l == 0)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSPREAD");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSPREAD");
+      }
    if (s != NULL)
       ch = *s;
    if (ch == 0)
@@ -1211,100 +1086,93 @@ clip_CHARSPREAD(ClipMachine * ClipMachineMemory)
    memcpy(ret, str, l1);
    ret[l1] = 0;
    for (e = str, end = str + l1; e < end;)
-    {
-       for (; *e != ch && e < end; e++);
-       if (*e != ch)
-	  continue;
-       nl++;
-       for (; *e == ch && e < end; e++);
-    }
+      {
+	 for (; *e != ch && e < end; e++);
+	 if (*e != ch)
+	    continue;
+	 nl++;
+	 for (; *e == ch && e < end; e++);
+      }
    if (nl == 0)
-    {
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
-       return 0;
-    }
+      {
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
+	 return 0;
+      }
    sl = l - l1;
    nch = sl / nl;
    och = sl % nl;
    cur = str;
    for (e = str, cur = str, end = str + l1; e < end;)
-    {
-       for (; *e != ch && e < end; e++);
-       if (*e != ch)
-	  break;
-       memcpy(ret + cpos, cur, e - cur);
-       cpos += e - cur;
-       for (i = 0; i < nch; i++, cpos++)
-	  ret[cpos] = ch;
-       if (och > 0)
-	{
-	   ret[cpos] = ch;
-	   cpos++;
-	   och--;
-	}
-       cur = e;
-       for (; *e == ch && e < end; e++);
-    }
+      {
+	 for (; *e != ch && e < end; e++);
+	 if (*e != ch)
+	    break;
+	 memcpy(ret + cpos, cur, e - cur);
+	 cpos += e - cur;
+	 for (i = 0; i < nch; i++, cpos++)
+	    ret[cpos] = ch;
+	 if (och > 0)
+	    {
+	       ret[cpos] = ch;
+	       cpos++;
+	       och--;
+	    }
+	 cur = e;
+	 for (; *e == ch && e < end; e++);
+      }
    memcpy(ret + cpos, cur, e - cur);
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARSWAP(ClipMachine * ClipMachineMemory)
+clip_CHARSWAP(ClipMachine * ClipMemoryStore)
 {
-   int       l, i;
-
+   int l, i;
    unsigned char *ret, ch;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSWAP");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARSWAP");
+      }
    ret = str;
    ret = malloc(l + 1);
    for (i = 0; i < l; i += 2)
-    {
-       if (i < l - 1)
-	{
-	   ch = str[i];
-	   ret[i] = str[i + 1];
-	   ret[i + 1] = ch;
-	}
-       else
-	  ret[i] = str[i];
-    }
+      {
+	 if (i < l - 1)
+	    {
+	       ch = str[i];
+	       ret[i] = str[i + 1];
+	       ret[i + 1] = ch;
+	    }
+	 else
+	    ret[i] = str[i];
+      }
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_CHARXOR(ClipMachine * ClipMachineMemory)
+clip_CHARXOR(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *ret, *e, *end, *e2, *end2;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARXOR");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHARXOR");
+      }
    ret = malloc(l1 + 1);
    memcpy(ret, str, l1);
    ret[l1] = 0;
@@ -1312,42 +1180,39 @@ clip_CHARXOR(ClipMachine * ClipMachineMemory)
    for (e = ret, end = ret + l1; e < end;)
       for (e2 = s; e2 < end2 && e < end; e++, e2++)
 	 *e = (*e ^ *e2);
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_CHECKSUM(ClipMachine * ClipMachineMemory)
+clip_CHECKSUM(ClipMachine * ClipMemoryStore)
 {
-   unsigned char *str = (unsigned char *) _clip_parc(ClipMachineMemory, 1);
+   unsigned char *str = (unsigned char *) _clip_parc(ClipMemoryStore, 1);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CHECKSUM");
-    }
-   _clip_retnl(ClipMachineMemory, _clip_hashstr((char *) str));
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CHECKSUM");
+      }
+   _clip_retnl(ClipMemoryStore, _clip_hashstr((char *) str));
    return 0;
 }
 
 int
-clip_COUNTLEFT(ClipMachine * ClipMachineMemory)
+clip_COUNTLEFT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, ret = 0;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
+   int l1, l2, ret = 0;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL || l1 == 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "COUNTLEFT");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "COUNTLEFT");
+      }
    if (s != NULL)
       ch = *s;
    if (ch == 0)
@@ -1355,28 +1220,24 @@ clip_COUNTLEFT(ClipMachine * ClipMachineMemory)
 
    for (ret = 0; ret < l1 && str[ret] == ch; ret++);
 
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_COUNTRIGHT(ClipMachine * ClipMachineMemory)
+clip_COUNTRIGHT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, ret = 0;
-
+   int l1, l2, ret = 0;
    unsigned char *e;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL || l1 == 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "COUNTRIGHT");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "COUNTRIGHT");
+      }
    if (s != NULL)
       ch = *s;
    if (ch == 0)
@@ -1384,80 +1245,71 @@ clip_COUNTRIGHT(ClipMachine * ClipMachineMemory)
 
    for (ret = 0, e = str + l1 - 1; e > str && *e == ch; e--, ret++);
 
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_CSETREF(ClipMachine * ClipMachineMemory)
+clip_CSETREF(ClipMachine * ClipMemoryStore)
 {
-   char     *status;
+   char *status;
 
-   status = _clip_fetch_item(ClipMachineMemory, HASH_csetref);
-   _clip_retl(ClipMachineMemory, *status == 't');
-   if (_clip_parinfo(ClipMachineMemory, 0) > 0)
-    {
-       if (_clip_parl(ClipMachineMemory, 1))
-	  *status = 't';
-       else
-	  *status = 'f';
-    }
+   status = _clip_fetch_item(ClipMemoryStore, HASH_csetref);
+   _clip_retl(ClipMemoryStore, *status == 't');
+   if (_clip_parinfo(ClipMemoryStore, 0) > 0)
+      {
+	 if (_clip_parl(ClipMemoryStore, 1))
+	    *status = 't';
+	 else
+	    *status = 'f';
+      }
    return 0;
 }
 
 int
-clip_EXPAND(ClipMachine * ClipMachineMemory)
+clip_EXPAND(ClipMachine * ClipMemoryStore)
 {
-   int       l = 0, l1, l2, i;
-
+   int l = 0, l1, l2, i;
    unsigned char *e, *ret, *cur, *end, ch = ' ';
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int kol = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       kol = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   if (_clip_parinfo(ClipMachineMemory, 2) != CHARACTER_type_of_ClipVarType)
-      s = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l2);
+   if (_clip_parinfo(ClipMemoryStore, 2) != CHARACTER_type_of_ClipVarType)
+      s = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l2);
    if (s != NULL)
       ch = *s;
    if (kol <= 0)
       kol = 1;
 
    if (str == NULL || l1 == 0)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    l = (l1 - 1) * (kol + 1) + 1;
    ret = malloc(l + 1);
    ret[l] = 0;
    for (cur = ret, e = str, end = str + l1 - 1; e < end; e++)
-    {
-       *cur = *e;
-       for (i = 0, cur++; i < kol; i++, cur++)
-	  *cur = ch;
-    }
+      {
+	 *cur = *e;
+	 for (i = 0, cur++; i < kol; i++, cur++)
+	    *cur = ch;
+      }
    *cur = *e;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_JUSTLEFT(ClipMachine * ClipMachineMemory)
+clip_JUSTLEFT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, i;
-
+   int l1, l2, i;
    unsigned char *e, *ret, *end, *cur;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int ch = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (s != NULL)
       ch = *s;
@@ -1465,10 +1317,10 @@ clip_JUSTLEFT(ClipMachine * ClipMachineMemory)
       ch = ' ';
 
    if (str == NULL || l1 == 0)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    ret = malloc(l1 + 1);
    for (e = str, end = str + l1; e < end && *e == ch; e++);
    i = e - str;
@@ -1477,26 +1329,21 @@ clip_JUSTLEFT(ClipMachine * ClipMachineMemory)
    for (; i > 0; i--, cur++)
       *cur = ch;
    ret[l1] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_JUSTRIGHT(ClipMachine * ClipMachineMemory)
+clip_JUSTRIGHT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, i;
-
+   int l1, l2, i;
    unsigned char *e, *ret, *end, *cur;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   int ch = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (s != NULL)
       ch = *s;
@@ -1504,10 +1351,10 @@ clip_JUSTRIGHT(ClipMachine * ClipMachineMemory)
       ch = ' ';
 
    if (str == NULL || l1 == 0)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    ret = malloc(l1 + 1);
    for (e = str + l1 - 1, end = str; e > end && *e == ch; e--);
    i = str + l1 - e - 1;
@@ -1517,235 +1364,212 @@ clip_JUSTRIGHT(ClipMachine * ClipMachineMemory)
    for (e = str; e < end; e++, cur++)
       *cur = *e;
    ret[l1] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_LIKE(ClipMachine * ClipMachineMemory)
+clip_LIKE(ClipMachine * ClipMemoryStore)
 {
-   int       sl, l;
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &sl);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l);
+   int sl, l;
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &sl);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l);
 
    if (str == 0 || s == 0)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "LIKE");
-    }
-   _clip_retl(ClipMachineMemory, _clip_glob_match((char *) str, (char *) s, ClipMachineMemory->flags & TRANSLATE_FLAG) > 0);
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "LIKE");
+      }
+   _clip_retl(ClipMemoryStore, _clip_glob_match((char *) str, (char *) s, ClipMemoryStore->flags & TRANSLATE_FLAG) > 0);
    return 0;
 }
 
 int
-clip_LTOC(ClipMachine * ClipMachineMemory)
+clip_LTOC(ClipMachine * ClipMemoryStore)
 {
-   if (_clip_parl(ClipMachineMemory, 1))
-      _clip_retc(ClipMachineMemory, "T");
+   if (_clip_parl(ClipMemoryStore, 1))
+      _clip_retc(ClipMemoryStore, "T");
    else
-      _clip_retc(ClipMachineMemory, "F");
+      _clip_retc(ClipMemoryStore, "F");
    return 0;
 }
 
 int
-clip_DSTRTON(ClipMachine * ClipMachineMemory)
+clip_DSTRTON(ClipMachine * ClipMemoryStore)
 {
 
-   char     *s = _clip_parc(ClipMachineMemory, 1);
+   char *s = _clip_parc(ClipMemoryStore, 1);
 
    if (s != NULL)
-      _clip_retndp(ClipMachineMemory, *((double *) s), 0, ClipMachineMemory->decimals);
+      _clip_retndp(ClipMemoryStore, *((double *) s), 0, ClipMemoryStore->decimals);
    else
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
 
    return 0;
 }
 
 int
-clip_FSTRTON(ClipMachine * ClipMachineMemory)
+clip_FSTRTON(ClipMachine * ClipMemoryStore)
 {
 
-   char     *s = _clip_parc(ClipMachineMemory, 1);
+   char *s = _clip_parc(ClipMemoryStore, 1);
 
    if (s != NULL)
-      _clip_retndp(ClipMachineMemory, *((float *) s), 0, ClipMachineMemory->decimals);
+      _clip_retndp(ClipMemoryStore, *((float *) s), 0, ClipMemoryStore->decimals);
    else
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
 
    return 0;
 }
 
 int
-clip_MAXLINE(ClipMachine * ClipMachineMemory)
+clip_MAXLINE(ClipMachine * ClipMemoryStore)
 {
-   int       l, ret = 0;
-
+   int l, ret = 0;
    unsigned char *e, *beg, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
 
    if (str == 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "MAXLINE");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "MAXLINE");
+      }
    for (e = str, beg = str, end = str + l; e <= end; e++)
-    {
-       if (*e == '\r')
-	  beg++;
-       if (*e != '\n' && *e != 0)
-	  continue;
-       if (ret < (e - beg))
-	  ret = e - beg;
-       beg = e + 1;
-    }
-   _clip_retni(ClipMachineMemory, ret);
+      {
+	 if (*e == '\r')
+	    beg++;
+	 if (*e != '\n' && *e != 0)
+	    continue;
+	 if (ret < (e - beg))
+	    ret = e - beg;
+	 beg = e + 1;
+      }
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_NUMAT(ClipMachine * ClipMachineMemory)
+clip_NUMAT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, ret = 0, atlike0, atlike1;
-
+   int l1, l2, ret = 0, atlike0, atlike1;
    unsigned char *e1, *e2, *s, *beg, *end, *send;
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 3);
-
-   char     *atlike = _clip_fetch_item(ClipMachineMemory, HASH_setatlike);
-
-   int       cset = (*(unsigned char *) _clip_fetch_item(ClipMachineMemory, HASH_csetatmupa)) == 't';
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int ignore = _clip_parni(ClipMemoryStore, 3);
+   char *atlike = _clip_fetch_item(ClipMemoryStore, HASH_setatlike);
+   int cset = (*(unsigned char *) _clip_fetch_item(ClipMemoryStore, HASH_csetatmupa)) == 't';
 
    atlike0 = atlike[0];
    atlike1 = atlike[1];
 
    if (sstr == NULL || str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMAT");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMAT");
+      }
    end = str + l2 - l1 + 1;
    beg = str + l2;
    send = sstr + l1;
    if (ignore < 0)
       ignore = 0;
    for (e1 = str + ignore; e1 < end; e1++)
-    {
-       for (s = sstr, e2 = e1; s < send && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
-       if (s != send)
-	  continue;
-       ret++;
-       if (!cset)
-	  e1 = e2 - 1;
-    }
-   _clip_retni(ClipMachineMemory, ret);
+      {
+	 for (s = sstr, e2 = e1; s < send && (*s == *e2 || (atlike0 && *s == atlike1)); s++, e2++);
+	 if (s != send)
+	    continue;
+	 ret++;
+	 if (!cset)
+	    e1 = e2 - 1;
+      }
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_NUMLINE(ClipMachine * ClipMachineMemory)
+clip_NUMLINE(ClipMachine * ClipMemoryStore)
 {
-   int       i, l, ret = 0;
-
+   int i, l, ret = 0;
    unsigned char *e, *beg, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       len = _clip_parni(ClipMachineMemory, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int len = _clip_parni(ClipMemoryStore, 2);
 
    if (len <= 0)
       len = 80;
 
    if (str == 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMLINE");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMLINE");
+      }
    for (e = str, beg = str, end = str + l; e <= end; e++)
-    {
-       for (i = 1; e < end && i < len && *e != '\n'; e++, i++)
-	  if (*e == '\r')
-	     i--;
-       ret++;
-    }
-   _clip_retni(ClipMachineMemory, ret);
+      {
+	 for (i = 1; e < end && i < len && *e != '\n'; e++, i++)
+	    if (*e == '\r')
+	       i--;
+	 ret++;
+      }
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
-int       clip_PADL(ClipMachine * ClipMachineMemory);
+int clip_PADL(ClipMachine * ClipMemoryStore);
 
 int
-clip_PADLEFT(ClipMachine * ClipMachineMemory)
+clip_PADLEFT(ClipMachine * ClipMemoryStore)
 {
-   return clip_PADL(ClipMachineMemory);
+   return clip_PADL(ClipMemoryStore);
 }
 
-int       clip_PADR(ClipMachine * ClipMachineMemory);
+int clip_PADR(ClipMachine * ClipMemoryStore);
 
 int
-clip_PADRIGHT(ClipMachine * ClipMachineMemory)
+clip_PADRIGHT(ClipMachine * ClipMemoryStore)
 {
-   return clip_PADR(ClipMachineMemory);
+   return clip_PADR(ClipMemoryStore);
 }
 
 int
-clip_POSALPHA(ClipMachine * ClipMachineMemory)
+clip_POSALPHA(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       flag = _clip_parl(ClipMachineMemory, 2);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int flag = _clip_parl(ClipMemoryStore, 2);
+   int ignore = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSALPHA");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSALPHA");
+      }
    if (ignore < 0)
       ignore = 0;
    for (e = str + ignore, end = str + l; e < end && !(_clip_isalpha(*e) ^ flag); e++);
    if (e == end)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, e - str + 1);
+      _clip_retni(ClipMemoryStore, e - str + 1);
    return 0;
 }
 
 int
-clip_POSCHAR(ClipMachine * ClipMachineMemory)
+clip_POSCHAR(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
-
-   int       pos = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
+   int pos = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSCHAR");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSCHAR");
+      }
    if (pos <= 0)
       pos = l;
    pos--;
@@ -1754,39 +1578,35 @@ clip_POSCHAR(ClipMachine * ClipMachineMemory)
    ret = malloc(l + 1);
    memcpy(ret, str, l);
    ret[pos] = ch;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_POSDEL(ClipMachine * ClipMachineMemory)
+clip_POSDEL(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl, i;
-
+   int l, rl, i;
    unsigned char *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       pos = _clip_parni(ClipMachineMemory, 2);
-
-   int       num = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int pos = _clip_parni(ClipMemoryStore, 2);
+   int num = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSDEL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSDEL");
+      }
    if (num <= 0)
       num = 1;
    if (pos <= 0)
       pos = l - num + 1;
    if (pos > l)
-    {
-       pos = l;
-       num = 0;
-    }
+      {
+	 pos = l;
+	 num = 0;
+      }
    pos--;
    rl = l - num;
    ret = malloc(rl + 1);
@@ -1794,123 +1614,110 @@ clip_POSDEL(ClipMachine * ClipMachineMemory)
    for (i = pos + num; i < l; i++, pos++)
       ret[pos] = str[i];
    ret[rl] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_POSDIFF(ClipMachine * ClipMachineMemory)
+clip_POSDIFF(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2;
-
+   int l1, l2;
    unsigned char *e1, *e2, *beg, *end;
-
-   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int ignore = _clip_parni(ClipMemoryStore, 3);
 
    if (s1 == NULL || s2 == NULL)
-    {
-       _clip_retni(ClipMachineMemory, -1);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSDIFF");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, -1);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSDIFF");
+      }
    if (l1 > l2)
-    {
-       beg = s2;
-       end = s2 + l2;
-       e1 = s2;
-       e2 = s1;
-    }
+      {
+	 beg = s2;
+	 end = s2 + l2;
+	 e1 = s2;
+	 e2 = s1;
+      }
    else
-    {
-       beg = s1;
-       end = s1 + l1;
-       e1 = s1;
-       e2 = s2;
-    }
+      {
+	 beg = s1;
+	 end = s1 + l1;
+	 e1 = s1;
+	 e2 = s2;
+      }
    e1 += ignore;
    for (; e1 < end && *e1 == *e2; e1++, e2++);
    if (l1 == l2 && e1 == end)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, e1 - beg + 1);
+      _clip_retni(ClipMemoryStore, e1 - beg + 1);
    return 0;
 }
 
 int
-clip_POSEQUAL(ClipMachine * ClipMachineMemory)
+clip_POSEQUAL(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, sovp = 0;
-
+   int l1, l2, sovp = 0;
    unsigned char *e1, *e2, *end1, *end2, *beg = NULL;
-
-   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       count = _clip_parni(ClipMachineMemory, 3);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 4);
+   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int count = _clip_parni(ClipMemoryStore, 3);
+   int ignore = _clip_parni(ClipMemoryStore, 4);
 
    if (s1 == NULL || s2 == NULL)
-    {
-       _clip_retni(ClipMachineMemory, -1);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSEQUAL");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, -1);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSEQUAL");
+      }
    if (count <= 0)
       count = l1 > l2 ? l2 : l1;
    end1 = s1 + l1;
    end2 = s2 + l2;
    for (e1 = s1 + ignore, e2 = s2 + ignore; e1 < end1 && e2 < end2; e1++, e2++)
-    {
-       if (*e1 == *e2)
-	{
-	   sovp++;
-	   if (beg == 0)
-	      beg = e1;
-	}
-       else
-	{
-	   beg = 0;
-	   sovp = 0;
-	}
-       if (sovp == count)
-	  break;
-    }
+      {
+	 if (*e1 == *e2)
+	    {
+	       sovp++;
+	       if (beg == 0)
+		  beg = e1;
+	    }
+	 else
+	    {
+	       beg = 0;
+	       sovp = 0;
+	    }
+	 if (sovp == count)
+	    break;
+      }
    if (sovp < count)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, beg - s1 + 1);
+      _clip_retni(ClipMemoryStore, beg - s1 + 1);
    return 0;
 }
 
 int
-clip_POSINS(ClipMachine * ClipMachineMemory)
+clip_POSINS(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, rl;
-
+   int l1, l2, rl;
    unsigned char *ret;
-
-   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       pos = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int pos = _clip_parni(ClipMemoryStore, 3);
 
    if (s1 == NULL || s2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSINS");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSINS");
+      }
    if (pos <= 0)
       pos = l1;
    if (pos > l1)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) s1, l1);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) s1, l1);
+	 return 0;
+      }
    pos--;
    rl = l1 + l2;
    ret = malloc(rl + 1);
@@ -1918,110 +1725,93 @@ clip_POSINS(ClipMachine * ClipMachineMemory)
    memcpy(ret + pos, s2, l2);
    memcpy(ret + pos + l2, s1 + pos, l1 - pos + 1);
    ret[rl] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_POSLOWER(ClipMachine * ClipMachineMemory)
+clip_POSLOWER(ClipMachine * ClipMemoryStore)
 {
-   int       l, x;
-
+   int l, x;
    unsigned char *e, *end;
-
    unsigned char ch;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       flag = _clip_parl(ClipMachineMemory, 2);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int flag = _clip_parl(ClipMemoryStore, 2);
+   int ignore = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSLOWER");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSLOWER");
+      }
    if (ignore < 0)
       ignore = 0;
    for (e = str + ignore, end = str + l; e < end; e++)
-    {
-       ch = *e;
-       x = (ch >= 'a' && ch <= 'z') || (ch == _clip_lowtbl[ch] && _clip_isalpha_tbl[ch]);
-       if (x != flag)
-	  break;
-    }
+      {
+	 ch = *e;
+	 x = (ch >= 'a' && ch <= 'z') || (ch == _clip_lowtbl[ch] && _clip_isalpha_tbl[ch]);
+	 if (x != flag)
+	    break;
+      }
    if (e == end)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, e - str + 1);
+      _clip_retni(ClipMemoryStore, e - str + 1);
    return 0;
 }
 
 int
-clip_POSUPPER(ClipMachine * ClipMachineMemory)
+clip_POSUPPER(ClipMachine * ClipMemoryStore)
 {
-   int       l, x;
-
+   int l, x;
    unsigned char *e, *end;
-
    unsigned char ch;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       flag = _clip_parl(ClipMachineMemory, 2);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int flag = _clip_parl(ClipMemoryStore, 2);
+   int ignore = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSUPPER");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSUPPER");
+      }
    if (ignore < 0)
       ignore = 0;
    for (e = str + ignore, end = str + l; e < end; e++)
-    {
-       ch = *e;
-       x = (ch >= 'A' && ch <= 'Z') || (ch == _clip_uptbl[ch] && _clip_isalpha_tbl[ch]);
-       if (x != flag)
-	  break;
-    }
+      {
+	 ch = *e;
+	 x = (ch >= 'A' && ch <= 'Z') || (ch == _clip_uptbl[ch] && _clip_isalpha_tbl[ch]);
+	 if (x != flag)
+	    break;
+      }
    if (e == end)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, e - str + 1);
+      _clip_retni(ClipMemoryStore, e - str + 1);
    return 0;
 }
 
 int
-clip_POSRANGE(ClipMachine * ClipMachineMemory)
+clip_POSRANGE(ClipMachine * ClipMemoryStore)
 {
-   int       l, x;
-
+   int l, x;
    unsigned char *e, *end;
-
    unsigned char ch, ch1, ch2;
 
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 1);
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 1);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int t1 = _clip_parni(ClipMemoryStore, 1);
+   int t2 = _clip_parni(ClipMemoryStore, 2);
 
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       t1 = _clip_parni(ClipMachineMemory, 1);
-
-   int       t2 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l);
-
-   int       flag = _clip_parl(ClipMachineMemory, 4);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 5);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l);
+   int flag = _clip_parl(ClipMemoryStore, 4);
+   int ignore = _clip_parni(ClipMemoryStore, 5);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSRANGE");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSRANGE");
+      }
    if (ignore < 0)
       ignore = 0;
    ch1 = s1 == NULL ? t1 : *s1;
@@ -2029,52 +1819,47 @@ clip_POSRANGE(ClipMachine * ClipMachineMemory)
    ch1 = _clip_cmptbl[ch1];
    ch2 = _clip_cmptbl[ch2];
    if (ch1 > ch2)
-    {
-       ch = ch1;
-       ch1 = ch2;
-       ch1 = ch;
-    }
+      {
+	 ch = ch1;
+	 ch1 = ch2;
+	 ch1 = ch;
+      }
    for (e = str + ignore, end = str + l; e < end; e++)
-    {
-       ch = _clip_cmptbl[*e];
-       x = (ch >= ch1 && ch <= ch2);
-       if (x != flag)
-	  break;
-    }
+      {
+	 ch = _clip_cmptbl[*e];
+	 x = (ch >= ch1 && ch <= ch2);
+	 if (x != flag)
+	    break;
+      }
    if (e == end)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-      _clip_retni(ClipMachineMemory, e - str + 1);
+      _clip_retni(ClipMemoryStore, e - str + 1);
    return 0;
 }
 
 int
-clip_POSREPL(ClipMachine * ClipMachineMemory)
+clip_POSREPL(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, rl, i;
-
+   int l1, l2, rl, i;
    unsigned char *ret;
-
-   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       pos = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int pos = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (s1 == NULL || s2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "POSREPL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "POSREPL");
+      }
    if (pos <= 0)
       pos = l1 - l2 + 1;
    if (pos > l1)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) s1, l1);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) s1, l1);
+	 return 0;
+      }
    pos--;
    rl = (pos + l2) > l1 ? pos + l2 : l1;
    ret = malloc(rl + 1);
@@ -2083,90 +1868,76 @@ clip_POSREPL(ClipMachine * ClipMachineMemory)
    for (i = pos + l2; i < l1; i++)
       ret[i] = s1[i];
    ret[rl] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, rl);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_RANGEREM(ClipMachine * ClipMachineMemory)
+clip_RANGEREM(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *e, *end, *r, *ret;
-
    unsigned char ch, ch1, ch2;
 
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 1);
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 1);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int t1 = _clip_parni(ClipMemoryStore, 1);
+   int t2 = _clip_parni(ClipMemoryStore, 2);
 
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       t1 = _clip_parni(ClipMachineMemory, 1);
-
-   int       t2 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "RANGEREM");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "RANGEREM");
+      }
    ch1 = s1 == NULL ? t1 : *s1;
    ch2 = s2 == NULL ? t2 : *s2;
    ch1 = _clip_cmptbl[ch1];
    ch2 = _clip_cmptbl[ch2];
    if (ch1 > ch2)
-    {
-       ch = ch1;
-       ch1 = ch2;
-       ch1 = ch;
-    }
+      {
+	 ch = ch1;
+	 ch1 = ch2;
+	 ch1 = ch;
+      }
    ret = malloc(l + 1);
    for (e = str, r = ret, end = str + l; e < end; e++)
-    {
-       ch = _clip_cmptbl[*e];
-       if (ch >= ch1 && ch <= ch2)
-	  continue;
-       *r = *e;
-       r++;
-    }
+      {
+	 ch = _clip_cmptbl[*e];
+	 if (ch >= ch1 && ch <= ch2)
+	    continue;
+	 *r = *e;
+	 r++;
+      }
    *r = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, r - ret);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, r - ret);
    return 0;
 }
 
 int
-clip_RANGEREPL(ClipMachine * ClipMachineMemory)
+clip_RANGEREPL(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *e, *end, *r, *ret;
-
    unsigned char ch, ch1, ch2, ch3;
 
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 1);
-
-   int       t1 = _clip_parni(ClipMachineMemory, 1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       t2 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l);
-
-   unsigned char *s3 = (unsigned char *) _clip_parc(ClipMachineMemory, 4);
-
-   int       t3 = _clip_parni(ClipMachineMemory, 4);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 1);
+   int t1 = _clip_parni(ClipMemoryStore, 1);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int t2 = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l);
+   unsigned char *s3 = (unsigned char *) _clip_parc(ClipMemoryStore, 4);
+   int t3 = _clip_parni(ClipMemoryStore, 4);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "RANGEREPL");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "RANGEREPL");
+      }
    ch1 = s1 == NULL ? t1 : *s1;
    ch1 = _clip_cmptbl[ch1];
    ch2 = s2 == NULL ? t2 : *s2;
@@ -2175,45 +1946,41 @@ clip_RANGEREPL(ClipMachine * ClipMachineMemory)
    ch3 = ch3 == 0 ? ' ' : ch3;
    ch3 = _clip_cmptbl[ch3];
    if (ch1 > ch2)
-    {
-       ch = ch1;
-       ch1 = ch2;
-       ch1 = ch;
-    }
+      {
+	 ch = ch1;
+	 ch1 = ch2;
+	 ch1 = ch;
+      }
    ret = malloc(l + 1);
    for (e = str, r = ret, end = str + l; e < end; e++, r++)
-    {
-       ch = _clip_cmptbl[*e];
-       if (ch >= ch1 && ch <= ch2)
-	  *r = ch3;
-       else
-	  *r = *e;
-    }
+      {
+	 ch = _clip_cmptbl[*e];
+	 if (ch >= ch1 && ch <= ch2)
+	    *r = ch3;
+	 else
+	    *r = *e;
+      }
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 2))
-      _clip_par_assign_str(ClipMachineMemory, 2, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 2))
+      _clip_par_assign_str(ClipMemoryStore, 2, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_REMALL(ClipMachine * ClipMachineMemory)
+clip_REMALL(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl;
-
+   int l, rl;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REMALL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REMALL");
+      }
    ch = s == NULL ? ch : *s;
    ch = ch == 0 ? ' ' : ch;
    ret = malloc(l + 1);
@@ -2224,56 +1991,48 @@ clip_REMALL(ClipMachine * ClipMachineMemory)
       ret[rl] = 0;
    ret = realloc(ret, rl + 1);
    ret[rl] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_REMLEFT(ClipMachine * ClipMachineMemory)
+clip_REMLEFT(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl;
-
+   int l, rl;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REMLEFT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REMLEFT");
+      }
    ch = s == NULL ? ch : *s;
    ch = ch == 0 ? ' ' : ch;
    ret = malloc(l + 1);
    for (e = str, end = str + l; e < end && (*e == ch); e++);
    rl = l - (e - str);
    memcpy(ret, e, rl);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_REMRIGHT(ClipMachine * ClipMachineMemory)
+clip_REMRIGHT(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl;
-
+   int l, rl;
    unsigned char *ret, *e;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch = _clip_parni(ClipMachineMemory, 2);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REMRIGHT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REMRIGHT");
+      }
    ch = s == NULL ? ch : *s;
    ch = ch == 0 ? ' ' : ch;
    for (e = str + l - 1; e >= str && (*e == ch); e--);
@@ -2281,34 +2040,27 @@ clip_REMRIGHT(ClipMachine * ClipMachineMemory)
    ret = (unsigned char *) malloc(rl + 1);
    memcpy(ret, str, rl);
    ret[rl] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_REPLALL(ClipMachine * ClipMachineMemory)
+clip_REPLALL(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch1 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 3);
-
-   int       ch2 = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch1 = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 3);
+   int ch2 = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s1 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLALL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLALL");
+      }
    ch1 = s1 == NULL ? ch1 : *s1;
    ch1 = ch1 == 0 ? ' ' : ch1;
    ch2 = s2 == NULL ? ch2 : *s2;
@@ -2319,36 +2071,29 @@ clip_REPLALL(ClipMachine * ClipMachineMemory)
       *e = ch1;
    for (e = ret + l - 1; e >= ret && (*e == ch2); e--)
       *e = ch1;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_REPLLEFT(ClipMachine * ClipMachineMemory)
+clip_REPLLEFT(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *ret, *e, *end;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch1 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 3);
-
-   int       ch2 = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch1 = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 3);
+   int ch2 = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s1 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLLEFT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLLEFT");
+      }
    ch1 = s1 == NULL ? ch1 : *s1;
    ch1 = ch1 == 0 ? ' ' : ch1;
    ch2 = s2 == NULL ? ch2 : *s2;
@@ -2357,36 +2102,29 @@ clip_REPLLEFT(ClipMachine * ClipMachineMemory)
    memcpy(ret, str, l);
    for (e = ret, end = ret + l; e < end && (*e == ch2); e++)
       *e = ch1;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_REPLRIGHT(ClipMachine * ClipMachineMemory)
+clip_REPLRIGHT(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *ret, *e;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMachineMemory, 2);
-
-   int       ch1 = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMachineMemory, 3);
-
-   int       ch2 = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   unsigned char *s1 = (unsigned char *) _clip_parc(ClipMemoryStore, 2);
+   int ch1 = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s2 = (unsigned char *) _clip_parc(ClipMemoryStore, 3);
+   int ch2 = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL || s1 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLRIGHT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "REPLRIGHT");
+      }
    ch1 = s1 == NULL ? ch1 : *s1;
    ch1 = ch1 == 0 ? ' ' : ch1;
    ch2 = s2 == NULL ? ch2 : *s2;
@@ -2395,196 +2133,180 @@ clip_REPLRIGHT(ClipMachine * ClipMachineMemory)
    memcpy(ret, str, l);
    for (e = ret + l - 1; e >= ret && (*e == ch2); e--)
       *e = ch1;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_SETATLIKE(ClipMachine * ClipMachineMemory)
+clip_SETATLIKE(ClipMachine * ClipMemoryStore)
 {
-   char     *atlike;
+   char *atlike;
 
-   atlike = _clip_fetch_item(ClipMachineMemory, HASH_setatlike);
-   _clip_retni(ClipMachineMemory, atlike[0]);
-   if (_clip_parinfo(ClipMachineMemory, 1) == NUMERIC_type_of_ClipVarType)
-      atlike[0] = _clip_parni(ClipMachineMemory, 1);
-   if (_clip_parinfo(ClipMachineMemory, 1) == LOGICAL_type_of_ClipVarType)
-      atlike[0] = _clip_parl(ClipMachineMemory, 1);
-   if (_clip_parinfo(ClipMachineMemory, 2) == NUMERIC_type_of_ClipVarType)
-      atlike[1] = _clip_parni(ClipMachineMemory, 2);
-   if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-      atlike[1] = *(_clip_parc(ClipMachineMemory, 2));
+   atlike = _clip_fetch_item(ClipMemoryStore, HASH_setatlike);
+   _clip_retni(ClipMemoryStore, atlike[0]);
+   if (_clip_parinfo(ClipMemoryStore, 1) == NUMERIC_type_of_ClipVarType)
+      atlike[0] = _clip_parni(ClipMemoryStore, 1);
+   if (_clip_parinfo(ClipMemoryStore, 1) == LOGICAL_type_of_ClipVarType)
+      atlike[0] = _clip_parl(ClipMemoryStore, 1);
+   if (_clip_parinfo(ClipMemoryStore, 2) == NUMERIC_type_of_ClipVarType)
+      atlike[1] = _clip_parni(ClipMemoryStore, 2);
+   if (_clip_parinfo(ClipMemoryStore, 2) == CHARACTER_type_of_ClipVarType)
+      atlike[1] = *(_clip_parc(ClipMemoryStore, 2));
    return 0;
 }
 
 int
-clip_STRSWAP(ClipMachine * ClipMachineMemory)
+clip_STRSWAP(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, l, i;
-
+   int l1, l2, l, i;
    unsigned char ch;
-
-   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *s1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *s2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (s1 == NULL || s2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "STRSWAP");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "STRSWAP");
+      }
    l = l1 < l2 ? l1 : l2;
    for (i = 0; i < l; i++)
-    {
-       ch = s1[i];
-       s1[i] = s2[i];
-       s2[i] = ch;
-    }
-   _clip_retc(ClipMachineMemory, "");
+      {
+	 ch = s1[i];
+	 s1[i] = s2[i];
+	 s2[i] = ch;
+      }
+   _clip_retc(ClipMemoryStore, "");
    return 0;
 }
 
 int
-clip_TABEXPAND(ClipMachine * ClipMachineMemory)
+clip_TABEXPAND(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl, cur = 0, nt, nl, pos = 0;
-
+   int l, rl, cur = 0, nt, nl, pos = 0;
    unsigned char *e, *end, *beg, *ret, cch;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       tlen = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 3);
-
-   int       ch = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int tlen = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 3);
+   int ch = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    ch = s == NULL ? ch : *s;
    ch = ch == 0 ? ' ' : ch;
    tlen = tlen <= 0 ? 8 : tlen;
    rl = 0;
    ret = malloc(rl + 1);
    for (e = str, beg = str, end = str + l; e < end; e++, cur++)
-    {
+      {
 
-       cch = *e;
-       if (cch == '\n')
-	  cur = -1;
-       if (cch == '\t')
-	{
-	   nt = tlen - (cur % tlen);
-	   cur += nt - 1;
-	   nl = e - beg + nt;
-	   rl += nl;
-	   ret = realloc(ret, rl + 1);
-	   memcpy(ret + pos, beg, e - beg);
-	   pos += e - beg;
-	   memset(ret + pos, ch, nt);
-	   pos += nt;
-	   beg = e + 1;
-	}
-    }
+	 cch = *e;
+	 if (cch == '\n')
+	    cur = -1;
+	 if (cch == '\t')
+	    {
+	       nt = tlen - (cur % tlen);
+	       cur += nt - 1;
+	       nl = e - beg + nt;
+	       rl += nl;
+	       ret = realloc(ret, rl + 1);
+	       memcpy(ret + pos, beg, e - beg);
+	       pos += e - beg;
+	       memset(ret + pos, ch, nt);
+	       pos += nt;
+	       beg = e + 1;
+	    }
+      }
    nl = e - beg;
    rl += nl;
    ret = realloc(ret, rl + 1);
    memcpy(ret + pos, beg, nl);
    ret[rl] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, rl);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, rl);
    return 0;
 }
 
 int
-clip_TABPACK(ClipMachine * ClipMachineMemory)
+clip_TABPACK(ClipMachine * ClipMemoryStore)
 {
-   int       l, rl, cur = 1, pos = 0, kol = 0;
-
+   int l, rl, cur = 1, pos = 0, kol = 0;
    unsigned char *e, *end, *beg, *ret, cch;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       tlen = _clip_parni(ClipMachineMemory, 2);
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 3);
-
-   int       ch = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int tlen = _clip_parni(ClipMemoryStore, 2);
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 3);
+   int ch = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    ch = s == NULL ? ch : *s;
    ch = ch == 0 ? ' ' : ch;
    tlen = tlen <= 0 ? 8 : tlen;
    rl = l;
    ret = malloc(rl + 1);
    for (e = str, beg = str, end = str + l + 1; e < end; e++, cur++)
-    {
-       cch = *e;
-       if (cch == '\n' || cch == '\t')
-	{
-	   cur = -1;
-	   kol = 0;
-	   continue;
-	}
-       if (cch == ch)
-	  kol++;
-       else
-	{
-	   kol = 0;
-	   continue;
-	}
-      //if (((cur + tlen) % tlen) != 0 && kol < tlen)
-       if (((cur + tlen) % tlen) != 0 /*&& kol < 2 */ )
-	  continue;
-       if (kol < 2)
-	  continue;
-       if (cch == ch)
-	  kol--;
-       else if (cch != 0)
-	{
-	   kol = 0;
-	   continue;
-	}
-       memcpy(ret + pos, beg, e - beg - kol);
-       pos += e - beg - kol;
-       ret[pos] = '\t';
-       pos++;
-       beg = e + (cch != 0);
-       kol = 0;
+      {
+	 cch = *e;
+	 if (cch == '\n' || cch == '\t')
+	    {
+	       cur = -1;
+	       kol = 0;
+	       continue;
+	    }
+	 if (cch == ch)
+	    kol++;
+	 else
+	    {
+	       kol = 0;
+	       continue;
+	    }
+	//if (((cur + tlen) % tlen) != 0 && kol < tlen)
+	 if (((cur + tlen) % tlen) != 0 /*&& kol < 2 */ )
+	    continue;
+	 if (kol < 2)
+	    continue;
+	 if (cch == ch)
+	    kol--;
+	 else if (cch != 0)
+	    {
+	       kol = 0;
+	       continue;
+	    }
+	 memcpy(ret + pos, beg, e - beg - kol);
+	 pos += e - beg - kol;
+	 ret[pos] = '\t';
+	 pos++;
+	 beg = e + (cch != 0);
+	 kol = 0;
 
-    }
+      }
    memcpy(ret + pos, beg, e - beg);
    pos += e - beg - 1;
    ret[pos] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, pos);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, pos);
    return 0;
 }
 
 int
-clip_VALPOS(ClipMachine * ClipMachineMemory)
+clip_VALPOS(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
-   int       ret = 0;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       num = _clip_parni(ClipMachineMemory, 2);
+   int l;
+   int ret = 0;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int num = _clip_parni(ClipMemoryStore, 2);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "VALPOS");
-    }
-   if (_clip_parinfo(ClipMachineMemory, 0) < 2)
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "VALPOS");
+      }
+   if (_clip_parinfo(ClipMemoryStore, 0) < 2)
       num = l;
    if (num > 0 && num <= l)
       ret = str[num - 1];
@@ -2592,219 +2314,202 @@ clip_VALPOS(ClipMachine * ClipMachineMemory)
       ret = ret - '0';
    else
       ret = 0;
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_WORDONE(ClipMachine * ClipMachineMemory)
+clip_WORDONE(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, i;
-
-   short    *ret, *str, *e, *end, word = 0, cword = 0;
-
-   short    *str1 = (short *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   short    *str2 = (short *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   int l, l1, l2, i;
+   short *ret, *str, *e, *end, word = 0, cword = 0;
+   short *str1 = (short *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   short *str2 = (short *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    l1 = l1 >> 1;
    l2 = l2 >> 1;
 
    if (str1 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDONE");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDONE");
+      }
    if (str2 != NULL)
-    {
-       l = l2;
-       str = str2;
-       word = *str1;
-    }
+      {
+	 l = l2;
+	 str = str2;
+	 word = *str1;
+      }
    else
-    {
-       l = l1;
-       str = str1;
-    }
+      {
+	 l = l1;
+	 str = str1;
+      }
    ret = malloc((l + 1) * 2);
    cword = *str;
    ret[0] = *str;
    for (e = str + 1, end = str + l, i = 1; e < end; e++)
-    {
-       if (*e == cword && (word == 0 || cword == word))
-	  continue;
-       ret[i] = *e;
-       i++;
-       cword = *e;
-    }
+      {
+	 if (*e == cword && (word == 0 || cword == word))
+	    continue;
+	 ret[i] = *e;
+	 i++;
+	 cword = *e;
+      }
    ret[i] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, i * 2);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, i * 2);
    return 0;
 }
 
 int
-clip_WORDONLY(ClipMachine * ClipMachineMemory)
+clip_WORDONLY(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, i = 0;
-
-   short    *ret, *e1, *end1, *e2, *end2;
-
-   short    *str1 = (short *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   short    *str2 = (short *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   int l1, l2, i = 0;
+   short *ret, *e1, *end1, *e2, *end2;
+   short *str1 = (short *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   short *str2 = (short *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL || str2 == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDONLY");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDONLY");
+      }
    l1 = l1 >> 1;
    l2 = l2 >> 1;
    ret = malloc((l2 + 1) * 2);
    for (e2 = str2, end2 = str2 + l2; e2 < end2; e2++)
-    {
-       for (e1 = str1, end1 = str1 + l1; e1 < end1 && *e2 != *e1; e1++);
-       if (*e1 != *e2)
-	  continue;
-       ret[i] = *e2;
-       i++;
-    }
+      {
+	 for (e1 = str1, end1 = str1 + l1; e1 < end1 && *e2 != *e1; e1++);
+	 if (*e1 != *e2)
+	    continue;
+	 ret[i] = *e2;
+	 i++;
+      }
    ret[i] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, i * 2);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, i * 2);
    return 0;
 }
 
 int
-clip_WORDREPL(ClipMachine * ClipMachineMemory)
+clip_WORDREPL(ClipMachine * ClipMemoryStore)
 {
-   int       l, l1, l2, l3, sovp = 0, rcur;
-
-   short    *ret, *cur, *s, *e1, *e2, *end, *send, *buf;
-
-   short    *sstr = (short *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   short    *str = (short *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   short    *rstr = (short *) _clip_parcl(ClipMachineMemory, 3, &l3);
-
-   int       flag = _clip_parl(ClipMachineMemory, 4);
-
-   int       count = _clip_parni(ClipMachineMemory, 5);
-
-   int       cset = (*(unsigned char *) _clip_fetch_item(ClipMachineMemory, HASH_csetatmupa)) == 't';
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   int l, l1, l2, l3, sovp = 0, rcur;
+   short *ret, *cur, *s, *e1, *e2, *end, *send, *buf;
+   short *sstr = (short *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   short *str = (short *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   short *rstr = (short *) _clip_parcl(ClipMemoryStore, 3, &l3);
+   int flag = _clip_parl(ClipMemoryStore, 4);
+   int count = _clip_parni(ClipMemoryStore, 5);
+   int cset = (*(unsigned char *) _clip_fetch_item(ClipMemoryStore, HASH_csetatmupa)) == 't';
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (sstr == NULL || str == NULL || rstr == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDREPL");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDREPL");
+      }
    if (count < 0)
       count = 0;
    buf = str;
    if (l1 == 0)
-    {
-       _clip_retcn(ClipMachineMemory, (char *) str, l2);
-       return 0;
-    }
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) str, l2);
+	 return 0;
+      }
    l1 = l1 >> 1;
    l2 = l2 >> 1;
    l3 = l3 >> 1;
    while (1)
-    {
-       l = 0;
-       ret = malloc((l + 1) * 2);
-       e1 = buf;
-       cur = buf;
-       end = buf + l2;
-       send = sstr + l1;
-       for (sovp = 0, rcur = 0; e1 < end; e1++)
-	{
-	   if (*e1 != *sstr)
-	      continue;
-	   for (s = sstr, e2 = e1; s < send && e2 < end && *s == *e2; s++, e2++);
-	   if (s != send)
-	      continue;
-	   sovp++;
-	  /*
-	     if (flag && (sovp!=count || count==0))
-	     continue;
-	   */
-	   l += e1 - cur + l3;
-	   ret = realloc(ret, (l + 1) * 2);
-	   memcpy(ret + rcur, cur, (e1 - cur) * 2);
-	   rcur += e1 - cur;
-	   memcpy(ret + rcur, rstr, l3 * 2);
-	   rcur += l3;
-	   e1 = e2 - 1;
-	   cur = e2;
-	   if (count != 0 && sovp == count)
+      {
+	 l = 0;
+	 ret = malloc((l + 1) * 2);
+	 e1 = buf;
+	 cur = buf;
+	 end = buf + l2;
+	 send = sstr + l1;
+	 for (sovp = 0, rcur = 0; e1 < end; e1++)
 	    {
-	       e1 = end;
-	       break;
+	       if (*e1 != *sstr)
+		  continue;
+	       for (s = sstr, e2 = e1; s < send && e2 < end && *s == *e2; s++, e2++);
+	       if (s != send)
+		  continue;
+	       sovp++;
+	      /*
+	         if (flag && (sovp!=count || count==0))
+	         continue;
+	       */
+	       l += e1 - cur + l3;
+	       ret = realloc(ret, (l + 1) * 2);
+	       memcpy(ret + rcur, cur, (e1 - cur) * 2);
+	       rcur += e1 - cur;
+	       memcpy(ret + rcur, rstr, l3 * 2);
+	       rcur += l3;
+	       e1 = e2 - 1;
+	       cur = e2;
+	       if (count != 0 && sovp == count)
+		  {
+		     e1 = end;
+		     break;
+		  }
 	    }
-	}
-       l += e1 - cur;
-       ret = realloc(ret, (l + 1) * 2);
-       memcpy(ret + rcur, cur, (e1 - cur) * 2);
-       ret[l] = 0;
-       if (buf != str)
-	  free(buf);
-       if (!cset || sovp == 0 || flag || count != 0)
-	  break;
-       buf = malloc((l + 1) * 2);
-       memcpy(buf, ret, l * 2);
-       l2 = l;
-       free(ret);
-    }
-   if (rset && _clip_par_isref(ClipMachineMemory, 2))
-      _clip_par_assign_str(ClipMachineMemory, 2, (char *) ret, l * 2);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l * 2);
+	 l += e1 - cur;
+	 ret = realloc(ret, (l + 1) * 2);
+	 memcpy(ret + rcur, cur, (e1 - cur) * 2);
+	 ret[l] = 0;
+	 if (buf != str)
+	    free(buf);
+	 if (!cset || sovp == 0 || flag || count != 0)
+	    break;
+	 buf = malloc((l + 1) * 2);
+	 memcpy(buf, ret, l * 2);
+	 l2 = l;
+	 free(ret);
+      }
+   if (rset && _clip_par_isref(ClipMemoryStore, 2))
+      _clip_par_assign_str(ClipMemoryStore, 2, (char *) ret, l * 2);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l * 2);
    return 0;
 }
 
 int
-clip_WORDSWAP(ClipMachine * ClipMachineMemory)
+clip_WORDSWAP(ClipMachine * ClipMemoryStore)
 {
-   int       l, i;
-
-   short    *ret = 0, ch;
-
-   short    *str = (short *) _clip_parcl(ClipMachineMemory, 1, &l);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   int l, i;
+   short *ret = 0, ch;
+   short *str = (short *) _clip_parcl(ClipMemoryStore, 1, &l);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    l = l >> 1;
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDSWAP");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "WORDSWAP");
+      }
    ret = malloc((l + 1) * 2);
    for (i = 0; i < l; i += 2)
-    {
-       if (i < l - 1)
-	{
-	   ch = str[i];
-	   ret[i] = str[i + 1];
-	   ret[i + 1] = ch;
-	}
-       else
-	  ret[i] = str[i];
-    }
+      {
+	 if (i < l - 1)
+	    {
+	       ch = str[i];
+	       ret[i] = str[i + 1];
+	       ret[i + 1] = ch;
+	    }
+	 else
+	    ret[i] = str[i];
+      }
    ret[l] = 0;
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l * 2);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l * 2);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l * 2);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l * 2);
    return 0;
 }
 
 int
-clip_WORDTOCHAR(ClipMachine * ClipMachineMemory)
+clip_WORDTOCHAR(ClipMachine * ClipMemoryStore)
 {
-   return clip_ATREPL(ClipMachineMemory);
+   return clip_ATREPL(ClipMemoryStore);
 }
 
 // token family function
@@ -2813,14 +2518,13 @@ unsigned char *
 _clip_attoken(unsigned char *str, int l1, unsigned char *str2, int l2, int count)
 {
    unsigned char *e1, *e2, *s, *dstr, *end, *send, *ret, *ret1;
-
-   int       sovp = 1;
+   int sovp = 1;
 
    if (str2 == NULL)
-    {
-       dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
-       l2 = CLIP_TOKEN_CHARS_NUM;
-    }
+      {
+	 dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
+	 l2 = CLIP_TOKEN_CHARS_NUM;
+      }
    else
       dstr = str2;
    end = str + l1;
@@ -2828,24 +2532,24 @@ _clip_attoken(unsigned char *str, int l1, unsigned char *str2, int l2, int count
    ret = str;
    ret1 = NULL;
    for (e1 = str; e1 <= end - l2; e1++)
-    {
-       for (e2 = e1, s = dstr; s <= send && e2 <= end && *s != *e2; s++, e2++);
-       if (*e2 != *s)
-	  continue;
-       if (sovp == count)
-	  break;
-       if (e1 != str)
-	  sovp++;
-       ret = e1 + l2;
-       if (e2 >= end - l2)
-	  break;
-       if (ret < end)
-	  ret1 = ret;
-      /*
-         printf("\ncount=%d,l1=%d,e2=%d,ret1=%d,ret=%d",count,l1,e2-end,ret1-str,ret-str);
-       */
+      {
+	 for (e2 = e1, s = dstr; s <= send && e2 <= end && *s != *e2; s++, e2++);
+	 if (*e2 != *s)
+	    continue;
+	 if (sovp == count)
+	    break;
+	 if (e1 != str)
+	    sovp++;
+	 ret = e1 + l2;
+	 if (e2 >= end - l2)
+	    break;
+	 if (ret < end)
+	    ret1 = ret;
+	/*
+	   printf("\ncount=%d,l1=%d,e2=%d,ret1=%d,ret=%d",count,l1,e2-end,ret1-str,ret-str);
+	 */
 
-    }
+      }
   /*
      printf("\ncount=%d,ret1=%d,ret=%d\n",count,ret1-str,ret-str);
    */
@@ -2857,40 +2561,36 @@ _clip_attoken(unsigned char *str, int l1, unsigned char *str2, int l2, int count
 }
 
 int
-clip_ATTOKEN(ClipMachine * ClipMachineMemory)
+clip_ATTOKEN(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, ret;
-
+   int l1, l2, ret;
   /*int lflag = 0 ; */
    unsigned char *beg;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *dstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int count = 0xffff;
 
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *dstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       count = 0xffff;
-
-   if (_clip_parinfo(ClipMachineMemory, 2) == NUMERIC_type_of_ClipVarType)
-      count = _clip_parni(ClipMachineMemory, 2);
-   if (_clip_parinfo(ClipMachineMemory, 3) == NUMERIC_type_of_ClipVarType)
-      count = _clip_parni(ClipMachineMemory, 3);
+   if (_clip_parinfo(ClipMemoryStore, 2) == NUMERIC_type_of_ClipVarType)
+      count = _clip_parni(ClipMemoryStore, 2);
+   if (_clip_parinfo(ClipMemoryStore, 3) == NUMERIC_type_of_ClipVarType)
+      count = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "ATTOKEN");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "ATTOKEN");
+      }
    if (dstr == NULL)
-    {
-       dstr = (unsigned char *) ("\\ \t\n\r,.;:!?/<<>>()^#&%+-*");
-       l2 = strlen((const char *) dstr);
-    }
+      {
+	 dstr = (unsigned char *) ("\\ \t\n\r,.;:!?/<<>>()^#&%+-*");
+	 l2 = strlen((const char *) dstr);
+      }
 
    if (count <= 0)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return 0;
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return 0;
+      }
 
   /*
      if ( count != 0xFFFF )
@@ -2921,37 +2621,33 @@ clip_ATTOKEN(ClipMachine * ClipMachineMemory)
    */
    if (ret > l1)
       ret = l1;
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-clip_NUMTOKEN(ClipMachine * ClipMachineMemory)
+clip_NUMTOKEN(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, ret = 0, nt;
-
+   int l1, l2, ret = 0, nt;
    unsigned char *e, *end, *send, *dstr, *buf;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       tlen = _clip_parni(ClipMachineMemory, 3);
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int tlen = _clip_parni(ClipMemoryStore, 3);
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return 0;
-      /*
-         return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMTOKEN");
-       */
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return 0;
+	/*
+	   return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "NUMTOKEN");
+	 */
+      }
 
    if (sstr == NULL)
-    {
-       dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
-       l2 = CLIP_TOKEN_CHARS_NUM;
-    }
+      {
+	 dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
+	 l2 = CLIP_TOKEN_CHARS_NUM;
+      }
    else
       dstr = sstr;
 
@@ -2967,43 +2663,38 @@ clip_NUMTOKEN(ClipMachine * ClipMachineMemory)
 
    for (e = str; e < end && buf[(int) (*e)]; e++);
    for (; e < end;)
-    {
-       for (; e < end && !buf[(int) (*e)]; e++);
-       for (nt = 0; nt < tlen && e < end && buf[(int) (*e)]; e++, nt++);
-       ret++;
+      {
+	 for (; e < end && !buf[(int) (*e)]; e++);
+	 for (nt = 0; nt < tlen && e < end && buf[(int) (*e)]; e++, nt++);
+	 ret++;
 
-    }
+      }
    free(buf);
-   _clip_retni(ClipMachineMemory, ret);
+   _clip_retni(ClipMemoryStore, ret);
    return 0;
 }
 
 int
-_clip_token_case(ClipMachine * ClipMachineMemory, int flag)
+_clip_token_case(ClipMachine * ClipMemoryStore, int flag)
 {
-   int       l1, l2, count = 0;
-
+   int l1, l2, count = 0;
    unsigned char *e, *end, *dstr, *buf, *ret;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       num = _clip_parni(ClipMachineMemory, 3);
-
-   int       rset = (*(char *) (_clip_fetch_item(ClipMachineMemory, HASH_csetref)) == 't');
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int num = _clip_parni(ClipMemoryStore, 3);
+   int rset = (*(char *) (_clip_fetch_item(ClipMemoryStore, HASH_csetref)) == 't');
 
    if (str == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "CLIP_TOKEN");
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "CLIP_TOKEN");
+      }
 
    if (sstr == NULL)
-    {
-       dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
-       l2 = CLIP_TOKEN_CHARS_NUM;
-    }
+      {
+	 dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
+	 l2 = CLIP_TOKEN_CHARS_NUM;
+      }
    else
       dstr = sstr;
 
@@ -3018,115 +2709,105 @@ _clip_token_case(ClipMachine * ClipMachineMemory, int flag)
    for (; end > ret && buf[(int) (*end)]; end--);
    end++;
    for (e = ret; e < end;)
-    {
-       for (; e < end && !buf[(int) (*e)]; e++);
-       for (; e < end && buf[(int) (*e)]; e++);
-       if (e == end)
-	  break;
-       count++;
-       if (count > num && num != 0)
-	  break;
+      {
+	 for (; e < end && !buf[(int) (*e)]; e++);
+	 for (; e < end && buf[(int) (*e)]; e++);
+	 if (e == end)
+	    break;
+	 count++;
+	 if (count > num && num != 0)
+	    break;
 
-       if (flag)
-	  *e = _clip_uptbl[*e];
-       else
-	  *e = _clip_lowtbl[*e];
+	 if (flag)
+	    *e = _clip_uptbl[*e];
+	 else
+	    *e = _clip_lowtbl[*e];
 
-    }
+      }
    free(buf);
-   if (rset && _clip_par_isref(ClipMachineMemory, 1))
-      _clip_par_assign_str(ClipMachineMemory, 1, (char *) ret, l1);
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l1);
+   if (rset && _clip_par_isref(ClipMemoryStore, 1))
+      _clip_par_assign_str(ClipMemoryStore, 1, (char *) ret, l1);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l1);
    return 0;
 }
 
 int
-clip_TOKENLOWER(ClipMachine * ClipMachineMemory)
+clip_TOKENLOWER(ClipMachine * ClipMemoryStore)
 {
-   return _clip_token_case(ClipMachineMemory, 0);
+   return _clip_token_case(ClipMemoryStore, 0);
 }
 
 int
-clip_TOKENUPPER(ClipMachine * ClipMachineMemory)
+clip_TOKENUPPER(ClipMachine * ClipMemoryStore)
 {
-   return _clip_token_case(ClipMachineMemory, 1);
+   return _clip_token_case(ClipMemoryStore, 1);
 }
 
 int
-clip_TOKENSEP(ClipMachine * ClipMachineMemory)
+clip_TOKENSEP(ClipMachine * ClipMemoryStore)
 {
-   int       flag = _clip_parl(ClipMachineMemory, 1);
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
+   int flag = _clip_parl(ClipMemoryStore, 1);
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
    atsep += 3 * sizeof(int);
 
    if (flag)
       atsep += 2;
-   _clip_retcn(ClipMachineMemory, atsep, 1);
+   _clip_retcn(ClipMemoryStore, atsep, 1);
    return 0;
 }
 
 int
-clip_TOKENAT(ClipMachine * ClipMachineMemory)
+clip_TOKENAT(ClipMachine * ClipMemoryStore)
 {
-   int       flag = _clip_parl(ClipMachineMemory, 1);
-
-   int      *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
+   int flag = _clip_parl(ClipMemoryStore, 1);
+   int *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
 
    atsep++;
    if (flag)
       atsep++;
-   _clip_retni(ClipMachineMemory, *atsep);
+   _clip_retni(ClipMemoryStore, *atsep);
    return 0;
 }
 
 int
-clip_TOKENINIT(ClipMachine * ClipMachineMemory)
+clip_TOKENINIT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, aaa = 3 * sizeof(int) + 4;
-
+   int l1, l2, aaa = 3 * sizeof(int) + 4;
    unsigned char *e, *dstr, *tstr;
+   int *tmp;
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int tlen = _clip_parni(ClipMemoryStore, 3);
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
+   unsigned char *buf = _clip_fetch_item(ClipMemoryStore, HASH_token_delimiters);
 
-   int      *tmp;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       tlen = _clip_parni(ClipMachineMemory, 3);
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
-   unsigned char *buf = _clip_fetch_item(ClipMachineMemory, HASH_token_delimiters);
-
-   if (_clip_parinfo(ClipMachineMemory, 0) == 0)
-    {
-       memset(atsep, 0, aaa);
-       _clip_retl(ClipMachineMemory, 1);
-       return 0;
-    }
+   if (_clip_parinfo(ClipMemoryStore, 0) == 0)
+      {
+	 memset(atsep, 0, aaa);
+	 _clip_retl(ClipMemoryStore, 1);
+	 return 0;
+      }
 
    if (str == NULL)
-    {
-       _clip_retl(ClipMachineMemory, 0);
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKENINIT");
-    }
+      {
+	 _clip_retl(ClipMemoryStore, 0);
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKENINIT");
+      }
    memset(atsep, 0, 5 * sizeof(int) + 4);
 
-   _clip_free_item(ClipMachineMemory, HASH_token_string);
+   _clip_free_item(ClipMemoryStore, HASH_token_string);
    tstr = malloc(l1 + 1);
    memcpy(tstr, str, l1);
    tstr[l1] = 0;
-   _clip_store_item(ClipMachineMemory, HASH_token_string, tstr);
+   _clip_store_item(ClipMemoryStore, HASH_token_string, tstr);
    tmp = (int *) (atsep + aaa);
    *tmp = l1;
 
    if (sstr == NULL)
-    {
-       dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
-       l2 = CLIP_TOKEN_CHARS_NUM;
-    }
+      {
+	 dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
+	 l2 = CLIP_TOKEN_CHARS_NUM;
+      }
    else
       dstr = sstr;
 
@@ -3137,22 +2818,18 @@ clip_TOKENINIT(ClipMachine * ClipMachineMemory)
 
    *tmp = tlen;
 
-   _clip_retl(ClipMachineMemory, 1);
+   _clip_retl(ClipMemoryStore, 1);
    return 0;
 }
 
 int
-clip_SAVETOKEN(ClipMachine * ClipMachineMemory)
+clip_SAVETOKEN(ClipMachine * ClipMemoryStore)
 {
-   int       l, len_str, tmp = 3 * sizeof(int) + 4;
-
+   int l, len_str, tmp = 3 * sizeof(int) + 4;
    unsigned char *ret;
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
-   void     *str = _clip_fetch_item(ClipMachineMemory, HASH_token_string);
-
-   void     *del = _clip_fetch_item(ClipMachineMemory, HASH_token_delimiters);
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
+   void *str = _clip_fetch_item(ClipMemoryStore, HASH_token_string);
+   void *del = _clip_fetch_item(ClipMemoryStore, HASH_token_delimiters);
 
    len_str = *((int *) (atsep + tmp));
    l = tmp + 2 * sizeof(int) + len_str + 256;
@@ -3164,85 +2841,74 @@ clip_SAVETOKEN(ClipMachine * ClipMachineMemory)
    memcpy(ret + tmp, str, len_str);
    memcpy(ret + tmp + len_str, del, 256);
    ret[l] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
    return 0;
 }
 
 int
-clip_RESTTOKEN(ClipMachine * ClipMachineMemory)
+clip_RESTTOKEN(ClipMachine * ClipMemoryStore)
 {
-   int       l, len_str, tmp1 = 3 * sizeof(int) + 4, tmp2 = 5 * sizeof(int) + 4;
-
-   void     *atsep, *del;
-
+   int l, len_str, tmp1 = 3 * sizeof(int) + 4, tmp2 = 5 * sizeof(int) + 4;
+   void *atsep, *del;
    unsigned char *str;
-
-   unsigned char *s = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
+   unsigned char *s = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
 
    if (s == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "RESTTOKEN");
-    }
-   _clip_free_item(ClipMachineMemory, HASH_token_atsep);
-   _clip_free_item(ClipMachineMemory, HASH_token_string);
-   _clip_free_item(ClipMachineMemory, HASH_token_delimiters);
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "RESTTOKEN");
+      }
+   _clip_free_item(ClipMemoryStore, HASH_token_atsep);
+   _clip_free_item(ClipMemoryStore, HASH_token_string);
+   _clip_free_item(ClipMemoryStore, HASH_token_delimiters);
    atsep = calloc(tmp2, 1);
    memcpy(atsep, s, tmp2);
-   _clip_store_item(ClipMachineMemory, HASH_token_atsep, atsep);
+   _clip_store_item(ClipMemoryStore, HASH_token_atsep, atsep);
    len_str = *((int *) (s + tmp1));
    str = malloc(len_str + 1);
    memcpy(str, s + tmp2, len_str);
    str[len_str] = 0;
-   _clip_store_item(ClipMachineMemory, HASH_token_string, str);
+   _clip_store_item(ClipMemoryStore, HASH_token_string, str);
    del = malloc(256);
    memcpy(del, s + tmp2 + len_str, 256);
-   _clip_store_item(ClipMachineMemory, HASH_token_delimiters, del);
+   _clip_store_item(ClipMemoryStore, HASH_token_delimiters, del);
 
-   _clip_retc(ClipMachineMemory, "");
+   _clip_retc(ClipMemoryStore, "");
    return 0;
 }
 
 int
-clip_TOKEN(ClipMachine * ClipMachineMemory)
+clip_TOKEN(ClipMachine * ClipMemoryStore)
 {
-   int       l1, l2, count = 1, nt, *tmp1;
-
+   int l1, l2, count = 1, nt, *tmp1;
    unsigned char *e, *end, *dstr, *buf, *ret, *tbeg, *tend, *tmp2, tsep;
-
-   unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
-
-   int       num = _clip_parni(ClipMachineMemory, 3);
-
-   int       tlen = _clip_parni(ClipMachineMemory, 4);
-
-   int       ignore = _clip_parni(ClipMachineMemory, 5);
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
+   unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
+   int num = _clip_parni(ClipMemoryStore, 3);
+   int tlen = _clip_parni(ClipMemoryStore, 4);
+   int ignore = _clip_parni(ClipMemoryStore, 5);
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
    tmp2 = atsep + 3 * sizeof(int);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKEN");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKEN");
+      }
 
-   if (_clip_parinfo(ClipMachineMemory, 2) == NUMERIC_type_of_ClipVarType)
-    {
-       num = _clip_parni(ClipMachineMemory, 2);
-       sstr = NULL;
-    }
-   if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
-      sstr = (unsigned char *) _clip_parcl(ClipMachineMemory, 3, &l2);
+   if (_clip_parinfo(ClipMemoryStore, 2) == NUMERIC_type_of_ClipVarType)
+      {
+	 num = _clip_parni(ClipMemoryStore, 2);
+	 sstr = NULL;
+      }
+   if (_clip_parinfo(ClipMemoryStore, 3) == CHARACTER_type_of_ClipVarType)
+      sstr = (unsigned char *) _clip_parcl(ClipMemoryStore, 3, &l2);
 
    if (sstr == NULL)
-    {
-       dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
-       l2 = CLIP_TOKEN_CHARS_NUM;
-    }
+      {
+	 dstr = (unsigned char *) CLIP_TOKEN_CHARACTERS;
+	 l2 = CLIP_TOKEN_CHARS_NUM;
+      }
    else
       dstr = sstr;
    if (tlen <= 0)
@@ -3259,30 +2925,30 @@ clip_TOKEN(ClipMachine * ClipMachineMemory)
    *tmp2 = 0;
    *(tmp2 + 2) = *tend;
    for (e = str + ignore; e < end;)
-    {
-       for (; e < end && !buf[(int) (*e)]; e++);
-       if (e == end)
-	  break;
-       tsep = *e;
-       if (count == num && num != 0)
-	{
-	   *(tmp2 + 2) = *(e);
-	   tend = e;
-	}
-       for (nt = 0; nt < tlen && e < end && buf[(int) (*e)]; e++, nt++);
-       count++;
-       if (count == num || num == 0)
-	{
-	   *tmp2 = tsep;
-	   tbeg = e;
-	}
-    }
+      {
+	 for (; e < end && !buf[(int) (*e)]; e++);
+	 if (e == end)
+	    break;
+	 tsep = *e;
+	 if (count == num && num != 0)
+	    {
+	       *(tmp2 + 2) = *(e);
+	       tend = e;
+	    }
+	 for (nt = 0; nt < tlen && e < end && buf[(int) (*e)]; e++, nt++);
+	 count++;
+	 if (count == num || num == 0)
+	    {
+	       *tmp2 = tsep;
+	       tbeg = e;
+	    }
+      }
    if (count < num)
-    {
-       free(buf);
-       _clip_retc(ClipMachineMemory, "");
-       return 0;
-    }
+      {
+	 free(buf);
+	 _clip_retc(ClipMemoryStore, "");
+	 return 0;
+      }
    tbeg = tbeg > tend ? tend : tbeg;
    ret = malloc(tend - tbeg + 1);
    memcpy(ret, tbeg, tend - tbeg);
@@ -3294,7 +2960,7 @@ clip_TOKEN(ClipMachine * ClipMachineMemory)
    tmp1++;
    *tmp1 = tend - str + 1;
 
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, tend - tbeg);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, tend - tbeg);
    free(buf);
    return 0;
 }
@@ -3302,33 +2968,27 @@ clip_TOKEN(ClipMachine * ClipMachineMemory)
 #define D20070313
 
 int
-clip_TOKENNEXT(ClipMachine * ClipMachineMemory)
+clip_TOKENNEXT(ClipMachine * ClipMemoryStore)
 {
-   int       l1, nt, *tmp1, tlen;
-
+   int l1, nt, *tmp1, tlen;
 #ifndef  D20070313
    unsigned char ch;
 #endif
    unsigned char *e, *end, *ret, *tbeg, *tend, *tmp2;
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
-   unsigned char *str = _clip_fetch_item(ClipMachineMemory, HASH_token_string);
-
-   unsigned char *buf = (unsigned char *) _clip_fetch_item(ClipMachineMemory, HASH_token_delimiters);
-
-   int       ignore = *((int *) atsep);
-
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
+   unsigned char *str = _clip_fetch_item(ClipMemoryStore, HASH_token_string);
+   unsigned char *buf = (unsigned char *) _clip_fetch_item(ClipMemoryStore, HASH_token_delimiters);
+   int ignore = *((int *) atsep);
    tmp2 = atsep + 3 * sizeof(int);
 
    l1 = *(int *) (tmp2 + 4);
    tlen = *((int *) (tmp2 + 4) + 1);
 
    if (str == NULL)
-    {
-       _clip_retc(ClipMachineMemory, "");
-       return _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKENNEXT");
-    }
+      {
+	 _clip_retc(ClipMemoryStore, "");
+	 return _clip_trap_err(ClipMemoryStore, EG_ARG, 0, 0, __FILE__, __LINE__, "TOKENNEXT");
+      }
 
    if (tlen <= 0)
       tlen = CLIP_TOKEN_MAXLEN;
@@ -3355,7 +3015,7 @@ clip_TOKENNEXT(ClipMachine * ClipMachineMemory)
    ret = malloc(tend - tbeg + 1);
    memcpy(ret, tbeg, tend - tbeg);
    ret[tend - tbeg] = 0;
-   _clip_retcn_m(ClipMachineMemory, (char *) ret, tend - tbeg);
+   _clip_retcn_m(ClipMemoryStore, (char *) ret, tend - tbeg);
 #ifndef  D20070313
    for (ch = *e; e < end && ch == *e; e++);
    tend = e;
@@ -3371,176 +3031,164 @@ clip_TOKENNEXT(ClipMachine * ClipMachineMemory)
 }
 
 int
-clip_TOKENEND(ClipMachine * ClipMachineMemory)
+clip_TOKENEND(ClipMachine * ClipMemoryStore)
 {
-   int       end, len;
-
-   void     *atsep = _clip_fetch_item(ClipMachineMemory, HASH_token_atsep);
-
+   int end, len;
+   void *atsep = _clip_fetch_item(ClipMemoryStore, HASH_token_atsep);
    atsep += 2 * sizeof(int);
 
    end = *((int *) atsep);
    atsep += sizeof(int) + 4;
 
    len = *((int *) atsep);
-   _clip_retl(ClipMachineMemory, end >= len);
+   _clip_retl(ClipMemoryStore, end >= len);
    return 0;
 }
 
 int
-clip_BLANK(ClipMachine * ClipMachineMemory)
+clip_BLANK(ClipMachine * ClipMemoryStore)
 {
-   int       l;
-
+   int l;
    unsigned char *str, *ret;
-
-   int       t = _clip_parinfo(ClipMachineMemory, 1);
-
-   int       flag = _clip_parl(ClipMachineMemory, 2);
+   int t = _clip_parinfo(ClipMemoryStore, 1);
+   int flag = _clip_parl(ClipMemoryStore, 2);
 
    if (t == UNDEF_type_of_ClipVarType || t == LOGICAL_type_of_ClipVarType)
-      _clip_retl(ClipMachineMemory, 0);
+      _clip_retl(ClipMemoryStore, 0);
 
    if (t == NUMERIC_type_of_ClipVarType)
-      _clip_retndp(ClipMachineMemory, 0, 10, 0);
+      _clip_retndp(ClipMemoryStore, 0, 10, 0);
 
    if (t == DATE_type_of_ClipVarType)
-      _clip_retdj(ClipMachineMemory, 0);
+      _clip_retdj(ClipMemoryStore, 0);
 
    if (t == CHARACTER_type_of_ClipVarType && !flag)
-      _clip_retc(ClipMachineMemory, "");
+      _clip_retc(ClipMemoryStore, "");
 
    if (t == CHARACTER_type_of_ClipVarType && flag)
-    {
-       str = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l);
-       ret = malloc(l + 1);
-       memset(ret, ' ', l);
-       ret[l] = 0;
-       _clip_retcn_m(ClipMachineMemory, (char *) ret, l);
-    }
+      {
+	 str = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l);
+	 ret = malloc(l + 1);
+	 memset(ret, ' ', l);
+	 ret[l] = 0;
+	 _clip_retcn_m(ClipMemoryStore, (char *) ret, l);
+      }
    return 0;
 }
 
 int
-clip_COMPLEMENT(ClipMachine * ClipMachineMemory)
+clip_COMPLEMENT(ClipMachine * ClipMemoryStore)
 {
-   int       len, dec;
-
-   long      d1, d2;
-
-   int       t = _clip_parinfo(ClipMachineMemory, 1);
+   int len, dec;
+   long d1, d2;
+   int t = _clip_parinfo(ClipMemoryStore, 1);
 
    switch (t)
-    {
-    case LOGICAL_type_of_ClipVarType:
-       _clip_retl(ClipMachineMemory, _clip_parl(ClipMachineMemory, 1));
-       break;
-    case NUMERIC_type_of_ClipVarType:
-       _clip_parp(ClipMachineMemory, 1, &len, &dec);
-       _clip_retndp(ClipMachineMemory, 0.00 - _clip_parnd(ClipMachineMemory, 1), len, dec);
-       break;
-    case CHARACTER_type_of_ClipVarType:
-       clip_CHARNOT(ClipMachineMemory);
-       break;
-    case DATE_type_of_ClipVarType:
-       d1 = _clip_jdate(1, 1, 3000);
-       d2 = _clip_pardj(ClipMachineMemory, 1);
-       if (d2 == 0)
-	  _clip_retdj(ClipMachineMemory, d1);
-       else
-	  _clip_retdj(ClipMachineMemory, d1 - d2 + _clip_jdate(7, 1, 0));
-       break;
-    }
+      {
+      case LOGICAL_type_of_ClipVarType:
+	 _clip_retl(ClipMemoryStore, _clip_parl(ClipMemoryStore, 1));
+	 break;
+      case NUMERIC_type_of_ClipVarType:
+	 _clip_parp(ClipMemoryStore, 1, &len, &dec);
+	 _clip_retndp(ClipMemoryStore, 0.00 - _clip_parnd(ClipMemoryStore, 1), len, dec);
+	 break;
+      case CHARACTER_type_of_ClipVarType:
+	 clip_CHARNOT(ClipMemoryStore);
+	 break;
+      case DATE_type_of_ClipVarType:
+	 d1 = _clip_jdate(1, 1, 3000);
+	 d2 = _clip_pardj(ClipMemoryStore, 1);
+	 if (d2 == 0)
+	    _clip_retdj(ClipMemoryStore, d1);
+	 else
+	    _clip_retdj(ClipMemoryStore, d1 - d2 + _clip_jdate(7, 1, 0));
+	 break;
+      }
    return 0;
 }
 
 int
-clip_NUL(ClipMachine * ClipMachineMemory)
+clip_NUL(ClipMachine * ClipMemoryStore)
 {
-   _clip_retc(ClipMachineMemory, "");
+   _clip_retc(ClipMemoryStore, "");
    return 0;
 }
 
 int
-clip_TOOLVER(ClipMachine * ClipMachineMemory)
+clip_TOOLVER(ClipMachine * ClipMemoryStore)
 {
-   _clip_retc(ClipMachineMemory, "0.00");
+   _clip_retc(ClipMemoryStore, "0.00");
    return 0;
 }
 
 int
-clip_NUMCOUNT(ClipMachine * ClipMachineMemory)
+clip_NUMCOUNT(ClipMachine * ClipMemoryStore)
 {
-   long     *count = (long *) _clip_fetch_item(ClipMachineMemory, HASH_numcount);
-
-   int       par = _clip_parinfo(ClipMachineMemory, 0);
+   long *count = (long *) _clip_fetch_item(ClipMemoryStore, HASH_numcount);
+   int par = _clip_parinfo(ClipMemoryStore, 0);
 
    if (par == 1)
-      *count += _clip_parnl(ClipMachineMemory, 1);
+      *count += _clip_parnl(ClipMemoryStore, 1);
    if (par == 2)
-      *count = _clip_parnl(ClipMachineMemory, 1);
-   _clip_retnl(ClipMachineMemory, *count);
+      *count = _clip_parnl(ClipMemoryStore, 1);
+   _clip_retnl(ClipMemoryStore, *count);
    return 0;
 }
 
 int
-clip_CSCOUNT(ClipMachine * ClipMachineMemory)
+clip_CSCOUNT(ClipMachine * ClipMemoryStore)
 {
-   int       i, j, l1, l2;
-
+   int i, j, l1, l2;
    unsigned char ch;
-
-   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMachineMemory, 1, &l1);
-
-   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &l2);
+   unsigned char *str1 = (unsigned char *) _clip_parcl(ClipMemoryStore, 1, &l1);
+   unsigned char *str2 = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &l2);
 
    if (str1 == NULL || str2 == NULL)
-    {
-       _clip_retni(ClipMachineMemory, 0);
-       return 0;
-    }
+      {
+	 _clip_retni(ClipMemoryStore, 0);
+	 return 0;
+      }
 
    ch = *str1;
    for (i = 0, j = 0; i < l2; i++)
       if (ch == str2[i])
 	 j++;
-   _clip_retni(ClipMachineMemory, j);
+   _clip_retni(ClipMemoryStore, j);
    return 0;
 }
 
 int
-clip_WEIGHTTABLE(ClipMachine * ClipMachineMemory)
+clip_WEIGHTTABLE(ClipMachine * ClipMemoryStore)
 {
-   _clip_retcn(ClipMachineMemory, (char *) _clip_cmptbl, 256);
+   _clip_retcn(ClipMemoryStore, (char *) _clip_cmptbl, 256);
    return 0;
 }
 
 int
-clip_WEIGHTCHR(ClipMachine * ClipMachineMemory)
+clip_WEIGHTCHR(ClipMachine * ClipMemoryStore)
 {
-   int       i;
-
-   unsigned char ch = _clip_parni(ClipMachineMemory, 1);
+   int i;
+   unsigned char ch = _clip_parni(ClipMemoryStore, 1);
 
    for (i = 0; i < 256 && _clip_cmptbl[i] != ch; i++)
       ;
-   _clip_retcn(ClipMachineMemory, (char *) &i, 1);
+   _clip_retcn(ClipMemoryStore, (char *) &i, 1);
    return 0;
 }
 
 int
-clip_WEIGHTASC(ClipMachine * ClipMachineMemory)
+clip_WEIGHTASC(ClipMachine * ClipMemoryStore)
 {
-   char     *s = _clip_parc(ClipMachineMemory, 1);
+   char *s = _clip_parc(ClipMemoryStore, 1);
 
    if (s == NULL)
-      _clip_retni(ClipMachineMemory, 0);
+      _clip_retni(ClipMemoryStore, 0);
    else
-    {
-       int       ch = *(unsigned char *) s;
+      {
+	 int ch = *(unsigned char *) s;
 
-       _clip_retni(ClipMachineMemory, _clip_cmptbl[ch]);
-    }
+	 _clip_retni(ClipMemoryStore, _clip_cmptbl[ch]);
+      }
    return 0;
 }
 
@@ -3557,57 +3205,136 @@ clip_WEIGHTASC(ClipMachine * ClipMachineMemory)
 #define HB_MKUSHORT( lo, hi )   ( ( USHORT ) ( ( ( USHORT ) ( hi ) ) << 8 ) | ( (lo) & 0xFF ) )
 
 int
-clip_CRYPT(ClipMachine * ClipMachineMemory)
+clip_CRYPT(ClipMachine * ClipMemoryStore)
 {
   /*
      ULONG ulCryptLen;
      ULONG ulStringLen;
    */
-   int       ulCryptLen, ulStringLen;
+   int ulCryptLen, ulStringLen;
+   ULONG ulCryptPos = 0;
+   ULONG ulStringPos;
 
-   ULONG     ulCryptPos = 0;
+   BYTE *pbyCrypt = (BYTE *) _clip_parcl(ClipMemoryStore, 2, &ulCryptLen);
 
-   ULONG     ulStringPos;
-
-   BYTE     *pbyCrypt = (BYTE *) _clip_parcl(ClipMachineMemory, 2, &ulCryptLen);
-
-   BYTE     *pbyString = (BYTE *) _clip_parcl(ClipMachineMemory, 1, &ulStringLen);
-
+   BYTE *pbyString = (BYTE *) _clip_parcl(ClipMemoryStore, 1, &ulStringLen);
    if (ulCryptLen > 1)
-    {
+      {
 
-       BYTE     *pbyResult = (BYTE *) malloc(ulStringLen + 1);
+	 BYTE *pbyResult = (BYTE *) malloc(ulStringLen + 1);
 
-       USHORT    uiCount2 = (((USHORT) (pbyCrypt[ulCryptPos] +
-					(USHORT) (pbyCrypt[ulCryptPos + 1] * 256))) & 0xFFFF) ^ ((USHORT) ulCryptLen & 0xFFFF);
-       USHORT    uiCount1 = 0xAAAA;
+	 USHORT uiCount2 = (((USHORT) (pbyCrypt[ulCryptPos] + (USHORT) (pbyCrypt[ulCryptPos + 1] * 256))) & 0xFFFF) ^ ((USHORT) ulCryptLen & 0xFFFF);
+	 USHORT uiCount1 = 0xAAAA;
 
-       for (ulStringPos = 0; ulStringPos < ulStringLen;)
-	{
-	   USHORT    uiTmpCount1 = uiCount1;
-
-	   USHORT    uiTmpCount2 = uiCount2;
-
-	   BYTE      byte = pbyString[ulStringPos] ^ pbyCrypt[ulCryptPos++];
-
-	   USHORT    tmp;
-
-	   uiTmpCount2 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount2) ^ HB_HIBYTE(uiTmpCount2)), HB_HIBYTE(uiTmpCount2));
-
-	   for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
-	      uiTmpCount2 = (uiTmpCount2 >> 1) | ((uiTmpCount2 & 1) << 15);
-
-	   uiTmpCount2 ^= uiTmpCount1;
-	   uiTmpCount2 += 16;
-
-	   uiCount2 = uiTmpCount2;
-
-	   uiTmpCount2 &= 0x1E;
-	   uiTmpCount2 += 2;
-
-	   do
+	 for (ulStringPos = 0; ulStringPos < ulStringLen;)
 	    {
-	       BYTE      byTmp;
+	       USHORT uiTmpCount1 = uiCount1;
+	       USHORT uiTmpCount2 = uiCount2;
+	       BYTE byte = pbyString[ulStringPos] ^ pbyCrypt[ulCryptPos++];
+	       USHORT tmp;
+
+	       uiTmpCount2 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount2) ^ HB_HIBYTE(uiTmpCount2)), HB_HIBYTE(uiTmpCount2));
+
+	       for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
+		  uiTmpCount2 = (uiTmpCount2 >> 1) | ((uiTmpCount2 & 1) << 15);
+
+	       uiTmpCount2 ^= uiTmpCount1;
+	       uiTmpCount2 += 16;
+
+	       uiCount2 = uiTmpCount2;
+
+	       uiTmpCount2 &= 0x1E;
+	       uiTmpCount2 += 2;
+
+	       do
+		  {
+		     BYTE byTmp;
+
+		     uiTmpCount2--;
+
+		     for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
+			uiTmpCount1 = (uiTmpCount1 >> 1) | ((uiTmpCount1 & 1) << 15);
+
+		     uiTmpCount1 = HB_MKUSHORT(HB_HIBYTE(uiTmpCount1), HB_LOBYTE(uiTmpCount1));
+		     uiTmpCount1 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount1) ^ 0xFF), HB_HIBYTE(uiTmpCount1));
+		     uiTmpCount1 = (uiTmpCount1 << 1) | ((uiTmpCount1 & 0x8000) >> 15);
+		     uiTmpCount1 ^= 0xAAAA;
+
+		     byTmp = HB_LOBYTE(uiTmpCount1);
+		     byTmp = (byTmp << 1) | ((byTmp & 0x80) >> 7);
+
+		     uiTmpCount1 = HB_MKUSHORT(byTmp, HB_HIBYTE(uiTmpCount1));
+
+		  }
+	       while (--uiTmpCount2);
+
+	       uiCount1 = uiTmpCount1;
+
+	       pbyResult[ulStringPos++] = byte ^ HB_LOBYTE(uiTmpCount1);
+
+	       if (ulCryptPos == ulCryptLen)
+		  ulCryptPos = 0;
+	    }
+
+	 _clip_retcn(ClipMemoryStore, (char *) pbyResult, ulStringLen);
+	 free(pbyResult);
+      }
+   else
+      {
+	 _clip_retcn(ClipMemoryStore, (char *) pbyString, ulStringLen);
+      }
+   return 0;
+}
+
+#else
+
+#define BYTE char
+#define ULONG unsigned int
+#define USHORT unsigned short
+
+#define HB_LOBYTE( w )          ( ( BYTE ) ( w ) )
+#define HB_HIBYTE( w )          ( ( BYTE ) ( ( ( USHORT ) ( w ) >> 8 ) & 0xFF ) )
+#define HB_MKUSHORT( lo, hi )   ( ( USHORT ) ( ( ( USHORT ) ( hi ) ) << 8 ) | ( lo ) )
+
+int
+clip_CRYPT(ClipMachine * ClipMemoryStore)
+{
+   ULONG ulCryptLen;
+   BYTE *pbyCrypt = (BYTE *) _clip_parcl(ClipMemoryStore, 2, &ulCryptLen);
+   ULONG ulCryptPos = 0;
+
+   ULONG ulStringLen;
+   BYTE *pbyString = (BYTE *) _clip_parcl(ClipMemoryStore, 1, &ulStringLen);
+   ULONG ulStringPos;
+
+   BYTE *pbyResult = (BYTE *) malloc(ulStringLen + 1);
+
+   USHORT uiCount2 = (((USHORT) (pbyCrypt[ulCryptPos] + (USHORT) (pbyCrypt[ulCryptPos + 1] * 256))) & 0xFFFF) ^ ((USHORT) ulCryptLen & 0xFFFF);
+   USHORT uiCount1 = 0xAAAA;
+
+   for (ulStringPos = 0; ulStringPos < ulStringLen;)
+      {
+	 USHORT uiTmpCount1 = uiCount1;
+	 USHORT uiTmpCount2 = uiCount2;
+	 BYTE byte = pbyString[ulStringPos] ^ pbyCrypt[ulCryptPos++];
+	 USHORT tmp;
+
+	 uiTmpCount2 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount2) ^ HB_HIBYTE(uiTmpCount2)), HB_HIBYTE(uiTmpCount2));
+
+	 for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
+	    uiTmpCount2 = (uiTmpCount2 >> 1) | ((uiTmpCount2 & 1) << 15);
+
+	 uiTmpCount2 ^= uiTmpCount1;
+	 uiTmpCount2 += 16;
+
+	 uiCount2 = uiTmpCount2;
+
+	 uiTmpCount2 &= 0x1E;
+	 uiTmpCount2 += 2;
+
+	 do
+	    {
+	       BYTE byTmp;
 
 	       uiTmpCount2--;
 
@@ -3625,111 +3352,17 @@ clip_CRYPT(ClipMachine * ClipMachineMemory)
 	       uiTmpCount1 = HB_MKUSHORT(byTmp, HB_HIBYTE(uiTmpCount1));
 
 	    }
-	   while (--uiTmpCount2);
+	 while (--uiTmpCount2);
 
-	   uiCount1 = uiTmpCount1;
+	 uiCount1 = uiTmpCount1;
 
-	   pbyResult[ulStringPos++] = byte ^ HB_LOBYTE(uiTmpCount1);
+	 pbyResult[ulStringPos++] = byte ^ HB_LOBYTE(uiTmpCount1);
 
-	   if (ulCryptPos == ulCryptLen)
-	      ulCryptPos = 0;
-	}
+	 if (ulCryptPos == ulCryptLen)
+	    ulCryptPos = 0;
+      }
 
-       _clip_retcn(ClipMachineMemory, (char *) pbyResult, ulStringLen);
-       free(pbyResult);
-    }
-   else
-    {
-       _clip_retcn(ClipMachineMemory, (char *) pbyString, ulStringLen);
-    }
-   return 0;
-}
-
-#else
-
-#define BYTE char
-#define ULONG unsigned int
-#define USHORT unsigned short
-
-#define HB_LOBYTE( w )          ( ( BYTE ) ( w ) )
-#define HB_HIBYTE( w )          ( ( BYTE ) ( ( ( USHORT ) ( w ) >> 8 ) & 0xFF ) )
-#define HB_MKUSHORT( lo, hi )   ( ( USHORT ) ( ( ( USHORT ) ( hi ) ) << 8 ) | ( lo ) )
-
-int
-clip_CRYPT(ClipMachine * ClipMachineMemory)
-{
-   ULONG     ulCryptLen;
-
-   BYTE     *pbyCrypt = (BYTE *) _clip_parcl(ClipMachineMemory, 2, &ulCryptLen);
-
-   ULONG     ulCryptPos = 0;
-
-   ULONG     ulStringLen;
-
-   BYTE     *pbyString = (BYTE *) _clip_parcl(ClipMachineMemory, 1, &ulStringLen);
-
-   ULONG     ulStringPos;
-
-   BYTE     *pbyResult = (BYTE *) malloc(ulStringLen + 1);
-
-   USHORT    uiCount2 =
-    (((USHORT) (pbyCrypt[ulCryptPos] + (USHORT) (pbyCrypt[ulCryptPos + 1] * 256))) & 0xFFFF) ^ ((USHORT) ulCryptLen & 0xFFFF);
-   USHORT    uiCount1 = 0xAAAA;
-
-   for (ulStringPos = 0; ulStringPos < ulStringLen;)
-    {
-       USHORT    uiTmpCount1 = uiCount1;
-
-       USHORT    uiTmpCount2 = uiCount2;
-
-       BYTE      byte = pbyString[ulStringPos] ^ pbyCrypt[ulCryptPos++];
-
-       USHORT    tmp;
-
-       uiTmpCount2 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount2) ^ HB_HIBYTE(uiTmpCount2)), HB_HIBYTE(uiTmpCount2));
-
-       for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
-	  uiTmpCount2 = (uiTmpCount2 >> 1) | ((uiTmpCount2 & 1) << 15);
-
-       uiTmpCount2 ^= uiTmpCount1;
-       uiTmpCount2 += 16;
-
-       uiCount2 = uiTmpCount2;
-
-       uiTmpCount2 &= 0x1E;
-       uiTmpCount2 += 2;
-
-       do
-	{
-	   BYTE      byTmp;
-
-	   uiTmpCount2--;
-
-	   for (tmp = HB_LOBYTE(uiTmpCount2); tmp; tmp--)
-	      uiTmpCount1 = (uiTmpCount1 >> 1) | ((uiTmpCount1 & 1) << 15);
-
-	   uiTmpCount1 = HB_MKUSHORT(HB_HIBYTE(uiTmpCount1), HB_LOBYTE(uiTmpCount1));
-	   uiTmpCount1 = HB_MKUSHORT((HB_LOBYTE(uiTmpCount1) ^ 0xFF), HB_HIBYTE(uiTmpCount1));
-	   uiTmpCount1 = (uiTmpCount1 << 1) | ((uiTmpCount1 & 0x8000) >> 15);
-	   uiTmpCount1 ^= 0xAAAA;
-
-	   byTmp = HB_LOBYTE(uiTmpCount1);
-	   byTmp = (byTmp << 1) | ((byTmp & 0x80) >> 7);
-
-	   uiTmpCount1 = HB_MKUSHORT(byTmp, HB_HIBYTE(uiTmpCount1));
-
-	}
-       while (--uiTmpCount2);
-
-       uiCount1 = uiTmpCount1;
-
-       pbyResult[ulStringPos++] = byte ^ HB_LOBYTE(uiTmpCount1);
-
-       if (ulCryptPos == ulCryptLen)
-	  ulCryptPos = 0;
-    }
-
-   _clip_retcn(ClipMachineMemory, (char *) pbyResult, ulStringLen);
+   _clip_retcn(ClipMemoryStore, (char *) pbyResult, ulStringLen);
    free(pbyResult);
    return 0;
 }
@@ -3740,39 +3373,39 @@ static int plevel = 0;
 #endif
 
 static int
-take_permissions(ClipMachine * ClipMachineMemory, int port)
+take_permissions(ClipMachine * ClipMemoryStore, int port)
 {
 #ifdef OS_LINUX
    if (plevel > 2)
       return 0;
    if (port >= 0x400)
-    {
-       if (plevel < 3)
-	{
-	 try_iopl:
-	   if (iopl(3))
+      {
+	 if (plevel < 3)
 	    {
-	       _clip_trap_printf(ClipMachineMemory, __FILE__, __LINE__, "Cannot take io permissons: %s", strerror(errno));
-	       return _clip_call_errblock(ClipMachineMemory, -1);
+	     try_iopl:
+	       if (iopl(3))
+		  {
+		     _clip_trap_printf(ClipMemoryStore, __FILE__, __LINE__, "Cannot take io permissons: %s", strerror(errno));
+		     return _clip_call_errblock(ClipMemoryStore, -1);
+		  }
+	       plevel = 3;
+	       return 0;
 	    }
-	   plevel = 3;
-	   return 0;
-	}
-    }
+      }
    else
-    {
-       if (ioperm(port, 1, 1))
-	  goto try_iopl;
-    }
+      {
+	 if (ioperm(port, 1, 1))
+	    goto try_iopl;
+      }
 #endif
 
 #ifdef OS_FREEBSD
 #ifdef ARCH_i386
    if (i386_set_ioperm(port, 1, 1))
-    {
-       _clip_trap_printf(ClipMachineMemory, __FILE__, __LINE__, "Cannot take io permissons: %s", strerror(errno));
-       return _clip_call_errblock(ClipMachineMemory, -1);
-    }
+      {
+	 _clip_trap_printf(ClipMemoryStore, __FILE__, __LINE__, "Cannot take io permissons: %s", strerror(errno));
+	 return _clip_call_errblock(ClipMemoryStore, -1);
+      }
 #endif
 #endif
 
@@ -3783,11 +3416,11 @@ take_permissions(ClipMachine * ClipMachineMemory, int port)
 }
 
 static int
-m_out_portb(ClipMachine * ClipMachineMemory, int port, int val)
+m_out_portb(ClipMachine * ClipMemoryStore, int port, int val)
 {
-   int       r;
+   int r;
 
-   r = take_permissions(ClipMachineMemory, port);
+   r = take_permissions(ClipMemoryStore, port);
    if (r)
       return r;
 
@@ -3799,11 +3432,11 @@ m_out_portb(ClipMachine * ClipMachineMemory, int port, int val)
 }
 
 static int
-m_in_portb(ClipMachine * ClipMachineMemory, int port)
+m_in_portb(ClipMachine * ClipMemoryStore, int port)
 {
-   int       r;
+   int r;
 
-   r = take_permissions(ClipMachineMemory, port);
+   r = take_permissions(ClipMemoryStore, port);
    if (r)
       return r;
 
@@ -3815,11 +3448,11 @@ m_in_portb(ClipMachine * ClipMachineMemory, int port)
 }
 
 static int
-m_out_portw(ClipMachine * ClipMachineMemory, int port, int val)
+m_out_portw(ClipMachine * ClipMemoryStore, int port, int val)
 {
-   int       r;
+   int r;
 
-   r = take_permissions(ClipMachineMemory, port);
+   r = take_permissions(ClipMemoryStore, port);
    if (r)
       return r;
 
@@ -3831,11 +3464,11 @@ m_out_portw(ClipMachine * ClipMachineMemory, int port, int val)
 }
 
 static int
-m_in_portw(ClipMachine * ClipMachineMemory, int port)
+m_in_portw(ClipMachine * ClipMemoryStore, int port)
 {
-   int       r;
+   int r;
 
-   r = take_permissions(ClipMachineMemory, port);
+   r = take_permissions(ClipMemoryStore, port);
    if (r)
       return r;
 
@@ -3850,30 +3483,29 @@ m_in_portw(ClipMachine * ClipMachineMemory, int port)
    OUTBYTE(<nPort|cHexPort>,<nOutByte|cHexOutByte>) --> lSuccessful
  */
 int
-clip_OUTBYTE(ClipMachine * ClipMachineMemory)
+clip_OUTBYTE(ClipMachine * ClipMemoryStore)
 {
-   int       port, val, r;
+   int port, val, r;
+   char *portc, *valc;
 
-   char     *portc, *valc;
-
-   if (ClipMachineMemory->argc < 2)
+   if (ClipMemoryStore->argc < 2)
       return EG_ARG;
 
-   portc = _clip_parc(ClipMachineMemory, 1);
-   valc = _clip_parc(ClipMachineMemory, 2);
+   portc = _clip_parc(ClipMemoryStore, 1);
+   valc = _clip_parc(ClipMemoryStore, 2);
 
    if (portc)
       port = strtol(portc, 0, 16);
    else
-      port = _clip_parni(ClipMachineMemory, 1);
+      port = _clip_parni(ClipMemoryStore, 1);
    if (valc)
       val = strtol(valc, 0, 16);
    else
-      val = _clip_parni(ClipMachineMemory, 2);
+      val = _clip_parni(ClipMemoryStore, 2);
 
-   r = m_out_portb(ClipMachineMemory, port, val);
+   r = m_out_portb(ClipMemoryStore, port, val);
 
-   _clip_retl(ClipMachineMemory, !r);
+   _clip_retl(ClipMemoryStore, !r);
 
    return 0;
 }
@@ -3882,30 +3514,29 @@ clip_OUTBYTE(ClipMachine * ClipMachineMemory)
    OUTWORD(<nPort|cHexPort>,<nOutByte|cHexOutByte>) --> lSuccessful
  */
 int
-clip_OUTWORD(ClipMachine * ClipMachineMemory)
+clip_OUTWORD(ClipMachine * ClipMemoryStore)
 {
-   int       port, val, r;
+   int port, val, r;
+   char *portc, *valc;
 
-   char     *portc, *valc;
-
-   if (ClipMachineMemory->argc < 2)
+   if (ClipMemoryStore->argc < 2)
       return EG_ARG;
 
-   portc = _clip_parc(ClipMachineMemory, 1);
-   valc = _clip_parc(ClipMachineMemory, 2);
+   portc = _clip_parc(ClipMemoryStore, 1);
+   valc = _clip_parc(ClipMemoryStore, 2);
 
    if (portc)
       port = strtol(portc, 0, 16);
    else
-      port = _clip_parni(ClipMachineMemory, 1);
+      port = _clip_parni(ClipMemoryStore, 1);
    if (valc)
       val = strtol(valc, 0, 16);
    else
-      val = _clip_parni(ClipMachineMemory, 2);
+      val = _clip_parni(ClipMemoryStore, 2);
 
-   r = m_out_portw(ClipMachineMemory, port, val);
+   r = m_out_portw(ClipMemoryStore, port, val);
 
-   _clip_retl(ClipMachineMemory, !r);
+   _clip_retl(ClipMemoryStore, !r);
 
    return 0;
 }
@@ -3914,25 +3545,24 @@ clip_OUTWORD(ClipMachine * ClipMachineMemory)
    INBYTE(<nPort|cHexPort>) --> nByte
  */
 int
-clip_INBYTE(ClipMachine * ClipMachineMemory)
+clip_INBYTE(ClipMachine * ClipMemoryStore)
 {
-   int       port, r;
+   int port, r;
+   char *portc;
 
-   char     *portc;
-
-   if (ClipMachineMemory->argc < 1)
+   if (ClipMemoryStore->argc < 1)
       return EG_ARG;
 
-   portc = _clip_parc(ClipMachineMemory, 1);
+   portc = _clip_parc(ClipMemoryStore, 1);
 
    if (portc)
       port = strtol(portc, 0, 16);
    else
-      port = _clip_parni(ClipMachineMemory, 1);
+      port = _clip_parni(ClipMemoryStore, 1);
 
-   r = m_in_portb(ClipMachineMemory, port);
+   r = m_in_portb(ClipMemoryStore, port);
 
-   _clip_retni(ClipMachineMemory, r);
+   _clip_retni(ClipMemoryStore, r);
 
    return 0;
 }
@@ -3941,90 +3571,84 @@ clip_INBYTE(ClipMachine * ClipMachineMemory)
    INWORD(<nPort|cHexPort>) --> nByte
  */
 int
-clip_INWORD(ClipMachine * ClipMachineMemory)
+clip_INWORD(ClipMachine * ClipMemoryStore)
 {
-   int       port, r;
+   int port, r;
+   char *portc;
 
-   char     *portc;
-
-   if (ClipMachineMemory->argc < 1)
+   if (ClipMemoryStore->argc < 1)
       return EG_ARG;
 
-   portc = _clip_parc(ClipMachineMemory, 1);
+   portc = _clip_parc(ClipMemoryStore, 1);
 
    if (portc)
       port = strtol(portc, 0, 16);
    else
-      port = _clip_parni(ClipMachineMemory, 1);
+      port = _clip_parni(ClipMemoryStore, 1);
 
-   r = m_in_portw(ClipMachineMemory, port);
+   r = m_in_portw(ClipMemoryStore, port);
 
-   _clip_retni(ClipMachineMemory, r);
+   _clip_retni(ClipMemoryStore, r);
 
    return 0;
 }
 
 int
-_clip_setxlat(ClipMachine * ClipMachineMemory, unsigned char *data)
+_clip_setxlat(ClipMachine * ClipMemoryStore, unsigned char *data)
 {
-   int       no = _clip_parni(ClipMachineMemory, 1) % 256;
-
-   unsigned char *s = (unsigned char *) _clip_parc(ClipMachineMemory, 1);
-
-   _clip_retl(ClipMachineMemory, 0);
+   int no = _clip_parni(ClipMemoryStore, 1) % 256;
+   unsigned char *s = (unsigned char *) _clip_parc(ClipMemoryStore, 1);
+   _clip_retl(ClipMemoryStore, 0);
    if (s != NULL)
       no = *s;
-   if (_clip_parinfo(ClipMachineMemory, 0) == 0)
-    {
-       int       i;
-
-       for (i = 0; i < 256; i++)
-	  data[i] = i;
-       _clip_retl(ClipMachineMemory, 1);
-       return 0;
-    }
-   if (_clip_parinfo(ClipMachineMemory, 0) >= 2)
-    {
-       int       len;
-
-       unsigned char *str = (unsigned char *) _clip_parcl(ClipMachineMemory, 2, &len);
-
-       if ((no + len) > 256)
-	  len = 256 - no;
-       memcpy(data + no, str, len);
-       _clip_retl(ClipMachineMemory, 1);
-       return 0;
-    }
+   if (_clip_parinfo(ClipMemoryStore, 0) == 0)
+      {
+	 int i;
+	 for (i = 0; i < 256; i++)
+	    data[i] = i;
+	 _clip_retl(ClipMemoryStore, 1);
+	 return 0;
+      }
+   if (_clip_parinfo(ClipMemoryStore, 0) >= 2)
+      {
+	 int len;
+	 unsigned char *str = (unsigned char *) _clip_parcl(ClipMemoryStore, 2, &len);
+	 if ((no + len) > 256)
+	    len = 256 - no;
+	 memcpy(data + no, str, len);
+	 _clip_retl(ClipMemoryStore, 1);
+	 return 0;
+      }
    return 0;
 }
 
 int
-_clip_getxlat(ClipMachine * ClipMachineMemory, unsigned char *data)
+_clip_getxlat(ClipMachine * ClipMemoryStore, unsigned char *data)
 {
-   _clip_retcn(ClipMachineMemory, (char *) data, 256);
+   _clip_retcn(ClipMemoryStore, (char *) data, 256);
    return 0;
 }
 
 int
-clip_SETTXLAT(ClipMachine * ClipMachineMemory)
+clip_SETTXLAT(ClipMachine * ClipMemoryStore)
 {
-   return _clip_setxlat(ClipMachineMemory, ClipMachineMemory->term_xlat);
+   return _clip_setxlat(ClipMemoryStore, ClipMemoryStore->term_xlat);
 }
 
 int
-clip_GETTXLAT(ClipMachine * ClipMachineMemory)
+clip_GETTXLAT(ClipMachine * ClipMemoryStore)
 {
-   return _clip_getxlat(ClipMachineMemory, ClipMachineMemory->term_xlat);
+   return _clip_getxlat(ClipMemoryStore, ClipMemoryStore->term_xlat);
 }
 
 int
-clip_SETPXLAT(ClipMachine * ClipMachineMemory)
+clip_SETPXLAT(ClipMachine * ClipMemoryStore)
 {
-   return _clip_setxlat(ClipMachineMemory, ClipMachineMemory->prn_xlat);
+   return _clip_setxlat(ClipMemoryStore, ClipMemoryStore->prn_xlat);
 }
 
 int
-clip_GETPXLAT(ClipMachine * ClipMachineMemory)
+clip_GETPXLAT(ClipMachine * ClipMemoryStore)
 {
-   return _clip_getxlat(ClipMachineMemory, ClipMachineMemory->prn_xlat);
+   return _clip_getxlat(ClipMemoryStore, ClipMemoryStore->prn_xlat);
 }

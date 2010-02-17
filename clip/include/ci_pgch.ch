@@ -1,5 +1,5 @@
-#ifndef CN_PGCH_CH
-#define CN_PGCH_CH
+#ifndef CI_PGCH_CH
+#define CI_PGCH_CH
 
 #define PGCH_HLINE	1
 #define PGCH_LLCORNER   2

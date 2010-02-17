@@ -56,30 +56,26 @@ gdk_object_gc_destructor(ClipMachine * ClipMachineMemory, C_object * cgc)
 int
 clip_GDK_GCNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   GdkGC    *gc;
-
+   GdkGC *gc;
    C_object *cgc;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    gc = gdk_gc_new(cwid->widget->window);
    if (gc)
-    {
+      {
 //              gdk_gc_ref(gc);
-       cgc = _register_object(ClipMachineMemory, gc, GDK_OBJECT_GC, cv, (coDestructor) gdk_object_gc_destructor);
-       if (cgc)
-	{
-	  //          cgc->ref_count=1;
-	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgc->obj);
-	}
-      //        else
-      //                gdk_gc_unref(gc);
+	 cgc = _register_object(ClipMachineMemory, gc, GDK_OBJECT_GC, cv, (coDestructor) gdk_object_gc_destructor);
+	 if (cgc)
+	    {
+	      //          cgc->ref_count=1;
+	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgc->obj);
+	    }
+	//        else
+	//                gdk_gc_unref(gc);
 
-    }
+      }
    return 0;
  err:
    return 1;
@@ -110,28 +106,17 @@ GdkJoinStyle join_style; the way joins between lines are drawn
 int
 clip_GDK_GCNEWWITHVALUES(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *cval = _clip_spar(ClipMachineMemory, 3);
-
-   long      mask = _clip_parnl(ClipMachineMemory, 4);
-
-   GdkGC    *gc;
-
+   ClipVar *cval = _clip_spar(ClipMachineMemory, 3);
+   long mask = _clip_parnl(ClipMachineMemory, 4);
+   GdkGC *gc;
    GdkGCValues gcv;
-
-   GdkFont  *font = 0;
-
+   GdkFont *font = 0;
    C_object *cgc, *cfont;
-
-   ClipVar  *c;
-
+   ClipVar *c;
    C_widget *cw;
-
-   double    d;
-
+   double d;
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKARG(3, MAP_type_of_ClipVarType);
@@ -145,28 +130,28 @@ clip_GDK_GCNEWWITHVALUES(ClipMachine * ClipMachineMemory)
       _map_colors_to_gdk(ClipMachineMemory, c, &gcv.background);
   /* Set default font */
    switch (_clip_mtype(ClipMachineMemory, cval, HASH_FONT))
-    {
-    case CHARACTER_type_of_ClipVarType:
-       c = _clip_mget(ClipMachineMemory, cval, HASH_FONT);
-       font = gdk_font_load(c->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-       break;
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       cfont = _fetch_cobject(ClipMachineMemory, _clip_mget(ClipMachineMemory, cval, HASH_FONT));
-       if (cfont)
-	{
-	   font = (GdkFont *) cfont->object;
-	   cfont->ref_count++;
-	}
-       break;
-    default:
-       break;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 c = _clip_mget(ClipMachineMemory, cval, HASH_FONT);
+	 font = gdk_font_load(c->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
+	 break;
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 cfont = _fetch_cobject(ClipMachineMemory, _clip_mget(ClipMachineMemory, cval, HASH_FONT));
+	 if (cfont)
+	    {
+	       font = (GdkFont *) cfont->object;
+	       cfont->ref_count++;
+	    }
+	 break;
+      default:
+	 break;
+      }
    if (font)
-    {
-       gcv.font = font;
-       gdk_font_ref(gcv.font);
-    }
+      {
+	 gcv.font = font;
+	 gdk_font_ref(gcv.font);
+      }
   /* the bitwise operation used when drawing. */
   /* Determines how the bit values for the source pixels are combined with the
      bit values for destination pixels to produce the final result. The sixteen
@@ -181,22 +166,22 @@ clip_GDK_GCNEWWITHVALUES(ClipMachine * ClipMachineMemory)
    gcv.fill = (GdkFill) d;
   /* the tile pixmap. */
    if ((c = _clip_mget(ClipMachineMemory, cval, HASH_TILE)) != NULL)
-    {
-       cw = _fetch_cwidget(ClipMachineMemory, c);
-       gcv.tile = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
-    }
+      {
+	 cw = _fetch_cwidget(ClipMachineMemory, c);
+	 gcv.tile = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
+      }
   /* the stipple pixmap. */
    if ((c = _clip_mget(ClipMachineMemory, cval, HASH_STIPPLE)) != NULL)
-    {
-       cw = _fetch_cwidget(ClipMachineMemory, c);
-       gcv.stipple = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
-    }
+      {
+	 cw = _fetch_cwidget(ClipMachineMemory, c);
+	 gcv.stipple = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
+      }
   /* the clip mask bitmap. */
    if ((c = _clip_mget(ClipMachineMemory, cval, HASH_CLIPMASK)) != NULL)
-    {
-       cw = _fetch_cwidget(ClipMachineMemory, c);
-       gcv.clip_mask = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
-    }
+      {
+	 cw = _fetch_cwidget(ClipMachineMemory, c);
+	 gcv.clip_mask = cw ? GTK_PIXMAP(cw->widget)->pixmap : NULL;
+      }
   /* the subwindow mode. */
    _clip_mgetn(ClipMachineMemory, cval, HASH_SUBWINDOWMODE, &d);
    gcv.subwindow_mode = (GdkSubwindowMode) d;
@@ -230,18 +215,18 @@ clip_GDK_GCNEWWITHVALUES(ClipMachine * ClipMachineMemory)
 
    gc = gdk_gc_new_with_values(cwid->widget->window, &gcv, mask);
    if (gc)
-    {
+      {
 //              gdk_gc_ref(gc);
-       cgc = _register_object(ClipMachineMemory, gc, GDK_OBJECT_GC, cv, (coDestructor) gdk_object_gc_destructor);
-       if (cgc)
-	{
-	   cgc->ref_count = 1;
-	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgc->obj);
-	}
-       else
-	  gdk_gc_unref(gc);
+	 cgc = _register_object(ClipMachineMemory, gc, GDK_OBJECT_GC, cv, (coDestructor) gdk_object_gc_destructor);
+	 if (cgc)
+	    {
+	       cgc->ref_count = 1;
+	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgc->obj);
+	    }
+	 else
+	    gdk_gc_unref(gc);
 
-    }
+      }
    return 0;
  err:
    return 1;
@@ -252,7 +237,6 @@ int
 clip_GDK_GCREF(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    gdk_gc_ref(GDK_GC(cgc->object));
    cgc->ref_count++;
@@ -267,7 +251,6 @@ int
 clip_GDK_GCUNREF(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
 
    cgc->ref_count--;
@@ -287,14 +270,11 @@ clip_GDK_GCGETVALUES(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
 
-   ClipVar  *ret = RETPTR(ClipMachineMemory);
+   ClipVar *ret = RETPTR(ClipMachineMemory);
 
    GdkGCValues gcv;
-
    C_object *cfont;
-
-   ClipVar  *c = NEW(ClipVar);
-
+   ClipVar *c = NEW(ClipVar);
    C_widget *cw;
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
@@ -327,43 +307,40 @@ clip_GDK_GCGETVALUES(ClipMachine * ClipMachineMemory)
    _clip_mputn(ClipMachineMemory, ret, HASH_FILL, gcv.fill);
   /* the tile pixmap. */
    if (gcv.tile)
-    {
-       cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.tile);
-       if (!cw)
-	{
-	   GtkWidget *wxpm = gtk_pixmap_new(gcv.tile, NULL);
-
-	   cw = _register_widget(ClipMachineMemory, wxpm, NULL);
-	}
-       if (cw)
-	  _clip_madd(ClipMachineMemory, ret, HASH_TILE, &cw->obj);
-    }
+      {
+	 cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.tile);
+	 if (!cw)
+	    {
+	       GtkWidget *wxpm = gtk_pixmap_new(gcv.tile, NULL);
+	       cw = _register_widget(ClipMachineMemory, wxpm, NULL);
+	    }
+	 if (cw)
+	    _clip_madd(ClipMachineMemory, ret, HASH_TILE, &cw->obj);
+      }
   /* the stipple pixmap. */
    if (gcv.stipple)
-    {
-       cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.stipple);
-       if (!cw)
-	{
-	   GtkWidget *wxpm = gtk_pixmap_new(gcv.stipple, NULL);
-
-	   cw = _register_widget(ClipMachineMemory, wxpm, NULL);
-	}
-       if (cw)
-	  _clip_madd(ClipMachineMemory, ret, HASH_STIPPLE, &cw->obj);
-    }
+      {
+	 cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.stipple);
+	 if (!cw)
+	    {
+	       GtkWidget *wxpm = gtk_pixmap_new(gcv.stipple, NULL);
+	       cw = _register_widget(ClipMachineMemory, wxpm, NULL);
+	    }
+	 if (cw)
+	    _clip_madd(ClipMachineMemory, ret, HASH_STIPPLE, &cw->obj);
+      }
   /* the clip mask bitmap. */
    if (gcv.clip_mask)
-    {
-       cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.clip_mask);
-       if (!cw)
-	{
-	   GtkWidget *wxpm = gtk_pixmap_new(gcv.clip_mask, NULL);
-
-	   cw = _register_widget(ClipMachineMemory, wxpm, NULL);
-	}
-       if (cw)
-	  _clip_madd(ClipMachineMemory, ret, HASH_CLIPMASK, &cw->obj);
-    }
+      {
+	 cw = _list_get_cwidget_by_data(ClipMachineMemory, gcv.clip_mask);
+	 if (!cw)
+	    {
+	       GtkWidget *wxpm = gtk_pixmap_new(gcv.clip_mask, NULL);
+	       cw = _register_widget(ClipMachineMemory, wxpm, NULL);
+	    }
+	 if (cw)
+	    _clip_madd(ClipMachineMemory, ret, HASH_CLIPMASK, &cw->obj);
+      }
   /* the subwindow mode. */
    _clip_mputn(ClipMachineMemory, ret, HASH_SUBWINDOWMODE, gcv.subwindow_mode);
   /* the x origin of the tile or stipple. */
@@ -395,11 +372,8 @@ int
 clip_GDK_GCSETFOREGROUND(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
-
-   GdkColor  color;
-
+   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
+   GdkColor color;
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG(2, MAP_type_of_ClipVarType);
    _map_colors_to_gdk(ClipMachineMemory, mcolor, &color);
@@ -414,11 +388,8 @@ int
 clip_GDK_GCSETBACKGROUND(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
-
-   GdkColor  color;
-
+   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
+   GdkColor color;
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG(2, MAP_type_of_ClipVarType);
    _map_colors_to_gdk(ClipMachineMemory, mcolor, &color);
@@ -435,38 +406,35 @@ int
 clip_GDK_GCSETFONT(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *c;
-
-   GdkFont  *font = 0;
-
+   ClipVar *c;
+   GdkFont *font = 0;
    C_object *cfont;
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG3(2, CHARACTER_type_of_ClipVarType, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    switch (_clip_parinfo(ClipMachineMemory, 2))
-    {
-    case CHARACTER_type_of_ClipVarType:
-       c = _clip_spar(ClipMachineMemory, 2);
-       font = gdk_font_load(c->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-       break;
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       cfont = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-       if (cfont)
-	{
-	   font = (GdkFont *) cfont->object;
-	   cfont->ref_count++;
-	}
-       break;
-    default:
-       break;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 c = _clip_spar(ClipMachineMemory, 2);
+	 font = gdk_font_load(c->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
+	 break;
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 cfont = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+	 if (cfont)
+	    {
+	       font = (GdkFont *) cfont->object;
+	       cfont->ref_count++;
+	    }
+	 break;
+      default:
+	 break;
+      }
    if (font)
-    {
-       gdk_gc_set_font(GDK_GC(cgc->object), font);
-       gdk_font_ref(font);
-    }
+      {
+	 gdk_gc_set_font(GDK_GC(cgc->object), font);
+	 gdk_font_ref(font);
+      }
    return 0;
  err:
    return 1;
@@ -478,9 +446,7 @@ int
 clip_GDK_GCSETFUNCTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    GdkFunction function = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gdk_gc_set_function(GDK_GC(cgc->object), function);
@@ -494,9 +460,7 @@ int
 clip_GDK_GCSETFILL(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   GdkFill   fill = _clip_parni(ClipMachineMemory, 2);
-
+   GdkFill fill = _clip_parni(ClipMachineMemory, 2);
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gdk_gc_set_fill(GDK_GC(cgc->object), fill);
@@ -511,9 +475,7 @@ int
 clip_GDK_GCSETTILE(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cxpm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cxpm, GTK_IS_PIXMAP);
@@ -529,9 +491,7 @@ int
 clip_GDK_GCSETSTIPPLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cxpm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cxpm, GTK_IS_PIXMAP);
@@ -548,11 +508,8 @@ int
 clip_GDK_GCSETTSORIGIN(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint      x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      y = _clip_parni(ClipMachineMemory, 3);
-
+   gint x = _clip_parni(ClipMachineMemory, 2);
+   gint y = _clip_parni(ClipMachineMemory, 3);
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -568,11 +525,8 @@ int
 clip_GDK_GCSETCLIPORIGIN(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint      x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      y = _clip_parni(ClipMachineMemory, 3);
-
+   gint x = _clip_parni(ClipMachineMemory, 2);
+   gint y = _clip_parni(ClipMachineMemory, 3);
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -589,9 +543,7 @@ int
 clip_GDK_GCSETCLIPMASK(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cxpm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cxpm, GTK_IS_PIXMAP);
@@ -608,44 +560,36 @@ int
 clip_GDK_GCSETCLIPRECTANGLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint16    x = _clip_parni(ClipMachineMemory, 2);
-
-   gint16    y = _clip_parni(ClipMachineMemory, 3);
-
-   guint16   width = _clip_parni(ClipMachineMemory, 4);
-
-   guint16   height = _clip_parni(ClipMachineMemory, 5);
-
-   double    d;
-
+   gint16 x = _clip_parni(ClipMachineMemory, 2);
+   gint16 y = _clip_parni(ClipMachineMemory, 3);
+   guint16 width = _clip_parni(ClipMachineMemory, 4);
+   guint16 height = _clip_parni(ClipMachineMemory, 5);
+   double d;
    GdkRectangle rect;
-
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
    CHECKOPT(5, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == MAP_type_of_ClipVarType)
-    {
-       ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-       _clip_mgetn(ClipMachineMemory, cv, HASH_X, &d);
-       rect.x = (gint16) d;
-       _clip_mgetn(ClipMachineMemory, cv, HASH_Y, &d);
-       rect.y = (gint16) d;
-       _clip_mgetn(ClipMachineMemory, cv, HASH_WIDTH, &d);
-       rect.width = (gint16) d;
-       _clip_mgetn(ClipMachineMemory, cv, HASH_HEIGHT, &d);
-       rect.height = (gint16) d;
-    }
+      {
+	 ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+	 _clip_mgetn(ClipMachineMemory, cv, HASH_X, &d);
+	 rect.x = (gint16) d;
+	 _clip_mgetn(ClipMachineMemory, cv, HASH_Y, &d);
+	 rect.y = (gint16) d;
+	 _clip_mgetn(ClipMachineMemory, cv, HASH_WIDTH, &d);
+	 rect.width = (gint16) d;
+	 _clip_mgetn(ClipMachineMemory, cv, HASH_HEIGHT, &d);
+	 rect.height = (gint16) d;
+      }
    else
-    {
-       rect.x = x;
-       rect.y = y;
-       rect.width = width;
-       rect.height = height;
-    }
+      {
+	 rect.x = x;
+	 rect.y = y;
+	 rect.width = width;
+	 rect.height = height;
+      }
    gdk_gc_set_clip_rectangle(GDK_GC(cgc->object), &rect);
    return 0;
  err:
@@ -659,7 +603,6 @@ int
 clip_GDK_GCSETCLIPREGION(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    C_object *creg = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
@@ -678,7 +621,6 @@ int
 clip_GDK_GCSETSUBWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
    GdkSubwindowMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
@@ -696,8 +638,7 @@ int
 clip_GDK_GCSETEXPOSURES(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint      exposures = _clip_parni(ClipMachineMemory, 2);
+   gint exposures = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -713,13 +654,9 @@ int
 clip_GDK_GCSETLINEATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint      line_width = INT_OPTION(ClipMachineMemory, 2, 0);
-
+   gint line_width = INT_OPTION(ClipMachineMemory, 2, 0);
    GdkLineStyle line_style = _clip_parni(ClipMachineMemory, 3);
-
    GdkCapStyle cap_style = _clip_parni(ClipMachineMemory, 4);
-
    GdkJoinStyle join_style = _clip_parni(ClipMachineMemory, 5);
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
@@ -741,12 +678,9 @@ int
 clip_GDK_GCSETDASHES(ClipMachine * ClipMachineMemory)
 {
    C_object *cgc = _fetch_co_arg(ClipMachineMemory);
-
-   gint      dash_offset = _clip_parni(ClipMachineMemory, 2);
-
-   gchar    *dash_list = _clip_parc(ClipMachineMemory, 3);
-
-   gint      n = _clip_parni(ClipMachineMemory, 4);
+   gint dash_offset = _clip_parni(ClipMachineMemory, 2);
+   gchar *dash_list = _clip_parc(ClipMachineMemory, 3);
+   gint n = _clip_parni(ClipMachineMemory, 4);
 
    CHECKCOBJ(cgc, GDK_IS_GC(cgc));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -767,7 +701,6 @@ int
 clip_GDK_GCCOPY(ClipMachine * ClipMachineMemory)
 {
    C_object *cdst_gc = _fetch_co_arg(ClipMachineMemory);
-
    C_object *csrc_gc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cdst_gc, GDK_IS_GC(cdst_gc));

@@ -56,7 +56,6 @@ int
 clip_GTK_ITEMSELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(citm, GTK_IS_ITEM);
    gtk_item_select(GTK_ITEM(citm->widget));
    return 0;
@@ -68,7 +67,6 @@ int
 clip_GTK_ITEMDESELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(citm, GTK_IS_ITEM);
    gtk_item_deselect(GTK_ITEM(citm->widget));
    return 0;
@@ -80,7 +78,6 @@ int
 clip_GTK_ITEMTOGGLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(citm, GTK_IS_ITEM);
    gtk_item_toggle(GTK_ITEM(citm->widget));
    return 0;

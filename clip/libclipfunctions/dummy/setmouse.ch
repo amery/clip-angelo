@@ -1,2 +1,0 @@
-function setmouse()
-return .t.

@@ -1,5 +1,5 @@
-#ifndef CN_BUTTON_DEFINED
-#define CN_BUTTON_DEFINED
+#ifndef CI_BUTTON_DEFINED
+#define CI_BUTTON_DEFINED
 
 #define SCROLL_VERTICAL         1
 #define SCROLL_HORIZONTAL       2

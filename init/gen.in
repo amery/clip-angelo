@@ -6,7 +6,7 @@
 #
 # initialises (private) all "batch" variables used in all subfiles
 #
-source config/functions.f
+source config/functions.f.sh
 export V="v"
 export Clip_M_Dir="$PWD"
 cd ..
@@ -87,7 +87,7 @@ export Clip_D_Dir="$CLIPROOT/doc"
 export CLIP_DLLEXPORT=""
 export CLIP_DLLIMPORT=""
 export Clip_F_CFG="$Clip_B_Dir/functions.cfg"
-export Clip_F_F="$Clip_B_Dir/functions.f"
+export Clip_F_F="$Clip_B_Dir/functions.f.sh"
 export CLIP_FLAGS=""
 export Cliphash="$Clip_B_Dir/cliphash$Suff_Exe"
 #export Clip_hashextract="$Clip_B_Dir/clip_hashextract$Suff_Exe"
@@ -437,7 +437,7 @@ for nii in $List ; do
 	xx="$(cat $Clip_S_Dir/$nii.setup.ini)"
 	export "$nii=\"$xx\""
 done
-#cp -fpu$V $Clip_M_Dir/config/functions.f $Clip_B_Dir/
+#cp -fpu$V $Clip_M_Dir/config/functions.f.sh $Clip_B_Dir/
 # || true
 #cp -fpu$V $Clip_M_Dir/config/configure_dir.sh $Clip_B_Dir/
 # || true

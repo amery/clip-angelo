@@ -1,7 +1,7 @@
 #
 #                                            clip/libcliprdd/Makefile.in
 #
-Local_Depend 	= 		../include/*.ch 		
+Local_Depend 	= 		../include/*.ch
 
 c_files 			= 		$(sort 						\
 										rddclip.c 		\
@@ -154,4 +154,10 @@ hiper.o:	hiper.c ../include/ci_rdd.h ci_btree.h Makefile
 	fi
 
 include $(Makefile_end_in)
+
+indent : Makefile
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
 

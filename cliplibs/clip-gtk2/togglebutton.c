@@ -44,8 +44,7 @@ _clip_type_name_toggle_button()
 int
 clip_INIT___TOGGLE_BUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_toggle_button, _clip_type_name_toggle_button,
-		    _gtk_type_toggle_button, _gtk_type_button, toggle_button_signals);
+   _wtype_table_put(_clip_type_toggle_button, _clip_type_name_toggle_button, _gtk_type_toggle_button, _gtk_type_button, toggle_button_signals);
    return 0;
 }
 
@@ -53,23 +52,19 @@ clip_INIT___TOGGLE_BUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TOGGLEBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   char     *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   char *title = _clip_parc(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-    {
-       LOCALE_TO_UTF(title);
-       wid = gtk_toggle_button_new_with_label(title);
-       FREE_TEXT(title);
-    }
+      {
+	 LOCALE_TO_UTF(title);
+	 wid = gtk_toggle_button_new_with_label(title);
+	 FREE_TEXT(title);
+      }
    else
       wid = gtk_toggle_button_new();
    if (!wid)
@@ -92,9 +87,7 @@ int
 clip_GTK_TOGGLEBUTTONSETDRAWMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  mode = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean mode = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -110,9 +103,7 @@ int
 clip_GTK_TOGGLEBUTTONTOGGLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  state;
-
+   gboolean state;
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    state = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cbtn->widget));
    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cbtn->widget), !state);
@@ -129,7 +120,6 @@ int
 clip_GTK_TOGGLEBUTTONGETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    _clip_retl(ClipMachineMemory, gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cbtn->widget)));
    return 0;
@@ -144,9 +134,7 @@ int
 clip_GTK_TOGGLEBUTTONSETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  active = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean active = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    CHECKOPT2(2, LOGICAL_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -161,13 +149,9 @@ int
 clip_GTK_TOGGLEBUTTONSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
-
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
    GtkStyle *style;
-
    GtkButton *button;
-
    CHECKCWID(cbtn, GTK_IS_TOGGLE_BUTTON);
    CHECKARG(2, MAP_type_of_ClipVarType);
    button = &(GTK_TOGGLE_BUTTON(cbtn->widget)->button);

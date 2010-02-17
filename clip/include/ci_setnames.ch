@@ -3,8 +3,8 @@
 *       ����������� �������� SET-��������� Clipper
 */
 
-#ifndef CN_SETNAMES_DEFINED
-#define CN_SETNAMES_DEFINED
+#ifndef CI_SETNAMES_DEFINED
+#define CI_SETNAMES_DEFINED
 
 __set_names:=map()
 __set_names[1]:=    "EXACT"

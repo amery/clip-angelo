@@ -6,7 +6,7 @@ Depend_on 			= 			$(Clip_L_Dir)/libclip-fw.so 		\
 									$(Clip_L_Dir)/libclip-cti.so
 CLIPFLAGS 			= 			-o$@ -g -l -w $(INCLUDEDIRS)
 CLIPLIBS  			=
-prg_files 			= 			$(sort 						\
+BINS 					= 			$(sort 						\
 												combos.prg 		\
 												dlgtest.prg 	\
 												gettest.prg 	\

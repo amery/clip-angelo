@@ -22,21 +22,14 @@ int
 clip_GTK_DRAWHLINE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 3);
-
-   gint      x1 = _clip_parni(ClipMachineMemory, 4);
-
-   gint      x2 = _clip_parni(ClipMachineMemory, 5);
-
-   gint      y = _clip_parni(ClipMachineMemory, 6);
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 3);
+   gint x1 = _clip_parni(ClipMachineMemory, 4);
+   gint x2 = _clip_parni(ClipMachineMemory, 5);
+   gint y = _clip_parni(ClipMachineMemory, 6);
 
    GtkStyle *style;
-
    GdkWindow *win = NULL;
-
    GdkRectangle *area = 0;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -67,21 +60,14 @@ int
 clip_GTK_DRAWBOX(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
-
-   gint      shadowType = INT_OPTION(ClipMachineMemory, 3, 0);
-
-   gint      x1 = _clip_parni(ClipMachineMemory, 4);
-
-   gint      x2 = _clip_parni(ClipMachineMemory, 5);
-
-   gint      width = _clip_parni(ClipMachineMemory, 6);
-
-   gint      height = _clip_parni(ClipMachineMemory, 7);
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
+   gint shadowType = INT_OPTION(ClipMachineMemory, 3, 0);
+   gint x1 = _clip_parni(ClipMachineMemory, 4);
+   gint x2 = _clip_parni(ClipMachineMemory, 5);
+   gint width = _clip_parni(ClipMachineMemory, 6);
+   gint height = _clip_parni(ClipMachineMemory, 7);
 
    GtkStyle *style;
-
    GdkDrawable *drw = NULL;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);

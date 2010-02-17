@@ -1,6 +1,7 @@
-#!/bin/sh
+#!/bin/sh -xu
 SIMPLE_BACKUP_SUFFIX=.BAK
 export SIMPLE_BACKUP_SUFFIX
+rm -f $Clip_M_Dir/temp/compile.indent.sh
 # -l128 line length 128
 # -lc80 comment line length
 # -bad blank-lines-after-declarations
@@ -15,13 +16,24 @@ export SIMPLE_BACKUP_SUFFIX
 # -di1 Put variables in column N
 # -nbc no-blank-lines-after-commas
 # -psl Put the type of a procedure on the line before its name
-# -i8 Set indentation level to N spaces
-# -ip8 Indent parameter types in old-style function definitions by N spaces.
+# -i3 Set indentation level to N spaces
+# -ip3 Indent parameter types in old-style function definitions by N spaces.
 # -lp Line up continued lines at parentheses
 # -ci0 Continuation indent of N spaces
 # -nsc Do not put a space after cast operators
 # -nce Do not cuddle `}' and `else'
 # $*
+Parameters="-l200 -lc80 -sob -nfc1 -d3 -ncdb -cd33 -bli3 -npcs \
+			-di3 -nbc -psl -i3 -ip3 -lp -ci3 -nsc -nce"
 
-indent -l128 -lc80 -bad -bap -sob -nfc1 -d1 -ncdb -cd33 -bli1 -npcs \
-	 -di10 -nbc -psl -i3 -ip8 -lp -ci1 -nce $*
+FileList="*.h *.*/.h *.c */*.c"
+if [[ -n "$*" ]] ; then
+	indent $Parameters $Parameters $* || true
+else
+	for n01ii in $FileList ; do
+		if [[ -f "$n01ii" ]] ; then
+			indent $Parameters $n01ii || true
+			 ##>>$Clip_M_Dir/temp/compile.indent.sh 2>&1
+		fi
+	done
+fi

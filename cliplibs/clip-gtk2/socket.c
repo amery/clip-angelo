@@ -54,10 +54,8 @@ clip_INIT___SOCKET(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SOCKETNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -80,7 +78,6 @@ int
 clip_GTK_SOCKETSTEAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *csocket = _fetch_cw_arg(ClipMachineMemory);
-
    GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(csocket, GTK_IS_SOCKET);
@@ -97,7 +94,6 @@ int
 clip_GTK_SOCKETADDID(ClipMachine * ClipMachineMemory)
 {
    C_widget *csocket = _fetch_cw_arg(ClipMachineMemory);
-
    GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(csocket, GTK_IS_SOCKET);

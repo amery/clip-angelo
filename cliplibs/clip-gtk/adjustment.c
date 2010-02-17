@@ -86,24 +86,15 @@ clip_INIT___DATA(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ADJUSTMENTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    lower = _clip_parnd(ClipMachineMemory, 3);
-
-   gfloat    upper = _clip_parnd(ClipMachineMemory, 4);
-
-   gfloat    step_inc = _clip_parnd(ClipMachineMemory, 5);
-
-   gfloat    page_inc = _clip_parnd(ClipMachineMemory, 6);
-
-   gfloat    page_size = _clip_parnd(ClipMachineMemory, 7);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
+   gfloat lower = _clip_parnd(ClipMachineMemory, 3);
+   gfloat upper = _clip_parnd(ClipMachineMemory, 4);
+   gfloat step_inc = _clip_parnd(ClipMachineMemory, 5);
+   gfloat page_inc = _clip_parnd(ClipMachineMemory, 6);
+   gfloat page_size = _clip_parnd(ClipMachineMemory, 7);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -140,7 +131,6 @@ int
 clip_GTK_ADJUSTMENTCHANGED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cadj = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
    gtk_adjustment_changed(GTK_ADJUSTMENT(cadj->widget));
    return 0;
@@ -152,7 +142,6 @@ int
 clip_GTK_ADJUSTMENTVALUECHANGED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cadj = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
    gtk_adjustment_value_changed(GTK_ADJUSTMENT(cadj->widget));
    return 0;
@@ -164,11 +153,8 @@ int
 clip_GTK_ADJUSTMENTCLAMPPAGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cadj = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    lower = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    upper = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat lower = _clip_parnd(ClipMachineMemory, 2);
+   gfloat upper = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -182,9 +168,7 @@ int
 clip_GTK_ADJUSTMENTSETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cadj = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    gtk_adjustment_set_value(GTK_ADJUSTMENT(cadj->widget), value);

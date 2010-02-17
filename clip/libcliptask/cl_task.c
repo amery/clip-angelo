@@ -166,14 +166,14 @@
 
 struct TaskMessage
 {
-   long      sender;
-   long      receiver;
-   long      id;
-   int       needResp:1;
-   int       needDel:1;
+   long sender;
+   long receiver;
+   long id;
+   int needResp:1;
+   int needDel:1;
 
-   void     *data;
-   void      (*destroy) (void *data);
+   void *data;
+   void (*destroy) (void *data);
 };
 
 typedef enum
@@ -190,39 +190,39 @@ TaskState;
 struct Task
 {
 
-   ListEl    listel;
+   ListEl listel;
 
-   List      recvlist;		/*  ������������� */
-   List      proclist;		/*  ������� ����� */
+   List recvlist;		/*  ������������� */
+   List proclist;		/*  ������� ����� */
 
-   int       isMain:1;
-   int       isInited:1;	/*  �������� ���� ������ */
-   int       isTimed:1;		/*  �� ���� */
-   int       isRead:1;		/*  �� ��� � ��� */
-   int       isWrite:1;		/*  �� ��� ��� */
-   int       isExcept:1;	/*  �� sigexcept */
+   int isMain:1;
+   int isInited:1;		/*  �������� ���� ������ */
+   int isTimed:1;		/*  �� ���� */
+   int isRead:1;		/*  �� ��� � ��� */
+   int isWrite:1;		/*  �� ��� ��� */
+   int isExcept:1;		/*  �� sigexcept */
 
-   char     *name;		/*  ����� */
-   long      id;		/*  ���������� (pid) */
-   long      wakeUp;		/*  �� ������� */
+   char *name;			/*  ����� */
+   long id;			/*  ���������� (pid) */
+   long wakeUp;			/*  �� ������� */
 
-   Task     *parent;		/*  ���� ���, ����������spawn */
-   void     *result;		/*  reference to ���������� run() */
+   Task *parent;		/*  ���� ���, ����������spawn */
+   void *result;		/*  reference to ���������� run() */
 
    TaskState state;		/*  �������� */
 
-   long      stacklen;		/*  length of task's stack */
+   long stacklen;		/*  length of task's stack */
 
-   jmp_buf   taskEnv;		/* environment for context switching */
-   char     *stack;		/* this task's stack space */
-   fd_set    rfileset;		/* read-wait fileset */
-   fd_set    wfileset;		/* write-wait fileset */
-   fd_set    efileset;		/* except fileset */
+   jmp_buf taskEnv;		/* environment for context switching */
+   char *stack;			/* this task's stack space */
+   fd_set rfileset;		/* read-wait fileset */
+   fd_set wfileset;		/* write-wait fileset */
+   fd_set efileset;		/* except fileset */
 
-   void     *(*run) (void *data);
-   void      (*destroy) (void *data);
-   void     *data;
-   void     *ref;		/*other reference to any data */
+   void *(*run) (void *data);
+   void (*destroy) (void *data);
+   void *data;
+   void *ref;			/*other reference to any data */
 };
 
 static List readyTasks = { 0, 0 };	/*  ���� ��� */
@@ -235,57 +235,40 @@ static HashTable *hashs;	/*  ����� � ��� */
 static Coll allTasks = { 0, 0, 0, 0, 0, 0 };	/*  ������� ��� */
 
 static Task *currTask = 0;	/*  ������� */
-
 static Task *mainTask = 0;	/*  ������� */
-
 static Task *sheduler = 0;	/*  ���-������ */
 
 static int activeCount = 0;	/*  ����� ���� ���(��zombie ���sheduler) */
-
 static int stopcount = 0;
 
 /* ���*/
 static int canSwitch = 0;	/*  ������ �������� */
-
 static int seqNo = 0;		/*  �������������� */
 
 static fd_set readFiles;
-
 static fd_set writeFiles;
-
 static fd_set exceptFiles;
-
 static jmp_buf shedEnv, mainEnv;
 
 static void runSheduler(Task * task);	/*  �����sheduler */
-
 static void initTask(Task * task);	/*  ������� taskEnv */
-
 static int initStack(Task * task);	/*  ������� �� ��� */
-
 static void initMainTask(Task * task);	/*  ������� ������� */
-
 static void resumeTask(Task * task, int code);	/*  ����� ����taskEnv */
 
 static void suicide(Task * task);
 
 /* statics */
 static void callTaskRun(Task * t);
-
 static void deathMatch(void);
 
 static void waitEvent(int block);
-
 static long calcWakeup(long msec);
 
 static void addToReady(Task * task);	/*  ��������� ������������� */
-
 static void addToWait(Task * task);
-
 static void addToMsg(Task * task);
-
 static void addToResp(Task * task);
-
 static void addToZombie(Task * task);
 
 static void removeFromList(Task * task);	/*  ����� ���, �������� ����� */
@@ -311,10 +294,10 @@ TASK_DLLEXPORT void
 Task_STOP()
 {
    if (!stopcount)
-    {
-       if (Task_get_currTask())
-	  Task_stop_sheduler();
-    }
+      {
+	 if (Task_get_currTask())
+	    Task_stop_sheduler();
+      }
 
    ++stopcount;
 }
@@ -324,21 +307,20 @@ Task_START()
 {
    --stopcount;
    if (stopcount <= 0)
-    {
-       if (Task_get_currTask())
-	{
-	   Task_start_sheduler();
-	   Task_yield();
-	}
-       stopcount = 0;
-    }
+      {
+	 if (Task_get_currTask())
+	    {
+	       Task_start_sheduler();
+	       Task_yield();
+	    }
+	 stopcount = 0;
+      }
 }
 
 TASK_DLLEXPORT long
 Task_ID()
 {
-   Task     *tp = Task_get_currTask();
-
+   Task *tp = Task_get_currTask();
    if (!tp)
       return -1;
    else
@@ -393,15 +375,13 @@ static void
 FD_CLR_BY(fd_set * fds, fd_set * mask)
 {
 #if 0
-   int       i;
+   int i;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, ((unsigned *) fds)++, ((unsigned *) mask)++)
       *((unsigned *) fds) &= ~(*((unsigned *) mask));
 #else
-   int       i;
-
+   int i;
    unsigned *fds_ptr = (unsigned *) fds;
-
    unsigned *mask_ptr = (unsigned *) mask;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, fds_ptr++, mask_ptr++)
@@ -413,15 +393,13 @@ static void
 FD_AND_BY(fd_set * fds, fd_set * mask)
 {
 #if 0
-   int       i;
+   int i;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, ((unsigned *) fds)++, ((unsigned *) mask)++)
       *((unsigned *) fds) &= *((unsigned *) mask);
 #else
-   int       i;
-
+   int i;
    unsigned *fds_ptr = (unsigned *) fds;
-
    unsigned *mask_ptr = (unsigned *) mask;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, fds_ptr++, mask_ptr++)
@@ -433,15 +411,13 @@ static void
 FD_SET_BY(fd_set * fds, fd_set * mask)
 {
 #if 0
-   int       i;
+   int i;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, ((unsigned *) fds)++, ((unsigned *) mask)++)
       *((unsigned *) fds) |= *((unsigned *) mask);
 #else
-   int       i;
-
+   int i;
    unsigned *fds_ptr = (unsigned *) fds;
-
    unsigned *mask_ptr = (unsigned *) mask;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, fds_ptr++, mask_ptr++)
@@ -453,16 +429,14 @@ static int
 FD_ISSET_BY(fd_set * fds, fd_set * mask)
 {
 #if 0
-   int       i;
+   int i;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, ((unsigned *) fds)++, ((unsigned *) mask)++)
       if (*((unsigned *) fds) & *((unsigned *) mask))
 	 return 1;
 #else
-   int       i;
-
+   int i;
    unsigned *fds_ptr = (unsigned *) fds;
-
    unsigned *mask_ptr = (unsigned *) mask;
 
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, fds_ptr++, mask_ptr++)
@@ -486,9 +460,8 @@ static struct tms tms_buf;
 TASK_DLLEXPORT Task *
 Task_new(const char *name, long stacksize, void *data, void *(*run) (void *data), void (*destroy) (void *data))
 {
-   Task     *task = NEW(Task);
-
-   int       psize;
+   Task *task = NEW(Task);
+   int psize;
 
    Task_init();
 
@@ -504,13 +477,12 @@ Task_new(const char *name, long stacksize, void *data, void *(*run) (void *data)
 
    psize = getpagesize();
    if (stacksize >= psize)
-    {
-       int       n = stacksize / psize;
+      {
+	 int n = stacksize / psize;
+	 int rest = stacksize % psize;
 
-       int       rest = stacksize % psize;
-
-       stacksize = n * psize + (rest ? psize : 0);
-    }
+	 stacksize = n * psize + (rest ? psize : 0);
+      }
 
    task->stacklen = stacksize;
    task->state = Task_initial;
@@ -531,13 +503,13 @@ static int
 initStack(Task * task)
 {
    if (!task->isMain && task->state == Task_initial)
-    {
-       if (!task->stack)
-	{
-	   task->stack = (char *) malloc(task->stacklen);
-	   return 1;
-	}
-    }
+      {
+	 if (!task->stack)
+	    {
+	       task->stack = (char *) malloc(task->stacklen);
+	       return 1;
+	    }
+      }
    return 0;
 }
 
@@ -553,10 +525,10 @@ Task_delete(Task * task)
    free(task->name);
 
    if (!task->isMain)
-    {
-       free(task->stack);
-       free(task);
-    }
+      {
+	 free(task->stack);
+	 free(task);
+      }
 }
 
 TASK_DLLEXPORT long
@@ -595,29 +567,29 @@ TASK_DLLEXPORT int
 Task_wakeup(Task * task)
 {
    if (task->state == Task_wait)
-    {
-      /*  ������� ��� */
-       removeFromList(task);
-       task->isTimed = 1;
-       addToReady(task);
-       if (task->isRead)
-	{
-	   FD_CLR_BY(&readFiles, &task->rfileset);
-	   task->isRead = 0;
-	}
-       if (task->isWrite)
-	{
-	   FD_CLR_BY(&writeFiles, &task->wfileset);
-	   task->isWrite = 0;
-	}
-       if (task->isExcept)
-	{
-	   FD_CLR_BY(&exceptFiles, &task->efileset);
-	   task->isExcept = 0;
-	}
+      {
+	/*  ������� ��� */
+	 removeFromList(task);
+	 task->isTimed = 1;
+	 addToReady(task);
+	 if (task->isRead)
+	    {
+	       FD_CLR_BY(&readFiles, &task->rfileset);
+	       task->isRead = 0;
+	    }
+	 if (task->isWrite)
+	    {
+	       FD_CLR_BY(&writeFiles, &task->wfileset);
+	       task->isWrite = 0;
+	    }
+	 if (task->isExcept)
+	    {
+	       FD_CLR_BY(&exceptFiles, &task->efileset);
+	       task->isExcept = 0;
+	    }
 
-       return 1;
-    }
+	 return 1;
+      }
 
    return 0;
 }
@@ -629,7 +601,7 @@ static int task_inited = 0;
 TASK_DLLEXPORT void
 Task_init(void)
 {
-   Task     *tp;
+   Task *tp;
 
    if (task_inited)
       return;
@@ -654,9 +626,9 @@ Task_init(void)
 
    currTask = sheduler;
    if (!setjmp(mainEnv))
-    {
-       initTask(sheduler);
-    }
+      {
+	 initTask(sheduler);
+      }
 
    tp = Task_new("main", 0, 0, 0, 0);
    mainTask = tp;
@@ -683,7 +655,7 @@ Task_get_currTask()
 TASK_DLLEXPORT int
 Task_start_sheduler(void)
 {
-   int       ret = canSwitch;
+   int ret = canSwitch;
 
    canSwitch = 1;
    return ret;
@@ -692,7 +664,7 @@ Task_start_sheduler(void)
 TASK_DLLEXPORT int
 Task_stop_sheduler(void)
 {
-   int       ret = canSwitch;
+   int ret = canSwitch;
 
    canSwitch = 0;
    return ret;
@@ -702,13 +674,13 @@ TASK_DLLEXPORT int
 Task_start(Task * tp)
 {
    if (initStack(tp))
-    {
-       if (tp != sheduler)
-	  addToReady(tp);
-       HashTable_insert(hashs, tp, tp->id);
-       append_Coll(&allTasks, tp);
-       return 1;
-    }
+      {
+	 if (tp != sheduler)
+	    addToReady(tp);
+	 HashTable_insert(hashs, tp, tp->id);
+	 append_Coll(&allTasks, tp);
+	 return 1;
+      }
    else
       return 0;
 }
@@ -716,9 +688,8 @@ Task_start(Task * tp)
 TASK_DLLEXPORT int
 Task_kill(long taskid)
 {
-   Task     *tp = Task_findTask(taskid);
-
-   Task     *ct = currTask;
+   Task *tp = Task_findTask(taskid);
+   Task *ct = currTask;
 
    if (!tp)
       return 0;
@@ -740,9 +711,8 @@ Task_kill(long taskid)
 TASK_DLLEXPORT int
 Task_killAll(void)
 {
-   Task     *tp, *ct;
-
-   int       r;
+   Task *tp, *ct;
+   int r;
 
    if (currTask != mainTask)
       return 0;
@@ -754,31 +724,31 @@ Task_killAll(void)
   /*  first, move all tasks into `ready` state */
 
    while (!empty_List(&waitTasks))
-    {
-       first_List(&waitTasks);
-       tp = (Task *) waitTasks.current;
-       removeIt_List(&waitTasks, tp);
-       prepend_List(&readyTasks, tp);
-       tp->state = Task_ready;
-    }
+      {
+	 first_List(&waitTasks);
+	 tp = (Task *) waitTasks.current;
+	 removeIt_List(&waitTasks, tp);
+	 prepend_List(&readyTasks, tp);
+	 tp->state = Task_ready;
+      }
 
    while (!empty_List(&msgTasks))
-    {
-       first_List(&msgTasks);
-       tp = (Task *) msgTasks.current;
-       removeIt_List(&msgTasks, tp);
-       prepend_List(&readyTasks, tp);
-       tp->state = Task_ready;
-    }
+      {
+	 first_List(&msgTasks);
+	 tp = (Task *) msgTasks.current;
+	 removeIt_List(&msgTasks, tp);
+	 prepend_List(&readyTasks, tp);
+	 tp->state = Task_ready;
+      }
 
    while (!empty_List(&respTasks))
-    {
-       first_List(&respTasks);
-       tp = (Task *) respTasks.current;
-       removeIt_List(&respTasks, tp);
-       prepend_List(&readyTasks, tp);
-       tp->state = Task_ready;
-    }
+      {
+	 first_List(&respTasks);
+	 tp = (Task *) respTasks.current;
+	 removeIt_List(&respTasks, tp);
+	 prepend_List(&readyTasks, tp);
+	 tp->state = Task_ready;
+      }
 
   /*  spawned parents will be activated incrementally by them's chields */
 
@@ -787,12 +757,12 @@ Task_killAll(void)
    setjmp(ct->taskEnv);
 
    for (r = first_List(&readyTasks); r; r = next_List(&readyTasks))
-    {
-       tp = (Task *) readyTasks.current;
-       if (tp == mainTask)
-	  continue;
-       resumeTask(tp, 2);
-    }
+      {
+	 tp = (Task *) readyTasks.current;
+	 if (tp == mainTask)
+	    continue;
+	 resumeTask(tp, 2);
+      }
 
    return 1;
 }
@@ -800,16 +770,16 @@ Task_killAll(void)
 TASK_DLLEXPORT long
 Task_sleep(long msec)
 {
-   Task     *tp;
+   Task *tp;
 
    if (!canSwitch)
-    {
-       struct timeval tv;
+      {
+	 struct timeval tv;
 
-       calcTv(&tv, msec);
-       select(0, 0, 0, 0, &tv);
-       return 1;
-    }
+	 calcTv(&tv, msec);
+	 select(0, 0, 0, 0, &tv);
+	 return 1;
+      }
    tp = currTask;
    tp->wakeUp = calcWakeup(msec);
    removeFromList(tp);
@@ -822,28 +792,25 @@ Task_sleep(long msec)
 TASK_DLLEXPORT int
 Task_wait_read(int fd, long msec)
 {
-   Task     *tp;
-
+   Task *tp;
    struct timeval tv;
-
-   fd_set    set;
-
-   int       r;
+   fd_set set;
+   int r;
 
    if (!canSwitch)
-    {
+      {
 
-       FD_ZERO(&set);
-       FD_SET(fd, &set);
-       calcTv(&tv, msec);
-       r = t_select(FD_SETSIZE, &set, 0, 0, &tv);
-       if (r > 0)
-	  return 0;
-       else if (r == 0)
-	  return 1;
-       else
-	  return r;
-    }
+	 FD_ZERO(&set);
+	 FD_SET(fd, &set);
+	 calcTv(&tv, msec);
+	 r = t_select(FD_SETSIZE, &set, 0, 0, &tv);
+	 if (r > 0)
+	    return 0;
+	 else if (r == 0)
+	    return 1;
+	 else
+	    return r;
+      }
 
    tp = currTask;
 
@@ -853,13 +820,13 @@ Task_wait_read(int fd, long msec)
    r = t_select(FD_SETSIZE, &set, 0, 0, &tv);
 
    if (r != 0)
-    {
-       Task_yield();
-       if (r > 0)
-	  return 0;
-       else
-	  return r;
-    }
+      {
+	 Task_yield();
+	 if (r > 0)
+	    return 0;
+	 else
+	    return r;
+      }
 
    FD_ZERO(&tp->rfileset);
    FD_SET(fd, &tp->rfileset);
@@ -879,27 +846,25 @@ Task_wait_read(int fd, long msec)
 TASK_DLLEXPORT int
 Task_wait_write(int fd, long msec)
 {
-   Task     *tp;
-
+   Task *tp;
    struct timeval tv;
-
-   int       r;
+   int r;
 
    if (!canSwitch)
-    {
-       fd_set    set;
+      {
+	 fd_set set;
 
-       FD_ZERO(&set);
-       FD_SET(fd, &set);
-       calcTv(&tv, msec);
-       r = t_select(FD_SETSIZE, 0, &set, 0, &tv);
-       if (r > 0)
-	  return 0;
-       else if (r == 0)
-	  return 1;
-       else
-	  return r;
-    }
+	 FD_ZERO(&set);
+	 FD_SET(fd, &set);
+	 calcTv(&tv, msec);
+	 r = t_select(FD_SETSIZE, 0, &set, 0, &tv);
+	 if (r > 0)
+	    return 0;
+	 else if (r == 0)
+	    return 1;
+	 else
+	    return r;
+      }
 
    tp = currTask;
 
@@ -909,13 +874,13 @@ Task_wait_write(int fd, long msec)
    r = t_select(FD_SETSIZE, 0, &tp->wfileset, 0, &tv);
 
    if (r != 0)
-    {
-       Task_yield();
-       if (r > 0)
-	  return 0;
-       else
-	  return r;
-    }
+      {
+	 Task_yield();
+	 if (r > 0)
+	    return 0;
+	 else
+	    return r;
+      }
 
    FD_SET(fd, &tp->wfileset);
 
@@ -934,9 +899,8 @@ Task_wait_write(int fd, long msec)
 static long
 calc_wakeup(struct timeval *tv)
 {
-   long      n;
-
-   long      clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
+   long n;
+   long clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
 
    if (!tv)
       return times(&tms_buf) + 60 * 60 * 24 * clk_tck;
@@ -950,59 +914,57 @@ TASK_DLLEXPORT int
 task_select(int nfds, fd_set * readfds, fd_set * writefds, fd_set * exceptfds, struct timeval *timeout)
 {
    struct timeval tv;
-
-   int       ret, r;
-
-   Task     *tp;
+   int ret, r;
+   Task *tp;
 
    if (!canSwitch)
-    {
-       ret = t_select(nfds, readfds, writefds, exceptfds, timeout);
-       return ret;
-    }
+      {
+	 ret = t_select(nfds, readfds, writefds, exceptfds, timeout);
+	 return ret;
+      }
 
    tp = currTask;
 
    if (readfds)
-    {
-       tp->isRead = 1;
-       tp->rfileset = *readfds;
-    }
+      {
+	 tp->isRead = 1;
+	 tp->rfileset = *readfds;
+      }
    else
       FD_ZERO(&tp->rfileset);
 
    if (writefds)
-    {
-       tp->isWrite = 1;
-       tp->wfileset = *writefds;
-    }
+      {
+	 tp->isWrite = 1;
+	 tp->wfileset = *writefds;
+      }
    else
       FD_ZERO(&tp->wfileset);
 
    if (exceptfds)
-    {
-       tp->isExcept = 1;
-       tp->efileset = *exceptfds;
-    }
+      {
+	 tp->isExcept = 1;
+	 tp->efileset = *exceptfds;
+      }
    else
       FD_ZERO(&tp->efileset);
 
    tv.tv_sec = tv.tv_usec = 0;
 
    if (readfds || writefds || exceptfds)
-    {
-       ret = t_select(FD_SETSIZE, readfds, writefds, exceptfds, &tv);
+      {
+	 ret = t_select(FD_SETSIZE, readfds, writefds, exceptfds, &tv);
 
-       r = (ret != 0 || (timeout && !timeout->tv_sec && !timeout->tv_usec));
-       if (r)
-	{
-	   Task_yield();
-	   tp->isRead = 0;
-	   tp->isWrite = 0;
-	   tp->isExcept = 0;
-	   return ret;
-	}
-    }
+	 r = (ret != 0 || (timeout && !timeout->tv_sec && !timeout->tv_usec));
+	 if (r)
+	    {
+	       Task_yield();
+	       tp->isRead = 0;
+	       tp->isWrite = 0;
+	       tp->isExcept = 0;
+	       return ret;
+	    }
+      }
 
    tp->wakeUp = calc_wakeup(timeout);
    removeFromList(tp);
@@ -1035,7 +997,7 @@ clip_task_select_if(int fd, void *rp, void *wp, void *ep, void *to)
 TASK_DLLEXPORT int
 Task_sendMessage(long receiver, /* new */ TaskMessage * msg)
 {
-   Task     *tp = Task_findTask(receiver);
+   Task *tp = Task_findTask(receiver);
 
    if (!tp)
       return 0;
@@ -1053,10 +1015,10 @@ Task_sendMessage(long receiver, /* new */ TaskMessage * msg)
 
   /*  �� ��� �� ����� ������ � */
    if (tp->state == Task_msg)
-    {
-       removeFromList(tp);
-       addToReady(tp);
-    }
+      {
+	 removeFromList(tp);
+	 addToReady(tp);
+      }
 
    Task_yield();
 
@@ -1066,9 +1028,8 @@ Task_sendMessage(long receiver, /* new */ TaskMessage * msg)
 TASK_DLLEXPORT int
 Task_sendMessageWait(int receiver, TaskMessage * msg)
 {
-   Task     *tp = Task_findTask(receiver);
-
-   Task     *ct;
+   Task *tp = Task_findTask(receiver);
+   Task *ct;
 
    if (!tp)
       return 0;
@@ -1088,10 +1049,10 @@ Task_sendMessageWait(int receiver, TaskMessage * msg)
 
   /*  �� ��� �� ����� ������ � */
    if (tp->state == Task_msg)
-    {
-       removeFromList(tp);
-       addToReady(tp);
-    }
+      {
+	 removeFromList(tp);
+	 addToReady(tp);
+      }
 
   /*  �� ��� */
    removeFromList(ct);
@@ -1105,34 +1066,32 @@ Task_sendMessageWait(int receiver, TaskMessage * msg)
 TASK_DLLEXPORT int
 Task_sendAll(TaskMessage * msg)
 {
-   Task     *ct = currTask;
-
-   Task     *tp;
-
-   int       sent = 0;
+   Task *ct = currTask;
+   Task *tp;
+   int sent = 0;
 
    msg->needResp = 1;
    msg->needDel = 0;
    msg->sender = ct->id;
 
    while (!empty_List(&msgTasks))
-    {
-       first_List(&msgTasks);
-       tp = (Task *) msgTasks.current;
-       msg->receiver = tp->id;
+      {
+	 first_List(&msgTasks);
+	 tp = (Task *) msgTasks.current;
+	 msg->receiver = tp->id;
 
-      /*  ����������� ����������� */
-       append_List(&tp->recvlist, msg);
-       removeFromList(tp);
-       addToReady(tp);
+	/*  ����������� ����������� */
+	 append_List(&tp->recvlist, msg);
+	 removeFromList(tp);
+	 addToReady(tp);
 
-      /*  �� ��� */
-       removeFromList(ct);
-       addToResp(ct);
+	/*  �� ��� */
+	 removeFromList(ct);
+	 addToResp(ct);
 
-       Task_yield();
-       sent++;
-    }
+	 Task_yield();
+	 sent++;
+      }
 
    TaskMessage_delete(msg);
 
@@ -1142,8 +1101,7 @@ Task_sendAll(TaskMessage * msg)
 TASK_DLLEXPORT TaskMessage *
 Task_peekMessage(void)
 {
-   Task     *ct;
-
+   Task *ct;
    TaskMessage *mp;
 
    Task_yield();
@@ -1161,18 +1119,17 @@ TASK_DLLEXPORT TaskMessage *
 Task_getMessage(void)
 {
    TaskMessage *mp;
-
-   Task     *ct = currTask;
+   Task *ct = currTask;
 
    if (empty_List(&ct->recvlist))
-    {
-      /*  ����� */
-       removeFromList(ct);
-       addToMsg(ct);
-       Task_yield();
-       if (empty_List(&ct->recvlist))
-	  return 0;
-    }
+      {
+	/*  ����� */
+	 removeFromList(ct);
+	 addToMsg(ct);
+	 Task_yield();
+	 if (empty_List(&ct->recvlist))
+	    return 0;
+      }
    else
       Task_yield();
 
@@ -1186,7 +1143,7 @@ Task_getMessage(void)
 TASK_DLLEXPORT int
 Task_forward(long receiver, TaskMessage * msg)
 {
-   Task     *tp = Task_findTask(receiver);
+   Task *tp = Task_findTask(receiver);
 
    if (!tp)
       return Task_respond(msg);
@@ -1198,10 +1155,10 @@ Task_forward(long receiver, TaskMessage * msg)
 
   /*  �� ��� �� ����� ������ � */
    if (tp->state == Task_msg)
-    {
-       removeFromList(tp);
-       addToReady(tp);
-    }
+      {
+	 removeFromList(tp);
+	 addToReady(tp);
+      }
 
    return 1;
 }
@@ -1209,22 +1166,22 @@ Task_forward(long receiver, TaskMessage * msg)
 TASK_DLLEXPORT int
 Task_respond(TaskMessage * msg)
 {
-   int       ret = 1;
+   int ret = 1;
 
    if (msg->needResp)
-    {
-       Task     *sender = Task_findTask(msg->sender);
+      {
+	 Task *sender = Task_findTask(msg->sender);
 
-       if (!sender)
-	  ret = 0;
-       else if (sender->state != Task_resp)
-	  ret = 0;
-       else
-	{
-	   removeFromList(sender);
-	   addToReady(sender);
-	}
-    }
+	 if (!sender)
+	    ret = 0;
+	 else if (sender->state != Task_resp)
+	    ret = 0;
+	 else
+	    {
+	       removeFromList(sender);
+	       addToReady(sender);
+	    }
+      }
 
    removeIt_List(&currTask->proclist, msg);
 
@@ -1240,10 +1197,10 @@ static void
 callTaskRun(Task * t)
 {
    if (t != sheduler)
-    {
-       t->result = t->run(t->data);	/*   call the main function ... */
-       suicide(t);		/*   if it returns, the task wants to die */
-    }
+      {
+	 t->result = t->run(t->data);	/*   call the main function ... */
+	 suicide(t);		/*   if it returns, the task wants to die */
+      }
    else
       runSheduler(sheduler);	/*  or sheduler */
 }
@@ -1286,75 +1243,75 @@ initTask(Task * task)
   /*   switch to private stack now */
 
    if (!setjmp(stkswitch))
-    {
-       unsigned char *sp = ((unsigned char *) task->stack) + task->stacklen;
+      {
+	 unsigned char *sp = ((unsigned char *) task->stack) + task->stacklen;
 
-       sp -= WINDOWSIZE + SA(MINFRAME);
-       sp = (unsigned char *) ((unsigned long) (sp) & 0xfffffff8);
+	 sp -= WINDOWSIZE + SA(MINFRAME);
+	 sp = (unsigned char *) ((unsigned long) (sp) & 0xfffffff8);
 #undef UNKNOWN_SYSTEM
 #define UNKNOWN_SYSTEM
 #ifdef __TURBOC__
-       uchar far *farstk = (uchar far *) sp;
+	 uchar far *farstk = (uchar far *) sp;
 
-       stkswitch[0].j_ss = FP_SEG(farstk);
-       stkswitch[0].j_sp = FP_OFF(farstk);
+	 stkswitch[0].j_ss = FP_SEG(farstk);
+	 stkswitch[0].j_sp = FP_OFF(farstk);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_LINUX
 #ifdef ARCH_S390
-       stkswitch[0].__jmpbuf[0].gregs[9] = (unsigned int) (stack + stklen - sizeof(jmp_buf));
+	 stkswitch[0].__jmpbuf[0].gregs[9] = (unsigned int) (stack + stklen - sizeof(jmp_buf));
 #else
-       stkswitch[0].__jmpbuf[4] = (int) sp;
+	 stkswitch[0].__jmpbuf[4] = (int) sp;
 #endif
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_BSDI
-       stkswitch[2] = (unsigned) (sp);
+	 stkswitch[2] = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_FREEBSD
-       stkswitch[0]._jb[2] = (unsigned) (sp);
+	 stkswitch[0]._jb[2] = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_NETBSD
-       ((unsigned *) &stkswitch)[2] = (unsigned) (sp);
+	 ((unsigned *) &stkswitch)[2] = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_OPENBSD
-       ((unsigned *) &stkswitch)[2] = (unsigned) (sp);
+	 ((unsigned *) &stkswitch)[2] = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_SUNOS
-       stkswitch[0].__fp = task->stack + task->stacklen - sizeof(jmp_buf);
+	 stkswitch[0].__fp = task->stack + task->stacklen - sizeof(jmp_buf);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef OS_SOLARIS_8
 #if defined(sparc) || defined(__sparc)
-       stkswitch[1] = (long) sp;
-       stkswitch[2] = (long) &call_curr_task;
+	 stkswitch[1] = (long) sp;
+	 stkswitch[2] = (long) &call_curr_task;
 #undef UNKNOWN_SYSTEM
 #elif defined(i386) || defined(__i386)
-       stkswitch[4] = (long) sp;
-       stkswitch[5] = (long) &call_curr_task;
+	 stkswitch[4] = (long) sp;
+	 stkswitch[5] = (long) &call_curr_task;
 #undef UNKNOWN_SYSTEM
 #endif
 #endif
 #ifdef _WIN32
-       stkswitch[7] = (unsigned) (sp);
+	 stkswitch[7] = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 #ifdef DJGPP
-       stkswitch[0].__esp = (unsigned) (sp);
+	 stkswitch[0].__esp = (unsigned) (sp);
 #undef UNKNOWN_SYSTEM
 #endif
 
-      /*  ((unsigned*)&stkswitch)[ SP_IN_JMPBUF_NO ] = (unsigned int)stack + stklen - sizeof(jmp_buf); */
+	/*  ((unsigned*)&stkswitch)[ SP_IN_JMPBUF_NO ] = (unsigned int)stack + stklen - sizeof(jmp_buf); */
 #ifdef UNKNOWN_SYSTEM
 #error Unknown System!
 #endif
 
-       longjmp(stkswitch, 1);
-    }
+	 longjmp(stkswitch, 1);
+      }
 
   /*  now is in private stack, start task running ... */
    callTaskRun(currTask);
@@ -1370,9 +1327,9 @@ resumeTask(Task * task, int code)
    if (!task->isInited)
       initTask(task);
    else
-    {
-       longjmp(task->taskEnv, code);
-    }
+      {
+	 longjmp(task->taskEnv, code);
+      }
 }
 
 static void
@@ -1384,11 +1341,11 @@ suicide(Task * task)
    removeFromList(task);
 
    if (task->parent)
-    {
-       task->parent->result = task->result;
-       prepend_List(&readyTasks, task->parent);
-       task->parent = 0;
-    }
+      {
+	 task->parent->result = task->result;
+	 prepend_List(&readyTasks, task->parent);
+	 task->parent = 0;
+      }
 
   /*  main task never must go into zombie state */
    if (!task->isMain)
@@ -1400,9 +1357,8 @@ suicide(Task * task)
 TASK_DLLEXPORT int
 Task_yield(void)
 {
-   Task     *ct;
-
-   int       r;
+   Task *ct;
+   int r;
 
    if (!canSwitch)
       return 0;
@@ -1424,14 +1380,11 @@ static void
 waitEvent(int block)
 {
    struct timeval tv;
+   fd_set rfds, wfds, efds;
+   int r, r1, n;
+   long tim, dt;
 
-   fd_set    rfds, wfds, efds;
-
-   int       r, r1, n;
-
-   long      tim, dt;
-
-   Task     *tp;
+   Task *tp;
 
    if (empty_List(&waitTasks))
       return;
@@ -1441,33 +1394,33 @@ waitEvent(int block)
 
    n = 0;
    for (first_List(&waitTasks); (tp = (Task *) waitTasks.current);)
-    {
-       if (tp->wakeUp <= tim)
-	{
-	   remove_List(&waitTasks);
-	   prepend_List(&readyTasks, tp);
-	   tp->state = Task_ready;
-	   tp->isTimed = 1;
-	   if (tp->isRead)
+      {
+	 if (tp->wakeUp <= tim)
 	    {
-	       FD_CLR_BY(&readFiles, &tp->rfileset);
-	       tp->isRead = 0;
+	       remove_List(&waitTasks);
+	       prepend_List(&readyTasks, tp);
+	       tp->state = Task_ready;
+	       tp->isTimed = 1;
+	       if (tp->isRead)
+		  {
+		     FD_CLR_BY(&readFiles, &tp->rfileset);
+		     tp->isRead = 0;
+		  }
+	       if (tp->isWrite)
+		  {
+		     FD_CLR_BY(&writeFiles, &tp->wfileset);
+		     tp->isWrite = 0;
+		  }
+	       if (tp->isExcept)
+		  {
+		     FD_CLR_BY(&exceptFiles, &tp->efileset);
+		     tp->isExcept = 0;
+		  }
+	       n = 1;
 	    }
-	   if (tp->isWrite)
-	    {
-	       FD_CLR_BY(&writeFiles, &tp->wfileset);
-	       tp->isWrite = 0;
-	    }
-	   if (tp->isExcept)
-	    {
-	       FD_CLR_BY(&exceptFiles, &tp->efileset);
-	       tp->isExcept = 0;
-	    }
-	   n = 1;
-	}
-       else
-	  break;
-    }
+	 else
+	    break;
+      }
 
    if (empty_List(&waitTasks))
       return;
@@ -1478,18 +1431,17 @@ waitEvent(int block)
   /*  check files */
 
    if (block)
-    {
-       long      clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
-
-       dt = ((Task *) waitTasks.current)->wakeUp - tim + 1;
-       tv.tv_sec = dt / clk_tck;
-       tv.tv_usec = (dt % clk_tck) * (1000000 / clk_tck);
-    }
+      {
+	 long clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
+	 dt = ((Task *) waitTasks.current)->wakeUp - tim + 1;
+	 tv.tv_sec = dt / clk_tck;
+	 tv.tv_usec = (dt % clk_tck) * (1000000 / clk_tck);
+      }
    else
-    {
-       tv.tv_sec = 0;
-       tv.tv_usec = 0;
-    }
+      {
+	 tv.tv_sec = 0;
+	 tv.tv_usec = 0;
+      }
 
    rfds = readFiles;
    wfds = writeFiles;
@@ -1498,86 +1450,85 @@ waitEvent(int block)
   /*  main program waitpoint */
    r = t_select(FD_SETSIZE, &rfds, &wfds, &efds, &tv);
    if (r > 0)
-    {
-       for (n = first_List(&waitTasks); n && (tp = (Task *) waitTasks.current);)
-	{
-	   r1 = tp->isRead;
-	   if (r1)
-	      r1 = FD_ISSET_BY(&rfds, &(tp->rfileset));
-	   if (!r1 && tp->isWrite)
-	      r1 = FD_ISSET_BY(&wfds, &(tp->wfileset));
-	   if (!r1 && tp->isExcept)
-	      r1 = FD_ISSET_BY(&efds, &(tp->efileset));
-	   if (r1)
+      {
+	 for (n = first_List(&waitTasks); n && (tp = (Task *) waitTasks.current);)
 	    {
-	       remove_List(&waitTasks);
-	       prepend_List(&readyTasks, tp);
-	       tp->state = Task_ready;
-	       n = !empty_List(&waitTasks);
-	       FD_AND_BY(&(tp->rfileset), &rfds);
-	       FD_AND_BY(&(tp->wfileset), &wfds);
-	       FD_AND_BY(&(tp->efileset), &efds);
-	       tp->isRead = 0;
-	       tp->isWrite = 0;
-	       tp->isExcept = 0;
-	       continue;
+	       r1 = tp->isRead;
+	       if (r1)
+		  r1 = FD_ISSET_BY(&rfds, &(tp->rfileset));
+	       if (!r1 && tp->isWrite)
+		  r1 = FD_ISSET_BY(&wfds, &(tp->wfileset));
+	       if (!r1 && tp->isExcept)
+		  r1 = FD_ISSET_BY(&efds, &(tp->efileset));
+	       if (r1)
+		  {
+		     remove_List(&waitTasks);
+		     prepend_List(&readyTasks, tp);
+		     tp->state = Task_ready;
+		     n = !empty_List(&waitTasks);
+		     FD_AND_BY(&(tp->rfileset), &rfds);
+		     FD_AND_BY(&(tp->wfileset), &wfds);
+		     FD_AND_BY(&(tp->efileset), &efds);
+		     tp->isRead = 0;
+		     tp->isWrite = 0;
+		     tp->isExcept = 0;
+		     continue;
+		  }
+	       n = next_List(&waitTasks);
 	    }
-	   n = next_List(&waitTasks);
-	}
-       FD_CLR_BY(&readFiles, &rfds);
-       FD_CLR_BY(&writeFiles, &wfds);
-       FD_CLR_BY(&exceptFiles, &efds);
-    }
+	 FD_CLR_BY(&readFiles, &rfds);
+	 FD_CLR_BY(&writeFiles, &wfds);
+	 FD_CLR_BY(&exceptFiles, &efds);
+      }
 
    if (block)
-    {
-      /*  again check timeouts */
-       tim = times(&tms_buf);
+      {
+	/*  again check timeouts */
+	 tim = times(&tms_buf);
 
-       for (first_List(&waitTasks); (tp = (Task *) waitTasks.current);)
-	{
-	   if (tp->wakeUp <= tim)
+	 for (first_List(&waitTasks); (tp = (Task *) waitTasks.current);)
 	    {
-	       remove_List(&waitTasks);
-	       prepend_List(&readyTasks, tp);
-	       tp->state = Task_ready;
-	       tp->isTimed = 1;
-	       if (tp->isRead)
-		{
-		   FD_CLR_BY(&readFiles, &tp->rfileset);
-		   tp->isRead = 0;
-		}
-	       if (tp->isWrite)
-		{
-		   FD_CLR_BY(&writeFiles, &tp->wfileset);
-		   tp->isWrite = 0;
-		}
-	       if (tp->isExcept)
-		{
-		   FD_CLR_BY(&exceptFiles, &tp->efileset);
-		   tp->isExcept = 0;
-		}
+	       if (tp->wakeUp <= tim)
+		  {
+		     remove_List(&waitTasks);
+		     prepend_List(&readyTasks, tp);
+		     tp->state = Task_ready;
+		     tp->isTimed = 1;
+		     if (tp->isRead)
+			{
+			   FD_CLR_BY(&readFiles, &tp->rfileset);
+			   tp->isRead = 0;
+			}
+		     if (tp->isWrite)
+			{
+			   FD_CLR_BY(&writeFiles, &tp->wfileset);
+			   tp->isWrite = 0;
+			}
+		     if (tp->isExcept)
+			{
+			   FD_CLR_BY(&exceptFiles, &tp->efileset);
+			   tp->isExcept = 0;
+			}
+		  }
+	       else
+		  break;
 	    }
-	   else
-	      break;
-	}
 
-    }
+      }
 
 }
 
 static long
 calcWakeup(long msec)
 {
-   long      n, ret;
-
-   long      clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
+   long n, ret;
+   long clk_tck = sysconf(_SC_CLK_TCK);	//CLK_TCK;
 
    if (msec < 0)
-    {				/*  one day will enought? */
-       ret = (long) times(&tms_buf) + 60 * 60 * 24 * clk_tck;
-       return ret;
-    }
+      {				/*  one day will enought? */
+	 ret = (long) times(&tms_buf) + 60 * 60 * 24 * clk_tck;
+	 return ret;
+      }
    n = msec / (1000 / clk_tck);
    if (n < 1)
       n = 1;
@@ -1596,34 +1547,34 @@ addToReady(Task * task)
 static void
 addToWait(Task * task)
 {
-   int       n;
+   int n;
 
    activeCount++;
    if (task->isRead)
-    {
-       FD_SET_BY(&readFiles, &task->rfileset);
-    }
+      {
+	 FD_SET_BY(&readFiles, &task->rfileset);
+      }
    if (task->isWrite)
-    {
-       FD_SET_BY(&writeFiles, &task->wfileset);
-    }
+      {
+	 FD_SET_BY(&writeFiles, &task->wfileset);
+      }
    if (task->isExcept)
-    {
-       FD_SET_BY(&exceptFiles, &task->efileset);
-    }
+      {
+	 FD_SET_BY(&exceptFiles, &task->efileset);
+      }
 
    task->state = Task_wait;
 
    for (n = first_List(&waitTasks); n; n = next_List(&waitTasks))
-    {
-       Task     *tp = (Task *) waitTasks.current;
+      {
+	 Task *tp = (Task *) waitTasks.current;
 
-       if (task->wakeUp <= tp->wakeUp)
-	{
-	   insertBefore_List(&waitTasks, task);
-	   return;
-	}
-    }
+	 if (task->wakeUp <= tp->wakeUp)
+	    {
+	       insertBefore_List(&waitTasks, task);
+	       return;
+	    }
+      }
 
    append_List(&waitTasks, task);
 }
@@ -1656,31 +1607,31 @@ removeFromList(Task * task)
 {
    activeCount--;
    switch (task->state)
-    {
-    case Task_ready:
-       removeIt_List(&readyTasks, task);
-       break;
-    case Task_wait:
-       removeIt_List(&waitTasks, task);
-       break;
-    case Task_msg:
-       removeIt_List(&msgTasks, task);
-       break;
-    case Task_resp:
-       removeIt_List(&respTasks, task);
-       break;
-    case Task_zombie:
-       removeIt_List(&zombieTasks, task);
-       break;
-    case Task_initial:
-       break;
-    }
+      {
+      case Task_ready:
+	 removeIt_List(&readyTasks, task);
+	 break;
+      case Task_wait:
+	 removeIt_List(&waitTasks, task);
+	 break;
+      case Task_msg:
+	 removeIt_List(&msgTasks, task);
+	 break;
+      case Task_resp:
+	 removeIt_List(&respTasks, task);
+	 break;
+      case Task_zombie:
+	 removeIt_List(&zombieTasks, task);
+	 break;
+      case Task_initial:
+	 break;
+      }
 }
 
 static void
 runSheduler(Task * task)
 {
-   int       code;
+   int code;
 
 #if 0
    signal(SIGPIPE, SIG_IGN);
@@ -1695,46 +1646,45 @@ runSheduler(Task * task)
   /*  destroy all zombie tasks */
 #if 1
    while (first_List(&zombieTasks))
-    {
-       Task     *tp = (Task *) zombieTasks.current;
-
-       removeFromList(tp);
-       Task_delete(tp);
-    }
+      {
+	 Task *tp = (Task *) zombieTasks.current;
+	 removeFromList(tp);
+	 Task_delete(tp);
+      }
 #if 0
    while (!zombieTasks.empty())
-    {
-       zombieTasks.first();
-       ref Task  tp = zombieTasks.get_current();
+      {
+	 zombieTasks.first();
+	 ref Task tp = zombieTasks.get_current();
 
-       zombieTasks.remove();
-       hashs.remove(tp.hash());
-       allTasks.get(tp);
-    }
+	 zombieTasks.remove();
+	 hashs.remove(tp.hash());
+	 allTasks.get(tp);
+      }
 #endif
 #endif
 
    while (code > 0)
-    {
-       if (Next_List(&readyTasks))
-	  waitEvent(0);
-       else if (empty_List(&waitTasks))
-	{
-	  /*  deathmatch? - no active and no wait tasks; */
-	  /*  message-queued tasks cannot be self-activated */
-	   deathMatch();
-	   continue;
-	}
-       else
-	{
-	   waitEvent(1);
-	   continue;
-	}
-      /*  take task from ready queue... */
-       currTask = (Task *) readyTasks.current;
-      /*  ... and switch to one's context */
-       resumeTask(currTask, 1);
-    }
+      {
+	 if (Next_List(&readyTasks))
+	    waitEvent(0);
+	 else if (empty_List(&waitTasks))
+	    {
+	      /*  deathmatch? - no active and no wait tasks; */
+	      /*  message-queued tasks cannot be self-activated */
+	       deathMatch();
+	       continue;
+	    }
+	 else
+	    {
+	       waitEvent(1);
+	       continue;
+	    }
+	/*  take task from ready queue... */
+	 currTask = (Task *) readyTasks.current;
+	/*  ... and switch to one's context */
+	 resumeTask(currTask, 1);
+      }
 
   /*  never reached point! */
    currTask = 0;
@@ -1758,12 +1708,10 @@ deathMatch(void)
 #endif
 
 extern HANDLE w32_hStdIn;
-
 static int
 zero_fds(fd_set * fds)
 {
-   int       i;
-
+   int i;
    for (i = 0; i < sizeof(fd_set) / sizeof(unsigned); i++, ((unsigned *) fds)++)
       if (*((unsigned *) fds))
 	 return 0;
@@ -1773,9 +1721,8 @@ zero_fds(fd_set * fds)
 static int
 t_select(int nfds, fd_set * readfds, fd_set * writefds, fd_set * exceptfds, struct timeval *timeout)
 {
-   int       r = 0;
-
-   long      ms_timeout = 0;
+   int r = 0;
+   long ms_timeout = 0;
 
    if (!readfds || !FD_ISSET(0, readfds))
       return select(nfds, readfds, writefds, exceptfds, timeout);
@@ -1794,49 +1741,48 @@ t_select(int nfds, fd_set * readfds, fd_set * writefds, fd_set * exceptfds, stru
    FD_CLR(0, readfds);
 
    if (zero_fds(readfds) && !writefds && !exceptfds)
-    {
-       r = WaitForMultipleObjects(1, &w32_hStdIn, 1, ms_timeout);
-       if (r == WAIT_OBJECT_0)
-	{
-	   FD_SET(0, readfds);
-	   return 1;
-	}
-       else
-	  return 0;
-    }
+      {
+	 r = WaitForMultipleObjects(1, &w32_hStdIn, 1, ms_timeout);
+	 if (r == WAIT_OBJECT_0)
+	    {
+	       FD_SET(0, readfds);
+	       return 1;
+	    }
+	 else
+	    return 0;
+      }
 
    while (ms_timeout > 0)
-    {
-       struct timeval tv;
+      {
+	 struct timeval tv;
+	 long wait;
 
-       long      wait;
+	 r = WaitForMultipleObjects(1, &w32_hStdIn, 1, 0);
+	 if (r == WAIT_OBJECT_0)
+	    {
+	       tv.tv_sec = 0;
+	       tv.tv_usec = 0;
+	       r = select(nfds, readfds, writefds, exceptfds, &tv);
+	       FD_SET(0, readfds);
+	       if (r >= 0)
+		  return r + 1;
+	       return r;
+	    }
 
-       r = WaitForMultipleObjects(1, &w32_hStdIn, 1, 0);
-       if (r == WAIT_OBJECT_0)
-	{
-	   tv.tv_sec = 0;
-	   tv.tv_usec = 0;
-	   r = select(nfds, readfds, writefds, exceptfds, &tv);
-	   FD_SET(0, readfds);
-	   if (r >= 0)
-	      return r + 1;
-	   return r;
-	}
+	 if (ms_timeout > 100)
+	    wait = 100;
+	 else
+	    wait = ms_timeout;
+	 ms_timeout -= wait;
 
-       if (ms_timeout > 100)
-	  wait = 100;
-       else
-	  wait = ms_timeout;
-       ms_timeout -= wait;
+	 tv.tv_sec = wait / 1000;
+	 tv.tv_usec = (wait % 1000) * 1000;
 
-       tv.tv_sec = wait / 1000;
-       tv.tv_usec = (wait % 1000) * 1000;
+	 r = select(nfds, readfds, writefds, exceptfds, &tv);
 
-       r = select(nfds, readfds, writefds, exceptfds, &tv);
-
-       if (r)
-	  return r;
-    }
+	 if (r)
+	    return r;
+      }
 
    return 0;
 }

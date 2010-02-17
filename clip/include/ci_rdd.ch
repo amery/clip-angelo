@@ -3,8 +3,8 @@
 	Author   : Alexey M. Tkachenko <alexey@itk.ru>
 	License : (GPL) http://www.itk.ru/clipper/license.html
 */
-#ifndef CN_RDD_DEFINED
-#define CN_RDD_DEFINED
+#ifndef CI_RDD_DEFINED
+#define CI_RDD_DEFINED
 
 #define	RDD_SHARED		.t.
 #define	RDD_EXCLUSIVE		.f.

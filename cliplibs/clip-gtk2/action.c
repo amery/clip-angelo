@@ -17,7 +17,7 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static    gint
+static gint
 handle_activate_signal(GtkAction * action, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -59,18 +59,12 @@ clip_INIT___ACTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
-   gchar    *label = _clip_parc(ClipMachineMemory, 3);
-
-   gchar    *tooltip = _clip_parc(ClipMachineMemory, 4);
-
-   gchar    *stock_id = _clip_parc(ClipMachineMemory, 5);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
+   gchar *label = _clip_parc(ClipMachineMemory, 3);
+   gchar *tooltip = _clip_parc(ClipMachineMemory, 4);
+   gchar *stock_id = _clip_parc(ClipMachineMemory, 5);
    C_object *caction;
-
    GtkAction *action;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -89,13 +83,13 @@ clip_GTK_ACTIONNEW(ClipMachine * ClipMachineMemory)
    action = gtk_action_new(name, label, tooltip, stock_id);
 
    if (action)
-    {
-       caction = _list_get_cobject(ClipMachineMemory, action);
-       if (!caction)
-	  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, cv, NULL);
-       if (caction)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
-    }
+      {
+	 caction = _list_get_cobject(ClipMachineMemory, action);
+	 if (!caction)
+	    caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, cv, NULL);
+	 if (caction)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
+      }
 
    FREE_TEXT(name);
    FREE_TEXT(label);
@@ -112,8 +106,7 @@ int
 clip_GTK_ACTIONGETNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *name;
+   gchar *name;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));
@@ -209,11 +202,8 @@ int
 clip_GTK_ACTIONCREATEICON(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    GtkIconSize size = _clip_parni(ClipMachineMemory, 2);
-
    GtkWidget *wid;
-
    C_widget *cwid;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -223,13 +213,13 @@ clip_GTK_ACTIONCREATEICON(ClipMachine * ClipMachineMemory)
    wid = gtk_action_create_icon(GTK_ACTION(caction->object), size);
 
    if (wid)
-    {
-       cwid = _list_get_cwidget(ClipMachineMemory, wid);
-       if (!cwid)
-	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
-       if (cwid)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+      {
+	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	 if (!cwid)
+	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	 if (cwid)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
 
    return 0;
  err:
@@ -240,9 +230,7 @@ int
 clip_GTK_ACTIONCREATEMENUITEM(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    GtkWidget *wid;
-
    C_widget *cwid;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -251,13 +239,13 @@ clip_GTK_ACTIONCREATEMENUITEM(ClipMachine * ClipMachineMemory)
    wid = gtk_action_create_menu_item(GTK_ACTION(caction->object));
 
    if (wid)
-    {
-       cwid = _list_get_cwidget(ClipMachineMemory, wid);
-       if (!cwid)
-	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
-       if (cwid)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+      {
+	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	 if (!cwid)
+	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	 if (cwid)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
 
    return 0;
  err:
@@ -268,9 +256,7 @@ int
 clip_GTK_ACTIONCREATETOOLITEM(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    GtkWidget *wid;
-
    C_widget *cwid;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -279,13 +265,13 @@ clip_GTK_ACTIONCREATETOOLITEM(ClipMachine * ClipMachineMemory)
    wid = gtk_action_create_tool_item(GTK_ACTION(caction->object));
 
    if (wid)
-    {
-       cwid = _list_get_cwidget(ClipMachineMemory, wid);
-       if (!cwid)
-	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
-       if (cwid)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+      {
+	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	 if (!cwid)
+	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	 if (cwid)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
 
    return 0;
  err:
@@ -296,7 +282,6 @@ int
 clip_GTK_ACTIONCONNECTPROXY(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -315,7 +300,6 @@ int
 clip_GTK_ACTIONDISCONNECTPROXY(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -334,8 +318,7 @@ int
 clip_GTK_ACTIONGETPROXIES(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   GSList   *list;
+   GSList *list;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));
@@ -343,26 +326,24 @@ clip_GTK_ACTIONGETPROXIES(ClipMachine * ClipMachineMemory)
    list = gtk_action_get_proxies(GTK_ACTION(caction->object));
 
    if (list)
-    {
-       ClipVar  *cv = RETPTR(ClipMachineMemory);
+      {
+	 ClipVar *cv = RETPTR(ClipMachineMemory);
+	 long n = g_slist_length(list);
 
-       long      n = g_slist_length(list);
+	 _clip_array(ClipMachineMemory, cv, 1, &n);
+	 for (n = 0; list; list = g_slist_next(list))
+	    {
+	       C_widget *cwid;
+	       GtkWidget *wid;
 
-       _clip_array(ClipMachineMemory, cv, 1, &n);
-       for (n = 0; list; list = g_slist_next(list))
-	{
-	   C_widget *cwid;
-
-	   GtkWidget *wid;
-
-	   wid = list->data;
-	   cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	   if (!cwid)
-	      cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	   if (cwid)
-	      _clip_aset(ClipMachineMemory, cv, &cwid->obj, 1, &n);
-	}
-    }
+	       wid = list->data;
+	       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	       if (!cwid)
+		  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	       if (cwid)
+		  _clip_aset(ClipMachineMemory, cv, &cwid->obj, 1, &n);
+	    }
+      }
 
    return 0;
  err:
@@ -403,7 +384,6 @@ int
 clip_GTK_ACTIONBLOCKACTIVATEFROM(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cproxy = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -422,7 +402,6 @@ int
 clip_GTK_ACTIONUNBLOCKACTIVATEFROM(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cproxy = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -441,8 +420,7 @@ int
 clip_GTK_ACTIONSETACCELPATH(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *accel_path = _clip_parc(ClipMachineMemory, 2);
+   gchar *accel_path = _clip_parc(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));
@@ -459,7 +437,6 @@ int
 clip_GTK_ACTIONSETACCELGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cagroup = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -479,8 +456,7 @@ int
 clip_GTK_ACTIONGETACCELPATH(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *path;
+   gchar *path;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));
@@ -499,8 +475,7 @@ int
 clip_GTK_ACTIONSETSENSITIVE(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  sensitive = _clip_parl(ClipMachineMemory, 2);;
+   gboolean sensitive = _clip_parl(ClipMachineMemory, 2);;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));
@@ -517,8 +492,7 @@ int
 clip_GTK_ACTIONSETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *caction = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  visible = _clip_parl(ClipMachineMemory, 2);;
+   gboolean visible = _clip_parl(ClipMachineMemory, 2);;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(caction, GTK_IS_ACTION(caction->object));

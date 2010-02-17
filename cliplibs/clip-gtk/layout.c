@@ -47,18 +47,12 @@ clip_INIT___LAYOUT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_LAYOUTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    GtkAdjustment *hadj, *vadj;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
@@ -81,13 +75,9 @@ int
 clip_GTK_LAYOUTPUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      x = _clip_parni(ClipMachineMemory, 3);
-
-   gint      y = _clip_parni(ClipMachineMemory, 4);
-
+   gint x = _clip_parni(ClipMachineMemory, 3);
+   gint y = _clip_parni(ClipMachineMemory, 4);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
@@ -112,7 +102,6 @@ int
 clip_GTK_LAYOUTFREEZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clay, GTK_IS_LAYOUT);
    gtk_layout_freeze(GTK_LAYOUT(clay->widget));
    return 0;
@@ -124,7 +113,6 @@ int
 clip_GTK_LAYOUTTHAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clay, GTK_IS_LAYOUT);
    gtk_layout_thaw(GTK_LAYOUT(clay->widget));
    return 0;
@@ -137,11 +125,8 @@ int
 clip_GTK_LAYOUTSETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkAdjustment *adj;
-
    CHECKCWID(clay, GTK_IS_LAYOUT);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -159,11 +144,8 @@ int
 clip_GTK_LAYOUTSETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clay = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkAdjustment *adj;
-
    CHECKCWID(clay, GTK_IS_LAYOUT);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);

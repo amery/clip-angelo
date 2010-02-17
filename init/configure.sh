@@ -27,7 +27,7 @@ source $Clip_M_Dir/configure.ini
 if [ -f ./configure.in ] ; then
 	echo "#!/bin/bash " 										>./configure
 	cat ./configure.ini 										>>./configure
-	echo "source $Clip_M_Dir/init/functions.f" 		>>./configure
+	echo "source $Clip_M_Dir/init/functions.f.sh"	>>./configure
 	cat ./configure.in  										>>./configure
 	chmod +x ./configure
 fi

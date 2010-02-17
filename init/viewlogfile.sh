@@ -1,9 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
 #
 # outputs log files on screen.
 #
 export LogFileNr=$*
-source init/functions.f
+source init/functions.f.sh
 [ -f ./configure.ini ] && source ./configure.ini
 
 export MultiFile="n"

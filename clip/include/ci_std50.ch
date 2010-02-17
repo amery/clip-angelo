@@ -3,8 +3,6 @@
 #define CI_STD50_DEFINED
 
 #include "ci_Set.ch"
-/* Don`t remove this line - it`s only for CLIP compiler */
-*charset koi8-r
 
 #command DO WHILE <exp>         => while <exp>
 #command END <x>                => end

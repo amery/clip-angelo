@@ -55,7 +55,7 @@ export ReleaseDir=""
 #
 export Parameter="$*"
 #export MAKECMDGOALS=""
-source init/functions.f
+source init/functions.f.sh
 #source init/gen.in
 if [ $? != 0 ] ; then
 	echo "Configuration for $PWD"
@@ -78,10 +78,15 @@ if ! [ -f "$Clip_M_Dir/release.sequence" ] ; then
 fi
 export release_sequence=$(cat "$Clip_M_Dir/release.sequence")
 export seq_no=$release_sequence-$release_version
-Version="1.1"
+Version="1.2"
 if [[ "$USER" != "root" ]] ; then
 	echo $USER >"$Clip_M_Dir/user"
 fi
+ARCH="$(uname -m)"
+if ! [[ "$ARCH" = "x86_64" ]] ; then
+	ARCH="i686"
+fi
+echo $ARCH >config/setup/ARCH.setup.ini
 rm -f$V $Clip_M_Dir/temp/*
 ########################################################################################################"
 #
@@ -109,8 +114,8 @@ while [ $trt -eq -1 ] ; do
 #	exec 									1>&-
 #	exec 									2>&-
 #	exec 									0>&-
-	[ -d $HOME/my_make/clip-prg.32-64.prg.detail/clip-prg.32-64 ] \
-		&& cp -Rfpu$V $HOME/my_make/clip-prg.32-64.prg.detail/clip-prg.32-64/* $Clip_M_Dir/.
+	[ -d $HOME/my_make.new/clip-prg.32-64.prg.detail/clip-prg.32-64 ] \
+		&& cp -Rfpu$V $HOME/my_make.new/clip-prg.32-64.prg.detail/clip-prg.32-64/* $Clip_M_Dir/.
 	export RootMode="0"
 	export ARCH=$(GetArch 0)
 	OnScreen 0
@@ -132,140 +137,145 @@ while [ $trt -eq -1 ] ; do
 	export MenuNr=0
 	Menu_Select[$MenuNr]="cancel/abort  "
 	Menu_command[$MenuNr]="cancel"
-	      Menu2[$MenuNr]="                                                              |"
+	Menu2[$MenuNr]="                                                              |"
 	let ++MenuNr
 	Menu_Select[$MenuNr]="clean         "
 	Menu_command[$MenuNr]="clean"
-			Menu2[$MenuNr]=" : cleans all generated files                                 |"
+	Menu2[$MenuNr]=" : cleans all generated files                                 |"
 	export CleanNr=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="force.clean   "
 	Menu_command[$MenuNr]="force.clean.sh"
-			Menu2[$MenuNr]=" : forces clean because of errors                             |"
+	Menu2[$MenuNr]=" : forces clean because of errors                             |"
 	export ForceCleanNr=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="distclean     "
 	Menu_command[$MenuNr]="distclean"
-			Menu2[$MenuNr]=" : cleans config files + clean                                |"
+	Menu2[$MenuNr]=" : cleans config files + clean                                |"
 	export DistcleanNr=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="uninstall     "
 	Menu_command[$MenuNr]="uninstall"
-			Menu2[$MenuNr]=" : cleans all installed files  + clean                        |"
+	Menu2[$MenuNr]=" : cleans all installed files  + clean                        |"
 	export UnInstallNr=$MenuNr
 	export Separetor1=$MenuNr
 	let ++MenuNr
 	Menu_Select[$MenuNr]="new-config    "
 	Menu_command[$MenuNr]="new-config"
-			Menu2[$MenuNr]=" : cleans & changes your configuration settings               |"
+	Menu2[$MenuNr]=" : cleans & changes your configuration settings               |"
 	export new_configuration=$MenuNr
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="indent        "
-#	Menu_command[$MenuNr]="indent"
-#			Menu2[$MenuNr]=" : indents .c & .h files with the settings of tools/ci_mindent|"
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="arch        "
-#	Menu_command[$MenuNr]="arch"
-#			Menu2[$MenuNr]=" : modifies arch                                              |"
-#	export ArchService=$MenuNr
-	export Separetor2=$MenuNr
 	let ++MenuNr
-	Menu_Select[$MenuNr]="local         "
-	Menu_command[$MenuNr]="local"
-			Menu2[$MenuNr]=" : local mode user only linked to home_dir/bin                |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="home          "
-	Menu_command[$MenuNr]="home"
-			Menu2[$MenuNr]=" : home user only home_dir/clip(32/64) linked to home_dir/bin |"
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="local-debug "
-#			Menu2[$MenuNr]=" : local mode user only home_dir/bin with debug (-g) |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="usr.local     "
-	Menu_command[$MenuNr]="usr.local"
-			Menu2[$MenuNr]=" : /usr/local/clip                          NEEDS root access |"
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="system-debug"
-#	Menu_command[$MenuNr]="system-debug"
-#			Menu2[$MenuNr]=" : /usr/local/clip with debug (-g), NEEDS root access|"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="opt           "
-	Menu_command[$MenuNr]="opt"
-			Menu2[$MenuNr]=" : /opt/clip(32/64)                         NEEDS root access |"
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="sys           "
-#	Menu_command[$MenuNr]="sys"
-#			Menu2[$MenuNr]=" : /usr/bin                                 NEEDS root access |"
-#	let ++MenuNr
-#	Menu_Select[$MenuNr]="opt-debug   "
-#	Menu_command[$MenuNr]="opt-debug"
-#			Menu2[$MenuNr]=" : /opt/clip with debug (-g), NEEDS root access               |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="log           "
-	Menu_command[$MenuNr]="log"
-			Menu2[$MenuNr]=" : view last log files                                        |"
-	export LogMenuNr=$MenuNr
-	export Separetor3=$MenuNr
-	let ++MenuNr
-	Menu_Select[$MenuNr]="deb           "
-	Menu_command[$MenuNr]="deb"
-		Menu2[$MenuNr]=" : Debian package                        !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="rpm           "
-	Menu_command[$MenuNr]="rpm"
-		Menu2[$MenuNr]=" : rpm package    /usr                   !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="rpm-opt       "
-	Menu_command[$MenuNr]="rpm-opt"
-		Menu2[$MenuNr]=" : rpm package /opt                      !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="src           "
-	Menu_command[$MenuNr]="src"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="src_p         "
-	Menu_command[$MenuNr]="src_p"
-		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="tar.bz2       "
-	Menu_command[$MenuNr]="tar.bz2"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="tbz           "
-	Menu_command[$MenuNr]="tbz"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="tbz2          "
-	Menu_command[$MenuNr]="tbz2"
-		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="tgz           "
-	Menu_command[$MenuNr]="tgz"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="doc           "
-	Menu_command[$MenuNr]="doc"
-		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="CVS_commit    "
-	Menu_command[$MenuNr]="CVS_commit"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="CVS_ucommit   "
-	Menu_command[$MenuNr]="CVS_ucommit"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
-	let ++MenuNr
-	Menu_Select[$MenuNr]="CVS_update    "
-	Menu_command[$MenuNr]="CVS_update"
-			Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+	Menu_Select[$MenuNr]="indent        "
+	Menu_command[$MenuNr]="indent"
+	Menu2[$MenuNr]=" : indents .c & .h files with the settings of tools/ci_mindent|"
 	let ++MenuNr
 	Menu_Select[$MenuNr]="depend        "
 	Menu_command[$MenuNr]="depend"
-			Menu2[$MenuNr]=" : checks dependencies of included files                      |"
-	export Separetor4=0
-	export Service=0
+	Menu2[$MenuNr]=" : checks dependencies of included files                      |"
+	let ++MenuNr
+	Menu_Select[$MenuNr]="log           "
+	Menu_command[$MenuNr]="log"
+	Menu2[$MenuNr]=" : view last log files                                        |"
+	export LogMenuNr=$MenuNr
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="arch        "
+#	Menu_command[$MenuNr]="arch"
+#	Menu2[$MenuNr]=" : modifies arch                                              |"
+#	export ArchService=$MenuNr
+	export Separetor2=$MenuNr
+	let ++MenuNr
+	Menu_Select[$MenuNr]="home          "
+	Menu_command[$MenuNr]="home"
+	Menu2[$MenuNr]=" : home user only home_dir/clip(32/64) linked to home_dir/bin |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="home-debug "
+#	Menu2[$MenuNr]=" : home user only home_dir/clip(32/64) with debug (-g)        |"
+	let ++MenuNr
+	Menu_Select[$MenuNr]="local         "
+	Menu_command[$MenuNr]="local"
+	Menu2[$MenuNr]=" : local mode user only linked to home_dir/bin                |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="local-debug "
+#	Menu2[$MenuNr]=" : local mode user only home_dir/bin with debug (-g)          |"
+	let ++MenuNr
+	Menu_Select[$MenuNr]="usr.local     "
+	Menu_command[$MenuNr]="usr.local"
+	Menu2[$MenuNr]=" : /usr/local/clip(32/64)                   NEEDS root access |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="system-debug"
+#	Menu_command[$MenuNr]="system-debug"
+#	Menu2[$MenuNr]=" : /usr/local/clip with debug (-g), NEEDS root access         |"
+	let ++MenuNr
+	Menu_Select[$MenuNr]="opt           "
+	Menu_command[$MenuNr]="opt"
+	Menu2[$MenuNr]=" : /opt/clip(32/64)                         NEEDS root access |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="opt-debug   "
+#	Menu_command[$MenuNr]="opt-debug"
+#	Menu2[$MenuNr]=" : /opt/clip with debug (-g), NEEDS root access               |"
+	let ++MenuNr
+	Menu_Select[$MenuNr]="sys           "
+	Menu_command[$MenuNr]="sys"
+	Menu2[$MenuNr]=" : /usr/bin    NOT YET TESTED               NEEDS root access |"
+#	let ++MenuNr
+#	Menu_Select[$MenuNr]="system-debug"
+#	Menu_command[$MenuNr]="system-debug"
+#	Menu2[$MenuNr]=" : /usr/local/clip with debug (-g), NEEDS root access         |"
 	if [ -f $Clip_H_Dir/create.release.number.sh ] ; then
+		export Service=0
 		export Separetor4=$MenuNr
+		let ++MenuNr
+		Menu_Select[$MenuNr]="deb           "
+		Menu_command[$MenuNr]="deb"
+		Menu2[$MenuNr]=" : Debian package                        !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="rpm           "
+		Menu_command[$MenuNr]="rpm"
+		Menu2[$MenuNr]=" : rpm package    /usr                   !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="rpm-opt       "
+		Menu_command[$MenuNr]="rpm-opt"
+		Menu2[$MenuNr]=" : rpm package /opt                      !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="src           "
+		Menu_command[$MenuNr]="src"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="src_p         "
+		Menu_command[$MenuNr]="src_p"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="tar.bz2       "
+		Menu_command[$MenuNr]="tar.bz2"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="tbz           "
+		Menu_command[$MenuNr]="tbz"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="tbz2          "
+		Menu_command[$MenuNr]="tbz2"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="tgz           "
+		Menu_command[$MenuNr]="tgz"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="doc           "
+		Menu_command[$MenuNr]="doc"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="CVS_commit    "
+		Menu_command[$MenuNr]="CVS_commit"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="CVS_ucommit   "
+		Menu_command[$MenuNr]="CVS_ucommit"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
+		let ++MenuNr
+		Menu_Select[$MenuNr]="CVS_update    "
+		Menu_command[$MenuNr]="CVS_update"
+		Menu2[$MenuNr]=" :                                       !!! not yet tested   |"
 		let ++MenuNr
 		Menu_Select[$MenuNr]="new-version   "
 		Menu_command[$MenuNr]="new-version"
@@ -332,7 +342,7 @@ while [ $trt -eq -1 ] ; do
 #	echo "$SpaceWhiteLine" 																													>&0
 	echo "#  Clip compiler, debugger, libraries & tools version : $release_version$SpaceReleaseVersion  #" 		>&0
 	echo "#                                  (yyyy-mm-dd)  date : $release_date                      #"			>&0
-	echo "#                                    release sequence : $release_sequence$SpaceReleaseSequence    #" 	>&0
+	echo "#                                    release sequence : $release_sequence$SpaceReleaseSequence      #" 	>&0
 #	echo "#                                                date : $sequence_date           #"							>&0
 #	echo "$SpaceWhiteLine" 																													>&0
 	echo $BigLineSeparator
@@ -351,11 +361,13 @@ while [ $trt -eq -1 ] ; do
 			;;
 		$Separetor1)
 			echo $LittleLineSeparator 																										>&0
-			echo "|          Versions                                                                     |" 		>&0
+			echo "|          Tools                                                                        |" 		>&0
 			echo $LittleLineSeparator 																										>&0
 			;;
 		$Separetor2)
-#			echo $LittleLineSeparator 																										>&0
+			echo $LittleLineSeparator 																										>&0
+			echo "|          Versions                                                                     |" 		>&0
+			echo $LittleLineSeparator 																										>&0
 			;;
 		$Separetor3)
 			echo $LittleLineSeparator 																										>&0
@@ -450,7 +462,7 @@ while [ $trt -eq -1 ] ; do
 			echo "#   [2]  |  Uninstall 'home'        #"
 			echo "#   [3]  |  Uninstall 'usr.local'   #"
 			echo "#   [4]  |  Uninstall 'opt'         #"
-#			echo "#   [5]  |  Uninstall 'sys'"        #
+			echo "#   [5]  |  Uninstall 'sys'"        #
 			echo "#####################################"
 			echo ""
 			read -p "Your choice + <enter> : " varX >&0
@@ -462,8 +474,6 @@ while [ $trt -eq -1 ] ; do
 			$MAKE clean
 			rm -Rf$V $Clip_H_Dir/clip32 || true
 			rm -Rf$V $Clip_H_Dir/clip64 || true
-			rm -Rf$V $Clip_H_Dir/ci_clip32 || true
-			rm -Rf$V $Clip_H_Dir/ci_clip64 || true
 		elif [[ $varX -eq 2 ]] ; then
 			[ -f Makefile ] || ./configure "clean"
 			$MAKE clean
@@ -471,34 +481,27 @@ while [ $trt -eq -1 ] ; do
 			[ -f Makefile ] || ./configure "clean"
 			$MAKE clean
 			su -c "(rm -Rf$V /usr/local/clip32 || true) && \
-					(rm -Rf$V /usr/local/clip64 || true) && \
-					(rm -Rf$V /usr/local/ci_clip32 || true) && \
-					(rm -Rf$V /usr/local/ci_clip64 || true)"
+					(rm -Rf$V /usr/local/clip64 || true)"
 		elif [[ $varX -eq 4 ]] ; then
 			[ -f Makefile ] || ./configure "clean"
 			$MAKE clean
 			su -c "(rm -Rf$V /opt/clip32 || true) && \
-					(rm -Rf$V /opt/clip64 || true) && \
-					(rm -Rf$V /opt/ci_clip32 || true) && \
-					(rm -Rf$V /opt/ci_clip64 || true)"
+					(rm -Rf$V /opt/clip64 || true)"
 #		elif [[ $varX -eq 5 ]] ; then
 #			[ -f Makefile ] || ./configure "clean"
 #			$MAKE clean
 #			su -c "(rm -Rf$V $Clip_H_Dir/clip32 || true) && \
-#					(rm -Rf$V $Clip_H_Dir/clip64 || true )&& \
-#					(rm -Rf$V $Clip_H_Dir/ci_clip32 || true) && \
-#					(rm -Rf$V $Clip_H_Dir/ci_clip64 || true)"
+#					(rm -Rf$V $Clip_H_Dir/clip64 || true )"
 		fi
 		rm -Rf$V $HOME/clip32 || true
 		rm -Rf$V $HOME/clip64 || true
-		rm -Rf$V $HOME/ci_clip32 || true
-		rm -Rf$V $HOME/ci_clip64 || true
 		trumpet
 		exit 0
 	elif [ $trt -eq $new_configuration ] ; then
 		rm -Rf$V $Clip_S_Dir/*
 		#rm -f$V $Clip_T_Dir/*
 		rm -Rf$V Makefile.ini Makefile configure.ini
+		let trt=-1
 	fi
 done
 
@@ -584,6 +587,9 @@ if [ -f ./configure.ini ] ; then
 	source ./configure.ini
 fi
 export >/dev/null
+if [[ -f ./${Menu_command[$varX]} ]] ; then
+	rm -f$V ./${Menu_command[$varX]}
+fi
 if [[ -f ./${Menu_command[$varX]}.sh ]] ; then
 	if [[ "$RootMode" = "1" ]] ; then
 		su -c "./${Menu_command[$varX]}.sh"

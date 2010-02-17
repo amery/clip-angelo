@@ -50,12 +50,9 @@ clip_INIT___PROGRESS_BAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_PROGRESSBARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
 
@@ -94,8 +91,7 @@ int
 clip_GTK_PROGRESSBARSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
@@ -114,8 +110,7 @@ int
 clip_GTK_PROGRESSBARSETFRACTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   fraction = _clip_parnd(ClipMachineMemory, 2);
+   gdouble fraction = _clip_parnd(ClipMachineMemory, 2);
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -133,8 +128,7 @@ int
 clip_GTK_PROGRESSBARSETPULSESTEP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   step = _clip_parnd(ClipMachineMemory, 2);
+   gdouble step = _clip_parnd(ClipMachineMemory, 2);
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -151,9 +145,7 @@ int
 clip_GTK_PROGRESSBARSETORIENTATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    GtkProgressBarOrientation orientation = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(cprg->widget), orientation);
@@ -166,8 +158,7 @@ int
 clip_GTK_PROGRESSBARGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text;
+   gchar *text;
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
 
@@ -184,8 +175,7 @@ int
 clip_GTK_PROGRESSBARGETFRACTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   fraction;
+   gdouble fraction;
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
 
@@ -200,8 +190,7 @@ int
 clip_GTK_PROGRESSBARGETPULSESTEP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
-   gdouble   step;
+   gdouble step;
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);
 
@@ -216,7 +205,6 @@ int
 clip_GTK_PROGRESSBARGETORIENTATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    GtkProgressBarOrientation orientation;
 
    CHECKCWID(cprg, GTK_IS_PROGRESS);
@@ -232,7 +220,6 @@ int
 clip_GTK_PROGRESSBARSETELLIPSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpbar = _fetch_cw_arg(ClipMachineMemory);
-
    PangoEllipsizeMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cpbar, GTK_IS_PROGRESS_BAR);

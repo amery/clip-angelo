@@ -48,12 +48,9 @@ clip_INIT___SIZEGROUP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SIZEGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkSizeGroupMode mode = _clip_parni(ClipMachineMemory, 2);
-
    GtkSizeGroup *group;
-
    C_object *cgroup;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -62,11 +59,11 @@ clip_GTK_SIZEGROUPNEW(ClipMachine * ClipMachineMemory)
    group = gtk_size_group_new(mode);
 
    if (group)
-    {
-       cgroup = _register_object(ClipMachineMemory, group, GTK_TYPE_SIZE_GROUP, cv, NULL);
-       if (cgroup)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgroup->obj);
-    }
+      {
+	 cgroup = _register_object(ClipMachineMemory, group, GTK_TYPE_SIZE_GROUP, cv, NULL);
+	 if (cgroup)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cgroup->obj);
+      }
 
    return 0;
  err:
@@ -80,7 +77,6 @@ int
 clip_GTK_SIZEGROUPSETMODE(ClipMachine * ClipMachineMemory)
 {
    C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
-
    GtkSizeGroupMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -119,7 +115,6 @@ int
 clip_GTK_SIZEGROUPADDWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -141,7 +136,6 @@ int
 clip_GTK_SIZEGROUPREMOVEWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cgroup = _fetch_co_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);

@@ -5,6 +5,7 @@
 
 	This file prints debug informations on stderr
 */
+errordskkljsdlkjfsdlkfq
 #ifdef DEBUGGING_CLIP
   /* fprintf(stderr, _clic_gettext("Procedure : %s"), __PROC__); */
 fprintf(stderr, _clic_gettext("ClipMachineMemory->next->inited : %d\n"), ClipMachineMemory->next->inited);
@@ -29,12 +30,10 @@ fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->localvars->names : %s\n"),
 fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->filename : %s\n"), ClipMachineMemory->fp->up->filename);
 fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->line : %d\n"), ClipMachineMemory->fp->up->line);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->privates : %d\n"), ClipMachineMemory->fp->up->privates); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->fp->up->localvars->refcount : %d\n"), ClipMachineMemory->fp->up->localvars->refcount);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->localvars->refcount : %d\n"), ClipMachineMemory->fp->up->localvars->refcount);
 fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->localvars->size : %d\n"), ClipMachineMemory->fp->up->localvars->size);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->localvars->vars : %d\n"), ClipMachineMemory->fp->up->localvars->vars); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->fp->up->localvars->names : %s\n"), ClipMachineMemory->fp->up->localvars->names);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->localvars->names : %s\n"), ClipMachineMemory->fp->up->localvars->names);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->locals->name : %d\n"), ClipMachineMemory->fp->up->locals->name); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->locals->vp : %d\n"), ClipMachineMemory->fp->up->locals->vp); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->fp->up->statics->name : %d\n"), ClipMachineMemory->fp->up->statics->name); */
@@ -115,13 +114,9 @@ fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->name : %s\n"), Cl
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->statics->pos : %d\n"), ClipMachineMemory->exits->file->statics->pos); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->statics->end : %d\n"), ClipMachineMemory->exits->file->statics->end); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->statics->cargo : %s\n"), ClipMachineMemory->exits->file->statics->cargo); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->exits->file->hash_names->num : %d\n"),
-	ClipMachineMemory->exits->file->hash_names->num);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->hash_names->num : %d\n"), ClipMachineMemory->exits->file->hash_names->num);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->hash_names->buckets : %s\n"), ClipMachineMemory->exits->file->hash_names->buckets); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->exits->file->hash_names->mem : %s\n"),
-	ClipMachineMemory->exits->file->hash_names->mem);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->hash_names->mem : %s\n"), ClipMachineMemory->exits->file->hash_names->mem);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->staticDefs->name : %s\n"), ClipMachineMemory->exits->file->staticDefs->name); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->staticDefs->vp : %s\n"), ClipMachineMemory->exits->file->staticDefs->vp); */
 fprintf(stderr, _clic_gettext("ClipMachineMemory->exits->file->fd : %d\n"), ClipMachineMemory->exits->file->fd);
@@ -422,14 +417,10 @@ fprintf(stderr, _clic_gettext("ClipMachineMemory->container->key : %d\n"), ClipM
 fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->filename : %s\n"), ClipMachineMemory->inMacro->filename);
 fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->line : %d\n"), ClipMachineMemory->inMacro->line);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->privates : %d\n"), ClipMachineMemory->inMacro->privates); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->inMacro->localvars->refcount : %d\n"),
-	ClipMachineMemory->inMacro->localvars->refcount);
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->inMacro->localvars->size : %d\n"), ClipMachineMemory->inMacro->localvars->size);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->localvars->refcount : %d\n"), ClipMachineMemory->inMacro->localvars->refcount);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->localvars->size : %d\n"), ClipMachineMemory->inMacro->localvars->size);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->localvars->vars : %s\n"), ClipMachineMemory->inMacro->localvars->vars); */
-fprintf(stderr,
-	_clic_gettext("ClipMachineMemory->inMacro->localvars->names : %s\n"), ClipMachineMemory->inMacro->localvars->names);
+fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->localvars->names : %s\n"), ClipMachineMemory->inMacro->localvars->names);
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->locals->name : %s\n"), ClipMachineMemory->inMacro->locals->name); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->locals->vp : %s\n"), ClipMachineMemory->inMacro->locals->vp); */
 	/* fprintf(stderr, _clic_gettext("ClipMachineMemory->inMacro->statics->name : %d\n"), ClipMachineMemory->inMacro->statics->name); */

@@ -1,5 +1,5 @@
-#ifndef CN_CTPRINT_DEFINED
-#define CN_CTPRINT_DEFINED
+#ifndef CI_CTPRINT_DEFINED
+#define CI_CTPRINT_DEFINED
 
 /********* PRINTSTAT(), PRINTINIT(), PRINTERROR() ************/
 

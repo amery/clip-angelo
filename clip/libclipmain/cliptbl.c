@@ -268,15 +268,9 @@ static unsigned char _koi_outtbl[256] = {
 };
 
 unsigned char *_clip_cmptbl = _koi_cmptbl;
-
 unsigned char *_clip_uptbl = _koi_uptbl;
-
 unsigned char *_clip_lowtbl = _koi_lowtbl;
-
 unsigned char *_clip_isalpha_tbl = _koi_isalpha_tbl;
-
 unsigned char *_clip_pgtbl = _koi_pgtbl;
-
 unsigned char *_clip_intbl = _koi_intbl;
-
 unsigned char *_clip_outtbl = _koi_outtbl;

@@ -12,34 +12,106 @@
 
 /* NOTE: this is a standalone version of linux/ncp_fs.h */
 
-#ifndef CN__KERNEL_NCP_FS_H
-#define CN__KERNEL_NCP_FS_H
+#ifndef CI__KERNEL_NCP_FS_H
+#define CI__KERNEL_NCP_FS_H
 
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#include "ci_ncp_fs/struct_ncp_sign_init.h"
-#include "ci_ncp_fs/union_ncp_sockaddr.h"
+struct ncp_sign_init
+{
+   char sign_root[8];
+   char sign_last[16];
+};
+
+union ncp_sockaddr
+{
+   struct sockaddr any;
+#ifdef NCP_IPX_SUPPORT
+   struct sockaddr_ipx ipx;
+#endif
+#ifdef NCP_IN_SUPPORT
+   struct sockaddr_in inet;
+#endif
+};
 
 /*
  * ioctl commands
  */
-#include "ci_ncp_fs/struct_ncp_ioctl_request.h"
-#include "ci_ncp_fs/struct_ncp_fs_info.h"
-#include "ci_ncp_fs/struct_ncp_lock_ioct.h"
-#include "ci_ncp_fs/struct_ncp_setroot_ioctl.h"
-#include "ci_ncp_fs/struct_ncp_objectname_ioctl.h"
-#include "ci_ncp_fs/struct_ncp_privatedata_ioctl.h"
 
+struct ncp_ioctl_request
+{
+   unsigned int function;
+   unsigned int size;
+   char *data;
+};
 
+struct ncp_fs_info
+{
+   int version;
+   union ncp_sockaddr addr;
+	/*__kerXX_uid_t mounted_uid;*/
+   uid_t mounted_uid;
+   int connection;		/* Connection number the server assigned us */
+   int buffer_size;		/* The negotiated buffer size, to be
+				   used for read/write requests! */
 
+   int volume_number;
+   u_int32_t directory_id;
+};
+
+struct ncp_lock_ioctl
+{
+#define NCP_LOCK_LOG	0
+#define NCP_LOCK_SH	1
+#define NCP_LOCK_EX	2
+#define NCP_LOCK_CLEAR	256
+   int cmd;
+   int origin;
+   unsigned int offset;
+   unsigned int length;
+#define NCP_LOCK_DEFAULT_TIMEOUT	18
+#define NCP_LOCK_MAX_TIMEOUT		180
+   int timeout;
+};
+
+struct ncp_setroot_ioctl
+{
+   int volNumber;
+   int name_space;
+   u_int32_t dirEntNum;
+};
+
+struct ncp_objectname_ioctl
+{
+#define NCP_AUTH_NONE	0x00
+#define NCP_AUTH_BIND	0x31
+#define NCP_AUTH_NDS	0x32
+   int auth_type;
+   size_t object_name_len;
+   void *object_name;
+};
+
+struct ncp_privatedata_ioctl
+{
+   size_t len;
+   void *data;			/* ~1000 for NDS */
+};
 
 /* NLS charsets by ioctl */
 #define NCP_IOCSNAME_LEN 20
-#include "ci_ncp_fs/struct_ncp_nls_ioctl_old.h"
-#include "ci_ncp_fs/struct_ncp_nls_ioctl.h"
+struct ncp_nls_ioctl_old
+{
+   int codepage;
+   unsigned char iocharset[NCP_IOCSNAME_LEN + 1];
+};
 
+struct ncp_nls_ioctl
+{
+   unsigned char codepage[NCP_IOCSNAME_LEN + 1];
+   unsigned char iocharset[NCP_IOCSNAME_LEN + 1];
+};
 
 #define	NCP_IOC_NCPREQUEST		_IOR('n', 1, struct ncp_ioctl_request)
 #define	NCP_IOC_GETMOUNTUID		_IOW('n', 2, __kernel_uid_t)

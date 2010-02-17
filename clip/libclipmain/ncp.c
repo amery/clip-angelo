@@ -28,8 +28,7 @@ int
 ncp_is_ncpfs(int fd)
 {
    struct ncp_fs_info ncp_fs_info;
-
-   int       r;
+   int r;
 
    memset(&ncp_fs_info, 0, sizeof(ncp_fs_info));
 
@@ -44,7 +43,7 @@ ncp_is_ncpfs(int fd)
 int
 ncp_is_ncpfs_filename(char *filename)
 {
-   int       fd, r;
+   int fd, r;
 
    fd = open(filename, O_RDONLY);
    if (fd < 0)
@@ -59,7 +58,7 @@ ncp_is_ncpfs_filename(char *filename)
 int
 ncp_openmode(int fd, int exclusive)
 {
-   int       r;
+   int r;
 
    if (!ncp_is_ncpfs(fd))
       return 0;
@@ -77,21 +76,19 @@ int
 ncp_fcntl(int fd, int flag, void *argp)
 {
    struct ncp_lock_ioctl ncp_lock_ioctl;
-
    struct flock *fl;
-
-   int       r, ret;
+   int r, ret;
 
    switch (flag)
-    {
-    case F_SETLK:
-    case F_SETLKW:
-    case F_UNLCK:
-       break;
-    case F_GETLK:
-    default:
-       return fcntl(fd, flag, argp);
-    }
+      {
+      case F_SETLK:
+      case F_SETLKW:
+      case F_UNLCK:
+	 break;
+      case F_GETLK:
+      default:
+	 return fcntl(fd, flag, argp);
+      }
 
    if (!ncp_is_ncpfs(fd))
       return fcntl(fd, flag, argp);
@@ -105,17 +102,17 @@ ncp_fcntl(int fd, int flag, void *argp)
 
    memset(&ncp_lock_ioctl, 0, sizeof(ncp_lock_ioctl));
    switch (fl->l_type)
-    {
-    case F_WRLCK:
-       ncp_lock_ioctl.cmd = NCP_LOCK_EX;
-       break;
-    case F_RDLCK:
-       ncp_lock_ioctl.cmd = NCP_LOCK_SH;
-       break;
-    case F_UNLCK:
-       ncp_lock_ioctl.cmd = NCP_LOCK_CLEAR;
-       break;
-    }
+      {
+      case F_WRLCK:
+	 ncp_lock_ioctl.cmd = NCP_LOCK_EX;
+	 break;
+      case F_RDLCK:
+	 ncp_lock_ioctl.cmd = NCP_LOCK_SH;
+	 break;
+      case F_UNLCK:
+	 ncp_lock_ioctl.cmd = NCP_LOCK_CLEAR;
+	 break;
+      }
 
    ncp_lock_ioctl.origin = 0;
    ncp_lock_ioctl.offset = fl->l_start;
@@ -125,22 +122,21 @@ ncp_fcntl(int fd, int flag, void *argp)
   /* and do ncpfs-specific ioctl */
 
    for (;;)
-    {
-       r = ioctl(fd, NCP_IOC_LOCKUNLOCK, &ncp_lock_ioctl);
+      {
+	 r = ioctl(fd, NCP_IOC_LOCKUNLOCK, &ncp_lock_ioctl);
 #if 0
-       printf("\nncp ioctl: cmd %d, off 0x%x, len 0x%x, r %d, errno %d",
-	      ncp_lock_ioctl.cmd, ncp_lock_ioctl.offset, ncp_lock_ioctl.length, r, errno);
+	 printf("\nncp ioctl: cmd %d, off 0x%x, len 0x%x, r %d, errno %d", ncp_lock_ioctl.cmd, ncp_lock_ioctl.offset, ncp_lock_ioctl.length, r, errno);
 #endif
-       if (!r)
-	  return 0;
+	 if (!r)
+	    return 0;
 
-       if (errno == EAGAIN && fl->l_type == F_SETLKW)
-	{
-	   sleep(1);
-	   continue;
-	}
-       break;
-    }
+	 if (errno == EAGAIN && fl->l_type == F_SETLKW)
+	    {
+	       sleep(1);
+	       continue;
+	    }
+	 break;
+      }
 
    return r;
 }

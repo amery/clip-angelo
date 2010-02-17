@@ -26,43 +26,31 @@
 #define NKEY	 100
 
 static char SHARETERMCAP[] = "/usr/share/misc/termcap";
-
 static char TERMCAP[] = "/etc/termcap";
-
 static char MYTERMCAP[] = "/usr/lib/deco/termcap";
-
 static char MY_LOCAL_TERMCAP[] = "/usr/local/lib/deco/termcap";
-
 static char MYLCLTERMCAP[256];
 
 static char *tname;		/* terminal name */
-
 static char *tcapfile;		/* termcap file name */
-
 static char *tbuf;		/* terminal entry buffer */
-
 static char *envtermcap = 0;	/* global variable TERMCAP */
-
-static    hopcount;		/* detect infinite loops */
+static hopcount;		/* detect infinite loops */
 
 static char *tskip(char *);
-
 static char *tdecode(char *, char **);
-
 static int _tgetent(char *, char *, char *);
-
 static int tnchktc();
-
 static int tnamatch(char *);
 
-char     *tgetstr(char *str, char **area);
+char *tgetstr(char *str, char **area);
 
 /* termcap statics ][ termcap init  */
 
 static void
 errexit(const char *msg)
 {
-   char      msg2[] = " terminal=";
+   char msg2[] = " terminal=";
 
    write(2, msg, strlen(msg));
    write(2, msg2, strlen(msg2));
@@ -74,24 +62,24 @@ errexit(const char *msg)
 int
 tgetent(char *bp, char *t_name)
 {
-   char     *tcap_addfile;
+   char *tcap_addfile;
 
    tname = t_name;
    tcap_addfile = getenv("TERMCAP_ADDFILE");
    if (tcap_addfile)
-    {
-       strncpy(MYLCLTERMCAP, tcap_addfile, 255);
-       MYLCLTERMCAP[255] = 0;
-    }
+      {
+	 strncpy(MYLCLTERMCAP, tcap_addfile, 255);
+	 MYLCLTERMCAP[255] = 0;
+      }
    else
       strcpy(MYLCLTERMCAP, MY_LOCAL_TERMCAP);
    if (!envtermcap)
       envtermcap = getenv("TERMCAP");
    if (envtermcap && *envtermcap == '/')
-    {
-       tcapfile = envtermcap;
-       envtermcap = 0;
-    }
+      {
+	 tcapfile = envtermcap;
+	 envtermcap = 0;
+      }
    if (!envtermcap)
       envtermcap = "";
    if (!tcapfile || access(tcapfile, 0) < 0)
@@ -104,17 +92,12 @@ tgetent(char *bp, char *t_name)
 static int
 _tgetent(char *bp, char *name, char *termcap)
 {
-   int       c;
-
-   int       tf = -1;
-
-   char     *cp = envtermcap;
-
-   char     *ibuf;
-
-   int       i = 0;
-
-   int       cnt = 0;
+   int c;
+   int tf = -1;
+   char *cp = envtermcap;
+   char *ibuf;
+   int i = 0;
+   int cnt = 0;
 
    tbuf = bp;
 
@@ -124,17 +107,17 @@ _tgetent(char *bp, char *name, char *termcap)
   /* use so we don't have to read the file. In this case it */
   /* has to already have the newlines crunched out. */
    if (cp && *cp)
-    {
-       envtermcap = "";
-       tbuf = cp;
-       c = tnamatch(name);
-       tbuf = bp;
-       if (c)
-	{
-	   strcpy(bp, cp);
-	   return (tnchktc());
-	}
-    }
+      {
+	 envtermcap = "";
+	 tbuf = cp;
+	 c = tnamatch(name);
+	 tbuf = bp;
+	 if (c)
+	    {
+	       strcpy(bp, cp);
+	       return (tnchktc());
+	    }
+      }
    if (tf < 0)
       tf = open(termcap, 0);
    if (tf < 0)
@@ -143,49 +126,49 @@ _tgetent(char *bp, char *name, char *termcap)
    i = 0;
    cnt = 0;
    for (;;)
-    {
-       cp = bp;
-       for (;;)
-	{
-	   if (i == cnt)
+      {
+	 cp = bp;
+	 for (;;)
 	    {
-	       cnt = read(tf, ibuf, BUFSIZE);
-	       if (cnt <= 0)
-		{
-		   close(tf);
-		   free(ibuf);
-		   return (0);
-		}
-	       i = 0;
+	       if (i == cnt)
+		  {
+		     cnt = read(tf, ibuf, BUFSIZE);
+		     if (cnt <= 0)
+			{
+			   close(tf);
+			   free(ibuf);
+			   return (0);
+			}
+		     i = 0;
+		  }
+	       c = ibuf[i++];
+	       if (c == '\n')
+		  {
+		     if (cp > bp && cp[-1] == '\\')
+			{
+			   cp--;
+			   continue;
+			}
+		     break;
+		  }
+	       if (cp >= bp + BUFSIZE)
+		  {
+		     errexit("Termcap entry too long");
+		     break;
+		  }
+	       else
+		  *cp++ = c;
 	    }
-	   c = ibuf[i++];
-	   if (c == '\n')
-	    {
-	       if (cp > bp && cp[-1] == '\\')
-		{
-		   cp--;
-		   continue;
-		}
-	       break;
-	    }
-	   if (cp >= bp + BUFSIZE)
-	    {
-	       errexit("Termcap entry too long");
-	       break;
-	    }
-	   else
-	      *cp++ = c;
-	}
-       *cp = 0;
+	 *cp = 0;
 
-      /* The real work for the match. */
-       if (tnamatch(name))
-	{
-	   close(tf);
-	   free(ibuf);
-	   return (tnchktc());
-	}
-    }
+	/* The real work for the match. */
+	 if (tnamatch(name))
+	    {
+	       close(tf);
+	       free(ibuf);
+	       return (tnchktc());
+	    }
+      }
    return -1;
 }
 
@@ -193,22 +176,18 @@ static int
 tnchktc()
 {
    register char *p, *q;
-
-   char      tcname[16];	/* name of similar terminal */
-
-   char     *tcbuf;
-
-   char     *holdtbuf = tbuf;
-
-   int       l;
+   char tcname[16];		/* name of similar terminal */
+   char *tcbuf;
+   char *holdtbuf = tbuf;
+   int l;
 
    p = tbuf + strlen(tbuf) - 2;	/* before the last colon */
    while (*--p != ':')
       if (p < tbuf)
-       {
-	  errexit("Bad termcap entry");
-	  return (0);
-       }
+	 {
+	    errexit("Bad termcap entry");
+	    return (0);
+	 }
    p++;
   /* p now points to beginning of last field */
    if (p[0] != 't' || p[1] != 'c')
@@ -219,24 +198,24 @@ tnchktc()
       q++;
    *q = 0;
    if (++hopcount > MAXHOP)
-    {
-       errexit("Infinite tc= loop");
-       return (0);
-    }
+      {
+	 errexit("Infinite tc= loop");
+	 return (0);
+      }
    tcbuf = (char *) malloc(BUFSIZE);
    if (!_tgetent(tcbuf, tcname, tcapfile))
-    {
-       hopcount = 0;		/* unwind recursion */
-       free(tcbuf);
-       return (0);
-    }
+      {
+	 hopcount = 0;		/* unwind recursion */
+	 free(tcbuf);
+	 return (0);
+      }
    for (q = tcbuf; *q != ':'; q++);
    l = p - holdtbuf + strlen(q);
    if (l > BUFSIZE)
-    {
-       errexit("Termcap entry too long\n");
-       q[BUFSIZE - (p - tbuf)] = 0;
-    }
+      {
+	 errexit("Termcap entry too long\n");
+	 q[BUFSIZE - (p - tbuf)] = 0;
+      }
    strcpy(p, q + 1);
    tbuf = holdtbuf;
    hopcount = 0;		/* unwind recursion */
@@ -253,17 +232,17 @@ tnamatch(char *np)
    if (*Bp == '#')
       return (0);
    for (;;)
-    {
-       for (Np = np; *Np && *Bp == *Np; Bp++, Np++)
-	  continue;
-       if (*Np == 0 && (*Bp == '|' || *Bp == ':' || *Bp == 0))
-	  return (1);
-       while (*Bp && *Bp != ':' && *Bp != '|')
-	  Bp++;
-       if (*Bp == 0 || *Bp == ':')
-	  return (0);
-       Bp++;
-    }
+      {
+	 for (Np = np; *Np && *Bp == *Np; Bp++, Np++)
+	    continue;
+	 if (*Np == 0 && (*Bp == '|' || *Bp == ':' || *Bp == 0))
+	    return (1);
+	 while (*Bp && *Bp != ':' && *Bp != '|')
+	    Bp++;
+	 if (*Bp == 0 || *Bp == ':')
+	    return (0);
+	 Bp++;
+      }
 }
 
 static char *
@@ -276,43 +255,42 @@ tskip(char *bp)
    return (bp);
 }
 
-char     *
+char *
 tgetstr(char *id, char **area)
 {
    register char *bp;
-
-   char      name[2];
+   char name[2];
 
    if (!tbuf)
       return NULL;
    bp = tbuf;
    for (;;)
-    {
-       bp = tskip(bp);
-       if (!bp[0] || !bp[1])
-	  break;
-       if (bp[0] == ':' || bp[1] == ':')
-	  continue;
-       name[0] = *bp++;
-       name[1] = *bp++;
-       if (id[0] != name[0] || id[1] != name[1])
-	  continue;
-       if (*bp == '@')
-	  continue;
+      {
+	 bp = tskip(bp);
+	 if (!bp[0] || !bp[1])
+	    break;
+	 if (bp[0] == ':' || bp[1] == ':')
+	    continue;
+	 name[0] = *bp++;
+	 name[1] = *bp++;
+	 if (id[0] != name[0] || id[1] != name[1])
+	    continue;
+	 if (*bp == '@')
+	    continue;
 
-       switch (*bp)
-	{
-	case '#':
-	case ':':
-	case 0:
-	   break;
-	default:
-	   if (*bp != '=')
-	      continue;
-	   bp++;
-	   return tdecode(bp, area);
-	}
-    }
+	 switch (*bp)
+	    {
+	    case '#':
+	    case ':':
+	    case 0:
+	       break;
+	    default:
+	       if (*bp != '=')
+		  continue;
+	       bp++;
+	       return tdecode(bp, area);
+	    }
+      }
    return NULL;
 }
 
@@ -320,37 +298,36 @@ int
 tgetflag(const char *id)
 {
    register char *bp;
-
-   char      name[2];
+   char name[2];
 
    if (!tbuf)
       return 0;
    bp = tbuf;
    for (;;)
-    {
-       bp = tskip(bp);
-       if (!bp[0] || !bp[1])
-	  break;
-       if (bp[0] == ':' || bp[1] == ':')
-	  continue;
-       name[0] = *bp++;
-       name[1] = *bp++;
-       if (id[0] != name[0] || id[1] != name[1])
-	  continue;
-       if (*bp == '@')
-	  continue;
+      {
+	 bp = tskip(bp);
+	 if (!bp[0] || !bp[1])
+	    break;
+	 if (bp[0] == ':' || bp[1] == ':')
+	    continue;
+	 name[0] = *bp++;
+	 name[1] = *bp++;
+	 if (id[0] != name[0] || id[1] != name[1])
+	    continue;
+	 if (*bp == '@')
+	    continue;
 
-       switch (*bp)
-	{
-	case '#':
-	default:
-	   continue;
-	case ':':
-	   return 1;
-	case 0:
-	   return 0;
-	}
-    }
+	 switch (*bp)
+	    {
+	    case '#':
+	    default:
+	       continue;
+	    case ':':
+	       return 1;
+	    case 0:
+	       return 0;
+	    }
+      }
    return 0;
 }
 
@@ -358,39 +335,37 @@ int
 tgetnum(const char *id)
 {
    register char *bp;
-
-   register  i, base;
-
-   char      name[2];
+   register i, base;
+   char name[2];
 
    if (!tbuf)
       return 0;
    bp = tbuf;
    for (;;)
-    {
-       bp = tskip(bp);
-       if (!bp[0] || !bp[1])
-	  break;
-       if (bp[0] == ':' || bp[1] == ':')
-	  continue;
-       name[0] = *bp++;
-       name[1] = *bp++;
-       if (id[0] != name[0] || id[1] != name[1])
-	  continue;
-       if (*bp == '@')
-	  continue;
+      {
+	 bp = tskip(bp);
+	 if (!bp[0] || !bp[1])
+	    break;
+	 if (bp[0] == ':' || bp[1] == ':')
+	    continue;
+	 name[0] = *bp++;
+	 name[1] = *bp++;
+	 if (id[0] != name[0] || id[1] != name[1])
+	    continue;
+	 if (*bp == '@')
+	    continue;
 
-       if (*bp != '#')
-	  continue;
-       bp++;
-       base = 10;
-       if (*bp == '0')
-	  base = 8;
-       i = 0;
-       while (*bp >= '0' && *bp <= '9')
-	  i = i * base, i += *bp++ - '0';
-       return i;
-    }
+	 if (*bp != '#')
+	    continue;
+	 bp++;
+	 base = 10;
+	 if (*bp == '0')
+	    base = 8;
+	 i = 0;
+	 while (*bp >= '0' && *bp <= '9')
+	    i = i * base, i += *bp++ - '0';
+	 return i;
+      }
    return 0;
 }
 
@@ -398,46 +373,43 @@ static char *
 tdecode(char *str, char **area)
 {
    register char *cp;
-
    register int c;
-
    register char *dp;
-
-   int       i;
+   int i;
 
    cp = *area;
    while ((c = *str++) && c != ':')
-    {
-       switch (c)
-	{
-
-	case '^':
-	   c = *str++ & 037;
-	   break;
-
-	case '\\':
-	   dp = "E\033^^\\\\::n\nr\rt\tb\bf\f";
-	   c = *str++;
-	 nextc:
-	   if (*dp++ == c)
+      {
+	 switch (c)
 	    {
-	       c = *dp++;
+
+	    case '^':
+	       c = *str++ & 037;
+	       break;
+
+	    case '\\':
+	       dp = "E\033^^\\\\::n\nr\rt\tb\bf\f";
+	       c = *str++;
+	     nextc:
+	       if (*dp++ == c)
+		  {
+		     c = *dp++;
+		     break;
+		  }
+	       dp++;
+	       if (*dp)
+		  goto nextc;
+	       if (c >= '0' && c <= '9')
+		  {
+		     c -= '0', i = 2;
+		     do
+			c <<= 3, c |= *str++ - '0';
+		     while (--i && *str >= '0' && *str <= '9');
+		  }
 	       break;
 	    }
-	   dp++;
-	   if (*dp)
-	      goto nextc;
-	   if (c >= '0' && c <= '9')
-	    {
-	       c -= '0', i = 2;
-	       do
-		  c <<= 3, c |= *str++ - '0';
-	       while (--i && *str >= '0' && *str <= '9');
-	    }
-	   break;
-	}
-       *cp++ = c;
-    }
+	 *cp++ = c;
+      }
    *cp++ = 0;
    str = *area;
    *area = cp;

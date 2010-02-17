@@ -20,11 +20,8 @@ Makefile.ini : $(CONFIGURE_SH)
 	$(E_cp)cp --remove-destination -fpu$(V) $(Clip_M_Dir)/configure.ini $(Clip_M_Dir)/Makefile.ini ../
 	$(E_xx)$(CONFIGURE_SH) $(CONFIGURE_SH)
 
-indent : Makefile
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
+
+indent :  Makefile $(Clip_M_Dir)/config/install.ok $(DIRS_TO_SCAN) FORCE
 
 depend : Makefile $(DIRS_TO_SCAN) example FORCE
 	$(E_xx)$(Clip_M_Dir)/init/MakeDepend.sh

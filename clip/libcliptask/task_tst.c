@@ -42,22 +42,19 @@
 void
 _destroy(void *_data)
 {
-   char     *data;
+   char *data;
 
    data = (char *) _data;
    printf("		task %ld function destroy, data=%s\n", Task_ID(), data);
    return;
 }
 
-void     *
+void *
 run(void *_data)
 {
-   int       i;
-
-   void     *ret = NULL;
-
-   char     *data;
-
+   int i;
+   void *ret = NULL;
+   char *data;
    TaskMessage *msg;
 
    data = (char *) _data;
@@ -69,32 +66,30 @@ run(void *_data)
    else
       printf("		task %ld get message, data=%s\n", Task_ID(), (char *) TaskMessage_get_data(msg));
    for (i = 0; i < 5; i++)
-    {
-       printf("		task %ld cycle %d\n", Task_ID(), i);
-       Task_sleep(50);
-    }
+      {
+	 printf("		task %ld cycle %d\n", Task_ID(), i);
+	 Task_sleep(50);
+      }
    printf("		task %ld function return, data=%s\n", Task_ID(), data);
 
    return ret;
 }
 
-void     *
+void *
 run1(void *_data)
 {
-   int       i;
-
-   void     *ret = NULL;
-
-   char     *data;
+   int i;
+   void *ret = NULL;
+   char *data;
 
    data = (char *) _data;
    printf("		supertask %ld function begin, data=%s\n", Task_ID(), data);
    Task_STOP();
    for (i = 0; i < 5; i++)
-    {
-       printf("		supertask %ld cycle %d\n", Task_ID(), i);
-       Task_sleep(50);
-    }
+      {
+	 printf("		supertask %ld cycle %d\n", Task_ID(), i);
+	 Task_sleep(50);
+      }
    printf("		supertask function return, data=%s\n", data);
    Task_START();
    return ret;
@@ -103,22 +98,20 @@ run1(void *_data)
 int
 main(int argc, char **argv)
 {
-   int       i;
-
-   Task     *tp;
-
+   int i;
+   Task *tp;
    TaskMessage *msg;
 
    printf("\n		begin. version=%ld\n", Task_version());
    printf("		AAAA\n");
    for (i = 0; i < 3; i++)
-    {
-       tp = Task_new("task_test", 8192, (void *) "ASDF", run, _destroy);
-       printf("		BBBB=%d,%p\n", i, tp);
-       Task_start(tp);
-       Task_sleep(50);
-       printf("		CCCCC=%d\n", i);
-    }
+      {
+	 tp = Task_new("task_test", 8192, (void *) "ASDF", run, _destroy);
+	 printf("		BBBB=%d,%p\n", i, tp);
+	 Task_start(tp);
+	 Task_sleep(50);
+	 printf("		CCCCC=%d\n", i);
+      }
    Task_start_sheduler();
    printf("		DDDDD\n");
    Task_sleep(25);
@@ -126,13 +119,13 @@ main(int argc, char **argv)
    Task_start(tp);
    printf("		EEEEE\n");
     /**/ for (i = 0; i < 7; i++)
-    {
-       printf("		maintask: cycle %d\n", i);
-       printf("		maintask: send message to task:%d\n", i);
-       msg = TaskMessage_new(i, "msg", NULL);
-       Task_sendMessageWait(i, msg);
-       Task_sleep(100);
-    }
+      {
+	 printf("		maintask: cycle %d\n", i);
+	 printf("		maintask: send message to task:%d\n", i);
+	 msg = TaskMessage_new(i, "msg", NULL);
+	 Task_sendMessageWait(i, msg);
+	 Task_sleep(100);
+      }
    printf("		XXXXX\n");
   /*Task_killAll(); */
    return 0;

@@ -72,35 +72,21 @@
 #define MAXHOP   32
 
 static char *tbuf;		/* terminal entry buffer */
-
 static int hopcount;		/* detect infinite loops */
-
 static int fnum;
-
 static int match_count;
-
 static char **fnames;
-
 static char *errbuf;
-
 static int errbuflen, errcode;
 
 static int tgetent(char *, char *, int);
-
 static int tnchktc(char *, int);
-
 static int tnamatch(char *);
-
 static int cmp_bucket(const void *p1, const void *p2);
-
 static void err(char *fmt, ...);
-
 static void split_entry(Terminfo * info, char *entry);
-
 static int tdecode(char *bp, Terminfo * info);
-
 static int place_buf(Terminfo * info, int need);
-
 static int read_info(Terminfo * info, char *path);
 
 /* recognisible termcap names */
@@ -373,12 +359,12 @@ static const TermcapBucket termcapNames[] = {
 
 typedef struct
 {
-   char      bools[BOOLCOUNT];
-   char      nums[NUMCOUNT];
+   char bools[BOOLCOUNT];
+   char nums[NUMCOUNT];
    struct
    {
-      char      num;
-      char      type;
+      char num;
+      char type;
    }
    strs[STRCOUNT];
 }
@@ -1307,27 +1293,26 @@ int
 read_term(int fnum, char **fnames, int tnum, Terminfo * infos, char *errbuf, int errbuflen)
 {
    struct stat st;
-
-   int       r, i;
+   int r, i;
 
    for (i = 0; i < fnum; ++i)
-    {
-       r = stat(fnames[i], &st);
-       if (!r)
-	{
-	   if (S_ISDIR(st.st_mode))
-	      return read_tinfo(fnum, fnames, tnum, infos, errbuf, errbuflen);
-	   else if (S_ISREG(st.st_mode))
-	      return read_tcap(fnum, fnames, tnum, infos, errbuf, errbuflen);
-	}
-    }
+      {
+	 r = stat(fnames[i], &st);
+	 if (!r)
+	    {
+	       if (S_ISDIR(st.st_mode))
+		  return read_tinfo(fnum, fnames, tnum, infos, errbuf, errbuflen);
+	       else if (S_ISREG(st.st_mode))
+		  return read_tcap(fnum, fnames, tnum, infos, errbuf, errbuflen);
+	    }
+      }
 
    snprintf(errbuf, errbuflen, "no valid termcap/terminfo files:");
    for (i = 0; i < fnum; ++i)
-    {
-       r = strlen(errbuf);
-       snprintf(errbuf + r, errbuflen - r, " %s", fnames[i]);
-    }
+      {
+	 r = strlen(errbuf);
+	 snprintf(errbuf + r, errbuflen - r, " %s", fnames[i]);
+      }
    return -1;
 }
 
@@ -1346,10 +1331,8 @@ read_tcapbuf(char *buf, Terminfo * info, char *Errbuf, int Errbuflen)
 int
 read_tcap(int Fnum, char **Fnames, int tnum, Terminfo * infos, char *Errbuf, int Errbuflen)
 {
-   int       i, r = 0;
-
-   char      buf[TBUFSIZE];
-
+   int i, r = 0;
+   char buf[TBUFSIZE];
    Terminfo *info;
 
    fnum = Fnum;
@@ -1359,23 +1342,23 @@ read_tcap(int Fnum, char **Fnames, int tnum, Terminfo * infos, char *Errbuf, int
    errcode = 0;
 
    for (i = 0; i < tnum; ++i)
-    {
-       info = infos + i;
+      {
+	 info = infos + i;
 
-       match_count = 0;
-       r = tgetent(buf, info->name, 0);
-       if (r < 0 && errcode)
-	  return -1;
+	 match_count = 0;
+	 r = tgetent(buf, info->name, 0);
+	 if (r < 0 && errcode)
+	    return -1;
 
-       if (!r || !match_count)
-	{
-	   snprintf(Errbuf, Errbuflen, "no termcap entry for terminal '%s'", info->name);
-	   return -1;
-	}
+	 if (!r || !match_count)
+	    {
+	       snprintf(Errbuf, Errbuflen, "no termcap entry for terminal '%s'", info->name);
+	       return -1;
+	    }
 
-       split_entry(info, buf);
+	 split_entry(info, buf);
 
-    }
+      }
 
    return 0;
 }
@@ -1383,10 +1366,8 @@ read_tcap(int Fnum, char **Fnames, int tnum, Terminfo * infos, char *Errbuf, int
 int
 read_tinfo(int fnum, char **fnames, int tnum, Terminfo * infos, char *Errbuf, int Errbuflen)
 {
-   int       r = 0;
-
-   int       i, j, found;
-
+   int r = 0;
+   int i, j, found;
    Terminfo *info;
 
    errbuf = Errbuf;
@@ -1394,29 +1375,29 @@ read_tinfo(int fnum, char **fnames, int tnum, Terminfo * infos, char *Errbuf, in
    errcode = 0;
 
    for (i = 0; i < tnum; ++i)
-    {
-       found = 0;
-       info = infos + i;
-       r = 0;
+      {
+	 found = 0;
+	 info = infos + i;
+	 r = 0;
 
-       for (j = 0; j < fnum; ++j)
-	{
-	   char      path[PATH_MAX];
+	 for (j = 0; j < fnum; ++j)
+	    {
+	       char path[PATH_MAX];
 
-	   snprintf(path, PATH_MAX, "%s" DELIMSTR "%c" DELIMSTR "%s", fnames[j], info->name[0], info->name);
+	       snprintf(path, PATH_MAX, "%s" DELIMSTR "%c" DELIMSTR "%s", fnames[j], info->name[0], info->name);
 
-	   r = read_info(info, path);
-	   if (!r)
-	      ++found;
-	}
+	       r = read_info(info, path);
+	       if (!r)
+		  ++found;
+	    }
 
-       if (!found)
-	{
-	   snprintf(Errbuf, Errbuflen, "no terminfo entry for terminal '%s'", info->name);
-	   return -1;
-	}
+	 if (!found)
+	    {
+	       snprintf(Errbuf, Errbuflen, "no terminfo entry for terminal '%s'", info->name);
+	       return -1;
+	    }
 
-    }
+      }
 
    return 0;
 }
@@ -1424,7 +1405,7 @@ read_tinfo(int fnum, char **fnames, int tnum, Terminfo * infos, char *Errbuf, in
 static void
 err(char *fmt, ...)
 {
-   va_list   ap;
+   va_list ap;
 
    va_start(ap, fmt);
    vsnprintf(errbuf, errbuflen, fmt, ap);
@@ -1436,19 +1417,13 @@ err(char *fmt, ...)
 static int
 tgetent(char *bp, char *name, int beg)
 {
-   int       j;
-
-   int       c;
-
-   int       tf = -1;
-
-   char     *cp = 0;
-
-   char      ibuf[TBUFSIZE];
-
-   int       i = 0;
-
-   int       cnt = 0;
+   int j;
+   int c;
+   int tf = -1;
+   char *cp = 0;
+   char ibuf[TBUFSIZE];
+   int i = 0;
+   int cnt = 0;
 
    if (beg >= fnum)
       return 0;
@@ -1456,57 +1431,57 @@ tgetent(char *bp, char *name, int beg)
    tbuf = bp;
 
    for (j = beg; j < fnum; ++j)
-    {
-       char     *termcap = fnames[j];
+      {
+	 char *termcap = fnames[j];
 
-       tf = open(termcap, 0);
-       if (tf < 0)
-	  continue;
-       i = 0;
-       cnt = 0;
-       for (;;)
-	{
-	   cp = bp;
-	   for (;;)
+	 tf = open(termcap, 0);
+	 if (tf < 0)
+	    continue;
+	 i = 0;
+	 cnt = 0;
+	 for (;;)
 	    {
-	       if (i == cnt)
-		{
-		   cnt = read(tf, ibuf, TBUFSIZE);
-		   if (cnt <= 0)
-		      goto nextf;
-		   i = 0;
-		}
-	       c = ibuf[i++];
-	       if (c == '\n')
-		{
-		   if (cp > bp && cp[-1] == '\\')
-		    {
-		       cp--;
-		       continue;
-		    }
-		   break;
-		}
-	       if (cp >= bp + TBUFSIZE)
-		{
-		   err("Termcap entry too long");
-		   break;
-		}
-	       else
-		  *cp++ = c;
-	    }
-	   *cp = 0;
+	       cp = bp;
+	       for (;;)
+		  {
+		     if (i == cnt)
+			{
+			   cnt = read(tf, ibuf, TBUFSIZE);
+			   if (cnt <= 0)
+			      goto nextf;
+			   i = 0;
+			}
+		     c = ibuf[i++];
+		     if (c == '\n')
+			{
+			   if (cp > bp && cp[-1] == '\\')
+			      {
+				 cp--;
+				 continue;
+			      }
+			   break;
+			}
+		     if (cp >= bp + TBUFSIZE)
+			{
+			   err("Termcap entry too long");
+			   break;
+			}
+		     else
+			*cp++ = c;
+		  }
+	       *cp = 0;
 
-	  /* The real work for the match. */
-	   if (tnamatch(name))
-	    {
-	       ++match_count;
-	       close(tf);
-	       return tnchktc(name, j);
+	      /* The real work for the match. */
+	       if (tnamatch(name))
+		  {
+		     ++match_count;
+		     close(tf);
+		     return tnchktc(name, j);
+		  }
 	    }
-	}
-     nextf:
-       close(tf);
-    }
+       nextf:
+	 close(tf);
+      }
    return -1;
 }
 
@@ -1514,22 +1489,18 @@ static int
 tnchktc(char *name, int beg)
 {
    register char *p, *q;
-
-   char      tcname[16];	/* name of similar terminal */
-
-   char      tcbuf[TBUFSIZE];
-
-   char     *holdtbuf = tbuf;
-
-   int       l;
+   char tcname[16];		/* name of similar terminal */
+   char tcbuf[TBUFSIZE];
+   char *holdtbuf = tbuf;
+   int l;
 
    p = tbuf + strlen(tbuf) - 2;	/* before the last colon */
    while (*--p != ':')
       if (p < tbuf)
-       {
-	  err("Bad termcap entry");
-	  return 0;
-       }
+	 {
+	    err("Bad termcap entry");
+	    return 0;
+	 }
    p++;
   /* p now points to beginning of last field */
    if (p[0] != 't' || p[1] != 'c')
@@ -1540,26 +1511,26 @@ tnchktc(char *name, int beg)
       q++;
    *q = 0;
    if (++hopcount > MAXHOP)
-    {
-       err("Infinite tc= loop");
-       return 0;
-    }
+      {
+	 err("Infinite tc= loop");
+	 return 0;
+      }
 
    if (!strcmp(tcname, name))
       ++beg;
    if (tgetent(tcbuf, tcname, beg) <= 0)
-    {
-       hopcount = 0;		/* unwind recursion */
-       return 1;
-    }
+      {
+	 hopcount = 0;		/* unwind recursion */
+	 return 1;
+      }
    for (q = tcbuf; *q != ':'; q++)
       ;
    l = p - holdtbuf + strlen(q);
    if (l > TBUFSIZE)
-    {
-       err("Termcap entry too long\n");
-       q[TBUFSIZE - (p - tbuf)] = 0;
-    }
+      {
+	 err("Termcap entry too long\n");
+	 q[TBUFSIZE - (p - tbuf)] = 0;
+      }
    strcpy(p, q + 1);
    tbuf = holdtbuf;
    hopcount = 0;		/* unwind recursion */
@@ -1576,17 +1547,17 @@ tnamatch(char *np)
    if (*Bp == '#')
       return 0;
    for (;;)
-    {
-       for (Np = np; *Np && *Bp == *Np; Bp++, Np++)
-	  continue;
-       if (*Np == 0 && (*Bp == '|' || *Bp == ':' || *Bp == 0))
-	  return (1);
-       while (*Bp && *Bp != ':' && *Bp != '|')
-	  Bp++;
-       if (*Bp == 0 || *Bp == ':')
-	  return (0);
-       Bp++;
-    }
+      {
+	 for (Np = np; *Np && *Bp == *Np; Bp++, Np++)
+	    continue;
+	 if (*Np == 0 && (*Bp == '|' || *Bp == ':' || *Bp == 0))
+	    return (1);
+	 while (*Bp && *Bp != ':' && *Bp != '|')
+	    Bp++;
+	 if (*Bp == 0 || *Bp == ':')
+	    return (0);
+	 Bp++;
+      }
 }
 
 static char *
@@ -1602,109 +1573,108 @@ tskip(char *bp)
 static void
 split_entry(Terminfo * info, char *entry)
 {
-   char     *bp;
-
-   char      name[3];
+   char *bp;
+   char name[3];
 
    name[2] = 0;
    bp = entry;
    while (bp && *bp)
-    {
-       TermcapBucket *fp;
+      {
+	 TermcapBucket *fp;
 
-       bp = tskip(bp);
-       if (!bp[0] || !bp[1])
-	  break;
-       if (bp[0] == ':' || bp[1] == ':')
-	  continue;
-       name[0] = *bp++;
-       name[1] = *bp++;
+	 bp = tskip(bp);
+	 if (!bp[0] || !bp[1])
+	    break;
+	 if (bp[0] == ':' || bp[1] == ':')
+	    continue;
+	 name[0] = *bp++;
+	 name[1] = *bp++;
 
-      /*if (*bp == '@')
-         continue; */
-       if (name[0] == ' ' || name[1] == ' ')
-	  continue;
+	/*if (*bp == '@')
+	   continue; */
+	 if (name[0] == ' ' || name[1] == ' ')
+	    continue;
 
-       fp = (TermcapBucket *) bsearch(name, termcapNames, TCAPNUM, sizeof(TermcapBucket), cmp_bucket);
+	 fp = (TermcapBucket *) bsearch(name, termcapNames, TCAPNUM, sizeof(TermcapBucket), cmp_bucket);
 
-       if (!fp)
-	{
-	  /*printf("unknown termcap entry: %s\n", name); */
-	   continue;
-	}
-
-       switch (*bp)
-	{
-	case ':':
-	  /* bool */
-	   if (fp->type == 'B')
+	 if (!fp)
 	    {
-	       info->bools[fp->no] = 1;
+	      /*printf("unknown termcap entry: %s\n", name); */
+	       continue;
 	    }
-	   break;
-	case '#':
-	  /* num */
-	   if (fp->type == 'N')
+
+	 switch (*bp)
 	    {
-	       int       base, i;
+	    case ':':
+	      /* bool */
+	       if (fp->type == 'B')
+		  {
+		     info->bools[fp->no] = 1;
+		  }
+	       break;
+	    case '#':
+	      /* num */
+	       if (fp->type == 'N')
+		  {
+		     int base, i;
 
-	       ++bp;
-	       if (info->nums[fp->no] != -1)
-		  break;
-	       base = 10;
-	       if (*bp == '0')
-		  base = 8;
-	       i = 0;
-	       while (*bp >= '0' && *bp <= '9')
-		  i = i * base, i += *bp++ - '0';
-	       info->nums[fp->no] = i;
+		     ++bp;
+		     if (info->nums[fp->no] != -1)
+			break;
+		     base = 10;
+		     if (*bp == '0')
+			base = 8;
+		     i = 0;
+		     while (*bp >= '0' && *bp <= '9')
+			i = i * base, i += *bp++ - '0';
+		     info->nums[fp->no] = i;
+		  }
+	       break;
+	    case '=':
+	      /* string */
+	       {
+		  int s;
+
+		  ++bp;
+		  if (fp->type == 'S')
+		     if (info->strings[fp->no] != -1)
+			break;
+		  if (fp->type == 'K')
+		     if (info->keys[fp->no] != -1)
+			break;
+
+		  s = tdecode(bp, info);
+		  if (fp->type == 'S')
+		     info->strings[fp->no] = s;
+		  else if (fp->type == 'K')
+		     info->keys[fp->no] = s;
+	       }
+	       break;
+	    case 0:
+	       return;
+	    default:
+	       continue;
 	    }
-	   break;
-	case '=':
-	  /* string */
-	   {
-	      int       s;
-
-	      ++bp;
-	      if (fp->type == 'S')
-		 if (info->strings[fp->no] != -1)
-		    break;
-	      if (fp->type == 'K')
-		 if (info->keys[fp->no] != -1)
-		    break;
-
-	      s = tdecode(bp, info);
-	      if (fp->type == 'S')
-		 info->strings[fp->no] = s;
-	      else if (fp->type == 'K')
-		 info->keys[fp->no] = s;
-	   }
-	   break;
-	case 0:
-	   return;
-	default:
-	   continue;
-	}
-    }
+      }
 }
 
 static int
 place_buf(Terminfo * info, int need)
 {
    if ((info->bufsize - info->bufpos) < need)
-    {
-       int       delta, osize;
+      {
+	 int delta, osize;
 
-       delta = info->bufsize / 3;
-       if (delta < need)
-	  delta = need;
-       if (delta < 8)
-	  delta = 8;
-       osize = info->bufsize;
-       info->bufsize += delta;
-       info->buf = (char *) realloc(info->buf, info->bufsize);
-       memset(info->buf + osize, 0, delta);
-    }
+	 delta = info->bufsize / 3;
+	 if (delta < need)
+	    delta = need;
+	 if (delta < 8)
+	    delta = 8;
+	 osize = info->bufsize;
+	 info->bufsize += delta;
+	 info->buf = (char *) realloc(info->buf, info->bufsize);
+	 memset(info->buf + osize, 0, delta);
+      }
 
    return info->bufsize - info->bufpos;
 }
@@ -1712,15 +1682,11 @@ place_buf(Terminfo * info, int need)
 static int
 tdecode(char *bp, Terminfo * info)
 {
-   int       c;
-
-   char     *dp;
-
-   int       i;
-
-   char     *str;
-
-   int       retpos;
+   int c;
+   char *dp;
+   int i;
+   char *str;
+   int retpos;
 
   /* skip the delay */
 #if 0
@@ -1731,38 +1697,38 @@ tdecode(char *bp, Terminfo * info)
    str = bp;
    retpos = info->bufpos;
    while ((c = *str++) && c != ':')
-    {
-       switch (c)
-	{
-
-	case '^':
-	   c = *str++ & 037;
-	   break;
-
-	case '\\':
-	   dp = "E\033^^\\\\::n\nr\rt\tb\bf\f";
-	   c = *str++;
-	 nextc:
-	   if (*dp++ == c)
+      {
+	 switch (c)
 	    {
-	       c = *dp++;
+
+	    case '^':
+	       c = *str++ & 037;
+	       break;
+
+	    case '\\':
+	       dp = "E\033^^\\\\::n\nr\rt\tb\bf\f";
+	       c = *str++;
+	     nextc:
+	       if (*dp++ == c)
+		  {
+		     c = *dp++;
+		     break;
+		  }
+	       dp++;
+	       if (*dp)
+		  goto nextc;
+	       if (c >= '0' && c <= '9')
+		  {
+		     c -= '0', i = 2;
+		     do
+			c <<= 3, c |= *str++ - '0';
+		     while (--i && *str >= '0' && *str <= '9');
+		  }
 	       break;
 	    }
-	   dp++;
-	   if (*dp)
-	      goto nextc;
-	   if (c >= '0' && c <= '9')
-	    {
-	       c -= '0', i = 2;
-	       do
-		  c <<= 3, c |= *str++ - '0';
-	       while (--i && *str >= '0' && *str <= '9');
-	    }
-	   break;
-	}
-       place_buf(info, 1);
-       info->buf[info->bufpos++] = c;
-    }
+	 place_buf(info, 1);
+	 info->buf[info->bufpos++] = c;
+      }
 
    if (info->bufpos == retpos)
       return -1;
@@ -1782,7 +1748,7 @@ cmp_bucket(const void *p1, const void *p2)
 void
 init_Terminfo(Terminfo * info)
 {
-   int       i;
+   int i;
 
    info->name = 0;
 
@@ -1804,10 +1770,10 @@ void
 destroy_Terminfo(Terminfo * info)
 {
    if (info->buf)
-    {
-       free(info->buf);
-       info->buf = 0;
-    }
+      {
+	 free(info->buf);
+	 info->buf = 0;
+      }
    info->bufsize = info->bufpos = 0;
 }
 
@@ -1827,11 +1793,9 @@ destroy_Terminfo(Terminfo * info)
 static int
 read_info(Terminfo * info, char *filename)
 {
-   int       name_size, bool_count, num_count, str_count, str_size;
-
-   int       i, fd, numread, size, r;
-
-   char      buf[MAX_ENTRY_SIZE], *str_table;
+   int name_size, bool_count, num_count, str_count, str_size;
+   int i, fd, numread, size, r;
+   char buf[MAX_ENTRY_SIZE], *str_table;
 
    if ((fd = open(filename, O_RDONLY
 #ifdef _WIN32
@@ -1845,11 +1809,11 @@ read_info(Terminfo * info, char *filename)
       goto clret;
 
    if (LOW_MSB(buf) != MAGIC)
-    {
-     clret:
-       close(fd);
-       return (0);
-    }
+      {
+       clret:
+	 close(fd);
+	 return (0);
+      }
    name_size = LOW_MSB(buf + 2);
    bool_count = LOW_MSB(buf + 4);
    num_count = LOW_MSB(buf + 6);
@@ -1882,14 +1846,14 @@ read_info(Terminfo * info, char *filename)
 	 buf[i] = 0;
 
    for (i = 0; i < BOOLCOUNT; ++i)
-    {
-       int       no = tnums.bools[i];
+      {
+	 int no = tnums.bools[i];
 
-       if (no < 0)
-	  continue;
-       if (buf[i])
-	  info->bools[no] = 1;
-    }
+	 if (no < 0)
+	    continue;
+	 if (buf[i])
+	    info->bools[no] = 1;
+      }
 
   /*
    * If booleans end on an odd byte, skip it.  The machine they
@@ -1906,110 +1870,108 @@ read_info(Terminfo * info, char *filename)
       goto clret;
 
    for (i = 0; i < M_MIN(num_count, NUMCOUNT); i++)
-    {
-       int       no = tnums.nums[i];
+      {
+	 int no = tnums.nums[i];
 
-       if (no < 0)
-	  continue;
+	 if (no < 0)
+	    continue;
 
-       if (info->nums[no] != -1)
-	  continue;
+	 if (info->nums[no] != -1)
+	    continue;
 
-       if (IS_NEG1(buf + 2 * i))
-	  continue;
-       else if (IS_NEG2(buf + 2 * i))
-	  continue;
-       else
-	  info->nums[no] = LOW_MSB(buf + 2 * i);
-    }
+	 if (IS_NEG1(buf + 2 * i))
+	    continue;
+	 else if (IS_NEG2(buf + 2 * i))
+	    continue;
+	 else
+	    info->nums[no] = LOW_MSB(buf + 2 * i);
+      }
    if (num_count > NUMCOUNT)
       lseek(fd, (off_t) (2 * (num_count - NUMCOUNT)), 1);
 
    if (str_count && str_size)
-    {
-      /* grab the string offsets */
-       numread = read(fd, buf, (unsigned) (str_count * 2));
-       if (numread < str_count * 2)
-	  goto clret;
+      {
+	/* grab the string offsets */
+	 numread = read(fd, buf, (unsigned) (str_count * 2));
+	 if (numread < str_count * 2)
+	    goto clret;
 
-       str_table = buf + numread;
-       if (str_count > STRCOUNT)
-	  lseek(fd, (off_t) (2 * (str_count - STRCOUNT)), 1);
+	 str_table = buf + numread;
+	 if (str_count > STRCOUNT)
+	    lseek(fd, (off_t) (2 * (str_count - STRCOUNT)), 1);
 
-      /* finally, grab the string table itself */
-       numread = read(fd, str_table, (unsigned) str_size);
-       if (numread != str_size)
-	  goto clret;
+	/* finally, grab the string table itself */
+	 numread = read(fd, str_table, (unsigned) str_size);
+	 if (numread != str_size)
+	    goto clret;
 
-       for (i = 0; i < str_count; i++)
-	{
-	   int       no = tnums.strs[i].num;
-
-	   int       type = tnums.strs[i].type;
-
-	   if (no < 0)
-	      continue;
-
-	   if (type == 'S' && info->strings[no] != -1)
-	      continue;
-	   if (type == 'K' && info->keys[no] != -1)
-	      continue;
-
-	   if (IS_NEG1(buf + 2 * i))
-	      continue;
-	   else if (IS_NEG2(buf + 2 * i))
-	      continue;
-	   else
+	 for (i = 0; i < str_count; i++)
 	    {
-	       int       offs, l;
+	       int no = tnums.strs[i].num;
+	       int type = tnums.strs[i].type;
 
-	       char     *s, *p;
+	       if (no < 0)
+		  continue;
 
-	       offs = LOW_MSB(buf + 2 * i);
-	       s = str_table + offs;
-	       l = strlen(s) + 1;
-	       place_buf(info, l);
+	       if (type == 'S' && info->strings[no] != -1)
+		  continue;
+	       if (type == 'K' && info->keys[no] != -1)
+		  continue;
+
+	       if (IS_NEG1(buf + 2 * i))
+		  continue;
+	       else if (IS_NEG2(buf + 2 * i))
+		  continue;
+	       else
+		  {
+		     int offs, l;
+		     char *s, *p;
+
+		     offs = LOW_MSB(buf + 2 * i);
+		     s = str_table + offs;
+		     l = strlen(s) + 1;
+		     place_buf(info, l);
 
 #if 0
-	       memcpy(info->buf + info->bufpos, s, l);
+		     memcpy(info->buf + info->bufpos, s, l);
 #else
-	       for (l = 0, p = info->buf + info->bufpos; *s;)
-		{
-		   int       c;
+		     for (l = 0, p = info->buf + info->bufpos; *s;)
+			{
+			   int c;
 
-		  /* skip the delay info */
-		   if ((c = s[0]) == '$' && s[1] == '<')
-		    {
-		       char     *s1;
+			  /* skip the delay info */
+			   if ((c = s[0]) == '$' && s[1] == '<')
+			      {
+				 char *s1;
 
-		       for (s1 = s + 2; *s1; ++s1)
-			  if (*s1 == '>')
-			     break;
-		       if (*s1)
-			  s = s1 + 1;
-		       else
-			  s = s1;
-		    }
-		   else
-		    {
-		       *p = c;
-		       ++s;
-		       ++p;
-		       ++l;
-		    }
-		}
-	       *p = 0;
-	       ++l;
+				 for (s1 = s + 2; *s1; ++s1)
+				    if (*s1 == '>')
+				       break;
+				 if (*s1)
+				    s = s1 + 1;
+				 else
+				    s = s1;
+			      }
+			   else
+			      {
+				 *p = c;
+				 ++s;
+				 ++p;
+				 ++l;
+			      }
+			}
+		     *p = 0;
+		     ++l;
 #endif
 
-	       if (type == 'S')
-		  info->strings[no] = info->bufpos;
-	       else if (type == 'K')
-		  info->keys[no] = info->bufpos;
-	       info->bufpos += l;
+		     if (type == 'S')
+			info->strings[no] = info->bufpos;
+		     else if (type == 'K')
+			info->keys[no] = info->bufpos;
+		     info->bufpos += l;
+		  }
 	    }
-	}
-    }
+      }
 
    return 0;
 }

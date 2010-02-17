@@ -109,7 +109,7 @@
 
 
 // include Std.ch so normal commands won't give errors
-#include "ci_Std.ch"
+#include "c_new_std.ch"
 
 
 // translate all variations of FUNCTION and PROCEDURE to

@@ -50,12 +50,9 @@ clip_INIT___MENU(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_MENUNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_menu_new();
@@ -73,9 +70,7 @@ int
 clip_GTK_MENUAPPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -89,9 +84,7 @@ int
 clip_GTK_MENUPREPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -105,11 +98,8 @@ int
 clip_GTK_MENUINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   int       position = _clip_parni(ClipMachineMemory, 3);
-
+   int position = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -125,7 +115,6 @@ int
 clip_GTK_MENUPOPUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cmnu, GTK_IS_MENU);
    gtk_menu_popup(GTK_MENU(cmnu->widget), NULL, NULL, NULL, NULL, 1, 0);
    return 0;
@@ -137,7 +126,6 @@ int
 clip_GTK_MENUPOPDOWN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cmnu, GTK_IS_MENU);
    gtk_menu_popdown(GTK_MENU(cmnu->widget));
    return 0;
@@ -151,22 +139,18 @@ int
 clip_GTK_MENUGETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    GtkWidget *item;
-
    C_widget *citem;
-
    CHECKCWID(cmnu, GTK_IS_MENU);
    item = gtk_menu_get_active(GTK_MENU(cmnu->widget));
    citem = _list_get_cwidget(ClipMachineMemory, item);
    if (!citem)
       citem = _register_widget(ClipMachineMemory, item, NULL);
    if (citem)
-    {
-       ClipVar  *ret = RETPTR(ClipMachineMemory);
-
-       _clip_mclone(ClipMachineMemory, ret, &citem->obj);
-    }
+      {
+	 ClipVar *ret = RETPTR(ClipMachineMemory);
+	 _clip_mclone(ClipMachineMemory, ret, &citem->obj);
+      }
    return 0;
  err:
    return 1;
@@ -176,9 +160,7 @@ int
 clip_GTK_MENUSETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
-   int       index = _clip_parni(ClipMachineMemory, 2);
-
+   int index = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_menu_set_active(GTK_MENU(cmnu->widget), index);
@@ -191,9 +173,7 @@ int
 clip_GTK_MENUSETTEAROFFSTATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  state = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean state = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_menu_set_tearoff_state(GTK_MENU(cmnu->widget), state);
@@ -208,9 +188,7 @@ int
 clip_GTK_MENUSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *title = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *title = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(title);
@@ -225,11 +203,8 @@ int
 clip_GTK_MENUREORDERCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnu = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   int       position = _clip_parni(ClipMachineMemory, 3);
-
+   int position = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cmnu, GTK_IS_MENU);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);

@@ -28,22 +28,14 @@ int
 clip_GDK_DRAWRGBIMAGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      x = _clip_parni(ClipMachineMemory, 3);
-
-   gint      y = _clip_parni(ClipMachineMemory, 4);
-
-   gint      width = _clip_parni(ClipMachineMemory, 5);
-
-   gint      height = _clip_parni(ClipMachineMemory, 6);
-
+   gint x = _clip_parni(ClipMachineMemory, 3);
+   gint y = _clip_parni(ClipMachineMemory, 4);
+   gint width = _clip_parni(ClipMachineMemory, 5);
+   gint height = _clip_parni(ClipMachineMemory, 6);
    GdkRgbDither dith = INT_OPTION(ClipMachineMemory, 7, 0);
-
-   guchar   *rgb = (guchar *) _clip_parc(ClipMachineMemory, 8);
-
-   gint      rowstride = _clip_parni(ClipMachineMemory, 9);
+   guchar *rgb = (guchar *) _clip_parc(ClipMachineMemory, 8);
+   gint rowstride = _clip_parni(ClipMachineMemory, 9);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -68,26 +60,16 @@ int
 clip_GDK_DRAWRGBIMAGEDITHALIGN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cgc = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      x = _clip_parni(ClipMachineMemory, 3);
-
-   gint      y = _clip_parni(ClipMachineMemory, 4);
-
-   gint      width = _clip_parni(ClipMachineMemory, 5);
-
-   gint      height = _clip_parni(ClipMachineMemory, 6);
-
+   gint x = _clip_parni(ClipMachineMemory, 3);
+   gint y = _clip_parni(ClipMachineMemory, 4);
+   gint width = _clip_parni(ClipMachineMemory, 5);
+   gint height = _clip_parni(ClipMachineMemory, 6);
    GdkRgbDither dith = INT_OPTION(ClipMachineMemory, 7, 0);
-
-   guchar   *rgb = (guchar *) _clip_parc(ClipMachineMemory, 8);
-
-   gint      rowstride = _clip_parni(ClipMachineMemory, 9);
-
-   gint      xdith = _clip_parni(ClipMachineMemory, 10);
-
-   gint      ydith = _clip_parni(ClipMachineMemory, 11);
+   guchar *rgb = (guchar *) _clip_parc(ClipMachineMemory, 8);
+   gint rowstride = _clip_parni(ClipMachineMemory, 9);
+   gint xdith = _clip_parni(ClipMachineMemory, 10);
+   gint ydith = _clip_parni(ClipMachineMemory, 11);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -103,8 +85,7 @@ clip_GDK_DRAWRGBIMAGEDITHALIGN(ClipMachine * ClipMachineMemory)
 
    rgb = rgb + rowstride * y + x * 3;
 
-   gdk_draw_rgb_image_dithalign((GdkDrawable *) cwid->widget->window,
-				GDK_GC(cgc->object), x, y, width, height, dith, rgb, rowstride, xdith, ydith);
+   gdk_draw_rgb_image_dithalign((GdkDrawable *) cwid->widget->window, GDK_GC(cgc->object), x, y, width, height, dith, rgb, rowstride, xdith, ydith);
 
    return 0;
  err:

@@ -1,5 +1,5 @@
-#ifndef CN_CLR_DEFINED
-#define CN_CLR_DEFINED
+#ifndef CI_CLR_DEFINED
+#define CI_CLR_DEFINED
 
 #define CLR_BLACK         "black"
 #define CLR_MAROON        "maroon"

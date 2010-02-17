@@ -16,14 +16,12 @@
 #include "ci_clip-expat.ch"
 
 static ClipVar _xml_list;
-
 static ClipVar *xml_list = &_xml_list;
 
 CLIP_DLLEXPORT C_parser *
 _list_get_cparser(ClipMachine * ClipMachineMemory, void *pointer)
 {
-   double    d;
-
+   double d;
    if (pointer && xml_list->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType)
       if (_clip_mgetn(ClipMachineMemory, xml_list, (long) pointer, &d) == 0)
 	 return (C_parser *) ((long) d);
@@ -71,10 +69,8 @@ _destroy_c_parser(void *obj)
 CLIP_DLLEXPORT C_parser *
 _register_parser(ClipMachine * ClipMachineMemory, XML_Parser parser)
 {
-   int       handle = -1;
-
+   int handle = -1;
    C_parser *cpar = (C_parser *) calloc(1, sizeof(C_parser));
-
    cpar->cmachine = ClipMachineMemory;
    cpar->parser = parser;
 
@@ -98,65 +94,61 @@ _fetch_c_arg(ClipMachine * ClipMachineMemory)
    C_parser *cpar;
 
    if (_clip_parinfo(ClipMachineMemory, 1) == NUMERIC_type_of_ClipVarType)
-    {
-       cpar = (C_parser *) _clip_fetch_c_item(ClipMachineMemory, _clip_parni(ClipMachineMemory, 1), _C_ITEM_TYPE_XML_PARSER);
-    }
+      {
+	 cpar = (C_parser *) _clip_fetch_c_item(ClipMachineMemory, _clip_parni(ClipMachineMemory, 1), _C_ITEM_TYPE_XML_PARSER);
+      }
    else
-    {
-       if (_clip_parinfo(ClipMachineMemory, 1) == MAP_type_of_ClipVarType)
-	{
-	   double    h;
-
-	   _clip_mgetn(ClipMachineMemory, _clip_spar(ClipMachineMemory, 1), HASH_HANDLE, &h);
-	   cpar = (C_parser *) _clip_fetch_c_item(ClipMachineMemory, (int) h, _C_ITEM_TYPE_XML_PARSER);
-	}
-       else
-	{
-	   _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, "CLIP_EXPAT", EG_ARG, "Bad parser descriptor");
-	   return NULL;
-	}
-    }
+      {
+	 if (_clip_parinfo(ClipMachineMemory, 1) == MAP_type_of_ClipVarType)
+	    {
+	       double h;
+	       _clip_mgetn(ClipMachineMemory, _clip_spar(ClipMachineMemory, 1), HASH_HANDLE, &h);
+	       cpar = (C_parser *) _clip_fetch_c_item(ClipMachineMemory, (int) h, _C_ITEM_TYPE_XML_PARSER);
+	    }
+	 else
+	    {
+	       _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, "CLIP_EXPAT", EG_ARG, "Bad parser descriptor");
+	       return NULL;
+	    }
+      }
    if (!cpar)
-    {
-       _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, "CLIP_EXPAT", EG_ARG, "Bad parser descriptor");
-       return NULL;
-    }
+      {
+	 _clip_trap_err(ClipMachineMemory, EG_ARG, 0, 0, "CLIP_EXPAT", EG_ARG, "Bad parser descriptor");
+	 return NULL;
+      }
    return cpar;
 }
 
 static int XMLCALL
 unknownEncoding(void *encodingHandlerData, const XML_Char * name, XML_Encoding * info)
 {
-   int       i, len1 = 0;
-
+   int i, len1 = 0;
    cons_CharsetEntry *cs1 = 0;
 
    if (load_charset_name((char *) name, &cs1, &len1))
-    {
-       _clip_logg(2, "translate_charset: cannot load charset file '%s': %s", (char *) name, strerror(errno));
-       return XML_STATUS_ERROR;
-    }
+      {
+	 _clip_logg(2, "translate_charset: cannot load charset file '%s': %s", (char *) name, strerror(errno));
+	 return XML_STATUS_ERROR;
+      }
 
    for (i = 0; i < 256; i++)
       info->map[i] = i;
 
    for (i = 0; i < len1; i++)
-    {
-       int       ch;
+      {
+	 int ch;
+	 unsigned long unich;
+	 cons_CharsetEntry *cp;
 
-       unsigned long unich;
+	 cp = cs1 + i;
+	 ch = cp->ch;
+	 unich = cp->unich;
 
-       cons_CharsetEntry *cp;
+	 if (ch >= 256 || ch < 0x80)
+	    continue;
 
-       cp = cs1 + i;
-       ch = cp->ch;
-       unich = cp->unich;
-
-       if (ch >= 256 || ch < 0x80)
-	  continue;
-
-       info->map[i] = unich;
-    }
+	 info->map[i] = unich;
+      }
    free(cs1);
 
    for (i = 0; i < 32; i++)
@@ -172,10 +164,8 @@ unknownEncoding(void *encodingHandlerData, const XML_Char * name, XML_Encoding *
 int
 clip_XML_PARSERCREATE(ClipMachine * ClipMachineMemory)
 {
-   char     *encoding = _clip_parc(ClipMachineMemory, 1);
-
+   char *encoding = _clip_parc(ClipMachineMemory, 1);
    XML_Parser parser = NULL;
-
    C_parser *cpar;
 
    CHECKOPT(1, CHARACTER_type_of_ClipVarType);
@@ -196,7 +186,6 @@ int
 clip_XML_PARSERFREE(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    XML_Parser parser = cpar->parser;
 
    CHECKCPARSER(cpar);
@@ -213,8 +202,7 @@ int
 clip_XML_SETUSERDATA(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *userData = _clip_par(ClipMachineMemory, 2);
+   ClipVar *userData = _clip_par(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
 
@@ -231,8 +219,7 @@ int
 clip_XML_SETPARAMENTITYPARSING(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   int       flag = _clip_parni(ClipMachineMemory, 2);
+   int flag = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
 
@@ -246,12 +233,9 @@ int
 clip_XML_PARSE(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    const char *str = _clip_parc(ClipMachineMemory, 2);
-
-   int       len = _clip_parni(ClipMachineMemory, 3);
-
-   int       isFinal = _clip_parl(ClipMachineMemory, 4);
+   int len = _clip_parni(ClipMachineMemory, 3);
+   int isFinal = _clip_parl(ClipMachineMemory, 4);
 
    CHECKCPARSER(cpar);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -283,7 +267,6 @@ int
 clip_XML_ERRORSTRING(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    CHECKCPARSER(cpar);
 
    _clip_retc(ClipMachineMemory, (char *) XML_ErrorString(XML_GetErrorCode(cpar->parser)));
@@ -296,7 +279,6 @@ int
 clip_XML_GETCURRENTBYTEINDEX(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    CHECKCPARSER(cpar);
 
    _clip_retni(ClipMachineMemory, XML_GetCurrentByteIndex(cpar->parser));
@@ -309,7 +291,6 @@ int
 clip_XML_GETCURRENTLINENUMBER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    CHECKCPARSER(cpar);
 
    _clip_retni(ClipMachineMemory, XML_GetCurrentLineNumber(cpar->parser));
@@ -322,7 +303,6 @@ int
 clip_XML_GETCURRENTCOLUMNNUMBER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
    CHECKCPARSER(cpar);
 
    _clip_retni(ClipMachineMemory, XML_GetCurrentColumnNumber(cpar->parser));
@@ -335,18 +315,12 @@ static int
 _character_data_handler(void *userData, const XML_Char * s, int len)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   str;
-
-   ClipVar   n;
-
-   ClipVar   stack[3], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar str;
+   ClipVar n;
+   ClipVar stack[3], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -356,32 +330,30 @@ _character_data_handler(void *userData, const XML_Char * s, int len)
    _clip_var_str(s, len, &str);
 
    n.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
-   n.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = len;
+	n.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = len;
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
 
    stack[0] = *app;
    _clip_mclone(cud->cmachine, &stack[1], &str);
    _clip_mclone(cud->cmachine, &stack[2], &n);
 
    if (_clip_eval(cud->cmachine, &(cud->characterDataHandler), 3, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -401,8 +373,7 @@ int
 clip_XML_SETCHARACTERDATAHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -419,20 +390,13 @@ static int
 _start_element_handler(void *userData, const XML_Char * name, const XML_Char ** attrs)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   str;
-
-   ClipVar  *eattr, *item;
-
-   ClipVar   stack[3], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1, i, j;
-
-   unsigned  l = 0;
-
-   long      vect[2];
+   ClipVar str;
+   ClipVar *eattr, *item;
+   ClipVar stack[3], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1, i, j;
+   unsigned l = 0;
+   long vect[2];
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -444,60 +408,57 @@ _start_element_handler(void *userData, const XML_Char * name, const XML_Char ** 
    vect[1] = 0;
    _clip_array(cud->cmachine, eattr, 1, vect);
    for (i = 0, j = 0; attrs[i]; i += 2, j++)
-    {
-       ClipVar   var;
+      {
+	 ClipVar var;
+	 item = malloc(sizeof(ClipVar));
 
-       item = malloc(sizeof(ClipVar));
+	 vect[0] = 2;
+	 _clip_array(cud->cmachine, item, 1, vect);
+	 vect[0] = j + 1;
+	 _clip_asize(cud->cmachine, eattr, 1, vect);
+	 vect[0] = j;
+	 _clip_aset(cud->cmachine, eattr, item, 1, vect);
 
-       vect[0] = 2;
-       _clip_array(cud->cmachine, item, 1, vect);
-       vect[0] = j + 1;
-       _clip_asize(cud->cmachine, eattr, 1, vect);
-       vect[0] = j;
-       _clip_aset(cud->cmachine, eattr, item, 1, vect);
+	 memset(&var, 0, sizeof(var));
+	 var.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	 var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = (char *) attrs[i];
+	 var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(attrs[i]);
+	 vect[1] = 0;
+	 _clip_aset(cud->cmachine, eattr, &var, 2, vect);
 
-       memset(&var, 0, sizeof(var));
-       var.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
-       var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = (char *) attrs[i];
-       var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(attrs[i]);
-       vect[1] = 0;
-       _clip_aset(cud->cmachine, eattr, &var, 2, vect);
+	 memset(&var, 0, sizeof(var));
+	 var.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	 var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = (char *) attrs[i + 1];
+	 var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(attrs[i + 1]);
+	 vect[1] = 1;
+	 _clip_aset(cud->cmachine, eattr, &var, 2, vect);
 
-       memset(&var, 0, sizeof(var));
-       var.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
-       var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = (char *) attrs[i + 1];
-       var.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(attrs[i + 1]);
-       vect[1] = 1;
-       _clip_aset(cud->cmachine, eattr, &var, 2, vect);
+	 _clip_destroy(cud->cmachine, item);
+	 free(item);
 
-       _clip_destroy(cud->cmachine, item);
-       free(item);
-
-    }
+      }
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
    _clip_mclone(cud->cmachine, &stack[1], &str);
    _clip_mclone(cud->cmachine, &stack[2], eattr);
 
    if (_clip_eval(cud->cmachine, &(cud->startElementHandler), 3, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -517,8 +478,7 @@ int
 clip_XML_SETSTARTELEMENTHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -535,16 +495,11 @@ static int
 _end_element_handler(void *userData, const XML_Char * name)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   str;
-
-   ClipVar   stack[2], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar str;
+   ClipVar stack[2], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -553,26 +508,24 @@ _end_element_handler(void *userData, const XML_Char * name)
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
    _clip_mclone(cud->cmachine, &stack[1], &str);
 
    if (_clip_eval(cud->cmachine, &(cud->endElementHandler), 2, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -589,8 +542,7 @@ int
 clip_XML_SETENDELEMENTHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -607,10 +559,8 @@ int
 clip_XML_SETELEMENTHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *sfunc = _clip_spar(ClipMachineMemory, 2);
-
-   ClipVar  *efunc = _clip_spar(ClipMachineMemory, 3);
+   ClipVar *sfunc = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *efunc = _clip_spar(ClipMachineMemory, 3);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -618,8 +568,7 @@ clip_XML_SETELEMENTHANDLER(ClipMachine * ClipMachineMemory)
 
    _clip_mclone(ClipMachineMemory, &cpar->startElementHandler, sfunc);
    _clip_mclone(ClipMachineMemory, &cpar->endElementHandler, efunc);
-   XML_SetElementHandler(cpar->parser,
-			 (XML_StartElementHandler) _start_element_handler, (XML_EndElementHandler) _end_element_handler);
+   XML_SetElementHandler(cpar->parser, (XML_StartElementHandler) _start_element_handler, (XML_EndElementHandler) _end_element_handler);
 
    return 0;
  err:
@@ -630,16 +579,11 @@ static int
 _comment_handler(void *userData, const XML_Char * data)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   str;
-
-   ClipVar   stack[2], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar str;
+   ClipVar stack[2], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -648,26 +592,24 @@ _comment_handler(void *userData, const XML_Char * data)
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
    _clip_mclone(cud->cmachine, &stack[1], &str);
 
    if (_clip_eval(cud->cmachine, &(cud->commentHandler), 2, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -684,8 +626,7 @@ int
 clip_XML_SETCOMMENTHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -702,39 +643,33 @@ static int
 _start_cdata_section_handler(void *userData)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   stack[1], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar stack[1], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
 
    if (_clip_eval(cud->cmachine, &(cud->startCdataSectionHandler), 1, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -748,8 +683,7 @@ int
 clip_XML_SETSTARTCDATASECTIONHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -766,39 +700,33 @@ static int
 _end_cdata_section_handler(void *userData)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   stack[1], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar stack[1], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
 
    if (_clip_eval(cud->cmachine, &(cud->endCdataSectionHandler), 1, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -812,8 +740,7 @@ int
 clip_XML_SETENDCDATASECTIONHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -830,10 +757,8 @@ int
 clip_XML_SETCDATASECTIONHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *sfunc = _clip_spar(ClipMachineMemory, 2);
-
-   ClipVar  *efunc = _clip_spar(ClipMachineMemory, 3);
+   ClipVar *sfunc = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *efunc = _clip_spar(ClipMachineMemory, 3);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -841,9 +766,7 @@ clip_XML_SETCDATASECTIONHANDLER(ClipMachine * ClipMachineMemory)
 
    _clip_mclone(ClipMachineMemory, &cpar->startCdataSectionHandler, sfunc);
    _clip_mclone(ClipMachineMemory, &cpar->endCdataSectionHandler, efunc);
-   XML_SetCdataSectionHandler(cpar->parser,
-			      (XML_StartCdataSectionHandler)
-			      _start_cdata_section_handler, (XML_EndCdataSectionHandler) _end_cdata_section_handler);
+   XML_SetCdataSectionHandler(cpar->parser, (XML_StartCdataSectionHandler) _start_cdata_section_handler, (XML_EndCdataSectionHandler) _end_cdata_section_handler);
 
    return 0;
  err:
@@ -854,18 +777,12 @@ static int
 _default_handler(void *userData, const XML_Char * s, int len)
 {
    C_parser *cud = (C_parser *) userData;
-
-   ClipVar   str;
-
-   ClipVar   n;
-
-   ClipVar   stack[3], *app, *nv = 0;
-
-   ClipVar   res;
-
-   int       ret = 1;
-
-   unsigned  l = 0;
+   ClipVar str;
+   ClipVar n;
+   ClipVar stack[3], *app, *nv = 0;
+   ClipVar res;
+   int ret = 1;
+   unsigned l = 0;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -874,31 +791,29 @@ _default_handler(void *userData, const XML_Char * s, int len)
    _clip_var_str(s, len, &str);
 
    n.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
-   n.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = len;
+	n.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = len;
 
    app = cud->userData;
    if (!(app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType & F_MREF_ClipFlags))
-    {
-       l = 1;
-       nv = NEW(ClipVar);
+      {
+	 l = 1;
+	 nv = NEW(ClipVar);
 
-       *nv = *app;
+	 *nv = *app;
 
-       nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
-       app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
-       app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
-       app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
-       app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
+	 nv->ClipType_t_of_ClipVar.count_of_ClipType = 2;
+	 app->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_MREF_ClipFlags /*mptr?F_MPTR_ClipFlags:F_MREF_ClipFlags */ ;
+	 app->ClipRefVar_p_of_ClipVar.ClipVar_of_ClipRefVar = nv;
+	 app->ClipType_t_of_ClipVar.field_of_ClipType = 0;
+	 app->ClipRefVar_p_of_ClipVar.ClipFieldDef_of_ClipRefVar = 0;
 
-    }
+      }
    stack[0] = *app;
    _clip_mclone(cud->cmachine, &stack[1], &str);
    _clip_mclone(cud->cmachine, &stack[2], &n);
 
    if (_clip_eval(cud->cmachine, &(cud->defaultHandler), 3, stack, &res) == 0)
-      ret =
-       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(cud->cmachine, &res);
 
@@ -917,8 +832,7 @@ int
 clip_XML_SETDEFAULTHANDLER(ClipMachine * ClipMachineMemory)
 {
    C_parser *cpar = _fetch_c_arg(ClipMachineMemory);
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
 
    CHECKCPARSER(cpar);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);

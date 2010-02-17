@@ -18,9 +18,8 @@
 /**************** SIGNALS for List Item  ******************/
 
 /* Signal handlers */
-static    gint
-handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type,
-			       gfloat position, gboolean auto_start_selection, C_signal * cs)
+static gint
+handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, gboolean auto_start_selection, C_signal * cs)
 {
    PREPARECV(cs, cv);
    _clip_mputn(cs->cw->cmachine, &cv, HASH_SCROLLTYPE, scroll_type);
@@ -29,7 +28,7 @@ handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type,
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_scroll_vertical_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -38,7 +37,7 @@ handle_scroll_vertical_signal(GtkWidget * widget, GtkScrollType scroll_type, gfl
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_scroll_horizontal_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -47,17 +46,13 @@ handle_scroll_horizontal_signal(GtkWidget * widget, GtkScrollType scroll_type, g
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 emit_extend_selection_signal(C_widget * cwid, const gchar * signal_name)
 {
    ClipMachine *ClipMachineMemory = cwid->cmachine;
-
    GtkScrollType scroll_type = _clip_parni(ClipMachineMemory, 3);
-
-   gfloat    position = _clip_parnd(ClipMachineMemory, 4);
-
-   gboolean  auto_start_selection = _clip_parl(ClipMachineMemory, 5);
-
+   gfloat position = _clip_parnd(ClipMachineMemory, 4);
+   gboolean auto_start_selection = _clip_parl(ClipMachineMemory, 5);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
    CHECKOPT(5, LOGICAL_type_of_ClipVarType);
@@ -69,15 +64,12 @@ emit_extend_selection_signal(C_widget * cwid, const gchar * signal_name)
    return 1;
 }
 
-static    gint
+static gint
 emit_scroll_signal(C_widget * cwid, const gchar * signal_name)
 {
    ClipMachine *ClipMachineMemory = cwid->cmachine;
-
    GtkScrollType scroll_type = _clip_parni(ClipMachineMemory, 3);
-
-   gfloat    position = _clip_parnd(ClipMachineMemory, 4);
-
+   gfloat position = _clip_parnd(ClipMachineMemory, 4);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
    gtk_signal_emit_by_name(GTK_OBJECT(cwid->widget), signal_name, scroll_type, position, cwid);
@@ -145,29 +137,25 @@ clip_INIT___LISTITEM(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_LISTITEMNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cchild;
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT3(2, CHARACTER_type_of_ClipVarType, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    switch (_clip_parinfo(ClipMachineMemory, 2))
-    {
-    case CHARACTER_type_of_ClipVarType:
-       wid = gtk_list_item_new_with_label(_clip_parc(ClipMachineMemory, 2));
-       break;
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       wid = gtk_list_item_new();
-       cchild = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-       CHECKCWID(cchild, GTK_IS_WIDGET);
-       gtk_container_add(GTK_CONTAINER(wid), cchild->widget);
-       break;
-    }
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 wid = gtk_list_item_new_with_label(_clip_parc(ClipMachineMemory, 2));
+	 break;
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 wid = gtk_list_item_new();
+	 cchild = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+	 CHECKCWID(cchild, GTK_IS_WIDGET);
+	 gtk_container_add(GTK_CONTAINER(wid), cchild->widget);
+	 break;
+      }
 
    if (!wid)
       goto err;
@@ -188,7 +176,6 @@ int
 clip_GTK_LISTITEMSELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clitm = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clitm, GTK_IS_LIST_ITEM);
    gtk_list_item_select(GTK_LIST_ITEM(clitm->widget));
    return 0;
@@ -201,7 +188,6 @@ int
 clip_GTK_LISTITEMDESELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clitm = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clitm, GTK_IS_LIST_ITEM);
    gtk_list_item_deselect(GTK_LIST_ITEM(clitm->widget));
    return 0;
@@ -214,20 +200,17 @@ int
 clip_GTK_LISTITEMGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clitm = _fetch_cw_arg(ClipMachineMemory);
-
    GtkWidget *child = NULL;
-
-   char     *text;
-
+   char *text;
    CHECKCWID(clitm, GTK_IS_LIST_ITEM);
    child = GTK_BIN(&(GTK_ITEM(clitm->widget)->bin))->child;
    if (GTK_IS_LABEL(child))
-    {
-       gtk_label_get(GTK_LABEL(child), &text);
-       LOCALE_TO_UTF(text);
-       _clip_retc(ClipMachineMemory, text);
-       FREE_TEXT(text);
-    }
+      {
+	 gtk_label_get(GTK_LABEL(child), &text);
+	 LOCALE_TO_UTF(text);
+	 _clip_retc(ClipMachineMemory, text);
+	 FREE_TEXT(text);
+      }
    return 0;
  err:
    return 1;

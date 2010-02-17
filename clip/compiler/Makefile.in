@@ -215,7 +215,7 @@ clic_name.c: clic.tab.c Makefile
 	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
 	$(E_e)echo "#endif" 																	>>clic_name.c
 
-clic.tab.h clic.tab.c: clic.y ../include/ci_clic.h
+clic.tab.c: clic.y ../include/ci_clic.h
 	$(E_xx)$(YACC) -bclic -v -d clic.y
 
 lex.cl.c: clic_c.lex clic.tab.h
@@ -239,14 +239,19 @@ rt.tab.c: rt.y ../include.h/ci_clic.h
 	$(E_e)$(Trace_yacc)
 	$(E_xx)$(YACC) -brt -prt -v -d rt.y
 
-lex : yacc lex.yy.c lex.cl.c Makefile
+lex: yacc lex.yy.c lex.cl.c Makefile
 #lex.hash.c
 
-yacc : clic.tab.c clic_name.c Makefile
+yacc: clic.tab.c clic_name.c Makefile
 # rt.tab.c plural.tab.c
 
 include $(Makefile_end_in)
 
+indent : Makefile
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
+	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
 
 # DO NOT DELETE
 

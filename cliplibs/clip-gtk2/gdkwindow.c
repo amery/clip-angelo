@@ -54,11 +54,8 @@ clip_GDK_WINDOWGETPOINTER(ClipMachine * ClipMachineMemory)
 {
 //      C_object    *cwin = _fetch_co_arg(ClipMachineMemory);
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      px, py;
-
+   gint px, py;
    GdkWindow *win = NULL;
-
    GdkModifierType mask;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -83,13 +80,9 @@ int
 clip_GDK_WINDOWGETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
-
-   gint      height = _clip_parni(ClipMachineMemory, 3);
-
-   gint     *px, *py;
-
+   gint width = _clip_parni(ClipMachineMemory, 2);
+   gint height = _clip_parni(ClipMachineMemory, 3);
+   gint *px, *py;
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -114,13 +107,9 @@ int
 clip_GDK_WINDOWGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      y = _clip_parni(ClipMachineMemory, 3);
-
-   gint     *px, *py;
-
+   gint x = _clip_parni(ClipMachineMemory, 2);
+   gint y = _clip_parni(ClipMachineMemory, 3);
+   gint *px, *py;
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -145,7 +134,6 @@ int
 clip_GDK_WINDOWCLEAR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -164,7 +152,6 @@ int
 clip_GDK_WINDOWGETTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -185,7 +172,6 @@ int
 clip_GDK_WINDOWLOWER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -207,7 +193,6 @@ int
 clip_GDK_WINDOWRAISE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -228,7 +213,6 @@ int
 clip_GDK_WINDOWISVIEWABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -249,7 +233,6 @@ int
 clip_GDK_WINDOWISVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -268,21 +251,13 @@ int
 clip_GDK_WINDOWSETHINTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      x = INT_OPTION(ClipMachineMemory, 2, -1);
-
-   gint      y = INT_OPTION(ClipMachineMemory, 3, -1);
-
-   gint      min_width = INT_OPTION(ClipMachineMemory, 4, -1);
-
-   gint      min_height = INT_OPTION(ClipMachineMemory, 5, -1);
-
-   gint      max_width = INT_OPTION(ClipMachineMemory, 6, -1);
-
-   gint      max_height = INT_OPTION(ClipMachineMemory, 7, -1);
-
-   gint      flags = INT_OPTION(ClipMachineMemory, 8, 0);
-
+   gint x = INT_OPTION(ClipMachineMemory, 2, -1);
+   gint y = INT_OPTION(ClipMachineMemory, 3, -1);
+   gint min_width = INT_OPTION(ClipMachineMemory, 4, -1);
+   gint min_height = INT_OPTION(ClipMachineMemory, 5, -1);
+   gint max_width = INT_OPTION(ClipMachineMemory, 6, -1);
+   gint max_height = INT_OPTION(ClipMachineMemory, 7, -1);
+   gint flags = INT_OPTION(ClipMachineMemory, 8, 0);
    GdkWindow *win = NULL;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);
@@ -310,15 +285,10 @@ int
 clip_GDK_WINDOWSETBACKPIXMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwin = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cpix = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  relative = _clip_parl(ClipMachineMemory, 3);
-
+   gboolean relative = _clip_parl(ClipMachineMemory, 3);
    GdkWindow *win = NULL;
-
    GdkPixmap *pix = NULL;
-
    GdkBitmap *mask;
 
    CHECKCWID(cwin, GTK_IS_WIDGET);

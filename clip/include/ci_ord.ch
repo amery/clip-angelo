@@ -1,6 +1,6 @@
-#ifndef CN_ORD_DEFINED
+#ifndef CI_ORD_DEFINED
 
-#define CN_ORD_DEFINED
+#define CI_ORD_DEFINED
 
 #command INDEX ON <key> [TAG <(cOrder)>] TO <(cBag)>                    ;
 	    [FOR <for>]                                                 ;

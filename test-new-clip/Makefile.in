@@ -1,0 +1,60 @@
+##
+##										test/Makefile.in
+##
+# main parts
+#
+#
+prg_files 			= 			test.prg
+o_files 				= 			$(addsuffix .o, $(basename $(prg_files) $(c_files) ) )
+SRC_C_files 		= 			$(sort $(c_files) )
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all: Makefile test$(EXESUFF)
+
+cleanc :$(DIRS_TO_SCAN)
+	$(E_rm)rm -f$(V) *.ex *.nm charsets *.c *.log
+	$(E_rm)rm -Rf$(V) bin test$(EXESUFF)
+
+distcleanc: clean
+
+hash1 :
+
+cfg :
+
+include $(Makefile_o_in)
+
+install: all
+
+test$(EXESUFF) : test.prg Makefile
+	$(E_e)$(Trace_clip)
+#	$(E_clip)
+	$(CLIP) $(CLIPFLAGS) -o $@ -ges $<
+# $(LIBCLIP)
+	./$@
+	$(E_xx)banner new-Clip 		>&0
+	$(E_xx)banner compiler 	>&0
+	$(E_xx)banner and 			>&0
+	$(E_xx)banner standard 	>&0
+	$(E_xx)banner library 	>&0
+	$(E_xx)banner are OK 		>&0
+	$(E_xx)banner Clip 		>&1
+	$(E_xx)banner compiler 	>&1
+	$(E_xx)banner and 			>&1
+	$(E_xx)banner standard 	>&1
+	$(E_xx)banner library 	>&1
+	$(E_xx)banner are OK 		>&1
+	$(E_xx)banner Clip 		>&2
+	$(E_xx)banner compiler 	>&2
+	$(E_xx)banner and 			>&2
+	$(E_xx)banner standard 	>&2
+	$(E_xx)banner library 	>&2
+	$(E_xx)banner are OK 		>&2
+	$(E_xx)banner new-Clip 		>&0
+
+include $(Makefile_end_in)
+

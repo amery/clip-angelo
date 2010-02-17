@@ -34,7 +34,6 @@ static void
 crypto_init(void)
 {
    static int inited = 0;
-
    if (inited)
       return;
 
@@ -54,12 +53,9 @@ int
 clip_EVP_ALG_LIST(ClipMachine * mp)
 {
    const char *s;
-
-   int       i, n;
-
-   ClipVar  *rp = RETPTR(mp), *ap;
-
-   long      vect[1];
+   int i, n;
+   ClipVar *rp = RETPTR(mp), *ap;
+   long vect[1];
 
    for (i = 0, n = 0; (s = alg_names[i]); i++, n++)
       ;
@@ -69,14 +65,13 @@ clip_EVP_ALG_LIST(ClipMachine * mp)
    ap = _clip_vptr(rp);
 
    for (i = 0; (s = alg_names[i]); i++)
-    {
-       ClipVar  *vp;
-
-       vp = ap->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + i;
-       vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
-       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = strdup(s);
-       vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(s);
-    }
+      {
+	 ClipVar *vp;
+	vp = ap->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar + i;
+	vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+	vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = strdup(s);
+	vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = strlen(s);
+      }
 
    return 0;
 }
@@ -103,30 +98,18 @@ static int
 do_cipher(ClipMachine * mp, int operation)
 {
    const EVP_CIPHER *cipher = 0;
-
    const EVP_MD *digest = 0;
-
-   char     *cipher_name, *digest_name;
-
-   char     *key_str, *data, *iv_str, *data_ptr;
-
-   int       key_len = 0, data_len = 0, iv_len = 0;
-
+   char *cipher_name, *digest_name;
+   char *key_str, *data, *iv_str, *data_ptr;
+   int key_len = 0, data_len = 0, iv_len = 0;
    EVP_CIPHER_CTX ectx;
-
    unsigned char iv[EVP_MAX_IV_LENGTH];
-
    unsigned char key[EVP_MAX_KEY_LENGTH];
-
-   char      ebuf[BLOCK_SIZE + 8];
-
+   char ebuf[BLOCK_SIZE + 8];
    unsigned int ebuflen;
-
-   char     *obuf = 0;
-
+   char *obuf = 0;
    unsigned int olen = 0;
-
-   int       l;
+   int l;
 
    crypto_init();
 
@@ -154,11 +137,11 @@ do_cipher(ClipMachine * mp, int operation)
 
    iv_str = _clip_parcl(mp, 5, &iv_len);
    if (iv_str)
-    {
-       if (iv_len > sizeof(iv))
-	  iv_len = sizeof(iv);
-       memcpy(iv, iv_str, iv_len);
-    }
+      {
+	 if (iv_len > sizeof(iv))
+	    iv_len = sizeof(iv);
+	 memcpy(iv, iv_str, iv_len);
+      }
 
    cipher = EVP_get_cipherbyname(cipher_name);
    if (!cipher)
@@ -168,27 +151,26 @@ do_cipher(ClipMachine * mp, int operation)
    if (!digest)
       return EG_ARG;
 
-   EVP_BytesToKey(cipher, (EVP_MD *) digest, (const unsigned char *) "clip",
-		  (const unsigned char *) key_str, key_len, 1, key, iv);
+   EVP_BytesToKey(cipher, (EVP_MD *) digest, (const unsigned char *) "clip", (const unsigned char *) key_str, key_len, 1, key, iv);
    EVP_CipherInit(&ectx, cipher, key, iv, operation);
 
    for (l = 0, data_ptr = data; l < data_len;)
-    {
-       int       ll = data_len - l;
+      {
+	 int ll = data_len - l;
 
-       if (ll > BLOCK_SIZE)
-	  ll = BLOCK_SIZE;
+	 if (ll > BLOCK_SIZE)
+	    ll = BLOCK_SIZE;
 
-       ebuflen = sizeof(ebuf);
-       EVP_CipherUpdate(&ectx, (unsigned char *) ebuf, (int *) &ebuflen, (unsigned char *) data_ptr, ll);
+	 ebuflen = sizeof(ebuf);
+	 EVP_CipherUpdate(&ectx, (unsigned char *) ebuf, (int *) &ebuflen, (unsigned char *) data_ptr, ll);
 
-       obuf = (char *) realloc(obuf, olen + ebuflen);
-       memcpy(obuf + olen, ebuf, ebuflen);
-       olen += ebuflen;
+	 obuf = (char *) realloc(obuf, olen + ebuflen);
+	 memcpy(obuf + olen, ebuf, ebuflen);
+	 olen += ebuflen;
 
-       l += ll;
-       data_ptr += ll;
-    }
+	 l += ll;
+	 data_ptr += ll;
+      }
 
    EVP_CipherFinal(&ectx, (unsigned char *) ebuf, (int *) &ebuflen);
 

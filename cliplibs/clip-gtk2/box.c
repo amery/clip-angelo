@@ -87,16 +87,11 @@ clip_INIT___BOX(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gboolean  homogeneous = _clip_parl(ClipMachineMemory, 2);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 3);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gboolean homogeneous = _clip_parl(ClipMachineMemory, 2);
+   gint spacing = _clip_parni(ClipMachineMemory, 3);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -116,16 +111,11 @@ clip_GTK_HBOXNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gboolean  homogeneous = _clip_parl(ClipMachineMemory, 2);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 3);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gboolean homogeneous = _clip_parl(ClipMachineMemory, 2);
+   gint spacing = _clip_parni(ClipMachineMemory, 3);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -148,15 +138,10 @@ int
 clip_GTK_BOXPACKSTART(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
-
-   gboolean  fill = _clip_parl(ClipMachineMemory, 4);
-
-   guint     padd = _clip_parni(ClipMachineMemory, 5);
-
+   gboolean expand = _clip_parl(ClipMachineMemory, 3);
+   gboolean fill = _clip_parl(ClipMachineMemory, 4);
+   guint padd = _clip_parni(ClipMachineMemory, 5);
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -176,15 +161,10 @@ int
 clip_GTK_BOXPACKEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
-
-   gboolean  fill = _clip_parl(ClipMachineMemory, 4);
-
-   guint     padd = _clip_parni(ClipMachineMemory, 5);
-
+   gboolean expand = _clip_parl(ClipMachineMemory, 3);
+   gboolean fill = _clip_parl(ClipMachineMemory, 4);
+   guint padd = _clip_parni(ClipMachineMemory, 5);
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -207,9 +187,7 @@ int
 clip_GTK_BOXPACKSTARTDEFAULTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -229,9 +207,7 @@ int
 clip_GTK_BOXPACKENDDEFAULTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -247,9 +223,7 @@ int
 clip_GTK_BOXSETHOMOGENEOUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  homogeneous = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean homogeneous = _clip_parl(ClipMachineMemory, 2);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cbox, GTK_IS_BOX);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -264,7 +238,6 @@ int
 clip_GTK_BOXGETHOMOGENEOUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbox, GTK_IS_BOX);
    _clip_retl(ClipMachineMemory, gtk_box_get_homogeneous(GTK_BOX(cbox->widget)));
    return 0;
@@ -278,9 +251,7 @@ int
 clip_GTK_BOXSETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 2);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cbox, GTK_IS_BOX);
    gtk_box_set_spacing(GTK_BOX(cbox->widget), spacing);
@@ -303,11 +274,8 @@ int
 clip_GTK_BOXREORDERCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      position = _clip_parni(ClipMachineMemory, 3);
-
+   gint position = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -323,15 +291,10 @@ int
 clip_GTK_BOXQUERYCHILDPACKING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand, fill;
-
-   guint     padding;
-
+   gboolean expand, fill;
+   guint padding;
    GtkPackType pack_type;
-
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -349,17 +312,11 @@ int
 clip_GTK_BOXSETCHILDPACKING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
-
-   gboolean  fill = _clip_parl(ClipMachineMemory, 4);
-
-   gint      padding = _clip_parni(ClipMachineMemory, 5);
-
+   gboolean expand = _clip_parl(ClipMachineMemory, 3);
+   gboolean fill = _clip_parl(ClipMachineMemory, 4);
+   gint padding = _clip_parni(ClipMachineMemory, 5);
    GtkPackType pack_type = _clip_parni(ClipMachineMemory, 6);
-
    CHECKCWID(cbox, GTK_IS_BOX);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);

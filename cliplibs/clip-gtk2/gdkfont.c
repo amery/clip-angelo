@@ -64,29 +64,25 @@ gdk_object_font_destructor(ClipMachine * ClipMachineMemory, C_object * cfont)
 int
 clip_GDK_FONTLOAD(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    const gchar *font_name = _clip_parc(ClipMachineMemory, 2);
-
-   GdkFont  *font;
-
+   GdkFont *font;
    C_object *cfont;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    font = gdk_font_load(font_name);
    if (font)
-    {
+      {
 //              gdk_font_ref(font);
-       cfont = _register_object(ClipMachineMemory, font, GDK_TYPE_FONT, cv, (coDestructor) gdk_object_font_destructor);
-       if (cfont)
-	{
-	   cfont->ref_count = 1;
-	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfont->obj);
-	}
-       else
-	  gdk_font_unref(font);
-    }
+	 cfont = _register_object(ClipMachineMemory, font, GDK_TYPE_FONT, cv, (coDestructor) gdk_object_font_destructor);
+	 if (cfont)
+	    {
+	       cfont->ref_count = 1;
+	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfont->obj);
+	    }
+	 else
+	    gdk_font_unref(font);
+      }
    return 0;
  err:
    return 1;
@@ -104,29 +100,25 @@ clip_GDK_FONTLOAD(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_FONTSETLOAD(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    const gchar *font_name = _clip_parc(ClipMachineMemory, 2);
-
-   GdkFont  *font;
-
+   GdkFont *font;
    C_object *cfont;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    font = gdk_fontset_load(font_name);
    if (font)
-    {
+      {
 //              gdk_font_ref(font);
-       cfont = _register_object(ClipMachineMemory, font, GDK_TYPE_FONT, cv, (coDestructor) gdk_object_font_destructor);
-       if (cfont)
-	{
-	   cfont->ref_count = 1;
-	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfont->obj);
-	}
-       else
-	  gdk_font_unref(font);
-    }
+	 cfont = _register_object(ClipMachineMemory, font, GDK_TYPE_FONT, cv, (coDestructor) gdk_object_font_destructor);
+	 if (cfont)
+	    {
+	       cfont->ref_count = 1;
+	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfont->obj);
+	    }
+	 else
+	    gdk_font_unref(font);
+      }
    return 0;
  err:
    return 1;
@@ -137,7 +129,6 @@ int
 clip_GDK_FONTREF(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(cfont, GDK_IS_FONT(cfont));
    gdk_font_ref(GDK_FONT(cfont->object));
    cfont->ref_count++;
@@ -152,7 +143,6 @@ int
 clip_GDK_FONTUNREF(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_arg(ClipMachineMemory);
-
    CHECKCOBJ(cfont, GDK_IS_FONT(cfont));
    cfont->ref_count--;
    if (cfont->ref_count > 0)
@@ -169,7 +159,6 @@ int
 clip_GDK_FONTID(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    if (cfont)
       _clip_retni(ClipMachineMemory, gdk_font_id(GDK_FONT(cfont->object)));
@@ -187,9 +176,7 @@ int
 clip_GDK_FONTEQUAL(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cfont2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCOBJ(cfont, GDK_IS_FONT(cfont));
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cfont2, cfont2->type == GDK_OBJECT_FONT);
@@ -212,11 +199,8 @@ int
 clip_GDK_STRINGEXTENTS(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gint      lbearing, rbearing, width, ascent, descent;
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gint lbearing, rbearing, width, ascent, descent;
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -247,13 +231,9 @@ int
 clip_GDK_TEXTEXTENTS(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gint      text_length = _clip_parni(ClipMachineMemory, 3);
-
-   gint      lbearing, rbearing, width, ascent, descent;
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gint text_length = _clip_parni(ClipMachineMemory, 3);
+   gint lbearing, rbearing, width, ascent, descent;
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -279,9 +259,7 @@ int
 clip_GDK_STRINGWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -297,11 +275,8 @@ int
 clip_GDK_TEXTWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gint      text_length = _clip_parni(ClipMachineMemory, 3);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gint text_length = _clip_parni(ClipMachineMemory, 3);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -320,9 +295,7 @@ int
 clip_GDK_CHARWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -341,9 +314,7 @@ int
 clip_GDK_STRINGMEASURE(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -362,11 +333,8 @@ int
 clip_GDK_TEXTMEASURE(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gint      text_length = _clip_parni(ClipMachineMemory, 3);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gint text_length = _clip_parni(ClipMachineMemory, 3);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -387,9 +355,7 @@ int
 clip_GDK_CHARMEASURE(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -408,9 +374,7 @@ int
 clip_GDK_STRINGHEIGHT(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -428,11 +392,8 @@ int
 clip_GDK_TEXTHEIGHT(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gint      text_length = _clip_parni(ClipMachineMemory, 3);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gint text_length = _clip_parni(ClipMachineMemory, 3);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -453,9 +414,7 @@ int
 clip_GDK_CHARHEIGHT(ClipMachine * ClipMachineMemory)
 {
    C_object *cfont = _fetch_co_opt(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
    CHECKCOBJOPT(cfont, GDK_IS_FONT(cfont));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);

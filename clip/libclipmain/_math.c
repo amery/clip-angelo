@@ -174,7 +174,7 @@ clip_ROUND(ClipMachine * ClipMachineMemory)
       dec = 0;
    if (vp->ClipType_t_of_ClipVar.memo_of_ClipType)
     {
-       char     *tmp = rational_toString(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar, 10, dec, 0);
+       char     *tmp = rational_toString(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar, 10, dec, 0);
 
        _clip_retnr(ClipMachineMemory, rational_fromString(tmp), len, dec);
        free(tmp);

@@ -46,9 +46,7 @@ static int
 handle_set_scroll_adjustments(GtkIconView * view, GtkAdjustment * arg1, GtkAdjustment * arg2, C_signal * cs)
 {
    C_widget *carg1;
-
    C_widget *carg2;
-
    PREPARECV(cs, cv);
 
    carg1 = _list_get_cwidget(cs->cw->cmachine, (GtkWidget *) arg1);
@@ -109,8 +107,7 @@ _clip_type_name_icon_view()
 int
 clip_INIT___ICON_VIEW(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_icon_view, _clip_type_name_icon_view,
-		    _gtk_type_icon_view, _gtk_type_container, icon_view_signals);
+   _wtype_table_put(_clip_type_icon_view, _clip_type_name_icon_view, _gtk_type_icon_view, _gtk_type_container, icon_view_signals);
    return 0;
 }
 
@@ -119,10 +116,8 @@ clip_INIT___ICON_VIEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ICONVIEWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -142,12 +137,9 @@ clip_GTK_ICONVIEWNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ICONVIEWNEWWITHMODEL(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -169,7 +161,6 @@ int
 clip_GTK_ICONVIEWSETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -186,9 +177,7 @@ int
 clip_GTK_ICONVIEWGETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cmodel;
-
    GtkTreeModel *model;
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -196,13 +185,13 @@ clip_GTK_ICONVIEWGETMODEL(ClipMachine * ClipMachineMemory)
    model = gtk_icon_view_get_model(GTK_ICON_VIEW(cview->widget));
 
    if (model)
-    {
-       cmodel = _list_get_cobject(ClipMachineMemory, model);
-       if (!cmodel)
-	  cmodel = _register_object(ClipMachineMemory, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
-       if (cmodel)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodel->obj);
-    }
+      {
+	 cmodel = _list_get_cobject(ClipMachineMemory, model);
+	 if (!cmodel)
+	    cmodel = _register_object(ClipMachineMemory, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
+	 if (cmodel)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodel->obj);
+      }
 
    return 0;
  err:
@@ -213,8 +202,7 @@ int
 clip_GTK_ICONVIEWSETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      column = _clip_parni(ClipMachineMemory, 2);
+   gint column = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -246,8 +234,7 @@ int
 clip_GTK_ICONVIEWSETMARKUPCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      column = _clip_parni(ClipMachineMemory, 2);
+   gint column = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -279,8 +266,7 @@ int
 clip_GTK_ICONVIEWSETPIXBUFCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      column = _clip_parni(ClipMachineMemory, 2);
+   gint column = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -312,13 +298,9 @@ int
 clip_GTK_ICONVIEWGETPATHATPOS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      y = _clip_parni(ClipMachineMemory, 3);
-
+   gint x = _clip_parni(ClipMachineMemory, 2);
+   gint y = _clip_parni(ClipMachineMemory, 3);
    C_object *cpath;
-
    GtkTreePath *path;
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -328,13 +310,13 @@ clip_GTK_ICONVIEWGETPATHATPOS(ClipMachine * ClipMachineMemory)
    path = gtk_icon_view_get_path_at_pos(GTK_ICON_VIEW(cview->widget), x, y);
 
    if (path)
-    {
-       cpath = _list_get_cobject(ClipMachineMemory, path);
-       if (!cpath)
-	  cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
-       if (cpath)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpath->obj);
-    }
+      {
+	 cpath = _list_get_cobject(ClipMachineMemory, path);
+	 if (!cpath)
+	    cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
+	 if (cpath)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpath->obj);
+      }
 
    return 0;
  err:
@@ -344,16 +326,11 @@ clip_GTK_ICONVIEWGETPATHATPOS(ClipMachine * ClipMachineMemory)
 static void
 _selected_foreach(GtkIconView * view, GtkTreePath * path, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, view);
-
    C_object *cpath;
-
-   ClipVar   stack[3];
-
-   ClipVar   res;
-
+   ClipVar stack[3];
+   ClipVar res;
    if (!c_wid)
       c_wid = _register_widget(c->ClipMachineMemory, GTK_WIDGET(view), NULL);
 
@@ -362,32 +339,29 @@ _selected_foreach(GtkIconView * view, GtkTreePath * path, gpointer data)
       cpath = _register_object(c->ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
 
    if (c_wid)
-    {
-       memset(&stack, 0, sizeof(stack));
-       memset(&res, 0, sizeof(ClipVar));
-       _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
-       _clip_mclone(c->cw->cmachine, &stack[1], &cpath->obj);
-       if (c->cv)
-	  _clip_mclone(c->cw->cmachine, &stack[2], c->cv);
-       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
-       _clip_destroy(c->ClipMachineMemory, &res);
-       _clip_destroy(c->ClipMachineMemory, &stack[0]);
-       _clip_destroy(c->ClipMachineMemory, &stack[1]);
-       if (c->cv)
-	  _clip_destroy(c->ClipMachineMemory, &stack[2]);
-    }
+      {
+	 memset(&stack, 0, sizeof(stack));
+	 memset(&res, 0, sizeof(ClipVar));
+	 _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
+	 _clip_mclone(c->cw->cmachine, &stack[1], &cpath->obj);
+	 if (c->cv)
+	    _clip_mclone(c->cw->cmachine, &stack[2], c->cv);
+	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 3, stack, &res);
+	 _clip_destroy(c->ClipMachineMemory, &res);
+	 _clip_destroy(c->ClipMachineMemory, &stack[0]);
+	 _clip_destroy(c->ClipMachineMemory, &stack[1]);
+	 if (c->cv)
+	    _clip_destroy(c->ClipMachineMemory, &stack[2]);
+      }
 }
 
 int
 clip_GTK_ICONVIEWSELECTEDFOREACH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
-
-   ClipVar  *cdata = _clip_spar(ClipMachineMemory, 3);
-
-   C_var    *c = 0;
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *cdata = _clip_spar(ClipMachineMemory, 3);
+   C_var *c = 0;
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG2(2, CCODE_type_of_ClipVarType, PCODE_type_of_ClipVarType);
@@ -409,7 +383,6 @@ int
 clip_GTK_ICONVIEWSETSELECTIONMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSelectionMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -440,7 +413,6 @@ int
 clip_GTK_ICONVIEWSETORIENTATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    GtkOrientation mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -471,8 +443,7 @@ int
 clip_GTK_ICONVIEWSETCOLUMNS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      columns = _clip_parni(ClipMachineMemory, 2);
+   gint columns = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -502,8 +473,7 @@ int
 clip_GTK_ICONVIEWSETITEMWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
+   gint width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -533,8 +503,7 @@ int
 clip_GTK_ICONVIEWSETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 2);
+   gint spacing = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -564,8 +533,7 @@ int
 clip_GTK_ICONVIEWSETROWSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 2);
+   gint spacing = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -595,8 +563,7 @@ int
 clip_GTK_ICONVIEWSETCOLUMNSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 2);
+   gint spacing = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -626,8 +593,7 @@ int
 clip_GTK_ICONVIEWSETMARGIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      margin = _clip_parni(ClipMachineMemory, 2);
+   gint margin = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -657,7 +623,6 @@ int
 clip_GTK_ICONVIEWSELECTPATH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -674,7 +639,6 @@ int
 clip_GTK_ICONVIEWUNSELECTPATH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -691,7 +655,6 @@ int
 clip_GTK_ICONVIEWPATHISSELECTED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
@@ -708,12 +671,9 @@ int
 clip_GTK_ICONVIEWGETSELECTEDITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
-   GList    *list;
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
-
-   long      l;
+   GList *list;
+   ClipVar *cv = RETPTR(ClipMachineMemory);
+   long l;
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);
 
@@ -721,21 +681,20 @@ clip_GTK_ICONVIEWGETSELECTEDITEMS(ClipMachine * ClipMachineMemory)
    l = g_list_length(list);
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_list_next(list), l++)
-    {
-       C_object *cpath;
+      {
+	 C_object *cpath;
+	 GtkTreePath *path;
 
-       GtkTreePath *path;
-
-       path = GTK_TREE_PATH(list->data);
-       if (path)
-	{
-	   cpath = _list_get_cobject(ClipMachineMemory, path);
-	   if (!cpath)
-	      cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
-	   if (cpath)
-	      _clip_aset(ClipMachineMemory, cv, &cpath->obj, 1, &l);
-	}
-    }
+	 path = GTK_TREE_PATH(list->data);
+	 if (path)
+	    {
+	       cpath = _list_get_cobject(ClipMachineMemory, path);
+	       if (!cpath)
+		  cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
+	       if (cpath)
+		  _clip_aset(ClipMachineMemory, cv, &cpath->obj, 1, &l);
+	    }
+      }
 
    g_list_free(list);
 
@@ -776,7 +735,6 @@ int
 clip_GTK_ICONVIEWITEMACTIVATED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cview, GTK_IS_ICON_VIEW);

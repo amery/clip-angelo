@@ -1,2 +1,0 @@
-function saveGets
-return status

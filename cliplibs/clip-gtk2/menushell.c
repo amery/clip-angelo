@@ -15,7 +15,7 @@
 #include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
-static    gint
+static gint
 handle_move_current_signal(GtkWidget * widget, GtkMenuDirectionType direction, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -23,7 +23,7 @@ handle_move_current_signal(GtkWidget * widget, GtkMenuDirectionType direction, C
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_activate_current_signal(GtkWidget * widget, gboolean force_hide, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -31,7 +31,7 @@ handle_activate_current_signal(GtkWidget * widget, gboolean force_hide, C_signal
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_cycle_focus_signal(GtkWidget * widget, GtkDirectionType direction, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -77,8 +77,7 @@ _clip_type_name_menu_shell()
 int
 clip_INIT___MENU_SHELL(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_menu_shell, _clip_type_name_menu_shell,
-		    _gtk_type_menu_shell, _gtk_type_container, menushell_signals);
+   _wtype_table_put(_clip_type_menu_shell, _clip_type_name_menu_shell, _gtk_type_menu_shell, _gtk_type_container, menushell_signals);
    return 0;
 }
 
@@ -88,9 +87,7 @@ int
 clip_GTK_MENUSHELLAPPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -104,9 +101,7 @@ int
 clip_GTK_MENUSHELLPREPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -120,11 +115,8 @@ int
 clip_GTK_MENUSHELLINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   int       position = _clip_parni(ClipMachineMemory, 3);
-
+   int position = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -139,7 +131,6 @@ int
 clip_GTK_MENUSHELLDEACTIVATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    gtk_menu_shell_deactivate(GTK_MENU_SHELL(cmns->widget));
    return 0;
@@ -151,9 +142,7 @@ int
 clip_GTK_MENUSHELLSELECTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -167,7 +156,6 @@ int
 clip_GTK_MENUSHELLDESELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    gtk_menu_shell_deselect(GTK_MENU_SHELL(cmns->widget));
    return 0;
@@ -179,11 +167,8 @@ int
 clip_GTK_MENUSHELLACTIVATETITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmns = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  force_deactivate = _clip_parl(ClipMachineMemory, 3);
-
+   gboolean force_deactivate = _clip_parl(ClipMachineMemory, 3);
    CHECKCWID(cmns, GTK_IS_MENU_SHELL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);

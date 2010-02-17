@@ -3,6 +3,9 @@
 if [[ "$C64" != "64" ]] ; then
 	Check_Include 	ibase.h 	xyz 	clip-interbase 	yes 	/opt/interbase/include 	"ib2009-linux-xx.tar.gz" "can be downloaded at" "http://www.codegear.com/downloads/free/interbase"
 	Check_Library 	gds 		.so 	clip-interbase 	yes 	/opt/interbase/lib 		"ib2009-linux-xx.tar.gz" "can be downloaded at" "http://www.codegear.com/downloads/free/interbase"
+else
+	rm -f$V ../clip-interbase.ok
+	touch ../clip-interbase.no
 fi
 #!/bin/sh
 

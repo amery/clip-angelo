@@ -50,14 +50,10 @@ clip_INIT___ENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ENTRYNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   int       max_lentgh = _clip_parni(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   int max_lentgh = _clip_parni(ClipMachineMemory, 2);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
 
@@ -83,11 +79,8 @@ int
 clip_GTK_ENTRYSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
-
-   gchar     empty_text[] = "\0";
-
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
+   gchar empty_text[] = "\0";
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -105,11 +98,8 @@ int
 clip_GTK_ENTRYAPPENDTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
-
-   gchar     empty_text[] = "\0";
-
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
+   gchar empty_text[] = "\0";
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -127,11 +117,8 @@ int
 clip_GTK_ENTRYPREPENDTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text = _clip_parc(ClipMachineMemory, 2);
-
-   gchar     empty_text[] = "\0";
-
+   gchar *text = _clip_parc(ClipMachineMemory, 2);
+   gchar empty_text[] = "\0";
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -149,9 +136,7 @@ int
 clip_GTK_ENTRYSETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      position = _clip_parni(ClipMachineMemory, 2) - 1;
-
+   gint position = _clip_parni(ClipMachineMemory, 2) - 1;
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_entry_set_position(GTK_ENTRY(centry->widget), position);
@@ -164,7 +149,6 @@ int
 clip_GTK_ENTRYGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(centry, GTK_IS_ENTRY);
    _clip_retni(ClipMachineMemory, GTK_ENTRY(centry->widget)->current_pos + 1);
    return 0;
@@ -177,9 +161,7 @@ int
 clip_GTK_ENTRYGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text;
-
+   gchar *text;
    CHECKCWID(centry, GTK_IS_ENTRY);
    text = (gchar *) gtk_entry_get_text(GTK_ENTRY(centry->widget));
    LOCALE_FROM_UTF(text);
@@ -195,11 +177,8 @@ int
 clip_GTK_ENTRYSELECTREGION(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
-
-   gint      end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
-
+   gint start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
+   gint end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -216,9 +195,7 @@ int
 clip_GTK_ENTRYSETVISIBILITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  visibility = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean visibility = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -233,8 +210,7 @@ int
 clip_GTK_ENTRYSETINVISIBLECHAR(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gunichar  ch = _clip_parni(ClipMachineMemory, 2);
+   gunichar ch = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
@@ -250,9 +226,7 @@ int
 clip_GTK_ENTRYSETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  editable = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean editable = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -268,9 +242,7 @@ int
 clip_GTK_ENTRYSETMAXLENGTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   guint16   max_length = _clip_parni(ClipMachineMemory, 2);
-
+   guint16 max_length = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    gtk_entry_set_max_length(GTK_ENTRY(centry->widget), max_length);
@@ -283,8 +255,7 @@ int
 clip_GTK_ENTRYGETACTIVATESDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
 
@@ -300,8 +271,7 @@ int
 clip_GTK_ENTRYGETHASFRAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  ret;
+   gboolean ret;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
 
@@ -317,8 +287,7 @@ int
 clip_GTK_ENTRYGETWIDTHCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      ret;
+   gint ret;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
 
@@ -334,8 +303,7 @@ int
 clip_GTK_ENTRYSETACTIVATESDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
+   gboolean setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -351,8 +319,7 @@ int
 clip_GTK_ENTRYSETHASFRAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
+   gboolean setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -368,8 +335,7 @@ int
 clip_GTK_ENTRYSETWIDTHCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
+   gint width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -385,9 +351,7 @@ int
 clip_GTK_ENTRYGETINVISIBLECHAR(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   /* guni */
-	char  ch;
+   gunichar ch;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
 
@@ -403,9 +367,7 @@ int
 clip_GTK_ENTRYGETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    PangoLayout *layout;
-
    C_object *clayout;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
@@ -426,8 +388,7 @@ int
 clip_GTK_ENTRYGETLAYOUTOFFSETS(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      x, y;
+   gint x, y;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
 
@@ -445,7 +406,6 @@ int
 clip_GTK_ENTRYGETMAXLENGTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(centry, GTK_IS_ENTRY);
    _clip_retni(ClipMachineMemory, GTK_ENTRY(centry->widget)->text_max_length);
    return 0;
@@ -457,7 +417,6 @@ int
 clip_GTK_ENTRYGETVISIBILITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(centry, GTK_IS_ENTRY);
    _clip_retl(ClipMachineMemory, gtk_entry_get_visibility(GTK_ENTRY(centry->widget)));
    return 0;
@@ -469,11 +428,8 @@ int
 clip_GTK_ENTRYSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
-
+   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
    GtkStyle *style;
-
    CHECKCWID(centry, GTK_IS_ENTRY);
    CHECKARG(2, MAP_type_of_ClipVarType);
    style = gtk_style_copy(centry->widget->style);
@@ -490,7 +446,6 @@ int
 clip_GTK_ENTRYSETCOMPLETION(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *ccomplet = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(centry, GTK_IS_ENTRY);
@@ -506,9 +461,7 @@ int
 clip_GTK_ENTRYGETCOMPLETION(ClipMachine * ClipMachineMemory)
 {
    C_widget *centry = _fetch_cw_arg(ClipMachineMemory);
-
    GtkEntryCompletion *complet;
-
    C_object *ccomplet;
 
    CHECKCWID(centry, GTK_IS_ENTRY);
@@ -516,13 +469,13 @@ clip_GTK_ENTRYGETCOMPLETION(ClipMachine * ClipMachineMemory)
    complet = gtk_entry_get_completion(GTK_ENTRY(centry->widget));
 
    if (complet)
-    {
-       ccomplet = _list_get_cobject(ClipMachineMemory, complet);
-       if (!ccomplet)
-	  ccomplet = _register_object(ClipMachineMemory, complet, GTK_TYPE_ENTRY_COMPLETION, NULL, NULL);
-       if (ccomplet)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccomplet->obj);
-    }
+      {
+	 ccomplet = _list_get_cobject(ClipMachineMemory, complet);
+	 if (!ccomplet)
+	    ccomplet = _register_object(ClipMachineMemory, complet, GTK_TYPE_ENTRY_COMPLETION, NULL, NULL);
+	 if (ccomplet)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccomplet->obj);
+      }
    return 0;
  err:
    return 1;

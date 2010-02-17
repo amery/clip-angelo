@@ -1,8 +1,8 @@
 /* FiveWin style menu commands */
 
 #include "ci_button.ch"
-#ifndef CN_MENU_DEFINED
-#define CN_MENU_DEFINED
+#ifndef CI_MENU_DEFINED
+#define CI_MENU_DEFINED
 
 #xcommand MENU [ <oMenu> ]  [ <popup: POPUP> ] ;
        		=>  [ <oMenu> := ] iMenuBegin( <.popup.> )

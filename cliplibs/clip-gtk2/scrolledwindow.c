@@ -14,7 +14,7 @@
 #include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
-static    gint
+static gint
 handler_move_focus_out_signal(GtkScrolledWindow * swin, GtkDirectionType type, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -22,7 +22,7 @@ handler_move_focus_out_signal(GtkScrolledWindow * swin, GtkDirectionType type, C
    INVOKESIGHANDLER(GTK_WIDGET(swin), cs, cv);
 }
 
-static    gint
+static gint
 handler_scroll_child_signal(GtkScrolledWindow * swin, GtkScrollType type, gboolean arg2, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -66,8 +66,7 @@ int
 clip_INIT___SCROLLED_WINDOW(ClipMachine * ClipMachineMemory)
 {
 //      _wtype_table_put(_clip_type_scrolled_window, _clip_type_name_scrolled_window, _gtk_type_scrolled_window, _gtk_type_container, scrolled_window_signals);
-   _wtype_table_put(_clip_type_scrolled_window,
-		    _clip_type_name_scrolled_window, _gtk_type_scrolled_window, _gtk_type_bin, scrolled_window_signals);
+   _wtype_table_put(_clip_type_scrolled_window, _clip_type_name_scrolled_window, _gtk_type_scrolled_window, _gtk_type_bin, scrolled_window_signals);
    return 0;
 }
 
@@ -75,20 +74,13 @@ clip_INIT___SCROLLED_WINDOW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SCROLLEDWINDOWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    C_widget *chscr, *cvscr;
-
    GtkAdjustment *hadj, *vadj;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
@@ -125,13 +117,9 @@ int
 clip_GTK_SCROLLEDWINDOWGETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
-
+   ClipVar *cv = RETPTR(ClipMachineMemory);
    GtkAdjustment *adj;
-
    C_widget *cadj;
-
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    adj = gtk_scrolled_window_get_hadjustment(GTK_SCROLLED_WINDOW(csw->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -151,13 +139,9 @@ int
 clip_GTK_SCROLLEDWINDOWGETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
-
+   ClipVar *cv = RETPTR(ClipMachineMemory);
    GtkAdjustment *adj;
-
    C_widget *cadj;
-
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    adj = gtk_scrolled_window_get_vadjustment(GTK_SCROLLED_WINDOW(csw->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -181,11 +165,8 @@ int
 clip_GTK_SCROLLEDWINDOWSETPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
-   int       hpol = _clip_parni(ClipMachineMemory, 2);
-
-   int       vpol = _clip_parni(ClipMachineMemory, 3);
-
+   int hpol = _clip_parni(ClipMachineMemory, 2);
+   int vpol = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -204,9 +185,7 @@ int
 clip_GTK_SCROLLEDWINDOWADDWITHVIEWPORT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
@@ -220,7 +199,6 @@ int
 clip_GTK_SCROLLEDWINDOWSETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
    GtkShadowType type = INT_OPTION(ClipMachineMemory, 2, 0);
 
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
@@ -236,9 +214,7 @@ int
 clip_GTK_SCROLLEDWINDOWSETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -253,9 +229,7 @@ int
 clip_GTK_SCROLLEDWINDOWSETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -273,9 +247,7 @@ int
 clip_GTK_SCROLLEDWINDOWSETPLACEMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
-   int       placement = _clip_parni(ClipMachineMemory, 2);
-
+   int placement = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(csw, GTK_IS_SCROLLED_WINDOW);
    gtk_scrolled_window_set_placement(GTK_SCROLLED_WINDOW(csw->widget), placement);
@@ -300,7 +272,6 @@ int
 clip_GTK_SCROLLEDWINDOWGETPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *csw = _fetch_cw_arg(ClipMachineMemory);
-
    GtkPolicyType hpolicy, vpolicy;
 
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);

@@ -50,8 +50,7 @@ int
 clip_GTK_TEXTMARKSETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  visibility = _clip_parl(ClipMachineMemory, 2);
+   gboolean visibility = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
@@ -71,8 +70,7 @@ int
 clip_GTK_TEXTMARKGETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  visibility;
+   gboolean visibility;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
@@ -93,8 +91,7 @@ int
 clip_GTK_TEXTMARKGETDELETED(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  deleted;
+   gboolean deleted;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
@@ -115,8 +112,7 @@ int
 clip_GTK_TEXTMARKGETNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *name;
+   gchar *name;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));
@@ -137,9 +133,7 @@ int
 clip_GTK_TEXTMARKGETBUFFER(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
    GtkTextBuffer *buffer;
-
    C_object *cbuffer;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -148,13 +142,13 @@ clip_GTK_TEXTMARKGETBUFFER(ClipMachine * ClipMachineMemory)
    buffer = gtk_text_mark_get_buffer(GTK_TEXT_MARK(cmark->object));
 
    if (buffer)
-    {
-       cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
-       if (!cbuffer)
-	  cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
-       if (cbuffer)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
-    }
+      {
+	 cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
+	 if (!cbuffer)
+	    cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
+	 if (cbuffer)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
+      }
    return 0;
  err:
    return 1;
@@ -171,8 +165,7 @@ int
 clip_GTK_TEXTMARKGETLEFTGRAVITY(ClipMachine * ClipMachineMemory)
 {
    C_object *cmark = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  gravity;
+   gboolean gravity;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cmark, GTK_IS_TEXT_MARK(cmark->object));

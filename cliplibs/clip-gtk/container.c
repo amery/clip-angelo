@@ -14,11 +14,10 @@
 #include "ci_clip-gtk.h"
 
 /*********************** SIGNALS **************************/
-static    gint
+static gint
 container_handle_signal(GtkContainer * container, GtkWidget * widget, C_signal * cs)
 {
    C_widget *cwid;
-
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, widget);
    if (!cwid)
@@ -93,12 +92,9 @@ clip_INIT___CONTAINER(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_EVENTBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_event_box_new();
@@ -119,9 +115,7 @@ int
 clip_GTK_CONTAINERADD(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -135,9 +129,7 @@ int
 clip_GTK_CONTAINERREMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -151,9 +143,7 @@ int
 clip_GTK_CONTAINERSETRESIZEMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
-   int       mode = _clip_parni(ClipMachineMemory, 2);
-
+   int mode = _clip_parni(ClipMachineMemory, 2);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    gtk_container_set_resize_mode(GTK_CONTAINER(ccon->widget), mode);
@@ -166,7 +156,6 @@ int
 clip_GTK_CONTAINERCHECKRESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    gtk_container_check_resize(GTK_CONTAINER(ccon->widget));
    return 0;
@@ -177,10 +166,8 @@ clip_GTK_CONTAINERCHECKRESIZE(ClipMachine * ClipMachineMemory)
 static void
 _container_children_func(GtkWidget * wid, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, wid);
-
    if (!c_wid)
       c_wid = _register_widget(c->ClipMachineMemory, wid, NULL);
    if (c_wid)
@@ -192,12 +179,9 @@ int
 clip_GTK_CONTAINERCHILDREN(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
-   long      n = 0;
-
-   ClipVar  *a = RETPTR(ClipMachineMemory);
-
-   C_var     c;
+   long n = 0;
+   ClipVar *a = RETPTR(ClipMachineMemory);
+   C_var c;
 
    CHECKCWID(ccon, GTK_IS_CONTAINER);
 
@@ -213,26 +197,22 @@ clip_GTK_CONTAINERCHILDREN(ClipMachine * ClipMachineMemory)
 static void
 _container_for_each_func(GtkWidget * wid, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_widget *c_wid = _list_get_cwidget(c->ClipMachineMemory, wid);
-
-   ClipVar   stack[2];
-
-   ClipVar   res;
-
+   ClipVar stack[2];
+   ClipVar res;
    if (!c_wid)
       c_wid = _register_widget(c->ClipMachineMemory, wid, NULL);
    if (c_wid)
-    {
-       memset(&stack, 0, sizeof(stack));
-       memset(&res, 0, sizeof(ClipVar));
-       _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
-      //stack[0] = c->cw->obj;
-       stack[1] = c_wid->obj;
-       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
-       _clip_destroy(c->ClipMachineMemory, &res);
-    }
+      {
+	 memset(&stack, 0, sizeof(stack));
+	 memset(&res, 0, sizeof(ClipVar));
+	 _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
+	//stack[0] = c->cw->obj;
+	 stack[1] = c_wid->obj;
+	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
+	 _clip_destroy(c->ClipMachineMemory, &res);
+      }
 }
 
 /* Calls the CLIP function for each children */
@@ -240,10 +220,8 @@ int
 clip_GTK_CONTAINERFOREACH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
-
-   C_var    *c = 0;
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
+   C_var *c = 0;
 
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, CCODE_type_of_ClipVarType, PCODE_type_of_ClipVarType);
@@ -261,9 +239,7 @@ int
 clip_GTK_CONTAINERFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
-   int       focus = _clip_parni(ClipMachineMemory, 2);
-
+   int focus = _clip_parni(ClipMachineMemory, 2);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    gtk_container_focus(GTK_CONTAINER(ccon->widget), focus);
@@ -276,9 +252,7 @@ int
 clip_GTK_CONTAINERSETFOCUSCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -292,9 +266,7 @@ int
 clip_GTK_CONTAINERSETFOCUSVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_ADJUSTMENT);
@@ -308,9 +280,7 @@ int
 clip_GTK_CONTAINERSETFOCUSHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_ADJUSTMENT);
@@ -324,7 +294,6 @@ int
 clip_GTK_CONTAINERRESIZECHILDREN(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    if (!ccon || !GTK_IS_CONTAINER(ccon->widget))
       goto err;
    gtk_container_resize_children(GTK_CONTAINER(ccon->widget));
@@ -337,7 +306,6 @@ int
 clip_GTK_CONTAINERQUEUERESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    gtk_container_queue_resize(GTK_CONTAINER(ccon->widget));
    return 0;
@@ -350,9 +318,7 @@ int
 clip_GTK_CONTAINERSETBORDERWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
-   int       width = _clip_parni(ClipMachineMemory, 2);
-
+   int width = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(ccon, GTK_IS_CONTAINER);
    gtk_container_set_border_width(GTK_CONTAINER(ccon->widget), width);
@@ -365,7 +331,6 @@ int
 clip_GTK_CONTAINERCLEARRESIZEWIDGETS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccon = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccon, GTK_IS_CONTAINER);
 
    gtk_container_clear_resize_widgets(GTK_CONTAINER(ccon->widget));

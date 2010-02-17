@@ -1,5 +1,5 @@
-#ifndef CN_DIR_DEFINED
-#define CN_DIR_DEFINED
+#ifndef CI_DIR_DEFINED
+#define CI_DIR_DEFINED
 
 #define F_NAME			1
 #define F_SIZE			2

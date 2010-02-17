@@ -45,10 +45,8 @@ int
 clip_GTK_CELLLAYOUTPACKSTART(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
+   gboolean expand = _clip_parl(ClipMachineMemory, 3);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -65,10 +63,8 @@ int
 clip_GTK_CELLLAYOUTPACKEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
+   gboolean expand = _clip_parl(ClipMachineMemory, 3);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -84,10 +80,8 @@ int
 clip_GTK_CELLLAYOUTREORDER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      pos = _clip_parni(ClipMachineMemory, 3);
+   gint pos = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -118,14 +112,10 @@ int
 clip_GTK_CELLLAYOUTSETATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      attrn[20];
-
-   gchar    *attrs[20];
-
-   gint      n, i, j;
+   gint attrn[20];
+   gchar *attrs[20];
+   gint n, i, j;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -134,12 +124,12 @@ clip_GTK_CELLLAYOUTSETATTRIBUTES(ClipMachine * ClipMachineMemory)
    memset(attrn, 0, sizeof(attrn));
    n = _clip_parinfo(ClipMachineMemory, 0);
    for (i = 3, j = 0; i < n; i += 2, j++)
-    {
-       CHECKOPT(i, CHARACTER_type_of_ClipVarType);
-       CHECKOPT(i + 1, NUMERIC_type_of_ClipVarType);
-       attrs[j] = _clip_parc(ClipMachineMemory, i);
-       attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
-    }
+      {
+	 CHECKOPT(i, CHARACTER_type_of_ClipVarType);
+	 CHECKOPT(i + 1, NUMERIC_type_of_ClipVarType);
+	 attrs[j] = _clip_parc(ClipMachineMemory, i);
+	 attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
+      }
    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(cwid->widget),
 				  GTK_CELL_RENDERER(crenderer->object),
 				  attrs[0], attrn[0], attrs[1], attrn[1],
@@ -149,8 +139,7 @@ clip_GTK_CELLLAYOUTSETATTRIBUTES(ClipMachine * ClipMachineMemory)
 				  attrs[8], attrn[8], attrs[9], attrn[9],
 				  attrs[10], attrn[10], attrs[11], attrn[11],
 				  attrs[12], attrn[12], attrs[13], attrn[13],
-				  attrs[14], attrn[14], attrs[15], attrn[15],
-				  attrs[16], attrn[16], attrs[17], attrn[17], attrs[18], attrn[18], attrs[19], attrn[19], NULL);
+				  attrs[14], attrn[14], attrs[15], attrn[15], attrs[16], attrn[16], attrs[17], attrn[17], attrs[18], attrn[18], attrs[19], attrn[19], NULL);
 
    return 0;
  err:
@@ -162,12 +151,9 @@ int
 clip_GTK_CELLLAYOUTADDATTRIBUTE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gchar    *attr = _clip_parc(ClipMachineMemory, 3);
-
-   gint      column = _clip_parni(ClipMachineMemory, 4);
+   gchar *attr = _clip_parc(ClipMachineMemory, 3);
+   gint column = _clip_parni(ClipMachineMemory, 4);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -184,20 +170,13 @@ static void
 _data_func(GtkCellLayout * layout, GtkCellRenderer * renderer, GtkTreeModel * model, GtkTreeIter * iter, gpointer data)
 {
 
-   C_var    *c = (C_var *) data;
-
+   C_var *c = (C_var *) data;
    C_object *clay = _list_get_cobject(c->ClipMachineMemory, layout);
-
    C_object *crenderer = _list_get_cobject(c->ClipMachineMemory, renderer);
-
    C_object *cmodel = _list_get_cobject(c->ClipMachineMemory, model);
-
    C_object *citer = _list_get_cobject(c->ClipMachineMemory, iter);
-
-   ClipVar   stack[4];
-
-   ClipVar   res;
-
+   ClipVar stack[4];
+   ClipVar res;
    if (!clay)
       clay = _register_object(c->ClipMachineMemory, layout, GTK_TYPE_CELL_LAYOUT, NULL, NULL);
    if (!crenderer)
@@ -227,12 +206,9 @@ int
 clip_GTK_CELLLAYOUTSETCELLDATAFUNC(ClipMachine * ClipMachineMemory)
 {
    C_object *clay = _fetch_co_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *func = _clip_spar(ClipMachineMemory, 3);
-
-   C_var    *c = 0;
+   ClipVar *func = _clip_spar(ClipMachineMemory, 3);
+   C_var *c = 0;
 
    CHECKCOBJ(clay, GTK_IS_CELL_LAYOUT(clay->object));
    CHECKCOBJ(crenderer, GTK_IS_CELL_RENDERER(crenderer->object));
@@ -242,8 +218,7 @@ clip_GTK_CELLLAYOUTSETCELLDATAFUNC(ClipMachine * ClipMachineMemory)
    c->co = clay;
    _clip_mclone(ClipMachineMemory, &c->cfunc, func);
 
-   gtk_cell_layout_set_cell_data_func(GTK_CELL_LAYOUT(clay->object),
-				      GTK_CELL_RENDERER(crenderer->object), (GtkCellLayoutDataFunc) _data_func, c, NULL);
+   gtk_cell_layout_set_cell_data_func(GTK_CELL_LAYOUT(clay->object), GTK_CELL_RENDERER(crenderer->object), (GtkCellLayoutDataFunc) _data_func, c, NULL);
 
    return 0;
  err:
@@ -254,7 +229,6 @@ int
 clip_GTK_CELLLAYOUTCLEARATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_object *clay = _fetch_co_arg(ClipMachineMemory);
-
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(clay, GTK_IS_CELL_LAYOUT(clay->object));

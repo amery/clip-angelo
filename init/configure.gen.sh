@@ -5,7 +5,7 @@
 #	Paul Lasarev - 2000.
 #
 $Clip_M_Dir/init/create.dir.sh
-source $Clip_M_Dir/init/functions.f
+source $Clip_M_Dir/init/functions.f.sh
 if [[ $? != 0 ]] ; then
 	exit 1
 fi

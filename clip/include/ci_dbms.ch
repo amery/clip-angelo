@@ -1,5 +1,5 @@
-#ifndef CN_DBMS_CH
-#define CN_DBMS_CH
+#ifndef CI_DBMS_CH
+#define CI_DBMS_CH
 
 #xtranslate __TYPE__                               => "C"
 #xtranslate __TYPE__ <typ: STRING>                 => "C"

@@ -139,6 +139,9 @@ inst_dir:
 		|| mkdir -p$(V) $(INSTDIR)/keymaps
 	$(E_mkD)[ -d $(INSTDIR)/include ] 						\
 		|| mkdir -p$(V) $(INSTDIR)/include
+	$(E_mkD)[ -d $(INSTDIR)/include/libclipmemdebug ] 	\
+		|| [ ! -d libclipmemdebug ] 							\
+		|| mkdir -p$(V) $(INSTDIR)/include/libclipmemdebug
 	$(E_mkD)[ -d $(INSTDIR)/bin ] 							\
 		|| mkdir -p$(V) $(INSTDIR)/bin
 	$(E_mkD)[ -d $(INSTDIR)/lib ] 							\

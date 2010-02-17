@@ -50,12 +50,9 @@ clip_INIT___MENU_BAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_MENUBARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_menu_bar_new();
@@ -73,9 +70,7 @@ int
 clip_GTK_MENUBARAPPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmnb, GTK_IS_MENU_BAR);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -89,9 +84,7 @@ int
 clip_GTK_MENUBARPREPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cmnb, GTK_IS_MENU_BAR);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -105,11 +98,8 @@ int
 clip_GTK_MENUBARINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   int       position = _clip_parni(ClipMachineMemory, 3);
-
+   int position = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cmnb, GTK_IS_MENU_BAR);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -124,9 +114,7 @@ int
 clip_GTK_MENUBARSETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cmnb = _fetch_cw_arg(ClipMachineMemory);
-
-   int       shadow_type = _clip_parni(ClipMachineMemory, 2);
-
+   int shadow_type = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(cmnb, GTK_IS_MENU_BAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_menu_bar_set_shadow_type(GTK_MENU_BAR(cmnb->widget), shadow_type);

@@ -1,8 +1,8 @@
 /* (CODB) commands descriptions */
 
-#ifndef ci__CODB_DEFINED
+#ifndef CI__CODB_DEFINED
 
-#define ci__CODB_DEFINED
+#define CI__CODB_DEFINED
 
 #command select <classname> ;
 		from <dep> ;

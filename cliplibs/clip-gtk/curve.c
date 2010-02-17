@@ -73,12 +73,9 @@ clip_INIT___CURVE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CURVENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_curve_new();
@@ -99,12 +96,9 @@ clip_GTK_CURVENEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_GAMMACURVENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_gamma_curve_new();
@@ -128,7 +122,6 @@ int
 clip_GTK_CURVERESET(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccur, GTK_CURVE);
    gtk_curve_reset(GTK_CURVE(ccur->widget));
    return 0;
@@ -144,9 +137,7 @@ int
 clip_GTK_CURVESETGAMMA(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    gamma = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat gamma = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(ccur, GTK_CURVE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -163,15 +154,10 @@ int
 clip_GTK_CURVESETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    min_x = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    max_x = _clip_parnd(ClipMachineMemory, 3);
-
-   gfloat    min_y = _clip_parnd(ClipMachineMemory, 4);
-
-   gfloat    max_y = _clip_parnd(ClipMachineMemory, 5);
-
+   gfloat min_x = _clip_parnd(ClipMachineMemory, 2);
+   gfloat max_x = _clip_parnd(ClipMachineMemory, 3);
+   gfloat min_y = _clip_parnd(ClipMachineMemory, 4);
+   gfloat max_y = _clip_parnd(ClipMachineMemory, 5);
    CHECKCWID(ccur, GTK_CURVE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -188,25 +174,19 @@ int
 clip_GTK_CURVEGETVECTOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
-   int       veclen = _clip_parni(ClipMachineMemory, 2);
-
-   gfloat   *vector = calloc(veclen, sizeof(gfloat));
-
-   long      n = 0, i;
-
-   ClipVar  *a = RETPTR(ClipMachineMemory);
-
+   int veclen = _clip_parni(ClipMachineMemory, 2);
+   gfloat *vector = calloc(veclen, sizeof(gfloat));
+   long n = 0, i;
+   ClipVar *a = RETPTR(ClipMachineMemory);
    CHECKCWID(ccur, GTK_CURVE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    _clip_array(ClipMachineMemory, a, veclen, &n);
    gtk_curve_get_vector(GTK_CURVE(ccur->widget), veclen, vector);
    for (i = 0; i < veclen; i++)
-    {
-       a->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType =
-	NUMERIC_type_of_ClipVarType;
-       a->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = vector[i];
-    }
+      {
+	 a->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+	a->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = vector[i];
+      }
    return 0;
  err:
    return 1;
@@ -217,25 +197,18 @@ int
 clip_GTK_CURVESETVECTOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
-   int       veclen = _clip_parni(ClipMachineMemory, 2);
-
-   ClipVar  *cvvec = _clip_spar(ClipMachineMemory, 3);
-
-   gfloat   *vector = calloc(veclen, sizeof(gfloat));
-
-   long      i;
-
+   int veclen = _clip_parni(ClipMachineMemory, 2);
+   ClipVar *cvvec = _clip_spar(ClipMachineMemory, 3);
+   gfloat *vector = calloc(veclen, sizeof(gfloat));
+   long i;
    CHECKCWID(ccur, GTK_CURVE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, ARRAY_type_of_ClipVarType);
    for (i = 0; i < veclen; i++)
-    {
-       if (cvvec->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-	   NUMERIC_type_of_ClipVarType)
-	  vector[i] =
-	   cvvec->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
-    }
+      {
+	 if (cvvec->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType)
+		 vector[i] = cvvec->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+      }
    gtk_curve_set_vector(GTK_CURVE(ccur->widget), veclen, vector);
    return 0;
  err:
@@ -249,9 +222,7 @@ int
 clip_GTK_CURVESETCURVETYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccur = _fetch_cw_arg(ClipMachineMemory);
-
    GtkCurveType type = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(ccur, GTK_CURVE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_curve_set_curve_type(GTK_CURVE(ccur->widget), type);

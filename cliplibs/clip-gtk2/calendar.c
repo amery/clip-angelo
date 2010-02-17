@@ -67,12 +67,9 @@ clip_INIT___CALENDAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CALENDARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_calendar_new();
@@ -94,11 +91,8 @@ int
 clip_GTK_CALENDARSELECTMONTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     month = _clip_parni(ClipMachineMemory, 2);
-
-   guint     year = _clip_parni(ClipMachineMemory, 3);
-
+   guint month = _clip_parni(ClipMachineMemory, 2);
+   guint year = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -113,9 +107,7 @@ int
 clip_GTK_CALENDARSELECTDAY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     day = _clip_parni(ClipMachineMemory, 2);
-
+   guint day = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_calendar_select_day(GTK_CALENDAR(ccal->widget), day);
@@ -128,9 +120,7 @@ int
 clip_GTK_CALENDARMARKDAY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     day = _clip_parni(ClipMachineMemory, 2);
-
+   guint day = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_calendar_mark_day(GTK_CALENDAR(ccal->widget), day);
@@ -143,9 +133,7 @@ int
 clip_GTK_CALENDARUNMARKDAY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     day = _clip_parni(ClipMachineMemory, 2);
-
+   guint day = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_calendar_unmark_day(GTK_CALENDAR(ccal->widget), day);
@@ -158,7 +146,6 @@ int
 clip_GTK_CALENDARCLEARMARKS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    gtk_calendar_clear_marks(GTK_CALENDAR(ccal->widget));
    return 0;
@@ -170,9 +157,7 @@ int
 clip_GTK_CALENDARDISPLAYOPTIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
    GtkCalendarDisplayOptions flags = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    gtk_calendar_display_options(GTK_CALENDAR(ccal->widget), flags);
@@ -185,9 +170,7 @@ int
 clip_GTK_CALENDARGETDATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     year, month, day;
-
+   guint year, month, day;
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    gtk_calendar_get_date(GTK_CALENDAR(ccal->widget), &year, &month, &day);
    _clip_retdc(ClipMachineMemory, year, month + 1, day);
@@ -201,7 +184,6 @@ int
 clip_GTK_CALENDARFREEZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    gtk_calendar_freeze(GTK_CALENDAR(ccal->widget));
    return 0;
@@ -215,7 +197,6 @@ int
 clip_GTK_CALENDARTHAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccal, GTK_IS_CALENDAR);
    gtk_calendar_thaw(GTK_CALENDAR(ccal->widget));
    return 0;
@@ -242,7 +223,6 @@ int
 clip_GTK_CALENDARSETDISPLAYOPTIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccal = _fetch_cw_arg(ClipMachineMemory);
-
    GtkCalendarDisplayOptions opt = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccal, GTK_IS_CALENDAR);

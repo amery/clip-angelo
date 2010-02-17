@@ -331,19 +331,13 @@ typedef enum
    ScanTerminal,
 }
 ScanMode;
-
 extern ScanMode scr_scan_mode;
 
 extern char *func_table[MAX_NR_FUNC];
-
 extern unsigned int keymap_count;
-
 extern unsigned short *key_maps[MAX_NR_KEYMAPS];
-
 extern unsigned short plain_map[NR_KEYS];
-
 extern struct kbdiacr accent_table[MAX_DIACR];
-
 extern unsigned int accent_table_size;
 
 /* shift state counters.. */
@@ -357,69 +351,44 @@ static unsigned long key_down[256 / BITS_PER_LONG] = {
 static void compute_shiftstate(void);
 
 static int chg_bit(int bit, void *addr);
-
 static int test_bit(int bit, void *addr);
-
 static int test_and_set_bit(int bit, void *addr);
-
 static int test_and_clear_bit(int bit, void *addr);
 
 static long shift_state = 0;
-
 static long lockstate = 0;
-
 static long slockstate = 0;
-
 static int capslock_state = 0;
-
 static int insert_state = 0;
-
-int       scan_numlock_state = 0;
+int scan_numlock_state = 0;
 
 /*static int meta_state = 0; */
 static int applic_mode = 0;
 
 static int dead_key_next = 0;
-
 static int diacr = 0;
-
 static int npadch = -1;		/* -1 or number assembled on pad */
-
 static int rep = 0;
 
 static int kbd_translate(unsigned char scancode, unsigned char *keycode);
-
 static char kbd_unexpected_up(unsigned char keycode);
-
 static void put_queue(long key);
-
 static void put_fqueue(long key);
-
 static void put_aqueue(long key);
-
 static void put_acqueue(long key);
-
 static void puts_queue(char *str);
-
 static long get_queue(void);
-
 static unsigned char handle_diacr(unsigned char);
-
 static void to_utf8(unsigned short c);
-
 static void applkey(int key, char mode);
-
 static void set_console(int no, int diff);
 
 static void set_kbd_led(void);
 
 typedef void (*k_hand) (unsigned char value, char up_flag);
-
 typedef void (k_handfn) (unsigned char value, char up_flag);
 
-static    k_handfn
- do_self, do_fn, do_spec, do_pad, do_dead, do_cons, do_cur, do_shift,
- do_meta, do_ascii, do_lock, do_lowercase, do_slock, do_dead2, do_ignore;
+static k_handfn do_self, do_fn, do_spec, do_pad, do_dead, do_cons, do_cur, do_shift, do_meta, do_ascii, do_lock, do_lowercase, do_slock, do_dead2, do_ignore;
 
 static k_hand key_handler[16] = {
    do_self, do_fn, do_spec, do_pad, do_dead, do_cons, do_cur, do_shift,
@@ -438,12 +407,10 @@ static char *key_handler_names[16] = {
 #endif
 
 typedef void (*void_fnp) (void);
-
 typedef void (void_fn) (void);
 
 static void_fn do_null, enter, show_ptregs, send_intr, lastcons, caps_toggle,
- num, hold, scroll_forw, scroll_back, boot_it, caps_on, compose, SAK,
- decr_console, incr_console, spawn_console, bare_num, show_mem, show_state;
+   num, hold, scroll_forw, scroll_back, boot_it, caps_on, compose, SAK, decr_console, incr_console, spawn_console, bare_num, show_mem, show_state;
 
 static void_fnp spec_fn_table[] = {
    do_null, enter, show_ptregs, show_mem,
@@ -479,7 +446,7 @@ static long *queue_beg = 0, *queue_end = 0, *queue_max = 0;
 static void
 put_fqueue(long key)
 {
-   int       r = shift_state;
+   int r = shift_state;
 
    if (r & ((1 << KG_ALT) | (1 << KG_ALTGR)))
       key = META1(key);
@@ -494,7 +461,7 @@ put_fqueue(long key)
 static void
 put_aqueue(long key)
 {
-   int       r = shift_state;
+   int r = shift_state;
 
    if (r & ((1 << KG_ALT) | (1 << KG_ALTGR)))
       key = META1(key);
@@ -505,7 +472,7 @@ put_aqueue(long key)
 static void
 put_acqueue(long key)
 {
-   int       r = shift_state;
+   int r = shift_state;
 
    if (r & ((1 << KG_ALT) | (1 << KG_ALTGR)))
       key = META1(key);
@@ -519,19 +486,18 @@ static void
 put_queue(long key)
 {
    if (queue_end == queue_max)
-    {
-       int       l = queue_max - queue_beg;
+      {
+	 int l = queue_max - queue_beg;
+	 int p = queue_end - queue_beg;
 
-       int       p = queue_end - queue_beg;
+	 l = l * 2;
+	 if (l < 16)
+	    l = 16;
+	 queue_beg = (long *) realloc(queue_beg, l * sizeof(long));
 
-       l = l * 2;
-       if (l < 16)
-	  l = 16;
-       queue_beg = (long *) realloc(queue_beg, l * sizeof(long));
-
-       queue_end = queue_beg + p;
-       queue_max = queue_beg + l;
-    }
+	 queue_end = queue_beg + p;
+	 queue_max = queue_beg + l;
+      }
    *queue_end = key;
    queue_end++;
 }
@@ -549,7 +515,7 @@ puts_queue(char *str)
 static long
 get_queue(void)
 {
-   long      r;
+   long r;
 
    if (!queue_beg)
       return 0;
@@ -565,7 +531,7 @@ get_queue(void)
 unsigned int
 scan_state(void)
 {
-   int       r = shift_state;
+   int r = shift_state;
 
    if (capslock_state)
       r |= (1 << SCAN_CAPSLOCK);
@@ -587,31 +553,31 @@ scan_state(void)
 unsigned int
 set_scan_state(int value, int locktype)
 {
-   int       r = -1;
+   int r = -1;
 
    switch (locktype)
-    {
-    case 1:
-       r = scan_numlock_state;
-       if (value >= 0)
-	  scan_numlock_state = value;
-       break;
-    case 2:
-       r = capslock_state;
-       if (value >= 0)
-	  capslock_state = value;
-       break;
-    case 3:
-       r = slockstate;
-       if (value >= 0)
-	  slockstate = value;
-       break;
-    case 4:
-       r = insert_state;
-       if (value >= 0)
-	  insert_state = value;
-       break;
-    }
+      {
+      case 1:
+	 r = scan_numlock_state;
+	 if (value >= 0)
+	    scan_numlock_state = value;
+	 break;
+      case 2:
+	 r = capslock_state;
+	 if (value >= 0)
+	    capslock_state = value;
+	 break;
+      case 3:
+	 r = slockstate;
+	 if (value >= 0)
+	    slockstate = value;
+	 break;
+      case 4:
+	 r = insert_state;
+	 if (value >= 0)
+	    insert_state = value;
+	 break;
+      }
 
 #ifdef DBG
    printf("set scan_state=%d,%d\r\n", value, locktype);
@@ -622,8 +588,7 @@ set_scan_state(int value, int locktype)
 long
 scan_check(void)
 {
-   long      value = get_queue();
-
+   long value = get_queue();
 #ifdef DBG2
    printf("scan_check: %d\r\n", value);
 #endif
@@ -649,27 +614,20 @@ int
 scan_push(unsigned char scancode)
 {
    unsigned char keycode;
-
    unsigned char raw_mode = 1;
-
-   int       down = !(scancode & 0x80);
-
+   int down = !(scancode & 0x80);
    unsigned char up_flag = down ? 0 : 0200;
-
    unsigned short keysym;
-
-   u_char    type;
-
-   int       shift_final, shift_local = 0;
-
+   u_char type;
+   int shift_final, shift_local = 0;
    unsigned short *key_map;
 
    if (!first_key)
-    {
-       first_key = 1;
-       if (scancode & 0x80)
-	  return 0;
-    }
+      {
+	 first_key = 1;
+	 if (scancode & 0x80)
+	    return 0;
+      }
 
 #ifdef DBG0
    printf("scan_push: %d\r\n", scancode);
@@ -692,13 +650,13 @@ scan_push(unsigned char scancode)
    */
 
    if (up_flag)
-    {
-       if (!test_and_clear_bit(keycode, key_down))
-	{
-	   rep = 0;
-	   up_flag = kbd_unexpected_up(keycode);
-	}
-    }
+      {
+	 if (!test_and_clear_bit(keycode, key_down))
+	    {
+	       rep = 0;
+	       up_flag = kbd_unexpected_up(keycode);
+	    }
+      }
    else
       rep = test_and_set_bit(keycode, key_down);
 
@@ -716,74 +674,71 @@ scan_push(unsigned char scancode)
    if (shift_local == 0)
       shift_local = (1 << KG_SHIFT);
    if (key_map == NULL)
-    {
-       shift_final = shift_state ^ lockstate ^ slockstate;
-       shift_final = shift_final ^ shift_local;
-       shift_local = 0;
-       key_map = key_maps[shift_final];
-    }
+      {
+	 shift_final = shift_state ^ lockstate ^ slockstate;
+	 shift_final = shift_final ^ shift_local;
+	 shift_local = 0;
+	 key_map = key_maps[shift_final];
+      }
    if (key_map != NULL)
-    {
-       keysym = key_map[keycode];
-       type = KTYP(keysym);
+      {
+	 keysym = key_map[keycode];
+	 type = KTYP(keysym);
 #ifdef DBG2
-       printf
-	("\ntype=%x,shift_state=%d,shift_final=%d,keykode=%d,shift_local=%d\r\n",
-	 type, shift_state, shift_final, keycode, shift_local);
+	 printf("\ntype=%x,shift_state=%d,shift_final=%d,keykode=%d,shift_local=%d\r\n", type, shift_state, shift_final, keycode, shift_local);
 #endif
 
-       if (type >= 0xf0)
-	{
-	   type -= 0xf0;
-	   if (type == KT_LETTER)
+	 if (type >= 0xf0)
 	    {
-	       type = KT_LATIN;
-	       if (capslock_state)
-		{
-		   shift_final = shift_final ^ shift_local;
-		   key_map = key_maps[shift_final];
-		  //key_map = key_maps[shift_final ^ (1 << KG_SHIFT)];
-		   if (key_map)
-		      keysym = key_map[keycode];
+	       type -= 0xf0;
+	       if (type == KT_LETTER)
+		  {
+		     type = KT_LATIN;
+		     if (capslock_state)
+			{
+			   shift_final = shift_final ^ shift_local;
+			   key_map = key_maps[shift_final];
+			  //key_map = key_maps[shift_final ^ (1 << KG_SHIFT)];
+			   if (key_map)
+			      keysym = key_map[keycode];
 #ifdef DBG2
-		   printf("  caps=%d,keykode=%d,keysym=%d,kg_shift=%d\r\n", shift_final, keycode, keysym, KG_SHIFT);
+			   printf("  caps=%d,keykode=%d,keysym=%d,kg_shift=%d\r\n", shift_final, keycode, keysym, KG_SHIFT);
 #endif
-		}
-	    }
+			}
+		  }
 #ifdef DBG
-	   printf("key_handler[%d] call: %s, keysym=0x%x, up_flag=0x%x\r\n",
-		  type, key_handler_names[type], keysym & 0xff, up_flag);
+	       printf("key_handler[%d] call: %s, keysym=0x%x, up_flag=0x%x\r\n", type, key_handler_names[type], keysym & 0xff, up_flag);
 #endif
-	  /*
-	     printf("\nA keysym=%d,type=%d,%d",keysym,type,KT_SHIFT);
-	   */
-	   (*key_handler[type]) (keysym & 0xff, up_flag);
-	   if (type != KT_SLOCK)
-	      slockstate = 0;
-	}
-       else
-	{
-	  /* maybe only if (kbd->kbdmode == VC_UNICODE) ? */
-	   if (!up_flag && !raw_mode)
-	      to_utf8(keysym);
-	}
-    }
+	      /*
+	         printf("\nA keysym=%d,type=%d,%d",keysym,type,KT_SHIFT);
+	       */
+	       (*key_handler[type]) (keysym & 0xff, up_flag);
+	       if (type != KT_SLOCK)
+		  slockstate = 0;
+	    }
+	 else
+	    {
+	      /* maybe only if (kbd->kbdmode == VC_UNICODE) ? */
+	       if (!up_flag && !raw_mode)
+		  to_utf8(keysym);
+	    }
+      }
    else
-    {
-      /* maybe beep? */
-      /* we have at least to update shift_state */
-       key_map = key_maps[0];
-       keysym = key_map[keycode];
-       type = KTYP(keysym);
-      /*
-         printf("\nB keysym=%d,type=%d,%d",keysym,type,KT_SHIFT);
-       */
-      /*check CTRL,SHIFT,ALT keys status */
-       if (keysym >= 63234 && keysym <= 63237)
-	  (*key_handler[KT_SHIFT]) (keysym & 0xff, up_flag);
-       else
-	  compute_shiftstate();
-    }
+      {
+	/* maybe beep? */
+	/* we have at least to update shift_state */
+	 key_map = key_maps[0];
+	 keysym = key_map[keycode];
+	 type = KTYP(keysym);
+	/*
+	   printf("\nB keysym=%d,type=%d,%d",keysym,type,KT_SHIFT);
+	 */
+	/*check CTRL,SHIFT,ALT keys status */
+	 if (keysym >= 63234 && keysym <= 63237)
+	    (*key_handler[KT_SHIFT]) (keysym & 0xff, up_flag);
+	 else
+	    compute_shiftstate();
+      }
    return 1;
 }
 
@@ -909,95 +864,95 @@ kbd_translate(unsigned char scancode, unsigned char *keycode)
 
   /* special prefix scancodes.. */
    if (scancode == 0xe0 || scancode == 0xe1)
-    {
-       prev_scancode = scancode;
+      {
+	 prev_scancode = scancode;
 #ifdef DBG0
-       printf("kbd_translate1: return 0: scan=%d prev=%d\r\n", scancode, prev_scancode);
+	 printf("kbd_translate1: return 0: scan=%d prev=%d\r\n", scancode, prev_scancode);
 #endif
 
-       return 0;
-    }
+	 return 0;
+      }
 
   /* 0xFF is sent by a few keyboards, ignore it. 0x00 is error */
    if (scancode == 0x00 || scancode == 0xff)
-    {
-       prev_scancode = 0;
+      {
+	 prev_scancode = 0;
 
-       return 0;
-    }
+	 return 0;
+      }
 
    scancode &= 0x7f;
 
    if (prev_scancode)
-    {
-      /*
-       * usually it will be 0xe0, but a Pause key generates
-       * e1 1d 45 e1 9d c5 when pressed, and nothing when released
-       */
-       if (prev_scancode != 0xe0)
-	{
-	   if (prev_scancode == 0xe1 && scancode == 0x1d)
+      {
+	/*
+	 * usually it will be 0xe0, but a Pause key generates
+	 * e1 1d 45 e1 9d c5 when pressed, and nothing when released
+	 */
+	 if (prev_scancode != 0xe0)
 	    {
-	       prev_scancode = 0x100;
-	       return 0;
+	       if (prev_scancode == 0xe1 && scancode == 0x1d)
+		  {
+		     prev_scancode = 0x100;
+		     return 0;
+		  }
+	       else if (prev_scancode == 0x100 && scancode == 0x45)
+		  {
+		     *keycode = E1_PAUSE;
+		     prev_scancode = 0;
+		  }
+	       else
+		  {
+		     prev_scancode = 0;
+		     return 0;
+		  }
 	    }
-	   else if (prev_scancode == 0x100 && scancode == 0x45)
+	 else
 	    {
-	       *keycode = E1_PAUSE;
 	       prev_scancode = 0;
-	    }
-	   else
-	    {
-	       prev_scancode = 0;
-	       return 0;
-	    }
-	}
-       else
-	{
-	   prev_scancode = 0;
-	  /*
-	   *  The keyboard maintains its own internal caps lock and
-	   *  num lock statuses. In caps lock mode E0 AA precedes make
-	   *  code and E0 2A follows break code. In num lock mode,
-	   *  E0 2A precedes make code and E0 AA follows break code.
-	   *  We do our own book-keeping, so we will just ignore these.
-	   */
-	  /*
-	   *  For my keyboard there is no caps lock mode, but there are
-	   *  both Shift-L and Shift-R modes. The former mode generates
-	   *  E0 2A / E0 AA pairs, the latter E0 B6 / E0 36 pairs.
-	   *  So, we should also ignore the latter. - aeb@cwi.nl
-	   */
-	   if (scancode == 0x2a || scancode == 0x36)
-	      return 0;
+	      /*
+	       *  The keyboard maintains its own internal caps lock and
+	       *  num lock statuses. In caps lock mode E0 AA precedes make
+	       *  code and E0 2A follows break code. In num lock mode,
+	       *  E0 2A precedes make code and E0 AA follows break code.
+	       *  We do our own book-keeping, so we will just ignore these.
+	       */
+	      /*
+	       *  For my keyboard there is no caps lock mode, but there are
+	       *  both Shift-L and Shift-R modes. The former mode generates
+	       *  E0 2A / E0 AA pairs, the latter E0 B6 / E0 36 pairs.
+	       *  So, we should also ignore the latter. - aeb@cwi.nl
+	       */
+	       if (scancode == 0x2a || scancode == 0x36)
+		  return 0;
 
-	   if (e0_keys[scancode])
-	      *keycode = e0_keys[scancode];
-	   else
-	    {
-	       return 0;
+	       if (e0_keys[scancode])
+		  *keycode = e0_keys[scancode];
+	       else
+		  {
+		     return 0;
+		  }
 	    }
-	}
-    }
+      }
    else if (scancode >= SC_LIM)
-    {
-      /* This happens with the FOCUS 9000 keyboard
-         Its keys PF1..PF12 are reported to generate
-         55 73 77 78 79 7a 7b 7c 74 7e 6d 6f
-         Moreover, unless repeated, they do not generate
-         key-down events, so we have to zero up_flag below */
-      /* Also, Japanese 86/106 keyboards are reported to
-         generate 0x73 and 0x7d for \ - and \ | respectively. */
-      /* Also, some Brazilian keyboard is reported to produce
-         0x73 and 0x7e for \ ? and KP-dot, respectively. */
+      {
+	/* This happens with the FOCUS 9000 keyboard
+	   Its keys PF1..PF12 are reported to generate
+	   55 73 77 78 79 7a 7b 7c 74 7e 6d 6f
+	   Moreover, unless repeated, they do not generate
+	   key-down events, so we have to zero up_flag below */
+	/* Also, Japanese 86/106 keyboards are reported to
+	   generate 0x73 and 0x7d for \ - and \ | respectively. */
+	/* Also, some Brazilian keyboard is reported to produce
+	   0x73 and 0x7e for \ ? and KP-dot, respectively. */
 
-       *keycode = high_keys[scancode - SC_LIM];
+	 *keycode = high_keys[scancode - SC_LIM];
 
-       if (!*keycode)
-	{
-	   return 0;
-	}
-    }
+	 if (!*keycode)
+	    {
+	       return 0;
+	    }
+      }
    else
       *keycode = scancode;
    return 1;
@@ -1006,8 +961,7 @@ kbd_translate(unsigned char scancode, unsigned char *keycode)
 static int
 test_bit(int bit, void *addr)
 {
-   int       b = bit % BITS_PER_LONG;
-
+   int b = bit % BITS_PER_LONG;
    unsigned long *wp = ((unsigned long *) addr) + bit / BITS_PER_LONG;
 
    return *wp & (1 << b);
@@ -1016,11 +970,9 @@ test_bit(int bit, void *addr)
 static int
 test_and_set_bit(int bit, void *addr)
 {
-   int       b = bit % BITS_PER_LONG;
-
+   int b = bit % BITS_PER_LONG;
    unsigned long *wp = ((unsigned long *) addr) + bit / BITS_PER_LONG;
-
-   int       r = *wp & (1 << b);
+   int r = *wp & (1 << b);
 
    *wp |= (1 << b);
    return r;
@@ -1029,11 +981,9 @@ test_and_set_bit(int bit, void *addr)
 static int
 chg_bit(int bit, void *addr)
 {
-   int       b = bit % BITS_PER_LONG;
-
+   int b = bit % BITS_PER_LONG;
    unsigned long *wp = ((unsigned long *) addr) + bit / BITS_PER_LONG;
-
-   int       r = *wp & (1 << b);
+   int r = *wp & (1 << b);
 
    if (r)
       *wp &= ~(1 << b);
@@ -1046,11 +996,9 @@ chg_bit(int bit, void *addr)
 static int
 test_and_clear_bit(int bit, void *addr)
 {
-   int       b = bit % BITS_PER_LONG;
-
+   int b = bit % BITS_PER_LONG;
    unsigned long *wp = ((unsigned long *) addr) + bit / BITS_PER_LONG;
-
-   int       r = *wp & (1 << b);
+   int r = *wp & (1 << b);
 
    *wp &= ~(1 << b);
    return r;
@@ -1073,7 +1021,7 @@ kbd_unexpected_up(unsigned char keycode)
 static void
 compute_shiftstate(void)
 {
-   int       i, j, k, sym, val;
+   int i, j, k, sym, val;
 
    shift_state = 0;
    for (i = 0; i < SIZE(k_down); i++)
@@ -1081,22 +1029,22 @@ compute_shiftstate(void)
 
    for (i = 0; i < SIZE(key_down); i++)
       if (key_down[i])
-       {			/* skip this word if not a single bit on */
-	  k = i * BITS_PER_LONG;
-	  for (j = 0; j < BITS_PER_LONG; j++, k++)
-	     if (test_bit(k, key_down))
-	      {
-		 sym = plain_map[k];
-		 if (KTYP(sym) == KT_SHIFT)
+	 {			/* skip this word if not a single bit on */
+	    k = i * BITS_PER_LONG;
+	    for (j = 0; j < BITS_PER_LONG; j++, k++)
+	       if (test_bit(k, key_down))
 		  {
-		     val = KVAL(sym);
-		     if (val == KVAL(K_CAPSSHIFT))
-			val = KVAL(K_SHIFT);
-		     k_down[val]++;
-		     shift_state |= (1 << val);
+		     sym = plain_map[k];
+		     if (KTYP(sym) == KT_SHIFT)
+			{
+			   val = KVAL(sym);
+			   if (val == KVAL(K_CAPSSHIFT))
+			      val = KVAL(K_SHIFT);
+			   k_down[val]++;
+			   shift_state |= (1 << val);
+			}
 		  }
-	      }
-       }
+	 }
 #ifdef DBG2
    printf("compute shift_state=%ld\r\n", shift_state);
 #endif
@@ -1115,65 +1063,65 @@ do_self(unsigned char value, char up_flag)
       return;			/* no action, if this is a key release */
 
    if (shift_state & ((1 << KG_ALT) | (1 << KG_ALTGR)))
-    {
-       switch (value)
-	{
-	case '/':
-	   break;
-	case '[':
-	case ']':
-	case ';':
-	case '\'':
-	case ',':
-	case '.':
-	   break;
-	case '-':
-	   value = '_';
-	   break;
-	case '=':
-	case '\\':
-	   break;
-	case '0':
-	case '1':
-	case '2':
-	case '3':
-	case '4':
-	case '5':
-	case '6':
-	case '7':
-	case '8':
-	case '9':
-	   break;
-	default:
-	   goto norm;
-	}
-       do_meta(value, up_flag);
-       return;
-    }
+      {
+	 switch (value)
+	    {
+	    case '/':
+	       break;
+	    case '[':
+	    case ']':
+	    case ';':
+	    case '\'':
+	    case ',':
+	    case '.':
+	       break;
+	    case '-':
+	       value = '_';
+	       break;
+	    case '=':
+	    case '\\':
+	       break;
+	    case '0':
+	    case '1':
+	    case '2':
+	    case '3':
+	    case '4':
+	    case '5':
+	    case '6':
+	    case '7':
+	    case '8':
+	    case '9':
+	       break;
+	    default:
+	       goto norm;
+	    }
+	 do_meta(value, up_flag);
+	 return;
+      }
  norm:
    if (diacr)
       value = handle_diacr(value);
 
    if (dead_key_next)
-    {
-       dead_key_next = 0;
-       diacr = value;
-       return;
-    }
+      {
+	 dead_key_next = 0;
+	 diacr = value;
+	 return;
+      }
 
    switch (value)
-    {
-    case 0x7f:
-    case '2':
-       put_acqueue(value);
-       break;
-    case 0x9:
-       put_fqueue(value);
-       break;
-    default:
-       put_queue(value);
-       break;
-    }
+      {
+      case 0x7f:
+      case '2':
+	 put_acqueue(value);
+	 break;
+      case 0x9:
+	 put_fqueue(value);
+	 break;
+      default:
+	 put_queue(value);
+	 break;
+      }
 }
 
 /*
@@ -1186,17 +1134,16 @@ do_self(unsigned char value, char up_flag)
 static unsigned char
 handle_diacr(unsigned char ch)
 {
-   int       d = diacr;
-
-   int       i;
+   int d = diacr;
+   int i;
 
    diacr = 0;
 
    for (i = 0; i < accent_table_size; i++)
-    {
-       if (accent_table[i].diacr == d && accent_table[i].base == ch)
-	  return accent_table[i].result;
-    }
+      {
+	 if (accent_table[i].diacr == d && accent_table[i].base == ch)
+	    return accent_table[i].result;
+      }
 
    if (ch == ' ' || ch == d)
       return d;
@@ -1217,16 +1164,16 @@ to_utf8(unsigned short c)
    if (c < 0x80)
       put_queue(c);		/*  0*******  */
    else if (c < 0x800)
-    {
-       put_queue(0xc0 | (c >> 6));	/*  110***** 10******  */
-       put_queue(0x80 | (c & 0x3f));
-    }
+      {
+	 put_queue(0xc0 | (c >> 6));	/*  110***** 10******  */
+	 put_queue(0x80 | (c & 0x3f));
+      }
    else
-    {
-       put_queue(0xe0 | (c >> 12));	/*  1110**** 10****** 10******  */
-       put_queue(0x80 | ((c >> 6) & 0x3f));
-       put_queue(0x80 | (c & 0x3f));
-    }
+      {
+	 put_queue(0xe0 | (c >> 12));	/*  1110**** 10****** 10******  */
+	 put_queue(0x80 | ((c >> 6) & 0x3f));
+	 put_queue(0x80 | (c & 0x3f));
+      }
   /* UTF-8 is defined for words of up to 31 bits,
      but we need only 16 bits here */
 }
@@ -1240,76 +1187,76 @@ do_fn(unsigned char value, char up_flag)
 
   //if (((int)value) < SIZE(func_table))
    if (((int) value) < (sizeof(func_table) / sizeof((func_table)[0])))
-    {
+      {
 #if 1
-       if (K(KT_FN, value) == K_INSERT)
-	  insert_state = !up_flag;
+	 if (K(KT_FN, value) == K_INSERT)
+	    insert_state = !up_flag;
 
-       if (up_flag)
-	  return;
+	 if (up_flag)
+	    return;
 
-       switch (K(KT_FN, value))
-	{
-	case K_PGDN:
-	   put_acqueue(KEY_PGDN);
-	   break;
-	case K_PGUP:
-	   put_acqueue(KEY_PGUP);
-	   break;
-	case K_INSERT:
-	   put_acqueue(KEY_INS);
-	   break;
-	case K_REMOVE:
-	   put_acqueue(KEY_DEL);
-	   break;
-	case K_FIND:
-	   put_acqueue(KEY_HOME);
-	   break;
-	case K_SELECT:
-	   put_acqueue(KEY_END);
-	   break;
-	case K_F1:
-	   put_fqueue(KEY_F1);
-	   break;
-	case K_F2:
-	   put_fqueue(KEY_F2);
-	   break;
-	case K_F3:
-	   put_fqueue(KEY_F3);
-	   break;
-	case K_F4:
-	   put_fqueue(KEY_F4);
-	   break;
-	case K_F5:
-	   put_fqueue(KEY_F5);
-	   break;
-	case K_F6:
-	   put_fqueue(KEY_F6);
-	   break;
-	case K_F7:
-	   put_fqueue(KEY_F7);
-	   break;
-	case K_F8:
-	   put_fqueue(KEY_F8);
-	   break;
-	case K_F9:
-	   put_fqueue(KEY_F9);
-	   break;
-	case K_F10:
-	   put_fqueue(KEY_F10);
-	   break;
-	case K_F11:
-	   put_fqueue(KEY_F11);
-	   break;
-	case K_F12:
-	   put_fqueue(KEY_F12);
-	   break;
-	}
+	 switch (K(KT_FN, value))
+	    {
+	    case K_PGDN:
+	       put_acqueue(KEY_PGDN);
+	       break;
+	    case K_PGUP:
+	       put_acqueue(KEY_PGUP);
+	       break;
+	    case K_INSERT:
+	       put_acqueue(KEY_INS);
+	       break;
+	    case K_REMOVE:
+	       put_acqueue(KEY_DEL);
+	       break;
+	    case K_FIND:
+	       put_acqueue(KEY_HOME);
+	       break;
+	    case K_SELECT:
+	       put_acqueue(KEY_END);
+	       break;
+	    case K_F1:
+	       put_fqueue(KEY_F1);
+	       break;
+	    case K_F2:
+	       put_fqueue(KEY_F2);
+	       break;
+	    case K_F3:
+	       put_fqueue(KEY_F3);
+	       break;
+	    case K_F4:
+	       put_fqueue(KEY_F4);
+	       break;
+	    case K_F5:
+	       put_fqueue(KEY_F5);
+	       break;
+	    case K_F6:
+	       put_fqueue(KEY_F6);
+	       break;
+	    case K_F7:
+	       put_fqueue(KEY_F7);
+	       break;
+	    case K_F8:
+	       put_fqueue(KEY_F8);
+	       break;
+	    case K_F9:
+	       put_fqueue(KEY_F9);
+	       break;
+	    case K_F10:
+	       put_fqueue(KEY_F10);
+	       break;
+	    case K_F11:
+	       put_fqueue(KEY_F11);
+	       break;
+	    case K_F12:
+	       put_fqueue(KEY_F12);
+	       break;
+	    }
 #else
-       if (func_table[value])
-	  puts_queue(func_table[value]);
+	 if (func_table[value])
+	    puts_queue(func_table[value]);
 #endif
-    }
+      }
 }
 
 static void
@@ -1343,7 +1290,6 @@ static void
 do_pad(unsigned char value, char up_flag)
 {
    static const char pad_chars[] = "0123456789+-*/\015,.?()";
-
   /*static const char app_map[] = "pqrstuvwxylSRQMnnmPQ"; */
 
 #ifdef DBG2
@@ -1356,72 +1302,70 @@ do_pad(unsigned char value, char up_flag)
 #if 0
   /* kludge... shift forces cursor/number keys */
    if ( /*vc_kbd_mode(kbd,VC_APPLIC) */ applic_mode && !k_down[KG_SHIFT])
-    {
-       if (value < sizeof(app_map))
-	  applkey(app_map[value], 1);
-       return;
-    }
+      {
+	 if (value < sizeof(app_map))
+	    applkey(app_map[value], 1);
+	 return;
+      }
 #endif
 
    switch (value)
-    {
-    case KVAL(K_PPLUS):
-       put_acqueue('+');
-       return;
-    case KVAL(K_PMINUS):
-       put_acqueue('-');
-       return;
-    case KVAL(K_PSLASH):
-       put_acqueue('/');
-       return;
-    case KVAL(K_PSTAR):
-       put_acqueue('*');
-       return;
-    }
+      {
+      case KVAL(K_PPLUS):
+	 put_acqueue('+');
+	 return;
+      case KVAL(K_PMINUS):
+	 put_acqueue('-');
+	 return;
+      case KVAL(K_PSLASH):
+	 put_acqueue('/');
+	 return;
+      case KVAL(K_PSTAR):
+	 put_acqueue('*');
+	 return;
+      }
 
    if ((!scan_numlock_state	/*vc_kbd_led(kbd,VC_NUMLOCK) */
-	&& !(shift_state &
-	     ((1 << KG_SHIFT) | (1 << KG_SHIFTL) | (1 << KG_SHIFTR))))
-       || (scan_numlock_state && (shift_state & ((1 << KG_CTRL) | (1 << KG_CTRLL) | (1 << KG_CTRLR)))))
-    {
-       switch (value)
-	{
-	case KVAL(K_PCOMMA):
-	case KVAL(K_PDOT):
-	   do_fn(KVAL(K_REMOVE), 0);
-	   return;
-	case KVAL(K_P0):
-	   do_fn(KVAL(K_INSERT), 0);
-	   return;
-	case KVAL(K_P1):
-	   do_fn(KVAL(K_SELECT), 0);
-	   return;
-	case KVAL(K_P2):
-	   do_cur(KVAL(K_DOWN), 0);
-	   return;
-	case KVAL(K_P3):
-	   do_fn(KVAL(K_PGDN), 0);
-	   return;
-	case KVAL(K_P4):
-	   do_cur(KVAL(K_LEFT), 0);
-	   return;
-	case KVAL(K_P6):
-	   do_cur(KVAL(K_RIGHT), 0);
-	   return;
-	case KVAL(K_P7):
-	   do_fn(KVAL(K_FIND), 0);
-	   return;
-	case KVAL(K_P8):
-	   do_cur(KVAL(K_UP), 0);
-	   return;
-	case KVAL(K_P9):
-	   do_fn(KVAL(K_PGUP), 0);
-	   return;
-	case KVAL(K_P5):
-	   applkey('G', /*vc_kbd_mode(kbd, VC_APPLIC) */ applic_mode);
-	   return;
-	}
-    }
+	&& !(shift_state & ((1 << KG_SHIFT) | (1 << KG_SHIFTL) | (1 << KG_SHIFTR)))) || (scan_numlock_state && (shift_state & ((1 << KG_CTRL) | (1 << KG_CTRLL) | (1 << KG_CTRLR)))))
+      {
+	 switch (value)
+	    {
+	    case KVAL(K_PCOMMA):
+	    case KVAL(K_PDOT):
+	       do_fn(KVAL(K_REMOVE), 0);
+	       return;
+	    case KVAL(K_P0):
+	       do_fn(KVAL(K_INSERT), 0);
+	       return;
+	    case KVAL(K_P1):
+	       do_fn(KVAL(K_SELECT), 0);
+	       return;
+	    case KVAL(K_P2):
+	       do_cur(KVAL(K_DOWN), 0);
+	       return;
+	    case KVAL(K_P3):
+	       do_fn(KVAL(K_PGDN), 0);
+	       return;
+	    case KVAL(K_P4):
+	       do_cur(KVAL(K_LEFT), 0);
+	       return;
+	    case KVAL(K_P6):
+	       do_cur(KVAL(K_RIGHT), 0);
+	       return;
+	    case KVAL(K_P7):
+	       do_fn(KVAL(K_FIND), 0);
+	       return;
+	    case KVAL(K_P8):
+	       do_cur(KVAL(K_UP), 0);
+	       return;
+	    case KVAL(K_P9):
+	       do_fn(KVAL(K_PGUP), 0);
+	       return;
+	    case KVAL(K_P5):
+	       applkey('G', /*vc_kbd_mode(kbd, VC_APPLIC) */ applic_mode);
+	       return;
+	    }
+      }
 
    if (value < sizeof(pad_chars))
      /*put_fqueue(pad_chars[value]); */
@@ -1443,20 +1387,20 @@ do_cur(unsigned char value, char up_flag)
       return;
 
    switch (K(KT_CUR, value))
-    {
-    case K_DOWN:
-       put_acqueue(KEY_DOWN);
-       break;
-    case K_LEFT:
-       put_acqueue(KEY_LEFT);
-       break;
-    case K_RIGHT:
-       put_acqueue(KEY_RIGHT);
-       break;
-    case K_UP:
-       put_acqueue(KEY_UP);
-       break;
-    }
+      {
+      case K_DOWN:
+	 put_acqueue(KEY_DOWN);
+	 break;
+      case K_LEFT:
+	 put_acqueue(KEY_LEFT);
+	 break;
+      case K_RIGHT:
+	 put_acqueue(KEY_RIGHT);
+	 break;
+      case K_UP:
+	 put_acqueue(KEY_UP);
+	 break;
+      }
 #else
    static const char *cur_chars = "BDCA";
 
@@ -1509,34 +1453,32 @@ static void
 set_console(int no, int diff)
 {
    if (scr_scan_mode == ScanIoctl)
-    {
+      {
 #ifdef OS_MINGW
-       char     *tty = NULL;
+	 char *tty = NULL;
 #else
-       char     *tty = ttyname(0);
+	 char *tty = ttyname(0);
 #endif
-       int       l;
-
-       if (!tty)
-	  return;
-       l = strlen(tty);
-       if (l < 8)
-	  return;
-       if (!isdigit(tty[8]))
-	  return;
-       if (diff)
-	  no = atoi(tty + 8) - 1 + no;
+	 int l;
+	 if (!tty)
+	    return;
+	 l = strlen(tty);
+	 if (l < 8)
+	    return;
+	 if (!isdigit(tty[8]))
+	    return;
+	 if (diff)
+	    no = atoi(tty + 8) - 1 + no;
 #ifdef OS_LINUX
-       ioctl(0, 0x5606 /*VT_ACTIVATE */ , no + 1);
+	 ioctl(0, 0x5606 /*VT_ACTIVATE */ , no + 1);
 #endif
-    }
+      }
 }
 
 static void
 do_shift(unsigned char value, char up_flag)
 {
-   int       old_state = shift_state;
-
+   int old_state = shift_state;
 #ifdef DBG2
    printf("do_shift: %d\r\n", value);
 #endif
@@ -1547,21 +1489,21 @@ do_shift(unsigned char value, char up_flag)
   /* Mimic typewriter:
      a CapsShift key acts like Shift but undoes CapsLock */
    if (value == KVAL(K_CAPSSHIFT))
-    {
-       value = KVAL(K_SHIFT);
-       if (!up_flag)
-	  capslock_state = 0;
-       set_kbd_led();
-      /*clr_vc_kbd_led(kbd, VC_CAPSLOCK); */
-    }
+      {
+	 value = KVAL(K_SHIFT);
+	 if (!up_flag)
+	    capslock_state = 0;
+	 set_kbd_led();
+	/*clr_vc_kbd_led(kbd, VC_CAPSLOCK); */
+      }
 
    if (up_flag)
-    {
-      /* handle the case that two shift or control
-         keys are depressed simultaneously */
-       if (k_down[value])
-	  k_down[value]--;
-    }
+      {
+	/* handle the case that two shift or control
+	   keys are depressed simultaneously */
+	 if (k_down[value])
+	    k_down[value]--;
+      }
    else
       k_down[value]++;
 
@@ -1572,10 +1514,10 @@ do_shift(unsigned char value, char up_flag)
 
   /* kludge */
    if (up_flag && shift_state != old_state && npadch != -1)
-    {
-       put_queue(npadch & 0xff);
-       npadch = -1;
-    }
+      {
+	 put_queue(npadch & 0xff);
+	 npadch = -1;
+      }
 #ifdef DBG2
    printf("do shift=%ld\r\n", shift_state);
 #endif
@@ -1594,10 +1536,10 @@ do_meta(unsigned char value, char up_flag)
    put_aqueue(value);
 #else
    if ( /*vc_kbd_mode(kbd, VC_META) */ meta_state)
-    {
-       put_queue('\033');
-       put_queue(value);
-    }
+      {
+	 put_queue('\033');
+	 put_queue(value);
+      }
    else
       put_queue(value | 0x80);
 #endif
@@ -1606,8 +1548,7 @@ do_meta(unsigned char value, char up_flag)
 static void
 do_ascii(unsigned char value, char up_flag)
 {
-   int       base;
-
+   int base;
 #ifdef DBG2
    printf("do_acii: %d\r\n", value);
 #endif
@@ -1618,10 +1559,10 @@ do_ascii(unsigned char value, char up_flag)
    if (value < 10)		/* decimal input of code, while Alt depressed */
       base = 10;
    else
-    {				/* hexadecimal input of code, while AltGr depressed */
-       value -= 10;
-       base = 16;
-    }
+      {				/* hexadecimal input of code, while AltGr depressed */
+	 value -= 10;
+	 base = 16;
+      }
 
    if (npadch == -1)
       npadch = value;
@@ -1671,10 +1612,10 @@ static void
 enter(void)
 {
    if (diacr)
-    {
-       put_queue(diacr);
-       diacr = 0;
-    }
+      {
+	 put_queue(diacr);
+	 diacr = 0;
+      }
    put_queue(13);
 #if 0
    if (vc_kbd_mode(kbd, VC_CRLF))
@@ -1740,11 +1681,11 @@ static void
 bare_num(void)
 {
    if (!rep)
-    {
-      /*chg_vc_kbd_led(kbd,VC_NUMLOCK); */
-       scan_numlock_state = !scan_numlock_state;
-       set_kbd_led();
-    }
+      {
+	/*chg_vc_kbd_led(kbd,VC_NUMLOCK); */
+	 scan_numlock_state = !scan_numlock_state;
+	 set_kbd_led();
+      }
 }
 
 static void
@@ -1832,7 +1773,7 @@ static void
 set_kbd_led(void)
 {
 #ifdef OS_LINUX
-   int       leds = 0;
+   int leds = 0;
 
    if (scan_numlock_state)
       leds |= LED_NUM;

@@ -1,6 +1,0 @@
-function fileIsScript(fName)
-	local fh, cBuf := space(2)
-	fh:=fopen(fName,FO_READ)
-	fRead(fh,@cBuf,len(cBuf))
-	fClose(fh)
-return (cBuf == "#!")

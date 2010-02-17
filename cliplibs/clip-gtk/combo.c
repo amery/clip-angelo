@@ -47,14 +47,10 @@ clip_INIT___COMBO(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBONEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    C_widget *centry, *clist, *cbutton, *cpopup, *cpopwin;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_combo_new();
@@ -92,17 +88,15 @@ static int
 _combo_simple_list_select(GtkList * list, GtkWidget * widget, gpointer data)
 {
    GtkWidget *child = NULL;
-
    GtkCombo *cb = GTK_COMBO(data);
-
-   char     *text;
+   char *text;
 
    child = GTK_BIN(&(GTK_ITEM(widget)->bin))->child;
    if (GTK_IS_LABEL(child))
-    {
-       gtk_label_get(GTK_LABEL(child), &text);
-       gtk_entry_set_text(GTK_ENTRY(cb->entry), text);
-    }
+      {
+	 gtk_label_get(GTK_LABEL(child), &text);
+	 gtk_entry_set_text(GTK_ENTRY(cb->entry), text);
+      }
 
    return 0;
 }
@@ -110,35 +104,32 @@ _combo_simple_list_select(GtkList * list, GtkWidget * widget, gpointer data)
 static int
 _combo_simple_find_in_list(GtkCombo * cb, char *ftext)
 {
-   GList    *list = GTK_LIST(cb->list)->children;
-
+   GList *list = GTK_LIST(cb->list)->children;
    GtkWidget *child = NULL;
-
-   int       i;
-
-   char     *text;
+   int i;
+   char *text;
 
    LOCALE_TO_UTF(ftext);
 
    for (i = 0; list; i++, list = list->next)
-    {
-       child = GTK_BIN(&(GTK_ITEM(list->data)->bin))->child;
+      {
+	 child = GTK_BIN(&(GTK_ITEM(list->data)->bin))->child;
 
-       if (GTK_IS_LABEL(child))
-	{
-	   gtk_label_get(GTK_LABEL(child), &text);
-	   if (cb->case_sensitive)
+	 if (GTK_IS_LABEL(child))
 	    {
-	       if (strcmp(ftext, text) == 0)
-		  return i;
+	       gtk_label_get(GTK_LABEL(child), &text);
+	       if (cb->case_sensitive)
+		  {
+		     if (strcmp(ftext, text) == 0)
+			return i;
+		  }
+	       else
+		  {
+		     if (strcasecmp(ftext, text) == 0)
+			return i;
+		  }
 	    }
-	   else
-	    {
-	       if (strcasecmp(ftext, text) == 0)
-		  return i;
-	    }
-	}
-    }
+      }
    FREE_TEXT(ftext);
 
    return -1;
@@ -148,19 +139,18 @@ static int
 _combo_simple_entry_change(GtkEntry * entry, gpointer data)
 {
    GtkCombo *cb = GTK_COMBO(data);
-
-   int       i;
+   int i;
 
    i = _combo_simple_find_in_list(cb, gtk_entry_get_text(entry));
 
    if (i == -1)
       gtk_list_unselect_all(GTK_LIST(cb->list));
    else
-    {
-       gtk_signal_handler_block_by_func(GTK_OBJECT(cb->list), GSF(_combo_simple_list_select), data);
-       gtk_list_select_item(GTK_LIST(cb->list), i);
-       gtk_signal_handler_unblock_by_func(GTK_OBJECT(cb->list), GSF(_combo_simple_list_select), data);
-    }
+      {
+	 gtk_signal_handler_block_by_func(GTK_OBJECT(cb->list), GSF(_combo_simple_list_select), data);
+	 gtk_list_select_item(GTK_LIST(cb->list), i);
+	 gtk_signal_handler_unblock_by_func(GTK_OBJECT(cb->list), GSF(_combo_simple_list_select), data);
+      }
    return 0;
 }
 
@@ -168,10 +158,8 @@ static int
 _combo_simple_entry_focus_out(GtkWidget * entry, GdkEvent * event, gpointer data)
 {
    GtkCombo *cb = GTK_COMBO(data);
-
-   char     *etext;
-
-   int       i;
+   char *etext;
+   int i;
 
    if (!cb->value_in_list)
       return 0;
@@ -193,16 +181,11 @@ _combo_simple_entry_focus_out(GtkWidget * entry, GdkEvent * event, gpointer data
 int
 clip_GTK_COMBOSIMPLENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    GtkWidget *list, *popup;
-
    C_widget *cwid;
-
    C_widget *centry, *clist, *cpopup;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_combo_new();
@@ -258,11 +241,8 @@ int
 clip_GTK_COMBOSETVALUEINLIST(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      val = _clip_parl(ClipMachineMemory, 2);
-
-   gint      ok_if_empty = _clip_parl(ClipMachineMemory, 3);
-
+   gint val = _clip_parl(ClipMachineMemory, 2);
+   gint ok_if_empty = _clip_parl(ClipMachineMemory, 3);
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -281,9 +261,7 @@ int
 clip_GTK_COMBOSETUSEARROWS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      use_arrows = _clip_parl(ClipMachineMemory, 2);
-
+   gint use_arrows = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -299,9 +277,7 @@ int
 clip_GTK_COMBOSETUSEARROWSALWAYS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      use_arrows = _clip_parl(ClipMachineMemory, 2);
-
+   gint use_arrows = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -317,9 +293,7 @@ int
 clip_GTK_COMBOSETCASESENSITIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      case_sens = _clip_parl(ClipMachineMemory, 2);
-
+   gint case_sens = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -336,13 +310,9 @@ int
 clip_GTK_COMBOSETITEMSTRING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 3);
-
-   gchar     empty_string[] = "\0";
-
+   gchar *string = _clip_parc(ClipMachineMemory, 3);
+   gchar empty_string[] = "\0";
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(citem, GTK_IS_WIDGET);
@@ -363,34 +333,28 @@ int
 clip_GTK_COMBOSETPOPDOWNSTRINGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
    ClipArrVar *astr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   GList    *str_list = NULL;
-
+   GList *str_list = NULL;
    ClipStrVar *s;
-
-   int       i;
-
+   int i;
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, ARRAY_type_of_ClipVarType);
 
    for (i = 0; i < astr->count_of_ClipArrVar; i++)
-    {
-       if (astr->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType !=
-	   CHARACTER_type_of_ClipVarType)
-	  continue;
-       s = (ClipStrVar *) _clip_vptr(&astr->ClipVar_items_of_ClipArrVar[i]);
-       if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
-	  str_list = g_list_append(str_list, gtk_list_item_new_with_label(s->ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-       else
-	  str_list = g_list_append(str_list, s->ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-    }
+      {
+			if (astr->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != CHARACTER_type_of_ClipVarType)
+	    continue;
+	 s = (ClipStrVar *) _clip_vptr(&astr->ClipVar_items_of_ClipArrVar[i]);
+	 if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
+		 str_list = g_list_append(str_list, gtk_list_item_new_with_label(s->ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+	 else
+		 str_list = g_list_append(str_list, s->ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
+      }
    if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
-    {
-       gtk_list_clear_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), 0, -1);
-       gtk_list_append_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), str_list);
-    }
+      {
+	 gtk_list_clear_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), 0, -1);
+	 gtk_list_append_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), str_list);
+      }
    else
       gtk_combo_set_popdown_strings(GTK_COMBO(ccmb->widget), str_list);
    return 0;
@@ -404,39 +368,33 @@ int
 clip_GTK_COMBOSETPOPDOWNSTRINGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
    ClipArrVar *astr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   GList    *str_list = NULL;
-
-   gchar    *text_utf;
-
+   GList *str_list = NULL;
+   gchar *text_utf;
    ClipStrVar *s;
-
-   int       i;
-
+   int i;
    CHECKCWID(ccmb, GTK_IS_COMBO);
    CHECKOPT(2, ARRAY_type_of_ClipVarType);
 
-   for (i = 0; i < astr->count; i++)
-    {
-       if (astr->items[i].t.ClipVartype_type_of_ClipType != CHARACTER_type_of_ClipVarType)
-	  continue;
-       s = (ClipStrVar *) _clip_vptr(&astr->items[i]);
-       text_utf = _clip_locale_to_utf8(s->str.buf);
-       if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
-	{
-	   str_list = g_list_append(str_list, gtk_list_item_new_with_label(text_utf));
-	   g_free(text_utf);
-	}
-       else
-	  str_list = g_list_append(str_list, text_utf);
-    }
+   for (i = 0; i < astr->count_of_ClipArrVar; i++)
+      {
+	 if (astr->ClipVar_items_of_ClipArrVar[i].t.type != CHARACTER_type_of_ClipVarType)
+	    continue;
+	 s = (ClipStrVar *) _clip_vptr(&astr->ClipVar_items_of_ClipArrVar[i]);
+	 text_utf = _clip_locale_to_utf8(s->str.buf_of_ClipBuf);
+	 if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
+	    {
+	       str_list = g_list_append(str_list, gtk_list_item_new_with_label(text_utf));
+	       g_free(text_utf);
+	    }
+	 else
+	    str_list = g_list_append(str_list, text_utf);
+      }
    if (ccmb->objtype == GTK_WIDGET_COMBO_SIMPLE)
-    {
-       gtk_list_clear_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), 0, -1);
-       gtk_list_append_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), str_list);
-    }
+      {
+	 gtk_list_clear_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), 0, -1);
+	 gtk_list_append_items(GTK_LIST(GTK_COMBO(ccmb->widget)->list), str_list);
+      }
    else
       gtk_combo_set_popdown_strings(GTK_COMBO(ccmb->widget), str_list);
 
@@ -457,7 +415,6 @@ int
 clip_GTK_COMBODISABLEACTIVATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccmb, GTK_IS_COMBO);
    gtk_combo_disable_activate(GTK_COMBO(ccmb->widget));
    return 0;
@@ -469,13 +426,9 @@ int
 clip_GTK_COMBOGETSELECTIONINDEX(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-
-   GtkList  *list;
-
-   GList    *selection;
-
-   int       index;
-
+   GtkList *list;
+   GList *selection;
+   int index;
    CHECKCWID(ccmb, GTK_IS_COMBO);
    list = GTK_LIST(GTK_COMBO(ccmb->widget)->list);
    selection = list->selection;

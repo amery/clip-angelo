@@ -86,8 +86,7 @@ clip_INIT___BUTTONBOX(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BUTTONBOXGETCHILDSIZEDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      min_width, min_height;
-
+   gint min_width, min_height;
    gtk_button_box_get_child_size_default(&min_width, &min_height);
    _clip_storni(ClipMachineMemory, min_width, 1, 0);
    _clip_storni(ClipMachineMemory, min_height, 2, 0);
@@ -101,8 +100,7 @@ clip_GTK_BUTTONBOXGETCHILDSIZEDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BUTTONBOXGETCHILDIPADDINGDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      ipad_x, ipad_y;
-
+   gint ipad_x, ipad_y;
    gtk_button_box_get_child_ipadding_default(&ipad_x, &ipad_y);
    _clip_storni(ClipMachineMemory, ipad_x, 1, 0);
    _clip_storni(ClipMachineMemory, ipad_y, 2, 0);
@@ -113,10 +111,8 @@ clip_GTK_BUTTONBOXGETCHILDIPADDINGDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BUTTONBOXSETCHILDSIZEDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      min_width = _clip_parni(ClipMachineMemory, 1);
-
-   gint      min_height = _clip_parni(ClipMachineMemory, 2);
-
+   gint min_width = _clip_parni(ClipMachineMemory, 1);
+   gint min_height = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_child_size_default(min_width, min_height);
@@ -130,10 +126,8 @@ clip_GTK_BUTTONBOXSETCHILDSIZEDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_BUTTONBOXSETCHILDIPADDINGDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      ipad_x = _clip_parni(ClipMachineMemory, 1);
-
-   gint      ipad_y = _clip_parni(ClipMachineMemory, 2);
-
+   gint ipad_x = _clip_parni(ClipMachineMemory, 1);
+   gint ipad_y = _clip_parni(ClipMachineMemory, 2);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_child_ipadding_default(ipad_x, ipad_y);
@@ -150,7 +144,6 @@ int
 clip_GTK_BUTTONBOXGETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    _clip_retni(ClipMachineMemory, gtk_button_box_get_spacing(GTK_BUTTON_BOX(cbbox->widget)));
    return 0;
@@ -163,7 +156,6 @@ int
 clip_GTK_BUTTONBOXGETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    _clip_retni(ClipMachineMemory, gtk_button_box_get_layout(GTK_BUTTON_BOX(cbbox->widget)));
    return 0;
@@ -177,9 +169,7 @@ int
 clip_GTK_BUTTONBOXGETCHILDSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      min_width, min_height;
-
+   gint min_width, min_height;
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    gtk_button_box_get_child_size(GTK_BUTTON_BOX(cbbox->widget), &min_width, &min_height);
    _clip_storni(ClipMachineMemory, min_width, 2, 0);
@@ -195,9 +185,7 @@ int
 clip_GTK_BUTTONBOXGETCHILDIPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      ipad_x, ipad_y;
-
+   gint ipad_x, ipad_y;
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    gtk_button_box_get_child_ipadding(GTK_BUTTON_BOX(cbbox->widget), &ipad_x, &ipad_y);
    _clip_storni(ClipMachineMemory, ipad_x, 2, 0);
@@ -212,9 +200,7 @@ int
 clip_GTK_BUTTONBOXSETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      spacing = _clip_parni(ClipMachineMemory, 2);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 2);
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_spacing(GTK_BUTTON_BOX(cbbox->widget), spacing);
@@ -228,9 +214,7 @@ int
 clip_GTK_BUTTONBOXSETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
    GtkButtonBoxStyle layout_style = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_layout(GTK_BUTTON_BOX(cbbox->widget), layout_style);
@@ -244,11 +228,8 @@ int
 clip_GTK_BUTTONBOXSETCHILDSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      min_width = _clip_parni(ClipMachineMemory, 2);
-
-   gint      min_height = _clip_parni(ClipMachineMemory, 3);
-
+   gint min_width = _clip_parni(ClipMachineMemory, 2);
+   gint min_height = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -264,11 +245,8 @@ int
 clip_GTK_BUTTONBOXSETCHILDIPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      ipad_x = _clip_parni(ClipMachineMemory, 2);
-
-   gint      ipad_y = _clip_parni(ClipMachineMemory, 3);
-
+   gint ipad_x = _clip_parni(ClipMachineMemory, 2);
+   gint ipad_y = _clip_parni(ClipMachineMemory, 3);
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -283,12 +261,9 @@ clip_GTK_BUTTONBOXSETCHILDIPADDING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VBUTTONBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_vbutton_box_new();
    if (!wid)
@@ -317,8 +292,7 @@ clip_GTK_VBUTTONBOXGETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VBUTTONBOXSETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      spacing = _clip_parni(ClipMachineMemory, 1);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 1);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_vbutton_box_set_spacing_default(spacing);
    return 0;
@@ -339,8 +313,7 @@ clip_GTK_VBUTTONBOXGETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VBUTTONBOXSETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      spacing = _clip_parni(ClipMachineMemory, 1);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 1);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_vbutton_box_set_layout_default(spacing);
    return 0;
@@ -353,12 +326,9 @@ clip_GTK_VBUTTONBOXSETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_hbutton_box_new();
    if (!wid)
@@ -387,8 +357,7 @@ clip_GTK_HBUTTONBOXGETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXSETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      spacing = _clip_parni(ClipMachineMemory, 1);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 1);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_hbutton_box_set_spacing_default(spacing);
    return 0;
@@ -408,8 +377,7 @@ clip_GTK_HBUTTONBOXGETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXSETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint      spacing = _clip_parni(ClipMachineMemory, 1);
-
+   gint spacing = _clip_parni(ClipMachineMemory, 1);
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_hbutton_box_set_layout_default(spacing);
    return 0;

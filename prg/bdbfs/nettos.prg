@@ -6,7 +6,7 @@
 //������ �ᮢ��襭�⢮������ �㭪樨 Netto.Lib
 
 #include "ci_bd_common.ch"
-*#include "ci_netto.ch"
+*#include "netto.ch"
 
 
 /*

@@ -52,9 +52,7 @@ int
 clip_GTK_PROGRESSSETSHOWTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      show = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
-
+   gint show = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_progress_set_show_text(GTK_PROGRESS(cprg->widget), show);
@@ -68,11 +66,8 @@ int
 clip_GTK_PROGRESSSETTEXTALIGNMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    x_align = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    y_align = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat x_align = _clip_parnd(ClipMachineMemory, 2);
+   gfloat y_align = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -100,9 +95,7 @@ int
 clip_GTK_PROGRESSSETFORMATSTRING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *format = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *format = _clip_parc(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -122,9 +115,7 @@ int
 clip_GTK_PROGRESSSETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
@@ -138,9 +129,7 @@ int
 clip_GTK_PROGRESSGETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cadj;
-
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    cadj = _get_cwidget(ClipMachineMemory, GTK_WIDGET(GTK_PROGRESS(cprg->widget)->adjustment));
    if (cadj)
@@ -155,9 +144,7 @@ int
 clip_GTK_PROGRESSSETPERCENTAGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    percentage = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat percentage = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_set_percentage(GTK_PROGRESS(cprg->widget), percentage);
@@ -172,9 +159,7 @@ int
 clip_GTK_PROGRESSSETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_set_value(GTK_PROGRESS(cprg->widget), value);
@@ -188,7 +173,6 @@ int
 clip_GTK_PROGRESSGETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    _clip_retnd(ClipMachineMemory, gtk_progress_get_value(GTK_PROGRESS(cprg->widget)));
    return 0;
@@ -203,9 +187,7 @@ int
 clip_GTK_PROGRESSSETACTIVITYMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   guint     activity_mode = _clip_parl(ClipMachineMemory, 2);
-
+   guint activity_mode = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -222,9 +204,7 @@ int
 clip_GTK_PROGRESSGETCURRENTTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *text;
-
+   gchar *text;
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    text = gtk_progress_get_current_text(GTK_PROGRESS(cprg->widget));
    LOCALE_FROM_UTF(text);
@@ -241,11 +221,8 @@ int
 clip_GTK_PROGRESSGETTEXTFROMVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
-   gchar    *text;
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
+   gchar *text;
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    text = gtk_progress_get_text_from_value(GTK_PROGRESS(cprg->widget), value);
@@ -262,7 +239,6 @@ int
 clip_GTK_PROGRESSGETCURRENTPERCENTAGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    _clip_retnd(ClipMachineMemory, gtk_progress_get_current_percentage(GTK_PROGRESS(cprg->widget)));
    return 0;
@@ -276,9 +252,7 @@ int
 clip_GTK_PROGRESSGETPERCENTAGEFROMVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    _clip_retnd(ClipMachineMemory, gtk_progress_get_percentage_from_value(GTK_PROGRESS(cprg->widget), value));
@@ -293,13 +267,9 @@ int
 clip_GTK_PROGRESSCONFIGURE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-
-   gfloat    value = _clip_parnd(ClipMachineMemory, 2);
-
-   gfloat    min = _clip_parnd(ClipMachineMemory, 3);
-
-   gfloat    max = _clip_parnd(ClipMachineMemory, 4);
-
+   gfloat value = _clip_parnd(ClipMachineMemory, 2);
+   gfloat min = _clip_parnd(ClipMachineMemory, 3);
+   gfloat max = _clip_parnd(ClipMachineMemory, 4);
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);

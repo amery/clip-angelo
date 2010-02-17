@@ -1,9 +1,0 @@
-void
-resume_parser()
-{
-   delete_Coll(modules);
-   delete_Coll(fileModules);
-   delete_Coll(fileIncludes);
-   free(clic_outpath);
-   destroy_Coll(&hashNames);
-}

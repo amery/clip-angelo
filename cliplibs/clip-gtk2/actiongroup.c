@@ -17,13 +17,11 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static    gint
+static gint
 handle_proxy_signal(GtkActionGroup * actiongr, GtkAction * action, GtkWidget * wid, C_signal * cs)
 {
    C_object *caction;
-
    C_widget *cwid;
-
    OBJECTPREPARECV(cs, cv);
    caction = _list_get_cobject(cs->cw->cmachine, action);
    if (!caction)
@@ -37,11 +35,10 @@ handle_proxy_signal(GtkActionGroup * actiongr, GtkAction * action, GtkWidget * w
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static    gint
+static gint
 handle_activate_signal(GtkActionGroup * actiongr, GtkAction * action, C_signal * cs)
 {
    C_object *caction;
-
    OBJECTPREPARECV(cs, cv);
    caction = _list_get_cobject(cs->cw->cmachine, action);
    if (!caction)
@@ -92,12 +89,9 @@ clip_INIT___ACTIONGROUP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACTIONGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
    C_object *cagroup;
-
    GtkActionGroup *agroup;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -108,13 +102,13 @@ clip_GTK_ACTIONGROUPNEW(ClipMachine * ClipMachineMemory)
    agroup = gtk_action_group_new(name);
 
    if (agroup)
-    {
-       cagroup = _list_get_cobject(ClipMachineMemory, agroup);
-       if (!cagroup)
-	  cagroup = _register_object(ClipMachineMemory, agroup, GTK_TYPE_ACTION_GROUP, cv, NULL);
-       if (cagroup)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cagroup->obj);
-    }
+      {
+	 cagroup = _list_get_cobject(ClipMachineMemory, agroup);
+	 if (!cagroup)
+	    cagroup = _register_object(ClipMachineMemory, agroup, GTK_TYPE_ACTION_GROUP, cv, NULL);
+	 if (cagroup)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cagroup->obj);
+      }
 
    FREE_TEXT(name);
    return 0;
@@ -126,8 +120,7 @@ int
 clip_GTK_ACTIONGROUPGETNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *name;
+   gchar *name;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -163,8 +156,7 @@ int
 clip_GTK_ACTIONGROUPSETSENSITIVE(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  sensitive = _clip_parl(ClipMachineMemory, 2);
+   gboolean sensitive = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -196,8 +188,7 @@ int
 clip_GTK_ACTIONGROUPSETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  visible = _clip_parl(ClipMachineMemory, 2);
+   gboolean visible = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -214,11 +205,8 @@ int
 clip_GTK_ACTIONGROUPGETACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *name = _clip_parc(ClipMachineMemory, 2);
-
+   gchar *name = _clip_parc(ClipMachineMemory, 2);
    GtkAction *action;
-
    C_object *caction;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -229,13 +217,13 @@ clip_GTK_ACTIONGROUPGETACTION(ClipMachine * ClipMachineMemory)
    action = gtk_action_group_get_action(GTK_ACTION_GROUP(cagroup->object), name);
 
    if (action)
-    {
-       caction = _list_get_cobject(ClipMachineMemory, action);
-       if (!caction)
-	  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
-       if (caction)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
-    }
+      {
+	 caction = _list_get_cobject(ClipMachineMemory, action);
+	 if (!caction)
+	    caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
+	 if (caction)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
+      }
 
    FREE_TEXT(name);
 
@@ -248,8 +236,7 @@ int
 clip_GTK_ACTIONGROUPLISTACTIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   GList    *list;
+   GList *list;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -257,26 +244,24 @@ clip_GTK_ACTIONGROUPLISTACTIONS(ClipMachine * ClipMachineMemory)
    list = gtk_action_group_list_actions(GTK_ACTION_GROUP(cagroup->object));
 
    if (list)
-    {
-       ClipVar  *cv = RETPTR(ClipMachineMemory);
+      {
+	 ClipVar *cv = RETPTR(ClipMachineMemory);
+	 long n = g_list_length(list);
 
-       long      n = g_list_length(list);
+	 _clip_array(ClipMachineMemory, cv, 1, &n);
+	 for (n = 0; list; list = g_list_next(list))
+	    {
+	       C_object *caction;
+	       GtkAction *action;
 
-       _clip_array(ClipMachineMemory, cv, 1, &n);
-       for (n = 0; list; list = g_list_next(list))
-	{
-	   C_object *caction;
-
-	   GtkAction *action;
-
-	   action = list->data;
-	   caction = _list_get_cobject(ClipMachineMemory, action);
-	   if (!caction)
-	      caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
-	   if (caction)
-	      _clip_aset(ClipMachineMemory, cv, &caction->obj, 1, &n);
-	}
-    }
+	       action = list->data;
+	       caction = _list_get_cobject(ClipMachineMemory, action);
+	       if (!caction)
+		  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
+	       if (caction)
+		  _clip_aset(ClipMachineMemory, cv, &caction->obj, 1, &n);
+	    }
+      }
 
    return 0;
  err:
@@ -287,7 +272,6 @@ int
 clip_GTK_ACTIONGROUPADDACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    C_object *caction = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -306,10 +290,8 @@ int
 clip_GTK_ACTIONGROUPADDACTIONWITHACCEL(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    C_object *caction = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gchar    *accel = _clip_parc(ClipMachineMemory, 3);
+   gchar *accel = _clip_parc(ClipMachineMemory, 3);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -330,7 +312,6 @@ int
 clip_GTK_ACTIONGROUPREMOVEACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    C_object *caction = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -348,11 +329,9 @@ clip_GTK_ACTIONGROUPREMOVEACTION(ClipMachine * ClipMachineMemory)
 static void
 destroy_d(gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[1];
-
-   ClipVar   res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[1];
+   ClipVar res;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -368,12 +347,9 @@ int
 clip_GTK_ACTIONGROUPADDACTIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -381,20 +357,19 @@ clip_GTK_ACTIONGROUPADDACTIONS(ClipMachine * ClipMachineMemory)
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkActionEntry *acts;
+      {
+	 GtkActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkActionEntry));
+	 memset(acts, 0, sizeof(GtkActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkActionEntry));
-       memset(acts, 0, sizeof(GtkActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       gtk_action_group_add_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 gtk_action_group_add_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -405,14 +380,10 @@ int
 clip_GTK_ACTIONGROUPADDACTIONSFULL(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 4);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 4);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -421,22 +392,21 @@ clip_GTK_ACTIONGROUPADDACTIONSFULL(ClipMachine * ClipMachineMemory)
    CHECKARG2(4, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkActionEntry *acts;
+      {
+	 GtkActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkActionEntry));
+	 memset(acts, 0, sizeof(GtkActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkActionEntry));
-       memset(acts, 0, sizeof(GtkActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       c->co = cagroup;
-       _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
-       gtk_action_group_add_actions_full(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c, (GDestroyNotify) destroy_d);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 c->co = cagroup;
+	 _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
+	 gtk_action_group_add_actions_full(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c, (GDestroyNotify) destroy_d);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -447,12 +417,9 @@ int
 clip_GTK_ACTIONGROUPADDTOGGLEACTIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -460,20 +427,19 @@ clip_GTK_ACTIONGROUPADDTOGGLEACTIONS(ClipMachine * ClipMachineMemory)
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkToggleActionEntry *acts;
+      {
+	 GtkToggleActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkToggleActionEntry));
+	 memset(acts, 0, sizeof(GtkToggleActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_toggle_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkToggleActionEntry));
-       memset(acts, 0, sizeof(GtkToggleActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_toggle_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       gtk_action_group_add_toggle_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 gtk_action_group_add_toggle_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -484,14 +450,10 @@ int
 clip_GTK_ACTIONGROUPADDTOGGLEACTIONSFULL(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 4);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 4);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -500,23 +462,21 @@ clip_GTK_ACTIONGROUPADDTOGGLEACTIONSFULL(ClipMachine * ClipMachineMemory)
    CHECKARG2(4, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkToggleActionEntry *acts;
+      {
+	 GtkToggleActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkToggleActionEntry));
+	 memset(acts, 0, sizeof(GtkToggleActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_toggle_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkToggleActionEntry));
-       memset(acts, 0, sizeof(GtkToggleActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_toggle_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       c->co = cagroup;
-       _clip_mclone(ClipMachineMemory, &c->cfunc2, cfunc);
-       gtk_action_group_add_toggle_actions_full(GTK_ACTION_GROUP
-						(cagroup->object), acts, n_actions, c, (GDestroyNotify) destroy_d);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 c->co = cagroup;
+	 _clip_mclone(ClipMachineMemory, &c->cfunc2, cfunc);
+	 gtk_action_group_add_toggle_actions_full(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, c, (GDestroyNotify) destroy_d);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -526,11 +486,9 @@ clip_GTK_ACTIONGROUPADDTOGGLEACTIONSFULL(ClipMachine * ClipMachineMemory)
 static void
 call_b(gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[1];
-
-   ClipVar   res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[1];
+   ClipVar res;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -546,16 +504,11 @@ int
 clip_GTK_ACTIONGROUPADDRADIOACTIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   gint      value = _clip_parni(ClipMachineMemory, 4);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 5);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   gint value = _clip_parni(ClipMachineMemory, 4);
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 5);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -565,22 +518,21 @@ clip_GTK_ACTIONGROUPADDRADIOACTIONS(ClipMachine * ClipMachineMemory)
    CHECKARG2(5, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkRadioActionEntry *acts;
+      {
+	 GtkRadioActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkRadioActionEntry));
+	 memset(acts, 0, sizeof(GtkRadioActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_radio_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkRadioActionEntry));
-       memset(acts, 0, sizeof(GtkRadioActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_radio_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       c->co = cagroup;
-       _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
-       gtk_action_group_add_radio_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, value, (GCallback) call_b, c);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 c->co = cagroup;
+	 _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
+	 gtk_action_group_add_radio_actions(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, value, (GCallback) call_b, c);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -591,18 +543,12 @@ int
 clip_GTK_ACTIONGROUPADDRADIOACTIONSFULL(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *carr = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   guint     n_actions = _clip_parni(ClipMachineMemory, 3);
-
-   gint      value = _clip_parni(ClipMachineMemory, 4);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 5);
-
-   ClipVar  *cfunc2 = _clip_spar(ClipMachineMemory, 6);
-
-   C_var    *c = NEW(C_var);
+   guint n_actions = _clip_parni(ClipMachineMemory, 3);
+   gint value = _clip_parni(ClipMachineMemory, 4);
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 5);
+   ClipVar *cfunc2 = _clip_spar(ClipMachineMemory, 6);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -613,25 +559,22 @@ clip_GTK_ACTIONGROUPADDRADIOACTIONSFULL(ClipMachine * ClipMachineMemory)
    CHECKARG2(6, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
 
    if (carr)
-    {
-       GtkRadioActionEntry *acts;
+      {
+	 GtkRadioActionEntry *acts;
+	 gint i;
 
-       gint      i;
+	 acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkRadioActionEntry));
+	 memset(acts, 0, sizeof(GtkRadioActionEntry) * carr->count_of_ClipArrVar);
+	 for (i = 0; i < n_actions; i++)
+	    _map_to_radio_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
 
-       acts = malloc(carr->count_of_ClipArrVar * sizeof(GtkRadioActionEntry));
-       memset(acts, 0, sizeof(GtkRadioActionEntry) * carr->count_of_ClipArrVar);
-       for (i = 0; i < n_actions; i++)
-	  _map_to_radio_action_entry(ClipMachineMemory, &carr->ClipVar_items_of_ClipArrVar[i], &acts[i]);
-
-       c->ClipMachineMemory = ClipMachineMemory;
-       c->co = cagroup;
-       _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
-       _clip_mclone(ClipMachineMemory, &c->cfunc2, cfunc2);
-       gtk_action_group_add_radio_actions_full(GTK_ACTION_GROUP
-					       (cagroup->object), acts,
-					       n_actions, value, (GCallback) call_b, c, (GDestroyNotify) destroy_d);
-       free(acts);
-    }
+	 c->ClipMachineMemory = ClipMachineMemory;
+	 c->co = cagroup;
+	 _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
+	 _clip_mclone(ClipMachineMemory, &c->cfunc2, cfunc2);
+	 gtk_action_group_add_radio_actions_full(GTK_ACTION_GROUP(cagroup->object), acts, n_actions, value, (GCallback) call_b, c, (GDestroyNotify) destroy_d);
+	 free(acts);
+      }
 
    return 0;
  err:
@@ -641,13 +584,10 @@ clip_GTK_ACTIONGROUPADDRADIOACTIONSFULL(ClipMachine * ClipMachineMemory)
 static gchar *
 translate_func(const gchar * path, gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[2];
-
-   ClipVar   str;
-
-   ClipVar   res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[2];
+   ClipVar str;
+   ClipVar res;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -661,8 +601,8 @@ translate_func(const gchar * path, gpointer data)
 
    _clip_destroy(c->ClipMachineMemory, &stack[0]);
 
-   if (res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-      return res.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	if (res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+		return res.ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
    else
       return NULL;
 
@@ -671,11 +611,9 @@ translate_func(const gchar * path, gpointer data)
 static void
 destroy_notify(gpointer data)
 {
-   C_var    *c = (C_var *) data;
-
-   ClipVar   stack[1];
-
-   ClipVar   res;
+   C_var *c = (C_var *) data;
+   ClipVar stack[1];
+   ClipVar res;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -691,12 +629,9 @@ int
 clip_GTK_ACTIONGROUPSETTRANSLATEFUNC(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
-
-   ClipVar  *cfunc2 = _clip_spar(ClipMachineMemory, 3);
-
-   C_var    *c = NEW(C_var);
+   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
+   ClipVar *cfunc2 = _clip_spar(ClipMachineMemory, 3);
+   C_var *c = NEW(C_var);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -707,8 +642,7 @@ clip_GTK_ACTIONGROUPSETTRANSLATEFUNC(ClipMachine * ClipMachineMemory)
    c->co = cagroup;
    _clip_mclone(ClipMachineMemory, &c->cfunc, cfunc);
    _clip_mclone(ClipMachineMemory, &c->cfunc2, cfunc2);
-   gtk_action_group_set_translate_func(GTK_ACTION_GROUP(cagroup->object),
-				       (GtkTranslateFunc) translate_func, c, (GtkDestroyNotify) destroy_notify);
+   gtk_action_group_set_translate_func(GTK_ACTION_GROUP(cagroup->object), (GtkTranslateFunc) translate_func, c, (GtkDestroyNotify) destroy_notify);
 
    return 0;
  err:
@@ -719,8 +653,7 @@ int
 clip_GTK_ACTIONGROUPSETTRANSLATIONDOMAIN(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *domain = _clip_parc(ClipMachineMemory, 2);
+   gchar *domain = _clip_parc(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));
@@ -738,10 +671,8 @@ int
 clip_GTK_ACTIONGROUPTRANSLATESTRING(ClipMachine * ClipMachineMemory)
 {
    C_object *cagroup = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *string = _clip_parc(ClipMachineMemory, 2);
-
-   gchar    *resstr;
+   gchar *string = _clip_parc(ClipMachineMemory, 2);
+   gchar *resstr;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cagroup, GTK_IS_ACTION_GROUP(cagroup->object));

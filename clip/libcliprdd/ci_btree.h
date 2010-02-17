@@ -58,7 +58,6 @@
 */
 
 struct _BT_NODE_;
-
 typedef struct _BT_NODE_
 {
    unsigned int left;
@@ -68,37 +67,33 @@ typedef struct _BT_NODE_
 
 typedef struct _BTREE_
 {
-   int       (*bt_compare) (void *op, void *key1, void *key2, int *uniqfound);
-   int       unique;
-   int       size;
+   int (*bt_compare) (void *op, void *key1, void *key2, int *uniqfound);
+   int unique;
+   int size;
    unsigned int count;
-   int       in;
-   char      type;
+   int in;
+   char type;
    unsigned int root;
    unsigned int cur;
    unsigned int fuu;
-   void     *data;
+   void *data;
 } BTREE;
 
-BTREE    *bt_create(int unique, int count, int size, int (*compare) (void *op, void *key1, void *key2, int *uniqfound));
+BTREE *bt_create(int unique, int count, int size, int (*compare) (void *op, void *key1, void *key2, int *uniqfound));
+void bt_destroy(BTREE * bt);
 
-void      bt_destroy(BTREE * bt);
+int bt_add(BTREE * bt, void *op, void *key);
+int bt_del(BTREE * bt);
 
-int       bt_add(BTREE * bt, void *op, void *key);
+int bt_first(BTREE * bt);
+int bt_last(BTREE * bt);
 
-int       bt_del(BTREE * bt);
+int bt_next(BTREE * bt);
+int bt_prev(BTREE * bt);
 
-int       bt_first(BTREE * bt);
+int bt_seek(BTREE * bt, void *op, void *key);
 
-int       bt_last(BTREE * bt);
-
-int       bt_next(BTREE * bt);
-
-int       bt_prev(BTREE * bt);
-
-int       bt_seek(BTREE * bt, void *op, void *key);
-
-void     *bt_key(BTREE * bt);
+void *bt_key(BTREE * bt);
 
 #define NKEYS(p) *(short*)(p)
 #define POS(p,i) *(short*)(((char*)(p))+2*sizeof(short)+sizeof(void*)+(i)*sizeof(short))
@@ -109,32 +104,25 @@ void     *bt_key(BTREE * bt);
 
 typedef struct _BTREE1_
 {
-   int       (*bt_compare) (void *op, void *key1, void *key2, int *uniqfound);
-   int       keysize;
-   int       recsize;
-   size_t    pagesize;
-   int       keysonpage;
-   int       halfpage;
-   void     *root;
-   void     *cur;
-   short     curpos;
-   int       limit;
-   int       memused;
-   int       unique;
+   int (*bt_compare) (void *op, void *key1, void *key2, int *uniqfound);
+   int keysize;
+   int recsize;
+   size_t pagesize;
+   int keysonpage;
+   int halfpage;
+   void *root;
+   void *cur;
+   short curpos;
+   int limit;
+   int memused;
+   int unique;
 } BTREE1;
 
-int       bt1_first(BTREE1 * bt);
-
-int       bt1_last(BTREE1 * bt);
-
-int       bt1_add(BTREE1 * bt, void *op, void *key);
-
-int       bt1_seek(BTREE1 * bt, void *op, void *key);
-
-int       bt1_next(BTREE1 * bt);
-
-BTREE1   *bt1_create(int unique, int keysize, int (*compare) (void *op, void *key1, void *key2, int *uniqfound), int limit);
-
-int       bt1_destroy(BTREE1 * bt);
-
-void     *bt1_key(BTREE1 * bt);
+int bt1_first(BTREE1 * bt);
+int bt1_last(BTREE1 * bt);
+int bt1_add(BTREE1 * bt, void *op, void *key);
+int bt1_seek(BTREE1 * bt, void *op, void *key);
+int bt1_next(BTREE1 * bt);
+BTREE1 *bt1_create(int unique, int keysize, int (*compare) (void *op, void *key1, void *key2, int *uniqfound), int limit);
+int bt1_destroy(BTREE1 * bt);
+void *bt1_key(BTREE1 * bt);

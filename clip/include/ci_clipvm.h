@@ -5,8 +5,8 @@
 
  */
 
-#ifndef CN_CLIPVM_H
-#define CN_CLIPVM_H
+#ifndef CI_CLIPVM_H
+#define CI_CLIPVM_H
 
 /* clip virtual machine codes */
 
@@ -142,8 +142,19 @@
 #define CLIP_REF_DESTROY	119
 #define CLIP_PUSH_REF_MEMVAR_NOADD	120
 
-#include "ci_clipvm/typedef_struct_OffsBucket.h"
-#include "ci_clipvm/typedef_struct_HashBucket.h"
+typedef struct
+{
+   short len;
+   short offs;
+}
+OffsBucket;
+
+typedef struct
+{
+   long hash;
+   long offs;
+}
+HashBucket;
 
 #define CLIPMAG "!<pobj>\n"
 #define CLIPMAGLEN 8

@@ -1,5 +1,5 @@
-#ifndef CN_BLOB_DEFINED
-#define CN_BLOB_DEFINED
+#ifndef CI_BLOB_DEFINED
+#define CI_BLOB_DEFINED
 
 
 #include "ci_dbinfo.ch"

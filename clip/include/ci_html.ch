@@ -1,4 +1,4 @@
-#ifndef CN_HTML_COMMANDS
+#ifndef CI_HTML_COMMANDS
 
 #include "ci_Clr_html.ch"
 
@@ -434,5 +434,5 @@
           <oFrm>:frame( <name>, <url>, <other>, <bgClr>, <bgFr>,;
                         <mw>, <mh>, <.res.>, <scrl>)
 
-#define CN_HTML_COMMANDS
+#define CI_HTML_COMMANDS
 #endif

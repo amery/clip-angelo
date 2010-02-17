@@ -48,10 +48,9 @@ clip_INIT___COMBO_BOX(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
 
    GtkWidget *wid = NULL;
-
    C_widget *cwid, *cbutton, *carrow, *cpopup, *cpopwin, *cframe;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -84,7 +83,6 @@ int
 clip_GTK_COMBOBOXHIDEPOPDOWNWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccbx = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ccbx, GTK_IS_COMBO_BOX);
    gtk_combobox_hide_popdown_window(GTK_COMBO_BOX(ccbx->widget));
    return 0;

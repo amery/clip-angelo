@@ -86,12 +86,9 @@ clip_INIT___SEPARATOR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HSEPARATORNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_hseparator_new();
    if (!wid)
@@ -109,12 +106,9 @@ clip_GTK_HSEPARATORNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VSEPARATORNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_vseparator_new();
    if (!wid)

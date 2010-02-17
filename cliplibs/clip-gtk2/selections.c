@@ -22,33 +22,28 @@
 int
 clip_GTK_TARGETLISTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *ctargets = _clip_par(ClipMachineMemory, 1);
+   ClipVar *ctargets = _clip_par(ClipMachineMemory, 1);
 
    CHECKARG(1, ARRAY_type_of_ClipVarType);
 
    if (ctargets)
-    {
-       guint     ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+      {
+	 guint ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	 GtkTargetEntry tags[ntags];
+	 GtkTargetList *list;
+	 C_object *clist;
+	 gint i;
 
-       GtkTargetEntry tags[ntags];
-
-       GtkTargetList *list;
-
-       C_object *clist;
-
-       gint      i;
-
-       for (i = 0; i < ntags; i++)
-	  _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i],
-				 &tags[i]);
-       list = gtk_target_list_new(tags, ntags);
-       if (list)
-	{
-	   clist = _register_object(ClipMachineMemory, list, GTK_TYPE_TARGET_LIST, NULL, NULL);
-	   if (clist)
-	      _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &clist->obj);
-	}
-    }
+	 for (i = 0; i < ntags; i++)
+	    _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i], &tags[i]);
+	 list = gtk_target_list_new(tags, ntags);
+	 if (list)
+	    {
+	       clist = _register_object(ClipMachineMemory, list, GTK_TYPE_TARGET_LIST, NULL, NULL);
+	       if (clist)
+		  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &clist->obj);
+	    }
+      }
 
    return 0;
  err:
@@ -89,12 +84,9 @@ int
 clip_GTK_TARGETLISTADD(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   guint     flags = _clip_parni(ClipMachineMemory, 3);
-
-   guint     info = _clip_parni(ClipMachineMemory, 4);
+   guint flags = _clip_parni(ClipMachineMemory, 3);
+   guint info = _clip_parni(ClipMachineMemory, 4);
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;
@@ -115,8 +107,7 @@ int
 clip_GTK_TARGETLISTADDTABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *ctargets = _clip_par(ClipMachineMemory, 2);
+   ClipVar *ctargets = _clip_par(ClipMachineMemory, 2);
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;
@@ -124,18 +115,15 @@ clip_GTK_TARGETLISTADDTABLE(ClipMachine * ClipMachineMemory)
    CHECKARG(2, ARRAY_type_of_ClipVarType);
 
    if (ctargets)
-    {
-       guint     ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+      {
+	 guint ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	 GtkTargetEntry tags[ntags];
+	 gint i;
 
-       GtkTargetEntry tags[ntags];
-
-       gint      i;
-
-       for (i = 0; i < ntags; i++)
-	  _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i],
-				 &tags[i]);
-       gtk_target_list_add_table((GtkTargetList *) (ctlist->object), tags, ntags);
-    }
+	 for (i = 0; i < ntags; i++)
+	    _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i], &tags[i]);
+	 gtk_target_list_add_table((GtkTargetList *) (ctlist->object), tags, ntags);
+      }
 
    return 0;
  err:
@@ -146,7 +134,6 @@ int
 clip_GTK_TARGETLISTREMOVE(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
@@ -165,10 +152,8 @@ int
 clip_GTK_TARGETLISTFIND(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
    C_object *catom = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   guint     info;
+   guint info;
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;
@@ -188,10 +173,8 @@ int
 clip_GTK_SELECTIONOWNERSET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cselection = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   guint32   time = _clip_parni(ClipMachineMemory, 3);
+   guint32 time = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (!cselection || cselection->type != GDK_TYPE_ATOM)
@@ -209,12 +192,9 @@ int
 clip_GTK_SELECTIONADDTARGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cselection = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_object *ctarget = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-
-   guint     info = _clip_parni(ClipMachineMemory, 4);
+   guint info = _clip_parni(ClipMachineMemory, 4);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (!cselection || cselection->type != GDK_TYPE_ATOM)
@@ -234,10 +214,8 @@ int
 clip_GTK_SELECTIONADDTARGETS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cselection = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   ClipVar  *ctargets = _clip_par(ClipMachineMemory, 3);
+   ClipVar *ctargets = _clip_par(ClipMachineMemory, 3);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (!cselection || cselection->type != GDK_TYPE_ATOM)
@@ -245,18 +223,15 @@ clip_GTK_SELECTIONADDTARGETS(ClipMachine * ClipMachineMemory)
    CHECKARG(3, ARRAY_type_of_ClipVarType);
 
    if (ctargets)
-    {
-       guint     ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+      {
+	 guint ntags = ctargets->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar;
+	 GtkTargetEntry tags[ntags];
+	 gint i;
 
-       GtkTargetEntry tags[ntags];
-
-       gint      i;
-
-       for (i = 0; i < ntags; i++)
-	  _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i],
-				 &tags[i]);
-       gtk_selection_add_targets(GTK_WIDGET(cwid->widget), (GdkAtom) (cselection->object), tags, ntags);
-    }
+	 for (i = 0; i < ntags; i++)
+	    _array_to_target_entry(ClipMachineMemory, &ctargets->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i], &tags[i]);
+	 gtk_selection_add_targets(GTK_WIDGET(cwid->widget), (GdkAtom) (cselection->object), tags, ntags);
+      }
 
    return 0;
  err:
@@ -267,7 +242,6 @@ int
 clip_GTK_SELECTIONCLEARTARGETS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cselection = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -285,12 +259,9 @@ int
 clip_GTK_SELECTIONCONVERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-
    C_object *cselection = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    C_object *ctarget = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-
-   guint32   time = _clip_parni(ClipMachineMemory, 4);
+   guint32 time = _clip_parni(ClipMachineMemory, 4);
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (!cselection || cselection->type != GDK_TYPE_ATOM)
@@ -310,14 +281,10 @@ int
 clip_GTK_SELECTIONDATASET(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
    C_object *ctype = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
-   gint      format = _clip_parni(ClipMachineMemory, 3);
-
+   gint format = _clip_parni(ClipMachineMemory, 3);
    const guchar *data = (const guchar *) _clip_parc(ClipMachineMemory, 4);
-
-   gint      length = _clip_parni(ClipMachineMemory, 5);
+   gint length = _clip_parni(ClipMachineMemory, 5);
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -338,10 +305,8 @@ int
 clip_GTK_SELECTIONDATASETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *str = _clip_parc(ClipMachineMemory, 2);
-
-   gint      length = _clip_parni(ClipMachineMemory, 3);
+   gchar *str = _clip_parc(ClipMachineMemory, 2);
+   gint length = _clip_parni(ClipMachineMemory, 3);
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -362,8 +327,7 @@ int
 clip_GTK_SELECTIONDATAGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
-   gchar    *str;
+   gchar *str;
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -382,14 +346,10 @@ int
 clip_GTK_SELECTIONDATAGETTARGETS(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
-   ClipVar  *ctargets = _clip_par(ClipMachineMemory, 2);
-
-   GdkAtom  *targets;
-
-   gint      natoms;
-
-   long      l;
+   ClipVar *ctargets = _clip_par(ClipMachineMemory, 2);
+   GdkAtom *targets;
+   gint natoms;
+   long l;
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -399,11 +359,10 @@ clip_GTK_SELECTIONDATAGETTARGETS(ClipMachine * ClipMachineMemory)
    l = natoms;
    _clip_array(ClipMachineMemory, ctargets, 1, &l);
    for (l = 0; l < natoms; l++)
-    {
-       C_object *ca = _register_object(ClipMachineMemory, targets[l], GDK_TYPE_ATOM, NULL, NULL);
-
-       _clip_aset(ClipMachineMemory, ctargets, &ca->obj, 1, &l);
-    }
+      {
+	 C_object *ca = _register_object(ClipMachineMemory, targets[l], GDK_TYPE_ATOM, NULL, NULL);
+	 _clip_aset(ClipMachineMemory, ctargets, &ca->obj, 1, &l);
+      }
    _clip_storni(ClipMachineMemory, natoms, 3, 0);
 
    g_free(targets);
@@ -445,9 +404,7 @@ int
 clip_GTK_SELECTIONDATACOPY(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
    GtkSelectionData *snew;
-
    C_object *cnew;
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
@@ -456,11 +413,11 @@ clip_GTK_SELECTIONDATACOPY(ClipMachine * ClipMachineMemory)
    snew = gtk_selection_data_copy((GtkSelectionData *) (cselection->object));
 
    if (snew)
-    {
-       cnew = _register_object(ClipMachineMemory, snew, GTK_TYPE_SELECTION_DATA, NULL, NULL);
-       if (cnew)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cnew->obj);
-    }
+      {
+	 cnew = _register_object(ClipMachineMemory, snew, GTK_TYPE_SELECTION_DATA, NULL, NULL);
+	 if (cnew)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cnew->obj);
+      }
 
    return 0;
  err:
@@ -487,9 +444,7 @@ int
 clip_GTK_SELECTIONDATAGETPIXBUF(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
    GdkPixbuf *pix;
-
    C_object *cpix;
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
@@ -498,13 +453,13 @@ clip_GTK_SELECTIONDATAGETPIXBUF(ClipMachine * ClipMachineMemory)
    pix = gtk_selection_data_get_pixbuf((GtkSelectionData *) (cselection->object));
 
    if (pix)
-    {
-       cpix = _list_get_cobject(ClipMachineMemory, pix);
-       if (!cpix)
-	  cpix = _register_object(ClipMachineMemory, pix, GDK_TYPE_PIXBUF, NULL, NULL);
-       if (cpix)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpix->obj);
-    }
+      {
+	 cpix = _list_get_cobject(ClipMachineMemory, pix);
+	 if (!cpix)
+	    cpix = _register_object(ClipMachineMemory, pix, GDK_TYPE_PIXBUF, NULL, NULL);
+	 if (cpix)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpix->obj);
+      }
 
    return 0;
  err:
@@ -515,10 +470,8 @@ int
 clip_GTK_SELECTIONDATAGETURIS(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
-   gchar   **uris;
-
-   ClipVar  *cv = RETPTR(ClipMachineMemory);
+   gchar **uris;
+   ClipVar *cv = RETPTR(ClipMachineMemory);
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -526,23 +479,20 @@ clip_GTK_SELECTIONDATAGETURIS(ClipMachine * ClipMachineMemory)
    uris = gtk_selection_data_get_uris((GtkSelectionData *) (cselection->object));
 
    if (uris)
-    {
-       long      l;
+      {
+	 long l;
+	 gchar **u = uris;
+	 _clip_array(ClipMachineMemory, cv, 1, 0);
 
-       gchar   **u = uris;
+	 for (l = 0; u; l++)
+	    {
+	       ClipVar *s = 0;
+	       _clip_var_str(u[0], strlen(u[0]), s);
+	       _clip_aadd(ClipMachineMemory, cv, s);
+	    }
 
-       _clip_array(ClipMachineMemory, cv, 1, 0);
-
-       for (l = 0; u; l++)
-	{
-	   ClipVar  *s = 0;
-
-	   _clip_var_str(u[0], strlen(u[0]), s);
-	   _clip_aadd(ClipMachineMemory, cv, s);
-	}
-
-       g_strfreev(uris);
-    }
+	 g_strfreev(uris);
+      }
 
    return 0;
  err:
@@ -553,7 +503,6 @@ int
 clip_GTK_SELECTIONDATASETPIXBUF(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
    C_object *cpix = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
@@ -571,14 +520,10 @@ int
 clip_GTK_SELECTIONDATASETURIS(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
    ClipArrVar *ca = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-
-   gchar   **uris = 0;
-
-   long      l;
-
-   int       i;
+   gchar **uris = 0;
+   long l;
+   int i;
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -588,14 +533,13 @@ clip_GTK_SELECTIONDATASETURIS(ClipMachine * ClipMachineMemory)
    *uris = calloc(l + 1, sizeof(gchar));
    *uris[l + 1] = 0;
    for (i = 0; i < l; i++)
-    {
-       ClipVar  *s = ca->ClipVar_items_of_ClipArrVar + i;
+      {
+	 ClipVar *s = ca->ClipVar_items_of_ClipArrVar + i;
+	 if (s->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != CHARACTER_type_of_ClipVarType)
+	    goto err;
 
-       if (s->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType != CHARACTER_type_of_ClipVarType)
-	  goto err;
-
-       strcpy(uris[i], s->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-    }
+	 strcpy(uris[i], s->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
+      }
    gtk_selection_data_set_uris((GtkSelectionData *) (cselection->object), uris);
    g_strfreev(uris);
 
@@ -608,8 +552,7 @@ int
 clip_GTK_SELECTIONDATATARGETSINCLUDEIMAGE(ClipMachine * ClipMachineMemory)
 {
    C_object *cselection = _fetch_co_arg(ClipMachineMemory);
-
-   gboolean  writable = _clip_parl(ClipMachineMemory, 2);
+   gboolean writable = _clip_parl(ClipMachineMemory, 2);
 
    if (!cselection || cselection->type != GTK_TYPE_SELECTION_DATA)
       goto err;
@@ -627,10 +570,8 @@ int
 clip_GTK_TARGETLISTADDIMAGETARGETS(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
-   guint     info = _clip_parni(ClipMachineMemory, 2);
-
-   gboolean  writable = _clip_parl(ClipMachineMemory, 3);
+   guint info = _clip_parni(ClipMachineMemory, 2);
+   gboolean writable = _clip_parl(ClipMachineMemory, 3);
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;
@@ -649,8 +590,7 @@ int
 clip_GTK_TARGETLISTADDTEXTTARGETS(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
-   guint     info = _clip_parni(ClipMachineMemory, 2);
+   guint info = _clip_parni(ClipMachineMemory, 2);
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;
@@ -668,8 +608,7 @@ int
 clip_GTK_TARGETLISTADDURITARGETS(ClipMachine * ClipMachineMemory)
 {
    C_object *ctlist = _fetch_co_arg(ClipMachineMemory);
-
-   guint     info = _clip_parni(ClipMachineMemory, 2);
+   guint info = _clip_parni(ClipMachineMemory, 2);
 
    if (!ctlist || ctlist->type != GTK_TYPE_TARGET_LIST)
       goto err;

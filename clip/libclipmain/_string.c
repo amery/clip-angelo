@@ -1858,7 +1858,7 @@ clip_DESCEND(ClipMachine * ClipMachineMemory)
     case NUMERIC_type_of_ClipVarType:
        if (vp->ClipType_t_of_ClipVar.memo_of_ClipType)
 	{
-	   _clip_retnr(ClipMachineMemory, rational_inv(vp->ClipRationalVar_r_of_ClipVar.rational_of_ClipRationalVar), l, d);
+		_clip_retnr(ClipMachineMemory, rational_inv(vp->ClipRationalVar_r_of_ClipVar.Struc_rational_of_ClipRationalVar), l, d);
 	}
        else
 	{

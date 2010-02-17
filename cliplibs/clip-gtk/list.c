@@ -18,11 +18,10 @@
 /****************** SIGNALS for List  *********************/
 
 /* Signal handlers */
-static    gint
+static gint
 handle_select_child_signal(GtkWidget * widget, GtkWidget * wid, C_signal * cs)
 {
    C_widget *cwid;
-
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, wid);
    if (!cwid)
@@ -32,11 +31,10 @@ handle_select_child_signal(GtkWidget * widget, GtkWidget * wid, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 handle_unselect_child_signal(GtkWidget * widget, GtkWidget * wid, C_signal * cs)
 {
    C_widget *cwid;
-
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, wid);
    if (!cwid)
@@ -46,13 +44,11 @@ handle_unselect_child_signal(GtkWidget * widget, GtkWidget * wid, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
+static gint
 list_emit_signal(C_widget * clist, const gchar * signal_name)
 {
    ClipMachine *ClipMachineMemory = clist->cmachine;
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-
    CHECKARG2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_signal_emit_by_name(GTK_OBJECT(clist->widget), signal_name, cwid->widget, clist);
@@ -106,12 +102,9 @@ clip_INIT___LIST(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_LISTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_list_new();
@@ -133,86 +126,70 @@ int
 clip_GTK_LISTINSERTITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-   gint      position = _clip_parni(ClipMachineMemory, 3);
-
-   GList    *items = NULL;
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   gint position = _clip_parni(ClipMachineMemory, 3);
+   GList *items = NULL;
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG4(2, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       position = 1;
    switch (cv->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       items =
-	g_list_append(items,
-		      gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-       break;
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+	 break;
 
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       {
-	  C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
-
-	  CHECKCWID(citem, GTK_IS_WIDGET);
-	  if (GTK_IS_LIST_ITEM(citem->widget))
-	     items = g_list_append(items, citem->widget);
-	  else
-	   {
-	      GtkWidget *item = gtk_list_item_new();
-
-	      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-	      items = g_list_append(items, item);
-	   }
-	  break;
-       }
-
-    case ARRAY_type_of_ClipVarType:
-       {
-	  C_widget *citem;
-
-	  GtkWidget *item;
-
-	  int       i;
-
-	  for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-	   {
-	      switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.
-		      ClipVartype_type_of_ClipType)
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 {
+	    C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
+	    CHECKCWID(citem, GTK_IS_WIDGET);
+	    if (GTK_IS_LIST_ITEM(citem->widget))
+	       items = g_list_append(items, citem->widget);
+	    else
 	       {
-	       case CHARACTER_type_of_ClipVarType:
-		  items =
-		   g_list_append(items,
-				 gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.
-							      ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.
-							      ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-		  break;
-	       case MAP_type_of_ClipVarType:
-	       case NUMERIC_type_of_ClipVarType:
-		  citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-		  CHECKCWID(citem, GTK_IS_WIDGET);
-		  if (GTK_IS_LIST_ITEM(citem->widget))
-		     items = g_list_append(items, citem->widget);
-		  else
-		   {
-		      item = gtk_list_item_new();
-		      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-		      items = g_list_append(items, item);
-		   }
-		  break;
-	       default:
-		  break;
+		  GtkWidget *item = gtk_list_item_new();
+		  gtk_container_add(GTK_CONTAINER(item), citem->widget);
+		  items = g_list_append(items, item);
 	       }
-	   }
+	    break;
+	 }
 
-       }
-    default:
-       break;
-    }
+      case ARRAY_type_of_ClipVarType:
+	 {
+	    C_widget *citem;
+	    GtkWidget *item;
+	    int i;
+	    for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
+	       {
+		  switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+		     {
+		     case CHARACTER_type_of_ClipVarType:
+			items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+			break;
+		     case MAP_type_of_ClipVarType:
+		     case NUMERIC_type_of_ClipVarType:
+			citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+			CHECKCWID(citem, GTK_IS_WIDGET);
+			if (GTK_IS_LIST_ITEM(citem->widget))
+			   items = g_list_append(items, citem->widget);
+			else
+			   {
+			      item = gtk_list_item_new();
+			      gtk_container_add(GTK_CONTAINER(item), citem->widget);
+			      items = g_list_append(items, item);
+			   }
+			break;
+		     default:
+			break;
+		     }
+	       }
+
+	 }
+      default:
+	 break;
+      }
    gtk_list_insert_items(GTK_LIST(clst->widget), items, position - 1);
    return 0;
  err:
@@ -224,81 +201,66 @@ int
 clip_GTK_LISTAPPENDITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-   GList    *items = NULL;
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   GList *items = NULL;
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG4(2, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    switch (cv->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       items =
-	g_list_append(items,
-		      gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-       break;
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+	 break;
 
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       {
-	  C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
-
-	  CHECKCWID(citem, GTK_IS_WIDGET);
-	  if (GTK_IS_LIST_ITEM(citem->widget))
-	     items = g_list_append(items, citem->widget);
-	  else
-	   {
-	      GtkWidget *item = gtk_list_item_new();
-
-	      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-	      items = g_list_append(items, item);
-	   }
-	  break;
-       }
-
-    case ARRAY_type_of_ClipVarType:
-       {
-	  C_widget *citem;
-
-	  GtkWidget *item;
-
-	  int       i;
-
-	  for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-	   {
-	      switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.
-		      ClipVartype_type_of_ClipType)
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 {
+	    C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
+	    CHECKCWID(citem, GTK_IS_WIDGET);
+	    if (GTK_IS_LIST_ITEM(citem->widget))
+	       items = g_list_append(items, citem->widget);
+	    else
 	       {
-	       case CHARACTER_type_of_ClipVarType:
-		  items =
-		   g_list_append(items,
-				 gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.
-							      ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.
-							      ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-		  break;
-	       case MAP_type_of_ClipVarType:
-	       case NUMERIC_type_of_ClipVarType:
-		  citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-		  CHECKCWID(citem, GTK_IS_WIDGET);
-		  if (GTK_IS_LIST_ITEM(citem->widget))
-		     items = g_list_append(items, citem->widget);
-		  else
-		   {
-		      item = gtk_list_item_new();
-		      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-		      items = g_list_append(items, item);
-		   }
-		  break;
-	       default:
-		  break;
+		  GtkWidget *item = gtk_list_item_new();
+		  gtk_container_add(GTK_CONTAINER(item), citem->widget);
+		  items = g_list_append(items, item);
 	       }
-	   }
+	    break;
+	 }
 
-       }
-    default:
-       break;
-    }
+      case ARRAY_type_of_ClipVarType:
+	 {
+	    C_widget *citem;
+	    GtkWidget *item;
+	    int i;
+	    for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
+	       {
+		  switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+		     {
+		     case CHARACTER_type_of_ClipVarType:
+			items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+			break;
+		     case MAP_type_of_ClipVarType:
+		     case NUMERIC_type_of_ClipVarType:
+			citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+			CHECKCWID(citem, GTK_IS_WIDGET);
+			if (GTK_IS_LIST_ITEM(citem->widget))
+			   items = g_list_append(items, citem->widget);
+			else
+			   {
+			      item = gtk_list_item_new();
+			      gtk_container_add(GTK_CONTAINER(item), citem->widget);
+			      items = g_list_append(items, item);
+			   }
+			break;
+		     default:
+			break;
+		     }
+	       }
+
+	 }
+      default:
+	 break;
+      }
    gtk_list_append_items(GTK_LIST(clst->widget), items);
    return 0;
  err:
@@ -310,81 +272,66 @@ int
 clip_GTK_LISTPREPENDITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-   GList    *items = NULL;
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   GList *items = NULL;
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG4(2, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    switch (cv->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-    {
-    case CHARACTER_type_of_ClipVarType:
-       items =
-	g_list_append(items,
-		      gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-       break;
+      {
+      case CHARACTER_type_of_ClipVarType:
+	 items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+	 break;
 
-    case MAP_type_of_ClipVarType:
-    case NUMERIC_type_of_ClipVarType:
-       {
-	  C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
-
-	  CHECKCWID(citem, GTK_IS_WIDGET);
-	  if (GTK_IS_LIST_ITEM(citem->widget))
-	     items = g_list_append(items, citem->widget);
-	  else
-	   {
-	      GtkWidget *item = gtk_list_item_new();
-
-	      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-	      items = g_list_append(items, item);
-	   }
-	  break;
-       }
-
-    case ARRAY_type_of_ClipVarType:
-       {
-	  C_widget *citem;
-
-	  GtkWidget *item;
-
-	  int       i;
-
-	  for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-	   {
-	      switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.
-		      ClipVartype_type_of_ClipType)
+      case MAP_type_of_ClipVarType:
+      case NUMERIC_type_of_ClipVarType:
+	 {
+	    C_widget *citem = _fetch_cwidget(ClipMachineMemory, cv);
+	    CHECKCWID(citem, GTK_IS_WIDGET);
+	    if (GTK_IS_LIST_ITEM(citem->widget))
+	       items = g_list_append(items, citem->widget);
+	    else
 	       {
-	       case CHARACTER_type_of_ClipVarType:
-		  items =
-		   g_list_append(items,
-				 gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.
-							      ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.
-							      ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
-		  break;
-	       case MAP_type_of_ClipVarType:
-	       case NUMERIC_type_of_ClipVarType:
-		  citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-		  CHECKCWID(citem, GTK_IS_WIDGET);
-		  if (GTK_IS_LIST_ITEM(citem->widget))
-		     items = g_list_append(items, citem->widget);
-		  else
-		   {
-		      item = gtk_list_item_new();
-		      gtk_container_add(GTK_CONTAINER(item), citem->widget);
-		      items = g_list_append(items, item);
-		   }
-		  break;
-	       default:
-		  break;
+		  GtkWidget *item = gtk_list_item_new();
+		  gtk_container_add(GTK_CONTAINER(item), citem->widget);
+		  items = g_list_append(items, item);
 	       }
-	   }
+	    break;
+	 }
 
-       }
-    default:
-       break;
-    }
+      case ARRAY_type_of_ClipVarType:
+	 {
+	    C_widget *citem;
+	    GtkWidget *item;
+	    int i;
+	    for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
+	       {
+		  switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+		     {
+		     case CHARACTER_type_of_ClipVarType:
+			items = g_list_append(items, gtk_list_item_new_with_label(cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf));
+			break;
+		     case MAP_type_of_ClipVarType:
+		     case NUMERIC_type_of_ClipVarType:
+			citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+			CHECKCWID(citem, GTK_IS_WIDGET);
+			if (GTK_IS_LIST_ITEM(citem->widget))
+			   items = g_list_append(items, citem->widget);
+			else
+			   {
+			      item = gtk_list_item_new();
+			      gtk_container_add(GTK_CONTAINER(item), citem->widget);
+			      items = g_list_append(items, item);
+			   }
+			break;
+		     default:
+			break;
+		     }
+	       }
+
+	 }
+      default:
+	 break;
+      }
    gtk_list_prepend_items(GTK_LIST(clst->widget), items);
    return 0;
  err:
@@ -396,31 +343,26 @@ int
 clip_GTK_LISTREMOVEITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-   GList    *items = NULL;
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   GList *items = NULL;
    C_widget *citem;
-
-   int       i;
-
+   int i;
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG(2, ARRAY_type_of_ClipVarType);
    for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-    {
-       switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-	{
-	case MAP_type_of_ClipVarType:
-	case NUMERIC_type_of_ClipVarType:
-	   citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-	   CHECKCWID(citem, GTK_IS_LIST_ITEM);
-	   items = g_list_append(items, citem->widget);
-	   break;
-	default:
-	   break;
-	}
-    }
+      {
+	 switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+	    {
+	    case MAP_type_of_ClipVarType:
+	    case NUMERIC_type_of_ClipVarType:
+	       citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+	       CHECKCWID(citem, GTK_IS_LIST_ITEM);
+	       items = g_list_append(items, citem->widget);
+	       break;
+	    default:
+	       break;
+	    }
+      }
    gtk_list_remove_items(GTK_LIST(clst->widget), items);
    return 0;
  err:
@@ -433,31 +375,26 @@ int
 clip_GTK_LISTREMOVEITEMSNOUNREF(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
-
-   GList    *items = NULL;
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   GList *items = NULL;
    C_widget *citem;
-
-   int       i;
-
+   int i;
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG(2, ARRAY_type_of_ClipVarType);
    for (i = 0; i < cv->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-    {
-       switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
-	{
-	case MAP_type_of_ClipVarType:
-	case NUMERIC_type_of_ClipVarType:
-	   citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-	   CHECKCWID(citem, GTK_IS_LIST_ITEM);
-	   items = g_list_append(items, citem->widget);
-	   break;
-	default:
-	   break;
-	}
-    }
+      {
+	 switch (cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType)
+	    {
+	    case MAP_type_of_ClipVarType:
+	    case NUMERIC_type_of_ClipVarType:
+	       citem = _fetch_cwidget(ClipMachineMemory, &cv->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+	       CHECKCWID(citem, GTK_IS_LIST_ITEM);
+	       items = g_list_append(items, citem->widget);
+	       break;
+	    default:
+	       break;
+	    }
+      }
    gtk_list_remove_items_no_unref(GTK_LIST(clst->widget), items);
    return 0;
  err:
@@ -472,11 +409,8 @@ int
 clip_GTK_LISTCLEARITEMS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      start = INT_OPTION(ClipMachineMemory, 2, 1);
-
-   gint      end = INT_OPTION(ClipMachineMemory, 3, 1);
-
+   gint start = INT_OPTION(ClipMachineMemory, 2, 1);
+   gint end = INT_OPTION(ClipMachineMemory, 3, 1);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -492,9 +426,7 @@ int
 clip_GTK_LISTSELECTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      item = INT_OPTION(ClipMachineMemory, 2, 1);
-
+   gint item = INT_OPTION(ClipMachineMemory, 2, 1);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_list_select_item(GTK_LIST(clst->widget), item - 1);
@@ -509,9 +441,7 @@ int
 clip_GTK_LISTUNSELECTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      item = INT_OPTION(ClipMachineMemory, 2, 1);
-
+   gint item = INT_OPTION(ClipMachineMemory, 2, 1);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_list_unselect_item(GTK_LIST(clst->widget), item - 1);
@@ -525,9 +455,7 @@ int
 clip_GTK_LISTSELECTCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cchild = CWIDGET_ARG(ClipMachineMemory, 2);
-
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cchild, GTK_IS_LIST_ITEM);
@@ -542,9 +470,7 @@ int
 clip_GTK_LISTUNSELECTCHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cchild = CWIDGET_ARG(ClipMachineMemory, 2);
-
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cchild, GTK_IS_LIST_ITEM);
@@ -559,9 +485,7 @@ int
 clip_GTK_LISTCHILDPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cchild = CWIDGET_ARG(ClipMachineMemory, 2);
-
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cchild, GTK_IS_LIST_ITEM);
@@ -595,9 +519,7 @@ int
 clip_GTK_LISTSETSELECTIONMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    GtkSelectionMode mode = _clip_parni(ClipMachineMemory, 2);
-
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_list_set_selection_mode(GTK_LIST(clst->widget), mode);
@@ -612,13 +534,9 @@ int
 clip_GTK_LISTEXTENDSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    GtkScrollType scroll_type = _clip_parni(ClipMachineMemory, 2);
-
-   gfloat    position = _clip_parnd(ClipMachineMemory, 3);
-
-   gboolean  auto_start_selection = BOOL_OPTION(ClipMachineMemory, 4, TRUE);
-
+   gfloat position = _clip_parnd(ClipMachineMemory, 3);
+   gboolean auto_start_selection = BOOL_OPTION(ClipMachineMemory, 4, TRUE);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -635,7 +553,6 @@ int
 clip_GTK_LISTSTARTSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_start_selection(GTK_LIST(clst->widget));
    return 0;
@@ -649,7 +566,6 @@ int
 clip_GTK_LISTENDSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_end_selection(GTK_LIST(clst->widget));
    return 0;
@@ -663,7 +579,6 @@ int
 clip_GTK_LISTSELECTALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_select_all(GTK_LIST(clst->widget));
    return 0;
@@ -677,7 +592,6 @@ int
 clip_GTK_LISTUNSELECTALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_unselect_all(GTK_LIST(clst->widget));
    return 0;
@@ -696,11 +610,8 @@ int
 clip_GTK_LISTSCROLLHORIZONTAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    GtkScrollType scroll_type = _clip_parni(ClipMachineMemory, 2);
-
-   gfloat    position = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat position = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -721,11 +632,8 @@ int
 clip_GTK_LISTSCROLLVERTICAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    GtkScrollType scroll_type = _clip_parni(ClipMachineMemory, 2);
-
-   gfloat    position = _clip_parnd(ClipMachineMemory, 3);
-
+   gfloat position = _clip_parnd(ClipMachineMemory, 3);
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -741,7 +649,6 @@ int
 clip_GTK_LISTTOGGLEADDMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_toggle_add_mode(GTK_LIST(clst->widget));
    return 0;
@@ -757,7 +664,6 @@ int
 clip_GTK_LISTTOGGLEFOCUSROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_toggle_focus_row(GTK_LIST(clst->widget));
    return 0;
@@ -771,9 +677,7 @@ int
 clip_GTK_LISTTOGGLEROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *citem = CWIDGET_ARG(ClipMachineMemory, 2);
-
    CHECKCWID(clst, GTK_IS_LIST);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(citem, GTK_IS_LIST_ITEM);
@@ -790,7 +694,6 @@ int
 clip_GTK_LISTUNDOSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_undo_selection(GTK_LIST(clst->widget));
    return 0;
@@ -804,7 +707,6 @@ int
 clip_GTK_LISTENDDRAGSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(clst, GTK_IS_LIST);
    gtk_list_end_drag_selection(GTK_LIST(clst->widget));
    return 0;

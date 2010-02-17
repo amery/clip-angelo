@@ -4,27 +4,28 @@
 	Angelo GIRARDI
  */
 
-#ifndef CN_YTYPES_H
-#define CN_YTYPES_H
+#ifndef CI_YTYPES_H
+#define CI_YTYPES_H
 
 typedef unsigned char Uchar;
-
 typedef unsigned int Uint;
-
 typedef unsigned short Ushort;
-
 typedef unsigned long Ulong;
 
 #if defined(__GNUC__)
 typedef long long llong;
-
 typedef unsigned long long Ullong;
 #else
 typedef __int64 llong;
-
 typedef unsigned __int64 Ullong;
 #endif
-#include "ci_clitypes/typedef_struct_OffsEntry.h"
+
+typedef struct
+{
+   long hash;
+   long offs;
+}
+OffsEntry;
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))
 #define NEWVECT(type,len) ((type*)calloc(sizeof(type),(len)))

@@ -77,7 +77,7 @@ typedef struct Parser
 	char *beg;
 	char *end;
 	char *ptr;
-	ClipMachine *ClipMachineMemory;
+	ClipMachine *ClipMemoryStore;
 	char *func;
 	int errcount;
 	char *errbuf;
@@ -1115,11 +1115,11 @@ rtlex(yylvalp, pp)
 						long hash;
 
 						hash = yylvalp->Long = _clip_casehashbytes(0, beg, l);
-						s = (char *) HashTable_fetch(pp->ClipMachineMemory->hashnames, hash);
+						s = (char *) HashTable_fetch(pp->ClipMemoryStore->hashnames, hash);
 						if (!s)
 						{
 							s = _clip_memdup(beg, l);
-							HashTable_store(pp->ClipMachineMemory->hashnames, s, hash);
+							HashTable_store(pp->ClipMemoryStore->hashnames, s, hash);
 						}
 					}
 					tok = NAME;
@@ -1281,7 +1281,7 @@ destroy_Function(Function *fp)
 }
 
 int
-_clip_compile_Block(ClipMachine * ClipMachineMemory, char *str, int len, ClipBlock * dest)
+_clip_compile_Block(ClipMachine * ClipMemoryStore, char *str, int len, ClipBlock * dest)
 {
 	Parser parser;
 	int ret=0,i;
@@ -1289,7 +1289,7 @@ _clip_compile_Block(ClipMachine * ClipMachineMemory, char *str, int len, ClipBlo
 	memset(&parser, 0, sizeof(parser));
 	parser.beg = parser.ptr = str;
 	parser.end = str+len;
-	parser.ClipMachineMemory=ClipMachineMemory;
+	parser.ClipMemoryStore=ClipMemoryStore;
 	init_Function(&parser.main);
 	parser.curFunction = &parser.main;
 	parser.lex_state = L_norm;
@@ -1301,7 +1301,7 @@ _clip_compile_Block(ClipMachine * ClipMachineMemory, char *str, int len, ClipBlo
 	{
 		dest->file_of_ClipBlock = 0;
 		dest->function_of_ClipBlock = 0;
-		_clip_trap_printf( ClipMachineMemory, ClipMachineMemory->fp->filename_of_ClipFrame, ClipMachineMemory->fp->line_of_ClipFrame,
+		_clip_trap_printf( ClipMemoryStore, ClipMemoryStore->fp->filename_of_ClipFrame, ClipMemoryStore->fp->line_of_ClipFrame,
 			"runtime codeblock compiler: '%.*s': %s",
 			len, str, parser.errbuf);
 	}
@@ -1443,7 +1443,7 @@ installName(Parser *parser, long hash, int memvar, int lval, long area, int fld)
 		else
 		{
 			int fno;
-			if (parser->rdd_flag1 && (fno=_clip_rddfieldno(parser->ClipMachineMemory, parser->rdd_no, hash)) >= 0)
+			if (parser->rdd_flag1 && (fno=_clip_rddfieldno(parser->ClipMemoryStore, parser->rdd_no, hash)) >= 0)
 			{
 				putByte_Buf(parser->out, CLIP_RDDFIELD);
 				putShort_Buf(parser->out, parser->rdd_no);

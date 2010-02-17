@@ -34,8 +34,7 @@ _clip_type_name_file_chooser_button()
 int
 clip_INIT___FILE_CHOOSER_BUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_file_chooser_button,
-		    _clip_type_name_file_chooser_button, _gtk_type_file_chooser_button, _gtk_type_hbox, NULL);
+   _wtype_table_put(_clip_type_file_chooser_button, _clip_type_name_file_chooser_button, _gtk_type_file_chooser_button, _gtk_type_hbox, NULL);
    return 0;
 }
 
@@ -44,14 +43,10 @@ clip_INIT___FILE_CHOOSER_BUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *title = _clip_parc(ClipMachineMemory, 2);
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 3);
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -73,16 +68,11 @@ clip_GTK_FILECHOOSERBUTTONNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERBUTTONNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
-   gchar    *title = _clip_parc(ClipMachineMemory, 2);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   gchar *title = _clip_parc(ClipMachineMemory, 2);
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 3);
-
-   gchar    *backend = _clip_parc(ClipMachineMemory, 4);
-
+   gchar *backend = _clip_parc(ClipMachineMemory, 4);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -104,12 +94,9 @@ clip_GTK_FILECHOOSERBUTTONNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERBUTTONNEWWITHDIALOG(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    C_widget *cdlg = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -131,8 +118,7 @@ int
 clip_GTK_FILECHOOSERBUTTONGETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *title;
+   gchar *title;
 
    CHECKCWID(cbutton, GTK_IS_FILE_CHOOSER_BUTTON);
 
@@ -151,8 +137,7 @@ int
 clip_GTK_FILECHOOSERBUTTONSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *title = _clip_parc(ClipMachineMemory, 2);
+   gchar *title = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cbutton, GTK_IS_FILE_CHOOSER_BUTTON);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -184,8 +169,7 @@ int
 clip_GTK_FILECHOOSERBUTTONSETWIDTHCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbutton = _fetch_cw_arg(ClipMachineMemory);
-
-   gint      width = _clip_parni(ClipMachineMemory, 2);
+   gint width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cbutton, GTK_IS_FILE_CHOOSER_BUTTON);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);

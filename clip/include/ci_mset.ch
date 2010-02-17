@@ -1,5 +1,5 @@
-#ifndef CN_MSET_DEFINED
-#define CN_MSET_DEFINED
+#ifndef CI_MSET_DEFINED
+#define CI_MSET_DEFINED
 
 #define _MSET_DELETE   1	//������� ��� ��������� �� sedit`a
 #define _MSET_RIGHTBANK  2	//����� ������ �������, ��������� ��� �������������� GET (��� ���������� � GetSys )

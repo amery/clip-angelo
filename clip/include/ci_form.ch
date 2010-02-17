@@ -1,5 +1,5 @@
-#ifndef CN_FORM_DEFINED
-#define CN_FORM_DEFINED
+#ifndef CI_FORM_DEFINED
+#define CI_FORM_DEFINED
 
 #define FORM_DISPLAYWINDOW      1
 #define FORM_DISPLAYCAPTIONS    2

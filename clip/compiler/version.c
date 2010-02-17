@@ -9,4 +9,10 @@
 #include <stdio.h>
 #include "ci_clipcfg.h"
 #include "license.h"
-#include "version/printVersion.h"
+
+void
+printVersion(FILE * file)
+{
+   fprintf(file, "%s.%s\n", CLIP_VERSION, SEQ_NO);
+   fprintf(file, "\n%s\n", CLIP_LICENSE);
+}

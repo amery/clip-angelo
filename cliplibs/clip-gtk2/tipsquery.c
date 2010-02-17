@@ -16,11 +16,10 @@
 /*********************** SIGNALS **************************/
 
 /* Signal handlers */
-static    gint
+static gint
 handle_widget_entered_signal(GtkWidget * widget, GtkWidget * wid, gchar * tip_text, gchar * tip_private, C_signal * cs)
 {
    C_widget *cwid = _list_get_cwidget(cs->cw->cmachine, wid);
-
    PREPARECV(cs, cv);
    if (!cwid)
       cwid = _register_widget(cs->cw->cmachine, wid, NULL);
@@ -35,12 +34,10 @@ handle_widget_entered_signal(GtkWidget * widget, GtkWidget * wid, gchar * tip_te
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static    gint
-handle_widget_selected_signal(GtkWidget * widget, GtkWidget * wid,
-			      gchar * tip_text, gchar * tip_private, GdkEventButton * event, C_signal * cs)
+static gint
+handle_widget_selected_signal(GtkWidget * widget, GtkWidget * wid, gchar * tip_text, gchar * tip_private, GdkEventButton * event, C_signal * cs)
 {
    C_widget *cwid = _list_get_cwidget(cs->cw->cmachine, wid);
-
    PREPARECV(cs, cv);
    if (!cwid)
       cwid = _register_widget(cs->cw->cmachine, wid, NULL);
@@ -101,8 +98,7 @@ _clip_type_name_tips_query()
 int
 clip_INIT___TIPS_QUERY(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_tips_query, _clip_type_name_tips_query,
-		    _gtk_type_tips_query, _gtk_type_label, tips_query_signals);
+   _wtype_table_put(_clip_type_tips_query, _clip_type_name_tips_query, _gtk_type_tips_query, _gtk_type_label, tips_query_signals);
    return 0;
 }
 
@@ -111,12 +107,9 @@ clip_INIT___TIPS_QUERY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TIPSQUERYNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
-
+   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
    GtkWidget *wid = NULL;
-
    C_widget *cwid;
-
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_tips_query_new();
    if (!wid)
@@ -137,7 +130,6 @@ int
 clip_GTK_TIPSQUERYSTARTQUERY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    gtk_tips_query_start_query(GTK_TIPS_QUERY(ctq->widget));
    return 0;
@@ -150,7 +142,6 @@ int
 clip_GTK_TIPSQUERYSTOPQUERY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    gtk_tips_query_stop_query(GTK_TIPS_QUERY(ctq->widget));
    return 0;
@@ -165,9 +156,7 @@ int
 clip_GTK_TIPSQUERYSETCALLER(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
@@ -184,11 +173,8 @@ int
 clip_GTK_TIPSQUERYSETLABELS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
-   gchar    *label_inactive = _clip_parc(ClipMachineMemory, 2);
-
-   gchar    *label_no_tip = _clip_parc(ClipMachineMemory, 3);
-
+   gchar *label_inactive = _clip_parc(ClipMachineMemory, 2);
+   gchar *label_no_tip = _clip_parc(ClipMachineMemory, 3);
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -206,9 +192,7 @@ int
 clip_GTK_TIPSQUERYSETEMITALWAYS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
-   gboolean  always = _clip_parl(ClipMachineMemory, 2);
-
+   gboolean always = _clip_parl(ClipMachineMemory, 2);
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_widget_set(ctq->widget, "emit-always", always, NULL);
@@ -221,7 +205,6 @@ int
 clip_GTK_TIPSQUERYGETEMITALWAYS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    _clip_retl(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->emit_always);
    return 0;
@@ -233,18 +216,16 @@ int
 clip_GTK_TIPSQUERYGETCALLER(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    C_widget *cwid = NULL;
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    if (GTK_TIPS_QUERY(ctq->widget)->caller)
-    {
-       cwid = _list_get_cwidget(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->caller);
-       if (!cwid)
-	  cwid = _register_widget(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->caller, NULL);
-       if (cwid)
-	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-    }
+      {
+	 cwid = _list_get_cwidget(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->caller);
+	 if (!cwid)
+	    cwid = _register_widget(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->caller, NULL);
+	 if (cwid)
+	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+      }
    return 0;
  err:
    return 1;
@@ -254,7 +235,6 @@ int
 clip_GTK_TIPSQUERYGETLABELINACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    _clip_retc(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->label_inactive);
    return 0;
@@ -266,7 +246,6 @@ int
 clip_GTK_TIPSQUERYGETLABELNOTIP(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctq = _fetch_cw_arg(ClipMachineMemory);
-
    CHECKCWID(ctq, GTK_IS_TIPS_QUERY);
    _clip_retc(ClipMachineMemory, GTK_TIPS_QUERY(ctq->widget)->label_no_tip);
    return 0;
