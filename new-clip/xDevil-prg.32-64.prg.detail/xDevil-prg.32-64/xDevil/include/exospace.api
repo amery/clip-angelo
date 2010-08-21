@@ -1,0 +1,34 @@
+/***
+*
+*   Exospace.api
+*
+*   C language definitions for ExoSpace API
+*
+*   Copyright (c) 1992-1995, Computer Associates, International
+*   All rights reserved.
+*
+*   CA-Clipper uses Microsoft C large model calling conventions
+*
+*/
+
+/* definition needed for ExoRMInterrupt() below */
+typedef struct _exoregs {
+    unsigned ds, es;
+    unsigned di, si, bp, sp;    /* note: sp is ignored */
+    unsigned bx, dx, cx, ax;
+} EXOREGS;
+
+int         ExoFreeSelector(unsigned int selector);
+int         ExoIsDPMI(void);
+int         D16IsExoSpace(void);
+int         ExoIsPM(void);
+int         ExoIsVMM(void);
+void *      ExoProtectedPtr(void *rmptr, unsigned int sizebytes);
+void *      ExoRealPtr(void *pmptr);
+int         ExoReside(void *pmptr);
+unsigned    ExoRMInterrupt(int, EXOREGS *inregs, EXOREGS *outregs);
+void        (*ExoSegCSAlias(void *pmptr))();
+void *      ExoSegDSAlias(void *pmptr());
+void *      _xalloclow(unsigned int sizebytes);
+void        _xfreelow(void *lowmemory);
+

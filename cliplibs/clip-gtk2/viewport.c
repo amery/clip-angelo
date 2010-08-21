@@ -15,10 +15,11 @@
 #include "ci_clip-gtk2.h"
 
 /**********************************************************/
-static gint
+static    gint
 handler_set_scroll_adjustments(GtkViewport * viewport, GtkAdjustment * hadj, GtkAdjustment * vadj, C_signal * cs)
 {
    C_widget *cwid;
+
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, GTK_WIDGET(hadj));
    if (!cwid)
@@ -71,12 +72,18 @@ clip_INIT___VIEWPORT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VIEWPORTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    GtkAdjustment *hadj, *vadj;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
@@ -104,9 +111,13 @@ int
 clip_GTK_VIEWPORTGETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cv = RETPTR(ClipMachineMemory);
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    adj = gtk_viewport_get_hadjustment(GTK_VIEWPORT(cvp->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -126,9 +137,13 @@ int
 clip_GTK_VIEWPORTGETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cv = RETPTR(ClipMachineMemory);
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    adj = gtk_viewport_get_vadjustment(GTK_VIEWPORT(cvp->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -146,7 +161,9 @@ int
 clip_GTK_VIEWPORTSETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -161,7 +178,9 @@ int
 clip_GTK_VIEWPORTSETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -175,7 +194,9 @@ int
 clip_GTK_VIEWPORTSETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
+
    GtkShadowType type = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_viewport_set_shadow_type(GTK_VIEWPORT(cvp->widget), type);
@@ -188,6 +209,7 @@ int
 clip_GTK_VIEWPORTGETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cvp = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cvp, GTK_IS_VIEWPORT);
    _clip_retni(ClipMachineMemory, GTK_VIEWPORT(cvp->widget)->shadow_type);
    return 0;

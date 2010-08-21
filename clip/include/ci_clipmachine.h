@@ -5,7 +5,6 @@
 
 	This file prints debug informations on stderr
 */
-errordskkljsdlkjfsdlkfq
 #ifdef DEBUGGING_CLIP
   /* fprintf(stderr, _clic_gettext("Procedure : %s"), __PROC__); */
 fprintf(stderr, _clic_gettext("ClipMachineMemory->next->inited : %d\n"), ClipMachineMemory->next->inited);

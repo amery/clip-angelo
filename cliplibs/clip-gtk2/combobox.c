@@ -14,7 +14,9 @@
 #include "ci_clip-gtk2.h"
 
 static GtkTreeIter _Iter;
+
 static GtkTreeIter *Iter = &_Iter;
+
 /**********************************************************/
 static SignalTable combo_box_signals[] = {
    {"changed", GSF(widget_signal_handler), ESF(object_emit_signal),
@@ -72,7 +74,8 @@ _clip_type_name_combo_box_entry()
 int
 clip_INIT___COMBOBOXENTRY(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_combo_box_entry, _clip_type_name_combo_box_entry, _gtk_type_combo_box_entry, _gtk_type_combo_box, NULL);
+   _wtype_table_put(_clip_type_combo_box_entry,
+		    _clip_type_name_combo_box_entry, _gtk_type_combo_box_entry, _gtk_type_combo_box, NULL);
    return 0;
 }
 
@@ -80,8 +83,10 @@ clip_INIT___COMBOBOXENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -100,9 +105,12 @@ clip_GTK_COMBOBOXNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXNEWWITHMODEL(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -122,8 +130,10 @@ clip_GTK_COMBOBOXNEWWITHMODEL(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXNEWTEXT(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -145,7 +155,8 @@ int
 clip_GTK_COMBOBOXSETWRAPWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -161,7 +172,8 @@ int
 clip_GTK_COMBOBOXSETROWSPANCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint row_span = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row_span = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -177,7 +189,8 @@ int
 clip_GTK_COMBOBOXSETCOLUMNSPANCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint column_span = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column_span = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -193,7 +206,8 @@ int
 clip_GTK_COMBOBOXGETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint index;
+
+   gint      index;
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
 
@@ -212,7 +226,8 @@ int
 clip_GTK_COMBOBOXSETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -230,6 +245,7 @@ int
 clip_GTK_COMBOBOXSETACTIVEITER(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
@@ -246,7 +262,9 @@ int
 clip_GTK_COMBOBOXGETACTIVEITER(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
    C_object *citer;
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
@@ -254,13 +272,13 @@ clip_GTK_COMBOBOXGETACTIVEITER(ClipMachine * ClipMachineMemory)
    _clip_retl(ClipMachineMemory, gtk_combo_box_get_active_iter(GTK_COMBO_BOX(ccmb->widget), Iter));
 
    if (Iter)
-      {
-	 citer = _list_get_cobject(ClipMachineMemory, Iter);
-	 if (!citer)
-	    citer = _register_object(ClipMachineMemory, Iter, GTK_TYPE_TREE_ITER, NULL, NULL);
-	 if (citer)
-	    _clip_mclone(ClipMachineMemory, cv, &citer->obj);
-      }
+    {
+       citer = _list_get_cobject(ClipMachineMemory, Iter);
+       if (!citer)
+	  citer = _register_object(ClipMachineMemory, Iter, GTK_TYPE_TREE_ITER, NULL, NULL);
+       if (citer)
+	  _clip_mclone(ClipMachineMemory, cv, &citer->obj);
+    }
 
    return 0;
  err:
@@ -271,6 +289,7 @@ int
 clip_GTK_COMBOBOXSETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
@@ -287,7 +306,9 @@ int
 clip_GTK_COMBOBOXGETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTreeModel *model;
+
    C_object *cmodel;
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
@@ -295,13 +316,13 @@ clip_GTK_COMBOBOXGETMODEL(ClipMachine * ClipMachineMemory)
    model = gtk_combo_box_get_model(GTK_COMBO_BOX(ccmb->widget));
 
    if (model)
-      {
-	 cmodel = _list_get_cobject(ClipMachineMemory, model);
-	 if (!cmodel)
-	    cmodel = _register_object(ClipMachineMemory, Iter, GTK_TYPE_TREE_MODEL, NULL, NULL);
-	 if (cmodel)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodel->obj);
-      }
+    {
+       cmodel = _list_get_cobject(ClipMachineMemory, model);
+       if (!cmodel)
+	  cmodel = _register_object(ClipMachineMemory, Iter, GTK_TYPE_TREE_MODEL, NULL, NULL);
+       if (cmodel)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodel->obj);
+    }
 
    return 0;
  err:
@@ -312,7 +333,8 @@ int
 clip_GTK_COMBOBOXAPPENDTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -330,7 +352,8 @@ int
 clip_GTK_COMBOBOXPREPENDTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -348,8 +371,10 @@ int
 clip_GTK_COMBOBOXINSERTTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint pos = _clip_parni(ClipMachineMemory, 2);
-   gchar *text = _clip_parc(ClipMachineMemory, 3);
+
+   gint      pos = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -369,7 +394,8 @@ int
 clip_GTK_COMBOBOXREMOVETEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint pos = _clip_parni(ClipMachineMemory, 2);
+
+   gint      pos = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -416,8 +442,10 @@ clip_GTK_COMBOBOXPOPDOWN(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXENTRYNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -436,10 +464,14 @@ clip_GTK_COMBOBOXENTRYNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXENTRYNEWWITHMODEL(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint text_column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      text_column = _clip_parni(ClipMachineMemory, 3);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -461,8 +493,10 @@ clip_GTK_COMBOBOXENTRYNEWWITHMODEL(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COMBOBOXENTRYNEWTEXT(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -482,7 +516,8 @@ int
 clip_GTK_COMBOBOXENTRYSETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gint text_column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      text_column = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -514,7 +549,8 @@ int
 clip_GTK_COMBOBOXGETACTIVETEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text;
+
+   gchar    *text;
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
 
@@ -560,7 +596,9 @@ int
 clip_GTK_COMBOBOXGETPOPUPACCESSIBLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
+
    AtkObject *atk;
+
    C_object *catk;
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
@@ -568,13 +606,13 @@ clip_GTK_COMBOBOXGETPOPUPACCESSIBLE(ClipMachine * ClipMachineMemory)
    atk = gtk_combo_box_get_popup_accessible(GTK_COMBO_BOX(ccmb->widget));
 
    if (atk)
-      {
-	 catk = _list_get_cobject(ClipMachineMemory, atk);
-	 if (!catk)
-	    catk = _register_object(ClipMachineMemory, atk, GTK_TYPE_OBJECT, NULL, NULL);
-	 if (catk)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &catk->obj);
-      }
+    {
+       catk = _list_get_cobject(ClipMachineMemory, atk);
+       if (!catk)
+	  catk = _register_object(ClipMachineMemory, atk, GTK_TYPE_OBJECT, NULL, NULL);
+       if (catk)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &catk->obj);
+    }
 
    return 0;
  err:
@@ -613,7 +651,8 @@ int
 clip_GTK_COMBOBOXSETADDTEAROFFS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -629,7 +668,8 @@ int
 clip_GTK_COMBOBOXSETFOCUSONCLICK(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccmb = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(ccmb, GTK_IS_COMBO_BOX);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);

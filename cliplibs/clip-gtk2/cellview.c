@@ -44,8 +44,10 @@ clip_INIT___CELL_VIEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLVIEWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -65,9 +67,12 @@ clip_GTK_CELLVIEWNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLVIEWNEWWITHTEXT(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -90,9 +95,12 @@ clip_GTK_CELLVIEWNEWWITHTEXT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLVIEWNEWWITHMARKUP(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *markup = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *markup = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -115,9 +123,12 @@ clip_GTK_CELLVIEWNEWWITHMARKUP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLVIEWNEWWITHPIXBUF(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cpix = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -139,6 +150,7 @@ int
 clip_GTK_CELLVIEWSETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *ClipMachineMemoryodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
@@ -155,6 +167,7 @@ int
 clip_GTK_CELLVIEWSETDISPLAYEDROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
@@ -171,7 +184,9 @@ int
 clip_GTK_CELLVIEWGETDISPLAYEDROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTreePath *path;
+
    C_object *cpath;
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
@@ -179,13 +194,13 @@ clip_GTK_CELLVIEWGETDISPLAYEDROW(ClipMachine * ClipMachineMemory)
    path = gtk_cell_view_get_displayed_row(GTK_CELL_VIEW(ccell->widget));
 
    if (path)
-      {
-	 cpath = _list_get_cobject(ClipMachineMemory, path);
-	 if (!cpath)
-	    cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
-	 if (cpath)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpath->obj);
-      }
+    {
+       cpath = _list_get_cobject(ClipMachineMemory, path);
+       if (!cpath)
+	  cpath = _register_object(ClipMachineMemory, path, GTK_TYPE_TREE_PATH, NULL, NULL);
+       if (cpath)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpath->obj);
+    }
 
    return 0;
  err:
@@ -196,14 +211,18 @@ int
 clip_GTK_CELLVIEWGETSIZEOFROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cpath = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 3);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 3);
+
    GtkRequisition requisition;
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
    CHECKCOBJ(cpath, GTK_IS_TREE_PATH(cpath->object));
 
-   _clip_retl(ClipMachineMemory, gtk_cell_view_get_size_of_row(GTK_CELL_VIEW(ccell->widget), GTK_TREE_PATH(cpath->object), &requisition));
+   _clip_retl(ClipMachineMemory,
+	      gtk_cell_view_get_size_of_row(GTK_CELL_VIEW(ccell->widget), GTK_TREE_PATH(cpath->object), &requisition));
 
    _clip_map(ClipMachineMemory, cv);
    _clip_mputn(ClipMachineMemory, cv, HASH_WIDTH, requisition.width);
@@ -218,7 +237,9 @@ int
 clip_GTK_CELLVIEWSETBACKGROUNDCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *ccolor = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *ccolor = _clip_spar(ClipMachineMemory, 2);
+
    GdkColor *color = 0;
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
@@ -237,9 +258,12 @@ int
 clip_GTK_CELLVIEWGETCELLRENDERERS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccell = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   GList *list;
-   long l;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   GList    *list;
+
+   long      l;
 
    CHECKCWID(ccell, GTK_IS_CELL_VIEW);
 
@@ -247,20 +271,21 @@ clip_GTK_CELLVIEWGETCELLRENDERERS(ClipMachine * ClipMachineMemory)
    l = g_list_length(list);
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_list_next(list), l++)
-      {
-	 C_object *cren;
-	 GtkCellRenderer *ren;
+    {
+       C_object *cren;
 
-	 ren = GTK_CELL_RENDERER(list->data);
-	 if (ren)
-	    {
-	       cren = _list_get_cobject(ClipMachineMemory, ren);
-	       if (!cren)
-		  cren = _register_object(ClipMachineMemory, ren, GTK_TYPE_CELL_RENDERER, NULL, NULL);
-	       if (cren)
-		  _clip_aset(ClipMachineMemory, cv, &cren->obj, 1, &l);
-	    }
-      }
+       GtkCellRenderer *ren;
+
+       ren = GTK_CELL_RENDERER(list->data);
+       if (ren)
+	{
+	   cren = _list_get_cobject(ClipMachineMemory, ren);
+	   if (!cren)
+	      cren = _register_object(ClipMachineMemory, ren, GTK_TYPE_CELL_RENDERER, NULL, NULL);
+	   if (cren)
+	      _clip_aset(ClipMachineMemory, cv, &cren->obj, 1, &l);
+	}
+    }
 
    g_list_free(list);
 

@@ -44,7 +44,7 @@ clip_INIT___ACCEL_GROUP(ClipMachine * ClipMachineMemory)
 }
 
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 4)
-static gint
+static    gint
 handle_changed_signal(GtkAccelMap * map, gchar * path, guint key, GdkModifierType type, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -91,9 +91,12 @@ clip_INIT___ACCEL_MAP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = (GtkWidget *) gtk_accel_group_new();
@@ -111,6 +114,7 @@ int
 clip_GTK_ACCELGROUPLOCK(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
 
    gtk_accel_group_lock(GTK_ACCEL_GROUP(caccelg->widget));
@@ -124,6 +128,7 @@ int
 clip_GTK_ACCELGROUPUNLOCK(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
 
    gtk_accel_group_unlock(GTK_ACCEL_GROUP(caccelg->widget));
@@ -141,10 +146,15 @@ int
 clip_GTK_ACCELGROUPCONNECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType accel_mods = _clip_parni(ClipMachineMemory, 3);
+
    GtkAccelFlags accel_flags = _clip_parni(ClipMachineMemory, 4);
+
    C_object *cclosure = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
+
    GClosure *closure;
 
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
@@ -171,8 +181,11 @@ int
 clip_GTK_ACCELGROUPCONNECTBYPATH(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
+
    const gchar *accel_path = _clip_parc(ClipMachineMemory, 2);
+
    C_object *cclosure = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GClosure *closure;
 
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
@@ -190,7 +203,9 @@ int
 clip_GTK_ACCELGROUPDISCONNECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cclosure = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GClosure *closure;
 
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
@@ -207,7 +222,9 @@ int
 clip_GTK_ACCELGROUPDISCONNECTKEY(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType mods = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
@@ -225,9 +242,13 @@ int
 clip_GTK_ACCELGROUPQUERY(ClipMachine * ClipMachineMemory)
 {
    C_widget *caccelg = _fetch_cw_arg(ClipMachineMemory);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType mods = _clip_parni(ClipMachineMemory, 3);
-   guint n_entries;
+
+   guint     n_entries;
+
    GtkAccelGroupEntry *entry;
 
    CHECKCWID(caccelg, GTK_IS_ACCEL_GROUP);
@@ -238,21 +259,23 @@ clip_GTK_ACCELGROUPQUERY(ClipMachine * ClipMachineMemory)
    entry = gtk_accel_group_query(GTK_ACCEL_GROUP(caccelg->widget), accel_key, mods, &n_entries);
 
    if (entry)
-      {
-	 ClipVar *cv = RETPTR(ClipMachineMemory);
-	 long n;
+    {
+       ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	 n = n_entries;
-	 _clip_array(ClipMachineMemory, cv, 1, &n);
-	 for (n = 0; n < n_entries; n++)
-	    {
-	       C_object *centry;
-	       centry = _register_object(ClipMachineMemory, &entry[n], GTK_TYPE_ACCEL_GROUP_ENTRY, NULL, NULL);
-	       if (centry)
-		  _clip_aset(ClipMachineMemory, cv, &centry->obj, 1, &n);
-	    }
-	 _clip_storni(ClipMachineMemory, n_entries, 4, 0);
-      }
+       long      n;
+
+       n = n_entries;
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (n = 0; n < n_entries; n++)
+	{
+	   C_object *centry;
+
+	   centry = _register_object(ClipMachineMemory, &entry[n], GTK_TYPE_ACCEL_GROUP_ENTRY, NULL, NULL);
+	   if (centry)
+	      _clip_aset(ClipMachineMemory, cv, &centry->obj, 1, &n);
+	}
+       _clip_storni(ClipMachineMemory, n_entries, 4, 0);
+    }
 
    return 0;
  err:
@@ -263,19 +286,22 @@ int
 clip_GTK_ACCELGROUPFROMACCELCLOSURE(ClipMachine * ClipMachineMemory)
 {
    C_object *cclosure = _fetch_co_arg(ClipMachineMemory);
+
    GClosure *closure;
+
    C_widget *caccelg;
+
    GtkAccelGroup *accelg;
 
    closure = (GClosure *) (cclosure->object);
    accelg = gtk_accel_group_from_accel_closure(closure);
 
    if (accelg)
-      {
-	 caccelg = _register_widget(ClipMachineMemory, GTK_WIDGET(accelg), NULL);
-	 if (caccelg)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caccelg->obj);
-      }
+    {
+       caccelg = _register_widget(ClipMachineMemory, GTK_WIDGET(accelg), NULL);
+       if (caccelg)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caccelg->obj);
+    }
    return 0;
 //err:
 //      return 1;
@@ -285,7 +311,9 @@ int
 clip_GTK_ACCELGROUPSACTIVATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cobj = _fetch_cw_arg(ClipMachineMemory);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType accel_mods = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(cobj, GTK_IS_OBJECT);
@@ -303,28 +331,31 @@ int
 clip_GTK_ACCELGROUPSFROMOBJECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cobj = _fetch_cw_arg(ClipMachineMemory);
-   GSList *list;
+
+   GSList   *list;
 
    CHECKCWID(cobj, GTK_IS_OBJECT);
 
    list = gtk_accel_groups_from_object((GObject *) (cobj->widget));
    if (list)
-      {
-	 ClipVar *cv = RETPTR(ClipMachineMemory);
-	 long n = g_slist_length(list);
+    {
+       ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	 _clip_array(ClipMachineMemory, cv, 1, &n);
-	 for (n = 0; list; list = g_slist_next(list))
-	    {
-	       C_widget *caccelg;
-	       GtkAccelGroup *accelg;
+       long      n = g_slist_length(list);
 
-	       accelg = list->data;
-	       caccelg = _register_widget(ClipMachineMemory, GTK_WIDGET(accelg), NULL);
-	       if (caccelg)
-		  _clip_aset(ClipMachineMemory, cv, &caccelg->obj, 1, &n);
-	    }
-      }
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (n = 0; list; list = g_slist_next(list))
+	{
+	   C_widget *caccelg;
+
+	   GtkAccelGroup *accelg;
+
+	   accelg = list->data;
+	   caccelg = _register_widget(ClipMachineMemory, GTK_WIDGET(accelg), NULL);
+	   if (caccelg)
+	      _clip_aset(ClipMachineMemory, cv, &caccelg->obj, 1, &n);
+	}
+    }
    return 0;
  err:
    return 1;
@@ -333,7 +364,8 @@ clip_GTK_ACCELGROUPSFROMOBJECT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELERATORVALID(ClipMachine * ClipMachineMemory)
 {
-   guint keyval = _clip_parni(ClipMachineMemory, 1);
+   guint     keyval = _clip_parni(ClipMachineMemory, 1);
+
    GdkModifierType modifiers = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
@@ -348,8 +380,10 @@ clip_GTK_ACCELERATORVALID(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELERATORPARSE(ClipMachine * ClipMachineMemory)
 {
-   gchar *accelerator = _clip_parc(ClipMachineMemory, 1);
-   guint keyval;
+   gchar    *accelerator = _clip_parc(ClipMachineMemory, 1);
+
+   guint     keyval;
+
    GdkModifierType modifiers;
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
@@ -366,7 +400,8 @@ clip_GTK_ACCELERATORPARSE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELERATORNAME(ClipMachine * ClipMachineMemory)
 {
-   guint keyval = _clip_parni(ClipMachineMemory, 1);
+   guint     keyval = _clip_parni(ClipMachineMemory, 1);
+
    GdkModifierType modifiers = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
@@ -408,8 +443,10 @@ clip_GTK_ACCELERATORGETDEFAULTMODMASK(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPADDENTRY(ClipMachine * ClipMachineMemory)
 {
-   gchar *accel_path = _clip_parc(ClipMachineMemory, 1);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+   gchar    *accel_path = _clip_parc(ClipMachineMemory, 1);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType accel_mods = _clip_parni(ClipMachineMemory, 3);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
@@ -426,8 +463,10 @@ clip_GTK_ACCELMAPADDENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPLOOKUPENTRY(ClipMachine * ClipMachineMemory)
 {
-   gchar *accel_path = _clip_parc(ClipMachineMemory, 1);
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   gchar    *accel_path = _clip_parc(ClipMachineMemory, 1);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
    GtkAccelKey key;
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
@@ -445,10 +484,13 @@ clip_GTK_ACCELMAPLOOKUPENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPCHANGEENTRY(ClipMachine * ClipMachineMemory)
 {
-   gchar *accel_path = _clip_parc(ClipMachineMemory, 1);
-   guint accel_key = _clip_parni(ClipMachineMemory, 2);
+   gchar    *accel_path = _clip_parc(ClipMachineMemory, 1);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 2);
+
    GdkModifierType accel_mods = _clip_parni(ClipMachineMemory, 3);
-   gboolean replace = BOOL_OPTION(ClipMachineMemory, 4, 1);
+
+   gboolean  replace = BOOL_OPTION(ClipMachineMemory, 4, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -465,7 +507,7 @@ clip_GTK_ACCELMAPCHANGEENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPLOAD(ClipMachine * ClipMachineMemory)
 {
-   gchar *file_name = _clip_parc(ClipMachineMemory, 1);
+   gchar    *file_name = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -479,7 +521,7 @@ clip_GTK_ACCELMAPLOAD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPSAVE(ClipMachine * ClipMachineMemory)
 {
-   gchar *file_name = _clip_parc(ClipMachineMemory, 1);
+   gchar    *file_name = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -493,9 +535,11 @@ clip_GTK_ACCELMAPSAVE(ClipMachine * ClipMachineMemory)
 static void
 _accel_map_foreach_func(gpointer data, const gchar * accel_path, guint accel_key, GdkModifierType accel_mods, gboolean changed)
 {
-   C_var *c = (C_var *) data;
-   ClipVar stack[5];
-   ClipVar res;
+   C_var    *c = (C_var *) data;
+
+   ClipVar   stack[5];
+
+   ClipVar   res;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -514,8 +558,10 @@ int
 clip_GTK_ACCELMAPFOREACH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
-   C_var *c = 0;
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
+
+   C_var    *c = 0;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -533,7 +579,7 @@ clip_GTK_ACCELMAPFOREACH(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPLOADFD(ClipMachine * ClipMachineMemory)
 {
-   gint fd = _clip_parni(ClipMachineMemory, 1);
+   gint      fd = _clip_parni(ClipMachineMemory, 1);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
 
@@ -547,7 +593,7 @@ clip_GTK_ACCELMAPLOADFD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPSAVEFD(ClipMachine * ClipMachineMemory)
 {
-   gint fd = _clip_parni(ClipMachineMemory, 1);
+   gint      fd = _clip_parni(ClipMachineMemory, 1);
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
 
@@ -561,7 +607,7 @@ clip_GTK_ACCELMAPSAVEFD(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPADDFILTER(ClipMachine * ClipMachineMemory)
 {
-   gchar *filter_pattern = _clip_parc(ClipMachineMemory, 1);
+   gchar    *filter_pattern = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -576,8 +622,10 @@ int
 clip_GTK_ACCELMAPFOREACHUNFILTERED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
-   C_var *c = 0;
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
+
+   C_var    *c = 0;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -598,24 +646,25 @@ int
 clip_GTK_ACCELMAPGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cmap;
+
    GtkAccelMap *map;
 
    map = gtk_accel_map_get();
    if (map)
-      {
-	 cmap = _list_get_cobject(ClipMachineMemory, map);
-	 if (!cmap)
-	    cmap = _register_object(ClipMachineMemory, map, GTK_TYPE_ACCEL_MAP, NULL, NULL);
-	 if (cmap)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmap->obj);
-      }
+    {
+       cmap = _list_get_cobject(ClipMachineMemory, map);
+       if (!cmap)
+	  cmap = _register_object(ClipMachineMemory, map, GTK_TYPE_ACCEL_MAP, NULL, NULL);
+       if (cmap)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmap->obj);
+    }
    return 0;
 }
 
 int
 clip_GTK_ACCELMAPLOCKPATH(ClipMachine * ClipMachineMemory)
 {
-   gchar *accel_path = _clip_parc(ClipMachineMemory, 1);
+   gchar    *accel_path = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -629,7 +678,7 @@ clip_GTK_ACCELMAPLOCKPATH(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELMAPUNLOCKPATH(ClipMachine * ClipMachineMemory)
 {
-   gchar *accel_path = _clip_parc(ClipMachineMemory, 1);
+   gchar    *accel_path = _clip_parc(ClipMachineMemory, 1);
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
@@ -645,9 +694,11 @@ clip_GTK_ACCELMAPUNLOCKPATH(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELERATORGETLABEL(ClipMachine * ClipMachineMemory)
 {
-   guint accelerator_key = _clip_parni(ClipMachineMemory, 1);
+   guint     accelerator_key = _clip_parni(ClipMachineMemory, 1);
+
    GdkModifierType type = _clip_parni(ClipMachineMemory, 2);
-   gchar *label;
+
+   gchar    *label;
 
    CHECKARG(1, NUMERIC_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);

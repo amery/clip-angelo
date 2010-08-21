@@ -52,12 +52,18 @@ clip_INIT___TABLE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TABLENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   guint rows = _clip_parni(ClipMachineMemory, 2);
-   guint cols = _clip_parni(ClipMachineMemory, 3);
-   gboolean homogeneous = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   guint     rows = _clip_parni(ClipMachineMemory, 2);
+
+   guint     cols = _clip_parni(ClipMachineMemory, 3);
+
+   gboolean  homogeneous = BOOL_OPTION(ClipMachineMemory, 4, FALSE);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -80,8 +86,11 @@ int
 clip_GTK_TABLERESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint rows = _clip_parni(ClipMachineMemory, 2);
-   guint cols = _clip_parni(ClipMachineMemory, 3);
+
+   guint     rows = _clip_parni(ClipMachineMemory, 2);
+
+   guint     cols = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -100,15 +109,25 @@ int
 clip_GTK_TABLEATTACH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   guint left_attach = INT_OPTION(ClipMachineMemory, 3, 1);
-   guint right_attach = INT_OPTION(ClipMachineMemory, 4, 1);
-   guint top_attach = INT_OPTION(ClipMachineMemory, 5, 1);
-   guint bottom_attach = INT_OPTION(ClipMachineMemory, 6, 1);
+
+   guint     left_attach = INT_OPTION(ClipMachineMemory, 3, 1);
+
+   guint     right_attach = INT_OPTION(ClipMachineMemory, 4, 1);
+
+   guint     top_attach = INT_OPTION(ClipMachineMemory, 5, 1);
+
+   guint     bottom_attach = INT_OPTION(ClipMachineMemory, 6, 1);
+
    GtkAttachOptions xoptions = _clip_parni(ClipMachineMemory, 7);
+
    GtkAttachOptions yoptions = _clip_parni(ClipMachineMemory, 8);
-   guint xpadding = _clip_parni(ClipMachineMemory, 9);
-   guint ypadding = _clip_parni(ClipMachineMemory, 10);
+
+   guint     xpadding = _clip_parni(ClipMachineMemory, 9);
+
+   guint     ypadding = _clip_parni(ClipMachineMemory, 10);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -120,7 +139,8 @@ clip_GTK_TABLEATTACH(ClipMachine * ClipMachineMemory)
    CHECKOPT(8, NUMERIC_type_of_ClipVarType);
    CHECKOPT(9, NUMERIC_type_of_ClipVarType);
    CHECKOPT(10, NUMERIC_type_of_ClipVarType);
-   gtk_table_attach(GTK_TABLE(ctbl->widget), cwid->widget, left_attach - 1, right_attach - 1, top_attach - 1, bottom_attach - 1, xoptions, yoptions, xpadding, ypadding);
+   gtk_table_attach(GTK_TABLE(ctbl->widget), cwid->widget, left_attach - 1,
+		    right_attach - 1, top_attach - 1, bottom_attach - 1, xoptions, yoptions, xpadding, ypadding);
    return 0;
  err:
    return 1;
@@ -133,11 +153,17 @@ int
 clip_GTK_TABLEATTACHDEFAULTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   guint left_attach = INT_OPTION(ClipMachineMemory, 3, 1);
-   guint right_attach = INT_OPTION(ClipMachineMemory, 4, 1);
-   guint top_attach = INT_OPTION(ClipMachineMemory, 5, 1);
-   guint bottom_attach = INT_OPTION(ClipMachineMemory, 6, 1);
+
+   guint     left_attach = INT_OPTION(ClipMachineMemory, 3, 1);
+
+   guint     right_attach = INT_OPTION(ClipMachineMemory, 4, 1);
+
+   guint     top_attach = INT_OPTION(ClipMachineMemory, 5, 1);
+
+   guint     bottom_attach = INT_OPTION(ClipMachineMemory, 6, 1);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -145,7 +171,8 @@ clip_GTK_TABLEATTACHDEFAULTS(ClipMachine * ClipMachineMemory)
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
    CHECKOPT(5, NUMERIC_type_of_ClipVarType);
    CHECKOPT(6, NUMERIC_type_of_ClipVarType);
-   gtk_table_attach_defaults(GTK_TABLE(ctbl->widget), cwid->widget, left_attach - 1, right_attach - 1, top_attach - 1, bottom_attach - 1);
+   gtk_table_attach_defaults(GTK_TABLE(ctbl->widget), cwid->widget,
+			     left_attach - 1, right_attach - 1, top_attach - 1, bottom_attach - 1);
    return 0;
  err:
    return 1;
@@ -156,8 +183,11 @@ int
 clip_GTK_TABLESETROWSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint row = INT_OPTION(ClipMachineMemory, 2, 1);
-   guint spacing = _clip_parni(ClipMachineMemory, 3);
+
+   guint     row = INT_OPTION(ClipMachineMemory, 2, 1);
+
+   guint     spacing = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -172,8 +202,11 @@ int
 clip_GTK_TABLESETCOLSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint col = INT_OPTION(ClipMachineMemory, 2, 1);
-   guint spacing = _clip_parni(ClipMachineMemory, 3);
+
+   guint     col = INT_OPTION(ClipMachineMemory, 2, 1);
+
+   guint     spacing = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -188,7 +221,9 @@ int
 clip_GTK_TABLESETROWSPACINGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint spacing = _clip_parni(ClipMachineMemory, 2);
+
+   guint     spacing = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_table_set_row_spacings(GTK_TABLE(ctbl->widget), spacing);
@@ -202,7 +237,9 @@ int
 clip_GTK_TABLESETCOLSPACINGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint spacing = _clip_parni(ClipMachineMemory, 2);
+
+   guint     spacing = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_table_set_col_spacings(GTK_TABLE(ctbl->widget), spacing);
@@ -217,7 +254,9 @@ int
 clip_GTK_TABLESETHOMOGENEOUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   gboolean homogeneous = BOOL_OPTION(ClipMachineMemory, 2, FALSE);
+
+   gboolean  homogeneous = BOOL_OPTION(ClipMachineMemory, 2, FALSE);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_table_set_homogeneous(GTK_TABLE(ctbl->widget), homogeneous);
@@ -230,6 +269,7 @@ int
 clip_GTK_TABLEGETDEFAULTROWSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    _clip_retni(ClipMachineMemory, gtk_table_get_default_row_spacing(GTK_TABLE(ctbl->widget)));
    return 0;
@@ -241,6 +281,7 @@ int
 clip_GTK_TABLEGETHOMOGENEOUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    _clip_retl(ClipMachineMemory, GTK_TABLE(ctbl->widget)->homogeneous);
    return 0;
@@ -252,7 +293,9 @@ int
 clip_GTK_TABLEGETROWSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint row = _clip_parni(ClipMachineMemory, 2);
+
+   guint     row = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
@@ -266,7 +309,9 @@ int
 clip_GTK_TABLEGETCOLSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint column = _clip_parni(ClipMachineMemory, 2);
+
+   guint     column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    _clip_retni(ClipMachineMemory, gtk_table_get_col_spacing(GTK_TABLE(ctbl->widget), column));
@@ -279,6 +324,7 @@ int
 clip_GTK_TABLEGETDEFAULTCOLSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    _clip_retni(ClipMachineMemory, gtk_table_get_default_col_spacing(GTK_TABLE(ctbl->widget)));
    return 0;
@@ -290,7 +336,9 @@ int
 clip_GTK_TABLESETNROWS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint nrows = _clip_parni(ClipMachineMemory, 2);
+
+   guint     nrows = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_widget_set(ctbl->widget, "n-rows", nrows, NULL);
@@ -303,6 +351,7 @@ int
 clip_GTK_TABLEGETNROWS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    _clip_retl(ClipMachineMemory, GTK_TABLE(ctbl->widget)->nrows);
    return 0;
@@ -314,7 +363,9 @@ int
 clip_GTK_TABLESETNCOLUMNS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
-   guint ncols = _clip_parni(ClipMachineMemory, 2);
+
+   guint     ncols = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_widget_set(ctbl->widget, "n-columns", ncols, NULL);
@@ -327,6 +378,7 @@ int
 clip_GTK_TABLEGETNCOLUMNS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctbl, GTK_IS_TABLE);
    _clip_retl(ClipMachineMemory, GTK_TABLE(ctbl->widget)->ncols);
    return 0;

@@ -35,59 +35,60 @@ cycle_handle_focus_signal_handler(GtkPaned * paned, gboolean arg1, C_signal * cs
 static int
 move_handle_signal_handler(GtkPaned * paned, GtkScrollType arg1, C_signal * cs)
 {
-   gint arg = 0;
+   gint      arg = 0;
+
    PREPARECV(cs, cv);
    switch (arg1)
-      {
-      case GTK_SCROLL_NONE:
-	 arg = CLIP_GTK_SCROLL_NONE;
-	 break;
-      case GTK_SCROLL_JUMP:
-	 arg = CLIP_GTK_SCROLL_JUMP;
-	 break;
-      case GTK_SCROLL_STEP_BACKWARD:
-	 arg = CLIP_GTK_SCROLL_STEP_BACKWARD;
-	 break;
-      case GTK_SCROLL_STEP_FORWARD:
-	 arg = CLIP_GTK_SCROLL_STEP_FORWARD;
-	 break;
-      case GTK_SCROLL_PAGE_BACKWARD:
-	 arg = CLIP_GTK_SCROLL_PAGE_BACKWARD;
-	 break;
-      case GTK_SCROLL_PAGE_FORWARD:
-	 arg = CLIP_GTK_SCROLL_PAGE_FORWARD;
-	 break;
-      case GTK_SCROLL_STEP_UP:
-	 arg = CLIP_GTK_SCROLL_STEP_UP;
-	 break;
-      case GTK_SCROLL_STEP_DOWN:
-	 arg = CLIP_GTK_SCROLL_STEP_DOWN;
-	 break;
-      case GTK_SCROLL_PAGE_UP:
-	 arg = CLIP_GTK_SCROLL_PAGE_UP;
-	 break;
-      case GTK_SCROLL_PAGE_DOWN:
-	 arg = CLIP_GTK_SCROLL_PAGE_DOWN;
-	 break;
-      case GTK_SCROLL_STEP_LEFT:
-	 arg = CLIP_GTK_SCROLL_STEP_LEFT;
-	 break;
-      case GTK_SCROLL_STEP_RIGHT:
-	 arg = CLIP_GTK_SCROLL_STEP_RIGHT;
-	 break;
-      case GTK_SCROLL_PAGE_LEFT:
-	 arg = CLIP_GTK_SCROLL_PAGE_LEFT;
-	 break;
-      case GTK_SCROLL_PAGE_RIGHT:
-	 arg = CLIP_GTK_SCROLL_PAGE_RIGHT;
-	 break;
-      case GTK_SCROLL_START:
-	 arg = CLIP_GTK_SCROLL_START;
-	 break;
-      case GTK_SCROLL_END:
-	 arg = CLIP_GTK_SCROLL_END;
-	 break;
-      }
+    {
+    case GTK_SCROLL_NONE:
+       arg = CLIP_GTK_SCROLL_NONE;
+       break;
+    case GTK_SCROLL_JUMP:
+       arg = CLIP_GTK_SCROLL_JUMP;
+       break;
+    case GTK_SCROLL_STEP_BACKWARD:
+       arg = CLIP_GTK_SCROLL_STEP_BACKWARD;
+       break;
+    case GTK_SCROLL_STEP_FORWARD:
+       arg = CLIP_GTK_SCROLL_STEP_FORWARD;
+       break;
+    case GTK_SCROLL_PAGE_BACKWARD:
+       arg = CLIP_GTK_SCROLL_PAGE_BACKWARD;
+       break;
+    case GTK_SCROLL_PAGE_FORWARD:
+       arg = CLIP_GTK_SCROLL_PAGE_FORWARD;
+       break;
+    case GTK_SCROLL_STEP_UP:
+       arg = CLIP_GTK_SCROLL_STEP_UP;
+       break;
+    case GTK_SCROLL_STEP_DOWN:
+       arg = CLIP_GTK_SCROLL_STEP_DOWN;
+       break;
+    case GTK_SCROLL_PAGE_UP:
+       arg = CLIP_GTK_SCROLL_PAGE_UP;
+       break;
+    case GTK_SCROLL_PAGE_DOWN:
+       arg = CLIP_GTK_SCROLL_PAGE_DOWN;
+       break;
+    case GTK_SCROLL_STEP_LEFT:
+       arg = CLIP_GTK_SCROLL_STEP_LEFT;
+       break;
+    case GTK_SCROLL_STEP_RIGHT:
+       arg = CLIP_GTK_SCROLL_STEP_RIGHT;
+       break;
+    case GTK_SCROLL_PAGE_LEFT:
+       arg = CLIP_GTK_SCROLL_PAGE_LEFT;
+       break;
+    case GTK_SCROLL_PAGE_RIGHT:
+       arg = CLIP_GTK_SCROLL_PAGE_RIGHT;
+       break;
+    case GTK_SCROLL_START:
+       arg = CLIP_GTK_SCROLL_START;
+       break;
+    case GTK_SCROLL_END:
+       arg = CLIP_GTK_SCROLL_END;
+       break;
+    }
    _clip_mputn(cs->cw->cmachine, &cv, HASH_ARG1, arg);
    INVOKESIGHANDLER(GTK_WIDGET(paned), cs, cv);
 }
@@ -177,9 +178,12 @@ clip_INIT___PANED(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HPANEDNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_hpaned_new();
@@ -195,9 +199,12 @@ clip_GTK_HPANEDNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VPANEDNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_vpaned_new();
@@ -216,7 +223,9 @@ int
 clip_GTK_PANEDADD1(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cpan, GTK_IS_PANED);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -232,7 +241,9 @@ int
 clip_GTK_PANEDADD2(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cpan, GTK_IS_PANED);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -251,9 +262,13 @@ int
 clip_GTK_PANEDPACK1(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean resize = _clip_parl(ClipMachineMemory, 3);
-   gboolean shrink = _clip_parl(ClipMachineMemory, 4);
+
+   gboolean  resize = _clip_parl(ClipMachineMemory, 3);
+
+   gboolean  shrink = _clip_parl(ClipMachineMemory, 4);
+
    CHECKCWID(cpan, GTK_IS_PANED);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -274,9 +289,13 @@ int
 clip_GTK_PANEDPACK2(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean resize = _clip_parl(ClipMachineMemory, 3);
-   gboolean shrink = _clip_parl(ClipMachineMemory, 4);
+
+   gboolean  resize = _clip_parl(ClipMachineMemory, 3);
+
+   gboolean  shrink = _clip_parl(ClipMachineMemory, 4);
+
    CHECKCWID(cpan, GTK_IS_PANED);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -299,7 +318,9 @@ int
 clip_GTK_PANEDSETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
-   gint position = _clip_parni(ClipMachineMemory, 2);
+
+   gint      position = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cpan, GTK_IS_PANED);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -314,7 +335,9 @@ int
 clip_GTK_PANEDGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
-   gint position;
+
+   gint      position;
+
    CHECKCWID(cpan, GTK_IS_PANED);
    position = gtk_paned_get_position(GTK_PANED(cpan->widget));
 
@@ -329,20 +352,23 @@ int
 clip_GTK_PANEDGETSIZECHILD1(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
-   gint width = 0, height = 0;
+
+   gint      width = 0, height = 0;
+
    GtkPaned *paned;
+
    GtkRequisition child_requisition;
 
    CHECKCWID(cpan, GTK_IS_PANED);
    paned = GTK_PANED(cpan->widget);
 
    if (paned->child1 && GTK_WIDGET_VISIBLE(paned->child1))
-      {
-	 gtk_widget_size_request(paned->child1, &child_requisition);
+    {
+       gtk_widget_size_request(paned->child1, &child_requisition);
 
-	 height = child_requisition.height;
-	 width = child_requisition.width;
-      }
+       height = child_requisition.height;
+       width = child_requisition.width;
+    }
    _clip_storni(ClipMachineMemory, width, 2, 0);
    _clip_storni(ClipMachineMemory, height, 3, 0);
    return 0;
@@ -355,20 +381,23 @@ int
 clip_GTK_PANEDGETSIZECHILD2(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
-   gint width = 0, height = 0;
+
+   gint      width = 0, height = 0;
+
    GtkPaned *paned;
+
    GtkRequisition child_requisition;
 
    CHECKCWID(cpan, GTK_IS_PANED);
    paned = GTK_PANED(cpan->widget);
 
    if (paned->child2 && GTK_WIDGET_VISIBLE(paned->child2))
-      {
-	 gtk_widget_size_request(paned->child2, &child_requisition);
+    {
+       gtk_widget_size_request(paned->child2, &child_requisition);
 
-	 height = child_requisition.height;
-	 width = child_requisition.width;
-      }
+       height = child_requisition.height;
+       width = child_requisition.width;
+    }
    _clip_storni(ClipMachineMemory, width, 2, 0);
    _clip_storni(ClipMachineMemory, height, 3, 0);
    return 0;
@@ -381,7 +410,9 @@ int
 clip_GTK_PANEDGETCHILD1(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCWID(cpan, GTK_IS_PANED);
@@ -389,13 +420,13 @@ clip_GTK_PANEDGETCHILD1(ClipMachine * ClipMachineMemory)
    wid = gtk_paned_get_child1(GTK_PANED(cpan->widget));
 
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
    return 0;
  err:
@@ -406,7 +437,9 @@ int
 clip_GTK_PANEDGETCHILD2(ClipMachine * ClipMachineMemory)
 {
    C_widget *cpan = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCWID(cpan, GTK_IS_PANED);
@@ -414,13 +447,13 @@ clip_GTK_PANEDGETCHILD2(ClipMachine * ClipMachineMemory)
    wid = gtk_paned_get_child2(GTK_PANED(cpan->widget));
 
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
    return 0;
  err:

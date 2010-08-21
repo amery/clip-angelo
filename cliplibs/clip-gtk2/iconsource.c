@@ -43,8 +43,10 @@ clip_INIT___ICONSOURCE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ICONSOURCENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkIconSource *isrc;
+
    C_object *cisrc;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -53,13 +55,13 @@ clip_GTK_ICONSOURCENEW(ClipMachine * ClipMachineMemory)
    isrc = gtk_icon_source_new();
 
    if (isrc)
-      {
-	 cisrc = _list_get_cobject(ClipMachineMemory, isrc);
-	 if (!cisrc)
-	    cisrc = _register_object(ClipMachineMemory, isrc, GTK_TYPE_ICON_SOURCE, cv, NULL);
-	 if (cisrc)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cisrc->obj);
-      }
+    {
+       cisrc = _list_get_cobject(ClipMachineMemory, isrc);
+       if (!cisrc)
+	  cisrc = _register_object(ClipMachineMemory, isrc, GTK_TYPE_ICON_SOURCE, cv, NULL);
+       if (cisrc)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cisrc->obj);
+    }
    return 0;
  err:
    return 1;
@@ -69,6 +71,7 @@ int
 clip_GTK_ICONSOURCECOPY(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    GtkIconSource *isrc;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -77,13 +80,13 @@ clip_GTK_ICONSOURCECOPY(ClipMachine * ClipMachineMemory)
    isrc = gtk_icon_source_copy(GTK_ICON_SOURCE(cisrc->object));
 
    if (isrc)
-      {
-	 cisrc = _list_get_cobject(ClipMachineMemory, isrc);
-	 if (!cisrc)
-	    cisrc = _register_object(ClipMachineMemory, isrc, GTK_TYPE_ICON_SOURCE, NULL, NULL);
-	 if (cisrc)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cisrc->obj);
-      }
+    {
+       cisrc = _list_get_cobject(ClipMachineMemory, isrc);
+       if (!cisrc)
+	  cisrc = _register_object(ClipMachineMemory, isrc, GTK_TYPE_ICON_SOURCE, NULL, NULL);
+       if (cisrc)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cisrc->obj);
+    }
    return 0;
  err:
    return 1;
@@ -153,7 +156,9 @@ int
 clip_GTK_ICONSOURCEGETPIXBUF(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    GdkPixbuf *pixbuf;
+
    C_object *cpixbuf;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -162,13 +167,13 @@ clip_GTK_ICONSOURCEGETPIXBUF(ClipMachine * ClipMachineMemory)
    pixbuf = gtk_icon_source_get_pixbuf(GTK_ICON_SOURCE(cisrc->object));
 
    if (pixbuf)
-      {
-	 cpixbuf = _list_get_cobject(ClipMachineMemory, pixbuf);
-	 if (!cpixbuf)
-	    cpixbuf = _register_object(ClipMachineMemory, pixbuf, GDK_TYPE_PIXBUF, NULL, NULL);
-	 if (cpixbuf)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixbuf->obj);
-      }
+    {
+       cpixbuf = _list_get_cobject(ClipMachineMemory, pixbuf);
+       if (!cpixbuf)
+	  cpixbuf = _register_object(ClipMachineMemory, pixbuf, GDK_TYPE_PIXBUF, NULL, NULL);
+       if (cpixbuf)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixbuf->obj);
+    }
 
    return 0;
  err:
@@ -239,6 +244,7 @@ int
 clip_GTK_ICONSOURCESETDIRECTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    GtkTextDirection direction = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -256,7 +262,8 @@ int
 clip_GTK_ICONSOURCESETDIRECTIONWILDCARDED(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
-   gboolean setting = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cisrc, GTK_IS_ICON_SOURCE(cisrc));
@@ -273,7 +280,8 @@ int
 clip_GTK_ICONSOURCESETFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
-   gchar *filename = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *filename = _clip_parc(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cisrc, GTK_IS_ICON_SOURCE(cisrc));
@@ -290,6 +298,7 @@ int
 clip_GTK_ICONSOURCESETPIXBUF(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cpixbuf = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -308,6 +317,7 @@ int
 clip_GTK_ICONSOURCESETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    GtkIconSize size = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -325,7 +335,8 @@ int
 clip_GTK_ICONSOURCESETSIZEWILDCARDED(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
-   gboolean setting = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cisrc, GTK_IS_ICON_SOURCE(cisrc));
@@ -342,6 +353,7 @@ int
 clip_GTK_ICONSOURCESETSTATE(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
+
    GtkStateType type = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -359,7 +371,8 @@ int
 clip_GTK_ICONSOURCESETSTATEWILDCARDED(ClipMachine * ClipMachineMemory)
 {
    C_object *cisrc = _fetch_co_arg(ClipMachineMemory);
-   gboolean setting = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(cisrc, GTK_IS_ICON_SOURCE(cisrc));

@@ -87,6 +87,7 @@ int
 clip_GTK_BUTTONBOXGETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    _clip_retni(ClipMachineMemory, gtk_button_box_get_spacing(GTK_BUTTON_BOX(cbbox->widget)));
    return 0;
@@ -99,6 +100,7 @@ int
 clip_GTK_BUTTONBOXGETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    _clip_retni(ClipMachineMemory, gtk_button_box_get_layout(GTK_BUTTON_BOX(cbbox->widget)));
    return 0;
@@ -112,7 +114,9 @@ int
 clip_GTK_BUTTONBOXGETCHILDSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   gint min_width, min_height;
+
+   gint      min_width, min_height;
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    gtk_button_box_get_child_size(GTK_BUTTON_BOX(cbbox->widget), &min_width, &min_height);
    _clip_storni(ClipMachineMemory, min_width, 2, 0);
@@ -128,7 +132,9 @@ int
 clip_GTK_BUTTONBOXGETCHILDIPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   gint ipad_x, ipad_y;
+
+   gint      ipad_x, ipad_y;
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    gtk_button_box_get_child_ipadding(GTK_BUTTON_BOX(cbbox->widget), &ipad_x, &ipad_y);
    _clip_storni(ClipMachineMemory, ipad_x, 2, 0);
@@ -143,7 +149,9 @@ int
 clip_GTK_BUTTONBOXSETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   gint spacing = _clip_parni(ClipMachineMemory, 2);
+
+   gint      spacing = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_spacing(GTK_BUTTON_BOX(cbbox->widget), spacing);
@@ -157,7 +165,9 @@ int
 clip_GTK_BUTTONBOXSETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
+
    GtkButtonBoxStyle layout_style = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_button_box_set_layout(GTK_BUTTON_BOX(cbbox->widget), layout_style);
@@ -171,8 +181,11 @@ int
 clip_GTK_BUTTONBOXSETCHILDSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   gint min_width = _clip_parni(ClipMachineMemory, 2);
-   gint min_height = _clip_parni(ClipMachineMemory, 3);
+
+   gint      min_width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      min_height = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -188,8 +201,11 @@ int
 clip_GTK_BUTTONBOXSETCHILDIPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   gint ipad_x = _clip_parni(ClipMachineMemory, 2);
-   gint ipad_y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      ipad_x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      ipad_y = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -203,8 +219,10 @@ int
 clip_GTK_BUTTONBOXSETCHILDSECONDARY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean is_secondary = BOOL_OPTION(ClipMachineMemory, 3, 1);
+
+   gboolean  is_secondary = BOOL_OPTION(ClipMachineMemory, 3, 1);
 
    CHECKARG2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
@@ -223,9 +241,12 @@ clip_GTK_BUTTONBOXSETCHILDSECONDARY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VBUTTONBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_vbutton_box_new();
    if (!wid)
@@ -244,9 +265,12 @@ clip_GTK_VBUTTONBOXNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_hbutton_box_new();
    if (!wid)
@@ -275,7 +299,8 @@ clip_GTK_HBUTTONBOXGETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXSETSPACINGDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint spacing = _clip_parni(ClipMachineMemory, 1);
+   gint      spacing = _clip_parni(ClipMachineMemory, 1);
+
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_hbutton_box_set_spacing_default(spacing);
    return 0;
@@ -295,7 +320,8 @@ clip_GTK_HBUTTONBOXGETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HBUTTONBOXSETLAYOUTDEFAULT(ClipMachine * ClipMachineMemory)
 {
-   gint spacing = _clip_parni(ClipMachineMemory, 1);
+   gint      spacing = _clip_parni(ClipMachineMemory, 1);
+
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    gtk_hbutton_box_set_layout_default(spacing);
    return 0;
@@ -308,21 +334,24 @@ int
 clip_GTK_BUTTONBOXGETCHILDSECONDARY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbbox = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
    C_widget *cwid;
+
    GtkWidget *wid = 0;
 
    CHECKCWID(cbbox, GTK_IS_BUTTON_BOX);
 
    _clip_retl(ClipMachineMemory, gtk_button_box_get_child_secondary(GTK_BUTTON_BOX(cbbox->widget), wid));
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, cv, &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, cv, &cwid->obj);
+    }
    return 0;
  err:
    return 1;

@@ -5,7 +5,7 @@ Check_Include 		X11/xpm.h 				xyz 	clip-gtk2 			Yes 	/usr/include 										"lib
 Check_Library 		freetype 			.so 	clip-gtk2 			Yes	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/dev)"
 Check_Library 		jpeg 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libjpeg-static-xx-$ARCH.(rpm/deb)"
 Check_Library 		png 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libpng-static-xx-$ARCH.(rpm/deb)"
-Check_Library 		ttf 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/deb)"
+Check_Library 		ttf 					.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"(lib)freetype-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		gtk-x11-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		gdk-x11-2.0 		.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		atk-1.0 				.so 	clip-gtk2 			Yes 	/usr/lib$C64 							"lib-static-devel-xx-$ARCH.(rpm/deb)"
@@ -51,28 +51,28 @@ CalcRealDlls(){
     # TODO: get one library name of more versions
     REAL_LIBS=""
     for Onelib in $LIBS; do
-	# skip non-libs
-	if test `echo $Onelib| grep -c '^-l'` -eq 0; then
-	    REAL_LIBS=$REAL_LIBS" "$Onelib
-	    continue
-	fi
-	# calc *.la name
-	lalib="/lib/lib"`echo $Onelib|sed 's/^\-l//'`".la"
-	# check if *.la exists
-	if test ! -f $lalib; then
-	    REAL_LIBS=$REAL_LIBS" "$Onelib
-	    continue
-	fi
-	# get real DLL from *.la
-	realdll=`grep 'dlname=' $lalib |grep -v '^#'|\
-	awk -F \= '{print $2;}'| sed s/\'//g`
+		# skip non-libs
+		if test `echo $Onelib| grep -c '^-l'` -eq 0; then
+		    REAL_LIBS=$REAL_LIBS" "$Onelib
+		    continue
+		fi
+		# calc *.la name
+		lalib="/lib/lib"`echo $Onelib|sed 's/^\-l//'`".la"
+		# check if *.la exists
+		if test ! -f $lalib; then
+		    REAL_LIBS=$REAL_LIBS" "$Onelib
+		    continue
+		fi
+		# get real DLL from *.la
+		realdll=`grep 'dlname=' $lalib |grep -v '^#'|\
+		awk -F \= '{print $2;}'| sed s/\'//g`
 
-	if test -z "$realdll"; then
-	    REAL_LIBS=$REAL_LIBS" "$Onelib
-	else
-	    realdll=`echo $realdll| sed 's/^\.\.//'`
-	    REAL_LIBS=$REAL_LIBS" "$realdll
-	fi
+		if test -z "$realdll"; then
+		    REAL_LIBS=$REAL_LIBS" "$Onelib
+		else
+		    realdll=`echo $realdll| sed 's/^\.\.//'`
+		    REAL_LIBS=$REAL_LIBS" "$realdll
+		fi
     done
     LIBS=$REAL_LIBS
 }
@@ -114,7 +114,7 @@ PKGCONFIG_PRESENT=`which pkg-config >/dev/null 2>&1; echo $?`
 if [ $PKGCONFIG_PRESENT -ne 0 ]; then
     PKGCONFIG_PRESENT=`whereis pkg-config 2>&1| sed 's|^pkg-config\:||' | grep -c pkg-config`
     if [ $PKGCONFIG_PRESENT -ne 0 ]; then
-	PKGCONFIG=`whereis pkg-config|awk '{print $2;}'`
+		PKGCONFIG=`whereis pkg-config|awk '{print $2;}'`
     fi
 else
     PKGCONFIG=`which pkg-config`
@@ -139,6 +139,13 @@ if [ $? -ne 0 ]; then
     exit
 fi
 LIBS=`$PKGCONFIG gtk+-2.0 --libs`
+LIBS_temp="$LIBS"
+LIBS=""
+for aa in $LIBS_temp ; do
+	if [[ "$aa" != "-pthread" ]] ; then
+		LIBS="$LIBS $aa"
+	fi
+done
 EXTRACFLAGS=""
 if [ "$osname" = "CYGWIN" ]; then
     CalcRealDlls
@@ -201,7 +208,15 @@ if [ -z "$CC" ] ; then
 fi
 #echo "DLLSUFF='$DLLSUFF'"														>&3
 #echo "DLLREALSUFF='$DLLREALSUFF'" 											>&3
-echo "INCLUDEDIRS=$EXTRACFLAGS $($PKGCONFIG gtk+-2.0 --cflags)" 	>&3
+INCLUDEDIRS="$EXTRACFLAGS $($PKGCONFIG gtk+-2.0 --cflags)"
+LIBS_temp="$INCLUDEDIRS"
+INCLUDEDIRS=""
+for aa in $LIBS_temp ; do
+	if [[ "$aa" != "-pthread" ]] ; then
+		INCLUDEDIRS="$INCLUDEDIRS $aa"
+	fi
+done
+echo "INCLUDEDIRS=$INCLUDEDIRS"  											>&3
 #echo "XTARGETS=\$(XLIB) \$(XSLIB)" 											>&3
 echo "LIBS=$LIBS " 																>&3
 if [ \( "$GTK_MAJOR" -ge 2  \) ] ; then
@@ -214,6 +229,13 @@ if [ \( "$GTK_MAJOR" -ge 2  \) ] ; then
 fi
 if [ "$USE_GTK" = yes ] ; then
 	XCFLAGS=`$PKGCONFIG gtk+-2.0 --cflags`
+	LIBS_temp="$XCFLAGS"
+	XCFLAGS=""
+	for aa in $LIBS_temp ; do
+		if [[ "$aa" != "-pthread" ]] ; then
+			XCFLAGS="$XCFLAGS $aa"
+		fi
+	done
 	echo "XCFLAGS=$XCFLAGS" 													>&3
 fi
 echo 																					>&3

@@ -11,3 +11,4 @@ if [ -f Makefile ] ; then
 	fi
 fi
 rm -fv Makefile clean
+./force.clean.sh || true

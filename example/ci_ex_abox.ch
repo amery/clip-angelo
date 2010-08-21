@@ -2,13 +2,13 @@
 
 #ifndef CI_ABOX_DEFINED
 
-#define AB_SINGLE '�Ŀ����'
+#define AB_SINGLE '������'
 
-#define AB_DOUBLE '�ͻ���Ⱥ'
+#define AB_DOUBLE '������'
 
-#define AB_SINGLE_DOUBLE	'�͸���Գ'
+#define AB_SINGLE_DOUBLE	'�������'
 
-#define	AB_DOUBLE_SINGLE	'�ķ���Ӻ'
+#define	AB_DOUBLE_SINGLE	'������'
 
 #define CI_ABOX_DEFINED
 

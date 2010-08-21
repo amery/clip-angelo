@@ -15,7 +15,7 @@
 
 /**********************************************************/
 /* Signal handlers */
-static gint
+static    gint
 handle_select_row_signal(GtkWidget * widget, gint row, gint column, GdkEventButton * event, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -26,7 +26,7 @@ handle_select_row_signal(GtkWidget * widget, gint row, gint column, GdkEventButt
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_unselect_row_signal(GtkWidget * widget, gint row, gint column, GdkEventButton * event, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -37,7 +37,7 @@ handle_unselect_row_signal(GtkWidget * widget, gint row, gint column, GdkEventBu
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_row_move_signal(GtkWidget * widget, gint source, gint destination, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -46,7 +46,7 @@ handle_row_move_signal(GtkWidget * widget, gint source, gint destination, C_sign
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_click_column_signal(GtkWidget * widget, gint column, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -54,7 +54,7 @@ handle_click_column_signal(GtkWidget * widget, gint column, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_resize_column_signal(GtkWidget * widget, gint column, gint width, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -63,8 +63,9 @@ handle_resize_column_signal(GtkWidget * widget, gint column, gint width, C_signa
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
-handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, gboolean auto_start_selection, C_signal * cs)
+static    gint
+handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type,
+			       gfloat position, gboolean auto_start_selection, C_signal * cs)
 {
    PREPARECV(cs, cv);
    _clip_mputn(cs->cw->cmachine, &cv, HASH_SCROLLTYPE, scroll_type);
@@ -73,7 +74,7 @@ handle_extend_selection_signal(GtkWidget * widget, GtkScrollType scroll_type, gf
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_scroll_vertical_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -82,7 +83,7 @@ handle_scroll_vertical_signal(GtkWidget * widget, GtkScrollType scroll_type, gfl
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_scroll_horizontal_signal(GtkWidget * widget, GtkScrollType scroll_type, gfloat position, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -160,70 +161,81 @@ clip_INIT___CLIST(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CLISTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gint ncolumns = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *cvcol = _clip_spar(ClipMachineMemory, 3);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gint      ncolumns = _clip_parni(ClipMachineMemory, 2);
+
+   ClipVar  *cvcol = _clip_spar(ClipMachineMemory, 3);
+
    ClipArrVar *acol;
-   int i;
-   gchar *empty_string = "\0";
-   gchar **columns = NULL;
-   gchar *text;
+
+   int       i;
+
+   gchar    *empty_string = "\0";
+
+   gchar   **columns = NULL;
+
+   gchar    *text;
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT2(3, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
    switch (_clip_parinfo(ClipMachineMemory, 3))
-      {
-      case CHARACTER_type_of_ClipVarType:
-	 columns = (gchar **) calloc(sizeof(columns), ncolumns);
-	 text = cvcol->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-	 LOCALE_TO_UTF(text);
-	 columns[0] = text;
-	 for (i = 1; i < ncolumns; i++)
-	    columns[i] = empty_string;
-	 wid = gtk_clist_new_with_titles(ncolumns, columns);
-	 if (columns)
-	    free(columns);
-	 FREE_TEXT(text);
-	 break;
-      case ARRAY_type_of_ClipVarType:
-	 acol = (ClipArrVar *) _clip_vptr(cvcol);
-	 columns = (gchar **) calloc(sizeof(gchar *), ncolumns);
+    {
+    case CHARACTER_type_of_ClipVarType:
+       columns = (gchar **) calloc(sizeof(columns), ncolumns);
+       text = cvcol->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+       LOCALE_TO_UTF(text);
+       columns[0] = text;
+       for (i = 1; i < ncolumns; i++)
+	  columns[i] = empty_string;
+       wid = gtk_clist_new_with_titles(ncolumns, columns);
+       if (columns)
+	  free(columns);
+       FREE_TEXT(text);
+       break;
+    case ARRAY_type_of_ClipVarType:
+       acol = (ClipArrVar *) _clip_vptr(cvcol);
+       columns = (gchar **) calloc(sizeof(gchar *), ncolumns);
 #ifdef OS_CYGWIN
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = _clip_locale_to_utf8(acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-	       else
-		  columns[i] = _clip_locale_to_utf8(empty_string);
-	    }
-	 wid = gtk_clist_new_with_titles(ncolumns, columns);
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       g_free(columns[i]);
-	    }
-	 if (columns)
-	    free(columns);
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      columns[i] = _clip_locale_to_utf8(acol->items[i].s.ClipBuf_str_of_ClipStrVar.buf);
+	   else
+	      columns[i] = _clip_locale_to_utf8(empty_string);
+	}
+       wid = gtk_clist_new_with_titles(ncolumns, columns);
+       for (i = 0; i < ncolumns; i++)
+	{
+	   g_free(columns[i]);
+	}
+       if (columns)
+	  free(columns);
 #else
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       ClipVar *vp = _clip_vptr(acol->ClipVar_items_of_ClipArrVar + i);
-	       if (i < acol->count_of_ClipArrVar && vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-	       else
-		  columns[i] = empty_string;
-	    }
+       for (i = 0; i < ncolumns; i++)
+	{
+	   ClipVar  *vp = _clip_vptr(acol->ClipVar_items_of_ClipArrVar + i);
 
-	 wid = gtk_clist_new_with_titles(ncolumns, columns);
-	 if (columns)
-	    free(columns);
+	   if (i < acol->count_of_ClipArrVar
+	       && vp->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      columns[i] = vp->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	   else
+	      columns[i] = empty_string;
+	}
+
+       wid = gtk_clist_new_with_titles(ncolumns, columns);
+       if (columns)
+	  free(columns);
 #endif
-	 break;
-      default:
-	 wid = gtk_clist_new(ncolumns);
-      }
+       break;
+    default:
+       wid = gtk_clist_new(ncolumns);
+    }
 
    if (!wid)
       goto err;
@@ -242,7 +254,9 @@ int
 clip_GTK_CLISTSETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
@@ -256,7 +270,9 @@ int
 clip_GTK_CLISTSETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
@@ -271,9 +287,13 @@ int
 clip_GTK_CLISTGETHADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
-   ClipVar *ret = RETPTR(ClipMachineMemory);
+
+   ClipVar  *ret = RETPTR(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    adj = gtk_clist_get_hadjustment(GTK_CLIST(clst->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -290,9 +310,13 @@ int
 clip_GTK_CLISTGETVADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
-   ClipVar *ret = RETPTR(ClipMachineMemory);
+
+   ClipVar  *ret = RETPTR(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    adj = gtk_clist_get_vadjustment(GTK_CLIST(clst->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -311,7 +335,9 @@ int
 clip_GTK_CLISTSETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    GtkShadowType type = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_clist_set_shadow_type(GTK_CLIST(clst->widget), type);
@@ -329,7 +355,9 @@ int
 clip_GTK_CLISTSETSELECTIONMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    GtkSelectionMode mode = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_clist_set_selection_mode(GTK_CLIST(clst->widget), mode);
@@ -346,6 +374,7 @@ int
 clip_GTK_CLISTFREEZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_freeze(GTK_CLIST(clst->widget));
    return 0;
@@ -358,6 +387,7 @@ int
 clip_GTK_CLISTTHAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_thaw(GTK_CLIST(clst->widget));
    return 0;
@@ -371,6 +401,7 @@ int
 clip_GTK_CLISTCOLUMNTITLESSHOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_column_titles_show(GTK_CLIST(clst->widget));
    return 0;
@@ -384,6 +415,7 @@ int
 clip_GTK_CLISTCOLUMNTITLESHIDE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_column_titles_hide(GTK_CLIST(clst->widget));
    return 0;
@@ -398,7 +430,9 @@ int
 clip_GTK_CLISTCOLUMNTITLEACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -415,7 +449,9 @@ int
 clip_GTK_CLISTCOLUMNTITLEPASSIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -432,6 +468,7 @@ int
 clip_GTK_CLISTCOLUMNTITLESACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_column_titles_active(GTK_CLIST(clst->widget));
    return 0;
@@ -445,6 +482,7 @@ int
 clip_GTK_CLISTCOLUMNTITLESPASSIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_column_titles_passive(GTK_CLIST(clst->widget));
    return 0;
@@ -457,9 +495,13 @@ int
 clip_GTK_CLISTSETCOLUMNTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gchar *title = _clip_parc(ClipMachineMemory, 3);
-   gchar *empty_string = "\0";
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 3);
+
+   gchar    *empty_string = "\0";
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -482,8 +524,11 @@ int
 clip_GTK_CLISTSETCOLUMNWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -501,8 +546,11 @@ int
 clip_GTK_CLISTSETCOLUMNJUSTIFICATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    GtkJustification justification = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -521,8 +569,11 @@ int
 clip_GTK_CLISTSETCOLUMNVISIBILITY(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gboolean visible = _clip_parl(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  visible = _clip_parl(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -544,8 +595,11 @@ int
 clip_GTK_CLISTSETCOLUMNRESIZEABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gboolean resizeable = _clip_parl(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  resizeable = _clip_parl(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -566,8 +620,11 @@ int
 clip_GTK_CLISTSETCOLUMNAUTORESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gboolean auto_resize = _clip_parl(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  auto_resize = _clip_parl(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -587,7 +644,9 @@ int
 clip_GTK_CLISTOPTIMALCOLUMNWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -603,8 +662,11 @@ int
 clip_GTK_CLISTSETCOLUMNWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gint width = _clip_parni(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      width = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -622,8 +684,11 @@ int
 clip_GTK_CLISTSETCOLUMNMINWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gint min_width = _clip_parni(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      min_width = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -641,8 +706,11 @@ int
 clip_GTK_CLISTSETCOLUMNMAXWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
-   gint max_width = _clip_parni(ClipMachineMemory, 3);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      max_width = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -660,7 +728,9 @@ int
 clip_GTK_CLISTSETROWHEIGHT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   guint height = _clip_parni(ClipMachineMemory, 2);
+
+   guint     height = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_clist_set_row_height(GTK_CLIST(clst->widget), height);
@@ -674,10 +744,15 @@ int
 clip_GTK_CLISTMOVETO(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 4);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 5);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 4);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 5);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -698,7 +773,9 @@ int
 clip_GTK_CLISTROWISVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -714,8 +791,11 @@ int
 clip_GTK_CLISTGETCELLTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -734,10 +814,15 @@ int
 clip_GTK_CLISTSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gchar *text = _clip_parc(ClipMachineMemory, 4);
-   gchar *empty_string = "\0";
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 4);
+
+   gchar    *empty_string = "\0";
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -761,10 +846,15 @@ int
 clip_GTK_CLISTGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gchar *text;
-   gchar *empty_string = "\0";
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gchar    *text;
+
+   gchar    *empty_string = "\0";
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -787,9 +877,13 @@ int
 clip_GTK_CLISTSETPIXMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
    C_widget *cpixmap = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 4));
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -799,7 +893,8 @@ clip_GTK_CLISTSETPIXMAP(ClipMachine * ClipMachineMemory)
       row = 1;
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       column = 1;
-   gtk_clist_set_pixmap(GTK_CLIST(clst->widget), row - 1, column - 1, GTK_PIXMAP(cpixmap->widget)->pixmap, GTK_PIXMAP(cpixmap->widget)->mask);
+   gtk_clist_set_pixmap(GTK_CLIST(clst->widget), row - 1, column - 1,
+			GTK_PIXMAP(cpixmap->widget)->pixmap, GTK_PIXMAP(cpixmap->widget)->mask);
    return 0;
  err:
    return 1;
@@ -810,10 +905,15 @@ int
 clip_GTK_CLISTGETPIXMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
    GdkPixmap *pixmap;
+
    GdkBitmap *mask;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -822,12 +922,14 @@ clip_GTK_CLISTGETPIXMAP(ClipMachine * ClipMachineMemory)
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       column = 1;
    if (gtk_clist_get_pixmap(GTK_CLIST(clst->widget), row - 1, column - 1, &pixmap, &mask))
-      {
-	 C_widget *cpixmap;
-	 GtkWidget *xpm = gtk_pixmap_new(pixmap, mask);
-	 cpixmap = _register_widget(ClipMachineMemory, xpm, NULL);
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixmap->obj);
-      }
+    {
+       C_widget *cpixmap;
+
+       GtkWidget *xpm = gtk_pixmap_new(pixmap, mask);
+
+       cpixmap = _register_widget(ClipMachineMemory, xpm, NULL);
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixmap->obj);
+    }
    return 0;
  err:
    return 1;
@@ -838,11 +940,17 @@ int
 clip_GTK_CLISTSETPIXTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gchar *text = _clip_parc(ClipMachineMemory, 4);
-   guint8 spacing = _clip_parni(ClipMachineMemory, 5);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 4);
+
+   guint8    spacing = _clip_parni(ClipMachineMemory, 5);
+
    C_widget *cpixmap = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 6));
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -855,7 +963,8 @@ clip_GTK_CLISTSETPIXTEXT(ClipMachine * ClipMachineMemory)
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       column = 1;
    LOCALE_TO_UTF(text);
-   gtk_clist_set_pixtext(GTK_CLIST(clst->widget), row - 1, column - 1, text, spacing, GTK_PIXMAP(cpixmap->widget)->pixmap, GTK_PIXMAP(cpixmap->widget)->mask);
+   gtk_clist_set_pixtext(GTK_CLIST(clst->widget), row - 1, column - 1, text,
+			 spacing, GTK_PIXMAP(cpixmap->widget)->pixmap, GTK_PIXMAP(cpixmap->widget)->mask);
    FREE_TEXT(text);
    return 0;
  err:
@@ -867,12 +976,19 @@ int
 clip_GTK_CLISTGETPIXTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gchar *text;
-   guint8 spacing;
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gchar    *text;
+
+   guint8    spacing;
+
    GdkPixmap *pixmap;
+
    GdkBitmap *mask;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -881,16 +997,18 @@ clip_GTK_CLISTGETPIXTEXT(ClipMachine * ClipMachineMemory)
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType)
       column = 1;
    if (gtk_clist_get_pixtext(GTK_CLIST(clst->widget), row - 1, column - 1, &text, &spacing, &pixmap, &mask))
-      {
-	 C_widget *cpixmap;
-	 GtkWidget *xpm = gtk_pixmap_new(pixmap, mask);
-	 cpixmap = _register_widget(ClipMachineMemory, xpm, NULL);
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixmap->obj);
-	 LOCALE_FROM_UTF(text);
-	 _clip_storc(ClipMachineMemory, text, 4, 0);
-	 FREE_TEXT(text);
-	 _clip_storni(ClipMachineMemory, spacing, 5, 0);
-      }
+    {
+       C_widget *cpixmap;
+
+       GtkWidget *xpm = gtk_pixmap_new(pixmap, mask);
+
+       cpixmap = _register_widget(ClipMachineMemory, xpm, NULL);
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cpixmap->obj);
+       LOCALE_FROM_UTF(text);
+       _clip_storc(ClipMachineMemory, text, 4, 0);
+       FREE_TEXT(text);
+       _clip_storni(ClipMachineMemory, spacing, 5, 0);
+    }
    return 0;
  err:
    return 1;
@@ -901,9 +1019,13 @@ int
 clip_GTK_CLISTSETFOREGROUND(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 3);
-   GdkColor color;
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 3);
+
+   GdkColor  color;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, MAP_type_of_ClipVarType);
@@ -924,9 +1046,13 @@ int
 clip_GTK_CLISTSETBACKGROUND(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 3);
-   GdkColor color;
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 3);
+
+   GdkColor  color;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, MAP_type_of_ClipVarType);
@@ -947,10 +1073,15 @@ int
 clip_GTK_CLISTSETCELLSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 4);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 4);
+
    GtkStyle *style;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -972,10 +1103,15 @@ int
 clip_GTK_CLISTGETCELLSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   ClipVar *mstyle = RETPTR(ClipMachineMemory);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   ClipVar  *mstyle = RETPTR(ClipMachineMemory);
+
    GtkStyle *style;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -987,11 +1123,11 @@ clip_GTK_CLISTGETCELLSTYLE(ClipMachine * ClipMachineMemory)
    if (!style)
       style = gtk_widget_get_style(clst->widget);
    if (style)
-      {
-	 memset(mstyle, 0, sizeof(*mstyle));
-	 _clip_map(ClipMachineMemory, mstyle);
-	 _style_to_map(ClipMachineMemory, style, mstyle);
-      }
+    {
+       memset(mstyle, 0, sizeof(*mstyle));
+       _clip_map(ClipMachineMemory, mstyle);
+       _style_to_map(ClipMachineMemory, style, mstyle);
+    }
    return 0;
  err:
    return 1;
@@ -1002,9 +1138,13 @@ int
 clip_GTK_CLISTSETROWSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 3);
+
    GtkStyle *style;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, MAP_type_of_ClipVarType);
@@ -1023,9 +1163,13 @@ int
 clip_GTK_CLISTGETROWSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *mstyle = RETPTR(ClipMachineMemory);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   ClipVar  *mstyle = RETPTR(ClipMachineMemory);
+
    GtkStyle *style;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1034,11 +1178,11 @@ clip_GTK_CLISTGETROWSTYLE(ClipMachine * ClipMachineMemory)
    if (!style)
       style = gtk_widget_get_style(clst->widget);
    if (style)
-      {
-	 memset(mstyle, 0, sizeof(*mstyle));
-	 _clip_map(ClipMachineMemory, mstyle);
-	 _style_to_map(ClipMachineMemory, style, mstyle);
-      }
+    {
+       memset(mstyle, 0, sizeof(*mstyle));
+       _clip_map(ClipMachineMemory, mstyle);
+       _style_to_map(ClipMachineMemory, style, mstyle);
+    }
    return 0;
  err:
    return 1;
@@ -1049,10 +1193,15 @@ int
 clip_GTK_CLISTSETSHIFT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gint vertical = _clip_parni(ClipMachineMemory, 4);
-   gint horizontal = _clip_parni(ClipMachineMemory, 5);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      vertical = _clip_parni(ClipMachineMemory, 4);
+
+   gint      horizontal = _clip_parni(ClipMachineMemory, 5);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -1073,8 +1222,11 @@ int
 clip_GTK_CLISTSETSELECTABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gboolean selectable = _clip_parl(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  selectable = _clip_parl(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
@@ -1093,7 +1245,9 @@ int
 clip_GTK_CLISTGETSELECTABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1109,11 +1263,16 @@ int
 clip_GTK_CLISTPREPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    ClipArrVar *acol = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-   int i;
-   gchar *empty_string = "\0";
-   gchar **columns = NULL;
-   int ncolumns;
+
+   int       i;
+
+   gchar    *empty_string = "\0";
+
+   gchar   **columns = NULL;
+
+   int       ncolumns;
 
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT2(2, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
@@ -1124,26 +1283,26 @@ clip_GTK_CLISTPREPEND(ClipMachine * ClipMachineMemory)
       columns[i] = empty_string;
 #ifdef OS_CYGWIN
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = _clip_locale_to_utf8(acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      columns[i] = _clip_locale_to_utf8(acol->items[i].s.ClipBuf_str_of_ClipStrVar.buf);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_locale_to_utf8(_clip_parc(ClipMachineMemory, 2));
 
    _clip_retni(ClipMachineMemory, gtk_clist_prepend(GTK_CLIST(clst->widget), columns) + 1);
 
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  g_free(columns[i]);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      g_free(columns[i]);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       g_free(columns[0]);
 
@@ -1151,13 +1310,16 @@ clip_GTK_CLISTPREPEND(ClipMachine * ClipMachineMemory)
       free(columns);
 #else
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count_of_ClipArrVar
+	       && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	       CHARACTER_type_of_ClipVarType)
+	      columns[i] =
+	       acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_parc(ClipMachineMemory, 2);
 
@@ -1175,11 +1337,16 @@ int
 clip_GTK_CLISTAPPEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    ClipArrVar *acol = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 2));
-   int i;
-   gchar *empty_string = "\0";
-   gchar **columns = NULL;
-   int ncolumns;
+
+   int       i;
+
+   gchar    *empty_string = "\0";
+
+   gchar   **columns = NULL;
+
+   int       ncolumns;
 
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT2(2, ARRAY_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
@@ -1190,26 +1357,26 @@ clip_GTK_CLISTAPPEND(ClipMachine * ClipMachineMemory)
 
 #ifdef OS_CYGWIN
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = _clip_locale_to_utf8(acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      columns[i] = _clip_locale_to_utf8(acol->items[i].s.ClipBuf_str_of_ClipStrVar.buf);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_locale_to_utf8(_clip_parc(ClipMachineMemory, 2));
 
    _clip_retni(ClipMachineMemory, gtk_clist_append(GTK_CLIST(clst->widget), columns) + 1);
 
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  g_free(columns[i]);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      g_free(columns[i]);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       g_free(columns[0]);
 
@@ -1217,13 +1384,16 @@ clip_GTK_CLISTAPPEND(ClipMachine * ClipMachineMemory)
       free(columns);
 #else
    if (_clip_parinfo(ClipMachineMemory, 2) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count_of_ClipArrVar
+	       && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	       CHARACTER_type_of_ClipVarType)
+	      columns[i] =
+	       acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_parc(ClipMachineMemory, 2);
 
@@ -1241,12 +1411,18 @@ int
 clip_GTK_CLISTINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   int row = _clip_parni(ClipMachineMemory, 2);
+
+   int       row = _clip_parni(ClipMachineMemory, 2);
+
    ClipArrVar *acol = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 3));
-   int i;
-   gchar *empty_string = "\0";
-   gchar **columns = NULL;
-   int ncolumns;
+
+   int       i;
+
+   gchar    *empty_string = "\0";
+
+   gchar   **columns = NULL;
+
+   int       ncolumns;
 
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -1259,26 +1435,26 @@ clip_GTK_CLISTINSERT(ClipMachine * ClipMachineMemory)
       row = 1;
 #ifdef OS_CYGWIN
    if (_clip_parinfo(ClipMachineMemory, 3) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = _clip_locale_to_utf8(acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      columns[i] = _clip_locale_to_utf8(acol->items[i].s.ClipBuf_str_of_ClipStrVar.buf);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_locale_to_utf8(_clip_parc(ClipMachineMemory, 3));
 
    _clip_retni(ClipMachineMemory, gtk_clist_insert(GTK_CLIST(clst->widget), row - 1, columns) + 1);
 
    if (_clip_parinfo(ClipMachineMemory, 3) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  g_free(columns[i]);
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count && acol->items[i].t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
+	      g_free(columns[i]);
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
       g_free(columns[0]);
 
@@ -1286,13 +1462,16 @@ clip_GTK_CLISTINSERT(ClipMachine * ClipMachineMemory)
       free(columns);
 #else
    if (_clip_parinfo(ClipMachineMemory, 3) == ARRAY_type_of_ClipVarType)
-      {
-	 for (i = 0; i < ncolumns; i++)
-	    {
-	       if (i < acol->count_of_ClipArrVar && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
-		  columns[i] = acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
-	    }
-      }
+    {
+       for (i = 0; i < ncolumns; i++)
+	{
+	   if (i < acol->count_of_ClipArrVar
+	       && acol->ClipVar_items_of_ClipArrVar[i].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+	       CHARACTER_type_of_ClipVarType)
+	      columns[i] =
+	       acol->ClipVar_items_of_ClipArrVar[i].ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf;
+	}
+    }
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
       columns[0] = _clip_parc(ClipMachineMemory, 3);
 
@@ -1310,7 +1489,9 @@ int
 clip_GTK_CLISTREMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1327,8 +1508,11 @@ int
 clip_GTK_CLISTSELECTROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -1348,8 +1532,11 @@ int
 clip_GTK_CLISTUNSELECTROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   gint column = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -1368,6 +1555,7 @@ int
 clip_GTK_CLISTUNDOSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_undo_selection(GTK_CLIST(clst->widget));
    return 0;
@@ -1380,6 +1568,7 @@ int
 clip_GTK_CLISTCLEAR(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_clear(GTK_CLIST(clst->widget));
    return 0;
@@ -1392,9 +1581,13 @@ int
 clip_GTK_CLISTGETSELECTIONINFO(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
-   gint row, column;
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row, column;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -1412,6 +1605,7 @@ int
 clip_GTK_CLISTSELECTALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_select_all(GTK_CLIST(clst->widget));
    return 0;
@@ -1424,6 +1618,7 @@ int
 clip_GTK_CLISTUNSELECTALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_unselect_all(GTK_CLIST(clst->widget));
    return 0;
@@ -1436,8 +1631,11 @@ int
 clip_GTK_CLISTSWAPROWS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row1 = _clip_parni(ClipMachineMemory, 2);
-   gint row2 = _clip_parni(ClipMachineMemory, 3);
+
+   gint      row1 = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row2 = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -1453,7 +1651,9 @@ int
 clip_GTK_CLISTSETSORTCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1470,7 +1670,9 @@ int
 clip_GTK_CLISTSETSORTTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    GtkSortType sort_type = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_clist_set_sort_type(GTK_CLIST(clst->widget), sort_type);
@@ -1485,6 +1687,7 @@ int
 clip_GTK_CLISTSORT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    gtk_clist_sort(GTK_CLIST(clst->widget));
    return 0;
@@ -1498,7 +1701,9 @@ int
 clip_GTK_CLISTSETAUTOSORT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gboolean auto_sort = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  auto_sort = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1514,6 +1719,7 @@ int
 clip_GTK_CLISTCOLUMNSAUTOSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    _clip_retni(ClipMachineMemory, gtk_clist_columns_autosize(GTK_CLIST(clst->widget)));
    return 0;
@@ -1526,7 +1732,9 @@ int
 clip_GTK_CLISTGETCOLUMNTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1542,9 +1750,13 @@ int
 clip_GTK_CLISTGETCOLUMNWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint column = _clip_parni(ClipMachineMemory, 2);
+
+   gint      column = _clip_parni(ClipMachineMemory, 2);
+
    GtkWidget *wid;
+
    C_widget *cwid;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1556,13 +1768,13 @@ clip_GTK_CLISTGETCOLUMNWIDGET(ClipMachine * ClipMachineMemory)
    if (wid && GTK_IS_ALIGNMENT(wid))
       wid = GTK_BIN(&(GTK_ALIGNMENT(wid)->bin))->child;
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1573,8 +1785,11 @@ int
 clip_GTK_CLISTROWMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint source_row = _clip_parni(ClipMachineMemory, 2);
-   gint dest_row = _clip_parni(ClipMachineMemory, 3);
+
+   gint      source_row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      dest_row = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -1593,8 +1808,11 @@ int
 clip_GTK_CLISTSETBUTTONACTIONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   guint button = _clip_parni(ClipMachineMemory, 2);
-   guint8 button_actions = _clip_parni(ClipMachineMemory, 3);
+
+   guint     button = _clip_parni(ClipMachineMemory, 2);
+
+   guint8    button_actions = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -1611,7 +1829,9 @@ int
 clip_GTK_CLISTSETREORDERABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gboolean reorderable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  reorderable = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1628,7 +1848,9 @@ int
 clip_GTK_CLISTSETUSEDRAGICONS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gboolean use_icons = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  use_icons = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -1643,6 +1865,7 @@ int
 clip_GTK_CLISTGETFOCUSROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    _clip_retni(ClipMachineMemory, GTK_CLIST(clst->widget)->focus_row + 1);
    return 0;
@@ -1654,7 +1877,9 @@ int
 clip_GTK_CLISTSETFOCUSROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    GTK_CLIST(clst->widget)->focus_row = row - 1;
@@ -1666,7 +1891,7 @@ clip_GTK_CLISTSETFOCUSROW(ClipMachine * ClipMachineMemory)
 void
 __row_data_destroy_func(gpointer data)
 {
-   C_var *cvar = (C_var *) data;
+   C_var    *cvar = (C_var *) data;
 
    if (!cvar || !cvar->cv)
       return;
@@ -1679,8 +1904,11 @@ int
 clip_GTK_CLISTSETROWDATA(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   C_var *cvar;
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   C_var    *cvar;
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    cvar = NEW(C_var);
@@ -1698,9 +1926,13 @@ int
 clip_GTK_CLISTGETROWDATA(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   gint row = _clip_parni(ClipMachineMemory, 2);
-   C_var *cvar;
-   ClipVar *ret = RETPTR(ClipMachineMemory);
+
+   gint      row = _clip_parni(ClipMachineMemory, 2);
+
+   C_var    *cvar;
+
+   ClipVar  *ret = RETPTR(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
@@ -1720,37 +1952,42 @@ int
 clip_GTK_CLISTGETSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *ret = RETPTR(ClipMachineMemory);
-   GList *selection = GTK_CLIST(clst->widget)->selection;
-   GList *rows = GTK_CLIST(clst->widget)->row_list;
-   long nsel = g_list_length(selection);
+
+   ClipVar  *ret = RETPTR(ClipMachineMemory);
+
+   GList    *selection = GTK_CLIST(clst->widget)->selection;
+
+   GList    *rows = GTK_CLIST(clst->widget)->row_list;
+
+   long      nsel = g_list_length(selection);
 
    CHECKCWID(clst, GTK_IS_CLIST);
    memset(ret, 0, sizeof(*ret));
    _clip_array(ClipMachineMemory, ret, 1, &nsel);
 
    if (nsel > 0)
-      {
-	 ClipVar cv;
-	 long i, row;
+    {
+       ClipVar   cv;
 
-	 memset(&cv, 0, sizeof(cv));
-	 cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+       long      i, row;
 
-	 i = 0;
-	 row = 1;
-	 while (rows)
+       memset(&cv, 0, sizeof(cv));
+       cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = NUMERIC_type_of_ClipVarType;
+
+       i = 0;
+       row = 1;
+       while (rows)
+	{
+	   if (GTK_CLIST_ROW(rows)->state & GTK_STATE_SELECTED)
 	    {
-	       if (GTK_CLIST_ROW(rows)->state & GTK_STATE_SELECTED)
-		  {
-			  cv.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = row;
-		     _clip_aset(ClipMachineMemory, ret, &cv, 1, &i);
-		     i++;
-		  }
-	       rows = g_list_next(rows);
-	       row++;
+	       cv.ClipNumVar_n_of_ClipVar.double_of_ClipNumVar = row;
+	       _clip_aset(ClipMachineMemory, ret, &cv, 1, &i);
+	       i++;
 	    }
-      }
+	   rows = g_list_next(rows);
+	   row++;
+	}
+    }
    return 0;
  err:
    return 1;
@@ -1760,7 +1997,9 @@ int
 clip_GTK_CLISTGETCOUNTSELECTED(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
-   GList *selection = GTK_CLIST(clst->widget)->selection;
+
+   GList    *selection = GTK_CLIST(clst->widget)->selection;
+
    CHECKCWID(clst, GTK_IS_CLIST);
 
    _clip_retni(ClipMachineMemory, g_list_length(selection));
@@ -1774,6 +2013,7 @@ int
 clip_GTK_CLISTGETROWCOUNT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clst = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clst, GTK_IS_CLIST);
 
    _clip_retni(ClipMachineMemory, g_list_length(GTK_CLIST(clst->widget)->row_list));

@@ -38,21 +38,27 @@
  paul
  */
 
-#ifndef CI_TASK_H
-#define CI_TASK_H
+#ifndef CN_TASK_H
+#define CN_TASK_H
 
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
 
 typedef struct TaskMessage TaskMessage;
+
 typedef struct Task Task;
 
 void Task_INIT(void);		/* return version of library */
+
 long Task_version();		/* return version of library */
+
 void Task_init();		/* init task internals */
+
 void Task_START();
+
 void Task_STOP();
+
 long Task_ID();
 
 TaskMessage *TaskMessage_new(long id, void *data, void (*destroy) (void *data));
@@ -60,7 +66,9 @@ TaskMessage *TaskMessage_new(long id, void *data, void (*destroy) (void *data));
 void TaskMessage_delete(TaskMessage * msg);
 
 long TaskMessage_get_sender(TaskMessage * msg);
+
 long TaskMessage_get_id(TaskMessage * msg);
+
 void *TaskMessage_get_data(TaskMessage * msg);
 
 /*
@@ -95,29 +103,34 @@ long Task_get_id(Task * task);
 const char *Task_get_name(Task * task);
 
 int Task_get_count(void);
+
 /*
 	#note russian
 	# ����� ���������� ���(��sheduler �zombie)
 */
 
 void *Task_spawn(Task * task, Task * chield);
+
 /*
 	#note russian
 	# �����chield ������������ �������
 */
 
 int Task_wakeup(Task * task);
+
 /*
 	#note russian
 	# ������� ������� sleep/wait_read/wait_write
 */
 
 Task *Task_findTask(long taskid);
+
 /*
 	 �� ��� � �������
 */
 
 Task *Task_get_currTask();
+
 /*
 	#note russian
 	# ����� ��� � �������
@@ -126,23 +139,27 @@ Task *Task_get_currTask();
   /* //////// ����� ���� ///////////// */
 
 int Task_start_sheduler(void);
+
 /*
 	#note russian
 	# ����������������������� ���*/
 
 int Task_stop_sheduler(void);
+
 /*
 	#note russian
 	# �������������(������� ���
 */
 
 int Task_start(Task * tp);
+
 /*
 	#note russian
 	# ���� ��� ��������� �� ������ ��	# ��� ����� � ���� ����������
 */
 
 int Task_kill(long taskid);
+
 /*
 	#note russian
 	# ����� ����� ���; �������������	# ��� ����� ����� TaskKillException
@@ -150,6 +167,7 @@ int Task_kill(long taskid);
 */
 
 int Task_killAll(void);
+
 /*
 	#note russian
 	# ����� �����, ������� ����� TaskKillException.
@@ -165,23 +183,27 @@ int Task_killAll(void);
 */
 
 int Task_yield(void);
+
 /*
 	#note russian
 	# ������� ����� ������ ���
 */
 
 long Task_sleep(long millisec);
+
 /*
 	#note russian
 	# ���� ����.
 */
 
 int Task_wait_read(int fd, long msec);
+
 /*
 	#note russian
 	# ���� ����� ���� ��� ������*/
 
 int Task_wait_write(int fd, long msec);
+
 /*
 	#note russian
 	# ���� ����� ���� ��� ������*/
@@ -193,6 +215,7 @@ int clip_task_select_if(int fd, void *rp, void *wp, void *ep, void *to);
 /* ////////// ���������/////////////// */
 
 int Task_sendMessage(long receiver, /* new */ TaskMessage * msg);
+
 /*
 	#note russian
 	# ��������������� ���
@@ -200,28 +223,33 @@ int Task_sendMessage(long receiver, /* new */ TaskMessage * msg);
 	msg �����������*/
 
 int Task_sendMessageWait(int receiver, TaskMessage * msg);
+
 /*
 	#note russian
 	# ����������������� ��������
 	msg �����������*/
 
 int Task_sendAll(TaskMessage * msg);
+
 /*
 	#note russian
 	# ����������� ���� ������ �����	# ����� ��� ������*/
 
 TaskMessage *Task_peekMessage(void);
+
 /*
 	#note russian
 	# ����������� ���������	# �� ������� ����� null
 	# �� ��, ������������ ����*/
 
 TaskMessage *Task_getMessage(void);
+
 /*
 	#note russian
 	# �� ������� ������*/
 
 int Task_respond(TaskMessage * msg);
+
 /*
 	#note russian
 	# ����� �����������������,
@@ -232,6 +260,7 @@ int Task_respond(TaskMessage * msg);
 */
 
 int Task_forward(long receiver, TaskMessage * msg);
+
 /*
 	#note russian
 	# ����� �������� ���

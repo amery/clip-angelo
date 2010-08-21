@@ -15,7 +15,7 @@
 
 /**********************************************************/
 /* Signal handlers */
-static gint
+static    gint
 handle_text_pushed_signal(GtkWidget * widget, guint context_id, gchar * text, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -26,7 +26,7 @@ handle_text_pushed_signal(GtkWidget * widget, guint context_id, gchar * text, C_
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_text_popped_signal(GtkWidget * widget, guint context_id, gchar * text, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -78,9 +78,12 @@ clip_INIT___STATUSBAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STATUSBARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_statusbar_new();
@@ -100,7 +103,9 @@ int
 clip_GTK_STATUSBARGETCONTEXTID(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   gchar *context_descr = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *context_descr = _clip_parc(ClipMachineMemory, 2);
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(context_descr);
@@ -116,8 +121,11 @@ int
 clip_GTK_STATUSBARPUSH(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   guint context_id = _clip_parni(ClipMachineMemory, 2);
-   gchar *text = _clip_parc(ClipMachineMemory, 3);
+
+   guint     context_id = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, CHARACTER_type_of_ClipVarType);
@@ -133,7 +141,9 @@ int
 clip_GTK_STATUSBARPOP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   guint context_id = _clip_parni(ClipMachineMemory, 2);
+
+   guint     context_id = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    gtk_statusbar_pop(GTK_STATUSBAR(cstb->widget), context_id);
@@ -146,8 +156,11 @@ int
 clip_GTK_STATUSBARREMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   guint context_id = _clip_parni(ClipMachineMemory, 2);
-   guint message_id = _clip_parni(ClipMachineMemory, 3);
+
+   guint     context_id = _clip_parni(ClipMachineMemory, 2);
+
+   guint     message_id = _clip_parni(ClipMachineMemory, 3);
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -162,7 +175,9 @@ int
 clip_GTK_STATUSBARSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(text);
@@ -177,8 +192,11 @@ int
 clip_GTK_STATUSBARSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
+
    GtkStyle *style;
+
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
    CHECKARG(2, MAP_type_of_ClipVarType);
    style = gtk_style_copy(GTK_STATUSBAR(cstb->widget)->label->style);
@@ -194,6 +212,7 @@ int
 clip_GTK_STATUSBARSETJUSTIFY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkJustification jtype = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cstb, GTK_IS_STATUSBAR);
@@ -211,6 +230,7 @@ int
 clip_GTK_STATUSBARGETLABEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cstb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *clbl;
 
    CHECKCWID(cstb, GTK_IS_STATUSBAR);

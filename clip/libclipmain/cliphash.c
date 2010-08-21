@@ -8,12 +8,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "ci_cliphash.h"
+#include <ci_cliphash.h>
 
 #ifdef STANDALONE
 #define CLIP_DLLEXPORT
 #else
-#include "ci_clip.h"
+#include <ci_clip.h>
 #endif
 
 #define USE_CRC
@@ -148,154 +148,13 @@ static int crc16_tab[] = {
    0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040
 };
 
-CLIP_DLLEXPORT clip_hash_t
-_clip_hashbytes16(long seed, const char *bytes, int len)
-{
-   unsigned int i;
-   unsigned short crc16val;
-   unsigned char *s = (unsigned char *) bytes;
-
-   crc16val = (unsigned short) seed;
-   for (i = 0; i < len; i++)
-      crc16val = (crc16val >> 8) ^ crc16_tab[(crc16val & 0xff) ^ s[i]];
-
-   return (clip_hash_t) crc16val;
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_hashbytes32(long seed, const char *bytes, int len)
-{
-   unsigned int i;
-   unsigned long crc32val;
-   long ret;
-   unsigned char *s = (unsigned char *) bytes;
-
-   crc32val = (unsigned long) seed;
-   for (i = 0; i < len; i++)
-      crc32val = crc32_tab[(crc32val ^ s[i]) & 0xff] ^ (crc32val >> 8);
-//      printf("\nhash32=%s,%d,%ld,%ld,%d,",bytes,len,seed,(clip_hash_t)crc32val,crc32val> 0x7FFFFFFF);
-
-   if (sizeof(long /*clip_hash_t */ ) <= 4)
-      return (clip_hash_t) crc32val;
-   ret = (long) crc32val;
-   if (crc32val > 0x7FFFFFFFL)
-      ret = ret - 0XFFFFFFFFL - 1;
-//      printf("%ld,%ld,%ld\n",0xFFFFFFFFL,ret,(clip_hash_t)ret);
-   return (clip_hash_t) ret;
-
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_hashbytes(long seed, const char *bytes, int len)
-{
-   return _clip_hashbytes32(seed, bytes, len);
-}
-
-static int
-is_hex(int b)
-{
-   switch (b)
-      {
-      case '0':
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-      case 'a':
-      case 'A':
-      case 'b':
-      case 'B':
-      case 'c':
-      case 'C':
-      case 'd':
-      case 'D':
-      case 'e':
-      case 'E':
-      case 'f':
-      case 'F':
-	 return 1;
-      default:
-	 return 0;
-      }
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_casehashbytes_(long seed, const char *bytes, int len)
-{
-   unsigned int i;
-   clip_hash_t ret;
-   unsigned char *s = (unsigned char *) bytes;
-#if 0
-   crc32val = (unsigned long) seed;
-   for (i = 0; i < len; i++)
-      {
-	 crc32val = crc32_tab[(crc32val ^ ((unsigned char) toupper(s[i]))) & 0xff] ^ (crc32val >> 8);
-      }
-#else
-   s = malloc(len);
-   memcpy(s, bytes, len);
-   for (i = 0; i < len; i++)
-      s[i] = ((unsigned char) toupper(s[i]));
-   ret = _clip_hashbytes32(seed, (const char *) s, len);
-   free(s);
-   return ret;
-#endif
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_casehashbytes(long seed, const char *bytes, int len)
-{
-   unsigned long crc32val;
-  /* 0xXXXXXXXX handled specially */
-   if (seed == 0 && len == 10 && bytes[0] == '0' && toupper(bytes[1]) == 'X'
-       && is_hex(bytes[2]) && is_hex(bytes[3]) && is_hex(bytes[4]) && is_hex(bytes[5]) && is_hex(bytes[6]) && is_hex(bytes[7]) && is_hex(bytes[8]) && is_hex(bytes[9]))
-      {
-	 crc32val = strtoul((const char *) bytes, 0, 16);
-	 return (clip_hash_t) crc32val;
-      }
-   return _clip_casehashbytes_(seed, (const char *) bytes, len);
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_hashstr(const char *x)
-{
-   return _clip_hashbytes(0, x, strlen(x));
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_casehashstr(const char *x)
-{
-   return _clip_casehashbytes(0, x, strlen(x));
-}
-
-/* trim head and tail spaces */
-CLIP_DLLEXPORT clip_hash_t
-_clip_hashword(const char *x, int l)
-{
-   const char *e;
-
-   for (e = x + l; x < e && isspace(*x); x++)
-      ;
-   for (; e > x && isspace(e[-1]); e--)
-      ;
-
-   return _clip_hashbytes(0, x, e - x);
-}
-
-CLIP_DLLEXPORT clip_hash_t
-_clip_casehashword(const char *x, int l)
-{
-   const char *e;
-
-   for (e = x + l; x < e && isspace(*x); x++)
-      ;
-   for (; e > x && isspace(e[-1]); e--)
-      ;
-
-   return _clip_casehashbytes(0, x, e - x);
-}
+#include <cliphash/_clip_hashbytes16.c>
+#include <cliphash/_clip_hashbytes32.c>
+#include <cliphash/_clip_hashbytes.c>
+#include <cliphash/static_is_hex.c>
+#include <cliphash/_clip_casehashbytes_.c>
+#include <cliphash/_clip_casehashbytes.c>
+#include <cliphash/_clip_hashstr.c>
+#include <cliphash/_clip_casehashstr.c>
+#include <cliphash/_clip_hashword.c>
+#include <cliphash/_clip_casehashword.c>

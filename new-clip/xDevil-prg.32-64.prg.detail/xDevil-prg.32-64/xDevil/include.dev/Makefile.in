@@ -1,0 +1,23 @@
+#
+#                                            xDevil/include/Makefile.in
+#
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+install all :
+	$(E_cp)cp --remove-destination -fRpu$(V) * $(xDevil_I_Dir)/
+
+hash1 :
+	$(E_xx)$(xDevil_M_Dir)/init/LinkAllFiles.sh xDevil-include
+
+cfg:
+	$(E_cp)cp --remove-destination -fRpu$(V) * $(xDevil_I_Dir)/
+
+cleanc :
+
+distcleanc :
+
+include $(Makefile_end_in)

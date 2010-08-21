@@ -1,0 +1,2 @@
+function kbdspeed()
+return .t.

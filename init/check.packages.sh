@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 ##
 ## 															config dir
 ##
@@ -108,7 +108,7 @@ Check_Library 		dl 					.so 	clip 				Yes 	/usr/lib$C64 							"glibc-static-dev
 #																																"http://www.easysoft.com/products/data_access"
 #Check_Library 		expat 				.so 	clip-xml 		Yes 	/usr/lib$C64 							"libexpat-devel-xx-$ARCH.(rpm/deb)"
 #Check_Library 		fcgi 					.so 	clip-fcgi 		Yes 	/usr/lib$C64 							"libfcgi-static-devel-xx-$ARCH.(rpm/deb)"
-#Check_Library 		freetype 			.so 	clip-gd 			Yes	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/dev)"
+#Check_Library 		freetype 			.so 	clip-gd 			Yes	/usr/lib$C64 							"(lib)freetype-static-devel-xx-$ARCH.(rpm/dev)"
 #Check_Library 		gd 					.so 	clip-gd 			Yes	/usr/lib$C64 							"libgd-static-devel-xx-$ARCH.(rpm/dev)"
 #Check_Library 		gdk_pixbuf 			.so 	clip-gtk 		Yes	/usr/lib$C64 							"libgdk-pixbuf-static-devel-xx-$ARCH.(rpm/dev)"
 Check_Library 		gettextlib 			.so 	clip 				Yes 	/usr/lib$C64 							"gettext-devel-xx-$ARCH.(rpm/deb)"
@@ -126,7 +126,7 @@ Check_Library 		ncursesw 			.so 	clip 				Yes 	/usr/lib$C64 							"libncursesw-
 #Check_Library 		pq 					.so 	clip-postgres 	Yes 	/usr/lib$C64 							"postgres-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		pth 					.so 	clip 				Yes 	/usr/lib$C64 							"libpth-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		readline 			.so 	clip 				Yes 	/usr/lib$C64 							"lib(tcl)readline-devel-xx-$ARCH.(rpm/deb)"
-#Check_Library 		ttf 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"libfreetype-static-devel-xx-$ARCH.(rpm/deb)"
+#Check_Library 		ttf 					.so 	clip-gd 			Yes 	/usr/lib$C64 							"(lib)freetype-static-devel-xx-$ARCH.(rpm/deb)"
 Check_Library 		X11 					.so 	all 				Yes	/usr/lib$C64 							"libxorg-static-devel-xx-$ARCH.(rpm/deb)"
 #Check_Library 		z 						.so 	clip-gzip 		Yes 	/usr/lib$C64 							"zlib-devel-xx-$ARCH.(rpm/deb)"
 

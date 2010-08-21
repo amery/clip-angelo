@@ -86,11 +86,16 @@ clip_INIT___SCALE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HSCALENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkAdjustment *adj;
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -109,11 +114,16 @@ clip_GTK_HSCALENEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VSCALENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkAdjustment *adj;
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -133,7 +143,9 @@ int
 clip_GTK_SCALESETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -147,8 +159,11 @@ int
 clip_GTK_SCALEGETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
+
    CHECKCWID(cscale, GTK_IS_SCALE);
 
    adj = GTK_RANGE(&GTK_SCALE(cscale->widget)->range)->adjustment;
@@ -168,7 +183,9 @@ int
 clip_GTK_SCALESETDIGITS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
-   gint digits = _clip_parni(ClipMachineMemory, 2);
+
+   gint      digits = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_scale_set_digits(GTK_SCALE(cscale->widget), digits);
@@ -181,6 +198,7 @@ int
 clip_GTK_SCALEGETDIGITS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    _clip_retni(ClipMachineMemory, gtk_scale_get_digits(GTK_SCALE(cscale->widget)));
    return 0;
@@ -193,7 +211,9 @@ int
 clip_GTK_SCALESETDRAWVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
-   gboolean draw_value = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  draw_value = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -208,6 +228,7 @@ int
 clip_GTK_SCALEGETDRAWVALUES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    _clip_retl(ClipMachineMemory, gtk_scale_get_draw_value(GTK_SCALE(cscale->widget)));
    return 0;
@@ -220,7 +241,9 @@ int
 clip_GTK_SCALESETVALUEPOS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    GtkPositionType pos = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_scale_set_value_pos(GTK_SCALE(cscale->widget), pos);
@@ -233,6 +256,7 @@ int
 clip_GTK_SCALEGETVALUEPOS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cscale, GTK_IS_SCALE);
    _clip_retni(ClipMachineMemory, (int) gtk_scale_get_value_pos(GTK_SCALE(cscale->widget)));
    return 0;
@@ -246,19 +270,21 @@ int
 clip_GTK_SCALEGETLAYOUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
+
    PangoLayout *layout;
+
    C_object *clayout;
 
    CHECKCWID(cscale, GTK_IS_SCALE);
    layout = gtk_scale_get_layout(GTK_SCALE(cscale->widget));
    if (layout)
-      {
-	 clayout = _list_get_cobject(ClipMachineMemory, layout);
-	 if (!clayout)
-	    clayout = _register_object(ClipMachineMemory, layout, GTK_TYPE_OBJECT, NULL, NULL);
-	 if (clayout)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &clayout->obj);
-      }
+    {
+       clayout = _list_get_cobject(ClipMachineMemory, layout);
+       if (!clayout)
+	  clayout = _register_object(ClipMachineMemory, layout, GTK_TYPE_OBJECT, NULL, NULL);
+       if (clayout)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &clayout->obj);
+    }
    return 0;
  err:
    return 1;
@@ -268,7 +294,8 @@ int
 clip_GTK_SCALEGETLAYOUTOFFSETS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cscale = _fetch_cw_arg(ClipMachineMemory);
-   gint x, y;
+
+   gint      x, y;
 
    CHECKCWID(cscale, GTK_IS_SCALE);
    gtk_scale_get_layout_offsets(GTK_SCALE(cscale->widget), &x, &y);

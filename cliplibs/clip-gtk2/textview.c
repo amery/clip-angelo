@@ -63,6 +63,7 @@ static int
 handle_populate_popup(GtkTextView * text, GtkMenu * arg1, C_signal * cs)
 {
    C_widget *cwid;
+
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, GTK_WIDGET(arg1));
    if (!cwid)
@@ -76,7 +77,9 @@ static int
 handle_set_scroll_adjustments(GtkTextView * text, GtkAdjustment * arg1, GtkAdjustment * arg2, C_signal * cs)
 {
    C_widget *cwid1;
+
    C_widget *cwid2;
+
    PREPARECV(cs, cv);
 
    cwid1 = _list_get_cwidget(cs->cw->cmachine, GTK_WIDGET(arg1));
@@ -161,7 +164,8 @@ _clip_type_name_text_child_anchor()
 int
 clip_INIT___TEXTVIEW(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_text_view, _clip_type_name_text_view, _gtk_type_text_view, _gtk_type_container, text_view_signals);
+   _wtype_table_put(_clip_type_text_view, _clip_type_name_text_view,
+		    _gtk_type_text_view, _gtk_type_container, text_view_signals);
    _wtype_table_put(_clip_type_text_child_anchor, _clip_type_name_text_child_anchor, _gtk_type_text_child_anchor, NULL, NULL);
    return 0;
 }
@@ -169,8 +173,10 @@ clip_INIT___TEXTVIEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TEXTVIEWNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -190,9 +196,12 @@ clip_GTK_TEXTVIEWNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TEXTVIEWNEWWITHBUFFER(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cbuffer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -215,6 +224,7 @@ int
 clip_GTK_TEXTVIEWSETBUFFER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cbuffer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -233,7 +243,9 @@ int
 clip_GTK_TEXTVIEWGETBUFFER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextBuffer *buffer;
+
    C_object *cbuffer;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -242,13 +254,13 @@ clip_GTK_TEXTVIEWGETBUFFER(ClipMachine * ClipMachineMemory)
    buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(cview->widget));
 
    if (buffer)
-      {
-	 cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
-	 if (!cbuffer)
-	    cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
-	 if (cbuffer)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
-      }
+    {
+       cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
+       if (!cbuffer)
+	  cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
+       if (cbuffer)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
+    }
    return 0;
  err:
    return 1;
@@ -258,11 +270,16 @@ int
 clip_GTK_TEXTVIEWSCROLLTOMARK(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cmark = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gdouble within_margin = _clip_parnd(ClipMachineMemory, 3);
-   gboolean use_align = _clip_parl(ClipMachineMemory, 4);
-   gdouble xallign = _clip_parnd(ClipMachineMemory, 5);
-   gdouble yallign = _clip_parnd(ClipMachineMemory, 6);
+
+   gdouble   within_margin = _clip_parnd(ClipMachineMemory, 3);
+
+   gboolean  use_align = _clip_parl(ClipMachineMemory, 4);
+
+   gdouble   xallign = _clip_parnd(ClipMachineMemory, 5);
+
+   gdouble   yallign = _clip_parnd(ClipMachineMemory, 6);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -273,7 +290,8 @@ clip_GTK_TEXTVIEWSCROLLTOMARK(ClipMachine * ClipMachineMemory)
    CHECKARG(5, NUMERIC_type_of_ClipVarType);
    CHECKARG(6, NUMERIC_type_of_ClipVarType);
 
-   gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(cview->widget), GTK_TEXT_MARK(cmark->object), within_margin, use_align, xallign, yallign);
+   gtk_text_view_scroll_to_mark(GTK_TEXT_VIEW(cview->widget),
+				GTK_TEXT_MARK(cmark->object), within_margin, use_align, xallign, yallign);
 
    return 0;
  err:
@@ -284,12 +302,18 @@ int
 clip_GTK_TEXTVIEWSCROLLTOITER(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gdouble within_margin = _clip_parnd(ClipMachineMemory, 3);
-   gboolean use_align = _clip_parl(ClipMachineMemory, 4);
-   gdouble xallign = _clip_parnd(ClipMachineMemory, 5);
-   gdouble yallign = _clip_parnd(ClipMachineMemory, 6);
-   gboolean ret;
+
+   gdouble   within_margin = _clip_parnd(ClipMachineMemory, 3);
+
+   gboolean  use_align = _clip_parl(ClipMachineMemory, 4);
+
+   gdouble   xallign = _clip_parnd(ClipMachineMemory, 5);
+
+   gdouble   yallign = _clip_parnd(ClipMachineMemory, 6);
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -299,7 +323,8 @@ clip_GTK_TEXTVIEWSCROLLTOITER(ClipMachine * ClipMachineMemory)
    CHECKARG(5, NUMERIC_type_of_ClipVarType);
    CHECKARG(6, NUMERIC_type_of_ClipVarType);
 
-   ret = gtk_text_view_scroll_to_iter(GTK_TEXT_VIEW(cview->widget), (GtkTextIter *) (citer->object), within_margin, use_align, xallign, yallign);
+   ret = gtk_text_view_scroll_to_iter(GTK_TEXT_VIEW(cview->widget),
+				      (GtkTextIter *) (citer->object), within_margin, use_align, xallign, yallign);
 
    _clip_retl(ClipMachineMemory, ret);
 
@@ -312,6 +337,7 @@ int
 clip_GTK_TEXTVIEWSCROLLMARKONSCREEN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cmark = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -330,6 +356,7 @@ int
 clip_GTK_TEXTVIEWMOVEMARKONSCREEN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cmark = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -348,7 +375,8 @@ int
 clip_GTK_TEXTVIEWPLACECURSORONSCREEN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -365,8 +393,10 @@ int
 clip_GTK_TEXTVIEWGETVISIBLERECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GdkRectangle rect;
-   ClipVar *mrect = RETPTR(ClipMachineMemory);
+
+   ClipVar  *mrect = RETPTR(ClipMachineMemory);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -386,9 +416,12 @@ int
 clip_GTK_TEXTVIEWGETITERLOCATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GdkRectangle rect;
-   ClipVar *mrect = RETPTR(ClipMachineMemory);
+
+   ClipVar  *mrect = RETPTR(ClipMachineMemory);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -409,9 +442,12 @@ int
 clip_GTK_TEXTVIEWGETLINEATY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint y = _clip_parni(ClipMachineMemory, 3);
-   gint line_top;
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      line_top;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -430,9 +466,12 @@ int
 clip_GTK_TEXTVIEWGETLINEYRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint y;
-   gint height;
+
+   gint      y;
+
+   gint      height;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -452,9 +491,13 @@ int
 clip_GTK_TEXTVIEWGETITERATLOCATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
    GtkTextIter *iter = 0;
+
    C_object *citer;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -465,13 +508,13 @@ clip_GTK_TEXTVIEWGETITERATLOCATION(ClipMachine * ClipMachineMemory)
    gtk_text_view_get_iter_at_location(GTK_TEXT_VIEW(cview->widget), iter, x, y);
 
    if (iter)
-      {
-	 citer = _list_get_cobject(ClipMachineMemory, iter);
-	 if (!citer)
-	    citer = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
-	 if (citer)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citer->obj);
-      }
+    {
+       citer = _list_get_cobject(ClipMachineMemory, iter);
+       if (!citer)
+	  citer = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
+       if (citer)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citer->obj);
+    }
    return 0;
  err:
    return 1;
@@ -483,11 +526,16 @@ int
 clip_GTK_TEXTVIEWBUFFERTOWINDOWCOORDS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextWindowType win = INT_OPTION(ClipMachineMemory, 2, 0);
-   gint buffer_x = _clip_parni(ClipMachineMemory, 3);
-   gint buffer_y = _clip_parni(ClipMachineMemory, 4);
-   gint window_x;
-   gint window_y;
+
+   gint      buffer_x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      buffer_y = _clip_parni(ClipMachineMemory, 4);
+
+   gint      window_x;
+
+   gint      window_y;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -510,11 +558,16 @@ int
 clip_GTK_TEXTVIEWWINDOWTOBUFFERCOORDS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextWindowType win = INT_OPTION(ClipMachineMemory, 2, 0);
-   gint window_x = _clip_parni(ClipMachineMemory, 3);
-   gint window_y = _clip_parni(ClipMachineMemory, 4);
-   gint buffer_x;
-   gint buffer_y;
+
+   gint      window_x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      window_y = _clip_parni(ClipMachineMemory, 4);
+
+   gint      buffer_x;
+
+   gint      buffer_y;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -536,8 +589,11 @@ int
 clip_GTK_TEXTVIEWGETWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextWindowType win = INT_OPTION(ClipMachineMemory, 2, 0);
+
    GdkWindow *window;
+
    C_object *cwindow;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -547,13 +603,13 @@ clip_GTK_TEXTVIEWGETWINDOW(ClipMachine * ClipMachineMemory)
    window = gtk_text_view_get_window(GTK_TEXT_VIEW(cview->widget), win);
 
    if (window)
-      {
-	 cwindow = _list_get_cobject(ClipMachineMemory, window);
-	 if (!cwindow)
-	    cwindow = _register_object(ClipMachineMemory, window, GDK_TYPE_WINDOW, NULL, NULL);
-	 if (cwindow)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwindow->obj);
-      }
+    {
+       cwindow = _list_get_cobject(ClipMachineMemory, window);
+       if (!cwindow)
+	  cwindow = _register_object(ClipMachineMemory, window, GDK_TYPE_WINDOW, NULL, NULL);
+       if (cwindow)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwindow->obj);
+    }
    return 0;
  err:
    return 1;
@@ -564,7 +620,9 @@ int
 clip_GTK_TEXTVIEWGETWINDOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cwindow = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkTextWindowType win;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -583,8 +641,10 @@ int
 clip_GTK_TEXTVIEWSETBORDERWINDOWSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextWindowType win = INT_OPTION(ClipMachineMemory, 2, 0);
-   gint size = _clip_parni(ClipMachineMemory, 3);
+
+   gint      size = _clip_parni(ClipMachineMemory, 3);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -602,8 +662,10 @@ int
 clip_GTK_TEXTVIEWGETBORDERWINDOWSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextWindowType win = INT_OPTION(ClipMachineMemory, 2, 0);
-   gint size;
+
+   gint      size;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -621,8 +683,10 @@ int
 clip_GTK_TEXTVIEWFORWARDDISPLAYLINE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -640,8 +704,10 @@ int
 clip_GTK_TEXTVIEWBACKWARDDISPLAYLINE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -659,8 +725,10 @@ int
 clip_GTK_TEXTVIEWFORWARDDISPLAYLINEEND(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -678,8 +746,10 @@ int
 clip_GTK_TEXTVIEWBACKWARDDISPLAYLINESTART(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -697,8 +767,10 @@ int
 clip_GTK_TEXTVIEWSTARTSDISPLAYLINE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -716,9 +788,12 @@ int
 clip_GTK_TEXTVIEWMOVEVISUALLY(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *citer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint count = _clip_parni(ClipMachineMemory, 3);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 3);
+
+   gboolean  ret;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -738,8 +813,11 @@ int
 clip_GTK_TEXTVIEWADDCHILDATANCHOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cchild = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkTextChildAnchor *anchor = 0;
+
    C_object *canchor;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -749,13 +827,13 @@ clip_GTK_TEXTVIEWADDCHILDATANCHOR(ClipMachine * ClipMachineMemory)
    gtk_text_view_add_child_at_anchor(GTK_TEXT_VIEW(cview->widget), GTK_WIDGET(cchild->widget), anchor);
 
    if (anchor)
-      {
-	 canchor = _list_get_cobject(ClipMachineMemory, anchor);
-	 if (!canchor)
-	    canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, NULL, NULL);
-	 if (canchor)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
-      }
+    {
+       canchor = _list_get_cobject(ClipMachineMemory, anchor);
+       if (!canchor)
+	  canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, NULL, NULL);
+       if (canchor)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
+    }
    return 0;
  err:
    return 1;
@@ -766,8 +844,10 @@ clip_GTK_TEXTVIEWADDCHILDATANCHOR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TEXTCHILDANCHORNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkTextChildAnchor *anchor;
+
    C_object *canchor;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -775,13 +855,13 @@ clip_GTK_TEXTCHILDANCHORNEW(ClipMachine * ClipMachineMemory)
    anchor = gtk_text_child_anchor_new();
 
    if (anchor)
-      {
-	 canchor = _list_get_cobject(ClipMachineMemory, anchor);
-	 if (!canchor)
-	    canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, cv, NULL);
-	 if (canchor)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
-      }
+    {
+       canchor = _list_get_cobject(ClipMachineMemory, anchor);
+       if (!canchor)
+	  canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, cv, NULL);
+       if (canchor)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
+    }
 
    return 0;
  err:
@@ -792,9 +872,12 @@ int
 clip_GTK_TEXTCHILDANCHORGETWIDGETS(ClipMachine * ClipMachineMemory)
 {
    C_object *chanchor = _fetch_co_arg(ClipMachineMemory);
-   GList *glist;
-   ClipVar *list = RETPTR(ClipMachineMemory);
-   long n;
+
+   GList    *glist;
+
+   ClipVar  *list = RETPTR(ClipMachineMemory);
+
+   long      n;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
 
@@ -803,26 +886,28 @@ clip_GTK_TEXTCHILDANCHORGETWIDGETS(ClipMachine * ClipMachineMemory)
    memset(list, 0, sizeof(*list));
    _clip_array(ClipMachineMemory, list, 1, &n);
    if (n > 0)
-      {
-	 long i = 0;
-	 while (glist)
-	    {
-	       ClipVar cv;
-	       C_widget *cwid;
+    {
+       long      i = 0;
 
-	       memset(&cv, 0, sizeof(cv));
-			 cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
+       while (glist)
+	{
+	   ClipVar   cv;
 
-	       if (!glist->data)
-		  goto err;
-	       cwid = _register_widget(ClipMachineMemory, GTK_WIDGET(glist->data), NULL);
-	       _clip_mclone(ClipMachineMemory, &cv, &cwid->obj);
-	       _clip_aset(ClipMachineMemory, list, &cv, 1, &i);
-	       glist = g_list_next(glist);
-	       i++;
-	       _clip_destroy(ClipMachineMemory, &cv);
-	    }
-      }
+	   C_widget *cwid;
+
+	   memset(&cv, 0, sizeof(cv));
+	   cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
+
+	   if (!glist->data)
+	      goto err;
+	   cwid = _register_widget(ClipMachineMemory, GTK_WIDGET(glist->data), NULL);
+	   _clip_mclone(ClipMachineMemory, &cv, &cwid->obj);
+	   _clip_aset(ClipMachineMemory, list, &cv, 1, &i);
+	   glist = g_list_next(glist);
+	   i++;
+	   _clip_destroy(ClipMachineMemory, &cv);
+	}
+    }
 
    return 0;
  err:
@@ -833,7 +918,8 @@ int
 clip_GTK_TEXTCHILDANCHORGETDELETED(ClipMachine * ClipMachineMemory)
 {
    C_object *chanchor = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
 
@@ -849,10 +935,14 @@ int
 clip_GTK_TEXTVIEWADDCHILDINWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cchild = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkTextWindowType type = INT_OPTION(ClipMachineMemory, 3, 0);
-   gint xpos = _clip_parni(ClipMachineMemory, 4);
-   gint ypos = _clip_parni(ClipMachineMemory, 5);
+
+   gint      xpos = _clip_parni(ClipMachineMemory, 4);
+
+   gint      ypos = _clip_parni(ClipMachineMemory, 5);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -872,9 +962,12 @@ int
 clip_GTK_TEXTVIEWMOVECHILD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cchild = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint xpos = _clip_parni(ClipMachineMemory, 3);
-   gint ypos = _clip_parni(ClipMachineMemory, 4);
+
+   gint      xpos = _clip_parni(ClipMachineMemory, 3);
+
+   gint      ypos = _clip_parni(ClipMachineMemory, 4);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -893,6 +986,7 @@ int
 clip_GTK_TEXTVIEWSETWRAPMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWrapMode mode = INT_OPTION(ClipMachineMemory, 2, 0);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -910,6 +1004,7 @@ int
 clip_GTK_TEXTVIEWGETWRAPMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWrapMode mode;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -927,7 +1022,8 @@ int
 clip_GTK_TEXTVIEWSETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean editable = BOOL_OPTION(ClipMachineMemory, 2, 1);
+
+   gboolean  editable = BOOL_OPTION(ClipMachineMemory, 2, 1);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -944,7 +1040,8 @@ int
 clip_GTK_TEXTVIEWGETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean editable;
+
+   gboolean  editable;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -961,7 +1058,8 @@ int
 clip_GTK_TEXTVIEWSETCURSORVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean setting = BOOL_OPTION(ClipMachineMemory, 2, 1);
+
+   gboolean  setting = BOOL_OPTION(ClipMachineMemory, 2, 1);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -978,7 +1076,8 @@ int
 clip_GTK_TEXTVIEWGETCURSORVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean setting;
+
+   gboolean  setting;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -995,7 +1094,8 @@ int
 clip_GTK_TEXTVIEWSETPIXELSABOVELINES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels = _clip_parni(ClipMachineMemory, 2);
+
+   gint      pixels = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1012,7 +1112,8 @@ int
 clip_GTK_TEXTVIEWGETPIXELSABOVELINES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels;
+
+   gint      pixels;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1029,7 +1130,8 @@ int
 clip_GTK_TEXTVIEWSETPIXELSBELOWLINES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels = _clip_parni(ClipMachineMemory, 2);
+
+   gint      pixels = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1046,7 +1148,8 @@ int
 clip_GTK_TEXTVIEWGETPIXELSBELOWLINES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels;
+
+   gint      pixels;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1063,7 +1166,8 @@ int
 clip_GTK_TEXTVIEWSETPIXELSINSIDEWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels = _clip_parni(ClipMachineMemory, 2);
+
+   gint      pixels = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1080,7 +1184,8 @@ int
 clip_GTK_TEXTVIEWGETPIXELSINSIDEWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint pixels;
+
+   gint      pixels;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1097,6 +1202,7 @@ int
 clip_GTK_TEXTVIEWSETJUSTIFICATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkJustification justification = INT_OPTION(ClipMachineMemory, 2, 0);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -1114,6 +1220,7 @@ int
 clip_GTK_TEXTVIEWGETJUSTIOFICATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkJustification justification;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -1131,7 +1238,8 @@ int
 clip_GTK_TEXTVIEWSETLEFTMARGIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint margin = _clip_parni(ClipMachineMemory, 2);
+
+   gint      margin = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1148,7 +1256,8 @@ int
 clip_GTK_TEXTVIEWGETLEFTMARGIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint margin;
+
+   gint      margin;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1165,7 +1274,8 @@ int
 clip_GTK_TEXTVIEWSETRIGHTMARGIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint margin = _clip_parni(ClipMachineMemory, 2);
+
+   gint      margin = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1182,7 +1292,8 @@ int
 clip_GTK_TEXTVIEWGETRIGHTMARGIN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint margin;
+
+   gint      margin;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1199,7 +1310,8 @@ int
 clip_GTK_TEXTVIEWSETINDENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint indent = _clip_parni(ClipMachineMemory, 2);
+
+   gint      indent = _clip_parni(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1216,7 +1328,8 @@ int
 clip_GTK_TEXTVIEWGETINDENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint indent;
+
+   gint      indent;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1233,7 +1346,9 @@ int
 clip_GTK_TEXTVIEWGETDEFAULTATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTextAttributes *attrs;
+
    C_object *cattrs;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -1242,13 +1357,13 @@ clip_GTK_TEXTVIEWGETDEFAULTATTRIBUTES(ClipMachine * ClipMachineMemory)
    attrs = gtk_text_view_get_default_attributes(GTK_TEXT_VIEW(cview->widget));
 
    if (attrs)
-      {
-	 cattrs = _list_get_cobject(ClipMachineMemory, attrs);
-	 if (!cattrs)
-	    cattrs = _register_object(ClipMachineMemory, attrs, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
-	 if (cattrs)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattrs->obj);
-      }
+    {
+       cattrs = _list_get_cobject(ClipMachineMemory, attrs);
+       if (!cattrs)
+	  cattrs = _register_object(ClipMachineMemory, attrs, GTK_TYPE_TEXT_ATTRIBUTES, NULL, NULL);
+       if (cattrs)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cattrs->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1259,7 +1374,8 @@ int
 clip_GTK_TEXTVIEWSETOVERWRITE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1291,7 +1407,8 @@ int
 clip_GTK_TEXTVIEWSETACCEPTSTAB(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cview, GTK_IS_TEXT_VIEW);
@@ -1325,10 +1442,15 @@ int
 clip_GTK_TEXTVIEWGETITERATPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cview = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 3);
-   gint y = _clip_parni(ClipMachineMemory, 4);
-   gint trailing;
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
+   gint      trailing;
+
    GtkTextIter *iter = 0;
+
    C_object *citer;
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -1339,13 +1461,13 @@ clip_GTK_TEXTVIEWGETITERATPOSITION(ClipMachine * ClipMachineMemory)
    gtk_text_view_get_iter_at_position(GTK_TEXT_VIEW(cview->widget), iter, &trailing, x, y);
 
    if (iter)
-      {
-	 citer = _list_get_cobject(ClipMachineMemory, iter);
-	 if (!citer)
-	    citer = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
-	 if (citer)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citer->obj);
-      }
+    {
+       citer = _list_get_cobject(ClipMachineMemory, iter);
+       if (!citer)
+	  citer = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
+       if (citer)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citer->obj);
+    }
 
    _clip_storni(ClipMachineMemory, trailing, 2, 0);
 

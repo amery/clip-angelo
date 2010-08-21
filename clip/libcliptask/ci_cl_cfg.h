@@ -1,6 +1,0 @@
-#define OS_LINUX	1
-#define ARCH_X86_64	1
-#define LIBC_GLIBC2_10	1
-#define LINUX_X86_64_GLIBC2_10	1
-
-#define TASK_DLLEXPORT

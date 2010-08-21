@@ -1,5 +1,5 @@
-#ifndef CI_CTSYS_DEFINED
-#define CI_CTSYS_DEFINED
+#ifndef CN_CTSYS_DEFINED
+#define CN_CTSYS_DEFINED
 
 #define NO_ERROR	    0
 

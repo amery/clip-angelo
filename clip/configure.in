@@ -1,5 +1,7 @@
 #!/bin/sh -u
 
 cp -f$V ../configure.ini ../Makefile.ini .
+#sleep 2
+#echo "export PATH_LIB=" >>./Makefile.ini
 
 touch configure.ok

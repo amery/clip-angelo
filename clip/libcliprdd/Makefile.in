@@ -35,6 +35,8 @@ hash1 :
 
 cfg :
 	$(E_cp)cp --remove-destination -fu$(V) *.h $(Clip_I_Dir)/
+	$(E_mkD)mkdir -p$(V) $(Clip_I_Dir)/ci_btree
+	$(E_cp)cp --remove-destination -fu$(V) ci_btree/*.h $(Clip_I_Dir)/ci_btree/
 
 cleanc:
 	$(E_rm)rm -f$(V) 	*.b 			\
@@ -154,10 +156,4 @@ hiper.o:	hiper.c ../include/ci_rdd.h ci_btree.h Makefile
 	fi
 
 include $(Makefile_end_in)
-
-indent : Makefile
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
 

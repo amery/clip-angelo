@@ -74,9 +74,12 @@ clip_INIT___TOOLBAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TOOLBARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_toolbar_new();
    if (!wid)
@@ -103,20 +106,23 @@ _toolbar_child_destroy(ClipMachine * ClipMachineMemory, C_widget * cw)
 static void
 _toolbar_child_callback(GtkWidget * widget, gpointer data)
 {
-   C_var *c = (C_var *) data;
-   ClipVar stack[1];
-   ClipVar res;
-   if (&(c->cfunc))
-      {
-	 memset(&stack, 0, sizeof(stack));
-	 memset(&res, 0, sizeof(ClipVar));
-	 _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
-	//stack[0]  = c->cw->obj;
-	 _clip_eval(c->cw->cmachine, &(c->cfunc), 1, stack, &res);
-	 _clip_destroy(c->cw->cmachine, &res);
+   C_var    *c = (C_var *) data;
 
-	 _clip_destroy(c->cw->cmachine, &stack[0]);
-      }
+   ClipVar   stack[1];
+
+   ClipVar   res;
+
+   if (&(c->cfunc))
+    {
+       memset(&stack, 0, sizeof(stack));
+       memset(&res, 0, sizeof(ClipVar));
+       _clip_mclone(c->cw->cmachine, &stack[0], &c->cw->obj);
+      //stack[0]  = c->cw->obj;
+       _clip_eval(c->cw->cmachine, &(c->cfunc), 1, stack, &res);
+       _clip_destroy(c->cw->cmachine, &res);
+
+       _clip_destroy(c->cw->cmachine, &stack[0]);
+    }
 }
 
 /* adds a new button to the beginning (left or top edges) of the given toolbar. */
@@ -124,13 +130,21 @@ int
 clip_GTK_TOOLBARAPPENDITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   char *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 6);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 6);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -148,7 +162,9 @@ clip_GTK_TOOLBARAPPENDITEM(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_append_item(GTK_TOOLBAR(ctlb->widget), text, tooltip_text, tooltip_private_text, (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c);
+   child = gtk_toolbar_append_item(GTK_TOOLBAR(ctlb->widget),
+				   text, tooltip_text, tooltip_private_text,
+				   (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -157,12 +173,13 @@ clip_GTK_TOOLBARAPPENDITEM(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//             cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //             cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -173,13 +190,21 @@ int
 clip_GTK_TOOLBARPREPENDITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   char *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 6);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 6);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -197,7 +222,9 @@ clip_GTK_TOOLBARPREPENDITEM(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_prepend_item(GTK_TOOLBAR(ctlb->widget), text, tooltip_text, tooltip_private_text, (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c);
+   child = gtk_toolbar_prepend_item(GTK_TOOLBAR(ctlb->widget),
+				    text, tooltip_text, tooltip_private_text,
+				    (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -206,12 +233,13 @@ clip_GTK_TOOLBARPREPENDITEM(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -223,14 +251,23 @@ int
 clip_GTK_TOOLBARINSERTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   char *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 2, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 5));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 6);
-   gint position = _clip_parni(ClipMachineMemory, 7);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 6);
+
+   gint      position = _clip_parni(ClipMachineMemory, 7);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -249,7 +286,10 @@ clip_GTK_TOOLBARINSERTITEM(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_insert_item(GTK_TOOLBAR(ctlb->widget), text, tooltip_text, tooltip_private_text, (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c, position);
+   child =
+    gtk_toolbar_insert_item(GTK_TOOLBAR(ctlb->widget), text, tooltip_text,
+			    tooltip_private_text,
+			    (cicon ? cicon->widget : NULL), (GtkSignalFunc) _toolbar_child_callback, c, position);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -258,12 +298,13 @@ clip_GTK_TOOLBARINSERTITEM(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -274,6 +315,7 @@ int
 clip_GTK_TOOLBARAPPENDSPACE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    gtk_toolbar_append_space(GTK_TOOLBAR(ctlb->widget));
    return 0;
@@ -286,6 +328,7 @@ int
 clip_GTK_TOOLBARPREPENDSPACE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    gtk_toolbar_prepend_space(GTK_TOOLBAR(ctlb->widget));
    return 0;
@@ -298,7 +341,9 @@ int
 clip_GTK_TOOLBARINSERTSPACE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gint position = _clip_parni(ClipMachineMemory, 2);
+
+   gint      position = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_toolbar_insert_space(GTK_TOOLBAR(ctlb->widget), position);
@@ -312,16 +357,27 @@ int
 clip_GTK_TOOLBARAPPENDELEMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkToolbarChildType type = INT_OPTION(ClipMachineMemory, 2, GTK_TOOLBAR_CHILD_SPACE);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-   char *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 7));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 8);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 8);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    GtkWidget *icon = cicon ? cicon->widget : NULL;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -342,7 +398,10 @@ clip_GTK_TOOLBARAPPENDELEMENT(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_append_element(GTK_TOOLBAR(ctlb->widget), type, cwid->widget, text, tooltip_text, tooltip_private_text, icon, (GtkSignalFunc) _toolbar_child_callback, c);
+   child =
+    gtk_toolbar_append_element(GTK_TOOLBAR(ctlb->widget), type,
+			       cwid->widget, text, tooltip_text,
+			       tooltip_private_text, icon, (GtkSignalFunc) _toolbar_child_callback, c);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -351,12 +410,13 @@ clip_GTK_TOOLBARAPPENDELEMENT(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    free(c);
    return 0;
  err:
@@ -368,15 +428,25 @@ int
 clip_GTK_TOOLBARPREPENDELEMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkToolbarChildType type = INT_OPTION(ClipMachineMemory, 2, GTK_TOOLBAR_CHILD_SPACE);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-   char *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 7));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 8);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 8);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -397,7 +467,10 @@ clip_GTK_TOOLBARPREPENDELEMENT(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_prepend_element(GTK_TOOLBAR(ctlb->widget), type, cwid->widget, text, tooltip_text, tooltip_private_text, cicon->widget, (GtkSignalFunc) _toolbar_child_callback, c);
+   child =
+    gtk_toolbar_prepend_element(GTK_TOOLBAR(ctlb->widget), type,
+				cwid->widget, text, tooltip_text,
+				tooltip_private_text, cicon->widget, (GtkSignalFunc) _toolbar_child_callback, c);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -406,12 +479,13 @@ clip_GTK_TOOLBARPREPENDELEMENT(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -421,16 +495,27 @@ int
 clip_GTK_TOOLBARINSERTELEMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkToolbarChildType type = INT_OPTION(ClipMachineMemory, 2, GTK_TOOLBAR_CHILD_SPACE);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-   char *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
+   char     *text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 5, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 6, NULL);
+
    C_widget *cicon = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 7));
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 8);
-   gint position = _clip_parni(ClipMachineMemory, 9);
-   C_var *c = NEW(C_var);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 8);
+
+   gint      position = _clip_parni(ClipMachineMemory, 9);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -452,7 +537,13 @@ clip_GTK_TOOLBARINSERTELEMENT(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_insert_element(GTK_TOOLBAR(ctlb->widget), type, cwid->widget, text, tooltip_text, tooltip_private_text, cicon->widget, (GtkSignalFunc) _toolbar_child_callback, c, position);
+   child = gtk_toolbar_insert_element(GTK_TOOLBAR(ctlb->widget),
+				      type,
+				      cwid->widget,
+				      text,
+				      tooltip_text,
+				      tooltip_private_text,
+				      cicon->widget, (GtkSignalFunc) _toolbar_child_callback, c, position);
    if (text)
       FREE_TEXT(text);
    if (tooltip_text)
@@ -461,12 +552,13 @@ clip_GTK_TOOLBARINSERTELEMENT(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -476,9 +568,13 @@ int
 clip_GTK_TOOLBARAPPENDWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
@@ -504,9 +600,13 @@ int
 clip_GTK_TOOLBARPREPENDWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
@@ -532,10 +632,15 @@ int
 clip_GTK_TOOLBARINSERTWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
-   gint position = _clip_parni(ClipMachineMemory, 5);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   gint      position = _clip_parni(ClipMachineMemory, 5);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cwid, GTK_IS_WIDGET);
@@ -563,7 +668,9 @@ int
 clip_GTK_TOOLBARSETORIENTATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkOrientation orientation = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_toolbar_set_orientation(GTK_TOOLBAR(ctlb->widget), orientation);
@@ -577,7 +684,9 @@ int
 clip_GTK_TOOLBARSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkToolbarStyle style = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_toolbar_set_style(GTK_TOOLBAR(ctlb->widget), style);
@@ -591,7 +700,9 @@ int
 clip_GTK_TOOLBARSETTOOLTIPS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gboolean enable = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
+
+   gboolean  enable = BOOL_OPTION(ClipMachineMemory, 2, TRUE);
+
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_toolbar_set_tooltips(GTK_TOOLBAR(ctlb->widget), enable);
@@ -604,13 +715,19 @@ int
 clip_GTK_TOOLBARINSERTSTOCK(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   char *stock_id = CHAR_OPTION(ClipMachineMemory, 2, NULL);
-   char *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
-   char *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 5);
-   gint position = _clip_parni(ClipMachineMemory, 6);
 
-   C_var *c = NEW(C_var);
+   char     *stock_id = CHAR_OPTION(ClipMachineMemory, 2, NULL);
+
+   char     *tooltip_text = CHAR_OPTION(ClipMachineMemory, 3, NULL);
+
+   char     *tooltip_private_text = CHAR_OPTION(ClipMachineMemory, 4, NULL);
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 5);
+
+   gint      position = _clip_parni(ClipMachineMemory, 6);
+
+   C_var    *c = NEW(C_var);
+
    GtkWidget *child;
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
@@ -630,7 +747,9 @@ clip_GTK_TOOLBARINSERTSTOCK(ClipMachine * ClipMachineMemory)
       LOCALE_TO_UTF(tooltip_text);
    if (tooltip_private_text)
       LOCALE_TO_UTF(tooltip_private_text);
-   child = gtk_toolbar_insert_stock(GTK_TOOLBAR(ctlb->widget), stock_id, tooltip_text, tooltip_private_text, (GtkSignalFunc) _toolbar_child_callback, c, position);
+   child = gtk_toolbar_insert_stock(GTK_TOOLBAR(ctlb->widget),
+				    stock_id,
+				    tooltip_text, tooltip_private_text, (GtkSignalFunc) _toolbar_child_callback, c, position);
    if (stock_id)
       FREE_TEXT(stock_id);
    if (tooltip_text)
@@ -639,12 +758,13 @@ clip_GTK_TOOLBARINSERTSTOCK(ClipMachine * ClipMachineMemory)
       FREE_TEXT(tooltip_private_text);
 
    if (child)
-      {
-	 C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
-	//cchild->destroy = _toolbar_child_destroy;
-	 cchild->data = c;
-	 _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
-      }
+    {
+       C_widget *cchild = _register_widget(ClipMachineMemory, child, NULL);
+
+      //cchild->destroy = _toolbar_child_destroy;
+       cchild->data = c;
+       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cchild->obj);
+    }
    return 0;
  err:
    return 1;
@@ -654,6 +774,7 @@ int
 clip_GTK_TOOLBARSETICONSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    GtkIconSize size = INT_OPTION(ClipMachineMemory, 2, GTK_ICON_SIZE_INVALID);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
@@ -725,7 +846,8 @@ int
 clip_GTK_TOOLBARREMOVESPACE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gint position = _clip_parni(ClipMachineMemory, 2);
+
+   gint      position = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -771,8 +893,10 @@ int
 clip_GTK_TOOLBARINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *citm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint pos = _clip_parni(ClipMachineMemory, 3);
+
+   gint      pos = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKCWID(citm, GTK_IS_TOOL_ITEM);
@@ -790,6 +914,7 @@ int
 clip_GTK_TOOLBARGETITEMINDEX(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *citm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
@@ -806,8 +931,11 @@ int
 clip_GTK_TOOLBARGETNTHITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gint nth = _clip_parni(ClipMachineMemory, 2);
+
+   gint      nth = _clip_parni(ClipMachineMemory, 2);
+
    C_widget *citm;
+
    GtkToolItem *itm;
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
@@ -816,13 +944,13 @@ clip_GTK_TOOLBARGETNTHITEM(ClipMachine * ClipMachineMemory)
    nth--;
    itm = gtk_toolbar_get_nth_item(GTK_TOOLBAR(ctlb->widget), nth);
    if (itm)
-      {
-	 citm = _list_get_cwidget(ClipMachineMemory, itm);
-	 if (!citm)
-	    citm = _register_widget(ClipMachineMemory, GTK_WIDGET(itm), NULL);
-	 if (citm)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citm->obj);
-      }
+    {
+       citm = _list_get_cwidget(ClipMachineMemory, itm);
+       if (!citm)
+	  citm = _register_widget(ClipMachineMemory, GTK_WIDGET(itm), NULL);
+       if (citm)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citm->obj);
+    }
    return 0;
  err:
    return 1;
@@ -832,8 +960,10 @@ int
 clip_GTK_TOOLBARGETDROPINDEX(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -850,8 +980,10 @@ int
 clip_GTK_TOOLBARSETDROPHIGHLIGHTITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *citm = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint pos = _clip_parni(ClipMachineMemory, 3);
+
+   gint      pos = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKCWID(citm, GTK_IS_TOOL_ITEM);
@@ -869,7 +1001,8 @@ int
 clip_GTK_TOOLBARSETSHOWARROW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctlb = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(ctlb, GTK_IS_TOOLBAR);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);

@@ -1,0 +1,2 @@
+function __setcursorempty()
+return

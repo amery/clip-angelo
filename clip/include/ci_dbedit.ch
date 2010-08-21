@@ -1,5 +1,5 @@
-#ifndef CI_DBEDIT_DEFINED
-#define CI_DBEDIT_DEFINED
+#ifndef CN_DBEDIT_DEFINED
+#define CN_DBEDIT_DEFINED
 
 #define DE_HEADSEP      translate_charset(__CHARSET__,host_charset(),"���")
 #define DE_COLSEP       translate_charset(__CHARSET__,host_charset()," � ")

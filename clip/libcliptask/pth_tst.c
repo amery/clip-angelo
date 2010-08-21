@@ -45,14 +45,15 @@ static void *
 t1_func(void *arg)
 {
    int i;
+
    long val;
 
    val = (long) arg;
    FAILED_IF(val != 123) for (i = 0; i < 100; i++)
-      {
-	 val += 10;
-	 pth_yield(NULL);
-      }
+   {
+      val += 10;
+      pth_yield(NULL);
+   }
    return (void *) val;
 }
 
@@ -60,20 +61,23 @@ static void *
 t2_func(void *arg)
 {
    long val;
+
    pth_t tid;
+
    void *rval;
+
    int rc;
 
    val = (long) arg;
    if (val < 9)
-      {
-	 val++;
-	 fprintf(stderr, "Spawning thread %ld\n", val);
-	 tid = pth_spawn(PTH_ATTR_DEFAULT, t2_func, (void *) (val));
-	 FAILED_IF(tid == NULL) rc = pth_join(tid, &rval);
-	 fprintf(stderr, "Joined thread %ld\n", val);
-	 FAILED_IF(rc == FALSE) rval = (void *) ((long) arg * (long) rval);
-      }
+   {
+      val++;
+      fprintf(stderr, "Spawning thread %ld\n", val);
+      tid = pth_spawn(PTH_ATTR_DEFAULT, t2_func, (void *) (val));
+      FAILED_IF(tid == NULL) rc = pth_join(tid, &rval);
+      fprintf(stderr, "Joined thread %ld\n", val);
+      FAILED_IF(rc == FALSE) rval = (void *) ((long) arg * (long) rval);
+   }
    else
       rval = arg;
    return rval;
@@ -106,8 +110,11 @@ main(int argc, char *argv[])
    fprintf(stderr, "\n=== TESTING BASIC THREAD OPERATION ===\n\n");
    {
       pth_attr_t attr;
+
       pth_t tid;
+
       void *val;
+
       int rc;
 
       fprintf(stderr, "Creating attribute object\n");
@@ -125,7 +132,9 @@ main(int argc, char *argv[])
    fprintf(stderr, "\n=== TESTING NESTED THREAD OPERATION ===\n\n");
    {
       pth_t tid;
+
       void *val;
+
       int rc;
 
       fprintf(stderr, "Spawning thread 1\n");

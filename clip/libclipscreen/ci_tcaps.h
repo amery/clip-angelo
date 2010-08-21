@@ -8,8 +8,8 @@ start of logging CVS
 
 */
 
-#ifndef CI_TCAPS_H
-#define CI_TCAPS_H
+#ifndef CN_TCAPS_H
+#define CN_TCAPS_H
 
 /* BOOLS */
 #define NO_bw     0
@@ -284,19 +284,10 @@ start of logging CVS
 
 #define MAX_KEY  97
 
-typedef struct Terminfo
-{
-   char *name;
-   char bools[MAX_BOOL];
-   int nums[MAX_NUM];
-   short strings[MAX_STR];
-   short keys[MAX_KEY];
-   char *buf;
-   int bufsize;
-   int bufpos;
-} Terminfo;
+#include <ci_tcaps/typedef_struct_Terminfo.h>
 
 void init_Terminfo(Terminfo * tp);
+
 void destroy_Terminfo(Terminfo * tp);
 
 /* all references from *infos will be into *bufp (and *bufp will be realloc'ed) */
@@ -311,13 +302,7 @@ int read_term(int fnum, char **fnames,	/* if first fname is a dir, use terminfo,
 
 int read_tcapbuf(char *buf, Terminfo * info, char *Errbuf, int Errbuflen);
 
-typedef struct
-{
-   const char *name;
-   short no;
-   char type;
-}
-TermcapBucket;
+#include <ci_tcaps/typedef_struct_TermcapBucket.h>
 
 TermcapBucket *tgetentry(const char *name);
 

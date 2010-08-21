@@ -16,7 +16,7 @@
 
 /**********************************************************/
 /* Signal handlers */
-static gint
+static    gint
 handle_trough_click_signal(GtkRange * wid, gint x, gint y, float *jump_perc, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -25,7 +25,7 @@ handle_trough_click_signal(GtkRange * wid, gint x, gint y, float *jump_perc, C_s
    INVOKESIGHANDLER(GTK_WIDGET(wid), cs, cv);
 }
 
-static gint
+static    gint
 handle_motion_signal(GtkRange * wid, gint xdelta, gint ydelta, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -34,7 +34,7 @@ handle_motion_signal(GtkRange * wid, gint xdelta, gint ydelta, C_signal * cs)
    INVOKESIGHANDLER(GTK_WIDGET(wid), cs, cv);
 }
 
-static gint
+static    gint
 handle_adjust_bounds_signal(GtkRange * wid, gdouble arg1, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -42,7 +42,7 @@ handle_adjust_bounds_signal(GtkRange * wid, gdouble arg1, C_signal * cs)
    INVOKESIGHANDLER(GTK_WIDGET(wid), cs, cv);
 }
 
-static gint
+static    gint
 handle_move_slider_signal(GtkRange * wid, GtkScrollType type, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -111,9 +111,13 @@ int
 clip_GTK_RANGEGETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    GtkAdjustment *adj;
+
    C_widget *cadj;
-   ClipVar *ret = RETPTR(ClipMachineMemory);
+
+   ClipVar  *ret = RETPTR(ClipMachineMemory);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    adj = gtk_range_get_adjustment(GTK_RANGE(crange->widget));
    cadj = _list_get_cwidget(ClipMachineMemory, adj);
@@ -130,7 +134,9 @@ int
 clip_GTK_RANGESETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    GtkUpdateType policy = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_range_set_update_policy(GTK_RANGE(crange->widget), policy);
@@ -143,7 +149,9 @@ int
 clip_GTK_RANGESETADJUSTMENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cadj, GTK_IS_ADJUSTMENT);
@@ -157,6 +165,7 @@ int
 clip_GTK_RANGEGETINVERTED(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    _clip_retl(ClipMachineMemory, gtk_range_get_inverted(GTK_RANGE(crange->widget)));
    return 0;
@@ -168,7 +177,8 @@ int
 clip_GTK_RANGESETINVERTED(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-   gboolean setting = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -182,6 +192,7 @@ int
 clip_GTK_RANGEGETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    _clip_retni(ClipMachineMemory, (int) gtk_range_get_update_policy(GTK_RANGE(crange->widget)));
    return 0;
@@ -193,6 +204,7 @@ int
 clip_GTK_RANGEGETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    _clip_retnd(ClipMachineMemory, gtk_range_get_value(GTK_RANGE(crange->widget)));
    return 0;
@@ -204,8 +216,11 @@ int
 clip_GTK_RANGESETINCREMENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-   gdouble step = _clip_parnd(ClipMachineMemory, 2);
-   gdouble page = _clip_parnd(ClipMachineMemory, 3);
+
+   gdouble   step = _clip_parnd(ClipMachineMemory, 2);
+
+   gdouble   page = _clip_parnd(ClipMachineMemory, 3);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -219,8 +234,11 @@ int
 clip_GTK_RANGESETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-   gdouble min = _clip_parnd(ClipMachineMemory, 2);
-   gdouble max = _clip_parnd(ClipMachineMemory, 3);
+
+   gdouble   min = _clip_parnd(ClipMachineMemory, 2);
+
+   gdouble   max = _clip_parnd(ClipMachineMemory, 3);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -234,7 +252,9 @@ int
 clip_GTK_RANGESETVALUE(ClipMachine * ClipMachineMemory)
 {
    C_widget *crange = _fetch_cw_arg(ClipMachineMemory);
-   gdouble value = _clip_parnd(ClipMachineMemory, 2);
+
+   gdouble   value = _clip_parnd(ClipMachineMemory, 2);
+
    CHECKCWID(crange, GTK_IS_RANGE);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    gtk_range_set_value(GTK_RANGE(crange->widget), value);

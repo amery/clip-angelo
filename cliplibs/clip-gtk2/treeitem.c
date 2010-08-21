@@ -44,7 +44,8 @@ _clip_type_name_tree_item()
 int
 clip_INIT___TREEITEM(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_tree_item, _clip_type_name_tree_item, _gtk_type_tree_item, _gtk_type_container, tree_item_signals);
+   _wtype_table_put(_clip_type_tree_item, _clip_type_name_tree_item,
+		    _gtk_type_tree_item, _gtk_type_container, tree_item_signals);
    return 0;
 }
 
@@ -54,19 +55,23 @@ clip_INIT___TREEITEM(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TREEITEMNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *label = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *label = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-      {
-	 LOCALE_TO_UTF(label);
-	 wid = gtk_tree_item_new_with_label(label);
-	 FREE_TEXT(label);
-      }
+    {
+       LOCALE_TO_UTF(label);
+       wid = gtk_tree_item_new_with_label(label);
+       FREE_TEXT(label);
+    }
    else
       wid = gtk_tree_item_new();
    if (!wid)
@@ -86,7 +91,9 @@ int
 clip_GTK_TREEITEMSETSUBTREE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *csubtree = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(csubtree, GTK_IS_TREE_ITEM);
@@ -100,8 +107,11 @@ int
 clip_GTK_TREEITEMGETSUBTREE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *csubtree = NULL;
+
    GtkWidget *subtree;
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    subtree = GTK_TREE_ITEM_SUBTREE(citm->widget);
    csubtree = _list_get_cwidget(ClipMachineMemory, subtree);
@@ -118,6 +128,7 @@ int
 clip_GTK_TREEITEMREMOVESUBTREE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    gtk_tree_item_remove_subtree(GTK_TREE_ITEM(citm->widget));
    return 0;
@@ -129,6 +140,7 @@ int
 clip_GTK_TREEITEMSELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    gtk_tree_item_select(GTK_TREE_ITEM(citm->widget));
    return 0;
@@ -140,6 +152,7 @@ int
 clip_GTK_TREEITEMDESELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    gtk_tree_item_deselect(GTK_TREE_ITEM(citm->widget));
    return 0;
@@ -151,6 +164,7 @@ int
 clip_GTK_TREEITEMEXPAND(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    gtk_tree_item_expand(GTK_TREE_ITEM(citm->widget));
    return 0;
@@ -162,6 +176,7 @@ int
 clip_GTK_TREEITEMCOLLAPSE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(citm, GTK_IS_TREE_ITEM);
    gtk_tree_item_collapse(GTK_TREE_ITEM(citm->widget));
    return 0;

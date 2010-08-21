@@ -31,16 +31,22 @@
 
 */
 
-#ifndef CI_SCANKEY_H
-#define CI_SCANKEY_H
+#ifndef CN_SCANKEY_H
+#define CN_SCANKEY_H
 #include <stdio.h>
 
 long scan_key(unsigned char scancode);
+
 int scan_push(unsigned char scancode);
+
 long scan_check(void);
+
 unsigned int scan_state(void);
+
 unsigned int set_scan_state(int value, int locktype);
+
 extern int scan_numlock_state;
+
 void scan_reset(void);
 
 /* state bits */

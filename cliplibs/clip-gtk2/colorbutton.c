@@ -42,7 +42,8 @@ _clip_type_name_color_button()
 int
 clip_INIT___COLORBUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_color_button, _clip_type_name_color_button, _gtk_type_color_button, _gtk_type_button, color_button_signals);
+   _wtype_table_put(_clip_type_color_button, _clip_type_name_color_button,
+		    _gtk_type_color_button, _gtk_type_button, color_button_signals);
    return 0;
 }
 
@@ -51,8 +52,10 @@ clip_INIT___COLORBUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -74,11 +77,15 @@ clip_GTK_COLORBUTTONNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORBUTTONNEWWITHCOLOR(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   ClipVar *cclr = _clip_spar(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   ClipVar  *cclr = _clip_spar(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
-   GdkColor color;
+
+   GdkColor  color;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -103,8 +110,10 @@ int
 clip_GTK_COLORBUTTONSETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cclr = _clip_spar(ClipMachineMemory, 2);
-   GdkColor color;
+
+   ClipVar  *cclr = _clip_spar(ClipMachineMemory, 2);
+
+   GdkColor  color;
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -121,8 +130,10 @@ int
 clip_GTK_COLORBUTTONGETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cclr = RETPTR(ClipMachineMemory);
-   GdkColor color;
+
+   ClipVar  *cclr = RETPTR(ClipMachineMemory);
+
+   GdkColor  color;
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
 
@@ -138,7 +149,8 @@ int
 clip_GTK_COLORBUTTONSETALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   guint16 alpha = _clip_parni(ClipMachineMemory, 2);
+
+   guint16   alpha = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -168,7 +180,8 @@ int
 clip_GTK_COLORBUTTONSETUSEALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gboolean alpha = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  alpha = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -198,7 +211,8 @@ int
 clip_GTK_COLORBUTTONSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -216,7 +230,8 @@ int
 clip_GTK_COLORBUTTONGETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gchar *title;
+
+   gchar    *title;
 
    CHECKCWID(cbtn, GTK_IS_COLOR_BUTTON);
 

@@ -10,13 +10,14 @@
 	Angelo GIRARDI
 */
 
-#ifndef CI__WIN32_CLIP_H_
-#define CI__WIN32_CLIP_H_
+#ifndef CN__WIN32_CLIP_H_
+#define CN__WIN32_CLIP_H_
 
 /* don't touch next line!! must be EXACTLY as it is */
 #if defined(_WIN32) || defined(OS_MINGW) || defined(OS_CYGWIN)
 
 int w32fcntl(int fd, int flag, void *argp);
+
 #define fcntl w32fcntl
 
 #ifdef OS_CYGWIN
@@ -51,39 +52,23 @@ int w32fcntl(int fd, int flag, void *argp);
 #define F_SHLCK		8
 
 #define O_NONBLOCK   0400
-struct flock
-{
-   short int l_type;
-   short int l_whence;
-#ifndef __USE_FILE_OFFSET64
-   long l_start;
-   long l_len;
-#else
-   long l_start;
-   long l_len;
-#endif
-};
+#include "ci__win32/struct_flock.h"
+#include "ci__win32/struct timezone.h"
 
-struct timezone
-{
-   int tz_minuteswest;
-   int tz_dsttime;
-};
-
-struct tms
-{
-   clock_t tms_utime;
-   clock_t tms_stime;
-   clock_t tms_cutime;
-   clock_t tms_cstime;
-};
+#include "ci__win32/struct tms.h"
 
 unsigned long getpagesize();
+
 void usleep(unsigned int usecs);
+
 int gettimeofday(struct timeval *tv, struct timezone *tz);
+
 clock_t times(struct tms *buf);
+
 int inet_aton(const char *cp, struct in_addr *inap);
+
 typedef unsigned int socklen_t;
+
 #define INET_ADDRSTRLEN 16
 
 #ifndef CLK_TCK
@@ -92,21 +77,13 @@ typedef unsigned int socklen_t;
 
 /* termios */
 typedef unsigned char cc_t;
+
 typedef unsigned int speed_t;
+
 typedef unsigned int tcflag_t;
 
 #define NCCS 32
-struct termios
-{
-   tcflag_t c_iflag;		/* input mode flags */
-   tcflag_t c_oflag;		/* output mode flags */
-   tcflag_t c_cflag;		/* control mode flags */
-   tcflag_t c_lflag;		/* local mode flags */
-   cc_t c_line;			/* line discipline */
-   cc_t c_cc[NCCS];		/* control characters */
-   speed_t c_ispeed;		/* input speed */
-   speed_t c_ospeed;		/* output speed */
-};
+#include "ci__win32/struct_termios.h"
 
 /* c_cc characters */
 #define VINTR 0
@@ -282,6 +259,7 @@ struct termios
   _IOT (_IOTS (cflag_t), 4, _IOTS (cc_t), NCCS, _IOTS (speed_t), 2)
 
 int tcgetattr(int fd, struct termios *termios_p);
+
 int tcsetattr(int fd, int optional_actions, struct termios *termios_p);
 #endif
 #endif

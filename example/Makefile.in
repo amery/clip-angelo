@@ -41,7 +41,7 @@ distcleanc :
 
 include $(Makefile_o_in)
 
-install : #all
+install : all
 	$(E_mkD)[ -d $(Clip_D_Dir)/example/ ] || mkdir -p$(V) $(Clip_D_Dir)/example/
 	$(E_cp)cp --remove-destination -Rfpu$(V) * $(Clip_D_Dir)/example/
 

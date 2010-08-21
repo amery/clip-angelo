@@ -23,19 +23,19 @@ widget_signal_handler(GtkWidget * widget, C_signal * cs)
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_draw_signal(GtkWidget * widget, GdkRectangle * area, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_size_request_signal(GtkWidget * widget, GtkRequisition * requisition, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_size_allocate_signal(GtkWidget * widget, GtkAllocation * allocation, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -46,103 +46,109 @@ handle_size_allocate_signal(GtkWidget * widget, GtkAllocation * allocation, C_si
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_state_changed_signal(GtkWidget * widget, GtkStateType state, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_parent_set_signal(GtkWidget * widget, GtkObject * old_parent, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_style_set_signal(GtkWidget * widget, GtkStyle * previous_style, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
-handle_add_accelerator_signal(GtkWidget * widget, guint accel_signal_id, GtkAccelGroup * accel_group, guint accel_key, GdkModifierType accel_mods, GtkAccelFlags accel_flags, C_signal * cs)
+static    gint
+handle_add_accelerator_signal(GtkWidget * widget, guint accel_signal_id,
+			      GtkAccelGroup * accel_group, guint accel_key,
+			      GdkModifierType accel_mods, GtkAccelFlags accel_flags, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
-handle_remove_accelerator_signal(GtkWidget * widget, GtkAccelGroup * accel_group, guint accel_key, GdkModifierType accel_mods, C_signal * cs)
+static    gint
+handle_remove_accelerator_signal(GtkWidget * widget,
+				 GtkAccelGroup * accel_group, guint accel_key, GdkModifierType accel_mods, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_selection_get_signal(GtkWidget * widget, GtkSelectionData * data, guint info, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_selection_received_signal(GtkWidget * widget, GtkSelectionData * data, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_begin_signal(GtkWidget * widget, GdkDragContext * drag_context, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_end_signal(GtkWidget * widget, GdkDragContext * drag_context, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_data_delete_signal(GtkWidget * widget, GdkDragContext * drag_context, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_leave_signal(GtkWidget * widget, GdkDragContext * drag_context, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_motion_signal(GtkWidget * widget, GdkDragContext * drag_context, gint x, gint y, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_drag_drop_signal(GtkWidget * widget, GdkDragContext * drag_context, gint x, gint y, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
-handle_drag_data_get_signal(GtkWidget * widget, GdkDragContext * drag_context, GtkSelectionData * data, guint info, guint time, C_signal * cs)
+static    gint
+handle_drag_data_get_signal(GtkWidget * widget,
+			    GdkDragContext * drag_context, GtkSelectionData * data, guint info, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
-handle_drag_data_received_signal(GtkWidget * widget, GdkDragContext * drag_context, gint x, gint y, GtkSelectionData * data, guint info, guint time, C_signal * cs)
+static    gint
+handle_drag_data_received_signal(GtkWidget * widget,
+				 GdkDragContext * drag_context, gint x,
+				 gint y, GtkSelectionData * data, guint info, guint time, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_debug_msg_signal(GtkWidget * widget, gchar * message, C_signal * cs)
 {
    return handle_signals(widget, cs, NULL);
 }
 
-static gint
+static    gint
 handle_focus_in_out_event(GtkWidget * widget, GdkEventFocus * event, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -317,17 +323,21 @@ int
 clip_GTK_WIDGETGETTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cobj = _fetch_co_arg(ClipMachineMemory);
+
    WTypeTable *wt_item = NULL;
-   long cwtype = GTK_WIDGET_UNKNOWN;
+
+   long      cwtype = GTK_WIDGET_UNKNOWN;
+
    if (cwid || cobj)
-      {
-	 wt_item = _wtype_table_get(cwid->type);
-	 if (!wt_item)
-	    wt_item = _wtype_table_get(cobj->type);
-	 if (wt_item && wt_item->fclip_type)
-	    cwtype = wt_item->fclip_type();
-      }
+    {
+       wt_item = _wtype_table_get(cwid->type);
+       if (!wt_item)
+	  wt_item = _wtype_table_get(cobj->type);
+       if (wt_item && wt_item->fclip_type)
+	  cwtype = wt_item->fclip_type();
+    }
    _clip_retni(ClipMachineMemory, cwtype);
    return 0;
 }
@@ -337,17 +347,21 @@ int
 clip_GTK_WIDGETGETTYPENAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_object *cobj = _fetch_co_arg(ClipMachineMemory);
+
    WTypeTable *wt_item = NULL;
+
    const char *cwtype_name = "GTK_WIDGET_UNKNOWN";
+
    if (cwid || cobj)
-      {
-	 wt_item = _wtype_table_get(cwid->type);
-	 if (!wt_item)
-	    wt_item = _wtype_table_get(cobj->type);
-	 if (wt_item && wt_item->ftype_name)
-	    cwtype_name = (const char *) wt_item->ftype_name();
-      }
+    {
+       wt_item = _wtype_table_get(cwid->type);
+       if (!wt_item)
+	  wt_item = _wtype_table_get(cobj->type);
+       if (wt_item && wt_item->ftype_name)
+	  cwtype_name = (const char *) wt_item->ftype_name();
+    }
    _clip_retc(ClipMachineMemory, (char *) cwtype_name);
    return 0;
 }
@@ -357,6 +371,7 @@ int
 clip_GTK_ISWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    _clip_retl(ClipMachineMemory, cwid && cwid->objtype == GTK_OBJ_WIDGET && cwid->widget && GTK_IS_WIDGET(cwid->widget));
    return 0;
 }
@@ -366,8 +381,10 @@ int
 clip_GTK_WIDGETSETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint width = _clip_parni(ClipMachineMemory, 2);
-   gint height = _clip_parni(ClipMachineMemory, 3);
+
+   gint      width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      height = _clip_parni(ClipMachineMemory, 3);
 
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -386,7 +403,8 @@ int
 clip_GTK_WIDGETGETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   GtkArg argw, argh;
+
+   GtkArg    argw, argh;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    argw.type = GTK_TYPE_INT;
@@ -423,8 +441,11 @@ int
 clip_GTK_WIDGETSETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -442,8 +463,11 @@ int
 clip_GTK_WIDGETSETUPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -458,7 +482,8 @@ int
 clip_GTK_WIDGETGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   GtkArg argx, argy;
+
+   GtkArg    argx, argy;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    argx.type = GTK_TYPE_INT;
@@ -483,6 +508,7 @@ int
 clip_GTK_WIDGETSHOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_show(cwid->widget);
    return 0;
@@ -495,6 +521,7 @@ int
 clip_GTK_WIDGETSHOWALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_show_all(cwid->widget);
    return 0;
@@ -507,6 +534,7 @@ int
 clip_GTK_WIDGETHIDE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_hide(cwid->widget);
    return 0;
@@ -518,6 +546,7 @@ int
 clip_GTK_WIDGETHIDEONDELETE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_hide_on_delete(cwid->widget);
    return 0;
@@ -530,22 +559,23 @@ int
 clip_GTK_WIDGETSETFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (GTK_IS_WINDOW(cwid->widget) && cwid->widget->window)
-      {
-	 gdk_window_raise(cwid->widget->window);
-	 _clip_retl(ClipMachineMemory, TRUE);
-      }
+    {
+       gdk_window_raise(cwid->widget->window);
+       _clip_retl(ClipMachineMemory, TRUE);
+    }
    else
-      {
-	 if (GTK_WIDGET_CAN_FOCUS(cwid->widget))
-	    {
-	       gtk_window_set_focus(GTK_WINDOW(gtk_widget_get_toplevel(cwid->widget)), cwid->widget);
-	       _clip_retl(ClipMachineMemory, TRUE);
-	    }
-	 else
-	    _clip_retl(ClipMachineMemory, FALSE);
-      }
+    {
+       if (GTK_WIDGET_CAN_FOCUS(cwid->widget))
+	{
+	   gtk_window_set_focus(GTK_WINDOW(gtk_widget_get_toplevel(cwid->widget)), cwid->widget);
+	   _clip_retl(ClipMachineMemory, TRUE);
+	}
+       else
+	  _clip_retl(ClipMachineMemory, FALSE);
+    }
    return 0;
  err:
    return 1;
@@ -556,13 +586,20 @@ int
 clip_GTK_WIDGETADDACCELERATOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   int sigid = _clip_parni(ClipMachineMemory, 2);
-   char *signame = _clip_parc(ClipMachineMemory, 2);
+
+   int       sigid = _clip_parni(ClipMachineMemory, 2);
+
+   char     *signame = _clip_parc(ClipMachineMemory, 2);
+
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
-   guint accel_key = _clip_parni(ClipMachineMemory, 4);
-   guint accel_mods = _clip_parni(ClipMachineMemory, 5);
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 4);
+
+   guint     accel_mods = _clip_parni(ClipMachineMemory, 5);
+
    GtkAccelFlags accel_flags = _clip_parni(ClipMachineMemory, 6);
-   int ret = FALSE;
+
+   int       ret = FALSE;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKARG2(2, NUMERIC_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
@@ -572,16 +609,16 @@ clip_GTK_WIDGETADDACCELERATOR(ClipMachine * ClipMachineMemory)
    CHECKOPT(6, NUMERIC_type_of_ClipVarType);
 
    if (cwin && cwin->accel_group)
-      {
-	 if (_clip_parinfo(ClipMachineMemory, 2) == NUMERIC_type_of_ClipVarType)
-	    signame = _sig_name_by_id(sigid);
+    {
+       if (_clip_parinfo(ClipMachineMemory, 2) == NUMERIC_type_of_ClipVarType)
+	  signame = _sig_name_by_id(sigid);
 
-	 if (signame != NULL)
-	    {
-	       gtk_widget_add_accelerator(cwid->widget, signame, cwin->accel_group, accel_key, accel_mods, accel_flags);
-	       ret = TRUE;
-	    }
-      }
+       if (signame != NULL)
+	{
+	   gtk_widget_add_accelerator(cwid->widget, signame, cwin->accel_group, accel_key, accel_mods, accel_flags);
+	   ret = TRUE;
+	}
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -594,10 +631,14 @@ int
 clip_GTK_WIDGETREMOVEACCELERATOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwin = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   guint accel_key = _clip_parni(ClipMachineMemory, 3);
-   guint accel_mods = _clip_parni(ClipMachineMemory, 4);
-   int ret = FALSE;
+
+   guint     accel_key = _clip_parni(ClipMachineMemory, 3);
+
+   guint     accel_mods = _clip_parni(ClipMachineMemory, 4);
+
+   int       ret = FALSE;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -605,10 +646,10 @@ clip_GTK_WIDGETREMOVEACCELERATOR(ClipMachine * ClipMachineMemory)
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
 
    if (cwin && cwin->accel_group)
-      {
-	 gtk_widget_remove_accelerator(cwid->widget, cwin->accel_group, accel_key, accel_mods);
-	 ret = TRUE;
-      }
+    {
+       gtk_widget_remove_accelerator(cwid->widget, cwin->accel_group, accel_key, accel_mods);
+       ret = TRUE;
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -621,10 +662,14 @@ int
 clip_GTK_WIDGETREMOVEACCELERATORS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   int sigid = _clip_parni(ClipMachineMemory, 2);
-   char *signame = _clip_parc(ClipMachineMemory, 2);
-   gboolean visible_only = _clip_parl(ClipMachineMemory, 3);
-   int ret = FALSE;
+
+   int       sigid = _clip_parni(ClipMachineMemory, 2);
+
+   char     *signame = _clip_parc(ClipMachineMemory, 2);
+
+   gboolean  visible_only = _clip_parl(ClipMachineMemory, 3);
+
+   int       ret = FALSE;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKARG2(2, NUMERIC_type_of_ClipVarType, CHARACTER_type_of_ClipVarType);
@@ -634,10 +679,10 @@ clip_GTK_WIDGETREMOVEACCELERATORS(ClipMachine * ClipMachineMemory)
       signame = _sig_name_by_id(sigid);
 
    if (signame != NULL)
-      {
-	 gtk_widget_remove_accelerators(cwid->widget, signame, visible_only);
-	 ret = TRUE;
-      }
+    {
+       gtk_widget_remove_accelerators(cwid->widget, signame, visible_only);
+       ret = TRUE;
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -650,6 +695,7 @@ int
 clip_GTK_WIDGETSHOWNOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_show_now(cwid->widget);
    return 0;
@@ -662,6 +708,7 @@ int
 clip_GTK_WIDGETHIDEALL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_hide_all(cwid->widget);
    return 0;
@@ -675,7 +722,9 @@ int
 clip_GTK_WIDGETDRAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    GdkRectangle area;
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    area.x = INT_OPTION(ClipMachineMemory, 2, cwid->widget->allocation.x);
    area.y = INT_OPTION(ClipMachineMemory, 3, cwid->widget->allocation.y);
@@ -692,6 +741,7 @@ int
 clip_GTK_WIDGETQUEUEDRAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_queue_draw(cwid->widget);
    return 0;
@@ -704,6 +754,7 @@ int
 clip_GTK_WIDGETDRAWFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_draw_focus(cwid->widget);
    return 0;
@@ -716,6 +767,7 @@ int
 clip_GTK_WIDGETDRAWDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid || !cwid->widget)
       goto err;
    gtk_widget_draw_default(cwid->widget);
@@ -729,6 +781,7 @@ int
 clip_GTK_WIDGETLOCKACCELERATORS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_lock_accelerators(cwid->widget);
    return 0;
@@ -741,6 +794,7 @@ int
 clip_GTK_WIDGETUNLOCKACCELERATORS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_unlock_accelerators(cwid->widget);
    return 0;
@@ -753,6 +807,7 @@ int
 clip_GTK_WIDGETACCELERATORSLOCKED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retl(ClipMachineMemory, gtk_widget_accelerators_locked(cwid->widget));
    return 0;
@@ -765,6 +820,7 @@ int
 clip_GTK_WIDGETACTIVATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retl(ClipMachineMemory, gtk_widget_activate(cwid->widget));
    return 0;
@@ -777,14 +833,18 @@ int
 clip_GTK_WIDGETSETSCROLLADJUSTMENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKOPT2(2, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
    CHECKOPT2(3, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKCWIDOPT(cvadj, GTK_IS_ADJUSTMENT);
-   _clip_retl(ClipMachineMemory, gtk_widget_set_scroll_adjustments(cwid->widget, GTK_ADJUSTMENT(chadj->widget), GTK_ADJUSTMENT(cvadj->widget)));
+   _clip_retl(ClipMachineMemory,
+	      gtk_widget_set_scroll_adjustments(cwid->widget, GTK_ADJUSTMENT(chadj->widget), GTK_ADJUSTMENT(cvadj->widget)));
    return 0;
  err:
    return 1;
@@ -795,6 +855,7 @@ int
 clip_GTK_WIDGETDISABLESIGNALS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->sigenabled = FALSE;
@@ -808,6 +869,7 @@ int
 clip_GTK_WIDGETENABLESIGNALS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->sigenabled = TRUE;
@@ -821,6 +883,7 @@ int
 clip_GTK_WIDGETDISABLEUSERSSIGNALS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->usersigenabled = FALSE;
@@ -834,6 +897,7 @@ int
 clip_GTK_WIDGETENABLEUSERSSIGNALS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->usersigenabled = TRUE;
@@ -847,6 +911,7 @@ int
 clip_GTK_WIDGETDISABLEEVENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->evntenabled = FALSE;
@@ -860,6 +925,7 @@ int
 clip_GTK_WIDGETENABLEEVENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    if (!cwid)
       goto err;
    cwid->evntenabled = TRUE;
@@ -873,8 +939,11 @@ int
 clip_GTK_WIDGETPOPUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -891,6 +960,7 @@ int
 clip_GTK_WIDGETGRABFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_grab_focus(cwid->widget);
    return 0;
@@ -903,6 +973,7 @@ int
 clip_GTK_WIDGETGRABDEFAULT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_grab_default(cwid->widget);
    return 0;
@@ -915,8 +986,11 @@ int
 clip_GTK_WIDGETSETNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
-   gchar emptyname[] = "\0";
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar     emptyname[] = "\0";
+
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    if (name)
@@ -933,6 +1007,7 @@ int
 clip_GTK_WIDGETGETNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retc(ClipMachineMemory, gtk_widget_get_name(cwid->widget));
    return 0;
@@ -944,6 +1019,7 @@ int
 clip_GTK_WIDGETUNPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_unparent(cwid->widget);
    return 0;
@@ -955,7 +1031,9 @@ int
 clip_GTK_WIDGETREPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cpar = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -969,7 +1047,9 @@ int
 clip_GTK_WIDGETSETPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cpar = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -994,7 +1074,9 @@ int
 clip_GTK_WIDGETSETSTATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint state = _clip_parni(ClipMachineMemory, 2);
+
+   gint      state = _clip_parni(ClipMachineMemory, 2);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_set_state(cwid->widget, state);
@@ -1007,6 +1089,7 @@ int
 clip_GTK_WIDGETGETSTATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retni(ClipMachineMemory, GTK_WIDGET_STATE(cwid->widget));
 
@@ -1019,6 +1102,7 @@ int
 clip_GTK_WIDGETGETSAVEDSTATE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retni(ClipMachineMemory, GTK_WIDGET_SAVED_STATE(cwid->widget));
 
@@ -1032,7 +1116,9 @@ int
 clip_GTK_WIDGETSETSENSITIVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gboolean sensitive = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  sensitive = _clip_parl(ClipMachineMemory, 2);
+
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_set_sensitive(cwid->widget, sensitive);
@@ -1045,7 +1131,9 @@ int
 clip_GTK_WIDGETSETAPPPAINTABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gboolean paintable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  paintable = _clip_parl(ClipMachineMemory, 2);
+
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_set_app_paintable(cwid->widget, paintable);
@@ -1059,9 +1147,12 @@ int
 clip_GTK_WIDGETSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *mstyle = _clip_par(ClipMachineMemory, 2);
+
+   ClipVar  *mstyle = _clip_par(ClipMachineMemory, 2);
+
    GtkStyle *style;
-   int i;
+
+   int       i;
 
    CHECKARG(2, MAP_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -1074,15 +1165,15 @@ clip_GTK_WIDGETSETSTYLE(ClipMachine * ClipMachineMemory)
    style->white_gc = cwid->widget->style->white_gc;
    style->black_gc = cwid->widget->style->black_gc;
    for (i = 0; i < 5; i++)
-      {
-	 style->fg_gc[i] = cwid->widget->style->fg_gc[i];
-	 style->bg_gc[i] = cwid->widget->style->bg_gc[i];
-	 style->light_gc[i] = cwid->widget->style->light_gc[i];
-	 style->dark_gc[i] = cwid->widget->style->dark_gc[i];
-	 style->mid_gc[i] = cwid->widget->style->mid_gc[i];
-	 style->text_gc[i] = cwid->widget->style->text_gc[i];
-	 style->base_gc[i] = cwid->widget->style->base_gc[i];
-      }
+    {
+       style->fg_gc[i] = cwid->widget->style->fg_gc[i];
+       style->bg_gc[i] = cwid->widget->style->bg_gc[i];
+       style->light_gc[i] = cwid->widget->style->light_gc[i];
+       style->dark_gc[i] = cwid->widget->style->dark_gc[i];
+       style->mid_gc[i] = cwid->widget->style->mid_gc[i];
+       style->text_gc[i] = cwid->widget->style->text_gc[i];
+       style->base_gc[i] = cwid->widget->style->base_gc[i];
+    }
 
 	/*******/
   //style = cwid->widget->style;
@@ -1103,9 +1194,12 @@ int
 clip_GTK_WIDGETGETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *mstyle = RETPTR(ClipMachineMemory);
+
+   ClipVar  *mstyle = RETPTR(ClipMachineMemory);
+
    GtkStyle *style;
-   int i;
+
+   int       i;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
 
@@ -1117,28 +1211,28 @@ clip_GTK_WIDGETGETSTYLE(ClipMachine * ClipMachineMemory)
    style->white_gc = cwid->widget->style->white_gc;
    style->black_gc = cwid->widget->style->black_gc;
    for (i = 0; i < 5; i++)
-      {
-	 style->fg_gc[i] = cwid->widget->style->fg_gc[i];
-	 style->bg_gc[i] = cwid->widget->style->bg_gc[i];
-	 style->light_gc[i] = cwid->widget->style->light_gc[i];
-	 style->dark_gc[i] = cwid->widget->style->dark_gc[i];
-	 style->mid_gc[i] = cwid->widget->style->mid_gc[i];
-	 style->text_gc[i] = cwid->widget->style->text_gc[i];
-	 style->base_gc[i] = cwid->widget->style->base_gc[i];
-      }
+    {
+       style->fg_gc[i] = cwid->widget->style->fg_gc[i];
+       style->bg_gc[i] = cwid->widget->style->bg_gc[i];
+       style->light_gc[i] = cwid->widget->style->light_gc[i];
+       style->dark_gc[i] = cwid->widget->style->dark_gc[i];
+       style->mid_gc[i] = cwid->widget->style->mid_gc[i];
+       style->text_gc[i] = cwid->widget->style->text_gc[i];
+       style->base_gc[i] = cwid->widget->style->base_gc[i];
+    }
 
   ////////////////\*******
 
   //style = gtk_style_copy(gtk_widget_get_style(cwid->widget));
    if (style)
-      {
-	//gtk_style_unref (cwid->widget->style);
-	//gtk_style_ref (style);
-	 memset(mstyle, 0, sizeof(*mstyle));
-	 _clip_map(ClipMachineMemory, mstyle);
-	 _style_to_map(ClipMachineMemory, style, mstyle);
-	//gtk_style_unref(style);
-      }
+    {
+      //gtk_style_unref (cwid->widget->style);
+      //gtk_style_ref (style);
+       memset(mstyle, 0, sizeof(*mstyle));
+       _clip_map(ClipMachineMemory, mstyle);
+       _style_to_map(ClipMachineMemory, style, mstyle);
+      //gtk_style_unref(style);
+    }
    return 0;
  err:
    return 1;
@@ -1149,6 +1243,7 @@ int
 clip_GTK_WIDGETRESTOREDEFAULTSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_restore_default_style(cwid->widget);
    return 0;
@@ -1160,8 +1255,10 @@ clip_GTK_WIDGETRESTOREDEFAULTSTYLE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WIDGETSETDEFAULTSTYLE(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 1);
+
    GtkStyle *style;
+
    CHECKARG(1, MAP_type_of_ClipVarType);
 
   //style = gtk_style_new();
@@ -1180,7 +1277,8 @@ clip_GTK_WIDGETSETDEFAULTSTYLE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_WIDGETGETDEFAULTSTYLE(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *mstyle = RETPTR(ClipMachineMemory);
+   ClipVar  *mstyle = RETPTR(ClipMachineMemory);
+
    GtkStyle *style;
 
    style = gtk_widget_get_default_style();
@@ -1198,12 +1296,12 @@ clip_GTK_WIDGETDESTROY(ClipMachine * ClipMachineMemory)
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
 
    if (cwid)
-      {
-	 if (cwid->widget)
-	    gtk_widget_destroy(cwid->widget);
-	 else
-	    destroy_c_widget(cwid);
-      }
+    {
+       if (cwid->widget)
+	  gtk_widget_destroy(cwid->widget);
+       else
+	  destroy_c_widget(cwid);
+    }
 /*
 	if (cwid)
 	{
@@ -1224,19 +1322,22 @@ int
 clip_GTK_WIDGETGETTOPLEVEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *toplevel;
+
    C_widget *ctoplevel;
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    toplevel = gtk_widget_get_toplevel(cwid->widget);
    if (toplevel)
-      {
-	 ctoplevel = _list_get_cwidget(ClipMachineMemory, toplevel);
-	 if (!ctoplevel)
-	    ctoplevel = _register_widget(ClipMachineMemory, toplevel, NULL);
-	 if (ctoplevel)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctoplevel->obj);
-      }
+    {
+       ctoplevel = _list_get_cwidget(ClipMachineMemory, toplevel);
+       if (!ctoplevel)
+	  ctoplevel = _register_widget(ClipMachineMemory, toplevel, NULL);
+       if (ctoplevel)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctoplevel->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1247,6 +1348,7 @@ int
 clip_GTK_WIDGETHASFOCUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retl(ClipMachineMemory, GTK_WIDGET_HAS_FOCUS(cwid->widget));
    return 0;
@@ -1258,6 +1360,7 @@ int
 clip_GTK_WIDGETFLAGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retnl(ClipMachineMemory, GTK_WIDGET_FLAGS(cwid->widget));
    return 0;
@@ -1269,6 +1372,7 @@ int
 clip_GTK_WIDGETPRIVATEFLAGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    _clip_retnl(ClipMachineMemory, GTK_PRIVATE_FLAGS(cwid->widget));
    return 0;
@@ -1280,7 +1384,9 @@ int
 clip_GTK_WIDGETSETFLAGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   long flags = _clip_parnl(ClipMachineMemory, 2);
+
+   long      flags = _clip_parnl(ClipMachineMemory, 2);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    GTK_WIDGET_SET_FLAGS(cwid->widget, flags);
    return 0;
@@ -1292,7 +1398,9 @@ int
 clip_GTK_WIDGETUNSETFLAGS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   long flags = _clip_parnl(ClipMachineMemory, 2);
+
+   long      flags = _clip_parnl(ClipMachineMemory, 2);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    GTK_WIDGET_SET_FLAGS(cwid->widget, flags);
    return 0;
@@ -1304,6 +1412,7 @@ int
 clip_GTK_WIDGETMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_map(cwid->widget);
    return 0;
@@ -1315,6 +1424,7 @@ int
 clip_GTK_WIDGETUNMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_unmap(cwid->widget);
    return 0;
@@ -1326,6 +1436,7 @@ int
 clip_GTK_WIDGETREALIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_realize(cwid->widget);
    return 0;
@@ -1337,6 +1448,7 @@ int
 clip_GTK_WIDGETUNREALIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_unrealize(cwid->widget);
    return 0;
@@ -1357,7 +1469,9 @@ int
 clip_GTK_WIDGETSETEVENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint mask = _clip_parni(ClipMachineMemory, 2);
+
+   gint      mask = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_set_events(cwid->widget, mask);
    return 0;
@@ -1371,7 +1485,9 @@ int
 clip_GTK_WIDGETADDEVENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
-   gint mask = _clip_parni(ClipMachineMemory, 2);
+
+   gint      mask = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_widget_add_events(cwid->widget, mask);
    return 0;
@@ -1383,24 +1499,28 @@ int
 clip_GTK_WIDGETGETCOLORMAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    GdkColormap *colormap;
+
    C_object *ccmap;
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    colormap = gtk_widget_get_colormap(cwid->widget);
 
    if (colormap)
-      {
-	 ccmap = _register_object(ClipMachineMemory, colormap, GDK_TYPE_COLORMAP, NULL, (coDestructor) gdk_object_colormap_destructor);
-	 if (ccmap)
-	    {
-	       ccmap->ref_count = 1;
-	      //ccmap->ref_count ++;
-	      //gdk_colormap_ref(colormap);
-	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccmap->obj);
-	    }
-	 else
-	    gdk_colormap_unref(colormap);
-      }
+    {
+       ccmap =
+	_register_object(ClipMachineMemory, colormap, GDK_TYPE_COLORMAP, NULL, (coDestructor) gdk_object_colormap_destructor);
+       if (ccmap)
+	{
+	   ccmap->ref_count = 1;
+	  //ccmap->ref_count ++;
+	  //gdk_colormap_ref(colormap);
+	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccmap->obj);
+	}
+       else
+	  gdk_colormap_unref(colormap);
+    }
 
    return 0;
  err:
@@ -1412,16 +1532,19 @@ int
 clip_GTK_WIDGETGETPARENTWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    GdkWindow *win;
+
    C_object *cwin;
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    win = gtk_widget_get_parent_window(cwid->widget);
    if (win)
-      {
-	 cwin = _get_cobject(ClipMachineMemory, win, GDK_TYPE_WINDOW, (coDestructor) gdk_object_window_destructor);
-	 _clip_retni(ClipMachineMemory, cwin->handle);
-      }
+    {
+       cwin = _get_cobject(ClipMachineMemory, win, GDK_TYPE_WINDOW, (coDestructor) gdk_object_window_destructor);
+       _clip_retni(ClipMachineMemory, cwin->handle);
+    }
    return 0;
  err:
    return 1;
@@ -1431,20 +1554,22 @@ int
 clip_GTK_WIDGETGETPARENT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cparent;
+
    GtkWidget *parent;
 
    CHECKCWID(cwid, GTK_IS_WIDGET);
 
    parent = GTK_WIDGET(GTK_WIDGET(cwid->widget)->parent);
    if (parent)
-      {
-	 cparent = _list_get_cwidget(ClipMachineMemory, parent);
-	 if (!cparent)
-	    cparent = _register_widget(ClipMachineMemory, parent, NULL);
-	 if (cparent)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cparent->obj);
-      }
+    {
+       cparent = _list_get_cwidget(ClipMachineMemory, parent);
+       if (!cparent)
+	  cparent = _register_widget(ClipMachineMemory, parent, NULL);
+       if (cparent)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cparent->obj);
+    }
    return 0;
  err:
    return 1;

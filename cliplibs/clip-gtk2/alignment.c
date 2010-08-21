@@ -49,13 +49,20 @@ clip_INIT___ALIGNMENT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ALIGNMENTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 2);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 3);
-   gfloat xscale = _clip_parnd(ClipMachineMemory, 4);
-   gfloat yscale = _clip_parnd(ClipMachineMemory, 5);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 3);
+
+   gfloat    xscale = _clip_parnd(ClipMachineMemory, 4);
+
+   gfloat    yscale = _clip_parnd(ClipMachineMemory, 5);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -83,10 +90,15 @@ int
 clip_GTK_ALIGNMENTSET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cali = _fetch_cw_arg(ClipMachineMemory);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 2);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 3);
-   gfloat xscale = _clip_parnd(ClipMachineMemory, 4);
-   gfloat yscale = _clip_parnd(ClipMachineMemory, 5);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 3);
+
+   gfloat    xscale = _clip_parnd(ClipMachineMemory, 4);
+
+   gfloat    yscale = _clip_parnd(ClipMachineMemory, 5);
+
    CHECKCWID(cali, GTK_IS_ALIGNMENT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -109,7 +121,8 @@ int
 clip_GTK_ALIGNMENTGETPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cali = _fetch_cw_arg(ClipMachineMemory);
-   guint top, bottom, left, right;
+
+   guint     top, bottom, left, right;
 
    CHECKCWID(cali, GTK_IS_ALIGNMENT);
 
@@ -129,10 +142,14 @@ int
 clip_GTK_ALIGNMENTSETPADDING(ClipMachine * ClipMachineMemory)
 {
    C_widget *cali = _fetch_cw_arg(ClipMachineMemory);
-   guint top = _clip_parni(ClipMachineMemory, 2);
-   guint bottom = _clip_parni(ClipMachineMemory, 3);
-   guint left = _clip_parni(ClipMachineMemory, 4);
-   guint right = _clip_parni(ClipMachineMemory, 5);
+
+   guint     top = _clip_parni(ClipMachineMemory, 2);
+
+   guint     bottom = _clip_parni(ClipMachineMemory, 3);
+
+   guint     left = _clip_parni(ClipMachineMemory, 4);
+
+   guint     right = _clip_parni(ClipMachineMemory, 5);
 
    CHECKCWID(cali, GTK_IS_ALIGNMENT);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);

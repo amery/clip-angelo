@@ -1,0 +1,347 @@
+#
+#                                            xDevil/tools/Makefile.in
+#
+# main parts
+#
+#
+Local_Depend 	= 		../include/*.h		\
+							../include/*.ch
+
+c_files		=		$(sort 									\
+							)
+
+#										xDevil_dbg.c 			\
+#										xDevil_trans.c 			\
+#										xDevil_hashextract.c 	\
+#										xDevilhash.c 			\
+#										genlist.c 				\
+#										gen_tbl.c 				\
+#										po_extr.c 				\
+#										po_compat.c 			\
+#										xDevilar.c 				\
+#										xDevil_conv.c 			\
+#										po_subst.c 				\
+#
+prg_files 		=
+
+o_files 			=
+
+exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(c_files) ) $(basename $(prg_files) ) )
+
+SCRIPTS 			= 		$(sort 								 			\
+										xDevil_cp$(SCRIPTSUFF) 			\
+										xDevil_bug$(SCRIPTSUFF) 			\
+										joinlib$(SCRIPTSUFF) 			\
+										lowname$(SCRIPTSUFF) 			\
+										xDevil_makelib$(SCRIPTSUFF) 		\
+										xDevil_makeslib$(SCRIPTSUFF) 	\
+										dv_mindent$(SCRIPTSUFF) 		\
+										inst_end$(SCRIPTSUFF) 			\
+										tconv$(SCRIPTSUFF) 				\
+										xDevil_msgfmt$(SCRIPTSUFF) 		\
+										xDevil_msgmerge$(SCRIPTSUFF) 	\
+										add_meta_tag$(SCRIPTSUFF) 		\
+							)
+
+SRC_C_files 		= 			$(c_files)
+#po_util.c
+SRC_PRG_files 		= 			$(sort $(prg_files) )
+
+export
+
+######################################################################################
+###################################################################################### local rules
+
+all: Makefile links$(DIRS_TO_SCAN) $(o_files) $(exe_files) $(SCRIPTS)
+
+links:
+
+cfg :
+	$(E_cp)mv -f$(V) $(xDevil_M_Dir)/license.h $(xDevil_I_Dir)/
+	$(E_ln)[ -d charsets ] 											\
+		|| ln -sf$(V) ../libxDevilscreen/install/charsets .
+
+hash1 :
+	$(E_xx)$(xDevil_M_Dir)/init/LinkAllFiles.sh xDevil-tools
+
+FORCE :
+
+../libxDevilmain/coll.o: ../libxDevilmain/coll.c Makefile
+	$(E_cd)cd ../libxDevilmain 					\
+		&& ( [ -f Makefile ] 					\
+				|| ( [ -x $(CONFIGURE_SH) ] 	\
+						&& $(CONFIGURE_SH) $(MAKECMDGOALS) 		\
+					) 									\
+			)											\
+		&& $(MAKE) coll.o
+
+../libxDevilmain/_win32.o: ../libxDevilmain/_win32.c Makefile
+	$(E_cd)cd ../libxDevilmain 					\
+		&& ( [ -f Makefile ]						\
+				|| ( [ -x $(CONFIGURE_SH) ] 	\
+						&& $(CONFIGURE_SH) $(MAKECMDGOALS) 		\
+					) 									\
+			)											\
+		&& $(MAKE) _win32.o
+
+../libxDevilscreen/charset.o: ../libxDevilscreen/charset.c Makefile
+	$(E_cd)cd ../libxDevilscreen  				\
+		&& ( [ -f Makefile ]						\
+				|| ( [ -x $(CONFIGURE_SH) ] 	\
+						&& $(CONFIGURE_SH)  $(MAKECMDGOALS)		\
+					) 									\
+			)											\
+		&& $(MAKE) charset.o
+
+include $(Makefile_o_in)
+
+xDevil_hash.o: ../libxDevilmain/xDevilhash.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 			\
+		$(Trace_cc_d) ; 											\
+		$(CC) $(C_FLAGS) -g -DSTANDALONE -o $@ -c $< ; 	\
+	else 																\
+		$(Trace_cc) ; 												\
+		$(CC) $(C_FLAGS) -DSTANDALONE -o $@ -c $< ; 		\
+	fi
+
+lex.hash.o: lex.hash.c Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+clicutil.o: clicutil.c clic.tab.h Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -c $< ; 					\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -c $< ; 						\
+	fi
+
+install : all
+	$(E_xx)chmod 755 $(exe_files) $(SCRIPTS)
+	$(E_cp)cp --remove-destination -fpu$(V) $(exe_files) $(SCRIPTS) $(xDevil_B_Dir)/ || true
+	$(E_ln)cd $(BINDIR) \
+		&& ln -sf$(V) $(xDevil_B_Dir)/*$(EXESUFF) $(xDevil_B_Dir)/*$(SCRIPTSUFF) $(BINDIR)/
+
+xDevilar$(EXESUFF) :	xDevilar.o ../libxDevilmain/coll.o  Makefile #getopt.o
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 												\
+		$(Trace_cc_d) ; 																				\
+		$(CC) $(C_FLAGS) $(STATICLINK) -g -o $@ $< ../libxDevilmain/coll.o $(MLIB) ; \
+	else 																									\
+		$(Trace_cc) ; 																					\
+		$(CC) $(C_FLAGS) $(STATICLINK) -o $@ $< ../libxDevilmain/coll.o $(MLIB) ; 	\
+	fi
+
+xDevil_conv$(EXESUFF) :  xDevil_conv.o ../libxDevilscreen/charset.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 									\
+		$(Trace_cc_d) ; 			 														\
+		$(CC) $(C_FLAGS) -g -o $@ $< ../libxDevilscreen/charset.o $(MLIB) ; \
+	else 																						\
+		$(Trace_cc) ; 																		\
+		$(CC) $(C_FLAGS) -o $@ $< ../libxDevilscreen/charset.o $(MLIB) ; 	\
+	fi
+
+xDevil_dbg$(EXESUFF) :  xDevil_dbg.o ../libxDevilmain/coll.o ../libxDevilmain/_win32.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 																	\
+		$(Trace_cc_d) ; 																									\
+		$(CC) $(C_FLAGS) -g -o $@ $< ../libxDevilmain/coll.o ../libxDevilmain/_win32.o $(ADDLIBS) ; 	\
+	else 																														\
+		$(Trace_cc) ; 																										\
+		$(CC) $(C_FLAGS) -o $@ $< ../libxDevilmain/coll.o ../libxDevilmain/_win32.o $(ADDLIBS) ; 		\
+	fi
+
+xDevil_trans$(EXESUFF) :  xDevil_trans.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -o $@ $< ; 				\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -o $@ $< ; 					\
+	fi
+
+xDevil_msgmerge$(SCRIPTSUFF) : xDevil_msgmerge.ini Makefile
+	$(E_e)$(Trace)
+	$(E_xx)./xDevil_msgmerge.in.sh
+
+xDevil_makeslib$(SCRIPTSUFF) : xDevil_makeslib.ini Makefile
+	$(E_e)$(Trace)
+	$(E_xx)./xDevil_makeslib.in.sh
+
+xDevil_cp$(SCRIPTSUFF) : xDevil_cp.ini Makefile
+	$(E_e)$(Trace)
+	$(E_xx)./xDevil_cp.in.sh
+
+xDevil_makelib$(SCRIPTSUFF) : xDevil_makelib.ini Makefile
+	$(E_e)$(Trace)
+	$(E_xx)./xDevil_makelib.in.sh
+
+xDevil_msgfmt$(SCRIPTSUFF) : xDevil_msgfmt.ini Makefile
+	$(E_e)$(Trace)
+	$(E_xx)./xDevil_msgfmt.in.sh
+
+xDevilhash$(EXESUFF) : calchash.o xDevil_hash.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 		\
+		$(Trace_cc_d) ; 										\
+		$(CC) $(C_FLAGS) -g -o $@ $< xDevil_hash.o ; 	\
+	else 															\
+		$(Trace_cc) ; 											\
+		$(CC) $(C_FLAGS) -o $@ $< xDevil_hash.o ; 		\
+	fi
+
+genlist$(EXESUFF) : genlist.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) $(C_FLAGS) -g -o $@ $< ; 				\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) $(C_FLAGS) -o $@ $< ; 					\
+	fi
+
+gen_tbl$(EXESUFF) : gen_tbl.o ../libxDevilscreen/charset.o ../libxDevilmain/coll.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 																\
+		$(Trace_cc_d) ; 																								\
+		$(CC) $(C_FLAGS) -o $@ $< ../libxDevilscreen/charset.o ../libxDevilmain/coll.o $(MLIB) ; 	\
+	else 																													\
+		$(Trace_cc) ; 																									\
+		$(CC) $(C_FLAGS) -o $@ $< ../libxDevilscreen/charset.o ../libxDevilmain/coll.o $(MLIB) ; 	\
+	fi
+
+xDevil_hashextract$(EXESUFF): lex.hash.o xDevil_hash.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 	\
+		$(Trace_cc_d) ; 									\
+		$(CC) -O -g -o $@ $< xDevil_hash.o ; 			\
+	else 														\
+		$(Trace_cc) ; 										\
+		$(CC) -O -o $@ $< xDevil_hash.o ; 				\
+	fi
+	$(E_mkD)[ -d $(xDevil_B_Dir) ] || mkdir -p$(V) $(xDevil_B_Dir)
+	$(E_cp)cp -fpu$(V) $@ $(xDevil_B_Dir)/
+
+po_extr$(EXESUFF): po_util.o ../libxDevilmain/coll.o po_extr.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 													\
+		$(Trace_cc_d) ; 																					\
+		$(CC) $(C_FLAGS) -g -o $@ po_extr.c po_util.o ../libxDevilmain/coll.o $(MLIB) ; \
+	else 																										\
+		$(Trace_cc) ; 																						\
+		$(CC) $(C_FLAGS) -o $@ po_extr.c po_util.o ../libxDevilmain/coll.o $(MLIB) ; 	\
+	fi
+
+po_subst$(EXESUFF): po_util.o ../libxDevilmain/coll.o po_subst.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 																		\
+		$(Trace_cc_d) ; 																										\
+		$(CC) $(C_FLAGS) -g -o $@ po_subst.c po_util.o ../libxDevilmain/coll.o $(ICONV_LIB) $(MLIB) ; 	\
+	else 																															\
+		$(Trace_cc) ; 																											\
+		$(CC) $(C_FLAGS) -o $@ po_subst.c po_util.o ../libxDevilmain/coll.o $(ICONV_LIB) $(MLIB) ; 		\
+	fi
+
+po_compat$(EXESUFF): po_util.o Makefile
+	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 				\
+		$(Trace_cc_d) ; 												\
+		$(CC) $(C_FLAGS) -g -o $@ po_compat.c po_util.o ; 	\
+	else 																	\
+		$(Trace_cc) ; 													\
+		$(CC) $(C_FLAGS) -o $@ po_compat.c po_util.o ; 		\
+	fi
+
+xDevil_bug$(SCRIPTSUFF) : Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) xDevil_bug $@
+
+joinlib$(SCRIPTSUFF) : inst_end Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) joinlib  $@
+
+inst_end$(SCRIPTSUFF) : inst_end  Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) inst_end  $@
+
+dv_mindent$(SCRIPTSUFF) : dv_mindent  Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) dv_mindent  $@
+
+add_meta_tag$(SCRIPTSUFF) : add_meta_tag Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) add_meta_tag $@
+
+lowname$(SCRIPTSUFF) : lowname Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) lowname $@
+
+tconv$(SCRIPTSUFF) : tconv Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) tconv $@
+
+cleanc :
+	$(E_rm)rm -Rf$(V) bin xDevil_mk_depend$(EXESUFF)
+	$(E_rm)rm -f$(V) charsets
+# || true
+	$(E_rm)rm -f$(V) 	$(exe_files) $(SCRIPTS) *.b 			\
+							test dtest locale.pot license.h 		\
+							Makefile.tmp 								\
+							Makefile.incl
+#  || true
+	$(E_rm)rm -f$(V) xDevilcfg.sh xDevilcfg.h license.txt
+# || true
+
+distcleanc: clean
+	$(E_rm)rm -f$(V) *.g configure.flags
+	$(E_rm)rm -f$(V) xDevilroot
+# || true
+
+###################################################### yacc - flex
+
+clic_name.c: clic.tab.c Makefile
+	$(E_e)$(Trace)
+	$(E_e)echo "#include <stdio.h>" 													 >clic_name.c
+	$(E_e)echo "#ifndef YYDEBUG" 														>>clic_name.c
+	$(E_e)echo "#define YYDEBUG 0" 													>>clic_name.c
+	$(E_e)echo "#endif" 																	>>clic_name.c
+	$(E_e)echo "#if !YYDEBUG" 															>>clic_name.c
+	$(E_e)echo "#define static" 														>>clic_name.c
+	$(E_e)sed -n -e "/^\(.*\)yytname[ \t]*\[\]/,/^};/p" clic.tab.c 		>>clic_name.c
+	$(E_e)echo "int yymaxtoken=sizeof(yytname)/sizeof(char*);" 				>>clic_name.c
+	$(E_e)echo "#endif" 																	>>clic_name.c
+
+clic.tab.c: clic.y ../include/ci_clic.h
+	$(E_xx)$(YACC) -bclic -v -d clic.y
+
+lex.cl.c: clic_c.lex clic.tab.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -Pcl clic_c.lex
+
+lex.hash.c: hasher.lex ../include/ci_xDevilhash.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -Phash hasher.lex
+
+#note: flex -i for case-insencitive parser
+lex.yy.c: clic.lex clic.tab.h
+	$(E_e)$(Trace_flex)
+	$(E_xx)flex -i clic.lex
+
+plural.tab.c: plural.y
+	$(E_e)$(Trace_yacc)
+	$(E_xx)$(YACC) -bplural -pplural plural.y
+
+rt.tab.c: rt.y ../include/ci_clic.h
+	$(E_e)$(Trace_yacc)
+	$(E_xx)$(YACC) -brt -prt -v -d rt.y
+
+lex: yacc lex.hash.c Makefile
+yacc: Makefile
+# clic.tab.c clic_name.c rt.tab.c  plural.tab.c lex.yy.c lex.cl.c
+include $(Makefile_end_in)
+
+# DO NOT DELETE
+
+indent : Makefile
+	$(E_xx)$(xDevil_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
+	$(E_xx)$(xDevil_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
+	$(E_xx)$(xDevil_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
+	$(E_xx)$(xDevil_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
+

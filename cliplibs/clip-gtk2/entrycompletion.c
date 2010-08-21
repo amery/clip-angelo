@@ -16,7 +16,7 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
+static    gint
 handle_action_activated_signal(GtkEntryCompletion * completion, gint index, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -24,10 +24,11 @@ handle_action_activated_signal(GtkEntryCompletion * completion, gint index, C_si
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_match_selected_signal(GtkEntryCompletion * completion, GtkTreeModel * model, GtkTreeIter * iter, C_signal * cs)
 {
    C_object *cmodell, *citer;
+
    OBJECTPREPARECV(cs, cv);
    cmodell = _list_get_cobject(cs->co->cmachine, model);
    if (!cmodell)
@@ -71,15 +72,18 @@ _clip_type_name_entry_completion()
 int
 clip_INIT___ENTRYCOMPLETION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_entry_completion, _clip_type_name_entry_completion, _gtk_type_entry_completion, NULL, entry_completion_signals);
+   _wtype_table_put(_clip_type_entry_completion,
+		    _clip_type_name_entry_completion, _gtk_type_entry_completion, NULL, entry_completion_signals);
    return 0;
 }
 
 int
 clip_GTK_ENTRYCOMPLETIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkEntryCompletion *completion;
+
    C_object *ccompletion;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -87,13 +91,13 @@ clip_GTK_ENTRYCOMPLETIONNEW(ClipMachine * ClipMachineMemory)
    completion = gtk_entry_completion_new();
 
    if (completion)
-      {
-	 ccompletion = _list_get_cobject(ClipMachineMemory, completion);
-	 if (!ccompletion)
-	    ccompletion = _register_object(ClipMachineMemory, completion, GTK_TYPE_ENTRY_COMPLETION, cv, NULL);
-	 if (ccompletion)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccompletion->obj);
-      }
+    {
+       ccompletion = _list_get_cobject(ClipMachineMemory, completion);
+       if (!ccompletion)
+	  ccompletion = _register_object(ClipMachineMemory, completion, GTK_TYPE_ENTRY_COMPLETION, cv, NULL);
+       if (ccompletion)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccompletion->obj);
+    }
 
    return 0;
  err:
@@ -104,7 +108,9 @@ int
 clip_GTK_ENTRYCOMPLETIONGETENTRY(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
+
    C_widget *cwid;
+
    GtkWidget *wid;
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
@@ -112,13 +118,13 @@ clip_GTK_ENTRYCOMPLETIONGETENTRY(ClipMachine * ClipMachineMemory)
    wid = gtk_entry_completion_get_entry(GTK_ENTRY_COMPLETION(ccompletion->object));
 
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
    return 0;
  err:
@@ -129,6 +135,7 @@ int
 clip_GTK_ENTRYCOMPLETIONSETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cmodell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
@@ -145,7 +152,9 @@ int
 clip_GTK_ENTRYCOMPLETIONGETMODEL(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cmodell;
+
    GtkTreeModel *model;
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
@@ -153,27 +162,33 @@ clip_GTK_ENTRYCOMPLETIONGETMODEL(ClipMachine * ClipMachineMemory)
    model = gtk_entry_completion_get_model(GTK_ENTRY_COMPLETION(ccompletion->object));
 
    if (model)
-      {
-	 cmodell = _list_get_cobject(ClipMachineMemory, model);
-	 if (!cmodell)
-	    cmodell = _register_object(ClipMachineMemory, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
-	 if (cmodell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodell->obj);
-      }
+    {
+       cmodell = _list_get_cobject(ClipMachineMemory, model);
+       if (!cmodell)
+	  cmodell = _register_object(ClipMachineMemory, model, GTK_TYPE_TREE_MODEL, NULL, NULL);
+       if (cmodell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmodell->obj);
+    }
    return 0;
  err:
    return 1;
 }
 
-static gboolean
+static    gboolean
 _match_func(GtkEntryCompletion * completion, const gchar * key, GtkTreeIter * iter, gpointer data)
 {
-   C_var *c = (C_var *) data;
+   C_var    *c = (C_var *) data;
+
    C_object *ccomp = _list_get_cobject(c->ClipMachineMemory, completion);
+
    C_object *citer = _list_get_cobject(c->ClipMachineMemory, iter);
-   ClipVar stack[4];
-   ClipVar res;
-   gboolean ret = TRUE;
+
+   ClipVar   stack[4];
+
+   ClipVar   res;
+
+   gboolean  ret = TRUE;
+
    if (!ccomp)
       ccomp = _register_object(c->ClipMachineMemory, completion, GTK_TYPE_ENTRY_COMPLETION, NULL, NULL);
    if (!citer)
@@ -187,7 +202,9 @@ _match_func(GtkEntryCompletion * completion, const gchar * key, GtkTreeIter * it
    _clip_mclone(c->cw->cmachine, &stack[3], &citer->obj);
 
    if (_clip_eval(c->ClipMachineMemory, &(c->cfunc), 4, stack, &res) == 0)
-		ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret =
+       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
 
    _clip_destroy(c->ClipMachineMemory, &res);
    _clip_destroy(c->ClipMachineMemory, &stack[0]);
@@ -201,8 +218,10 @@ int
 clip_GTK_ENTRYCOMPLETIONSETMATCHFUNC(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *func = _clip_spar(ClipMachineMemory, 2);
-   C_var *c = 0;
+
+   ClipVar  *func = _clip_spar(ClipMachineMemory, 2);
+
+   C_var    *c = 0;
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG2(2, PCODE_type_of_ClipVarType, CCODE_type_of_ClipVarType);
@@ -210,7 +229,8 @@ clip_GTK_ENTRYCOMPLETIONSETMATCHFUNC(ClipMachine * ClipMachineMemory)
    c->ClipMachineMemory = ClipMachineMemory;
    c->co = ccompletion;
    _clip_mclone(ClipMachineMemory, &c->cfunc, func);
-   gtk_entry_completion_set_match_func(GTK_ENTRY_COMPLETION(ccompletion->object), (GtkEntryCompletionMatchFunc) _match_func, c, NULL);
+   gtk_entry_completion_set_match_func(GTK_ENTRY_COMPLETION
+				       (ccompletion->object), (GtkEntryCompletionMatchFunc) _match_func, c, NULL);
 
    return 0;
  err:
@@ -221,7 +241,8 @@ int
 clip_GTK_ENTRYCOMPLETIONSETMINIMUMKEYLENGTH(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint length = _clip_parni(ClipMachineMemory, 2);
+
+   gint      length = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -265,8 +286,10 @@ int
 clip_GTK_ENTRYCOMPLETIONINSERTACTIONTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
-   gchar *text = _clip_parc(ClipMachineMemory, 3);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -286,8 +309,10 @@ int
 clip_GTK_ENTRYCOMPLETIONINSERTACTIONMARKUP(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
-   gchar *text = _clip_parc(ClipMachineMemory, 3);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 3);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -307,7 +332,8 @@ int
 clip_GTK_ENTRYCOMPLETIONDELETEACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -324,7 +350,8 @@ int
 clip_GTK_ENTRYCOMPLETIONSETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -370,7 +397,8 @@ int
 clip_GTK_ENTRYCOMPLETIONGETTEXTCOLUMN(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gint column;
+
+   gint      column;
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
 
@@ -402,7 +430,8 @@ int
 clip_GTK_ENTRYCOMPLETIONSETINLINECOMPLETION(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -418,7 +447,8 @@ int
 clip_GTK_ENTRYCOMPLETIONSETPOPUPCOMPLETION(ClipMachine * ClipMachineMemory)
 {
    C_object *ccompletion = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccompletion, GTK_IS_ENTRY_COMPLETION(ccompletion->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);

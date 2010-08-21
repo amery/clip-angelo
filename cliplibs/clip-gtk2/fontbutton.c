@@ -42,7 +42,8 @@ _clip_type_name_font_button()
 int
 clip_INIT___FONTBUTTON(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_font_button, _clip_type_name_font_button, _gtk_type_font_button, _gtk_type_button, font_button_signals);
+   _wtype_table_put(_clip_type_font_button, _clip_type_name_font_button,
+		    _gtk_type_font_button, _gtk_type_button, font_button_signals);
    return 0;
 }
 
@@ -51,8 +52,10 @@ clip_INIT___FONTBUTTON(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTBUTTONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -74,9 +77,12 @@ clip_GTK_FONTBUTTONNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FONTBUTTONNEWWITHFONT(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *fontname = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *fontname = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -100,7 +106,8 @@ int
 clip_GTK_FONTBUTTONSETFONTNAME(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gchar *fontname = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *fontname = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -128,7 +135,8 @@ int
 clip_GTK_FONTBUTTONSETSHOWSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gboolean show_style = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  show_style = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -158,7 +166,8 @@ int
 clip_GTK_FONTBUTTONSETSHOWSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gboolean show_size = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  show_size = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -188,7 +197,8 @@ int
 clip_GTK_FONTBUTTONSETUSEFONT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gboolean use_font = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  use_font = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -218,7 +228,8 @@ int
 clip_GTK_FONTBUTTONSETUSESIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gboolean use_size = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  use_size = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -248,7 +259,8 @@ int
 clip_GTK_FONTBUTTONSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -266,7 +278,8 @@ int
 clip_GTK_FONTBUTTONGETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbtn = _fetch_cw_arg(ClipMachineMemory);
-   gchar *title;
+
+   gchar    *title;
 
    CHECKCWID(cbtn, GTK_IS_FONT_BUTTON);
 

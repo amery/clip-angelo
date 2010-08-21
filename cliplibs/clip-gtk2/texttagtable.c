@@ -14,10 +14,11 @@
 #include "ci_clip-gtk2.h"
 
 /*********************** SIGNALS **************************/
-static gint
+static    gint
 handle_tag_added(GtkTextTagTable * tbl, GtkTextTag * arg1, C_signal * cs)
 {
    C_object *ctag;
+
    OBJECTPREPARECV(cs, cv);
    ctag = _list_get_cobject(cs->cw->cmachine, arg1);
    if (!ctag)
@@ -27,10 +28,11 @@ handle_tag_added(GtkTextTagTable * tbl, GtkTextTag * arg1, C_signal * cs)
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_tag_changed(GtkTextTagTable * tbl, GtkTextTag * arg1, gboolean arg2, C_signal * cs)
 {
    C_object *ctag;
+
    OBJECTPREPARECV(cs, cv);
    ctag = _list_get_cobject(cs->cw->cmachine, arg1);
    if (!ctag)
@@ -41,10 +43,11 @@ handle_tag_changed(GtkTextTagTable * tbl, GtkTextTag * arg1, gboolean arg2, C_si
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_tag_removed(GtkTextTagTable * tbl, GtkTextTag * arg1, C_signal * cs)
 {
    C_object *ctag;
+
    OBJECTPREPARECV(cs, cv);
    ctag = _list_get_cobject(cs->cw->cmachine, arg1);
    if (!ctag)
@@ -69,24 +72,28 @@ static SignalTable text_tag_table_signals[] = {
 static void
 _text_tag_table_for_each_func(GtkTextTag * tag, gpointer data)
 {
-   C_var *c = (C_var *) data;
+   C_var    *c = (C_var *) data;
+
    C_object *c_obj = _list_get_cobject(c->ClipMachineMemory, tag);
-   ClipVar stack[2];
-   ClipVar res;
+
+   ClipVar   stack[2];
+
+   ClipVar   res;
+
    if (!c_obj)
       c_obj = _register_object(c->ClipMachineMemory, tag, GTK_TYPE_TEXT_TAG, NULL, NULL);
    if (c_obj)
-      {
-	 memset(&stack, 0, sizeof(stack));
-	 memset(&res, 0, sizeof(ClipVar));
-	 _clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
-	 _clip_mclone(c->co->cmachine, &stack[1], &c_obj->obj);
-	//stack[1] = c_obj->obj;
-	 _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
-	 _clip_destroy(c->ClipMachineMemory, &res);
-	 _clip_destroy(c->ClipMachineMemory, &stack[0]);
-	 _clip_destroy(c->ClipMachineMemory, &stack[1]);
-      }
+    {
+       memset(&stack, 0, sizeof(stack));
+       memset(&res, 0, sizeof(ClipVar));
+       _clip_mclone(c->co->cmachine, &stack[0], &c->co->obj);
+       _clip_mclone(c->co->cmachine, &stack[1], &c_obj->obj);
+      //stack[1] = c_obj->obj;
+       _clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res);
+       _clip_destroy(c->ClipMachineMemory, &res);
+       _clip_destroy(c->ClipMachineMemory, &stack[0]);
+       _clip_destroy(c->ClipMachineMemory, &stack[1]);
+    }
 }
 
 /**********************************************************/
@@ -111,7 +118,8 @@ _clip_type_name_text_tag_table()
 int
 clip_INIT___TEXTTAGTABLE(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_text_tag_table, _clip_type_name_text_tag_table, _gtk_type_text_tag_table, NULL, text_tag_table_signals);
+   _wtype_table_put(_clip_type_text_tag_table, _clip_type_name_text_tag_table,
+		    _gtk_type_text_tag_table, NULL, text_tag_table_signals);
    return 0;
 }
 
@@ -122,8 +130,10 @@ int
 clip_GTK_TEXTTAGTABLENEW(ClipMachine * ClipMachineMemory)
 {
 
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkTextTagTable *tbl;
+
    C_object *ctbl;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -132,13 +142,13 @@ clip_GTK_TEXTTAGTABLENEW(ClipMachine * ClipMachineMemory)
    tbl = gtk_text_tag_table_new();
 
    if (tbl)
-      {
-	 ctbl = _list_get_cobject(ClipMachineMemory, tbl);
-	 if (!ctbl)
-	    ctbl = _register_object(ClipMachineMemory, tbl, GTK_TYPE_TEXT_TAG_TABLE, cv, NULL);
-	 if (ctbl)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctbl->obj);
-      }
+    {
+       ctbl = _list_get_cobject(ClipMachineMemory, tbl);
+       if (!ctbl)
+	  ctbl = _register_object(ClipMachineMemory, tbl, GTK_TYPE_TEXT_TAG_TABLE, cv, NULL);
+       if (ctbl)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctbl->obj);
+    }
    return 0;
  err:
    return 1;
@@ -151,6 +161,7 @@ int
 clip_GTK_TEXTTAGTABLEADD(ClipMachine * ClipMachineMemory)
 {
    C_object *ctbl = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -172,6 +183,7 @@ int
 clip_GTK_TEXTTAGTABLEREMOVE(ClipMachine * ClipMachineMemory)
 {
    C_object *ctbl = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -193,8 +205,11 @@ int
 clip_GTK_TEXTTAGTABLELOOKUP(ClipMachine * ClipMachineMemory)
 {
    C_object *ctbl = _fetch_co_arg(ClipMachineMemory);
+
    const gchar *name = 0;
+
    GtkTextTag *tag = 0;
+
    C_object *ctag;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -204,13 +219,13 @@ clip_GTK_TEXTTAGTABLELOOKUP(ClipMachine * ClipMachineMemory)
    tag = gtk_text_tag_table_lookup(GTK_TEXT_TAG_TABLE(ctbl->object), name);
 
    if (tag)
-      {
-	 ctag = _list_get_cobject(ClipMachineMemory, tag);
-	 if (!ctag)
-	    ctag = _register_object(ClipMachineMemory, tag, GTK_TYPE_TEXT_TAG, NULL, NULL);
-	 if (ctag)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctag->obj);
-      }
+    {
+       ctag = _list_get_cobject(ClipMachineMemory, tag);
+       if (!ctag)
+	  ctag = _register_object(ClipMachineMemory, tag, GTK_TYPE_TEXT_TAG, NULL, NULL);
+       if (ctag)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ctag->obj);
+    }
    return 0;
  err:
    return 1;
@@ -224,8 +239,10 @@ int
 clip_GTK_TEXTTAGTABLEFOREACH(ClipMachine * ClipMachineMemory)
 {
    C_object *ctbl = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *cfunc = _clip_spar(ClipMachineMemory, 2);
-   C_var *c = 0;
+
+   ClipVar  *cfunc = _clip_spar(ClipMachineMemory, 2);
+
+   C_var    *c = 0;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(ctbl, GTK_IS_TEXT_TAG_TABLE(ctbl->object));
@@ -247,7 +264,8 @@ int
 clip_GTK_TEXTTAGTABLEGETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_object *ctbl = _fetch_co_arg(ClipMachineMemory);
-   gint size;
+
+   gint      size;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(ctbl, GTK_IS_TEXT_TAG_TABLE(ctbl->object));

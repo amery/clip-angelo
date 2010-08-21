@@ -1,0 +1,66 @@
+#
+#                                            init/Makefile.o.in
+#
+##########################################################
+##
+## 																obj's section
+##
+
+%.o : %.c Makefile $(Depend_on)
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_cc_d) ; 										\
+		$(CC) -g $(C_FLAGS) -c $< ; 						\
+	else 															\
+		$(Trace_cc) ; 											\
+		$(CC) $(C_FLAGS) -c $< ; 							\
+	fi
+
+.c.o :  Makefile $(Depend_on)
+	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_cc_d) ; 										\
+		$(CC) -g $(C_FLAGS) -c $< ; 						\
+	else 															\
+		$(Trace_cc) ; 											\
+		$(CC) $(C_FLAGS) -c $< ; 							\
+	fi
+
+%.o : %.prg Makefile $(xDevil) $(Depend_on)
+	$(E_xDevil)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(xDevil) -g $(xDevilFLAGS) $< ; 						\
+	else 															\
+		$(xDevil) $(xDevilFLAGS) $< ; 							\
+		$(Trace_prg) ; 										\
+		$(xDevil) $(xDevilFLAGS) $< ;							\
+	fi
+
+.prg.o : Makefile $(xDevil) $(Depend_on)
+	$(E_xDevil)if [ -f $(subst .o,.g,$@) ] ; then 		\
+		$(Trace_prg_d) ; 										\
+		$(xDevil) -g $(xDevilFLAGS) $< ; 						\
+	else 															\
+		$(xDevil) $(xDevilFLAGS) $< ; 							\
+		$(Trace_prg) ; 										\
+		$(xDevil) $(xDevilFLAGS) $< ;							\
+	fi
+
+%.po : %.prg Makefile $(xDevil) $(Depend_on)
+	$(E_xDevil)if [ -f $(subst .po,.g,$@) ] ; then 	\
+		$(Trace_prg_d) ; 										\
+		$(xDevil) -g -p $(xDevilFLAGS) $< ; 					\
+	else 															\
+		$(Trace_prg) ; 										\
+		$(xDevil) -p $(xDevilFLAGS) $< ; 						\
+	fi
+
+.prg.po : Makefile $(xDevil) $(Depend_on)
+	$(E_xDevil)if [ -f $(subst .po,.g,$@) ] ; then 	\
+		$(Trace_prg_d) ; 										\
+		$(xDevil) -g -p $(xDevilFLAGS) $< ; 					\
+	else 															\
+		$(Trace_prg) ; 										\
+		$(xDevil) -p $(xDevilFLAGS) $< ; 						\
+	fi
+
+
+##########################################################

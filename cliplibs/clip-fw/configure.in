@@ -11,8 +11,31 @@ DLLREALSUFF='.so'
 
 rm -f$V Makefile
 
+#printf "configure: Makefile creating.."
+
+#exec 																												3>Makefile.inc
+
+#echo "#	Created automatically by 'configure'" 														>&3
+#echo '#' 																										>&3
+#echo 																												>&3
+#echo '#' 																										>&3
+#echo '#	Compile flags' 																					>&3
+#echo '#' 																										>&3
+#echo "CLIPROOT='$CLIPROOT'" 																				>&3
+#echo "include $CLIPROOT/include/Makefile.inc" 														>&3
+#echo "OSNAME='$osname'" 																					>&3
+#echo "DLLSUFF='$DLLSUFF'"  																				>&3
+#echo "DLLREALSUFF='$DLLREALSUFF'"  																	>&3
 cat ./Makefile.inc  																									>>Makefile.ini
+#echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk -I$PWD/../clip-cti/include" 		>>Makefile.ini
 echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk/include -I$PWD/../clip-cti/include" 		>>Makefile.ini
+#echo "INCLUDEDIRS += -I$PWD -I$PWD/include -I$PWD/../clip-gtk -I$PWD/../clip-cti/include" 		>>Makefile.ini
+
+#echo  	 																										>&3
+#exec  																						 					3>&-
 ln -sf$V ./include ./fwin
+#tr -d \' <./Makefile.inc >Makefile
+#cat ./Makefile  >>Makefile.ini
+#rm -f$V ./Makefile.inc
 echo ". done."
 touch configure.ok

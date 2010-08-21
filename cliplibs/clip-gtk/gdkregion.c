@@ -57,18 +57,19 @@ static int
 _map_get_gdk_rectangle(ClipMachine * ClipMachineMemory, ClipVar * map, GdkRectangle * region)
 {
    if (map && map->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType && region)
-      {
-	 double x, y, width, height;
-	 _clip_mgetn(ClipMachineMemory, map, HASH_X, &x);
-	 _clip_mgetn(ClipMachineMemory, map, HASH_Y, &y);
-	 _clip_mgetn(ClipMachineMemory, map, HASH_WIDTH, &width);
-	 _clip_mgetn(ClipMachineMemory, map, HASH_HEIGHT, &height);
-	 region->x = x;
-	 region->y = y;
-	 region->width = width;
-	 region->height = height;
-	 return 0;
-      }
+    {
+       double    x, y, width, height;
+
+       _clip_mgetn(ClipMachineMemory, map, HASH_X, &x);
+       _clip_mgetn(ClipMachineMemory, map, HASH_Y, &y);
+       _clip_mgetn(ClipMachineMemory, map, HASH_WIDTH, &width);
+       _clip_mgetn(ClipMachineMemory, map, HASH_HEIGHT, &height);
+       region->x = x;
+       region->y = y;
+       region->width = width;
+       region->height = height;
+       return 0;
+    }
    return -1;
 }
 
@@ -77,13 +78,13 @@ static int
 _map_put_gdk_rectangle(ClipMachine * ClipMachineMemory, ClipVar * map, GdkRectangle * region)
 {
    if (map && map->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == MAP_type_of_ClipVarType && region)
-      {
-	 _clip_mputn(ClipMachineMemory, map, HASH_X, region->x);
-	 _clip_mputn(ClipMachineMemory, map, HASH_Y, region->y);
-	 _clip_mputn(ClipMachineMemory, map, HASH_WIDTH, region->width);
-	 _clip_mputn(ClipMachineMemory, map, HASH_HEIGHT, region->height);
-	 return 0;
-      }
+    {
+       _clip_mputn(ClipMachineMemory, map, HASH_X, region->x);
+       _clip_mputn(ClipMachineMemory, map, HASH_Y, region->y);
+       _clip_mputn(ClipMachineMemory, map, HASH_WIDTH, region->width);
+       _clip_mputn(ClipMachineMemory, map, HASH_HEIGHT, region->height);
+       return 0;
+    }
    return -1;
 }
 
@@ -91,8 +92,10 @@ _map_put_gdk_rectangle(ClipMachine * ClipMachineMemory, ClipVar * map, GdkRectan
 int
 clip_GDK_RECTANGLEINTERSECT(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *creg1 = _clip_spar(ClipMachineMemory, 1);
-   ClipVar *creg2 = _clip_spar(ClipMachineMemory, 2);
+   ClipVar  *creg1 = _clip_spar(ClipMachineMemory, 1);
+
+   ClipVar  *creg2 = _clip_spar(ClipMachineMemory, 2);
+
   //ClipVar *cdest = _clip_spar(ClipMachineMemory,3);
    GdkRectangle reg1, reg2, dest;
 
@@ -119,9 +122,12 @@ clip_GDK_RECTANGLEINTERSECT(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_RECTANGLEUNION(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *creg1 = _clip_spar(ClipMachineMemory, 1);
-   ClipVar *creg2 = _clip_spar(ClipMachineMemory, 2);
-   ClipVar *cdest = RETPTR(ClipMachineMemory);
+   ClipVar  *creg1 = _clip_spar(ClipMachineMemory, 1);
+
+   ClipVar  *creg2 = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *cdest = RETPTR(ClipMachineMemory);
+
    GdkRectangle reg1, reg2, dest;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -146,21 +152,24 @@ clip_GDK_RECTANGLEUNION(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_REGIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GdkRegion *region;
+
    C_object *cregion;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    region = gdk_region_new();
 
    if (region)
-      {
-	 cregion = _register_object(ClipMachineMemory, region, GDK_OBJECT_REGION, cv, NULL);
-	 if (cregion)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cregion->obj);
-	 else
-	    gdk_region_destroy(region);
-      }
+    {
+       cregion = _register_object(ClipMachineMemory, region, GDK_OBJECT_REGION, cv, NULL);
+       if (cregion)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cregion->obj);
+       else
+	  gdk_region_destroy(region);
+    }
    return 0;
  err:
    return 1;
@@ -178,15 +187,24 @@ parameters - ([mObj], <aPoints>, [nPoints], [nFillRule])
 int
 clip_GDK_REGIONPOLYGON(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   ClipVar *cap = _clip_spar(ClipMachineMemory, 2);
-   int npoints = _clip_parni(ClipMachineMemory, 3);
-   int fillrule = _clip_parni(ClipMachineMemory, 4);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   ClipVar  *cap = _clip_spar(ClipMachineMemory, 2);
+
+   int       npoints = _clip_parni(ClipMachineMemory, 3);
+
+   int       fillrule = _clip_parni(ClipMachineMemory, 4);
+
    GdkRegion *region;
+
    C_object *cregion;
+
    unsigned short i;
-   ClipVar *cpoint;
+
+   ClipVar  *cpoint;
+
    GdkPoint *points;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKARG(2, ARRAY_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -198,31 +216,35 @@ clip_GDK_REGIONPOLYGON(ClipMachine * ClipMachineMemory)
 
    points = (GdkPoint *) calloc(npoints, sizeof(GdkPoint));
    for (i = 0; i < npoints; i++)
-      {
-	 cpoint = &cap->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
-	 if (cpoint->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == ARRAY_type_of_ClipVarType)
-	    {
-	       if (cpoint->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar > 0 && cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-NUMERIC_type_of_ClipVarType)
-				 points[i].x = cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[0].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
-	       if (cpoint->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar > 1 && cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
-NUMERIC_type_of_ClipVarType)
-				 points[i].y = cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[1].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
-	    }
-      }
+    {
+       cpoint = &cap->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i];
+       if (cpoint->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == ARRAY_type_of_ClipVarType)
+	{
+	   if (cpoint->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar > 0
+	       && cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[0].ClipType_t_of_ClipVar.
+	       ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType)
+	      points[i].x =
+	       cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[0].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+	   if (cpoint->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar > 1
+	       && cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[1].ClipType_t_of_ClipVar.
+	       ClipVartype_type_of_ClipType == NUMERIC_type_of_ClipVarType)
+	      points[i].y =
+	       cpoint->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[1].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+	}
+    }
 
    region = gdk_region_polygon(points, npoints, fillrule);
 
    free(points);
 
    if (region)
-      {
-	 cregion = _register_object(ClipMachineMemory, region, GDK_OBJECT_REGION, cv, NULL);
-	 if (cregion)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cregion->obj);
-	 else
-	    gdk_region_destroy(region);
-      }
+    {
+       cregion = _register_object(ClipMachineMemory, region, GDK_OBJECT_REGION, cv, NULL);
+       if (cregion)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cregion->obj);
+       else
+	  gdk_region_destroy(region);
+    }
    return 0;
  err:
    return 1;
@@ -233,6 +255,7 @@ int
 clip_GDK_REGIONDESTROY(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
 
    gdk_region_destroy(GDK_REGION(creg));
@@ -247,8 +270,11 @@ int
 clip_GDK_REGIONSINTERSECT(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    C_object *creg2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_object *cdest;
+
    GdkRegion *dest;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -258,13 +284,13 @@ clip_GDK_REGIONSINTERSECT(ClipMachine * ClipMachineMemory)
    dest = gdk_regions_intersect(GDK_REGION(creg), GDK_REGION(creg2));
 
    if (dest)
-      {
-	 cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
-	 if (cdest)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
-	 else
-	    gdk_region_destroy(dest);
-      }
+    {
+       cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
+       if (cdest)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
+       else
+	  gdk_region_destroy(dest);
+    }
 
    return 0;
  err:
@@ -277,8 +303,11 @@ int
 clip_GDK_REGIONUNION(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    C_object *creg2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_object *cdest;
+
    GdkRegion *dest;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -288,13 +317,13 @@ clip_GDK_REGIONUNION(ClipMachine * ClipMachineMemory)
    dest = gdk_regions_union(GDK_REGION(creg), GDK_REGION(creg2));
 
    if (dest)
-      {
-	 cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
-	 if (cdest)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
-	 else
-	    gdk_region_destroy(dest);
-      }
+    {
+       cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
+       if (cdest)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
+       else
+	  gdk_region_destroy(dest);
+    }
 
    return 0;
  err:
@@ -307,8 +336,11 @@ int
 clip_GDK_REGIONSUBTRACT(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    C_object *creg2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_object *cdest;
+
    GdkRegion *dest;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -318,13 +350,13 @@ clip_GDK_REGIONSUBTRACT(ClipMachine * ClipMachineMemory)
    dest = gdk_regions_subtract(GDK_REGION(creg), GDK_REGION(creg2));
 
    if (dest)
-      {
-	 cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
-	 if (cdest)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
-	 else
-	    gdk_region_destroy(dest);
-      }
+    {
+       cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
+       if (cdest)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
+       else
+	  gdk_region_destroy(dest);
+    }
 
    return 0;
  err:
@@ -338,8 +370,11 @@ int
 clip_GDK_REGIONXOR(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    C_object *creg2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_object *cdest;
+
    GdkRegion *dest;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -349,13 +384,13 @@ clip_GDK_REGIONXOR(ClipMachine * ClipMachineMemory)
    dest = gdk_regions_xor(GDK_REGION(creg), GDK_REGION(creg2));
 
    if (dest)
-      {
-	 cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
-	 if (cdest)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
-	 else
-	    gdk_region_destroy(dest);
-      }
+    {
+       cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
+       if (cdest)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
+       else
+	  gdk_region_destroy(dest);
+    }
 
    return 0;
  err:
@@ -367,9 +402,13 @@ int
 clip_GDK_REGIONUNIONWITHRECT(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *crect = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *crect = _clip_spar(ClipMachineMemory, 2);
+
    C_object *cdest;
+
    GdkRegion *dest;
+
    GdkRectangle rect;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -379,13 +418,13 @@ clip_GDK_REGIONUNIONWITHRECT(ClipMachine * ClipMachineMemory)
    dest = gdk_region_union_with_rect(GDK_REGION(creg), &rect);
 
    if (dest)
-      {
-	 cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
-	 if (cdest)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
-	 else
-	    gdk_region_destroy(dest);
-      }
+    {
+       cdest = _register_object(ClipMachineMemory, dest, GDK_OBJECT_REGION, NULL, NULL);
+       if (cdest)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cdest->obj);
+       else
+	  gdk_region_destroy(dest);
+    }
 
    return 0;
  err:
@@ -397,8 +436,10 @@ int
 clip_GDK_REGIONOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   gint dx = _clip_parni(ClipMachineMemory, 2);
-   gint dy = _clip_parni(ClipMachineMemory, 3);
+
+   gint      dx = _clip_parni(ClipMachineMemory, 2);
+
+   gint      dy = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -417,8 +458,10 @@ int
 clip_GDK_REGIONSHRINK(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   gint dx = _clip_parni(ClipMachineMemory, 2);
-   gint dy = _clip_parni(ClipMachineMemory, 3);
+
+   gint      dx = _clip_parni(ClipMachineMemory, 2);
+
+   gint      dy = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -451,6 +494,7 @@ int
 clip_GDK_REGIONEQUAL(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
+
    C_object *creg2 = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -469,8 +513,10 @@ int
 clip_GDK_REGIONPOINTIN(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   gint x = _clip_parni(ClipMachineMemory, 2);
-   gint y = _clip_parni(ClipMachineMemory, 3);
+
+   gint      x = _clip_parni(ClipMachineMemory, 2);
+
+   gint      y = _clip_parni(ClipMachineMemory, 3);
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -488,7 +534,9 @@ int
 clip_GDK_REGIONRECTIN(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *crect = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *crect = _clip_spar(ClipMachineMemory, 2);
+
    GdkRectangle rect;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));
@@ -507,7 +555,9 @@ int
 clip_GDK_REGIONGETCLIPBOX(ClipMachine * ClipMachineMemory)
 {
    C_object *creg = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *crect = RETPTR(ClipMachineMemory);
+
+   ClipVar  *crect = RETPTR(ClipMachineMemory);
+
    GdkRectangle rect;
 
    CHECKCOBJ(creg, GDK_IS_REGION(creg->object));

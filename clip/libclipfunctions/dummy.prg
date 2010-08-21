@@ -3,112 +3,41 @@
     Author   : Uri (uri@itk.ru)
     License : (GPL) http://www.itk.ru/clipper/license.html
 */
-*****************************************************
-function linedraw
-return
-*****************************************************
-function rundos
-return
-*****************************************************
-function altdel
-return 0
-*****************************************************
-function mouse_move()
-return 0
-*****************************************************
-function mousekey()
-return 0
-*****************************************************
-function mouptr_on()
-return .t.
-*****************************************************
-function mouptr_off()
-return .t.
-*****************************************************
-function mrelease()
-return 0
-*****************************************************
-function moumaxrow()
-return 0
-*****************************************************
-function moumaxcol()
-return 0
-*****************************************************
-function setmouse()
-return .t.
-
-*****************************************************
-function setblink()
-return .t.
-
-*****************************************************
-function csetcurs(lvisible)
-	local ret
-	ret:=setcursor()!=0
-	if lVisible != NIL
-		setcursor(iif(lvisible,1,0))
-	endif
-return ret
-*****************************************************
-function _isgraphics()
-return .f.
-************************************************************
-function cretry()
-return 0
-*****************************************************
-function kbdEmulate()
-return 0
-*****************************************************
-function tone()
-	__beep()
-return .t.
-*****************************************************
-function sound
-	__beep()
-return .t.
-*****************************************************
-function kbdspeed()
-return .t.
-*****************************************************
-function vgapalette()
-return .t.
-*****************************************************
-FUNCTION Network()
-  RETURN ( .T. )
-*****************************************************
-FUNCTION NOSNOW()
-  RETURN NIL
-*****************************************************
-FUNCTION ISVGA()
-  RETURN .F.
-*****************************************************
-FUNCTION ISEGA()
-  RETURN .F.
-*****************************************************
-	function setmode()
-	return .t.
-*****************************************************
-	function getmode
-	return "CGA80(.t.)"
-*****************************************************
-	function cga80
-	return .t.
-*****************************************************
-	function vga28
-	return .f.
-*****************************************************
-	function vga50
-	return .f.
-*****************************************************
-	function fontload
-	return 0
-*****************************************************
-	function fontselect
-	return 0
-*****************************************************
-	function fontreset
-	return .t.
-*****************************************************
-	function dosidle
-	return .t.
-
+**********************************************************************
+**********************************************************************
+**********************************************************************
+**********************************************************************
+#include <dummy/linedraw.prg>
+#include <dummy/rundos.prg>
+#include <dummy/altdel.prg>
+#include <dummy/mouse_move.prg>
+#include <dummy/mousekey.prg>
+#include <dummy/mouptr_on.prg>
+#include <dummy/mouptr_off.prg>
+#include <dummy/mrelease.prg>
+#include <dummy/moumaxrow.prg>
+#include <dummy/moumaxcol.prg>
+#include <dummy/setmouse.prg>
+#include <dummy/setblink.prg>
+#include <dummy/csetcurs.prg>
+#include <dummy/_isgraphics.prg>
+#include <dummy/cretry.prg>
+#include <dummy/kbdEmulate.prg>
+#include <dummy/tone.prg>
+#include <dummy/sound.prg>
+#include <dummy/kbdspeed.prg>
+#include <dummy/vgapalette.prg>
+#include <dummy/Network.prg>
+#include <dummy/NOSNOW.prg>
+#include <dummy/ISVGA.prg>
+#include <dummy/ISEGA.prg>
+#include <dummy/setmode.prg>
+#include <dummy/getmode.prg>
+#include <dummy/cga80.prg>
+#include <dummy/vga28.prg>
+#include <dummy/vga50.prg>
+#include <dummy/fontload.prg>
+#include <dummy/fontselect.prg>
+#include <dummy/fontreset.prg>
+#include <dummy/dosidle.prg>
+**********************************************************************

@@ -13,18 +13,20 @@
 #include "ci_hashcode.h"
 
 /*extern void *alloca(); */
-extern int printf ();
+extern int printf();
+
 extern char **environ;
 
 int
-main (int argc, char **argv)
+main(int argc, char **argv)
 {
-  int ret;
-  ClipMachine *ClipMemoryStore = new_ClipMachine (0);
+   int ret;
+
+   ClipMachine *ClipMachineMemory = new_ClipMachine(0);
 
 #ifdef USE_TASK
-  Task_INIT ();
+   Task_INIT();
 #endif
-  ret = _clip_main (ClipMemoryStore, HASH_main, argc, argv, environ);
-  return ret;
+   ret = _clip_main(ClipMachineMemory, HASH_main, argc, argv, environ);
+   return ret;
 }

@@ -1,5 +1,5 @@
-#ifndef CI_DBS_DEFINED
-#define CI_DBS_DEFINED
+#ifndef CN_DBS_DEFINED
+#define CN_DBS_DEFINED
 
 
 /* define codes of index in struct of DBSTRUCT() and DBCREATE */

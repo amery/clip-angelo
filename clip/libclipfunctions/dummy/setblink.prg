@@ -1,0 +1,2 @@
+function setblink()
+return .t.

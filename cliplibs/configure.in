@@ -8,9 +8,9 @@
 DIRS_TO_SCAN=""
 #echo "C_FLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
 #echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
-AllDir="bzip2 gzip com crypto fcgi gtk2 gtk dbtcp codb mysql odbc oracle postgres
+AllDir="bzip2 gzip com crypto fcgi  gtk2 gtk dbtcp codb mysql odbc oracle postgres
 nanfor netto r2d2 rtf xml"
-
+# gtk2 gtk
 # fw needs gtk2
 #
 export DIRS_TO_SCAN
@@ -89,6 +89,7 @@ for dName in $AllDir ; do
 done
 
 echo "DIRS_TO_SCAN = $DIRS_TO_SCAN " 							>./Makefile.01
-#!/bin/sh
+
+#echo "export PATH_LIB 			= 	\$(CLIPROOT)/lib/">>./Makefile.ini
 
 touch configure.ok

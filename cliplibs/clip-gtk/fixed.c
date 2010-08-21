@@ -47,9 +47,12 @@ clip_INIT___FIXED(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FIXEDNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_fixed_new();
@@ -67,9 +70,13 @@ int
 clip_GTK_FIXEDPUT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint x = _clip_parni(ClipMachineMemory, 3);
-   gint y = _clip_parni(ClipMachineMemory, 4);
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);
@@ -91,9 +98,13 @@ int
 clip_GTK_FIXEDMOVE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cfix = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint x = _clip_parni(ClipMachineMemory, 3);
-   gint y = _clip_parni(ClipMachineMemory, 4);
+
+   gint      x = _clip_parni(ClipMachineMemory, 3);
+
+   gint      y = _clip_parni(ClipMachineMemory, 4);
+
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
    CHECKOPT(4, NUMERIC_type_of_ClipVarType);

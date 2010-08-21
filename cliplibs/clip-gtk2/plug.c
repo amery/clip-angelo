@@ -53,6 +53,7 @@ int
 clip_GTK_PLUGCONSTRUCT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cplug = _fetch_cw_arg(ClipMachineMemory);
+
    GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -68,9 +69,12 @@ clip_GTK_PLUGCONSTRUCT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_PLUGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GdkNativeWindow id = _clip_parni(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);

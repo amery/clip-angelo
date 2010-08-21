@@ -1,0 +1,2 @@
+FUNCTION ISEGA()
+  RETURN .F.

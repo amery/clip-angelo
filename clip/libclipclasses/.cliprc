@@ -1,7 +1,7 @@
 -E CLIP_MODULE=sys
 -w
 #-l
-#-U ci_std.ch
+#-U std.ch
 #-U config.ch
 #-U clip.ch
 

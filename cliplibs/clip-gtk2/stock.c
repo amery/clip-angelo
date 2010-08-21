@@ -52,9 +52,12 @@ int
 clip_GTK_STOCKADD(ClipMachine * ClipMachineMemory)
 {
    ClipArrVar *cv = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 1));
-   guint n_items = _clip_parni(ClipMachineMemory, 2);
+
+   guint     n_items = _clip_parni(ClipMachineMemory, 2);
+
    GtkStockItem *items;
-   gint i;
+
+   gint      i;
 
    CHECKARG(1, ARRAY_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -64,11 +67,12 @@ clip_GTK_STOCKADD(ClipMachine * ClipMachineMemory)
    items = malloc(n_items * sizeof(GtkStockItem));
    memset(items, 0, n_items * sizeof(GtkStockItem));
    for (i = 0; i < n_items; i++)
-      {
-	 GtkStockItem it;
-	 _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
-	 items[i] = it;
-      }
+    {
+       GtkStockItem it;
+
+       _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
+       items[i] = it;
+    }
 
    gtk_stock_add(items, n_items);
 
@@ -83,9 +87,12 @@ int
 clip_GTK_STOCKADDSTATIC(ClipMachine * ClipMachineMemory)
 {
    ClipArrVar *cv = (ClipArrVar *) _clip_vptr(_clip_spar(ClipMachineMemory, 1));
-   guint n_items = _clip_parni(ClipMachineMemory, 2);
+
+   guint     n_items = _clip_parni(ClipMachineMemory, 2);
+
    GtkStockItem *items;
-   gint i;
+
+   gint      i;
 
    CHECKARG(1, ARRAY_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -95,11 +102,12 @@ clip_GTK_STOCKADDSTATIC(ClipMachine * ClipMachineMemory)
    items = malloc(n_items * sizeof(GtkStockItem));
    memset(items, 0, n_items * sizeof(GtkStockItem));
    for (i = 0; i < n_items; i++)
-      {
-	 GtkStockItem it;
-	 _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
-	 items[i] = it;
-      }
+    {
+       GtkStockItem it;
+
+       _map_to_stock_item(ClipMachineMemory, &cv->ClipVar_items_of_ClipArrVar[i], &it);
+       items[i] = it;
+    }
 
    gtk_stock_add_static(items, n_items);
 
@@ -113,9 +121,12 @@ clip_GTK_STOCKADDSTATIC(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STOCKITEMCOPY(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   ClipVar *newcv = 0;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   ClipVar  *newcv = 0;
+
    GtkStockItem item;
+
    GtkStockItem *newitem;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -136,7 +147,8 @@ clip_GTK_STOCKITEMCOPY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STOCKITEMFREE(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkStockItem item;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -153,29 +165,32 @@ clip_GTK_STOCKITEMFREE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STOCKLISTIDS(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   GSList *list;
-   long i, n;
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   GSList   *list;
+
+   long      i, n;
 
    list = gtk_stock_list_ids();
 
    n = g_slist_length(list);
    if (n > 0)
-      {
-	 _clip_array(ClipMachineMemory, cv, 1, &n);
-	 for (i = 0; list; list = g_slist_next(list), i++)
-	    {
-	       ClipVar c;
-	       gchar *str;
+    {
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (i = 0; list; list = g_slist_next(list), i++)
+	{
+	   ClipVar   c;
 
-	       str = (gchar *) list->data;
-	       _clip_var_str(str, strlen(str), &c);
-	       _clip_aset(ClipMachineMemory, cv, &c, 1, &i);
-	       _clip_destroy(ClipMachineMemory, &c);
-	       g_free(str);
-	    }
-	 g_slist_free(list);
-      }
+	   gchar    *str;
+
+	   str = (gchar *) list->data;
+	   _clip_var_str(str, strlen(str), &c);
+	   _clip_aset(ClipMachineMemory, cv, &c, 1, &i);
+	   _clip_destroy(ClipMachineMemory, &c);
+	   g_free(str);
+	}
+       g_slist_free(list);
+    }
 
    return 0;
 }
@@ -183,8 +198,10 @@ clip_GTK_STOCKLISTIDS(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_STOCKLOOKUP(ClipMachine * ClipMachineMemory)
 {
-   gchar *stock_id = _clip_parc(ClipMachineMemory, 1);
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+   gchar    *stock_id = _clip_parc(ClipMachineMemory, 1);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
    GtkStockItem item;
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);

@@ -65,8 +65,10 @@ _clip_type_name_color_selection_dialog()
 int
 clip_INIT___COLORSELECTION(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_color_selection, _clip_type_name_color_selection, _gtk_type_color_selection, _gtk_type_vbox, colorsel_signals);
-   _wtype_table_put(_clip_type_color_selection_dialog, _clip_type_name_color_selection_dialog, _gtk_type_color_selection_dialog, _gtk_type_window, NULL);
+   _wtype_table_put(_clip_type_color_selection,
+		    _clip_type_name_color_selection, _gtk_type_color_selection, _gtk_type_vbox, colorsel_signals);
+   _wtype_table_put(_clip_type_color_selection_dialog,
+		    _clip_type_name_color_selection_dialog, _gtk_type_color_selection_dialog, _gtk_type_window, NULL);
    return 0;
 }
 
@@ -76,9 +78,12 @@ clip_INIT___COLORSELECTION(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_color_selection_new();
@@ -108,7 +113,9 @@ int
 clip_GTK_COLORSELECTIONSETUPDATEPOLICY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    GtkUpdateType policy = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_color_selection_set_update_policy(GTK_COLOR_SELECTION(ccsel->widget), policy);
@@ -125,7 +132,9 @@ int
 clip_GTK_COLORSELECTIONSETHASOPACITYCONTROL(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   gboolean use_opacity = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  use_opacity = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -140,6 +149,7 @@ int
 clip_GTK_COLORSELECTIONGETHASOPACITYCONTROL(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    _clip_retl(ClipMachineMemory, gtk_color_selection_get_has_opacity_control(GTK_COLOR_SELECTION(ccsel->widget)));
    return 0;
@@ -151,7 +161,9 @@ int
 clip_GTK_COLORSELECTIONSETHASPALETTE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   gboolean use_palette = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  use_palette = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -166,6 +178,7 @@ int
 clip_GTK_COLORSELECTIONGETHASPALETTE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    _clip_retl(ClipMachineMemory, gtk_color_selection_get_has_palette(GTK_COLOR_SELECTION(ccsel->widget)));
    return 0;
@@ -177,6 +190,7 @@ int
 clip_GTK_COLORSELECTIONGETCURRENTALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    _clip_retni(ClipMachineMemory, (int) gtk_color_selection_get_current_alpha(GTK_COLOR_SELECTION(ccsel->widget)));
    return 0;
@@ -188,7 +202,8 @@ int
 clip_GTK_COLORSELECTIONSETCURRENTALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   guint16 alpha = _clip_parni(ClipMachineMemory, 2);
+
+   guint16   alpha = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -203,7 +218,8 @@ int
 clip_GTK_COLORSELECTIONGETCURRENTCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   GdkColor color;
+
+   GdkColor  color;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
 
@@ -222,8 +238,10 @@ int
 clip_GTK_COLORSELECTIONSETCURRENTCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cvclr = _clip_spar(ClipMachineMemory, 2);
-   GdkColor color;
+
+   ClipVar  *cvclr = _clip_spar(ClipMachineMemory, 2);
+
+   GdkColor  color;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -241,6 +259,7 @@ int
 clip_GTK_COLORSELECTIONGETPREVIOUSALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    _clip_retni(ClipMachineMemory, (int) gtk_color_selection_get_previous_alpha(GTK_COLOR_SELECTION(ccsel->widget)));
    return 0;
@@ -252,7 +271,8 @@ int
 clip_GTK_COLORSELECTIONSETPREVIOUSALPHA(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   guint16 alpha = _clip_parni(ClipMachineMemory, 2);
+
+   guint16   alpha = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -267,7 +287,8 @@ int
 clip_GTK_COLORSELECTIONGETPREVIOUSCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   GdkColor color;
+
+   GdkColor  color;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
 
@@ -286,8 +307,10 @@ int
 clip_GTK_COLORSELECTIONSETPREVIOUSCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *cvclr = _clip_spar(ClipMachineMemory, 2);
-   GdkColor color;
+
+   ClipVar  *cvclr = _clip_spar(ClipMachineMemory, 2);
+
+   GdkColor  color;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKARG(2, MAP_type_of_ClipVarType);
@@ -319,30 +342,36 @@ clip_GTK_COLORSELECTIONISADJUSTING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONPALETTEFROMSTRING(ClipMachine * ClipMachineMemory)
 {
-   gchar *palette = _clip_parc(ClipMachineMemory, 1);
-   ClipVar *cvcolor = _clip_spar(ClipMachineMemory, 2);
+   gchar    *palette = _clip_parc(ClipMachineMemory, 1);
+
+   ClipVar  *cvcolor = _clip_spar(ClipMachineMemory, 2);
+
    GdkColor *color;
-   gint len;
-   gboolean ret;
+
+   gint      len;
+
+   gboolean  ret;
 
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
 
    ret = gtk_color_selection_palette_from_string(palette, &color, &len);
 
    if (ret)
-      {
-	 long i, d = len;
-	 _clip_array(ClipMachineMemory, cvcolor, 1, &d);
-	 for (i = 0; i < len; i++)
-	    {
-	       ClipVar *cv = 0;
-	       memset(cv, 0, sizeof(ClipVar));
-	       _clip_map(ClipMachineMemory, cv);
-	       _gdk_color_to_map(ClipMachineMemory, color[i], cv);
-	       _clip_aset(ClipMachineMemory, cvcolor, cv, 1, &i);
-	    }
-	 _clip_storni(ClipMachineMemory, len, 3, 0);
-      }
+    {
+       long      i, d = len;
+
+       _clip_array(ClipMachineMemory, cvcolor, 1, &d);
+       for (i = 0; i < len; i++)
+	{
+	   ClipVar  *cv = 0;
+
+	   memset(cv, 0, sizeof(ClipVar));
+	   _clip_map(ClipMachineMemory, cv);
+	   _gdk_color_to_map(ClipMachineMemory, color[i], cv);
+	   _clip_aset(ClipMachineMemory, cvcolor, cv, 1, &i);
+	}
+       _clip_storni(ClipMachineMemory, len, 3, 0);
+    }
 
    _clip_retl(ClipMachineMemory, ret);
    return 0;
@@ -353,23 +382,27 @@ clip_GTK_COLORSELECTIONPALETTEFROMSTRING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONPALETTETOSTRING(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cvcolor = _clip_spar(ClipMachineMemory, 1);
-   gint len = INT_OPTION(ClipMachineMemory, 2, 0);
-   gchar *palette = 0;
+   ClipVar  *cvcolor = _clip_spar(ClipMachineMemory, 1);
+
+   gint      len = INT_OPTION(ClipMachineMemory, 2, 0);
+
+   gchar    *palette = 0;
 
    CHECKARG(1, ARRAY_type_of_ClipVarType);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
    if (len > 0)
-      {
-	 GdkColor color[len];
-	 gint i;
-	 for (i = 0; i < len; i++)
-	    {
-			 _map_to_gdk_color(ClipMachineMemory, &color[i], &cvcolor->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
-	    }
-	 palette = gtk_color_selection_palette_to_string(color, len);
-      }
+    {
+       GdkColor  color[len];
+
+       gint      i;
+
+       for (i = 0; i < len; i++)
+	{
+	   _map_to_gdk_color(ClipMachineMemory, &color[i], &cvcolor->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i]);
+	}
+       palette = gtk_color_selection_palette_to_string(color, len);
+    }
 
    _clip_retc(ClipMachineMemory, palette);
    return 0;
@@ -383,9 +416,12 @@ int
 clip_GTK_COLORSELECTIONSETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
-   gdouble color[4];
-   gdouble k, max;
+
+   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
+
+   gdouble   color[4];
+
+   gdouble   k, max;
 
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    CHECKOPT(2, MAP_type_of_ClipVarType);
@@ -414,9 +450,13 @@ int
 clip_GTK_COLORSELECTIONGETCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_widget *ccsel = _fetch_cw_arg(ClipMachineMemory);
+
    GtkColorSelection *colorsel;
-   ClipVar mcolor;
-   gdouble color[4];
+
+   ClipVar   mcolor;
+
+   gdouble   color[4];
+
    CHECKCWID(ccsel, GTK_IS_COLOR_SELECTION);
    colorsel = GTK_COLOR_SELECTION(ccsel->widget);
    gtk_color_selection_get_color(GTK_COLOR_SELECTION(ccsel->widget), color);
@@ -442,10 +482,14 @@ clip_GTK_COLORSELECTIONGETCOLOR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_COLORSELECTIONDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *title = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid, *ccolorsel, *cokbtn, *ccancelbtn, *chlpbtn;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 

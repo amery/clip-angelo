@@ -86,9 +86,12 @@ clip_INIT___RULER(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HRULERNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_hruler_new();
@@ -104,9 +107,12 @@ clip_GTK_HRULERNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_VRULERNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_vruler_new();
@@ -126,7 +132,9 @@ int
 clip_GTK_RULERSETMETRIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *crul = _fetch_cw_arg(ClipMachineMemory);
+
    GtkMetricType metric = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(crul, GTK_IS_RULER);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_ruler_set_metric(GTK_RULER(crul->widget), metric);
@@ -141,10 +149,15 @@ int
 clip_GTK_RULERSETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *crul = _fetch_cw_arg(ClipMachineMemory);
-   gdouble lower = _clip_parnd(ClipMachineMemory, 2);
-   gdouble upper = _clip_parnd(ClipMachineMemory, 3);
-   gdouble position = _clip_parnd(ClipMachineMemory, 4);
-   gdouble max_size = _clip_parnd(ClipMachineMemory, 5);
+
+   gdouble   lower = _clip_parnd(ClipMachineMemory, 2);
+
+   gdouble   upper = _clip_parnd(ClipMachineMemory, 3);
+
+   gdouble   position = _clip_parnd(ClipMachineMemory, 4);
+
+   gdouble   max_size = _clip_parnd(ClipMachineMemory, 5);
+
    CHECKCWID(crul, GTK_IS_RULER);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
@@ -160,6 +173,7 @@ int
 clip_GTK_RULERGETMETRIC(ClipMachine * ClipMachineMemory)
 {
    C_widget *crul = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(crul, GTK_IS_RULER);
    _clip_retni(ClipMachineMemory, (int) gtk_ruler_get_metric(GTK_RULER(crul->widget)));
    return 0;
@@ -171,10 +185,15 @@ int
 clip_GTK_RULERGETRANGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *crul = _fetch_cw_arg(ClipMachineMemory);
-   gdouble lower;
-   gdouble upper;
-   gdouble position;
-   gdouble max_size;
+
+   gdouble   lower;
+
+   gdouble   upper;
+
+   gdouble   position;
+
+   gdouble   max_size;
+
    CHECKCWID(crul, GTK_IS_RULER);
    gtk_ruler_get_range(GTK_RULER(crul->widget), &lower, &upper, &position, &max_size);
 

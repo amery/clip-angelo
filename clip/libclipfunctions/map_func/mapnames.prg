@@ -1,0 +1,2 @@
+function mapNames()
+return names

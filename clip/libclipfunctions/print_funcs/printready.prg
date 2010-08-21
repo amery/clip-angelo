@@ -1,0 +1,2 @@
+function printready()
+return .t.

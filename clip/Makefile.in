@@ -1,36 +1,6 @@
 ##
-##										clip/Makefile.in
+##										new-clip/Makefile.in
 ##
-DBGLIB 				=
-XINSTALL 			=
-INST_STD_LIB 		=
-INST_XCLIP 			=
-CLIP_CLD 			=
-INST_MEMDEBUG_H 	=
-RDDBASE 				= 			libcliprdd/libcliprdd.a
-CLASSLIB 			= 			libclipclasses/libclipclasses.a
-FUNCSLIB 			= 			libclipfunctions/libclipfunctions.a
-#CODBLIB 			=
-#codb/libclip-codb.a codb/libcodb-query.a
-SCREEN 				= 			libclipscreen/libclipscreen.a
-TERMCAP 				=
-#screen/libtermcap.a
-SQL 					= 			libclipdbfsql/libclipdbfsql.a
-
-BASES 				=  												\
-										$(RDDBASE) 						\
-									libclipmain/libclipmain.a
-
-ALIBS 				= 								\
-									$(BASES) 		\
-									$(SCREEN) 		\
-									$(TASK) 			\
-									$(TERMCAP) 		\
-									$(DBGLIB) 		\
-									$(CLASSLIB) 	\
-									$(FUNCSLIB) 	\
-									$(SQL)
-
 DIRS_TO_SCAN 		= 									\
 									include 				\
 									tools 				\
@@ -42,8 +12,10 @@ DIRS_TO_SCAN 		= 									\
 									libcliprdd 			\
 									libclipscreen 		\
 									libcliptask 		\
-									libclip
+									libclip 				\
+									new-compiler
 
+DBGLIB =
 export
 
 ######################################################################################
@@ -53,12 +25,15 @@ all : Makefile $(DIRS_TO_SCAN)
 
 cfg : inst_dir inst_screen links
 	$(E_cp)cp -f$(V) ../Makefile.ini ../configure.ini .
+	$(E_mkD)[ -d $(CLIPROOT)/db ] \
+		|| mkdir -p$(V) $(CLIPROOT)/db
+	$(E_cp)cp -Rfpu$(V) $(Clip_M_Dir)/db/* $(CLIPROOT)/db/ || true
 
 hash1 :
 #Makefile $(DIRS_TO_SCAN)
 
 links :
-	$(E_ln)[ -d charsets ] || ln -sf$(V) libclipscreen/install/charsets .
+	$(E_ln)[ -d charsets ] || ln -sf$(V) $(CLIPROOT)/charsets .
 
 trans : clip_trans inst_dir inst_screen
 
@@ -68,14 +43,6 @@ clip.1 : clip.html
 cleanc : $(DIRS_TO_SCAN)
 	$(E_rm)rm -f$(V) *.ex *.nm charsets
 	$(E_rm)rm -Rf$(V) bin
-#	$(E_rm)[ ! -f test/Makefile ] 	\
-#		|| (cd test 						\
-#				&& $(MAKE) clean			\
-#			)
-	$(E_rm)[ ! -f libclipmemdebug/Makefile ] 	\
-		|| (cd libclipmemdebug 						\
-				&& $(MAKE) clean 						\
-			)
 	$(E_rm)rm -f$(V) 	$(BINS) 		\
 							*.out 		\
 							*.o 			\
@@ -124,13 +91,11 @@ pot :
 		 --keyword=_clip_trap_printf:4 \
 		 --keyword=_clip_trap_printv:4 \
 		 --omit-header --output=locale.pot/cliprt/cliprt.pot \
-		 *.c libcliprdd/*.c libclipscreen/*.c
+		 *.c libncliprdd/*.c libnclipscreen/*.c
 	CLIP_LOCALE_ROOT=`pwd` tools/clip_msgmerge$(SCRIPTSUFF)
 
 
-install : all inst_dir inst_clip $(XINSTALL) inst_codb 			\
-	 inst_screen inst_ch inst_locale $(INST_STD_LIB) inst_doc 	\
-	 inst_end
+install : all
 
 inst_dir :
 	$(E_mkD)[ -d $(INSTDIR) ] 									\
@@ -141,9 +106,6 @@ inst_dir :
 		|| mkdir -p$(V) $(INSTDIR)/keymaps
 	$(E_mkD)[ -d $(INSTDIR)/include ] 						\
 		|| mkdir -p$(V) $(INSTDIR)/include
-	$(E_mkD)[ -d $(INSTDIR)/include/libclipmemdebug ] 	\
-		|| [ ! -d libclipmemdebug ] 							\
-		|| mkdir -p$(V) $(INSTDIR)/include/libclipmemdebug
 	$(E_mkD)[ -d $(INSTDIR)/bin ] 							\
 		|| mkdir -p$(V) $(INSTDIR)/bin
 	$(E_mkD)[ -d $(INSTDIR)/lib ] 							\
@@ -197,7 +159,7 @@ inst_screen :
 
 inst_codb :
 
-inst_ch : $(INST_MEMDEBUG_H)
+inst_ch : #$(INST_MEMDEBUG_H)
 
 inst_memdebug_h :
 
@@ -209,9 +171,6 @@ inst_end :
 	$(E_xx)$(Clip_B_Dir)/inst_end$(SCRIPTSUFF) $(INSTDIR) $(BINDIR)
 
 include $(Makefile_end_in)
-
-indent : Makefile $(Clip_M_Dir)/config/install.ok $(DIRS_TO_SCAN) FORCE
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) include/*.h  || true
 
 # DO NOT DELETE
 

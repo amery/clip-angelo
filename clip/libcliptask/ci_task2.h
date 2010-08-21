@@ -23,6 +23,6 @@
 #define NEW(typ) ((typ*) calloc(sizeof(typ),1))
 
 #include <setjmp.h>
-#include "ci_list.h"
-#include "ci_coll.h"
-#include "ci_hash.h"
+#include <ci_list.h>
+#include <ci_coll.h>
+#include <ci_hash.h>

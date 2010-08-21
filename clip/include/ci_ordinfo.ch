@@ -1,5 +1,5 @@
-#ifndef CI_DBOI_DEFINED
-#define CI_DBOI_DEFINED
+#ifndef CN_DBOI_DEFINED
+#define CN_DBOI_DEFINED
 
 #define DBOI_CONDITION     1  /* Get the order condition     */
 #define DBOI_EXPRESSION    2  /* Get the order expression    */

@@ -8,226 +8,29 @@
 	Angelo GIRARDI
 
 */
-#include "ci_clip.h"
+#include <ci_clip.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ci_coll.h"
+#include <ci_coll.h>
 
 #define FIRST_SIZE 4
 #define DELTA_SIZE 8
 
-void
-init_Coll(Coll * coll, void (*Free) (void *), int (*compare) ( /* void*,void* */ ))
-{
-   coll->count = 0;
-   coll->size = FIRST_SIZE;
-   coll->items = (void **) malloc(sizeof(void *) * FIRST_SIZE);
-
-   coll->_free = Free;
-   coll->compare = compare;
-   coll->duplicates = 0;
-}
-
-Coll *
-new_Coll(void (*Free) (void *), int (*Compare) ())
-{
-   Coll *ret = (Coll *) malloc(sizeof(Coll));
-
-   init_Coll(ret, Free, Compare);
-   return ret;
-}
-
-void
-destroy_Coll(Coll * coll)
-{
-   freeAll_Coll(coll);
-   free(coll->items);
-}
-
-void
-delete_Coll(void *coll)
-{
-   if (!coll)
-      return;
-   destroy_Coll((Coll *) coll);
-   free(coll);
-}
-
-void
-freeAll_Coll(Coll * coll)
-{
-   int i;
-
-   if (coll->_free)
-      for (i = coll->count - 1; i >= 0; i--)
-	 coll->_free(coll->items[i]);
-   coll->count = 0;
-}
-
-void
-removeAll_Coll(Coll * coll)
-{
-   coll->count = 0;
-}
-
-int
-indexOf_Coll(Coll * coll, void *item, int *index)
-{
-   int i;
-
-   for (i = coll->count - 1; i >= 0; i--)
-      if (coll->items[i] == item)
-	 {
-	    if (index)
-	       *index = i;
-	    return 1;
-	 }
-   return 0;
-}
-
-void
-append_Coll(Coll * coll, void *item)
-{
-   atInsert_Coll(coll, item, coll->count);
-}
-
-void
-prepend_Coll(Coll * coll, void *item)
-{
-   atInsert_Coll(coll, item, 0);
-}
-
-static void
-setSize(Coll * coll, int size)
-{
-   void **aItems;
-   aItems = (void **) malloc(size * sizeof(void *));
-
-   if (coll->count != 0)
-      memcpy(aItems, coll->items, coll->count * sizeof(void *));
-
-   free(coll->items);
-   coll->items = aItems;
-   coll->size = size;
-}
-
-int
-atInsert_Coll(Coll * coll, void *item, int index)
-{
-   if (coll->count == coll->size)
-      {
-	 int le = coll->count / 4;
-
-	 if (le < DELTA_SIZE)
-	    le = DELTA_SIZE;
-	 setSize(coll, coll->count + le);
-      }
-   if (index != coll->count)
-      memmove(coll->items + index + 1, coll->items + index, (coll->count - index) * sizeof(void *));
-
-   coll->count++;
-   coll->items[index] = item;
-   return index;
-}
-
-void
-atRemove_Coll(Coll * coll, int index)
-{
-   coll->count--;
-   memmove(coll->items + index, coll->items + index + 1, (coll->count - index) * sizeof(void *));
-}
-
-void
-atFree_Coll(Coll * coll, int pos)
-{
-   if (coll->_free)
-      coll->_free(coll->items[pos]);
-   atRemove_Coll(coll, pos);
-}
-
-int
-insert_Coll(Coll * coll, void *item)
-{
-   return Insert_Coll(coll, item, 0);
-}
-
-int
-Insert_Coll(Coll * coll, void *item, int *index)
-{
-   int i;
-
-   if (!coll->compare)
-      {
-	 append_Coll(coll, item);
-	 return 1;
-      }
-
-   if (search_Coll(coll, item, &i) == 0 || coll->duplicates)
-      {
-	 atInsert_Coll(coll, item, i);
-	 if (index)
-	    *index = i;
-	 return 1;
-      }
-   return 0;
-}
-
-int
-remove_Coll(Coll * coll, void *item)
-{
-
-   int index;
-
-   if (indexOf_Coll(coll, item, &index))
-      {
-	 atRemove_Coll(coll, index);
-	 return 1;
-      }
-   return 0;
-}
-
-int
-free_Coll(Coll * coll, void *item)
-{
-   int index;
-
-   if (indexOf_Coll(coll, item, &index))
-      {
-	 atFree_Coll(coll, index);
-	 return 1;
-      }
-   return 0;
-}
-
-int
-search_Coll(Coll * coll, void *key, int *index)
-{
-  /*void *p; */
-   int l, h, res, i, c;
-
-   if (!coll->compare)
-      return 0;
-   l = 0;
-   h = coll->count - 1;
-   res = 0;
-   while (l <= h)
-      {
-	 i = (l + h) >> 1;
-	 c = coll->compare(coll->items[i], key);
-	 if (c < 0)
-	    l = i + 1;
-	 else
-	    {
-	       h = i - 1;
-	       if (c == 0)
-		  {
-		     res = 1;
-		     if (!coll->duplicates)
-			l = i;
-		  }
-	    }
-      }
-   if (index)
-      *index = l;
-   return res;
-}
+#include <coll/init_Coll.c>
+#include <coll/new_Coll.c>
+#include <coll/destroy_Coll.c>
+#include <coll/delete_Coll.c>
+#include <coll/freeAll_Coll.c>
+#include <coll/removeAll_Coll.c>
+#include <coll/indexOf_Coll.c>
+#include <coll/append_Coll.c>
+#include <coll/prepend_Coll.c>
+#include <coll/static_setSize.c>
+#include <coll/atInsert_Coll.c>
+#include <coll/atRemove_Coll.c>
+#include <coll/atFree_Coll.c>
+#include <coll/insert_Coll.c>
+#include <coll/Insert_Coll.c>
+#include <coll/remove_Coll.c>
+#include <coll/free_Coll.c>
+#include <coll/search_Coll.c>

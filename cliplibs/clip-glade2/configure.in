@@ -6,6 +6,20 @@ LIBGLADE_VER=$(pkg-config --modversion libglade-2.0 2> /dev/null )
 
 C_FLAGS=$(pkg-config --cflags libglade-2.0)
 LIBS=$(pkg-config --libs libglade-2.0)
+LIBS_temp="$LIBS"
+LIBS=""
+for aa in $LIBS_temp ; do
+	if [[ "$aa" != "-pthread" ]] ; then
+		LIBS="$LIBS $aa"
+	fi
+done
+LIBS_temp="$C_FLAGS"
+C_FLAGS=""
+for aa in $LIBS_temp ; do
+	if [[ "$aa" != "-pthread" ]] ; then
+		C_FLAGS="$C_FLAGS $aa"
+	fi
+done
 
 cat ./Makefile.inc 							>>Makefile.ini
 echo "LIBS += $LIBS" 						>>Makefile.ini

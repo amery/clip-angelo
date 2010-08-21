@@ -48,9 +48,12 @@ clip_INIT___ITEM_ENTRY(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ITEMENTRYNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   guint16 max = _clip_parni(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   guint16   max = _clip_parni(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -77,8 +80,11 @@ int
 clip_GTK_ITEMENTRYSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cite = _fetch_cw_arg(ClipMachineMemory);
+
    const gchar *text = CHAR_OPTION(ClipMachineMemory, 2, "");
+
    GtkJustification justification = INT_OPTION(ClipMachineMemory, 3, GTK_JUSTIFY_LEFT);
+
    CHECKCWID(cite, GTK_IS_ITEM_ENTRY);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -92,6 +98,7 @@ int
 clip_GTK_ITEMENTRYGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cite = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cite, GTK_IS_ENTRY);
    _clip_retc(ClipMachineMemory, gtk_entry_get_text(GTK_ENTRY(cite->widget)));
    return 0;
@@ -103,7 +110,9 @@ int
 clip_GTK_ITEMENTRYSETJUSTIFICATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cite = _fetch_cw_arg(ClipMachineMemory);
+
    GtkJustification justification = INT_OPTION(ClipMachineMemory, 2, GTK_JUSTIFY_LEFT);
+
    CHECKCWID(cite, GTK_IS_ITEM_ENTRY);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_item_entry_set_justification(GTK_ITEM_ENTRY(cite->widget), justification);
@@ -116,6 +125,7 @@ int
 clip_GTK_ITEMENTRYGETJUSTIFICATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cite = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cite, GTK_IS_ITEM_ENTRY);
    _clip_retni(ClipMachineMemory, GTK_ITEM_ENTRY(cite->widget)->justification);
    return 0;
@@ -127,6 +137,7 @@ int
 clip_GTK_ITEMENTRYGETTEXTMAXSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cite = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cite, GTK_IS_ITEM_ENTRY);
    _clip_retni(ClipMachineMemory, GTK_ITEM_ENTRY(cite->widget)->text_max_size);
    return 0;

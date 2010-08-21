@@ -46,9 +46,11 @@ TESTS 			=	$(sort 									\
 									wind$(EXESUFF) 			\
 									wind2$(EXESUFF) 			\
 									wind3$(EXESUFF) 			\
-									testscr$(EXESUFF) 		\
 						)
+#									cliptest$(EXESUFF) 		\
 #loadso$(EXESUFF) param$(EXESUFF) reclock$(EXESUFF)
+#									testscr$(EXESUFF) 		\
+#
 prg_files 		= 				a_flag.prg 			\
 									attoken.prg 		\
 									dbg.prg 				\
@@ -90,7 +92,7 @@ prg_files 		= 				a_flag.prg 			\
 									wind3.prg
 
 C_TO_ERASE 		= 		$(addsuffix .c, $(basename $(prg_files) ) )
-CLPFLAGS 		= 	-v2 -g -l -I include.clip
+CLPFLAGS 		= 	-v2 -g -a -l -I include.clip
 SF 				= 	-s
 DBFS 				= 	test.dbf ttt.dbf ttt.dbt
 
@@ -344,6 +346,9 @@ x$(EXESUFF): x.prg  Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_e)$(Trace_clip)
 #	$(CLIP) $(CLPFLAGS) -e -M x.prg ../libxclip.a `gtk-config --libs` -lz
 	$(CLIP) $(CLPFLAGS) -o$@ -e -M x.prg -lxclip -lz  `gtk-config --libs`
+
+cliptest$(EXESUFF) : cliptest.c Makefile
+	$(CC) $(C_FLAGS) -o $@ $<
 
 include $(Makefile_end_in)
 

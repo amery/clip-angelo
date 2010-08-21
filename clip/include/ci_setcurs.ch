@@ -1,5 +1,5 @@
-#ifndef CI_SC_DEFINED
-#define CI_SC_DEFINED
+#ifndef CN_SC_DEFINED
+#define CN_SC_DEFINED
 
 /* Cursor types */
 #define SC_NONE                 0  /* cursor off       */

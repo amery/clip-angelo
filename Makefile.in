@@ -3,7 +3,7 @@
 #
 #
 #
-ADDMAKECMDGOALS = example
+ADDMAKECMDGOALS = example test
 # tests
 #							to initiate in /init/Makefile.02.in
 ## 	-i ignore errors
@@ -44,6 +44,8 @@ clean : $(DIRS_TO_SCAN) hasher cleanc
 	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
 cleanc :
+	$(E_rm)rm -f$(V) $(Files2Remove) \
+				|| true
 	$(E_rm)rm -f$(V) $(Clip_M_Dir)/config/*.ok
 	$(E_rm)$(Clip_M_Dir)/init/CleanLinks.sh $(Clip_M_Dir)
 	$(E_rm)rm -f$(V) 	Makefile 					\

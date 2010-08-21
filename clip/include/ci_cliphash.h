@@ -4,8 +4,8 @@ Start total new system v. 0.0
 	Angelo GIRARDI
 */
 
-#ifndef CI_CLIPHASH_H
-#define CI_CLIPHASH_H
+#ifndef CN_CLIPHASH_H
+#define CN_CLIPHASH_H
 
 #define CLIP_HASH_LONG
 //#define CLIP_HASH_INT
@@ -22,13 +22,20 @@ Start total new system v. 0.0
 #endif
 
 clip_hash_t _clip_hashstr(const char *x);
+
 clip_hash_t _clip_casehashstr(const char *x);
+
 clip_hash_t _clip_hashbytes(long seed, const char *bytes, int len);
+
 clip_hash_t _clip_casehashbytes(long seed, const char *bytes, int len);
+
 clip_hash_t _clip_hashbytes16(long seed, const char *bytes, int len);
+
 clip_hash_t _clip_hashbytes32(long seed, const char *bytes, int len);
+
 /* trim head and tail spaces */
 clip_hash_t _clip_hashword(const char *x, int l);
+
 clip_hash_t _clip_casehashword(const char *x, int l);
 
 #endif

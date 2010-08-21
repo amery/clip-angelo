@@ -17,17 +17,18 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
+static    gint
 handle_actions_changed_signal(GtkUIManager * manager, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_add_widget_signal(GtkUIManager * manager, GtkWidget * wid, C_signal * cs)
 {
    C_widget *cwid;
+
    OBJECTPREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->co->cmachine, wid);
    if (!cwid)
@@ -37,11 +38,13 @@ handle_add_widget_signal(GtkUIManager * manager, GtkWidget * wid, C_signal * cs)
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_proxy_signal(GtkUIManager * manager, GtkAction * action, GtkWidget * wid, C_signal * cs)
 {
    C_object *cact;
+
    C_widget *cwid;
+
    OBJECTPREPARECV(cs, cv);
    cact = _list_get_cobject(cs->co->cmachine, action);
    if (!cact)
@@ -56,10 +59,11 @@ handle_proxy_signal(GtkUIManager * manager, GtkAction * action, GtkWidget * wid,
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_activate_signal(GtkUIManager * manager, GtkAction * action, C_signal * cs)
 {
    C_object *cact;
+
    OBJECTPREPARECV(cs, cv);
    cact = _list_get_cobject(cs->co->cmachine, action);
    if (!cact)
@@ -114,8 +118,10 @@ clip_INIT___UIMANAGER(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_UIMANAGERNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cmanager;
+
    GtkUIManager *manager;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -123,13 +129,13 @@ clip_GTK_UIMANAGERNEW(ClipMachine * ClipMachineMemory)
    manager = gtk_ui_manager_new();
 
    if (manager)
-      {
-	 cmanager = _list_get_cobject(ClipMachineMemory, manager);
-	 if (!cmanager)
-	    cmanager = _register_object(ClipMachineMemory, manager, GTK_TYPE_UI_MANAGER, cv, NULL);
-	 if (cmanager)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmanager->obj);
-      }
+    {
+       cmanager = _list_get_cobject(ClipMachineMemory, manager);
+       if (!cmanager)
+	  cmanager = _register_object(ClipMachineMemory, manager, GTK_TYPE_UI_MANAGER, cv, NULL);
+       if (cmanager)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmanager->obj);
+    }
 
    return 0;
  err:
@@ -140,7 +146,8 @@ int
 clip_GTK_UIMANAGERSETADDTEAROFFS(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   gboolean add_tearoffs = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  add_tearoffs = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -172,8 +179,10 @@ int
 clip_GTK_UIMANAGERINSERTACTIONGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cgaction = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint pos = _clip_parni(ClipMachineMemory, 3);
+
+   gint      pos = _clip_parni(ClipMachineMemory, 3);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -195,6 +204,7 @@ int
 clip_GTK_UIMANAGERREMOVEACTIONGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cgaction = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -213,7 +223,8 @@ int
 clip_GTK_UIMANAGERGETACTIONGROUPS(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   GList *list;
+
+   GList    *list;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -221,24 +232,26 @@ clip_GTK_UIMANAGERGETACTIONGROUPS(ClipMachine * ClipMachineMemory)
    list = gtk_ui_manager_get_action_groups(GTK_UI_MANAGER(cmanager->object));
 
    if (list)
-      {
-	 ClipVar *cv = RETPTR(ClipMachineMemory);
-	 long n = g_list_length(list);
+    {
+       ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	 _clip_array(ClipMachineMemory, cv, 1, &n);
-	 for (n = 0; list; list = g_list_next(list))
-	    {
-	       C_object *cgaction;
-	       GtkActionGroup *gaction;
+       long      n = g_list_length(list);
 
-	       gaction = list->data;
-	       cgaction = _list_get_cobject(ClipMachineMemory, gaction);
-	       if (!cgaction)
-		  cgaction = _register_object(ClipMachineMemory, gaction, GTK_TYPE_ACTION_GROUP, NULL, NULL);
-	       if (cgaction)
-		  _clip_aset(ClipMachineMemory, cv, &cgaction->obj, 1, &n);
-	    }
-      }
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (n = 0; list; list = g_list_next(list))
+	{
+	   C_object *cgaction;
+
+	   GtkActionGroup *gaction;
+
+	   gaction = list->data;
+	   cgaction = _list_get_cobject(ClipMachineMemory, gaction);
+	   if (!cgaction)
+	      cgaction = _register_object(ClipMachineMemory, gaction, GTK_TYPE_ACTION_GROUP, NULL, NULL);
+	   if (cgaction)
+	      _clip_aset(ClipMachineMemory, cv, &cgaction->obj, 1, &n);
+	}
+    }
    return 0;
  err:
    return 1;
@@ -248,7 +261,9 @@ int
 clip_GTK_UIMANAGERGETACCELGROUP(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
+
    GtkAccelGroup *agroup;
+
    C_widget *cagroup;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -257,13 +272,13 @@ clip_GTK_UIMANAGERGETACCELGROUP(ClipMachine * ClipMachineMemory)
    agroup = gtk_ui_manager_get_accel_group(GTK_UI_MANAGER(cmanager->object));
 
    if (agroup)
-      {
-	 cagroup = _list_get_cwidget(ClipMachineMemory, agroup);
-	 if (!cagroup)
-	    cagroup = _register_widget(ClipMachineMemory, GTK_WIDGET(agroup), NULL);
-	 if (cagroup)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cagroup->obj);
-      }
+    {
+       cagroup = _list_get_cwidget(ClipMachineMemory, agroup);
+       if (!cagroup)
+	  cagroup = _register_widget(ClipMachineMemory, GTK_WIDGET(agroup), NULL);
+       if (cagroup)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cagroup->obj);
+    }
    return 0;
  err:
    return 1;
@@ -273,8 +288,11 @@ int
 clip_GTK_UIMANAGERGETWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   gchar *path = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *path = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -284,13 +302,13 @@ clip_GTK_UIMANAGERGETWIDGET(ClipMachine * ClipMachineMemory)
    wid = gtk_ui_manager_get_widget(GTK_UI_MANAGER(cmanager->object), path);
 
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -300,8 +318,10 @@ int
 clip_GTK_UIMANAGERGETTOPLEVELS(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
+
    GtkUIManagerItemType type = _clip_parni(ClipMachineMemory, 2);
-   GSList *list;
+
+   GSList   *list;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -310,24 +330,26 @@ clip_GTK_UIMANAGERGETTOPLEVELS(ClipMachine * ClipMachineMemory)
    list = gtk_ui_manager_get_toplevels(GTK_UI_MANAGER(cmanager->object), type);
 
    if (list)
-      {
-	 ClipVar *cv = RETPTR(ClipMachineMemory);
-	 long n = g_slist_length(list);
+    {
+       ClipVar  *cv = RETPTR(ClipMachineMemory);
 
-	 _clip_array(ClipMachineMemory, cv, 1, &n);
-	 for (n = 0; list; list = g_slist_next(list))
-	    {
-	       C_widget *cwid;
-	       GtkWidget *wid;
+       long      n = g_slist_length(list);
 
-	       wid = list->data;
-	       cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	       if (!cwid)
-		  cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	       if (cwid)
-		  _clip_aset(ClipMachineMemory, cv, &cwid->obj, 1, &n);
-	    }
-      }
+       _clip_array(ClipMachineMemory, cv, 1, &n);
+       for (n = 0; list; list = g_slist_next(list))
+	{
+	   C_widget *cwid;
+
+	   GtkWidget *wid;
+
+	   wid = list->data;
+	   cwid = _list_get_cwidget(ClipMachineMemory, wid);
+	   if (!cwid)
+	      cwid = _register_widget(ClipMachineMemory, wid, NULL);
+	   if (cwid)
+	      _clip_aset(ClipMachineMemory, cv, &cwid->obj, 1, &n);
+	}
+    }
    return 0;
  err:
    return 1;
@@ -337,8 +359,11 @@ int
 clip_GTK_UIMANAGERGETACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   gchar *path = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *path = _clip_parc(ClipMachineMemory, 2);
+
    GtkAction *action;
+
    C_object *caction;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -348,13 +373,13 @@ clip_GTK_UIMANAGERGETACTION(ClipMachine * ClipMachineMemory)
    action = gtk_ui_manager_get_action(GTK_UI_MANAGER(cmanager->object), path);
 
    if (action)
-      {
-	 caction = _list_get_cobject(ClipMachineMemory, action);
-	 if (!caction)
-	    caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
-	 if (caction)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
-      }
+    {
+       caction = _list_get_cobject(ClipMachineMemory, action);
+       if (!caction)
+	  caction = _register_object(ClipMachineMemory, action, GTK_TYPE_ACTION, NULL, NULL);
+       if (caction)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &caction->obj);
+    }
    return 0;
  err:
    return 1;
@@ -364,10 +389,14 @@ int
 clip_GTK_UIMANAGERADDUIFROMSTRING(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   gchar *buffer = _clip_parc(ClipMachineMemory, 2);
-   gssize length = _clip_parni(ClipMachineMemory, 3);
-   GError *error;
-   guint ret;
+
+   gchar    *buffer = _clip_parc(ClipMachineMemory, 2);
+
+   gssize    length = _clip_parni(ClipMachineMemory, 3);
+
+   GError   *error;
+
+   guint     ret;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -385,9 +414,12 @@ int
 clip_GTK_UIMANAGERADDUIFROMFILE(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   gchar *filename = _clip_parc(ClipMachineMemory, 2);
-   GError *error;
-   guint ret;
+
+   gchar    *filename = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
+
+   guint     ret;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -404,7 +436,8 @@ int
 clip_GTK_UIMANAGERNEWMERGEID(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   guint ret;
+
+   guint     ret;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -422,12 +455,18 @@ int
 clip_GTK_UIMANAGERADDUI(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   guint merge_id = _clip_parni(ClipMachineMemory, 2);
-   gchar *path = _clip_parc(ClipMachineMemory, 3);
-   gchar *name = _clip_parc(ClipMachineMemory, 4);
-   gchar *action = _clip_parc(ClipMachineMemory, 5);
+
+   guint     merge_id = _clip_parni(ClipMachineMemory, 2);
+
+   gchar    *path = _clip_parc(ClipMachineMemory, 3);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 4);
+
+   gchar    *action = _clip_parc(ClipMachineMemory, 5);
+
    GtkUIManagerItemType type = _clip_parni(ClipMachineMemory, 6);
-   gboolean top = _clip_parl(ClipMachineMemory, 7);
+
+   gboolean  top = _clip_parl(ClipMachineMemory, 7);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));
@@ -449,7 +488,8 @@ int
 clip_GTK_UIMANAGERREMOVEUI(ClipMachine * ClipMachineMemory)
 {
    C_object *cmanager = _fetch_co_arg(ClipMachineMemory);
-   guint merge_id = _clip_parni(ClipMachineMemory, 2);
+
+   guint     merge_id = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cmanager, GTK_IS_UI_MANAGER(cmanager->object));

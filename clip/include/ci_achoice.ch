@@ -1,7 +1,7 @@
 #include "ci_config.ch"
 
-#ifndef CI_AC_DEFINED
-#define CI_AC_DEFINED
+#ifndef CN_AC_DEFINED
+#define CN_AC_DEFINED
 
 #define AC_NONE_STRINGS [ None selected strings ]
 

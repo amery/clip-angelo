@@ -49,15 +49,17 @@ clip_INIT___COLORMAP(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_COLORPARSE(ClipMachine * ClipMachineMemory)
 {
-   gchar *color_name = _clip_parc(ClipMachineMemory, 1);
-   GdkColor color;
+   gchar    *color_name = _clip_parc(ClipMachineMemory, 1);
+
+   GdkColor  color;
+
    CHECKARG(1, CHARACTER_type_of_ClipVarType);
    if (gdk_color_parse(color_name, &color))
-      {
-	 memset(RETPTR(ClipMachineMemory), 0, sizeof(ClipVar));
-	 _clip_map(ClipMachineMemory, RETPTR(ClipMachineMemory));
-	 _gdk_color_to_map(ClipMachineMemory, color, RETPTR(ClipMachineMemory));
-      }
+    {
+       memset(RETPTR(ClipMachineMemory), 0, sizeof(ClipVar));
+       _clip_map(ClipMachineMemory, RETPTR(ClipMachineMemory));
+       _gdk_color_to_map(ClipMachineMemory, color, RETPTR(ClipMachineMemory));
+    }
    return 0;
  err:
    return 1;
@@ -68,17 +70,19 @@ clip_GDK_COLORPARSE(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_COLORRGB(ClipMachine * ClipMachineMemory)
 {
-   long RGB = _clip_parnl(ClipMachineMemory, 1);
+   long      RGB = _clip_parnl(ClipMachineMemory, 1);
+
    CHECKOPT(1, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 1) != UNDEF_type_of_ClipVarType)
-      {
-	 ClipVar *ret = RETPTR(ClipMachineMemory);
-	 memset(ret, 0, sizeof(*ret));
-	 _clip_map(ClipMachineMemory, ret);
-	 _clip_mputn(ClipMachineMemory, ret, HASH_RED, (RGB & 0xFF) << 8);
-	 _clip_mputn(ClipMachineMemory, ret, HASH_GREEN, ((RGB >> 8) & 0xFF) << 8);
-	 _clip_mputn(ClipMachineMemory, ret, HASH_BLUE, ((RGB >> 16) & 0xFF) << 8);
-      }
+    {
+       ClipVar  *ret = RETPTR(ClipMachineMemory);
+
+       memset(ret, 0, sizeof(*ret));
+       _clip_map(ClipMachineMemory, ret);
+       _clip_mputn(ClipMachineMemory, ret, HASH_RED, (RGB & 0xFF) << 8);
+       _clip_mputn(ClipMachineMemory, ret, HASH_GREEN, ((RGB >> 8) & 0xFF) << 8);
+       _clip_mputn(ClipMachineMemory, ret, HASH_BLUE, ((RGB >> 16) & 0xFF) << 8);
+    }
    return 0;
  err:
    return 1;
@@ -89,9 +93,11 @@ clip_GDK_COLORRGB(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_COLORRGBTON(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *mRGB = _clip_spar(ClipMachineMemory, 1);
-   double red, green, blue;
-   long color;
+   ClipVar  *mRGB = _clip_spar(ClipMachineMemory, 1);
+
+   double    red, green, blue;
+
+   long      color;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
 
@@ -113,16 +119,19 @@ int
 clip_GDK_COLORALLOC(ClipMachine * ClipMachineMemory)
 {
    C_object *ccmap = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
-   GdkColor color;
+
+   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
+
+   GdkColor  color;
+
    CHECKCOBJ(ccmap, GDK_IS_COLORMAP(ccmap->object));
    CHECKARG(2, MAP_type_of_ClipVarType);
    _map_colors_to_gdk(ClipMachineMemory, mcolor, &color);
    if (gdk_color_alloc(GDK_COLORMAP(ccmap), &color))
-      {
-	 _clip_mputn(ClipMachineMemory, mcolor, HASH_PIXEL, color.pixel);
-	 _clip_retl(ClipMachineMemory, TRUE);
-      }
+    {
+       _clip_mputn(ClipMachineMemory, mcolor, HASH_PIXEL, color.pixel);
+       _clip_retl(ClipMachineMemory, TRUE);
+    }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;
@@ -142,24 +151,28 @@ gdk_object_colormap_destructor(ClipMachine * ClipMachineMemory, C_object * ccmap
 int
 clip_GDK_COLORMAPGETSYSTEM(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GdkColormap *colormap;
+
    C_object *ccolormap;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    colormap = gdk_colormap_get_system();
 
    if (colormap)
-      {
-	 ccolormap = _register_object(ClipMachineMemory, colormap, GDK_OBJECT_COLORMAP, cv, (coDestructor) gdk_object_colormap_destructor);
-	 if (ccolormap)
-	    {
-	       ccolormap->ref_count = 1;
-	       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolormap->obj);
-	    }
-	 else
-	    gdk_colormap_unref(colormap);
-      }
+    {
+       ccolormap = _register_object(ClipMachineMemory, colormap, GDK_OBJECT_COLORMAP, cv,
+				    (coDestructor) gdk_object_colormap_destructor);
+       if (ccolormap)
+	{
+	   ccolormap->ref_count = 1;
+	   _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolormap->obj);
+	}
+       else
+	  gdk_colormap_unref(colormap);
+    }
    return 0;
  err:
    return 1;
@@ -170,6 +183,7 @@ int
 clip_GDK_COLORMAPREF(ClipMachine * ClipMachineMemory)
 {
    C_object *ccmap = _fetch_co_arg(ClipMachineMemory);
+
    CHECKCOBJ(ccmap, GDK_IS_COLORMAP(ccmap->object));
    gdk_colormap_ref(GDK_COLORMAP(ccmap->object));
    ccmap->ref_count++;
@@ -184,6 +198,7 @@ int
 clip_GDK_COLORMAPUNREF(ClipMachine * ClipMachineMemory)
 {
    C_object *ccmap = _fetch_co_arg(ClipMachineMemory);
+
    CHECKCOBJ(ccmap, GDK_IS_COLORMAP(ccmap->object));
    ccmap->ref_count--;
    if (ccmap->ref_count > 0)
@@ -210,21 +225,25 @@ int
 clip_GDK_COLORMAPALLOCCOLOR(ClipMachine * ClipMachineMemory)
 {
    C_object *ccmap = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *mcolor = _clip_spar(ClipMachineMemory, 2);
-   gboolean writable = BOOL_OPTION(ClipMachineMemory, 3, TRUE);
-   gboolean best_match = BOOL_OPTION(ClipMachineMemory, 4, TRUE);
 
-   GdkColor color;
+   ClipVar  *mcolor = _clip_spar(ClipMachineMemory, 2);
+
+   gboolean  writable = BOOL_OPTION(ClipMachineMemory, 3, TRUE);
+
+   gboolean  best_match = BOOL_OPTION(ClipMachineMemory, 4, TRUE);
+
+   GdkColor  color;
+
    CHECKCOBJ(ccmap, GDK_IS_COLORMAP(ccmap->object));
    CHECKARG(2, MAP_type_of_ClipVarType);
    CHECKOPT(3, LOGICAL_type_of_ClipVarType);
    CHECKOPT(4, LOGICAL_type_of_ClipVarType);
    _map_colors_to_gdk(ClipMachineMemory, mcolor, &color);
    if (gdk_colormap_alloc_color(GDK_COLORMAP(ccmap->object), &color, writable, best_match))
-      {
-	 _clip_mputn(ClipMachineMemory, mcolor, HASH_PIXEL, color.pixel);
-	 _clip_retl(ClipMachineMemory, TRUE);
-      }
+    {
+       _clip_mputn(ClipMachineMemory, mcolor, HASH_PIXEL, color.pixel);
+       _clip_retl(ClipMachineMemory, TRUE);
+    }
    else
       _clip_retl(ClipMachineMemory, FALSE);
    return 0;

@@ -1,0 +1,2 @@
+function readkey()
+return keyExit

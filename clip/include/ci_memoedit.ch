@@ -1,5 +1,5 @@
-#ifndef CI_ME_DEFINED
-#define CI_ME_DEFINED
+#ifndef CN_ME_DEFINED
+#define CN_ME_DEFINED
 
 #define ME_IDLE           0
 #define ME_UNKEY          1

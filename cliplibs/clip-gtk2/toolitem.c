@@ -20,6 +20,7 @@ gint
 handle_set_tooltip_signal(GtkToolItem * toolitem, GtkTooltips * tooltips, gchar * tip_text, gchar * tip_private, C_signal * cs)
 {
    C_widget *ctips;
+
    PREPARECV(cs, cv);
    ctips = _list_get_cwidget(cs->cw->cmachine, tooltips);
    if (!ctips)
@@ -90,7 +91,8 @@ int
 clip_INIT___TOOLITEM(ClipMachine * ClipMachineMemory)
 {
    _wtype_table_put(_clip_type_tool_item, _clip_type_name_tool_item, _gtk_type_tool_item, _gtk_type_bin, toolitem_signals);
-   _wtype_table_put(_clip_type_separator_tool_item, _clip_type_name_separator_tool_item, _gtk_type_separator_tool_item, _gtk_type_tool_item, NULL);
+   _wtype_table_put(_clip_type_separator_tool_item,
+		    _clip_type_name_separator_tool_item, _gtk_type_separator_tool_item, _gtk_type_tool_item, NULL);
    return 0;
 }
 
@@ -98,8 +100,10 @@ clip_INIT___TOOLITEM(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TOOLITEMNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkToolItem *item;
+
    C_widget *citem;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -119,7 +123,8 @@ int
 clip_GTK_TOOLITEMSETHOMOGENEOUS(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -149,7 +154,8 @@ int
 clip_GTK_TOOLITEMSETEXPAND(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -179,9 +185,12 @@ int
 clip_GTK_TOOLITEMSETTOOLTIP(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *ctips = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gchar *tip_text = _clip_parc(ClipMachineMemory, 3);
-   gchar *tip_priv = _clip_parc(ClipMachineMemory, 4);
+
+   gchar    *tip_text = _clip_parc(ClipMachineMemory, 3);
+
+   gchar    *tip_priv = _clip_parc(ClipMachineMemory, 4);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKCWID(ctips, GTK_IS_TOOLTIPS);
@@ -203,7 +212,8 @@ int
 clip_GTK_TOOLITEMSETUSEDRAGWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -233,7 +243,8 @@ int
 clip_GTK_TOOLITEMSETVISIBLEHORIZONTAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -263,7 +274,8 @@ int
 clip_GTK_TOOLITEMSETVISIBLEVERTICAL(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -293,7 +305,8 @@ int
 clip_GTK_TOOLITEMSETISIMPORTANT(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
@@ -379,20 +392,22 @@ int
 clip_GTK_TOOLITEMRETRIEVEPROXYMENUITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
 
    wid = gtk_tool_item_retrieve_proxy_menu_item(GTK_TOOL_ITEM(citem->widget));
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (wid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (wid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
    return 0;
  err:
@@ -403,8 +418,11 @@ int
 clip_GTK_TOOLITEMGETPROXYMENUITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gchar *menu_item_id = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *menu_item_id = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
@@ -414,13 +432,13 @@ clip_GTK_TOOLITEMGETPROXYMENUITEM(ClipMachine * ClipMachineMemory)
    wid = gtk_tool_item_get_proxy_menu_item(GTK_TOOL_ITEM(citem->widget), menu_item_id);
    FREE_TEXT(menu_item_id);
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (wid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (wid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
 
    return 0;
  err:
@@ -431,7 +449,9 @@ int
 clip_GTK_TOOLITEMSETPROXYMENUITEM(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gchar *menu_item_id = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *menu_item_id = _clip_parc(ClipMachineMemory, 2);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
 
    CHECKCWID(citem, GTK_IS_TOOL_ITEM);
@@ -453,8 +473,10 @@ clip_GTK_TOOLITEMSETPROXYMENUITEM(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_SEPARATORTOOLITEMNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkToolItem *item;
+
    C_widget *citem;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -472,7 +494,8 @@ int
 clip_GTK_SEPARATORTOOLITEMSETDRAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *citem = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(citem, GTK_IS_SEPARATOR_TOOL_ITEM);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);

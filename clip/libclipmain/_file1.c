@@ -10,11 +10,11 @@
 */
 /*
    struct ClipMachine;
-   int __clip_file(struct ClipMachine *ClipMemoryStore);
+   int __clip_file(struct ClipMachine *ClipMachineMemory);
 
    int
-   clip_FILE(struct ClipMachine *ClipMemoryStore)
+   clip_FILE(struct ClipMachine *ClipMachineMemory)
    {
-   return __clip_file(ClipMemoryStore);
+   return __clip_file(ClipMachineMemory);
    }
  */

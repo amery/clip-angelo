@@ -968,12 +968,12 @@ cmdword	[._a-zA-Z][.()_a-zA-Z0-9]*
 	}
 
 	/*for(i=text.count-1; i>=0;--i)*/
-	for(i=0; i<text.count;++i)
+	for(i=0; i<text.count_of_Coll;++i)
 	{
 		clic_line --;
 		put_str(textout);
 		put_char('(');
-		put_str_free(quot_str((char*) text.items[i], 0));
+		put_str_free(quot_str((char*) text.items_of_Coll[i], 0));
 		put_char(')');
 		put_char('\n');
 	}
@@ -1137,9 +1137,9 @@ HASH_{id}  	{
 		if (!subst_flag) yylval.string=strdup(buf);
 		MRETURN(NUMBER)
 		}
-__FILE__  	{ char *file=((IncludeFile*) includes.items[includes.count-1])->name;
+__FILE__  	{ char *file=((IncludeFile*) includes.items_of_Coll[includes.count_of_Coll-1])->name;
 		  sprintf(string_buf, "\"%s\"", file); put_buf(); }
-__BASE_FILE__  	{ char *file=((IncludeFile*) includes.items[0])->name;
+__BASE_FILE__  	{ char *file=((IncludeFile*) includes.items_of_Coll[0])->name;
 		  sprintf(string_buf, "\"%s\"", file); put_buf(); }
 __LINE__  	{ sprintf(string_buf, "\"%ld\"", clic_line ); put_buf(); }
 
@@ -1212,7 +1212,7 @@ __CLIP_MODULE__ {
 			s = (char*) malloc(l+1);
 			memcpy(s, b, l);
 			s[l] = 0;
-			set_charset(s, fileList.items[fileList.count-1]);
+			set_charset(s, fileList.items_of_Coll[fileList.count_of_Coll-1]);
 		}
 		else if (message_caller==4)
 		{
@@ -1360,11 +1360,11 @@ __CLIP_MODULE__ {
 
 <INITIAL,skipState>^{wt}*"#"{wt}*else{noteol}*{eol}   {
 			newline();
-			if (ifdefs.count<1)
+			if (ifdefs.count_of_Coll<1)
 			  yyerror("#else without #ifdef or #ifndef");
 			else
 			  {
-				curIfdef=(IfdefState*)ifdefs.items[ifdefs.count-1];
+				curIfdef=(IfdefState*)ifdefs.items_of_Coll[ifdefs.count_of_Coll-1];
 				curIfdef->elseline=clic_line;
 				if (curIfdef->condition)
 				  BEGIN(skipState);
@@ -1375,13 +1375,13 @@ __CLIP_MODULE__ {
 
 <INITIAL,skipState>^{wt}*"#"{wt}*endif{noteol}*{eol}  {
 			newline();
-			if (ifdefs.count<1)
+			if (ifdefs.count_of_Coll<1)
 			  yyerror( "#endif without #ifdef or #ifndef");
 			else
 			  {
-				curIfdef=(IfdefState*)ifdefs.items[ifdefs.count-1];
+				curIfdef=(IfdefState*)ifdefs.items_of_Coll[ifdefs.count_of_Coll-1];
 				BEGIN(curIfdef->state);
-				atFree_Coll(&ifdefs, ifdefs.count-1);
+				atFree_Coll(&ifdefs, ifdefs.count_of_Coll-1);
 			  }
 			}
 
@@ -1621,8 +1621,8 @@ __CLIP_MODULE__ {
 <defineFuncBody>{id} {
 			int find=0,i;
 			newpos();
-			for(i=0;!find && i<curMacroFunc->macroArgs.count;i++)
-			  if (!strcmp(yytext, (char*)curMacroFunc->macroArgs.items[i]))
+			for(i=0;!find && i<curMacroFunc->macroArgs.count_of_Coll;i++)
+			  if (!strcmp(yytext, (char*)curMacroFunc->macroArgs.items_of_Coll[i]))
 			{ insert_Coll(& curMacroFunc->parts,new_MacroPart(0,i)); find=1; }
 			if (!find)
 			   insert_Coll(& curMacroFunc->parts, new_MacroPart(strdup(yytext),0));
@@ -1753,13 +1753,13 @@ __CLIP_MODULE__ {
 		if ( string_buf[0] )
 		  insert_Coll(&macroArgs,strdup(string_buf));
 		string_buf_ptr=string_buf;
-		if (macroArgs.count != curMacroFunc->macroArgs.count)
+		if (macroArgs.count_of_Coll != curMacroFunc->macroArgs.count_of_Coll)
 		  yyerror("invalid number of macro arguments (%d instead %d)",
-			macroArgs.count, curMacroFunc->macroArgs.count );
+			macroArgs.count_of_Coll, curMacroFunc->macroArgs.count_of_Coll );
 		else
-		 for(i=0; i<curMacroFunc->parts.count; i++)
+		 for(i=0; i<curMacroFunc->parts.count_of_Coll; i++)
 		 {
-		MacroPart *mp=(MacroPart*) curMacroFunc->parts.items[i];
+		MacroPart *mp=(MacroPart*) curMacroFunc->parts.items_of_Coll[i];
 		if (mp->text)
 		 {
 			put_mem(mp->text, mp->len);
@@ -1767,7 +1767,7 @@ __CLIP_MODULE__ {
 		else
 		 { /* argument substitution */
 		   char *s0;
-		   s0=(char *)macroArgs.items[ mp->argno ];
+		   s0=(char *)macroArgs.items_of_Coll[ mp->argno ];
 		   if (s0)
 		   {
 			put_str(s0);
@@ -2862,9 +2862,9 @@ cmd_id:
 
 <<EOF>>		{
 	clic_eof:
-			if ( includes.count<2 )
+			if ( includes.count_of_Coll<2 )
 			  {
-				 if (ifdefs.count>0)
+				 if (ifdefs.count_of_Coll>0)
 				yyerror("#ifdef or #ifndef without #endif");
 
 				 if ( YYSTATE==lexString|| YYSTATE==lexString1
@@ -2887,14 +2887,14 @@ cmd_id:
 			  }
 			else
 			  {
-				 int last=includes.count-1;
-				 curInclude=(IncludeFile*)includes.items[last];
+				 int last=includes.count_of_Coll-1;
+				 curInclude=(IncludeFile*)includes.items_of_Coll[last];
 				 clic_line=curInclude->line+1;
 				 fclose(yyin);
 				 pop_charset();
 				 yy_switch_to_buffer( curInclude->buf);
 				 atFree_Coll(&includes,last);
-				 insert_Coll(&fileList,strdup(((IncludeFile*)includes.items[last-1])->name));
+				 insert_Coll(&fileList,strdup(((IncludeFile*)includes.items_of_Coll[last-1])->name));
 			  }
 			 }
 
@@ -3056,13 +3056,13 @@ init_lex()
 	init_Coll(&macroArgs, free, 0);
 	init_Coll(&macroCommands, delete_Command, compare_Command);
 	init_Coll(&charsets, free, 0);
-	macroCommands.duplicates=1;
+	macroCommands.duplicates_of_Coll=1;
 	init_Coll(&commandArgs, delete_CommandArg, NULL);
 	init_Coll(&reffuncs, free, strcasecmp);
 
-	for(i=0;i<predefines.count;i++)
+	for(i=0;i<predefines.count_of_Coll;i++)
 	{
-		char *s=(char*)predefines.items[i];
+		char *s=(char*)predefines.items_of_Coll[i];
 		char *e=strchr(s,'=');
 		char *m;
 		if (e)
@@ -3138,9 +3138,9 @@ clear_lex(void)
 	freeAll_Coll(&charsets);
 	freeAll_Coll(&reffuncs);
 
-	for(i=0;i<predefines.count;i++)
+	for(i=0;i<predefines.count_of_Coll;i++)
 	{
-		char *s=(char*)predefines.items[i];
+		char *s=(char*)predefines.items_of_Coll[i];
 		char *e=strchr(s,'=');
 		char *m;
 		if (e)
@@ -3188,9 +3188,9 @@ lex_new_file(FILE *file, const char *filename)
 		if ( start_include((char*)std_ch_filename) )
 			return -1;
 	}
-	for (i=include_files.count-1; i>=0; i--)
+	for (i=include_files.count_of_Coll-1; i>=0; i--)
 	{
-		if (start_include ((char*) include_files.items[i] ) )
+		if (start_include ((char*) include_files.items_of_Coll[i] ) )
 			return -1;
 	}
 	return 0;
@@ -3206,10 +3206,10 @@ findMacro(const char *name)
 	buf.name=(char*)name;
 	buf.xdefine = 0;
 	if ( search_Coll(&macros, &buf, &ind) )
-		return (Macro*)macros.items[ind];
+		return (Macro*)macros.items_of_Coll[ind];
 	buf.xdefine = 1;
 	if ( search_Coll(&xmacros, &buf, &ind) )
-		return (Macro*)xmacros.items[ind];
+		return (Macro*)xmacros.items_of_Coll[ind];
 	return 0;
 }
 
@@ -3221,10 +3221,10 @@ findMacroFunc(const char *name)
 	buf.macro.name=(char*)name;
 	buf.macro.xdefine = 0;
 	if ( search_Coll(&macroFuncs, &buf, &ind) )
-		return (MacroFunc*)macroFuncs.items[ind];
+		return (MacroFunc*)macroFuncs.items_of_Coll[ind];
 	buf.macro.xdefine = 1;
 	if ( search_Coll(&xmacroFuncs, &buf, &ind) )
-		return (MacroFunc*)xmacroFuncs.items[ind];
+		return (MacroFunc*)xmacroFuncs.items_of_Coll[ind];
 	return 0;
 }
 
@@ -3238,25 +3238,25 @@ finale_MacroFunc(MacroFunc *self)
 	if (self->macroArgs.count == 0)
 		yyerror("macro function with 0 count of arguments");
 #endif
-	for(i=0; i<self->parts.count; i++)
+	for(i=0; i<self->parts.count_of_Coll; i++)
 	{
-		MacroPart *mp=(MacroPart*)self->parts.items[i];
+		MacroPart *mp=(MacroPart*)self->parts.items_of_Coll[i];
 		if (mp->text)
 		{
 			recode_string(mp->text);
 			le+=strlen(mp->text);
 		}
 		else
-			le+=strlen((char*)self->macroArgs.items[mp->argno]);
+			le+=strlen((char*)self->macroArgs.items_of_Coll[mp->argno]);
 	}
 
 	self->macro.body= (char*) malloc(le+1);
 	self->macro.body[le]=0;
 	len=le;
 	le=0;
-	for(i=0; i<self->parts.count; i++)
+	for(i=0; i<self->parts.count_of_Coll; i++)
 	{
-		MacroPart *mp=(MacroPart*)self->parts.items[i];
+		MacroPart *mp=(MacroPart*)self->parts.items_of_Coll[i];
 		if (mp->text)
 		{
 			l=strlen(mp->text);
@@ -3268,16 +3268,16 @@ finale_MacroFunc(MacroFunc *self)
 		}
 		else
 		{
-			char *s=(char *)self->macroArgs.items[mp->argno];
+			char *s=(char *)self->macroArgs.items_of_Coll[mp->argno];
 			l=strlen(s);
 			memcpy(self->macro.body+le, s, l);
 			le+=l;
 		}
 	}
 
-	for(i=0; i<self->parts.count; i++)
+	for(i=0; i<self->parts.count_of_Coll; i++)
 	{
-		MacroPart *mp=(MacroPart *)self->parts.items[i];
+		MacroPart *mp=(MacroPart *)self->parts.items_of_Coll[i];
 		if (mp->text)
 		{
 			if(!pmp)
@@ -3290,7 +3290,7 @@ finale_MacroFunc(MacroFunc *self)
 			{ /* glue parts */
 				begmp->len= (pmp->text-begmp->text) + pmp->len;
 				for(j=begi+1; j<i; j++)
-					((MacroPart*)self->parts.items[j])->len=-1;
+					((MacroPart*)self->parts.items_of_Coll[j])->len=-1;
 			}
 			pmp=begmp=0;
 		}
@@ -3300,12 +3300,12 @@ finale_MacroFunc(MacroFunc *self)
 	{ /* glue parts */
 		begmp->len= (pmp->text-begmp->text) + pmp->len;
 		for(j=begi+1; j<i; j++)
-			((MacroPart*)self->parts.items[j])->len=-1;
+			((MacroPart*)self->parts.items_of_Coll[j])->len=-1;
 	}
 
-	for(i=0; i<self->parts.count; i++)
+	for(i=0; i<self->parts.count_of_Coll; i++)
 	{
-		MacroPart *mp=(MacroPart*)self->parts.items[i];
+		MacroPart *mp=(MacroPart*)self->parts.items_of_Coll[i];
 		if (mp->text && mp->len==-1)
 		{
 			atFree_Coll(& self->parts, i);
@@ -3420,13 +3420,13 @@ free_IncludeFile(void *item)
 
 int currentFile(void)
 {
-	return includes.count-1;
+	return includes.count_of_Coll-1;
 }
 
 char *fileName(int file)
 {
-	if (file>=0 && file<includes.count)
-		return ((IncludeFile*)includes.items[file])->name;
+	if (file>=0 && file<includes.count_of_Coll)
+		return ((IncludeFile*)includes.items_of_Coll[file])->name;
 	else
 		return "";
 }
@@ -3437,10 +3437,10 @@ get_include(int *index, int *line, char **filename)
 {
 	IncludeFile *p;
 	if (*index<0)
-		*index=includes.count-1;
+		*index=includes.count_of_Coll-1;
 	if (*index<0)
 		{ *line=-1; *filename=""; return 0; }
-	p=(IncludeFile*) includes.items[*index];
+	p=(IncludeFile*) includes.items_of_Coll[*index];
 	*line=p->line;
 	*filename=p->name;
 	--*index;
@@ -3555,7 +3555,7 @@ findFirst_Command(const char *name, int *ind)
 	buf.isAX=0;
 	if ( search_Coll(&macroCommands, &buf, ind) )
 	{
-		cp=(Command*)macroCommands.items[*ind];
+		cp=(Command*)macroCommands.items_of_Coll[*ind];
 		if (cp->isTranslate || clic_word==0)
 			return cp;
 	}
@@ -3563,7 +3563,7 @@ findFirst_Command(const char *name, int *ind)
 	buf.isAX=1;
 	if ( search_Coll(&macroCommands, &buf, ind) )
 	{
-		cp=(Command*)macroCommands.items[*ind];
+		cp=(Command*)macroCommands.items_of_Coll[*ind];
 		if (cp->isTranslate || clic_word==0)
 			return cp;
 	}
@@ -3577,10 +3577,10 @@ findNext_Command(const char *name, int *ind)
 
 again:
 	++(*ind);
-	if (*ind>=macroCommands.count)
+	if (*ind>=macroCommands.count_of_Coll)
 		return NULL;
 	buf.name=(char*)name;
-	cp = (Command*)macroCommands.items[*ind];
+	cp = (Command*)macroCommands.items_of_Coll[*ind];
 
 	buf.isX=1;
 	buf.isAX=0;
@@ -3614,7 +3614,7 @@ findFirst_Translate(const char *name, int *ind)
 	buf.isAX=0;
 	if ( search_Coll(&macroCommands, &buf, ind) )
 	{
-		cp=(Command*)macroCommands.items[*ind];
+		cp=(Command*)macroCommands.items_of_Coll[*ind];
 		if (cp->isTranslate)
 			return cp;
 	}
@@ -3622,7 +3622,7 @@ findFirst_Translate(const char *name, int *ind)
 	buf.isAX=1;
 	if ( search_Coll(&macroCommands, &buf, ind) )
 	{
-		cp=(Command*)macroCommands.items[*ind];
+		cp=(Command*)macroCommands.items_of_Coll[*ind];
 		if (cp->isTranslate)
 			return cp;
 	}
@@ -3721,7 +3721,7 @@ insertCommandList(CommandPart *cp)
 	case TM_word:
 		break;
 	default:
-		cp->no=curItList->count;
+		cp->no=curItList->count_of_Coll;
 		insert_Coll(curItList, cp);
 		break;
 	}
@@ -3745,8 +3745,8 @@ clone_coll(Coll *cp)
 		return 0;
 
 	ret = new_Coll(0, 0);
-	for(i=0; i<cp->count; i++)
-		append_Coll(ret, cp->items[i]);
+	for(i=0; i<cp->count_of_Coll; i++)
+		append_Coll(ret, cp->items_of_Coll[i]);
 
 	return ret;
 }
@@ -3756,9 +3756,9 @@ get_list_delim(Coll *coll, int beg, int is_opt, Coll **del)
 {
 	int j, hard=0;
 
-	for(j=beg; !hard && j<coll->count; j++)
+	for(j=beg; !hard && j<coll->count_of_Coll; j++)
 	{
-		CommandPart *cpp=(CommandPart*)coll->items[j];
+		CommandPart *cpp=(CommandPart*)coll->items_of_Coll[j];
 
 		switch(cpp->type)
 		{
@@ -3774,8 +3774,8 @@ get_list_delim(Coll *coll, int beg, int is_opt, Coll **del)
 			if (!hard)
 			{
 				int i;
-				for(i=0 ; i<cpp->option->count/*-1*/ ; i++)
-					cadd_coll(del, cpp->option->items[i]);
+				for(i=0 ; i<cpp->option->count_of_Coll/*-1*/ ; i++)
+					cadd_coll(del, cpp->option->items_of_Coll[i]);
 				hard++;
 			}
 			break;
@@ -3790,7 +3790,7 @@ get_list_delim(Coll *coll, int beg, int is_opt, Coll **del)
 	/* only for options: collect all previous options delimiters */
 	for( j=beg-1; is_opt && j>=0; j-- )
 	{
-		CommandPart *cpp=(CommandPart*)coll->items[j];
+		CommandPart *cpp=(CommandPart*)coll->items_of_Coll[j];
 
 		switch(cpp->type)
 		{
@@ -3808,10 +3808,10 @@ static void
 set_last(Coll *coll)
 {
 	CommandPart *cp;
-	if (!coll || !coll->count)
+	if (!coll || !coll->count_of_Coll)
 		return;
 
-	cp=(CommandPart*)coll->items[coll->count-1];
+	cp=(CommandPart*)coll->items_of_Coll[coll->count_of_Coll-1];
 	if (cp->type==SM_option)
 		set_last(cp->option);
 	else
@@ -3822,9 +3822,9 @@ static void
 set_list_delim(Coll *coll, Coll *delim, int is_opt)
 {
 	int i;
-	for(i=0;i<coll->count;i++)
+	for(i=0;i<coll->count_of_Coll;i++)
 	{
-		CommandPart *cp=(CommandPart*)coll->items[i];
+		CommandPart *cp=(CommandPart*)coll->items_of_Coll[i];
 		switch (cp->type)
 		{
 		case SM_option:
@@ -3833,7 +3833,7 @@ set_list_delim(Coll *coll, Coll *delim, int is_opt)
 				CommandPart *cpp;
 				get_list_delim(coll, i+1, 1, &del);
 				set_list_delim(cp->option,del,1);
-				cpp = (CommandPart*)cp->option->items[0];
+				cpp = (CommandPart*)cp->option->items_of_Coll[0];
 				switch(cpp->type)
 				{
 				case SM_word:
@@ -3850,9 +3850,9 @@ set_list_delim(Coll *coll, Coll *delim, int is_opt)
 			{
 				int j, hard=0;
 				Coll *del=clone_coll(delim);
-				for(j=i+1; !hard && j<coll->count;j++)
+				for(j=i+1; !hard && j<coll->count_of_Coll;j++)
 				{
-					CommandPart *cpp=(CommandPart*)coll->items[j];
+					CommandPart *cpp=(CommandPart*)coll->items_of_Coll[j];
 					switch (cpp->type)
 					{
 					case SM_word:
@@ -3886,18 +3886,18 @@ reorder_list(Coll *coll)
 	int list_pos=-1;
 	CommandPart *lp=0;
 
-	for(i=0;i<coll->count;i++)
+	for(i=0;i<coll->count_of_Coll;i++)
 	{
-		CommandPart *cp=(CommandPart*)coll->items[i];
+		CommandPart *cp=(CommandPart*)coll->items_of_Coll[i];
 		switch (cp->type)
 		{
 		case SM_option:
 			{
 				CommandPart *cp1;
 
-				if (cp->option->count!=1)
+				if (cp->option->count_of_Coll!=1)
 					continue;
-				cp1=(CommandPart*)cp->option->items[0];
+				cp1=(CommandPart*)cp->option->items_of_Coll[0];
 				if (cp1->type != SM_list)
 					continue;
 				if (list_pos != -1)
@@ -3987,12 +3987,12 @@ printCommandPart(CommandPart* cp, int level)
 	case SM_enum   :
 	{
 		int i;
-		vo_printf(0,level,"SM_enum: (%d) <%s:", cp->option->count, cp->text);
+		vo_printf(0,level,"SM_enum: (%d) <%s:", cp->option->count_of_Coll, cp->text);
 		/*printf("<%s: ", cp->text);*/
-		for(i=0;i<cp->option->count;i++)
+		for(i=0;i<cp->option->count_of_Coll;i++)
 		{
-			vo_printf(0,0,"%s", (char*)cp->option->items[i]);
-			if (i<cp->option->count-1)
+			vo_printf(0,0,"%s", (char*)cp->option->items_of_Coll[i]);
+			if (i<cp->option->count_of_Coll-1)
 				printf(",");
 		}
 		vo_printf(0,0, ">");
@@ -4071,9 +4071,9 @@ printCommandPart(CommandPart* cp, int level)
 	{
 		int i;
 		vo_printf(0,0,"\n");
-		vo_printf(0, level+1,"%d delims:", cp->delim->count);
-		for (i=0; i<cp->delim->count; i++)
-			vo_printf(0, 0, " '%s'", (char*)cp->delim->items[i]);
+		vo_printf(0, level+1,"%d delims:", cp->delim->count_of_Coll);
+		for (i=0; i<cp->delim->count_of_Coll; i++)
+			vo_printf(0, 0, " '%s'", (char*)cp->delim->items_of_Coll[i]);
 	}
 	vo_printf(0,0,"\n");
 }
@@ -4087,11 +4087,11 @@ printCommandList(char *msg, Coll *coll, int level)
 	if(verbose>0)
 	{
 		putOffs(level);
-		printf("%s: (%d)\n", msg, coll->count);
+		printf("%s: (%d)\n", msg, coll->count_of_Coll);
 	}
-	for(i=0; i< coll->count; i++)
+	for(i=0; i< coll->count_of_Coll; i++)
 	{
-		cp=(CommandPart*)coll->items[i];
+		cp=(CommandPart*)coll->items_of_Coll[i];
 		printCommandPart(cp, level+1);
 	}
 
@@ -4101,9 +4101,9 @@ static CommandPart *
 findPart(Command *cp, CommandPart *sp)
 {
 	int j;
-	for(j=0; j<cp->patternIt.count;j++)
+	for(j=0; j<cp->patternIt.count_of_Coll;j++)
 	{
-		CommandPart *pp=(CommandPart*)cp->patternIt.items[j];
+		CommandPart *pp=(CommandPart*)cp->patternIt.items_of_Coll[j];
 		if (!strcmp(sp->text, pp->text))
 			return pp;
 	}
@@ -4115,9 +4115,9 @@ check_Command(Command *cp)
 {
 	int i;
 
-	for(i=0; i<cp->substIt.count;i++)
+	for(i=0; i<cp->substIt.count_of_Coll;i++)
 	{
-		CommandPart *sp=(CommandPart*)cp->substIt.items[i];
+		CommandPart *sp=(CommandPart*)cp->substIt.items_of_Coll[i];
 		if (sp->type == TM_join)
 			continue;
 		if (!findPart(cp, sp))
@@ -4353,9 +4353,9 @@ delim_char(Coll *delims, int ch, int pos)
 	if (!delims)
 		return 0;
 
-	for(i=0; i<delims->count; i++)
+	for(i=0; i<delims->count_of_Coll; i++)
 	{
-		char *s = (char*) delims->items[i];
+		char *s = (char*) delims->items_of_Coll[i];
 #if 1
 		if (s[0]==ch)
 		{
@@ -4444,10 +4444,10 @@ skip_norm(int *pos,int extend, Coll *delims)
 					int beg = *pos;
 					char *s = yytext+beg;
 
-					for(j=0; j<delims->count; j++)
+					for(j=0; j<delims->count_of_Coll; j++)
 					{
 					int pl, len, found = 0;
-					char *delim = (char*) delims->items[j];
+					char *delim = (char*) delims->items_of_Coll[j];
 					pl = strlen(delim);
 					len = yyleng-beg;
 					if (pl>len)
@@ -4531,14 +4531,14 @@ static int
 matchCommandPartList(Coll *coll, int *pos, int top)
 {
 	int i, j, r, k;
-	int count=coll->count;
+	int count=coll->count_of_Coll;
 
 	for(i=0; i<count;)
 	{
 		CommandPart *cp, *cpp;
 		int beg, end;
 
-		cp=(CommandPart*)coll->items[i];
+		cp=(CommandPart*)coll->items_of_Coll[i];
 		if (cp->type!=SM_option)
 		{
 			if (!matchCommandPart(cp, pos))
@@ -4550,7 +4550,7 @@ matchCommandPartList(Coll *coll, int *pos, int top)
 		beg=i;
 		for(j=i+1; j<count;j++)
 		{
-			cpp=(CommandPart*)coll->items[j];
+			cpp=(CommandPart*)coll->items_of_Coll[j];
 			/*if ( cpp->type==SM_literal || cpp->type==SM_word )*/
 			if (cpp->type!=SM_option)
 				break;
@@ -4560,7 +4560,7 @@ matchCommandPartList(Coll *coll, int *pos, int top)
 		if (end<count)
 		{
 			/* check first non-option arg */
-			cpp=(CommandPart*)coll->items[end];
+			cpp=(CommandPart*)coll->items_of_Coll[end];
 			if (
 				(cpp->type==SM_literal||cpp->type==SM_word) &&
 				matchCommandPart(cpp, pos) )
@@ -4573,7 +4573,7 @@ matchCommandPartList(Coll *coll, int *pos, int top)
 		{
 			for(j=beg; j<end; ++j)
 			{
-				cpp=(CommandPart*)coll->items[j];
+				cpp=(CommandPart*)coll->items_of_Coll[j];
 				if (cpp->isWord)
 					r=matchCommandPart(cpp,pos);
 				else
@@ -4588,7 +4588,7 @@ matchCommandPartList(Coll *coll, int *pos, int top)
 			}
 			for(j=beg; j<end; ++j)
 			{
-				cpp=(CommandPart*)coll->items[j];
+				cpp=(CommandPart*)coll->items_of_Coll[j];
 				if (!cpp->isWord)
 					r=matchCommandPart(cpp,pos);
 				else
@@ -4636,8 +4636,8 @@ matchCommandPart(CommandPart *p, int *pos)
 	case SM_option :
 		{
 			int r, save_pos, found=0, one=1, scmd_pos;
-			CommandPart *bp = (CommandPart *)p->option->items[0];
-			int cmdarg_pos= commandArgs.count;
+			CommandPart *bp = (CommandPart *)p->option->items_of_Coll[0];
+			int cmdarg_pos= commandArgs.count_of_Coll;
 
 			if ( bp->type == SM_literal && !strcmp(bp->text,",") )
 				one=0;
@@ -4657,7 +4657,7 @@ matchCommandPart(CommandPart *p, int *pos)
 			do
 			{
 				save_pos=*pos;
-				scmd_pos = commandArgs.count;
+				scmd_pos = commandArgs.count_of_Coll;
 				vo_printf (3,0,"try match SM_option\n");
 				r=matchCommandPartList(p->option, pos,0);
 				if (!r)
@@ -4692,8 +4692,8 @@ matchCommandPart(CommandPart *p, int *pos)
 			vo_printf(3,0,"SM_option match: %d\n", found);
 			if (!found)
 			{
-				while(commandArgs.count>cmdarg_pos)
-					atFree_Coll(&commandArgs, commandArgs.count-1);
+				while(commandArgs.count_of_Coll>cmdarg_pos)
+					atFree_Coll(&commandArgs, commandArgs.count_of_Coll-1);
 			}
 			return found;
 		}
@@ -4854,16 +4854,16 @@ matchCommandPart(CommandPart *p, int *pos)
 		{
 			CommandArg *ap=newList_CommandArg(p);
 			vo_printf (3,0,"try match SM_list\n");
-			if (p->delim && p->delim->count)
+			if (p->delim && p->delim->count_of_Coll)
 			{
 
 				int beg =*pos;
 				int found=0;
 				/*int pbeg;*/
 				int single=0;
-				char *delim = (char *)p->delim->items[0];
+				char *delim = (char *)p->delim->items_of_Coll[0];
 				int pl = strlen(delim);
-				if ( !(p->delim->count == 1 && pl==1 && !is_id(delim[0]))  )
+				if ( !(p->delim->count_of_Coll == 1 && pl==1 && !is_id(delim[0]))  )
 				/*
 				if ( p->delim->count == 1 && pl==1 && !is_id(delim[0]) )
 					single = 1;
@@ -4881,9 +4881,9 @@ matchCommandPart(CommandPart *p, int *pos)
 						int j;
 						ech = yytext[*pos];
 
-						for(j = 0; j<p->delim->count; j++)
+						for(j = 0; j<p->delim->count_of_Coll; j++)
 						{
-							delim = (char*) p->delim->items[j];
+							delim = (char*) p->delim->items_of_Coll[j];
 							pl = strlen(delim);
 
 							vo_printf(3,0,"try delim '%s' at '%s'\n", delim, yytext+beg);
@@ -5010,7 +5010,7 @@ matchCommandPart(CommandPart *p, int *pos)
 #endif
 			}
 			}
-			if (ap->list->count==0)
+			if (ap->list->count_of_Coll==0)
 			{
 				delete_CommandArg(ap);
 				return 0;
@@ -5027,9 +5027,9 @@ matchCommandPart(CommandPart *p, int *pos)
 			len = yyleng-beg;
 
 			vo_printf (3,0,"try match SM_enum: at %s\n", s);
-			for(i=0;i<p->option->count;i++)
+			for(i=0;i<p->option->count_of_Coll;i++)
 			{
-				char *op = (char*) p->option->items[i];
+				char *op = (char*) p->option->items_of_Coll[i];
 				l = strlen(op);
 
 				vo_printf (4,0,"try match SM_enum option: %s\n", op);
@@ -5161,7 +5161,7 @@ findArg(CommandPart *sp, int *beg, int reverse, int parno)
 	{
 		for(j=*beg; j>=0; j--)
 		{
-			CommandArg *ap=(CommandArg*)commandArgs.items[j];
+			CommandArg *ap=(CommandArg*)commandArgs.items_of_Coll[j];
 			CommandPart *pp=ap->cp;
 			if (findCommandPart(pp, sp->text))
 			{
@@ -5189,9 +5189,9 @@ findArg(CommandPart *sp, int *beg, int reverse, int parno)
 	}
 	else
 	{
-		for(j=*beg; j<commandArgs.count;j++)
+		for(j=*beg; j<commandArgs.count_of_Coll;j++)
 		{
-			CommandArg *ap=(CommandArg*)commandArgs.items[j];
+			CommandArg *ap=(CommandArg*)commandArgs.items_of_Coll[j];
 			CommandPart *pp=ap->cp;
 			if (findCommandPart(pp, sp->text))
 			{
@@ -5233,9 +5233,9 @@ testAllDefs(Coll *coll, int beg, int parno)
 {
 	int i;
 
-	for(i=0; i<coll->count; ++i)
+	for(i=0; i<coll->count_of_Coll; ++i)
 	{
-		CommandPart *cp=(CommandPart*) coll->items[i];
+		CommandPart *cp=(CommandPart*) coll->items_of_Coll[i];
 		int Beg=beg;
 		switch(cp->type)
 		{
@@ -5268,10 +5268,10 @@ check_CommandPart(CommandPart*cp)
 			int i;
 			int good=0;
 
-			for(i=0; option && i<option->count; i++)
+			for(i=0; option && i<option->count_of_Coll; i++)
 			{
 				CommandPart *cpp;
-				cpp = (CommandPart*) option->items[i];
+				cpp = (CommandPart*) option->items_of_Coll[i];
 				switch(cpp->type)
 				{
 					case TM_literal:
@@ -5455,10 +5455,10 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 	int i, isExpr, cnt = 0, prev_type = 0;
 	int Beg=*beg, end=*beg;
 
-	for(i = 0; i<coll->count; i++)
+	for(i = 0; i<coll->count_of_Coll; i++)
 	{
 		CommandArg *ap;
-		CommandPart *cp=(CommandPart*) coll->items[i];
+		CommandPart *cp=(CommandPart*) coll->items_of_Coll[i];
 		*beg=Beg;
 		if (cnt)
 		{
@@ -5487,7 +5487,7 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			else if (ap->list)
 			{
 				int i;
-				for(i=0; i<ap->list->count ;i++)
+				for(i=0; i<ap->list->count_of_Coll ;i++)
 				{
 					if (i>0)
 					{
@@ -5496,7 +5496,7 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 						else
 							put_char(' ');
 					}
-					put_str((char*)ap->list->items[i]);
+					put_str((char*)ap->list->items_of_Coll[i]);
 				}
 			}
 			else if(ap->val)
@@ -5517,7 +5517,7 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			{
 				int i;
 				put_char('"');
-				for(i = 0; i < ap->list->count; i++)
+				for(i = 0; i < ap->list->count_of_Coll; i++)
 				{
 					if (i>0)
 					{
@@ -5526,7 +5526,7 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 						else
 							put_char(' ');
 					}
-					put_str((char*)ap->list->items[i]);
+					put_str((char*)ap->list->items_of_Coll[i]);
 				}
 				put_char('"');
 			}
@@ -5560,9 +5560,9 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			else if (ap->list)
 			{
 				int i;
-				for(i = 0; i < ap->list->count ;i++)
+				for(i = 0; i < ap->list->count_of_Coll ;i++)
 				{
-					char *s = (char*)ap->list->items[i];
+					char *s = (char*)ap->list->items_of_Coll[i];
 					if (i > 0)
 					{
 						if (ap->listcomma)
@@ -5627,9 +5627,9 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			else if (ap->list)
 			{
 				int i;
-				for(i = 0; i < ap->list->count ;i++)
+				for(i = 0; i < ap->list->count_of_Coll ;i++)
 				{
-					char *text=(char*)ap->list->items[i];
+					char *text=(char*)ap->list->items_of_Coll[i];
 
 
 					if (*text=='(')
@@ -5703,9 +5703,9 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			else if (ap->list)
 			{
 				int i;
-				for(i=0;i<ap->list->count;i++)
+				for(i=0;i<ap->list->count_of_Coll;i++)
 				{
-					char *text = (char*)ap->list->items[i];
+					char *text = (char*)ap->list->items_of_Coll[i];
 					if (!strcmp(text, ","))
 					{
 						put_char(',');
@@ -5747,7 +5747,7 @@ substCommandPartList(Coll *coll, int *beg, int reverse, int parno)
 			break;
 		case TM_log    :
 			ap=findArg(cp,beg,reverse,parno);
-			if (ap && (ap->text || (ap->list && ap->list->count) || ap->val))
+			if (ap && (ap->text || (ap->list && ap->list->count_of_Coll) || ap->val))
 				put_str(".T.");
 			else
 				put_str(".F.");
@@ -5890,10 +5890,10 @@ startCurInclude(void)
 	else if(curInclude->type=='<')
 	{ /* "standard path" */
 		int i;
-		for(i=includePaths.count-1; i>=0; --i)
+		for(i=includePaths.count_of_Coll-1; i>=0; --i)
 		{
 			snprintf(path, sizeof(path), "%s/%s",
-			(char*)includePaths.items[i], curInclude->name);
+			(char*)includePaths.items_of_Coll[i], curInclude->name);
 			file=fopen(path, "rt");
 			if (file)
 				break;
@@ -5902,10 +5902,10 @@ startCurInclude(void)
 	else
 	{ /* "current path" */
 		int i;
-		for(i=0;i<includePaths.count; ++i)
+		for(i=0;i<includePaths.count_of_Coll; ++i)
 		{
 			snprintf(path, sizeof(path), "%s/%s",
-			(char*)includePaths.items[i], curInclude->name);
+			(char*)includePaths.items_of_Coll[i], curInclude->name);
 			file=fopen(path, "rt");
 			if (file)
 				break;
@@ -5926,7 +5926,7 @@ startCurInclude(void)
 		curInclude->buf=YY_CURRENT_BUFFER;
 		curInclude->line=clic_line;
 		newline();
-		if (includes.count==1)
+		if (includes.count_of_Coll==1)
 			insert_Coll(fileIncludes, strdup(curInclude->name));
 		insert_Coll(&includes,curInclude);
 		insert_Coll(&fileList,strdup(curInclude->name));
@@ -6268,7 +6268,7 @@ command_end(void)
 		bad_translate = 0;
 		vo_printf(6,0, "end subst %s state=%d nstr=%d buf '%.*s'\n",
 			curCommand->name, command_state,
-			unput_strings.count, unput_buffer.ptr_of_StrBuf-unput_buffer.buf_of_StrBuf, unput_buffer.buf_of_StrBuf);
+			unput_strings.count_of_Coll, unput_buffer.ptr_of_StrBuf-unput_buffer.buf_of_StrBuf, unput_buffer.buf_of_StrBuf);
 		BEGIN(command_state);
 	}
 	if (found)
@@ -6294,7 +6294,7 @@ set_charset(char *charset, const char *file)
 	if (s && !strcasecmp(s, ".prg"))
 		prgfile = 1;
 
-	charsets.items[charsets.count-1] = source_charset = charset;
+	charsets.items_of_Coll[charsets.count_of_Coll-1] = source_charset = charset;
 	if (prgfile)
 		sourceCharset = charset;
 
@@ -6308,16 +6308,16 @@ push_charset(void)
 	change_charset = 1;
 	source_charset = strdup(sourceCharset);
 	append_Coll(&charsets, source_charset);
-	v_printf(4, "push charset '%s' %d\n", source_charset, charsets.count);
+	v_printf(4, "push charset '%s' %d\n", source_charset, charsets.count_of_Coll);
 }
 
 static void
 pop_charset(void)
 {
 	change_charset = 1;
-	atFree_Coll(&charsets, charsets.count-1);
-	source_charset = (char*) (charsets.items[charsets.count-1]);
-	v_printf(4, "pop charset '%s' %d\n", source_charset, charsets.count);
+	atFree_Coll(&charsets, charsets.count_of_Coll-1);
+	source_charset = (char*) (charsets.items_of_Coll[charsets.count_of_Coll-1]);
+	v_printf(4, "pop charset '%s' %d\n", source_charset, charsets.count_of_Coll);
 }
 
 static char *
@@ -6331,10 +6331,10 @@ match_delim(CommandPart *cp, char *str)
 
 	len = strcspn(str, " \t\n");
 
-	for(i=0; i<cp->delim->count; i++)
+	for(i=0; i<cp->delim->count_of_Coll; i++)
 	{
 		int l;
-		char *s = (char*) cp->delim->items[i];
+		char *s = (char*) cp->delim->items_of_Coll[i];
 		l = strlen(s);
 		if ( l == len && !strncasecmp(s, str, l))
 			return s;
@@ -6445,13 +6445,13 @@ get_input_str(char **ibuf, int *max_size)
 		else
 			subst_flag = 0;
 	}
-	else if (unput_strings.count)
+	else if (unput_strings.count_of_Coll)
 	{
 		int ind, l;
 		StrBuf *sp;
 
-		ind = unput_strings.count - 1;
-		sp = (StrBuf*) unput_strings.items[ind];
+		ind = unput_strings.count_of_Coll - 1;
+		sp = (StrBuf*) unput_strings.items_of_Coll[ind];
 
 		l = sp->ptr_of_StrBuf - sp->buf_of_StrBuf;
 		if (l >= *max_size)
@@ -6512,7 +6512,7 @@ static int
 split_input_str(char *buf, int size)
 {
 	int count;
-	int ins_ind = unput_strings.count;
+	int ins_ind = unput_strings.count_of_Coll;
 
 	for(count = 0 ; size > 0 ; count++)
 	{

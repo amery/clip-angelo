@@ -70,10 +70,14 @@ clip_INIT___FRAME(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FRAMENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *label = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -95,7 +99,9 @@ int
 clip_GTK_FRAMESETLABEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
-   gchar *label = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
+
    CHECKCWID(cframe, GTK_IS_FRAME);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(label);
@@ -111,6 +117,7 @@ int
 clip_GTK_FRAMESETLABELWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCWID(cframe, GTK_IS_FRAME);
@@ -135,8 +142,11 @@ int
 clip_GTK_FRAMESETLABELALIGN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 2);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 2);
+
    CHECKCWID(cframe, GTK_IS_FRAME);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -152,7 +162,9 @@ int
 clip_GTK_FRAMESETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
+
    GtkShadowType type = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cframe, GTK_IS_FRAME);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_frame_set_shadow_type(GTK_FRAME(cframe->widget), type);
@@ -166,7 +178,8 @@ int
 clip_GTK_FRAMEGETLABEL(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
-   gchar *label;
+
+   gchar    *label;
 
    CHECKCWID(cframe, GTK_IS_FRAME);
    label = (gchar *) gtk_frame_get_label(GTK_FRAME(cframe->widget));
@@ -183,7 +196,8 @@ int
 clip_GTK_FRAMEGETLABELALIGN(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
-   gfloat x, y;
+
+   gfloat    x, y;
 
    CHECKCWID(cframe, GTK_IS_FRAME);
 
@@ -200,7 +214,9 @@ int
 clip_GTK_FRAMEGETLABELWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCWID(cframe, GTK_IS_FRAME);
@@ -208,13 +224,13 @@ clip_GTK_FRAMEGETLABELWIDGET(ClipMachine * ClipMachineMemory)
    wid = gtk_frame_get_label_widget(GTK_FRAME(cframe->widget));
 
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (wid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (wid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -255,14 +271,22 @@ clip_GTK_FRAMEGETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ASPECTFRAMENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *label = _clip_parc(ClipMachineMemory, 2);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 3);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 4);
-   gfloat ratio = _clip_parnd(ClipMachineMemory, 5);
-   gboolean obey_child = _clip_parl(ClipMachineMemory, 6);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *label = _clip_parc(ClipMachineMemory, 2);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 3);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 4);
+
+   gfloat    ratio = _clip_parnd(ClipMachineMemory, 5);
+
+   gboolean  obey_child = _clip_parl(ClipMachineMemory, 6);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -292,10 +316,15 @@ int
 clip_GTK_ASPECTFRAMESET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cframe = _fetch_cw_arg(ClipMachineMemory);
-   gfloat xalign = _clip_parnd(ClipMachineMemory, 2);
-   gfloat yalign = _clip_parnd(ClipMachineMemory, 3);
-   gfloat ratio = _clip_parnd(ClipMachineMemory, 4);
-   gboolean obey_child = _clip_parl(ClipMachineMemory, 5);
+
+   gfloat    xalign = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    yalign = _clip_parnd(ClipMachineMemory, 3);
+
+   gfloat    ratio = _clip_parnd(ClipMachineMemory, 4);
+
+   gboolean  obey_child = _clip_parl(ClipMachineMemory, 5);
+
    CHECKCWID(cframe, GTK_IS_FRAME);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);

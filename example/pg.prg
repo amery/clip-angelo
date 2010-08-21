@@ -1,6 +1,6 @@
 #include "ci_ctwin.ch"
-#include "ci_ex_box.ch"
-#include "ci_ex_abox.ch"
+#include "ci_box.ch"
+*#include "ci_abox.ch"
 #include "ci_pgch.ch"
 
 local x
@@ -18,16 +18,16 @@ clear screen
 
 @ 1, 0 say 'B_SINGLE='+B_SINGLE
 @ 2, 0 say 'B_DOUBLE='+B_DOUBLE
-@ 1, 30 say 'AB_SINGLE='+AB_SINGLE
-@ 2, 30 say 'AB_DOUBLE='+AB_DOUBLE
+*@ 1, 30 say 'AB_SINGLE='+AB_SINGLE
+*@ 2, 30 say 'AB_DOUBLE='+AB_DOUBLE
 
 
 set color to 'g/r'
 @ 4, 1, 8, 9 box B_SINGLE+""
 @ 10, 1, 15, 9 box B_DOUBLE+""
 set color to 'g+/r+'
-@ 4, 31, 8, 39 box AB_SINGLE+""
-@ 10, 31, 15, 39 box AB_DOUBLE+""
+*@ 4, 31, 8, 39 box AB_SINGLE+""
+*@ 10, 31, 15, 39 box AB_DOUBLE+""
 
 @ 0, 0 say 'WB_1='+WB_1
 @ 0, 30 say 'WB_2='+WB_2

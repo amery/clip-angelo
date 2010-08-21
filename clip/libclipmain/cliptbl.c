@@ -5,8 +5,8 @@
 
 */
 
-#include "ci_clip.h"
-#include "ci_screen.h"
+#include <ci_clip.h>
+#include <ci_screen.h>
 
 static unsigned char _koi_cmptbl[256] = {
    0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
@@ -268,9 +268,15 @@ static unsigned char _koi_outtbl[256] = {
 };
 
 unsigned char *_clip_cmptbl = _koi_cmptbl;
+
 unsigned char *_clip_uptbl = _koi_uptbl;
+
 unsigned char *_clip_lowtbl = _koi_lowtbl;
+
 unsigned char *_clip_isalpha_tbl = _koi_isalpha_tbl;
+
 unsigned char *_clip_pgtbl = _koi_pgtbl;
+
 unsigned char *_clip_intbl = _koi_intbl;
+
 unsigned char *_clip_outtbl = _koi_outtbl;

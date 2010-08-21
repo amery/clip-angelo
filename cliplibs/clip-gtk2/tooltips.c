@@ -49,9 +49,12 @@ clip_INIT___TOOLTIPS(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TOOLTIPSNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkTooltips *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    wid = gtk_tooltips_new();
    if (!wid)
@@ -70,6 +73,7 @@ int
 clip_GTK_TOOLTIPSENABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctt, GTK_IS_TOOLTIPS);
    gtk_tooltips_enable(GTK_TOOLTIPS(ctt->widget));
    return 0;
@@ -84,6 +88,7 @@ int
 clip_GTK_TOOLTIPSDISABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctt, GTK_IS_TOOLTIPS);
    gtk_tooltips_disable(GTK_TOOLTIPS(ctt->widget));
    return 0;
@@ -95,7 +100,8 @@ int
 clip_GTK_TOOLTIPSSETDELAY(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctt = _fetch_cw_arg(ClipMachineMemory);
-   guint delay = _clip_parni(ClipMachineMemory, 2);
+
+   guint     delay = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(ctt, GTK_IS_TOOLTIPS);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -110,9 +116,13 @@ int
 clip_GTK_TOOLTIPSSETTIP(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctt = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gchar *tip_text = _clip_parc(ClipMachineMemory, 3);
-   gchar *tip_private = _clip_parc(ClipMachineMemory, 4);
+
+   gchar    *tip_text = _clip_parc(ClipMachineMemory, 3);
+
+   gchar    *tip_private = _clip_parc(ClipMachineMemory, 4);
+
    CHECKCWID(ctt, GTK_IS_TOOLTIPS);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
@@ -133,30 +143,36 @@ int
 clip_GTK_TOOLTIPSDATAGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *cwid = _fetch_cw_arg(ClipMachineMemory);
+
    GtkTooltipsData *data;
+
    CHECKCWID(cwid, GTK_IS_WIDGET);
    data = gtk_tooltips_data_get(cwid->widget);
    if (data)
-      {
-	 C_widget *ctt = _list_get_cwidget(ClipMachineMemory, data->tooltips);
-	 ClipVar *ret = RETPTR(ClipMachineMemory);
-	 char *tip_text = data->tip_text ? data->tip_text : "";
-	 char *tip_private = data->tip_private ? data->tip_private : "";
-	 memset(ret, 0, sizeof(*ret));
-	 _clip_map(ClipMachineMemory, ret);
-	 if (!ctt)
-	    ctt = _register_widget(ClipMachineMemory, (GtkWidget *) (data->tooltips), NULL);
-	 if (ctt)
-	    _clip_madd(ClipMachineMemory, ret, HASH_TOOLTIPS, &ctt->obj);
+    {
+       C_widget *ctt = _list_get_cwidget(ClipMachineMemory, data->tooltips);
 
-	 _clip_madd(ClipMachineMemory, ret, HASH_WIDGET, &cwid->obj);
-	 LOCALE_FROM_UTF(tip_text);
-	 LOCALE_FROM_UTF(tip_private);
-	 _clip_mputc(ClipMachineMemory, ret, HASH_TIPTEXT, tip_text, strlen(tip_text));
-	 _clip_mputc(ClipMachineMemory, ret, HASH_TIPPRIVATE, tip_private, strlen(tip_private));
-	 FREE_TEXT(tip_text);
-	 FREE_TEXT(tip_private);
-      }
+       ClipVar  *ret = RETPTR(ClipMachineMemory);
+
+       char     *tip_text = data->tip_text ? data->tip_text : "";
+
+       char     *tip_private = data->tip_private ? data->tip_private : "";
+
+       memset(ret, 0, sizeof(*ret));
+       _clip_map(ClipMachineMemory, ret);
+       if (!ctt)
+	  ctt = _register_widget(ClipMachineMemory, (GtkWidget *) (data->tooltips), NULL);
+       if (ctt)
+	  _clip_madd(ClipMachineMemory, ret, HASH_TOOLTIPS, &ctt->obj);
+
+       _clip_madd(ClipMachineMemory, ret, HASH_WIDGET, &cwid->obj);
+       LOCALE_FROM_UTF(tip_text);
+       LOCALE_FROM_UTF(tip_private);
+       _clip_mputc(ClipMachineMemory, ret, HASH_TIPTEXT, tip_text, strlen(tip_text));
+       _clip_mputc(ClipMachineMemory, ret, HASH_TIPPRIVATE, tip_private, strlen(tip_private));
+       FREE_TEXT(tip_text);
+       FREE_TEXT(tip_private);
+    }
    return 0;
  err:
    return 1;

@@ -58,7 +58,7 @@ typedef int (*TestFunct) (void);
  */
 typedef struct tagTESTDEF
 {
-   char *TestName;
+   char     *TestName;
    const char *TestDesc;
    TestFunct theTest;
 } test_def_t;
@@ -71,35 +71,45 @@ typedef struct tagTESTDEF
 /*|                             LOCAL VARIABLES                             |*/
 /*`========================================================================='*/
 
-char MyPortName[V24_SZ_PORTNAME] = { '\0' };
+char      MyPortName[V24_SZ_PORTNAME] = { '\0' };
 
 v24_port_t *UsedPort = NULL;
 
 unsigned int MyOpenFlags = V24_STANDARD;
-int MyTimeOut = 0;
 
-int ExecutionEnabled = 1;
-int WantWait = 0;
+int       MyTimeOut = 0;
+
+int       ExecutionEnabled = 1;
+
+int       WantWait = 0;
 
 /*             .-----------------------------------------------.             */
 /* ___________/  all stuff for the single tests                 \___________ */
 /*            `-------------------------------------------------'            */
 
-char TestName[50] = { "" };	/* Name of the test */
+char      TestName[50] = { "" };	/* Name of the test */
 
-char DescSendOnly[] = "Test `send-only'\n" "Send some (0xAA 0x55 0xA5 0x5A 0x80 0x01) characters bytewise and return.\n" "This is a test for v24Putc\n";
+char      DescSendOnly[] =
+ "Test `send-only'\n"
+ "Send some (0xAA 0x55 0xA5 0x5A 0x80 0x01) characters bytewise and return.\n" "This is a test for v24Putc\n";
 
-char DescSendOnly2[] = "Test `send-only'\n" "Send some (0xAA 0x55 0xA5 0x5A 0x80 0x01) characters on-block and return.\n" "This is a test for v24Write\n";
+char      DescSendOnly2[] =
+ "Test `send-only'\n"
+ "Send some (0xAA 0x55 0xA5 0x5A 0x80 0x01) characters on-block and return.\n" "This is a test for v24Write\n";
 
-char DescStringQuery[] =
-   "Test `string-query'\n"
-   "This test send the special command string to a SVG-100 device and wait\n" "for a string answer. After a `send-only', this function should test the\n" "the reception of strings with v24Gets().\n";
+char      DescStringQuery[] =
+ "Test `string-query'\n"
+ "This test send the special command string to a SVG-100 device and wait\n"
+ "for a string answer. After a `send-only', this function should test the\n" "the reception of strings with v24Gets().\n";
 
-char DescSendHello[] = "Test `send-hello'\n" "Send one string \"Hello World.\\n\\r\" and return\n";
+char      DescSendHello[] = "Test `send-hello'\n" "Send one string \"Hello World.\\n\\r\" and return\n";
 
 static int testSendOnly(void);
+
 static int testSendOnly2(void);
+
 static int testStringQuery(void);
+
 static int testSendHello(void);
 
 test_def_t Tests[] = {
@@ -115,13 +125,16 @@ test_def_t Tests[] = {
 /*|                      PROTOTYPES OF LOCAL FUNCTIONS                      |*/
 /*`========================================================================='*/
 
-void dumpErrorMessage(int rc);
+void      dumpErrorMessage(int rc);
 
 static int findTest(void);
 
 static void usage(void);
+
 static void showTestHelp(void);
+
 static void installSignalhandler(void);
+
 static void mySignalHandler(int reason);
 
 /*+=========================================================================+*/
@@ -131,151 +144,154 @@ static void mySignalHandler(int reason);
 int
 main(int argc, char *argv[])
 {
-   int HelpOnly = 0;
-   int TestNr;
-   int Done = 0;
-   int rc;
+   int       HelpOnly = 0;
+
+   int       TestNr;
+
+   int       Done = 0;
+
+   int       rc;
 
    fprintf(stderr, "ezV24 library -- simple test application\ncompiled: " __DATE__ "\n\n");
    optind = 1;			/* start without prog-name */
    do
-      {
-	 switch (getopt(argc, argv, "lnHNrxdhwp:t:"))
+    {
+       switch (getopt(argc, argv, "lnHNrxdhwp:t:"))
+	{
+	case 'p':
+	   if (optarg)
 	    {
-	    case 'p':
-	       if (optarg)
-		  {
-		     strncpy(MyPortName, optarg, V24_SZ_PORTNAME);
-		     MyPortName[V24_SZ_PORTNAME] = '\0';
-		     fprintf(stderr, "info: use port `%s'\n", MyPortName);
-		  }
-	       break;
-	    case 't':
-	       if (optarg)
-		  {
-		     MyTimeOut = atoi(optarg);
-		     if (MyTimeOut == 0 && *optarg != '0')
-			fputs("warning: invalid timeout parm ingnored!\n", stderr);
-		  }
-	       break;
-	    case 'l':
-	       MyOpenFlags |= V24_LOCK;
-	       fputs("info: open with V24_LOCK\n", stderr);
-	       break;
-	    case 'n':
-	       MyOpenFlags |= V24_NO_DELAY;
-	       fputs("info: open with V24_NO_DELAY\n", stderr);
-	       break;
-	    case 'r':
-	       MyOpenFlags |= V24_RTS_CTS;
-	       fputs("info: open with V24_RTS_CTS\n", stderr);
-	       break;
-	    case 'x':
-	       MyOpenFlags |= V24_XON_XOFF;
-	       fputs("info: open with V24_XON_XOFF\n", stderr);
-	       break;
-	    case 'd':
-	       MyOpenFlags |= V24_DEBUG_ON;
-	       fputs("info: open with V24_DEBUG_ON\n", stderr);
-	       break;
-	    case 'H':
-	       HelpOnly = 1;
-	       break;
-	    case 'N':
-	       ExecutionEnabled = 0;
-	       fputs("info: test execution disabled.\n", stderr);
-	       break;
-	    case 'w':
-	       WantWait = 1;
-	       fputs("info: test specific wait enabled.\n", stderr);
-	       break;
-	    case 'h':		// user want's help
-	    case '?':		// getopt3() reports invalid option 
-	       usage();
-	       exit(1);
-	    default:
-	       Done = 1;
+	       strncpy(MyPortName, optarg, V24_SZ_PORTNAME);
+	       MyPortName[V24_SZ_PORTNAME] = '\0';
+	       fprintf(stderr, "info: use port `%s'\n", MyPortName);
 	    }
-      }
+	   break;
+	case 't':
+	   if (optarg)
+	    {
+	       MyTimeOut = atoi(optarg);
+	       if (MyTimeOut == 0 && *optarg != '0')
+		  fputs("warning: invalid timeout parm ingnored!\n", stderr);
+	    }
+	   break;
+	case 'l':
+	   MyOpenFlags |= V24_LOCK;
+	   fputs("info: open with V24_LOCK\n", stderr);
+	   break;
+	case 'n':
+	   MyOpenFlags |= V24_NO_DELAY;
+	   fputs("info: open with V24_NO_DELAY\n", stderr);
+	   break;
+	case 'r':
+	   MyOpenFlags |= V24_RTS_CTS;
+	   fputs("info: open with V24_RTS_CTS\n", stderr);
+	   break;
+	case 'x':
+	   MyOpenFlags |= V24_XON_XOFF;
+	   fputs("info: open with V24_XON_XOFF\n", stderr);
+	   break;
+	case 'd':
+	   MyOpenFlags |= V24_DEBUG_ON;
+	   fputs("info: open with V24_DEBUG_ON\n", stderr);
+	   break;
+	case 'H':
+	   HelpOnly = 1;
+	   break;
+	case 'N':
+	   ExecutionEnabled = 0;
+	   fputs("info: test execution disabled.\n", stderr);
+	   break;
+	case 'w':
+	   WantWait = 1;
+	   fputs("info: test specific wait enabled.\n", stderr);
+	   break;
+	case 'h':		// user want's help
+	case '?':		// getopt3() reports invalid option 
+	   usage();
+	   exit(1);
+	default:
+	   Done = 1;
+	}
+    }
    while (!Done);
 
    if (optind < argc)
-      {
-	 strncpy(TestName, argv[optind], sizeof(TestName) - 2);
-	 TestName[sizeof(TestName) - 2] = '\0';
-      }
+    {
+       strncpy(TestName, argv[optind], sizeof(TestName) - 2);
+       TestName[sizeof(TestName) - 2] = '\0';
+    }
    else
-      {
-	 if (!HelpOnly)
-	    {
-	       fputs("error: you have to select a test.\n", stderr);
-	       return 2;
-	    }
-      }
+    {
+       if (!HelpOnly)
+	{
+	   fputs("error: you have to select a test.\n", stderr);
+	   return 2;
+	}
+    }
    if (HelpOnly)
-      {
-	 showTestHelp();
-	 return 0;
-      }
+    {
+       showTestHelp();
+       return 0;
+    }
 
    TestNr = findTest();
    if (TestNr < 0)
       return 2;
 
    if (*MyPortName == '\0')
-      {
-	 fputs("error: you have to specify a portname using parm `-p'!\n", stderr);
-	 return 1;
-      }
+    {
+       fputs("error: you have to specify a portname using parm `-p'!\n", stderr);
+       return 1;
+    }
    installSignalhandler();
 
   /* First we have to open the port.
    */
    if (MyPortName[0] == '\0')
-      {
-	 fputs("error: use option -p to specify a valid port!\n", stderr);
-	 return 1;
-      }
+    {
+       fputs("error: use option -p to specify a valid port!\n", stderr);
+       return 1;
+    }
    UsedPort = v24OpenPort(MyPortName, MyOpenFlags);
    if (UsedPort == NULL)
-      {
-	 fputs("error: sorry, open failed!\n", stderr);
-	 return 1;
-      }
+    {
+       fputs("error: sorry, open failed!\n", stderr);
+       return 1;
+    }
    fputs("info: port opened!\n", stderr);
 
   /* than we have to configure the port.
    */
    rc = v24SetParameters(UsedPort, V24_B9600, V24_8BIT, V24_NONE);
    if (rc != V24_E_OK)
-      {
-	 dumpErrorMessage(rc);
-	 v24ClosePort(UsedPort);
-	 return 1;
-      }
+    {
+       dumpErrorMessage(rc);
+       v24ClosePort(UsedPort);
+       return 1;
+    }
    fputs("info: parameter set to 9600,8,N,1\n", stderr);
 
    if (MyTimeOut > 0)
-      {
-	 rc = v24SetTimeouts(UsedPort, MyTimeOut * 10);
-	 if (rc == V24_E_NOT_IMPLEMENTED)
-	    fputs("info: setup of timeout is not available!\n", stderr);
-	 else if (rc != V24_E_OK)
-	    {
-	       dumpErrorMessage(rc);
-	       v24ClosePort(UsedPort);
-	       return 1;
-	    }
-	 else
-	    fprintf(stderr, "info: timeout is set to %dsec\n", MyTimeOut);
-      }
+    {
+       rc = v24SetTimeouts(UsedPort, MyTimeOut * 10);
+       if (rc == V24_E_NOT_IMPLEMENTED)
+	  fputs("info: setup of timeout is not available!\n", stderr);
+       else if (rc != V24_E_OK)
+	{
+	   dumpErrorMessage(rc);
+	   v24ClosePort(UsedPort);
+	   return 1;
+	}
+       else
+	  fprintf(stderr, "info: timeout is set to %dsec\n", MyTimeOut);
+    }
 
    if (TestNr >= 0 && ExecutionEnabled)
-      {
-	 rc = Tests[TestNr].theTest();
-	 if (rc != V24_E_OK)
-	    fprintf(stderr, "error: test returns #%d\n", rc);
-      }
+    {
+       rc = Tests[TestNr].theTest();
+       if (rc != V24_E_OK)
+	  fprintf(stderr, "error: test returns #%d\n", rc);
+    }
 
   /* At the end of all the stuff, we have close the port. ;-)
    */
@@ -291,59 +307,59 @@ void
 dumpErrorMessage(int rc)
 {
    switch (rc)
-      {
-      case V24_E_OK:
-	 fputs("error-msg: V24_E_OK\n", stderr);
-	 break;
-      case V24_E_ILLBAUD:
-	 fputs("error-msg: V24_E_ILLBAUD\n", stderr);
-	 break;
-      case V24_E_ILLDATASZ:
-	 fputs("error-msg: V24_E_ILLDATASZ\n", stderr);
-	 break;
-      case V24_E_ILLHANDLE:
-	 fputs("error-msg: V24_E_ILLHANDLE\n", stderr);
-	 break;
-      case V24_E_ILLTIMEOUT:
-	 fputs("error-msg: V24_E_ILLTIMEOUT\n", stderr);
-	 break;
-      case V24_E_OPEN_LOCK:
-	 fputs("error-msg: V24_E_OPEN\n", stderr);
-	 break;
-      case V24_E_CREATE_LOCK:
-	 fputs("error-msg: V24_E_CREATE_LOCK\n", stderr);
-	 break;
-      case V24_E_KILL_LOCK:
-	 fputs("error-msg: V24_E_KILL_LOCK\n", stderr);
-	 break;
-      case V24_E_LOCK_EXIST:
-	 fputs("error-msg: V24_E_LOCK_EXIST\n", stderr);
-	 break;
-      case V24_E_NOMEM:
-	 fputs("error-msg: V24_E_NOMEM\n", stderr);
-	 break;
-      case V24_E_NULL_POINTER:
-	 fputs("error-msg: V24_E_NULL_POINTER\n", stderr);
-	 break;
-      case V24_E_OPEN:
-	 fputs("error-msg: V24_E_OPEN\n", stderr);
-	 break;
-      case V24_E_READ:
-	 fputs("error-msg: V24_E_READ\n", stderr);
-	 break;
-      case V24_E_WRITE:
-	 fputs("error-msg: V24_E_WRITE\n", stderr);
-	 break;
-      case V24_E_NOT_IMPLEMENTED:
-	 fputs("error-msg: V24_E_NOT_IMPLEMENTED\n", stderr);
-	 break;
-      case V24_E_DBG_STALE_LOCK:
-	 fputs("debug-msg: V24_E_DBG_STALE_LOCK\n", stderr);
-	 break;
-      default:
-	 fputs("error-msg undefined?!?!\n", stderr);
-	 break;
-      }
+    {
+    case V24_E_OK:
+       fputs("error-msg: V24_E_OK\n", stderr);
+       break;
+    case V24_E_ILLBAUD:
+       fputs("error-msg: V24_E_ILLBAUD\n", stderr);
+       break;
+    case V24_E_ILLDATASZ:
+       fputs("error-msg: V24_E_ILLDATASZ\n", stderr);
+       break;
+    case V24_E_ILLHANDLE:
+       fputs("error-msg: V24_E_ILLHANDLE\n", stderr);
+       break;
+    case V24_E_ILLTIMEOUT:
+       fputs("error-msg: V24_E_ILLTIMEOUT\n", stderr);
+       break;
+    case V24_E_OPEN_LOCK:
+       fputs("error-msg: V24_E_OPEN\n", stderr);
+       break;
+    case V24_E_CREATE_LOCK:
+       fputs("error-msg: V24_E_CREATE_LOCK\n", stderr);
+       break;
+    case V24_E_KILL_LOCK:
+       fputs("error-msg: V24_E_KILL_LOCK\n", stderr);
+       break;
+    case V24_E_LOCK_EXIST:
+       fputs("error-msg: V24_E_LOCK_EXIST\n", stderr);
+       break;
+    case V24_E_NOMEM:
+       fputs("error-msg: V24_E_NOMEM\n", stderr);
+       break;
+    case V24_E_NULL_POINTER:
+       fputs("error-msg: V24_E_NULL_POINTER\n", stderr);
+       break;
+    case V24_E_OPEN:
+       fputs("error-msg: V24_E_OPEN\n", stderr);
+       break;
+    case V24_E_READ:
+       fputs("error-msg: V24_E_READ\n", stderr);
+       break;
+    case V24_E_WRITE:
+       fputs("error-msg: V24_E_WRITE\n", stderr);
+       break;
+    case V24_E_NOT_IMPLEMENTED:
+       fputs("error-msg: V24_E_NOT_IMPLEMENTED\n", stderr);
+       break;
+    case V24_E_DBG_STALE_LOCK:
+       fputs("debug-msg: V24_E_DBG_STALE_LOCK\n", stderr);
+       break;
+    default:
+       fputs("error-msg undefined?!?!\n", stderr);
+       break;
+    }
 }
 
 /** This functions tries to find the the test referenced by the name given by
@@ -356,25 +372,25 @@ dumpErrorMessage(int rc)
 static int
 findTest(void)
 {
-   int i;
+   int       i;
 
    if (TestName[0] == '\0')
       return -1;
 
    i = 0;
    while (Tests[i].TestName[0] != '\0')
-      {
-	 if (strcasecmp(Tests[i].TestName, TestName) == 0)
+    {
+       if (strcasecmp(Tests[i].TestName, TestName) == 0)
+	{
+	   if (Tests[i].theTest == NULL)
 	    {
-	       if (Tests[i].theTest == NULL)
-		  {
-		     fputs("error: undefined test!\n", stderr);
-		     return -1;
-		  }
-	       return i;
+	       fputs("error: undefined test!\n", stderr);
+	       return -1;
 	    }
-	 ++i;
-      }
+	   return i;
+	}
+       ++i;
+    }
    fputs("error: unknown test!\n", stderr);
    return -1;
 }
@@ -387,7 +403,7 @@ static int
 testSendHello(void)
 {
    const char msg[] = { "Hello World.\n\r" };
-   int rc;
+   int       rc;
 
    rc = v24Puts(UsedPort, msg);
    if (rc < strlen(msg))
@@ -402,8 +418,9 @@ testStringQuery(void)
 {
    const char msg[] = { "\x1B]I" };	/* SVG-100: query ID */
   /*const char msg[]={"ATI\r"}; *//* Modem: query ID */
-   char answer[128];
-   int rc;
+   char      answer[128];
+
+   int       rc;
 
   /* fill the string so we can find a abort
    */
@@ -412,34 +429,34 @@ testStringQuery(void)
 
    rc = v24Puts(UsedPort, msg);
    if (rc < strlen(msg))
-      {
-	 fputs("error: testStringQuery: v24Puts failed!\n", stderr);
-	 dumpErrorMessage(rc);
-	 return 1;
-      }
+    {
+       fputs("error: testStringQuery: v24Puts failed!\n", stderr);
+       dumpErrorMessage(rc);
+       return 1;
+    }
 
    if (WantWait)
-      {
-	 fputs("info: testStringQuery: wait before receive!\n", stderr);
-	 sleep(10);
-	 rc = v24HaveData(UsedPort);
-	 if (rc < 0)
-	    {
-	       fputs("error: testStringQuery: v24HaveData failed!\n", stderr);
-	       dumpErrorMessage(v24QueryErrno(UsedPort));
-	    }
-	 else
-	    printf("testStringQuery: %d chars waiting\n", rc);
-      }
+    {
+       fputs("info: testStringQuery: wait before receive!\n", stderr);
+       sleep(10);
+       rc = v24HaveData(UsedPort);
+       if (rc < 0)
+	{
+	   fputs("error: testStringQuery: v24HaveData failed!\n", stderr);
+	   dumpErrorMessage(v24QueryErrno(UsedPort));
+	}
+       else
+	  printf("testStringQuery: %d chars waiting\n", rc);
+    }
 
    rc = v24Gets(UsedPort, answer, sizeof(answer) - 1);
    if (rc < 0)
-      {
-	 fputs("error: testStringQuery: v24Gets failed!\n", stderr);
-	 dumpErrorMessage(v24QueryErrno(UsedPort));
-	 printf("testStringQuery: possible partly answer=`%s'\n", answer);
-	 return 1;
-      }
+    {
+       fputs("error: testStringQuery: v24Gets failed!\n", stderr);
+       dumpErrorMessage(v24QueryErrno(UsedPort));
+       printf("testStringQuery: possible partly answer=`%s'\n", answer);
+       return 1;
+    }
    printf("testStringQuery: answer=`%s'\n", answer);
    return 0;
 }
@@ -448,17 +465,17 @@ static int
 testSendOnly(void)
 {
    const unsigned char TestBytes[6] = { 0xAA, 0x55, 0xA5, 0x5A, 0x80, 0x01 };
-   int rc, i;
+   int       rc, i;
 
    for (i = 0; i < 6; i++)
-      {
-	 rc = v24Putc(UsedPort, TestBytes[i]);
-	 if (rc != V24_E_OK)
-	    {
-	       dumpErrorMessage(rc);
-	       break;
-	    }
-      }
+    {
+       rc = v24Putc(UsedPort, TestBytes[i]);
+       if (rc != V24_E_OK)
+	{
+	   dumpErrorMessage(rc);
+	   break;
+	}
+    }
    if (i == 6)
       puts("send-only: test done!\n");
    return (rc == V24_E_OK) ? 0 : 1;
@@ -468,13 +485,13 @@ static int
 testSendOnly2(void)
 {
    const unsigned char TestBytes[6] = { 0xAA, 0x55, 0xA5, 0x5A, 0x80, 0x01 };
-   int rc;
+   int       rc;
 
    rc = v24Write(UsedPort, TestBytes, 6);
    if (rc < 6)
-      {
-	 dumpErrorMessage(v24QueryErrno(UsedPort));
-      }
+    {
+       dumpErrorMessage(v24QueryErrno(UsedPort));
+    }
    if (rc == 6)
       puts("send-only2: test done!\n");
    return (rc == 6) ? 0 : 1;
@@ -509,21 +526,22 @@ usage(void)
 static void
 showTestHelp(void)
 {
-   int TestNr;
-   int i;
+   int       TestNr;
+
+   int       i;
 
    if (TestName[0] == '\0')
-      {
-	 puts("Use `-H' with a test name to get a description of the test!\n");
-	 puts("List of available test:");
-	 i = 0;
-	 while (Tests[i].TestName[0] != '\0')
-	    {
-	       printf("\t`%s'\n", Tests[i].TestName);
-	       ++i;
-	    }
-	 return;
-      }
+    {
+       puts("Use `-H' with a test name to get a description of the test!\n");
+       puts("List of available test:");
+       i = 0;
+       while (Tests[i].TestName[0] != '\0')
+	{
+	   printf("\t`%s'\n", Tests[i].TestName);
+	   ++i;
+	}
+       return;
+    }
 
    TestNr = findTest();
    if (TestNr == (-1))

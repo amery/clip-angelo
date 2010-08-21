@@ -41,7 +41,7 @@
 #include <sys/types.h>
 #include <fcntl.h>
 
-#include "ci_clip.h"
+#include <ci_clip.h>
 
 #ifdef unix
 #ifndef _WIN32
@@ -63,8 +63,8 @@
 
 #endif
 
-#include "ci_clip.h"
-#include "ci_tcaps.h"
+#include <ci_clip.h>
+#include <ci_tcaps.h>
 
 /* max length of termcap entry */
 #define TBUFSIZE  2048
@@ -72,21 +72,35 @@
 #define MAXHOP   32
 
 static char *tbuf;		/* terminal entry buffer */
+
 static int hopcount;		/* detect infinite loops */
+
 static int fnum;
+
 static int match_count;
+
 static char **fnames;
+
 static char *errbuf;
+
 static int errbuflen, errcode;
 
 static int tgetent(char *, char *, int);
+
 static int tnchktc(char *, int);
+
 static int tnamatch(char *);
+
 static int cmp_bucket(const void *p1, const void *p2);
+
 static void err(char *fmt, ...);
+
 static void split_entry(Terminfo * info, char *entry);
+
 static int tdecode(char *bp, Terminfo * info);
+
 static int place_buf(Terminfo * info, int need);
+
 static int read_info(Terminfo * info, char *path);
 
 /* recognisible termcap names */
@@ -357,1425 +371,942 @@ static const TermcapBucket termcapNames[] = {
 #define NUMCOUNT  39
 #define STRCOUNT  412
 
-typedef struct
-{
-   char bools[BOOLCOUNT];
-   char nums[NUMCOUNT];
-   struct
-   {
-      char num;
-      char type;
-   }
-   strs[STRCOUNT];
-}
-TerminfoNums;
+#include <tcaps/typedef_struct_TerminfoNums.h>
 
 static const TerminfoNums tnums = {
-  /* BOOLEANS */
+   /* BOOLEANS */
    {
-   /* bw */ NO_bw,
-   /* am */ NO_am,
-   /* xsb */ -1,
-   /* xhp */ NO_xhp,
-   /* xenl */ NO_xenl,
-   /* eo */ NO_eo,
-   /* gn */ NO_gn,
-   /* hc */ NO_hc,
-   /* km */ NO_km,
-   /* hs */ NO_hs,
-   /* in */ -1,
-   /* da */ -1,
-   /* db */ -1,
-   /* mir */ NO_mir,
-   /* msgr */ NO_msgr,
-   /* os */ NO_os,
-   /* eslok */ -1,
-   /* xt */ NO_xt,
-   /* hz */ NO_hz,
-   /* ul */ NO_ul,
-   /* xon */ NO_xon,
-   /* nxon */ -1,
-   /* mc5i */ -1,
-   /* chts */ -1,
-   /* nrrmc */ -1,
-   /* npc */ -1,
-   /* ndscr */ -1,
-   /* ccc */ NO_ccc,
-   /* bce */ NO_bce,
-   /* hls */ NO_hls,
-   /* xhpa */ -1,
-   /* crxm */ -1,
-   /* daisy */ -1,
-   /* xvpa */ -1,
-   /* sam */ NO_sam,
-   /* cpix */ -1,
-   /* lpix */ -1,
-   /* OTbs */ -1,
-   /* OTns */ -1,
-   /* OTnc */ -1,
-   /* OTMT */ -1,
-   /* OTNL */ -1,
-   /* OTpt */ -1,
-   /* OTxr */ -1,
+    /* bw */ NO_bw,
+    /* am */ NO_am,
+    /* xsb */ -1,
+    /* xhp */ NO_xhp,
+    /* xenl */ NO_xenl,
+    /* eo */ NO_eo,
+    /* gn */ NO_gn,
+    /* hc */ NO_hc,
+    /* km */ NO_km,
+    /* hs */ NO_hs,
+    /* in */ -1,
+    /* da */ -1,
+    /* db */ -1,
+    /* mir */ NO_mir,
+    /* msgr */ NO_msgr,
+    /* os */ NO_os,
+    /* eslok */ -1,
+    /* xt */ NO_xt,
+    /* hz */ NO_hz,
+    /* ul */ NO_ul,
+    /* xon */ NO_xon,
+    /* nxon */ -1,
+    /* mc5i */ -1,
+    /* chts */ -1,
+    /* nrrmc */ -1,
+    /* npc */ -1,
+    /* ndscr */ -1,
+    /* ccc */ NO_ccc,
+    /* bce */ NO_bce,
+    /* hls */ NO_hls,
+    /* xhpa */ -1,
+    /* crxm */ -1,
+    /* daisy */ -1,
+    /* xvpa */ -1,
+    /* sam */ NO_sam,
+    /* cpix */ -1,
+    /* lpix */ -1,
+    /* OTbs */ -1,
+    /* OTns */ -1,
+    /* OTnc */ -1,
+    /* OTMT */ -1,
+    /* OTNL */ -1,
+    /* OTpt */ -1,
+    /* OTxr */ -1,
     },
-  /* NUMERICS */
+   /* NUMERICS */
    {
-   /* cols */ NO_cols,
-   /* it */ NO_it,
-   /* lines */ NO_lines,
-   /* lm */ -1,
-   /* xmc */ NO_xmc,
-   /* pb */ -1,
-   /* vt */ -1,
-   /* wsl */ NO_wsl,
-   /* nlab */ -1,
-   /* lh */ -1,
-   /* lw */ -1,
-   /* ma */ -1,
-   /* wnum */ -1,
-   /* colors */ NO_colors,
-   /* pairs */ NO_pairs,
-   /* ncv */ NO_ncv,
-   /* bufsz */ -1,
-   /* spinv */ -1,
-   /* spinh */ -1,
-   /* maddr */ -1,
-   /* mjump */ -1,
-   /* mcs */ -1,
-   /* mls */ -1,
-   /* npins */ -1,
-   /* orc */ -1,
-   /* orl */ -1,
-   /* orhi */ -1,
-   /* orvi */ -1,
-   /* cps */ -1,
-   /* widcs */ -1,
-   /* btns */ NO_btns,
-   /* bitwin */ -1,
-   /* bitype */ -1,
-   /* OTug */ -1,
-   /* OTdC */ -1,
-   /* OTdN */ -1,
-   /* OTdB */ -1,
-   /* OTdT */ -1,
-   /* OTkn */ -1,
+    /* cols */ NO_cols,
+    /* it */ NO_it,
+    /* lines */ NO_lines,
+    /* lm */ -1,
+    /* xmc */ NO_xmc,
+    /* pb */ -1,
+    /* vt */ -1,
+    /* wsl */ NO_wsl,
+    /* nlab */ -1,
+    /* lh */ -1,
+    /* lw */ -1,
+    /* ma */ -1,
+    /* wnum */ -1,
+    /* colors */ NO_colors,
+    /* pairs */ NO_pairs,
+    /* ncv */ NO_ncv,
+    /* bufsz */ -1,
+    /* spinv */ -1,
+    /* spinh */ -1,
+    /* maddr */ -1,
+    /* mjump */ -1,
+    /* mcs */ -1,
+    /* mls */ -1,
+    /* npins */ -1,
+    /* orc */ -1,
+    /* orl */ -1,
+    /* orhi */ -1,
+    /* orvi */ -1,
+    /* cps */ -1,
+    /* widcs */ -1,
+    /* btns */ NO_btns,
+    /* bitwin */ -1,
+    /* bitype */ -1,
+    /* OTug */ -1,
+    /* OTdC */ -1,
+    /* OTdN */ -1,
+    /* OTdB */ -1,
+    /* OTdT */ -1,
+    /* OTkn */ -1,
     },
-  /* STRINGS */
+   /* STRINGS */
    {
-   /* cbt */
+    /* cbt */
     {NO_cbt, 'S'},
-   /* bel */
+    /* bel */
     {NO_bel, 'S'},
-   /* cr */
+    /* cr */
     {NO_cr, 'S'},
-   /* csr */
+    /* csr */
     {NO_csr, 'S'},
-   /* tbc */
+    /* tbc */
     {NO_tbc, 'S'},
-   /* clear */
+    /* clear */
     {NO_clear, 'S'},
-   /* el */
+    /* el */
     {NO_el, 'S'},
-   /* ed */
+    /* ed */
     {NO_ed, 'S'},
-   /* hpa */
+    /* hpa */
     {NO_hpa, 'S'},
-   /* cmdch */
+    /* cmdch */
     {-1, 0},
-   /* cup */
+    /* cup */
     {NO_cup, 'S'},
-   /* cud1 */
+    /* cud1 */
     {NO_cud1, 'S'},
-   /* home */
+    /* home */
     {NO_home, 'S'},
-   /* civis */
+    /* civis */
     {NO_civis, 'S'},
-   /* cub1 */
+    /* cub1 */
     {NO_cub1, 'S'},
-   /* mrcup */
+    /* mrcup */
     {-1, 0},
-   /* cnorm */
+    /* cnorm */
     {NO_cnorm, 'S'},
-   /* cuf1 */
+    /* cuf1 */
     {NO_cuf1, 'S'},
-   /* ll */
+    /* ll */
     {NO_ll, 'S'},
-   /* cuu1 */
+    /* cuu1 */
     {NO_cuu1, 'S'},
-   /* cvvis */
+    /* cvvis */
     {NO_cvvis, 'S'},
-   /* dch1 */
+    /* dch1 */
     {NO_dch1, 'S'},
-   /* dl1 */
+    /* dl1 */
     {NO_dl1, 'S'},
-   /* dsl */
+    /* dsl */
     {NO_dsl, 'S'},
-   /* hd */
+    /* hd */
     {-1, 0},
-   /* smacs */
+    /* smacs */
     {NO_smacs, 'S'},
-   /* blink */
+    /* blink */
     {NO_blink, 'S'},
-   /* bold */
+    /* bold */
     {NO_bold, 'S'},
-   /* smcup */
+    /* smcup */
     {NO_smcup, 'S'},
-   /* smdc */
+    /* smdc */
     {-1, 0},
-   /* dim */
+    /* dim */
     {NO_dim, 'S'},
-   /* smir */
+    /* smir */
     {-1, 0},
-   /* invis */
+    /* invis */
     {NO_invis, 'S'},
-   /* prot */
+    /* prot */
     {NO_prot, 'S'},
-   /* rev */
+    /* rev */
     {NO_rev, 'S'},
-   /* smso */
+    /* smso */
     {NO_smso, 'S'},
-   /* smul */
+    /* smul */
     {NO_smul, 'S'},
-   /* ech */
+    /* ech */
     {NO_ech, 'S'},
-   /* rmacs */
+    /* rmacs */
     {NO_rmacs, 'S'},
-   /* sgr0 */
+    /* sgr0 */
     {NO_sgr0, 'S'},
-   /* rmcup */
+    /* rmcup */
     {NO_rmcup, 'S'},
-   /* rmdc */
+    /* rmdc */
     {-1, 0},
-   /* rmir */
+    /* rmir */
     {NO_rmir, 'S'},
-   /* rmso */
+    /* rmso */
     {NO_rmso, 'S'},
-   /* rmul */
+    /* rmul */
     {NO_rmul, 'S'},
-   /* flash */
+    /* flash */
     {-1, 0},
-   /* ff */
+    /* ff */
     {NO_ff, 'S'},
-   /* fsl */
+    /* fsl */
     {NO_fsl, 'S'},
-   /* is1 */
+    /* is1 */
     {NO_is1, 'S'},
-   /* is2 */
+    /* is2 */
     {NO_is2, 'S'},
-   /* is3 */
+    /* is3 */
     {NO_is3, 'S'},
-   /* if */
+    /* if */
     {-1, 0},
-   /* ich1 */
+    /* ich1 */
     {NO_ich1, 'S'},
-   /* il1 */
+    /* il1 */
     {NO_il1, 'S'},
-   /* ip */
+    /* ip */
     {-1, 0},
-   /* kbs */
+    /* kbs */
     {NO_kbs, 'K'},
-   /* ktbc */
+    /* ktbc */
     {-1, 0},
-   /* kclr */
+    /* kclr */
     {NO_kclr, 'K'},
-   /* kctab */
+    /* kctab */
     {NO_kctab, 'K'},
-   /* kdch1 */
+    /* kdch1 */
     {NO_kdch1, 'K'},
-   /* kdl1 */
+    /* kdl1 */
     {-1, 0},
-   /* kcud1 */
+    /* kcud1 */
     {NO_kcud1, 'K'},
-   /* krmir */
+    /* krmir */
     {-1, 0},
-   /* kel */
+    /* kel */
     {-1, 0},
-   /* ked */
+    /* ked */
     {-1, 0},
-   /* kf0 */
+    /* kf0 */
     {NO_kf0, 'K'},
-   /* kf1 */
+    /* kf1 */
     {NO_kf1, 'K'},
-   /* kf10 */
+    /* kf10 */
     {NO_kf10, 'K'},
-   /* kf2 */
+    /* kf2 */
     {NO_kf2, 'K'},
-   /* kf3 */
+    /* kf3 */
     {NO_kf3, 'K'},
-   /* kf4 */
+    /* kf4 */
     {NO_kf4, 'K'},
-   /* kf5 */
+    /* kf5 */
     {NO_kf5, 'K'},
-   /* kf6 */
+    /* kf6 */
     {NO_kf6, 'K'},
-   /* kf7 */
+    /* kf7 */
     {NO_kf7, 'K'},
-   /* kf8 */
+    /* kf8 */
     {NO_kf8, 'K'},
-   /* kf9 */
+    /* kf9 */
     {NO_kf9, 'K'},
-   /* khome */
+    /* khome */
     {NO_khome, 'K'},
-   /* kich1 */
+    /* kich1 */
     {NO_kich1, 'K'},
-   /* kil1 */
+    /* kil1 */
     {-1, 0},
-   /* kcub1 */
+    /* kcub1 */
     {NO_kcub1, 'K'},
-   /* kll */
+    /* kll */
     {NO_kll, 'K'},
-   /* knp */
+    /* knp */
     {NO_knp, 'K'},
-   /* kpp */
+    /* kpp */
     {NO_kpp, 'K'},
-   /* kcuf1 */
+    /* kcuf1 */
     {NO_kcuf1, 'K'},
-   /* kind */
+    /* kind */
     {NO_kind, 'K'},
-   /* kri */
+    /* kri */
     {NO_kri, 'K'},
-   /* khts */
+    /* khts */
     {NO_khts, 'K'},
-   /* kcuu1 */
+    /* kcuu1 */
     {NO_kcuu1, 'K'},
-   /* rmkx */
+    /* rmkx */
     {NO_rmkx, 'S'},
-   /* smkx */
+    /* smkx */
     {NO_smkx, 'S'},
-   /* lf0 */
+    /* lf0 */
     {-1, 0},
-   /* lf1 */
+    /* lf1 */
     {-1, 0},
-   /* lf10 */
+    /* lf10 */
     {-1, 0},
-   /* lf2 */
+    /* lf2 */
     {-1, 0},
-   /* lf3 */
+    /* lf3 */
     {-1, 0},
-   /* lf4 */
+    /* lf4 */
     {-1, 0},
-   /* lf5 */
+    /* lf5 */
     {-1, 0},
-   /* lf6 */
+    /* lf6 */
     {-1, 0},
-   /* lf7 */
+    /* lf7 */
     {-1, 0},
-   /* lf8 */
+    /* lf8 */
     {-1, 0},
-   /* lf9 */
+    /* lf9 */
     {-1, 0},
-   /* rmm */
+    /* rmm */
     {-1, 0},
-   /* smm */
+    /* smm */
     {-1, 0},
-   /* nel */
+    /* nel */
     {-1, 0},
-   /* pad */
+    /* pad */
     {-1, 0},
-   /* dch */
+    /* dch */
     {NO_dch, 'S'},
-   /* dl */
+    /* dl */
     {NO_dl, 'S'},
-   /* cud */
+    /* cud */
     {NO_cud, 'S'},
-   /* ich */
+    /* ich */
     {NO_ich, 'S'},
-   /* indn */
+    /* indn */
     {NO_indn, 'S'},
-   /* il */
+    /* il */
     {NO_il, 'S'},
-   /* cub */
+    /* cub */
     {NO_cub, 'S'},
-   /* cuf */
+    /* cuf */
     {NO_cuf, 'S'},
-   /* rin */
+    /* rin */
     {NO_rin, 'S'},
-   /* cuu */
+    /* cuu */
     {NO_cuu, 'S'},
-   /* pfkey */
+    /* pfkey */
     {-1, 0},
-   /* pfloc */
+    /* pfloc */
     {-1, 0},
-   /* pfx */
+    /* pfx */
     {-1, 0},
-   /* mc0 */
+    /* mc0 */
     {-1, 0},
-   /* mc4 */
+    /* mc4 */
     {NO_mc4, 'S'},
-   /* mc5 */
+    /* mc5 */
     {NO_mc5, 'S'},
-   /* rep */
+    /* rep */
     {NO_rep, 'S'},
-   /* rs1 */
+    /* rs1 */
     {NO_rs1, 'S'},
-   /* rs2 */
+    /* rs2 */
     {NO_rs2, 'S'},
-   /* rs3 */
+    /* rs3 */
     {NO_rs3, 'S'},
-   /* rf */
+    /* rf */
     {-1, 0},
-   /* rc */
+    /* rc */
     {NO_rc, 'S'},
-   /* vpa */
+    /* vpa */
     {NO_vpa, 'S'},
-   /* sc */
+    /* sc */
     {NO_sc, 'S'},
-   /* ind */
+    /* ind */
     {NO_ind, 'S'},
-   /* ri */
+    /* ri */
     {NO_ri, 'S'},
-   /* sgr */
+    /* sgr */
     {NO_sgr, 'S'},
-   /* hts */
+    /* hts */
     {NO_hts, 'S'},
-   /* wind */
+    /* wind */
     {NO_wind, 'S'},
-   /* ht */
+    /* ht */
     {NO_ht, 'S'},
-   /* tsl */
+    /* tsl */
     {NO_tsl, 'S'},
-   /* uc */
+    /* uc */
     {NO_uc, 'S'},
-   /* hu */
+    /* hu */
     {-1, 0},
-   /* iprog */
+    /* iprog */
     {-1, 0},
-   /* ka1 */
+    /* ka1 */
     {NO_ka1, 'K'},
-   /* ka3 */
+    /* ka3 */
     {NO_ka3, 'K'},
-   /* kb2 */
+    /* kb2 */
     {NO_kb2, 'K'},
-   /* kc1 */
+    /* kc1 */
     {NO_kc1, 'K'},
-   /* kc3 */
+    /* kc3 */
     {NO_kc3, 'K'},
-   /* mc5p */
+    /* mc5p */
     {NO_mc5p, 'S'},
-   /* rmp */
+    /* rmp */
     {-1, 0},
-   /* acsc */
+    /* acsc */
     {NO_acsc, 'K'},
-   /* pln */
+    /* pln */
     {-1, 0},
-   /* kcbt */
+    /* kcbt */
     {NO_kcbt, 'K'},
-   /* smxon */
+    /* smxon */
     {NO_smxon, 'S'},
-   /* rmxon */
+    /* rmxon */
     {NO_rmxon, 'S'},
-   /* smam */
+    /* smam */
     {NO_smam, 'S'},
-   /* rmam */
+    /* rmam */
     {NO_rmam, 'S'},
-   /* xonc */
+    /* xonc */
     {NO_xonc, 'S'},
-   /* xoffc */
+    /* xoffc */
     {NO_xoffc, 'S'},
-   /* enacs */
+    /* enacs */
     {NO_enacs, 'S'},
-   /* smln */
+    /* smln */
     {-1, 0},
-   /* rmln */
+    /* rmln */
     {-1, 0},
-   /* kbeg */
+    /* kbeg */
     {NO_kbeg, 'K'},
-   /* kcan */
+    /* kcan */
     {NO_kcan, 'K'},
-   /* kclo */
+    /* kclo */
     {NO_kclo, 'K'},
-   /* kcmd */
+    /* kcmd */
     {NO_kcmd, 'K'},
-   /* kcpy */
+    /* kcpy */
     {NO_kcpy, 'K'},
-   /* kcrt */
+    /* kcrt */
     {NO_kcrt, 'K'},
-   /* kend */
+    /* kend */
     {NO_kend, 'K'},
-   /* kent */
+    /* kent */
     {NO_kent, 'K'},
-   /* kext */
+    /* kext */
     {NO_kext, 'K'},
-   /* kfnd */
+    /* kfnd */
     {NO_kfnd, 'K'},
-   /* khlp */
+    /* khlp */
     {-1, 0},
-   /* kmrk */
+    /* kmrk */
     {-1, 0},
-   /* kmsg */
+    /* kmsg */
     {-1, 0},
-   /* kmov */
+    /* kmov */
     {-1, 0},
-   /* knxt */
+    /* knxt */
     {-1, 0},
-   /* kopn */
+    /* kopn */
     {-1, 0},
-   /* kopt */
+    /* kopt */
     {-1, 0},
-   /* kprv */
+    /* kprv */
     {-1, 0},
-   /* kprt */
+    /* kprt */
     {-1, 0},
-   /* krdo */
+    /* krdo */
     {-1, 0},
-   /* kref */
+    /* kref */
     {-1, 0},
-   /* krfr */
+    /* krfr */
     {-1, 0},
-   /* krpl */
+    /* krpl */
     {-1, 0},
-   /* krst */
+    /* krst */
     {-1, 0},
-   /* kres */
+    /* kres */
     {-1, 0},
-   /* ksav */
+    /* ksav */
     {-1, 0},
-   /* kspd */
+    /* kspd */
     {-1, 0},
-   /* kund */
+    /* kund */
     {-1, 0},
-   /* kBEG */
+    /* kBEG */
     {-1, 0},
-   /* kCAN */
+    /* kCAN */
     {-1, 0},
-   /* kCMD */
+    /* kCMD */
     {-1, 0},
-   /* kCPY */
+    /* kCPY */
     {-1, 0},
-   /* kCRT */
+    /* kCRT */
     {-1, 0},
-   /* kDC */
+    /* kDC */
     {-1, 0},
-   /* kDL */
+    /* kDL */
     {-1, 0},
-   /* kslt */
+    /* kslt */
     {-1, 0},
-   /* kEND */
+    /* kEND */
     {-1, 0},
-   /* kEOL */
+    /* kEOL */
     {-1, 0},
-   /* kEXT */
+    /* kEXT */
     {-1, 0},
-   /* kFND */
+    /* kFND */
     {-1, 0},
-   /* kHLP */
+    /* kHLP */
     {-1, 0},
-   /* kHOM */
+    /* kHOM */
     {-1, 0},
-   /* kIC */
+    /* kIC */
     {-1, 0},
-   /* kLFT */
+    /* kLFT */
     {-1, 0},
-   /* kMSG */
+    /* kMSG */
     {-1, 0},
-   /* kMOV */
+    /* kMOV */
     {-1, 0},
-   /* kNXT */
+    /* kNXT */
     {-1, 0},
-   /* kOPT */
+    /* kOPT */
     {-1, 0},
-   /* kPRV */
+    /* kPRV */
     {-1, 0},
-   /* kPRT */
+    /* kPRT */
     {-1, 0},
-   /* kRDO */
+    /* kRDO */
     {-1, 0},
-   /* kRPL */
+    /* kRPL */
     {-1, 0},
-   /* kRIT */
+    /* kRIT */
     {-1, 0},
-   /* kRES */
+    /* kRES */
     {-1, 0},
-   /* kSAV */
+    /* kSAV */
     {-1, 0},
-   /* kSPD */
+    /* kSPD */
     {-1, 0},
-   /* kUND */
+    /* kUND */
     {-1, 0},
-   /* rfi */
+    /* rfi */
     {-1, 0},
-   /* kf11 */
+    /* kf11 */
     {NO_kf11, 'K'},
-   /* kf12 */
+    /* kf12 */
     {NO_kf12, 'K'},
-   /* kf13 */
+    /* kf13 */
     {NO_kf13, 'K'},
-   /* kf14 */
+    /* kf14 */
     {NO_kf14, 'K'},
-   /* kf15 */
+    /* kf15 */
     {NO_kf15, 'K'},
-   /* kf16 */
+    /* kf16 */
     {NO_kf16, 'K'},
-   /* kf17 */
+    /* kf17 */
     {NO_kf17, 'K'},
-   /* kf18 */
+    /* kf18 */
     {NO_kf18, 'K'},
-   /* kf19 */
+    /* kf19 */
     {NO_kf19, 'K'},
-   /* kf20 */
+    /* kf20 */
     {NO_kf20, 'K'},
-   /* kf21 */
+    /* kf21 */
     {NO_kf21, 'K'},
-   /* kf22 */
+    /* kf22 */
     {NO_kf22, 'K'},
-   /* kf23 */
+    /* kf23 */
     {NO_kf23, 'K'},
-   /* kf24 */
+    /* kf24 */
     {NO_kf24, 'K'},
-   /* kf25 */
+    /* kf25 */
     {NO_kf25, 'K'},
-   /* kf26 */
+    /* kf26 */
     {NO_kf26, 'K'},
-   /* kf27 */
+    /* kf27 */
     {NO_kf27, 'K'},
-   /* kf28 */
+    /* kf28 */
     {NO_kf28, 'K'},
-   /* kf29 */
+    /* kf29 */
     {NO_kf29, 'K'},
-   /* kf30 */
+    /* kf30 */
     {NO_kf30, 'K'},
-   /* kf31 */
+    /* kf31 */
     {NO_kf31, 'K'},
-   /* kf32 */
+    /* kf32 */
     {NO_kf32, 'K'},
-   /* kf33 */
+    /* kf33 */
     {NO_kf33, 'K'},
-   /* kf34 */
+    /* kf34 */
     {NO_kf34, 'K'},
-   /* kf35 */
+    /* kf35 */
     {NO_kf35, 'K'},
-   /* kf36 */
+    /* kf36 */
     {NO_kf36, 'K'},
-   /* kf37 */
+    /* kf37 */
     {NO_kf37, 'K'},
-   /* kf38 */
+    /* kf38 */
     {NO_kf38, 'K'},
-   /* kf39 */
+    /* kf39 */
     {NO_kf39, 'K'},
-   /* kf40 */
+    /* kf40 */
     {NO_kf40, 'K'},
-   /* kf41 */
+    /* kf41 */
     {NO_kf41, 'K'},
-   /* kf42 */
+    /* kf42 */
     {NO_kf42, 'K'},
-   /* kf43 */
+    /* kf43 */
     {NO_kf43, 'K'},
-   /* kf44 */
+    /* kf44 */
     {NO_kf44, 'K'},
-   /* kf45 */
+    /* kf45 */
     {NO_kf45, 'K'},
-   /* kf46 */
+    /* kf46 */
     {NO_kf46, 'K'},
-   /* kf47 */
+    /* kf47 */
     {NO_kf47, 'K'},
-   /* kf48 */
+    /* kf48 */
     {NO_kf48, 'K'},
-   /* kf49 */
+    /* kf49 */
     {NO_kf49, 'K'},
-   /* kf50 */
+    /* kf50 */
     {NO_kf50, 'K'},
-   /* kf51 */
+    /* kf51 */
     {NO_kf51, 'K'},
-   /* kf52 */
+    /* kf52 */
     {NO_kf52, 'K'},
-   /* kf53 */
+    /* kf53 */
     {NO_kf53, 'K'},
-   /* kf54 */
+    /* kf54 */
     {NO_kf54, 'K'},
-   /* kf55 */
+    /* kf55 */
     {NO_kf55, 'K'},
-   /* kf56 */
+    /* kf56 */
     {NO_kf56, 'K'},
-   /* kf57 */
+    /* kf57 */
     {NO_kf57, 'K'},
-   /* kf58 */
+    /* kf58 */
     {NO_kf58, 'K'},
-   /* kf59 */
+    /* kf59 */
     {NO_kf59, 'K'},
-   /* kf60 */
+    /* kf60 */
     {NO_kf60, 'K'},
-   /* kf61 */
+    /* kf61 */
     {NO_kf61, 'K'},
-   /* kf62 */
+    /* kf62 */
     {NO_kf62, 'K'},
-   /* kf63 */
+    /* kf63 */
     {NO_kf63, 'K'},
-   /* el1 */
+    /* el1 */
     {NO_el1, 'S'},
-   /* mgc */
+    /* mgc */
     {NO_mgc, 'S'},
-   /* smgl */
+    /* smgl */
     {-1, 0},
-   /* smgr */
+    /* smgr */
     {-1, 0},
-   /* fln */
+    /* fln */
     {-1, 0},
-   /* sclk */
+    /* sclk */
     {-1, 0},
-   /* dclk */
+    /* dclk */
     {-1, 0},
-   /* rmclk */
+    /* rmclk */
     {-1, 0},
-   /* cwin */
+    /* cwin */
     {NO_cwin, 'S'},
-   /* wingo */
+    /* wingo */
     {-1, 0},
-   /* hup */
+    /* hup */
     {-1, 0},
-   /* dial */
+    /* dial */
     {-1, 0},
-   /* qdial */
+    /* qdial */
     {-1, 0},
-   /* tone */
+    /* tone */
     {-1, 0},
-   /* pulse */
+    /* pulse */
     {-1, 0},
-   /* hook */
+    /* hook */
     {-1, 0},
-   /* pause */
+    /* pause */
     {-1, 0},
-   /* wait */
+    /* wait */
     {-1, 0},
-   /* u0 */
+    /* u0 */
     {-1, 0},
-   /* u1 */
+    /* u1 */
     {-1, 0},
-   /* u2 */
+    /* u2 */
     {-1, 0},
-   /* u3 */
+    /* u3 */
     {-1, 0},
-   /* u4 */
+    /* u4 */
     {-1, 0},
-   /* u5 */
+    /* u5 */
     {-1, 0},
-   /* u6 */
+    /* u6 */
     {-1, 0},
-   /* u7 */
+    /* u7 */
     {-1, 0},
-   /* u8 */
+    /* u8 */
     {-1, 0},
-   /* u9 */
+    /* u9 */
     {-1, 0},
-   /* op */
+    /* op */
     {NO_op, 'S'},
-   /* oc */
+    /* oc */
     {NO_oc, 'S'},
-   /* initc */
+    /* initc */
     {NO_initc, 'S'},
-   /* initp */
+    /* initp */
     {NO_initp, 'S'},
-   /* scp */
+    /* scp */
     {NO_scp, 'S'},
-   /* setf */
+    /* setf */
     {NO_setf, 'S'},
-   /* setb */
+    /* setb */
     {NO_setb, 'S'},
-   /* cpi */
+    /* cpi */
     {-1, 0},
-   /* lpi */
+    /* lpi */
     {-1, 0},
-   /* chr */
+    /* chr */
     {-1, 0},
-   /* cvr */
+    /* cvr */
     {-1, 0},
-   /* defc */
+    /* defc */
     {-1, 0},
-   /* swidm */
+    /* swidm */
     {-1, 0},
-   /* sdrfq */
+    /* sdrfq */
     {-1, 0},
-   /* sitm */
+    /* sitm */
     {-1, 0},
-   /* slm */
+    /* slm */
     {-1, 0},
-   /* smicm */
+    /* smicm */
     {-1, 0},
-   /* snlq */
+    /* snlq */
     {-1, 0},
-   /* snrmq */
+    /* snrmq */
     {-1, 0},
-   /* sshm */
+    /* sshm */
     {-1, 0},
-   /* ssubm */
+    /* ssubm */
     {-1, 0},
-   /* ssupm */
+    /* ssupm */
     {-1, 0},
-   /* sum */
+    /* sum */
     {-1, 0},
-   /* rwidm */
+    /* rwidm */
     {-1, 0},
-   /* ritm */
+    /* ritm */
     {-1, 0},
-   /* rlm */
+    /* rlm */
     {-1, 0},
-   /* rmicm */
+    /* rmicm */
     {-1, 0},
-   /* rshm */
+    /* rshm */
     {-1, 0},
-   /* rsubm */
+    /* rsubm */
     {-1, 0},
-   /* rsupm */
+    /* rsupm */
     {-1, 0},
-   /* rum */
+    /* rum */
     {-1, 0},
-   /* mhpa */
+    /* mhpa */
     {-1, 0},
-   /* mcud1 */
+    /* mcud1 */
     {-1, 0},
-   /* mcub1 */
+    /* mcub1 */
     {-1, 0},
-   /* mcuf1 */
+    /* mcuf1 */
     {-1, 0},
-   /* mvpa */
+    /* mvpa */
     {-1, 0},
-   /* mcuu1 */
+    /* mcuu1 */
     {-1, 0},
-   /* porder */
+    /* porder */
     {-1, 0},
-   /* mcud */
+    /* mcud */
     {-1, 0},
-   /* mcub */
+    /* mcub */
     {-1, 0},
-   /* mcuf */
+    /* mcuf */
     {-1, 0},
-   /* mcuu */
+    /* mcuu */
     {-1, 0},
-   /* scs */
+    /* scs */
     {-1, 0},
-   /* smgb */
+    /* smgb */
     {-1, 0},
-   /* smgbp */
+    /* smgbp */
     {-1, 0},
-   /* smglp */
+    /* smglp */
     {-1, 0},
-   /* smgrp */
+    /* smgrp */
     {-1, 0},
-   /* smgt */
+    /* smgt */
     {-1, 0},
-   /* smgtp */
+    /* smgtp */
     {-1, 0},
-   /* sbim */
+    /* sbim */
     {-1, 0},
-   /* scsd */
+    /* scsd */
     {-1, 0},
-   /* rbim */
+    /* rbim */
     {-1, 0},
-   /* rcsd */
+    /* rcsd */
     {-1, 0},
-   /* subcs */
+    /* subcs */
     {-1, 0},
-   /* supcs */
+    /* supcs */
     {-1, 0},
-   /* docr */
+    /* docr */
     {-1, 0},
-   /* zerom */
+    /* zerom */
     {-1, 0},
-   /* csnm */
+    /* csnm */
     {-1, 0},
-   /* kmous */
+    /* kmous */
     {NO_kmous, 'S'},
-   /* minfo */
+    /* minfo */
     {NO_minfo, 'S'},
-   /* reqmp */
+    /* reqmp */
     {NO_reqmp, 'S'},
-   /* getm */
+    /* getm */
     {NO_getm, 'S'},
-   /* setaf */
+    /* setaf */
     {NO_setaf, 'S'},
-   /* setab */
+    /* setab */
     {NO_setab, 'S'},
-   /* pfxl */
+    /* pfxl */
     {-1, 0},
-   /* devt */
+    /* devt */
     {-1, 0},
-   /* csin */
+    /* csin */
     {-1, 0},
-   /* s0ds */
+    /* s0ds */
     {-1, 0},
-   /* s1ds */
+    /* s1ds */
     {-1, 0},
-   /* s2ds */
+    /* s2ds */
     {-1, 0},
-   /* s3ds */
+    /* s3ds */
     {-1, 0},
-   /* smglr */
+    /* smglr */
     {-1, 0},
-   /* smgtb */
+    /* smgtb */
     {-1, 0},
-   /* birep */
+    /* birep */
     {-1, 0},
-   /* binel */
+    /* binel */
     {-1, 0},
-   /* bicr */
+    /* bicr */
     {-1, 0},
-   /* colornm */
+    /* colornm */
     {-1, 0},
-   /* defbi */
+    /* defbi */
     {-1, 0},
-   /* endbi */
+    /* endbi */
     {-1, 0},
-   /* setcolor */
+    /* setcolor */
     {-1, 0},
-   /* slines */
+    /* slines */
     {-1, 0},
-   /* dispc */
+    /* dispc */
     {-1, 0},
-   /* smpch */
+    /* smpch */
     {-1, 0},
-   /* rmpch */
+    /* rmpch */
     {-1, 0},
-   /* smsc */
+    /* smsc */
     {NO_smsc, 'S'},
-   /* rmsc */
+    /* rmsc */
     {NO_rmsc, 'S'},
-   /* pctrm */
+    /* pctrm */
     {-1, 0},
-   /* scesc */
+    /* scesc */
     {NO_scesc, 'S'},
-   /* scesa */
+    /* scesa */
     {-1, 0},
-   /* ehhlm */
+    /* ehhlm */
     {-1, 0},
-   /* elhlm */
+    /* elhlm */
     {-1, 0},
-   /* elohlm */
+    /* elohlm */
     {-1, 0},
-   /* erhlm */
+    /* erhlm */
     {-1, 0},
-   /* ethlm */
+    /* ethlm */
     {-1, 0},
-   /* evhlm */
+    /* evhlm */
     {-1, 0},
-   /* OTi2 */
+    /* OTi2 */
     {-1, 0},
-   /* OTrs */
+    /* OTrs */
     {-1, 0},
-   /* OTnl */
+    /* OTnl */
     {-1, 0},
-   /* OTbc */
+    /* OTbc */
     {-1, 0},
-   /* OTko */
+    /* OTko */
     {-1, 0},
-   /* OTma */
+    /* OTma */
     {-1, 0},
-   /* OTG2 */
+    /* OTG2 */
     {-1, 0},
-   /* OTG3 */
+    /* OTG3 */
     {-1, 0},
-   /* OTG1 */
+    /* OTG1 */
     {-1, 0},
-   /* OTG4 */
+    /* OTG4 */
     {-1, 0},
-   /* OTGR */
+    /* OTGR */
     {-1, 0},
-   /* OTGL */
+    /* OTGL */
     {-1, 0},
-   /* OTGU */
+    /* OTGU */
     {-1, 0},
-   /* OTGD */
+    /* OTGD */
     {-1, 0},
-   /* OTGH */
+    /* OTGH */
     {-1, 0},
-   /* OTGV */
+    /* OTGV */
     {-1, 0},
-   /* OTGC */
+    /* OTGC */
     {-1, 0},
-   /* meml */
+    /* meml */
     {-1, 0},
-   /* memu */
+    /* memu */
     {-1, 0},
-   /* box1 */
+    /* box1 */
     {-1, 0},
     }
 };
 
-int
-read_term(int fnum, char **fnames, int tnum, Terminfo * infos, char *errbuf, int errbuflen)
-{
-   struct stat st;
-   int r, i;
-
-   for (i = 0; i < fnum; ++i)
-      {
-	 r = stat(fnames[i], &st);
-	 if (!r)
-	    {
-	       if (S_ISDIR(st.st_mode))
-		  return read_tinfo(fnum, fnames, tnum, infos, errbuf, errbuflen);
-	       else if (S_ISREG(st.st_mode))
-		  return read_tcap(fnum, fnames, tnum, infos, errbuf, errbuflen);
-	    }
-      }
-
-   snprintf(errbuf, errbuflen, "no valid termcap/terminfo files:");
-   for (i = 0; i < fnum; ++i)
-      {
-	 r = strlen(errbuf);
-	 snprintf(errbuf + r, errbuflen - r, " %s", fnames[i]);
-      }
-   return -1;
-}
-
-int
-read_tcapbuf(char *buf, Terminfo * info, char *Errbuf, int Errbuflen)
-{
-   errbuf = Errbuf;
-   errbuflen = Errbuflen;
-   errcode = 0;
-
-   split_entry(info, buf);
-
-   return 0;
-}
-
-int
-read_tcap(int Fnum, char **Fnames, int tnum, Terminfo * infos, char *Errbuf, int Errbuflen)
-{
-   int i, r = 0;
-   char buf[TBUFSIZE];
-   Terminfo *info;
-
-   fnum = Fnum;
-   fnames = Fnames;
-   errbuf = Errbuf;
-   errbuflen = Errbuflen;
-   errcode = 0;
-
-   for (i = 0; i < tnum; ++i)
-      {
-	 info = infos + i;
-
-	 match_count = 0;
-	 r = tgetent(buf, info->name, 0);
-	 if (r < 0 && errcode)
-	    return -1;
-
-	 if (!r || !match_count)
-	    {
-	       snprintf(Errbuf, Errbuflen, "no termcap entry for terminal '%s'", info->name);
-	       return -1;
-	    }
-
-	 split_entry(info, buf);
-
-      }
-
-   return 0;
-}
-
-int
-read_tinfo(int fnum, char **fnames, int tnum, Terminfo * infos, char *Errbuf, int Errbuflen)
-{
-   int r = 0;
-   int i, j, found;
-   Terminfo *info;
-
-   errbuf = Errbuf;
-   errbuflen = Errbuflen;
-   errcode = 0;
-
-   for (i = 0; i < tnum; ++i)
-      {
-	 found = 0;
-	 info = infos + i;
-	 r = 0;
-
-	 for (j = 0; j < fnum; ++j)
-	    {
-	       char path[PATH_MAX];
-
-	       snprintf(path, PATH_MAX, "%s" DELIMSTR "%c" DELIMSTR "%s", fnames[j], info->name[0], info->name);
-
-	       r = read_info(info, path);
-	       if (!r)
-		  ++found;
-	    }
-
-	 if (!found)
-	    {
-	       snprintf(Errbuf, Errbuflen, "no terminfo entry for terminal '%s'", info->name);
-	       return -1;
-	    }
-
-      }
-
-   return 0;
-}
-
-static void
-err(char *fmt, ...)
-{
-   va_list ap;
-
-   va_start(ap, fmt);
-   vsnprintf(errbuf, errbuflen, fmt, ap);
-   errcode = 1;
-
-   va_end(ap);
-}
-
-static int
-tgetent(char *bp, char *name, int beg)
-{
-   int j;
-   int c;
-   int tf = -1;
-   char *cp = 0;
-   char ibuf[TBUFSIZE];
-   int i = 0;
-   int cnt = 0;
-
-   if (beg >= fnum)
-      return 0;
-
-   tbuf = bp;
-
-   for (j = beg; j < fnum; ++j)
-      {
-	 char *termcap = fnames[j];
-
-	 tf = open(termcap, 0);
-	 if (tf < 0)
-	    continue;
-	 i = 0;
-	 cnt = 0;
-	 for (;;)
-	    {
-	       cp = bp;
-	       for (;;)
-		  {
-		     if (i == cnt)
-			{
-			   cnt = read(tf, ibuf, TBUFSIZE);
-			   if (cnt <= 0)
-			      goto nextf;
-			   i = 0;
-			}
-		     c = ibuf[i++];
-		     if (c == '\n')
-			{
-			   if (cp > bp && cp[-1] == '\\')
-			      {
-				 cp--;
-				 continue;
-			      }
-			   break;
-			}
-		     if (cp >= bp + TBUFSIZE)
-			{
-			   err("Termcap entry too long");
-			   break;
-			}
-		     else
-			*cp++ = c;
-		  }
-	       *cp = 0;
-
-	      /* The real work for the match. */
-	       if (tnamatch(name))
-		  {
-		     ++match_count;
-		     close(tf);
-		     return tnchktc(name, j);
-		  }
-	    }
-       nextf:
-	 close(tf);
-      }
-   return -1;
-}
-
-static int
-tnchktc(char *name, int beg)
-{
-   register char *p, *q;
-   char tcname[16];		/* name of similar terminal */
-   char tcbuf[TBUFSIZE];
-   char *holdtbuf = tbuf;
-   int l;
-
-   p = tbuf + strlen(tbuf) - 2;	/* before the last colon */
-   while (*--p != ':')
-      if (p < tbuf)
-	 {
-	    err("Bad termcap entry");
-	    return 0;
-	 }
-   p++;
-  /* p now points to beginning of last field */
-   if (p[0] != 't' || p[1] != 'c')
-      return 1;
-   strcpy(tcname, p + 3);
-   q = tcname;
-   while (*q && *q != ':')
-      q++;
-   *q = 0;
-   if (++hopcount > MAXHOP)
-      {
-	 err("Infinite tc= loop");
-	 return 0;
-      }
-
-   if (!strcmp(tcname, name))
-      ++beg;
-   if (tgetent(tcbuf, tcname, beg) <= 0)
-      {
-	 hopcount = 0;		/* unwind recursion */
-	 return 1;
-      }
-   for (q = tcbuf; *q != ':'; q++)
-      ;
-   l = p - holdtbuf + strlen(q);
-   if (l > TBUFSIZE)
-      {
-	 err("Termcap entry too long\n");
-	 q[TBUFSIZE - (p - tbuf)] = 0;
-      }
-   strcpy(p, q + 1);
-   tbuf = holdtbuf;
-   hopcount = 0;		/* unwind recursion */
-
-   return 1;
-}
-
-static int
-tnamatch(char *np)
-{
-   register char *Np, *Bp;
-
-   Bp = tbuf;
-   if (*Bp == '#')
-      return 0;
-   for (;;)
-      {
-	 for (Np = np; *Np && *Bp == *Np; Bp++, Np++)
-	    continue;
-	 if (*Np == 0 && (*Bp == '|' || *Bp == ':' || *Bp == 0))
-	    return (1);
-	 while (*Bp && *Bp != ':' && *Bp != '|')
-	    Bp++;
-	 if (*Bp == 0 || *Bp == ':')
-	    return (0);
-	 Bp++;
-      }
-}
-
-static char *
-tskip(char *bp)
-{
-   while (*bp && *bp != ':')
-      bp++;
-   if (*bp == ':')
-      bp++;
-   return (bp);
-}
-
-static void
-split_entry(Terminfo * info, char *entry)
-{
-   char *bp;
-   char name[3];
-
-   name[2] = 0;
-   bp = entry;
-   while (bp && *bp)
-      {
-	 TermcapBucket *fp;
-
-	 bp = tskip(bp);
-	 if (!bp[0] || !bp[1])
-	    break;
-	 if (bp[0] == ':' || bp[1] == ':')
-	    continue;
-	 name[0] = *bp++;
-	 name[1] = *bp++;
-
-	/*if (*bp == '@')
-	   continue; */
-	 if (name[0] == ' ' || name[1] == ' ')
-	    continue;
-
-	 fp = (TermcapBucket *) bsearch(name, termcapNames, TCAPNUM, sizeof(TermcapBucket), cmp_bucket);
-
-	 if (!fp)
-	    {
-	      /*printf("unknown termcap entry: %s\n", name); */
-	       continue;
-	    }
-
-	 switch (*bp)
-	    {
-	    case ':':
-	      /* bool */
-	       if (fp->type == 'B')
-		  {
-		     info->bools[fp->no] = 1;
-		  }
-	       break;
-	    case '#':
-	      /* num */
-	       if (fp->type == 'N')
-		  {
-		     int base, i;
-
-		     ++bp;
-		     if (info->nums[fp->no] != -1)
-			break;
-		     base = 10;
-		     if (*bp == '0')
-			base = 8;
-		     i = 0;
-		     while (*bp >= '0' && *bp <= '9')
-			i = i * base, i += *bp++ - '0';
-		     info->nums[fp->no] = i;
-		  }
-	       break;
-	    case '=':
-	      /* string */
-	       {
-		  int s;
-
-		  ++bp;
-		  if (fp->type == 'S')
-		     if (info->strings[fp->no] != -1)
-			break;
-		  if (fp->type == 'K')
-		     if (info->keys[fp->no] != -1)
-			break;
-
-		  s = tdecode(bp, info);
-		  if (fp->type == 'S')
-		     info->strings[fp->no] = s;
-		  else if (fp->type == 'K')
-		     info->keys[fp->no] = s;
-	       }
-	       break;
-	    case 0:
-	       return;
-	    default:
-	       continue;
-	    }
-      }
-}
-
-static int
-place_buf(Terminfo * info, int need)
-{
-   if ((info->bufsize - info->bufpos) < need)
-      {
-	 int delta, osize;
-
-	 delta = info->bufsize / 3;
-	 if (delta < need)
-	    delta = need;
-	 if (delta < 8)
-	    delta = 8;
-	 osize = info->bufsize;
-	 info->bufsize += delta;
-	 info->buf = (char *) realloc(info->buf, info->bufsize);
-	 memset(info->buf + osize, 0, delta);
-      }
-
-   return info->bufsize - info->bufpos;
-}
-
-static int
-tdecode(char *bp, Terminfo * info)
-{
-   int c;
-   char *dp;
-   int i;
-   char *str;
-   int retpos;
-
-  /* skip the delay */
-#if 0
-   while (isdigit(*bp))
-      ++bp;
-#endif
-
-   str = bp;
-   retpos = info->bufpos;
-   while ((c = *str++) && c != ':')
-      {
-	 switch (c)
-	    {
-
-	    case '^':
-	       c = *str++ & 037;
-	       break;
-
-	    case '\\':
-	       dp = "E\033^^\\\\::n\nr\rt\tb\bf\f";
-	       c = *str++;
-	     nextc:
-	       if (*dp++ == c)
-		  {
-		     c = *dp++;
-		     break;
-		  }
-	       dp++;
-	       if (*dp)
-		  goto nextc;
-	       if (c >= '0' && c <= '9')
-		  {
-		     c -= '0', i = 2;
-		     do
-			c <<= 3, c |= *str++ - '0';
-		     while (--i && *str >= '0' && *str <= '9');
-		  }
-	       break;
-	    }
-	 place_buf(info, 1);
-	 info->buf[info->bufpos++] = c;
-      }
-
-   if (info->bufpos == retpos)
-      return -1;
-
-   place_buf(info, 1);
-   info->buf[info->bufpos++] = 0;
-
-   return retpos;
-}
-
-static int
-cmp_bucket(const void *p1, const void *p2)
-{
-   return strcmp((const char *) p1, ((const TermcapBucket *) p2)->name);
-}
-
-void
-init_Terminfo(Terminfo * info)
-{
-   int i;
-
-   info->name = 0;
-
-   for (i = 0; i < MAX_BOOL; ++i)
-      info->bools[i] = 0;
-   for (i = 0; i < MAX_NUM; ++i)
-      info->nums[i] = -1;
-   for (i = 0; i < MAX_STR; ++i)
-      info->strings[i] = -1;
-   for (i = 0; i < MAX_KEY; ++i)
-      info->keys[i] = -1;
-
-   info->buf = 0;
-   info->bufsize = 0;
-   info->bufpos = 0;
-}
-
-void
-destroy_Terminfo(Terminfo * info)
-{
-   if (info->buf)
-      {
-	 free(info->buf);
-	 info->buf = 0;
-      }
-   info->bufsize = info->bufpos = 0;
-}
+#include <tcaps/read_term.c>
+#include <tcaps/read_tcapbuf.c>
+#include <tcaps/read_tcap.c>
+#include <tcaps/read_tinfo.c>
+#include <tcaps/static_err.c>
+#include <tcaps/static_tgetent.c>
+#include <tcaps/static_tnchktc.c>
+#include <tcaps/static_tnamatch.c>
+#include <tcaps/static_tskip.c>
+#include <tcaps/static_split_entry.c>
+#include <tcaps/static_place_buf.c>
+#include <tcaps/static_tdecode.c>
+#include <tcaps/static_cmp_bucket.c>
+#include <tcaps/init_Terminfo.c>
+#include <tcaps/destroy_Terminfo.c>
 
 #undef  BYTE
 #define BYTE(p,n)	(unsigned char)((p)[n])
@@ -1790,194 +1321,5 @@ destroy_Terminfo(Terminfo * info)
 
 #define M_MIN(a,b)	((a)<(b)?(a):(b))
 
-static int
-read_info(Terminfo * info, char *filename)
-{
-   int name_size, bool_count, num_count, str_count, str_size;
-   int i, fd, numread, size, r;
-   char buf[MAX_ENTRY_SIZE], *str_table;
-
-   if ((fd = open(filename, O_RDONLY
-#ifdef _WIN32
-		  | O_BINARY
-#endif
-	)) < 0)
-      return -1;
-
-  /* grab the header */
-   if ((r = read(fd, buf, 12)) < 12)
-      goto clret;
-
-   if (LOW_MSB(buf) != MAGIC)
-      {
-       clret:
-	 close(fd);
-	 return (0);
-      }
-   name_size = LOW_MSB(buf + 2);
-   bool_count = LOW_MSB(buf + 4);
-   num_count = LOW_MSB(buf + 6);
-   str_count = LOW_MSB(buf + 8);
-   str_size = LOW_MSB(buf + 10);
-
-  /* grab the name */
-   size = M_MIN(MAX_NAME_SIZE, (unsigned) name_size);
-   if (read(fd, buf, size) < size)
-      goto clret;
-   buf[MAX_NAME_SIZE] = '\0';
-
-#if 0
-   ptr->term_names = calloc(strlen(buf) + 1, sizeof(char));
-
-   strcpy(ptr->term_names, buf);
-#endif
-
-   if (name_size > MAX_NAME_SIZE)
-      lseek(fd, (off_t) (name_size - MAX_NAME_SIZE), 1);
-
-  /* grab the booleans */
-   size = M_MIN(BOOLCOUNT, (unsigned) bool_count);
-   if (read(fd, buf, size) < size)
-      goto clret;
-   if (bool_count > BOOLCOUNT)
-      lseek(fd, (off_t) (bool_count - BOOLCOUNT), 1);
-   else
-      for (i = bool_count; i < BOOLCOUNT; i++)
-	 buf[i] = 0;
-
-   for (i = 0; i < BOOLCOUNT; ++i)
-      {
-	 int no = tnums.bools[i];
-
-	 if (no < 0)
-	    continue;
-	 if (buf[i])
-	    info->bools[no] = 1;
-      }
-
-  /*
-   * If booleans end on an odd byte, skip it.  The machine they
-   * originally wrote terminfo on must have been a 16-bit
-   * word-oriented machine that would trap out if you tried a
-   * word access off a 2-byte boundary.
-   */
-   if ((name_size + bool_count) % 2 != 0)
-      read(fd, buf, 1);
-
-  /* grab the numbers */
-   size = M_MIN(NUMCOUNT * 2, (unsigned) num_count * 2);
-   if (read(fd, buf, size) < size)
-      goto clret;
-
-   for (i = 0; i < M_MIN(num_count, NUMCOUNT); i++)
-      {
-	 int no = tnums.nums[i];
-
-	 if (no < 0)
-	    continue;
-
-	 if (info->nums[no] != -1)
-	    continue;
-
-	 if (IS_NEG1(buf + 2 * i))
-	    continue;
-	 else if (IS_NEG2(buf + 2 * i))
-	    continue;
-	 else
-	    info->nums[no] = LOW_MSB(buf + 2 * i);
-      }
-   if (num_count > NUMCOUNT)
-      lseek(fd, (off_t) (2 * (num_count - NUMCOUNT)), 1);
-
-   if (str_count && str_size)
-      {
-	/* grab the string offsets */
-	 numread = read(fd, buf, (unsigned) (str_count * 2));
-	 if (numread < str_count * 2)
-	    goto clret;
-
-	 str_table = buf + numread;
-	 if (str_count > STRCOUNT)
-	    lseek(fd, (off_t) (2 * (str_count - STRCOUNT)), 1);
-
-	/* finally, grab the string table itself */
-	 numread = read(fd, str_table, (unsigned) str_size);
-	 if (numread != str_size)
-	    goto clret;
-
-	 for (i = 0; i < str_count; i++)
-	    {
-	       int no = tnums.strs[i].num;
-	       int type = tnums.strs[i].type;
-
-	       if (no < 0)
-		  continue;
-
-	       if (type == 'S' && info->strings[no] != -1)
-		  continue;
-	       if (type == 'K' && info->keys[no] != -1)
-		  continue;
-
-	       if (IS_NEG1(buf + 2 * i))
-		  continue;
-	       else if (IS_NEG2(buf + 2 * i))
-		  continue;
-	       else
-		  {
-		     int offs, l;
-		     char *s, *p;
-
-		     offs = LOW_MSB(buf + 2 * i);
-		     s = str_table + offs;
-		     l = strlen(s) + 1;
-		     place_buf(info, l);
-
-#if 0
-		     memcpy(info->buf + info->bufpos, s, l);
-#else
-		     for (l = 0, p = info->buf + info->bufpos; *s;)
-			{
-			   int c;
-
-			  /* skip the delay info */
-			   if ((c = s[0]) == '$' && s[1] == '<')
-			      {
-				 char *s1;
-
-				 for (s1 = s + 2; *s1; ++s1)
-				    if (*s1 == '>')
-				       break;
-				 if (*s1)
-				    s = s1 + 1;
-				 else
-				    s = s1;
-			      }
-			   else
-			      {
-				 *p = c;
-				 ++s;
-				 ++p;
-				 ++l;
-			      }
-			}
-		     *p = 0;
-		     ++l;
-#endif
-
-		     if (type == 'S')
-			info->strings[no] = info->bufpos;
-		     else if (type == 'K')
-			info->keys[no] = info->bufpos;
-		     info->bufpos += l;
-		  }
-	    }
-      }
-
-   return 0;
-}
-
-TermcapBucket *
-tgetentry(const char *name)
-{
-   return (TermcapBucket *) bsearch(name, termcapNames, TCAPNUM, sizeof(TermcapBucket), cmp_bucket);
-}
+#include <tcaps/static_read_info.c>
+#include <tcaps/tgetentry.c>

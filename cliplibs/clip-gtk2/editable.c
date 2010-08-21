@@ -16,7 +16,7 @@
 
 /**********************************************************/
 /* Signal handlers */
-static gint
+static    gint
 handle_insert_text_signal(GtkWidget * widget, gchar * new_text, gint new_text_length, gint * position, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -28,7 +28,7 @@ handle_insert_text_signal(GtkWidget * widget, gchar * new_text, gint new_text_le
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_delete_text_signal(GtkWidget * widget, gint start_pos, gint end_pos, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -37,7 +37,7 @@ handle_delete_text_signal(GtkWidget * widget, gint start_pos, gint end_pos, C_si
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_set_editable_signal(GtkWidget * widget, gboolean is_editable, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -45,7 +45,7 @@ handle_set_editable_signal(GtkWidget * widget, gboolean is_editable, C_signal * 
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_move_cursor_signal(GtkWidget * widget, gint x, gint y, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -54,7 +54,7 @@ handle_move_cursor_signal(GtkWidget * widget, gint x, gint y, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_move_word_signal(GtkWidget * widget, gint num_words, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -62,7 +62,7 @@ handle_move_word_signal(GtkWidget * widget, gint num_words, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_move_page_signal(GtkWidget * widget, gint x, gint y, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -71,7 +71,7 @@ handle_move_page_signal(GtkWidget * widget, gint x, gint y, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_move_to_row_signal(GtkWidget * widget, gint row, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -79,7 +79,7 @@ handle_move_to_row_signal(GtkWidget * widget, gint row, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_move_to_column_signal(GtkWidget * widget, gint column, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -87,7 +87,7 @@ handle_move_to_column_signal(GtkWidget * widget, gint column, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_kill_char_signal(GtkWidget * widget, gint direction, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -95,7 +95,7 @@ handle_kill_char_signal(GtkWidget * widget, gint direction, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_kill_word_signal(GtkWidget * widget, gint direction, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -103,7 +103,7 @@ handle_kill_word_signal(GtkWidget * widget, gint direction, C_signal * cs)
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_kill_line_signal(GtkWidget * widget, gint direction, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -181,8 +181,11 @@ int
 clip_GTK_EDITABLESELECTREGION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint start = _clip_parni(ClipMachineMemory, 2) - 1;
-   gint end = _clip_parni(ClipMachineMemory, 3) - 1;
+
+   gint      start = _clip_parni(ClipMachineMemory, 2) - 1;
+
+   gint      end = _clip_parni(ClipMachineMemory, 3) - 1;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -196,10 +199,15 @@ int
 clip_GTK_EDITABLEINSERTTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
-   gint position = _clip_parni(ClipMachineMemory, 3) - 1;
-   gchar empty_text[] = "\0";
-   gint text_length;
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+
+   gint      position = _clip_parni(ClipMachineMemory, 3) - 1;
+
+   gchar     empty_text[] = "\0";
+
+   gint      text_length;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -220,8 +228,11 @@ int
 clip_GTK_EDITABLEDELETETEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
-   gint end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
+
+   gint      start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
+
+   gint      end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -239,9 +250,13 @@ int
 clip_GTK_EDITABLEGETCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
-   gint end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
-   gchar *text;
+
+   gint      start_pos = _clip_parni(ClipMachineMemory, 2) - 1;
+
+   gint      end_pos = _clip_parni(ClipMachineMemory, 3) - 1;
+
+   gchar    *text;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -262,6 +277,7 @@ int
 clip_GTK_EDITABLECUTCLIPBOARD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_cut_clipboard(GTK_EDITABLE(cedt->widget));
    return 0;
@@ -273,6 +289,7 @@ int
 clip_GTK_EDITABLECOPYCLIPBOARD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_copy_clipboard(GTK_EDITABLE(cedt->widget));
    return 0;
@@ -284,6 +301,7 @@ int
 clip_GTK_EDITABLEPASTECLIPBOARD(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_paste_clipboard(GTK_EDITABLE(cedt->widget));
    return 0;
@@ -295,6 +313,7 @@ int
 clip_GTK_EDITABLEDELETESELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_delete_selection(GTK_EDITABLE(cedt->widget));
    return 0;
@@ -321,7 +340,9 @@ int
 clip_GTK_EDITABLEGETSELECTIONBOUNDS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint start, end;
+
+   gint      start, end;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_get_selection_bounds(GTK_EDITABLE(cedt->widget), &start, &end);
    start++;
@@ -337,7 +358,9 @@ int
 clip_GTK_EDITABLEHASSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint start, end;
+
+   gint      start, end;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    gtk_editable_get_selection_bounds(GTK_EDITABLE(cedt->widget), &start, &end);
    start += end;
@@ -351,7 +374,9 @@ int
 clip_GTK_EDITABLESETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gint position = _clip_parni(ClipMachineMemory, 2) - 1;
+
+   gint      position = _clip_parni(ClipMachineMemory, 2) - 1;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_editable_set_position(GTK_EDITABLE(cedt->widget), position);
@@ -364,6 +389,7 @@ int
 clip_GTK_EDITABLEGETPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    _clip_retni(ClipMachineMemory, gtk_editable_get_position(GTK_EDITABLE(cedt->widget)) + 1);
    return 0;
@@ -375,7 +401,9 @@ int
 clip_GTK_EDITABLESETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   gboolean editable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  editable = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -390,6 +418,7 @@ int
 clip_GTK_EDITABLEGETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    _clip_retl(ClipMachineMemory, gtk_editable_get_editable((GTK_EDITABLE(cedt->widget))));
    return 0;

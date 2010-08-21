@@ -1,0 +1,2 @@
+	function fontreset
+	return .t.

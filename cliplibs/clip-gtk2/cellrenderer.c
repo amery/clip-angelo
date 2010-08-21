@@ -16,7 +16,7 @@
 /*********************** SIGNALS **************************/
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 4)
 
-static gint
+static    gint
 handle_editing_started(GtkCellRenderer * cell, GtkCellEditable * editable, gchar * path, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -25,7 +25,7 @@ handle_editing_started(GtkCellRenderer * cell, GtkCellEditable * editable, gchar
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_editing_canceled(GtkCellRenderer * cell, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -42,7 +42,7 @@ static SignalTable cell_renderer_signals[] = {
 #endif
 /**********************************************************/
 /* Signals table  CellRendererText   */
-static gint
+static    gint
 handle_cell_renderer_text_edited(GtkCellRendererText * cellrenderertext, gchar * arg1, gchar * arg2, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -61,7 +61,7 @@ static SignalTable cell_renderer_text_signals[] = {
 };
 
 /* Signals table  CellRendererToggle   */
-static gint
+static    gint
 handle_cell_renderer_toggle_toggled(GtkCellRendererToggle * cellrenderertoggle, gchar * arg1, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -193,16 +193,24 @@ int
 clip_INIT___CELLRENDERER(ClipMachine * ClipMachineMemory)
 {
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 4)
-   _wtype_table_put(_clip_type_cell_renderer, _clip_type_name_cell_renderer, _gtk_type_cell_renderer, NULL, cell_renderer_signals);
+   _wtype_table_put(_clip_type_cell_renderer, _clip_type_name_cell_renderer,
+		    _gtk_type_cell_renderer, NULL, cell_renderer_signals);
 #else
    _wtype_table_put(_clip_type_cell_renderer, _clip_type_name_cell_renderer, _gtk_type_cell_renderer, NULL, NULL);
 #endif
-   _wtype_table_put(_clip_type_cell_renderer_text, _clip_type_name_cell_renderer_text, _gtk_type_cell_renderer_text, _gtk_type_cell_renderer, cell_renderer_text_signals);
-   _wtype_table_put(_clip_type_cell_renderer_toggle, _clip_type_name_cell_renderer_toggle, _gtk_type_cell_renderer_toggle, _gtk_type_cell_renderer, cell_renderer_toggle_signals);
-   _wtype_table_put(_clip_type_cell_renderer_pixbuf, _clip_type_name_cell_renderer_pixbuf, _gtk_type_cell_renderer_pixbuf, _gtk_type_cell_renderer, NULL);
+   _wtype_table_put(_clip_type_cell_renderer_text,
+		    _clip_type_name_cell_renderer_text,
+		    _gtk_type_cell_renderer_text, _gtk_type_cell_renderer, cell_renderer_text_signals);
+   _wtype_table_put(_clip_type_cell_renderer_toggle,
+		    _clip_type_name_cell_renderer_toggle,
+		    _gtk_type_cell_renderer_toggle, _gtk_type_cell_renderer, cell_renderer_toggle_signals);
+   _wtype_table_put(_clip_type_cell_renderer_pixbuf,
+		    _clip_type_name_cell_renderer_pixbuf, _gtk_type_cell_renderer_pixbuf, _gtk_type_cell_renderer, NULL);
 #if (GTK2_VER_MAJOR >= 2) && (GTK2_VER_MINOR >= 6)
-   _wtype_table_put(_clip_type_cell_renderer_combo, _clip_type_name_cell_renderer_combo, _gtk_type_cell_renderer_combo, _gtk_type_cell_renderer_text, NULL);
-   _wtype_table_put(_clip_type_cell_renderer_progress, _clip_type_name_cell_renderer_progress, _gtk_type_cell_renderer_progress, _gtk_type_cell_renderer, NULL);
+   _wtype_table_put(_clip_type_cell_renderer_combo,
+		    _clip_type_name_cell_renderer_combo, _gtk_type_cell_renderer_combo, _gtk_type_cell_renderer_text, NULL);
+   _wtype_table_put(_clip_type_cell_renderer_progress,
+		    _clip_type_name_cell_renderer_progress, _gtk_type_cell_renderer_progress, _gtk_type_cell_renderer, NULL);
 #endif
    return 0;
 }
@@ -210,8 +218,10 @@ clip_INIT___CELLRENDERER(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLRENDERERTEXTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *ccell;
+
    GtkCellRenderer *cell;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -219,13 +229,13 @@ clip_GTK_CELLRENDERERTEXTNEW(ClipMachine * ClipMachineMemory)
    cell = gtk_cell_renderer_text_new();
 
    if (cell)
-      {
-	 ccell = _list_get_cobject(ClipMachineMemory, cell);
-	 if (!ccell)
-	    ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_TEXT, cv, NULL);
-	 if (ccell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
-      }
+    {
+       ccell = _list_get_cobject(ClipMachineMemory, cell);
+       if (!ccell)
+	  ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_TEXT, cv, NULL);
+       if (ccell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
+    }
    return 0;
  err:
    return 1;
@@ -234,8 +244,10 @@ clip_GTK_CELLRENDERERTEXTNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLRENDERERTOGGLENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *ccell;
+
    GtkCellRenderer *cell;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -243,13 +255,13 @@ clip_GTK_CELLRENDERERTOGGLENEW(ClipMachine * ClipMachineMemory)
    cell = gtk_cell_renderer_toggle_new();
 
    if (cell)
-      {
-	 ccell = _list_get_cobject(ClipMachineMemory, cell);
-	 if (!ccell)
-	    ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_TOGGLE, cv, NULL);
-	 if (ccell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
-      }
+    {
+       ccell = _list_get_cobject(ClipMachineMemory, cell);
+       if (!ccell)
+	  ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_TOGGLE, cv, NULL);
+       if (ccell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
+    }
    return 0;
  err:
    return 1;
@@ -258,8 +270,10 @@ clip_GTK_CELLRENDERERTOGGLENEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLRENDERERPIXBUFNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *ccell;
+
    GtkCellRenderer *cell;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -267,13 +281,13 @@ clip_GTK_CELLRENDERERPIXBUFNEW(ClipMachine * ClipMachineMemory)
    cell = gtk_cell_renderer_pixbuf_new();
 
    if (cell)
-      {
-	 ccell = _list_get_cobject(ClipMachineMemory, cell);
-	 if (!ccell)
-	    ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_PIXBUF, cv, NULL);
-	 if (ccell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
-      }
+    {
+       ccell = _list_get_cobject(ClipMachineMemory, cell);
+       if (!ccell)
+	  ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_PIXBUF, cv, NULL);
+       if (ccell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
+    }
    return 0;
  err:
    return 1;
@@ -300,7 +314,8 @@ int
 clip_GTK_CELLRENDERERSTOPEDITING(ClipMachine * ClipMachineMemory)
 {
    C_object *ccell = _fetch_co_arg(ClipMachineMemory);
-   gboolean lstop = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  lstop = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccell, GTK_IS_CELL_RENDERER(ccell->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -315,12 +330,18 @@ clip_GTK_CELLRENDERERSTOPEDITING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLRENDERERCOMBONEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *cmodel = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint column = _clip_parni(ClipMachineMemory, 3);
-   gboolean contains = _clip_parl(ClipMachineMemory, 4);
-   gboolean editable = _clip_parl(ClipMachineMemory, 5);
+
+   gint      column = _clip_parni(ClipMachineMemory, 3);
+
+   gboolean  contains = _clip_parl(ClipMachineMemory, 4);
+
+   gboolean  editable = _clip_parl(ClipMachineMemory, 5);
+
    C_object *ccell;
+
    GtkCellRenderer *cell;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -331,16 +352,18 @@ clip_GTK_CELLRENDERERCOMBONEW(ClipMachine * ClipMachineMemory)
    CHECKOPT(5, LOGICAL_type_of_ClipVarType);
 
    cell = gtk_cell_renderer_combo_new();
-   g_object_set(cell, "model", GTK_TREE_MODEL(cmodel->object), "text-column", column - 1, "has-entry", contains, "editable", editable, NULL);
+   g_object_set(cell,
+		"model", GTK_TREE_MODEL(cmodel->object),
+		"text-column", column - 1, "has-entry", contains, "editable", editable, NULL);
 
    if (cell)
-      {
-	 ccell = _list_get_cobject(ClipMachineMemory, cell);
-	 if (!ccell)
-	    ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_COMBO, cv, NULL);
-	 if (ccell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
-      }
+    {
+       ccell = _list_get_cobject(ClipMachineMemory, cell);
+       if (!ccell)
+	  ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_COMBO, cv, NULL);
+       if (ccell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
+    }
    return 0;
  err:
    return 1;
@@ -349,8 +372,10 @@ clip_GTK_CELLRENDERERCOMBONEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_CELLRENDERERPROGRESSNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *ccell;
+
    GtkCellRenderer *cell;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -358,13 +383,13 @@ clip_GTK_CELLRENDERERPROGRESSNEW(ClipMachine * ClipMachineMemory)
    cell = gtk_cell_renderer_progress_new();
 
    if (cell)
-      {
-	 ccell = _list_get_cobject(ClipMachineMemory, cell);
-	 if (!ccell)
-	    ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_PROGRESS, cv, NULL);
-	 if (ccell)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
-      }
+    {
+       ccell = _list_get_cobject(ClipMachineMemory, cell);
+       if (!ccell)
+	  ccell = _register_object(ClipMachineMemory, cell, GTK_TYPE_CELL_RENDERER_PROGRESS, cv, NULL);
+       if (ccell)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccell->obj);
+    }
    return 0;
  err:
    return 1;

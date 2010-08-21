@@ -19,9 +19,11 @@ if [[ $? != 0 ]] ; then
 	banner "error(s)" 								>&1
 	banner $makecmdgoals  							>&2
 	banner "error(s)" 								>&2
-	echo "Log file : $PWD/temp/compile*.*.sh" 				>&0
 	exec 									1>&-
 	exec 									2>&-
 	exit 1
 	exit 1
 fi
+echo "Log file : $PWD/temp/compile*.*.sh" 				>&0
+exec 									1>&-
+exec 									2>&-

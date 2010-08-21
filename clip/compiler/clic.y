@@ -231,9 +231,9 @@ oper:                	{ $$=NULL; }
 	| EXTERN namelist	{
 			int i;
 			char *s;
-			for(i=0;i<$2->count;i++)
+			for(i=0;i<$2->count_of_Coll;i++)
 			{
-				VAR(char, vp, $2->items[i]);
+				VAR(char, vp, $2->items_of_Coll[i]);
 				if (insert_Coll( &curFile->Coll_externFunctions_of_File, vp)<0)
 					free(vp);
 				else
@@ -328,8 +328,8 @@ oper:                	{ $$=NULL; }
 				int i;
 
 				$$=NULL;
-				for(i=0; i< cp->count; ++i)
-					append_Coll(&curFile->Coll_externModules_of_File, cp->items[i]);
+				for(i=0; i< cp->count_of_Coll; ++i)
+					append_Coll(&curFile->Coll_externModules_of_File, cp->items_of_Coll[i]);
 
 				removeAll_Coll(cp);
 				delete_Coll(cp);
@@ -378,9 +378,9 @@ oper:                	{ $$=NULL; }
 				CM;
 				np = new_ExprListNode();
 				append_Node(np, installName($1));
-				for(i=0; i< $3.coll->count; i++)
+				for(i=0; i< $3.coll->count_of_Coll; i++)
 				{
-					Node *p = (Node*) $3.coll->items[i];
+					Node *p = (Node*) $3.coll->items_of_Coll[i];
 					append_Node(np, p);
 				}
 				$$=new_OperExprNode(new_ArrElNode(np, $6,'='));
@@ -742,7 +742,7 @@ expr:	constant
 			Node *last;
 			char *name;
 			last_List(&arr->list);
-			last = (Node *) arr->list.current;
+			last = (Node *) arr->list.current_of_List;
 			if( !last || strcmp(last->name, "const") || !(name=((ConstNode*)last)->rval) )
 			{
 				yyerror("invalid array call");
@@ -1023,7 +1023,7 @@ param_list:  { $$=new_VarColl(); }
 		Var *vp=new_Var($3);
 		vp->type = $4;
 		$$=$1;
-		vp->no = $$->unsorted.count;
+		vp->no = $$->unsorted.count_of_Coll;
 		insert_Coll( &$$->coll, vp);
 		insert_Coll( &$$->unsorted, vp);
 		}
@@ -1097,9 +1097,9 @@ with_arg_list: arg	{
 
 				insert_Coll($$,$1);
 				cp = $$;
-				np = (Node*) cp->items[0];
+				np = (Node*) cp->items_of_Coll[0];
 				if(!(np->isRef||np->isConst||(!np->isLval && !np->isField)))
-					cp->items[0] = new_RefNode(np);
+					cp->items_of_Coll[0] = new_RefNode(np);
 			}
 		}
 	| '(' arg ')' {
@@ -1109,23 +1109,23 @@ with_arg_list: arg	{
 	}
 	| with_arg_list ',' arg 	{
 			$$=$1;
-			if (!$$->count)
+			if (!$$->count_of_Coll)
 				insert_Coll($$,new_ArgNode(new_NilConstNode(),0));
 			if ($3) {
 				Coll *cp;
 				Node *np;
 				insert_Coll($$,$3);
 				cp = $$;
-				np = (Node*) cp->items[cp->count-1];
+				np = (Node*) cp->items_of_Coll[cp->count_of_Coll-1];
 				if(!(np->isRef||np->isConst||(!np->isLval && !np->isField)))
-					cp->items[cp->count-1] = new_RefNode(np);
+					cp->items_of_Coll[cp->count_of_Coll-1] = new_RefNode(np);
 			}
 			else
 				insert_Coll($$,new_ArgNode(new_NilConstNode(),0));
 		}
 	| with_arg_list ',' '(' arg ')'	{
 			$$=$1;
-			if (!$$->count)
+			if (!$$->count_of_Coll)
 				insert_Coll($$,new_ArgNode(new_NilConstNode(),0));
 			if ($4)
 				insert_Coll($$,$4);
@@ -1141,7 +1141,7 @@ arg_list: arg	{
 		}
 	| arg_list ',' arg 	{
 			$$=$1;
-			if (!$$->count)
+			if (!$$->count_of_Coll)
 				insert_Coll($$,new_ArgNode(new_NilConstNode(),0));
 			if ($3)
 				insert_Coll($$,$3);
@@ -1436,10 +1436,10 @@ static void
 pop_operlist(void)
 {
 /*	init_operlist_stack();*/
-	if (operlist_stack->count>0)
+	if (operlist_stack->count_of_Coll>0)
 	{
-		atRemove_Coll (operlist_stack, operlist_stack->count-1);
-		curr_operlist = (Node*) operlist_stack->items[operlist_stack->count-1];
+		atRemove_Coll (operlist_stack, operlist_stack->count_of_Coll-1);
+		curr_operlist = (Node*) operlist_stack->items_of_Coll[operlist_stack->count_of_Coll-1];
 	}
 }
 
@@ -1450,7 +1450,7 @@ reduce_ExprListNode(Node *np)
 		return np;
 	if (getCount_Node(np) == 1)
 	{
-		Node *p = (Node*) np->list.head;
+		Node *p = (Node*) np->list.head_of_List;
 		return p;
 	}
 	else

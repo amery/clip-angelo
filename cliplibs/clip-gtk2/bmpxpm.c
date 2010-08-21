@@ -12,10 +12,10 @@
 */
 struct bitstream
 {
-   FILE *f;			/* bytestream */
+   FILE     *f;			/* bytestream */
    unsigned long bitbuf;	/* bit buffer */
-   int nbitbuf;			/* number of bits in 'bitbuf' */
-   char mode;
+   int       nbitbuf;		/* number of bits in 'bitbuf' */
+   char      mode;
 };
 
 #define Mask(n)		((1<<(n))-1)
@@ -38,8 +38,9 @@ struct bitstream
 
 struct bitstream *
 pm_bitinit(f, mode)
-   FILE *f;
-   char *mode;
+	FILE     *f;
+
+	char     *mode;
 {
    struct bitstream *ans = (struct bitstream *) 0;
 
@@ -50,10 +51,10 @@ pm_bitinit(f, mode)
 
    ans = (struct bitstream *) calloc(1, sizeof(struct bitstream));
    if (ans)
-      {
-	 ans->f = f;
-	 ans->mode = *mode;
-      }
+    {
+       ans->f = f;
+       ans->mode = *mode;
+    }
 
    return ans;
 }
@@ -70,39 +71,39 @@ pm_bitinit(f, mode)
 
 int
 pm_bitfini(b)
-   struct bitstream *b;
+	struct bitstream *b;
 {
-   int nbyte = 0;
+   int       nbyte = 0;
 
    if (!b)
       return -1;
 
   /* flush the output */
    if (b->mode == 'w')
-      {
-	/* flush the bits */
-	 if (b->nbitbuf < 0 || b->nbitbuf >= 8)
+    {
+      /* flush the bits */
+       if (b->nbitbuf < 0 || b->nbitbuf >= 8)
+	{
+	  /* pm_bitwrite() didn't work */
+	   return -1;
+	}
+
+      /*
+       * If we get to here, nbitbuf is 0..7
+       */
+       if (b->nbitbuf)
+	{
+	   char      c;
+
+	   BitPut(b, 0, (long) 8 - (b->nbitbuf));
+	   c = (char) BitGet(b, (long) 8);
+	   if (putc(c, b->f) == EOF)
 	    {
-	      /* pm_bitwrite() didn't work */
 	       return -1;
 	    }
-
-	/*
-	 * If we get to here, nbitbuf is 0..7
-	 */
-	 if (b->nbitbuf)
-	    {
-	       char c;
-
-	       BitPut(b, 0, (long) 8 - (b->nbitbuf));
-	       c = (char) BitGet(b, (long) 8);
-	       if (putc(c, b->f) == EOF)
-		  {
-		     return -1;
-		  }
-	       nbyte++;
-	    }
-      }
+	   nbyte++;
+	}
+    }
 
    free(b);
    return nbyte;
@@ -118,26 +119,29 @@ pm_bitfini(b)
 
 int
 pm_bitread(b, nbits, val)
-   struct bitstream *b;
-   unsigned long nbits;
-   unsigned long *val;
+	struct bitstream *b;
+
+	unsigned long nbits;
+
+	unsigned long *val;
 {
-   int nbyte = 0;
-   int c;
+   int       nbyte = 0;
+
+   int       c;
 
    if (!b)
       return -1;
 
    while (b->nbitbuf < nbits)
-      {
-	 if ((c = getc(b->f)) == EOF)
-	    {
-	       return -1;
-	    }
-	 nbyte++;
+    {
+       if ((c = getc(b->f)) == EOF)
+	{
+	   return -1;
+	}
+       nbyte++;
 
-	 BitPut(b, c, (long) 8);
-      }
+       BitPut(b, c, (long) 8);
+    }
 
    *val = BitGet(b, nbits);
    return nbyte;
@@ -153,12 +157,15 @@ pm_bitread(b, nbits, val)
 
 int
 pm_bitwrite(b, nbits, val)
-   struct bitstream *b;
-   unsigned long nbits;
-   unsigned long val;
+	struct bitstream *b;
+
+	unsigned long nbits;
+
+	unsigned long val;
 {
-   int nbyte = 0;
-   char c;
+   int       nbyte = 0;
+
+   char      c;
 
    if (!b)
       return -1;
@@ -166,15 +173,15 @@ pm_bitwrite(b, nbits, val)
    BitPut(b, val, nbits);
 
    while (b->nbitbuf >= 8)
-      {
-	 c = (char) BitGet(b, (long) 8);
+    {
+       c = (char) BitGet(b, (long) 8);
 
-	 if (putc(c, b->f) == EOF)
-	    {
-	       return -1;
-	    }
-	 nbyte++;
-      }
+       if (putc(c, b->f) == EOF)
+	{
+	   return -1;
+	}
+       nbyte++;
+    }
 
    return nbyte;
 }
@@ -188,9 +195,11 @@ pm_bitwrite(b, nbits, val)
 
 static void
 readto(fp, ppos, dst)
-   FILE *fp;
-   unsigned long *ppos;		/* pointer to number of bytes read from fp */
-   unsigned long dst;
+	FILE     *fp;
+
+	unsigned long *ppos;	/* pointer to number of bytes read from fp */
+
+	unsigned long dst;
 {
    unsigned long pos;
 
@@ -204,24 +213,26 @@ readto(fp, ppos, dst)
       exit(1);
 
    for (; pos < dst; pos++)
-      {
-	 if (getc(fp) == EOF)
-	    {
-	      //pm_error(er_read, ifname);
-	       exit(1);
-	    }
-      }
+    {
+       if (getc(fp) == EOF)
+	{
+	  //pm_error(er_read, ifname);
+	   exit(1);
+	}
+    }
 
    *ppos = pos;
 }
 
-char **
+char    **
 pm_allocarray(cols, rows, size)
-   int cols, rows;
-   int size;
+	int       cols, rows;
+
+	int       size;
 {
-   char **its;
-   int i;
+   char    **its;
+
+   int       i;
 
    its = (char **) malloc(rows * sizeof(char *));
    if (its == (char **) 0)
@@ -238,8 +249,9 @@ pm_allocarray(cols, rows, size)
 
 void
 pm_freearray(its, rows)
-   char **its;
-   int rows;
+	char    **its;
+
+	int       rows;
 {
    free(its[0]);
    free(its);
@@ -252,7 +264,7 @@ pm_freearray(its, rows)
 int
 pm_readlittleshort(FILE * in, short *sP)
 {
-   int c;
+   int       c;
 
    if ((c = getc(in)) == EOF)
       return -1;
@@ -266,7 +278,7 @@ pm_readlittleshort(FILE * in, short *sP)
 int
 pm_readlittlelong(FILE * in, long *lP)
 {
-   int c;
+   int       c;
 
    if ((c = getc(in)) == EOF)
       return -1;
@@ -286,13 +298,13 @@ pm_readlittlelong(FILE * in, long *lP)
 static short
 GetShort(FILE * fp)
 {
-   short v;
+   short     v;
 
    if (pm_readlittleshort(fp, &v) == -1)
-      {
-	//pm_error("%s: read error", ifname);
-	 exit(1);
-      }
+    {
+      //pm_error("%s: read error", ifname);
+       exit(1);
+    }
 
    return v;
 }
@@ -300,13 +312,13 @@ GetShort(FILE * fp)
 static long
 GetLong(FILE * fp)
 {
-   long v;
+   long      v;
 
    if (pm_readlittlelong(fp, &v) == -1)
-      {
-	//pm_error("%s: read error", ifname);
-	 exit(1);
-      }
+    {
+      //pm_error("%s: read error", ifname);
+       exit(1);
+    }
 
    return v;
 }
@@ -314,13 +326,13 @@ GetLong(FILE * fp)
 static int
 GetByte(FILE * fp)
 {
-   int v;
+   int       v;
 
    if ((v = getc(fp)) == EOF)
-      {
-	// pm_error("%s: read error", filename);
-	 exit(1);
-      }
+    {
+      // pm_error("%s: read error", filename);
+       exit(1);
+    }
 
    return v;
 }
@@ -332,20 +344,23 @@ BMPreadfileheader(FILE * fp, unsigned long *ppos, unsigned long *poffBits)
 	unsigned long  *poffBits; */
 {
    unsigned long cbSize;
+
    unsigned short xHotSpot;
+
    unsigned short yHotSpot;
+
    unsigned long offBits;
 
    if (GetByte(fp) != 'B')
-      {
-	//pm_error("%s is not a BMP file", ifname);
-	 exit(1);
-      }
+    {
+      //pm_error("%s is not a BMP file", ifname);
+       exit(1);
+    }
    if (GetByte(fp) != 'M')
-      {
-	//pm_error("%s is not a BMP file", ifname);
-	 exit(1);
-      }
+    {
+      //pm_error("%s is not a BMP file", ifname);
+       exit(1);
+    }
 
    cbSize = GetLong(fp);
    xHotSpot = GetShort(fp);
@@ -359,68 +374,77 @@ BMPreadfileheader(FILE * fp, unsigned long *ppos, unsigned long *poffBits)
 
 void
 BMPreadinfoheader(fp, ppos, pcx, pcy, pcBitCount, pclass)
-   FILE *fp;
-   unsigned long *ppos;		/* number of bytes read from fp */
-   unsigned long *pcx;
-   unsigned long *pcy;
-   unsigned short *pcBitCount;
-   int *pclass;
+	FILE     *fp;
+
+	unsigned long *ppos;	/* number of bytes read from fp */
+
+	unsigned long *pcx;
+
+	unsigned long *pcy;
+
+	unsigned short *pcBitCount;
+
+	int      *pclass;
 {
    unsigned long cbFix;
+
    unsigned short cPlanes;
 
    unsigned long cx;
+
    unsigned long cy;
+
    unsigned short cBitCount;
-   int class;
+
+   int       class;
 
    cbFix = GetLong(fp);
 
    switch (cbFix)
-      {
-      case 12:
-	 class = C_OS2;
+    {
+    case 12:
+       class = C_OS2;
 
-	 cx = GetShort(fp);
-	 cy = GetShort(fp);
-	 cPlanes = GetShort(fp);
-	 cBitCount = GetShort(fp);
+       cx = GetShort(fp);
+       cy = GetShort(fp);
+       cPlanes = GetShort(fp);
+       cBitCount = GetShort(fp);
 
-	 break;
-      case 40:
-	 class = C_WIN;
+       break;
+    case 40:
+       class = C_WIN;
 
-	 cx = GetLong(fp);
-	 cy = GetLong(fp);
-	 cPlanes = GetShort(fp);
-	 cBitCount = GetShort(fp);
+       cx = GetLong(fp);
+       cy = GetLong(fp);
+       cPlanes = GetShort(fp);
+       cBitCount = GetShort(fp);
 
-	/*
-	 * We've read 16 bytes so far, need to read 24 more
-	 * for the required total of 40.
-	 */
+      /*
+       * We've read 16 bytes so far, need to read 24 more
+       * for the required total of 40.
+       */
 
-	 GetLong(fp);
-	 GetLong(fp);
-	 GetLong(fp);
-	 GetLong(fp);
-	 GetLong(fp);
-	 GetLong(fp);
+       GetLong(fp);
+       GetLong(fp);
+       GetLong(fp);
+       GetLong(fp);
+       GetLong(fp);
+       GetLong(fp);
 
-	 break;
-      default:
-	//pm_error("%s: unknown cbFix: %d", ifname, cbFix);
-	 exit(1);
-	 break;
-      }
+       break;
+    default:
+      //pm_error("%s: unknown cbFix: %d", ifname, cbFix);
+       exit(1);
+       break;
+    }
 
    if (cPlanes != 1)
-      {
-	//pm_error("%s: don't know how to handle cPlanes = %d"
-	//       ,ifname
-	//       ,cPlanes);
-	 exit(1);
-      }
+    {
+      //pm_error("%s: don't know how to handle cPlanes = %d"
+      //       ,ifname
+      //       ,cPlanes);
+       exit(1);
+    }
 
 /*
 	switch (class)
@@ -460,32 +484,39 @@ BMPreadinfoheader(fp, ppos, pcx, pcy, pcBitCount, pclass)
  */
 int
 BMPreadrgbtable(fp, ppos, cBitCount, class, R, G, B)
-   FILE *fp;
-   unsigned long *ppos;		/* number of bytes read from fp */
-   unsigned short cBitCount;
-   int class;
-   pixval *R;
-   pixval *G;
-   pixval *B;
-{
-   int i;
-   int nbyte = 0;
+	FILE     *fp;
 
-   long ncolors = (1 << cBitCount);
+	unsigned long *ppos;	/* number of bytes read from fp */
+
+	unsigned short cBitCount;
+
+	int       class;
+
+	pixval   *R;
+
+	pixval   *G;
+
+	pixval   *B;
+{
+   int       i;
+
+   int       nbyte = 0;
+
+   long      ncolors = (1 << cBitCount);
 
    for (i = 0; i < ncolors; i++)
-      {
-	 B[i] = (pixval) GetByte(fp);
-	 G[i] = (pixval) GetByte(fp);
-	 R[i] = (pixval) GetByte(fp);
-	 nbyte += 3;
+    {
+       B[i] = (pixval) GetByte(fp);
+       G[i] = (pixval) GetByte(fp);
+       R[i] = (pixval) GetByte(fp);
+       nbyte += 3;
 
-	 if (class == C_WIN)
-	    {
-	       (void) GetByte(fp);
-	       nbyte++;
-	    }
-      }
+       if (class == C_WIN)
+	{
+	   (void) GetByte(fp);
+	   nbyte++;
+	}
+    }
 
    *ppos += nbyte;
    return nbyte;
@@ -496,169 +527,191 @@ BMPreadrgbtable(fp, ppos, cBitCount, class, R, G, B)
  */
 int
 BMPreadrow(fp, ppos, row, cx, cBitCount, R, G, B)
-   FILE *fp;
-   unsigned long *ppos;		/* number of bytes read from fp */
-   lpixel *row;
-   unsigned long cx;
-   unsigned short cBitCount;
-   pixval *R;
-   pixval *G;
-   pixval *B;
+	FILE     *fp;
+
+	unsigned long *ppos;	/* number of bytes read from fp */
+
+	lpixel   *row;
+
+	unsigned long cx;
+
+	unsigned short cBitCount;
+
+	pixval   *R;
+
+	pixval   *G;
+
+	pixval   *B;
 {
    BITSTREAM b;
-   unsigned nbyte = 0;
-   int rc;
-   unsigned x;
+
+   unsigned  nbyte = 0;
+
+   int       rc;
+
+   unsigned  x;
 
    if ((b = pm_bitinit(fp, "r")) == (BITSTREAM) 0)
-      {
-	 return -1;
-      }
+    {
+       return -1;
+    }
 
    for (x = 0; x < cx; x++, row++)
-      {
-	 unsigned long v;
+    {
+       unsigned long v;
 
-	 if ((rc = pm_bitread(b, cBitCount, &v)) == -1)
-	    {
-	       return -1;
-	    }
-	 nbyte += rc;
+       if ((rc = pm_bitread(b, cBitCount, &v)) == -1)
+	{
+	   return -1;
+	}
+       nbyte += rc;
 
-	//PPM_ASSIGN(*row, R[v], G[v], B[v]);
-	 RGB_ASSIGN(*row, R[v], G[v], B[v]);
-      }
+      //PPM_ASSIGN(*row, R[v], G[v], B[v]);
+       RGB_ASSIGN(*row, R[v], G[v], B[v]);
+    }
 
    if ((rc = pm_bitfini(b)) != 0)
-      {
-	 return -1;
-      }
+    {
+       return -1;
+    }
 
   /*
    * Make sure we read a multiple of 4 bytes.
    */
    while (nbyte % 4)
-      {
-	 GetByte(fp);
-	 nbyte++;
-      }
+    {
+       GetByte(fp);
+       nbyte++;
+    }
 
    *ppos += nbyte;
    return nbyte;
 }
 
-lpixel **
+lpixel  **
 BMPreadbits(fp, ppos, offBits, cx, cy, cBitCount, class, R, G, B)
-   FILE *fp;
-   unsigned long *ppos;		/* number of bytes read from fp */
-   unsigned long offBits;
-   unsigned long cx;
-   unsigned long cy;
-   unsigned short cBitCount;
-   int class;
-   pixval *R;
-   pixval *G;
-   pixval *B;
+	FILE     *fp;
+
+	unsigned long *ppos;	/* number of bytes read from fp */
+
+	unsigned long offBits;
+
+	unsigned long cx;
+
+	unsigned long cy;
+
+	unsigned short cBitCount;
+
+	int       class;
+
+	pixval   *R;
+
+	pixval   *G;
+
+	pixval   *B;
 {
-   lpixel **pixels;		/* output */
-   long y;
+   lpixel  **pixels;		/* output */
+
+   long      y;
 
    readto(fp, ppos, offBits);
 
    pixels = ppm_lallocarray(cx, cy);
 
    if (cBitCount > 24)
-      {
-	//pm_error("%s: cannot handle cBitCount: %d"
-	//       ,ifname
-	//       ,cBitCount);
-	 exit(1);
-      }
+    {
+      //pm_error("%s: cannot handle cBitCount: %d"
+      //       ,ifname
+      //       ,cBitCount);
+       exit(1);
+    }
 
   /*
    * The picture is stored bottom line first, top line last
    */
 
    for (y = cy - 1; y >= 0; y--)
-      {
-	 int rc;
-	 rc = BMPreadrow(fp, ppos, pixels[y], cx, cBitCount, R, G, B);
+    {
+       int       rc;
 
-	 if (rc == -1)
-	    {
-	      //pm_error("%s: couldn't read row %d"
-	      //       ,ifname
-	      //       ,y);
-	       exit(1);
-	    }
-	 if (rc % 4)
-	    {
-	      //pm_error("%s: row had bad number of bytes: %d"
-	      //       ,ifname
-	      //       ,rc);
-	       exit(1);
-	    }
-      }
+       rc = BMPreadrow(fp, ppos, pixels[y], cx, cBitCount, R, G, B);
+
+       if (rc == -1)
+	{
+	  //pm_error("%s: couldn't read row %d"
+	  //       ,ifname
+	  //       ,y);
+	   exit(1);
+	}
+       if (rc % 4)
+	{
+	  //pm_error("%s: row had bad number of bytes: %d"
+	  //       ,ifname
+	  //       ,rc);
+	   exit(1);
+	}
+    }
 
    return pixels;
 }
 
 unsigned long
 BMPlenfileheader(class)
-   int class;
+	int       class;
 {
    switch (class)
-      {
-      case C_WIN:
-	 return 14;
-      case C_OS2:
-	 return 14;
-      default:
-	//pm_error(er_internal, "BMPlenfileheader");
-	 return 0;
-      }
+    {
+    case C_WIN:
+       return 14;
+    case C_OS2:
+       return 14;
+    default:
+      //pm_error(er_internal, "BMPlenfileheader");
+       return 0;
+    }
 }
 
 unsigned long
 BMPleninfoheader(class)
-   int class;
+	int       class;
 {
    switch (class)
-      {
-      case C_WIN:
-	 return 40;
-      case C_OS2:
-	 return 12;
-      default:
-	//pm_error(er_internal, "BMPleninfoheader");
-	 return 0;
-      }
+    {
+    case C_WIN:
+       return 40;
+    case C_OS2:
+       return 12;
+    default:
+      //pm_error(er_internal, "BMPleninfoheader");
+       return 0;
+    }
 }
 
 unsigned long
 BMPlenrgbtable(class, bitcount)
-   int class;
-   unsigned long bitcount;
+	int       class;
+
+	unsigned long bitcount;
 {
    unsigned long lenrgb;
 
    if (bitcount < 1)
-      {
-	//pm_error(er_internal, "BMPlenrgbtable");
-	 return 0;
-      }
+    {
+      //pm_error(er_internal, "BMPlenrgbtable");
+       return 0;
+    }
    switch (class)
-      {
-      case C_WIN:
-	 lenrgb = 4;
-	 break;
-      case C_OS2:
-	 lenrgb = 3;
-	 break;
-      default:
-	//pm_error(er_internal, "BMPlenrgbtable");
-	 return 0;
-      }
+    {
+    case C_WIN:
+       lenrgb = 4;
+       break;
+    case C_OS2:
+       lenrgb = 3;
+       break;
+    default:
+      //pm_error(er_internal, "BMPlenrgbtable");
+       return 0;
+    }
 
    return (1 << bitcount) * lenrgb;
 }
@@ -672,22 +725,24 @@ BMPlenrgbtable(class, bitcount)
  */
 unsigned long
 BMPlenline(class, bitcount, x)
-   int class;
-   unsigned long bitcount;
-   unsigned long x;
+	int       class;
+
+	unsigned long bitcount;
+
+	unsigned long x;
 {
    unsigned long bitsperline;
 
    switch (class)
-      {
-      case C_WIN:
-	 break;
-      case C_OS2:
-	 break;
-      default:
-	//pm_error(er_internal, "BMPlenline");
-	 return 0;
-      }
+    {
+    case C_WIN:
+       break;
+    case C_OS2:
+       break;
+    default:
+      //pm_error(er_internal, "BMPlenline");
+       return 0;
+    }
 
    bitsperline = x * bitcount;
 
@@ -696,15 +751,15 @@ BMPlenline(class, bitcount, x)
    * bitsperline up to the next multiple of 32.
    */
    if ((bitsperline % 32) != 0)
-      {
-	 bitsperline += (32 - (bitsperline % 32));
-      }
+    {
+       bitsperline += (32 - (bitsperline % 32));
+    }
 
    if ((bitsperline % 32) != 0)
-      {
-	//pm_error(er_internal, "BMPlenline");
-	 return 0;
-      }
+    {
+      //pm_error(er_internal, "BMPlenline");
+       return 0;
+    }
 
   /* number of bytes per line == bitsperline/8 */
    return bitsperline >> 3;
@@ -713,10 +768,13 @@ BMPlenline(class, bitcount, x)
 /* return the number of bytes used to store the image bits */
 unsigned long
 BMPlenbits(class, bitcount, x, y)
-   int class;
-   unsigned long bitcount;
-   unsigned long x;
-   unsigned long y;
+	int       class;
+
+	unsigned long bitcount;
+
+	unsigned long x;
+
+	unsigned long y;
 {
    return y * BMPlenline(class, bitcount, x);
 }
@@ -724,8 +782,9 @@ BMPlenbits(class, bitcount, x, y)
 /* return the offset to the BMP image bits */
 unsigned long
 BMPoffbits(class, bitcount)
-   int class;
-   unsigned long bitcount;
+	int       class;
+
+	unsigned long bitcount;
 {
    return BMPlenfileheader(class) + BMPleninfoheader(class) + BMPlenrgbtable(class, bitcount);
 }
@@ -733,21 +792,27 @@ BMPoffbits(class, bitcount)
 /* return the size of the BMP file in bytes */
 unsigned long
 BMPlenfile(class, bitcount, x, y)
-   int class;
-   unsigned long bitcount;
-   unsigned long x;
-   unsigned long y;
+	int       class;
+
+	unsigned long bitcount;
+
+	unsigned long x;
+
+	unsigned long y;
 {
    return BMPoffbits(class, bitcount) + BMPlenbits(class, bitcount, x, y);
 }
 
 colorhist_vector
 ppm_computecolorhist(pixels, cols, rows, maxcolors, colorsP)
-   lpixel **pixels;
-   int cols, rows, maxcolors;
-   int *colorsP;
+	lpixel  **pixels;
+
+	int       cols, rows, maxcolors;
+
+	int      *colorsP;
 {
    colorhash_table cht;
+
    colorhist_vector chv;
 
    cht = ppm_computecolorhash(pixels, cols, rows, maxcolors, colorsP);
@@ -760,43 +825,49 @@ ppm_computecolorhist(pixels, cols, rows, maxcolors, colorsP)
 
 colorhash_table
 ppm_colorhisttocolorhash(chv, colors)
-   colorhist_vector chv;
-   int colors;
+	colorhist_vector chv;
+
+	int       colors;
 {
    colorhash_table cht;
-   int i, hash;
-   lpixel color;
+
+   int       i, hash;
+
+   lpixel    color;
+
    colorhist_list chl;
 
    cht = ppm_alloccolorhash();
 
    for (i = 0; i < colors; ++i)
-      {
-	 color = chv[i].color;
-	 hash = ppm_hashpixel(color);
-	//for ( chl = cht[hash]; chl != (colorhist_list) 0; chl = chl->next )
-	//if ( PPM_EQUAL( chl->ch.color, color ) )
-	//pm_error(
-	//    "same color found twice - %d %d %d", PPM_GETR(color),
-	//    PPM_GETG(color), PPM_GETB(color) );
-	 chl = (colorhist_list) malloc(sizeof(struct colorhist_list_item));
-	//if ( chl == (colorhist_list) 0 )
-	//pm_error( "out of memory" );
-	 chl->ch.color = color;
-	 chl->ch.value = i;
-	 chl->next = cht[hash];
-	 cht[hash] = chl;
-      }
+    {
+       color = chv[i].color;
+       hash = ppm_hashpixel(color);
+      //for ( chl = cht[hash]; chl != (colorhist_list) 0; chl = chl->next )
+      //if ( PPM_EQUAL( chl->ch.color, color ) )
+      //pm_error(
+      //    "same color found twice - %d %d %d", PPM_GETR(color),
+      //    PPM_GETG(color), PPM_GETB(color) );
+       chl = (colorhist_list) malloc(sizeof(struct colorhist_list_item));
+      //if ( chl == (colorhist_list) 0 )
+      //pm_error( "out of memory" );
+       chl->ch.color = color;
+       chl->ch.value = i;
+       chl->next = cht[hash];
+       cht[hash] = chl;
+    }
 
    return cht;
 }
 
 int
 ppm_lookupcolor(cht, colorP)
-   colorhash_table cht;
-   lpixel *colorP;
+	colorhash_table cht;
+
+	lpixel   *colorP;
 {
-   int hash;
+   int       hash;
+
    colorhist_list chl;
 
    hash = ppm_hashpixel(*colorP);
@@ -809,17 +880,18 @@ ppm_lookupcolor(cht, colorP)
 
 void
 ppm_freecolorhash(cht)
-   colorhash_table cht;
+	colorhash_table cht;
 {
-   int i;
+   int       i;
+
    colorhist_list chl, chlnext;
 
    for (i = 0; i < HASHSIZE; ++i)
       for (chl = cht[i]; chl != (colorhist_list) 0; chl = chlnext)
-	 {
-	    chlnext = chl->next;
-	    free((char *) chl);
-	 }
+       {
+	  chlnext = chl->next;
+	  free((char *) chl);
+       }
    free((char *) cht);
 }
 
@@ -829,13 +901,17 @@ ppm_freecolorhash(cht)
    number of entries stored in "rgbn_max". */
 void
 read_rgb_names(rgb_fname, rgbn, rgbn_max)
-   char *rgb_fname;
-   rgb_names *rgbn;
-   int *rgbn_max;
+	char     *rgb_fname;
+
+	rgb_names *rgbn;
+
+	int      *rgbn_max;
 {
-   FILE *rgbf;
-   int i, items, red, green, blue;
-   char line[512], name[512], *rgbname;	//, *n, *m;
+   FILE     *rgbf;
+
+   int       i, items, red, green, blue;
+
+   char      line[512], name[512], *rgbname;	//, *n, *m;
 
   /* Open the rgb text file.  Abort if error. */
    if ((rgbf = fopen(rgb_fname, "r")) == NULL)
@@ -844,52 +920,52 @@ read_rgb_names(rgb_fname, rgbn, rgbn_max)
 
   /* Loop reading each line in the file. */
    for (i = 0; fgets(line, sizeof(line), rgbf); i++)
-      {
+    {
 
-	/* Quit if rgb text file is too large. */
-	 if (i == MAX_RGBNAMES)
-	    {
-	       fprintf(stderr, "Too many entries in rgb text file, truncated to %d entries.\n", MAX_RGBNAMES);
-	       fflush(stderr);
-	       break;
-	    }
-	/* Read the line.  Skip if bad. */
-	 items = sscanf(line, "%d %d %d %[^\n]\n", &red, &green, &blue, name);
-	 if (items != 4)
-	    {
-	       fprintf(stderr, "rgb text file syntax error on line %d\n", i + 1);
-	       fflush(stderr);
-	       i--;
-	       continue;
-	    }
-	/* Make sure rgb values are within 0->255 range.  Skip if bad. */
-	 if (red < 0 || red > 0xFF || green < 0 || green > 0xFF || blue < 0 || blue > 0xFF)
-	    {
-	       fprintf(stderr, "rgb value for \"%s\" out of range, ignoring it\n", name);
-	       fflush(stderr);
-	       i--;
-	       continue;
-	    }
-	/* Allocate memory for ascii name.  Abort if error. */
-	 if (!(rgbname = (char *) malloc(strlen(name) + 1)))
-	   //pm_error("out of memory allocating rgb name", 0, 0, 0, 0, 0);
-	    exit(1);
+      /* Quit if rgb text file is too large. */
+       if (i == MAX_RGBNAMES)
+	{
+	   fprintf(stderr, "Too many entries in rgb text file, truncated to %d entries.\n", MAX_RGBNAMES);
+	   fflush(stderr);
+	   break;
+	}
+      /* Read the line.  Skip if bad. */
+       items = sscanf(line, "%d %d %d %[^\n]\n", &red, &green, &blue, name);
+       if (items != 4)
+	{
+	   fprintf(stderr, "rgb text file syntax error on line %d\n", i + 1);
+	   fflush(stderr);
+	   i--;
+	   continue;
+	}
+      /* Make sure rgb values are within 0->255 range.  Skip if bad. */
+       if (red < 0 || red > 0xFF || green < 0 || green > 0xFF || blue < 0 || blue > 0xFF)
+	{
+	   fprintf(stderr, "rgb value for \"%s\" out of range, ignoring it\n", name);
+	   fflush(stderr);
+	   i--;
+	   continue;
+	}
+      /* Allocate memory for ascii name.  Abort if error. */
+       if (!(rgbname = (char *) malloc(strlen(name) + 1)))
+	 //pm_error("out of memory allocating rgb name", 0, 0, 0, 0, 0);
+	  exit(1);
 
 #ifdef NAMESLOWCASE
-	/* Copy string to ascii name and lowercase it. */
-	 for (n = name, m = rgbname; *n; n++)
-	    *m++ = isupper(*n) ? tolower(*n) : *n;
-	 *m = '\0';
+      /* Copy string to ascii name and lowercase it. */
+       for (n = name, m = rgbname; *n; n++)
+	  *m++ = isupper(*n) ? tolower(*n) : *n;
+       *m = '\0';
 #else
-	 strcpy(rgbname, name);
+       strcpy(rgbname, name);
 #endif
 
-	/* Save the rgb values and ascii name in the array. */
-	 rgbn[i].r = red << 8;
-	 rgbn[i].g = green << 8;
-	 rgbn[i].b = blue << 8;
-	 rgbn[i].name = rgbname;
-      }
+      /* Save the rgb values and ascii name in the array. */
+       rgbn[i].r = red << 8;
+       rgbn[i].g = green << 8;
+       rgbn[i].b = blue << 8;
+       rgbn[i].name = rgbname;
+    }
 
   /* Return the max number of rgb names. */
    *rgbn_max = i - 1;
@@ -902,24 +978,28 @@ read_rgb_names(rgb_fname, rgbn, rgbn_max)
 void
 gen_cmap(chv, ncolors, maxval, map_rgb_names, rgbn, rgbn_max, cmap, charspp)
 /* input: */
-   colorhist_vector chv;	/* contains rgb values for colormap */
-   int ncolors;			/* number of entries in colormap */
-   pixval maxval;		/* largest color value, all rgb
+	colorhist_vector chv;	/* contains rgb values for colormap */
+
+	int       ncolors;	/* number of entries in colormap */
+
+	pixval    maxval;	/* largest color value, all rgb
 				 * values relative to this, (pixval
 				 * == unsigned short) */
-   int map_rgb_names;		/* == 1 if mapping rgb values to rgb
-				 * mnemonics */
-   rgb_names *rgbn;		/* rgb mnemonics from rgb text file */
-   int rgbn_max;		/* number of rgb mnemonics in table */
+	int       map_rgb_names;	/* == 1 if mapping rgb values to rgb
+					 * mnemonics */
+	rgb_names *rgbn;	/* rgb mnemonics from rgb text file */
+
+	int       rgbn_max;	/* number of rgb mnemonics in table */
 
 /* output: */
-   cixel_map *cmap;		/* pixel strings and ascii rgb
+	cixel_map *cmap;	/* pixel strings and ascii rgb
 				 * colors */
-   int *charspp;		/* characters per pixel */
+	int      *charspp;	/* characters per pixel */
 
 {
-   int i, j, base, cpp, mval, red, green, blue, r, g, b, matched;
-   char *str;
+   int       i, j, base, cpp, mval, red, green, blue, r, g, b, matched;
+
+   char     *str;
 
   /*
    * Figure out how many characters per pixel we'll be using.  Don't want
@@ -950,124 +1030,130 @@ gen_cmap(chv, ncolors, maxval, map_rgb_names, rgbn, rgbn_max, cmap, charspp)
    * colormap entry.
    */
    for (i = 0; i < ncolors; i++)
-      {
+    {
 
-	/*
-	 * The character-pixel string is simply a printed number in base
-	 * "base" where the digits of the number range from LOW_CHAR to
-	 * HIGH_CHAR and the printed length of the number is "cpp".
-	 */
-	 cmap[i].cixel = gen_numstr(i, base, cpp);
+      /*
+       * The character-pixel string is simply a printed number in base
+       * "base" where the digits of the number range from LOW_CHAR to
+       * HIGH_CHAR and the printed length of the number is "cpp".
+       */
+       cmap[i].cixel = gen_numstr(i, base, cpp);
 
-	/* Fetch the rgb value of the current colormap entry. */
-	 red = PPM_GETR(chv[i].color);
-	 green = PPM_GETG(chv[i].color);
-	 blue = PPM_GETB(chv[i].color);
+      /* Fetch the rgb value of the current colormap entry. */
+       red = PPM_GETR(chv[i].color);
+       green = PPM_GETG(chv[i].color);
+       blue = PPM_GETB(chv[i].color);
 
-	/*
-	 * If the ppm color components are not relative to 15, 255, 4095,
-	 * 65535, normalize the color components here.
-	 */
-	 if (mval != (int) maxval)
+      /*
+       * If the ppm color components are not relative to 15, 255, 4095,
+       * 65535, normalize the color components here.
+       */
+       if (mval != (int) maxval)
+	{
+	   red = (red * mval) / (int) maxval;
+	   green = (green * mval) / (int) maxval;
+	   blue = (blue * mval) / (int) maxval;
+	}
+
+      /*
+       * If the "-rgb <rgbfile>" option was specified, attempt to map the
+       * rgb value to a color mnemonic.
+       */
+       if (map_rgb_names)
+	{
+
+	  /*
+	   * The rgb values of the color mnemonics are normalized relative
+	   * to 255 << 8, (i.e. 0xFF00).  [That's how the original MIT
+	   * code did it, really should have been "v * 65535 / 255"
+	   * instead of "v << 8", but have to use the same scheme here or
+	   * else colors won't match...]  So, if our rgb values aren't
+	   * already 16-bit values, need to shift left.
+	   */
+	   if (mval == 0x000F)
 	    {
-	       red = (red * mval) / (int) maxval;
-	       green = (green * mval) / (int) maxval;
-	       blue = (blue * mval) / (int) maxval;
+	       r = red << 12;
+	       g = green << 12;
+	       b = blue << 12;
+	      /* Special case hack for "white". */
+	       if (0xF000 == r && r == g && g == b)
+		  r = g = b = 0xFF00;
+	    }
+	   else if (mval == 0x00FF)
+	    {
+	       r = red << 8;
+	       g = green << 8;
+	       b = blue << 8;
+	    }
+	   else if (mval == 0x0FFF)
+	    {
+	       r = red << 4;
+	       g = green << 4;
+	       b = blue << 4;
+	    }
+	   else
+	    {
+	       r = red;
+	       g = green;
+	       b = blue;
 	    }
 
-	/*
-	 * If the "-rgb <rgbfile>" option was specified, attempt to map the
-	 * rgb value to a color mnemonic.
-	 */
-	 if (map_rgb_names)
-	    {
+	  /*
+	   * Just perform a dumb linear search over the rgb values of the
+	   * color mnemonics.  One could speed things up by sorting the
+	   * rgb values and using a binary search, or building a hash
+	   * table, etc...
+	   */
+	   for (matched = 0, j = 0; j <= rgbn_max; j++)
+	      if (r == rgbn[j].r && g == rgbn[j].g && b == rgbn[j].b)
+	       {
 
-	      /*
-	       * The rgb values of the color mnemonics are normalized relative
-	       * to 255 << 8, (i.e. 0xFF00).  [That's how the original MIT
-	       * code did it, really should have been "v * 65535 / 255"
-	       * instead of "v << 8", but have to use the same scheme here or
-	       * else colors won't match...]  So, if our rgb values aren't
-	       * already 16-bit values, need to shift left.
-	       */
-	       if (mval == 0x000F)
-		  {
-		     r = red << 12;
-		     g = green << 12;
-		     b = blue << 12;
-		    /* Special case hack for "white". */
-		     if (0xF000 == r && r == g && g == b)
-			r = g = b = 0xFF00;
-		  }
-	       else if (mval == 0x00FF)
-		  {
-		     r = red << 8;
-		     g = green << 8;
-		     b = blue << 8;
-		  }
-	       else if (mval == 0x0FFF)
-		  {
-		     r = red << 4;
-		     g = green << 4;
-		     b = blue << 4;
-		  }
-	       else
-		  {
-		     r = red;
-		     g = green;
-		     b = blue;
-		  }
+		 /* Matched.  Allocate string, copy mnemonic, and exit. */
+		  if (!(str = (char *) malloc(strlen(rgbn[j].name) + 1)))
+		    //pm_error("out of memory", 0, 0, 0, 0, 0);
+		     exit(1);
+		  strcpy(str, rgbn[j].name);
+		  cmap[i].rgbname = str;
+		  matched = 1;
+		  break;
+	       }
+	   if (matched)
+	      continue;
+	}
 
-	      /*
-	       * Just perform a dumb linear search over the rgb values of the
-	       * color mnemonics.  One could speed things up by sorting the
-	       * rgb values and using a binary search, or building a hash
-	       * table, etc...
-	       */
-	       for (matched = 0, j = 0; j <= rgbn_max; j++)
-		  if (r == rgbn[j].r && g == rgbn[j].g && b == rgbn[j].b)
-		     {
-
-		       /* Matched.  Allocate string, copy mnemonic, and exit. */
-			if (!(str = (char *) malloc(strlen(rgbn[j].name) + 1)))
-			  //pm_error("out of memory", 0, 0, 0, 0, 0);
-			   exit(1);
-			strcpy(str, rgbn[j].name);
-			cmap[i].rgbname = str;
-			matched = 1;
-			break;
-		     }
-	       if (matched)
-		  continue;
-	    }
-
-	/*
-	 * Either not mapping to color mnemonics, or didn't find a match.
-	 * Generate an absolute #RGB value string instead.
-	 */
-	 if (!(str = (char *) malloc(mval == 0x000F ? 5 : mval == 0x00FF ? 8 : mval == 0x0FFF ? 11 : 14)))
-	   //pm_error("out of memory", 0, 0, 0, 0, 0);
-	    exit(1);
+      /*
+       * Either not mapping to color mnemonics, or didn't find a match.
+       * Generate an absolute #RGB value string instead.
+       */
+       if (!(str = (char *) malloc(mval == 0x000F ? 5 : mval == 0x00FF ? 8 : mval == 0x0FFF ? 11 : 14)))
+	 //pm_error("out of memory", 0, 0, 0, 0, 0);
+	  exit(1);
 
 //      if (red == 0 && green == 0 && blue == 0)
 //              sprintf(str, "None");
 //      else
-	 sprintf(str, mval == 0x000F ? "#%02X%02X%02X" : mval == 0x00FF ? "#%02X%02X%02X" : mval == 0x0FFF ? "#%03X%03X%03X" : "#%04X%04X%04X", red, green, blue);
-	 cmap[i].rgbname = str;
-      }
+       sprintf(str, mval == 0x000F ? "#%02X%02X%02X" :
+	       mval == 0x00FF ? "#%02X%02X%02X" : mval == 0x0FFF ? "#%03X%03X%03X" : "#%04X%04X%04X", red, green, blue);
+       cmap[i].rgbname = str;
+    }
 
 }				/* gen_cmap */
 
 colorhash_table
 ppm_computecolorhash(pixels, cols, rows, maxcolors, colorsP)
-   lpixel **pixels;
-   int cols, rows, maxcolors;
-   int *colorsP;
+	lpixel  **pixels;
+
+	int       cols, rows, maxcolors;
+
+	int      *colorsP;
 {
    colorhash_table cht;
+
    register lpixel *pP;
+
    colorhist_list chl;
-   int col, row, hash;
+
+   int       col, row, hash;
 
    cht = ppm_alloccolorhash();
    *colorsP = 0;
@@ -1075,30 +1161,30 @@ ppm_computecolorhash(pixels, cols, rows, maxcolors, colorsP)
   /* Go through the entire image, building a hash table of colors. */
    for (row = 0; row < rows; ++row)
       for (col = 0, pP = pixels[row]; col < cols; ++col, ++pP)
-	 {
-	    hash = ppm_hashpixel(*pP);
-	    for (chl = cht[hash]; chl != (colorhist_list) 0; chl = chl->next)
-	       if (PPM_EQUAL(chl->ch.color, *pP))
-		  break;
-	    if (chl != (colorhist_list) 0)
-	       ++(chl->ch.value);
-	    else
+       {
+	  hash = ppm_hashpixel(*pP);
+	  for (chl = cht[hash]; chl != (colorhist_list) 0; chl = chl->next)
+	     if (PPM_EQUAL(chl->ch.color, *pP))
+		break;
+	  if (chl != (colorhist_list) 0)
+	     ++(chl->ch.value);
+	  else
+	   {
+	      if (++(*colorsP) > maxcolors)
 	       {
-		  if (++(*colorsP) > maxcolors)
-		     {
-			ppm_freecolorhash(cht);
-			return (colorhash_table) 0;
-		     }
-		  chl = (colorhist_list) malloc(sizeof(struct colorhist_list_item));
-		  if (chl == 0)
-		    //pm_error( "out of memory computing hash table" );
-		     exit(1);
-		  chl->ch.color = *pP;
-		  chl->ch.value = 1;
-		  chl->next = cht[hash];
-		  cht[hash] = chl;
+		  ppm_freecolorhash(cht);
+		  return (colorhash_table) 0;
 	       }
-	 }
+	      chl = (colorhist_list) malloc(sizeof(struct colorhist_list_item));
+	      if (chl == 0)
+		//pm_error( "out of memory computing hash table" );
+		 exit(1);
+	      chl->ch.color = *pP;
+	      chl->ch.value = 1;
+	      chl->next = cht[hash];
+	      cht[hash] = chl;
+	   }
+       }
 
    return cht;
 }
@@ -1107,7 +1193,8 @@ colorhash_table
 ppm_alloccolorhash()
 {
    colorhash_table cht;
-   int i;
+
+   int       i;
 
    cht = (colorhash_table) malloc(HASHSIZE * sizeof(colorhist_list));
    if (cht == 0)
@@ -1122,12 +1209,15 @@ ppm_alloccolorhash()
 
 colorhist_vector
 ppm_colorhashtocolorhist(cht, maxcolors)
-   colorhash_table cht;
-   int maxcolors;
+	colorhash_table cht;
+
+	int       maxcolors;
 {
    colorhist_vector chv;
+
    colorhist_list chl;
-   int i, j;
+
+   int       i, j;
 
   /* Now collate the hash table into a simple colorhist array. */
    chv = (colorhist_vector) malloc(maxcolors * sizeof(struct colorhist_item));
@@ -1140,11 +1230,11 @@ ppm_colorhashtocolorhist(cht, maxcolors)
    j = 0;
    for (i = 0; i < HASHSIZE; ++i)
       for (chl = cht[i]; chl != (colorhist_list) 0; chl = chl->next)
-	 {
-	   /* Add the new entry. */
-	    chv[j] = chl->ch;
-	    ++j;
-	 }
+       {
+	 /* Add the new entry. */
+	  chv[j] = chl->ch;
+	  ++j;
+       }
 
   /* All done. */
    return chv;
@@ -1156,12 +1246,13 @@ ppm_colorhashtocolorhist(cht, maxcolors)
    number range from LOW_CHAR to HIGH_CHAR.  The string is LOW_CHAR filled,
    (e.g. if LOW_CHAR==0, HIGH_CHAR==1, digits==5, i=3, routine would return
    the malloc'ed string "00011"). */
-char *
+char     *
 gen_numstr(i, base, digits)
-   int i, base, digits;
+	int       i, base, digits;
 {
-   char *str, *p;
-   int d;
+   char     *str, *p;
+
+   int       d;
 
   /* Allocate memory for printed number.  Abort if error. */
    if (!(str = (char *) malloc(digits + 1)))
@@ -1172,11 +1263,11 @@ gen_numstr(i, base, digits)
    p = str + digits;
    *p-- = '\0';			/* nul terminate string */
    while (p >= str)
-      {
-	 d = i % base;
-	 i /= base;
-	 *p-- = (char) ((int) LOW_CHAR + d);
-      }
+    {
+       d = i % base;
+       i /= base;
+       *p-- = (char) ((int) LOW_CHAR + d);
+    }
 
    return str;
 

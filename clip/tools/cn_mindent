@@ -1,7 +1,6 @@
-#!/bin/sh -xu
+#!/bin/sh -x
 SIMPLE_BACKUP_SUFFIX=.BAK
 export SIMPLE_BACKUP_SUFFIX
-rm -f $Clip_M_Dir/temp/compile.indent.sh
 # -l128 line length 128
 # -lc80 comment line length
 # -bad blank-lines-after-declarations
@@ -23,17 +22,17 @@ rm -f $Clip_M_Dir/temp/compile.indent.sh
 # -nsc Do not put a space after cast operators
 # -nce Do not cuddle `}' and `else'
 # $*
-Parameters="-l200 -lc80 -sob -nfc1 -d3 -ncdb -cd33 -bli3 -npcs \
-			-di3 -nbc -psl -i3 -ip3 -lp -ci3 -nsc -nce"
-
-FileList="*.h *.*/.h *.c */*.c"
-if [[ -n "$*" ]] ; then
-	indent $Parameters $Parameters $* || true
-else
-	for n01ii in $FileList ; do
-		if [[ -f "$n01ii" ]] ; then
-			indent $Parameters $n01ii || true
-			 ##>>$Clip_M_Dir/temp/compile.indent.sh 2>&1
-		fi
-	done
-fi
+FileList=""
+List="$(ls *.h)"
+FileList="$FileList $List"
+List="$(ls *.c)"
+FileList="$FileList $List"
+List="$(ls */*.c)"
+FileList="$FileList $List"
+List="$(ls */*.h)"
+FileList="$FileList $List"
+for n01ii in $FileList ; do
+	indent -l200 -lc80 -bad -bap -sob -nfc1 -d0 -ncdb -cd33 -bli0 -npcs \
+			 -di1 -nbc -psl -i3 -ip3 -lp -ci0 -nsc -nce $n01ii
+	##>>$Clip_M_Dir/temp/compile.indent.sh 2>&1
+done

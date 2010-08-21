@@ -16,7 +16,7 @@
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
+static    gint
 handler_signal(GtkFileChooser * filech, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -94,25 +94,28 @@ int
 clip_INIT___FILECHOOSER(ClipMachine * ClipMachineMemory)
 {
    _wtype_table_put(_clip_type_file_chooser, _clip_type_name_file_chooser, _gtk_type_file_chooser, NULL, file_chooser_signals);
-   _wtype_table_put(_clip_type_file_chooser_dialog, _clip_type_name_file_chooser_dialog, _gtk_type_file_chooser_dialog, _gtk_type_dialog, NULL);
-   _wtype_table_put(_clip_type_file_chooser_widget, _clip_type_name_file_chooser_widget, _gtk_type_file_chooser_widget, _gtk_type_vbox, NULL);
+   _wtype_table_put(_clip_type_file_chooser_dialog,
+		    _clip_type_name_file_chooser_dialog, _gtk_type_file_chooser_dialog, _gtk_type_dialog, NULL);
+   _wtype_table_put(_clip_type_file_chooser_widget,
+		    _clip_type_name_file_chooser_widget, _gtk_type_file_chooser_widget, _gtk_type_vbox, NULL);
    return 0;
 }
 
 int
 clip_GTK_FILECHOOSERERRORQUARK(ClipMachine * ClipMachineMemory)
 {
-   GQuark error_quark;
+   GQuark    error_quark;
+
    C_object *cerr;
 
    error_quark = gtk_file_chooser_error_quark();
 
    if (error_quark)
-      {
-	 cerr = _register_object(ClipMachineMemory, &error_quark, GTK_TYPE_OBJECT, NULL, NULL);
-	 if (cerr)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cerr->obj);
-      }
+    {
+       cerr = _register_object(ClipMachineMemory, &error_quark, GTK_TYPE_OBJECT, NULL, NULL);
+       if (cerr)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cerr->obj);
+    }
 
    return 0;
 }
@@ -121,6 +124,7 @@ int
 clip_GTK_FILECHOOSERSETACTION(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -151,7 +155,8 @@ int
 clip_GTK_FILECHOOSERSETLOCALONLY(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -181,7 +186,8 @@ int
 clip_GTK_FILECHOOSERSETSELECTMILTIPLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -211,7 +217,8 @@ int
 clip_GTK_FILECHOOSERSETCURRENTNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -229,7 +236,8 @@ int
 clip_GTK_FILECHOOSERSETFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -247,7 +255,8 @@ int
 clip_GTK_FILECHOOSERGETFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name;
+
+   gchar    *name;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -265,7 +274,8 @@ int
 clip_GTK_FILECHOOSERSELECTFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -283,7 +293,8 @@ int
 clip_GTK_FILECHOOSERUNSELECTFILENAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -329,9 +340,12 @@ int
 clip_GTK_FILECHOOSERGETFILENAMES(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   GSList *list;
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   long l;
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -340,16 +354,18 @@ clip_GTK_FILECHOOSERGETFILENAMES(ClipMachine * ClipMachineMemory)
 
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_slist_next(list), l++)
-      {
-	 ClipVar c;
-	 gchar *str;
-	 memset(&c, 0, sizeof(c));
-	 str = (gchar *) list->data;
-	 _clip_var_str(str, strlen(str), &c);
-	 _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
-	 _clip_destroy(ClipMachineMemory, &c);
-	 g_free(str);
-      }
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
    g_slist_free(list);
 
    return 0;
@@ -361,7 +377,8 @@ int
 clip_GTK_FILECHOOSERSETCURRENTFOLDER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -379,7 +396,8 @@ int
 clip_GTK_FILECHOOSERGETCURRENTFOLDER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name;
+
+   gchar    *name;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -397,7 +415,8 @@ int
 clip_GTK_FILECHOOSERGETURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri;
+
+   gchar    *uri;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -415,7 +434,8 @@ int
 clip_GTK_FILECHOOSERSETURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -433,7 +453,8 @@ int
 clip_GTK_FILECHOOSERSELECTURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -451,7 +472,8 @@ int
 clip_GTK_FILECHOOSERUNSELECTURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -469,9 +491,12 @@ int
 clip_GTK_FILECHOOSERGETURIS(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   GSList *list;
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   long l;
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -480,15 +505,17 @@ clip_GTK_FILECHOOSERGETURIS(ClipMachine * ClipMachineMemory)
 
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_slist_next(list), l++)
-      {
-	 ClipVar c;
-	 gchar *str;
-	 memset(&c, 0, sizeof(c));
-	 str = (gchar *) list->data;
-	 _clip_var_str(str, strlen(str), &c);
-	 _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
-	 _clip_destroy(ClipMachineMemory, &c);
-      }
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+    }
    g_slist_free(list);
 
    return 0;
@@ -500,7 +527,8 @@ int
 clip_GTK_FILECHOOSERSETCURRENTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *uri = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -518,7 +546,8 @@ int
 clip_GTK_FILECHOOSERGETCURRENTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *uri;
+
+   gchar    *uri;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -536,6 +565,7 @@ int
 clip_GTK_FILECHOOSERSETPREVIEWWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -552,20 +582,22 @@ int
 clip_GTK_FILECHOOSERGETPREVIEWWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
    wid = gtk_file_chooser_get_preview_widget(GTK_FILE_CHOOSER(cchooser->object));
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -575,7 +607,8 @@ int
 clip_GTK_FILECHOOSERSETPREVIEWWIDGETACTIVE(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, LOGICAL_type_of_ClipVarType);
@@ -647,6 +680,7 @@ int
 clip_GTK_FILECHOOSERSETEXTRAWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -663,20 +697,22 @@ int
 clip_GTK_FILECHOOSERGETEXTRAWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
    wid = gtk_file_chooser_get_extra_widget(GTK_FILE_CHOOSER(cchooser->object));
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, NULL);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, NULL);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -686,6 +722,7 @@ int
 clip_GTK_FILECHOOSERADDFILTER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -702,6 +739,7 @@ int
 clip_GTK_FILECHOOSERREMOVEFILTER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -718,9 +756,12 @@ int
 clip_GTK_FILECHOOSERLISTFILTERS(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   GSList *list;
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   long l;
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -729,17 +770,18 @@ clip_GTK_FILECHOOSERLISTFILTERS(ClipMachine * ClipMachineMemory)
 
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_slist_next(list), l++)
-      {
-	 GtkFileFilter *filter;
-	 C_object *cfilter;
+    {
+       GtkFileFilter *filter;
 
-	 filter = GTK_FILE_FILTER(list->data);
-	 cfilter = _list_get_cobject(ClipMachineMemory, filter);
-	 if (!cfilter)
-	    cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
-	 if (cfilter)
-	    _clip_aset(ClipMachineMemory, cv, &cfilter->obj, 1, &l);
-      }
+       C_object *cfilter;
+
+       filter = GTK_FILE_FILTER(list->data);
+       cfilter = _list_get_cobject(ClipMachineMemory, filter);
+       if (!cfilter)
+	  cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
+       if (cfilter)
+	  _clip_aset(ClipMachineMemory, cv, &cfilter->obj, 1, &l);
+    }
    g_slist_free(list);
 
    return 0;
@@ -751,6 +793,7 @@ int
 clip_GTK_FILECHOOSERSETFILTER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cfilter = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
@@ -767,20 +810,22 @@ int
 clip_GTK_FILECHOOSERGETFILTER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cfilter;
+
    GtkFileFilter *filter;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
    filter = gtk_file_chooser_get_filter(GTK_FILE_CHOOSER(cchooser->object));
    if (filter)
-      {
-	 cfilter = _list_get_cobject(ClipMachineMemory, filter);
-	 if (!cfilter)
-	    cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
-	 if (cfilter)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfilter->obj);
-      }
+    {
+       cfilter = _list_get_cobject(ClipMachineMemory, filter);
+       if (!cfilter)
+	  cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
+       if (cfilter)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfilter->obj);
+    }
    return 0;
  err:
    return 1;
@@ -790,8 +835,10 @@ int
 clip_GTK_FILECHOOSERADDSHORTCUTFOLDER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
-   GError *error;
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -809,8 +856,10 @@ int
 clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDER(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
-   GError *error;
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -828,9 +877,12 @@ int
 clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERS(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   GSList *list;
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   long l;
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -839,16 +891,18 @@ clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERS(ClipMachine * ClipMachineMemory)
 
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_slist_next(list), l++)
-      {
-	 ClipVar c;
-	 gchar *str;
-	 memset(&c, 0, sizeof(c));
-	 str = (gchar *) list->data;
-	 _clip_var_str(str, strlen(str), &c);
-	 _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
-	 _clip_destroy(ClipMachineMemory, &c);
-	 g_free(str);
-      }
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
    g_slist_free(list);
 
    return 0;
@@ -860,8 +914,10 @@ int
 clip_GTK_FILECHOOSERADDSHORTCUTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
-   GError *error;
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -879,8 +935,10 @@ int
 clip_GTK_FILECHOOSERREMOVESHORTCUTFOLDERURI(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
-   GError *error;
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
+
+   GError   *error;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -898,9 +956,12 @@ int
 clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERURIS(ClipMachine * ClipMachineMemory)
 {
    C_object *cchooser = _fetch_co_arg(ClipMachineMemory);
-   GSList *list;
-   ClipVar *cv = RETPTR(ClipMachineMemory);
-   long l;
+
+   GSList   *list;
+
+   ClipVar  *cv = RETPTR(ClipMachineMemory);
+
+   long      l;
 
    CHECKCOBJ(cchooser, GTK_IS_FILE_CHOOSER(cchooser->object));
 
@@ -909,16 +970,18 @@ clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERURIS(ClipMachine * ClipMachineMemory)
 
    _clip_array(ClipMachineMemory, cv, 1, &l);
    for (l = 0; list; list = g_slist_next(list), l++)
-      {
-	 ClipVar c;
-	 gchar *str;
-	 memset(&c, 0, sizeof(c));
-	 str = (gchar *) list->data;
-	 _clip_var_str(str, strlen(str), &c);
-	 _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
-	 _clip_destroy(ClipMachineMemory, &c);
-	 g_free(str);
-      }
+    {
+       ClipVar   c;
+
+       gchar    *str;
+
+       memset(&c, 0, sizeof(c));
+       str = (gchar *) list->data;
+       _clip_var_str(str, strlen(str), &c);
+       _clip_aset(ClipMachineMemory, cv, &c, 1, &l);
+       _clip_destroy(ClipMachineMemory, &c);
+       g_free(str);
+    }
    g_slist_free(list);
 
    return 0;
@@ -931,14 +994,21 @@ clip_GTK_FILECHOOSERLISTSHORTCUTFOLDERURIS(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
+
    C_widget *cparent = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 4);
+
    GtkWidget *wid;
+
    C_widget *cwid;
-   gchar *button[20], *response_id[20];
-   gint i, j, n;
+
+   gchar    *button[20], *response_id[20];
+
+   gint      i, j, n;
 
    CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
@@ -948,16 +1018,16 @@ clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * ClipMachineMemory)
    memset(response_id, 0, sizeof(response_id));
    n = _clip_parinfo(ClipMachineMemory, 0);
    for (i = 0, j = 5; j < n; j += 2, i++)
-      {
-	 CHECKOPT(j, CHARACTER_type_of_ClipVarType);
-	 if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
-	    break;
-	 CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
-	 button[i] = _clip_parc(ClipMachineMemory, j);
-	 response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
-	 LOCALE_TO_UTF(button[i]);
-	 LOCALE_TO_UTF(response_id[i]);
-      }
+    {
+       CHECKOPT(j, CHARACTER_type_of_ClipVarType);
+       if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
+	  break;
+       CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
+       button[i] = _clip_parc(ClipMachineMemory, j);
+       response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
+       LOCALE_TO_UTF(button[i]);
+       LOCALE_TO_UTF(response_id[i]);
+    }
 
    if (title)
       LOCALE_TO_UTF(title);
@@ -979,22 +1049,24 @@ clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * ClipMachineMemory)
 				     response_id[12], button[13],
 				     response_id[13], button[14],
 				     response_id[14], button[15],
-				     response_id[15], button[16], response_id[16], button[17], response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
+				     response_id[15], button[16],
+				     response_id[16], button[17],
+				     response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
    for (i = 0; i < n - 5; i++)
-      {
-	 FREE_TEXT(button[i]);
-	 FREE_TEXT(response_id[i]);
-      }
+    {
+       FREE_TEXT(button[i]);
+       FREE_TEXT(response_id[i]);
+    }
    if (title)
       FREE_TEXT(title);
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, cv);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1003,15 +1075,23 @@ clip_GTK_FILECHOOSERDIALOGNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
+
    C_widget *cparent = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 4);
-   gchar *backend = _clip_parc(ClipMachineMemory, 5);
+
+   gchar    *backend = _clip_parc(ClipMachineMemory, 5);
+
    GtkWidget *wid;
+
    C_widget *cwid;
-   gchar *button[20], *response_id[20];
-   gint i, j, n;
+
+   gchar    *button[20], *response_id[20];
+
+   gint      i, j, n;
 
    CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
@@ -1024,16 +1104,16 @@ clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 
    n = _clip_parinfo(ClipMachineMemory, 0);
    for (i = 0, j = 6; j < n; j += 2, i++)
-      {
-	 CHECKOPT(j, CHARACTER_type_of_ClipVarType);
-	 if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
-	    break;
-	 CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
-	 button[i] = _clip_parc(ClipMachineMemory, j);
-	 response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
-	 LOCALE_TO_UTF(button[i]);
-	 LOCALE_TO_UTF(response_id[i]);
-      }
+    {
+       CHECKOPT(j, CHARACTER_type_of_ClipVarType);
+       if (_clip_parinfo(ClipMachineMemory, j) == UNDEF_type_of_ClipVarType)
+	  break;
+       CHECKOPT(j + 1, CHARACTER_type_of_ClipVarType);
+       button[i] = _clip_parc(ClipMachineMemory, j);
+       response_id[i] = _clip_parc(ClipMachineMemory, j + 1);
+       LOCALE_TO_UTF(button[i]);
+       LOCALE_TO_UTF(response_id[i]);
+    }
 
    if (title)
       LOCALE_TO_UTF(title);
@@ -1056,22 +1136,24 @@ clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 				     response_id[12], button[13],
 				     response_id[13], button[14],
 				     response_id[14], button[15],
-				     response_id[15], button[16], response_id[16], button[17], response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
+				     response_id[15], button[16],
+				     response_id[16], button[17],
+				     response_id[17], button[18], response_id[18], button[19], response_id[19], NULL);
    for (i = 0; i < n - 6; i++)
-      {
-	 FREE_TEXT(button[i]);
-	 FREE_TEXT(response_id[i]);
-      }
+    {
+       FREE_TEXT(button[i]);
+       FREE_TEXT(response_id[i]);
+    }
    if (title)
       FREE_TEXT(title);
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, cv);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1083,9 +1165,12 @@ clip_GTK_FILECHOOSERDIALOGNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERWIDGETNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
@@ -1093,13 +1178,13 @@ clip_GTK_FILECHOOSERWIDGETNEW(ClipMachine * ClipMachineMemory)
 
    wid = gtk_file_chooser_widget_new(action);
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, cv);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;
@@ -1108,10 +1193,14 @@ clip_GTK_FILECHOOSERWIDGETNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_FILECHOOSERWIDGETNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkFileChooserAction action = _clip_parni(ClipMachineMemory, 2);
-   gchar *backend = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *backend = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKOPT2(1, NUMERIC_type_of_ClipVarType, MAP_type_of_ClipVarType);
@@ -1120,13 +1209,13 @@ clip_GTK_FILECHOOSERWIDGETNEWWITHBACKEND(ClipMachine * ClipMachineMemory)
 
    wid = gtk_file_chooser_widget_new_with_backend(action, backend);
    if (wid)
-      {
-	 cwid = _list_get_cwidget(ClipMachineMemory, wid);
-	 if (!cwid)
-	    cwid = _register_widget(ClipMachineMemory, wid, cv);
-	 if (cwid)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
-      }
+    {
+       cwid = _list_get_cwidget(ClipMachineMemory, wid);
+       if (!cwid)
+	  cwid = _register_widget(ClipMachineMemory, wid, cv);
+       if (cwid)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cwid->obj);
+    }
    return 0;
  err:
    return 1;

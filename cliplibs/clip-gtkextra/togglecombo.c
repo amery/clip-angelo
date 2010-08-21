@@ -17,7 +17,7 @@
 #include "ci_clip-gtkextra.h"
 
 /**********************************************************/
-static gint
+static    gint
 handle_changed_signal(GtkWidget * widget, gint row, gint col, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -56,7 +56,8 @@ _clip_type_name_toggle_combo()
 int
 clip_INIT___TOGGLE_COMBO(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_toggle_combo, _clip_type_name_toggle_combo, _gtk_type_toggle_combo, _gtk_type_combo_box, toggle_combo_signals);
+   _wtype_table_put(_clip_type_toggle_combo, _clip_type_name_toggle_combo, _gtk_type_toggle_combo, _gtk_type_combo_box,
+		    toggle_combo_signals);
    return 0;
 }
 
@@ -64,11 +65,14 @@ clip_INIT___TOGGLE_COMBO(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TOGGLECOMBONEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gint nrows = INT_OPTION(ClipMachineMemory, 2, 1);
-   gint ncols = INT_OPTION(ClipMachineMemory, 3, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gint      nrows = INT_OPTION(ClipMachineMemory, 2, 1);
+
+   gint      ncols = INT_OPTION(ClipMachineMemory, 3, 1);
 
    GtkWidget *wid = NULL;
+
    C_widget *cwid, *cbutton, *ctable;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -97,6 +101,7 @@ int
 clip_GTK_TOGGLECOMBOGETNROWS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctgc = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctgc, GTK_IS_TOGGLE_COMBO);
    gtk_toggle_combo_get_nrows(GTK_TOGGLE_COMBO(ctgc->widget));
    return 0;
@@ -108,6 +113,7 @@ int
 clip_GTK_TOGGLECOMBOGETNCOLS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctgc = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctgc, GTK_IS_TOGGLE_COMBO);
    gtk_toggle_combo_get_ncols(GTK_TOGGLE_COMBO(ctgc->widget));
    return 0;
@@ -119,8 +125,11 @@ int
 clip_GTK_TOGGLECOMBOSELECT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctgc = _fetch_cw_arg(ClipMachineMemory);
-   gint row = INT_OPTION(ClipMachineMemory, 2, 1);
-   gint col = INT_OPTION(ClipMachineMemory, 3, 1);
+
+   gint      row = INT_OPTION(ClipMachineMemory, 2, 1);
+
+   gint      col = INT_OPTION(ClipMachineMemory, 3, 1);
+
    CHECKCWID(ctgc, GTK_IS_TOGGLE_COMBO);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, NUMERIC_type_of_ClipVarType);
@@ -134,7 +143,9 @@ int
 clip_GTK_TOGGLECOMBOGETSELECTION(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctgc = _fetch_cw_arg(ClipMachineMemory);
-   gint row, col;
+
+   gint      row, col;
+
    CHECKCWID(ctgc, GTK_IS_TOGGLE_COMBO);
    gtk_toggle_combo_get_selection(GTK_TOGGLE_COMBO(ctgc->widget), &row, &col);
    _clip_storni(ClipMachineMemory, row + 1, 2, 0);

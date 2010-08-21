@@ -1,0 +1,22 @@
+typedef enum Pass
+{
+   Print,
+   Destroy,
+   CalcDeep,
+   CText,
+   CTextInit,
+   CTextLval,
+   CTextRef,
+   OText,
+   OTextLval,
+   OTextRef,
+   OTextLoop,
+   OTextTrap,
+   SearchMacro,
+   TestConst,
+   Codegen1,
+   Codegen2,
+   PrintSrc,
+   Traverse,
+}
+Pass;

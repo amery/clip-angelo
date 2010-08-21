@@ -1,0 +1,151 @@
+##
+##										init/Makefile.01.in
+##
+##				called from all Makefile files
+##
+# 	ADDMAKECMDGOALS =							to initiate in /init/Makefile.01.in
+## 	-i ignore errors
+##
+## 	--no-print-directory
+## 	-s silent
+## 	-r no rules
+##  	-R no variables no rules
+## 	-d debug info
+## 	-p database info (variables)
+## 	-j n  concurrent jobs
+## 	-x read
+#MAKEFLAGS = --warn-undefined-variables							to initiate in /init/Makefile.02.in
+## 			Issue a warning message whenever `make' sees a reference to an
+## 			undefined variable. 	This can be helpful when you are trying to
+## 			debug makefiles which use variables in complex ways.
+##
+AllSrcs 				= 			$(SRC_C_files) $(SRC_PRG_files) $(SRC_C_files2) $(SRC_PRG_files2)
+AllG 					= 			$(addsuffix .g,$(basename $(AllSrcs) ) )
+Depend_on 			=
+Local_Depend 		=
+prg_files 			=
+prg_files2 			=
+c_files 				=
+c_files2 			=
+SRC_PRG_files 		=
+SRC_PRG_files2 	=
+SRC_C_files 		=
+SRC_C_files2 		=
+MAKEFLAGS 			+= 		--warn-undefined-variables
+ADDMAKECMDGOALS 	+= 	example
+DLLLIBSUFF 			= 		.a
+PROGS					= 		xyzs
+PROG 					= 		xyz
+PROG2 				= 		xyz2
+o_files 				=
+o_files2 			=
+TARGET 				= 		lib$(PROG)
+TARGET2				= 		lib$(PROG2)
+ATARGET 				= 		$(TARGET)$(DLLLIBSUFF)
+ATARGET2				= 		$(TARGET2)$(DLLLIBSUFF)
+RTARGET 				= 		$(TARGET)$(DLLREALSUFF)
+RTARGET2				= 		$(TARGET2)$(DLLREALSUFF)
+STARGET 				= 		$(TARGET)$(DLLSUFF)
+STARGET2				= 		$(TARGET2)$(DLLSUFF)
+ADDOBJS 				=
+#ADDLIBS 			=
+ADDOBJS2 			=
+ADDLIBS2 			=
+FULL_LIBDEVIL 		= 		$(Devil_L_Dir)/libDevil.so
+L_DEVILLIB 			= 		-L$(Devil_L_Dir) -lDevil
+BINS 					=
+DIRS_TO_SCAN 		=
+DOC =
+COMPILE_FLAGS 		= 		-symbolic
+Debug_Make			=1
+E_mkl 				=@
+E_mkSl 				=@
+E_cc 					=@
+E_cd 					=@
+E_devil 				=
+E_cp 					=@
+E_e 					=@
+E_for 				=@
+E_if 					=@
+E_ln 					=@
+E_mkD 				=@
+E_rm 					=@
+E_xx 					=@
+define Trace
+	echo [MAKE] : $(value PWD)/$@ because of : $? >&1 ; 	\
+	echo [MAKE] : $(value PWD)/$@ because of : $? >&2
+endef
+#	echo [MAKE] : $(value PWD)/$@ because of : $? >&0 ; 	\
+#
+define Trace_cc
+	$(Trace) ;								\
+	echo [CC] $(value PWD)/$@ 	>&2 ; \
+	echo [CC] $(value PWD)/$@ 	>&0 ; \
+	echo [CC] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_cc_d
+	$(Trace) ; 									\
+	echo [CC -g] $(value PWD)/$@ 	>&2 ; \
+	echo [CC -g] $(value PWD)/$@ 	>&0 ; \
+	echo [CC -g] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_devil
+	$(Trace) ; 										\
+	echo [DEVIL] $(value PWD)/$@ 	>&2 ; 	\
+	echo [DEVIL] $(value PWD)/$@ 	>&0 ; 	\
+	echo [DEVIL] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_devil_d
+	$(Trace) ; 											\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&2 ; 	\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&0 ; 	\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_flex
+	$(Trace) ; 										\
+	echo [FLEX] $(value PWD)/$@ 	>&2 ; 	\
+	echo [FLEX] $(value PWD)/$@ 	>&0 ; 	\
+	echo [FLEX] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_lib
+	$(Trace) ; 										\
+	echo OBJS : $(o_files) 		;				\
+	echo [LIB] $(value PWD)/$@ 	>&2 ; 	\
+	echo [LIB] $(value PWD)/$@ 	>&0 ; 	\
+	echo [LIB] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_lib2
+	$(Trace) ; 										\
+	echo OBJS2 : $(o_files2) 	;				\
+	echo [LIB2] $(value PWD)/$@ 	>&2 ; 	\
+	echo [LIB2] $(value PWD)/$@ 	>&0 ; 	\
+	echo [LIB2] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_prg
+	$(Trace) ; 										\
+	echo [DEVIL] $(value PWD)/$@ 	>&2 ; 	\
+	echo [DEVIL] $(value PWD)/$@ 	>&0 ; 	\
+	echo [DEVIL] $(value PWD)/$@	>&1
+endef
+
+define Trace_prg_d
+	$(Trace) ; 											\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&2 ; 	\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&0 ; 	\
+	echo [DEVIL -g] $(value PWD)/$@ 	>&1
+endef
+
+define Trace_yacc
+	$(Trace) ; 										\
+	echo [YACC] $(value PWD)/$@ 	>&2 ; 	\
+	echo [YACC] $(value PWD)/$@ 	>&0 ; 	\
+	echo [YACC] $(value PWD)/$@ 	>&1
+endef
+

@@ -71,23 +71,30 @@ clip_INIT___LABEL(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_LABELNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *text = _clip_parc(ClipMachineMemory, 2);
-   char *pchar = _clip_parc(ClipMachineMemory, 3);
-   guint accel_key = 0;
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *text = _clip_parc(ClipMachineMemory, 2);
+
+   char     *pchar = _clip_parc(ClipMachineMemory, 3);
+
+   guint     accel_key = 0;
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
 
    if (pchar)
-      {
-	 char *pc;
-	 for (pc = text; pc && *pc; pc++)
-	    if (*pc == *pchar)
-	       *pc = '_';
-      }
+    {
+       char     *pc;
+
+       for (pc = text; pc && *pc; pc++)
+	  if (*pc == *pchar)
+	     *pc = '_';
+    }
    LOCALE_TO_UTF(text);
    wid = gtk_label_new(text);
    if (!wid)
@@ -115,9 +122,13 @@ int
 clip_GTK_LABELSETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   char *text = _clip_parc(ClipMachineMemory, 2);
-   char *pchar = _clip_parc(ClipMachineMemory, 3);
-   guint accel_key = 0;
+
+   char     *text = _clip_parc(ClipMachineMemory, 2);
+
+   char     *pchar = _clip_parc(ClipMachineMemory, 3);
+
+   guint     accel_key = 0;
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -126,13 +137,14 @@ clip_GTK_LABELSETTEXT(ClipMachine * ClipMachineMemory)
    LOCALE_TO_UTF(text);
    gtk_label_set_text(GTK_LABEL(clbl->widget), text);
    if (pchar)
-      {
-	 char *pc;
-	 for (pc = text; pc && *pc; pc++)
-	    if (*pc == *pchar)
-	       *pc = '_';
-	 accel_key = gtk_label_parse_uline(GTK_LABEL(clbl->widget), text);
-      }
+    {
+       char     *pc;
+
+       for (pc = text; pc && *pc; pc++)
+	  if (*pc == *pchar)
+	     *pc = '_';
+       accel_key = gtk_label_parse_uline(GTK_LABEL(clbl->widget), text);
+    }
    FREE_TEXT(text);
    _clip_mputn(ClipMachineMemory, &clbl->obj, HASH_ACCELKEY, accel_key);
    return 0;
@@ -147,7 +159,9 @@ int
 clip_GTK_LABELSETPATTERN(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   char *pattern = _clip_parc(ClipMachineMemory, 2);
+
+   char     *pattern = _clip_parc(ClipMachineMemory, 2);
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    gtk_label_set_pattern(GTK_LABEL(clbl->widget), pattern);
@@ -164,7 +178,9 @@ int
 clip_GTK_LABELSETJUSTIFY(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
+
    GtkJustification jtype = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_label_set_justify(GTK_LABEL(clbl->widget), jtype);
@@ -178,7 +194,9 @@ int
 clip_GTK_LABELGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text;
+
+   gchar    *text;
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    gtk_label_get(GTK_LABEL(clbl->widget), &text);
    LOCALE_FROM_UTF(text);
@@ -198,7 +216,9 @@ int
 clip_GTK_LABELPARSEULINE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   char *string = CHAR_OPTION(ClipMachineMemory, 2, "");
+
+   char     *string = CHAR_OPTION(ClipMachineMemory, 2, "");
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
    LOCALE_TO_UTF(string);
@@ -216,7 +236,9 @@ int
 clip_GTK_LABELSETLINEWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gboolean wrap = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  wrap = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    gtk_label_set_line_wrap(GTK_LABEL(clbl->widget), wrap);
@@ -234,10 +256,14 @@ clip_GTK_LABELSETLINEWRAP(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_ACCELLABELNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *text = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *text = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -262,7 +288,9 @@ int
 clip_GTK_ACCELLABELSETACCELWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(clbl, GTK_IS_ACCEL_LABEL);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    gtk_accel_label_set_accel_widget(GTK_ACCEL_LABEL(clbl->widget), cwid->widget);
@@ -278,6 +306,7 @@ int
 clip_GTK_ACCELLABELGETACCELWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clbl, GTK_IS_ACCEL_LABEL);
    _clip_retni(ClipMachineMemory, gtk_accel_label_get_accel_width(GTK_ACCEL_LABEL(clbl->widget)));
    return 0;
@@ -292,6 +321,7 @@ int
 clip_GTK_ACCELLABELREFETCH(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(clbl, GTK_IS_ACCEL_LABEL);
    _clip_retl(ClipMachineMemory, gtk_accel_label_refetch(GTK_ACCEL_LABEL(clbl->widget)));
    return 0;
@@ -307,18 +337,19 @@ clip_GTK_ACCELLABELREFETCH(ClipMachine * ClipMachineMemory)
 int
 _label_parse_uline(GtkWidget * wid, char text[])
 {
-   int i, j;
-   int ret;
+   int       i, j;
+
+   int       ret;
 
    if (!text)
       return 0;
 
    ret = gtk_label_parse_uline(GTK_LABEL(wid), text);
    for (i = 0, j = 0; text[i]; i++)
-      {
-	 if (text[i] != '_')
-	    text[j++] = text[i];
-      }
+    {
+       if (text[i] != '_')
+	  text[j++] = text[i];
+    }
    text[j] = '\0';
    gtk_label_set_text(GTK_LABEL(wid), text);
    return ret;
@@ -389,7 +420,8 @@ int
 clip_GTK_LABELSETANGLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gdouble angle = _clip_parnd(ClipMachineMemory, 2);
+
+   gdouble   angle = _clip_parnd(ClipMachineMemory, 2);
 
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -405,6 +437,7 @@ int
 clip_GTK_LABELSETELLIPSIZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
+
    PangoEllipsizeMode mode = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(clbl, GTK_IS_LABEL);
@@ -421,7 +454,8 @@ int
 clip_GTK_LABELSETMAXWIDTHCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gint width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -437,7 +471,8 @@ int
 clip_GTK_LABELSETWIDTHCHARS(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gint width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -453,7 +488,8 @@ int
 clip_GTK_LABELSETSINGLELINEMODE(ClipMachine * ClipMachineMemory)
 {
    C_widget *clbl = _fetch_cw_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCWID(clbl, GTK_IS_LABEL);
    CHECKARG(2, LOGICAL_type_of_ClipVarType);

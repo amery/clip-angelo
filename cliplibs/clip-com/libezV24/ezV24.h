@@ -39,7 +39,7 @@
 #include <stdlib.h>		/* we need size_t */
 
 #ifdef __cplusplus
-extern "C"
+extern    "C"
 {
 #endif
 
@@ -174,17 +174,17 @@ extern "C"
 
    struct __EZV24_PORT_HANDLE
    {
-      int fd;			/* the file handle */
-      int Errno;		/* error code of last op. */
-      int Locked;		/* Bool if port is locked */
-      int lock_fd;		/* handle of the lockfile or (-1) */
-      int Initialized;		/* Bool if port is configured */
-      char PortName[V24_SZ_PORTNAME + 1];	/* name of the port */
+      int       fd;		/* the file handle */
+      int       Errno;		/* error code of last op. */
+      int       Locked;		/* Bool if port is locked */
+      int       lock_fd;	/* handle of the lockfile or (-1) */
+      int       Initialized;	/* Bool if port is configured */
+      char      PortName[V24_SZ_PORTNAME + 1];	/* name of the port */
       unsigned int OpenFlags;	/* current open flags */
-      int Baudrate;		/* current baudrate */
-      int Datasize;		/* current datasize */
-      int Parity;		/* and current parity */
-      int TimeoutValue;		/* timeout in 1/10 sec */
+      int       Baudrate;	/* current baudrate */
+      int       Datasize;	/* current datasize */
+      int       Parity;		/* and current parity */
+      int       TimeoutValue;	/* timeout in 1/10 sec */
    };
 
    typedef struct __EZV24_PORT_HANDLE v24_port_t;
@@ -228,7 +228,7 @@ extern "C"
  * @param BitMask    pointer to a #unsigned long# variable.
  * @return (int) number of detected ports or #-1#.
  */
-   int v24CountPorts(unsigned long *BitMask);
+   int       v24CountPorts(unsigned long *BitMask);
 
 /** Build a valid port name. This function can be used to build the platform
  * dependent name of the serial device used by #v24OpenPort#. The exact format
@@ -323,7 +323,7 @@ extern "C"
  * @see v24OpenPort
  * @memo close a device.
  */
-   int v24ClosePort(v24_port_t * port);
+   int       v24ClosePort(v24_port_t * port);
 
 /** After a serial device is opened, the user have to setup the communication
  * parameter. The parameter #port# references the handle of the opened
@@ -346,7 +346,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo setup the communication parameters.
  */
-   int v24SetParameters(v24_port_t * port, int Baudrate, int Datasize, int Parity);
+   int       v24SetParameters(v24_port_t * port, int Baudrate, int Datasize, int Parity);
 
 /** Setup the number of stop bits. This function should be called directly
  * after \Ref{v24SetParameters}. The parameter #Stops# have to be set to the
@@ -361,7 +361,7 @@ extern "C"
  * @see v24SetParameters
  * @memo setup stopbits.
  */
-   int v24SetStopbits(v24_port_t * port, int Stops);
+   int       v24SetStopbits(v24_port_t * port, int Stops);
 
 /** All read functions may use a timeout mechanism while waiting for
  * characters. If this time limit is exceeded the function abort reading. The
@@ -379,7 +379,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo
  */
-   int v24SetTimeouts(v24_port_t * port, int TenthOfSeconds);
+   int       v24SetTimeouts(v24_port_t * port, int TenthOfSeconds);
 
 /** The function tries to read a single character from the opened device. To do
  * this, the function \Ref{v24Read} is used. If we have got some data, the
@@ -398,7 +398,7 @@ extern "C"
  * @see v24QueryErrno, v24Read.
  * @memo read a single character.
  */
-   int v24Getc(v24_port_t * port);
+   int       v24Getc(v24_port_t * port);
 
 /** This function simply send one character. Nothing more and nothing less.
  *
@@ -409,7 +409,7 @@ extern "C"
  * @return
  * @memo write a single character.
  */
-   int v24Putc(v24_port_t * port, unsigned char TheData);
+   int       v24Putc(v24_port_t * port, unsigned char TheData);
 
 /** #v24Read# is the basic function to get one or more received data bytes out
  * of the receive queue. If the queue is empty, the behavious of the function
@@ -441,7 +441,7 @@ extern "C"
  * @see v24QueryErrno, v24Getc, v24Gets.
  * @memo
  */
-   int v24Read(v24_port_t * port, unsigned char *Buffer, size_t Len);
+   int       v24Read(v24_port_t * port, unsigned char *Buffer, size_t Len);
 
 /** Send a buffer. This function sends all #Len# characters of the array
  * referenced by #Buffer#. The number of sent bytes is returned. If an error
@@ -457,7 +457,7 @@ extern "C"
  * @see v24QueryErrno, v24Putc, v24Puts.
  * @memo
  */
-   int v24Write(v24_port_t * port, const unsigned char *Buffer, size_t Len);
+   int       v24Write(v24_port_t * port, const unsigned char *Buffer, size_t Len);
 
 /** Receive a string. Unlike #v24Read#, which tries to read a fixed number of
  * character, #v24Gets# read characters unless #BuffSize# characters are
@@ -485,7 +485,7 @@ extern "C"
  * @see v24QueryErrno, v24Getc, v24Read.
  * @return (int) number of fetched characters or #-1#.
  */
-   int v24Gets(v24_port_t * port, char *Buffer, size_t BuffSize);
+   int       v24Gets(v24_port_t * port, char *Buffer, size_t BuffSize);
 
 /** Send a string. This function simply sends all characters of the ASCIIZ
  * string. A single #\n# is not expanded to #\n\r#! The function returns the
@@ -504,7 +504,7 @@ extern "C"
  * @see v24QueryErrno, v24Putc, v24Write.
  * @return
  */
-   int v24Puts(v24_port_t * port, const char *Buffer);
+   int       v24Puts(v24_port_t * port, const char *Buffer);
 
 /** If implemented by the operating system, this function returns the number of
  * character waiting in the receive-queue. If the functions isn't available or
@@ -519,7 +519,7 @@ extern "C"
  * @see v24QueryErrno.
  * @memo
  */
-   int v24HaveData(v24_port_t * port);
+   int       v24HaveData(v24_port_t * port);
 
 /** All remaining characters in the receive-queue are removed.
  *
@@ -527,7 +527,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo
  */
-   int v24FlushRxQueue(v24_port_t * port);
+   int       v24FlushRxQueue(v24_port_t * port);
 
 /** All remaining characters in the transmit-queue are removed.
  *
@@ -535,7 +535,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo
  */
-   int v24FlushTxQueue(v24_port_t * port);
+   int       v24FlushTxQueue(v24_port_t * port);
 
 /** Set the state of the DTR line according to the parameter #NewState#. If
  * #NewsState# is #0# the DTR signal is unset, otherwise it is set.
@@ -545,7 +545,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo
  */
-   int v24SetDTR(v24_port_t * port, int NewState);
+   int       v24SetDTR(v24_port_t * port, int NewState);
 
 /** Set the state of the RTS line according to the parameter #NewState#. If
  * #NewsState# is #0# the RTS signal is unset, otherwise it is set. This is
@@ -562,7 +562,7 @@ extern "C"
  * @return (int) the #V24_*# error code.
  * @memo
  */
-   int v24SetRTS(v24_port_t * port, int NewState);
+   int       v24SetRTS(v24_port_t * port, int NewState);
 
 /** This functions returns the platform dependent name of the currently opened
  * device.
@@ -581,7 +581,7 @@ extern "C"
  * @return (int) internal used file handle.
  * @memo
  */
-   int v24QueryFileHandle(v24_port_t * port);
+   int       v24QueryFileHandle(v24_port_t * port);
 
 /** If possible, all functions return the result of the operation as return
  * code. Some function don't do this. Therefore, the last error code could be
@@ -594,7 +594,7 @@ extern "C"
  * @return the last error code as #V24_*# constant.
  * @memo
  */
-   int v24QueryErrno(v24_port_t * port);
+   int       v24QueryErrno(v24_port_t * port);
 
 #ifdef __cplusplus
 };

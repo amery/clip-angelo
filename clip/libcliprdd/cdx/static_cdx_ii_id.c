@@ -1,0 +1,13 @@
+static int
+cdx_ii_id(ClipMachine * ClipMachineMemory, RDD_ORDER * ro, ClipVar * v, const char *__PROC__)
+{
+   v->ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = CHARACTER_type_of_ClipVarType;
+   v->ClipType_t_of_ClipVar.ClipFlags_flags_of_ClipType = F_NONE_ClipFlags;
+   v->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf = malloc(5);
+   if (ro->eof)
+      memset(v->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, 0, 4);
+   else
+      memcpy(v->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.buf_of_ClipBuf, ro->id, 4);
+   v->ClipStrVar_s_of_ClipVar.ClipBuf_str_of_ClipStrVar.len_of_ClipBuf = 4;
+   return 0;
+}

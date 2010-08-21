@@ -49,7 +49,8 @@ all: Makefile links lex $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(SCRIPTS)
 links:
 
 cfg : lex
-	$(E_cp)mv -f$(V) $(Clip_M_Dir)/license.h $(Clip_I_Dir)/
+	$(E_cp)[ -f $(Clip_M_Dir)/license.h ] \
+		&& mv -f$(V) $(Clip_M_Dir)/license.h $(Clip_I_Dir)/
 	$(E_ln)[ -d charsets ] 											\
 		|| ln -sf$(V) ../libclipscreen/install/charsets .
 
@@ -87,13 +88,15 @@ FORCE :
 
 include $(Makefile_o_in)
 
-clip_hash.o: ../libclipmain/cliphash.c Makefile
+../tools/clip_hash.o: ../libclipmain/cliphash.c Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$@) ] ; then 			\
 		$(Trace_cc_d) ; 											\
-		$(CC) $(C_FLAGS) -g -DSTANDALONE -o $@ -c $< ; 	\
+		cd ../libclipmain 					\
+			&& $(CC) $(C_FLAGS) -g -DSTANDALONE -o $@ -c $< ; 	\
 	else 																\
 		$(Trace_cc) ; 												\
-		$(CC) $(C_FLAGS) -DSTANDALONE -o $@ -c $< ; 		\
+		cd ../libclipmain 					\
+			&& $(CC) $(C_FLAGS) -DSTANDALONE -o $@ -c $< ; 		\
 	fi
 
 lex.hash.o: lex.hash.c Makefile
@@ -176,7 +179,7 @@ clip_msgfmt$(SCRIPTSUFF) : clip_msgfmt.ini Makefile
 	$(E_e)$(Trace)
 	$(E_xx)./clip_msgfmt.in.sh
 
-cliphash$(EXESUFF) : calchash.o clip_hash.o Makefile
+cliphash$(EXESUFF) : calchash.o ../tools/clip_hash.o Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 		\
 		$(Trace_cc_d) ; 										\
 		$(CC) $(C_FLAGS) -g -o $@ $< clip_hash.o ; 	\
@@ -203,7 +206,7 @@ gen_tbl$(EXESUFF) : gen_tbl.o ../libclipscreen/charset.o ../libclipmain/coll.o M
 		$(CC) $(C_FLAGS) -o $@ $< ../libclipscreen/charset.o ../libclipmain/coll.o $(MLIB) ; 	\
 	fi
 
-clip_hashextract$(EXESUFF): lex.hash.o clip_hash.o Makefile
+clip_hashextract$(EXESUFF): lex.hash.o ../tools/clip_hash.o Makefile
 	$(E_cc)if [ -f $(subst .o,.g,$<) ] ; then 	\
 		$(Trace_cc_d) ; 									\
 		$(CC) -O -g -o $@ $< clip_hash.o ; 			\
@@ -241,21 +244,21 @@ po_compat$(EXESUFF): po_util.o Makefile
 		$(CC) $(C_FLAGS) -o $@ po_compat.c po_util.o ; 		\
 	fi
 
-clip_bug$(SCRIPTSUFF) : Makefile
+clip_bug$(SCRIPTSUFF) : clip_bug Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) clip_bug $@
 
-joinlib$(SCRIPTSUFF) : inst_end Makefile
+ci_mindent$(SCRIPTSUFF) : cn_mindent Makefile
+	$(E_e)$(Trace)
+	$(E_cp)cp --remove-destination -f$(V) cn_mindent $@
+
+joinlib$(SCRIPTSUFF) : joinlib Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) joinlib  $@
 
 inst_end$(SCRIPTSUFF) : inst_end  Makefile
 	$(E_e)$(Trace)
 	$(E_cp)cp --remove-destination -f$(V) inst_end  $@
-
-ci_mindent$(SCRIPTSUFF) : cn_mindent  Makefile
-	$(E_e)$(Trace)
-	$(E_cp)cp --remove-destination -f$(V) cn_mindent  $@
 
 add_meta_tag$(SCRIPTSUFF) : add_meta_tag Makefile
 	$(E_e)$(Trace)
@@ -330,10 +333,4 @@ yacc: Makefile
 include $(Makefile_end_in)
 
 # DO NOT DELETE
-
-indent : Makefile
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) *.c  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.h  || true
-	$(E_xx)$(Clip_B_Dir)/ci_mindent$(SCRIPTSUFF) */*.c  || true
 

@@ -1,6 +1,6 @@
 /* defines  for debug windows*/
-#ifndef CI_DEBUG_DEFINED
-#define CI_DEBUG_DEFINED
+#ifndef CN_DEBUG_DEFINED
+#define CN_DEBUG_DEFINED
 
 #define COMMAND_SIZE 6
 

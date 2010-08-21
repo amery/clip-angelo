@@ -1,0 +1,2 @@
+FUNCTION Network()
+  RETURN ( .T. )

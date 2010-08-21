@@ -1,6 +1,6 @@
-#ifndef CI_FOX_DEFINED
+#ifndef CN_FOX_DEFINED
 
-#define CI_FOX_DEFINED
+#define CN_FOX_DEFINED
 
 #xdefine AND .and.
 #xdefine OR  .or.

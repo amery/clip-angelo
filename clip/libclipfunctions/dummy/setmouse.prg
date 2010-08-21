@@ -1,0 +1,2 @@
+function setmouse()
+return .t.

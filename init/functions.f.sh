@@ -70,7 +70,7 @@ function allConfigure ()
 		cd "$CurDir"
 		OnScreen 1 "Configuration for $PWD"
 		export >/dev/null
-		[ -f $CONFIGURE_SH ] && $CONFIGURE_DIR $MAKECMDGOALS
+		[ -f $CONFIGURE_SH ] && $CONFIGURE_SH $MAKECMDGOALS
 		[ $? != 0 ] && error $CurDir
 	}
 

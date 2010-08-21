@@ -46,16 +46,17 @@ int
 clip_GTK_FILEFILTERNEW(ClipMachine * ClipMachineMemory)
 {
    GtkFileFilter *filter;
+
    C_object *cfilter;
 
    filter = gtk_file_filter_new();
 
    if (filter)
-      {
-	 cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
-	 if (cfilter)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfilter->obj);
-      }
+    {
+       cfilter = _register_object(ClipMachineMemory, filter, GTK_TYPE_FILE_FILTER, NULL, NULL);
+       if (cfilter)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cfilter->obj);
+    }
 
    return 0;
 }
@@ -64,7 +65,8 @@ int
 clip_GTK_FILEFILTERSETNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
-   gchar *name = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *name = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -82,7 +84,8 @@ int
 clip_GTK_FILEFILTERGETNAME(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
-   gchar *name;
+
+   gchar    *name;
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
 
@@ -100,7 +103,8 @@ int
 clip_GTK_FILEFILTERADDMIMETYPE(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
-   gchar *type = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *type = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -116,7 +120,8 @@ int
 clip_GTK_FILEFILTERADDPATTERN(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
-   gchar *pattern = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *pattern = _clip_parc(ClipMachineMemory, 2);
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -128,14 +133,18 @@ clip_GTK_FILEFILTERADDPATTERN(ClipMachine * ClipMachineMemory)
    return 1;
 }
 
-static gboolean
+static    gboolean
 _file_filter_func(GtkFileFilterInfo * info, gpointer data)
 {
-   C_var *c = (C_var *) data;
-   ClipVar stack[2];
-   ClipVar cv;
-   ClipVar res;
-   gboolean ret = TRUE;
+   C_var    *c = (C_var *) data;
+
+   ClipVar   stack[2];
+
+   ClipVar   cv;
+
+   ClipVar   res;
+
+   gboolean  ret = TRUE;
 
    memset(&stack, 0, sizeof(stack));
    memset(&res, 0, sizeof(ClipVar));
@@ -145,7 +154,9 @@ _file_filter_func(GtkFileFilterInfo * info, gpointer data)
    _clip_mclone(c->ClipMachineMemory, &stack[0], &c->co->obj);
    _clip_mclone(c->ClipMachineMemory, &stack[1], &cv);
    if (_clip_eval(c->ClipMachineMemory, &(c->cfunc), 2, stack, &res) == 0)
-		ret = res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType == LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
+      ret =
+       res.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType ==
+       LOGICAL_type_of_ClipVarType ? res.ClipLogVar_l_of_ClipVar.value_of_ClipLogVar : ret;
    _clip_destroy(c->ClipMachineMemory, &res);
    _clip_destroy(c->ClipMachineMemory, &cv);
    _clip_destroy(c->ClipMachineMemory, &stack[0]);
@@ -157,9 +168,12 @@ int
 clip_GTK_FILEFILTERADDCUSTOM(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
+
    GtkFileFilterFlags flags = _clip_parni(ClipMachineMemory, 2);
-   ClipVar *func = _clip_spar(ClipMachineMemory, 3);
-   C_var *c = 0;
+
+   ClipVar  *func = _clip_spar(ClipMachineMemory, 3);
+
+   C_var    *c = 0;
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -193,7 +207,9 @@ int
 clip_GTK_FILEFILTERFILTER(ClipMachine * ClipMachineMemory)
 {
    C_object *cfilter = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 2);
+
    GtkFileFilterInfo info;
 
    CHECKCOBJ(cfilter, GTK_IS_FILE_FILTER(cfilter->object));

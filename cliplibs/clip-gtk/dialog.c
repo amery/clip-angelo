@@ -22,7 +22,7 @@
 /*************** SIGNALS for InputDialog  *****************/
 
 /* Signal handlers */
-static gint
+static    gint
 handle_input_dialog_signal(GtkInputDialog * dialog, gint deviceid, C_signal * cs)
 {
    PREPARECV(cs, cv);
@@ -30,11 +30,13 @@ handle_input_dialog_signal(GtkInputDialog * dialog, gint deviceid, C_signal * cs
    INVOKESIGHANDLER(GTK_WIDGET(dialog), cs, cv);
 }
 
-static gint
+static    gint
 emit_input_dialog_signal(C_widget * cidial, const gchar * signal_name)
 {
    ClipMachine *ClipMachineMemory = cidial->cmachine;
-   gint deviceid = _clip_parni(ClipMachineMemory, 3);
+
+   gint      deviceid = _clip_parni(ClipMachineMemory, 3);
+
    CHECKARG(3, NUMERIC_type_of_ClipVarType);
    gtk_signal_emit_by_name(GTK_OBJECT(cidial->widget), signal_name, deviceid, cidial);
    return 0;
@@ -95,7 +97,8 @@ int
 clip_INIT___DIALOG(ClipMachine * ClipMachineMemory)
 {
    _wtype_table_put(_clip_type_dialog, _clip_type_name_dialog, _gtk_type_dialog, _gtk_type_window, NULL);
-   _wtype_table_put(_clip_type_input_dialog, _clip_type_name_input_dialog, _gtk_type_input_dialog, _gtk_type_dialog, input_dialog_signals);
+   _wtype_table_put(_clip_type_input_dialog, _clip_type_name_input_dialog,
+		    _gtk_type_input_dialog, _gtk_type_dialog, input_dialog_signals);
    return 0;
 }
 
@@ -105,11 +108,16 @@ clip_INIT___DIALOG(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_DIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *title = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    C_widget *cvbox, *carea;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -117,11 +125,11 @@ clip_GTK_DIALOGNEW(ClipMachine * ClipMachineMemory)
    if (!wid)
       goto err;
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-      {
-	 LOCALE_TO_UTF(title);
-	 gtk_window_set_title(GTK_WINDOW(wid), title);
-	 FREE_TEXT(title);
-      }
+    {
+       LOCALE_TO_UTF(title);
+       gtk_window_set_title(GTK_WINDOW(wid), title);
+       FREE_TEXT(title);
+    }
   //cwid = (C_widget*)calloc( 1, sizeof(C_widget) );
    cwid = _register_widget(ClipMachineMemory, wid, cv);
    cvbox = _register_widget(ClipMachineMemory, GTK_DIALOG(wid)->vbox, NULL);
@@ -147,10 +155,14 @@ clip_GTK_DIALOGNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_INPUTDIALOGNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   char *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   char     *title = _clip_parc(ClipMachineMemory, 2);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT(2, CHARACTER_type_of_ClipVarType);
 
@@ -158,11 +170,11 @@ clip_GTK_INPUTDIALOGNEW(ClipMachine * ClipMachineMemory)
    if (!wid)
       goto err;
    if (_clip_parinfo(ClipMachineMemory, 2) == CHARACTER_type_of_ClipVarType)
-      {
-	 LOCALE_TO_UTF(title);
-	 gtk_window_set_title(GTK_WINDOW(wid), title);
-	 FREE_TEXT(title);
-      }
+    {
+       LOCALE_TO_UTF(title);
+       gtk_window_set_title(GTK_WINDOW(wid), title);
+       FREE_TEXT(title);
+    }
   //cwid = (C_widget*)calloc( 1, sizeof(C_widget) );
    cwid = _register_widget(ClipMachineMemory, wid, cv);
 
@@ -179,8 +191,11 @@ int
 clip_GTK_DIALOGGETVBOX(ClipMachine * ClipMachineMemory)
 {
    C_widget *cdialog = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *area;
+
    C_widget *carea = 0;
+
    CHECKCWID(cdialog, GTK_IS_DIALOG);
    area = GTK_DIALOG(cdialog->widget)->vbox;
    if (area)
@@ -199,8 +214,11 @@ int
 clip_GTK_DIALOGGETACTIONAREA(ClipMachine * ClipMachineMemory)
 {
    C_widget *cdialog = _fetch_cw_arg(ClipMachineMemory);
+
    GtkWidget *area;
+
    C_widget *carea = 0;
+
    CHECKCWID(cdialog, GTK_IS_DIALOG);
    area = GTK_DIALOG(cdialog->widget)->action_area;
    if (area)

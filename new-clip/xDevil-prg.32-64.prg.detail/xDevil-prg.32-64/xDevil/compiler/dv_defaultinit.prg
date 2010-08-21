@@ -1,0 +1,46 @@
+Procedure dv_DefaultInit ()
+	if Empty ( p_aUseStdCh ) ;	aAdd ( p_aUseStdCh, "dv_std.ch") ; 	EndIf
+	If Empty ( p_sOutDir ) ; 	p_sOutDir := "./"   	; 	EndIf
+	If Empty ( p_sOutPut ) ; 	p_sOutPut := ""    ; 	EndIf
+	If Empty ( p_sSourcePrg )  ; 	p_sSourcePrg := ""   	; 	EndIf
+	If Empty ( p_sSourceCharset ) 	; 	p_sSourceCharset := ""   ; 	EndIf
+	If Empty ( p_sTargetCharset ) 	; 	p_sTargetCharset := ""   ; 	EndIf
+	If Empty ( veCC )   	; 	veCC := "gcc"    	; 	EndIf
+	If Empty ( veCDBG )   ; 	veCDBG := "-g"    ; 	EndIf
+/*	If Empty ( veCFLAGS )   ; 	veCFLAGS := ""    ; 	EndIf */
+	If Empty ( vexDevil_CHARSET ) ;  vexDevil_CHARSET := "" ; 	EndIf
+	If Empty ( vexDevil_CLIENTCS ) ;  vexDevil_CLIENTCS := "" ; 	EndIf
+	If Empty ( vexDevil_CMDSTR )  ; 	vexDevil_CMDSTR := "" ; 	EndIf
+	If Empty ( vexDevil_COLORMAP ) ;  vexDevil_COLORMAP := "" ; 	EndIf
+	If Empty ( vexDevil_DLINECHARS ) ;  vexDevil_DLINECHARS := "" ; 	EndIf
+	If Empty ( vexDevil_HOSTCS ) ;  vexDevil_HOSTCS := "" ; 	EndIf
+	If Empty ( vexDevil_KEYMAP ) ;  vexDevil_KEYMAP := "" ; 	EndIf
+	If Empty ( vexDevil_LANG ) ;  vexDevil_LANG := "" ; 	EndIf
+	If Empty ( vexDevil_LC_ALL ) ;  vexDevil_LC_ALL := "" ; 	EndIf
+	If Empty ( vexDevilLIB )  	; 	vexDevilLIB := "libxDevil.a" 	; 	EndIf
+	If Empty ( vexDevilLIBS )  	; 	vexDevilLIBS := "" ; 	EndIf
+	If Empty ( vexDevil_LINECHARS ) ;  vexDevil_LINECHARS := "" ; 	EndIf
+	If Empty ( vexDevil_LOCALE ) ;  vexDevil_LOCALE := "" ; 	EndIf
+	If Empty ( vexDevil_LOCALE_ROOT ) 	; 	vexDevil_LOCALE_ROOT := "" ; 	EndIf
+	If Empty ( vexDevil_LOGLEVEL ) ;  vexDevil_LOGLEVEL := "" ; 	EndIf
+	If Empty ( vexDevil_MODULE )  	; 	vexDevil_MODULE := "" 	; 	EndIf
+	If Empty ( vexDevil_NAMES )  	; 	vexDevil_NAMES := "" ; EndIf
+	If Empty ( vexDevilROOT ) ; vexDevilROOT := "" 	; 	EndIf
+	If Empty ( vexDevil_SCANMODE ) ;  vexDevil_SCANMODE := "" ; 	EndIf
+	If Empty ( vexDevil_SCANSTART ) ;  vexDevil_SCANSTART := "" ; 	EndIf
+	If Empty ( vexDevil_SCANSTOP ) ;  vexDevil_SCANSTOP := "" ; 	EndIf
+	If Empty ( vexDevilSLIB ) ; vexDevilSLIB := "libxDevil.so" ; 	EndIf
+	If Empty ( vexDevil_TERM ) ;  vexDevil_TERM := "" ; 	EndIf
+	If Empty ( veCOMPILE_FLAG ) ; veCOMPILE_FLAG := "-c" ; EndIf
+	If Empty ( veCOPT ) ; veCOPT := "-O2" ; EndIf
+	If Empty ( veINCLUDE_FLAG ) ; veINCLUDE_FLAG := "-I" ; 	EndIf
+	If Empty ( veLANG ) ;  veLANG := "" ; 	EndIf
+	If Empty ( veLC_ALL ) ;  veLC_ALL := "" ; 	EndIf
+	If Empty ( veLIBSUF ) ;  veLIBSUF := ".a" ;	EndIf
+	If Empty ( veOBJSUF ) ;  veOBJSUF := ".o" ; 	EndIf
+	If Empty ( veOUT_FLAG ) ;  veOUT_FLAG := "-o" ; 	EndIf
+	If Empty ( veSFLAGS ) ;  veSFLAGS := "-shared" ; 	EndIf
+	If Empty ( veSLIBSUF ) ;  veSLIBSUF := ".so" ; 	EndIf
+	If Empty ( veSOBJSUF ) ;  veSOBJSUF := ".so" ; 	EndIf
+	If Empty ( veTERM ) ;  veTERM := "" ; 	EndIf
+

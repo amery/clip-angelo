@@ -35,36 +35,40 @@
 extern char **environ;
 
 static FCGX_Stream *in = 0, *out = 0, *err = 0;
+
 static FCGX_ParamArray envp;
+
 static OutBuf obuf, ebuf;
+
 static int inited = 0;
+
 static int flush_bufs(void);
 
 int
 clip_FCGI_ACCEPT(ClipMachine * mp)
 {
-   int r;
+   int       r;
 
    if (inited)
-      {
-	 flush_bufs();
-	 FCGX_Finish();
-      }
+    {
+       flush_bufs();
+       FCGX_Finish();
+    }
 
    r = FCGX_Accept(&in, &out, &err, &envp);
   /*r = FCGI_Accept(); */
    _clip_retl(mp, (r >= 0) ? 1 : 0);
 
    if (!inited)
-      {
-	 inited = 1;
+    {
+       inited = 1;
 
-	 init_Buf(&obuf);
-	 init_Buf(&ebuf);
+       init_Buf(&obuf);
+       init_Buf(&ebuf);
 
-	 mp->obuf = &obuf;
-	 mp->ebuf = &ebuf;
-      }
+       mp->obuf = &obuf;
+       mp->ebuf = &ebuf;
+    }
 
    return 0;
 }
@@ -72,22 +76,22 @@ clip_FCGI_ACCEPT(ClipMachine * mp)
 static int
 flush_bufs(void)
 {
-   int r;
+   int       r;
 
-	r = obuf.ptr_of_OutBuf - obuf.buf_of_OutBuf;
+   r = obuf.ptr_of_OutBuf - obuf.buf_of_OutBuf;
    if (r)
-      {
-			FCGX_PutStr(obuf.buf_of_OutBuf, r, out);
-			/*FCGI_fwrite(obuf.buf_of_OutBuf, 1, r, FCGI_stdout); */
-			obuf.ptr_of_OutBuf = obuf.buf_of_OutBuf;
-      }
-	   r = ebuf.ptr_of_OutBuf - ebuf.buf_of_OutBuf;
+    {
+       FCGX_PutStr(obuf.buf_of_OutBuf, r, out);
+      /*FCGI_fwrite(obuf.buf_of_OutBuf, 1, r, FCGI_stdout); */
+       obuf.ptr_of_OutBuf = obuf.buf_of_OutBuf;
+    }
+   r = ebuf.ptr_of_OutBuf - ebuf.buf_of_OutBuf;
    if (r)
-      {
-			FCGX_PutStr(ebuf.buf_of_OutBuf, r, err);
-			/*FCGI_fwrite(ebuf.buf_of_OutBuf, 1, r, FCGI_stderr); */
-			ebuf.ptr_of_OutBuf = ebuf.buf_of_OutBuf;
-      }
+    {
+       FCGX_PutStr(ebuf.buf_of_OutBuf, r, err);
+      /*FCGI_fwrite(ebuf.buf_of_OutBuf, 1, r, FCGI_stderr); */
+       ebuf.ptr_of_OutBuf = ebuf.buf_of_OutBuf;
+    }
 
   /*r = FCGX_FFlush(out); */
   /*r = FCGI_fflush(FCGI_stdout); */
@@ -100,7 +104,7 @@ flush_bufs(void)
 int
 clip_FCGI_FLUSH(ClipMachine * mp)
 {
-   int r;
+   int       r;
 
    if (!inited)
       return EG_ARG;
@@ -115,38 +119,43 @@ clip_FCGI_FLUSH(ClipMachine * mp)
 int
 clip_FCGI_GETENV(ClipMachine * mp)
 {
-   ClipVar *rp;
-   char *str = _clip_parc(mp, 1);
-   int i = 0;
+   ClipVar  *rp;
+
+   char     *str = _clip_parc(mp, 1);
+
+   int       i = 0;
 
    if (!inited)
       return EG_ARG;
 
    if (str)
-      {
-	 _clip_retc(mp, FCGX_GetParam(str, envp));
+    {
+       _clip_retc(mp, FCGX_GetParam(str, envp));
 		/*_clip_retc(mp, getenv(str));*/
-      }
+    }
    else
-      {
-	 rp = RETPTR(mp);
-	 _clip_map(mp, rp);
-	 while (envp[i])
-	    {
-	       int l;
-	       char *s = envp[i];
-	       char *e;
-	      /*char *s = environ[i]; */
+    {
+       rp = RETPTR(mp);
+       _clip_map(mp, rp);
+       while (envp[i])
+	{
+	   int       l;
 
-	       l = strcspn(s, "=");
-	       if (s[l] == '=')
-		  e = s + l + 1;
-	       else
-		  e = "";
-	       _clip_mputc(mp, rp, _clip_casehashbytes(0, s, l), e, strlen(e));
-	       i++;
-	    }
-      }
+	   char     *s = envp[i];
+
+	   char     *e;
+
+	  /*char *s = environ[i]; */
+
+	   l = strcspn(s, "=");
+	   if (s[l] == '=')
+	      e = s + l + 1;
+	   else
+	      e = "";
+	   _clip_mputc(mp, rp, _clip_casehashbytes(0, s, l), e, strlen(e));
+	   i++;
+	}
+    }
    return 0;
 }
 
@@ -156,8 +165,9 @@ clip_FCGI_GETENV(ClipMachine * mp)
 int
 clip_FCGI_READ(ClipMachine * mp)
 {
-   char *clen;
-   int len;
+   char     *clen;
+
+   int       len;
 
    if (!inited)
       return EG_ARG;
@@ -171,22 +181,23 @@ clip_FCGI_READ(ClipMachine * mp)
       len = 0;
 
    if (len)
-      {
-	 OutBuf buf;
-	 int i, ch, l;
+    {
+       OutBuf    buf;
 
-	 init_Buf(&buf);
-	 for (i = 0; i < len; i++)
-	    {
-	       if ((ch = FCGX_GetChar(in)) < 0)
-		 /*if ((ch = FCGI_fgetc(FCGI_stdin)) < 0) */
-		  break;
-	       putByte_Buf(&buf, ch);
-	    }
-		 l = buf.ptr_of_OutBuf - buf.buf_of_OutBuf;
-	 putByte_Buf(&buf, 0);
-	 _clip_retcn_m(mp, buf.buf_of_OutBuf, l);
-      }
+       int       i, ch, l;
+
+       init_Buf(&buf);
+       for (i = 0; i < len; i++)
+	{
+	   if ((ch = FCGX_GetChar(in)) < 0)
+	     /*if ((ch = FCGI_fgetc(FCGI_stdin)) < 0) */
+	      break;
+	   putByte_Buf(&buf, ch);
+	}
+       l = buf.ptr_of_OutBuf - buf.buf_of_OutBuf;
+       putByte_Buf(&buf, 0);
+       _clip_retcn_m(mp, buf.buf_of_OutBuf, l);
+    }
    else
       _clip_retc(mp, "");
 

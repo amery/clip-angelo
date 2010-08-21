@@ -15,14 +15,14 @@
 
 typedef struct column_format
 {
-   guint column;
-   gchar *format;
+   guint     column;
+   gchar    *format;
 } column_format;
 
 /*********************** SIGNALS **************************/
 
 /* Signals table */
-static gint
+static    gint
 handle_tree_view_column_clicked(GtkTreeViewColumn * column, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -58,15 +58,18 @@ _clip_type_name_tree_view_column()
 int
 clip_INIT___TREEVIEWCOLUMN(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_tree_view_column, _clip_type_name_tree_view_column, _gtk_type_tree_view_column, NULL, tree_view_column_signals);
+   _wtype_table_put(_clip_type_tree_view_column,
+		    _clip_type_name_tree_view_column, _gtk_type_tree_view_column, NULL, tree_view_column_signals);
    return 0;
 }
 
 int
 clip_GTK_TREEVIEWCOLUMNNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_object *ccolumn;
+
    GtkTreeViewColumn *column;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -74,13 +77,13 @@ clip_GTK_TREEVIEWCOLUMNNEW(ClipMachine * ClipMachineMemory)
    column = gtk_tree_view_column_new();
 
    if (column)
-      {
-	 ccolumn = _list_get_cobject(ClipMachineMemory, column);
-	 if (!ccolumn)
-	    ccolumn = _register_object(ClipMachineMemory, column, GTK_TYPE_TREE_VIEW_COLUMN, cv, NULL);
-	 if (ccolumn)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolumn->obj);
-      }
+    {
+       ccolumn = _list_get_cobject(ClipMachineMemory, column);
+       if (!ccolumn)
+	  ccolumn = _register_object(ClipMachineMemory, column, GTK_TYPE_TREE_VIEW_COLUMN, cv, NULL);
+       if (ccolumn)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolumn->obj);
+    }
    return 0;
  err:
    return 1;
@@ -89,14 +92,21 @@ clip_GTK_TREEVIEWCOLUMNNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TREEVIEWCOLUMNNEWWITHATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
+
    C_object *ccell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    C_object *ccolumn;
+
    GtkTreeViewColumn *column;
-   gint i, j;
-   gint attrn[34];
-   gchar *attrs[34];
+
+   gint      i, j;
+
+   gint      attrn[34];
+
+   gchar    *attrs[34];
 
    CHECKOPT2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -106,13 +116,13 @@ clip_GTK_TREEVIEWCOLUMNNEWWITHATTRIBUTES(ClipMachine * ClipMachineMemory)
    memset(attrn, 0, sizeof(attrn));
    memset(attrs, 0, sizeof(attrs));
    for (i = 4, j = 0; i <= _clip_parinfo(ClipMachineMemory, 0); i += 2, j++)
-      {
-	 CHECKARG(i, CHARACTER_type_of_ClipVarType);
-	 CHECKARG(i + 1, NUMERIC_type_of_ClipVarType);
-	 attrs[j] = _clip_parc(ClipMachineMemory, i);
-	 attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
+    {
+       CHECKARG(i, CHARACTER_type_of_ClipVarType);
+       CHECKARG(i + 1, NUMERIC_type_of_ClipVarType);
+       attrs[j] = _clip_parc(ClipMachineMemory, i);
+       attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
 
-      }
+    }
 
    LOCALE_TO_UTF(title);
    column = gtk_tree_view_column_new_with_attributes(title,
@@ -147,18 +157,22 @@ clip_GTK_TREEVIEWCOLUMNNEWWITHATTRIBUTES(ClipMachine * ClipMachineMemory)
 						     attrs[26], attrn[26],
 						     attrs[27], attrn[27],
 						     attrs[28], attrn[28],
-						     attrs[29], attrn[29], attrs[30], attrn[30], attrs[31], attrn[31], attrs[32], attrn[32], attrs[33], attrn[33], attrs[34], attrn[34], NULL, NULL);
+						     attrs[29], attrn[29],
+						     attrs[30], attrn[30],
+						     attrs[31], attrn[31],
+						     attrs[32], attrn[32],
+						     attrs[33], attrn[33], attrs[34], attrn[34], NULL, NULL);
 
    FREE_TEXT(title);
 
    if (column)
-      {
-	 ccolumn = _list_get_cobject(ClipMachineMemory, column);
-	 if (!ccolumn)
-	    ccolumn = _register_object(ClipMachineMemory, column, GTK_TYPE_TREE_VIEW_COLUMN, cv, NULL);
-	 if (ccolumn)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolumn->obj);
-      }
+    {
+       ccolumn = _list_get_cobject(ClipMachineMemory, column);
+       if (!ccolumn)
+	  ccolumn = _register_object(ClipMachineMemory, column, GTK_TYPE_TREE_VIEW_COLUMN, cv, NULL);
+       if (ccolumn)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &ccolumn->obj);
+    }
    return 0;
  err:
    return 1;
@@ -168,8 +182,10 @@ int
 clip_GTK_TREEVIEWCOLUMNPACKSTART(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean expand = _clip_parl(ClipMachineMemory, 3);
+
+   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -188,8 +204,10 @@ int
 clip_GTK_TREEVIEWCOLUMNPACKEND(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gboolean expand = _clip_parl(ClipMachineMemory, 3);
+
+   gboolean  expand = _clip_parl(ClipMachineMemory, 3);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -223,9 +241,12 @@ int
 clip_GTK_TREEVIEWCOLUMNADDATTRIBUTE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *crenderer = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gchar *attribute = _clip_parc(ClipMachineMemory, 3);
-   gint position = _clip_parni(ClipMachineMemory, 4);
+
+   gchar    *attribute = _clip_parc(ClipMachineMemory, 3);
+
+   gint      position = _clip_parni(ClipMachineMemory, 4);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -235,7 +256,8 @@ clip_GTK_TREEVIEWCOLUMNADDATTRIBUTE(ClipMachine * ClipMachineMemory)
    CHECKARG(4, NUMERIC_type_of_ClipVarType);
 
    position--;
-   gtk_tree_view_column_add_attribute(GTK_TREE_VIEW_COLUMN(ccolumn->object), GTK_CELL_RENDERER(crenderer->object), attribute, position);
+   gtk_tree_view_column_add_attribute(GTK_TREE_VIEW_COLUMN(ccolumn->object),
+				      GTK_CELL_RENDERER(crenderer->object), attribute, position);
 
    return 0;
  err:
@@ -246,10 +268,14 @@ int
 clip_GTK_TREEVIEWCOLUMNSETATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ccell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint i, j;
-   gint attrn[34];
-   gchar *attrs[34];
+
+   gint      i, j;
+
+   gint      attrn[34];
+
+   gchar    *attrs[34];
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -259,13 +285,13 @@ clip_GTK_TREEVIEWCOLUMNSETATTRIBUTES(ClipMachine * ClipMachineMemory)
    memset(attrn, 0, sizeof(attrn));
    memset(attrs, 0, sizeof(attrs));
    for (i = 3, j = 0; i <= _clip_parinfo(ClipMachineMemory, 0); i += 2, j++)
-      {
-	 CHECKARG(i, CHARACTER_type_of_ClipVarType);
-	 CHECKARG(i + 1, NUMERIC_type_of_ClipVarType);
-	 attrs[j] = _clip_parc(ClipMachineMemory, i);
-	 attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
+    {
+       CHECKARG(i, CHARACTER_type_of_ClipVarType);
+       CHECKARG(i + 1, NUMERIC_type_of_ClipVarType);
+       attrs[j] = _clip_parc(ClipMachineMemory, i);
+       attrn[j] = _clip_parni(ClipMachineMemory, i + 1) - 1;
 
-      }
+    }
 
    i = 3;
    gtk_tree_view_column_set_attributes(GTK_TREE_VIEW_COLUMN(ccolumn->object),
@@ -288,7 +314,9 @@ clip_GTK_TREEVIEWCOLUMNSETATTRIBUTES(ClipMachine * ClipMachineMemory)
 				       attrs[25], attrn[25], attrs[26],
 				       attrn[26], attrs[27], attrn[27],
 				       attrs[28], attrn[28], attrs[29],
-				       attrn[29], attrs[30], attrn[30], attrs[31], attrn[31], attrs[32], attrn[32], attrs[33], attrn[33], attrs[34], attrn[34], NULL, NULL);
+				       attrn[29], attrs[30], attrn[30],
+				       attrs[31], attrn[31], attrs[32],
+				       attrn[32], attrs[33], attrn[33], attrs[34], attrn[34], NULL, NULL);
 
    return 0;
  err:
@@ -299,6 +327,7 @@ int
 clip_GTK_TREEVIEWCOLUMNCLEARATRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ccell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -319,7 +348,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint spacing = _clip_parni(ClipMachineMemory, 2);
+
+   gint      spacing = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -336,7 +366,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETSPACING(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint spacing;
+
+   gint      spacing;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -354,7 +385,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean visible = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  visible = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -371,7 +403,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean visible;
+
+   gboolean  visible;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -388,7 +421,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETRESIZABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean resizable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  resizable = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -405,7 +439,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETRESIZABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean resizable;
+
+   gboolean  resizable;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -422,7 +457,9 @@ int
 clip_GTK_TREEVIEWCOLUMNSETSIZING(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint s = _clip_parni(ClipMachineMemory, 2);
+
+   gint      s = _clip_parni(ClipMachineMemory, 2);
+
    GtkTreeViewColumnSizing sizing = 0;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -430,17 +467,17 @@ clip_GTK_TREEVIEWCOLUMNSETSIZING(ClipMachine * ClipMachineMemory)
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
 
    switch (s)
-      {
-      case CLIP_GTK_TREE_VIEW_COLUMN_GROW_ONLY:
-	 sizing = GTK_TREE_VIEW_COLUMN_GROW_ONLY;
-	 break;
-      case CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE:
-	 sizing = GTK_TREE_VIEW_COLUMN_AUTOSIZE;
-	 break;
-      case CLIP_GTK_TREE_VIEW_COLUMN_FIXED:
-	 sizing = GTK_TREE_VIEW_COLUMN_FIXED;
-	 break;
-      }
+    {
+    case CLIP_GTK_TREE_VIEW_COLUMN_GROW_ONLY:
+       sizing = GTK_TREE_VIEW_COLUMN_GROW_ONLY;
+       break;
+    case CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE:
+       sizing = GTK_TREE_VIEW_COLUMN_AUTOSIZE;
+       break;
+    case CLIP_GTK_TREE_VIEW_COLUMN_FIXED:
+       sizing = GTK_TREE_VIEW_COLUMN_FIXED;
+       break;
+    }
    gtk_tree_view_column_set_sizing(GTK_TREE_VIEW_COLUMN(ccolumn->object), sizing);
 
    return 0;
@@ -452,6 +489,7 @@ int
 clip_GTK_TREEVIEWCOLUMNGETSIZING(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    GtkTreeViewColumnSizing sizing;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -459,17 +497,17 @@ clip_GTK_TREEVIEWCOLUMNGETSIZING(ClipMachine * ClipMachineMemory)
 
    sizing = gtk_tree_view_column_get_sizing(GTK_TREE_VIEW_COLUMN(ccolumn->object));
    switch (sizing)
-      {
-      case GTK_TREE_VIEW_COLUMN_GROW_ONLY:
-	 _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_GROW_ONLY);
-	 break;
-      case GTK_TREE_VIEW_COLUMN_AUTOSIZE:
-	 _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE);
-	 break;
-      case GTK_TREE_VIEW_COLUMN_FIXED:
-	 _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_FIXED);
-	 break;
-      }
+    {
+    case GTK_TREE_VIEW_COLUMN_GROW_ONLY:
+       _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_GROW_ONLY);
+       break;
+    case GTK_TREE_VIEW_COLUMN_AUTOSIZE:
+       _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_AUTOSIZE);
+       break;
+    case GTK_TREE_VIEW_COLUMN_FIXED:
+       _clip_retni(ClipMachineMemory, CLIP_GTK_TREE_VIEW_COLUMN_FIXED);
+       break;
+    }
 
    return 0;
  err:
@@ -510,7 +548,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETMINWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint min_width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      min_width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -527,7 +566,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETMINWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint min_width;
+
+   gint      min_width;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -544,7 +584,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETMAXWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint max_width = _clip_parni(ClipMachineMemory, 2);
+
+   gint      max_width = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -561,7 +602,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETMAXWIDTH(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint max_width;
+
+   gint      max_width;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -593,7 +635,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gchar *title = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *title = _clip_parc(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -612,7 +655,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETTITLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gchar *title;
+
+   gchar    *title;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -631,7 +675,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETCLICKABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean clickable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  clickable = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -648,7 +693,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETCLICKABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean clickable;
+
+   gboolean  clickable;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -665,6 +711,7 @@ int
 clip_GTK_TREEVIEWCOLUMNSETWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -683,7 +730,9 @@ int
 clip_GTK_TREEVIEWCOLUMNGETWIDGET(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    GtkWidget *wid;
+
    C_widget *cwid;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -702,7 +751,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETALIGNMENT(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gfloat alignment = _clip_parnd(ClipMachineMemory, 2);
+
+   gfloat    alignment = _clip_parnd(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -719,7 +769,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETALIGNMENT(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gfloat alignment;
+
+   gfloat    alignment;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -736,7 +787,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETREORDERABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean reorderable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  reorderable = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -753,7 +805,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETREORDERABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean reorderable;
+
+   gboolean  reorderable;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -770,7 +823,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETSORTCOLUMNID(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint sort_column_id = _clip_parni(ClipMachineMemory, 2);
+
+   gint      sort_column_id = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -787,7 +841,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETSORTCOLUMNID(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint sort_column_id;
+
+   gint      sort_column_id;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -804,7 +859,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETSORTINDICATOR(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean setting = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  setting = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -821,7 +877,8 @@ int
 clip_GTK_TREEVIEWCOLUMNGETSORTINDICATOR(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean setting;
+
+   gboolean  setting;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -838,7 +895,9 @@ int
 clip_GTK_TREEVIEWCOLUMNSETSORTORDER(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gint s = _clip_parni(ClipMachineMemory, 2);
+
+   gint      s = _clip_parni(ClipMachineMemory, 2);
+
    GtkSortType type = GTK_SORT_ASCENDING;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -861,6 +920,7 @@ int
 clip_GTK_TREEVIEWCOLUMNGETSORTORDER(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    GtkSortType type;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -868,14 +928,14 @@ clip_GTK_TREEVIEWCOLUMNGETSORTORDER(ClipMachine * ClipMachineMemory)
 
    type = gtk_tree_view_column_get_sizing(GTK_TREE_VIEW_COLUMN(ccolumn->object));
    switch (type)
-      {
-      case GTK_SORT_ASCENDING:
-	 _clip_retni(ClipMachineMemory, CLIP_GTK_SORT_ASCENDING);
-	 break;
-      case GTK_SORT_DESCENDING:
-	 _clip_retni(ClipMachineMemory, CLIP_GTK_SORT_DESCENDING);
-	 break;
-      }
+    {
+    case GTK_SORT_ASCENDING:
+       _clip_retni(ClipMachineMemory, CLIP_GTK_SORT_ASCENDING);
+       break;
+    case GTK_SORT_DESCENDING:
+       _clip_retni(ClipMachineMemory, CLIP_GTK_SORT_DESCENDING);
+       break;
+    }
 
    return 0;
  err:
@@ -886,11 +946,16 @@ int
 clip_GTK_TREEVIEWCOLUMNCELLGETSIZE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    GdkRectangle *rect = 0;
-   gint x_offset;
-   gint y_offset;
-   gint width;
-   gint height;
+
+   gint      x_offset;
+
+   gint      y_offset;
+
+   gint      width;
+
+   gint      height;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -910,7 +975,8 @@ int
 clip_GTK_TREEVIEWCOLUMNCELLISVISIBLE(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean visible;
+
+   gboolean  visible;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJOPT(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -928,6 +994,7 @@ int
 clip_GTK_TREEVIEWCOLUMNFOCUSCELL(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ccell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKCOBJ(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
@@ -946,7 +1013,8 @@ int
 clip_GTK_TREEVIEWCOLUMNSETEXPAND(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
-   gboolean set = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  set = _clip_parl(ClipMachineMemory, 2);
 
    CHECKCOBJ(ccolumn, GTK_IS_TREE_VIEW_COLUMN(ccolumn->object));
 
@@ -974,8 +1042,10 @@ clip_GTK_TREEVIEWCOLUMNGETEXPAND(ClipMachine * ClipMachineMemory)
 void
 format_data_func(GtkTreeViewColumn * col, GtkCellRenderer * renderer, GtkTreeModel * model, GtkTreeIter * iter, gpointer u_data)
 {
-   gfloat n;
-   gchar buf[20];
+   gfloat    n;
+
+   gchar     buf[20];
+
    column_format *data = (column_format *) u_data;
 
    gtk_tree_model_get(model, iter, data->column, &n, -1);
@@ -987,9 +1057,13 @@ int
 clip_GTK_TREEVIEWCOLUMNSETFORMAT(ClipMachine * ClipMachineMemory)
 {
    C_object *ccolumn = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ccell = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   gint num = _clip_parni(ClipMachineMemory, 3);
-   gchar *format = _clip_parc(ClipMachineMemory, 4);
+
+   gint      num = _clip_parni(ClipMachineMemory, 3);
+
+   gchar    *format = _clip_parc(ClipMachineMemory, 4);
+
    column_format *user_data;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -1003,7 +1077,9 @@ clip_GTK_TREEVIEWCOLUMNSETFORMAT(ClipMachine * ClipMachineMemory)
    user_data->column = num - 1;
    user_data->format = g_strdup(format);
 
-   gtk_tree_view_column_set_cell_data_func(GTK_TREE_VIEW_COLUMN(ccolumn->object), GTK_CELL_RENDERER(ccell->object), format_data_func, (gpointer) user_data, NULL);
+   gtk_tree_view_column_set_cell_data_func(GTK_TREE_VIEW_COLUMN
+					   (ccolumn->object),
+					   GTK_CELL_RENDERER(ccell->object), format_data_func, (gpointer) user_data, NULL);
 
    return 0;
  err:

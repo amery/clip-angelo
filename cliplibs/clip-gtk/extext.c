@@ -100,8 +100,10 @@ clip_INIT___EXTEXT(ClipMachine * cm)
 int
 clip_GTK_EXTEXTNEW(ClipMachine * cm)
 {
-   ClipVar *cv = _clip_spar(cm, 1);
+   ClipVar  *cv = _clip_spar(cm, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -127,8 +129,11 @@ int
 clip_GTK_EXTEXTSETADJUSTMENTS(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
+
    C_widget *chadj = _fetch_cwidget(cm, _clip_spar(cm, 2));
+
    C_widget *cvadj = _fetch_cwidget(cm, _clip_spar(cm, 3));
+
    GtkAdjustment *hadj, *vadj;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
@@ -152,8 +157,10 @@ int
 clip_GTK_EXTEXTINSERT(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gchar *chars = _clip_parc(cm, 2);
-   gint len;
+
+   gchar    *chars = _clip_parc(cm, 2);
+
+   gint      len;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -171,11 +178,16 @@ int
 clip_GTK_EXTEXTINSERTWITHSTYLE(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gchar *chars = _clip_parc(cm, 2);
-   gchar *stylekey = _clip_parc(cm, 3);
-   ClipVar *userdata = _clip_spar(cm, 4);
-   gint len;
-   C_var c;
+
+   gchar    *chars = _clip_parc(cm, 2);
+
+   gchar    *stylekey = _clip_parc(cm, 3);
+
+   ClipVar  *userdata = _clip_spar(cm, 4);
+
+   gint      len;
+
+   C_var     c;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -199,9 +211,12 @@ int
 clip_GTK_EXTEXTINSERTTEXT(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
+
    const gchar *new_text = _clip_parc(cm, 2);
-   gint new_text_len = _clip_parni(cm, 3);
-   gint position;
+
+   gint      new_text_len = _clip_parni(cm, 3);
+
+   gint      position;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -220,8 +235,10 @@ int
 clip_GTK_EXTEXTDELETETEXT(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint start = _clip_parni(cm, 2);
-   gint end = _clip_parni(cm, 3);
+
+   gint      start = _clip_parni(cm, 2);
+
+   gint      end = _clip_parni(cm, 3);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -243,8 +260,10 @@ int
 clip_GTK_EXTEXTSELECTREGION(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint start = _clip_parni(cm, 2);
-   gint end = _clip_parni(cm, 3);
+
+   gint      start = _clip_parni(cm, 2);
+
+   gint      end = _clip_parni(cm, 3);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -266,8 +285,10 @@ int
 clip_GTK_EXTEXTGETCHARS(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint start = _clip_parni(cm, 2);
-   gint end = _clip_parni(cm, 3);
+
+   gint      start = _clip_parni(cm, 2);
+
+   gint      end = _clip_parni(cm, 3);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -303,8 +324,10 @@ int
 clip_GTK_EXTEXTGETCHARATPOS(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint pos = _clip_parni(cm, 2);
-   guchar str;
+
+   gint      pos = _clip_parni(cm, 2);
+
+   guchar    str;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -323,7 +346,9 @@ int
 clip_GTK_EXTEXTSETPOPUPMENU(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
+
    C_widget *widget = _fetch_cwidget(cm, _clip_spar(cm, 2));
+
    C_widget *marginmenu = _fetch_cwidget(cm, _clip_spar(cm, 3));
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
@@ -352,7 +377,8 @@ int
 clip_GTK_EXTEXTSETLINE(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint pos = _clip_parni(cm, 2);
+
+   gint      pos = _clip_parni(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -372,7 +398,9 @@ int
 clip_GTK_EXTEXTGETLINE(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint pos;
+
+   gint      pos;
+
    CHECKCWID(extext, GTK_IS_EXTEXT);
 
    pos = gtk_extext_get_line(GTK_EXTEXT(extext->widget));
@@ -386,10 +414,13 @@ clip_GTK_EXTEXTGETLINE(ClipMachine * cm)
 CLIP_DLLEXPORT void
 _extext_linedata_to_map(ClipMachine * cm, GtkExText * text, GtkExTextLineData * lined, ClipVar * m_lined)
 {
-   ClipVar *c = NEW(ClipVar);
-   ClipVar *a = NEW(ClipVar);
-   gint l;
-   if (!lined || !m_lined || m_lined->t.type != MAP_type_of_ClipVarType)
+   ClipVar  *c = NEW(ClipVar);
+
+   ClipVar  *a = NEW(ClipVar);
+
+   gint      l;
+
+   if (!lined || !m_lined || m_lined->t.ClipVartype_type_of_ClipType != MAP_type_of_ClipVarType)
       return;
 
    _clip_map(cm, c);
@@ -419,8 +450,11 @@ int
 clip_GTK_EXTEXTGETFIRSTVISIBLELINE(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   ClipVar *mlineData = RETPTR(cm);
+
+   ClipVar  *mlineData = RETPTR(cm);
+
    GtkExTextLineData *lineData;
+
    CHECKCWID(extext, GTK_IS_EXTEXT);
 
    memset(mlineData, 0, sizeof(*mlineData));
@@ -437,13 +471,21 @@ int
 clip_GTK_EXTEXTSETLINEPIXMAPFROMXPM(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint line = _clip_parni(cm, 2);
-   ClipVar *cxpmd = _clip_par(cm, 3);
+
+   gint      line = _clip_parni(cm, 2);
+
+   ClipVar  *cxpmd = _clip_par(cm, 3);
+
    GdkBitmap *mask;
+
    GdkPixmap *pixmap;
+
    GdkWindow *win = NULL;
+
    GdkColormap *colormap = NULL;
-   char **xpm_data = NULL;
+
+   char    **xpm_data = NULL;
+
    unsigned short i;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
@@ -466,20 +508,21 @@ clip_GTK_EXTEXTSETLINEPIXMAPFROMXPM(ClipMachine * cm)
   //      colormap = gdk_colormap_get_system();
 
    if (cxpmd->a.count > 0)
-      {
-	 ClipVar *item;
-	 xpm_data = (char **) calloc(sizeof(char *), cxpmd->a.count);
-	 for (i = 0; i < cxpmd->a.count; i++)
+    {
+       ClipVar  *item;
+
+       xpm_data = (char **) calloc(sizeof(char *), cxpmd->a.count);
+       for (i = 0; i < cxpmd->a.count; i++)
+	{
+	   item = cxpmd->a.items + i;
+	   if (item->t.ClipVartype_type_of_ClipType == CHARACTER_type_of_ClipVarType)
 	    {
-	       item = cxpmd->a.items + i;
-	       if (item->t.type == CHARACTER_type_of_ClipVarType)
-		  {
-		     xpm_data[i] = (char *) calloc(1, item->s.str.len + 1);
-		     strcpy(xpm_data[i], item->s.str.buf);
-		    //printf("xpm_data[i]=%s\n", xpm_data[i]);
-		  }
+	       xpm_data[i] = (char *) calloc(1, item->s.str.len + 1);
+	       strcpy(xpm_data[i], item->s.str.buf);
+	      //printf("xpm_data[i]=%s\n", xpm_data[i]);
 	    }
-      }
+	}
+    }
 
    pixmap = gdk_pixmap_colormap_create_from_xpm_d(win, colormap, &mask, NULL, xpm_data);
 
@@ -512,7 +555,8 @@ int
 clip_GTK_EXTEXTSETCOLUMN(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint col = _clip_parni(cm, 2);
+
+   gint      col = _clip_parni(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -532,7 +576,9 @@ int
 clip_GTK_EXTEXTGETCOLUMN(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint col;
+
+   gint      col;
+
    CHECKCWID(extext, GTK_IS_EXTEXT);
 
    col = gtk_extext_get_column(GTK_EXTEXT(extext->widget));
@@ -547,7 +593,8 @@ int
 clip_GTK_EXTEXTGETABSCOLUMN(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint pos = _clip_parni(cm, 2);
+
+   gint      pos = _clip_parni(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -565,7 +612,8 @@ int
 clip_GTK_EXTEXTGETNEXTTABSTOP(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint pos = _clip_parni(cm, 2);
+
+   gint      pos = _clip_parni(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -603,7 +651,8 @@ int
 clip_GTK_EXTEXTUNDOSETMAX(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gint max = _clip_parni(cm, 2);
+
+   gint      max = _clip_parni(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
@@ -683,10 +732,13 @@ clip_GTK_EXTEXTREDO(ClipMachine * cm)
 CLIP_DLLEXPORT void
 _extext_style_to_map(ClipMachine * cm, GtkExTextStyle * style, ClipVar * m_style)
 {
-   ClipVar *c = NEW(ClipVar);
-   ClipVar *a = NEW(ClipVar);
+   ClipVar  *c = NEW(ClipVar);
+
+   ClipVar  *a = NEW(ClipVar);
+
    C_object *cfont;
-   if (!style || !m_style || m_style->t.type != MAP_type_of_ClipVarType)
+
+   if (!style || !m_style || m_style->t.ClipVartype_type_of_ClipType != MAP_type_of_ClipVarType)
       return;
   /* Get colors of widget */
 
@@ -701,15 +753,15 @@ _extext_style_to_map(ClipMachine * cm, GtkExTextStyle * style, ClipVar * m_style
    _clip_madd(cm, m_style, HASH_KEY, c);
 
    if (style->font)
-      {
-	 cfont = _list_get_cobject(cm, style->font);
-	 if (!cfont)
-	    cfont = _register_object(cm, style->font, GDK_OBJECT_FONT, NULL, (coDestructor) gdk_object_font_destructor);
-	 if (cfont)
-	    {
-	       _clip_madd(cm, m_style, HASH_FONT, &cfont->obj);
-	    }
-      }
+    {
+       cfont = _list_get_cobject(cm, style->font);
+       if (!cfont)
+	  cfont = _register_object(cm, style->font, GDK_OBJECT_FONT, NULL, (coDestructor) gdk_object_font_destructor);
+       if (cfont)
+	{
+	   _clip_madd(cm, m_style, HASH_FONT, &cfont->obj);
+	}
+    }
 
    _clip_destroy(cm, c);
    free(c);
@@ -721,15 +773,24 @@ int
 clip_GTK_EXTEXTSTYLEINSERT(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gchar *stylename = _clip_parc(cm, 2);
+
+   gchar    *stylename = _clip_parc(cm, 2);
+
    C_object *cfont = _fetch_cobject(cm, _clip_spar(cm, 3));
-   ClipVar *mfg = _clip_spar(cm, 4);
-   ClipVar *mbg = _clip_spar(cm, 5);
-   guint16 flags = _clip_parni(cm, 6);
-   ClipVar *exstyle = RETPTR(cm);
+
+   ClipVar  *mfg = _clip_spar(cm, 4);
+
+   ClipVar  *mbg = _clip_spar(cm, 5);
+
+   guint16   flags = _clip_parni(cm, 6);
+
+   ClipVar  *exstyle = RETPTR(cm);
+
    GtkExTextStyle *style;
-   GdkColor fgcolor;
-   GdkColor bgcolor;
+
+   GdkColor  fgcolor;
+
+   GdkColor  bgcolor;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -755,8 +816,11 @@ int
 clip_GTK_EXTEXTSTYLEGET(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gchar *stylename = _clip_parc(cm, 2);
-   ClipVar *exstyle = RETPTR(cm);
+
+   gchar    *stylename = _clip_parc(cm, 2);
+
+   ClipVar  *exstyle = RETPTR(cm);
+
    GtkExTextStyle *style;
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
@@ -776,7 +840,8 @@ int
 clip_GTK_EXTEXTSTYLEREMOVE(ClipMachine * cm)
 {
    C_widget *extext = _fetch_cw_arg(cm);
-   gchar *stylename = _clip_parc(cm, 2);
+
+   gchar    *stylename = _clip_parc(cm, 2);
 
    CHECKCWID(extext, GTK_IS_EXTEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
@@ -792,7 +857,9 @@ int
 clip_GTK_EXTEXTSTYLESET(ClipMachine * cm)
 {
    C_widget *widget = _fetch_cw_arg(cm);
-   ClipVar *mstyle = _clip_spar(cm, 2);
+
+   ClipVar  *mstyle = _clip_spar(cm, 2);
+
    GtkStyle *style;
 
    CHECKCWID(widget, GTK_IS_WIDGET);

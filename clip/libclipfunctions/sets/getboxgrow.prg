@@ -1,0 +1,2 @@
+function getBoxGrow()
+return nBoxGrow

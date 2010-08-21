@@ -1,5 +1,5 @@
-#ifndef CI_SET_DEFINED
-#define CI_SET_DEFINED
+#ifndef CN_SET_DEFINED
+#define CN_SET_DEFINED
 
 #define _SET_EXACT                  1
 #define _SET_FIXED                  2

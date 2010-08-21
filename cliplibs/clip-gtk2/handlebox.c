@@ -15,10 +15,11 @@
 
 /*********************** SIGNALS **************************/
 
-static gint
+static    gint
 handle_child_attached_signal(GtkHandleBox * box, GtkWidget * widget, C_signal * cs)
 {
    C_widget *cwid;
+
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, widget);
    if (!cwid)
@@ -28,10 +29,11 @@ handle_child_attached_signal(GtkHandleBox * box, GtkWidget * widget, C_signal * 
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 handle_child_detached_signal(GtkHandleBox * box, GtkWidget * widget, C_signal * cs)
 {
    C_widget *cwid;
+
    PREPARECV(cs, cv);
    cwid = _list_get_cwidget(cs->cw->cmachine, widget);
    if (!cwid)
@@ -41,11 +43,13 @@ handle_child_detached_signal(GtkHandleBox * box, GtkWidget * widget, C_signal * 
    INVOKESIGHANDLER(widget, cs, cv);
 }
 
-static gint
+static    gint
 emit_handle_box_signal(C_widget * cbox, const gchar * signal_name)
 {
    ClipMachine *ClipMachineMemory = cbox->cmachine;
+
    C_widget *cwid = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    CHECKARG2(3, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cwid, GTK_IS_WIDGET);
    gtk_signal_emit_by_name(GTK_OBJECT(cbox->widget), signal_name, cwid->widget, cbox);
@@ -98,9 +102,12 @@ clip_INIT___HANDLEBOX(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_HANDLEBOXNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_handle_box_new();
@@ -118,7 +125,9 @@ int
 clip_GTK_HANDLEBOXSETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    GtkShadowType type = _clip_parni(ClipMachineMemory, 2);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    gtk_handle_box_set_shadow_type(GTK_HANDLE_BOX(cbox->widget), type);
@@ -132,6 +141,7 @@ int
 clip_GTK_HANDLEBOXGETSHADOWTYPE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    _clip_retni(ClipMachineMemory, GTK_HANDLE_BOX(cbox->widget)->shadow_type);
    return 0;
@@ -144,7 +154,9 @@ int
 clip_GTK_HANDLEBOXSETHANDLEPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    GtkPositionType position = _clip_parni(ClipMachineMemory, 2);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    gtk_handle_box_set_handle_position(GTK_HANDLE_BOX(cbox->widget), position);
@@ -158,6 +170,7 @@ int
 clip_GTK_HANDLEBOXGETHANDLEPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    _clip_retni(ClipMachineMemory, GTK_HANDLE_BOX(cbox->widget)->handle_position);
    return 0;
@@ -178,7 +191,9 @@ int
 clip_GTK_HANDLEBOXSETSNAPEDGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    GtkPositionType edge = _clip_parni(ClipMachineMemory, 2);
+
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -193,6 +208,7 @@ int
 clip_GTK_HANDLEBOXGETSNAPEDGE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    _clip_retni(ClipMachineMemory, GTK_HANDLE_BOX(cbox->widget)->snap_edge);
    return 0;
@@ -204,6 +220,7 @@ int
 clip_GTK_HANDLEBOXCHILDDETACHED(ClipMachine * ClipMachineMemory)
 {
    C_widget *cbox = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(cbox, GTK_IS_HANDLE_BOX);
    _clip_retl(ClipMachineMemory, GTK_HANDLE_BOX(cbox->widget)->child_detached);
    return 0;

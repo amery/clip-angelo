@@ -1,6 +1,6 @@
 
-#ifndef CI_COLOR_DEFINED
-#define CI_COLOR_DEFINED
+#ifndef CN_COLOR_DEFINED
+#define CN_COLOR_DEFINED
 
 #define COLOR_STANDARD    0
 #define COLOR_ENHANCED    1

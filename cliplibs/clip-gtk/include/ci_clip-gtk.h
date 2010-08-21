@@ -23,93 +23,95 @@ typedef struct _ExtraSignalTable ExtraSignalTable;
 
 typedef void (*cwDestructor) (ClipMachine * ClipMachineMemory, C_widget * cwid);
 typedef void (*coDestructor) (ClipMachine * ClipMachineMemory, C_object * cobj);
-typedef int (*EmitSignalFunction) (C_widget * cwid, const gchar * signal_name);
-typedef GtkType(*TypeFunc) (void);
+typedef int (*EmitSignalFunction) (C_widget * cwid,
+				   const gchar * signal_name);
+typedef GtkType (*TypeFunc) (void);
 typedef const char *(*TypeNameFunc) (void);
 typedef long (*ClipTypeFunc) (void);
 
 typedef struct _C_object
 {
-   void *object;
-   ClipMachine *cmachine;
-   long objtype;
-   long type;
-   const char *type_name;
-   int handle;
-   ClipVar obj;
-   coDestructor destroy;
-   int ref_count;
+  void *object;
+  ClipMachine *cmachine;
+  long objtype;
+  long type;
+  const char *type_name;
+  int handle;
+  ClipVar obj;
+  coDestructor destroy;
+  int ref_count;
 } _C_object;
 
 typedef struct _C_widget
 {
-   GtkWidget *widget;
-   GtkAccelGroup *accel_group;
-   GtkWidget *label;
-   ClipMachine *cmachine;
-   ClipVar obj;
+  GtkWidget *widget;
+  GtkAccelGroup *accel_group;
+  GtkWidget *label;
+  ClipMachine *cmachine;
+  ClipVar obj;
 //      ClipVar         msig;
-   C_signal *siglist;
-   ClipVar mdata;
-   int usersigenabled;
-   int sigenabled;
-   int evntenabled;
-   long objtype;
-   GtkType type;
-   const char *type_name;
-   int handle;
-   cwDestructor destroy;
-   void *data;
+  C_signal *siglist;
+  ClipVar mdata;
+  int usersigenabled;
+  int sigenabled;
+  int evntenabled;
+  long objtype;
+  GtkType type;
+  const char *type_name;
+  int handle;
+  cwDestructor destroy;
+  void *data;
 } _C_widget;
 
 typedef struct
 {
-   ClipVar cfunc;
-   unsigned int id;
-   ClipMachine *ClipMachineMemory;
-   ClipVar *cv;
-   C_widget *cw;
-   C_object *co;
+  ClipVar cfunc;
+  unsigned int id;
+  ClipMachine *ClipMachineMemory;
+  ClipVar *cv;
+  C_widget *cw;
+  C_object *co;
 }
 C_var;
 
 typedef struct _C_signal
 {
-   C_widget *cw;
-   C_object *co;
-   const char *signame;
-   int sigid;
-   ClipVar cfunc;
-   C_signal *next;
+  C_widget *cw;
+  C_object *co;
+  const char *signame;
+  int sigid;
+  ClipVar cfunc;
+  C_signal *next;
 }
 _C_signal;
 
+
 typedef struct _SignalTable
 {
-   char *signame;
-   GtkSignalFunc sigfunction;
-   EmitSignalFunction emitsigfunction;
-   int sigid;
+  char *signame;
+  GtkSignalFunc sigfunction;
+  EmitSignalFunction emitsigfunction;
+  int sigid;
 } _SignalTable;
 
 typedef struct _ExtraSignalTable
 {
-   char *signame;
-   GtkSignalFunc sigfunction;
-   EmitSignalFunction emitsigfunction;
-   int sigid;
-   ExtraSignalTable *next;
+  char *signame;
+  GtkSignalFunc sigfunction;
+  EmitSignalFunction emitsigfunction;
+  int sigid;
+  ExtraSignalTable *next;
 } _ExtraSignalTable;
 
 typedef struct _WTypeTable
 {
-   TypeFunc ftype;
-   TypeNameFunc ftype_name;
-   TypeFunc fsuper_type;
-   ClipTypeFunc fclip_type;
-   SignalTable *signal_table;
-   ExtraSignalTable *extra_signal_table;
-   WTypeTable *next;
+  TypeFunc ftype;
+  TypeNameFunc ftype_name;
+  TypeFunc fsuper_type;
+  ClipTypeFunc fclip_type;
+  SignalTable *signal_table;
+  ExtraSignalTable *extra_signal_table;
+  WTypeTable *next;
 
 } _WTypeTable;
 
@@ -257,147 +259,165 @@ typedef struct _WTypeTable
 	_clip_destroy(cs->cw->cmachine, &cv); \
 	return ret;
 
-GtkType _gtk_type_object(void);
-C_widget *_register_widget(ClipMachine * ClipMachineMemory, GtkWidget * wid, ClipVar * cv);
-C_object *_register_object(ClipMachine * ClipMachineMemory, void *data, long type, ClipVar * cv, coDestructor fDestroy);
-C_widget *_get_cwidget(ClipMachine * ClipMachineMemory, GtkWidget * wid);
-C_object *_get_cobject(ClipMachine * ClipMachineMemory, void *wid, long clip_type, coDestructor fDestroy);
-C_widget *_fetch_cwidget(ClipMachine * ClipMachineMemory, ClipVar * cv);
-C_widget *_fetch_cwidgetn(ClipMachine * ClipMachineMemory, int h);
-C_object *_fetch_cobject(ClipMachine * ClipMachineMemory, ClipVar * cv);
-C_object *_fetch_cobjectn(ClipMachine * ClipMachineMemory, int h);
-C_widget *_fetch_cw_arg(ClipMachine * ClipMachineMemory);
-C_widget *_fetch_cw_opt(ClipMachine * ClipMachineMemory);
-C_object *_fetch_co_arg(ClipMachine * ClipMachineMemory);
-C_object *_fetch_co_opt(ClipMachine * ClipMachineMemory);
-gint handle_signals(GtkWidget * widget, C_signal * cs, ClipVar * cv);
-gint handle_events(GtkWidget * widget, GdkEvent * event, C_signal * cs);
-gint widget_signal_handler(GtkWidget * widget, C_signal * cs);
-void _wtype_table_put(ClipTypeFunc CWType, TypeNameFunc TypeName, TypeFunc WType, TypeFunc SuperType, SignalTable * table);
-WTypeTable *_wtype_table_get(GtkType WType);
-WTypeTable *_wtype_table_get_by_clip_type(long WClipType);
-WTypeTable *_wtype_table_get_first(void);
-char *_sig_name_by_id(long id);
+GtkType _gtk_type_object (void);
+C_widget *_register_widget (ClipMachine * ClipMachineMemory, GtkWidget * wid,
+			    ClipVar * cv);
+C_object *_register_object (ClipMachine * ClipMachineMemory, void *data, long type,
+			    ClipVar * cv, coDestructor fDestroy);
+C_widget *_get_cwidget (ClipMachine * ClipMachineMemory, GtkWidget * wid);
+C_object *_get_cobject (ClipMachine * ClipMachineMemory, void *wid, long clip_type,
+			coDestructor fDestroy);
+C_widget *_fetch_cwidget (ClipMachine * ClipMachineMemory, ClipVar * cv);
+C_widget *_fetch_cwidgetn (ClipMachine * ClipMachineMemory, int h);
+C_object *_fetch_cobject (ClipMachine * ClipMachineMemory, ClipVar * cv);
+C_object *_fetch_cobjectn (ClipMachine * ClipMachineMemory, int h);
+C_widget *_fetch_cw_arg (ClipMachine * ClipMachineMemory);
+C_widget *_fetch_cw_opt (ClipMachine * ClipMachineMemory);
+C_object *_fetch_co_arg (ClipMachine * ClipMachineMemory);
+C_object *_fetch_co_opt (ClipMachine * ClipMachineMemory);
+gint handle_signals (GtkWidget * widget, C_signal * cs, ClipVar * cv);
+gint handle_events (GtkWidget * widget, GdkEvent * event, C_signal * cs);
+gint widget_signal_handler (GtkWidget * widget, C_signal * cs);
+void _wtype_table_put (ClipTypeFunc CWType, TypeNameFunc TypeName,
+		       TypeFunc WType, TypeFunc SuperType,
+		       SignalTable * table);
+WTypeTable *_wtype_table_get (GtkType WType);
+WTypeTable *_wtype_table_get_by_clip_type (long WClipType);
+WTypeTable *_wtype_table_get_first (void);
+char *_sig_name_by_id (long id);
 // Get colors for GTK+ from a map
-void _map_get_colors(ClipMachine * ClipMachineMemory, ClipVar * map, double colors[]);
+void _map_get_colors (ClipMachine * ClipMachineMemory, ClipVar * map,
+		      double colors[]);
 // Put colors from GTK+ to a map
-void _map_put_colors(ClipMachine * ClipMachineMemory, ClipVar * map, double colors[]);
+void _map_put_colors (ClipMachine * ClipMachineMemory, ClipVar * map,
+		      double colors[]);
 // Get colors for color selection from a map
-void _map_get_sel_colors(ClipMachine * ClipMachineMemory, ClipVar * map, double colors[]);
-void _map_colors_to_gdk(ClipMachine * ClipMachineMemory, ClipVar * map, GdkColor * gdk_color);
-void _map_colors_to_gdk_array(ClipMachine * ClipMachineMemory, ClipVar * map, GdkColor gdk_color[]);
+void _map_get_sel_colors (ClipMachine * ClipMachineMemory, ClipVar * map,
+			  double colors[]);
+void _map_colors_to_gdk (ClipMachine * ClipMachineMemory, ClipVar * map,
+			 GdkColor * gdk_color);
+void _map_colors_to_gdk_array (ClipMachine * ClipMachineMemory, ClipVar * map,
+			       GdkColor gdk_color[]);
 // Get color and store it to map
-void _gdk_color_to_map(ClipMachine * ClipMachineMemory, GdkColor gdk_color, ClipVar * col);
+void _gdk_color_to_map (ClipMachine * ClipMachineMemory, GdkColor gdk_color,
+			ClipVar * col);
 // Get array of colors and store it to array of maps
-void _gdk_array_to_map_colors(ClipMachine * ClipMachineMemory, GdkColor gdk_colors[], ClipVar * a);
-void _style_to_map(ClipMachine * ClipMachineMemory, GtkStyle * style, ClipVar * m_style);
-void _map_to_style(ClipMachine * ClipMachineMemory, ClipVar * m_style, GtkStyle * style);
-void _list_put_cwidget(ClipMachine * ClipMachineMemory, void *pointer, C_widget * cwid);
-C_widget *_list_get_cwidget(ClipMachine * ClipMachineMemory, void *pointer);
-C_widget *_list_get_cwidget_by_data(ClipMachine * ClipMachineMemory, void *data);
-void _list_put_cobject(ClipMachine * ClipMachineMemory, void *pointer, C_object * cobj);
-C_object *_list_get_cobject(ClipMachine * ClipMachineMemory, void *pointer);
-void _list_remove_cwidget(ClipMachine * ClipMachineMemory, void *pointer);
-void destroy_c_widget(void *item);
-void destroy_c_object(void *item);
-guint x_inkey(GdkEventKey * k, double *d);
-int object_emit_signal(C_widget * cwid, const gchar * signal_name);
-int object_emit_event(C_widget * cwid, const gchar * signal_name);
-int gdk_object_font_destructor(ClipMachine * ClipMachineMemory, C_object * cfont);
-int gdk_object_gc_destructor(ClipMachine * ClipMachineMemory, C_object * cgc);
-int gdk_object_colormap_destructor(ClipMachine * ClipMachineMemory, C_object * ccmap);
-int gdk_object_window_destructor(ClipMachine * ClipMachineMemory, C_object * cwin);
-unsigned char *_clip_locale_to_utf8(unsigned char *);
-unsigned char *_clip_locale_from_utf8(unsigned char *);
+void _gdk_array_to_map_colors (ClipMachine * ClipMachineMemory,
+			       GdkColor gdk_colors[], ClipVar * a);
+void _style_to_map (ClipMachine * ClipMachineMemory, GtkStyle * style,
+		    ClipVar * m_style);
+void _map_to_style (ClipMachine * ClipMachineMemory, ClipVar * m_style,
+		    GtkStyle * style);
+void _list_put_cwidget (ClipMachine * ClipMachineMemory, void *pointer,
+			C_widget * cwid);
+C_widget *_list_get_cwidget (ClipMachine * ClipMachineMemory, void *pointer);
+C_widget *_list_get_cwidget_by_data (ClipMachine * ClipMachineMemory, void *data);
+void _list_put_cobject (ClipMachine * ClipMachineMemory, void *pointer,
+			C_object * cobj);
+C_object *_list_get_cobject (ClipMachine * ClipMachineMemory, void *pointer);
+void _list_remove_cwidget (ClipMachine * ClipMachineMemory, void *pointer);
+void destroy_c_widget (void *item);
+void destroy_c_object (void *item);
+guint x_inkey (GdkEventKey * k, double *d);
+int object_emit_signal (C_widget * cwid, const gchar * signal_name);
+int object_emit_event (C_widget * cwid, const gchar * signal_name);
+int gdk_object_font_destructor (ClipMachine * ClipMachineMemory, C_object * cfont);
+int gdk_object_gc_destructor (ClipMachine * ClipMachineMemory, C_object * cgc);
+int gdk_object_colormap_destructor (ClipMachine * ClipMachineMemory,
+				    C_object * ccmap);
+int gdk_object_window_destructor (ClipMachine * ClipMachineMemory, C_object * cwin);
+unsigned char *_clip_locale_to_utf8 (unsigned char *);
+unsigned char *_clip_locale_from_utf8 (unsigned char *);
 
-GtkType _gtk_type_accel_label();
-GtkType _gtk_type_adjustment();
-GtkType _gtk_type_alignment();
-GtkType _gtk_type_arrow();
-GtkType _gtk_type_aspect_frame();
-GtkType _gtk_type_box();
-GtkType _gtk_type_button();
-GtkType _gtk_type_button_box();
-GtkType _gtk_type_calendar();
-GtkType _gtk_type_check_button();
-GtkType _gtk_type_check_menu_item();
-GtkType _gtk_type_clist();
-GtkType _gtk_type_color_selection();
-GtkType _gtk_type_color_selection_dialog();
-GtkType _gtk_type_combo();
-GtkType _gtk_type_container();
-GtkType _gtk_type_ctree();
-GtkType _gtk_type_curve();
-GtkType _gtk_type_data();
-GtkType _gtk_type_dialog();
-GtkType _gtk_type_drawing_area();
-GtkType _gtk_type_editable();
-GtkType _gtk_type_entry();
-GtkType _gtk_type_event_box();
-GtkType _gtk_type_file_selection();
-GtkType _gtk_type_fixed();
-GtkType _gtk_type_font_selection();
-GtkType _gtk_type_font_selection_dialog();
-GtkType _gtk_type_frame();
-GtkType _gtk_type_gamma_curve();
-GtkType _gtk_type_handle_box();
-GtkType _gtk_type_hbox();
-GtkType _gtk_type_hbutton_box();
-GtkType _gtk_type_hpaned();
-GtkType _gtk_type_hruler();
-GtkType _gtk_type_hscale();
-GtkType _gtk_type_hscrollbar();
-GtkType _gtk_type_hseparator();
-GtkType _gtk_type_input_dialog();
-GtkType _gtk_type_item();
-GtkType _gtk_type_label();
-GtkType _gtk_type_layout();
-GtkType _gtk_type_list();
-GtkType _gtk_type_list_item();
-GtkType _gtk_type_menu();
-GtkType _gtk_type_menu_bar();
-GtkType _gtk_type_menu_item();
-GtkType _gtk_type_menu_shell();
-GtkType _gtk_type_misc();
-GtkType _gtk_type_notebook();
-GtkType _gtk_type_object();
-GtkType _gtk_type_option_menu();
-GtkType _gtk_type_packer();
-GtkType _gtk_type_paned();
-GtkType _gtk_type_pixmap();
-GtkType _gtk_type_progress();
-GtkType _gtk_type_progress_bar();
-GtkType _gtk_type_radio_button();
-GtkType _gtk_type_radio_group();
-GtkType _gtk_type_radio_menu_group();
-GtkType _gtk_type_radio_menu_item();
-GtkType _gtk_type_range();
-GtkType _gtk_type_ruler();
-GtkType _gtk_type_scale();
-GtkType _gtk_type_scrollbar();
-GtkType _gtk_type_scrolled_window();
-GtkType _gtk_type_separator();
-GtkType _gtk_type_spin_button();
-GtkType _gtk_type_status_bar();
-GtkType _gtk_type_table();
-GtkType _gtk_type_tearoff_menu_item();
-GtkType _gtk_type_text();
-GtkType _gtk_type_tips_query();
-GtkType _gtk_type_toggle_button();
-GtkType _gtk_type_toolbar();
-GtkType _gtk_type_tooltips();
-GtkType _gtk_type_tree();
-GtkType _gtk_type_tree_item();
-GtkType _gtk_type_vbox();
-GtkType _gtk_type_vbutton_box();
-GtkType _gtk_type_viewport();
-GtkType _gtk_type_vpaned();
-GtkType _gtk_type_vruler();
-GtkType _gtk_type_vscale();
-GtkType _gtk_type_vscrollbar();
-GtkType _gtk_type_vseparator();
-GtkType _gtk_type_widget();
-GtkType _gtk_type_window();
+GtkType _gtk_type_accel_label ();
+GtkType _gtk_type_adjustment ();
+GtkType _gtk_type_alignment ();
+GtkType _gtk_type_arrow ();
+GtkType _gtk_type_aspect_frame ();
+GtkType _gtk_type_box ();
+GtkType _gtk_type_button ();
+GtkType _gtk_type_button_box ();
+GtkType _gtk_type_calendar ();
+GtkType _gtk_type_check_button ();
+GtkType _gtk_type_check_menu_item ();
+GtkType _gtk_type_clist ();
+GtkType _gtk_type_color_selection ();
+GtkType _gtk_type_color_selection_dialog ();
+GtkType _gtk_type_combo ();
+GtkType _gtk_type_container ();
+GtkType _gtk_type_ctree ();
+GtkType _gtk_type_curve ();
+GtkType _gtk_type_data ();
+GtkType _gtk_type_dialog ();
+GtkType _gtk_type_drawing_area ();
+GtkType _gtk_type_editable ();
+GtkType _gtk_type_entry ();
+GtkType _gtk_type_event_box ();
+GtkType _gtk_type_file_selection ();
+GtkType _gtk_type_fixed ();
+GtkType _gtk_type_font_selection ();
+GtkType _gtk_type_font_selection_dialog ();
+GtkType _gtk_type_frame ();
+GtkType _gtk_type_gamma_curve ();
+GtkType _gtk_type_handle_box ();
+GtkType _gtk_type_hbox ();
+GtkType _gtk_type_hbutton_box ();
+GtkType _gtk_type_hpaned ();
+GtkType _gtk_type_hruler ();
+GtkType _gtk_type_hscale ();
+GtkType _gtk_type_hscrollbar ();
+GtkType _gtk_type_hseparator ();
+GtkType _gtk_type_input_dialog ();
+GtkType _gtk_type_item ();
+GtkType _gtk_type_label ();
+GtkType _gtk_type_layout ();
+GtkType _gtk_type_list ();
+GtkType _gtk_type_list_item ();
+GtkType _gtk_type_menu ();
+GtkType _gtk_type_menu_bar ();
+GtkType _gtk_type_menu_item ();
+GtkType _gtk_type_menu_shell ();
+GtkType _gtk_type_misc ();
+GtkType _gtk_type_notebook ();
+GtkType _gtk_type_object ();
+GtkType _gtk_type_option_menu ();
+GtkType _gtk_type_packer ();
+GtkType _gtk_type_paned ();
+GtkType _gtk_type_pixmap ();
+GtkType _gtk_type_progress ();
+GtkType _gtk_type_progress_bar ();
+GtkType _gtk_type_radio_button ();
+GtkType _gtk_type_radio_group ();
+GtkType _gtk_type_radio_menu_group ();
+GtkType _gtk_type_radio_menu_item ();
+GtkType _gtk_type_range ();
+GtkType _gtk_type_ruler ();
+GtkType _gtk_type_scale ();
+GtkType _gtk_type_scrollbar ();
+GtkType _gtk_type_scrolled_window ();
+GtkType _gtk_type_separator ();
+GtkType _gtk_type_spin_button ();
+GtkType _gtk_type_status_bar ();
+GtkType _gtk_type_table ();
+GtkType _gtk_type_tearoff_menu_item ();
+GtkType _gtk_type_text ();
+GtkType _gtk_type_tips_query ();
+GtkType _gtk_type_toggle_button ();
+GtkType _gtk_type_toolbar ();
+GtkType _gtk_type_tooltips ();
+GtkType _gtk_type_tree ();
+GtkType _gtk_type_tree_item ();
+GtkType _gtk_type_vbox ();
+GtkType _gtk_type_vbutton_box ();
+GtkType _gtk_type_viewport ();
+GtkType _gtk_type_vpaned ();
+GtkType _gtk_type_vruler ();
+GtkType _gtk_type_vscale ();
+GtkType _gtk_type_vscrollbar ();
+GtkType _gtk_type_vseparator ();
+GtkType _gtk_type_widget ();
+GtkType _gtk_type_window ();
+
 
 #define GTK_ACCEL_GROUP(obj)           ((GtkAccelGroup *)(obj))
 #define GTK_IS_ACCEL_GROUP(obj)        (obj && ((C_object*)obj)->type == GTK_TYPE_ACCEL_GROUP)

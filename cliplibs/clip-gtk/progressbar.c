@@ -49,11 +49,16 @@ clip_INIT___PROGRESS_BAR(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_PROGRESSBARNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *cadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    GtkAdjustment *adj = 0;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(cadj, GTK_IS_ADJUSTMENT);
@@ -76,7 +81,9 @@ int
 clip_GTK_PROGRESSBARSETBARSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
+
    GtkProgressBarStyle style = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_bar_style(GTK_PROGRESS_BAR(cprg->widget), style);
@@ -91,7 +98,9 @@ int
 clip_GTK_PROGRESSBARSETDISCRETEBLOCKS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-   guint blocks = _clip_parni(ClipMachineMemory, 2);
+
+   guint     blocks = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_discrete_blocks(GTK_PROGRESS_BAR(cprg->widget), blocks);
@@ -106,7 +115,9 @@ int
 clip_GTK_PROGRESSBARSETACTIVITYSTEP(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-   guint step = _clip_parni(ClipMachineMemory, 2);
+
+   guint     step = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_activity_step(GTK_PROGRESS_BAR(cprg->widget), step);
@@ -121,7 +132,9 @@ int
 clip_GTK_PROGRESSBARSETACTIVITYBLOCKS(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
-   guint blocks = _clip_parni(ClipMachineMemory, 2);
+
+   guint     blocks = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_activity_blocks(GTK_PROGRESS_BAR(cprg->widget), blocks);
@@ -136,7 +149,9 @@ int
 clip_GTK_PROGRESSBARSETORIENTATION(ClipMachine * ClipMachineMemory)
 {
    C_widget *cprg = _fetch_cw_arg(ClipMachineMemory);
+
    GtkProgressBarOrientation orientation = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(cprg, GTK_IS_PROGRESS);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_progress_bar_set_orientation(GTK_PROGRESS_BAR(cprg->widget), orientation);

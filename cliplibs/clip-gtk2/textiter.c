@@ -14,13 +14,17 @@
 #include "ci_clip-gtk2.h"
 
 static GtkTextAttributes _Attrs;
+
 static GtkTextAttributes *Attrs = &_Attrs;
 
 static GtkTextIter _MatchStart;
+
 static GtkTextIter *MatchStart = &_MatchStart;
 
 static GtkTextIter _MatchEnd;
+
 static GtkTextIter *MatchEnd = &_MatchEnd;
+
 /*********************** SIGNALS **************************/
 
 /* TextIter has no signals */
@@ -58,7 +62,9 @@ int
 clip_GTK_TEXTITERGETBUFFER(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    GtkTextBuffer *buffer;
+
    C_object *cbuffer;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -67,13 +73,13 @@ clip_GTK_TEXTITERGETBUFFER(ClipMachine * ClipMachineMemory)
    buffer = gtk_text_iter_get_buffer((const GtkTextIter *) (citer->object));
 
    if (buffer)
-      {
-	 cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
-	 if (!cbuffer)
-	    cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
-	 if (cbuffer)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
-      }
+    {
+       cbuffer = _list_get_cobject(ClipMachineMemory, buffer);
+       if (!cbuffer)
+	  cbuffer = _register_object(ClipMachineMemory, buffer, GTK_TYPE_TEXT_BUFFER, NULL, NULL);
+       if (cbuffer)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cbuffer->obj);
+    }
    return 0;
  err:
    return 1;
@@ -86,7 +92,9 @@ int
 clip_GTK_TEXTITERCOPY(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    GtkTextIter *iter;
+
    C_object *citernew;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -95,13 +103,13 @@ clip_GTK_TEXTITERCOPY(ClipMachine * ClipMachineMemory)
    iter = gtk_text_iter_copy((const GtkTextIter *) (citer->object));
 
    if (iter)
-      {
-	 citernew = _list_get_cobject(ClipMachineMemory, iter);
-	 if (!citernew)
-	    citernew = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
-	 if (citernew)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citernew->obj);
-      }
+    {
+       citernew = _list_get_cobject(ClipMachineMemory, iter);
+       if (!citernew)
+	  citernew = _register_object(ClipMachineMemory, iter, GTK_TYPE_TEXT_ITER, NULL, NULL);
+       if (citernew)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &citernew->obj);
+    }
    return 0;
  err:
    return 1;
@@ -132,7 +140,8 @@ int
 clip_GTK_TEXTITERGETOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset;
+
+   gint      offset;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -152,7 +161,8 @@ int
 clip_GTK_TEXTITERGETLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint line;
+
+   gint      line;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -172,7 +182,8 @@ int
 clip_GTK_TEXTITERGETLINEOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset;
+
+   gint      offset;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -192,7 +203,8 @@ int
 clip_GTK_TEXTITERGETLINEINDEX(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint index;
+
+   gint      index;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -212,7 +224,8 @@ int
 clip_GTK_TEXTITERGETVISIBLELINEINDEX(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint index;
+
+   gint      index;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -232,7 +245,8 @@ int
 clip_GTK_TEXTITERGETVISIBLELINEOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset;
+
+   gint      offset;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -252,7 +266,8 @@ int
 clip_GTK_TEXTITERGETCHAR(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gchar *chr;
+
+   gchar    *chr;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -260,11 +275,11 @@ clip_GTK_TEXTITERGETCHAR(ClipMachine * ClipMachineMemory)
    chr = (gchar *) gtk_text_iter_get_char((const GtkTextIter *) (citer->object));
 
    if (chr != 0)
-      {
-	 LOCALE_FROM_UTF(chr);
-	 _clip_retc(ClipMachineMemory, chr);
-	 FREE_TEXT(chr);
-      }
+    {
+       LOCALE_FROM_UTF(chr);
+       _clip_retc(ClipMachineMemory, chr);
+       FREE_TEXT(chr);
+    }
    return 0;
  err:
    return 1;
@@ -277,8 +292,10 @@ int
 clip_GTK_TEXTITERGETSLICE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citerend = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gchar *str;
+
+   gchar    *str;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -302,8 +319,10 @@ int
 clip_GTK_TEXTITERGETTEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citerend = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gchar *str;
+
+   gchar    *str;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -327,8 +346,10 @@ int
 clip_GTK_TEXTITERGETVISIBLESLICE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citerend = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gchar *str;
+
+   gchar    *str;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -352,8 +373,10 @@ int
 clip_GTK_TEXTITERGETVISIBLETEXT(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citerend = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gchar *str;
+
+   gchar    *str;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -377,7 +400,9 @@ int
 clip_GTK_TEXTITERGETPIXBUF(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    GdkPixbuf *pixbuf;
+
    C_object *cpixbuf;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -401,9 +426,12 @@ int
 clip_GTK_TEXTITERGETMARKS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   GSList *marks;
-   ClipVar *mk = 0;
-   long n;
+
+   GSList   *marks;
+
+   ClipVar  *mk = 0;
+
+   long      n;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -414,29 +442,31 @@ clip_GTK_TEXTITERGETMARKS(ClipMachine * ClipMachineMemory)
    memset(mk, 0, sizeof(*mk));
    _clip_array(ClipMachineMemory, mk, 1, &n);
    if (n > 0)
-      {
-	 long i = 0;
-	 while (marks)
+    {
+       long      i = 0;
+
+       while (marks)
+	{
+	   ClipVar   cv;
+
+	   C_object *cobj;
+
+	   memset(&cv, 0, sizeof(cv));
+	   cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
+
+	   if (!marks->data)
+	      goto err;
+	   cobj = _register_object(ClipMachineMemory, GTK_TEXT_MARK(marks->data), GTK_TYPE_TEXT_MARK, NULL, NULL);
+	   if (cobj)
 	    {
-	       ClipVar cv;
-	       C_object *cobj;
-
-	       memset(&cv, 0, sizeof(cv));
-	       cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
-
-	       if (!marks->data)
-		  goto err;
-	       cobj = _register_object(ClipMachineMemory, GTK_TEXT_MARK(marks->data), GTK_TYPE_TEXT_MARK, NULL, NULL);
-	       if (cobj)
-		  {
-		     _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
-		     _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
-		  }
-	       marks = g_slist_next(marks);
-	       _clip_destroy(ClipMachineMemory, &cv);
-	       i++;
+	       _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
+	       _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
 	    }
-      }
+	   marks = g_slist_next(marks);
+	   _clip_destroy(ClipMachineMemory, &cv);
+	   i++;
+	}
+    }
    return 0;
  err:
    return 1;
@@ -449,10 +479,14 @@ int
 clip_GTK_TEXTITERGETTOGGLEDTAGS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean toggled = BOOL_OPTION(ClipMachineMemory, 2, 1);
-   GSList *tags;
-   ClipVar *mk = 0;
-   long n;
+
+   gboolean  toggled = BOOL_OPTION(ClipMachineMemory, 2, 1);
+
+   GSList   *tags;
+
+   ClipVar  *mk = 0;
+
+   long      n;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -462,29 +496,31 @@ clip_GTK_TEXTITERGETTOGGLEDTAGS(ClipMachine * ClipMachineMemory)
    memset(mk, 0, sizeof(*mk));
    _clip_array(ClipMachineMemory, mk, 1, &n);
    if (n > 0)
-      {
-	 long i = 0;
-	 while (tags)
+    {
+       long      i = 0;
+
+       while (tags)
+	{
+	   ClipVar   cv;
+
+	   C_object *cobj;
+
+	   memset(&cv, 0, sizeof(cv));
+	   cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
+
+	   if (!tags->data)
+	      goto err;
+	   cobj = _register_object(ClipMachineMemory, GTK_TEXT_TAG(tags->data), GTK_TYPE_TEXT_TAG, NULL, NULL);
+	   if (cobj)
 	    {
-	       ClipVar cv;
-	       C_object *cobj;
-
-	       memset(&cv, 0, sizeof(cv));
-	       cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
-
-	       if (!tags->data)
-		  goto err;
-	       cobj = _register_object(ClipMachineMemory, GTK_TEXT_TAG(tags->data), GTK_TYPE_TEXT_TAG, NULL, NULL);
-	       if (cobj)
-		  {
-		     _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
-		     _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
-		  }
-	       tags = g_slist_next(tags);
-	       _clip_destroy(ClipMachineMemory, &cv);
-	       i++;
+	       _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
+	       _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
 	    }
-      }
+	   tags = g_slist_next(tags);
+	   _clip_destroy(ClipMachineMemory, &cv);
+	   i++;
+	}
+    }
    return 0;
  err:
    return 1;
@@ -497,7 +533,9 @@ int
 clip_GTK_TEXTITERGETCHILDANCHOR(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    GtkTextChildAnchor *anchor;
+
    C_object *canchor;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -506,11 +544,11 @@ clip_GTK_TEXTITERGETCHILDANCHOR(ClipMachine * ClipMachineMemory)
    anchor = gtk_text_iter_get_child_anchor((const GtkTextIter *) (citer->object));
 
    if (anchor)
-      {
-	 canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, NULL, NULL);
-	 if (canchor)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
-      }
+    {
+       canchor = _register_object(ClipMachineMemory, anchor, GTK_TYPE_TEXT_CHILD_ANCHOR, NULL, NULL);
+       if (canchor)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &canchor->obj);
+    }
    return 0;
  err:
    return 1;
@@ -523,8 +561,10 @@ int
 clip_GTK_TEXTITERBEGINSTAG(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -546,8 +586,10 @@ int
 clip_GTK_TEXTITERENDSTAG(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -569,8 +611,10 @@ int
 clip_GTK_TEXTITERTOGGLESTAG(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -592,8 +636,10 @@ int
 clip_GTK_TEXTITERHASTAG(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -615,9 +661,12 @@ int
 clip_GTK_TEXTITERGETTAGS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   GSList *tags;
-   ClipVar *mk = 0;
-   long n;
+
+   GSList   *tags;
+
+   ClipVar  *mk = 0;
+
+   long      n;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -628,29 +677,31 @@ clip_GTK_TEXTITERGETTAGS(ClipMachine * ClipMachineMemory)
    memset(mk, 0, sizeof(*mk));
    _clip_array(ClipMachineMemory, mk, 1, &n);
    if (n > 0)
-      {
-	 long i = 0;
-	 while (tags)
+    {
+       long      i = 0;
+
+       while (tags)
+	{
+	   ClipVar   cv;
+
+	   C_object *cobj;
+
+	   memset(&cv, 0, sizeof(cv));
+	   cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
+
+	   if (!tags->data)
+	      goto err;
+	   cobj = _register_object(ClipMachineMemory, GTK_TEXT_TAG(tags->data), GTK_TYPE_TEXT_TAG, NULL, NULL);
+	   if (cobj)
 	    {
-	       ClipVar cv;
-	       C_object *cobj;
-
-	       memset(&cv, 0, sizeof(cv));
-	       cv.ClipType_t_of_ClipVar.ClipVartype_type_of_ClipType = MAP_type_of_ClipVarType;
-
-	       if (!tags->data)
-		  goto err;
-	       cobj = _register_object(ClipMachineMemory, GTK_TEXT_TAG(tags->data), GTK_TYPE_TEXT_TAG, NULL, NULL);
-	       if (cobj)
-		  {
-		     _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
-		     _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
-		  }
-	       tags = g_slist_next(tags);
-	       _clip_destroy(ClipMachineMemory, &cv);
-	       i++;
+	       _clip_mclone(ClipMachineMemory, &cv, &cobj->obj);
+	       _clip_aset(ClipMachineMemory, mk, &cv, 1, &i);
 	    }
-      }
+	   tags = g_slist_next(tags);
+	   _clip_destroy(ClipMachineMemory, &cv);
+	   i++;
+	}
+    }
    return 0;
  err:
    return 1;
@@ -663,8 +714,10 @@ int
 clip_GTK_TEXTITEREDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean defset = _clip_parl(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gboolean  defset = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -685,8 +738,10 @@ int
 clip_GTK_TEXTITERCANINSERT(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean defedt = _clip_parl(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gboolean  defedt = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -707,7 +762,8 @@ int
 clip_GTK_TEXTITERSTARTSWORD(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -727,7 +783,8 @@ int
 clip_GTK_TEXTITERENDSWORD(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -747,7 +804,8 @@ int
 clip_GTK_TEXTITERINSIDEWORD(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -767,7 +825,8 @@ int
 clip_GTK_TEXTITERSTARTSLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -787,7 +846,8 @@ int
 clip_GTK_TEXTITERENDSLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -807,7 +867,8 @@ int
 clip_GTK_TEXTITERSTARTSSENTENCE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -827,7 +888,8 @@ int
 clip_GTK_TEXTITERENDSSENTENCE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -847,7 +909,8 @@ int
 clip_GTK_TEXTITERINSIDESENTENCE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -867,7 +930,8 @@ int
 clip_GTK_TEXTITERISCURSORPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -887,7 +951,8 @@ int
 clip_GTK_TEXTITERGETCHARSINLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint ret;
+
+   gint      ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -907,7 +972,8 @@ int
 clip_GTK_TEXTITERGETBYTESINLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint ret;
+
+   gint      ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -927,9 +993,12 @@ int
 clip_GTK_TEXTITERGETATTRIBUTES(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *cvattrs = 0;
+
+   ClipVar  *cvattrs = 0;
+
    C_object *cattrs = 0;
-   gint ret;
+
+   gint      ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -938,13 +1007,13 @@ clip_GTK_TEXTITERGETATTRIBUTES(ClipMachine * ClipMachineMemory)
    ret = gtk_text_iter_get_attributes((const GtkTextIter *) (citer->object), Attrs);
 
    if (ret && Attrs)
-      {
-	 cattrs = _list_get_cobject(ClipMachineMemory, Attrs);
-	 if (!cattrs)
-	    cattrs = _register_object(ClipMachineMemory, Attrs, GTK_TYPE_TEXT_ATTRIBUTES, cvattrs, NULL);
-	 if (cattrs)
-	    _clip_mclone(ClipMachineMemory, cvattrs, &cattrs->obj);
-      }
+    {
+       cattrs = _list_get_cobject(ClipMachineMemory, Attrs);
+       if (!cattrs)
+	  cattrs = _register_object(ClipMachineMemory, Attrs, GTK_TYPE_TEXT_ATTRIBUTES, cvattrs, NULL);
+       if (cattrs)
+	  _clip_mclone(ClipMachineMemory, cvattrs, &cattrs->obj);
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -958,6 +1027,7 @@ int
 clip_GTK_TEXTITERGETLANGUAGE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    PangoLanguage *language;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
@@ -978,7 +1048,8 @@ int
 clip_GTK_TEXTITERISEND(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -998,7 +1069,8 @@ int
 clip_GTK_TEXTITERISSTART(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1018,7 +1090,8 @@ int
 clip_GTK_TEXTITERFORWARDCHAR(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1038,7 +1111,8 @@ int
 clip_GTK_TEXTITERBACKWARDCHAR(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1058,8 +1132,10 @@ int
 clip_GTK_TEXTITERFORWARDCHARS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1080,8 +1156,10 @@ int
 clip_GTK_TEXTITERBACKWARDCHARS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1102,7 +1180,8 @@ int
 clip_GTK_TEXTITERFORWARDLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1122,7 +1201,8 @@ int
 clip_GTK_TEXTITERBACKWARDLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1142,8 +1222,10 @@ int
 clip_GTK_TEXTITERFORWARDLINES(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1164,8 +1246,10 @@ int
 clip_GTK_TEXTITERBACKWARDLINES(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1186,8 +1270,10 @@ int
 clip_GTK_TEXTITERFORWARDWORDENDS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1208,8 +1294,10 @@ int
 clip_GTK_TEXTITERBACKWARDWORDSTARTS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1230,7 +1318,8 @@ int
 clip_GTK_TEXTITERFORWARDWORDEND(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1250,7 +1339,8 @@ int
 clip_GTK_TEXTITERBACKWARDWORDSTART(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1270,7 +1360,8 @@ int
 clip_GTK_TEXTITERFORWARDCURSORPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1290,7 +1381,8 @@ int
 clip_GTK_TEXTITERBACKWARDCURSORPOSITION(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1310,8 +1402,10 @@ int
 clip_GTK_TEXTITERFORWARDCURSORPOSITIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1332,8 +1426,10 @@ int
 clip_GTK_TEXTITERBACKWARDCURSORPOSITIONS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1354,7 +1450,8 @@ int
 clip_GTK_TEXTITERBACKWARDSENTENCESTART(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1374,8 +1471,10 @@ int
 clip_GTK_TEXTITERBACKWARDSENTENCESTARTS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1396,7 +1495,8 @@ int
 clip_GTK_TEXTITERFORWARDSENTENCEEND(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1416,8 +1516,10 @@ int
 clip_GTK_TEXTITERFORWARDSENTENCEENDS(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint count = _clip_parni(ClipMachineMemory, 2);
-   gboolean ret;
+
+   gint      count = _clip_parni(ClipMachineMemory, 2);
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1438,7 +1540,8 @@ int
 clip_GTK_TEXTITERSETOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset = _clip_parni(ClipMachineMemory, 2);
+
+   gint      offset = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1458,7 +1561,8 @@ int
 clip_GTK_TEXTITERSETLINE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint number = _clip_parni(ClipMachineMemory, 2);
+
+   gint      number = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1478,7 +1582,8 @@ int
 clip_GTK_TEXTITERSETLINEOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset = _clip_parni(ClipMachineMemory, 2);
+
+   gint      offset = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1498,7 +1603,8 @@ int
 clip_GTK_TEXTITERSETLINEINDEX(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1518,7 +1624,8 @@ int
 clip_GTK_TEXTITERSETVISIBLELINEINDEX(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint index = _clip_parni(ClipMachineMemory, 2);
+
+   gint      index = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1538,7 +1645,8 @@ int
 clip_GTK_TEXTITERSETVISIBLELINEOFFSET(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gint offset = _clip_parni(ClipMachineMemory, 2);
+
+   gint      offset = _clip_parni(ClipMachineMemory, 2);
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1576,7 +1684,8 @@ int
 clip_GTK_TEXTITERFORWARDTOLINEEND(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1596,8 +1705,10 @@ int
 clip_GTK_TEXTITERFORWARDTOTAGTOGGLE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1619,8 +1730,10 @@ int
 clip_GTK_TEXTITERBACKWARDTOTAGTOGGLE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *ctag = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1643,14 +1756,22 @@ int
 clip_GTK_TEXTITERFORWARDSEARCH(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gchar *str = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *str = _clip_parc(ClipMachineMemory, 2);
+
    GtkTextSearchFlags flags = INT_OPTION(ClipMachineMemory, 3, 0);
-   ClipVar *cvstart = _clip_par(ClipMachineMemory, 4);
-   ClipVar *cvend = _clip_par(ClipMachineMemory, 5);
+
+   ClipVar  *cvstart = _clip_par(ClipMachineMemory, 4);
+
+   ClipVar  *cvend = _clip_par(ClipMachineMemory, 5);
+
    C_object *climit = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 6));
+
    C_object *cstart;
+
    C_object *cend;
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1664,18 +1785,20 @@ clip_GTK_TEXTITERFORWARDSEARCH(ClipMachine * ClipMachineMemory)
    memset(MatchStart, 0, sizeof(MatchStart));
    memset(MatchEnd, 0, sizeof(MatchEnd));
 
-   ret = gtk_text_iter_forward_search((const GtkTextIter *) (citer->object), str, flags, MatchStart, MatchEnd, (climit ? (const GtkTextIter *) (climit->object) : NULL));
+   ret = gtk_text_iter_forward_search((const GtkTextIter *) (citer->object),
+				      str,
+				      flags, MatchStart, MatchEnd, (climit ? (const GtkTextIter *) (climit->object) : NULL));
 
    if (ret && MatchStart && MatchEnd)
-      {
-	 cstart = _register_object(ClipMachineMemory, MatchStart, GTK_TYPE_TEXT_ITER, cvstart, NULL);
-	 if (cstart)
-	    _clip_mclone(ClipMachineMemory, cvstart, &cstart->obj);
+    {
+       cstart = _register_object(ClipMachineMemory, MatchStart, GTK_TYPE_TEXT_ITER, cvstart, NULL);
+       if (cstart)
+	  _clip_mclone(ClipMachineMemory, cvstart, &cstart->obj);
 
-	 cend = _register_object(ClipMachineMemory, MatchEnd, GTK_TYPE_TEXT_ITER, cvend, NULL);
-	 if (cend)
-	    _clip_mclone(ClipMachineMemory, cvend, &cend->obj);
-      }
+       cend = _register_object(ClipMachineMemory, MatchEnd, GTK_TYPE_TEXT_ITER, cvend, NULL);
+       if (cend)
+	  _clip_mclone(ClipMachineMemory, cvend, &cend->obj);
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -1690,14 +1813,22 @@ int
 clip_GTK_TEXTITERBACKWARDSEARCH(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
-   gchar *str = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *str = _clip_parc(ClipMachineMemory, 2);
+
    GtkTextSearchFlags flags = INT_OPTION(ClipMachineMemory, 3, 0);
-   ClipVar *cvstart = _clip_par(ClipMachineMemory, 4);
-   ClipVar *cvend = _clip_par(ClipMachineMemory, 5);
+
+   ClipVar  *cvstart = _clip_par(ClipMachineMemory, 4);
+
+   ClipVar  *cvend = _clip_par(ClipMachineMemory, 5);
+
    C_object *climit = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 6));
+
    C_object *cstart;
+
    C_object *cend;
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1711,18 +1842,20 @@ clip_GTK_TEXTITERBACKWARDSEARCH(ClipMachine * ClipMachineMemory)
    memset(MatchStart, 0, sizeof(MatchStart));
    memset(MatchEnd, 0, sizeof(MatchEnd));
 
-   ret = gtk_text_iter_backward_search((const GtkTextIter *) (citer->object), str, flags, MatchStart, MatchEnd, (climit ? (const GtkTextIter *) (climit->object) : NULL));
+   ret = gtk_text_iter_backward_search((const GtkTextIter *) (citer->object),
+				       str,
+				       flags, MatchStart, MatchEnd, (climit ? (const GtkTextIter *) (climit->object) : NULL));
 
    if (ret && MatchStart && MatchEnd)
-      {
-	 cstart = _register_object(ClipMachineMemory, MatchStart, GTK_TYPE_TEXT_ITER, cvstart, NULL);
-	 if (cstart)
-	    _clip_mclone(ClipMachineMemory, cvstart, &cstart->obj);
+    {
+       cstart = _register_object(ClipMachineMemory, MatchStart, GTK_TYPE_TEXT_ITER, cvstart, NULL);
+       if (cstart)
+	  _clip_mclone(ClipMachineMemory, cvstart, &cstart->obj);
 
-	 cend = _register_object(ClipMachineMemory, MatchEnd, GTK_TYPE_TEXT_ITER, cvend, NULL);
-	 if (cend)
-	    _clip_mclone(ClipMachineMemory, cvend, &cend->obj);
-      }
+       cend = _register_object(ClipMachineMemory, MatchEnd, GTK_TYPE_TEXT_ITER, cvend, NULL);
+       if (cend)
+	  _clip_mclone(ClipMachineMemory, cvend, &cend->obj);
+    }
    _clip_retl(ClipMachineMemory, ret);
    return 0;
  err:
@@ -1736,8 +1869,10 @@ int
 clip_GTK_TEXTITEREQUAL(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citer2 = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1759,8 +1894,10 @@ int
 clip_GTK_TEXTITERCOMPARE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citer2 = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
-   gint ret;
+
+   gint      ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1782,9 +1919,12 @@ int
 clip_GTK_TEXTITERINRANGE(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citer2 = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
+
    C_object *citer3 = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 3));
-   gboolean ret;
+
+   gboolean  ret;
 
    CHECKARG(1, MAP_type_of_ClipVarType);
    CHECKCOBJ(citer, GTK_IS_TEXT_ITER(citer));
@@ -1793,7 +1933,8 @@ clip_GTK_TEXTITERINRANGE(ClipMachine * ClipMachineMemory)
    CHECKARG(3, MAP_type_of_ClipVarType);
    CHECKCOBJOPT(citer3, GTK_IS_TEXT_ITER(citer3));
 
-   ret = gtk_text_iter_in_range((const GtkTextIter *) (citer->object), (const GtkTextIter *) (citer2->object), (const GtkTextIter *) (citer3->object));
+   ret = gtk_text_iter_in_range((const GtkTextIter *) (citer->object),
+				(const GtkTextIter *) (citer2->object), (const GtkTextIter *) (citer3->object));
 
    _clip_retl(ClipMachineMemory, ret);
    return 0;
@@ -1808,6 +1949,7 @@ int
 clip_GTK_TEXTITERORDER(ClipMachine * ClipMachineMemory)
 {
    C_object *citer = _fetch_co_arg(ClipMachineMemory);
+
    C_object *citer2 = _fetch_cobject(ClipMachineMemory, _clip_par(ClipMachineMemory, 2));
 
    CHECKARG(1, MAP_type_of_ClipVarType);

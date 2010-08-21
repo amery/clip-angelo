@@ -1,0 +1,2 @@
+function saveGets
+return ostatus

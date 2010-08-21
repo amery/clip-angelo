@@ -46,7 +46,8 @@ _clip_type_name_option_menu()
 int
 clip_INIT___OPTION_MENU(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_option_menu, _clip_type_name_option_menu, _gtk_type_option_menu, _gtk_type_button, option_menu_signals);
+   _wtype_table_put(_clip_type_option_menu, _clip_type_name_option_menu,
+		    _gtk_type_option_menu, _gtk_type_button, option_menu_signals);
    return 0;
 }
 
@@ -56,9 +57,12 @@ clip_INIT___OPTION_MENU(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_OPTIONMENUNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    wid = gtk_option_menu_new();
@@ -80,16 +84,19 @@ int
 clip_GTK_OPTIONMENUGETMENU(ClipMachine * ClipMachineMemory)
 {
    C_widget *coptmenu = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cmenu = 0;
+
    GtkWidget *menu;
+
    CHECKCWID(coptmenu, GTK_IS_OPTION_MENU);
    menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(coptmenu->widget));
    if (menu)
-      {
-	 cmenu = _list_get_cwidget(ClipMachineMemory, menu);
-	 if (!cmenu)
-	    cmenu = _register_widget(ClipMachineMemory, menu, NULL);
-      }
+    {
+       cmenu = _list_get_cwidget(ClipMachineMemory, menu);
+       if (!cmenu)
+	  cmenu = _register_widget(ClipMachineMemory, menu, NULL);
+    }
    if (cmenu)
       _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cmenu->obj);
    return 0;
@@ -104,7 +111,9 @@ int
 clip_GTK_OPTIONMENUSETMENU(ClipMachine * ClipMachineMemory)
 {
    C_widget *coptmenu = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cmenu = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    CHECKCWID(coptmenu, GTK_IS_OPTION_MENU);
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(cmenu, GTK_IS_MENU);
@@ -119,6 +128,7 @@ int
 clip_GTK_OPTIONMENUREMOVEMENU(ClipMachine * ClipMachineMemory)
 {
    C_widget *coptmenu = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(coptmenu, GTK_IS_OPTION_MENU);
    gtk_option_menu_remove_menu(GTK_OPTION_MENU(coptmenu->widget));
    return 0;
@@ -132,7 +142,9 @@ int
 clip_GTK_OPTIONMENUSETHISTORY(ClipMachine * ClipMachineMemory)
 {
    C_widget *coptmenu = _fetch_cw_arg(ClipMachineMemory);
-   guint index = _clip_parni(ClipMachineMemory, 2);
+
+   guint     index = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(coptmenu, GTK_IS_OPTION_MENU);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -147,7 +159,9 @@ int
 clip_GTK_OPTIONMENUGETHISTORY(ClipMachine * ClipMachineMemory)
 {
    C_widget *coptmenu = _fetch_cw_arg(ClipMachineMemory);
-   guint index;
+
+   guint     index;
+
    CHECKCWID(coptmenu, GTK_IS_OPTION_MENU);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
       index = 1;

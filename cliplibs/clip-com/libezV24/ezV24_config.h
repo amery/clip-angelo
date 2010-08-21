@@ -45,7 +45,7 @@
 #define __EZV24_CONFIG_H__ 1
 
 #ifdef __cplusplus
-extern "C"
+extern    "C"
 {
 #endif
 

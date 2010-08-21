@@ -48,12 +48,18 @@ clip_INIT___TEXT(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_TEXTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GtkAdjustment *hadj, *vadj;
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
@@ -83,7 +89,9 @@ int
 clip_GTK_TEXTSETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   gboolean editable = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  editable = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -100,7 +108,9 @@ int
 clip_GTK_TEXTSETWORDWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   gboolean wordwrap = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  wordwrap = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -121,7 +131,9 @@ int
 clip_GTK_TEXTSETLINEWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   gboolean linewrap = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  linewrap = _clip_parl(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, LOGICAL_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 2) == UNDEF_type_of_ClipVarType)
@@ -138,9 +150,13 @@ int
 clip_GTK_TEXTSETADJUSTMENTS(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *chadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
+
    C_widget *cvadj = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 3));
+
    GtkAdjustment *hadj, *vadj;
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWIDOPT(chadj, GTK_IS_ADJUSTMENT);
@@ -161,7 +177,9 @@ int
 clip_GTK_TEXTSETPOINT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   guint index = _clip_parni(ClipMachineMemory, 2);
+
+   guint     index = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_text_set_point(GTK_TEXT(ctext->widget), index);
@@ -176,6 +194,7 @@ int
 clip_GTK_TEXTGETPOINT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    _clip_retni(ClipMachineMemory, gtk_text_get_point(GTK_TEXT(ctext->widget)));
    return 0;
@@ -189,6 +208,7 @@ int
 clip_GTK_TEXTGETLENGTH(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    _clip_retni(ClipMachineMemory, gtk_text_get_length(GTK_TEXT(ctext->widget)));
    return 0;
@@ -204,6 +224,7 @@ int
 clip_GTK_TEXTFREEZE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    gtk_text_freeze(GTK_TEXT(ctext->widget));
    return 0;
@@ -216,6 +237,7 @@ int
 clip_GTK_TEXTTHAW(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    gtk_text_thaw(GTK_TEXT(ctext->widget));
    return 0;
@@ -229,13 +251,21 @@ int
 clip_GTK_TEXTINSERT(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
-   gchar *fontdescr = _clip_parc(ClipMachineMemory, 3);
-   ClipVar *mforecolor = _clip_spar(ClipMachineMemory, 4);
-   ClipVar *mbackcolor = _clip_spar(ClipMachineMemory, 5);
-   gint length = _clip_parni(ClipMachineMemory, 6);
-   GdkFont *font = NULL;
-   GdkColor forecolor, backcolor;
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+
+   gchar    *fontdescr = _clip_parc(ClipMachineMemory, 3);
+
+   ClipVar  *mforecolor = _clip_spar(ClipMachineMemory, 4);
+
+   ClipVar  *mbackcolor = _clip_spar(ClipMachineMemory, 5);
+
+   gint      length = _clip_parni(ClipMachineMemory, 6);
+
+   GdkFont  *font = NULL;
+
+   GdkColor  forecolor, backcolor;
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKARG(2, CHARACTER_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -243,11 +273,11 @@ clip_GTK_TEXTINSERT(ClipMachine * ClipMachineMemory)
    CHECKOPT(5, MAP_type_of_ClipVarType);
    CHECKOPT(6, NUMERIC_type_of_ClipVarType);
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)	/* font */
-      {
-	 font = gdk_font_load(fontdescr);
-	 if (font)
-	    gdk_font_ref(font);
-      }
+    {
+       font = gdk_font_load(fontdescr);
+       if (font)
+	  gdk_font_ref(font);
+    }
    if (_clip_parinfo(ClipMachineMemory, 3) == UNDEF_type_of_ClipVarType || !font)
       font = ctext->widget->style->font;
 
@@ -278,7 +308,9 @@ int
 clip_GTK_TEXTBACKWARDDELETE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   guint nchars = _clip_parni(ClipMachineMemory, 2);
+
+   guint     nchars = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_text_backward_delete(GTK_TEXT(ctext->widget), nchars);
@@ -293,7 +325,9 @@ int
 clip_GTK_TEXTFORWARDDELETE(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
-   guint nchars = _clip_parni(ClipMachineMemory, 2);
+
+   guint     nchars = _clip_parni(ClipMachineMemory, 2);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    CHECKOPT(2, NUMERIC_type_of_ClipVarType);
    gtk_text_forward_delete(GTK_TEXT(ctext->widget), nchars);
@@ -306,7 +340,9 @@ int
 clip_GTK_TEXTGETEDITABLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *cedt = _fetch_cw_arg(ClipMachineMemory);
-   GtkArg arg;
+
+   GtkArg    arg;
+
    CHECKCWID(cedt, GTK_IS_EDITABLE);
    arg.type = GTK_TYPE_BOOL;
    arg.name = "editable";
@@ -321,6 +357,7 @@ int
 clip_GTK_TEXTGETWORDWRAP(ClipMachine * ClipMachineMemory)
 {
    C_widget *ctext = _fetch_cw_arg(ClipMachineMemory);
+
    CHECKCWID(ctext, GTK_IS_TEXT);
    _clip_retl(ClipMachineMemory, GTK_TEXT(ctext->widget)->word_wrap);
    return 0;

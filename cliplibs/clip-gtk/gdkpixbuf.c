@@ -61,12 +61,18 @@ clip_INIT___PIXBUF(ClipMachine * ClipMachineMemory)
 int
 clip_GDK_PIXBUFNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
-   gboolean has_alpha = _clip_parl(ClipMachineMemory, 2);
-   int bits_per_sample = _clip_parni(ClipMachineMemory, 3);
-   int width = _clip_parni(ClipMachineMemory, 4);
-   int height = _clip_parni(ClipMachineMemory, 5);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
+   gboolean  has_alpha = _clip_parl(ClipMachineMemory, 2);
+
+   int       bits_per_sample = _clip_parni(ClipMachineMemory, 3);
+
+   int       width = _clip_parni(ClipMachineMemory, 4);
+
+   int       height = _clip_parni(ClipMachineMemory, 5);
+
    GdkPixbuf *pixbuf;
+
    C_object *cpixbuf;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -91,7 +97,9 @@ int
 clip_GDK_PIXBUFCOPY(ClipMachine * ClipMachineMemory)
 {
    C_object *cpixbufsrc = _fetch_co_arg(ClipMachineMemory);
+
    GdkPixbuf *pixbuf;
+
    C_object *cpixbuf = 0;
 
    CHECKCOBJ(cpixbufsrc, GDK_IS_PIXBUF(cpixbuf));
@@ -112,8 +120,10 @@ clip_GDK_PIXBUFNEWFROMFILE(ClipMachine * ClipMachineMemory)
   somes formats depend of how are compiled gdk-pixbuf
 */
 {
-   char *file = _clip_parc(ClipMachineMemory, 1);
+   char     *file = _clip_parc(ClipMachineMemory, 1);
+
    GdkPixbuf *pixbuf;
+
    C_object *cpixbuf = NULL;
 
    if (!file)
@@ -165,6 +175,7 @@ clip_GDK_PIXBUFGETROWSTRIDE(ClipMachine * ClipMachineMemory)
 /* Return image's rowstride. */
 {
    C_object *cpixbufsrc = _fetch_co_arg(ClipMachineMemory);
+
    CHECKCOBJ(cpixbufsrc, GDK_IS_PIXBUF(cpixbufsrc));
 
    _clip_retni(ClipMachineMemory, gdk_pixbuf_get_rowstride(GDK_PIXBUF(cpixbufsrc->object)));
@@ -177,9 +188,10 @@ int
 clip_GDK_PIXBUFGETPIXELS(ClipMachine * ClipMachineMemory)
 /* Return string with the image's pixels. */
 {
-   gint rowstride, height;
+   gint      rowstride, height;
 
    C_object *cpxbsrc = _fetch_co_arg(ClipMachineMemory);
+
    CHECKCOBJ(cpxbsrc, GDK_IS_PIXBUF(cpxbsrc));
 
    rowstride = gdk_pixbuf_get_rowstride(GDK_PIXBUF(cpxbsrc->object));
@@ -195,17 +207,28 @@ int
 clip_GDK_PIXBUFCOMPOSITE(ClipMachine * ClipMachineMemory)
 {
    C_object *cpxbsrc = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cpxbdst = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   int dest_x = _clip_parni(ClipMachineMemory, 3);
-   int dest_y = _clip_parni(ClipMachineMemory, 4);
-   int dest_width = _clip_parni(ClipMachineMemory, 5);
-   int dest_height = _clip_parni(ClipMachineMemory, 6);
-   double offset_x = _clip_parnd(ClipMachineMemory, 7);
-   double offset_y = _clip_parnd(ClipMachineMemory, 8);
-   double scale_x = _clip_parnd(ClipMachineMemory, 9);
-   double scale_y = _clip_parnd(ClipMachineMemory, 10);
+
+   int       dest_x = _clip_parni(ClipMachineMemory, 3);
+
+   int       dest_y = _clip_parni(ClipMachineMemory, 4);
+
+   int       dest_width = _clip_parni(ClipMachineMemory, 5);
+
+   int       dest_height = _clip_parni(ClipMachineMemory, 6);
+
+   double    offset_x = _clip_parnd(ClipMachineMemory, 7);
+
+   double    offset_y = _clip_parnd(ClipMachineMemory, 8);
+
+   double    scale_x = _clip_parnd(ClipMachineMemory, 9);
+
+   double    scale_y = _clip_parnd(ClipMachineMemory, 10);
+
    GdkInterpType interp_type = INT_OPTION(ClipMachineMemory, 11, 0);
-   int overall_alpha = _clip_parni(ClipMachineMemory, 12);
+
+   int       overall_alpha = _clip_parni(ClipMachineMemory, 12);
 
    CHECKCOBJ(cpxbsrc, GDK_IS_PIXBUF(cpxbsrc));
    CHECKCOBJ(cpxbdst, GDK_IS_PIXBUF(cpxbdst));
@@ -220,7 +243,10 @@ clip_GDK_PIXBUFCOMPOSITE(ClipMachine * ClipMachineMemory)
    CHECKARG(11, NUMERIC_type_of_ClipVarType);
    CHECKARG(12, NUMERIC_type_of_ClipVarType);
 
-   gdk_pixbuf_composite(GDK_PIXBUF(cpxbsrc->object), GDK_PIXBUF(cpxbdst->object), dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, interp_type, overall_alpha);
+   gdk_pixbuf_composite(GDK_PIXBUF(cpxbsrc->object),
+			GDK_PIXBUF(cpxbdst->object),
+			dest_x,
+			dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, interp_type, overall_alpha);
 
    return (0);
  err:
@@ -231,13 +257,20 @@ int
 clip_GDK_PIXBUFCOPYAREA(ClipMachine * ClipMachineMemory)
 {
    C_object *cpxbsrc = _fetch_co_arg(ClipMachineMemory);
-   int src_x = _clip_parni(ClipMachineMemory, 2);
-   int src_y = _clip_parni(ClipMachineMemory, 3);
-   int width = _clip_parni(ClipMachineMemory, 4);
-   int height = _clip_parni(ClipMachineMemory, 5);
+
+   int       src_x = _clip_parni(ClipMachineMemory, 2);
+
+   int       src_y = _clip_parni(ClipMachineMemory, 3);
+
+   int       width = _clip_parni(ClipMachineMemory, 4);
+
+   int       height = _clip_parni(ClipMachineMemory, 5);
+
    C_object *cpxbdst = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 6));
-   int dest_x = _clip_parnd(ClipMachineMemory, 7);
-   int dest_y = _clip_parnd(ClipMachineMemory, 8);
+
+   int       dest_x = _clip_parnd(ClipMachineMemory, 7);
+
+   int       dest_y = _clip_parnd(ClipMachineMemory, 8);
 
    CHECKCOBJ(cpxbsrc, GDK_IS_PIXBUF(cpxbsrc));
    CHECKARG(2, NUMERIC_type_of_ClipVarType);
@@ -259,15 +292,25 @@ int
 clip_GDK_PIXBUFSCALE(ClipMachine * ClipMachineMemory)
 {
    C_object *cpxbsrc = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cpxbdst = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   int dest_x = _clip_parni(ClipMachineMemory, 3);
-   int dest_y = _clip_parni(ClipMachineMemory, 4);
-   int dest_width = _clip_parni(ClipMachineMemory, 5);
-   int dest_height = _clip_parni(ClipMachineMemory, 6);
-   double offset_x = _clip_parnd(ClipMachineMemory, 7);
-   double offset_y = _clip_parnd(ClipMachineMemory, 8);
-   double scale_x = _clip_parnd(ClipMachineMemory, 9);
-   double scale_y = _clip_parnd(ClipMachineMemory, 10);
+
+   int       dest_x = _clip_parni(ClipMachineMemory, 3);
+
+   int       dest_y = _clip_parni(ClipMachineMemory, 4);
+
+   int       dest_width = _clip_parni(ClipMachineMemory, 5);
+
+   int       dest_height = _clip_parni(ClipMachineMemory, 6);
+
+   double    offset_x = _clip_parnd(ClipMachineMemory, 7);
+
+   double    offset_y = _clip_parnd(ClipMachineMemory, 8);
+
+   double    scale_x = _clip_parnd(ClipMachineMemory, 9);
+
+   double    scale_y = _clip_parnd(ClipMachineMemory, 10);
+
    GdkInterpType interp_type = INT_OPTION(ClipMachineMemory, 11, 0);
 
    CHECKCOBJ(cpxbsrc, GDK_IS_PIXBUF(cpxbsrc));
@@ -282,7 +325,9 @@ clip_GDK_PIXBUFSCALE(ClipMachine * ClipMachineMemory)
    CHECKARG(10, NUMERIC_type_of_ClipVarType);
    CHECKOPT(11, NUMERIC_type_of_ClipVarType);
 
-   gdk_pixbuf_scale(GDK_PIXBUF(cpxbsrc->object), GDK_PIXBUF(cpxbdst->object), dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, interp_type);
+   gdk_pixbuf_scale(GDK_PIXBUF(cpxbsrc->object),
+		    GDK_PIXBUF(cpxbdst->object),
+		    dest_x, dest_y, dest_width, dest_height, offset_x, offset_y, scale_x, scale_y, interp_type);
 
    return (0);
  err:
@@ -293,10 +338,15 @@ int
 clip_GDK_PIXBUFSCALESIMPLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cpxb = _fetch_co_arg(ClipMachineMemory);
-   int dest_width = _clip_parni(ClipMachineMemory, 2);
-   int dest_height = _clip_parni(ClipMachineMemory, 3);
+
+   int       dest_width = _clip_parni(ClipMachineMemory, 2);
+
+   int       dest_height = _clip_parni(ClipMachineMemory, 3);
+
    GdkInterpType interp_type = INT_OPTION(ClipMachineMemory, 4, 0);
+
    GdkPixbuf *pxb_dst;
+
    C_object *cpxb_dst;
 
    CHECKCOBJ(cpxb, GDK_IS_PIXBUF(cpxb));
@@ -306,11 +356,11 @@ clip_GDK_PIXBUFSCALESIMPLE(ClipMachine * ClipMachineMemory)
 
    pxb_dst = gdk_pixbuf_scale_simple(GDK_PIXBUF(cpxb->object), dest_width, dest_height, interp_type);
    if (pxb_dst)
-      {
-	 cpxb_dst = _register_object(ClipMachineMemory, pxb_dst, GDK_OBJECT_PIXBUF, NULL, NULL);
-	 if (cpxb_dst)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &(cpxb_dst->obj));
-      }
+    {
+       cpxb_dst = _register_object(ClipMachineMemory, pxb_dst, GDK_OBJECT_PIXBUF, NULL, NULL);
+       if (cpxb_dst)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &(cpxb_dst->obj));
+    }
 
    return (0);
  err:

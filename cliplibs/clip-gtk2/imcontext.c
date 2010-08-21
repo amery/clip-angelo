@@ -15,7 +15,7 @@
 
 /*********************** SIGNALS **************************/
 
-static gint
+static    gint
 handle_commit_signal(GtkIMContext * imcontext, gchar * arg1, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -23,7 +23,7 @@ handle_commit_signal(GtkIMContext * imcontext, gchar * arg1, C_signal * cs)
    OBJECTINVOKESIGHANDLER(cs, cv);
 }
 
-static gint
+static    gint
 handle_delete_surrounding_signal(GtkIMContext * imcontext, gint arg1, gint arg2, C_signal * cs)
 {
    OBJECTPREPARECV(cs, cv);
@@ -71,7 +71,8 @@ _clip_type_name_im_context()
 int
 clip_INIT___IMCONTEXT(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_im_context, _clip_type_name_im_context, _gtk_type_im_context, _gtk_type_object, im_context_signals);
+   _wtype_table_put(_clip_type_im_context, _clip_type_name_im_context,
+		    _gtk_type_im_context, _gtk_type_object, im_context_signals);
    return 0;
 }
 
@@ -97,7 +98,8 @@ _clip_type_name_im_context_simple()
 int
 clip_INIT___IMCONTEXTSIMPLE(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_im_context_simple, _clip_type_name_im_context_simple, _gtk_type_im_context_simple, _gtk_type_im_context, NULL);
+   _wtype_table_put(_clip_type_im_context_simple,
+		    _clip_type_name_im_context_simple, _gtk_type_im_context_simple, _gtk_type_im_context, NULL);
    return 0;
 }
 
@@ -123,7 +125,8 @@ _clip_type_name_im_multicontext()
 int
 clip_INIT___IMMULTICONTEXT(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_im_multicontext, _clip_type_name_im_multicontext, _gtk_type_im_multicontext, _gtk_type_im_context, NULL);
+   _wtype_table_put(_clip_type_im_multicontext,
+		    _clip_type_name_im_multicontext, _gtk_type_im_multicontext, _gtk_type_im_context, NULL);
    return 0;
 }
 
@@ -134,6 +137,7 @@ int
 clip_GTK_IMCONTEXTSETCLIENTWINDOW(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cwin = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -156,10 +160,15 @@ int
 clip_GTK_IMCONTEXTGETPREEDITSTRING(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *cvlist = _clip_par(ClipMachineMemory, 3);
-   gchar *string;
-   gint cursor_pos;
+
+   ClipVar  *cvlist = _clip_par(ClipMachineMemory, 3);
+
+   gchar    *string;
+
+   gint      cursor_pos;
+
    PangoAttrList *list;
+
    C_object *clist;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -168,11 +177,11 @@ clip_GTK_IMCONTEXTGETPREEDITSTRING(ClipMachine * ClipMachineMemory)
    gtk_im_context_get_preedit_string(GTK_IM_CONTEXT(cimcontext->object), &string, &list, &cursor_pos);
 
    if (list)
-      {
-	 clist = _register_object(ClipMachineMemory, list, GTK_TYPE_PANGO_ATTR_LIST, NULL, NULL);
-	 if (clist)
-	    _clip_mclone(ClipMachineMemory, cvlist, &clist->obj);
-      }
+    {
+       clist = _register_object(ClipMachineMemory, list, GTK_TYPE_PANGO_ATTR_LIST, NULL, NULL);
+       if (clist)
+	  _clip_mclone(ClipMachineMemory, cvlist, &clist->obj);
+    }
 
    _clip_storc(ClipMachineMemory, string, 2, 0);
    _clip_storni(ClipMachineMemory, cursor_pos, 4, 0);
@@ -192,6 +201,7 @@ int
 clip_GTK_IMCONTEXTFILTERKEYPRESS(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
+
    C_object *cevent = _fetch_cobject(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -199,7 +209,8 @@ clip_GTK_IMCONTEXTFILTERKEYPRESS(ClipMachine * ClipMachineMemory)
    CHECKARG(2, MAP_type_of_ClipVarType);
    CHECKCOBJ(cevent, GDK_IS_EVENT_KEY(cevent));
 
-   _clip_retl(ClipMachineMemory, gtk_im_context_filter_keypress(GTK_IM_CONTEXT(cimcontext->object), GDK_EVENT_KEY(cevent->object)));
+   _clip_retl(ClipMachineMemory,
+	      gtk_im_context_filter_keypress(GTK_IM_CONTEXT(cimcontext->object), GDK_EVENT_KEY(cevent->object)));
 
    return 0;
  err:
@@ -270,7 +281,9 @@ int
 clip_GTK_IMCONTEXTSETCURSORLOCATION(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *cvarea = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *cvarea = _clip_spar(ClipMachineMemory, 2);
+
    GdkRectangle area;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
@@ -292,7 +305,8 @@ int
 clip_GTK_IMCONTEXTSETUSEPREEDIT(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   gboolean usep = _clip_parl(ClipMachineMemory, 2);
+
+   gboolean  usep = _clip_parl(ClipMachineMemory, 2);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cimcontext, GTK_IS_IM_CONTEXT(cimcontext->object));
@@ -312,9 +326,12 @@ int
 clip_GTK_IMCONTEXTSETSURROUNDING(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   gchar *text = _clip_parc(ClipMachineMemory, 2);
-   gint cursor_ind = _clip_parni(ClipMachineMemory, 3);
-   gint len;
+
+   gchar    *text = _clip_parc(ClipMachineMemory, 2);
+
+   gint      cursor_ind = _clip_parni(ClipMachineMemory, 3);
+
+   gint      len;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cimcontext, GTK_IS_IM_CONTEXT(cimcontext->object));
@@ -337,9 +354,12 @@ int
 clip_GTK_IMCONTEXTGETSURROUNDING(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   gchar *text;
-   gint cursor_ind;
-   gboolean ret;
+
+   gchar    *text;
+
+   gint      cursor_ind;
+
+   gboolean  ret;
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cimcontext, GTK_IS_IM_CONTEXT(cimcontext->object));
@@ -347,12 +367,12 @@ clip_GTK_IMCONTEXTGETSURROUNDING(ClipMachine * ClipMachineMemory)
    ret = gtk_im_context_get_surrounding(GTK_IM_CONTEXT(cimcontext->object), &text, &cursor_ind);
    _clip_retl(ClipMachineMemory, ret);
    if (ret)
-      {
-	 LOCALE_FROM_UTF(text);
-	 _clip_storc(ClipMachineMemory, text, 2, 0);
-	 FREE_TEXT(text);
-	 _clip_storni(ClipMachineMemory, cursor_ind, 3, 0);
-      }
+    {
+       LOCALE_FROM_UTF(text);
+       _clip_storc(ClipMachineMemory, text, 2, 0);
+       FREE_TEXT(text);
+       _clip_storni(ClipMachineMemory, cursor_ind, 3, 0);
+    }
    return 0;
  err:
    return 1;
@@ -365,8 +385,10 @@ int
 clip_GTK_IMCONTEXTDELETESURROUNDING(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   gint offset = _clip_parni(ClipMachineMemory, 2);
-   gint chars = _clip_parni(ClipMachineMemory, 3);
+
+   gint      offset = _clip_parni(ClipMachineMemory, 2);
+
+   gint      chars = _clip_parni(ClipMachineMemory, 3);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cimcontext, GTK_IS_IM_CONTEXT(cimcontext->object));
@@ -389,8 +411,10 @@ clip_GTK_IMCONTEXTDELETESURROUNDING(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_IMCONTEXTSIMPLENEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkIMContext *imcontext;
+
    C_object *cimcontext;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -398,11 +422,11 @@ clip_GTK_IMCONTEXTSIMPLENEW(ClipMachine * ClipMachineMemory)
    imcontext = gtk_im_context_simple_new();
 
    if (imcontext)
-      {
-	 cimcontext = _register_object(ClipMachineMemory, imcontext, GTK_TYPE_IM_CONTEXT, cv, NULL);
-	 if (cimcontext)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cimcontext->obj);
-      }
+    {
+       cimcontext = _register_object(ClipMachineMemory, imcontext, GTK_TYPE_IM_CONTEXT, cv, NULL);
+       if (cimcontext)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cimcontext->obj);
+    }
    return 0;
  err:
    return 1;
@@ -415,9 +439,12 @@ int
 clip_GTK_IMCONTEXTSIMPLEADDTABLE(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
-   ClipVar *arr = _clip_par(ClipMachineMemory, 2);
-   gint max_seq_no = _clip_parni(ClipMachineMemory, 3);
-   gint n_seq = _clip_parni(ClipMachineMemory, 4);
+
+   ClipVar  *arr = _clip_par(ClipMachineMemory, 2);
+
+   gint      max_seq_no = _clip_parni(ClipMachineMemory, 3);
+
+   gint      n_seq = _clip_parni(ClipMachineMemory, 4);
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCOBJ(cimcontext, GTK_IS_IM_CONTEXT_SIMPLE(cimcontext->object));
@@ -426,14 +453,15 @@ clip_GTK_IMCONTEXTSIMPLEADDTABLE(ClipMachine * ClipMachineMemory)
    CHECKARG(4, NUMERIC_type_of_ClipVarType);
 
    if (arr)
-      {
-	 guint16 data[arr->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar];
-	 gint i;
+    {
+       guint16   data[arr->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar];
 
-	 for (i = 0; i < arr->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
-		 data[i] = arr->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
-	 gtk_im_context_simple_add_table(GTK_IM_CONTEXT_SIMPLE(cimcontext->object), data, max_seq_no, n_seq);
-      }
+       gint      i;
+
+       for (i = 0; i < arr->ClipArrVar_a_of_ClipVar.count_of_ClipArrVar; i++)
+	  data[i] = arr->ClipArrVar_a_of_ClipVar.ClipVar_items_of_ClipArrVar[i].ClipNumVar_n_of_ClipVar.double_of_ClipNumVar;
+       gtk_im_context_simple_add_table(GTK_IM_CONTEXT_SIMPLE(cimcontext->object), data, max_seq_no, n_seq);
+    }
    return 0;
  err:
    return 1;
@@ -449,8 +477,10 @@ clip_GTK_IMCONTEXTSIMPLEADDTABLE(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_IMMULTICONTEXTNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    GtkIMContext *imcontext;
+
    C_object *cimcontext;
 
    CHECKOPT(1, MAP_type_of_ClipVarType);
@@ -458,11 +488,11 @@ clip_GTK_IMMULTICONTEXTNEW(ClipMachine * ClipMachineMemory)
    imcontext = gtk_im_multicontext_new();
 
    if (imcontext)
-      {
-	 cimcontext = _register_object(ClipMachineMemory, imcontext, GTK_TYPE_IM_CONTEXT, cv, NULL);
-	 if (cimcontext)
-	    _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cimcontext->obj);
-      }
+    {
+       cimcontext = _register_object(ClipMachineMemory, imcontext, GTK_TYPE_IM_CONTEXT, cv, NULL);
+       if (cimcontext)
+	  _clip_mclone(ClipMachineMemory, RETPTR(ClipMachineMemory), &cimcontext->obj);
+    }
    return 0;
  err:
    return 1;
@@ -475,6 +505,7 @@ int
 clip_GTK_IMMULTICONTEXTAPPENDMENUITEMS(ClipMachine * ClipMachineMemory)
 {
    C_object *cimcontext = _fetch_co_arg(ClipMachineMemory);
+
    C_widget *cmenu = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
 
    CHECKARG2(1, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);

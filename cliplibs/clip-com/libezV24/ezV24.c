@@ -113,7 +113,9 @@ static void reportError(const v24_port_t * port, const int Errno, const char *ca
 
 #if EZV24_WANT_LOCKFILE
 static int createLockFile(v24_port_t * port);
+
 static int deleteLockFile(v24_port_t * port);
+
 static int buildLockName(v24_port_t * port, char *TheName, size_t Len);
 #endif
 
@@ -125,25 +127,30 @@ static int buildLockName(v24_port_t * port, char *TheName, size_t Len);
 int
 v24CountSysPorts(unsigned long *BitMask)
 {
-   DIR *dh;
+   DIR      *dh;
+
    struct dirent *direntry;
+
    struct stat statInfo;
-   char linkName[1024];
-   int ret = 0;
+
+   char      linkName[1024];
+
+   int       ret = 0;
+
    dh = opendir(SYSTTYDIR);
    if (dh == NULL)
-      {
-	 reportError(NULL, V24_E_NO_PROC_FILE, "v24CountPorts");
-	 return -1;
-      }
+    {
+       reportError(NULL, V24_E_NO_PROC_FILE, "v24CountPorts");
+       return -1;
+    }
 
    while ((direntry = readdir(dh)) != NULL)
-      {
-	 sprintf(linkName, "%s/%s/device", SYSTTYDIR, direntry->d_name);
-	 if (stat(linkName, &statInfo) < 0)
-	    continue;
-	 ret++;
-      }
+    {
+       sprintf(linkName, "%s/%s/device", SYSTTYDIR, direntry->d_name);
+       if (stat(linkName, &statInfo) < 0)
+	  continue;
+       ret++;
+    }
    closedir(dh);
    return (ret > 0) ? ret - 1 : 0;
 }
@@ -151,18 +158,22 @@ v24CountSysPorts(unsigned long *BitMask)
 int
 v24CountPorts(unsigned long *BitMask)
 {
-   int count = -1;
+   int       count = -1;
+
 #if defined(__LINUX__) && !defined(__CYGWIN__)
-   FILE *proc_fd = NULL;
-   char proc_line[80];
-   int done = 0;
-   int i = 0;
+   FILE     *proc_fd = NULL;
+
+   char      proc_line[80];
+
+   int       done = 0;
+
+   int       i = 0;
 
    if (BitMask == NULL)
-      {
-	 reportError(NULL, V24_E_NULL_POINTER, "v24CountPorts");
-	 return -1;
-      }
+    {
+       reportError(NULL, V24_E_NULL_POINTER, "v24CountPorts");
+       return -1;
+    }
 
   // maybe we should read an analyse /proc/tty/driver/serial
   // 0: uart:16550A port:3F8 irq:4 tx:0 rx:0
@@ -171,35 +182,35 @@ v24CountPorts(unsigned long *BitMask)
 
    proc_fd = fopen("/proc/tty/driver/serial", "r");
    if (proc_fd == NULL)
-      {
-	 return v24CountSysPorts(BitMask);
-      }
+    {
+       return v24CountSysPorts(BitMask);
+    }
 
   // here we have to detect the portnumber and the uart. The port exist, if
   // either the name is not "unknown" and the fields "tx" or "rx" exists.
   // maybe !strstr(proc_line,"unknown") && strstr(proc_line,"tx:") is good.
    *BitMask = 0;
    do
-      {
-	 if (fgets(proc_line, 77, proc_fd) == NULL)
+    {
+       if (fgets(proc_line, 77, proc_fd) == NULL)
+	{
+	   if (!feof(proc_fd))	/* not the end of the file? */
+	      count = -1;	/* than it's an error */
+	   proc_line[0] = '\0';
+	   done = 1;
+	}
+       else
+	{
+	   if (strstr(proc_line, "unknown") == NULL && strstr(proc_line, "tx:") != NULL)
 	    {
-	       if (!feof(proc_fd))	/* not the end of the file? */
-		  count = -1;	/* than it's an error */
-	       proc_line[0] = '\0';
-	       done = 1;
+	      // printf("match: %s\n",proc_line);
+	       (*BitMask) |= 1 << count;
+	       count++;
 	    }
-	 else
-	    {
-	       if (strstr(proc_line, "unknown") == NULL && strstr(proc_line, "tx:") != NULL)
-		  {
-		    // printf("match: %s\n",proc_line);
-		     (*BitMask) |= 1 << count;
-		     count++;
-		  }
-	    }
-	 if (++i == 32)		/* we have to limit the number of */
-	    done = 1;		/* results. */
-      }
+	}
+       if (++i == 32)		/* we have to limit the number of */
+	  done = 1;		/* results. */
+    }
    while (!done);
 
    fclose(proc_fd);
@@ -211,10 +222,10 @@ const char *
 v24PortName(int PortNo, char *PortName)
 {
    if (PortName == NULL)
-      {
-	 reportError(NULL, V24_E_NULL_POINTER, "v24PortName");
-	 return NULL;
-      }
+    {
+       reportError(NULL, V24_E_NULL_POINTER, "v24PortName");
+       return NULL;
+    }
 #if defined(__LINUX__) && !defined(__CYGWIN__)
    v24_snprintf(PortName, V24_SZ_PORTNAME - 1, "/dev/ttyS%d", PortNo);
    PortName[V24_SZ_PORTNAME] = '\0';
@@ -231,26 +242,27 @@ v24_port_t *
 v24OpenPort(const char *PortName, unsigned int OpenFlags)
 {
    v24_port_t *handle = NULL;
-   int open_mode;
+
+   int       open_mode;
 
   /* check for `null pointer'
    */
    if (PortName == NULL)
-      {
-	 if (OpenFlags & V24_DEBUG_ON)
-	    reportError(NULL, V24_E_NULL_POINTER, "v24OpenPort");
-	 return NULL;
-      }
+    {
+       if (OpenFlags & V24_DEBUG_ON)
+	  reportError(NULL, V24_E_NULL_POINTER, "v24OpenPort");
+       return NULL;
+    }
 
   /* first we need to alloc and fill our handle structure
    */
    handle = (v24_port_t *) malloc(sizeof(v24_port_t));
    if (handle == NULL)
-      {
-	 if (OpenFlags & V24_DEBUG_ON)
-	    reportError(NULL, V24_E_NOMEM, "v24OpenPort");
-	 return NULL;
-      }
+    {
+       if (OpenFlags & V24_DEBUG_ON)
+	  reportError(NULL, V24_E_NOMEM, "v24OpenPort");
+       return NULL;
+    }
    handle->Errno = V24_E_OK;
    strncpy(handle->PortName, PortName, V24_SZ_PORTNAME);
    handle->PortName[V24_SZ_PORTNAME] = '\0';
@@ -265,41 +277,41 @@ v24OpenPort(const char *PortName, unsigned int OpenFlags)
 
 #if EZV24_WANT_LOCKFILE
    if (handle->OpenFlags & V24_LOCK)
-      {
-	 if (createLockFile(handle) != V24_E_OK)
-	    {
-	       reportError(handle, handle->Errno, "v24OpenPort");
-	       free(handle);
-	       handle = NULL;
-	       return NULL;
-	    }
-      }
+    {
+       if (createLockFile(handle) != V24_E_OK)
+	{
+	   reportError(handle, handle->Errno, "v24OpenPort");
+	   free(handle);
+	   handle = NULL;
+	   return NULL;
+	}
+    }
 #endif
 
    handle->fd = open(handle->PortName, open_mode);
    if (handle->fd == -1)
-      {
-	 reportError(handle, V24_E_OPEN, "v24OpenPort");
-	 free(handle);
-	 handle = NULL;
-	 return NULL;
-      }
+    {
+       reportError(handle, V24_E_OPEN, "v24OpenPort");
+       free(handle);
+       handle = NULL;
+       return NULL;
+    }
 
    if (v24SetParameters(handle, V24_B9600, V24_8BIT, V24_NONE) != V24_E_OK)
-      {
-	 reportError(handle, handle->Errno, "v24OpenPort");
-	 free(handle);
-	 handle = NULL;
-	 return NULL;
-      }
+    {
+       reportError(handle, handle->Errno, "v24OpenPort");
+       free(handle);
+       handle = NULL;
+       return NULL;
+    }
 
    if (v24SetTimeouts(handle, 600) != V24_E_OK)
-      {
-	 reportError(handle, handle->Errno, "v24OpenPort");
-	 free(handle);
-	 handle = NULL;
-	 return NULL;
-      }
+    {
+       reportError(handle, handle->Errno, "v24OpenPort");
+       free(handle);
+       handle = NULL;
+       return NULL;
+    }
    return handle;
 }
 
@@ -307,20 +319,20 @@ int
 v24ClosePort(v24_port_t * port)
 {
    if (port == NULL)
-      {
-	 reportError(NULL, V24_E_ILLHANDLE, "v24ClosePort");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(NULL, V24_E_ILLHANDLE, "v24ClosePort");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
 
 #if EZV24_WANT_LOCKFILE
    if (port->OpenFlags & V24_LOCK)
-      {
-	 if (deleteLockFile(port) != V24_E_OK)
-	    {
-	       reportError(port, port->Errno, "v24ClosePort");
-	    }
-      }
+    {
+       if (deleteLockFile(port) != V24_E_OK)
+	{
+	   reportError(port, port->Errno, "v24ClosePort");
+	}
+    }
 #endif
 
    close(port->fd);
@@ -335,24 +347,24 @@ v24SetParameters(v24_port_t * port, int Baudrate, int Datasize, int Parity)
    struct termios options;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24SetParameters");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24SetParameters");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if ((Baudrate < 0) || (Baudrate >= V24_NUM_BAUDRATES))
-      {
-	 port->Errno = V24_E_ILLBAUD;
-	 reportError(port, port->Errno, "v24SetParameters");
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_ILLBAUD;
+       reportError(port, port->Errno, "v24SetParameters");
+       return port->Errno;
+    }
    port->Baudrate = Baudrate;
 
    if ((Datasize < 0) || (Datasize >= V24_NUM_DATASIZES))
-      {
-	 port->Errno = V24_E_ILLDATASZ;
-	 reportError(port, port->Errno, "v24SetParameters");
-      }
+    {
+       port->Errno = V24_E_ILLDATASZ;
+       reportError(port, port->Errno, "v24SetParameters");
+    }
    port->Datasize = Datasize;
 
   /* Get the current options for the port...
@@ -389,11 +401,11 @@ v24SetParameters(v24_port_t * port, int Baudrate, int Datasize, int Parity)
    else
       options.c_cflag &= ~HUPCL;
    if (port->OpenFlags & V24_XON_XOFF)
-      {
-	 options.c_iflag |= (IXON | IXOFF | IXANY);
-	 options.c_cc[VSTART] = 0x11;	/* DC1, XON */
-	 options.c_cc[VSTOP] = 0x13;	/* DC3, XOFF */
-      }
+    {
+       options.c_iflag |= (IXON | IXOFF | IXANY);
+       options.c_cc[VSTART] = 0x11;	/* DC1, XON */
+       options.c_cc[VSTOP] = 0x13;	/* DC3, XOFF */
+    }
    else
       options.c_iflag &= ~(IXON | IXOFF | IXANY);
 
@@ -414,32 +426,32 @@ v24SetParameters(v24_port_t * port, int Baudrate, int Datasize, int Parity)
   /* Set the handling of the parity bit.
    */
    switch (Parity)
-      {
-      case V24_NONE:		/* disable parity bit */
-	 options.c_cflag &= ~PARENB;
-	 options.c_iflag &= ~INPCK;
-	 break;
-      case V24_EVEN:		/* even parity */
-	 options.c_cflag |= PARENB;
-	 options.c_cflag &= ~PARODD;
-	 options.c_iflag &= ~IGNPAR;
-	 options.c_iflag |= INPCK;	/* removed "|ISTRIP" */
-	 break;
-      case V24_ODD:		/* odd parity */
-	 options.c_cflag |= PARENB;
-	 options.c_cflag |= PARODD;
-	 options.c_iflag &= ~IGNPAR;
-	 options.c_iflag |= INPCK;	/* removed "|ISTRIP" */
-	 break;
-      case V24_IGNORE:		/* use parity but dont test */
-	 options.c_cflag |= PARENB;
-	 options.c_iflag |= IGNPAR;
-	 break;
-      default:
-	 port->Errno = V24_E_ILLPARITY;
-	 reportError(port, port->Errno, "v24SetParameters");
-	 return port->Errno;
-      }
+    {
+    case V24_NONE:		/* disable parity bit */
+       options.c_cflag &= ~PARENB;
+       options.c_iflag &= ~INPCK;
+       break;
+    case V24_EVEN:		/* even parity */
+       options.c_cflag |= PARENB;
+       options.c_cflag &= ~PARODD;
+       options.c_iflag &= ~IGNPAR;
+       options.c_iflag |= INPCK;	/* removed "|ISTRIP" */
+       break;
+    case V24_ODD:		/* odd parity */
+       options.c_cflag |= PARENB;
+       options.c_cflag |= PARODD;
+       options.c_iflag &= ~IGNPAR;
+       options.c_iflag |= INPCK;	/* removed "|ISTRIP" */
+       break;
+    case V24_IGNORE:		/* use parity but dont test */
+       options.c_cflag |= PARENB;
+       options.c_iflag |= IGNPAR;
+       break;
+    default:
+       port->Errno = V24_E_ILLPARITY;
+       reportError(port, port->Errno, "v24SetParameters");
+       return port->Errno;
+    }
 
   /* We have to enable the receiver and set the port to local mode.
    */
@@ -464,35 +476,35 @@ v24SetStopbits(v24_port_t * port, int Stops)
    struct termios options;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24SetStopbits");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24SetStopbits");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if (port->Initialized)
-      {
-	/* Get the current options for the port...
-	 */
-	 if (Stops == 1)
-	    {
-	       tcgetattr(port->fd, &options);
-	       options.c_cflag &= ~CSTOPB;
-	       tcsetattr(port->fd, TCSANOW, &options);
-	    }
-	 else if (Stops == 2)
-	    {
-	       tcgetattr(port->fd, &options);
-	       options.c_cflag |= CSTOPB;
-	       tcsetattr(port->fd, TCSANOW, &options);
-	    }
-	 else
-	    port->Errno = V24_E_ILLPARM;
-      }
+    {
+      /* Get the current options for the port...
+       */
+       if (Stops == 1)
+	{
+	   tcgetattr(port->fd, &options);
+	   options.c_cflag &= ~CSTOPB;
+	   tcsetattr(port->fd, TCSANOW, &options);
+	}
+       else if (Stops == 2)
+	{
+	   tcgetattr(port->fd, &options);
+	   options.c_cflag |= CSTOPB;
+	   tcsetattr(port->fd, TCSANOW, &options);
+	}
+       else
+	  port->Errno = V24_E_ILLPARM;
+    }
    else
-      {
-	 port->Errno = V24_E_NOT_INIT;
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_NOT_INIT;
+       return port->Errno;
+    }
 
    return port->Errno;
 }
@@ -503,27 +515,27 @@ v24SetTimeouts(v24_port_t * port, int TenthOfSeconds)
    struct termios options;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24SetTimeouts");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24SetTimeouts");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if (TenthOfSeconds <= 0)
-      {
-	 port->Errno = V24_E_ILLTIMEOUT;
-	 reportError(port, port->Errno, "v24SetTimeouts");
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_ILLTIMEOUT;
+       reportError(port, port->Errno, "v24SetTimeouts");
+       return port->Errno;
+    }
 
    port->TimeoutValue = TenthOfSeconds;
    if (port->Initialized)
-      {
-	 tcgetattr(port->fd, &options);
-	 options.c_cc[VMIN] = 0;	/* we want `interchar timeouts' */
-	 options.c_cc[VTIME] = port->TimeoutValue;
-	 tcsetattr(port->fd, TCSANOW, &options);
-	 port->OpenFlags &= ~V24_NON_BLOCK;	/* switch to non-blocking */
-      }
+    {
+       tcgetattr(port->fd, &options);
+       options.c_cc[VMIN] = 0;	/* we want `interchar timeouts' */
+       options.c_cc[VTIME] = port->TimeoutValue;
+       tcsetattr(port->fd, TCSANOW, &options);
+       port->OpenFlags &= ~V24_NON_BLOCK;	/* switch to non-blocking */
+    }
    else
       port->Errno = V24_E_NOT_INIT;
    return port->Errno;
@@ -535,15 +547,15 @@ v24Getc(v24_port_t * port)
    unsigned char TheData;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Getc");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Getc");
+       return -1;
+    }
    if (v24Read(port, &TheData, 1) != 1)
-      {
-	 reportError(port, port->Errno, "v24Getc");
-	 return -1;
-      }
+    {
+       reportError(port, port->Errno, "v24Getc");
+       return -1;
+    }
    return (int) TheData;
 }
 
@@ -551,10 +563,10 @@ int
 v24Putc(v24_port_t * port, unsigned char TheData)
 {
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Putc");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Putc");
+       return -1;
+    }
    if (v24Write(port, &TheData, 1) != 1)
       reportError(port, port->Errno, "v24Putc");
    return port->Errno;
@@ -563,89 +575,91 @@ v24Putc(v24_port_t * port, unsigned char TheData)
 int
 v24Read(v24_port_t * port, unsigned char *Buffer, size_t Len)
 {
-   size_t _read;
+   size_t    _read;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Read");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Read");
+       return -1;
+    }
    port->Errno = V24_E_OK;
    if (Buffer == NULL)
-      {
-	 port->Errno = V24_E_NULL_POINTER;
-	 reportError(port, port->Errno, "v24Read");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_NULL_POINTER;
+       reportError(port, port->Errno, "v24Read");
+       return -1;
+    }
 
    _read = read(port->fd, Buffer, Len);
    if (_read < 0)
-      {
-	 port->Errno = V24_E_READ;
-	 reportError(port, port->Errno, "v24Read");
-      }
+    {
+       port->Errno = V24_E_READ;
+       reportError(port, port->Errno, "v24Read");
+    }
    else if (_read == 0)
-      {
-	 port->Errno = V24_E_TIMEOUT;
-      }
+    {
+       port->Errno = V24_E_TIMEOUT;
+    }
    return _read;
 }
 
 int
 v24Write(v24_port_t * port, const unsigned char *Buffer, size_t Len)
 {
-   size_t _sent;
+   size_t    _sent;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Write");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Write");
+       return -1;
+    }
    port->Errno = V24_E_OK;
    if (Buffer == NULL)
-      {
-	 port->Errno = V24_E_NULL_POINTER;
-	 reportError(port, port->Errno, "v24Write");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_NULL_POINTER;
+       reportError(port, port->Errno, "v24Write");
+       return -1;
+    }
    _sent = write(port->fd, Buffer, Len);
    if (_sent < 0)
-      {
-	 port->Errno = V24_E_WRITE;
-	 reportError(port, port->Errno, "v24Write");
-      }
+    {
+       port->Errno = V24_E_WRITE;
+       reportError(port, port->Errno, "v24Write");
+    }
    return _sent;
 }
 
 int
 v24Gets(v24_port_t * port, char *Buffer, size_t BuffSize)
 {
-   int total;			/* allready read */
-   int nbytes;			/* size of the read chunk */
-   char *bufptr;
+   int       total;		/* allready read */
+
+   int       nbytes;		/* size of the read chunk */
+
+   char     *bufptr;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Gets");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Gets");
+       return -1;
+    }
    port->Errno = V24_E_OK;
    if (Buffer == NULL)
-      {
-	 port->Errno = V24_E_NULL_POINTER;
-	 reportError(port, port->Errno, "v24Gets");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_NULL_POINTER;
+       reportError(port, port->Errno, "v24Gets");
+       return -1;
+    }
 
   /* a string should at least have 1 character and the terminating #\0#. To
    * read a single character, we have #v24Getc#.
    */
    if (BuffSize < 2)
-      {
-	 port->Errno = V24_E_ILLPARM;
-	 reportError(port, port->Errno, "v24Gets");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_ILLPARM;
+       reportError(port, port->Errno, "v24Gets");
+       return -1;
+    }
 
   /* read characters into our string Buffer until we get a
    * EZV24_END_OF_STRING. To be able to check this, we must read `byte for
@@ -654,25 +668,25 @@ v24Gets(v24_port_t * port, char *Buffer, size_t BuffSize)
    total = nbytes = 0;
    bufptr = Buffer;
    while ((nbytes = read(port->fd, bufptr, 1)) > 0)
-      {
-	 bufptr += nbytes;
-	 total += nbytes;
+    {
+       bufptr += nbytes;
+       total += nbytes;
 
-	/* because we read bytewise, there is no read to detect `half
-	 * chunks'. So all we have to is to check if the buffer is full or the
-	 * terminating char is read.
-	 */
-	 if (Buffer[total - 1] == EZV24_END_OF_STRING)
-	    break;
-	 if (total == BuffSize)
-	    break;
-      }
+      /* because we read bytewise, there is no read to detect `half
+       * chunks'. So all we have to is to check if the buffer is full or the
+       * terminating char is read.
+       */
+       if (Buffer[total - 1] == EZV24_END_OF_STRING)
+	  break;
+       if (total == BuffSize)
+	  break;
+    }
    if (nbytes < 0)
-      {
-	 port->Errno = V24_E_READ;
-	 reportError(port, port->Errno, "v24Gets");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_READ;
+       reportError(port, port->Errno, "v24Gets");
+       return -1;
+    }
    *bufptr = '\0';
    return total;
 }
@@ -680,40 +694,40 @@ v24Gets(v24_port_t * port, char *Buffer, size_t BuffSize)
 int
 v24Puts(v24_port_t * port, const char *Buffer)
 {
-   int _sent;
+   int       _sent;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24Puts");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24Puts");
+       return -1;
+    }
    port->Errno = V24_E_OK;
    if (Buffer == NULL)
-      {
-	 port->Errno = V24_E_NULL_POINTER;
-	 reportError(port, port->Errno, "v24Puts");
-	 return -1;
-      }
+    {
+       port->Errno = V24_E_NULL_POINTER;
+       reportError(port, port->Errno, "v24Puts");
+       return -1;
+    }
 
    _sent = write(port->fd, Buffer, strlen(Buffer));
    if (_sent < 0)
-      {
-	 port->Errno = V24_E_WRITE;
-	 reportError(port, port->Errno, "v24Puts");
-      }
+    {
+       port->Errno = V24_E_WRITE;
+       reportError(port, port->Errno, "v24Puts");
+    }
    return _sent;
 }
 
 int
 v24HaveData(v24_port_t * port)
 {
-   int CharsWaiting = 0;
+   int       CharsWaiting = 0;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24HaveData");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24HaveData");
+       return -1;
+    }
 #if defined(__LINUX__) && !defined(__CYGWIN__)
    port->Errno = V24_E_OK;
    ioctl(port->fd, FIONREAD, &CharsWaiting);
@@ -742,10 +756,10 @@ int
 v24FlushRxQueue(v24_port_t * port)
 {
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24FlushRxQueue");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24FlushRxQueue");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    tcflush(port->fd, TCIFLUSH);
    return port->Errno;
@@ -755,10 +769,10 @@ int
 v24FlushTxQueue(v24_port_t * port)
 {
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24FlushTxQueue");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24FlushTxQueue");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    tcflush(port->fd, TCOFLUSH);
    return port->Errno;
@@ -767,13 +781,13 @@ v24FlushTxQueue(v24_port_t * port)
 int
 v24SetDTR(v24_port_t * port, int NewState)
 {
-   int status;
+   int       status;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24SetDTR");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24SetDTR");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
 #if defined(__LINUX__) && !defined(__CYGWIN__)
    ioctl(port->fd, TIOCMGET, &status);
@@ -792,19 +806,19 @@ v24SetDTR(v24_port_t * port, int NewState)
 int
 v24SetRTS(v24_port_t * port, int NewState)
 {
-   int status;
+   int       status;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24SetRTS");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24SetRTS");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if (port->OpenFlags & V24_RTS_CTS)
-      {
-	 port->Errno = V24_E_ILLPARM;
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_ILLPARM;
+       return port->Errno;
+    }
 
 #if defined(__LINUX__) && !defined(__CYGWIN__)
    ioctl(port->fd, TIOCMGET, &status);
@@ -832,10 +846,10 @@ int
 v24QueryFileHandle(v24_port_t * port)
 {
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "v24QueryFileHandle");
-	 return -1;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "v24QueryFileHandle");
+       return -1;
+    }
    return port->fd;
 }
 
@@ -859,16 +873,16 @@ static void
 reportError(const v24_port_t * port, const int Errno, const char *caller)
 {
    if (port == NULL)
-      {
-	 fprintf(stderr, "ezV24: %s: error %d \n", caller, Errno);
-      }
+    {
+       fprintf(stderr, "ezV24: %s: error %d \n", caller, Errno);
+    }
    else
-      {
-	 if (port->OpenFlags & V24_DEBUG_ON)
-	    {
-	       fprintf(stderr, "ezV24: %s: port `%s' error %d \n", caller, port->PortName, Errno);
-	    }
-      }
+    {
+       if (port->OpenFlags & V24_DEBUG_ON)
+	{
+	   fprintf(stderr, "ezV24: %s: port `%s' error %d \n", caller, port->PortName, Errno);
+	}
+    }
 }
 
 /* -------------------------------------------------------------------------
@@ -892,17 +906,21 @@ reportError(const v24_port_t * port, const int Errno, const char *caller)
 static int
 createLockFile(v24_port_t * port)
 {
-   char LockFile[MAXNAMLEN + 1];
-   char buf[64];
-   int len, pid;
-   int fd;
-   mode_t oldmask;
+   char      LockFile[MAXNAMLEN + 1];
+
+   char      buf[64];
+
+   int       len, pid;
+
+   int       fd;
+
+   mode_t    oldmask;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "createLockFile");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "createLockFile");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    port->lock_fd = (-1);
 
@@ -915,45 +933,45 @@ createLockFile(v24_port_t * port)
    */
    fd = open(LockFile, O_RDONLY);
    if (fd < 0)
-      {
-	 if (errno != ENOENT)
+    {
+       if (errno != ENOENT)
+	{
+	  /* something strange happened... */
+	   port->Errno = V24_E_OPEN_LOCK;
+	   reportError(port, port->Errno, "createLockFile");
+	   return port->Errno;
+	}
+    }
+   else
+    {
+      /* lock file exists. check if the lock is valid or stale
+       */
+       len = read(fd, buf, sizeof buf);
+       close(fd);
+       if (len)
+	{
+	   pid = atoi(buf);
+	   if (pid == getpid())	/* hey, that's us! */
 	    {
-	      /* something strange happened... */
-	       port->Errno = V24_E_OPEN_LOCK;
+	       port->Locked = 1;
+	       return port->Errno;
+	    }
+
+	  /* check if the pid exists
+	   */
+	   if (kill(pid, 0) == 0)
+	    {
+	       port->Errno = V24_E_LOCK_EXIST;
+	      /* yes, the process exists. lock is thus valid */
 	       reportError(port, port->Errno, "createLockFile");
 	       return port->Errno;
 	    }
-      }
-   else
-      {
-	/* lock file exists. check if the lock is valid or stale
-	 */
-	 len = read(fd, buf, sizeof buf);
-	 close(fd);
-	 if (len)
+	   else
 	    {
-	       pid = atoi(buf);
-	       if (pid == getpid())	/* hey, that's us! */
-		  {
-		     port->Locked = 1;
-		     return port->Errno;
-		  }
-
-	      /* check if the pid exists
-	       */
-	       if (kill(pid, 0) == 0)
-		  {
-		     port->Errno = V24_E_LOCK_EXIST;
-		    /* yes, the process exists. lock is thus valid */
-		     reportError(port, port->Errno, "createLockFile");
-		     return port->Errno;
-		  }
-	       else
-		  {
-		     reportError(port, V24_E_DBG_STALE_LOCK, "createLockFile");
-		  }
+	       reportError(port, V24_E_DBG_STALE_LOCK, "createLockFile");
 	    }
-      }
+	}
+    }
 
   /* Here we have to create the lock file
    */
@@ -961,25 +979,25 @@ createLockFile(v24_port_t * port)
    fd = creat(LockFile, S_IREAD | S_IWRITE | S_IRGRP | S_IWGRP);
    umask(oldmask);
    if (fd < 0)
-      {
-	 port->Errno = V24_E_CREATE_LOCK;
-	 reportError(port, port->Errno, "createLockFile");
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_CREATE_LOCK;
+       reportError(port, port->Errno, "createLockFile");
+       return port->Errno;
+    }
    else
-      {
-	/* Now write our pid to lock file, so others know who locked the port.
-	 */
-	 v24_snprintf(buf, sizeof(buf), "%10d\n", getpid());
-	 len = write(fd, buf, strlen(buf));
-	 close(fd);
-	 if (len <= 0)
-	    {
-	       port->Errno = V24_E_WRITE_LOCK;
-	       reportError(port, port->Errno, "createLockFile");
-	       return port->Errno;
-	    }
-      }
+    {
+      /* Now write our pid to lock file, so others know who locked the port.
+       */
+       v24_snprintf(buf, sizeof(buf), "%10d\n", getpid());
+       len = write(fd, buf, strlen(buf));
+       close(fd);
+       if (len <= 0)
+	{
+	   port->Errno = V24_E_WRITE_LOCK;
+	   reportError(port, port->Errno, "createLockFile");
+	   return port->Errno;
+	}
+    }
    port->Locked = 1;
    return port->Errno;
 }
@@ -987,12 +1005,13 @@ createLockFile(v24_port_t * port)
 static int
 deleteLockFile(v24_port_t * port)
 {
-   char LockFile[MAXNAMLEN + 1];
+   char      LockFile[MAXNAMLEN + 1];
+
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "deleteLockFile");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "deleteLockFile");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if (!port->Locked)
       return port->Errno;
@@ -1003,11 +1022,11 @@ deleteLockFile(v24_port_t * port)
       return port->Errno;
 
    if (unlink(LockFile))
-      {
-	 port->Errno = V24_E_KILL_LOCK;
-	 if (port->OpenFlags & V24_DEBUG_ON)
-	    reportError(port, port->Errno, "deleteLockFile");
-      }
+    {
+       port->Errno = V24_E_KILL_LOCK;
+       if (port->OpenFlags & V24_DEBUG_ON)
+	  reportError(port, port->Errno, "deleteLockFile");
+    }
    else
       port->Locked = 0;
    return port->Errno;
@@ -1016,34 +1035,35 @@ deleteLockFile(v24_port_t * port)
 static int
 buildLockName(v24_port_t * port, char *TheName, size_t Len)
 {
-   char device[32];
-   char *ptr;
+   char      device[32];
+
+   char     *ptr;
 
    if (port == NULL)
-      {
-	 reportError(port, V24_E_ILLHANDLE, "buildLockName");
-	 return V24_E_ILLHANDLE;
-      }
+    {
+       reportError(port, V24_E_ILLHANDLE, "buildLockName");
+       return V24_E_ILLHANDLE;
+    }
    port->Errno = V24_E_OK;
    if (TheName == NULL)
-      {
-	 port->Errno = V24_E_NULL_POINTER;
-	 reportError(port, port->Errno, "buildLockName");
-	 return port->Errno;
-      }
+    {
+       port->Errno = V24_E_NULL_POINTER;
+       reportError(port, port->Errno, "buildLockName");
+       return port->Errno;
+    }
 
   /* extract device name */
    ptr = strrchr(port->PortName, '/');
    if (ptr)
-      {
-	/* we found a /dev/ style tty name */
-	 strncpy(device, ++ptr, sizeof(device) - 1);
-      }
+    {
+      /* we found a /dev/ style tty name */
+       strncpy(device, ++ptr, sizeof(device) - 1);
+    }
    else
-      {
-	/* no /dev/ specified. weird, but lets try it anyway */
-	 strncpy(device, port->PortName, sizeof(device) - 1);
-      }
+    {
+      /* no /dev/ specified. weird, but lets try it anyway */
+       strncpy(device, port->PortName, sizeof(device) - 1);
+    }
    device[sizeof(device) - 1] = '\0';
    v24_snprintf(TheName, Len, "%s/LCK..%s", EZV24_LOCK_PATH, device);
    return port->Errno;

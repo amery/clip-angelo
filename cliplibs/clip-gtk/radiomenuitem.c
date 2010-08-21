@@ -56,7 +56,8 @@ _clip_type_name_radio_menu_group()
 int
 clip_INIT___RADIO_MENU_ITEM(ClipMachine * ClipMachineMemory)
 {
-   _wtype_table_put(_clip_type_radio_menu_item, _clip_type_name_radio_menu_item, _gtk_type_radio_menu_item, _gtk_type_check_menu_item, NULL);
+   _wtype_table_put(_clip_type_radio_menu_item,
+		    _clip_type_name_radio_menu_item, _gtk_type_radio_menu_item, _gtk_type_check_menu_item, NULL);
    _wtype_table_put(_clip_type_radio_menu_group, _clip_type_name_radio_menu_group, _gtk_type_radio_menu_group, NULL, NULL);
    return 0;
 }
@@ -67,12 +68,18 @@ clip_INIT___RADIO_MENU_ITEM(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_RADIOMENUITEMNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   char *label = _clip_parc(ClipMachineMemory, 3);
+
+   char     *label = _clip_parc(ClipMachineMemory, 3);
+
    GtkWidget *wid = NULL;
+
    C_widget *cwid;
-   GSList *group = NULL;
+
+   GSList   *group = NULL;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
    CHECKOPT2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKOPT(3, CHARACTER_type_of_ClipVarType);
@@ -81,19 +88,19 @@ clip_GTK_RADIOMENUITEMNEW(ClipMachine * ClipMachineMemory)
       goto err;
 
    if (_clip_parinfo(ClipMachineMemory, 3) == CHARACTER_type_of_ClipVarType)
-      {
-	 LOCALE_TO_UTF(label);
-	 if (cgrp && cgrp->data)
-	    group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
-	 wid = gtk_radio_menu_item_new_with_label(group, label);
-	 FREE_TEXT(label);
-      }
+    {
+       LOCALE_TO_UTF(label);
+       if (cgrp && cgrp->data)
+	  group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       wid = gtk_radio_menu_item_new_with_label(group, label);
+       FREE_TEXT(label);
+    }
    else
-      {
-	 if (cgrp && cgrp->data)
-	    group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
-	 wid = gtk_radio_menu_item_new(group);
-      }
+    {
+       if (cgrp && cgrp->data)
+	  group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       wid = gtk_radio_menu_item_new(group);
+    }
    if (cgrp && !cgrp->data)
       cgrp->data = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(wid));
 
@@ -114,8 +121,10 @@ clip_GTK_RADIOMENUITEMNEW(ClipMachine * ClipMachineMemory)
 int
 clip_GTK_RADIOMENUGROUPNEW(ClipMachine * ClipMachineMemory)
 {
-   ClipVar *cv = _clip_spar(ClipMachineMemory, 1);
+   ClipVar  *cv = _clip_spar(ClipMachineMemory, 1);
+
    C_widget *cwid;
+
    CHECKOPT(1, MAP_type_of_ClipVarType);
 
    cwid = _register_widget(ClipMachineMemory, NULL, cv);
@@ -137,30 +146,34 @@ int
 clip_GTK_RADIOMENUITEMSETGROUP(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
+
    C_widget *cgrp = _fetch_cwidget(ClipMachineMemory, _clip_spar(ClipMachineMemory, 2));
-   GSList *group = NULL, *item;
+
+   GSList   *group = NULL, *item;
+
    GtkRadioMenuItem *rmitem, *active_item = NULL;
+
    CHECKARG2(2, MAP_type_of_ClipVarType, NUMERIC_type_of_ClipVarType);
    CHECKCWID(citm, GTK_IS_RADIO_MENU_ITEM);
    if (cgrp && cgrp->type != GTK_WIDGET_RADIO_MENU_GROUP)
       goto err;
    if (cgrp && cgrp->data)
-      {
-	 group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
-	 for (item = group; item; item = item->next)
-	    {
-	       rmitem = GTK_RADIO_MENU_ITEM(item->data);
-	       if (GTK_CHECK_MENU_ITEM(rmitem)->active)
-		  active_item = rmitem;
-	    }
-      }
+    {
+       group = gtk_radio_menu_item_group(GTK_RADIO_MENU_ITEM(((GSList *) (cgrp->data))->data));
+       for (item = group; item; item = item->next)
+	{
+	   rmitem = GTK_RADIO_MENU_ITEM(item->data);
+	   if (GTK_CHECK_MENU_ITEM(rmitem)->active)
+	      active_item = rmitem;
+	}
+    }
    gtk_radio_menu_item_set_group(GTK_RADIO_MENU_ITEM(citm->widget), group);
    if (group)
       for (item = group; item; item = item->next)
-	 {
-	    rmitem = GTK_RADIO_MENU_ITEM(item->data);
-	    gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(rmitem), FALSE);
-	 }
+       {
+	  rmitem = GTK_RADIO_MENU_ITEM(item->data);
+	  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(rmitem), FALSE);
+       }
    if (active_item)
       gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(active_item), TRUE);
    if (cgrp && cgrp->data)
@@ -174,9 +187,13 @@ int
 clip_GTK_RADIOMENUITEMSETSTYLE(ClipMachine * ClipMachineMemory)
 {
    C_widget *citm = _fetch_cw_arg(ClipMachineMemory);
-   ClipVar *mstyle = _clip_spar(ClipMachineMemory, 2);
+
+   ClipVar  *mstyle = _clip_spar(ClipMachineMemory, 2);
+
    GtkStyle *style;
+
    GtkWidget *wid;
+
    CHECKCWID(citm, GTK_IS_ITEM);
    CHECKARG(2, MAP_type_of_ClipVarType);
    wid = GTK_BIN(&(GTK_ITEM(citm->widget)->bin))->child;

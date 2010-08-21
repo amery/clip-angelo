@@ -9,28 +9,30 @@ typedef struct _C_parser C_parser;
 
 typedef struct _C_parser
 {
-   XML_Parser parser;
-   ClipVar obj;
-   ClipMachine *cmachine;
-   ClipVar *userData;
-   int handle;
-   void *data;
-   ClipVar characterDataHandler;	/* start function */
-   ClipVar startElementHandler;	/* start function */
-   ClipVar endElementHandler;	/* end function */
-   ClipVar commentHandler;	/* start function */
-   ClipVar startCdataSectionHandler;	/* start function */
-   ClipVar endCdataSectionHandler;	/* end function */
-   ClipVar defaultHandler;	/* start function */
+  XML_Parser parser;
+  ClipVar obj;
+  ClipMachine *cmachine;
+  ClipVar *userData;
+  int handle;
+  void *data;
+  ClipVar characterDataHandler;	/* start function */
+  ClipVar startElementHandler;	/* start function */
+  ClipVar endElementHandler;	/* end function */
+  ClipVar commentHandler;	/* start function */
+  ClipVar startCdataSectionHandler;	/* start function */
+  ClipVar endCdataSectionHandler;	/* end function */
+  ClipVar defaultHandler;	/* start function */
 } _C_parser;
+
 
 #define NEW(type) ((type*)calloc(sizeof(type),1))
 
-C_parser *_fetch_c_arg(ClipMachine * ClipMachineMemory);
-C_parser *_register_parser(ClipMachine * ClipMachineMemory, XML_Parser parser);
-C_parser *_list_get_cparser(ClipMachine * ClipMachineMemory, void *pointer);
-void _list_put_cparser(ClipMachine * ClipMachineMemory, void *pointer, C_parser * cpar);
-void _list_remove_cparser(ClipMachine * ClipMachineMemory, void *pointer);
+C_parser *_fetch_c_arg (ClipMachine * ClipMachineMemory);
+C_parser *_register_parser (ClipMachine * ClipMachineMemory, XML_Parser parser);
+C_parser *_list_get_cparser (ClipMachine * ClipMachineMemory, void *pointer);
+void _list_put_cparser (ClipMachine * ClipMachineMemory, void *pointer,
+			C_parser * cpar);
+void _list_remove_cparser (ClipMachine * ClipMachineMemory, void *pointer);
 
 #define CHECKCPARSER(cpar) \
   if(!cpar || !cpar->parser) { \
@@ -39,6 +41,7 @@ void _list_remove_cparser(ClipMachine * ClipMachineMemory, void *pointer);
     _clip_trap_err(ClipMachineMemory,EG_ARG,0,0,"CLIP_EXPAT",EG_NOPARSER,err); \
     goto err; \
     }
+
 
 #define CHECKARG(n,t) \
   if((_clip_parinfo(ClipMachineMemory,n)!=t)){ \

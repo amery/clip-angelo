@@ -1,0 +1,114 @@
+#!/bin/bash 
+H_Dir="$HOME/"
+export V=v
+xDevil_M_Dir="$PWD"
+cd ..
+xDevil_H_Dir="$PWD"
+cd "$xDevil_M_Dir"
+rD=$(cat $xDevil_M_Dir/release.sequence)
+rV=$(cat $xDevil_M_Dir/release.version)
+seq_no="$rD-$rV"
+export seq_no
+export rV
+export rD
+if [[ -f /usr/bin/banner ]] ; then
+	banner xDevil-ITK 								>&0
+	banner V.$rD 									>&0
+	banner $rV 										>&0
+else
+	echo "Version : $seq_no" 					>&0
+fi
+cd "$xDevil_M_Dir/xDevil/tools"
+reg=1
+if [ -f registration ] ; then
+	./rsa-verify >license.txt <registration
+	reg=$?
+	echo >>license.txt
+	echo "REGISTRATION BEGIN" >>license.txt
+	cat registration >>license.txt
+	echo "REGISTRATION END" >>license.txt
+fi
+if [ "$reg" != 0 ] ; then
+	cp --remove-destination -fu$V license.gnu license.txt
+fi
+echo "Registration info:" 						>&0
+echo 													>&0
+cat license.txt 									>&0
+echo 													>&0
+exec 																			3>license.h
+echo '#define xDevil_LICENSE "\' 										>&3
+#sed -e 's/"/\\"/g' -e 's/^.*$/"\0\\\n"\\/g' <license.txt 	>&3
+sed -e 's/"/\\"/g' -e 's/^.*$/\0\\n\\/g' <license.txt			>&3
+echo '"'																		>&3
+rm -f license.txt
+exec																			3>&-
+echo ". done."
+cp -f$V license.h $xDevil_M_Dir/
+cd "$xDevil_M_Dir"
+cp -f$V ./license.h $xDevil_M_Dir/xDevil/tools/
+
+sleep 2
+C64=$(uname -m)
+ARCH=$(uname -m)
+if [ -n "$ARCH" ] ; then
+	if [[ $ARCH = "x86_64" ]] && [[ $C64 = "x86_64" ]] ; then
+		ARCH=x86_64
+		C64=64
+		xDevilROOT=/xDevil64/
+	else
+		ARCH=i586
+		C64=""
+		xDevilROOT=/xDevil32/
+	fi
+fi
+option="$*"
+
+if [ -z "$option" ] || [[ "$option" = "-h" ]] || [[ "$option" = "--help" ]] ; then
+	echo ""
+	echo "-------------------------------------------------------"
+	echo "Configuration menu"
+	echo "-------------------------------------------------------"
+	echo "Sources directory : $xDevil_M_Dir"
+	echo "-------------------------------------------------------"
+	echo "  Options            install/destination directory"
+	echo "-------------------------------------------------------"
+	echo "[1] | [home]       : $H_Dir$xDevilROOT"
+	echo "[2] | [local]      : $xDevil_H_Dir/$xDevilROOT"
+	echo "[3] | [opt]        : /opt/$xDevilROOT"
+	echo "[4] | [usr.local]  : /usr/local/$xDevilROOT"
+#	echo "[5] | [sys]        : \"/usr/bin/$xDevilROOT\""
+	echo "-------------------------------------------------------"
+	echo "[0]   ABORT "
+	echo "-------------------------------------------------------"
+	xyz=" "
+	read -p "Your choice       : " xyz
+	option=$xyz
+	if [[ "$option" = "0" ]] ; then
+		exit 0
+	fi
+fi
+#set >configure.set.txt
+source $xDevil_M_Dir/init/start.sh $option
+if [[ $? != 0 ]] ; then
+	error $0 $LINENO
+	exit 1
+fi
+source $xDevil_M_Dir/init/configure.gen.sh $option
+if [[ $? != 0 ]] ; then
+	error $0 $LINENO
+	exit 1
+fi
+cd "$xDevil_M_Dir"
+#echo "export xDevil_F_F=$xDevil_M_Dir/init/functions.f.sh" >>$xDevil_I_Dir/xDevilcfg.sh
+cp -f$V $xDevil_I_Dir/Makefile.ini ./
+cp -f$V $xDevil_I_Dir/xDevilcfg.sh ./configure.ini
+source ./configure.ini
+if [[ $? != 0 ]] ; then
+	error $0 $LINENO
+	exit 1
+fi
+[ $CC -nt Makefile.in ] && touch Makefile.in
+cat Makefile.ini 	>Makefile
+cat Makefile.in 	>>Makefile
+#$MAKE $option
+touch configure.ok

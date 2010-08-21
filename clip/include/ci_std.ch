@@ -1,5 +1,5 @@
-#ifndef CI_STD_DEFINED
-#define CI_STD_DEFINED
+#ifndef CN_STD_DEFINED
+#define CN_STD_DEFINED
 
 #include "ci_config.ch"
 
