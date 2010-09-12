@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 H_Dir="$HOME/"
 export V=v
 Clip_M_Dir="$PWD"
@@ -107,6 +107,14 @@ if [[ $? != 0 ]] ; then
 	error $0 $LINENO
 	exit 1
 fi
+export >/dev/null
+cd "$Clip_M_Dir/links"
+./Link.sh
+if [[ $? != 0 ]] ; then
+	error $0 $LINENO
+	exit 1
+fi
+cd $Clip_M_Dir
 [ $CC -nt Makefile.in ] && touch Makefile.in
 cat Makefile.ini 	>Makefile
 cat Makefile.in 	>>Makefile

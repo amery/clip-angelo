@@ -5,7 +5,7 @@
 #
 #
 Local_Depend 		= 		../include/*.ch 	\
-								../include/*.h
+					../include/*.h
 
 LIB					= 		libclip.a
 SLIB					= 		libclip$(DLLSUFF)
@@ -84,7 +84,7 @@ $(LIB): $(ALIBS) $(EXTOBJS) $(MLIB) Makefile $(CLIP)
 $(SLIB): $(LIB)  Makefile $(CLIP)#test.o
 	$(E_e)$(Trace_lib)
 #	CLIPROOT=`pwd`
-	$(E_mkSl)$(CLIP_MAKESLIB) $(SLIB) $(LIB)
+	$(E_mkSl)$(CLIP_MAKESLIB) $(SLIB) $(LIB) $(ADDLIBS)
 
 cleanc :$(DIRS_TO_SCAN)
 	$(E_rm)rm -f$(V) charsets

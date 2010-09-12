@@ -16,7 +16,7 @@ export
 ######################################################################################
 ###################################################################################### local rules
 
-test$(EXESUFF) : test.prg Makefile $(CLIP) $(LIBCLIP)
+test$(EXESUFF) : test.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\
@@ -25,7 +25,7 @@ test$(EXESUFF) : test.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
 	fi
 
-tstclass$(EXESUFF) : tstclass.prg Makefile $(CLIP) $(LIBCLIP)
+tstclass$(EXESUFF) : tstclass.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\
@@ -34,7 +34,7 @@ tstclass$(EXESUFF) : tstclass.prg Makefile $(CLIP) $(LIBCLIP)
 		$(CLIP) $(CLIPFLAGS) -o $@ -es $< $(o_files) $(LIBS) ;		\
 	fi
 
-prgscrpt$(EXESUFF) : prgscrpt.prg Makefile $(CLIP) $(LIBCLIP)
+prgscrpt$(EXESUFF) : prgscrpt.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\

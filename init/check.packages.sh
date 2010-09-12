@@ -33,6 +33,7 @@ export WaitForCheck
 Check_Bin 	banner 			xyz 	all 			Yes	/usr/bin 			"banner-xx-$ARCH.(rpm/deb)"
 Check_Bin 	bison 			xyz 	all 			Yes 	/usr/bin 			"bison-xx-$ARCH.(rpm/deb)"
 Check_Bin 	cvs 				xyz 	all 			Yes 	/usr/bin 			"cvs-xx-$ARCH.(rpm/deb)"
+Check_Bin 	flawfinder 		xyz 	all 			Yes 	/usr/bin 			"flawfinder-xx-$ARCH.(rpm/deb)"
 Check_Bin 	flex 				xyz 	all 			Yes 	/usr/bin 			"flex-xx-$ARCH.(rpm/deb)"
 Check_Bin 	gcc 				xyz 	all 			Yes 	/usr/bin 			"gcc-xx-$ARCH.(rpm/deb)"
 #Check_Bin 	beep 				xyz 	all 			Yes 	/usr/bin 			"beep-xx-$ARCH.(rpm/deb)"

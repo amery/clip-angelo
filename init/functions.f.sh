@@ -1269,6 +1269,15 @@ function oneofdir ()
 	}
 # end function oneofdir
 
+function OnAllScreen ()
+{
+	echo $* 	>&0
+	echo $* 	>&1
+	echo $* 	>&2
+
+}
+#end function OnAllScreen ()
+
 function OnScreen ()
 	{
 		##
@@ -1525,7 +1534,7 @@ function warning ()
 		OnScreen 1 "WARNING !!!"
 		OnScreen 0
 		while [ -n "$*" ] ; do
-			OnScreen $1
+			OnScreen 0 $1
 			shift
 		done
 

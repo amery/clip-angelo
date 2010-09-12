@@ -14,7 +14,7 @@ export
 ######################################################################################
 ###################################################################################### local rules
 
-test$(EXESUFF) : test.prg Makefile $(CLIP) $(LIBCLIP)
+test$(EXESUFF) : test.prg Makefile $(CLIP) $(FULL_LIBCLIP)
 	$(E_clip)if [ -f $(subst .prg,.g,$<) ] ; then 						\
 		$(Trace_clip_d) 	;														\
 		$(CLIP) $(CLIPFLAGS) -g -o $@ -es $< $(o_files) $(LIBS) ;	\

@@ -29,6 +29,7 @@ if [ -f ./configure.in ] ; then
 	cat ./configure.ini 										>>./configure
 	echo "source $Clip_M_Dir/init/functions.f.sh"	>>./configure
 	cat ./configure.in  										>>./configure
+	echo "set >set.txt" 										>>./configure
 	chmod +x ./configure
 fi
 [ -f configure ] && ./configure 0

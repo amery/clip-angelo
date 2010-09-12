@@ -8,9 +8,9 @@
 DIRS_TO_SCAN=""
 #echo "C_FLAGS = \$(C_FLAGS) -I." 																	>>Makefile.ini
 #echo "CLIPFLAGS = -l -w -O -n -I . -I include -I ../include -I\$(Clip_I_Dir)" 	>>Makefile.ini
-AllDir="bzip2 gzip com crypto fcgi  gtk2 gtk dbtcp codb mysql odbc oracle postgres
+AllDir="bzip2 gzip com crypto fcgi gtk2 gtk dbtcp codb mysql odbc oracle postgres
 nanfor netto r2d2 rtf xml"
-# gtk2 gtk
+
 # fw needs gtk2
 #
 export DIRS_TO_SCAN

@@ -312,19 +312,17 @@ fi
 	#	echo "export XCLIP=$XCLIP"																			>&3
 #fi
 PO_BINS="po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF"
-$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c -liconv  -L/opt/liconv/lib
+$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c  -L/opt/liconv/lib -liconv
 if [ $? = 0 ] ; then
-	ICONV_LIB="-liconv  -L/opt/iconv/lib"
+	ICONV_LIB="-L/opt/liconv/lib -liconv"
 	ICONV_INC="\"/opt/iconv/include/iconv.h\""
 	LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/iconv/lib"
 	HAVE_ICONV=yes
 else
-	echo "Error of NO IMPORTANCE" >&0
-	echo "Error of NO IMPORTANCE" >&1
-	echo "Error of NO IMPORTANCE" >&2
-	$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -liconv -L/usr/local/lib
+	OnAllScreen "Error of NO IMPORTANCE"
+	$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -L/usr/local/lib -liconv
 	if [ $? = 0 ] ; 	then
-		ICONV_LIB="-liconv  -L/usr/local/lib"
+		ICONV_LIB="-L/usr/local/lib -liconv"
 		ICONV_INC="\"/usr/local/include/iconv.h\""
 		LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 		HAVE_ICONV=yes
@@ -337,9 +335,7 @@ else
 		else
 			ICONV_INC="<iconv.h>"
 			ICONV_LIB=""
-			echo "NO ICONV library found, doc building will have problems"
-			echo "NO ICONV library found, doc building will have problems" >&1
-			echo "NO ICONV library found, doc building will have problems" >&2
+			OnAllScreen "NO ICONV library found, doc building will have problems"
 			PO_BINS="po_extr$EXESUFF po_compat$EXESUFF"
 			HAVE_ICONV=
 		fi
@@ -352,12 +348,8 @@ test -n "$AS_PRG" || AS_PRG=as
 test -n "$NM_PRG" || NM_PRG=nm
 
 
-echo "ICONV_INC=$ICONV_INC" >&0
-echo "ICONV_LIB=$ICONV_LIB" >&0
-echo "ICONV_INC=$ICONV_INC" >&1
-echo "ICONV_LIB=$ICONV_LIB" >&1
-echo "ICONV_INC=$ICONV_INC" >&2
-echo "ICONV_LIB=$ICONV_LIB" >&2
+OnAllScreen "ICONV_INC=$ICONV_INC"
+OnAllScreen "ICONV_LIB=$ICONV_LIB"
 rm -f$V /tmp/$$*
 echo '
 msgid "error"

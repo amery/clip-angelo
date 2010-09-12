@@ -43,6 +43,9 @@ clean : $(DIRS_TO_SCAN) example cleanc
 depend : Makefile $(DIRS_TO_SCAN) example FORCE
 	$(E_xx)$(Clip_M_Dir)/init/MakeDepend.sh
 
+flawfinder : Makefile $(DIRS_TO_SCAN) example FORCE
+	$(E_xx)$(Clip_M_Dir)/init/Flaw.sh *.c
+
 $(DIRS_TO_SCAN) example test : Makefile FORCE
 	$(E_cd)if [ -d $@ ] ; then 																				\
 			cd $@  																									\

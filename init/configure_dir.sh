@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 #ADDMAKECMDGOALS="$*"
 #while [ $# -le 1 ] ; do
 #	shift
@@ -24,6 +24,7 @@ if ! [ -f $CONFIGURE_SH ] ; then
 	echo "[ -f ./configure.ini ] && source ./configure.ini" 			>>$CONFIGURE
 	echo "Config_Init" 															>>$CONFIGURE
 	cat ./configure.in 															>>$CONFIGURE
+	echo "set >set.txt" 															>>$CONFIGURE
 #	touch dummy.c
 	chmod +x $CONFIGURE
 	sleep .1

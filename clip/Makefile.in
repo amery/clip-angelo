@@ -25,9 +25,13 @@ all : Makefile $(DIRS_TO_SCAN)
 
 cfg : inst_dir inst_screen links
 	$(E_cp)cp -f$(V) ../Makefile.ini ../configure.ini .
-	$(E_mkD)[ -d $(CLIPROOT)/db ] \
-		|| mkdir -p$(V) $(CLIPROOT)/db
-	$(E_cp)cp -Rfpu$(V) $(Clip_M_Dir)/db/* $(CLIPROOT)/db/ || true
+	$(E_mkD)[ -d $(Clip_M_Dir)/db/ ] 			\
+		&& ( [ -d $(CLIPROOT)/db ] 			\
+			|| mkdir -p$(V) $(CLIPROOT)/db ) 	\
+		|| true
+	$(E_cp)[ -d $(Clip_M_Dir)/db/ ] 				\
+		|| cp -Rfpu$(V) $(Clip_M_Dir)/db/* $(CLIPROOT)/db/ 	\
+		|| true
 
 hash1 :
 #Makefile $(DIRS_TO_SCAN)

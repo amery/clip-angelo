@@ -86,6 +86,13 @@ depend : Makefile $(DIRS_TO_SCAN) FORCE
 	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
 	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
 
+flawfinder : Makefile $(DIRS_TO_SCAN) FORCE
+	$(E_e)banner $@ ok 	>&1
+	$(E_e)banner $@ ok 	>&0
+	$(E_e)echo Log file : $(Clip_T_Dir)/compile.*.sh 						>&0
+	$(E_e)echo Error/warning log file : $(Clip_T_Dir)/compile2.*.sh 	>&0
+	$(E_xx)touch $(Clip_M_Dir)/config/compile.ok
+
 $(DIRS_TO_SCAN) hasher : Makefile FORCE
 	$(E_e)echo "Scanning : " $(PWD) >&0
 	$(E_e)echo "Scanning : " $(PWD) >&1

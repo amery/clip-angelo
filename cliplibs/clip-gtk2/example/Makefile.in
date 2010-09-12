@@ -4,17 +4,11 @@
 Depend_on 			= 			$(Clip_L_Dir)/libclip-gtk2.so
 DIRS_TO_SCAN 		= 			gdk-pixbuf-demo
 prg_files 			=			$(sort 								\
-												accel.prg 				\
 												clipgtktest.prg 		\
-												colorbtn.prg 			\
-												combobox.prg 			\
-												container.prg 			\
-												drag_and_drop.prg 	\
-												draw.prg 				\
-												entrytempl.prg 		\
 												simple.prg  			\
 												test_stock.prg 		\
 												test_image.prg 		\
+												accel.prg 				\
 												test_tree.prg 			\
 												test_image.prg 		\
 												test_gtk.prg 			\
@@ -23,10 +17,16 @@ prg_files 			=			$(sort 								\
 												note.prg 				\
 												fonttest.prg 			\
 												text.prg 				\
+												container.prg 			\
 												test_dnd.prg 			\
+												drag_and_drop.prg 	\
+												colorbtn.prg 			\
 												pango.prg 				\
+												entrytempl.prg 		\
+												combobox.prg 			\
 												ifactory.prg 			\
 												lines.prg 				\
+												draw.prg 				\
 												lists.prg 				\
 												imgmenu.prg 			\
 												winback.prg 			\
