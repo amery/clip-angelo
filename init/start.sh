@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -u
 Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
@@ -129,7 +129,7 @@ export Clip_S_Dir="$Clip_C_Dir/setup/"
 export LibDir="/lib$C64/"
 # install directories
 mkdir -p$V $Clip_B_Dir
-#echo "#!/bin/sh" 								>$Clip_B_Dir/linkall.sh
+#echo "#!/bin/bash -u" 								>$Clip_B_Dir/linkall.sh
 #echo "" 											>>$Clip_B_Dir/linkall.sh
 #echo "mkdir -p$V $HOME/bin" 				>>$Clip_B_Dir/linkall.sh
 #echo "cd $HOME/bin" 							>>$Clip_B_Dir/linkall.sh

@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -u
 #
 # initiates or updates Makefile parameters & behaviour
 #

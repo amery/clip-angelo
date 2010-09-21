@@ -3,7 +3,7 @@ source $Clip_I_Dir/clipcfg.sh
 if [ -f clip_msgfmt.ini ] ; then
 	printf "configure: creating clip_msgfmt$SCRIPTSUFF .."
 	exec 																3>clip_msgfmt$SCRIPTSUFF
-	echo '#!/bin/sh  ' 											>&3
+	echo '#!/bin/bash ' 											>&3
 	echo "# Created automatically by 'configure'" 		>&3
 	echo 																>&3
 	echo "source $Clip_I_Dir/clipcfg.sh" 					>&3

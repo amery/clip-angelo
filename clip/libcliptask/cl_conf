@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 osname=`./osname.sh|tr '[:lower:]' '[:upper:]'`
 arch=`./arch.sh|tr '[:lower:]' '[:upper:]'`

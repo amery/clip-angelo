@@ -3,7 +3,7 @@ source $Clip_I_Dir/clipcfg.sh
 if [ -f clip_makeslib.ini ] ; then
 	printf "configure: creating clip_makeslib$SCRIPTSUFF .."
 	exec 																3>clip_makeslib$SCRIPTSUFF
-	echo '#!/bin/sh -u' 											>&3
+	echo '#!/bin/bash -u ' 											>&3
 	echo "# Created automatically by 'configure'" 		>&3
 	echo 																>&3
 	echo "CLIPROOT=$INSTDIR" 									>&3

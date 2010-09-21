@@ -1,6 +1,5 @@
-#!/bin/sh
+
 
 Check_Library 		fcgi 					.so 	clip-fcgi 		Yes 	/usr/lib$C64 							"libfcgi-static-devel-xx-$ARCH.(rpm/deb)"
-#!/bin/sh
 
 touch configure.ok

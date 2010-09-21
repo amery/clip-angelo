@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 arname=clip.tgz
 echo creating archive \'$arname\' ...
 echo

@@ -1,4 +1,5 @@
-#!/bin/sh -x
+#!/bin/bash -u
+
 SIMPLE_BACKUP_SUFFIX=.BAK
 export SIMPLE_BACKUP_SUFFIX
 # -l128 line length 128

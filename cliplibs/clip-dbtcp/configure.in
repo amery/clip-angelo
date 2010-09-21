@@ -1,4 +1,3 @@
-#!/bin/sh
 
 Check_Include 		protocol.h 				xyz 	clip-dbtcp 		Yes 	/opt/dbtcp 											"dbtcp.xx.tgz" \
 																																				"can be downloaded at" \
@@ -10,6 +9,5 @@ DBTCP_PATH=$(Check_Library 		dbftp 				.a 	clip-dbtcp 		Yes 	/opt/dbtcp 								
 
 echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
 echo "DBTCP_PATH = $DBTCP_PATH" >>Makefile.ini
-#!/bin/sh
 
 touch configure.ok

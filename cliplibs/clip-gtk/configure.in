@@ -1,4 +1,3 @@
-#!/bin/sh -u
 
 Check_Include 		gdk-pixbuf-features.h 	xyz 	clip-gtk 		yes 	/usr/include 			"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
 Check_Include 		gdk-pixbuf-xlib.h 		xyz 	clip-gtk 		yes 	/usr/include 			"libgdk-pixbuf-devel-$ARCH.(rpm/deb)"
@@ -181,6 +180,5 @@ cp -f$V ./Makefile ../../prg/udbx/Makefile.inc
 cp -f$V ./Makefile ../clip-fw/Makefile.inc
 
 echo ". done."
-#!/bin/sh
 
 touch configure.ok

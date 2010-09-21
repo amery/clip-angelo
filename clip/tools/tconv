@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 if [ -x /usr/bin/konwert ]
 then

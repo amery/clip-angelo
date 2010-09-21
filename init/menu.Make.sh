@@ -1,4 +1,4 @@
-#!/bin/sh -u
+#!/bin/bash -u
 Version="1.04"
 export SleepTime=0
 [ -f ../vTempVersion.txt ] && cp -fpuv ../vTempVersion.txt ./

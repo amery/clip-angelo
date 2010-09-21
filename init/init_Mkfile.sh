@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -u
 #
 if [ -f $Clip_S_Dir/VerbosityLog.setup.ini ] ; then
 	VerbosityLog=$(cat $Clip_S_Dir/VerbosityLog.setup.ini)

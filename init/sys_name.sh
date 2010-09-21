@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 if [ -z "$OSTYPE" ]
 then
 	OSTYPE=`uname`

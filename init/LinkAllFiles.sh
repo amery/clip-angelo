@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 # called from configure files
 #
 Hash_Dir=$Clip_M_Dir/hasher/hashed

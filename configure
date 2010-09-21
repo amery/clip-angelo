@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/bash -u
 H_Dir="$HOME/"
 export V=v
 Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
 cd "$Clip_M_Dir"
-rD=$(cat $Clip_M_Dir/release.sequence)
+rD=$(cat $Clip_M_Dir/release.date)
 rV=$(cat $Clip_M_Dir/release.version)
 seq_no="$rD-$rV"
 export seq_no
@@ -88,6 +88,7 @@ if [ -z "$option" ] || [[ "$option" = "-h" ]] || [[ "$option" = "--help" ]] ; th
 	fi
 fi
 #set >configure.set.txt
+LD_LIBRARY_PATH=" "
 source $Clip_M_Dir/init/start.sh $option
 if [[ $? != 0 ]] ; then
 	error $0 $LINENO

@@ -1,4 +1,4 @@
-#!/bin/sh
+
 
 cp -fv ../new-clip/configure.ini .
 cp -fv ../new-clip/Makefile.ini .

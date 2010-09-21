@@ -1,4 +1,4 @@
-#!/bin/sh
+
 
 uname=`uname -s`
 uver=`uname -r`

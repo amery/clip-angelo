@@ -1,4 +1,4 @@
-#!/bin/sh
+
 
 Check_Library 		ps 			.so 		clip-postscript 	yes 	/usr/lib$C64 		"libpslib-devel-xx-$ARCH.(deb/rpm)"
 Check_Library 		expat 		.so 		clip-postscript 	yes 	/usr/lib$C64 		"libexpat-devel-xx-$ARCH.(deb/rpm)"

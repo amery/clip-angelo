@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 #
 # clip_bug: clip bugreport interactive generator
 # GPL by Paul Lasarev <paul@itk.ru>, 2002

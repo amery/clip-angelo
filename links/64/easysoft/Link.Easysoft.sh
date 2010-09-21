@@ -1,4 +1,4 @@
-#!/bin/bash -ux
+#!/bin/bash -u
 
 source $Clip_M_Dir/init/functions.f.sh
 

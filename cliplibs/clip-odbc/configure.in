@@ -1,4 +1,3 @@
-#!/bin/sh -u
 
 
 LIBODBC=$(Check_Library 		esoobS 				.so 	clip-odbc 		Yes 	/usr/lib$C64							"libunixODBC1-static-devel-xx-$ARCH.(rpm/deb)")
@@ -11,6 +10,5 @@ Check_Include 		odbc.h 					xyz 	clip-odbc 		Yes 	/usr/local/easysoft/oob/client
 echo "LIBODBC = -L$LIBODBC" 	>>Makefile.ini
 echo "LIBOOB = -L$LIBOOB" 		>>Makefile.ini
 
-#!/bin/sh
 
 touch configure.ok

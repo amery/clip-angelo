@@ -25,7 +25,7 @@ source $Clip_M_Dir/configure.ini
 [ -f ../Makefile.ini ] && cp --remove-destination -fpu$V ../Makefile.ini ../configure.ini ./
 [ -f ./Makefile.ini ] || cp --remove-destination -fpu$V $Clip_M_Dir/Makefile.ini $Clip_M_Dir/configure.ini ./
 if [ -f ./configure.in ] ; then
-	echo "#!/bin/bash " 										>./configure
+	echo "#!/bin/bash -u" 									>./configure
 	cat ./configure.ini 										>>./configure
 	echo "source $Clip_M_Dir/init/functions.f.sh"	>>./configure
 	cat ./configure.in  										>>./configure

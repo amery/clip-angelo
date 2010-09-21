@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 CVS_RSH=ssh
 export CVS_RSH
 exec cvs -z 9 $*

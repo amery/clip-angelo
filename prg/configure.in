@@ -1,4 +1,4 @@
-#!/bin/sh
+
 cp -f$V ../Makefile.ini ../configure.ini .
 DIRS_TO_SCAN=""
 if [ -f ../cliplibs/clip-nanfor.ok ] && [ -f ../cliplibs/clip-netto.ok ] ; then
@@ -30,6 +30,5 @@ DIRS_TO_SCAN="$DIRS_TO_SCAN dbc debug doc_utils hiper pp utils "
 echo "DIRS_TO_SCAN = \$(sort $DIRS_TO_SCAN )" >Makefile.01
 
 #cat Makefile.ini Makefile.01 Makefile.in >Makefile
-#!/bin/sh
 
 touch configure.ok

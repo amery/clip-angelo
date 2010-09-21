@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 [ -z "$CLIPROOT" ] && CLIPROOT=$1
 [ -z "$BINDIR" ] && BINDIR=$2

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 [ $# != 1 ] && { echo usage: $0 keymap_name; exit 1; }
 

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 GLIBC=`grep '^#define[ 	]*__GLIBC__' /usr/include/features.h 2>/dev/null | tr -s ' 	' ' ' | cut -d' ' -f3`
 GLIBC_MINOR=`grep '^#define[ 	]*__GLIBC_MINOR__' /usr/include/features.h 2>/dev/null | tr -s ' 	' ' ' | cut -d' ' -f3`

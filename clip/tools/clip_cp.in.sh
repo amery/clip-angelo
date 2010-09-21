@@ -3,7 +3,7 @@ source $Clip_I_Dir/clipcfg.sh
 if [ -f clip_cp.ini ] ; then
 	printf "configure: creating clip_cp$SCRIPTSUFF .."
 	exec 															3>clip_cp$SCRIPTSUFF
-	echo '#!/bin/sh -u' 										>&3
+	echo '#!/bin/bash -u ' 										>&3
 	echo "# Created automatically by 'configure'" 	>&3
 	echo 															>&3
 	echo "source $Clip_I_Dir/clipcfg.sh" 				>&3

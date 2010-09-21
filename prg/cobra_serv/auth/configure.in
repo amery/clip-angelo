@@ -1,4 +1,4 @@
-#!/bin/sh
+
 
 Check_Library 		pam 		.so 		cobra_serv/auth 	yes 	/use/lib$C64 		"libpam-devel-xx-$ARCH.(deb/rpm)"
 touch configure.ok

@@ -1,4 +1,4 @@
-#!/bin/sh -u
+
 
 INCDIR=$(Check_Include 		gtkextra/gtkextra.h  xyz   clip-gtkextra 	yes 	/usr/include/ "libgtk-extra-devel-$ARCH.(rpm/deb)")
 uname=`uname -s`
@@ -212,6 +212,5 @@ cat ./Makefile 			>>Makefile.ini
 rm -f$V ./Makefile.inc
 echo ". done."
 
-#!/bin/sh
 
 touch configure.ok

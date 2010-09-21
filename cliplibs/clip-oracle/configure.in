@@ -1,4 +1,4 @@
-#!/bin/sh -u
+
 
 
 OR_INC=$(Check_Include 		occi.h 		xyz 	clip-oracle 	yes 	/usr/include/oracle/*/client$C64/  			"oracle-instantclient-basic-xx-$ARCH.(deb/rpm)" 			\
@@ -18,6 +18,5 @@ echo "OR_INC = $OR_INC" 	>>Makefile.ini
 echo "OR_LIB = $OR_LIB" 	>>Makefile.ini
 echo "OR_LIB = $OR_LIB" 	>>Makefile.ini
 
-#!/bin/sh
 
 touch configure.ok

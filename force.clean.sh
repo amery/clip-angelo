@@ -1,4 +1,5 @@
-#!/bin/sh -u
+#!/bin/bash -u
+
 export WaitTime=0
 
 rm -fv configure.flags

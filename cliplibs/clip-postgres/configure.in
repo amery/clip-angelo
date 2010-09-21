@@ -1,4 +1,3 @@
-#!/bin/sh -u
 
 
 PGINCDIR=$(Check_Include 		libpq-fe.h 				xyz 	clip-postgres 	Yes 	/usr/include 								"postgresql-devel-xx-$ARCH.(rpm/deb)")
@@ -7,6 +6,5 @@ PGLIBDIR=$(Check_Library 		pq 					.so 	clip-postgres 	Yes 	/usr/lib$C64 							
 
 echo "PGINCDIR = $PGINCDIR" 		>>Makefile.ini
 echo "PGLIBDIR = $PGLIBDIR" 		>>Makefile.ini
-#!/bin/sh
 
 touch configure.ok

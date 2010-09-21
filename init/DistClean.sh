@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -u
 #
 # erases linked symbol files
 #

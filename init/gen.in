@@ -1,4 +1,4 @@
-#!/bin/sh -ue
+
 #set >$(date +%s).configure.$LINENO.set.txt
 #
 #

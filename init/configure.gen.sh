@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 #
 #	Configure script for clip by Angelo GIRARDI 2009-11-14
 # 	adapted from
@@ -408,7 +408,7 @@ echo "export EXESUFF=$EXESUFF" 																			>&3
 echo "export INSTALL_ROOT=$INSTALL_ROOT" 																>&3
 echo "export INSTDIR=$CLIP_ROOT"																			>&3
 echo "export LD_END=\"$LD_END\""																			>&3
-echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH"														>&3
+echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\""													>&3
 echo "export LD_PRG=\"$LD_PRG\"" 																		>&3
 echo "export LDS_END=\"$LDS_END\""																		>&3
 echo "export LDS_PRG=\"$LDS_PRG\""																		>&3

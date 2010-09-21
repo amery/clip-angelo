@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -u
 #
 # outputs log files on screen.
 #

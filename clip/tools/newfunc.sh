@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 # script to change old style clip function names to new one
 # ( with prefix clip_ )
 

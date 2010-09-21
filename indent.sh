@@ -1,4 +1,4 @@
-#!/bin/sh -u
+#!/bin/bash -u
 
 export Clip_M_Dir="$PWD"
 [ -d temp ] || mkdir -pv temp

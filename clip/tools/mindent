@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash -u
+
 SIMPLE_BACKUP_SUFFIX=.BAK
 export SIMPLE_BACKUP_SUFFIX
 indent -l128 -lc80 -bad -bap -sob -nfc1 -d0 -ncdb -cd33 -bli0 -npcs \

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 
 export CVS_RSH=ssh
 

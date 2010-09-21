@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash -u
+
 uname=`uname -s 2>/dev/null`
 osname=$uname
 case "$uname" in

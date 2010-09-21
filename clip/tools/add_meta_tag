@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 tmp=/tmp/add_meta_tag$$
 
 charset="$1"

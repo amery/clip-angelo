@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 ssh=`which ssh1`
 if [ -z "$ssh" ]
 then

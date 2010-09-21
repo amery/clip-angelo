@@ -1,7 +1,6 @@
-#!/bin/sh
+
 
 Check_Library 		wrap 					.so 	tcp-wrap			Yes 	/usr/lib$C64 										"libwrap-devel-xx-$ARCH.(rpm/deb)"
 Check_Include 		tcpd.h 				xyz 	tcp-wrap			Yes 	/usr/include/sys 									"libwrap-devel-xx-$ARCH.(rpm/deb)"
-#!/bin/sh
 
 touch configure.ok

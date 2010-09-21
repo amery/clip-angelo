@@ -1,4 +1,4 @@
-#!/bin/sh
+
 CurDir="$PWD"
 if ! [ -f ../../cliplibs/clip-gtk/Makefile.inc ] ; then
 	cd ../../cliplibs/clip-gtk
@@ -7,6 +7,5 @@ fi
 cd $CurDir
 [ -f ../../cliplibs/clip-gtk/Makefile.inc ] && cp -f$V ../../cliplibs/clip-gtk/Makefile.inc .
 
-#!/bin/sh
 cat ./Makefile.inc >>Makefile.ini
 touch configure.ok

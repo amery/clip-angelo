@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -u
 echo
 echo Generating .uni from .cp files
 codepages=*.cp

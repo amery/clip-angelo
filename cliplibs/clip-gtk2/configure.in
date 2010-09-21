@@ -1,4 +1,3 @@
-#!/bin/sh -u
 
 Check_Include 		gdkconfig.h  			xyz   clip-gtk2 		yes 	/usr/lib$C64  										"libgtk+2-devel-$ARCH.(rpm/deb)"
 Check_Include 		X11/xpm.h 				xyz 	clip-gtk2 			Yes 	/usr/include 										"libxpm-static-devel-xx-$ARCH.(rpm/deb)"
@@ -247,6 +246,5 @@ cat ./Makefile.inc >>Makefile.ini
 cp -f$V ./Makefile.inc ../clip-glade2/
 rm -f$V ./Makefile.inc
 echo ". done."
-#!/bin/sh
 
 touch configure.ok

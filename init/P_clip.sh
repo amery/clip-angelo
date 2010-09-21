@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash -u
 #
 # initiates or updates CC & clip compilers parameters for clip dir
 #

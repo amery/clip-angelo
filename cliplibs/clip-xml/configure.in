@@ -1,4 +1,4 @@
-#!/bin/sh -u
+
 
 function exitf()
 {
@@ -17,6 +17,5 @@ fi
 echo "Dir_Lib = $Dir_Lib" >>Makefile.ini
 
 exitf 0
-#!/bin/sh
 
 touch configure.ok
