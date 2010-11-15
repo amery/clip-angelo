@@ -1,0 +1,81 @@
+# This is a part of CLIP-UI library
+#
+# Copyright (C) 2003 by E/AS Software Foundation
+# Author: Andrey Cherepanov <skull@eas.lrn.ru>
+ifndef CLIPROOT
+	CLIPROOT=$(shell cd ../../../; pwd)/cliproot
+endif
+
+include $(CLIPROOT)/include/Makefile.inc
+
+DRIVERSDIR = $(DESTDIR)$(CLIPROOT)/lib/drivers
+CLIPINCLUDE = -I$(CLIPROOT)/include
+CLIP = $(CLIPROOT)/bin/clip
+
+.SUFFIXES: .prg .o .po
+
+# Here you can define appropriate compile settings
+#C_FLAGS=-Wall -g -I. $(CLIPINCLUDE)
+#CC=gcc
+TARGET  = libclip-ui$(DLLSUFF)
+RTARGET = libclip-ui$(DLLREALSUFF)
+
+OBJS    = button.o checkbox.o color.o combobox.o edit.o font.o form.o \
+	  frame.o grid.o image.o label.o layout.o menu.o \
+	  progressbar.o radiobutton.o slider.o special.o table.o timer.o \
+	  toolbar.o tree.o utils.o window.o workspace.o
+
+.PHONY: all clean uninstall distclean
+
+all: var.ch driver $(TARGET)
+
+var.ch:
+	echo "#define DRIVERSDIR \"$(DRIVERSDIR)\"" >var.ch
+
+driver:
+	cd drivers && $(MAKE) all
+
+$(TARGET): $(OBJS)
+	$(CLIPROOT)/bin/clip_makeslib $(TARGET) $(OBJS)
+
+clean:
+	cd drivers && $(MAKE) clean
+	cd example && $(MAKE) clean
+	rm -f Makefile $(OBJS) $(TARGET) var.ch *.bak *.nm *.ex *.ppo *.dll.a *.log *.dll
+
+clear: clean
+
+install: all
+	cd drivers && $(MAKE) install
+	mkdir -p $(DESTDIR)$(CLIPROOT)/lib
+	mkdir -p $(DESTDIR)$(CLIPROOT)/include
+	$(CLIPROOT)/bin/clip_cp $(TARGET) $(DESTDIR)$(CLIPROOT)/lib
+	$(CLIPROOT)/bin/clip_cp $(RTARGET) $(DESTDIR)$(CLIPROOT)/lib
+	$(CLIPROOT)/bin/clip_cp clip-ui.ch $(DESTDIR)$(CLIPROOT)/include
+	mkdir -p $(DESTDIR)$(CLIPROOT)/doc/example/clip-ui
+	cp -R example/* $(DESTDIR)$(CLIPROOT)/doc/example/clip-ui/
+
+uninstall:
+	cd drivers && $(MAKE) uninstall
+	rm -rf $(CLIPROOT)/lib/$(TARGET) $(CLIPROOT)/lib/$(RTARGET) $(CLIPROOT)/doc/example/clip-ui/
+	rm -f  $(CLIPROOT)/include/clip-ui.ch
+
+distclean: clean
+
+dist: distclean
+	cd .. && tar cvfz clip-ui.tgz clip-ui
+
+.prg.o: clip-ui.ch
+	$(CLIP) -w $(CLIPINCLUDE) $<
+
+commit:
+	_cvs commit
+
+update:
+	_cvs update -dP
+
+ucommit:
+	_cvs update -dP && _cvs commit
+
+shell:
+	sh

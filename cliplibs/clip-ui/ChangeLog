@@ -1,0 +1,60 @@
+2006-10-25 clip-ui-0.1.3
+	- UIWindow is resizeable by default
+	- Widget with suffix '+' is expanded in XFL forms
+
+2006-10-16
+	- Window now support spacing and padding in form
+	- Pass both id and text for UIChoice
+	- getValues() method ignore named buttons
+	- UIChoice support setValue/getValue as array { text, id }
+
+2006-06-06
+	- UIFrame now support :layout widget for setup background ("color.bg")
+
+2006-06-02
+	- UIGrid: add expand flags to pos (+ at axes end)
+	- small fixes in UIForm
+	- UIFont now supports font size in form +XX or -XX
+
+2006-04-06 clip-ui 0.1.2.4
+	- configure stript
+	- remove XMLTag() and use clip-xml for XML parsing
+
+2005-11-14 clip-ui 0.1.2.3
+	- new methods: 
+		UIButton: setText()
+		UITable:  savePosition(), restorePosition()
+		UITree:   savePosition(), restorePosition()
+	- new function: getMainWindow()
+	- fix alignment for UIGrid
+	- UIForm support "Image" widget class (UIImage)
+
+2005-07-01
+	- FIX: put in scrolled window by gtk_ScrolledWindowAddWithViewport()
+
+2005-04-04
+	- new classes: UIEditColor, UIEditDate, UIEditFileName
+	- methods: setFocus() [UIChildWindow,UIDocument], 
+	  setAction() [UIWorkSpace]
+	- support signal names in setAction() methods
+
+2005-03-18
+	- new predefined icons: IMG_WARNING, IMG_QUESTION
+	- new classes: UILayout, UIProgressBar, UIRadioGroup, UIRadioButton, 
+	  UISlider, UITableItem, UITreeItem
+	- new methods: appendText() [UIEdit,UIEditText], setCaption() 
+	  [UIChildWindow]
+
+2005-02-25 clip-ui 0.1.2.2
+	- new function useDriver() for driver choose
+	- new driver: gtk2 (GTK+ 2.xx driver)
+
+2005-02-03
+	- fix Makefile
+
+2005-02-01
+	- new method setAction() for UIEdit/UIEditText (on changed)
+
+2005-01-31
+	- new method clear() in UIMenuBar/UIPopupMenu/UIToolBar
+	
