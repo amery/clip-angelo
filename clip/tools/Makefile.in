@@ -8,19 +8,20 @@ Local_Depend 	= 		../include/*.h		\
 							../include/*.ch
 
 c_files		=		$(sort 									\
-										clipar.c 				\
-										clip_conv.c 			\
-										clip_dbg.c 				\
-										clip_trans.c 			\
+										clipar.c 		\
+										clip_conv.c 		\
+										clip_dbg.c 		\
+										clip_trans.c 		\
 										clip_hashextract.c 	\
-										cliphash.c 				\
-										genlist.c 				\
-										gen_tbl.c 				\
-										po_extr.c 				\
-										po_compat.c 			\
-										po_subst.c 				\
+										cliphash.c 		\
+										genlist.c 		\
+										gen_tbl.c		\
 							)
-
+#														\
+#										po_extr.c 				\
+#										po_compat.c 			\
+#										po_subst.c 				\
+#
 exe_files 		= 		$(addsuffix $(EXESUFF), $(basename $(c_files) ) )
 SCRIPTS 			= 		$(sort 								 			\
 										clip_cp$(SCRIPTSUFF) 			\
@@ -44,7 +45,7 @@ export
 ######################################################################################
 ###################################################################################### local rules
 
-all: Makefile links lex $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(SCRIPTS)
+all: Makefile links lex $(DIRS_TO_SCAN) $(o_files) $(exe_files) $(SCRIPTS) $(PO_BINS)
 
 links:
 

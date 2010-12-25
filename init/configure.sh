@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -u
 echo "Configuring $PWD because of $*" >&0
 echo "Configuring $PWD because of $*" >&1
 echo "Configuring $PWD because of $*" >&2

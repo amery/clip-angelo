@@ -5,8 +5,8 @@ Clip_M_Dir="$PWD"
 cd ..
 Clip_H_Dir="$PWD"
 cd "$Clip_M_Dir"
-rD=$(cat $Clip_M_Dir/release.date)
-rV=$(cat $Clip_M_Dir/release.version)
+rD=$(cat $Clip_M_Dir/init/release.date)
+rV=$(cat $Clip_M_Dir/init/release.version)
 seq_no="$rD-$rV"
 export seq_no
 export rV
@@ -109,8 +109,6 @@ if [[ $? != 0 ]] ; then
 	exit 1
 fi
 export >/dev/null
-cd "$Clip_M_Dir/links"
-./Link.sh
 if [[ $? != 0 ]] ; then
 	error $0 $LINENO
 	exit 1

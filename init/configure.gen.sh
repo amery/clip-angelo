@@ -84,8 +84,8 @@ if [ "$USE_MEMDBG" = yes ] ; then
 fi
 #arch="$HOSTTYPE"
 #[ -z "$arch" ] &&
-arch=`uname -m 2>/dev/null`
-[ -z "$arch" ] && arch=`uname -p 2>/dev/null`
+arch=`uname -m `
+[ -z "$arch" ] && arch=`uname -p `
 [ -z "$arch" ] && arch=unknown
 case "$arch" in
 i?86)
@@ -112,13 +112,13 @@ uver=`uname -r`
 ##seq_no=$(cat $Clip_M_Dir/release.version)
 ####remark from Uri: "hostname -f" on Solaris changed hostname !
 ####                 and "hname" not used in this script.
-#hname=`hostname -f 2>/dev/null`
+#hname=`hostname -f `
 #if [ $? != 0 ]
 #then
-#	hname=`hostname 2>/dev/null`
+#	hname=`hostname `
 #	if [ $? != 0 ]
 #	then
-#		hname=`uname -n 2>/dev/null`
+#		hname=`uname -n `
 #		if [ $? != 0 ]
 #		then
 #			hname=localhost
@@ -226,19 +226,19 @@ LINUX)
 *)
 	;;
 esac
-msgfmt -V >/dev/null 2>&1
+msgfmt -V
 if [ $? != 0 ] ; then
 	echo "Warning: GETTEXT package does not installed"
 	echo "Warning: clip_msgfmt and clip_msgmerge will not work"
 	NO_GETTEXT=yes
 fi
-flex -V >/dev/null 2>&1
+flex -V
 if [ $? != 0 ] ; then
 	echo "Warning: FLEX package does not installed"
 	echo "Warning: clip compilation may have a problems"
 	#exit 1
 fi
-bison -V >/dev/null 2>&1
+bison -V
 if [ $? != 0 ] ; then
 	echo "Warning: BISON package does not installed"
 	echo "Warning: clip compilation may have a problems"
@@ -312,32 +312,39 @@ fi
 	#	echo "export XCLIP=$XCLIP"																			>&3
 #fi
 PO_BINS="po_extr$EXESUFF po_subst$EXESUFF po_compat$EXESUFF"
-$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c  -L/opt/liconv/lib -liconv
+$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c
 if [ $? = 0 ] ; then
-	ICONV_LIB="-L/opt/liconv/lib -liconv"
-	ICONV_INC="\"/opt/iconv/include/iconv.h\""
-	LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/iconv/lib"
+	ICONV_LIB=""
+	ICONV_INC="\"iconv.h\""
 	HAVE_ICONV=yes
 else
-	OnAllScreen "Error of NO IMPORTANCE"
-	$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -L/usr/local/lib -liconv
-	if [ $? = 0 ] ; 	then
-		ICONV_LIB="-L/usr/local/lib -liconv"
-		ICONV_INC="\"/usr/local/include/iconv.h\""
-		LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+	$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.opt.c  -L/opt/liconv/lib -liconv
+	if [ $? = 0 ] ; then
+		ICONV_LIB="-L/opt/liconv/lib -liconv"
+		ICONV_INC="\"/opt/iconv/include/iconv.h\""
+		LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/iconv/lib"
 		HAVE_ICONV=yes
 	else
-		$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c
-		if [ $? = 0 ] ; then
-			ICONV_LIB=""
-			ICONV_INC="<iconv.h>"
+		OnAllScreen "Error of NO IMPORTANCE"
+		$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.local.c -L/usr/local/lib -liconv
+		if [ $? = 0 ] ; 	then
+			ICONV_LIB="-L/usr/local/lib -liconv"
+			ICONV_INC="\"/usr/local/include/iconv.h\""
+			LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 			HAVE_ICONV=yes
 		else
-			ICONV_INC="<iconv.h>"
-			ICONV_LIB=""
-			OnAllScreen "NO ICONV library found, doc building will have problems"
-			PO_BINS="po_extr$EXESUFF po_compat$EXESUFF"
-			HAVE_ICONV=
+			$CC -o /tmp/$$ $Clip_M_Dir/external/test/test.iconv.c
+			if [ $? = 0 ] ; then
+				ICONV_LIB=""
+				ICONV_INC="<iconv.h>"
+				HAVE_ICONV=yes
+			else
+				ICONV_INC="<iconv.h>"
+				ICONV_LIB=""
+				OnAllScreen "NO ICONV library found, doc building will have problems"
+				PO_BINS="po_extr$EXESUFF po_compat$EXESUFF"
+				HAVE_ICONV=
+			fi
 		fi
 	fi
 fi
@@ -357,10 +364,11 @@ msgid_plural "errors"
 msgstr[0] ""
 msgstr[1] ""
 '> /tmp/$$msg
-if msgfmt -o /dev/null /tmp/$$msg >/dev/null 2>&1 ; then
+if msgfmt -o /dev/null /tmp/$$msg  ; then
 	PO_FROM_COMPAT="cat"
 	PO_TO_COMPAT="cat"
 	PO_COMPAT=no
+	PO_BINS=""
 else
 	PO_COMPAT=yes
 	PO_FROM_COMPAT="$Clip_B_Dir/po_compat$EXESUFF -f"
@@ -578,7 +586,6 @@ if [ -f /usr/include/readline/readline.h ] ; then
 int main(int argc, char **argv) { rl_already_prompted=1; return 0;}
 	' > /tmp/$$.c
 	$CC -o /tmp/$$ /tmp/$$.c $READLINE_LIBS
-# 2>/dev/null 1>&2
 	if [ $? = 0 ] ; then
 		echo "#define HAVE_READLINE_ALREADY_PROMPTED" 													>&3
 	else
@@ -596,7 +603,7 @@ else
 	#include <utmp.h>
 	int main(int argc, char **argv) { setutent(); return 0;}
 		' > /tmp/$$.c
-	$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
+	$CC -o /tmp/$$ /tmp/$$.c
 	if [ $? = 0 ] ; then
 		echo "#define USE_UTMP 1" 																				>&3
 	else
@@ -608,7 +615,7 @@ echo '
 #include <sys/time.h>
 int main(int argc, char **argv) { struct timeval tv; gettimeofday(&tv, 0); return 0;}
 	' > /tmp/$$.c
-$CC -o /tmp/$$ /tmp/$$.c 2>/dev/null 1>&2
+$CC -o /tmp/$$ /tmp/$$.c
 if [ $? = 0 ] ; then
 	echo "#define HAVE_GETTIMEOFDAY 1"																		>&3
 else

@@ -111,6 +111,7 @@ Files2Remove 		= 	*~ 					\
 							Makefile.02 		\
 							Makefile.ini 		\
 							configure.ini 		\
+							configure.ok 		\
 							Makefile.inc		\
 							make2 				\
 							dummy.c

@@ -74,15 +74,15 @@ cd ..
 Clip_H_Dir="$PWD"
 export Clip_H_Dir Clip_M_Dir
 cd "$Clip_M_Dir"
-if ! [ -f "$Clip_M_Dir/release.date" ] ; then
+if ! [ -f "$Clip_M_Dir/init/release.date" ] ; then
 	[ -x ../create.release.number.sh ] && ../create.release.number.sh
 fi
-export release_date=$(cat "$Clip_M_Dir/release.date")
+export release_date=$(cat "$Clip_M_Dir/init/release.date")
 export release_version=""
-if ! [ -f "$Clip_M_Dir/release.version" ] ; then
+if ! [ -f "$Clip_M_Dir/init/release.version" ] ; then
 	[ -x ../create.release.number.sh ] && ../create.release.number.sh
 fi
-export release_version=$(cat "$Clip_M_Dir/release.version")
+export release_version=$(cat "$Clip_M_Dir/init/release.version")
 #export release_sequence=""
 #if ! [ -f "$Clip_M_Dir/release.sequence" ] ; then
 #	[ -x ../create.release.number.sh ] && ../create.release.number.sh
@@ -151,7 +151,7 @@ while [ $trt -eq -1 ] ; do
 #		banner $release_sequence
 		#/		sleep .5
 		banner menu
-		banner v.$Version
+#		banner v.$Version
 		#/		sleep .5
 		OnScreen 2
 		cd $Clip_M_Dir
@@ -295,11 +295,11 @@ while [ $trt -eq -1 ] ; do
 			#		Menu_command[$MenuNr]="CVS_update"
 			#		Menu2[$MenuNr]=" :                                       !!! not yet tested      |"
 			export Separetor4=$MenuNr
-			let ++MenuNr
-			Menu_Select[$MenuNr]="new-version   "
-			Menu_command[$MenuNr]="new-version"
-			Menu2[$MenuNr]=" : modifies date &/or version &/or sequence                      |"
-			export Service=$MenuNr
+#			let ++MenuNr
+#			Menu_Select[$MenuNr]="new-version   "
+#			Menu_command[$MenuNr]="new-version"
+#			Menu2[$MenuNr]=" : modifies date &/or version &/or sequence                      |"
+#			export Service=$MenuNr
 		fi
 		export varX=0
 		export BigLineSeparator="#"
@@ -355,9 +355,9 @@ while [ $trt -eq -1 ] ; do
                    release : $(uname -r)" 																									 	>&0
 		echo $BigLineSeparator 																														 	>&0
 		#echo "$SpaceWhiteLine" 																													 	>&0
-		echo "#   Clip installer/Menu version : $release_date-$Version for arch $ARCH$SpaceInstaller   #" 			 			>&0
+		#echo "#   Clip installer/Menu version : $release_date-$Version for arch $ARCH$SpaceInstaller   #" 			 			>&0
 		#echo "$SpaceWhiteLine" 																													 	>&0
-		echo $BigLineSeparator 																														 	>&0
+		#echo $BigLineSeparator 																														 	>&0
 		#echo "$SpaceWhiteLine" 																													 	>&0
 		echo "#  Clip compiler, debugger, libraries & tools version : $release_version$SpaceReleaseVersion     #" 			>&0
 		echo "#                                  (yyyy-mm-dd)  date : $release_date                         #"				>&0
@@ -365,7 +365,7 @@ while [ $trt -eq -1 ] ; do
 		#echo "#                                                date : $sequence_date           #"							 	>&0
 		#echo "$SpaceWhiteLine" 																													 	>&0
 		echo $BigLineSeparator 																														 	>&0
-		echo "$SpaceWhiteLine" 																														 	>&0
+		#echo "$SpaceWhiteLine" 																														 	>&0
 		echo "#                  Menu options                                                            #" 					>&0
 		#echo "$SpaceWhiteLine" 																											 			>&0
 		echo $BigLineSeparator 																												 			>&0
@@ -388,16 +388,16 @@ while [ $trt -eq -1 ] ; do
 				echo "|          Versions                                                                        |" 			>&0
 				echo $LittleLineSeparator 																								 				>&0
 				;;
-			$Separetor3)
-				echo $LittleLineSeparator 																							 					>&0
-				echo "|          Packages                                                                        |" 			>&0
-				echo $LittleLineSeparator 																								 				>&0
-				;;
-			$Separetor4)
-				echo $LittleLineSeparator 																							 					>&0
-				echo "|          Service                                                                         |" 			>&0
-				echo $LittleLineSeparator 																									 			>&0
-				;;
+#			$Separetor3)
+#				echo $LittleLineSeparator 																							 					>&0
+#				echo "|          Packages                                                                        |" 			>&0
+#				echo $LittleLineSeparator 																								 				>&0
+#				;;
+#			$Separetor4)
+#				echo $LittleLineSeparator 																							 					>&0
+#				echo "|          Service                                                                         |" 			>&0
+#				echo $LittleLineSeparator 																									 			>&0
+#				;;
 			esac
 			let ++yz
 		done
@@ -438,7 +438,7 @@ while [ $trt -eq -1 ] ; do
 			init/viewlogfile.sh
 			let trt=-1
 		elif [ $trt -eq $ForceCleanNr ] ; then
-			./force.clean.sh
+			./init/force.clean.sh
 			let trt=-1
 		#elif [[ $trt == $CleanNr ]] ; then
 			#$MAKE ${Menu_command[$varX]}
@@ -601,19 +601,23 @@ while [ $trt -eq -1 ] ; do
 		source ./configure.ini
 	fi
 	export >/dev/null
-	if [[ -f ./${Menu_command[$varX]} ]] ; then
-		rm -f$V ./${Menu_command[$varX]}
-	fi
-	if [[ -f ./${Menu_command[$varX]}.sh ]] ; then
+	#if [[ -f ./init/${Menu_command[$varX]} ]] ; then
+	#	rm -f$V ./init/${Menu_command[$varX]}
+	#fi
+	if [[ -f ./${Menu_command[$varX]}.sh ]] || [[ -f ./init/${Menu_command[$varX]}.sh ]] ; then
 		if [[ "$RootMode" = "1" ]] ; then
 			rm -fv temp/*
-			su -c "./${Menu_command[$varX]}.sh"
+			su -c "./init/${Menu_command[$varX]}.sh"
 		else
 			rm -fv temp/*
-			./${Menu_command[$varX]}.sh
+			if [[ -f ./${Menu_command[$varX]}.sh ]] ; then
+				./${Menu_command[$varX]}.sh
+			elif [[ -f ./init/${Menu_command[$varX]}.sh ]] ; then
+				./init/${Menu_command[$varX]}.sh
+			fi
 			if [[ $? != 0 ]] ; then
-			 ErrorLevel=1
-		  fi
+				ErrorLevel=1
+			fi
 		fi
 	else
 		rm -fv temp/*

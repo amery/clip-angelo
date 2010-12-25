@@ -1,5 +1,4 @@
 #!/bin/bash -u
-
 if [[ -f "$Clip_S_Dir/Edit.setup.ini" ]] ; then
 	export Edit=$(cat "$Clip_S_Dir/Edit.setup.ini" )
 else
@@ -43,3 +42,4 @@ if [[ 1"" = 1"$Edit" ]] || [[ 1"" = 1"$MultiFile" ]]; then
 		echo "Y" >"$Clip_S_Dir/MultiFile.setup.ini"
 	fi
 fi
+

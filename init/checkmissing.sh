@@ -1,6 +1,4 @@
 #!/bin/bash -u
-#
-
 cd temp
 export FileToBrowse=
 source $Clip_M_Dir/bin/GetEdit.sh

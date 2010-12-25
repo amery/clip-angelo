@@ -1,6 +1,7 @@
 #!/bin/bash -u
+source $Clip_M_Dir/init/functions.f.sh
 export WaitTime=0
-cd clip-prg.32-64
+cd $Clip_M_Dir
 [ -f Makefile ] || ./configure "local"
 make clean
 if [ -f Makefile ] ; then
@@ -11,4 +12,5 @@ if [ -f Makefile ] ; then
 	fi
 fi
 rm -fv Makefile clean
-./force.clean.sh || true
+rm -fv Makefile clean configure.ok user || true
+./init/force.clean.sh || true

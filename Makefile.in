@@ -53,6 +53,7 @@ cleanc :
 							configure.ini || true
 	$(E_rm)rm -f$(V) 	sys 					\
 							home 					\
+							user 			\
 							usr.local 			\
 							opt 					\
 							config_check 		\
@@ -214,6 +215,7 @@ Makefile : Makefile.in Makefile.ini $(Depend_Files) configure configure.ini
 	$(E_e)$(Trace)
 	$(E_xx)./configure $(MAKECMDGOALS)
 	$(E_xx)$(MAKE) M_config
+	$(E_xx)$(Clip_M_Dir)/links/Link.sh
 	$(E_e)echo $(PWD)/Makefile "is updated" 	>&0
 	$(E_e)echo $(PWD)/Makefile "is updated" 	>&1
 	$(E_e)echo $(PWD)/Makefile "is updated" 	>&2
